@@ -1,0 +1,72 @@
+[
+ {
+ "text": "家用电器",
+ "code": "PL01",
+ "typeId": "002"
+ },
+ {
+ "text": "数码产品",
+ "code": "PL02",
+ "typeId": "002"
+ },
+ {
+ "text": "国内教育",
+ "code": "PL03",
+ "typeId": "002"
+ },
+ {
+ "text": "出境留学",
+ "code": "PL04",
+ "typeId": "002"
+ },
+ {
+ "text": "装修",
+ "code": "PL05",
+ "typeId": "002"
+ },
+ {
+ "text": "婚庆",
+ "code": "PL06",
+ "typeId": "002"
+ },
+ {
+ "text": "旅游",
+ "code": "PL07",
+ "typeId": "002"
+ },
+ {
+ "text": "租赁",
+ "code": "PL08",
+ "typeId": "002"
+ },
+ {
+ "text": "购车",
+ "code": "PL09",
+ "typeId": "002"
+ },
+ {
+ "text": "购房",
+ "code": "PL10",
+ "typeId": "002"
+ },
+ {
+ "text": "贷款/债务偿还",
+ "code": "PL11",
+ "typeId": "002"
+ },
+ {
+ "text": "企业经营",
+ "code": "PL12",
+ "typeId": "002"
+ },
+ {
+ "text": "股债交易/投资",
+ "code": "PL13",
+ "typeId": "002"
+ },
+ {
+ "text": "其他类消费",
+ "code": "PL99",
+ "typeId": "002"
+ }
+ ]

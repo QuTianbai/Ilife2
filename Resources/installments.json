@@ -1,0 +1,36 @@
+ [
+  {
+  "text": "三期",
+  "code": "IS01",
+  "typeId": "001"
+  },
+  {
+  "text": "六期",
+  "code": "IS02",
+  "typeId": "001"
+  },{
+  "text": "九期",
+  "code": "IS03",
+  "typeId": "001"
+  },
+  {
+  "text": "十二期",
+  "code": "IS04",
+  "typeId": "001"
+  },
+  {
+  "text": "十八期",
+  "code": "IS05",
+  "typeId": "001"
+  },
+  {
+  "text": "二十四期",
+  "code": "IS06",
+  "typeId": "001"
+  },
+  {
+  "text": "其他",
+  "code": "IS07",
+  "typeId": "001"
+  }
+  ]

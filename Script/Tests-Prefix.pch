@@ -1,0 +1,12 @@
+//
+//  Tests-Prefix.pch
+//
+// Copyright (c) 2014年 Zēng Liàng. All rights reserved.
+//
+
+// “Enable Modules” to NO. ‘__Verify’ is invalid in C99
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
+
+#import <Quick/Quick.h>
+#import <Nimble/Nimble.h>

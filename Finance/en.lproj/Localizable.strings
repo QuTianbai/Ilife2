@@ -1,0 +1,20 @@
+/* 
+  Localized.strings
+  Arita
+
+  Created by gitmac on 6/9/14.
+  Copyright (c) 2014 Zeng Liang. All rights reserved.
+*/
+"Pull to refresh..." = "下拉即可刷新...";
+"Release to refresh..." = "释放立即更新..";
+"Loading..." = "正在加载...";
+"Cancel" = "取消";
+"Use Last Photo Taken" = "使用最新的图片";
+"Take Photo" = "拍照";
+"Choose from Library" = "相册";
+"Photos" = "相册";
+"Done" = "完成";
+"%ld Photos" = "%ld 相册";
+"%ld Photo Selected" = "%ld 已选中";
+"%ld Photos Selected" = "%ld 已选中";
+"Choose" = "确定";

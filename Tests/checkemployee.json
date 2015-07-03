@@ -1,0 +1,76 @@
+{
+  "employee": "0",
+  "teams": [
+            {
+            "maxAmount": "20000",
+            "team": [
+                     {
+                     "period": "9",
+                     "productGroupCode": "100000000010",
+                     "proGroupId": "85",
+                     "productId": "59",
+                     "monthlyInterestRate": "2",
+                     "productName": "10",
+                     "monthlyFeeRate": "2",
+                     "proGroupName": "现金贷"
+                     },
+                     {
+                     "period": "6",
+                     "productGroupCode": "100000000008",
+                     "proGroupId": "85",
+                     "productId": "58",
+                     "monthlyInterestRate": "2",
+                     "productName": "现金贷008",
+                     "monthlyFeeRate": "2",
+                     "proGroupName": "现金贷"
+                     },
+                     {
+                     "period": "12",
+                     "productGroupCode": "100000000001",
+                     "proGroupId": "85",
+                     "productId": "13",
+                     "monthlyInterestRate": "1",
+                     "productName": "现金贷002",
+                     "monthlyFeeRate": "0.1",
+                     "proGroupName": "现金贷"
+                     }
+                     ],
+            "minAmount": "5001"
+            },
+            {
+            "maxAmount": "25000",
+            "team": [
+                     {
+                     "period": "3",
+                     "productGroupCode": "111111111111",
+                     "proGroupId": "85",
+                     "productId": "57",
+                     "monthlyInterestRate": "1",
+                     "productName": "weq",
+                     "monthlyFeeRate": "1",
+                     "proGroupName": "现金贷"
+                     }
+                     ],
+            "minAmount": "10000"
+            },
+            {
+            "maxAmount": "5000",
+            "team": [
+                     {
+                     "period": "3",
+                     "productGroupCode": "100000000001",
+                     "proGroupId": "85",
+                     "productId": "56",
+                     "monthlyInterestRate": "1",
+                     "productName": "现金贷001",
+                     "monthlyFeeRate": "0.1",
+                     "proGroupName": "现金贷"
+                     }
+                     ],
+            "minAmount": "2000"
+            }
+            ],
+  "white": "0",
+  "allMinAmount": "2000",
+  "allMaxAmount": "25000"
+}

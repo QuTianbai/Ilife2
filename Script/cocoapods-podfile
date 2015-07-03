@@ -1,0 +1,16 @@
+# http://guides.cocoapods.org/using/the-podfile.html
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '7.0'
+
+inhibit_all_warnings!
+
+pod 'AFNetworking', '2.5.0'
+pod 'MTLFMDBAdapter', '0.1.7'
+
+pod 'libextobjc', '0.4.1'
+pod 'ReactiveCocoa', '2.4.2'
+pod 'Mantle', '1.5.1'
+
+target 'Tests', :exclusive => true do
+  pod 'OCMockito', '1.3.1'
+end

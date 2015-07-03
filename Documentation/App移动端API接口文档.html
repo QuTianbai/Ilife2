@@ -1,0 +1,2481 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title><h3>现金贷 App REST API</h3>
+____
+
+<h4>简介</h4>
+`</title>
+
+</head>
+<body>
+<h3>现金贷 App REST API</h3>
+
+
+<hr />
+
+<h4>简介</h4>
+
+
+<p><code>现金贷App REST API是用来提供给移动端使用的，我们以实际的</code><a href="http://www.ruanyifeng.com/blog/2011/09/restful.html">RESTFul</a><code>设计原则提供了一套</code><a href="http://en.wikipedia.org/wiki/Representational_state_transfer">REST</a> <code>API。</code></p>
+
+<p><code>我们的API参照HTTP的特点使用的是面向资源的URL，像验证，请求方法和响应码等。所有的请求响应主体都是JSON编码，包括错误响应。所有现成的HTTP客户端都可以被用于与我们的API交互。</code></p>
+
+<h4>更新日志</h4>
+
+
+<p>2015.04.29</p>
+
+<ul>
+<li>更改 头信息新增Device，用于收集设备信息，去掉User-Agent(注：运营商串改)</li>
+<li>更改 检查版本新增渠道</li>
+<li>新增 <a href="#users_user_id_processing">检查是否有正在处理的贷款申请</a></li>
+<li>新增 <a href="#loans_amount_installments">根据金额获取期数</a></li>
+</ul>
+
+
+<p>2015.05.5</p>
+
+<ul>
+<li>更改 头信息Device新增设备ID</li>
+<li>更改 贷款列表状态</li>
+<li>例如修改密码、忘记密码，需要返回{"message":""}</li>
+</ul>
+
+
+<h4>请求</h4>
+
+
+<pre>
+<font color=green>所有请求都采用HTTPS协议</font>
+<font color=green>基本URL地址:https://api.msfinance.cn</font>
+<font color=green>API版本:v1</font>
+</pre>
+
+
+<p><strong>注:所有接口</strong></p>
+
+<pre><font color=red>
+头信息
+手机基本信息>Device:平台 +系统版本; + 渠道; + App内部版本号; + 制造商; + 牌子; + 型号; + 编译ID; + 设备ID; + GPS(lat,lng)
+已登录> Cookie:xxx</font></pre>
+
+
+<p><strong>JSON内容</strong></p>
+
+<p>所有的<code>POST</code>, <code>PUT</code>, <code>PATCH</code>请求都是<a href="http://en.wikipedia.org/wiki/JSON">JSON</a>编码并且必须有<code>application/json</code>类型，否则API将返回<code>415 Unsupported Media Type</code>状态码。</p>
+
+<pre>
+$ curl -u token:X https://api.msfinance.cn/{apiVersion}/users/{userId} \
+    -X PATCH \
+    -H 'Content-Type: application/json' \
+    -d '{"username":"张三"}'
+</pre>
+
+
+<p><strong>HTTP 方法</strong></p>
+
+<p>我们使用标准的HTTP请求方法作为请求意图：</p>
+
+<ul>
+<li><code>GET</code> - 获取资源或资源集合</li>
+<li><code>POST</code> - 创建资源</li>
+<li><code>PATCH</code> - 修改资源</li>
+<li><code>PUT</code> - 设置资源</li>
+<li><code>DELETE</code> - 删除资源</li>
+</ul>
+
+
+<p><strong>受限的HTTP客户端</strong></p>
+
+<p>如果你使用的HTTP客户端不支持<code>PUT</code>,<code>PATCH</code>或<code>DELETE</code>请求，那么只需要发送一个<code>POST</code>请求附上一个<code>X-HTTP-Method-Override</code>请求头标明行为即可。</p>
+
+<pre>
+$ curl -u token:X https://api.msfinance.cn/{apiVersion}/users/{userId} \
+    -X POST \
+    -H "X-HTTP-Method-Override: DELETE"
+</pre>
+
+
+
+
+<h4>响应</h4>
+
+
+<p><code>所有的响应内容都是</code><a href="http://en.wikipedia.org/wiki/JSON">JSON</a><code>编码</code></p>
+
+<p>一个单独的资源由一个json对象来表示:</p>
+
+<pre>
+{
+    "field1": "value",
+    "field2": true,
+    "field3": []
+}
+</pre>
+
+
+<p>一个资源集合由一个json对象数组来表示:</p>
+
+<pre>
+[
+    {
+        "field1": "value",
+        "field2": true,
+        "field3": []
+    },
+    {
+        "field1": "another value",
+        "field2": false,
+        "field3": []
+    }
+]
+</pre>
+
+
+<p><code>时间戳是</code><a href="http://en.wikipedia.org/wiki/Coordinated_Universal_Time">UTC</a><code>标准且是</code><a href="http://en.wikipedia.org/wiki/ISO_8601">ISO8601</a><code>格式。</code></p>
+
+<p><code>未设置的变量将会以null表示，如果该变量是数组，将以一个空数组表示[]。</code></p>
+
+<p><strong>HTTP状态码</strong></p>
+
+<p><em><font color=red>成功状态码</font></em></p>
+
+<ul>
+<li><code>200 OK</code> - 请求成功。包括响应</li>
+<li><code>201 Created</code> - 资源已创建。新资源的URL在Location header</li>
+<li><code>204 No Content</code> - 请求成功，但没有返回内容</li>
+</ul>
+
+
+<p><em><font color=red>失败状态码</font></em></p>
+
+<ul>
+<li><code>400 Bad Request</code> - 请求无法解析</li>
+<li><code>401 Unauthorized</code> - 没有提供证书或验证失败(未登录)</li>
+<li><code>403 Forbidden</code> - 验证通过用户没有访问权限</li>
+<li><code>404 Not Found</code> - 资源未找到</li>
+<li><code>415 Unsupported Media Type</code> - POST/PUT/PATCH请求没有带上<code>application/json</code>类型</li>
+<li><code>422 Unprocessable Entry</code> - 由于一个<a href="#validation_error">验证错误</a>导致请求修改或创建资源失败</li>
+<li><code>429 Too Many Requests</code> - 由于<a href="#rate_limiting">速度限制</a>请求被拒绝</li>
+<li><code>500, 501, 502, 503, etc</code> - 服务内部出错</li>
+</ul>
+
+
+<p><strong>错误</strong></p>
+
+<p>所有400系列的错误（400，401，403等等）都将会返回application/json类型以及在body中的一个json对象。</p>
+
+<pre>
+{
+    "message": "Not Found"
+}
+</pre>
+
+
+<p>所有500系列的错误码 (500, 501, 502等等)不会返回json body。</p>
+
+<p><strong><p id="validation_error">验证错误</p></strong></p>
+
+<p>如果在POST/PUT/PATCH请求时发生验证错误, 会返回验证错误<code>422 Unprocessable Entry</code>状态码。json返回的body中会包含一个错误信息数组。</p>
+
+<pre>
+{
+    "message": "Validation Failed",
+    "errors": [
+        {
+            "message": "Field is not valid"
+        },
+        {
+            "message": "OtherField is already used"
+        }
+    ]
+}
+</pre>
+
+
+<h4 id="rate_limiting">限速</h4>
+
+
+<p>所有url，用户和令牌，API每分钟速度限制最多100个单位。一次请求通常代表一个单位。但<a href="#embedding">内嵌</a>和<a href="#counting">计数</a>可以增加一次请求的单位数。所有的响应包括头部描述当前限速状态如下：</p>
+
+<pre>
+Rate-Limit-Limit: 200
+Rate-Limit-Remaining: 199
+Rate-Limit-Used: 1
+Rate-Limit-Reset: 20
+Rate-Limit-Limit - 当前时段限速上限
+Rate-Limit-Remaining - 当前时段剩余可用单位
+Rate-Limit-Used - 本次请求使用的单位数
+Rate-Limit-Reset - 离限速重置的秒数
+</pre>
+
+
+<p>如果达到限速，该API将会返回过多请求状态码<code>429 Too Many Requests</code>。这种情况下在重置(<code>Rate-Limit-Reset</code>倒计时完成)之前你的应用就不应发送更多请求了。</p>
+
+<h4>变量过滤</h4>
+
+
+<p>所有API的返回值都可以只截取你需要的值。只需要传一个查询参数附带你需要的变量列表且分别用逗号隔开就可以了。</p>
+
+<p><code>比如</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users?fields=user_id,user_name</code></p>
+
+<p><code>返回值如下:</code></p>
+
+<pre>
+[
+    {
+        "user_id": "543dafdaf3d4",
+        "user_name:": "小张"
+    },
+    {
+        "user_id": "543dafdaf3dd",
+        "user_name:": "小李"
+    }
+]
+</pre>
+
+
+<h4 id=embedding>内嵌</h4>
+
+
+<p>许多url都支持嵌入相关资源以缩小API的响应的往返次数。</p>
+
+<p>嵌入(<code>embed</code>)查询参数，用逗号隔开作为参数进行传递。</p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users/{userId}?embed=labels</code></p>
+
+<pre>
+{
+    id: "543add",
+    type: "email",
+    label_ids: [
+        "qaz123",
+        "wsx123"
+    ],
+    labels: [
+        {
+            id: "qaz123",
+            name: "普通"
+        },
+        {
+            id: "wsx123",
+            name: "VIP"
+        }
+    ],
+    ...其他数据...
+}
+</pre>
+
+
+<p>只有特定的资源类型才能嵌入特定的url。url文档里详细介绍了哪些可以嵌入。</p>
+
+<p>每个嵌入类型都会有额外的限速单位。</p>
+
+<h4 id=counting>计数</h4>
+
+
+<p>所有的返回集合都可以提供一个结果集总数，只需要包含一句<code>count=true</code>作为查询参数即可。计数结果将会以<code>Total-Count</code>返回.</p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users?count=true</code></p>
+
+<p><code>200 OK</code></p>
+
+<pre>
+Total-Count: 135
+Rate-Limit-Limit: 200
+Rate-Limit-Remaining: 198
+Rate-Limit-Used: 2
+Rate-Limit-Reset: 20
+Content-Type: application/json
+[
+  ... results ... 
+]
+</pre>
+
+
+<p>注意返回的计数代表的是整个有效结果的数量，不是作为当前响应的部分返回的数量。</p>
+
+<p>每次计数都会有额外的限速单位。</p>
+
+<h4>封装</h4>
+
+
+<p>如果你的HTTP客户端难以读取状态码或请求头，我们可以将所有的响应结果打包到一个body里返回。只要使用<code>envelope=true</code>作为请求参数，你的所有请求就会返回状态码200，而真正的状态，头部信息和响应结果都将包含在body中。</p>
+
+<p><code>GET /https://api.msfinance.cn/{apiVersion}/users/does-not-exist?envelope=true</code></p>
+
+<p><code>200 OK</code></p>
+
+<pre>
+{
+    "status": 404,
+    "headers": {
+        "Rate-Limit-Limit": 200,
+        "Rate-Limit-Remaining": 150,
+        "Rate-Limit-Used": 0,
+        "Rate-Limit-Reset": 25
+    },
+    "response": {
+        "message": "Not Found"
+    }
+}
+</pre>
+
+
+<h4>分页</h4>
+
+
+<p>对将返回集合的接口的请求可以返回0~100个结果，可以使用<code>per_page</code>和<code>page</code>参数来进行控制。所有的返回数量默认是10个结果。</p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users?per_page=15&amp;page=2</code></p>
+
+<p>并非所有的url都支持分页。如果支持，文档里会提到。</p>
+
+<h4>排序</h4>
+
+
+<p>一些url提供结果排序，可以使用<code>sort</code>以逗号隔开的列表作为参数进行排序。你可以使用<code>-</code>赋值sort来指定降序指定。并非所有的值都可以排序。url文档会列出支持的排序选项。</p>
+
+<p>所有的url结果集默认以创建的顺序进行降序排列。</p>
+
+<p>为了获取最近更新的票，按照更新的降序排列如下：</p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users?sort=-updated_at</code></p>
+
+<hr />
+
+<h4 id="api">API 列表</h4>
+
+
+<p><strong>应用</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#app_check_version">/app/check_version</a> </td>
+<td> GET </td>
+<td> 检查版本</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>广告</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#ads_category">/ads/{category}</a> </td>
+<td> GET </td>
+<td> 根据栏目获得广告</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>认证</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#authenticate_login">/authenticate</a> </td>
+<td> POST </td>
+<td> 登录</td>
+</tr>
+<tr>
+<td><a href="#authenticate_register">/authenticate</a> </td>
+<td> POST </td>
+<td> 注册</td>
+</tr>
+<tr>
+<td><a href="#authenticate_logout">/authenticate</a> </td>
+<td> DELETE </td>
+<td> 登出</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>用户</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#users_forget_password">/users/forget_password</a> </td>
+<td> PUT </td>
+<td> 忘记密码</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_profile">/users/{userId}/profile</a> </td>
+<td> GET </td>
+<td> 个人信息</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_update_password">/users/{userId}/update_password</a> </td>
+<td> PUT </td>
+<td> 更新密码</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_update_avatar">/users/{userId}/update_avatar</a> </td>
+<td> PUT </td>
+<td> 更新头像</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_real_name_auth">/users/{userId}/real_name_auth</a> </td>
+<td> POST </td>
+<td> 实名认证</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_bind_bank_card">/users/{userId}/bind_bank_card</a> </td>
+<td> POST </td>
+<td> 绑定银行卡</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_processing">/users/{userId}/processing</a> </td>
+<td> GET </td>
+<td> 是否正在处理的贷款申请</td>
+</tr>
+<tr>
+<td><a href="#users_user_id_check_employee">/users/{userId}/check_employee</a> </td>
+<td> GET </td>
+<td> 是否是员工</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>协议</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#agreement_user">/agreement/user</a> </td>
+<td> GET </td>
+<td> 用户协议</td>
+</tr>
+<tr>
+<td><a href="#agreement_loan">/agreement/loan</a> </td>
+<td> GET </td>
+<td> 贷款协议</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>验证码</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#captcha_register">/captcha/{phoneNumber}/register</a> </td>
+<td> GET </td>
+<td> 注册验证码</td>
+</tr>
+<tr>
+<td><a href="#captcha_forget_password">/captcha/{phoneNumber}/forget_password</a> </td>
+<td> GET </td>
+<td> 忘记密码验证码</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>贷款</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#loans_p">/loans</a> </td>
+<td> POST </td>
+<td> 申请贷款</td>
+</tr>
+<tr>
+<td><a href="#loans_g">/loans</a> </td>
+<td> GET </td>
+<td> 贷款列表</td>
+</tr>
+<tr>
+<td><a href="#loans_spec">/loans/spec</a> </td>
+<td> GET </td>
+<td> 获得申请资料</td>
+</tr>
+<tr>
+<td><a href="#loans_loan_id">/loans/{loanId}</a> </td>
+<td> GET </td>
+<td> 贷款详情</td>
+</tr>
+<tr>
+<td><a href="#loans_amount_installments">/loans/{amount}/installments</a> </td>
+<td> GET </td>
+<td> 根据金额获得期数列表</td>
+</tr>
+<tr>
+<td><a href="#loans_amount_interval">/loans/{amount}/interval</a> </td>
+<td> GET </td>
+<td> 获取金额区间</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>还款</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#repayment_g">/repayment</a> </td>
+<td> GET </td>
+<td> 还款</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>还款计划</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#plans_g">/plans</a> </td>
+<td> GET </td>
+<td> 计划列表</td>
+</tr>
+<tr>
+<td><a href="#plans_plan_id">/plans/{planId}</a> </td>
+<td> GET </td>
+<td> 计划详情</td>
+</tr>
+<tr>
+<td><a href="#plans_plan_id_installments">/plans/{planId}/installments</a> </td>
+<td> GET </td>
+<td> 计划期列表</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>期</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#installments_installment_id">/installments/{installmentId}</a> </td>
+<td> GET </td>
+<td> 期详情</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>交易</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>资源 </th>
+<th> 方法 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#transactions_g">/transactions</a> </td>
+<td> GET </td>
+<td> 交易列表</td>
+</tr>
+</tbody>
+</table>
+
+
+<h4 id="ads">应用</h4>
+
+
+<hr />
+
+<p><strong><p id="app_check_version">检查版本 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/app/check_version</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>versionCode </td>
+<td> 内部版本号</td>
+</tr>
+<tr>
+<td>channel </td>
+<td> 渠道</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/app/check_version</code></p>
+
+<p><code>GET Data versionCode=10001&amp;channel=?</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "status": 0, 0：不需要升级，1:强制，2：非强制
+    "version": {
+        "version_code": 10001, 内部版本号
+        "version_name": "1.0.0", 外部版本号
+        "channel":"", 渠道
+        "icon": {
+            "width": 100,
+            "height": 100,
+            "url": "",
+            "type": ""
+        }
+        "update_url": "", 应用更新地址
+        "whats_version": "", 版本变化日志
+        "published": "2015-05-03T15:38:45Z" 发布时间
+    }
+}
+    <font color=red>注：App版本规则，由主要版本(versionMajor)、小版(versionMinor)、补丁(versionPatch)、编译次数(versionBuild)组成。
+       外部版本号：versionMajor.versionMinor.versionPatch
+       内部版本号：versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild</font>
+</pre>
+
+
+
+
+<h4 id="ads">广告</h4>
+
+
+<hr />
+
+<p><strong><p id="ads_category">根据栏目获得广告 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/ads/{category}</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/ads/{category}</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+[
+    {
+        "ad_id": "1dafds782nj2", 广告ID
+        "title": "", 标题
+        "type": 0, 类型
+        "description": "", 描述
+        "url": "", 地址
+        "image": {
+            "width": 100, 宽
+            "height": 100, 高
+            "url": "", 图片地址
+            "type": "" 图片类型
+        }
+    },
+    {
+        "ad_id": "1dafds782nj3",
+        "title": "",
+        "type": 0,
+        "description": "",
+        "url": "",
+        "image": {
+            "width": 100,
+            "height": 100,
+            "url": "",
+            "type": ""
+        }
+    }
+]
+</pre>
+
+
+
+
+<h4 id="authenticate">认证</h4>
+
+
+<hr />
+
+<p><strong><p id="authenticate_login">登录 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/authenticate</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>action </td>
+<td> 动作</td>
+</tr>
+<tr>
+<td>phoneNumber </td>
+<td> 手机号码</td>
+</tr>
+<tr>
+<td>password </td>
+<td> 密码</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>POST https://api.msfinance.cn/{apiVersion}/authenticate</code></p>
+
+<p><code>POST Data action=login&amp;phoneNumber=""&amp;password=""</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "user_id": "ds13dsaf21d", 用户ID
+    "phone_number": "15222222222", 手机号码
+    "username": "xxx", 用户名字
+    "id_card": "", 身份证号码
+    "bank_card_number": "", 银行卡号
+    "avatar": {
+        "width": 100,
+        "height": 100,
+        "url": "",
+        "type": ""
+    }
+}
+</pre>
+
+
+<p><strong><p id="authenticate_register">注册 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/authenticate</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>action </td>
+<td> 动作</td>
+</tr>
+<tr>
+<td>phoneNumber </td>
+<td> 手机号码</td>
+</tr>
+<tr>
+<td>password </td>
+<td> 密码</td>
+</tr>
+<tr>
+<td>captcha </td>
+<td> <a href="#captcha_register">验证码</a></td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>POST https://api.msfinance.cn/{apiVersion}/authenticate</code></p>
+
+<p><code>POST Data action=register&amp;phoneNumber=""&amp;password=""&amp;captcha=""</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "user_id": "ds13dsaf21d",
+    "phone_number": "15222222222",
+    "username": "xxx",
+    "id_card": "",
+    "bank_card_number": "",
+    "avatar": {
+        "width": 100,
+        "height": 100,
+        "url": "",
+        "type": ""
+    }
+}
+</pre>
+
+
+<p><strong><p id="authenticate_logout">登出 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/authenticate</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>DELETE https://api.msfinance.cn/{apiVersion}/authenticate</code></p>
+
+<p><code>DELETE Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "message": ""
+}
+</pre>
+
+
+
+
+<h4 id="users">用户</h4>
+
+
+<hr />
+
+<p><strong><p id="users_user_id_profile">个人信息 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/profile</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId </td>
+<td> 用户ID</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>POST https://api.msfinance.cn/{apiVersion}/users/{userId}/profile</code></p>
+
+<p><code>POST Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "user_id": "ds13dsaf21d",
+    "phone_number": "15222222222",
+    "username": "xxx",
+    "id_card": "",
+    "bank_card_number": "",
+    "avatar": {
+        "width": 100,
+        "height": 100,
+        "url": "",
+        "type": ""
+    }
+}
+</pre>
+
+
+<p><strong><p id="users_forget_password">忘记密码 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/forget_password</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phoneNumber </td>
+<td> 手机号码</td>
+</tr>
+<tr>
+<td>captcha </td>
+<td> <a href="#captcha_forget_password">验证码</a></h3></td>
+</tr>
+<tr>
+<td>password </td>
+<td> 密码</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>PUT https://api.msfinance.cn/{apiVersion}/users/forget_password</code></p>
+
+<p><code>PUT Data phoneNumber=""&amp;captcha=""&amp;password=""</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "message": ""
+}
+</pre>
+
+
+<p><strong><p id="users_user_id_update_password">更新密码 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/update_password</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>password </td>
+<td> 密码</td>
+</tr>
+<tr>
+<td>new_password </td>
+<td> 新密码</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>PUT https://api.msfinance.cn/{apiVersion}/users/{userId}/update_password</code></p>
+
+<p><code>PUT Data password=""&amp;new_password=""</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "message": ""
+}
+</pre>
+
+
+<p><strong><p id="users_user_id_update_avatar">修改头像 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/updat_avatar</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId </td>
+<td> 用户ID</td>
+</tr>
+<tr>
+<td>image </td>
+<td> 图片</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>PUT https://api.msfinance.cn/{apiVersion}/users/{userId}/update_avatar</code></p>
+
+<p><code>PUT Data image=file&amp;filename="avatar"&amp;conent-type="image/*"</code> <font color=red>多媒体表单</font></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "user_id": "ds13dsaf21d",
+    "phoneNumber": "15222222222",
+    "username": "xxx",
+    "id_card": "",
+    "bank_card_number": "",
+    "avatar": {
+        "width": 100,
+        "height": 100,
+        "url": "",
+        "type": ""
+    }
+}
+</pre>
+
+
+<p><strong><p id="users_user_id_real_name_auth">实名认证 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/real_name_auth</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId </td>
+<td> 用户ID</td>
+</tr>
+<tr>
+<td>username </td>
+<td> 姓名</td>
+</tr>
+<tr>
+<td>id_card </td>
+<td> 身份证</td>
+</tr>
+<tr>
+<td>expire </td>
+<td> 到期时间</td>
+</tr>
+<tr>
+<td>valid_for_lifetime </td>
+<td> 长期有效(true,false)</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>POST https://api.msfinance.cn/{apiVersion}/users/{userId}/real_name_auth</code></p>
+
+<p><code>POST Data username=""&amp;id_card=""&amp;expire=""&amp;valid_for_lifetime=true</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "user_id": "ds13dsaf21d",
+    "phoneNumber": "15222222222",
+    "username": "xxx",
+    "id_card": "",
+    "bank_card_number": "",
+    "avatar": {
+        "width": 100,
+        "height": 100,
+        "url": "",
+        "type": ""
+    }
+}
+</pre>
+
+
+<p><strong><p id="users_user_id_bind_bank_card">绑定银行卡 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/bind_bank_card</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId </td>
+<td> 用户ID</td>
+</tr>
+<tr>
+<td>bank_name </td>
+<td> 银行名字</td>
+</tr>
+<tr>
+<td>bank_card_number </td>
+<td> 银行卡号</td>
+</tr>
+<tr>
+<td>province_code </td>
+<td> 省</td>
+</tr>
+<tr>
+<td>city_code </td>
+<td> 市</td>
+</tr>
+<tr>
+<td>county_code </td>
+<td> 县</td>
+</tr>
+<tr>
+<td>detail_address </td>
+<td> 详细地址</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>POST https://api.msfinance.cn/{apiVersion}/users/{userId}/bind_bank_card</code></p>
+
+<p><code>POST Data bank_name=""&amp;bank_card_number&amp;province_code=""&amp;city_code=""&amp;county_code=""&amp;detail_address=""</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "user_id": "ds13dsaf21d",
+    "phoneNumber": "15222222222",
+    "username": "xxx",
+    "id_card": "",
+    "bank_card_number": "",
+    "avatar": {
+        "width": 100,
+        "height": 100,
+        "url": "",
+        "type": ""
+    }
+}
+</pre>
+
+
+<p><strong><p id="users_user_id_processing">检查是否有正在处理的贷款申请 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/processing"</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId </td>
+<td> 用户ID</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users/{userId}/processing</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "processing": true
+}
+</pre>
+
+
+<p><strong><p id="users_user_id_check_employee">检查是否是员工 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/users/{userId}/check_employee"</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId </td>
+<td> 用户ID</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/users/{userId}/check_employee</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "employee": true,
+}
+</pre>
+
+
+
+
+<h4 id="agreement">协议</h4>
+
+
+<hr />
+
+<p><strong><p id="agreement_user">用户协议 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/agreement/user</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/agreement/user</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+<font color=green >HTML</font>
+</pre>
+
+
+<p><strong><p id="agreement_loan">贷款协议 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/agreement/loan</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/agreement/loan</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+<font color=green >HTML</font>
+</pre>
+
+
+
+
+<h4 id="authenticate">验证码</h4>
+
+
+<hr />
+
+<p><strong><p id="captcha_register">注册(验证码) <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/captcha/{phoneNumber}/register</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phoneNumber </td>
+<td> 手机号码</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/captcha/{phoneNumber}/register</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "message": ""
+}
+</pre>
+
+
+<p><strong><p id="captcha_forget_password">忘记密码(验证码) <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/captcha/{phoneNumber}/forget_password</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>phoneNumber </td>
+<td> 手机号码</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/captcha/{phoneNumber}/forget_password</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "message": ""
+}
+</pre>
+
+
+
+
+<h4 id="loans">贷款</h4>
+
+
+<hr />
+
+<p><strong><p id="loans_p">申请贷款 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/loans</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述 </th>
+<th> pager</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loanId </td>
+<td> 申请ID</td>
+<td></td>
+</tr>
+<tr>
+<td>applyStatus1 </td>
+<td> 申请状态 </td>
+<td> 申请状态1（0:用户信息未填完  1:用户填完了最后一页信息后提交）</td>
+</tr>
+<tr>
+<td>loanFor </td>
+<td> 贷款用途 </td>
+<td> 1</td>
+</tr>
+<tr>
+<td>loanPrincipal </td>
+<td> 贷款本金 </td>
+<td> 1</td>
+</tr>
+<tr>
+<td>loanInstallment </td>
+<td> 贷款期数 </td>
+<td> 1</td>
+</tr>
+<tr>
+<td>clientCategory </td>
+<td> 客户来源种类 </td>
+<td> 1</td>
+</tr>
+<tr>
+<td>eduBackground </td>
+<td> 教育程度 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>socialStatus </td>
+<td> 社会身份 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>school </td>
+<td> 学校名称 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>enrollYear </td>
+<td> 入学年份 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>schoolSystem </td>
+<td> 学制 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>serviceYear </td>
+<td> 工作年限 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>currentWorkStartTime </td>
+<td> 现工作开始时间 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>companyName </td>
+<td> 单位/个体全称 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>department </td>
+<td> 任职部门 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>position </td>
+<td> 职位 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>industryCategory </td>
+<td> 行业类别 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitNature </td>
+<td> 单位性质 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitProvince </td>
+<td> 单位所在省 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitCity </td>
+<td> 单位所在市 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitDistrict </td>
+<td> 单位所在区/县 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitTown </td>
+<td> 单位所在镇 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitStreet </td>
+<td> 单位所在街道/村/路 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitCommunity </td>
+<td> 单位所在小区/楼盘 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitUnitNumber </td>
+<td> 单位所在栋/单元/房间号 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>monthlyIncome </td>
+<td> 月工作收入 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>monthlyOtherIncome </td>
+<td> 月其他收入 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>monthlyHouseholdExpense </td>
+<td> 家庭月总支出 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitAreaCode </td>
+<td> 办公/个体电话区号 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitTelephone </td>
+<td> 办公/个体电话 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>unitExtensionTelephone </td>
+<td> 办公/个体电话分机号 </td>
+<td> 2</td>
+</tr>
+<tr>
+<td>curMatchPerAddress </td>
+<td> 现居住地址与户籍地址是否相同 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curProvince </td>
+<td> 现居省 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curCity </td>
+<td> 现居市 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curDistrict </td>
+<td> 现居区/县 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curTown </td>
+<td> 现居镇 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curStreet </td>
+<td> 现居街道/村/路 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curCommunity </td>
+<td> 现居小区/楼盘 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>curUnitNumber </td>
+<td> 现居栋/单元/房间号 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>mailMatchPerAddress </td>
+<td> 邮寄地址与工作地址是否相同 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>mailMatchCurAddress </td>
+<td> 邮寄地址与现居地址是否相同 </td>
+<td> 3</td>
+</tr>
+<tr>
+<td>maritalStatus </td>
+<td> 婚姻状况 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>housingConditions </td>
+<td> 住房状况 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>fstFamilyMemberName </td>
+<td> 家庭成员名称 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>fstFamilyMemberType </td>
+<td> 家庭成员类型 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>fstFamilyMemberMobile </td>
+<td> 家庭成员手机号 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>fstFamilyMemberAddress </td>
+<td> 家庭成员联系地址 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>fstFamilyMemberMatchPerAddress </td>
+<td> 家庭成员地址与户籍地址相同 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>sndFamilyMemberName </td>
+<td> 家庭成员名称 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>sndFamilyMemberType </td>
+<td> 家庭成员类型 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>sndFamilyMemberMobile </td>
+<td> 家庭成员手机号 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>sndFamilyMemberAddress </td>
+<td> 家庭成员联系地址 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>sndFamilyMemberMatchPerAddress </td>
+<td> 家庭成员地址与户籍地址相同 </td>
+<td> 4</td>
+</tr>
+<tr>
+<td>homeFixLine </td>
+<td> 住宅电话 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>homeFixLineRegistrant </td>
+<td> 住宅电话登记人 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>personalEmail </td>
+<td> 个人电子邮箱 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>1stContactName </td>
+<td> 联系人姓名 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>1stContactMobile </td>
+<td> 联系人手机号 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>1stRelationship </td>
+<td> 与申请人关系 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>2ndContactName </td>
+<td> 联系人姓名 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>2ndContactMobile </td>
+<td> 联系人手机号 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>2ndRelationship </td>
+<td> 与申请人关系 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>clientDescription </td>
+<td> 客户申请描述 </td>
+<td> 5</td>
+</tr>
+<tr>
+<td>qq </td>
+<td> QQ号</td>
+<td></td>
+</tr>
+<tr>
+<td>weixin </td>
+<td> 微信号</td>
+<td></td>
+</tr>
+<tr>
+<td>renren </td>
+<td> 人人账号</td>
+<td></td>
+</tr>
+<tr>
+<td>sinaWeibo </td>
+<td> 新浪微博</td>
+<td></td>
+</tr>
+<tr>
+<td>tencentWeibo </td>
+<td> 腾讯微博</td>
+<td></td>
+</tr>
+<tr>
+<td>taobao </td>
+<td> 淘宝账号</td>
+<td></td>
+</tr>
+<tr>
+<td>taobaoPwd </td>
+<td> 淘宝密码</td>
+<td></td>
+</tr>
+<tr>
+<td>jdAccount </td>
+<td> 京东账号</td>
+<td></td>
+</tr>
+<tr>
+<td>jdAccountPwd </td>
+<td> 京东密码</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>POST https://api.msfinance.cn/{apiVersion}/loans</code></p>
+
+<p><code>POST Data pager="1"loanFor="car"&amp;loanPrincipal="10000" ......</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "message": ""
+}
+</pre>
+
+
+<p><strong><p id="loans_spec">获取申请资料 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/loans/spec</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/loans/spec</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>注意：一次性获取申请贷款接口的全部字段数据</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "loanFor": "car",
+    "loanPrincipal": "10000",
+    ...
+}
+</pre>
+
+
+<p><strong><p id="loans_g">贷款列表 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>支持分页</code></p>
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/loans</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/loans</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+[
+    {
+        "loan_id": "1dafds782nj2", 贷款合同ID
+        "apply_time": "2015-05-03T15:38:45Z", 申请时间
+        "payed_amount": "", 已还金额
+        "total_amount": "", 总金额
+        "monthly_repayment_amount": "", 每月还款金额
+        "current_installment": 4, 当前期数
+        "total_installments": 10, 总期数
+        "status": 0 1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
+    },
+    {
+        "loan_id": "1dafds782nj4",
+        "apply_time": "2015-05-03T15:38:45Z",
+        "payed_amount": "",
+        "total_amount": "",
+        "monthly_repayment_amount": "",
+        "current_installment": 4,
+        "total_installments": 10,
+        "status": 0
+    }
+]
+</pre>
+
+
+<p><strong><p id="loans_amount_installments">根据金额获得期数列表 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/loans/{amount}/installments</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>amount </td>
+<td> 金额</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/loans/{amount}/installments</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+[
+    {
+        "installment_id": "1dafds782nj2", 期ID
+        "issue": 4 期数
+    },
+    {
+        "installment_id": "1dafds782nj2",
+        "issue": 8
+    }
+]
+</pre>
+
+
+
+
+<h4 id="repayment">还款</h4>
+
+
+<hr />
+
+<p><strong><p id="repayment_g">还款 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/repayment</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/repayment</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+ {
+     "repayment_id": "1dafds782nj6", 还款ID
+     "expire_date": 2015-01-01T01:00:00Z, 还款截止时间
+     "amount": 197,　总金额
+ }
+</pre>
+
+
+
+
+<h4 id="plans">还款计划</h4>
+
+
+<hr />
+
+<p><strong><p id="plans_g">计划列表 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>支持分页</code></p>
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/plans</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/plans</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+[
+    {
+        "plan_id": "1dafds782nj6", 计划ID
+        "repayment_time": "2015-05-03T15:38:45Z", 还款时间
+        "repayment_amount": 197,　本金
+        "interest_rate": 0.99,　利息
+        "service_charges": 2.00,　服务费
+        "repayment_total_amount": 199.99 总金额
+    },
+    {
+        "plan_id": "1dafds782nj8",
+        "repayment_time": "2015-05-03T15:38:45Z",
+        "repayment_amount": 197,
+        "interest_rate": 0.99,
+        "service_charges": 2.00,
+        "repayment_total_amount": 199.99
+    }
+]
+</pre>
+
+
+<p><strong><p id="plans_plan_id">计划详情 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/plans/{planId}</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>planId </td>
+<td> 计划</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/plans/{planId}</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "plan_id": "1dafds782nj8",
+    "repayment_time": "2015-05-03T15:38:45Z",
+    "repayment_amount": 197,
+    "interest_rate": 0.99,
+    "service_charges": 2.00,
+    "repayment_total_amount": 199.99
+}
+</pre>
+
+
+<p><strong><p id="plans_plan_id_installments">计划期列表 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/plans/{planId}/installments</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>planId </td>
+<td> 计划ID</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/plans/{planId}/installments</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+[
+    {
+        "installment_id": "1dafds782nj5", 期ID
+        "plan_id": "1dafds782nj6", 计划ID
+        "loan_id": "1dafds7828", 贷款ID
+        "repayment_amount": 197, 本金
+        "interest_rate": 0.99, 利息
+        "service_charges": 2, 服务费
+        "repayment_total_amount": 199.99 总金额
+    },
+    {
+        "installment_id": "1dafds782nj6",
+        "plan_id": "1dafds782nj6",
+        "loan_id": "1dafds7828",
+        "repayment_amount": 197,
+        "interest_rate": 0.99,
+        "service_charges": 2,
+        "repayment_total_amount": 199.99
+    }
+]
+</pre>
+
+
+
+
+<h4 id="installments">期</h4>
+
+
+<hr />
+
+<p><strong><p id="installments_installment_id">期详情 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>支持分页</code></p>
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/installments/{installmentId}</code></p>
+
+<p><code>参数</code></p>
+
+<table>
+<thead>
+<tr>
+<th>参数 </th>
+<th> 描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>installmentId </td>
+<td> 期ID</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/installments/{installmentId}</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+{
+    "installment_id": "1dafds782nj5", 期ID
+    "plan_id": "1dafds782nj6", 计划ID
+    "loan_id": "1dafds7828", 合同ID
+    "repayment_amount": 197, 本金
+    "interest_rate": 0.99, 利息
+    "service_charges": 2, 服务费
+    "repayment_total_amount": 199.99 总金额
+}
+</pre>
+
+
+
+
+<h4 id="transactions">交易</h4>
+
+
+<hr />
+
+<p><strong><p id="transactions_g">交易列表 <a href="#api">↩API</a></p></strong></p>
+
+<hr />
+
+<p><code>支持分页</code></p>
+
+<p><code>地址</code></p>
+
+<p><code>https://api.msfinance.cn/{apiVersion}/transactions</code></p>
+
+<p><code>参数</code></p>
+
+<p><code>例子</code></p>
+
+<p><code>GET https://api.msfinance.cn/{apiVersion}/transactions</code></p>
+
+<p><code>GET Data</code></p>
+
+<p><code>Response:</code></p>
+
+<pre>
+[
+    {
+        "transaction_id": "1dafds782nj2", 交易ID
+        "date": "2015-05-03T15:38:45Z", 日期
+        "amount": 0, 金额
+        "description": "" 描述
+    },
+    {
+        "transaction_id": "1dafds782nj5",
+        "date": "2015-05-03T15:38:45Z",
+        "amount": 0,
+        "description": ""
+    }
+]
+</pre>
+
+</body>
+</html>

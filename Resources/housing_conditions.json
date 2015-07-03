@@ -1,0 +1,26 @@
+ [
+  {
+  "text": "自有房",
+  "code": "LC01",
+  "typeId": "014"
+  },
+  {
+  "text": "父母房",
+  "code": "LC02",
+  "typeId": "014"
+  },
+  {
+  "text": "租住房",
+  "code": "LC03",
+  "typeId": "014"
+  },
+  {
+  "text": "福利房",
+  "code": "LC04",
+  "typeId": "014"
+  },{
+  "text": "集体宿舍",
+  "code": "LC05",
+  "typeId": "014"
+  }
+  ]

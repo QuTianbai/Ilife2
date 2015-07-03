@@ -1,0 +1,65 @@
+//
+// MSFLoanViewModel.m
+//
+// Copyright (c) 2015 Zēng Liàng. All rights reserved.
+//
+
+#import "MSFLoanViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFApplyList.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
+
+@interface MSFLoanViewModel ()
+
+@property(nonatomic,strong) MSFApplyList *loan;
+
+@end
+
+@implementation MSFLoanViewModel
+
+#pragma mark - Lifecycle
+
+- (instancetype)initWithModel:(MSFApplyList *)model {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+  
+  RAC(self,status) = [RACObserve(model,status) map:^id(id status){
+    NSDictionary *statusValues = @{
+      @(MSFLoanStatusNone): @"无效",
+      @(MSFLoanStatusAppling): @"申请中",
+      @(MSFLoanStatusSuccess): @"申请成功",
+      @(MSFLoanStatusFailed): @"申请失败",
+      @(MSFLoanStatusRepayment): @"还款中",
+      @(MSFLoanStatusCancel): @"已取消",
+      @(MSFLoanStatusFinished): @"已完结",
+      @(MSFLoanStatusExpired): @"已逾期",
+    };
+  
+    return statusValues[status];
+  }];
+  
+  RAC(self,applyDate) = [RACObserve(model, apply_time) map:^id(NSDate *date){
+    return [NSDateFormatter msf_stringFromDate:date];
+  }];
+  RAC(self,title) = [RACObserve(model, status) map:^id(id value) {
+    return [value integerValue] > 4 ? @"贷款处理状态" :@"贷款申请状态";
+  }];
+  RAC(self,repaidAmount) = [RACObserve(model, payed_amount) map:^id(id value) {
+    return [NSString stringWithFormat:@"¥ %@",value];
+  }];
+  RAC(self,totalAmount) = [RACObserve(model, total_amount) map:^id(id value) {
+    return [NSString stringWithFormat:@"¥ %@",value];
+  }];
+  RAC(self,mothlyRepaymentAmount) = [RACObserve(model, monthly_repayment_amount) map:^id(id value) {
+    return [NSString stringWithFormat:@"¥ %@",value];
+  }];
+  
+  _totalInstallments = model.total_installments;
+  _currentInstallment = model.current_installment;
+  
+  return self;
+}
+
+@end

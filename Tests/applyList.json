@@ -1,0 +1,22 @@
+ [
+  {
+  "loan_id": "1dafds782nj2",
+  "apply_time": "2015-05-03T15:38:45Z",
+  "payed_amount": "200",
+  "total_amount": "300",
+  "monthly_repayment_amount": "400",
+  "current_installment": 4,
+  "total_installments": 10,
+  "status": 0
+  },
+  {
+  "loan_id": "1dafds782nj4",
+  "apply_time": "2015-05-03T15:38:45Z",
+  "payed_amount": "201",
+  "total_amount": "400",
+  "monthly_repayment_amount": "3000",
+  "current_installment": 4,
+  "total_installments": 10,
+  "status": 1
+  }
+  ]

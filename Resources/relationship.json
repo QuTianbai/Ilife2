@@ -1,0 +1,24 @@
+ [
+  {
+  "text": "非家庭亲属",
+  "code": "RO01",
+  "typeId": "010"
+  },{
+  "text": "同学",
+  "code": "RO02",
+  "typeId": "010"
+  },{
+  "text": "同事",
+  "code": "RO03",
+  "typeId": "010"
+  },
+  {
+  "text": "朋友",
+  "code": "RO04",
+  "typeId": "010"
+  },{
+  "text": "其他",
+  "code": "RO05",
+  "typeId": "010"
+  }
+  ]

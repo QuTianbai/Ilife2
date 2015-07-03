@@ -1,0 +1,28 @@
+[
+{
+  "ad_id": "1dafds782nj2",
+  "title": "title",
+  "type": 0,
+  "description": "description",
+  "url": "http://url.com",
+  "image": {
+    "width": 100,
+    "height": 100,
+    "url": "http://imgurl.com",
+    "type": ""
+    }
+  },
+{
+    "ad_id": "1dafds782nj3",
+    "title": "title2",
+    "type": 0,
+    "description": "description2",
+    "url": "http://url.co2m",
+    "image": {
+        "width": 100,
+        "height": 100,
+        "url": "http://imgurl.co2m",
+        "type": ""
+    }
+}
+]
