@@ -30,4 +30,8 @@
   return [self modelWithDictionary:userDict error:NULL];
 }
 
+- (BOOL)isAuthenticated {
+	return [self.idcard isKindOfClass:NSString.class] && self.passcard.length == 18;
+}
+
 @end

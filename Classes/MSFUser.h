@@ -29,4 +29,11 @@
  */
 + (instancetype)userWithServer:(MSFServer *)server;
 
+/**
+ *  判断User是否通过实名认证
+ *
+ *  @return 已经通过实名，认证则返回YES
+ */
+- (BOOL)isAuthenticated;
+
 @end

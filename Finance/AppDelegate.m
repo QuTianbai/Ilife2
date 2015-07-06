@@ -282,7 +282,7 @@
       if (!MSFUtils.httpClient.isAuthenticated) {
         [self signIn];
       }
-      else if ([MSFUtils.httpClient.user.idcard length] == 0) {
+      else if ([MSFUtils.httpClient.user isAuthenticated]) {
         [self auth];
       }
       else {
@@ -307,7 +307,7 @@
     
     return NO;
   }
-  else if ([MSFUtils.httpClient.user idcard].length != 0) {
+  else if ([MSFUtils.httpClient.user isAuthenticated]) {
     [self auth];
     
     return NO;
