@@ -16,13 +16,13 @@
 #import "MSFResponse.h"
 
 #import "MSFAdver.h"
-#import "MSFClient+MSFAdver.h"
+#import "MSFClient+Adver.h"
 
 #import "MSFApplyInfo.h"
 #import "MSFClient+MSFApplyInfo.h"
 
 #import "MSFApplyList.h"
-#import "MSFClient+MSFApplyList.h"
+#import "MSFClient+ApplyList.h"
 
 #import "MSFApplyCash.h"
 #import "MSFClient+MSFApplyCash.h"
@@ -100,11 +100,11 @@ it(@"should fetch adver", ^{
     stubResponse(@"/ads/home",@"adver.json");
     
     // when
-    RACSignal *request = [client fetchAdver];
+    RACSignal *request = [client fetchAdverWithCategory:@"0"];
     MSFAdver *adver = [request asynchronousFirstOrDefault:nil success:nil error:nil];
     
     // then
-   // expect(adver).to(beAKindOf(MSFAdver.class));
+   expect(adver).to(beAKindOf(MSFAdver.class));
 });
 it(@"should fetch applyInfo", ^{
     // given

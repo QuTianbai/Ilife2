@@ -19,7 +19,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property(nonatomic,weak) IBOutlet UITextField *password;
 
 @property(nonatomic,weak) IBOutlet UIButton *commitButton;
-@property (weak, nonatomic) IBOutlet UIButton *iAgreeButton;
+@property(nonatomic,weak) IBOutlet UIButton *iAgreeButton;
 @property(nonatomic,weak) IBOutlet UIButton *agreeButton;
 @property(nonatomic,weak) IBOutlet UIButton *sendCaptchaButton;
 @property(nonatomic,weak) IBOutlet UISwitch *passwordSwith;

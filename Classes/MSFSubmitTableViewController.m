@@ -33,15 +33,15 @@
 @property(nonatomic,strong) MSFApplyCash *applyCash;
 @property(nonatomic,strong) NSMutableArray *pickerArray;
 @property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
-@property(weak, nonatomic) IBOutlet UITextField *bankNameTF;
-@property(weak, nonatomic) IBOutlet UIButton *bankNameBT;
-@property(weak, nonatomic) IBOutlet UITextField *bankCardNumTF;
-@property(weak, nonatomic) IBOutlet UIButton *submitBT;
-@property(weak, nonatomic) IBOutlet UIButton *handPhotoBT;
-@property(weak, nonatomic) IBOutlet UIButton *cardPhotoBT;
-@property(weak, nonatomic) IBOutlet NSLayoutConstraint *photoConstraint;
-@property (weak, nonatomic) IBOutlet UITextField *bankAreaTF;
-@property (weak, nonatomic) IBOutlet UIButton *bankAreaBT;
+@property(weak,nonatomic) IBOutlet UITextField *bankNameTF;
+@property(weak,nonatomic) IBOutlet UIButton *bankNameBT;
+@property(weak,nonatomic) IBOutlet UITextField *bankCardNumTF;
+@property(weak,nonatomic) IBOutlet UIButton *submitBT;
+@property(weak,nonatomic) IBOutlet UIButton *handPhotoBT;
+@property(weak,nonatomic) IBOutlet UIButton *cardPhotoBT;
+@property(weak,nonatomic) IBOutlet NSLayoutConstraint *photoConstraint;
+@property(weak,nonatomic) IBOutlet UITextField *bankAreaTF;
+@property(weak,nonatomic) IBOutlet UIButton *bankAreaBT;
 
 @end
 

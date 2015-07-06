@@ -8,7 +8,7 @@
 
 #import "MSFClient.h"
 
-@interface MSFClient (MSFApplyList)
+@interface MSFClient (ApplyList)
 
 - (RACSignal *)fetchApplyList;
 

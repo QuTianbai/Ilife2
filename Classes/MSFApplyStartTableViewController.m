@@ -80,11 +80,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
      @strongify(self)
      self.viewModel.applyInfoModel.page = @"1";
      self.viewModel.applyInfoModel.applyStatus1 = @"0";
-//     self.viewModel.applyInfoModel.applyNo = @"";
-//     self.viewModel.applyInfoModel.loanId= @"";
-//     self.viewModel.applyInfoModel.personId = @"";
      self.applyCashNumTF.placeholder = [NSString stringWithFormat:@"请输入%@-%@之间的数字",
-      self.viewModel.checkEmployee.allMinAmount,self.viewModel.checkEmployee.allMaxAmount];
+     self.viewModel.checkEmployee.allMinAmount,self.viewModel.checkEmployee.allMaxAmount];
      
      RAC(self.viewModel.requestViewModel,totalAmount) = self.applyCashNumTF.rac_textSignal;
      RAC(self.viewModel.requestViewModel,insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
@@ -175,19 +172,17 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (RACSignal *)updateViewModelSignal {
   return [[[[MSFUtils.httpClient.fetchCheckEmployee
-     zipWith:MSFUtils.httpClient.fetchApplyInfo]
-    catch:^RACSignal *(NSError *error) {
-     // NSLog(@"%d",error.code);
-      NSString *code = [NSString stringWithFormat:@"%ld",error.code];
-      [MSFProgressHUD showErrorMessage:[error.userInfo[NSLocalizedFailureReasonErrorKey] stringByAppendingString:code] inView:self.navigationController.view];
-      return [RACSignal return:nil];
+		zipWith:MSFUtils.httpClient.fetchApplyInfo]
+		catch:^RACSignal *(NSError *error) {
+			[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+			return [RACSignal return:nil];
     }]
-   ignore:nil]
-    map:^id(RACTuple *value) {
-      RACTupleUnpack(MSFCheckEmployee *employee, MSFApplyInfo *applyinfo) = value;
-      MSFApplyStartViewModel *viewModel = [[MSFApplyStartViewModel alloc] initWithEmployee:employee applyInfo:applyinfo];
-      return viewModel;
-  }];
+		ignore:nil]
+		map:^id(RACTuple *value) {
+			RACTupleUnpack(MSFCheckEmployee *employee, MSFApplyInfo *applyinfo) = value;
+			MSFApplyStartViewModel *viewModel = [[MSFApplyStartViewModel alloc] initWithEmployee:employee applyInfo:applyinfo];
+			return viewModel;
+		}];
 }
 
 @end

@@ -45,10 +45,10 @@ it(@"should create user", ^{
   // given
   
   // when
-  MSFUser *user = [MSFUser userWithName:@"" phone:@"18696995689"];
+  MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
   
   // then
-  expect(user.phone).to(equal(@"18696995689"));
+  expect(user.server).to(equal(MSFServer.dotComServer));
 });
 
 QuickSpecEnd

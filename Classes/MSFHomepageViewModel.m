@@ -7,7 +7,7 @@
 #import "MSFHomepageViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
-#import "MSFClient+MSFApplyList.h"
+#import "MSFClient+ApplyList.h"
 #import "MSFLoanViewModel.h"
 #import "MSFBannersViewModel.h"
 

@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFClient+MSFApplyList.h"
+#import "MSFClient+ApplyList.h"
 #import "MSFApplyList.h"
 #import "RACSignal+MSFClientAdditions.h"
 
-@implementation MSFClient (MSFApplyList)
+@implementation MSFClient (ApplyList)
 
 - (RACSignal *)fetchApplyList {
   NSMutableDictionary *parameters = NSMutableDictionary.dictionary;

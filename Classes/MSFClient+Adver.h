@@ -8,7 +8,7 @@
 
 #import "MSFClient.h"
 
-@interface MSFClient (MSFAdver)
+@interface MSFClient (Adver)
 
 - (RACSignal *)fetchAdver __deprecated_msg("Use `fetcchAdverWithCategory:`");
 - (RACSignal *)fetchAdverWithCategory:(NSString *)category;

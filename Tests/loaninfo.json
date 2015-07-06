@@ -83,7 +83,7 @@
   "currentTown": "",
   "memberAddress2": "",
   "workCommunity": "",
-  "white": "0",
+  "white": 0,
   "ident": "",
   "workProvinceCode": "",
   "bankCity": "",

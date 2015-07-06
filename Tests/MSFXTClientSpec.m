@@ -12,7 +12,7 @@
 #import <Mantle/Mantle.h>
 
 #import "MSFApplyList.h"
-#import "MSFClient+MSFApplyList.h"
+#import "MSFClient+ApplyList.h"
 
 #import "MSFServer.h"
 #import "MSFResponse.h"

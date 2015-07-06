@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFLoanListViewController.h"
 #import "MSFApplyList.h"
-#import "MSFClient+MSFApplyList.h"
+#import "MSFClient+ApplyList.h"
 #import "MSFUtils.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSLoanListTableViewCell.h"

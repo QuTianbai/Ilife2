@@ -134,11 +134,11 @@
 		4977BFDB1B16B79000A259F6 /* timestamp.json in Resources */ = {isa = PBXBuildFile; fileRef = 4977BFDA1B16B79000A259F6 /* timestamp.json */; };
 		4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977BFEA1B16BDA100A259F6 /* MSFClient+Cipher.m */; };
 		4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977BFED1B16E9C200A259F6 /* NSURL+QueryDictionary.m */; };
-		497CA1261B3128120099CE56 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA1251B3128120099CE56 /* RCLocationManager.m */; };
+		497CA1261B3128120099CE56 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA1251B3128120099CE56 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		497F98231B2B0BAF00DD6F2D /* guide.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 497F98221B2B0BAF00DD6F2D /* guide.bundle */; };
 		497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497F98381B2B0C4400DD6F2D /* MSFGuideViewController.m */; };
-		4980E3DD1B0734AB00B21A6A /* MSFClient+MSFAdver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEF1B072EA4008A9CD1 /* MSFClient+MSFAdver.m */; };
-		4980E3DF1B0734D000B21A6A /* MSFClient+MSFApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF31B072EA4008A9CD1 /* MSFClient+MSFApplyList.m */; };
+		4980E3DD1B0734AB00B21A6A /* MSFClient+Adver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEF1B072EA4008A9CD1 /* MSFClient+Adver.m */; };
+		4980E3DF1B0734D000B21A6A /* MSFClient+ApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF31B072EA4008A9CD1 /* MSFClient+ApplyList.m */; };
 		498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */; };
 		498113D01B1C451B003D1B7A /* MSFPepaymentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113CF1B1C451B003D1B7A /* MSFPepaymentCollectionViewCell.m */; };
 		498113D31B1C456F003D1B7A /* MSFRequisitionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113D21B1C456F003D1B7A /* MSFRequisitionCollectionViewCell.m */; };
@@ -288,9 +288,9 @@
 		49CCFBF41B072EA4008A9CD1 /* MSFAdver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBE91B072EA4008A9CD1 /* MSFAdver.m */; };
 		49CCFBF51B072EA4008A9CD1 /* MSFApplyCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEB1B072EA4008A9CD1 /* MSFApplyCash.m */; };
 		49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */; };
-		49CCFBF71B072EA4008A9CD1 /* MSFClient+MSFAdver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEF1B072EA4008A9CD1 /* MSFClient+MSFAdver.m */; };
+		49CCFBF71B072EA4008A9CD1 /* MSFClient+Adver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEF1B072EA4008A9CD1 /* MSFClient+Adver.m */; };
 		49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF11B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m */; };
-		49CCFBF91B072EA4008A9CD1 /* MSFClient+MSFApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF31B072EA4008A9CD1 /* MSFClient+MSFApplyList.m */; };
+		49CCFBF91B072EA4008A9CD1 /* MSFClient+ApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF31B072EA4008A9CD1 /* MSFClient+ApplyList.m */; };
 		49DA22501B062AB400DD4483 /* MSFAgreementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA224E1B062AB400DD4483 /* MSFAgreementSpec.m */; };
 		49DA22511B062AB400DD4483 /* MSFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA224F1B062AB400DD4483 /* MSFUserSpec.m */; };
 		49DA22551B062AD200DD4483 /* authorizations.json in Resources */ = {isa = PBXBuildFile; fileRef = 49DA22521B062AD200DD4483 /* authorizations.json */; };
@@ -901,12 +901,12 @@
 		49CCFBEB1B072EA4008A9CD1 /* MSFApplyCash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyCash.m; sourceTree = "<group>"; };
 		49CCFBEC1B072EA4008A9CD1 /* MSFApplyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyList.h; sourceTree = "<group>"; };
 		49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyList.m; sourceTree = "<group>"; };
-		49CCFBEE1B072EA4008A9CD1 /* MSFClient+MSFAdver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFAdver.h"; sourceTree = "<group>"; };
-		49CCFBEF1B072EA4008A9CD1 /* MSFClient+MSFAdver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFAdver.m"; sourceTree = "<group>"; };
+		49CCFBEE1B072EA4008A9CD1 /* MSFClient+Adver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Adver.h"; sourceTree = "<group>"; };
+		49CCFBEF1B072EA4008A9CD1 /* MSFClient+Adver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Adver.m"; sourceTree = "<group>"; };
 		49CCFBF01B072EA4008A9CD1 /* MSFClient+MSFApplyCash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFApplyCash.h"; sourceTree = "<group>"; };
 		49CCFBF11B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyCash.m"; sourceTree = "<group>"; };
-		49CCFBF21B072EA4008A9CD1 /* MSFClient+MSFApplyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFApplyList.h"; sourceTree = "<group>"; };
-		49CCFBF31B072EA4008A9CD1 /* MSFClient+MSFApplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyList.m"; sourceTree = "<group>"; };
+		49CCFBF21B072EA4008A9CD1 /* MSFClient+ApplyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+ApplyList.h"; sourceTree = "<group>"; };
+		49CCFBF31B072EA4008A9CD1 /* MSFClient+ApplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+ApplyList.m"; sourceTree = "<group>"; };
 		49DA224E1B062AB400DD4483 /* MSFAgreementSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAgreementSpec.m; sourceTree = "<group>"; };
 		49DA224F1B062AB400DD4483 /* MSFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserSpec.m; sourceTree = "<group>"; };
 		49DA22521B062AD200DD4483 /* authorizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = authorizations.json; sourceTree = "<group>"; };
@@ -2088,8 +2088,8 @@
 			children = (
 				49CCFBE81B072EA4008A9CD1 /* MSFAdver.h */,
 				49CCFBE91B072EA4008A9CD1 /* MSFAdver.m */,
-				49CCFBEE1B072EA4008A9CD1 /* MSFClient+MSFAdver.h */,
-				49CCFBEF1B072EA4008A9CD1 /* MSFClient+MSFAdver.m */,
+				49CCFBEE1B072EA4008A9CD1 /* MSFClient+Adver.h */,
+				49CCFBEF1B072EA4008A9CD1 /* MSFClient+Adver.m */,
 			);
 			name = Adver;
 			sourceTree = "<group>";
@@ -2110,8 +2110,8 @@
 			children = (
 				49CCFBEC1B072EA4008A9CD1 /* MSFApplyList.h */,
 				49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */,
-				49CCFBF21B072EA4008A9CD1 /* MSFClient+MSFApplyList.h */,
-				49CCFBF31B072EA4008A9CD1 /* MSFClient+MSFApplyList.m */,
+				49CCFBF21B072EA4008A9CD1 /* MSFClient+ApplyList.h */,
+				49CCFBF31B072EA4008A9CD1 /* MSFClient+ApplyList.m */,
 			);
 			name = "Apply List";
 			sourceTree = "<group>";
@@ -2877,7 +2877,7 @@
 				497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */,
 				C7B978031B08E8DF005F247C /* MSFTradeTableViewController.m in Sources */,
 				C7B9FF631B2C1BD100FEF72F /* MSFRelationMemberViewModel.m in Sources */,
-				4980E3DD1B0734AB00B21A6A /* MSFClient+MSFAdver.m in Sources */,
+				4980E3DD1B0734AB00B21A6A /* MSFClient+Adver.m in Sources */,
 				498113D31B1C456F003D1B7A /* MSFRequisitionCollectionViewCell.m in Sources */,
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07C81F7C1B16C48900C7F13C /* MSFApplyStartViewModel.m in Sources */,
@@ -2910,7 +2910,7 @@
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFAFCareerViewModel.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
-				49CCFBF91B072EA4008A9CD1 /* MSFClient+MSFApplyList.m in Sources */,
+				49CCFBF91B072EA4008A9CD1 /* MSFClient+ApplyList.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
 				07CB4C7C1B104572006C220E /* MSFAppliesIncomeTableViewController.m in Sources */,
 				07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */,
@@ -2919,7 +2919,7 @@
 				07C924DB1B0C603B00FA73BD /* MSLoanListTableViewCell.m in Sources */,
 				4943C3841B047FA8000BBF5E /* MSFClient.m in Sources */,
 				0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */,
-				4980E3DF1B0734D000B21A6A /* MSFClient+MSFApplyList.m in Sources */,
+				4980E3DF1B0734D000B21A6A /* MSFClient+ApplyList.m in Sources */,
 				07FE072E1B07278800484069 /* MSFApplyInfo.m in Sources */,
 				497CA1261B3128120099CE56 /* RCLocationManager.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
@@ -2997,7 +2997,7 @@
 				498113DD1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m in Sources */,
 				492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
-				49CCFBF71B072EA4008A9CD1 /* MSFClient+MSFAdver.m in Sources */,
+				49CCFBF71B072EA4008A9CD1 /* MSFClient+Adver.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
 				490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m in Sources */,

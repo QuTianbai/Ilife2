@@ -40,7 +40,7 @@ beforeEach(^{
           }],
     @"allMaxAmount" : @"25000",
     @"allMinAmount" : @"2000",
-    @"white" : @"0",
+    @"white" : @0,
     @"employee" : @"0"
     };
   

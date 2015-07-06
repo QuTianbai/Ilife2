@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFClient+MSFAdver.h"
+#import "MSFClient+Adver.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFAdver.h"
 
-@implementation MSFClient (MSFAdver)
+@implementation MSFClient (Adver)
 
 - (RACSignal *)fetchAdver {
   NSURLRequest *request = [self requestWithMethod:@"GET" path:@"ads/1" parameters:nil];

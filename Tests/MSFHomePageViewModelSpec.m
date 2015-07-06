@@ -9,7 +9,7 @@
 #import "MSFLoanViewModel.h"
 #import "MSFClient.h"
 #import "MSFApplyList.h"
-#import "MSFClient+MSFApplyList.h"
+#import "MSFClient+ApplyList.h"
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "MSFUser.h"
 #import "MSFServer.h"
