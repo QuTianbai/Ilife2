@@ -14,7 +14,6 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import <MTLFMDBAdapter/MTLFMDBAdapter.h>
 #import <RMPickerViewController/RMPickerViewController.h>
-#import "MSFDatabaseUtils.h"
 #import "MSFAreas.h"
 #import "MSFApplyStartViewModel.h"
 #import "MSFApplyInfo.h"

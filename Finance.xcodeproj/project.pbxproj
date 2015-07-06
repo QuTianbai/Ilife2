@@ -58,7 +58,6 @@
 		07CBA7F71B203AC00020116E /* MSFApplyStartTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7F61B203AC00020116E /* MSFApplyStartTableViewController.m */; };
 		07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD31091B09CC7600E0C2DF /* MSFCommandView.m */; };
 		07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */; };
-		07CDAEAA1B11B0CB00B7014C /* MSFDatabaseUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CDAEA91B11B0CB00B7014C /* MSFDatabaseUtils.m */; };
 		07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 07CDAEAB1B11BC9E00B7014C /* dicareas.db */; };
 		07FE072E1B07278800484069 /* MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplyInfo.m */; };
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
@@ -580,8 +579,6 @@
 		07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_MSFappliesViewControllerCatogery.h; sourceTree = "<group>"; };
 		07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAppliesHeaderView.h; sourceTree = "<group>"; };
 		07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAppliesHeaderView.m; sourceTree = "<group>"; };
-		07CDAEA81B11B0CB00B7014C /* MSFDatabaseUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDatabaseUtils.h; sourceTree = "<group>"; };
-		07CDAEA91B11B0CB00B7014C /* MSFDatabaseUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDatabaseUtils.m; sourceTree = "<group>"; };
 		07CDAEAB1B11BC9E00B7014C /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		07FE072C1B07278800484069 /* MSFApplyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyInfo.h; sourceTree = "<group>"; };
 		07FE072D1B07278800484069 /* MSFApplyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyInfo.m; sourceTree = "<group>"; };
@@ -2129,8 +2126,6 @@
 				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
 				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
 				07C2E0731B1AE9FE00C7FEDE /* MSFReactiveView.h */,
-				07CDAEA81B11B0CB00B7014C /* MSFDatabaseUtils.h */,
-				07CDAEA91B11B0CB00B7014C /* MSFDatabaseUtils.m */,
 				49E9A2C21B3A91920004D195 /* MSFLogClient.h */,
 				49E9A2C31B3A91920004D195 /* MSFLogClient.m */,
 			);
@@ -2975,7 +2970,6 @@
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
-				07CDAEAA1B11B0CB00B7014C /* MSFDatabaseUtils.m in Sources */,
 				49C724FF1B285F99009E844C /* MSFAFStudentViewModel.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */,
