@@ -3187,7 +3187,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "a726e980-2e66-48ab-99ec-6456b2688768";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -3205,7 +3205,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "eb7e063e-5c0f-4583-a3e5-7ae134763708";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -3237,6 +3237,7 @@
 					"$(PROJECT_DIR)/Externals/OHHTTPStubs/OHHTTPStubs/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Finance.app/Finance";
 			};
