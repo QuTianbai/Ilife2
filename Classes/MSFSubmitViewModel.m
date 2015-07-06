@@ -54,7 +54,7 @@
     RACObserve(self, phtoStatus)]
     reduce:^id(MSFSelectKeyValues *bankName,NSString *bankCardNum, MSFPhotoStatus *phtoStatus){
       @strongify(self)
-      if ([self.productSet.white isEqualToString:@"1"]) {
+      if (self.productSet.white) {
         return @(bankName != nil && bankCardNum.length > 0 && self.phtoStatus !=nil && self.phtoStatus.id_photo !=nil &&self.phtoStatus.owner_photo !=nil);
       }
       else {

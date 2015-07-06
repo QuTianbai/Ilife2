@@ -11,7 +11,7 @@
 @interface MSFCheckEmployee : MSFObject
 
 @property(nonatomic,copy,readonly) NSString *employee;
-@property(nonatomic,copy,readonly) NSString *white;
+@property(nonatomic,assign,readonly) BOOL white;
 @property(nonatomic,copy,readonly) NSArray *teams;
 @property(nonatomic,copy,readonly) NSString *allMinAmount;
 @property(nonatomic,copy,readonly) NSString *allMaxAmount;

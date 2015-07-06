@@ -125,7 +125,7 @@
   self.submitBT.rac_command = self.viewModel.submitViewModel.executeRequest;
   
   
-  if ([self.viewModel.checkEmployee.white isEqualToString:@"1"]) {
+  if (self.viewModel.checkEmployee.white) {
 //    RAC(self,whitePhoto) = [[[[MSFUtils.httpClient updateBankCardAvatarWithFileURL:self.handPhotoURL ownURL:self.ownerPhtoURL] catch:^RACSignal *(NSError *error) {
 //      @strongify(self)
 //      [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
