@@ -70,13 +70,19 @@
     @strongify(self)
     NSString *text = self.passoword1.text;
     self.passoword1.text = text;
+		self.passoword1.enabled = NO;
     [self.passoword1 setSecureTextEntry:!x.boolValue];
+		self.passoword1.enabled = YES;
+		[self.passoword1 becomeFirstResponder];
   }];
   [self.password2Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
     @strongify(self)
     NSString *text = self.passoword2.text;
     self.passoword2.text = text;
+		self.passoword2.enabled = NO;
     [self.passoword2 setSecureTextEntry:!x.boolValue];
+		self.passoword2.enabled = YES;
+		[self.passoword2 becomeFirstResponder];
   }];
 }
 
