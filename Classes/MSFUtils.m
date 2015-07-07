@@ -17,7 +17,6 @@
 #import "MSFAuthorization.h"
 #import "MSFAgreement.h"
 #import "MSFAgreementViewModel.h"
-#import "MSFLogClient.h"
 
 static NSString *const MSFAutologinbuggingEnvironmentKey = @"LOGIN_AUTO_DEBUG";
 
@@ -63,7 +62,6 @@ static BOOL isRunningTests(void) {
   return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
     MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
     [MSFClient setCipher:cipher];
-    [[MSFLogClient sharedClient] sendLogs];
   }];
 }
 
