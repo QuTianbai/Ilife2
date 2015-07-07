@@ -100,6 +100,17 @@
 	// Bank Address
 	RAC(self.procedureViewController.bankAddress,text) = RACObserve(self.viewModel, bankAddress);
 	self.procedureViewController.bankAddressButton.rac_command = self.viewModel.executeSelected;
+	
+	// Bank No button
+	[[self.procedureViewController.bankNOButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+				message:@"为保证账户资金安全,仅支持本人的储蓄卡(借记卡)收款"
+				delegate:nil
+				cancelButtonTitle:@"￼关闭"
+				otherButtonTitles:nil];
+			[alertView show];
+		}];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
