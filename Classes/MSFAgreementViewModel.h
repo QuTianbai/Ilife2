@@ -12,6 +12,7 @@
 @interface MSFAgreementViewModel : RVMViewModel
 
 @property(nonatomic,strong,readonly) MSFClient *client;
+@property(nonatomic,strong,readonly) MSFAgreement *agreement;
 
 - (instancetype)initWithModel:(MSFAgreement *)agreement;
 

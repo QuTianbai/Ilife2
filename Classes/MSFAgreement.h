@@ -46,6 +46,8 @@
 @property(nonatomic,strong,readonly) NSURL *repayURL;
 @property(nonatomic,strong,readonly) NSURL *registerURL;
 
+@property(nonatomic,strong,readonly) NSURL *lifeInsuranceURL;
+
 - (instancetype)initWithServer:(MSFServer *)server;
 
 @end

@@ -12,7 +12,7 @@
 
 @interface MSFAgreementViewModel ()
 
-@property(nonatomic,strong) MSFAgreement *agreement;
+@property(nonatomic,strong,readwrite) MSFAgreement *agreement;
 
 @end
 
@@ -56,7 +56,7 @@
 }
 
 - (RACSignal *)usersAgreementSignal {
-  NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.userURL];
+  NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.helpURL];
   
   return [[NSURLConnection rac_sendAsynchronousRequest:request]
     reduceEach:^id(NSURLResponse *resposne, NSData *data){

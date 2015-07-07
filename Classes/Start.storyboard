@@ -254,12 +254,27 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BWq-ao-haB">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
+                                                    <rect key="frame" x="153" y="0.0" width="36" height="44"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q7-j3-dwM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="240" id="lON-7G-jnY"/>
+                                                    </constraints>
+                                                    <state key="normal">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="5Q7-j3-dwM" secondAttribute="bottom" id="8nF-Nw-flK"/>
                                                 <constraint firstItem="XNL-hI-c1l" firstAttribute="leading" secondItem="HRc-3v-mWf" secondAttribute="leading" constant="15" id="CeN-Fm-smL"/>
                                                 <constraint firstAttribute="centerY" secondItem="XNL-hI-c1l" secondAttribute="centerY" id="EAO-Lj-AWv"/>
                                                 <constraint firstAttribute="centerY" secondItem="BWq-ao-haB" secondAttribute="centerY" id="H82-gg-ho4"/>
+                                                <constraint firstItem="5Q7-j3-dwM" firstAttribute="leading" secondItem="HRc-3v-mWf" secondAttribute="leading" id="NHb-vo-oCF"/>
                                                 <constraint firstAttribute="trailing" secondItem="BWq-ao-haB" secondAttribute="trailing" constant="15" id="S00-CV-bM0"/>
+                                                <constraint firstItem="5Q7-j3-dwM" firstAttribute="top" secondItem="HRc-3v-mWf" secondAttribute="top" id="e2P-8G-j8m"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -280,6 +295,7 @@
                         <outlet property="applyMonthsTF" destination="Ivi-bG-ipa" id="eQY-62-uyH"/>
                         <outlet property="iAgreeBT" destination="JeG-QL-QaW" id="toV-BF-yta"/>
                         <outlet property="isInLifeInsurancePlaneSW" destination="BWq-ao-haB" id="ulE-Ua-WJS"/>
+                        <outlet property="lifeInsuranceButton" destination="5Q7-j3-dwM" id="gbU-Cd-UfT"/>
                         <outlet property="moneyUsedBT" destination="odI-h8-qPc" id="wf4-cK-vRC"/>
                         <outlet property="moneyUsesTF" destination="msP-ti-bA9" id="huV-up-353"/>
                         <outlet property="nextPageBT" destination="xaO-by-3e5" id="olV-kQ-qAF"/>
@@ -322,5 +338,6 @@
     <resources>
         <image name="bg-loan-installment.png" width="203" height="202"/>
         <image name="icon-check-normal.png" width="25" height="26"/>
+        <image name="icon-question.png" width="36" height="44"/>
     </resources>
 </document>

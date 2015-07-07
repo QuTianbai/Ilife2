@@ -26,6 +26,9 @@
 #import "MSFSelectionViewController.h"
 #import "MSFCheckButton.h"
 #import "MSFAFRequestViewModel.h"
+#import "MSFWebViewController.h"
+#import "MSFAgreementViewModel.h"
+#import "MSFAgreement.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -41,6 +44,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property(weak, nonatomic) IBOutlet MSFCheckButton *agreeButton;
 @property(weak, nonatomic) IBOutlet UIButton *iAgreeBT;
+@property(weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
 @property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
 
@@ -167,6 +171,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
      self.agreeButton.rac_command  = self.viewModel.requestViewModel.executeAgreeOnLicense;
      RAC(self.agreeButton,selected) = RACObserve(self.viewModel.requestViewModel, agreeOnLicense);
    }];
+	[[self.lifeInsuranceButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:
+				[MSFUtils.agreementViewModel.agreement lifeInsuranceURL]];
+			webViewController.hidesBottomBarWhenPushed = YES;
+			[self.navigationController pushViewController:webViewController animated:YES];
+		}];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

@@ -80,7 +80,7 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
     return [NSURL URLWithString:MSFServerDotComBaseWebURL];
   }
   else {
-    return [self.baseURL URLByAppendingPathComponent:MSFServerAPIBaseWebPathComponent isDirectory:YES];
+    return self.baseURL;
   }
 }
 

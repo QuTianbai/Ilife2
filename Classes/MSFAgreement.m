@@ -27,7 +27,7 @@
 }
 
 - (NSURL *)productURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"app/intro.htm "];
+  return [self.server.baseWebURL URLByAppendingPathComponent:@"app/intro.htm"];
 }
 
 - (NSURL *)helpURL {
@@ -45,6 +45,10 @@
 
 - (NSURL *)registerURL {
   return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement.htm"];
+}
+
+- (NSURL *)lifeInsuranceURL {
+  return [self.server.baseWebURL URLByAppendingPathComponent:@"/msfinance/page/about/insuranceInfo.htm"];
 }
 
 @end

@@ -128,7 +128,7 @@ static BOOL isRunningTests(void) {
   static MSFAgreementViewModel *viewModel;
   dispatch_once(&onceToken, ^{
     //TODO: 需要更新协议地址
-    MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://192.168.2.51"]];
+    MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://www.msxf.com"]];
     MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
     viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
   });
