@@ -108,6 +108,17 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
         MSFSelectionViewModel *viewModel = [MSFSelectionViewModel
          monthsViewModelWithProducts:self.viewModel.requestViewModel.productSet
          total:self.viewModel.requestViewModel.totalAmount];
+					if ([viewModel numberOfItemsInSection:0] == 0) {
+						NSString *string;
+						NSMutableArray *region = [[NSMutableArray alloc] init];
+						[self.viewModel.requestViewModel.productSet.teams enumerateObjectsUsingBlock:^(MSFTeams *obj, NSUInteger idx, BOOL *stop) {
+							[region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", obj.minAmount,obj.maxAmount]];
+						}];
+						string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 的数字", [region componentsJoinedByString:@","]];
+						[MSFProgressHUD showAlertTitle:@"提示" message:string];
+						return;
+					}
+				
         MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
         selectionViewController.title = @"选择贷款期数";
         [self.navigationController pushViewController:selectionViewController animated:YES];

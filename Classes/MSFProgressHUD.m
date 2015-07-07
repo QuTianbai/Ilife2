@@ -54,4 +54,9 @@ static MBProgressHUD *hudInstance;
   [hudInstance hide:YES];
 }
 
++ (void)showAlertTitle:(NSString *)title message:(NSString *)message {
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"Close", nil) otherButtonTitles:nil];
+	[alertView show];
+}
+
 @end

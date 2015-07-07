@@ -19,8 +19,8 @@ http://73p2qg.axshare.com/#p=index
 
 ## 测试地址
 
-- 开发：https://192.168.2.41:8288/msfinanceweb/
-- 测试：http://192.168.2.51:8088/msfinanceweb/
+- 开发：https://192.168.2.41:8288/msfinanceweb/ 数据库 41
+- 测试：http://192.168.2.51:8088/msfinanceweb/  数据库 42
 - UAT：http://www.msxf.uat/
 - 生产：http://www.msxf.com/
 

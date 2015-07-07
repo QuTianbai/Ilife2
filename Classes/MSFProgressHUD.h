@@ -39,4 +39,6 @@
  */
 + (void)hidden;
 
++ (void)showAlertTitle:(NSString *)title message:(NSString *)message;
+
 @end
