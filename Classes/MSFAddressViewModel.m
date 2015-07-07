@@ -24,6 +24,10 @@
 @implementation MSFAddressViewModel
 
 - (instancetype)initWithController:(UIViewController *)contentViewController {
+	return [self initWithController:contentViewController needArea:NO];
+}
+
+- (instancetype)initWithController:(UIViewController *)contentViewController needArea:(BOOL)needArea {
   self = [super init];
   if (!self) {
     return nil;
@@ -32,10 +36,18 @@
 	_fmdb = [FMDatabase databaseWithPath:path];
 	_viewController = contentViewController;
 	_address = @"";
+	_needArea = needArea;
 	
 	@weakify(self)
 	_selectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
+		if (!self.needArea) {
+			return [[[self fetchProvince]
+				flattenMap:^RACStream *(id value) {
+					return [self fetchCity];
+				}]
+				replayLast];
+		}
 		return [[[[self fetchProvince]
 			flattenMap:^RACStream *(id value) {
 				return [self fetchCity];
@@ -101,6 +113,9 @@
 	
 	return [viewController.selectedSignal doNext:^(id x) {
 		self.city = x;
+		if (!self.needArea) {
+			[self.viewController.navigationController popToViewController:self.viewController animated:YES];
+		}
 	}];
 }
 

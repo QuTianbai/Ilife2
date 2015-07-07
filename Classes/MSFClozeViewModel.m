@@ -27,7 +27,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	if (!(self = [[self.class alloc] initWithAuthorizedClient:client])) {
 		return nil;
 	}
-	_addressViewModel = [[MSFAddressViewModel alloc] initWithController:controller];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithController:controller needArea:NO];
 	_executeSelected = self.addressViewModel.selectCommand;
 	RAC(self,bankAddress) = [RACObserve(self.addressViewModel, address) ignore:nil];
 	

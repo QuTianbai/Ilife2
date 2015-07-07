@@ -21,7 +21,9 @@
 @property(nonatomic,strong,readonly) NSString *address;
 
 @property(nonatomic,strong,readonly) UIViewController *viewController;
+@property(nonatomic,assign,readonly) BOOL needArea;
 
 - (instancetype)initWithController:(UIViewController *)viewController;
+- (instancetype)initWithController:(UIViewController *)viewController needArea:(BOOL)needArea;
 
 @end
