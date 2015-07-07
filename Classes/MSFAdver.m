@@ -19,6 +19,7 @@
              @"adDescription": @"description",
              @"adURL": @"url",
              @"imgURL": @"image",
+             @"imageName": @"imagename",
              };
 }
 

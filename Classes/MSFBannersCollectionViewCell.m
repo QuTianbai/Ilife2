@@ -16,6 +16,7 @@
   
   _imageView = UIImageView.new;
   _imageView.contentMode = UIViewContentModeScaleAspectFit;
+	_imageView.clipsToBounds = YES;
   [self.contentView addSubview:_imageView];
   [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.edges.equalTo(self.contentView);

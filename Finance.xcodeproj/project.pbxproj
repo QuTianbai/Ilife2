@@ -87,11 +87,6 @@
 		4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */; };
 		492BB43F1B1C0D3C0024897C /* loaninfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 492BB43E1B1C0D3C0024897C /* loaninfo.json */; };
 		492D132A1B2EB1C80094699A /* MSFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 492D13291B2EB1C80094699A /* MSFProgressHUD.m */; };
-		492E62691B0E02DB00D34069 /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62641B0E02DB00D34069 /* 1.png */; };
-		492E626A1B0E02DB00D34069 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62651B0E02DB00D34069 /* 2.png */; };
-		492E626B1B0E02DB00D34069 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62661B0E02DB00D34069 /* 3.png */; };
-		492E626C1B0E02DB00D34069 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62671B0E02DB00D34069 /* 4.png */; };
-		492E626D1B0E02DB00D34069 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62681B0E02DB00D34069 /* 5.png */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
 		492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */; };
@@ -171,6 +166,21 @@
 		4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */ = {isa = PBXBuildFile; fileRef = 4993E0D61B2DA65B00090F26 /* bg-loan-installment.png */; };
 		4993E0DA1B2DA65B00090F26 /* bg-loan-installment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4993E0D71B2DA65B00090F26 /* bg-loan-installment@2x.png */; };
 		4993E0DB1B2DA65B00090F26 /* bg-loan-installment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4993E0D81B2DA65B00090F26 /* bg-loan-installment@3x.png */; };
+		4995DCDE1B4B6D2C0086B5ED /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCCF1B4B6D2C0086B5ED /* 1.png */; };
+		4995DCDF1B4B6D2C0086B5ED /* 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD01B4B6D2C0086B5ED /* 1@2x.png */; };
+		4995DCE01B4B6D2C0086B5ED /* 1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD11B4B6D2C0086B5ED /* 1@3x.png */; };
+		4995DCE11B4B6D2C0086B5ED /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD21B4B6D2C0086B5ED /* 2.png */; };
+		4995DCE21B4B6D2C0086B5ED /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD31B4B6D2C0086B5ED /* 2@2x.png */; };
+		4995DCE31B4B6D2C0086B5ED /* 2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD41B4B6D2C0086B5ED /* 2@3x.png */; };
+		4995DCE41B4B6D2C0086B5ED /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD51B4B6D2C0086B5ED /* 3.png */; };
+		4995DCE51B4B6D2C0086B5ED /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD61B4B6D2C0086B5ED /* 3@2x.png */; };
+		4995DCE61B4B6D2C0086B5ED /* 3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD71B4B6D2C0086B5ED /* 3@3x.png */; };
+		4995DCE71B4B6D2C0086B5ED /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD81B4B6D2C0086B5ED /* 4.png */; };
+		4995DCE81B4B6D2C0086B5ED /* 4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCD91B4B6D2C0086B5ED /* 4@2x.png */; };
+		4995DCE91B4B6D2C0086B5ED /* 4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDA1B4B6D2C0086B5ED /* 4@3x.png */; };
+		4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDB1B4B6D2C0086B5ED /* 5.png */; };
+		4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */; };
+		4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */; };
@@ -614,11 +624,6 @@
 		492BB43E1B1C0D3C0024897C /* loaninfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loaninfo.json; sourceTree = "<group>"; };
 		492D13281B2EB1C80094699A /* MSFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProgressHUD.h; sourceTree = "<group>"; };
 		492D13291B2EB1C80094699A /* MSFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProgressHUD.m; sourceTree = "<group>"; };
-		492E62641B0E02DB00D34069 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
-		492E62651B0E02DB00D34069 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
-		492E62661B0E02DB00D34069 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		492E62671B0E02DB00D34069 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
-		492E62681B0E02DB00D34069 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
 		492E62B41B0ECCCB00D34069 /* UIButton+BottomTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BottomTitles.h"; sourceTree = "<group>"; };
@@ -744,6 +749,21 @@
 		4993E0D61B2DA65B00090F26 /* bg-loan-installment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-loan-installment.png"; sourceTree = "<group>"; };
 		4993E0D71B2DA65B00090F26 /* bg-loan-installment@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-loan-installment@2x.png"; sourceTree = "<group>"; };
 		4993E0D81B2DA65B00090F26 /* bg-loan-installment@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-loan-installment@3x.png"; sourceTree = "<group>"; };
+		4995DCCF1B4B6D2C0086B5ED /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		4995DCD01B4B6D2C0086B5ED /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
+		4995DCD11B4B6D2C0086B5ED /* 1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@3x.png"; sourceTree = "<group>"; };
+		4995DCD21B4B6D2C0086B5ED /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		4995DCD31B4B6D2C0086B5ED /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
+		4995DCD41B4B6D2C0086B5ED /* 2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@3x.png"; sourceTree = "<group>"; };
+		4995DCD51B4B6D2C0086B5ED /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		4995DCD61B4B6D2C0086B5ED /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
+		4995DCD71B4B6D2C0086B5ED /* 3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@3x.png"; sourceTree = "<group>"; };
+		4995DCD81B4B6D2C0086B5ED /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		4995DCD91B4B6D2C0086B5ED /* 4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4@2x.png"; sourceTree = "<group>"; };
+		4995DCDA1B4B6D2C0086B5ED /* 4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4@3x.png"; sourceTree = "<group>"; };
+		4995DCDB1B4B6D2C0086B5ED /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@2x.png"; sourceTree = "<group>"; };
+		4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@3x.png"; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpViewController.h; sourceTree = "<group>"; };
 		49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpViewController.m; sourceTree = "<group>"; };
@@ -1422,11 +1442,21 @@
 		492E62631B0E02DB00D34069 /* banners */ = {
 			isa = PBXGroup;
 			children = (
-				492E62641B0E02DB00D34069 /* 1.png */,
-				492E62651B0E02DB00D34069 /* 2.png */,
-				492E62661B0E02DB00D34069 /* 3.png */,
-				492E62671B0E02DB00D34069 /* 4.png */,
-				492E62681B0E02DB00D34069 /* 5.png */,
+				4995DCCF1B4B6D2C0086B5ED /* 1.png */,
+				4995DCD01B4B6D2C0086B5ED /* 1@2x.png */,
+				4995DCD11B4B6D2C0086B5ED /* 1@3x.png */,
+				4995DCD21B4B6D2C0086B5ED /* 2.png */,
+				4995DCD31B4B6D2C0086B5ED /* 2@2x.png */,
+				4995DCD41B4B6D2C0086B5ED /* 2@3x.png */,
+				4995DCD51B4B6D2C0086B5ED /* 3.png */,
+				4995DCD61B4B6D2C0086B5ED /* 3@2x.png */,
+				4995DCD71B4B6D2C0086B5ED /* 3@3x.png */,
+				4995DCD81B4B6D2C0086B5ED /* 4.png */,
+				4995DCD91B4B6D2C0086B5ED /* 4@2x.png */,
+				4995DCDA1B4B6D2C0086B5ED /* 4@3x.png */,
+				4995DCDB1B4B6D2C0086B5ED /* 5.png */,
+				4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */,
+				4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */,
 			);
 			path = banners;
 			sourceTree = "<group>";
@@ -2484,9 +2514,10 @@
 				49DAEE7E1B2E83E4009433C5 /* Income.storyboard in Resources */,
 				49C0F1C51B2C341400E92572 /* tabbar-account-normal@2x.png in Resources */,
 				4993E0B51B2D9E8800090F26 /* icon-avatar-placeholder@3x.png in Resources */,
-				492E626D1B0E02DB00D34069 /* 5.png in Resources */,
 				49C0F15E1B2C30A200E92572 /* icon-account-history@2x.png in Resources */,
+				4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */,
 				49C0F1AE1B2C315100E92572 /* icon-verify-code@3x.png in Resources */,
+				4995DCE21B4B6D2C0086B5ED /* 2@2x.png in Resources */,
 				49BAB2B91B3BDF09004B4170 /* icon-cloze-idcarddate.png in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
 				4975C98C1B46D6D400AA79EB /* Info.plist in Resources */,
@@ -2494,13 +2525,13 @@
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
 				49E22AF51B37ED5D00749717 /* icon-cloze-normal.png in Resources */,
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
-				492E626A1B0E02DB00D34069 /* 2.png in Resources */,
 				07C06C791B1347C200F2DFCC /* marital_status.json in Resources */,
 				49C0F1AB1B2C315100E92572 /* icon-phone@3x.png in Resources */,
 				07C498101B1420E900069F74 /* shouchiCard.png in Resources */,
 				C7A351781B217CB10001DF6A /* iconfont-chanpinjieshao@2x.png in Resources */,
 				C7B9780B1B099150005F247C /* MSFSettingsViewController.storyboard in Resources */,
 				49C0F13B1B2C308E00E92572 /* font-signin@3x.png in Resources */,
+				4995DCDE1B4B6D2C0086B5ED /* 1.png in Resources */,
 				49C2FE491B4654D100B6B20A /* icon-question@2x.png in Resources */,
 				07CB4C4B1B1017AE006C220E /* right_arrow@3x.png in Resources */,
 				4925ADF51B2AFD8800872A8A /* btn_uncheck.png in Resources */,
@@ -2515,6 +2546,7 @@
 				492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */,
 				49BAB2BB1B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png in Resources */,
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
+				4995DCE81B4B6D2C0086B5ED /* 4@2x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
 				49C0F15B1B2C30A200E92572 /* icon-account-edit@2x.png in Resources */,
 				07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */,
@@ -2523,8 +2555,8 @@
 				07C06C541B1345C300F2DFCC /* unit_nature.json in Resources */,
 				49C0F19E1B2C315100E92572 /* bg-login@2x.png in Resources */,
 				C7A3517A1B217CB10001DF6A /* iconfont-guanyuwomen.png in Resources */,
-				492E62691B0E02DB00D34069 /* 1.png in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
+				4995DCDF1B4B6D2C0086B5ED /* 1@2x.png in Resources */,
 				49C0F1601B2C30A200E92572 /* icon-account-repay.png in Resources */,
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
@@ -2535,6 +2567,7 @@
 				49AFD9A51B073F5600438183 /* login.storyboard in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
 				49C0F1551B2C30A200E92572 /* bg-account-header@2x.png in Resources */,
+				4995DCE61B4B6D2C0086B5ED /* 3@3x.png in Resources */,
 				49E22B001B37ED9E00749717 /* btn-family-reduce.png in Resources */,
 				C7A351841B217CB10001DF6A /* iconfont-wangdian@2x.png in Resources */,
 				49C0F1C61B2C341400E92572 /* tabbar-account-normal@3x.png in Resources */,
@@ -2551,7 +2584,6 @@
 				49C0F1621B2C30A200E92572 /* icon-account-repay@3x.png in Resources */,
 				49BAB2BE1B3BDF09004B4170 /* icon-cloze-name@3x.png in Resources */,
 				49DAEE841B2E8421009433C5 /* Submit.storyboard in Resources */,
-				492E626C1B0E02DB00D34069 /* 4.png in Resources */,
 				49C0F1D41B2C341400E92572 /* tabbar-home-selected@2x.png in Resources */,
 				07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
@@ -2566,6 +2598,7 @@
 				49C0F13D1B2C308E00E92572 /* font-signup@2x.png in Resources */,
 				07C06C501B1344AA00F2DFCC /* moneyUse.json in Resources */,
 				4993E0DA1B2DA65B00090F26 /* bg-loan-installment@2x.png in Resources */,
+				4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */,
 				C7AD13871B0CA6B1004D112D /* MSFTradeTableViewCell.xib in Resources */,
 				49C0F13A1B2C308E00E92572 /* font-signin@2x.png in Resources */,
 				07C06C7D1B1347C200F2DFCC /* social_status.json in Resources */,
@@ -2578,7 +2611,6 @@
 				49C0F1CC1B2C341400E92572 /* tabbar-apply-normal@3x.png in Resources */,
 				49C0F1411B2C308E00E92572 /* nav-back@3x.png in Resources */,
 				49DAEE821B2E840A009433C5 /* Family.storyboard in Resources */,
-				492E626B1B0E02DB00D34069 /* 3.png in Resources */,
 				07C06C761B1347C200F2DFCC /* familyMember_type.json in Resources */,
 				49E22AF11B37ED5D00749717 /* icon-cloze-idcard@2x.png in Resources */,
 				49E22B061B37EDF700749717 /* icon-loan-question.png in Resources */,
@@ -2587,10 +2619,13 @@
 				07CB4C4A1B1017AE006C220E /* right_arrow@2x.png in Resources */,
 				07C06C5A1B13464200F2DFCC /* edu_background.json in Resources */,
 				07C06C581B13461F00F2DFCC /* professional.json in Resources */,
+				4995DCE51B4B6D2C0086B5ED /* 3@2x.png in Resources */,
 				49C0F13F1B2C308E00E92572 /* nav-back.png in Resources */,
 				49C0F1441B2C308E00E92572 /* nav-setting@3x.png in Resources */,
 				49C0F1611B2C30A200E92572 /* icon-account-repay@2x.png in Resources */,
 				49BAB2BC1B3BDF09004B4170 /* icon-cloze-name.png in Resources */,
+				4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */,
+				4995DCE31B4B6D2C0086B5ED /* 2@3x.png in Resources */,
 				497F98231B2B0BAF00DD6F2D /* guide.bundle in Resources */,
 				49C2FE481B4654D100B6B20A /* icon-question.png in Resources */,
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
@@ -2622,10 +2657,12 @@
 				C7B978041B08E8DF005F247C /* MSFTradeTableViewController.xib in Resources */,
 				C7A351761B217CB10001DF6A /* iconfont-bangzhu@3x.png in Resources */,
 				07C06C771B1347C200F2DFCC /* housing_conditions.json in Resources */,
+				4995DCE11B4B6D2C0086B5ED /* 2.png in Resources */,
 				4925ADF21B2AFD8800872A8A /* btn_checked.png in Resources */,
 				49C0F1CD1B2C341400E92572 /* tabbar-apply-selected.png in Resources */,
 				4993E0DB1B2DA65B00090F26 /* bg-loan-installment@3x.png in Resources */,
 				49C0F1561B2C30A200E92572 /* bg-account-header@3x.png in Resources */,
+				4995DCE41B4B6D2C0086B5ED /* 3.png in Resources */,
 				49C0F1421B2C308E00E92572 /* nav-setting.png in Resources */,
 				49C0F19D1B2C315100E92572 /* bg-login.png in Resources */,
 				49C0F1A71B2C315100E92572 /* icon-password@2x.png in Resources */,
@@ -2639,6 +2676,7 @@
 				49C027B61B1469D900735DC6 /* progress-status-default@3x.png in Resources */,
 				C7A3517C1B217CB10001DF6A /* iconfont-guanyuwomen@3x.png in Resources */,
 				07C4980F1B1420E900069F74 /* 拍摄.png in Resources */,
+				4995DCE91B4B6D2C0086B5ED /* 4@3x.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
 				07C06C521B1345A300F2DFCC /* installments.json in Resources */,
@@ -2646,11 +2684,13 @@
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
 				49C0F1581B2C30A200E92572 /* icon-account-apply@2x.png in Resources */,
+				4995DCE01B4B6D2C0086B5ED /* 1@3x.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				4993E0B31B2D9E8800090F26 /* icon-avatar-placeholder.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
+				4995DCE71B4B6D2C0086B5ED /* 4.png in Resources */,
 				C7A351821B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@3x.png in Resources */,
 				49E22AF21B37ED5D00749717 /* icon-cloze-idcard@3x.png in Resources */,
 				49C0F1431B2C308E00E92572 /* nav-setting@2x.png in Resources */,

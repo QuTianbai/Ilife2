@@ -18,6 +18,7 @@
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (NSURL *)imageURLAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)imageNameAtIndexPath:(NSIndexPath *)indexPath;
 - (NSURL *)HTMLURLAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
