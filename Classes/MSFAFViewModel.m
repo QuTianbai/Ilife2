@@ -37,6 +37,7 @@
   if (!self) {
     return nil;
   }
+	//TODO: 从这里看，退出登录需要更新，所有的控制器，所有的控制器中的ViewModel,涉及到ViewModel中的Client授权问题
 	_client = client;
 	_requestViwModel = [[MSFAFRequestViewModel alloc] init];
 	_basicViewModel = [[MSFBasicViewModel alloc] init];
