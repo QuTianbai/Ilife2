@@ -8,6 +8,7 @@
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <REFormattedNumberField/REFormattedNumberField.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 
@@ -50,6 +51,7 @@
   self.name.delegate = self;
   self.card.delegate = self;
   self.card.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
+	[(REFormattedNumberField *)self.bankNO setFormat:@"XXXX XXXX XXXX XXXX XXX"];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

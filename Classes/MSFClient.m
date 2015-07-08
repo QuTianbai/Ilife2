@@ -286,7 +286,7 @@ static MSFCipher *cipher;
 }
 
 - (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session {
-	//TODO: 需要增加银行卡参数接口
+	//TODO: 需要增加银行卡参数接口,需要去掉银行的卡的空格间隔符号 `1111 1111 1111`
   NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
   parameters[@"username"] = name;
   parameters[@"id_card"] = idcard;
