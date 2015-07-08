@@ -90,7 +90,7 @@ it(@"should initialize", ^{
 	expect(viewModel.client).notTo(beNil());
 	expect(@(viewModel.client.isAuthenticated)).to(beTruthy());
 	
-	expect(viewModel.requestViwModel).notTo(beNil());
+	expect(viewModel.requestViewModel).notTo(beNil());
 	expect(viewModel.basicViewModel).notTo(beNil());
 	expect(viewModel.professionViewModel).notTo(beNil());
 	expect(viewModel.relationViewModel).notTo(beNil());

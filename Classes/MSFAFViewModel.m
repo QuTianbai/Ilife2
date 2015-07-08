@@ -26,6 +26,12 @@
 @property(nonatomic,strong,readwrite) MSFCheckEmployee *market;
 @property(nonatomic,strong,readwrite) RACSubject *updatedContentSignal;
 
+@property(nonatomic,strong,readwrite) MSFAFRequestViewModel *requestViewModel;
+@property(nonatomic,strong,readwrite) MSFBasicViewModel *basicViewModel;
+@property(nonatomic,strong,readwrite) MSFAFCareerViewModel *professionViewModel;
+@property(nonatomic,strong,readwrite) MSFRelationMemberViewModel *relationViewModel;
+@property(nonatomic,strong,readwrite) MSFSubmitViewModel *submitViewModel;
+
 @end
 
 @implementation MSFAFViewModel
@@ -39,11 +45,6 @@
   }
 	//TODO: 从这里看，退出登录需要更新，所有的控制器，所有的控制器中的ViewModel,涉及到ViewModel中的Client授权问题
 	_client = client;
-	_requestViwModel = [[MSFAFRequestViewModel alloc] init];
-	_basicViewModel = [[MSFBasicViewModel alloc] init];
-	_professionViewModel = [[MSFAFCareerViewModel alloc] init];
-	_relationViewModel = [[MSFRelationMemberViewModel alloc] init];
-	_submitViewModel = [[MSFSubmitViewModel alloc] init];
 	
 	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFAFViewModel updatedContentSignal"];
 	
@@ -56,6 +57,11 @@
 				RACTupleUnpack(MSFApplyInfo *model, MSFCheckEmployee *market) = modelAndMarket;
 				self.model = model;
 				self.market = market;
+				self.requestViewModel = [[MSFAFRequestViewModel alloc] initWithViewModel:self];
+				self.basicViewModel = [[MSFBasicViewModel alloc] init];
+				self.professionViewModel = [[MSFAFCareerViewModel alloc] init];
+				self.relationViewModel = [[MSFRelationMemberViewModel alloc] init];
+				self.submitViewModel = [[MSFSubmitViewModel alloc] init];
 				[(RACSubject *)self.updatedContentSignal sendNext:nil];
 				[(RACSubject *)self.updatedContentSignal sendCompleted];
 			} error:^(NSError *error) {

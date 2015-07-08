@@ -30,7 +30,7 @@
 
 - (instancetype)initWithClient:(MSFClient *)client;
 
-@property(nonatomic,strong,readonly) MSFAFRequestViewModel *requestViwModel;
+@property(nonatomic,strong,readonly) MSFAFRequestViewModel *requestViewModel;
 @property(nonatomic,strong,readonly) MSFBasicViewModel *basicViewModel;
 @property(nonatomic,strong,readonly) MSFAFCareerViewModel *professionViewModel;
 @property(nonatomic,strong,readonly) MSFRelationMemberViewModel *relationViewModel;

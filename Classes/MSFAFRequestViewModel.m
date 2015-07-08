@@ -45,7 +45,7 @@
 	
 	// 单向属性，这里的数字不需要读取服务器缓存，采用客户端每次输入
 	@weakify(self)
-	[RACObserve(self, product) subscribeNext:^(MSFMonths *product) {
+	[[RACObserve(self, product) ignore:nil] subscribeNext:^(MSFMonths *product) {
 		//TODO: 考虑调整model的属性为只读属性，是否满足RAC多次使用，以及product为空的情况
 		@strongify(self)
 		self.viewModel.model.productId = product.productId;
