@@ -7,6 +7,7 @@
 #import "MSFAgreement.h"
 #import "MSFServer.h"
 #import <libextobjc/extobjc.h>
+#import "MSFMonths.h"
 
 @implementation MSFAgreement
 
@@ -49,6 +50,12 @@
 
 - (NSURL *)lifeInsuranceURL {
   return [self.server.baseWebURL URLByAppendingPathComponent:@"/msfinance/page/about/insuranceInfo.htm"];
+}
+
+- (NSURL *)loanAgreementURLWithProduct:(MSFMonths *)product {
+	//TODO: 暂缺贷款协议地址格式
+	NSString *path = [NSString stringWithFormat:@"/coresys/cont/contract/fineinfo?productId=%@",product.productId];
+	return [self.server.baseWebURL URLByAppendingPathComponent:path];
 }
 
 @end

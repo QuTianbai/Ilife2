@@ -25,7 +25,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAM-Hj-ofJ">
-                                    <rect key="frame" x="75" y="40" width="170" height="170"/>
+                                    <rect key="frame" x="75" y="41" width="170" height="170"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-loan-installment.png" translatesAutoresizingMaskIntoConstraints="NO" id="teQ-7w-5EM">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
@@ -59,7 +59,7 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-by-3e5" customClass="MSFEdgeButton">
-                                    <rect key="frame" x="10" y="264" width="300" height="44"/>
+                                    <rect key="frame" x="10" y="241" width="300" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="23j-ba-cDM"/>
                                     </constraints>
@@ -67,68 +67,14 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uv3-w7-SsG">
-                                    <rect key="frame" x="0.0" y="220" width="320" height="44"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOA-h9-SLt" customClass="MSFCheckButton">
-                                            <rect key="frame" x="15" y="9" width="25" height="26"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                            <state key="normal" image="icon-check-normal.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <state key="selected">
-                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeG-QL-QaW">
-                                            <rect key="frame" x="40" y="5" width="105" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="105" id="RX9-y1-nrx"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="我已阅读且同意">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSF-b9-nvW">
-                                            <rect key="frame" x="145" y="5" width="130" height="34"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="130" id="P3H-j5-vQR"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="《马上金融贷款协议》">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="RCy-nJ-9p8" kind="push" id="qXr-Mm-LCY"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="gOA-h9-SLt" firstAttribute="leading" secondItem="uv3-w7-SsG" secondAttribute="leading" constant="15" id="ISw-5O-SWb"/>
-                                        <constraint firstAttribute="centerY" secondItem="lSF-b9-nvW" secondAttribute="centerY" id="KOm-Za-TKh"/>
-                                        <constraint firstAttribute="centerY" secondItem="JeG-QL-QaW" secondAttribute="centerY" id="WLB-Uk-u96"/>
-                                        <constraint firstAttribute="centerY" secondItem="gOA-h9-SLt" secondAttribute="centerY" id="eA7-Rm-LRz"/>
-                                        <constraint firstItem="JeG-QL-QaW" firstAttribute="top" secondItem="uv3-w7-SsG" secondAttribute="top" constant="5" id="hm3-tI-pvh"/>
-                                        <constraint firstItem="lSF-b9-nvW" firstAttribute="top" secondItem="uv3-w7-SsG" secondAttribute="top" constant="5" id="jbb-iE-naz"/>
-                                        <constraint firstAttribute="height" constant="44" id="ltD-5U-gwD"/>
-                                        <constraint firstItem="JeG-QL-QaW" firstAttribute="leading" secondItem="gOA-h9-SLt" secondAttribute="trailing" id="qhc-4L-HQR"/>
-                                        <constraint firstItem="lSF-b9-nvW" firstAttribute="leading" secondItem="JeG-QL-QaW" secondAttribute="trailing" id="qrY-dE-PlX"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="rAM-Hj-ofJ" secondAttribute="centerX" id="Bct-Cc-y2F"/>
-                                <constraint firstItem="uv3-w7-SsG" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" id="Gd7-h5-tRd"/>
+                                <constraint firstItem="rAM-Hj-ofJ" firstAttribute="top" secondItem="CS3-WP-hrb" secondAttribute="bottom" constant="40" id="Eaf-5F-6pq"/>
                                 <constraint firstAttribute="trailing" secondItem="CS3-WP-hrb" secondAttribute="trailing" id="Mwr-8E-qOn"/>
-                                <constraint firstAttribute="bottom" secondItem="xaO-by-3e5" secondAttribute="bottom" constant="20" id="N1K-nI-AHp"/>
-                                <constraint firstItem="xaO-by-3e5" firstAttribute="top" secondItem="uv3-w7-SsG" secondAttribute="bottom" id="TWJ-MI-oS8"/>
-                                <constraint firstAttribute="trailing" secondItem="uv3-w7-SsG" secondAttribute="trailing" id="ccb-HK-qfE"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ddS-PJ-7S2"/>
-                                <constraint firstItem="uv3-w7-SsG" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="bottom" constant="10" id="gki-W3-b7s"/>
+                                <constraint firstItem="xaO-by-3e5" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="bottom" constant="30" id="ee4-co-666"/>
                                 <constraint firstAttribute="trailing" secondItem="xaO-by-3e5" secondAttribute="trailing" constant="10" id="mWZ-Mw-jkk"/>
                                 <constraint firstItem="xaO-by-3e5" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" constant="10" id="uey-Lo-fVr"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" id="zwi-km-nNs"/>
@@ -289,11 +235,9 @@
                     <navigationItem key="navigationItem" id="wFA-RZ-Eut"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="agreeButton" destination="gOA-h9-SLt" id="1qB-rg-DMC"/>
                         <outlet property="applyCashNumTF" destination="TSC-Kd-H1T" id="nWG-4p-KKp"/>
                         <outlet property="applyMonthsBT" destination="9kc-wI-oyz" id="DtN-OL-TkC"/>
                         <outlet property="applyMonthsTF" destination="Ivi-bG-ipa" id="eQY-62-uyH"/>
-                        <outlet property="iAgreeBT" destination="JeG-QL-QaW" id="toV-BF-yta"/>
                         <outlet property="isInLifeInsurancePlaneSW" destination="BWq-ao-haB" id="ulE-Ua-WJS"/>
                         <outlet property="lifeInsuranceButton" destination="5Q7-j3-dwM" id="gbU-Cd-UfT"/>
                         <outlet property="moneyUsedBT" destination="odI-h8-qPc" id="wf4-cK-vRC"/>
@@ -309,7 +253,7 @@
         <!--Loan Agreement Web View-->
         <scene sceneID="0J7-Kh-Psa">
             <objects>
-                <viewController id="RCy-nJ-9p8" customClass="MSFLoanAgreementWebView" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MSFLoanAgreementWebView" id="RCy-nJ-9p8" customClass="MSFLoanAgreementWebView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dkP-x5-UL5"/>
                         <viewControllerLayoutGuide type="bottom" id="wuu-iM-R3L"/>
@@ -318,26 +262,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-6N-x5o">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfo-ut-sxs">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc">
+                                        <rect key="frame" x="216" y="10" width="30" height="30"/>
+                                        <state key="normal" title="同意">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgC-b2-JGu">
+                                        <rect key="frame" x="46" y="10" width="45" height="30"/>
+                                        <state key="normal" title="不同意">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="q6C-Kr-xqy"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-6N-x5o">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="kfo-ut-sxs" secondAttribute="bottom" id="A7K-4N-vcz"/>
+                            <constraint firstAttribute="trailing" secondItem="kfo-ut-sxs" secondAttribute="trailing" id="EB2-aT-zQM"/>
+                            <constraint firstItem="usZ-6N-x5o" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="HVP-1f-QRX"/>
+                            <constraint firstAttribute="trailing" secondItem="usZ-6N-x5o" secondAttribute="trailing" id="MxH-j4-aoE"/>
+                            <constraint firstItem="usZ-6N-x5o" firstAttribute="top" secondItem="HL6-Of-Dkt" secondAttribute="top" id="UdD-eK-l4e"/>
+                            <constraint firstItem="kfo-ut-sxs" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="las-64-yLJ"/>
+                            <constraint firstItem="kfo-ut-sxs" firstAttribute="top" secondItem="usZ-6N-x5o" secondAttribute="bottom" id="weo-nd-QTU"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HAt-5T-X9L"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="LoanAgreenmentWV" destination="usZ-6N-x5o" id="xrK-vX-ZVX"/>
+                        <outlet property="agreeButton" destination="a7E-MQ-EQc" id="iVK-uA-VLq"/>
+                        <outlet property="disAgreeButton" destination="NgC-b2-JGu" id="ZNE-Ts-yoe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99z-ai-wgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1072" y="-393"/>
+            <point key="canvasLocation" x="-1052" y="-393"/>
         </scene>
     </scenes>
     <resources>
         <image name="bg-loan-installment.png" width="203" height="202"/>
-        <image name="icon-check-normal.png" width="25" height="26"/>
         <image name="icon-question.png" width="36" height="44"/>
     </resources>
 </document>

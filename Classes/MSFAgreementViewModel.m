@@ -91,6 +91,15 @@
     }];
 }
 
+- (RACSignal *)loanAgreementSignalWithProduct:(MSFMonths *)product {
+  NSURLRequest *request = [NSURLRequest requestWithURL:[_agreement loanAgreementURLWithProduct:product]];
+  
+  return [[NSURLConnection rac_sendAsynchronousRequest:request]
+    reduceEach:^id(NSURLResponse *response, NSData *data){
+        return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }];
+}
+
 - (MSFClient *)client {
   return MSFUtils.httpClient;
 }

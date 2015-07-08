@@ -29,6 +29,7 @@
 #import "MSFWebViewController.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFAgreement.h"
+#import "MSFLoanAgreementWebView.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -149,23 +150,16 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			}];
 		}];
 		 
-		self.nextPageBT.rac_command = self.viewModel.requestViewModel.executeRequest;
-		[self.viewModel.requestViewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
-			[MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
-			[signal subscribeNext:^(MSFApplyCash *applyCash) {
-				[MSFProgressHUD hidden];
-				self.viewModel.applyInfoModel.loanId = applyCash.applyID;
-				self.viewModel.applyInfoModel.personId = applyCash.personId;
-				self.viewModel.applyInfoModel.applyNo = applyCash.applyNo;
-				UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Income" bundle:nil];
-				UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-				vc.hidesBottomBarWhenPushed = YES;
-				[vc bindViewModel:self.viewModel];
-				[self.navigationController pushViewController:vc animated:YES];
-			}];
-		}];
-		[self.viewModel.requestViewModel.executeRequest.errors subscribeNext:^(NSError *error) {
-			[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+			@strongify(self)
+			if (!self.viewModel.requestViewModel.product) {
+				[MSFProgressHUD showErrorMessage:@"请选择贷款期数" inView:self.navigationController.view];
+				return;
+			}
+			MSFLoanAgreementWebView *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
+			vc.hidesBottomBarWhenPushed = YES;
+			[vc bindViewModel:self.viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
 		}];
 		self.iAgreeBT.rac_command = self.viewModel.requestViewModel.executeAgreeOnLicense;
 		self.agreeButton.rac_command  = self.viewModel.requestViewModel.executeAgreeOnLicense;

@@ -42,7 +42,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   self.signInViewController.username.text = MSFUtils.phone;
   
   if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-    self.signInViewController.username.text = @"18696995688";
+    self.signInViewController.username.text = @"18696995689";
     self.signInViewController.captcha.text = @"666666";
     self.signInViewController.password.text = @"123456qw";
   }

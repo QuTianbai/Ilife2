@@ -14,6 +14,10 @@
 #import "MSFMonths.h"
 #import "MSFClient+Months.h"
 #import "MSFResponse.h"
+#import "MSFWebViewController.h"
+#import "MSFUtils.h"
+#import "MSFAgreementViewModel.h"
+#import "MSFAgreement.h"
 
 @implementation MSFAFRequestViewModel
 
@@ -90,7 +94,7 @@
     self.agreeOnLicense = !self.agreeOnLicense;
     return [RACSignal return:@(self.agreeOnLicense)];
   }];
-  
+	
   return self;
 }
 
@@ -107,9 +111,8 @@
     RACObserve(self.model, principal),
     RACObserve(self.model, tenor),
     RACObserve(self.model, usageCode),
-    RACObserve(self, agreeOnLicense),
     ]
-   reduce:^id(NSString *amount,NSString *tenor,NSString *usage,NSNumber *agree){
+   reduce:^id(NSString *amount,NSString *tenor,NSString *usage) {
      @strongify(self)
      NSInteger total = amount.integerValue;
      
@@ -119,8 +122,7 @@
      total >= self.productSet.allMinAmount.integerValue &&
      total <= self.productSet.allMaxAmount.integerValue &&
      tenor != nil &&
-     usage != nil &&
-     agree.boolValue
+     usage != nil
      );
    }];
 }
