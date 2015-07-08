@@ -99,7 +99,7 @@
   avatarView.hidden = YES;
   [view addSubview:avatarView];
   UIButton *imageView = [UIButton buttonWithType:UIButtonTypeCustom];
-  [imageView setImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
+  [imageView setBackgroundImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
   [view addSubview:imageView];
   [avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
     make.height.equalTo(@120);
@@ -107,8 +107,8 @@
     make.center.equalTo(view);
   }];
   [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.height.equalTo(@100);
-    make.width.equalTo(@100);
+    make.height.equalTo(@75);
+    make.width.equalTo(@75);
     make.center.equalTo(view);
   }];
   
