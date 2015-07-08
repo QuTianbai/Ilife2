@@ -120,7 +120,7 @@
 @property(nonatomic,copy) NSString *productGroupCode;//产品群code
 @property(nonatomic,copy) MSFPhotoStatus *whitePhoto;//白名单
 @property(nonatomic,copy) NSString *repayMoneyMonth;//每月还款额
-@property(nonatomic,copy,readonly) NSString *monthlyInterestRate;//月利率
-@property(nonatomic,copy,readonly) NSString *monthlyFeeRate;//月服务费利率
+@property(nonatomic,copy) NSString *monthlyInterestRate;//月利率
+@property(nonatomic,copy) NSString *monthlyFeeRate;//月服务费利率
 
 @end

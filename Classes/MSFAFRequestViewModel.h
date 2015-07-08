@@ -19,7 +19,7 @@
 /**
  *  总金额
  */
-@property(nonatomic,assign) NSInteger totalAmount;
+@property(nonatomic,assign) NSString *totalAmount;
 
 /**
  *  贷款期数
@@ -50,5 +50,7 @@
  */
 @property(nonatomic,strong) RACCommand *executeRequest;
 - (RACSignal *)requestValidSignal;
+
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

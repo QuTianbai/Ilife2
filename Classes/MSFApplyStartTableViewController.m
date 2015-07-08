@@ -112,7 +112,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 				}
 				MSFSelectionViewModel *viewModel = [MSFSelectionViewModel
 				monthsViewModelWithProducts:self.viewModel.requestViewModel.productSet
-				total:self.viewModel.requestViewModel.totalAmount];
+				total:self.viewModel.requestViewModel.totalAmount.integerValue];
 				if ([viewModel numberOfItemsInSection:0] == 0) {
 					NSString *string;
 					NSMutableArray *region = [[NSMutableArray alloc] init];
