@@ -47,7 +47,7 @@
 	RAC(self,market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
-	[[RACObserve(self, product) ignore:nil] subscribeNext:^(MSFMonths *product) {
+	[RACObserve(self, product) subscribeNext:^(MSFMonths *product) {
 		@strongify(self)
 		self.formsViewModel.model.productId = product.productId;
 		self.formsViewModel.model.productName = product.productName;
@@ -64,11 +64,14 @@
 	
 	RAC(self,termAmount) = [[RACSignal
 		combineLatest:@[
-			[RACObserve(self, product) ignore:nil],
+			RACObserve(self, product),
 			RACObserve(self, insurance),
 		]]
 		flattenMap:^RACStream *(RACTuple *productAndInsurance) {
 			RACTupleUnpack(MSFMonths *product, NSNumber *insurance) = productAndInsurance;
+			if (!product) {
+				return [RACSignal return:@0];
+			}
 			return	[[self.formsViewModel.client
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
@@ -85,10 +88,10 @@
 	RAC(self,termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
 		return value.integerValue != 0 ? value.stringValue : @"未知";
 	}];
-	RAC(self,purposeText) = [[RACObserve(self, purpose) ignore:nil] map:^id(id value) {
+	RAC(self,purposeText) = [RACObserve(self, purpose) map:^id(id value) {
 		return [value text];
 	}];
-	RAC(self,productTitle) = [[RACObserve(self, product) ignore:nil] map:^id(id value) {
+	RAC(self,productTitle) = [RACObserve(self, product) map:^id(id value) {
 		return [value title];
 	}];
 	

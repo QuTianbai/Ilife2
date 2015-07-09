@@ -23,7 +23,7 @@
 #import "MSFWebViewController.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFAgreement.h"
-#import "MSFLoanAgreementWebView.h"
+#import "MSFLoanAgreementController.h"
 #import "MSFFormsViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
 
@@ -112,6 +112,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[[self.tabBarController rac_signalForSelector:@selector(setSelectedViewController:)] subscribeNext:^(id x) {
 		@strongify(self)
 		UINavigationController *navigationController = [x first];
+		self.viewModel.product = nil;
+		self.viewModel.purpose = nil;
 		self.formsViewModel.active = [navigationController.topViewController isKindOfClass:self.class];
 	}];
 }
@@ -215,7 +217,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 				}]];
 				return nil;
 			}
-			MSFLoanAgreementWebView *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
+			MSFLoanAgreementController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
 			vc.hidesBottomBarWhenPushed = YES;
 			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.viewModel.product];
 			[vc bindViewModel:viewModel];
