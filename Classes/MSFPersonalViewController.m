@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFAppliesIncomeTableViewController.h"
+#import "MSFPersonalViewController.h"
 #import <FMDB/FMDatabase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
@@ -23,7 +23,7 @@
 #import "MSFSelectionViewController.h"
 #import "NSString+Matches.h"
 
-@interface MSFAppliesIncomeTableViewController () <UITextFieldDelegate>
+@interface MSFPersonalViewController () <UITextFieldDelegate>
 
 @property(weak,nonatomic) NSArray *adressArray;
 @property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
@@ -42,7 +42,7 @@
 
 @end
 
-@implementation MSFAppliesIncomeTableViewController
+@implementation MSFPersonalViewController
 
 #pragma mark - MSFReactiveView
 
@@ -194,7 +194,7 @@
     [execution subscribeNext:^(id x) {
       [MSFProgressHUD hidden];
       self.applyCash = x;
-      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Social" bundle:nil];
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
       UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
       [vc bindViewModel:self.viewModel];
       [self.navigationController pushViewController:vc animated:YES];

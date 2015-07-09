@@ -10,6 +10,6 @@
 #import "MSFReactiveView.h"
 
 // 申请信息提交
-@interface MSFSubmitTableViewController : UITableViewController <MSFReactiveView>
+@interface MSFCommitViewController : UITableViewController <MSFReactiveView>
 
 @end

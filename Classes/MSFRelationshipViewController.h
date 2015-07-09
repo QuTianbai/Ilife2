@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFFamilyInfoTableViewController : UITableViewController <MSFReactiveView>
+@interface MSFRelationshipViewController : UITableViewController <MSFReactiveView>
 
 @property(nonatomic) NSInteger pageIndex;
 

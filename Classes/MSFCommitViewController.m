@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFSubmitTableViewController.h"
+#import "MSFCommitViewController.h"
 #import "MSFApplyStartViewModel.h"
 #import "MSFApplyCash.h"
 #import <libextobjc/extobjc.h>
@@ -18,13 +18,13 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFProductViewModel.h"
-#import "MSFSubmitViewModel.h"
+#import "MSFCommitViewModel.h"
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 #import "MSFClient+MSFPhotoStatus.h"
 #import "MSFPhotoStatus.h"
 #import "MSFCheckEmployee.h"
 
-@interface MSFSubmitTableViewController ()
+@interface MSFCommitViewController ()
 
 @property(nonatomic,strong) MSFPhotoStatus *whitePhoto;
 @property(nonatomic,copy) NSURL *handPhotoURL;
@@ -45,7 +45,7 @@
 
 @end
 
-@implementation MSFSubmitTableViewController
+@implementation MSFCommitViewController
 
 - (void)bindViewModel:(id)viewModel {
   self.viewModel = viewModel;

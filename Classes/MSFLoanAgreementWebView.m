@@ -45,7 +45,7 @@
 			self.viewModel.applyInfoModel.loanId = applyCash.applyID;
 			self.viewModel.applyInfoModel.personId = applyCash.personId;
 			self.viewModel.applyInfoModel.applyNo = applyCash.applyNo;
-			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Income" bundle:nil];
+			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
 			[vc bindViewModel:self.viewModel];

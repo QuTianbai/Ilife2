@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFPersonInfoTableViewController.h"
+#import "MSFProfessionalViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RMPickerViewController/RMPickerViewController.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
@@ -19,11 +19,11 @@
 #import <FMDB/FMDatabase.h>
 #import "MSFApplyCash.h"
 #import "MSFProgressHUD.h"
-#import "MSFAFCareerViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
-@interface MSFPersonInfoTableViewController () {
+@interface MSFProfessionalViewController () {
   NSArray *_dataArray;
   RMPickerViewController *_edutePickerViewController;
   RMPickerViewController *_socailStatusPickerViewController;
@@ -72,7 +72,7 @@
 
 @end
 
-@implementation MSFPersonInfoTableViewController
+@implementation MSFProfessionalViewController
 
 #pragma mark - MSFReactiveView
 

@@ -21,12 +21,12 @@
 #import "MSFResponse.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFProductViewModel.h"
-#import "MSFAFCareerViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import "MSFAFStudentViewModel.h"
 #import "MSFAreas.h"
 #import "NSString+Matches.h"
-#import "MSFSubmitViewModel.h"
-#import "MSFRelationMemberViewModel.h"
+#import "MSFCommitViewModel.h"
+#import "MSFRelationshipViewModel.h"
 
 @interface MSFApplyStartViewModel ()
 

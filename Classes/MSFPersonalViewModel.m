@@ -4,16 +4,16 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFBasicViewModel.h"
+#import "MSFPersonalViewModel.h"
 #import "MSFFormsViewModel.h"
 
-@interface MSFBasicViewModel ()
+@interface MSFPersonalViewModel ()
 
 @property(nonatomic,readonly) MSFFormsViewModel *viewModel;
 
 @end
 
-@implementation MSFBasicViewModel
+@implementation MSFPersonalViewModel
 
 - (instancetype)initWithViewModel:(id)viewModel {
   self = [super init];

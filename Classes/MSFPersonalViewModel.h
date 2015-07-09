@@ -9,7 +9,7 @@
  /**
   *  基本信息
   */
-@interface MSFBasicViewModel : RVMViewModel
+@interface MSFPersonalViewModel : RVMViewModel
 
 - (instancetype)initWithViewModel:(id)viewModel;
 

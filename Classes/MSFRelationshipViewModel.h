@@ -1,5 +1,5 @@
 //
-//  MSFRelationMemberViewModel.h
+//  MSFPersonalViewModel.h
 //  Cash
 //
 //  Created by xutian on 15/6/13.
@@ -11,7 +11,7 @@
 
 @class RACCommand;
 
-@interface MSFRelationMemberViewModel : RVMViewModel
+@interface MSFRelationshipViewModel : RVMViewModel
 /**
  *婚姻状况
  */

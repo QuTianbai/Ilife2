@@ -10,6 +10,6 @@
 #import "MSFReactiveView.h"
 
 // 在职人员信息
-@interface MSFPersonInfoTableViewController : UITableViewController <MSFReactiveView>
+@interface MSFProfessionalViewController : UITableViewController <MSFReactiveView>
 
 @end

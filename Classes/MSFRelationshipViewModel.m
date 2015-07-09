@@ -1,17 +1,17 @@
 //
-//  MSFRelationMemberViewModel.m
+//  MSFPersonalViewModel.m
 //  Cash
 //
 //  Created by xutian on 15/6/13.
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFRelationMemberViewModel.h"
+#import "MSFRelationshipViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFApplyInfo.h"
 #import "MSFClient+MSFApplyCash.h"
 
-@implementation MSFRelationMemberViewModel
+@implementation MSFRelationshipViewModel
 
 /*
 - (instancetype)initWithModel:(MSFApplyInfo *)model {

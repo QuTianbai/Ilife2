@@ -9,7 +9,7 @@
 #import "MSFSocalStatusFirstTableViewController.h"
 #import <libextobjc/extobjc.h>
 #import <RMPickerViewController/RMPickerViewController.h>
-#import "MSFAppliesIncomeTableViewController.h"
+#import "MSFPersonalViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFApplyStartViewModel.h"
 #import "MSFSelectKeyValues.h"
@@ -19,7 +19,7 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectKeyValues.h"
-#import "MSFAFCareerViewModel.h"
+#import "MSFProfessionalViewModel.h"
 
 @interface MSFSocalStatusFirstTableViewController ()
 

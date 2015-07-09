@@ -10,7 +10,7 @@
 #import "MSFReactiveView.h"
 
 // 基本信息
-@interface MSFAppliesIncomeTableViewController : UITableViewController <MSFReactiveView>
+@interface MSFPersonalViewController : UITableViewController <MSFReactiveView>
 
 @property(weak, nonatomic) IBOutlet UITextField *monthInComeTF;
 @property(weak, nonatomic) IBOutlet UITextField *repayMonthTF;

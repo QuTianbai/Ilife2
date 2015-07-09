@@ -1,10 +1,10 @@
 //
-// MSFAFCareerViewModel.m
+// MSFProfessionalViewModel.m
 //
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFAFCareerViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import <FMDB/FMDB.h>
 #import <MTLFMDBAdapter/MTLFMDBAdapter.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -16,7 +16,7 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSString+Matches.h"
 
-@implementation MSFAFCareerViewModel
+@implementation MSFProfessionalViewModel
 
 #pragma mark - Lifecycle
 

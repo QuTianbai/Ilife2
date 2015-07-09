@@ -8,11 +8,11 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
 #import "MSFUtils.h"
-#import "MSFBasicViewModel.h"
-#import "MSFAFCareerViewModel.h"
+#import "MSFPersonalViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import "MSFProductViewModel.h"
-#import "MSFRelationMemberViewModel.h"
-#import "MSFSubmitViewModel.h"
+#import "MSFRelationshipViewModel.h"
+#import "MSFCommitViewModel.h"
 
 #import "MSFApplyInfo.h"
 #import "MSFClient+MSFApplyInfo.h"

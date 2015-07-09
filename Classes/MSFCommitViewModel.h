@@ -1,5 +1,5 @@
 //
-//  MSFSubmitViewModel.h
+//  MSFCommitViewModel.h
 //  Cash
 //
 //  Created by xbm on 15/6/9.
@@ -12,7 +12,7 @@
 @class RACCommand;
 @class MSFPhotoStatus;
 
-@interface MSFSubmitViewModel : MSFFormsViewModel
+@interface MSFCommitViewModel : MSFFormsViewModel
 /**
  *银行名称
  */

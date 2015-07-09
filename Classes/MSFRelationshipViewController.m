@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFFamilyInfoTableViewController.h"
+#import "MSFRelationshipViewController.h"
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFApplyStartViewModel.h"
-#import "MSFRelationMemberViewModel.h"
+#import "MSFRelationshipViewModel.h"
 #import "MSFApplyInfo.h"
 #import "MSFApplyCash.h"
 #import "MSFProgressHUD.h"
@@ -23,7 +23,7 @@
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"5787c0"
 
-@interface MSFFamilyInfoTableViewController ()
+@interface MSFRelationshipViewController ()
 
 @property(nonatomic,strong) MSFApplyCash *applyCash;
 @property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
@@ -94,7 +94,7 @@
 
 @end
 
-@implementation MSFFamilyInfoTableViewController
+@implementation MSFRelationshipViewController
 
 - (void)bindViewModel:(id)viewModel {
   self.viewModel = viewModel;
@@ -207,7 +207,7 @@
       self.viewModel.applyInfoModel.loanId = self.applyCash.applyID;
       self.viewModel.applyInfoModel.personId = self.applyCash.personId;
       self.viewModel.applyInfoModel.applyNo = self.applyCash.applyNo;
-      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Submit" bundle:nil];
+      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"commit" bundle:nil];
       UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
       [vc bindViewModel:self.viewModel];
       [self.navigationController pushViewController:vc animated:YES];

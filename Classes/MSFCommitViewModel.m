@@ -1,12 +1,12 @@
 //
-//  MSFSubmitViewModel.m
+//  MSFCommitViewModel.m
 //  Cash
 //
 //  Created by xbm on 15/6/9.
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFSubmitViewModel.h"
+#import "MSFCommitViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFApplyInfo.h"
 #import "MSFSelectKeyValues.h"
@@ -15,7 +15,7 @@
 #import "MSFCheckEmployee.h"
 #import "MSFPhotoStatus.h"
 
-@implementation MSFSubmitViewModel
+@implementation MSFCommitViewModel
 
 /*
 

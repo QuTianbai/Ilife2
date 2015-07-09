@@ -45,8 +45,8 @@ static BOOL isRunningTests(void) {
 //TODO: 更新这里的服务器地址
 + (RACSignal *)setupSignal {
 #if DEBUG
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
-  //server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+	//server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
+  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
 #else
   [MSFUtils cleanupArchive];
   server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51"]];

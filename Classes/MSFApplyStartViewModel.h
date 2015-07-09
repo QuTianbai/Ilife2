@@ -15,11 +15,11 @@
 @class MSFMonths;
 @class MSFSelectKeyValues;
 @class MSFProductViewModel;
-@class MSFAFCareerViewModel;
+@class MSFProfessionalViewModel;
 @class MSFAreas;
-@class MSFSubmitViewModel;
+@class MSFCommitViewModel;
 @class MSFAFStudentViewModel;
-@class MSFRelationMemberViewModel;
+@class MSFRelationshipViewModel;
 
 @interface MSFApplyStartViewModel : RVMViewModel
 
@@ -44,10 +44,10 @@
 @property(nonatomic,strong) MSFAreas *area;
 
 @property(nonatomic,strong,readonly) MSFProductViewModel *requestViewModel;
-@property(nonatomic,strong,readonly) MSFAFCareerViewModel *careerViewModel;
+@property(nonatomic,strong,readonly) MSFProfessionalViewModel *careerViewModel;
 @property(nonatomic,strong,readonly) MSFAFStudentViewModel *studentViewModel;
-@property(nonatomic,strong) MSFRelationMemberViewModel *relationViewModel;
-@property(nonatomic,strong,readonly) MSFSubmitViewModel *submitViewModel;
+@property(nonatomic,strong) MSFRelationshipViewModel *relationViewModel;
+@property(nonatomic,strong,readonly) MSFCommitViewModel *submitViewModel;
 // 基本信息
 @property(nonatomic,strong) RACCommand *executeBasic;
 - (RACSignal *)basicValidSignal;

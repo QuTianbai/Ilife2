@@ -1,5 +1,5 @@
 //
-// MSFAFCareerViewModel.h
+// MSFProfessionalViewModel.h
 //
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
@@ -11,7 +11,7 @@
 @class MSFAreas;
 
 // 职业－学生/在职人员/自由职业
-@interface MSFAFCareerViewModel : MSFFormsViewModel
+@interface MSFProfessionalViewModel : MSFFormsViewModel
 
 // 教育程度
 @property(nonatomic,strong) MSFSelectKeyValues *degrees;

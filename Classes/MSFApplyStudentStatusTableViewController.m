@@ -17,7 +17,7 @@
 #import "MSFSelectKeyValues.h"
 #import "MSFProgressHUD.h"
 #import "MSFAFStudentViewModel.h"
-#import "MSFAFCareerViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
