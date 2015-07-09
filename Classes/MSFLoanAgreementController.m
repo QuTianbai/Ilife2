@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFLoanAgreementWebView.h"
+#import "MSFLoanAgreementController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
 #import "MSFUtils.h"
@@ -18,7 +18,7 @@
 #import "MSFApplyInfo.h"
 #import "MSFLoanAgreementViewModel.h"
 
-@interface MSFLoanAgreementWebView ()
+@interface MSFLoanAgreementController ()
 
 @property(weak, nonatomic) IBOutlet UIWebView *LoanAgreenmentWV;
 @property(nonatomic,strong) MSFLoanAgreementViewModel *viewModel;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation MSFLoanAgreementWebView
+@implementation MSFLoanAgreementController
 
 - (void)viewDidLoad {
   self.title = @"贷款协议";

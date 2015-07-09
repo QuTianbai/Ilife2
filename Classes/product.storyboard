@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -250,10 +249,10 @@
             </objects>
             <point key="canvasLocation" x="-1512" y="-393"/>
         </scene>
-        <!--Loan Agreement Web View-->
+        <!--Loan Agreement Controller-->
         <scene sceneID="0J7-Kh-Psa">
             <objects>
-                <viewController storyboardIdentifier="MSFLoanAgreementWebView" id="RCy-nJ-9p8" customClass="MSFLoanAgreementWebView" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MSFLoanAgreementWebView" id="RCy-nJ-9p8" customClass="MSFLoanAgreementController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dkP-x5-UL5"/>
                         <viewControllerLayoutGuide type="bottom" id="wuu-iM-R3L"/>

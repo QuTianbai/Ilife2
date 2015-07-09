@@ -10,6 +10,6 @@
 #import "MSFReactiveView.h"
 
 // 贷款协议
-@interface MSFLoanAgreementWebView : UIViewController <MSFReactiveView>
+@interface MSFLoanAgreementController : UIViewController <MSFReactiveView>
 
 @end

@@ -54,7 +54,7 @@
 		07CB4C7F1B104944006C220E /* MSFProfessionalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB4C7E1B104944006C220E /* MSFProfessionalViewController.m */; };
 		07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB4C811B104AE8006C220E /* MSFRelationshipViewController.m */; };
 		07CB4C851B104B8F006C220E /* MSFCommitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB4C841B104B8F006C220E /* MSFCommitViewController.m */; };
-		07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementWebView.m */; };
+		07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */; };
 		07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7F61B203AC00020116E /* MSFProductViewController.m */; };
 		07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD31091B09CC7600E0C2DF /* MSFCommandView.m */; };
 		07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */; };
@@ -575,8 +575,8 @@
 		07CB4C811B104AE8006C220E /* MSFRelationshipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationshipViewController.m; sourceTree = "<group>"; };
 		07CB4C831B104B8F006C220E /* MSFCommitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommitViewController.h; sourceTree = "<group>"; };
 		07CB4C841B104B8F006C220E /* MSFCommitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommitViewController.m; sourceTree = "<group>"; };
-		07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementWebView.h; sourceTree = "<group>"; };
-		07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementWebView.m; sourceTree = "<group>"; };
+		07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementController.h; sourceTree = "<group>"; };
+		07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementController.m; sourceTree = "<group>"; };
 		07CBA7F61B203AC00020116E /* MSFProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProductViewController.m; sourceTree = "<group>"; };
 		07CD31081B09CC7600E0C2DF /* MSFCommandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommandView.h; sourceTree = "<group>"; };
 		07CD31091B09CC7600E0C2DF /* MSFCommandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommandView.m; sourceTree = "<group>"; };
@@ -1186,8 +1186,8 @@
 				07CB4C841B104B8F006C220E /* MSFCommitViewController.m */,
 				07BD841E1B15B73E00D731BF /* MSFProductViewController.h */,
 				07CBA7F61B203AC00020116E /* MSFProductViewController.m */,
-				07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementWebView.h */,
-				07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementWebView.m */,
+				07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementController.h */,
+				07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */,
 				07B915731B22BFED00E0D1FF /* MSFSocalStatusFirstTableViewController.h */,
 				07B915741B22BFED00E0D1FF /* MSFSocalStatusFirstTableViewController.m */,
 				07BA0FA61B243538007A682D /* MSFApplyStudentStatusTableViewController.h */,
@@ -2873,7 +2873,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
-				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementWebView.m in Sources */,
+				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */,
 				491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */,
 				49CBDD9F1B0DD919009EF662 /* MSFBannersCollectionViewCell.m in Sources */,
 				07C924D71B0C2D1C00FA73BD /* MSFLoanListViewController.m in Sources */,
