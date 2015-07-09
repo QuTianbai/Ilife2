@@ -13,6 +13,7 @@
 + (MSFSelectionViewModel *)monthsViewModelWithProducts:(MSFCheckEmployee *)products total:(NSInteger)amount;
 + (MSFSelectionViewModel *)selectKeyValuesViewModel:(NSArray *)items;
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items;
++ (MSFSelectionViewModel *)selectViewModelWithFilename:(NSString *)filename;
 
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;

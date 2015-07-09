@@ -5,11 +5,11 @@
 //
 
 #import "MSFBasicViewModel.h"
-#import "MSFAFViewModel.h"
+#import "MSFFormsViewModel.h"
 
 @interface MSFBasicViewModel ()
 
-@property(nonatomic,readonly) MSFAFViewModel *viewModel;
+@property(nonatomic,readonly) MSFFormsViewModel *viewModel;
 
 @end
 

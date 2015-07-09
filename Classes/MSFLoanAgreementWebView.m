@@ -12,7 +12,7 @@
 #import "MSFUtils.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFApplyStartViewModel.h"
-#import "MSFAFRequestViewModel.h"
+#import "MSFProductViewModel.h"
 #import "MSFProgressHUD.h"
 #import "MSFApplyCash.h"
 #import "MSFApplyInfo.h"

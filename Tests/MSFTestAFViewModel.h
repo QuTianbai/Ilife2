@@ -4,8 +4,8 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFAFViewModel.h"
+#import "MSFFormsViewModel.h"
 
-@interface MSFTestAFViewModel : MSFAFViewModel
+@interface MSFTestAFViewModel : MSFFormsViewModel
 
 @end

@@ -6,12 +6,12 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFAFViewModel.h"
+#import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFSelectKeyValues.h"
 
 @class RACCommand;
 
-@interface MSFRelationMemberViewModel : MSFAFViewModel
+@interface MSFRelationMemberViewModel : RVMViewModel
 /**
  *婚姻状况
  */

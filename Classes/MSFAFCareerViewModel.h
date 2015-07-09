@@ -4,14 +4,14 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFAFViewModel.h"
+#import "MSFFormsViewModel.h"
 
 @class RACCommand;
 @class MSFSelectKeyValues;
 @class MSFAreas;
 
 // 职业－学生/在职人员/自由职业
-@interface MSFAFCareerViewModel : MSFAFViewModel
+@interface MSFAFCareerViewModel : MSFFormsViewModel
 
 // 教育程度
 @property(nonatomic,strong) MSFSelectKeyValues *degrees;

@@ -20,6 +20,8 @@
 
 #pragma mark - Lifecycle
 
+/*
+
 //TODO: refact to super class
 - (instancetype)initWithModel:(MSFApplyInfo *)model {
   if (!(self = [super initWithModel:model])) {
@@ -224,5 +226,6 @@
      );
    }];
 }
+*/
 
 @end

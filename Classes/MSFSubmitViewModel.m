@@ -17,6 +17,8 @@
 
 @implementation MSFSubmitViewModel
 
+/*
+
 - (instancetype)initWithModel:(MSFApplyInfo *)model productSet:(MSFCheckEmployee *)productSet {
   if (!(self = [super initWithModel:model productSet:productSet])) {
     return nil;
@@ -63,5 +65,6 @@
       }
     }];
 }
+*/
 
 @end

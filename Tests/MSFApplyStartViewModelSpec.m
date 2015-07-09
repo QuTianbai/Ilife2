@@ -19,6 +19,7 @@
 QuickSpecBegin(MSFApplyStartViewModelSpec)
 
 
+/*
 __block MSFCheckEmployee *range;
 __block MSFApplyInfo *apply;
 __block MSFTestApplyViewModel *viewModel;
@@ -70,5 +71,6 @@ it(@"should create new viewModel", ^{
   // then
   expect(viewModel).notTo(beNil());
 });
+*/
 
 QuickSpecEnd

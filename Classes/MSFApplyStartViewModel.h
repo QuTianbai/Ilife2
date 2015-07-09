@@ -14,7 +14,7 @@
 @class MSFCheckEmployee;
 @class MSFMonths;
 @class MSFSelectKeyValues;
-@class MSFAFRequestViewModel;
+@class MSFProductViewModel;
 @class MSFAFCareerViewModel;
 @class MSFAreas;
 @class MSFSubmitViewModel;
@@ -43,7 +43,7 @@
 @property(nonatomic,strong) MSFAreas *city;
 @property(nonatomic,strong) MSFAreas *area;
 
-@property(nonatomic,strong,readonly) MSFAFRequestViewModel *requestViewModel;
+@property(nonatomic,strong,readonly) MSFProductViewModel *requestViewModel;
 @property(nonatomic,strong,readonly) MSFAFCareerViewModel *careerViewModel;
 @property(nonatomic,strong,readonly) MSFAFStudentViewModel *studentViewModel;
 @property(nonatomic,strong) MSFRelationMemberViewModel *relationViewModel;

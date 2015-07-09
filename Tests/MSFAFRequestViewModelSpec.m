@@ -4,7 +4,7 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFAFRequestViewModel.h"
+#import "MSFProductViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFTestAFViewModel.h"
 #import "MSFApplyInfo.h"
@@ -18,7 +18,7 @@
 
 QuickSpecBegin(MSFAFRequestViewModelSpec)
 
-__block MSFAFRequestViewModel *viewModel;
+__block MSFProductViewModel *viewModel;
 __block MSFTestAFViewModel *afViewModel;
 __block MSFClient *client;
 
@@ -33,7 +33,7 @@ beforeEach(^{
 		return [RACSignal empty];
 	}];
 	
-	viewModel = [[MSFAFRequestViewModel alloc] initWithViewModel:afViewModel];
+	viewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:afViewModel];
 	
 });
 

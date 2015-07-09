@@ -12,8 +12,10 @@
 #import "MSFClient+MSFApplyCash.h"
 
 @implementation MSFRelationMemberViewModel
+
+/*
 - (instancetype)initWithModel:(MSFApplyInfo *)model {
-  if (!(self = [super initWithModel:model])) {
+  if (!(self = [super init])) {
     
     return nil;
   }
@@ -123,5 +125,6 @@
   }];
   
 }
+*/
 
 @end

@@ -6,13 +6,13 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFAFViewModel.h"
+#import "MSFFormsViewModel.h"
 
 @class MSFSelectKeyValues;
 @class RACCommand;
 @class MSFPhotoStatus;
 
-@interface MSFSubmitViewModel : MSFAFViewModel
+@interface MSFSubmitViewModel : MSFFormsViewModel
 /**
  *银行名称
  */

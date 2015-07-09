@@ -10,6 +10,7 @@
 #import "MSFTeams.h"
 #import "MSFSelectionItem.h"
 #import "MSFCheckEmployee.h"
+#import "MSFSelectKeyValues.h"
 
 @interface MSFSelectionViewModel ()
 
@@ -54,6 +55,10 @@
    }];
   
   return viewModel;
+}
+
++ (MSFSelectionViewModel *)selectViewModelWithFilename:(NSString *)filename {
+	return [self.class selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:filename]];
 }
 
 #pragma mark - Public

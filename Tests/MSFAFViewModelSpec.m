@@ -4,7 +4,7 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFAFViewModel.h"
+#import "MSFFormsViewModel.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
 #import "MSFServer.h"
@@ -73,7 +73,7 @@ void (^stubResponseURL)(NSURL *, NSString *, int, NSDictionary *) = ^(NSURL *URL
 
 #pragma clang diagnostic pop
 
-__block MSFAFViewModel *viewModel;
+__block MSFFormsViewModel *viewModel;
 __block MSFClient *client;
 
 beforeEach(^{
@@ -81,7 +81,7 @@ beforeEach(^{
 	stubProperty(user, server, MSFServer.dotComServer);
 	stubProperty(user, objectID, @"1");
 	client = [MSFClient authenticatedClientWithUser:user token:@"" session:@""];
-	viewModel = [[MSFAFViewModel alloc] initWithClient:client];
+	viewModel = [[MSFFormsViewModel alloc] initWithClient:client];
 });
 
 it(@"should initialize", ^{
@@ -89,12 +89,6 @@ it(@"should initialize", ^{
 	expect(viewModel).notTo(beNil());
 	expect(viewModel.client).notTo(beNil());
 	expect(@(viewModel.client.isAuthenticated)).to(beTruthy());
-	
-	expect(viewModel.requestViewModel).notTo(beNil());
-	expect(viewModel.basicViewModel).notTo(beNil());
-	expect(viewModel.professionViewModel).notTo(beNil());
-	expect(viewModel.relationViewModel).notTo(beNil());
-	expect(viewModel.submitViewModel).notTo(beNil());
 });
 
 it(@"should get model market", ^{

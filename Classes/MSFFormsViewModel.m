@@ -1,16 +1,16 @@
 //
-// MSFAFViewModel.m
+// MSFFormsViewModel.m
 //
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFAFViewModel.h"
+#import "MSFFormsViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
 #import "MSFUtils.h"
 #import "MSFBasicViewModel.h"
 #import "MSFAFCareerViewModel.h"
-#import "MSFAFRequestViewModel.h"
+#import "MSFProductViewModel.h"
 #import "MSFRelationMemberViewModel.h"
 #import "MSFSubmitViewModel.h"
 
@@ -20,21 +20,13 @@
 #import "MSFCheckEmployee.h"
 #import "MSFClient+MSFCheckEmploee.h"
 
-@interface MSFAFViewModel ()
+@interface MSFFormsViewModel ()
 
-@property(nonatomic,strong,readwrite) MSFApplyInfo *model;
-@property(nonatomic,strong,readwrite) MSFCheckEmployee *market;
 @property(nonatomic,strong,readwrite) RACSubject *updatedContentSignal;
-
-@property(nonatomic,strong,readwrite) MSFAFRequestViewModel *requestViewModel;
-@property(nonatomic,strong,readwrite) MSFBasicViewModel *basicViewModel;
-@property(nonatomic,strong,readwrite) MSFAFCareerViewModel *professionViewModel;
-@property(nonatomic,strong,readwrite) MSFRelationMemberViewModel *relationViewModel;
-@property(nonatomic,strong,readwrite) MSFSubmitViewModel *submitViewModel;
 
 @end
 
-@implementation MSFAFViewModel
+@implementation MSFFormsViewModel
 
 #pragma mark - Lifecycle
 
@@ -45,7 +37,9 @@
   }
 	//TODO: 从这里看，退出登录需要更新，所有的控制器，所有的控制器中的ViewModel,涉及到ViewModel中的Client授权问题
 	_client = client;
-	
+	_model = [[MSFApplyInfo alloc] init];
+	_market = [[MSFCheckEmployee alloc] init];
+
 	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFAFViewModel updatedContentSignal"];
 	
 	@weakify(self)
@@ -55,13 +49,8 @@
 			zipWith:[self.client fetchCheckEmployee]]
 			subscribeNext:^(RACTuple *modelAndMarket) {
 				RACTupleUnpack(MSFApplyInfo *model, MSFCheckEmployee *market) = modelAndMarket;
-				self.model = model;
-				self.market = market;
-				self.requestViewModel = [[MSFAFRequestViewModel alloc] initWithViewModel:self];
-				self.basicViewModel = [[MSFBasicViewModel alloc] init];
-				self.professionViewModel = [[MSFAFCareerViewModel alloc] init];
-				self.relationViewModel = [[MSFRelationMemberViewModel alloc] init];
-				self.submitViewModel = [[MSFSubmitViewModel alloc] init];
+				[self.model mergeValuesForKeysFromModel:model];
+				[self.market mergeValuesForKeysFromModel:market];
 				[(RACSubject *)self.updatedContentSignal sendNext:nil];
 				[(RACSubject *)self.updatedContentSignal sendCompleted];
 			} error:^(NSError *error) {
@@ -69,27 +58,6 @@
 			}];
 	}];
 	
-  return self;
-}
-
-- (instancetype)initWithModel:(MSFApplyInfo *)model {
-  if (!(self = [super init])) {
-    return nil;
-  }
-	_client = MSFUtils.httpClient;
-  _model = model;
-  
-  return self;
-}
-
-- (instancetype)initWithModel:(MSFApplyInfo *)model productSet:(MSFCheckEmployee *)productSet {
-  if (!(self = [super init])) {
-    return nil;
-  }
-	_client = MSFUtils.httpClient;
-  _model = model;
-  _productSet = productSet;
-  
   return self;
 }
 

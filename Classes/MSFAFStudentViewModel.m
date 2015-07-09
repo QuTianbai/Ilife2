@@ -16,6 +16,7 @@
 
 #pragma mark - Lifecycle
 
+/*
 - (instancetype)initWithModel:(MSFApplyInfo *)model {
   if (!(self = [super initWithModel:model])) {
     return nil;
@@ -67,5 +68,7 @@
   self.model.page = @"3";
   return [self.client applyInfoSubmit1:self.model];
 }
+
+*/
 
 @end

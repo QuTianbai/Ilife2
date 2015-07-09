@@ -20,7 +20,7 @@
 #import "MSFClient+Months.h"
 #import "MSFResponse.h"
 #import "MSFSelectKeyValues.h"
-#import "MSFAFRequestViewModel.h"
+#import "MSFProductViewModel.h"
 #import "MSFAFCareerViewModel.h"
 #import "MSFAFStudentViewModel.h"
 #import "MSFAreas.h"
@@ -34,6 +34,8 @@
 
 @implementation MSFApplyStartViewModel
 
+/*
+
 - (instancetype)initWithEmployee:(MSFCheckEmployee *)employee applyInfo:(MSFApplyInfo *)applyInfo {
   if (!(self = [super init])) {
     return nil;
@@ -42,7 +44,7 @@
   _applyInfoModel = applyInfo;
   [self initialize];
   
-  _requestViewModel = [[MSFAFRequestViewModel alloc] initWithModel:applyInfo productSet:employee];
+//  _requestViewModel = [[MSFAFRequestViewModel alloc] initWithModel:applyInfo productSet:employee];
   _careerViewModel = [[MSFAFCareerViewModel alloc] initWithModel:applyInfo];
   _studentViewModel = [[MSFAFStudentViewModel alloc] initWithModel:applyInfo];
   
@@ -228,5 +230,6 @@
 - (BOOL)isvalid:(NSString *)str {
   return (str.length>0 && str.length<=10);
 }
+*/
 
 @end

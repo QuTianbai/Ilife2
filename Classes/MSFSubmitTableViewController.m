@@ -17,7 +17,7 @@
 #import "MSFUtils.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
-#import "MSFAFRequestViewModel.h"
+#import "MSFProductViewModel.h"
 #import "MSFSubmitViewModel.h"
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 #import "MSFClient+MSFPhotoStatus.h"
