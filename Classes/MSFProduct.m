@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFMonths.h"
+#import "MSFProduct.h"
 
-@implementation MSFMonths
+@implementation MSFProduct
 
 + (NSValueTransformer *)productIdJSONTransfromer {
   return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {

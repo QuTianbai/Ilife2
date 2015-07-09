@@ -14,10 +14,10 @@
 #import "MSFRelationshipViewModel.h"
 #import "MSFCommitViewModel.h"
 
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFClient+MSFApplyInfo.h"
 #import "MSFClient+MSFApplyCash.h"
-#import "MSFCheckEmployee.h"
+#import "MSFMarket.h"
 #import "MSFClient+MSFCheckEmploee.h"
 
 @interface MSFFormsViewModel ()
@@ -37,8 +37,8 @@
   }
 	//TODO: 从这里看，退出登录需要更新，所有的控制器，所有的控制器中的ViewModel,涉及到ViewModel中的Client授权问题
 	_client = client;
-	_model = [[MSFApplyInfo alloc] init];
-	_market = [[MSFCheckEmployee alloc] init];
+	_model = [[MSFApplicationForms alloc] init];
+	_market = [[MSFMarket alloc] init];
 
 	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFAFViewModel updatedContentSignal"];
 	
@@ -48,7 +48,7 @@
 		[[[self.client fetchApplyInfo]
 			zipWith:[self.client fetchCheckEmployee]]
 			subscribeNext:^(RACTuple *modelAndMarket) {
-				RACTupleUnpack(MSFApplyInfo *model, MSFCheckEmployee *market) = modelAndMarket;
+				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
 				[self.model mergeValuesForKeysFromModel:model];
 				[self.market mergeValuesForKeysFromModel:market];
 				[(RACSubject *)self.updatedContentSignal sendNext:nil];

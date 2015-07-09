@@ -12,9 +12,9 @@
 #import "MSFUser.h"
 #import "MSFServer.h"
 
-#import "MSFCheckEmployee.h"
-#import "MSFApplyInfo.h"
-#import "MSFApplyCash.h"
+#import "MSFMarket.h"
+#import "MSFApplicationForms.h"
+#import "MSFApplicationResponse.h"
 
 QuickSpecBegin(MSFApplyStartViewModelSpec)
 

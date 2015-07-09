@@ -13,8 +13,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFApplyStartViewModel.h"
 #import "MSFSelectKeyValues.h"
-#import "MSFApplyInfo.h"
-#import "MSFApplyCash.h"
+#import "MSFApplicationForms.h"
+#import "MSFApplicationResponse.h"
 #import "MSFProgressHUD.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
@@ -23,7 +23,7 @@
 
 @interface MSFSocalStatusFirstTableViewController ()
 
-@property(strong,nonatomic) MSFApplyCash *applyCash;
+@property(strong,nonatomic) MSFApplicationResponse *applyCash;
 @property(weak, nonatomic) IBOutlet UITextField *educateTF;
 @property(weak, nonatomic) IBOutlet UIButton *educateBT;
 @property(weak, nonatomic) IBOutlet UITextField *socalTF;

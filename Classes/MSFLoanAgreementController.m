@@ -14,8 +14,8 @@
 #import "MSFApplyStartViewModel.h"
 #import "MSFProductViewModel.h"
 #import "MSFProgressHUD.h"
-#import "MSFApplyCash.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationResponse.h"
+#import "MSFApplicationForms.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFPersonalViewModel.h"
 
@@ -42,7 +42,7 @@
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
-		[signal subscribeNext:^(MSFApplyCash *applyCash) {
+		[signal subscribeNext:^(MSFApplicationResponse *applyCash) {
 			[MSFProgressHUD hidden];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;

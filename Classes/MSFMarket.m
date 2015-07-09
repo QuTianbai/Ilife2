@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFCheckEmployee.h"
+#import "MSFMarket.h"
 #import "MSFTeams.h"
 
-@implementation MSFCheckEmployee
+@implementation MSFMarket
 
 + (NSValueTransformer *)teamsJSONTransformer {
   return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFTeams.class];

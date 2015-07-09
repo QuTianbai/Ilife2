@@ -7,13 +7,13 @@
 #import "MSFProductViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFTestAFViewModel.h"
-#import "MSFApplyInfo.h"
-#import "MSFMonths.h"
+#import "MSFApplicationForms.h"
+#import "MSFProduct.h"
 #import "MSFClient+Months.h"
 #import "MSFClient.h"
 #import "MSFResponse.h"
 #import "MSFSelectKeyValues.h"
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 #import "MSFClient+MSFApplyCash.h"
 
 QuickSpecBegin(MSFAFRequestViewModelSpec)
@@ -64,7 +64,7 @@ it(@"should change model loan product", ^{
 	};
 	
 	
-	MSFMonths *product = [MTLJSONAdapter modelOfClass:MSFMonths.class fromJSONDictionary:representation error:nil];
+	MSFProduct *product = [MTLJSONAdapter modelOfClass:MSFProduct.class fromJSONDictionary:representation error:nil];
 	viewModel.totalAmount = @"2000";
 	
 	[given([client fetchTermPayWithProduct:product totalAmount:viewModel.totalAmount.integerValue insurance:viewModel.insurance])

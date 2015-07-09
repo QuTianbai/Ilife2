@@ -8,7 +8,7 @@
 
 #import "MSFRelationshipViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFClient+MSFApplyCash.h"
 
 @implementation MSFRelationshipViewModel

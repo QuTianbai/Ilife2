@@ -8,11 +8,11 @@
 
 #import "MSFCommitViewController.h"
 #import "MSFApplyStartViewModel.h"
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFSelectKeyValues.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFProgressHUD.h"
 #import "MSFUtils.h"
 #import "MSFSelectionViewModel.h"
@@ -22,7 +22,7 @@
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 #import "MSFClient+MSFPhotoStatus.h"
 #import "MSFPhotoStatus.h"
-#import "MSFCheckEmployee.h"
+#import "MSFMarket.h"
 
 @interface MSFCommitViewController ()
 
@@ -30,7 +30,7 @@
 @property(nonatomic,copy) NSURL *handPhotoURL;
 @property(nonatomic,copy) NSURL *ownerPhtoURL;
 @property(nonatomic,strong) CZPhotoPickerController *photoPickerViewController;
-@property(nonatomic,strong) MSFApplyCash *applyCash;
+@property(nonatomic,strong) MSFApplicationResponse *applyCash;
 @property(nonatomic,strong) NSMutableArray *pickerArray;
 @property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
 @property(weak,nonatomic) IBOutlet UITextField *bankNameTF;

@@ -10,9 +10,9 @@
 
 @class RACCommand;
 @class MSFClient;
-@class MSFApplyInfo;
-@class MSFCheckEmployee;
-@class MSFMonths;
+@class MSFApplicationForms;
+@class MSFMarket;
+@class MSFProduct;
 @class MSFSelectKeyValues;
 @class MSFProductViewModel;
 @class MSFProfessionalViewModel;
@@ -25,10 +25,10 @@
 
 @property(nonatomic,strong,readonly) MSFClient *client;
 
-@property(nonatomic,strong,readonly) MSFCheckEmployee *checkEmployee;
-@property(nonatomic,strong,readonly) MSFApplyInfo *applyInfoModel;
+@property(nonatomic,strong,readonly) MSFMarket *checkEmployee;
+@property(nonatomic,strong,readonly) MSFApplicationForms *applyInfoModel;
 
-- (instancetype)initWithEmployee:(MSFCheckEmployee *)employee applyInfo:(MSFApplyInfo *)applyInfo;
+- (instancetype)initWithEmployee:(MSFMarket *)employee applyInfo:(MSFApplicationForms *)applyInfo;
 
 @property(nonatomic,strong) RACCommand *executeCashMoney;
 @property(nonatomic,strong) RACCommand *executeNextPage;

@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import "MSFSelectKeyValues.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFAreas.h"
 #import "MSFClient+MSFApplyCash.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"

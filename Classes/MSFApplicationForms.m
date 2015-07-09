@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFPhotoStatus.h"
 
-@implementation MSFApplyInfo
+@implementation MSFApplicationForms
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{@"loanId":@"id"};

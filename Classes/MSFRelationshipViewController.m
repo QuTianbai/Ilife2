@@ -14,8 +14,8 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFApplyStartViewModel.h"
 #import "MSFRelationshipViewModel.h"
-#import "MSFApplyInfo.h"
-#import "MSFApplyCash.h"
+#import "MSFApplicationForms.h"
+#import "MSFApplicationResponse.h"
 #import "MSFProgressHUD.h"
 #import "MSFCommandView.h"
 
@@ -25,7 +25,7 @@
 
 @interface MSFRelationshipViewController ()
 
-@property(nonatomic,strong) MSFApplyCash *applyCash;
+@property(nonatomic,strong) MSFApplicationResponse *applyCash;
 @property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
 @property(nonatomic,strong) NSMutableArray *pickerArray;
 /**

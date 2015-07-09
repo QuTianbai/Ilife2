@@ -7,9 +7,9 @@
 //
 
 #import "MSFClient+MSFApplyCash.h"
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 #import "RACSignal+MSFClientAdditions.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import <objc/runtime.h>
 
 @implementation MSFClient (MSFApplyCash)
@@ -17,10 +17,10 @@
 - (RACSignal *)fetchApplyCash {
   NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loans" parameters:nil];
   
-  return [[self enqueueRequest:request resultClass:MSFApplyCash.class] msf_parsedResults];
+  return [[self enqueueRequest:request resultClass:MSFApplicationResponse.class] msf_parsedResults];
 }
 
-- (RACSignal *)applyInfoSubmit1:(MSFApplyInfo *)model {
+- (RACSignal *)applyInfoSubmit1:(MSFApplicationForms *)model {
   NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:model.dictionaryValue];
   [dict removeObjectForKey:@"server"];
   [dict removeObjectForKey:@"loanId"];
@@ -34,7 +34,7 @@
   NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loans" parameters:paramDict];
   [request setHTTPMethod:@"POST"];
   
-  return [[self enqueueRequest:request resultClass:MSFApplyCash.class] msf_parsedResults];
+  return [[self enqueueRequest:request resultClass:MSFApplicationResponse.class] msf_parsedResults];
 }
 
 @end

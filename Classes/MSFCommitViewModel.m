@@ -8,11 +8,11 @@
 
 #import "MSFCommitViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFClient+MSFApplyCash.h"
 #import "MSFPhotoStatus.h"
-#import "MSFCheckEmployee.h"
+#import "MSFMarket.h"
 #import "MSFPhotoStatus.h"
 
 @implementation MSFCommitViewModel

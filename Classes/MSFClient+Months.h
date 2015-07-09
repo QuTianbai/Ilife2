@@ -6,10 +6,10 @@
 
 #import "MSFClient.h"
 
-@class MSFMonths;
+@class MSFProduct;
 
 @interface MSFClient (Months)
 
-- (RACSignal *)fetchTermPayWithProduct:(MSFMonths *)product totalAmount:(NSInteger)amount insurance:(BOOL)insurance;
+- (RACSignal *)fetchTermPayWithProduct:(MSFProduct *)product totalAmount:(NSInteger)amount insurance:(BOOL)insurance;
 
 @end

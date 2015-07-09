@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 
-@implementation MSFApplyCash
+@implementation MSFApplicationResponse
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
   return @{

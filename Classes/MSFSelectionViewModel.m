@@ -6,10 +6,10 @@
 
 #import "MSFSelectionViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFMonths.h"
+#import "MSFProduct.h"
 #import "MSFTeams.h"
 #import "MSFSelectionItem.h"
-#import "MSFCheckEmployee.h"
+#import "MSFMarket.h"
 #import "MSFSelectKeyValues.h"
 
 @interface MSFSelectionViewModel ()
@@ -36,14 +36,14 @@
   return viewModel;
 }
 
-+ (MSFSelectionViewModel *)monthsViewModelWithProducts:(MSFCheckEmployee *)products total:(NSInteger)amount {
++ (MSFSelectionViewModel *)monthsViewModelWithProducts:(MSFMarket *)products total:(NSInteger)amount {
   MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
   viewModel.models = [[[products.teams.rac_sequence filter:^BOOL(MSFTeams *terms) {
     return (terms.minAmount.integerValue <= amount) && (terms.maxAmount.integerValue >=  amount);
     }]
    flattenMap:^RACStream *(MSFTeams *value) {
      return value.team.rac_sequence;
-   }].array sortedArrayUsingComparator:^NSComparisonResult(MSFMonths *obj1, MSFMonths *obj2) {
+   }].array sortedArrayUsingComparator:^NSComparisonResult(MSFProduct *obj1, MSFProduct *obj2) {
      if (obj1.period.integerValue < obj2.period.integerValue) {
        return NSOrderedAscending;
      }

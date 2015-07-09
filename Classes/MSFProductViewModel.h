@@ -6,22 +6,22 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 
-@class MSFMonths;
+@class MSFProduct;
 @class MSFSelectKeyValues;
 @class RACCommand;
 @class MSFFormsViewModel;
-@class MSFCheckEmployee;
+@class MSFMarket;
 
 // 贷款申请入口－第一个界面
 @interface MSFProductViewModel : RVMViewModel
 
 @property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
 
-@property(nonatomic,strong,readonly) MSFCheckEmployee *market;
+@property(nonatomic,strong,readonly) MSFMarket *market;
 
 // 贷款期数对应的产品
-@property(nonatomic,strong) MSFMonths *product;
-@property(nonatomic,strong) MSFMonths *productTitle;
+@property(nonatomic,strong) MSFProduct *product;
+@property(nonatomic,strong) MSFProduct *productTitle;
 
 /**
  *  总金额

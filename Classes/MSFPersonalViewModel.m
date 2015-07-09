@@ -7,7 +7,7 @@
 #import "MSFPersonalViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFFormsViewModel.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 
 @interface MSFPersonalViewModel ()
 

@@ -7,13 +7,13 @@
 #import "MSFLoanAgreementViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 #import "MSFFormsViewModel.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 
 @implementation MSFLoanAgreementViewModel
 
-- (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFMonths *)product {
+- (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFProduct *)product {
   self = [super init];
   if (!self) {
     return nil;
@@ -21,7 +21,7 @@
 	_formsViewModel = formsViewModel;
 	_product = product;
 	@weakify(self)
-	[[RACObserve(self, applyCash) ignore:nil] subscribeNext:^(MSFApplyCash *applyCash) {
+	[[RACObserve(self, applyCash) ignore:nil] subscribeNext:^(MSFApplicationResponse *applyCash) {
 		@strongify(self)
 		self.formsViewModel.model.loanId = applyCash.applyID;
 		self.formsViewModel.model.personId = applyCash.personId;

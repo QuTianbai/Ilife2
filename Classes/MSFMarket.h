@@ -8,7 +8,7 @@
 
 #import "MSFObject.h"
 
-@interface MSFCheckEmployee : MSFObject
+@interface MSFMarket : MSFObject
 
 @property(nonatomic,copy,readonly) NSString *employee;
 @property(nonatomic,assign,readonly) BOOL white;

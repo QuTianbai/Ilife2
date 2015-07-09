@@ -12,8 +12,8 @@
 #import <libextobjc/extobjc.h>
 #import "MSFAreas.h"
 #import "MSFApplyStartViewModel.h"
-#import "MSFApplyInfo.h"
-#import "MSFApplyCash.h"
+#import "MSFApplicationForms.h"
+#import "MSFApplicationResponse.h"
 #import "MSFProgressHUD.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"

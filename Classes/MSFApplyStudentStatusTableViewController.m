@@ -12,8 +12,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ActionSheetPicker-3.0/ActionSheetPicker.h>
 #import "MSFApplyStartViewModel.h"
-#import "MSFApplyCash.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationResponse.h"
+#import "MSFApplicationForms.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFProgressHUD.h"
 #import "MSFAFStudentViewModel.h"
@@ -24,7 +24,7 @@
 
 @interface MSFApplyStudentStatusTableViewController()
 
-@property(nonatomic,strong) MSFApplyCash *applyCash;
+@property(nonatomic,strong) MSFApplicationResponse *applyCash;
 @property(nonatomic,strong) NSMutableArray *pickerArray;
 @property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
 @property(weak, nonatomic) IBOutlet UITextField *educateTF;

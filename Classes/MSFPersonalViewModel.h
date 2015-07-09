@@ -6,7 +6,7 @@
 
 #import "RVMViewModel.h"
 
-@class MSFApplyInfo;
+@class MSFApplicationForms;
 @class MSFFormsViewModel;
 
  /**
@@ -14,7 +14,7 @@
   */
 @interface MSFPersonalViewModel : RVMViewModel
 
-@property(nonatomic,strong,readonly) MSFApplyInfo *model;
+@property(nonatomic,strong,readonly) MSFApplicationForms *model;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 

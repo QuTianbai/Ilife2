@@ -12,12 +12,12 @@
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFApplyStartViewModel.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import <libextobjc/extobjc.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFAreas.h"
 #import <FMDB/FMDatabase.h>
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 #import "MSFProgressHUD.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFSelectionViewModel.h"
@@ -65,7 +65,7 @@
 @property(strong,nonatomic) MSFApplyStartViewModel *viewModel;
 @property(copy,nonatomic) NSString *educate;
 @property(copy,nonatomic) NSString *socal;
-@property(strong,nonatomic) MSFApplyCash *applyCash;
+@property(strong,nonatomic) MSFApplicationResponse *applyCash;
 @property(weak,nonatomic) IBOutlet UIButton *natureBT;
 @property(weak,nonatomic) IBOutlet UITextField *natureTF;
 @property(weak,nonatomic) IBOutlet UIButton *compneyAreasBT;

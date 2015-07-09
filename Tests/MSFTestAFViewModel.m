@@ -6,8 +6,8 @@
 
 #import "MSFTestAFViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFApplyInfo.h"
-#import "MSFCheckEmployee.h"
+#import "MSFApplicationForms.h"
+#import "MSFMarket.h"
 
 @implementation MSFTestAFViewModel
 
@@ -20,14 +20,14 @@
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"loadinfo" withExtension:@"json"];
 	NSData *data = [NSData dataWithContentsOfURL:URL];
 	NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-	MSFApplyInfo *model = [MTLJSONAdapter modelOfClass:[MSFApplyInfo class] fromJSONDictionary:representation error:nil];
+	MSFApplicationForms *model = [MTLJSONAdapter modelOfClass:[MSFApplicationForms class] fromJSONDictionary:representation error:nil];
 
 	RAC(self,model) = [RACSignal return:model];
 	
 	URL = [[NSBundle bundleForClass:self.class] URLForResource:@"checkemployee" withExtension:@"json"];
 	data = [NSData dataWithContentsOfURL:URL];
 	representation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-	MSFCheckEmployee *market = [MTLJSONAdapter modelOfClass:[MSFCheckEmployee class] fromJSONDictionary:representation error:nil];
+	MSFMarket *market = [MTLJSONAdapter modelOfClass:[MSFMarket class] fromJSONDictionary:representation error:nil];
 	RAC(self,market) = [RACSignal return:market];
   
   return self;

@@ -18,13 +18,13 @@
 #import "MSFAdver.h"
 #import "MSFClient+Adver.h"
 
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "MSFClient+MSFApplyInfo.h"
 
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
 
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 #import "MSFClient+MSFApplyCash.h"
 
 
@@ -112,10 +112,10 @@ it(@"should fetch applyInfo", ^{
     
     // when
     RACSignal *request = [client fetchApplyInfo];
-    MSFApplyInfo *applyInfo = [request asynchronousFirstOrDefault:nil success:nil error:nil];
+    MSFApplicationForms *applyInfo = [request asynchronousFirstOrDefault:nil success:nil error:nil];
     
     // then
-    expect(applyInfo).to(beAKindOf(MSFApplyInfo.class));
+    expect(applyInfo).to(beAKindOf([MSFApplicationForms class]));
 });
 
 it(@"should fetch applyList", ^{
@@ -135,10 +135,10 @@ it(@"should fetch cash", ^{
     
     // when
     RACSignal *request = [client fetchApplyCash];
-    MSFApplyCash *applyCash = [request asynchronousFirstOrDefault:nil success:nil error:nil];
+    MSFApplicationResponse *applyCash = [request asynchronousFirstOrDefault:nil success:nil error:nil];
     
     // then
-    expect(applyCash).to(beAKindOf(MSFApplyCash.class));
+    expect(applyCash).to(beAKindOf([MSFApplicationResponse class]));
 });
 
 xit(@"should fetch applyinfo",^{
@@ -146,11 +146,11 @@ xit(@"should fetch applyinfo",^{
   NSURLRequest *request = [client requestWithMethod:@"POST" path:@"/loans" parameters:nil];
   
   // when
-  RACSignal *result = [client enqueueRequest:request resultClass:MSFApplyInfo.class];
+  RACSignal *result = [client enqueueRequest:request resultClass:MSFApplicationForms.class];
   MSFResponse *response = [result asynchronousFirstOrDefault:nil success:&success error:&error];
   
   expect(response).notTo(beNil());
-  expect(response.parsedResult).to(beAKindOf(MSFApplyInfo.class));
+  expect(response.parsedResult).to(beAKindOf([MSFApplicationForms class]));
   expect([[response parsedResult] workingLength]).to(equal(@"WE03"));
 });
 

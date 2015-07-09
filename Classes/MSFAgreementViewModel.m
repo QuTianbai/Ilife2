@@ -91,7 +91,7 @@
     }];
 }
 
-- (RACSignal *)loanAgreementSignalWithProduct:(MSFMonths *)product {
+- (RACSignal *)loanAgreementSignalWithProduct:(MSFProduct *)product {
   NSURLRequest *request = [NSURLRequest requestWithURL:[_agreement loanAgreementURLWithProduct:product]];
   
   return [[NSURLConnection rac_sendAsynchronousRequest:request]

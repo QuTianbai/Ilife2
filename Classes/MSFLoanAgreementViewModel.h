@@ -7,17 +7,17 @@
 #import "RVMViewModel.h"
 
 @class MSFFormsViewModel;
-@class MSFApplyCash;
-@class MSFMonths;
+@class MSFApplicationResponse;
+@class MSFProduct;
 @class RACCommand;
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
 @property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
-@property(nonatomic,strong) MSFApplyCash *applyCash;
-@property(nonatomic,strong,readonly) MSFMonths *product;
+@property(nonatomic,strong) MSFApplicationResponse *applyCash;
+@property(nonatomic,strong,readonly) MSFProduct *product;
 
-- (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFMonths *)product;
+- (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFProduct *)product;
 
 /**
  * 申请贷款

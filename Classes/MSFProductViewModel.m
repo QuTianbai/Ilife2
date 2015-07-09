@@ -7,11 +7,11 @@
 #import "MSFProductViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
-#import "MSFCheckEmployee.h"
-#import "MSFApplyInfo.h"
+#import "MSFMarket.h"
+#import "MSFApplicationForms.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFClient+MSFApplyCash.h"
-#import "MSFMonths.h"
+#import "MSFProduct.h"
 #import "MSFClient+Months.h"
 #import "MSFResponse.h"
 #import "MSFWebViewController.h"
@@ -47,7 +47,7 @@
 	RAC(self,market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
-	[RACObserve(self, product) subscribeNext:^(MSFMonths *product) {
+	[RACObserve(self, product) subscribeNext:^(MSFProduct *product) {
 		@strongify(self)
 		self.formsViewModel.model.productId = product.productId;
 		self.formsViewModel.model.productName = product.productName;
@@ -68,7 +68,7 @@
 			RACObserve(self, insurance),
 		]]
 		flattenMap:^RACStream *(RACTuple *productAndInsurance) {
-			RACTupleUnpack(MSFMonths *product, NSNumber *insurance) = productAndInsurance;
+			RACTupleUnpack(MSFProduct *product, NSNumber *insurance) = productAndInsurance;
 			if (!product) {
 				return [RACSignal return:@0];
 			}

@@ -10,15 +10,15 @@
  *  Application Form ViewModel
  */
 
-@class MSFCheckEmployee;
-@class MSFApplyInfo;
+@class MSFMarket;
+@class MSFApplicationForms;
 @class MSFClient;
 
 @interface MSFFormsViewModel : RVMViewModel
 
 @property(nonatomic,strong,readonly) MSFClient *client;
-@property(nonatomic,strong,readonly) MSFApplyInfo *model;
-@property(nonatomic,strong,readonly) MSFCheckEmployee *market;
+@property(nonatomic,strong,readonly) MSFApplicationForms *model;
+@property(nonatomic,strong,readonly) MSFMarket *market;
 @property(nonatomic,strong,readonly) RACSignal *updatedContentSignal;
 
 - (instancetype)initWithClient:(MSFClient *)client;

@@ -9,7 +9,7 @@
 #import "MSFObject.h"
 #import "MSFSelectionItem.h"
 
-@interface MSFMonths : MSFObject <MSFSelectionItem>
+@interface MSFProduct : MSFObject <MSFSelectionItem>
 
 @property(nonatomic,copy,readonly) NSString *productId;
 @property(nonatomic,copy,readonly) NSString *period;
