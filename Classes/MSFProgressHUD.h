@@ -17,6 +17,7 @@
  *  @param view    视图(self.navigationController.view)
  */
 + (void)showErrorMessage:(NSString *)message inView:(UIView *)view;
++ (void)showErrorMessage:(NSString *)message;
 
 /**
  *  成功信息提示
@@ -25,6 +26,7 @@
  *  @param view    视图(self.navigationController.view)
  */
 + (void)showSuccessMessage:(NSString *)message inView:(UIView *)view;
++ (void)showSuccessMessage:(NSString *)message;
 
 /**
  *  进度信息提示
@@ -33,6 +35,7 @@
  *  @param view    视图(self.navigationController.view)
  */
 + (void)showStatusMessage:(NSString *)message inView:(UIView *)view;
++ (void)showStatusMessage:(NSString *)message;
 
 /**
  *  隐藏提示信息
