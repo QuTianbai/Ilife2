@@ -11,12 +11,6 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplyInfo.h"
 
-@interface MSFLoanAgreementViewModel ()
-
-@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
-
-@end
-
 @implementation MSFLoanAgreementViewModel
 
 - (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFMonths *)product {

@@ -17,6 +17,7 @@
 #import "MSFApplyCash.h"
 #import "MSFApplyInfo.h"
 #import "MSFLoanAgreementViewModel.h"
+#import "MSFPersonalViewModel.h"
 
 @interface MSFLoanAgreementController ()
 
@@ -43,11 +44,11 @@
 		[MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
 		[signal subscribeNext:^(MSFApplyCash *applyCash) {
 			[MSFProgressHUD hidden];
-			//TODO: 进入个人信息界面
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
-//			[vc bindViewModel:self.viewModel];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];

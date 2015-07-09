@@ -13,6 +13,7 @@
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
+@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
 @property(nonatomic,strong) MSFApplyCash *applyCash;
 @property(nonatomic,strong,readonly) MSFMonths *product;
 
