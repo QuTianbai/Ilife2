@@ -5,7 +5,9 @@
 //
 
 #import "MSFPersonalViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFFormsViewModel.h"
+#import "MSFApplyInfo.h"
 
 @interface MSFPersonalViewModel ()
 
@@ -15,13 +17,14 @@
 
 @implementation MSFPersonalViewModel
 
-- (instancetype)initWithViewModel:(id)viewModel {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
 	_viewModel = viewModel;
-  
+	_model = viewModel.model;
+	
   return self;
 }
 

@@ -6,11 +6,16 @@
 
 #import "RVMViewModel.h"
 
+@class MSFApplyInfo;
+@class MSFFormsViewModel;
+
  /**
   *  基本信息
   */
 @interface MSFPersonalViewModel : RVMViewModel
 
-- (instancetype)initWithViewModel:(id)viewModel;
+@property(nonatomic,strong,readonly) MSFApplyInfo *model;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
 @end
