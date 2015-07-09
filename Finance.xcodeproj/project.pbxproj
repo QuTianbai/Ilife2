@@ -1083,7 +1083,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07BD841D1B15B3CD00D731BF /* appliesViewModel */ = {
+		07BD841D1B15B3CD00D731BF /* Forms */ = {
 			isa = PBXGroup;
 			children = (
 				499147271B25C2F700260E97 /* MSFFormsViewModel.h */,
@@ -1103,7 +1103,7 @@
 				49E418821B4CD18400422C20 /* MSFBasicViewModel.h */,
 				49E418831B4CD18400422C20 /* MSFBasicViewModel.m */,
 			);
-			name = appliesViewModel;
+			name = Forms;
 			sourceTree = "<group>";
 		};
 		07C06C2D1B121D1100F2DFCC /* Areas */ = {
@@ -1583,7 +1583,7 @@
 				492BB42C1B1BFE9F0024897C /* Banner */,
 				492BB42B1B1BFE970024897C /* Cloze */,
 				492BB41D1B1BFE870024897C /* Authorize */,
-				07BD841D1B15B3CD00D731BF /* appliesViewModel */,
+				07BD841D1B15B3CD00D731BF /* Forms */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -1600,7 +1600,7 @@
 				491C5F9C1B0F0EF400CADF8E /* TextView */,
 				49CCFBE61B072509008A9CD1 /* Homepage */,
 				49CCFBE51B072501008A9CD1 /* User */,
-				49CCFBE41B0724FA008A9CD1 /* Applies */,
+				49CCFBE41B0724FA008A9CD1 /* Forms */,
 				49CCFBE31B0724F3008A9CD1 /* Settings */,
 				49CCFBE21B0724EA008A9CD1 /* Login */,
 			);
@@ -2013,7 +2013,7 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		49CCFBE41B0724FA008A9CD1 /* Applies */ = {
+		49CCFBE41B0724FA008A9CD1 /* Forms */ = {
 			isa = PBXGroup;
 			children = (
 				49DAEE6D1B2E8370009433C5 /* Storyboard */,
@@ -2021,7 +2021,7 @@
 				07C924CF1B0C22FD00FA73BD /* AppliesInfo */,
 				07CD30FD1B0981A000E0C2DF /* CommandClass */,
 			);
-			name = Applies;
+			name = Forms;
 			sourceTree = "<group>";
 		};
 		49CCFBE51B072501008A9CD1 /* User */ = {
