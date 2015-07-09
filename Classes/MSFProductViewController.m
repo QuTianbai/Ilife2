@@ -25,6 +25,7 @@
 #import "MSFAgreement.h"
 #import "MSFLoanAgreementWebView.h"
 #import "MSFFormsViewModel.h"
+#import "MSFLoanAgreementViewModel.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -216,7 +217,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			}
 			MSFLoanAgreementWebView *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
 			vc.hidesBottomBarWhenPushed = YES;
-			[vc bindViewModel:self.viewModel.formsViewModel];
+			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.viewModel.product];
+			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 			[subscriber sendCompleted];
 			return nil;

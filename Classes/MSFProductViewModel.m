@@ -92,11 +92,6 @@
 		return [value title];
 	}];
 	
-	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self.formsViewModel submitSignalWithPage:1];
-	}];
-	
   return self;
 }
 

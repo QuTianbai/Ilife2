@@ -118,6 +118,7 @@
 		4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4955B1C61B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m */; };
 		49569A371B08B7FC00DAEB66 /* MSFAuthorizationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49569A361B08B7FC00DAEB66 /* MSFAuthorizationSpec.m */; };
 		4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */; };
+		495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */; };
 		4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */; };
 		4967EE7D1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */; };
 		4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7F1B1A9E9E001A8F27 /* MSFAgreementViewModel.m */; };
@@ -681,6 +682,8 @@
 		49569A361B08B7FC00DAEB66 /* MSFAuthorizationSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorizationSpec.m; sourceTree = "<group>"; };
 		4958FBE81B1C35680090E663 /* MSFHomepageCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomepageCollectionViewHeader.h; sourceTree = "<group>"; };
 		4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageCollectionViewHeader.m; sourceTree = "<group>"; };
+		495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementViewModel.h; sourceTree = "<group>"; };
+		495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementViewModel.m; sourceTree = "<group>"; };
 		4967EE6C1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRegisterAgreementViewController.h; sourceTree = "<group>"; };
 		4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRegisterAgreementViewController.m; sourceTree = "<group>"; };
 		4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAgreementViewModelSpec.m; sourceTree = "<group>"; };
@@ -1099,6 +1102,8 @@
 				C7B9FF621B2C1BD100FEF72F /* MSFRelationshipViewModel.m */,
 				49E418821B4CD18400422C20 /* MSFPersonalViewModel.h */,
 				49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */,
+				495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */,
+				495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -2949,6 +2954,7 @@
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
 				499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */,
 				49CBDD9C1B0DD904009EF662 /* MSFBannersViewController.m in Sources */,
+				495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */,
 				498113D01B1C451B003D1B7A /* MSFPepaymentCollectionViewCell.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,

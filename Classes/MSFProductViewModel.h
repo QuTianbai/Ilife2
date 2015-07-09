@@ -51,11 +51,6 @@
  */
 @property(nonatomic,assign) BOOL insurance;
 
-/**
- * 申请贷款
- */
-@property(nonatomic,strong,readonly) RACCommand *executeRequest;
-
 - (instancetype)initWithFormsViewModel:(id)viewModel;
 
 @end

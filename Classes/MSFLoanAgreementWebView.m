@@ -16,11 +16,12 @@
 #import "MSFProgressHUD.h"
 #import "MSFApplyCash.h"
 #import "MSFApplyInfo.h"
+#import "MSFLoanAgreementViewModel.h"
 
 @interface MSFLoanAgreementWebView ()
 
 @property(weak, nonatomic) IBOutlet UIWebView *LoanAgreenmentWV;
-@property(nonatomic,strong) MSFApplyStartViewModel *viewModel;
+@property(nonatomic,strong) MSFLoanAgreementViewModel *viewModel;
 @property(nonatomic,weak) IBOutlet UIButton *agreeButton;
 @property(nonatomic,weak) IBOutlet UIButton *disAgreeButton;
 
@@ -31,28 +32,26 @@
 - (void)viewDidLoad {
   self.title = @"贷款协议";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RACSignal *signal = [MSFUtils.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.requestViewModel.product];
+	RACSignal *signal = [MSFUtils.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
   [self.LoanAgreenmentWV rac_liftSelector:@selector(loadHTMLString:baseURL:)
 		withSignalOfArguments:[RACSignal combineLatest:@[signal,[RACSignal return:nil]]]];
 	
 	@weakify(self)
-	self.agreeButton.rac_command = self.viewModel.requestViewModel.executeRequest;
-	[self.viewModel.requestViewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
+	self.agreeButton.rac_command = self.viewModel.executeRequest;
+	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
 		[signal subscribeNext:^(MSFApplyCash *applyCash) {
 			[MSFProgressHUD hidden];
-			self.viewModel.applyInfoModel.loanId = applyCash.applyID;
-			self.viewModel.applyInfoModel.personId = applyCash.personId;
-			self.viewModel.applyInfoModel.applyNo = applyCash.applyNo;
+			//TODO: 进入个人信息界面
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
-			[vc bindViewModel:self.viewModel];
+//			[vc bindViewModel:self.viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
-	[self.viewModel.requestViewModel.executeRequest.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
 		@strongify(self)
 		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
 	}];
