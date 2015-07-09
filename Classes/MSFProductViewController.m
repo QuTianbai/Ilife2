@@ -58,7 +58,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey]) {
-		self.applyCashNumTF.text = @"50000";
+		self.applyCashNumTF.text = @"5000";
 	}
 	
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
@@ -245,6 +245,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			return nil;
 		}];
 	}];
+	_executeLifeInsuranceCommand.allowsConcurrentExecution = YES;
 	
 	return _executeLifeInsuranceCommand;
 }
