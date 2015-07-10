@@ -4,17 +4,25 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFFormsViewModel.h"
+#import <ReactiveViewModel/ReactiveViewModel.h>
 
 @class RACCommand;
 @class MSFSelectKeyValues;
 @class MSFAreas;
+@class MSFFormsViewModel;
+@class UIViewController;
+@class MSFApplicationForms;
 
 // 职业－学生/在职人员/自由职业
-@interface MSFProfessionalViewModel : MSFFormsViewModel
+@interface MSFProfessionalViewModel : RVMViewModel
 
 // 教育程度
 @property(nonatomic,strong) MSFSelectKeyValues *degrees;
+@property(nonatomic,strong) NSString *degreesTitle;
+
+// 社会身份
+@property(nonatomic,strong) MSFSelectKeyValues *socialstatus;
+@property(nonatomic,strong) NSString *socialstatusTitle;
 
 /**
  *  职业
@@ -71,5 +79,12 @@
 @property(nonatomic,strong) RACCommand *executeIncumbencyRequest;
 
 - (instancetype)initWithModel:(id)model;
+
+
+@property(nonatomic,readonly) MSFApplicationForms *model;
+@property(nonatomic,readonly) RACCommand *executeEducationCommand;
+@property(nonatomic,readonly) RACCommand *executeSocialStatusCommand;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 
 @end

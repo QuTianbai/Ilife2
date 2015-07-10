@@ -17,6 +17,7 @@
 @interface MSFPersonalViewModel : RVMViewModel
 
 @property(nonatomic,strong,readonly) NSString *address;
+@property(nonatomic,strong,readonly) MSFFormsViewModel *formsViewModel;
 @property(nonatomic,strong,readonly) MSFApplicationForms *model;
 @property(nonatomic,strong,readonly) RACCommand *executeAlterAddressCommand;
 @property(nonatomic,strong,readonly) RACCommand *executeCommitCommand;

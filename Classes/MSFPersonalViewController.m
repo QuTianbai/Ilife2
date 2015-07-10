@@ -19,6 +19,8 @@
 #import "NSString+Matches.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFAddressViewModel.h"
+#import "MSFProfessionalViewModel.h"
+#import "MSFProfessionalViewController.h"
 
 @interface MSFPersonalViewController ()
 
@@ -118,6 +120,8 @@
 		[signal subscribeNext:^(id x) {
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
+			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel contentViewController:vc];
+			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];

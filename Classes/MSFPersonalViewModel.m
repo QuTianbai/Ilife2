@@ -14,7 +14,6 @@
 
 @interface MSFPersonalViewModel ()
 
-@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
 @property(nonatomic,readonly) MSFAddressViewModel *addressViewModel;
 
 @end

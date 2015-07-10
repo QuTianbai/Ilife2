@@ -15,11 +15,63 @@
 #import "MSFClient+MSFApplyCash.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSString+Matches.h"
+#import "MSFFormsViewModel.h"
+#import <UIKit/UIKit.h>
+#import "MSFSelectionViewModel.h"
+#import "MSFSelectionViewController.h"
+
+@interface MSFProfessionalViewModel ( )
+
+@property(nonatomic,weak) UIViewController *viewController;
+@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
+
+@end
 
 @implementation MSFProfessionalViewModel
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFProfessionalViewModel `-dealloc`");
+}
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_formsViewModel = formsViewModel;
+	_viewController = viewController;
+	_model = formsViewModel.model;
+	
+	@weakify(self)
+	
+	[RACObserve(self, degrees) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
+		self.model.education = object.code;
+		self.degreesTitle = object.text;
+	}];
+	
+	[RACObserve(self, socialstatus) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
+		self.model.socialStatus = object.code;
+		self.socialstatusTitle = object.text;
+	}];
+	
+	_executeEducationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self educationSignal];
+	}];
+	_executeEducationCommand.allowsConcurrentExecution = YES;
+	
+	_executeSocialStatusCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self socialStatusSignal];
+	}];
+	_executeSocialStatusCommand.allowsConcurrentExecution = YES;
+  
+  return self;
+}
 /*
 
 //TODO: refact to super class
@@ -227,5 +279,41 @@
    }];
 }
 */
+
+#pragma mark - Private
+
+- (RACSignal *)educationSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"edu_background"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"教育信息";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.degrees = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)socialStatusSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"social_status"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"社会身份";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.socialstatus = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
 
 @end

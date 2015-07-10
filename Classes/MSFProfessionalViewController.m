@@ -23,52 +23,16 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
-@interface MSFProfessionalViewController () {
-  NSArray *_dataArray;
-  RMPickerViewController *_edutePickerViewController;
-  RMPickerViewController *_socailStatusPickerViewController;
-  RMPickerViewController *_workYearsPickerViewController;
-  RMPickerViewController *_jodTypePickerViewController;
-  RMPickerViewController *_zhiweiPickerViewController;
-  RMPickerViewController *_workDatePickerViewController;
-  RMPickerViewController *_workAdressPickerViewController;
-}
+typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
+    MSFProfessionalViewSectionSchool = 1,
+    MSFProfessionalViewSectionCompany = 2,
+    MSFProfessionalViewSectionDepartment = 3,
+    MSFProfessionalViewSectionContact = 4,
+};
 
-@property(strong,nonatomic) NSArray *adressArray;
-@property(strong,nonatomic) NSMutableArray *pickerArray;
-@property(strong,nonatomic) FMDatabase *fmdb;
-@property(nonatomic,strong) NSMutableArray *provinceArray;
-@property(nonatomic,strong) NSMutableArray *cityArray;
-@property(nonatomic,strong) NSMutableArray *countryArray;
+@interface MSFProfessionalViewController ()
 
-@property(weak,nonatomic) IBOutlet UIButton *educationBT;
-@property(weak,nonatomic) IBOutlet UITextField *educationTF;
-@property(weak,nonatomic) IBOutlet UIButton *cardTypeBT;
-@property(weak,nonatomic) IBOutlet UITextField *cardTypeTF;
-@property(weak,nonatomic) IBOutlet UIButton *jobYearsBT;
-@property(weak,nonatomic) IBOutlet UITextField *jobYeasTF;
-@property(weak,nonatomic) IBOutlet UITextField *companyNameTF;
-@property(weak,nonatomic) IBOutlet UIButton *industryTypeBT;
-@property(weak,nonatomic) IBOutlet UITextField *industryTypeTF;
-@property(weak,nonatomic) IBOutlet UIButton *positionBT;
-@property(weak,nonatomic) IBOutlet UITextField *posiotionTF;
-@property(weak,nonatomic) IBOutlet UITextField *jobTimeTF;
-@property(weak,nonatomic) IBOutlet UIButton *jobTimeBT;
-@property(weak,nonatomic) IBOutlet UITextField *areaCodeTF;
-@property(weak,nonatomic) IBOutlet UITextField *telTF;
-@property(weak,nonatomic) IBOutlet UITextField *extensionTF;
-@property(weak,nonatomic) IBOutlet UITextField *compneyAreasTF;
-@property(weak,nonatomic) IBOutlet UITextField *companyAdressTF;//公司详细地址
-@property(weak,nonatomic) IBOutlet UIButton *companyProvinceBT;
-@property(weak,nonatomic) IBOutlet UITableViewCell *positionCell;
-@property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
-@property(strong,nonatomic) MSFApplyStartViewModel *viewModel;
-@property(copy,nonatomic) NSString *educate;
-@property(copy,nonatomic) NSString *socal;
-@property(strong,nonatomic) MSFApplicationResponse *applyCash;
-@property(weak,nonatomic) IBOutlet UIButton *natureBT;
-@property(weak,nonatomic) IBOutlet UITextField *natureTF;
-@property(weak,nonatomic) IBOutlet UIButton *compneyAreasBT;
+@property(nonatomic,strong) MSFProfessionalViewModel *viewModel;
 
 @end
 
@@ -82,19 +46,22 @@
 
 #pragma mark - Lifecycle
 
-- (void)viewWillAppear:(BOOL)animated {
-  self.viewModel.applyInfoModel.page = @"3";
-  self.viewModel.applyInfoModel.applyStatus1 = @"0";
-}
-
-- (void)bindTitle:(id)titleDict {
-  self.educate = [titleDict objectForKey:@"eduacte"];
-  self.socal = [titleDict objectForKey:@"socal"];
-}
-
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.title = @"在职人员";
+	
+	RAC(self.education,text) = RACObserve(self.viewModel, degreesTitle);
+	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
+	
+	RAC(self.socialStatus,text) = RACObserve(self.viewModel, socialstatusTitle);
+	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
+	
+	@weakify(self)
+	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.tableView reloadData];
+	}];
+	/*
   RAC(self.educationTF,text) =
   [RACObserve(self.viewModel.careerViewModel, degrees) map:^id(MSFSelectKeyValues *value) {
     return value.text;
@@ -296,124 +263,53 @@
        [[self tableView] setContentInset:e];
      }];
    }];
+	 */
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  [segue.destinationViewController bindViewModel:self.viewModel];
+#pragma mark - UITableViewDataSource
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (!self.viewModel.socialstatus && section == 0) {
+		return [super tableView:tableView titleForHeaderInSection:section];
+	}
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI01"]) {
+		if (section == 0 || section == MSFProfessionalViewSectionSchool) {
+			return [super tableView:tableView titleForHeaderInSection:section];
+		}
+	}
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"]) {
+		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionDepartment) {
+			return [super tableView:tableView titleForHeaderInSection:section];
+		}
+	}
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI03"] && section == 0) {
+		return [super tableView:tableView titleForHeaderInSection:section];
+	}
+
+	return nil;
 }
 
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-}
-
-#pragma mark - Private
-
-- (void)showSelectedViewController {
-  MSFSelectionViewModel *provinceViewModel = [MSFSelectionViewModel areaViewModel:self.provinces];
-  MSFSelectionViewController *provinceViewController = [[MSFSelectionViewController alloc] initWithViewModel:provinceViewModel];
-  provinceViewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  provinceViewController.title = @"中国";
-  [self.navigationController pushViewController:provinceViewController animated:YES];
-  
-  @weakify(self)
-  @weakify(provinceViewController)
-  [provinceViewController.selectedSignal subscribeNext:^(MSFAreas *province) {
-    @strongify(self)
-    self.viewModel.careerViewModel.province = nil;
-    self.viewModel.careerViewModel.city = nil;
-    self.viewModel.careerViewModel.area = nil;
-    self.viewModel.careerViewModel.province = province;
-    NSArray *items = [self citiesWithProvince:province];
-    if (items.count == 0) {
-      @strongify(provinceViewController)
-      [provinceViewController.navigationController popToViewController:self animated:YES];
-      return;
-    }
-    MSFSelectionViewModel *citiesViewModel = [MSFSelectionViewModel areaViewModel:items];
-    MSFSelectionViewController *citiesViewController = [[MSFSelectionViewController alloc] initWithViewModel:citiesViewModel];
-    citiesViewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    citiesViewController.title = province.name;
-    [self.navigationController pushViewController:citiesViewController animated:YES];
-    
-    @weakify(citiesViewController)
-    [citiesViewController.selectedSignal subscribeNext:^(MSFAreas *city) {
-      self.viewModel.careerViewModel.city = city;
-      NSArray *items = [self areasWitchCity:city];
-      if (items.count == 0) {
-        @strongify(citiesViewController)
-        [citiesViewController.navigationController popToViewController:self animated:YES];
-        return;
-      }
-      MSFSelectionViewModel *areasViewModel = [MSFSelectionViewModel areaViewModel:[self areasWitchCity:city]];
-      MSFSelectionViewController *areasViewController = [[MSFSelectionViewController alloc] initWithViewModel:areasViewModel];
-      areasViewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-      areasViewController.title = city.name;
-      [self.navigationController pushViewController:areasViewController animated:YES];
-      
-      @weakify(areasViewController)
-      [areasViewController.selectedSignal subscribeNext:^(id x) {
-        self.viewModel.careerViewModel.area = x;
-        @strongify(areasViewController)
-        [areasViewController.navigationController popToViewController:self animated:YES];
-      }];
-    }];
-  }];
-}
-
-#pragma mark - Custom Accessors
-
-- (NSArray *)provinces {
-  if (![self.fmdb open]) {
-    return nil;
-  }
-  NSError *error;
-  NSMutableArray *regions = [NSMutableArray array];
-  FMResultSet *s = [self.fmdb executeQuery:@"select * from basic_dic_area where parent_area_code='000000'"];
-  while ([s next]) {
-    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
-    [regions addObject:areas];
-    
-  }
-  [self.fmdb close];
-  for (MSFAreas *area in regions) {
-    if ([area.codeID isEqualToString:@"500000"]) {
-      MSFAreas *tempArea = [[MSFAreas alloc] init];
-      tempArea.name = area.name;
-      tempArea.codeID = area.codeID;
-      tempArea.parentCodeID = area.parentCodeID;
-      [self.provinceArray removeObject:area];
-      [self.provinceArray insertObject:tempArea atIndex:1];
-      break;
-    }
-  }
-  return regions;
-}
-
-- (NSArray *)citiesWithProvince:(MSFAreas *)province {
-  [self.fmdb open];
-  NSError *error;
-  NSMutableArray *regions = [NSMutableArray array];
-  FMResultSet *rs = [self.fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'",province.codeID]];
-  while ([rs next]) {
-    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:&error];
-    [regions addObject:areas];
-  }
-  [self.fmdb close];
-  return regions;
-}
-
-- (NSArray *)areasWitchCity:(MSFAreas *)city {
-  [self.fmdb open];
-  NSError *error;
-  NSMutableArray *regions = [NSMutableArray array];
-  FMResultSet *rs = [self.fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'",city.codeID]];
-  while ([rs next]) {
-    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:&error];
-    [regions addObject:areas];
-  }
-  [self.fmdb close];
-  
-  return regions;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (!self.viewModel.socialstatus && section == 0) {
+		return 2;
+	}
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI01"]) {
+		if (section == 0) {
+			return 2;
+		}
+		if (section == MSFProfessionalViewSectionSchool) {
+			return [super tableView:tableView numberOfRowsInSection:section];
+		}
+	}
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"]) {
+		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionDepartment) {
+			return [super tableView:tableView numberOfRowsInSection:section];
+		}
+	}
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI03"] && section == 0) {
+		return 2;
+	}
+	return 0;
 }
 
 @end
