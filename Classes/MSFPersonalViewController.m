@@ -11,7 +11,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import "MSFAreas.h"
-#import "MSFApplyStartViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFApplicationResponse.h"
 #import "MSFProgressHUD.h"
@@ -19,18 +18,9 @@
 #import "MSFSelectionViewController.h"
 #import "NSString+Matches.h"
 #import "MSFPersonalViewModel.h"
+#import "MSFAddressViewModel.h"
 
-@interface MSFPersonalViewController () <UITextFieldDelegate>
-
-@property(weak,nonatomic) NSArray *adressArray;
-@property(weak,nonatomic) IBOutlet UIButton *nextPageBT;
-@property(weak,nonatomic) IBOutlet UISegmentedControl *selectQQorJDSegment;
-@property(weak,nonatomic) IBOutlet UITableViewCell *userNameCell;
-@property(weak,nonatomic) IBOutlet UILabel *userNameLB;
-@property(weak,nonatomic) IBOutlet UILabel *userPasswordLB;
-@property(nonatomic,strong) NSMutableArray *provinceArray;
-@property(nonatomic,strong) NSMutableArray *cityArray;
-@property(nonatomic,strong) NSMutableArray *countryArray;
+@interface MSFPersonalViewController ()
 
 @property(nonatomic,strong) MSFPersonalViewModel *viewModel;
 
@@ -47,14 +37,13 @@
 #pragma mark - Lifecycle
 
 - (void)dealloc {
-  NSLog(@"MSFAppliesIncomeTableViewController `-dealloc`");
+  NSLog(@"MSFPersonalViewController `-dealloc`");
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.title = @"基本信息";
   self.edgesForExtendedLayout = UIRectEdgeNone;
-//  [self selectQQorJD];
 	
   RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.model, income);
   RAC(self.monthInComeTF, text) = incomeChannel;
@@ -96,338 +85,54 @@
   RAC(self.currentApartmentTF,text) = apartmentChannel;
   [self.currentApartmentTF.rac_textSignal subscribe:apartmentChannel];
 	
+  RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.model, qq);
+  RAC(self.tencentUsername,text) = tencentUsernameChannel;
+  [self.tencentUsername.rac_textSignal subscribe:tencentUsernameChannel];
+	
+  RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.model, taobao);
+  RAC(self.taobaoUsername,text) = taobaoUsernameChannel;
+  [self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
+	
+  RACChannelTerminal *taobaoPasscodeChannel = RACChannelTo(self.viewModel.model, taobaoPassword);
+  RAC(self.taobaoPasscode,text) = taobaoPasscodeChannel;
+  [self.taobaoPasscode.rac_textSignal subscribe:taobaoPasscodeChannel];
+	
+  RACChannelTerminal *jdPasscodeChannel = RACChannelTo(self.viewModel.model, jdAccountPwd);
+  RAC(self.jdPasscode,text) = jdPasscodeChannel;
+  [self.jdPasscode.rac_textSignal subscribe:jdPasscodeChannel];
+	
+  RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
+  RAC(self.jdUsername,text) = jdUsernameChannel;
+  [self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
+	
 	@weakify(self)
-	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+	RAC(self.provinceTF,text) = RACObserve(self.viewModel, address);
+	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+	[[self.selectQQorJDSegment rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
 		@strongify(self)
-		NSLog(@"%@",self.viewModel.model.description);
+		[self.tableView reloadData];
 	}];
-	//TODO:
-//  RAC(self.provinceTF,text) = [RACSignal combineLatest:@[
-//    RACObserve(self.viewModel, province),
-//    RACObserve(self.viewModel, city),
-//    RACObserve(self.viewModel, area),
-//    ]
-//   reduce:^id(MSFAreas *province,MSFAreas *city ,MSFAreas *area) {
-//     return [NSString stringWithFormat:@"%@ %@ %@",province.name?:@"省/直辖市",city.name?:@"市",area.name?:@"区"];
-//  }];
-//  NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
-//  self.fmdb = [FMDatabase databaseWithPath:path];
-//   @weakify(self)
-//  [[self.selectAreasBT rac_signalForControlEvents:UIControlEventTouchUpInside]
-//  subscribeNext:^(id x) {
-//    @strongify(self)
-//    [self.view endEditing:YES];
-//    [self showSelectedViewController];
-//  }];
-//  
-//  [[[self.viewModel.applyInfoModel rac_valuesForKeyPath:@"qq" observer:self.userNameCell] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//   subscribeNext:^(NSString *text) {
-//     @strongify(self);
-//     self.otherUserNameTF.text = text;
-//   }];
-//  [[[self.otherUserNameTF rac_textSignal] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//   subscribeNext:^(NSString *text) {
-//     @strongify(self);
-//     [self.viewModel.applyInfoModel setValue:text forKey:@"qq"];
-//   }];
-//  [RACChannelTo(self.provinceTF,text) subscribeNext:^(id x) {
-//    @strongify(self)
-//    for (int i = 0; i<self.adressArray.count; i++) {
-//      NSInteger row = [self.adressArray[i] integerValue];
-//      switch (i) {
-//        case 0:
-//          if (row<self.provinceArray.count) {
-//            self.viewModel.applyInfoModel.currentProvinceCode = ((MSFAreas *)self.provinceArray[row]).codeID;
-//            self.viewModel.applyInfoModel.currentProvince = ((MSFAreas *)self.provinceArray[row]).name;
-//          }
-//          break;
-//        case 1:
-//          if (row<self.cityArray.count) {
-//            self.viewModel.applyInfoModel.currentCityCode = ((MSFAreas *)self.cityArray[row]).codeID;
-//            self.viewModel.applyInfoModel.currentCity = ((MSFAreas *)self.cityArray[row]).name;
-//          }
-//          break;
-//        case 2:
-//          if (row<self.countryArray.count) {
-//            self.viewModel.applyInfoModel.currentCountryCode = ((MSFAreas *)self.countryArray[row]).codeID;
-//            self.viewModel.applyInfoModel.currentCountry = ((MSFAreas *)self.countryArray[row]).name;
-//            
-//          }
-//          break;
-//        default:
-//          break;
-//      }
-//    }
-//  }];
-//  
-//  self.nextPageBT.rac_command = self.viewModel.executeBasic;
-//  [self.viewModel.executeBasic.executionSignals subscribeNext:^(RACSignal *execution) {
-//    @strongify(self)
-//    [MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
-//    [execution subscribeNext:^(id x) {
-//      [MSFProgressHUD hidden];
-//      self.applyCash = x;
-//      UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
-//      UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-//      [vc bindViewModel:self.viewModel];
-//      [self.navigationController pushViewController:vc animated:YES];
-//    }];
-//  }];
-//  [self.viewModel.executeBasic.errors subscribeNext:^(NSError *error) {
-//    @strongify(self)
-//    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
-//  }];
-//  
-////  [[self.emailTF rac_signalForControlEvents:UIControlEventEditingDidBegin]
-////   subscribeNext:^(UITextField *textField) {
-////     textField.textColor = [UIColor blackColor];
-////   }];
-//  [[self.emailTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
-//   subscribeNext:^(UITextField *textField) {
-//     if (![textField.text isMail]) {
-//       textField.textColor = [UIColor redColor];
-//     }
-//     else {
-//       textField.textColor = [UIColor blackColor];
-//     }
-//   }];
-//  [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-//   subscribeNext:^(UITextField *textField) {
-//     if (textField.text.length > 4 ) {
-//       textField.text = [textField.text substringToIndex:4];
-//     }
-//   }];
-//  [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingDidBegin]
-//   subscribeNext:^(UITextField *textField) {
-//     @strongify(self)
-//     textField.textColor = [UIColor blackColor];
-//     self.homeLineCodeTF.textColor = [UIColor blackColor];
-//   }];
-//  [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
-//   subscribeNext:^(UITextField *textField) {
-//     if (textField.text.length > 8) {
-//       textField.text = [textField.text substringToIndex:8];
-//     }
-//   }];
-//  [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
-//   subscribeNext:^(UITextField *textField) {
-//     @strongify(self)
-//     if (![[self.homeLineCodeTF.text stringByAppendingString:textField.text] isTelephone]) {
-//       textField.textColor = [UIColor redColor];
-//       self.homeLineCodeTF.textColor = [UIColor redColor];
-//     }
-//     else {
-//       textField.textColor = [UIColor blackColor];
-//       self.homeLineCodeTF.textColor = [UIColor blackColor];
-//     }
-//   }];
+	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
+	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
+		[signal subscribeNext:^(id x) {
+			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
+			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
+			[self.navigationController pushViewController:vc animated:YES];
+		}];
+	}];
+	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
+		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
-#pragma mark - Private
+#pragma mark - UITableViewDataSource
 
-//- (void)selectQQorJD {
-//  @weakify(self)
-//  [[self.selectQQorJDSegment rac_newSelectedSegmentIndexChannelWithNilValue:nil]
-//  subscribeNext:^(id x) {
-//    @strongify(self)
-//    switch ([x integerValue]) {
-//      case 0:
-//      {
-//        self.taobaoOrJDPasswordCell.hidden = YES;
-//        self.userNameLB.text = @"QQ号";
-//        self.otherUserNameTF.placeholder = @"请输入QQ号";
-//        self.userPasswordLB.text = @"QQ密码";
-//        @weakify(self)
-//        [[[self.viewModel.applyInfoModel rac_valuesForKeyPath:@"qq" observer:self.userNameCell] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           self.otherUserNameTF.text = text;
-//         }];
-//        [[[self.otherUserNameTF rac_textSignal] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           [self.viewModel.applyInfoModel setValue:text forKey:@"qq"];
-//         }];
-//      }
-//        break;
-//      case 1:
-//      {
-//        self.taobaoOrJDPasswordCell.hidden = NO;
-//        self.userNameLB.text = @"淘宝账号";
-//        self.userPasswordLB.text = @"淘宝密码";
-//        self.otherUserNameTF.placeholder = @"请输入淘宝账号";
-//        self.otherPasswordTF.placeholder = @"请输入淘宝密码";
-//        @weakify(self)
-//        [[[self.viewModel.applyInfoModel rac_valuesForKeyPath:@"taobao" observer:self.userNameCell] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           self.otherUserNameTF.text = text;
-//         }];
-//        [[[self.otherUserNameTF rac_textSignal] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           [self.viewModel.applyInfoModel setValue:text forKey:@"taobao"];
-//         }];
-//        [[[self.viewModel.applyInfoModel rac_valuesForKeyPath:@"taobaoPassword" observer:self.taobaoOrJDPasswordCell] takeUntil:[self.taobaoOrJDPasswordCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           self.otherPasswordTF.text = text;
-//         }];
-//        [[[self.otherPasswordTF rac_textSignal] takeUntil:[self.taobaoOrJDPasswordCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           [self.viewModel.applyInfoModel setValue:text forKey:@"taobaoPassword"];
-//         }];
-//      }
-//        break;
-//      case 2:
-//      {
-//        self.taobaoOrJDPasswordCell.hidden = NO;
-//        self.userNameLB.text = @"京东账号";
-//        self.userPasswordLB.text = @"京东密码";
-//        self.otherUserNameTF.placeholder = @"请输入京东账号";
-//        self.otherPasswordTF.placeholder = @"请输入京东密码";
-//        @weakify(self)
-//        [[[self.viewModel.applyInfoModel rac_valuesForKeyPath:@"jdAccount" observer:self.userNameCell] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           self.otherUserNameTF.text = text;
-//         }];
-//        [[[self.otherUserNameTF rac_textSignal] takeUntil:[self.userNameCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           [self.viewModel.applyInfoModel setValue:text forKey:@"jdAccount"];
-//         }];
-//        [[[self.viewModel.applyInfoModel rac_valuesForKeyPath:@"jdAccountPwd" observer:self.taobaoOrJDPasswordCell] takeUntil:[self.taobaoOrJDPasswordCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           self.otherPasswordTF.text = text;
-//         }];
-//        [[[self.otherPasswordTF rac_textSignal] takeUntil:[self.taobaoOrJDPasswordCell rac_prepareForReuseSignal]]
-//         subscribeNext:^(NSString *text) {
-//           @strongify(self);
-//           [self.viewModel.applyInfoModel setValue:text forKey:@"jdAccountPwd"];
-//         }];
-//      }
-//        break;
-//        
-//      default:
-//        break;
-//    }
-//  }];
-//}
-//
-//- (void)showSelectedViewController {
-//  MSFSelectionViewModel *provinceViewModel = [MSFSelectionViewModel areaViewModel:self.provinces];
-//  MSFSelectionViewController *provinceViewController = [[MSFSelectionViewController alloc] initWithViewModel:provinceViewModel];
-//  provinceViewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//  provinceViewController.title = @"中国";
-//  [self.navigationController pushViewController:provinceViewController animated:YES];
-//  
-//  @weakify(self)
-//  @weakify(provinceViewController)
-//  [provinceViewController.selectedSignal subscribeNext:^(MSFAreas *province) {
-//    @strongify(self)
-//    self.viewModel.province = nil;
-//    self.viewModel.city = nil;
-//    self.viewModel.area = nil;
-//    self.viewModel.province = province;
-//    NSArray *items = [self citiesWithProvince:province];
-//    if (items.count == 0) {
-//      @strongify(provinceViewController)
-//      [provinceViewController.navigationController popToViewController:self animated:YES];
-//      return;
-//    }
-//    MSFSelectionViewModel *citiesViewModel = [MSFSelectionViewModel areaViewModel:items];
-//    MSFSelectionViewController *citiesViewController = [[MSFSelectionViewController alloc] initWithViewModel:citiesViewModel];
-//    citiesViewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    citiesViewController.title = province.name;
-//    [self.navigationController pushViewController:citiesViewController animated:YES];
-//    
-//    @weakify(citiesViewController)
-//    [citiesViewController.selectedSignal subscribeNext:^(MSFAreas *city) {
-//      self.viewModel.city = city;
-//      NSArray *items = [self areasWitchCity:city];
-//      if (items.count == 0) {
-//        @strongify(citiesViewController)
-//        [citiesViewController.navigationController popToViewController:self animated:YES];
-//        return;
-//      }
-//      MSFSelectionViewModel *areasViewModel = [MSFSelectionViewModel areaViewModel:[self areasWitchCity:city]];
-//      MSFSelectionViewController *areasViewController = [[MSFSelectionViewController alloc] initWithViewModel:areasViewModel];
-//      areasViewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//      areasViewController.title = city.name;
-//      [self.navigationController pushViewController:areasViewController animated:YES];
-//      
-//      @weakify(areasViewController)
-//      [areasViewController.selectedSignal subscribeNext:^(id x) {
-//        self.viewModel.area = x;
-//        @strongify(areasViewController)
-//        [areasViewController.navigationController popToViewController:self animated:YES];
-//      }];
-//    }];
-//  }];
-//}
-//
-//#pragma mark - Custom Accessors
-//
-//- (NSArray *)provinces {
-//  if (![self.fmdb open]) {
-//    return nil;
-//  }
-//  NSError *error;
-//  NSMutableArray *regions = [NSMutableArray array];
-//  FMResultSet *s = [self.fmdb executeQuery:@"select * from basic_dic_area where parent_area_code='000000'"];
-//  while ([s next]) {
-//    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
-//    [regions addObject:areas];
-//    
-//  }
-//  self.provinceArray = regions;
-//  for (MSFAreas *area in self.provinceArray) {
-//    
-//    if ([area.codeID isEqualToString:@"500000"]) {
-//      MSFAreas *tempArea = [[MSFAreas alloc] init];
-//      tempArea.name = area.name;
-//      tempArea.codeID = area.codeID;
-//      tempArea.parentCodeID = area.parentCodeID;
-//      [self.provinceArray removeObject:area];
-//      [self.provinceArray insertObject:tempArea atIndex:1];
-//      break;
-//    }
-//  }
-//  [self.fmdb close];
-//  
-//  return self.provinceArray;
-//}
-//
-//- (NSArray *)citiesWithProvince:(MSFAreas *)province {
-//  [self.fmdb open];
-//  NSError *error;
-//  NSMutableArray *regions = [NSMutableArray array];
-//  FMResultSet *rs = [self.fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'",province.codeID]];
-//  while ([rs next]) {
-//    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:&error];
-//    [regions addObject:areas];
-//  }
-//  self.cityArray = regions;
-//  [self.fmdb close];
-//  return self.cityArray;
-//}
-//
-//- (NSArray *)areasWitchCity:(MSFAreas *)city {
-//  [self.fmdb open];
-//  NSError *error;
-//  NSMutableArray *regions = [NSMutableArray array];
-//  FMResultSet *rs = [self.fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'",city.codeID]];
-//  while ([rs next]) {
-//    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:&error];
-//    [regions addObject:areas];
-//  }
-//  self.countryArray = regions;
-//  [self.fmdb close];
-//  
-//  return self.countryArray;
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (section == 0 || section == self.selectQQorJDSegment.selectedSegmentIndex + 1) {
+		return [super tableView:tableView numberOfRowsInSection:section];
+	}
+	return 0;
+}
 
 @end

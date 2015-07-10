@@ -9,6 +9,7 @@
 @class MSFAreas;
 @class RACCommand;
 @class UIViewController;
+@class MSFApplicationForms;
 
 @interface MSFAddressViewModel : RVMViewModel
 
@@ -16,14 +17,25 @@
 @property(nonatomic,strong) MSFAreas *city;
 @property(nonatomic,strong) MSFAreas *area;
 
+@property(nonatomic,strong) NSString *provinceName;
+@property(nonatomic,strong) NSString *provinceCode;
+
+@property(nonatomic,strong) NSString *cityName;
+@property(nonatomic,strong) NSString *cityCode;
+
+@property(nonatomic,strong) NSString *areaName;
+@property(nonatomic,strong) NSString *areaCode;
+
 @property(nonatomic,strong) RACCommand *selectCommand;
 
 @property(nonatomic,strong,readonly) NSString *address;
 
-@property(nonatomic,strong,readonly) UIViewController *viewController;
 @property(nonatomic,assign,readonly) BOOL needArea;
+
+@property(nonatomic,weak,readonly) UIViewController *viewController;
 
 - (instancetype)initWithController:(UIViewController *)viewController;
 - (instancetype)initWithController:(UIViewController *)viewController needArea:(BOOL)needArea;
+- (instancetype)initWithApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController;
 
 @end

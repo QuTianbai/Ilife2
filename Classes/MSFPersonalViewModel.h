@@ -8,14 +8,19 @@
 
 @class MSFApplicationForms;
 @class MSFFormsViewModel;
+@class MSFAddressViewModel;
+@class RACCommand;
 
- /**
-  *  基本信息
-  */
+/**
+ *  基本信息
+*/
 @interface MSFPersonalViewModel : RVMViewModel
 
+@property(nonatomic,strong,readonly) NSString *address;
 @property(nonatomic,strong,readonly) MSFApplicationForms *model;
+@property(nonatomic,strong,readonly) RACCommand *executeAlterAddressCommand;
+@property(nonatomic,strong,readonly) RACCommand *executeCommitCommand;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel addressViewModel:(MSFAddressViewModel *)addressViewModel;
 
 @end

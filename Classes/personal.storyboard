@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Xxh-8g-Ago">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
@@ -222,7 +223,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1005" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="小区/楼盘（选填）" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kA8-Hk-8aI">
-                                                    <rect key="frame" x="18" y="8" width="132" height="29"/>
+                                                    <rect key="frame" x="20" y="8" width="132" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -246,17 +247,21 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="eJT-wN-O6E">
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="uUs-8h-O1V">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="HM7-6R-G1J">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eJT-wN-O6E" id="GkG-zK-0bi">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HM7-6R-G1J" id="FsR-np-xzd">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填入QQ号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ca8-Gr-zlT">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填入QQ号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q05-PD-xoO">
                                                     <rect key="frame" x="121" y="7" width="162" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QQ号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcC-GT-3Lw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="QQ号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBx-Bg-2mf">
                                                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -265,17 +270,82 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell hidden="YES" tag="10000" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="pB5-DS-Kk3">
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="JHX-DZ-nQe">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qWl-ft-3TV">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pB5-DS-Kk3" id="wuJ-GU-wfz">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qWl-ft-3TV" id="pZN-Kp-Ag5">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请填入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lnd-Ic-U4y">
-                                                    <rect key="frame" x="120" y="7" width="163" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入淘宝账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L46-4k-mpl">
+                                                    <rect key="frame" x="121" y="7" width="162" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bw0-jD-9DV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="淘宝" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BW-CR-xrh">
+                                                    <rect key="frame" x="15" y="11" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="6U0-R7-Kl0">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6U0-R7-Kl0" id="rY6-hD-sxf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSg-8S-TUG">
+                                                    <rect key="frame" x="121" y="7" width="162" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCw-El-SUo">
+                                                    <rect key="frame" x="15" y="11" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="txj-Nl-2Tg">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="VH7-jW-W18">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VH7-jW-W18" id="3Gt-Jc-MGD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入京东账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="btH-7w-EUD">
+                                                    <rect key="frame" x="121" y="7" width="162" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="京东" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOQ-tX-mUk">
+                                                    <rect key="frame" x="15" y="11" width="68" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="6T0-Zl-uPt">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6T0-Zl-uPt" id="QC6-Sx-yk9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1006" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qt6-8H-rC7">
+                                                    <rect key="frame" x="121" y="7" width="162" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QkJ-u5-F9B">
                                                     <rect key="frame" x="15" y="11" width="68" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -302,20 +372,18 @@
                         <outlet property="familyOtherIncomeYF" destination="V1s-SW-Pd2" id="j0b-Fg-zh0"/>
                         <outlet property="homeLineCodeTF" destination="cm7-Oy-fHB" id="KAN-Ku-pWS"/>
                         <outlet property="homeTelTF" destination="s0D-QD-ckt" id="Hs6-ul-jdl"/>
+                        <outlet property="jdPasscode" destination="Qt6-8H-rC7" id="VIy-KE-iip"/>
+                        <outlet property="jdUsername" destination="btH-7w-EUD" id="h2D-Zv-GwV"/>
                         <outlet property="monthInComeTF" destination="HiU-b9-1sf" id="bPQ-ta-nGk"/>
                         <outlet property="nextPageBT" destination="QAb-Ua-Jjn" id="AYN-TU-qVC"/>
-                        <outlet property="otherPasswordTF" destination="Lnd-Ic-U4y" id="Vwq-F3-FWE"/>
-                        <outlet property="otherUserNameTF" destination="Ca8-Gr-zlT" id="75J-jI-ePP"/>
-                        <outlet property="passwordTF" destination="Lnd-Ic-U4y" id="bty-eG-kcb"/>
                         <outlet property="provinceTF" destination="JBj-za-ulr" id="VZr-51-HRO"/>
                         <outlet property="repayMonthTF" destination="98y-Y7-3hv" id="g7e-R0-daN"/>
                         <outlet property="selectAreasBT" destination="Yob-26-ZcK" id="cEX-XA-6rp"/>
                         <outlet property="selectQQorJDSegment" destination="k0S-Dh-Beh" id="dUK-hW-VPb"/>
-                        <outlet property="taobaoOrJDPasswordCell" destination="pB5-DS-Kk3" id="Jof-uJ-xNw"/>
+                        <outlet property="taobaoPasscode" destination="kSg-8S-TUG" id="3fR-MI-fXH"/>
+                        <outlet property="taobaoUsername" destination="L46-4k-mpl" id="bV9-DW-1Ho"/>
+                        <outlet property="tencentUsername" destination="q05-PD-xoO" id="UFi-Op-ewt"/>
                         <outlet property="townTF" destination="pYk-81-ofZ" id="58F-RW-xZQ"/>
-                        <outlet property="userNameCell" destination="eJT-wN-O6E" id="rPs-e9-uC9"/>
-                        <outlet property="userNameLB" destination="NcC-GT-3Lw" id="zoE-28-OEH"/>
-                        <outlet property="userPasswordLB" destination="Bw0-jD-9DV" id="Xk0-xQ-qe7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6MS-rm-vum" userLabel="First Responder" sceneMemberID="firstResponder"/>

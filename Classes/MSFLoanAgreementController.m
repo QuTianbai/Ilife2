@@ -18,6 +18,8 @@
 #import "MSFApplicationForms.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFPersonalViewModel.h"
+#import "MSFAddressViewModel.h"
+#import "MSFFormsViewModel.h"
 
 @interface MSFLoanAgreementController ()
 
@@ -47,7 +49,8 @@
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
-			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithApplicationForm:self.viewModel.formsViewModel.model controller:vc];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
 			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 		}];

@@ -20,7 +20,7 @@ static MBProgressHUD *hudInstance;
   if (!view) {
     return;
   }
-  [hudInstance hide:NO];
+	[self.class hidden];
   hudInstance = [MBProgressHUD showHUDAddedTo:view animated:YES];
   hudInstance.mode = MBProgressHUDModeText;
   hudInstance.labelText = message;
@@ -38,7 +38,7 @@ static MBProgressHUD *hudInstance;
   if (!view) {
     return;
   }
-  [hudInstance hide:NO];
+	[self.class hidden];
   hudInstance = [MBProgressHUD showHUDAddedTo:view animated:YES];
   hudInstance.mode = MBProgressHUDModeText;
   hudInstance.labelText = message;
@@ -56,7 +56,7 @@ static MBProgressHUD *hudInstance;
   if (!view) {
     return;
   }
-  [hudInstance hide:NO];
+	[self.class hidden];
   hudInstance = [MBProgressHUD showHUDAddedTo:view animated:YES];
   hudInstance.labelText = message;
   hudInstance.removeFromSuperViewOnHide = YES;
