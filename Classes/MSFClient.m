@@ -34,6 +34,17 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 
 static MSFCipher *cipher;
 
+static BOOL isRunningTests(void) __attribute__((const));
+
+static BOOL isRunningTests(void) {
+	NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+	NSString *injectBundle    = environment[@"XCInjectBundle"];
+	BOOL isTestsRunning       = [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
+	[[injectBundle pathExtension] isEqualToString:@"octest"];
+
+	return isTestsRunning;
+}
+
 @interface MSFClient ()
 
 @property(nonatomic,strong) NSMutableDictionary *defaultHeaders;
@@ -77,7 +88,10 @@ static MSFCipher *cipher;
   self.defaultHeaders = MFSClientDefaultHeaders();
   self.requestSerializer.timeoutInterval = 15;
   self.securityPolicy.allowInvalidCertificates = YES;
-  
+	
+	if (isRunningTests()) {
+		return self;
+	}
   [[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
   [[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
   [[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {

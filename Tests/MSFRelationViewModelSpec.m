@@ -6,16 +6,16 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFRelationMemberViewModel.h"
+#import "MSFRelationshipViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 
 QuickSpecBegin(MSFRelationViewModelSpec)
 
-__block MSFRelationMemberViewModel *viewModel;
+__block MSFRelationshipViewModel *viewModel;
 
 beforeEach(^{
-  viewModel = [[MSFRelationMemberViewModel alloc] init];
+  viewModel = [[MSFRelationshipViewModel alloc] init];
 });
 
 it(@"should initialize", ^{

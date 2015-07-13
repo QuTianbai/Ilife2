@@ -39,6 +39,9 @@
 }
 
 - (void)show {
+#if DEBUG
+	return;
+#endif
   // 如果存储的版本号小于获取的APP版本号，则显示引导界面,否则不显示
   NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
   NSString *local = [[NSUserDefaults standardUserDefaults] stringForKey:@"CFBundleVersion"];

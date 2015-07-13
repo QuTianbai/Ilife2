@@ -8,7 +8,7 @@
 
 @class MSFAgreement;
 @class MSFClient;
-@class MSFMonths;
+@class MSFProduct;
 
 @interface MSFAgreementViewModel : RVMViewModel
 
@@ -24,6 +24,6 @@
 - (RACSignal *)branchAgreementSignal;
 - (RACSignal *)loanAgreementSignal __deprecated_msg("Use `-loanAgreementSignalWithProduct:`");
 - (RACSignal *)repayAgreementSignal;
-- (RACSignal *)loanAgreementSignalWithProduct:(MSFMonths *)product;
+- (RACSignal *)loanAgreementSignalWithProduct:(MSFProduct *)product;
 
 @end

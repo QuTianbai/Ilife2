@@ -12,19 +12,81 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFAreas.h"
+#import "MSFApplicationForms.h"
 
 @interface MSFAddressViewModel ()
 
 @property(nonatomic,strong) FMDatabase *fmdb;
 
-@property(nonatomic,strong,readwrite) UIViewController *viewController;
+@property(nonatomic,weak,readwrite) UIViewController *viewController;
+@property(nonatomic,strong) MSFApplicationForms *form;
 
 @end
 
 @implementation MSFAddressViewModel
 
+#pragma mark - Lifecycle
+
+- (void)dealloc {
+	NSLog(@"MSFAddressViewModel ``-dealloc");
+}
+
 - (instancetype)initWithController:(UIViewController *)contentViewController {
 	return [self initWithController:contentViewController needArea:NO];
+}
+
+- (instancetype)initWithWorkApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController {
+	if (!(self = [self initWithController:viewController needArea:YES])) {
+		return nil;
+	}
+	self.province = [self regionWithCode:model.workProvinceCode];
+	self.city = [self regionWithCode:model.workCityCode];
+	self.area = [self regionWithCode:model.workCountryCode];
+	
+	@weakify(self)
+	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.provinceName = x.name;
+		self.provinceCode = x.codeID;
+	}];
+	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.cityName = x.name;
+		self.cityCode = x.codeID;
+	}];
+	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.areaName = x.name;
+		self.areaCode = x.codeID;
+	}];
+	return self;
+}
+
+- (instancetype)initWithApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController {
+	if (!(self = [self initWithController:viewController needArea:YES])) {
+		return nil;
+	}
+	self.province = [self regionWithCode:model.currentProvinceCode];
+	self.city = [self regionWithCode:model.currentCityCode];
+	self.area = [self regionWithCode:model.currentCountryCode];
+	
+	@weakify(self)
+	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.provinceName = x.name;
+		self.provinceCode = x.codeID;
+	}];
+	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.cityName = x.name;
+		self.cityCode = x.codeID;
+	}];
+	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.areaName = x.name;
+		self.areaCode = x.codeID;
+	}];
+	return self;
 }
 
 - (instancetype)initWithController:(UIViewController *)contentViewController needArea:(BOOL)needArea {
@@ -190,6 +252,19 @@
 	[self.fmdb close];
   
   return regions;
+}
+
+- (MSFAreas *)regionWithCode:(NSString *)code {
+	[self.fmdb open];
+	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'",code];
+	FMResultSet *rs = [self.fmdb executeQuery:sql];
+	MSFAreas *region;
+	if (rs.next) {
+		region = [MTLFMDBAdapter modelOfClass:[MSFAreas class] fromFMResultSet:rs error:nil];
+	}
+	[self.fmdb close];
+	
+  return region;
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "MSFClient+MSFApplyInfo.h"
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 #import "RACSignal+MSFClientAdditions.h"
 
 @implementation MSFClient (MSFApplyInfo)
@@ -19,7 +19,7 @@
 //  return [RACSignal return:[MTLJSONAdapter modelOfClass:[MSFApplyInfo class] fromJSONDictionary:representation error:nil]];
     NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loans/spec" parameters:nil];
   
-    return [[self enqueueRequest:request resultClass:MSFApplyInfo.class] msf_parsedResults];
+    return [[self enqueueRequest:request resultClass:MSFApplicationForms.class] msf_parsedResults];
 }
 
 - (RACSignal *)fetchApplyInfoSubmit1:(NSString *)moneyNum months:(NSString *)months moneyUsed:(NSString *)moneyUsed isInsurancePlane:(NSString *)InsurancePlane applyStatus:(NSString *)status loanID:(NSString *)loanID {

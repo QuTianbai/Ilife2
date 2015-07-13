@@ -7,7 +7,7 @@
 #import "MSFObject.h"
 
 @class MSFServer;
-@class MSFMonths;
+@class MSFProduct;
 
 @interface MSFAgreement : MSFObject
 
@@ -51,6 +51,6 @@
 
 - (instancetype)initWithServer:(MSFServer *)server;
 
-- (NSURL *)loanAgreementURLWithProduct:(MSFMonths *)product;
+- (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product;
 
 @end

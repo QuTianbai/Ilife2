@@ -7,12 +7,12 @@
 //
 
 #import "MSFTeams.h"
-#import "MSFMonths.h"
+#import "MSFProduct.h"
 
 @implementation MSFTeams
 
 + (NSValueTransformer *)teamJSONTransformer {
-  return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFMonths.class];
+  return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFProduct.class];
 }
 
 @end

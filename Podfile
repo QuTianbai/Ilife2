@@ -25,6 +25,7 @@ pod 'CZPhotoPickerController', '1.2.4'
 pod 'XcodeCoverage', '1.2.2'
 pod 'SVPullToRefresh', '0.4.1'
 pod 'REFormattedNumberField', '1.1.5'
+pod 'SVProgressHUD', '1.1.3'
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', '1.4.0'

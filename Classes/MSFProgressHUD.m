@@ -6,16 +6,21 @@
 
 #import "MSFProgressHUD.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 static MBProgressHUD *hudInstance;
 
 @implementation MSFProgressHUD
 
++ (void)showSuccessMessage:(NSString *)message {
+	[SVProgressHUD showSuccessWithStatus:message];
+}
+
 + (void)showSuccessMessage:(NSString *)message inView:(UIView *)view {
   if (!view) {
     return;
   }
-  [hudInstance hide:NO];
+	[self.class hidden];
   hudInstance = [MBProgressHUD showHUDAddedTo:view animated:YES];
   hudInstance.mode = MBProgressHUDModeText;
   hudInstance.labelText = message;
@@ -23,13 +28,17 @@ static MBProgressHUD *hudInstance;
   hudInstance.yOffset = 200;
   hudInstance.removeFromSuperViewOnHide = YES;
   [hudInstance hide:YES afterDelay:2];
+}
+
++ (void)showErrorMessage:(NSString *)message {
+	[SVProgressHUD showErrorWithStatus:message];
 }
 
 + (void)showErrorMessage:(NSString *)message inView:(UIView *)view {
   if (!view) {
     return;
   }
-  [hudInstance hide:NO];
+	[self.class hidden];
   hudInstance = [MBProgressHUD showHUDAddedTo:view animated:YES];
   hudInstance.mode = MBProgressHUDModeText;
   hudInstance.labelText = message;
@@ -39,11 +48,15 @@ static MBProgressHUD *hudInstance;
   [hudInstance hide:YES afterDelay:2];
 }
 
++ (void)showStatusMessage:(NSString *)message {
+	[SVProgressHUD showWithStatus:message];
+}
+
 + (void)showStatusMessage:(NSString *)message inView:(UIView *)view {
   if (!view) {
     return;
   }
-  [hudInstance hide:NO];
+	[self.class hidden];
   hudInstance = [MBProgressHUD showHUDAddedTo:view animated:YES];
   hudInstance.labelText = message;
   hudInstance.removeFromSuperViewOnHide = YES;
@@ -52,6 +65,7 @@ static MBProgressHUD *hudInstance;
 
 + (void)hidden {
   [hudInstance hide:YES];
+	[SVProgressHUD dismiss];
 }
 
 + (void)showAlertTitle:(NSString *)title message:(NSString *)message {
