@@ -62,6 +62,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
 	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
 	self.enrollmentYearButton.rac_command = self.viewModel.executeEnrollmentYearCommand;
+	RAC(self.workingLength,text) = RACObserve(self.viewModel, seniorityTitle);
+	self.workingLengthButton.rac_command = self.viewModel.executeWorkingLengthCommand;
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {

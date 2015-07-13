@@ -67,6 +67,11 @@
 		self.eductionalSystmeTitle = object.text;
 	}];
 	
+	[RACObserve(self, seniority) subscribeNext:^(MSFSelectKeyValues *object) {
+		self.model.workingLength = object.code;
+		self.seniorityTitle = object.text;
+	}];
+	
 	_executeEducationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self educationSignal];
@@ -88,6 +93,11 @@
 	_executeEnrollmentYearCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self enrollmentYearSignal];
+	}];
+	
+	_executeWorkingLengthCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self workingLengthSignal];
 	}];
   
   return self;
@@ -347,6 +357,23 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.eductionalSystme = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)workingLengthSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"service_year"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"工作年限";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.seniority = x;
 			[selectionViewController.navigationController popViewControllerAnimated:YES];
 		}];
 		return nil;

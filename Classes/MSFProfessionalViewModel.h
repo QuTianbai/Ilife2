@@ -16,6 +16,8 @@
 // 职业－学生/在职人员/自由职业
 @interface MSFProfessionalViewModel : RVMViewModel
 
+#pragma mark - 教育/社会身份
+
 // 教育程度
 @property(nonatomic,strong) MSFSelectKeyValues *degrees;
 @property(nonatomic,strong) NSString *degreesTitle;
@@ -24,21 +26,23 @@
 @property(nonatomic,strong) MSFSelectKeyValues *socialstatus;
 @property(nonatomic,strong) NSString *socialstatusTitle;
 
+#pragma mark - 学生信息
+
 // 学生
 @property(nonatomic,strong) NSString *school;
 @property(nonatomic,strong) MSFSelectKeyValues *eductionalSystme;
 @property(nonatomic,strong) NSString *eductionalSystmeTitle;
 @property(nonatomic,strong) NSString *enrollmentYear;
 
-/**
- *  职业
- */
+#pragma mark - 职业信息
+// 职业
 @property(nonatomic,strong) MSFSelectKeyValues *profession;
 
 /**
  *  工作年限
  */
 @property(nonatomic,strong) MSFSelectKeyValues *seniority;
+@property(nonatomic,strong) NSString *seniorityTitle;
 
 /**
  *  单位名称
@@ -89,6 +93,7 @@
 @property(nonatomic,readonly) RACCommand *executeSocialStatusCommand;
 @property(nonatomic,readonly) RACCommand *executeEductionalSystmeCommand;
 @property(nonatomic,readonly) RACCommand *executeEnrollmentYearCommand;
+@property(nonatomic,readonly) RACCommand *executeWorkingLengthCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 
