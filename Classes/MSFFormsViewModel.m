@@ -12,7 +12,6 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFProductViewModel.h"
 #import "MSFRelationshipViewModel.h"
-#import "MSFCommitViewModel.h"
 
 #import "MSFApplicationForms.h"
 #import "MSFClient+MSFApplyInfo.h"

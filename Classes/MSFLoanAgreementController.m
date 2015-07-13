@@ -11,7 +11,6 @@
 #import <libextobjc/EXTScope.h>
 #import "MSFUtils.h"
 #import "MSFAgreementViewModel.h"
-#import "MSFApplyStartViewModel.h"
 #import "MSFProductViewModel.h"
 #import "MSFProgressHUD.h"
 #import "MSFApplicationResponse.h"
