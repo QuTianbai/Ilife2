@@ -426,10 +426,14 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="900"/>
                     <connections>
+                        <outlet property="companyType" destination="a5q-Xr-icE" id="D54-ia-AwD"/>
+                        <outlet property="companyTypeButton" destination="J0b-Hf-KXk" id="hIe-7u-zG5"/>
                         <outlet property="education" destination="nab-WT-r66" id="1s0-IH-UMG"/>
                         <outlet property="educationButton" destination="Prp-U1-uaa" id="r43-le-qHu"/>
                         <outlet property="enrollmentYear" destination="cf8-OE-eun" id="tLh-yd-wTa"/>
                         <outlet property="enrollmentYearButton" destination="nM8-o5-a5w" id="geT-qS-alI"/>
+                        <outlet property="industry" destination="Jxe-L5-xwx" id="qhS-cf-kse"/>
+                        <outlet property="industryButton" destination="j3r-cW-lzz" id="fOa-3I-Xth"/>
                         <outlet property="nextButton" destination="8Wz-kg-ezK" id="2Cy-yW-bwq"/>
                         <outlet property="programLength" destination="bDS-Y0-6x7" id="Vkq-72-VDg"/>
                         <outlet property="programLengthButton" destination="Ed4-W2-kJO" id="Yp2-my-CFV"/>

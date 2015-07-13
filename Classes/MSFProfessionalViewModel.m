@@ -72,6 +72,16 @@
 		self.seniorityTitle = object.text;
 	}];
 	
+	[RACObserve(self, industry) subscribeNext:^(MSFSelectKeyValues *object) {
+		self.model.industry = object.code;
+		self.industryTitle = object.text;
+	}];
+	
+	[RACObserve(self, nature) subscribeNext:^(MSFSelectKeyValues *object) {
+		self.model.companyType = object.code;
+		self.natureTitle = object.text;
+	}];
+	
 	_executeEducationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self educationSignal];
@@ -99,6 +109,19 @@
 		@strongify(self)
 		return [self workingLengthSignal];
 	}];
+	_executeWorkingLengthCommand.allowsConcurrentExecution = YES;
+	
+	_executeIndustryCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self industrySignal];
+	}];
+	_executeIndustryCommand.allowsConcurrentExecution = YES;
+	
+	_executeNatureCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self natureSignal];
+	}];
+	_executeNatureCommand.allowsConcurrentExecution = YES;
   
   return self;
 }
@@ -408,6 +431,40 @@
 				[subscriber sendCompleted];
 			}
 			origin:self.viewController.view];
+		return nil;
+	}];
+}
+
+- (RACSignal *)industrySignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"industry_category"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"行业类别";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.industry = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)natureSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"unit_nature"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"行业性质";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.nature = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
 		return nil;
 	}];
 }

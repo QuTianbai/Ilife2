@@ -34,6 +34,9 @@
 @property(nonatomic,weak) IBOutlet UITextField *companyType;//单位性质code
 @property(nonatomic,weak) IBOutlet UITextField *industry;//行业类别code
 
+@property(nonatomic,weak) IBOutlet UIButton *companyTypeButton;//单位性质code
+@property(nonatomic,weak) IBOutlet UIButton *industryButton;//行业类别code
+
 // 职位信息
 @property(nonatomic,weak) IBOutlet UITextField *department;//任职部门 任职部门
 @property(nonatomic,weak) IBOutlet UITextField *position;//职位 title

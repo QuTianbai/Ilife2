@@ -35,34 +35,26 @@
 @property(nonatomic,strong) NSString *enrollmentYear;
 
 #pragma mark - 职业信息
-// 职业
-@property(nonatomic,strong) MSFSelectKeyValues *profession;
 
-/**
- *  工作年限
- */
+// 工作年限
 @property(nonatomic,strong) MSFSelectKeyValues *seniority;
 @property(nonatomic,strong) NSString *seniorityTitle;
 
-/**
- *  单位名称
- */
-@property(nonatomic,strong) NSString *company;
+// 单位信息
+@property(nonatomic,strong) NSString *company; // 单位名称
+@property(nonatomic,strong) MSFSelectKeyValues *industry; // 行业类别
+@property(nonatomic,strong) NSString *industryTitle; // 行业类别
+@property(nonatomic,strong) MSFSelectKeyValues *nature; // 单位性质
+@property(nonatomic,strong) NSString *natureTitle; // 单位性质
 
-/**
- *  行业类别
- */
-@property(nonatomic,strong) MSFSelectKeyValues *industry;
+
+// 职业
+@property(nonatomic,strong) MSFSelectKeyValues *profession;
 
 /**
  *  职位
  */
 @property(nonatomic,strong) MSFSelectKeyValues *position;
-
-/**
- *  单位性质
- */
-@property(nonatomic,strong) MSFSelectKeyValues *nature;
 
 /**
  *  入职时间
@@ -94,6 +86,13 @@
 @property(nonatomic,readonly) RACCommand *executeEductionalSystmeCommand;
 @property(nonatomic,readonly) RACCommand *executeEnrollmentYearCommand;
 @property(nonatomic,readonly) RACCommand *executeWorkingLengthCommand;
+
+// 单位信息
+@property(nonatomic,readonly) RACCommand *executeIndustryCommand;
+@property(nonatomic,readonly) RACCommand *executeNatureCommand;
+
+// 部门信息
+@property(nonatomic,readonly) RACCommand *executePositionCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 
