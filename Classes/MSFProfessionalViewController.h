@@ -42,6 +42,10 @@
 @property(nonatomic,weak) IBOutlet UITextField *position;//职位 title
 @property(nonatomic,weak) IBOutlet UITextField *currentJobDate;//现工作开始时间 工作开始时间
 
+@property(nonatomic,weak) IBOutlet UIButton *departmentButton;//任职部门 任职部门
+@property(nonatomic,weak) IBOutlet UIButton *positionButton;//职位 title
+@property(nonatomic,weak) IBOutlet UIButton *currentJobDateButton;//现工作开始时间 工作开始时间
+
 // 单位联系方式
 @property(nonatomic,weak) IBOutlet UITextField *unitAreaCode;//办公/个体电话区号
 @property(nonatomic,weak) IBOutlet UITextField *unitTelephone;//办公/个体电话

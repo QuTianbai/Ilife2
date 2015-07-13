@@ -60,11 +60,11 @@
     return value.text;
   }];
   
-  RAC(self,socalTF.text) =
-  [RACObserve(self.viewModel, careerViewModel.profession) map:^id(MSFSelectKeyValues *value) {
-    return value.text;
-  }];
-  
+//  RAC(self,socalTF.text) =
+//  [RACObserve(self.viewModel, careerViewModel.profession) map:^id(MSFSelectKeyValues *value) {
+//    return value.text;
+//  }];
+	
   RACChannelTerminal *schoolChannel = RACChannelTo(self.viewModel,studentViewModel.school);
   RAC(self,shoolNameTF.text) = schoolChannel;
   [self.shoolNameTF.rac_textSignal subscribe:schoolChannel];

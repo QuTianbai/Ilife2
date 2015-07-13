@@ -317,7 +317,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhd-XA-9st" id="ovv-Yw-F70">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请选择入职时间" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-1W-w0M">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请选择入职时间" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-1W-w0M">
                                                     <rect key="frame" x="118" y="8" width="188" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -428,6 +428,10 @@
                     <connections>
                         <outlet property="companyType" destination="a5q-Xr-icE" id="D54-ia-AwD"/>
                         <outlet property="companyTypeButton" destination="J0b-Hf-KXk" id="hIe-7u-zG5"/>
+                        <outlet property="currentJobDate" destination="ODD-1W-w0M" id="Z4P-Nd-QB6"/>
+                        <outlet property="currentJobDateButton" destination="EEm-Fj-4AM" id="yop-vP-nl2"/>
+                        <outlet property="department" destination="MoM-ZD-cBb" id="ZI0-GR-VEA"/>
+                        <outlet property="departmentButton" destination="9fu-A4-kGJ" id="cfP-9t-Fiq"/>
                         <outlet property="education" destination="nab-WT-r66" id="1s0-IH-UMG"/>
                         <outlet property="educationButton" destination="Prp-U1-uaa" id="r43-le-qHu"/>
                         <outlet property="enrollmentYear" destination="cf8-OE-eun" id="tLh-yd-wTa"/>
@@ -435,6 +439,8 @@
                         <outlet property="industry" destination="Jxe-L5-xwx" id="qhS-cf-kse"/>
                         <outlet property="industryButton" destination="j3r-cW-lzz" id="fOa-3I-Xth"/>
                         <outlet property="nextButton" destination="8Wz-kg-ezK" id="2Cy-yW-bwq"/>
+                        <outlet property="position" destination="Qeo-TP-XAm" id="NPp-X8-YDf"/>
+                        <outlet property="positionButton" destination="C28-sT-cUl" id="HCL-oh-HI1"/>
                         <outlet property="programLength" destination="bDS-Y0-6x7" id="Vkq-72-VDg"/>
                         <outlet property="programLengthButton" destination="Ed4-W2-kJO" id="Yp2-my-CFV"/>
                         <outlet property="socialStatus" destination="5xr-wt-Pes" id="R7E-4P-PTu"/>

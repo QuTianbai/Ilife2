@@ -48,10 +48,10 @@
    map:^id(id value) {
     return [value text];
   }];
-  RAC(self.socalTF,text) = [[RACObserve(self.viewModel.careerViewModel, profession) ignore:nil]
-   map:^id(id value) {
-    return [value text];
-  }];
+//  RAC(self.socalTF,text) = [[RACObserve(self.viewModel.careerViewModel, profession) ignore:nil]
+//   map:^id(id value) {
+//    return [value text];
+//  }];
   @weakify(self)
   [[self.educateBT rac_signalForControlEvents:UIControlEventTouchUpInside]
    subscribeNext:^(id x) {
@@ -80,7 +80,7 @@
      [selectionViewController.selectedSignal subscribeNext:^(MSFSelectKeyValues *selectValue) {
        @strongify(selectionViewController)
        [selectionViewController.navigationController popViewControllerAnimated:YES];
-       self.viewModel.careerViewModel.profession = selectValue;
+//       self.viewModel.careerViewModel.profession = selectValue;
      }];
    }];
   

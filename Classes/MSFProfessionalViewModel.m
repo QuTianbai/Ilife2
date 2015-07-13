@@ -82,6 +82,16 @@
 		self.natureTitle = object.text;
 	}];
 	
+	[RACObserve(self, department) subscribeNext:^(MSFSelectKeyValues *object) {
+		self.model.department = object.code;
+		self.departmentTitle = object.text;
+	}];
+	
+	[RACObserve(self, position) subscribeNext:^(MSFSelectKeyValues *object) {
+		self.model.title = object.code;
+		self.positionTitle = object.text;
+	}];
+	
 	_executeEducationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self educationSignal];
@@ -122,6 +132,23 @@
 		return [self natureSignal];
 	}];
 	_executeNatureCommand.allowsConcurrentExecution = YES;
+	
+	_executeDepartmentCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self departmentSignal];
+	}];
+	_executeDepartmentCommand.allowsConcurrentExecution = YES;
+	
+	_executePositionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self positionSignal];
+	}];
+	_executePositionCommand.allowsConcurrentExecution = YES;
+	
+	_executeStartedDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self startedDateSignal];
+	}];
   
   return self;
 }
@@ -465,6 +492,72 @@
 			self.nature = x;
 			[selectionViewController.navigationController popViewControllerAnimated:YES];
 		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)departmentSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"professional"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"部门";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.department = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)positionSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"position"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"职位";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.position = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)startedDateSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-50];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+	 
+		[ActionSheetDatePicker
+			showPickerWithTitle:@""
+			datePickerMode:UIDatePickerModeDate
+			selectedDate:[NSDate date]
+			minimumDate:minDate
+			maximumDate:maxDate
+			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+				self.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			cancelBlock:^(ActionSheetDatePicker *picker) {
+				self.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			origin:self.viewController.view];
 		return nil;
 	}];
 }

@@ -47,19 +47,14 @@
 @property(nonatomic,strong) MSFSelectKeyValues *nature; // 单位性质
 @property(nonatomic,strong) NSString *natureTitle; // 单位性质
 
+// 职位信息
+@property(nonatomic,strong) MSFSelectKeyValues *department; // 部门
+@property(nonatomic,strong) MSFSelectKeyValues *position; // 职位
+@property(nonatomic,strong) NSString *startedDate; // 入职时间
 
-// 职业
-@property(nonatomic,strong) MSFSelectKeyValues *profession;
+@property(nonatomic,strong) NSString *departmentTitle; // 部门
+@property(nonatomic,strong) NSString *positionTitle; // 职位
 
-/**
- *  职位
- */
-@property(nonatomic,strong) MSFSelectKeyValues *position;
-
-/**
- *  入职时间
- */
-@property(nonatomic,strong) NSDate *date;
 
 @property(nonatomic,strong) NSString *areaCode;
 @property(nonatomic,strong) NSString *telephone;
@@ -92,7 +87,9 @@
 @property(nonatomic,readonly) RACCommand *executeNatureCommand;
 
 // 部门信息
+@property(nonatomic,readonly) RACCommand *executeDepartmentCommand;
 @property(nonatomic,readonly) RACCommand *executePositionCommand;
+@property(nonatomic,readonly) RACCommand *executeStartedDateCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 
