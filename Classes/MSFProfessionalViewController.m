@@ -54,6 +54,10 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
   RAC(self.universityName, text) = universityNameChannel;
   [self.universityName.rac_textSignal subscribe:universityNameChannel];
 	
+	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.model, company);
+  RAC(self.company, text) = companyChannel;
+  [self.universityName.rac_textSignal subscribe:companyChannel];
+	
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
 	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
