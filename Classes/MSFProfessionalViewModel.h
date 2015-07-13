@@ -61,19 +61,9 @@
 @property(nonatomic,strong) NSString *extensionTelephone;
 
 /**
- * 工作地区
- */
-@property(nonatomic,strong) MSFAreas *province;
-@property(nonatomic,strong) MSFAreas *city;
-@property(nonatomic,strong) MSFAreas *area;
-
-/**
  *  详细地址
  */
 @property(nonatomic,strong) NSString *address;
-
-@property(nonatomic,strong) RACCommand *executeRequest;
-@property(nonatomic,strong) RACCommand *executeIncumbencyRequest;
 
 @property(nonatomic,readonly) MSFApplicationForms *model;
 @property(nonatomic,readonly) RACCommand *executeEducationCommand;
@@ -92,6 +82,8 @@
 @property(nonatomic,readonly) RACCommand *executeStartedDateCommand;
 
 @property(nonatomic,strong,readonly) RACCommand *executeAddressCommand;
+
+@property(nonatomic,strong,readonly) RACCommand *executeCommitCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 

@@ -84,7 +84,7 @@
      }];
    }];
   
-  self.nextPageButton.rac_command = self.viewModel.careerViewModel.executeRequest;
+//  self.nextPageButton.rac_command = self.viewModel.careerViewModel.executeRequest;
   [self.nextPageButton.rac_command.executionSignals subscribeNext:^(RACSignal *signal) {
     @strongify(self)
     [MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];

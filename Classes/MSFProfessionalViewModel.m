@@ -47,8 +47,7 @@
 	_viewController = viewController;
 	_model = formsViewModel.model;
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithWorkApplicationForm:self.model controller:self.viewController];
-	
-	@weakify(self)
+	[self initialize];
 	
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, workProvince) = RACObserve(self.addressViewModel, provinceName);
@@ -62,6 +61,9 @@
 	
 	RACChannelTo(self, school) = RACChannelTo(self.model, universityName);
 	RACChannelTo(self, enrollmentYear) = RACChannelTo(self.model, enrollmentYear);
+	RACChannelTo(self, startedDate) = RACChannelTo(self.model, currentJobDate);
+	
+	@weakify(self)
 	
 	[RACObserve(self, degrees) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
@@ -76,31 +78,37 @@
 	}];
 	
 	[RACObserve(self, eductionalSystme) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
 		self.model.programLength = object.code;
 		self.eductionalSystmeTitle = object.text;
 	}];
 	
 	[RACObserve(self, seniority) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
 		self.model.workingLength = object.code;
 		self.seniorityTitle = object.text;
 	}];
 	
 	[RACObserve(self, industry) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
 		self.model.industry = object.code;
 		self.industryTitle = object.text;
 	}];
 	
 	[RACObserve(self, nature) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
 		self.model.companyType = object.code;
 		self.natureTitle = object.text;
 	}];
 	
 	[RACObserve(self, department) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
 		self.model.department = object.code;
 		self.departmentTitle = object.text;
 	}];
 	
 	[RACObserve(self, position) subscribeNext:^(MSFSelectKeyValues *object) {
+		@strongify(self)
 		self.model.title = object.code;
 		self.positionTitle = object.text;
 	}];
@@ -162,74 +170,11 @@
 		@strongify(self)
 		return [self startedDateSignal];
 	}];
-  
-  return self;
-}
-/*
-
-//TODO: refact to super class
-- (instancetype)initWithModel:(MSFApplyInfo *)model {
-  if (!(self = [super initWithModel:model])) {
-    return nil;
-  }
-  self.date = [NSDateFormatter msf_dateFromString:model.currentJobDate];
-  
-  [self initialize];
-  RAC(self.model,education) = [[RACObserve(self, degrees) ignore:nil] map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
-  RAC(self.model,socialStatus) = [[RACObserve(self, profession) ignore:nil] map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
-  RAC(self.model,workingLength) = [[RACObserve(self, seniority) ignore:nil] map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
-  RAC(self.model,industry) = [[RACObserve(self, industry) ignore:nil] map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
-  RAC(self.model,title) = [[RACObserve(self, position) ignore:nil] map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
-  RAC(self.model,companyType) = [[RACObserve(self, nature) ignore:nil] map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
-  RAC(self.model,currentJobDate) = [[RACObserve(self, date) ignore:nil] map:^id(NSDate *value) {
-    return [NSDateFormatter msf_stringFromDate:value];
-  }];
-  RACChannelTo(self,company) = RACChannelTo(self.model,company);
-  RACChannelTo(self,address) = RACChannelTo(self.model,workTown);
-  RACChannelTo(self,areaCode) = RACChannelTo(self.model,unitAreaCode);
-  RACChannelTo(self,telephone) = RACChannelTo(self.model,unitTelephone);
-  RACChannelTo(self,extensionTelephone) = RACChannelTo(self.model,unitExtensionTelephone);
-  
-  @weakify(self)
-  [[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *area) {
-    @strongify(self)
-    self.model.workProvinceCode = area.codeID;
-    self.model.workProvince = area.name;
-  }];
-  [[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *area) {
-    @strongify(self)
-    self.model.workCityCode = area.codeID;
-    self.model.workCity = area.name;
-  }];
-  [[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *area) {
-    @strongify(self)
-    self.model.workCountryCode = area.codeID;
-    self.model.workCountry = area.name;
-  }];
-  
-  _executeRequest = [[RACCommand alloc] initWithEnabled:self.requestValidSignal
-    signalBlock:^RACSignal *(id input) {
-      @strongify(self)
-      return self.executeRequestSignal;
-    }];
-  
-  _executeIncumbencyRequest = [[RACCommand alloc] initWithEnabled:self.executeIncumbencyValidRequest
-    signalBlock:^RACSignal *(id input) {
-      @strongify(self)
-      return self.executeIncumbencyRequestSignal;
-    }];
+	
+	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self commitSignal];
+	}];
   
   return self;
 }
@@ -247,7 +192,7 @@
   NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"social_status"];
   [professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
     if ([obj.code isEqualToString:self.model.socialStatus]) {
-      self.profession = obj;
+      self.socialstatus = obj;
       *stop = YES;
     }
   }];
@@ -279,101 +224,21 @@
       *stop = YES;
     }
   }];
-  
-  FMResultSet *rs;
-  FMDatabase *fmdb = [FMDatabase databaseWithPath:[[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"]];
-  [fmdb open];
-  rs = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'",self.model.workProvinceCode]];
-  if (rs.next) {
-    self.province = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
-  }
-  rs = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'",self.model.workCityCode]];
-  if (rs.next) {
-    self.city = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
-  }
-  rs = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'",self.model.workCountryCode]];
-  if (rs.next) {
-    self.area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
-  }
-  [fmdb close];
+  NSArray *eductionalSystme = [MSFSelectKeyValues getSelectKeys:@"school_system"];
+  [eductionalSystme enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+    if ([obj.code isEqualToString:self.model.programLength]) {
+      self.eductionalSystme = obj;
+      *stop = YES;
+    }
+  }];
+  NSArray *department = [MSFSelectKeyValues getSelectKeys:@"professional"];
+  [department enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+    if ([obj.code isEqualToString:self.model.department]) {
+      self.department = obj;
+      *stop = YES;
+    }
+  }];
 }
-
-- (RACSignal *)executeRequestSignal {
-  self.model.page = @"3";
-  
-  return [self.client applyInfoSubmit1:self.model];
-}
-
-- (RACSignal *)executeIncumbencyRequestSignal {
-  self.model.page = @"3";
-  
-  return [self.client applyInfoSubmit1:self.model];
-}
-
-#pragma mark - Public
-
-- (RACSignal *)requestValidSignal {
-  return [RACSignal combineLatest:@[
-    RACObserve(self, degrees),
-    RACObserve(self, profession)
-    ]
-   reduce:^id(MSFSelectKeyValues *degress, MSFSelectKeyValues *profession){
-     return @(degress != nil && profession != nil);
-   }];
-}
-
-- (RACSignal *)executeIncumbencyValidRequest {
-  return [RACSignal combineLatest:@[
-    RACObserve(self, degrees),
-    RACObserve(self, profession),
-    RACObserve(self, seniority),
-    RACObserve(self, company),
-    RACObserve(self, industry),
-    RACObserve(self, position),
-    RACObserve(self, nature),
-    RACObserve(self, date),
-    RACObserve(self, areaCode),
-    RACObserve(self, telephone),
-    RACObserve(self, extensionTelephone),
-    RACObserve(self, province),
-    RACObserve(self, address),
-    ]
-   reduce:^id (
-     MSFSelectKeyValues *degress,
-     MSFSelectKeyValues *profession,
-     MSFSelectKeyValues *seniority,
-     NSString *company,
-     MSFSelectKeyValues *industry,
-     MSFSelectKeyValues *position,
-     MSFSelectKeyValues *nature,
-     NSDate *date,
-     NSString *areaCode,
-     NSString *telephone,
-     NSString *extensionTelephone,
-     MSFSelectKeyValues *province,
-     NSString *address
-     ) {
-     NSString *tel = [NSString stringWithFormat:@"%@%@",areaCode,telephone];
-     return @(
-     position != nil &&
-     seniority != nil &&
-     degress != nil &&
-     company.length > 0 &&
-     industry != nil &&
-     nature != nil &&
-     date != nil &&
-     areaCode != nil &&
-     telephone != nil &&
-     extensionTelephone != nil &&
-     province != nil &&
-     address.length > 0 &&
-     tel.isTelephone
-     );
-   }];
-}
-*/
-
-#pragma mark - Private
 
 - (RACSignal *)educationSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -382,7 +247,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"教育信息";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.degrees = x;
@@ -399,7 +266,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"社会身份";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.socialstatus = x;
@@ -416,7 +285,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"学制";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.eductionalSystme = x;
@@ -433,7 +304,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"工作年限";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.seniority = x;
@@ -482,7 +355,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"行业类别";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.industry = x;
@@ -499,7 +374,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"行业性质";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.nature = x;
@@ -516,7 +393,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"部门";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.department = x;
@@ -533,7 +412,9 @@
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"职位";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		@weakify(selectionViewController)
 		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			@strongify(selectionViewController)
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.position = x;
@@ -572,6 +453,102 @@
 			}
 			origin:self.viewController.view];
 		return nil;
+	}];
+}
+
+- (RACSignal *)commitSignal {
+	if ([self.model.socialStatus isEqualToString:@"SI02"] && ![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
+		}]];
+	}
+	
+	return [self.formsViewModel submitSignalWithPage:3];
+}
+
+- (RACSignal *)commitValidSignal {
+	return [[RACSignal
+		combineLatest:@[
+			[self  studentValidSignal],
+			[self staffMemberValidSignal],
+			[self freelanceSignal]
+		]]
+		or];
+}
+
+- (RACSignal *)freelanceSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self.model, socialStatus),
+		RACObserve(self.model, education),
+	]
+	reduce:^id(NSString *social, NSString *education) {
+		return @([social isEqualToString:@"SI03"] && education.length > 0);
+	}];
+}
+
+- (RACSignal *)studentValidSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self.model, socialStatus),
+		RACObserve(self.model, universityName),
+		RACObserve(self.model, programLength),
+		RACObserve(self.model, enrollmentYear),
+	]
+	 reduce:^id (NSString *social, NSString *universityName, NSString *programLength, NSString *enrollmentYear) {
+		return @([social isEqualToString:@"SI01"] && universityName.length != 0 && programLength.length != 0 && enrollmentYear.length != 0);
+	 }];
+}
+
+- (RACSignal *)staffMemberValidSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self.model, socialStatus),
+		RACObserve(self.model, company),
+		RACObserve(self.model, industry),
+		RACObserve(self.model, companyType),
+		
+		RACObserve(self.model, department),
+		RACObserve(self.model, title),
+		RACObserve(self.model, currentJobDate),
+		
+		RACObserve(self.model, unitAreaCode),
+		RACObserve(self.model, unitTelephone),
+		RACObserve(self.model, unitExtensionTelephone),
+		
+		RACObserve(self.model, workProvinceCode),
+		RACObserve(self.model, workCityCode),
+		RACObserve(self.model, workCountryCode),
+		
+		RACObserve(self.model, workTown)
+	] reduce:^id(
+		NSString *socail,
+		NSString *company,
+		NSString *industry,
+		NSString *companyType,
+		NSString *department,
+		NSString *title,
+		NSString *currentJobDate,
+		NSString *unitAreaCode,
+		NSString *unitTelephone,
+		NSString *unitExtensionTelephone,
+		NSString *workProvinceCode,
+		NSString *workCityCode,
+		NSString *workCountryCode,
+		NSString *workTown
+	) {
+		return @(
+			[socail isEqualToString:@"SI02"] &&
+			company.length != 0 &&
+			industry.length != 0 &&
+			companyType.length != 0 &&
+			department.length != 0 &&
+			title.length != 0 &&
+			currentJobDate.length != 0 &&
+			unitAreaCode.length != 0 &&
+			unitTelephone.length != 0 &&
+			workProvinceCode.length != 0 &&
+			workCityCode.length != 0 &&
+			workCountryCode.length != 0 &&
+			workTown.length != 0
+		);
 	}];
 }
 
