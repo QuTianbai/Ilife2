@@ -56,7 +56,19 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.model, company);
   RAC(self.company, text) = companyChannel;
-  [self.universityName.rac_textSignal subscribe:companyChannel];
+  [self.company.rac_textSignal subscribe:companyChannel];
+	
+	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
+  RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
+  [self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
+	
+	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
+  RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
+  [self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
+	
+	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
+  RAC(self.unitTelephone, text) = unitTelephoneChannel;
+  [self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
 	
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
@@ -78,6 +90,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	RAC(self.currentJobDate, text) = RACObserve(self.viewModel, startedDate);
 	self.currentJobDateButton.rac_command = self.viewModel.executeStartedDateCommand;
+	RAC(self.address, text) = RACObserve(self.viewModel, address);
+	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
 	
 	@weakify(self)

@@ -20,11 +20,13 @@
 #import <ActionSheetPicker-3.0/ActionSheetPicker.h>
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
+#import "MSFAddressViewModel.h"
 
 @interface MSFProfessionalViewModel ( )
 
 @property(nonatomic,weak) UIViewController *viewController;
 @property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
+@property(nonatomic,readonly) MSFAddressViewModel *addressViewModel;
 
 @end
 
@@ -44,8 +46,19 @@
 	_formsViewModel = formsViewModel;
 	_viewController = viewController;
 	_model = formsViewModel.model;
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithWorkApplicationForm:self.model controller:self.viewController];
 	
 	@weakify(self)
+	
+	RAC(self, address) = RACObserve(self.addressViewModel, address);
+	RAC(self.model, workProvince) = RACObserve(self.addressViewModel, provinceName);
+	RAC(self.model, workProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
+	RAC(self.model, workCity) = RACObserve(self.addressViewModel, cityName);
+	RAC(self.model, workCityCode) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self.model, workCountry) = RACObserve(self.addressViewModel, areaName);
+	RAC(self.model, workCountryCode) = RACObserve(self.addressViewModel, areaCode);
+	
+	_executeAddressCommand = self.addressViewModel.selectCommand;
 	
 	RACChannelTo(self, school) = RACChannelTo(self.model, universityName);
 	RACChannelTo(self, enrollmentYear) = RACChannelTo(self.model, enrollmentYear);

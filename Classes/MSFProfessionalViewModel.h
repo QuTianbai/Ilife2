@@ -91,6 +91,8 @@
 @property(nonatomic,readonly) RACCommand *executePositionCommand;
 @property(nonatomic,readonly) RACCommand *executeStartedDateCommand;
 
+@property(nonatomic,strong,readonly) RACCommand *executeAddressCommand;
+
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 
 @end

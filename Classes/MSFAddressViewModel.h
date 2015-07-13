@@ -36,6 +36,12 @@
 
 - (instancetype)initWithController:(UIViewController *)viewController;
 - (instancetype)initWithController:(UIViewController *)viewController needArea:(BOOL)needArea;
+
+//TODO: 改进这里的初始化方法
+// 当前地址选择
 - (instancetype)initWithApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController;
+
+// 工作地址选择
+- (instancetype)initWithWorkApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController;
 
 @end

@@ -51,12 +51,9 @@
 @property(nonatomic,weak) IBOutlet UITextField *unitTelephone;//办公/个体电话
 @property(nonatomic,weak) IBOutlet UITextField *unitExtensionTelephone;//办公/个体电话分机号
 
-@property(nonatomic,weak) IBOutlet UITextField *workProvinceCode;//单位地址省code
-@property(nonatomic,weak) IBOutlet UITextField *workProvince;//单位所在省
-@property(nonatomic,weak) IBOutlet UITextField *workCityCode;//单位地址市code
-@property(nonatomic,weak) IBOutlet UITextField *workCity;//单位所在市
-@property(nonatomic,weak) IBOutlet UITextField *workCountryCode;//单位地址县code
-@property(nonatomic,weak) IBOutlet UITextField *workCountry;//单位所在区/县
+@property(nonatomic,weak) IBOutlet UITextField *address;
+@property(nonatomic,weak) IBOutlet UIButton *addressButton;
+
 @property(nonatomic,weak) IBOutlet UITextField *workTown;// 单位所在镇 单位地址镇
 
 @property(nonatomic,weak) IBOutlet UIButton *nextButton;

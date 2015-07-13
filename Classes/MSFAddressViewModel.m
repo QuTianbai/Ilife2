@@ -35,6 +35,33 @@
 	return [self initWithController:contentViewController needArea:NO];
 }
 
+- (instancetype)initWithWorkApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController {
+	if (!(self = [self initWithController:viewController needArea:YES])) {
+		return nil;
+	}
+	self.province = [self regionWithCode:model.workProvinceCode];
+	self.city = [self regionWithCode:model.workCityCode];
+	self.area = [self regionWithCode:model.workCountryCode];
+	
+	@weakify(self)
+	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.provinceName = x.name;
+		self.provinceCode = x.codeID;
+	}];
+	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.cityName = x.name;
+		self.cityCode = x.codeID;
+	}];
+	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.areaName = x.name;
+		self.areaCode = x.codeID;
+	}];
+	return self;
+}
+
 - (instancetype)initWithApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController {
 	if (!(self = [self initWithController:viewController needArea:YES])) {
 		return nil;

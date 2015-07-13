@@ -426,6 +426,9 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="900"/>
                     <connections>
+                        <outlet property="address" destination="aai-MT-gaM" id="mB1-dO-pH4"/>
+                        <outlet property="addressButton" destination="vyU-Fh-qfL" id="gVh-Hs-lfd"/>
+                        <outlet property="company" destination="XqC-hX-BRY" id="t0u-KP-jEv"/>
                         <outlet property="companyType" destination="a5q-Xr-icE" id="D54-ia-AwD"/>
                         <outlet property="companyTypeButton" destination="J0b-Hf-KXk" id="hIe-7u-zG5"/>
                         <outlet property="currentJobDate" destination="ODD-1W-w0M" id="Z4P-Nd-QB6"/>
@@ -445,7 +448,11 @@
                         <outlet property="programLengthButton" destination="Ed4-W2-kJO" id="Yp2-my-CFV"/>
                         <outlet property="socialStatus" destination="5xr-wt-Pes" id="R7E-4P-PTu"/>
                         <outlet property="socialStatusButton" destination="3rq-28-qQO" id="Ehd-4z-b4I"/>
+                        <outlet property="unitAreaCode" destination="3kQ-MM-jC6" id="7aT-qw-iOj"/>
+                        <outlet property="unitExtensionTelephone" destination="fRk-2X-djv" id="Vyk-A9-Ae4"/>
+                        <outlet property="unitTelephone" destination="PuU-me-SGl" id="rhx-A2-dh1"/>
                         <outlet property="universityName" destination="ksj-B7-xO8" id="Xi8-fI-oVa"/>
+                        <outlet property="workTown" destination="fGL-lh-hSR" id="dTH-G7-n9o"/>
                         <outlet property="workingLength" destination="wNX-Vi-cSj" id="T5V-Uo-Jug"/>
                         <outlet property="workingLengthButton" destination="T9Z-38-4Pz" id="Lfs-Px-KAy"/>
                     </connections>
