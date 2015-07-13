@@ -24,6 +24,11 @@
 @property(nonatomic,strong) MSFSelectKeyValues *socialstatus;
 @property(nonatomic,strong) NSString *socialstatusTitle;
 
+// 学生
+@property(nonatomic,strong) NSString *school;
+@property(nonatomic,strong) MSFSelectKeyValues *eductionalSystme;
+@property(nonatomic,strong) NSString *eductionalSystmeTitle;
+
 /**
  *  职业
  */
@@ -78,12 +83,10 @@
 @property(nonatomic,strong) RACCommand *executeRequest;
 @property(nonatomic,strong) RACCommand *executeIncumbencyRequest;
 
-- (instancetype)initWithModel:(id)model;
-
-
 @property(nonatomic,readonly) MSFApplicationForms *model;
 @property(nonatomic,readonly) RACCommand *executeEducationCommand;
 @property(nonatomic,readonly) RACCommand *executeSocialStatusCommand;
+@property(nonatomic,readonly) RACCommand *executeEductionalSystmeCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 

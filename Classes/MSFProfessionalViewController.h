@@ -26,6 +26,8 @@
 @property(nonatomic,weak) IBOutlet UITextField *enrollmentYear;//入学年份 入学年份
 @property(nonatomic,weak) IBOutlet UITextField *programLength;//学制 学制
 
+@property(nonatomic,weak) IBOutlet UIButton *programLengthButton;//学制 学制
+
 // 单位信息
 @property(nonatomic,weak) IBOutlet UITextField *company;//单位/个体全称 单位/个体名称
 @property(nonatomic,weak) IBOutlet UITextField *companyType;//单位性质code

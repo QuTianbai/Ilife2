@@ -46,6 +46,8 @@
 	
 	@weakify(self)
 	
+	RACChannelTo(self,school) = RACChannelTo(self.model,universityName);
+	
 	[RACObserve(self, degrees) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.education = object.code;
@@ -56,6 +58,11 @@
 		@strongify(self)
 		self.model.socialStatus = object.code;
 		self.socialstatusTitle = object.text;
+	}];
+	
+	[RACObserve(self, eductionalSystme) subscribeNext:^(MSFSelectKeyValues *object) {
+		self.model.programLength = object.code;
+		self.eductionalSystmeTitle = object.text;
 	}];
 	
 	_executeEducationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -69,6 +76,12 @@
 		return [self socialStatusSignal];
 	}];
 	_executeSocialStatusCommand.allowsConcurrentExecution = YES;
+	
+	_executeEductionalSystmeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self eductionalSystmeSignal];
+	}];
+	_executeEductionalSystmeCommand.allowsConcurrentExecution = YES;
   
   return self;
 }
@@ -310,6 +323,23 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.socialstatus = x;
+			[selectionViewController.navigationController popViewControllerAnimated:YES];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)eductionalSystmeSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"school_system"]];
+		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+		selectionViewController.title = @"学制";
+		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
+		[selectionViewController.selectedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.eductionalSystme = x;
 			[selectionViewController.navigationController popViewControllerAnimated:YES];
 		}];
 		return nil;
