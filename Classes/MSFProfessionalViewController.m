@@ -11,7 +11,6 @@
 #import <RMPickerViewController/RMPickerViewController.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import "MSFSelectKeyValues.h"
-#import "MSFApplyStartViewModel.h"
 #import "MSFApplicationForms.h"
 #import <libextobjc/extobjc.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
@@ -22,6 +21,8 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
+#import "MSFRelationshipViewModel.h"
+#import "MSFRelationshipViewController.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
     MSFProfessionalViewSectionSchool = 1,
@@ -110,13 +111,13 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-//		@strongify(self)
+		@strongify(self)
 		[signal subscribeNext:^(id x) {
-//			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
-//			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-//			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel contentViewController:vc];
-//			[vc bindViewModel:viewModel];
-//			[self.navigationController pushViewController:vc animated:YES];
+			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"relationship" bundle:nil];
+			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
+			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel contentViewController:vc];
+			[vc bindViewModel:viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {

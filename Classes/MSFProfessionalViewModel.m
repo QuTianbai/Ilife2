@@ -25,7 +25,6 @@
 @interface MSFProfessionalViewModel ( )
 
 @property(nonatomic,weak) UIViewController *viewController;
-@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
 @property(nonatomic,readonly) MSFAddressViewModel *addressViewModel;
 
 @end

@@ -12,6 +12,4 @@
 
 @interface MSFRelationshipViewController : UITableViewController <MSFReactiveView>
 
-@property(nonatomic) NSInteger pageIndex;
-
 @end

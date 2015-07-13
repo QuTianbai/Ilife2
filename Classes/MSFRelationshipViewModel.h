@@ -9,41 +9,48 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFSelectKeyValues.h"
 
+@class MSFFormsViewModel;
+@class UIViewController;
 @class RACCommand;
+@class MSFApplicationForms;
 
 @interface MSFRelationshipViewModel : RVMViewModel
+
+@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
+@property(nonatomic,readonly) MSFApplicationForms *model;
+
 /**
  *婚姻状况
  */
 @property(nonatomic,strong) MSFSelectKeyValues *marryValues;
+@property(nonatomic,strong) NSString *marryValuesTitle;
 /**
  *住房状况
  */
 @property(nonatomic,strong) MSFSelectKeyValues *houseValues;
+@property(nonatomic,strong) NSString *houseValuesTitle;
+
 /**
  *家庭成员一与申请人关系
  */
 @property(nonatomic,strong) MSFSelectKeyValues *familyOneValues;
+@property(nonatomic,strong) NSString *familyOneValuesTitle;
 /**
  *家庭成员二与申请人关系
  */
 @property(nonatomic,strong) MSFSelectKeyValues *familyTwoValues;
+@property(nonatomic,strong) NSString *familyTwoValuesTitle;
 /**
  *其他联系人与申请人关系
  */
 @property(nonatomic,strong) MSFSelectKeyValues *otherOneValues;
+@property(nonatomic,strong) NSString *otherOneValuesTitle;
 /**
  *其他联系人二与申请人关系
  */
 @property(nonatomic,strong) MSFSelectKeyValues *otherTwoValues;
-/**
- *家庭成员姓名
- */
-@property(nonatomic,copy) NSString *familyOneNameValues;
-/**
- *家庭成员手机号
- */
-@property(nonatomic,copy) NSString *phoneNumOneValues;
+@property(nonatomic,strong) NSString *otherTwoValuesTitle;
+
 /**
  *同现居地址一
  */
@@ -77,6 +84,19 @@
  */
 @property(nonatomic,copy) NSString *otherPhoneTwoValues;
 @property(nonatomic,strong) RACCommand *executeRequest;
-- (RACSignal *)requestValidSignal;
+
+@property(nonatomic,assign) BOOL hasMember2;
+@property(nonatomic,assign) BOOL hasContact2;
+
+@property(nonatomic,strong,readonly) RACCommand *executeMarryValuesCommand;
+@property(nonatomic,strong,readonly) RACCommand *executeHouseValuesCommand;
+@property(nonatomic,strong,readonly) RACCommand *executeFamilyOneValuesCommand;
+@property(nonatomic,strong,readonly) RACCommand *executeFamilyTwoValuesCommand;
+@property(nonatomic,strong,readonly) RACCommand *executeOtherOneValuesCommand;
+@property(nonatomic,strong,readonly) RACCommand *executeOtherTwoValuesCommand;
+
+@property(nonatomic,strong,readonly) RACCommand *executeCommitCommand;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel contentViewController:(UIViewController *)controller;
 
 @end

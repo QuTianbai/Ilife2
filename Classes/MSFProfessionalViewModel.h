@@ -65,6 +65,7 @@
  */
 @property(nonatomic,strong) NSString *address;
 
+@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
 @property(nonatomic,readonly) MSFApplicationForms *model;
 @property(nonatomic,readonly) RACCommand *executeEducationCommand;
 @property(nonatomic,readonly) RACCommand *executeSocialStatusCommand;
