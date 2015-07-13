@@ -28,6 +28,7 @@
 @property(nonatomic,strong) NSString *school;
 @property(nonatomic,strong) MSFSelectKeyValues *eductionalSystme;
 @property(nonatomic,strong) NSString *eductionalSystmeTitle;
+@property(nonatomic,strong) NSString *enrollmentYear;
 
 /**
  *  职业
@@ -87,6 +88,7 @@
 @property(nonatomic,readonly) RACCommand *executeEducationCommand;
 @property(nonatomic,readonly) RACCommand *executeSocialStatusCommand;
 @property(nonatomic,readonly) RACCommand *executeEductionalSystmeCommand;
+@property(nonatomic,readonly) RACCommand *executeEnrollmentYearCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
 

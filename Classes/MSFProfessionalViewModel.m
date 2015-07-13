@@ -17,6 +17,7 @@
 #import "NSString+Matches.h"
 #import "MSFFormsViewModel.h"
 #import <UIKit/UIKit.h>
+#import <ActionSheetPicker-3.0/ActionSheetPicker.h>
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
@@ -46,7 +47,8 @@
 	
 	@weakify(self)
 	
-	RACChannelTo(self,school) = RACChannelTo(self.model,universityName);
+	RACChannelTo(self, school) = RACChannelTo(self.model, universityName);
+	RACChannelTo(self, enrollmentYear) = RACChannelTo(self.model, enrollmentYear);
 	
 	[RACObserve(self, degrees) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
@@ -82,6 +84,11 @@
 		return [self eductionalSystmeSignal];
 	}];
 	_executeEductionalSystmeCommand.allowsConcurrentExecution = YES;
+	
+	_executeEnrollmentYearCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self enrollmentYearSignal];
+	}];
   
   return self;
 }
@@ -342,6 +349,38 @@
 			self.eductionalSystme = x;
 			[selectionViewController.navigationController popViewControllerAnimated:YES];
 		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)enrollmentYearSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.viewController.view endEditing:YES];
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-50];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+	 
+		[ActionSheetDatePicker
+			showPickerWithTitle:@""
+			datePickerMode:UIDatePickerModeDate
+			selectedDate:[NSDate date]
+			minimumDate:minDate
+			maximumDate:maxDate
+			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+				self.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			cancelBlock:^(ActionSheetDatePicker *picker) {
+				self.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			origin:self.viewController.view];
 		return nil;
 	}];
 }

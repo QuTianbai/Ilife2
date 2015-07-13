@@ -152,7 +152,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM8-o5-a5w">
-                                                    <rect key="frame" x="152" y="5" width="52" height="30"/>
+                                                    <rect key="frame" x="112" y="5" width="156" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -428,10 +428,14 @@
                     <connections>
                         <outlet property="education" destination="nab-WT-r66" id="1s0-IH-UMG"/>
                         <outlet property="educationButton" destination="Prp-U1-uaa" id="r43-le-qHu"/>
+                        <outlet property="enrollmentYear" destination="cf8-OE-eun" id="tLh-yd-wTa"/>
+                        <outlet property="enrollmentYearButton" destination="nM8-o5-a5w" id="geT-qS-alI"/>
+                        <outlet property="nextButton" destination="8Wz-kg-ezK" id="2Cy-yW-bwq"/>
                         <outlet property="programLength" destination="bDS-Y0-6x7" id="Vkq-72-VDg"/>
                         <outlet property="programLengthButton" destination="Ed4-W2-kJO" id="Yp2-my-CFV"/>
                         <outlet property="socialStatus" destination="5xr-wt-Pes" id="R7E-4P-PTu"/>
                         <outlet property="socialStatusButton" destination="3rq-28-qQO" id="Ehd-4z-b4I"/>
+                        <outlet property="universityName" destination="ksj-B7-xO8" id="Xi8-fI-oVa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oTE-nI-qqw" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -50,17 +50,28 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
   [super viewDidLoad];
   self.title = @"在职人员";
 	
-	RAC(self.education,text) = RACObserve(self.viewModel, degreesTitle);
+	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, universityName);
+  RAC(self.universityName, text) = universityNameChannel;
+  [self.universityName.rac_textSignal subscribe:universityNameChannel];
+	
+	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
-	RAC(self.socialStatus,text) = RACObserve(self.viewModel, socialstatusTitle);
+	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
 	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
-	RAC(self.programLength,text) = RACObserve(self.viewModel, eductionalSystmeTitle);
+	RAC(self.programLength, text) = RACObserve(self.viewModel, eductionalSystmeTitle);
 	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
+	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
+	self.enrollmentYearButton.rac_command = self.viewModel.executeEnrollmentYearCommand;
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.tableView reloadData];
+	}];
+	
+	[[self.nextButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		NSLog(@"%@", [self.viewModel.model description]);
 	}];
 	/*
   RAC(self.educationTF,text) =
