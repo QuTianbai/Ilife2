@@ -7,11 +7,11 @@
 #import "MSFClient+Months.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFResponse.h"
-#import "MSFMonths.h"
+#import "MSFProduct.h"
 
 @implementation MSFClient (Months)
 
-- (RACSignal *)fetchTermPayWithProduct:(MSFMonths *)product totalAmount:(NSInteger)amount insurance:(BOOL)insurance {
+- (RACSignal *)fetchTermPayWithProduct:(MSFProduct *)product totalAmount:(NSInteger)amount insurance:(BOOL)insurance {
   //TODO: 返回固定贷款值
 //  MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @"300"}];
 //  return [RACSignal return:response];

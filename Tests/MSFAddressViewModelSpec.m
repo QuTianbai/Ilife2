@@ -16,7 +16,7 @@ __block UIViewController *contentViewContrller;
 
 beforeEach(^{
 	contentViewContrller = mock(UIViewController.class);
-	viewModel = [[MSFTestAddressViewModel alloc] initWithController:contentViewContrller];
+	viewModel = [[MSFTestAddressViewModel alloc] initWithController:contentViewContrller needArea:YES];
 });
 
 it(@"should initialize", ^{

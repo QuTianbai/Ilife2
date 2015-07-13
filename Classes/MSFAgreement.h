@@ -7,6 +7,7 @@
 #import "MSFObject.h"
 
 @class MSFServer;
+@class MSFProduct;
 
 @interface MSFAgreement : MSFObject
 
@@ -46,6 +47,10 @@
 @property(nonatomic,strong,readonly) NSURL *repayURL;
 @property(nonatomic,strong,readonly) NSURL *registerURL;
 
+@property(nonatomic,strong,readonly) NSURL *lifeInsuranceURL;
+
 - (instancetype)initWithServer:(MSFServer *)server;
+
+- (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product;
 
 @end

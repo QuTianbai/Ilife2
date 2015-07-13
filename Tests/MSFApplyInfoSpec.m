@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
 
 QuickSpecBegin(MSFApplyInfoSpec)
-__block MSFApplyInfo* applyinfo;
+__block MSFApplicationForms* applyinfo;
 
 beforeEach(^{
     NSURL* URL=[[NSBundle bundleForClass:self.class] URLForResource:@"loadinfo" withExtension:@"json"];
@@ -18,7 +18,7 @@ beforeEach(^{
     NSData* data=[NSData dataWithContentsOfURL:URL];
     NSDictionary* representation=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
     //adver=[MTLJSONAdapter modelOfClass:MSFAdver.class fromJSONDictionary:representation error:nil];
-    applyinfo=[MTLJSONAdapter modelOfClass:MSFApplyInfo.class fromJSONDictionary:representation error:nil];
+    applyinfo=[MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:representation error:nil];
   
 });
 it(@"should has adID",^{

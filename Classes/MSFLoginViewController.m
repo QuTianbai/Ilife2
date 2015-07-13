@@ -58,7 +58,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     @strongify(self)
     [MSFUtils setPhone:self.signInViewController.username.text];
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在登录..." inView:self.navigationController.view];
+    [MSFProgressHUD showStatusMessage:@"正在登录..."];
     [execution subscribeNext:^(id x) {
       [MSFProgressHUD hidden];
       [self dismissViewControllerAnimated:YES completion:nil];

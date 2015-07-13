@@ -295,7 +295,7 @@
 }
 
 - (UIViewController *)appliesPageViewController {
-  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Start" bundle:nil];
+  UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"product" bundle:nil];
   return storyboard.instantiateInitialViewController;
 }
 

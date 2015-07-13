@@ -107,7 +107,8 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MSFBannersCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-  [cell.imageView setImageWithURL:[self.viewModel imageURLAtIndexPath:indexPath]];
+  [cell.imageView setImageWithURL:[self.viewModel imageURLAtIndexPath:indexPath]
+		placeholderImage:[UIImage imageNamed:[self.viewModel imageNameAtIndexPath:indexPath]]];
   self.pageControl.currentPage = indexPath.item;
   
   return cell;

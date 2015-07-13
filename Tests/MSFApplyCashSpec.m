@@ -7,17 +7,17 @@
 //
 
 //#import <Foundation/Foundation.h>
-#import "MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 
 QuickSpecBegin(MSFApplyCashSpec)
-__block MSFApplyCash* applycash;
+__block MSFApplicationResponse* applycash;
 
 beforeEach(^{
     NSURL* URL=[[NSBundle bundleForClass:self.class] URLForResource:@"applycash" withExtension:@"json"];
     expect(URL).notTo(beNil());
     NSData* data=[NSData dataWithContentsOfURL:URL];
     NSDictionary* representation=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-    applycash=[MTLJSONAdapter modelOfClass:MSFApplyCash.class fromJSONDictionary:representation error:nil];
+    applycash=[MTLJSONAdapter modelOfClass:MSFApplicationResponse.class fromJSONDictionary:representation error:nil];
 });
 it(@"should has message",^{
     

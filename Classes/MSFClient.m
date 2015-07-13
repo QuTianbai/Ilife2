@@ -34,6 +34,17 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 
 static MSFCipher *cipher;
 
+static BOOL isRunningTests(void) __attribute__((const));
+
+static BOOL isRunningTests(void) {
+	NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+	NSString *injectBundle    = environment[@"XCInjectBundle"];
+	BOOL isTestsRunning       = [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
+	[[injectBundle pathExtension] isEqualToString:@"octest"];
+
+	return isTestsRunning;
+}
+
 @interface MSFClient ()
 
 @property(nonatomic,strong) NSMutableDictionary *defaultHeaders;
@@ -77,7 +88,10 @@ static MSFCipher *cipher;
   self.defaultHeaders = MFSClientDefaultHeaders();
   self.requestSerializer.timeoutInterval = 15;
   self.securityPolicy.allowInvalidCertificates = YES;
-  
+	
+	if (isRunningTests()) {
+		return self;
+	}
   [[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
   [[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
   [[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
@@ -286,7 +300,7 @@ static MSFCipher *cipher;
 }
 
 - (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session {
-	//TODO: 需要增加银行卡参数接口
+	//TODO: 需要增加银行卡参数接口,需要去掉银行的卡的空格间隔符号 `1111 1111 1111`
   NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
   parameters[@"username"] = name;
   parameters[@"id_card"] = idcard;

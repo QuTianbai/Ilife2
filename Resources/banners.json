@@ -2,26 +2,26 @@
   {
     "title": "让梦想加速实现",
     "subtitle": "Speed up your dreams",
-    "url": "1.png"
+    "imagename": "1.png"
   },
   {
     "title": "省钱, 省时, 省力",
     "subtitle": "Save money, Save time",
-    "url": "2.png"
+    "imagename": "2.png"
   },
   {
     "title": "云端大数据， 快速批贷",
     "subtitle": "Instant approval by cloud",
-    "url": "3.png"
+    "imagename": "3.png"
   },
   {
     "title": "无需填写冗长表格",
     "subtitle": "Say no to forms",
-    "url": "4.png"
+    "imagename": "4.png"
   },
   {
     "title": "众多用户的选择",
     "subtitle": "Many people's choice",
-    "url": "5.png"
+    "imagename": "5.png"
   }
 ]

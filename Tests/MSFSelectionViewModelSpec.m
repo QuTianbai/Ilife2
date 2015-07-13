@@ -5,7 +5,7 @@
 //
 
 #import "MSFSelectionViewModel.h"
-#import "MSFCheckEmployee.h"
+#import "MSFMarket.h"
 #import "MSFTeams.h"
 
 QuickSpecBegin(MSFSelectionViewModelSpec)
@@ -38,7 +38,7 @@ it(@"should get terms items", ^{
   NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
   expect(representation).to(beAKindOf(NSDictionary.class));
   
-  MSFCheckEmployee *employee = [MTLJSONAdapter modelOfClass:MSFCheckEmployee.class fromJSONDictionary:representation error:nil];
+  MSFMarket *employee = [MTLJSONAdapter modelOfClass:MSFMarket.class fromJSONDictionary:representation error:nil];
   NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
   
   // when

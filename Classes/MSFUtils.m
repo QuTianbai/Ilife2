@@ -17,7 +17,6 @@
 #import "MSFAuthorization.h"
 #import "MSFAgreement.h"
 #import "MSFAgreementViewModel.h"
-#import "MSFLogClient.h"
 
 static NSString *const MSFAutologinbuggingEnvironmentKey = @"LOGIN_AUTO_DEBUG";
 
@@ -46,11 +45,11 @@ static BOOL isRunningTests(void) {
 //TODO: 更新这里的服务器地址
 + (RACSignal *)setupSignal {
 #if DEBUG
-  //server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
-  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
+	//server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
+  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
 #else
   [MSFUtils cleanupArchive];
-  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://192.168.2.51"]];
+  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51"]];
 #endif
   MSFClient *client = self.unArchiveClient;
   [self setHttpClient:client];
@@ -63,7 +62,6 @@ static BOOL isRunningTests(void) {
   return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
     MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
     [MSFClient setCipher:cipher];
-    [[MSFLogClient sharedClient] sendLogs];
   }];
 }
 
@@ -130,7 +128,7 @@ static BOOL isRunningTests(void) {
   static MSFAgreementViewModel *viewModel;
   dispatch_once(&onceToken, ^{
     //TODO: 需要更新协议地址
-    MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://192.168.2.51"]];
+    MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://www.msxf.com"]];
     MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
     viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
   });

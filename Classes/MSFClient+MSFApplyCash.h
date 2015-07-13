@@ -8,11 +8,11 @@
 
 #import "MSFClient.h"
 
-@class MSFApplyInfo;
+@class MSFApplicationForms;
 
 @interface MSFClient (MSFApplyCash)
 
 - (RACSignal *)fetchApplyCash;
-- (RACSignal *)applyInfoSubmit1:(MSFApplyInfo *)model;
+- (RACSignal *)applyInfoSubmit1:(MSFApplicationForms *)model;
 
 @end

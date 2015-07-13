@@ -73,11 +73,11 @@
   }];
   
   UIButton *avatarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-  [avatarButton setImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
+  [avatarButton setBackgroundImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
   [view addSubview:avatarButton];
   [avatarButton mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.height.equalTo(@100);
-    make.width.equalTo(@100);
+    make.height.equalTo(@75);
+    make.width.equalTo(@75);
     make.center.equalTo(view);
   }];
   
