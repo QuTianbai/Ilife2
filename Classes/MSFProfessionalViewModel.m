@@ -38,10 +38,10 @@
 }
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	_formsViewModel = formsViewModel;
 	_viewController = viewController;
 	_model = formsViewModel.model;
@@ -174,69 +174,69 @@
 		@strongify(self)
 		return [self commitSignal];
 	}];
-  
-  return self;
+	
+	return self;
 }
 
 #pragma mark - Private
 
 - (void)initialize {
-  NSArray *degress = [MSFSelectKeyValues getSelectKeys:@"edu_background"];
-  [degress enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.education]) {
-      self.degrees = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"social_status"];
-  [professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.socialStatus]) {
-      self.socialstatus = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *seniorities = [MSFSelectKeyValues getSelectKeys:@"service_year"];
-  [seniorities enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.workingLength]) {
-      self.seniority = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *industries = [MSFSelectKeyValues getSelectKeys:@"industry_category"];
-  [industries enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.industry]) {
-      self.industry = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"position"];
-  [positions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.title]) {
-      self.position = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *natures = [MSFSelectKeyValues getSelectKeys:@"unit_nature"];
-  [natures enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.companyType]) {
-      self.nature = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *eductionalSystme = [MSFSelectKeyValues getSelectKeys:@"school_system"];
-  [eductionalSystme enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.programLength]) {
-      self.eductionalSystme = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *department = [MSFSelectKeyValues getSelectKeys:@"professional"];
-  [department enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.department]) {
-      self.department = obj;
-      *stop = YES;
-    }
-  }];
+	NSArray *degress = [MSFSelectKeyValues getSelectKeys:@"edu_background"];
+	[degress enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.education]) {
+			self.degrees = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"social_status"];
+	[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.socialStatus]) {
+			self.socialstatus = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *seniorities = [MSFSelectKeyValues getSelectKeys:@"service_year"];
+	[seniorities enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.workingLength]) {
+			self.seniority = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *industries = [MSFSelectKeyValues getSelectKeys:@"industry_category"];
+	[industries enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.industry]) {
+			self.industry = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"position"];
+	[positions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.title]) {
+			self.position = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *natures = [MSFSelectKeyValues getSelectKeys:@"unit_nature"];
+	[natures enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.companyType]) {
+			self.nature = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *eductionalSystme = [MSFSelectKeyValues getSelectKeys:@"school_system"];
+	[eductionalSystme enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.programLength]) {
+			self.eductionalSystme = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *department = [MSFSelectKeyValues getSelectKeys:@"professional"];
+	[department enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.department]) {
+			self.department = obj;
+			*stop = YES;
+		}
+	}];
 }
 
 - (RACSignal *)educationSignal {
@@ -468,7 +468,7 @@
 - (RACSignal *)commitValidSignal {
 	return [[RACSignal
 		combineLatest:@[
-			[self  studentValidSignal],
+			[self	 studentValidSignal],
 			[self staffMemberValidSignal],
 			[self freelanceSignal]
 		]]

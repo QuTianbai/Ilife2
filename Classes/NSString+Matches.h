@@ -9,39 +9,39 @@
 @interface NSString (Matches)
 
 /**
- *  电话判断:手机/座机
+ *	电话判断:手机/座机
  *
- *  @return true/false
+ *	@return true/false
  */
 - (BOOL)isTelephone;
 
 /**
- *  手机号判断
+ *	手机号判断
  */
 - (BOOL)isMobile;
 
 /**
- *  数字判断
+ *	数字判断
  */
 - (BOOL)isScalar;
 
 /**
- *  邮箱判断
+ *	邮箱判断
  */
 - (BOOL)isMail;
 
 /**
- *  身份证判断
+ *	身份证判断
  */
 - (BOOL)isIdentityCard;
 
 /**
- *  密码有效性判定
+ *	密码有效性判定
  */
 - (BOOL)isPassword;
 
 /**
- *  验证码有效性判定
+ *	验证码有效性判定
  */
 - (BOOL)isCaptcha;
 

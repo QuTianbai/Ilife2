@@ -14,10 +14,10 @@
 @implementation MSFLoanAgreementViewModel
 
 - (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFProduct *)product {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	_formsViewModel = formsViewModel;
 	_product = product;
 	@weakify(self)
@@ -33,7 +33,7 @@
 		return [self.formsViewModel submitSignalWithPage:1];
 	}];
 	
-  return self;
+	return self;
 }
 
 @end

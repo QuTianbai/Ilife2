@@ -1,9 +1,9 @@
 //
-//  MSFAboutUsCell.m
-//  Cash
+//	MSFAboutUsCell.m
+//	Cash
 //
-//  Created by xutian on 15/5/18.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xutian on 15/5/18.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFAboutUsCell.h"
@@ -15,7 +15,7 @@
 @implementation MSFAboutUsCell
 
 - (void)viewDidLoad {
-  self.title = @"关于我们";
+	self.title = @"关于我们";
 
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_aboutWebView

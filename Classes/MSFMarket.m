@@ -1,9 +1,9 @@
 //
-//  MSFCheckEmployee.m
-//  Cash
+//	MSFCheckEmployee.m
+//	Cash
 //
-//  Created by xbm on 15/5/20.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/5/20.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFMarket.h"
@@ -12,7 +12,7 @@
 @implementation MSFMarket
 
 + (NSValueTransformer *)teamsJSONTransformer {
-  return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFTeams.class];
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFTeams.class];
 }
 
 @end

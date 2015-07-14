@@ -22,44 +22,44 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithClient:(MSFClient *)client {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-  _client = client;
-  _updateContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFBannersViewModel updateContentSignal"];
-  
-  @weakify(self)
-  [self.didBecomeActiveSignal subscribeNext:^(id x) {
-    @strongify(self)
-    [[[self.client
-      fetchAdverWithCategory:@"1"]
-      collect]
-      subscribeNext:^(id x) {
-        self.banners = x;
-        [(RACSubject *)self.updateContentSignal sendNext:nil];
-      }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_client = client;
+	_updateContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFBannersViewModel updateContentSignal"];
+	
+	@weakify(self)
+	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[[[self.client
+			fetchAdverWithCategory:@"1"]
+			collect]
+			subscribeNext:^(id x) {
+				self.banners = x;
+				[(RACSubject *)self.updateContentSignal sendNext:nil];
+			}
 			error:^(NSError *error) {
 			}];
-  }];
-  
-  return self;
+	}];
+	
+	return self;
 }
 
 #pragma mark - Public
 
 - (NSInteger)numberOfSections {
-  return 1;
+	return 1;
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-  return self.banners.count;
+	return self.banners.count;
 }
 
 - (NSURL *)imageURLAtIndexPath:(NSIndexPath *)indexPath {
-  MSFAdver *ad = [self bannerItemModelAtIndexPath:indexPath];
-  
-  return ad.imgURL;
+	MSFAdver *ad = [self bannerItemModelAtIndexPath:indexPath];
+	
+	return ad.imgURL;
 }
 
 - (NSString *)imageNameAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,15 +68,15 @@
 }
 
 - (NSURL *)HTMLURLAtIndexPath:(NSIndexPath *)indexPath {
-  MSFAdver *ad = [self bannerItemModelAtIndexPath:indexPath];
-  
-  return ad.adURL;
+	MSFAdver *ad = [self bannerItemModelAtIndexPath:indexPath];
+	
+	return ad.adURL;
 }
 
 #pragma mark - Private
 
 - (MSFAdver *)bannerItemModelAtIndexPath:(NSIndexPath *)indexPath {
-  return self.banners[indexPath.item];
+	return self.banners[indexPath.item];
 }
 
 @end

@@ -1,9 +1,9 @@
 //
-//  MSFApplyList.m
-//  Cash
+//	MSFApplyList.m
+//	Cash
 //
-//  Created by xbm on 15/5/16.
-//  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
+//	Created by xbm on 15/5/16.
+//	Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
 #import "MSFApplyList.h"
@@ -12,27 +12,27 @@
 @implementation MSFApplyList
 
 + (NSValueTransformer *)apply_timeJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^id(NSString *string) {
-    return [NSDateFormatter msf_dateFromString:string];
-  }];
+	return [MTLValueTransformer transformerWithBlock:^id(NSString *string) {
+		return [NSDateFormatter msf_dateFromString:string];
+	}];
 }
 
 + (NSValueTransformer *)loan_id_installmentsJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^id(id object) {
-    return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
-  }];
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
 }
 
 + (NSValueTransformer *)total_installmentsJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^id(id object) {
-    return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
-  }];
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
 }
 
 + (NSValueTransformer *)current_installmentJSONTransformer {
-  return [MTLValueTransformer transformerWithBlock:^id(id object) {
-    return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
-  }];
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
 }
 
 @end

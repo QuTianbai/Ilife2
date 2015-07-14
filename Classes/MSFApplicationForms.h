@@ -1,9 +1,9 @@
 //
-//  MSFApplyInfo.h
-//  Cash
+//	MSFApplyInfo.h
+//	Cash
 //
-//  Created by xbm on 15/5/16.
-//  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
+//	Created by xbm on 15/5/16.
+//	Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 /*
  page=1\2\3\4
@@ -43,7 +43,7 @@
 @property(nonatomic,copy) NSString *enrollmentYear;//入学年份 入学年份
 @property(nonatomic,copy) NSString *programLength;//学制 学制
 /*
-  工作信息
+	工作信息
 */
 @property(nonatomic,copy) NSString *workingLength;//工作年限 工作年限
 @property(nonatomic,copy) NSString *currentJobDate;//现工作开始时间 工作开始时间
@@ -63,7 +63,7 @@
 @property(nonatomic,copy) NSString *homeCode;//住宅电话区号
 @property(nonatomic,copy) NSString *homeLine;//住宅电话 户籍小区
 @property(nonatomic,copy) NSString *homeLineOwner;//住宅电话登记人
-@property(nonatomic,copy) NSString *mailAddress;//邮寄地址(1.与工作地址相同   2.与现居地址相同 )
+@property(nonatomic,copy) NSString *mailAddress;//邮寄地址(1.与工作地址相同		2.与现居地址相同 )
 
 @property(nonatomic,copy) NSString *unitAreaCode;//办公/个体电话区号
 @property(nonatomic,copy) NSString *unitTelephone;//办公/个体电话
@@ -112,7 +112,7 @@
 @property(nonatomic,copy) NSString *bankNumber;//银行号码
 @property(nonatomic,copy) NSString *page;//页数
 @property(nonatomic,copy) NSString *applyNo;//申请单号
-@property(nonatomic,copy) NSString *personId;//客户id   long类型
+@property(nonatomic,copy) NSString *personId;//客户id		long类型
 @property(nonatomic,copy) NSString *productId;//产品Id
 @property(nonatomic,copy) NSString *productName;//产品名称
 @property(nonatomic,copy) NSString *proGroupId;//产品群Id

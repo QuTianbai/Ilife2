@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  设置
+ *	设置
  */
 @interface MSFSettingsViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
 

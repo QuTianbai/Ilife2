@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  完善个人信息-实名认证
+ *	完善个人信息-实名认证
  */
 @interface MSFClozeViewController : UIViewController
 

@@ -16,14 +16,14 @@
 @implementation MSFResponse
 
 - (instancetype)initWithHTTPURLResponse:(NSHTTPURLResponse *)response parsedResult:(id)parsedResult {
-  return [super initWithDictionary:@{
-     @keypath(self.HTTPURLResponse): response.copy ?: NSNull.null,
-      @keypath(self.parsedResult): parsedResult ?: NSNull.null,
-      } error:nil];
+	return [super initWithDictionary:@{
+		 @keypath(self.HTTPURLResponse): response.copy ?: NSNull.null,
+			@keypath(self.parsedResult): parsedResult ?: NSNull.null,
+			} error:nil];
 }
 
 - (NSUInteger)statusCode {
-  return self.HTTPURLResponse.statusCode;
+	return self.HTTPURLResponse.statusCode;
 }
 
 @end

@@ -1,9 +1,9 @@
 //
-//  MSFPersonInfoTableViewController.m
-//  Cash
+//	MSFPersonInfoTableViewController.m
+//	Cash
 //
-//  Created by xbm on 15/5/23.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/5/23.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFProfessionalViewController.h"
@@ -25,10 +25,10 @@
 #import "MSFRelationshipViewController.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
-    MSFProfessionalViewSectionSchool = 1,
-    MSFProfessionalViewSectionCompany = 2,
-    MSFProfessionalViewSectionDepartment = 3,
-    MSFProfessionalViewSectionContact = 4,
+		MSFProfessionalViewSectionSchool = 1,
+		MSFProfessionalViewSectionCompany = 2,
+		MSFProfessionalViewSectionDepartment = 3,
+		MSFProfessionalViewSectionContact = 4,
 };
 
 @interface MSFProfessionalViewController ()
@@ -42,7 +42,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
-  self.viewModel = viewModel;
+	self.viewModel = viewModel;
 }
 
 #pragma mark - Lifecycle
@@ -52,32 +52,32 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.title = @"在职人员";
+	[super viewDidLoad];
+	self.title = @"在职人员";
 	
 	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, universityName);
-  RAC(self.universityName, text) = universityNameChannel;
-  [self.universityName.rac_textSignal subscribe:universityNameChannel];
+	RAC(self.universityName, text) = universityNameChannel;
+	[self.universityName.rac_textSignal subscribe:universityNameChannel];
 	
 	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.model, company);
-  RAC(self.company, text) = companyChannel;
-  [self.company.rac_textSignal subscribe:companyChannel];
+	RAC(self.company, text) = companyChannel;
+	[self.company.rac_textSignal subscribe:companyChannel];
 	
 	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
-  RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
-  [self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
+	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
+	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
 	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
-  RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
-  [self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
+	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
+	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
 	
 	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
-  RAC(self.unitTelephone, text) = unitTelephoneChannel;
-  [self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
+	RAC(self.unitTelephone, text) = unitTelephoneChannel;
+	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
 	
 	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.model, workTown);
-  RAC(self.workTown, text) = workTownChannel;
-  [self.unitTelephone.rac_textSignal subscribe:workTownChannel];
+	RAC(self.workTown, text) = workTownChannel;
+	[self.unitTelephone.rac_textSignal subscribe:workTownChannel];
 	
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;

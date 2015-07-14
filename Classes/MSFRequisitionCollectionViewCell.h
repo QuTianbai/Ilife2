@@ -8,7 +8,7 @@
 #import "MSFReactiveView.h"
 
 /**
- *  申请状态下的Cell
+ *	申请状态下的Cell
  */
 @interface MSFRequisitionCollectionViewCell : UICollectionViewCell <MSFReactiveView>
 

@@ -1,9 +1,9 @@
 //
-//  MSFAreas.h
-//  Cash
+//	MSFAreas.h
+//	Cash
 //
-//  Created by xbm on 15/5/24.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/5/24.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import <Mantle/Mantle.h>

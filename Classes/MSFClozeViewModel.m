@@ -35,40 +35,40 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 }
 
 - (instancetype)initWithAuthorizedClient:(MSFClient *)client {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-  _client = client;
-  _name = @"";
-  _card = @"";
-  _expired = [NSDate date];
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_client = client;
+	_name = @"";
+	_card = @"";
+	_expired = [NSDate date];
 	_bankNO = @"";
 	_bankAddress = @"";
 	_bankName = @"";
-  
-  @weakify(self)
 	
-  _executeAuth = [[RACCommand alloc] initWithEnabled:self.authoriseValidSignal
-    signalBlock:^RACSignal *(id input) {
-      @strongify(self)
+	@weakify(self)
+	
+	_executeAuth = [[RACCommand alloc] initWithEnabled:self.authoriseValidSignal
+		signalBlock:^RACSignal *(id input) {
+			@strongify(self)
 			return [self executeAuthSignal];
 		}];
 	
-  _executePermanent = [[RACCommand alloc]
+	_executePermanent = [[RACCommand alloc]
 		initWithSignalBlock:^RACSignal *(id input) {
 			@strongify(self)
 			self.permanent = !self.permanent;
 			return [RACSignal return:@(self.permanent)];
 		}];
 	
-  return self;
+	return self;
 }
 
 #pragma mark - Custom Accessors
 
 - (RACSignal *)authoriseValidSignal {
-  return [RACSignal
+	return [RACSignal
 		combineLatest:@[
 			RACObserve(self, name),
 			RACObserve(self, card),

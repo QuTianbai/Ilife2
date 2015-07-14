@@ -27,10 +27,10 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithFormsViewModel:(id)viewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	_formsViewModel = viewModel;
 	_totalAmount = @"";
 	_productTerms = @"";
@@ -41,8 +41,8 @@
 		return [value stringValue];
 	}];
 	RAC(self.formsViewModel.model,usageCode) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
-    return value.code;
-  }];
+		return value.code;
+	}];
 	
 	RAC(self,market) = RACObserve(self.formsViewModel, market);
 	
@@ -95,7 +95,7 @@
 		return [value title];
 	}];
 	
-  return self;
+	return self;
 }
 
 @end

@@ -31,12 +31,12 @@ static NSString *cachePath;
 static BOOL isRunningTests(void) __attribute__((const));
 
 static BOOL isRunningTests(void) {
-  NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-  NSString *injectBundle    = environment[@"XCInjectBundle"];
-  BOOL isTestsRunning       = [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
-  [[injectBundle pathExtension] isEqualToString:@"octest"];
-  
-  return isTestsRunning;
+	NSDictionary *environment = [[NSProcessInfo processInfo] environment];
+	NSString *injectBundle		= environment[@"XCInjectBundle"];
+	BOOL isTestsRunning				= [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
+	[[injectBundle pathExtension] isEqualToString:@"octest"];
+	
+	return isTestsRunning;
 }
 
 @implementation MSFUtils
@@ -45,94 +45,94 @@ static BOOL isRunningTests(void) {
 + (RACSignal *)setupSignal {
 #if DEBUG
 	//server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
-  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
 #else
-  [MSFUtils cleanupArchive];
-  server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51"]];
+	[MSFUtils cleanupArchive];
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51"]];
 #endif
-  MSFClient *client = self.unArchiveClient;
-  [self setHttpClient:client];
-  
-  [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-  [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-    NSLog(@"网络情况发生变化");
-  }];
-  
-  return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
-    MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
-    [MSFClient setCipher:cipher];
-  }];
+	MSFClient *client = self.unArchiveClient;
+	[self setHttpClient:client];
+	
+	[[AFNetworkReachabilityManager sharedManager] startMonitoring];
+	[[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+		NSLog(@"网络情况发生变化");
+	}];
+	
+	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
+		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
+		[MSFClient setCipher:cipher];
+	}];
 }
 
 + (MSFClient *)httpClient {
-  return client;
+	return client;
 }
 
 + (MSFServer *)server {
-  return server;
+	return server;
 }
 
 + (void)setHttpClient:(MSFClient *)httpClient {
-  if (httpClient) {
-    client = httpClient;
-    [[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidUpdateNotification object:client];
-    [self archiveClient:client];
-    return;
-  }
-  client = [[MSFClient alloc] initWithServer:server];
-  [[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidUpdateNotification object:client];
-  [self cleanupArchive];
+	if (httpClient) {
+		client = httpClient;
+		[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidUpdateNotification object:client];
+		[self archiveClient:client];
+		return;
+	}
+	client = [[MSFClient alloc] initWithServer:server];
+	[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidUpdateNotification object:client];
+	[self cleanupArchive];
 }
 
 + (void)archiveClient:(MSFClient *)client {
-  if (!NSProcessInfo.processInfo.environment[MSFAutologinbuggingEnvironmentKey] && !isRunningTests()) {
-    return;
-  }
-  NSString *dir = isRunningTests() ? NSTemporaryDirectory() : [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
-  NSString *userPath = [dir stringByAppendingPathComponent:@"user.plist"];
-  NSString *authorizationPath = [dir stringByAppendingPathComponent:@"authorization.plist"];
-  [NSKeyedArchiver archiveRootObject:client.user toFile:userPath];
-  NSDictionary *representation = @{@"finance": client.token, @"msfinance": client.session};
-  MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:representation error:nil];
-  [NSKeyedArchiver archiveRootObject:authorization toFile:authorizationPath];
+	if (!NSProcessInfo.processInfo.environment[MSFAutologinbuggingEnvironmentKey] && !isRunningTests()) {
+		return;
+	}
+	NSString *dir = isRunningTests() ? NSTemporaryDirectory() : [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+	NSString *userPath = [dir stringByAppendingPathComponent:@"user.plist"];
+	NSString *authorizationPath = [dir stringByAppendingPathComponent:@"authorization.plist"];
+	[NSKeyedArchiver archiveRootObject:client.user toFile:userPath];
+	NSDictionary *representation = @{@"finance": client.token, @"msfinance": client.session};
+	MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:representation error:nil];
+	[NSKeyedArchiver archiveRootObject:authorization toFile:authorizationPath];
 }
 
 + (MSFClient *)unArchiveClient {
-  if (!NSProcessInfo.processInfo.environment[MSFAutologinbuggingEnvironmentKey] && !isRunningTests()) {
-    return nil;
-  }
-  NSString *dir = isRunningTests() ? NSTemporaryDirectory() : [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
-  NSString *userPath = [dir stringByAppendingPathComponent:@"user.plist"];
-  NSString *authorizationPath = [dir stringByAppendingPathComponent:@"authorization.plist"];
-  MSFUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:userPath];
-  MSFAuthorization *authorization = [NSKeyedUnarchiver unarchiveObjectWithFile:authorizationPath];
-  if (!user || !authorization) {
-    return nil;
-  }
-  
-  return [MSFClient authenticatedClientWithUser:user token:authorization.token session:authorization.session];
+	if (!NSProcessInfo.processInfo.environment[MSFAutologinbuggingEnvironmentKey] && !isRunningTests()) {
+		return nil;
+	}
+	NSString *dir = isRunningTests() ? NSTemporaryDirectory() : [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+	NSString *userPath = [dir stringByAppendingPathComponent:@"user.plist"];
+	NSString *authorizationPath = [dir stringByAppendingPathComponent:@"authorization.plist"];
+	MSFUser *user = [NSKeyedUnarchiver unarchiveObjectWithFile:userPath];
+	MSFAuthorization *authorization = [NSKeyedUnarchiver unarchiveObjectWithFile:authorizationPath];
+	if (!user || !authorization) {
+		return nil;
+	}
+	
+	return [MSFClient authenticatedClientWithUser:user token:authorization.token session:authorization.session];
 }
 
 + (void)cleanupArchive {
-  NSString *dir = isRunningTests() ? NSTemporaryDirectory() : [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
-  NSString *userPath = [dir stringByAppendingPathComponent:@"user.plist"];
-  NSString *authorizationPath = [dir stringByAppendingPathComponent:@"authorization.plist"];
-  [[NSFileManager defaultManager] removeItemAtPath:userPath error:nil];
-  [[NSFileManager defaultManager] removeItemAtPath:authorizationPath error:nil];
-  client = [[MSFClient alloc] initWithServer:server];
+	NSString *dir = isRunningTests() ? NSTemporaryDirectory() : [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Caches"];
+	NSString *userPath = [dir stringByAppendingPathComponent:@"user.plist"];
+	NSString *authorizationPath = [dir stringByAppendingPathComponent:@"authorization.plist"];
+	[[NSFileManager defaultManager] removeItemAtPath:userPath error:nil];
+	[[NSFileManager defaultManager] removeItemAtPath:authorizationPath error:nil];
+	client = [[MSFClient alloc] initWithServer:server];
 }
 
 + (MSFAgreementViewModel *)agreementViewModel {
-  static dispatch_once_t onceToken;
-  static MSFAgreementViewModel *viewModel;
-  dispatch_once(&onceToken, ^{
-    //TODO: 需要更新协议地址
-    MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://www.msxf.com"]];
-    MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
-    viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
-  });
-  
-  return viewModel;
+	static dispatch_once_t onceToken;
+	static MSFAgreementViewModel *viewModel;
+	dispatch_once(&onceToken, ^{
+		//TODO: 需要更新协议地址
+		MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://www.msxf.com"]];
+		MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
+		viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
+	});
+	
+	return viewModel;
 }
 
 + (void)setPhone:(NSString *)_phone {

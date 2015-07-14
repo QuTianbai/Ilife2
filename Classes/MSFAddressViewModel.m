@@ -58,10 +58,10 @@
 }
 
 - (instancetype)initWithController:(UIViewController *)contentViewController needArea:(BOOL)needArea {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
 	_fmdb = [FMDatabase databaseWithPath:path];
 	_viewController = contentViewController;
@@ -132,7 +132,7 @@
 		self.areaCode = x.codeID;
 	}];
 	
-  return self;
+	return self;
 }
 
 #pragma mark - Private
@@ -182,32 +182,32 @@
 #pragma mark - Custom Accessors
 
 - (NSArray *)provinces {
-  if (![self.fmdb open]) {
-    return nil;
-  }
-  NSError *error;
-  NSMutableArray *regions = [NSMutableArray array];
-  FMResultSet *s = [self.fmdb executeQuery:@"select * from basic_dic_area where parent_area_code='000000'"];
-  while ([s next]) {
-    MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
-    [regions addObject:areas];
-    
-  }
+	if (![self.fmdb open]) {
+		return nil;
+	}
+	NSError *error;
+	NSMutableArray *regions = [NSMutableArray array];
+	FMResultSet *s = [self.fmdb executeQuery:@"select * from basic_dic_area where parent_area_code='000000'"];
+	while ([s next]) {
+		MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
+		[regions addObject:areas];
+		
+	}
 	NSMutableArray *temp = regions.mutableCopy;
-  for (MSFAreas *area in regions) {
-    if ([area.codeID isEqualToString:@"500000"]) {
-      MSFAreas *tempArea = [[MSFAreas alloc] init];
-      tempArea.name = area.name;
-      tempArea.codeID = area.codeID;
-      tempArea.parentCodeID = area.parentCodeID;
-      [temp removeObject:area];
-      [temp insertObject:tempArea atIndex:1];
-      break;
-    }
-  }
-  [self.fmdb close];
-  
-  return temp;
+	for (MSFAreas *area in regions) {
+		if ([area.codeID isEqualToString:@"500000"]) {
+			MSFAreas *tempArea = [[MSFAreas alloc] init];
+			tempArea.name = area.name;
+			tempArea.codeID = area.codeID;
+			tempArea.parentCodeID = area.parentCodeID;
+			[temp removeObject:area];
+			[temp insertObject:tempArea atIndex:1];
+			break;
+		}
+	}
+	[self.fmdb close];
+	
+	return temp;
 }
 
 - (NSArray *)citiesWithProvince:(MSFAreas *)province {
@@ -234,8 +234,8 @@
 		[regions addObject:areas];
 	}
 	[self.fmdb close];
-  
-  return regions;
+	
+	return regions;
 }
 
 - (MSFAreas *)regionWithCode:(NSString *)code {
@@ -248,7 +248,7 @@
 	}
 	[self.fmdb close];
 	
-  return region;
+	return region;
 }
 
 @end

@@ -12,37 +12,37 @@
 @interface MSFAgreement : MSFObject
 
 /**
- *  用户协议地址
+ *	用户协议地址
  */
 @property (nonatomic, strong, readonly) NSURL *userURL;
 
 /**
- *  贷款协议地址
+ *	贷款协议地址
  */
 @property (nonatomic, strong, readonly) NSURL *loanURL;
 
 /**
- *  关于我们地址
+ *	关于我们地址
  */
 @property (nonatomic, strong, readonly) NSURL *aboutWeURL;
 
 /**
- *  产品介绍地址
+ *	产品介绍地址
  */
 @property (nonatomic, strong, readonly) NSURL *productURL;
 
 /**
- *  帮助中心地址
+ *	帮助中心地址
  */
 @property (nonatomic, strong, readonly) NSURL *helpURL;
 
 /**
- *  网点分布地址
+ *	网点分布地址
  */
 @property (nonatomic, strong, readonly) NSURL *branchesURL;
 
 /**
- *  网点分布地址
+ *	网点分布地址
  */
 @property (nonatomic, strong, readonly) NSURL *repayURL;
 @property (nonatomic, strong, readonly) NSURL *registerURL;

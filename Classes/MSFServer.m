@@ -30,56 +30,56 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 #pragma mark Lifecycle
 
 + (instancetype)dotComServer {
-  static MSFServer *dotComServer = nil;
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    dotComServer = [[self alloc] initWithBaseURL:nil];
-  });
-  
-  return dotComServer;
+	static MSFServer *dotComServer = nil;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		dotComServer = [[self alloc] initWithBaseURL:nil];
+	});
+	
+	return dotComServer;
 }
 
 + (instancetype)serverWithBaseURL:(NSURL *)baseURL {
-  if (baseURL == nil) {
-   return self.dotComServer;
-  }
-  
-  return [[MSFServer alloc] initWithBaseURL:baseURL];
+	if (baseURL == nil) {
+	 return self.dotComServer;
+	}
+	
+	return [[MSFServer alloc] initWithBaseURL:baseURL];
 }
 
 - (instancetype)initWithBaseURL:(NSURL *)baseURL {
-  if (!(self = [super init])) {
-    return nil;
-  }
-  
-  _baseURL = baseURL;
-  
-  return self;
+	if (!(self = [super init])) {
+		return nil;
+	}
+	
+	_baseURL = baseURL;
+	
+	return self;
 }
 
 #pragma mark Properties
 
 - (NSURL *)APIEndpoint {
-  if (self.baseURL == nil) {
-    // This environment variable can be used to debug API requests by
-    // redirecting them to a different URL.
-    NSString *endpoint = NSProcessInfo.processInfo.environment[@"API_ENDPOINT"];
-    if (endpoint != nil) {
-     return [NSURL URLWithString:endpoint];
-    }
-    
-    return [NSURL URLWithString:MSFServerDotComAPIEndpoint];
-  } else {
-    return [self.baseURL URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
-  }
+	if (self.baseURL == nil) {
+		// This environment variable can be used to debug API requests by
+		// redirecting them to a different URL.
+		NSString *endpoint = NSProcessInfo.processInfo.environment[@"API_ENDPOINT"];
+		if (endpoint != nil) {
+		 return [NSURL URLWithString:endpoint];
+		}
+		
+		return [NSURL URLWithString:MSFServerDotComAPIEndpoint];
+	} else {
+		return [self.baseURL URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
+	}
 }
 
 - (NSURL *)baseWebURL {
-  if (self.baseURL == nil) {
-    return [NSURL URLWithString:MSFServerDotComBaseWebURL];
-  } else {
-    return self.baseURL;
-  }
+	if (self.baseURL == nil) {
+		return [NSURL URLWithString:MSFServerDotComBaseWebURL];
+	} else {
+		return self.baseURL;
+	}
 }
 
 @end

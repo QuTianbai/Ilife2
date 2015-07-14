@@ -9,7 +9,7 @@
 @implementation MSFSelectionTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-  return [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
+	return [super initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:reuseIdentifier];
 }
 
 @end

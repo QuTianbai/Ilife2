@@ -1,7 +1,7 @@
 //
-//  MSFProductViewController.h
+//	MSFProductViewController.h
 //
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -14,23 +14,23 @@
 @implementation MSFRegisterAgreementViewController
 
 - (void)dealloc {
-  NSLog(@"MSFRegisterAgreementViewController `dealloc`");
+	NSLog(@"MSFRegisterAgreementViewController `dealloc`");
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.edgesForExtendedLayout = UIRectEdgeNone;
-  UIWebView *webView = UIWebView.new;
-  [self.view addSubview:webView];
-  [webView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.edges.equalTo(self.view);
-  }];
-  [webView
-    rac_liftSelector:@selector(loadHTMLString:baseURL:)
-    withSignalOfArguments:[RACSignal combineLatest:@[
-      MSFUtils.agreementViewModel.registerAgreementSignal,
-      [RACSignal return:nil]
-    ]]];
+	[super viewDidLoad];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	UIWebView *webView = UIWebView.new;
+	[self.view addSubview:webView];
+	[webView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
+	[webView
+		rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		withSignalOfArguments:[RACSignal combineLatest:@[
+			MSFUtils.agreementViewModel.registerAgreementSignal,
+			[RACSignal return:nil]
+		]]];
 }
 
 @end

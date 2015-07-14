@@ -23,46 +23,46 @@ extern NSString *const MSFAuthorizationDidLoseConnectNotification;
 @interface MSFUtils : NSObject
 
 /**
- *  设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
+ *	设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
  *
- *  @return MSFResponse instantce
+ *	@return MSFResponse instantce
  */
 + (RACSignal *)setupSignal;
 
 /**
- *  全局通用Client
+ *	全局通用Client
  *
- *  @return MSFClient instance
+ *	@return MSFClient instance
  */
 + (MSFClient *)httpClient;
 
 /**
- *  The Server
+ *	The Server
  */
 + (MSFServer *)server;
 
 /**
- *  程序相关协议
+ *	程序相关协议
  */
 + (MSFAgreementViewModel *)agreementViewModel;
 
 /**
- *  登录 需要更新这里的client以保证client是授权的
- *  退出登录 需要设置为nil
+ *	登录 需要更新这里的client以保证client是授权的
+ *	退出登录 需要设置为nil
  *
- *  @param httpClient
+ *	@param httpClient
  */
 + (void)setHttpClient:(MSFClient *)httpClient;
 
 /**
- *  登录缓存
+ *	登录缓存
  */
 + (void)archiveClient:(MSFClient *)client;
 + (MSFClient *)unArchiveClient;
 + (void)cleanupArchive;
 
 /**
- *  用户登录手机号
+ *	用户登录手机号
  */
 + (void)setPhone:(NSString *)phone;
 + (NSString *)phone;

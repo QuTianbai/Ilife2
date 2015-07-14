@@ -9,26 +9,26 @@
 @implementation MSFWPTextField
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-  if (!(self = [super initWithCoder:aDecoder])) {
-    return nil;
-  }
-  [self commonInit];
-  
-  return self;
+	if (!(self = [super initWithCoder:aDecoder])) {
+		return nil;
+	}
+	[self commonInit];
+	
+	return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-  if (!(self = [super initWithFrame:frame])) {
-    return nil;
-  }
-  [self commonInit];
-  
-  return self;
+	if (!(self = [super initWithFrame:frame])) {
+		return nil;
+	}
+	[self commonInit];
+	
+	return self;
 }
 
 - (void)commonInit {
-  self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
-   attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
+	 attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 }
 
 @end

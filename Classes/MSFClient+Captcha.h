@@ -9,20 +9,20 @@
 @interface MSFClient (Captcha)
 
 /**
- *  获取注册验证
+ *	获取注册验证
  *
- *  @param phone
+ *	@param phone
  *
- *  @return response
+ *	@return response
  */
 - (RACSignal *)fetchSignUpCaptchaWithPhone:(NSString *)phone;
 
 /**
- *  获取找回密码验证码
+ *	获取找回密码验证码
  *
- *  @param phone
+ *	@param phone
  *
- *  @return response
+ *	@return response
  */
 - (RACSignal *)fetchResetPasswordCaptchaWithPhone:(NSString *)phone;
 

@@ -7,7 +7,7 @@
 #import "RVMViewModel.h"
 
 /**
- *  Application Form ViewModel
+ *	Application Form ViewModel
  */
 
 @class MSFMarket;

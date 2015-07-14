@@ -11,28 +11,28 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
-  if (!(self = [super initWithCoder:aDecoder])) {
-    return nil;
-  }
-  [self initialize];
-  
-  return self;
+	if (!(self = [super initWithCoder:aDecoder])) {
+		return nil;
+	}
+	[self initialize];
+	
+	return self;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
-  if (!(self = [super initWithFrame:frame])) {
-    return nil;
-  }
-  [self initialize];
-  
-  return nil;
+	if (!(self = [super initWithFrame:frame])) {
+		return nil;
+	}
+	[self initialize];
+	
+	return nil;
 }
 
 #pragma mark - Private
 
 - (void)initialize {
-  [self setImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
-  [self setImage:[UIImage imageNamed:@"btn_checked"] forState:UIControlStateSelected];
+	[self setImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
+	[self setImage:[UIImage imageNamed:@"btn_checked"] forState:UIControlStateSelected];
 }
 
 @end

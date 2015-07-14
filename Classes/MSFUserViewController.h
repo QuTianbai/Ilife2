@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  用户中心
+ *	用户中心
  */
 @interface MSFUserViewController : UITableViewController
 

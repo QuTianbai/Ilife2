@@ -1,9 +1,9 @@
 //
-//  MSFRepaymentSchedule.h
-//  Cash
-//  计划列表
-//  Created by xutian on 15/5/15.
-//  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
+//	MSFRepaymentSchedule.h
+//	Cash
+//	计划列表
+//	Created by xutian on 15/5/15.
+//	Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
 #import "MSFObject.h"

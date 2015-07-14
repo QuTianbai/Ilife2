@@ -1,9 +1,9 @@
 //
-//  MSFLoanAgreementWebView.m
-//  Cash
+//	MSFLoanAgreementWebView.m
+//	Cash
 //
-//  Created by xbm on 15/6/4.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/6/4.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFLoanAgreementController.h"
@@ -32,24 +32,24 @@
 @implementation MSFLoanAgreementController
 
 - (void)viewDidLoad {
-  self.title = @"贷款协议";
+	self.title = @"贷款协议";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal = [MSFUtils.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
-  
-  [SVProgressHUD showWithStatus:@"正在加载..."];
-  [[[self.LoanAgreenmentWV
-     rac_liftSelector:@selector(loadHTMLString:baseURL:)
-     withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
-    deliverOn:[RACScheduler mainThreadScheduler]]
-   subscribeNext:^(id x) {
-     [SVProgressHUD dismiss];
-   }
-   error:^(NSError *error) {
-     [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-   }];
-  [[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
-    [SVProgressHUD dismiss];
-  }];
+	
+	[SVProgressHUD showWithStatus:@"正在加载..."];
+	[[[self.LoanAgreenmentWV
+		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		 withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
+		deliverOn:[RACScheduler mainThreadScheduler]]
+	 subscribeNext:^(id x) {
+		 [SVProgressHUD dismiss];
+	 }
+	 error:^(NSError *error) {
+		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	 }];
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+	}];
 	
 	@weakify(self)
 	self.agreeButton.rac_command = self.viewModel.executeRequest;

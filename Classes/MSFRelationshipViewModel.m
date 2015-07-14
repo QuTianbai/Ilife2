@@ -1,9 +1,9 @@
 //
-//  MSFPersonalViewModel.m
-//  Cash
+//	MSFPersonalViewModel.m
+//	Cash
 //
-//  Created by xutian on 15/6/13.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xutian on 15/6/13.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFRelationshipViewModel.h"
@@ -24,10 +24,10 @@
 @implementation MSFRelationshipViewModel
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel contentViewController:(UIViewController *)controller {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	_formsViewModel = viewModel;
 	_model = viewModel.model;
 	_viewController = controller;
@@ -96,55 +96,55 @@
 		return [self commitSignal];
 	}];
 	
-  return self;
+	return self;
 }
 
 #pragma mark - Private
 
 - (void)initialize {
-  NSArray *marrages = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
-  [marrages enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.maritalStatus]) {
-      self.marryValues = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *housevalues = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];
-  [housevalues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.houseType]) {
-      self.houseValues = obj;
-      *stop = YES;
-    }
-  }];
-  
-  NSArray *familyOneValues = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
-  [familyOneValues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.memberRelation]) {
-      self.familyOneValues = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *familyTwoValues = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
-  [familyTwoValues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.memberRelation2]) {
-      self.familyTwoValues = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *otherRelations = [MSFSelectKeyValues getSelectKeys:@"relationship"];
-  [otherRelations enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.relation1]) {
-      self.otherOneValues = obj;
-      *stop = YES;
-    }
-  }];
-  NSArray *otherRelations2 = [MSFSelectKeyValues getSelectKeys:@"relationship"];
-  [otherRelations2 enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-    if ([obj.code isEqualToString:self.model.relation2]) {
-      self.otherTwoValues = obj;
-      *stop = YES;
-    }
-  }];
+	NSArray *marrages = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
+	[marrages enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.maritalStatus]) {
+			self.marryValues = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *housevalues = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];
+	[housevalues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.houseType]) {
+			self.houseValues = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *familyOneValues = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
+	[familyOneValues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.memberRelation]) {
+			self.familyOneValues = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *familyTwoValues = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
+	[familyTwoValues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.memberRelation2]) {
+			self.familyTwoValues = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *otherRelations = [MSFSelectKeyValues getSelectKeys:@"relationship"];
+	[otherRelations enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.relation1]) {
+			self.otherOneValues = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *otherRelations2 = [MSFSelectKeyValues getSelectKeys:@"relationship"];
+	[otherRelations2 enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.relation2]) {
+			self.otherTwoValues = obj;
+			*stop = YES;
+		}
+	}];
 }
 
 - (RACSignal *)marryValuesSignal {

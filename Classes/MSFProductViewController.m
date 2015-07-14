@@ -1,7 +1,7 @@
 //
-//  MSFProductViewController.m
+//	MSFProductViewController.m
 //
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFProductViewController.h"
@@ -105,7 +105,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-  
+	
 	self.lifeInsuranceButton.rac_command = self.executeLifeInsuranceCommand;
 }
 

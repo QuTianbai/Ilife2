@@ -30,10 +30,10 @@
 #pragma mark - Lifecycle
 
 - (instancetype)init {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	_model = [[MSFApplicationForms alloc] init];
 	_market = [[MSFMarket alloc] init];
 
@@ -55,7 +55,7 @@
 			}];
 	}];
 	
-  return self;
+	return self;
 }
 
 #pragma mark - Public

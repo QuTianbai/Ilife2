@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  登录－输入
+ *	登录－输入
  */
 @interface MSFSignInViewController : UITableViewController
 

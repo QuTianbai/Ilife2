@@ -10,7 +10,7 @@
 @implementation MSFReleaseNote
 
 + (NSValueTransformer *)versionJSONTransformer {
-  return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFVersion.class];
+	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFVersion.class];
 }
 
 @end

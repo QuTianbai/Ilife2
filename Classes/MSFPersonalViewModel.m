@@ -23,10 +23,10 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel addressViewModel:(MSFAddressViewModel *)addressViewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	_formsViewModel = viewModel;
 	_addressViewModel = addressViewModel;
 	_model = viewModel.model;

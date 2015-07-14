@@ -13,40 +13,40 @@
 @implementation MSFAgreement
 
 - (instancetype)initWithServer:(MSFServer *)server {
-  return [super initWithDictionary:@{@keypath(self.server): server} error:nil];
+	return [super initWithDictionary:@{@keypath(self.server): server} error:nil];
 }
 
 - (NSURL *)userURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement/user"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement/user"];
 }
 
 - (NSURL *)loanURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement/loan"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement/loan"];
 }
 
 - (NSURL *)aboutWeURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"app/about.htm"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"app/about.htm"];
 }
 
 - (NSURL *)productURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"app/intro.htm"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"app/intro.htm"];
 }
 
 - (NSURL *)helpURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"app/help.htm"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"app/help.htm"];
 }
 
 - (NSURL *)branchesURL {
-  
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"app/branch.htm"];
+	
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"app/branch.htm"];
 }
 
 - (NSURL *)registerURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement.htm"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement.htm"];
 }
 
 - (NSURL *)lifeInsuranceURL {
-  return [self.server.baseWebURL URLByAppendingPathComponent:@"/msfinance/page/about/insuranceInfo.htm"];
+	return [self.server.baseWebURL URLByAppendingPathComponent:@"/msfinance/page/about/insuranceInfo.htm"];
 }
 
 - (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product {

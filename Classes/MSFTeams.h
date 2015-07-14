@@ -1,9 +1,9 @@
 //
-//  MSFTeam.h
-//  Cash
+//	MSFTeam.h
+//	Cash
 //
-//  Created by xbm on 15/5/20.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/5/20.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //胥佰淼
 
 #import "MSFObject.h"

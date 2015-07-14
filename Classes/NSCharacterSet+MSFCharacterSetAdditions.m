@@ -9,15 +9,15 @@
 @implementation NSCharacterSet (MSFCharacterSetAdditions)
 
 + (NSCharacterSet *)chineseCharacterSet {
-  return [NSCharacterSet characterSetWithRange:NSMakeRange(0x4e00, 0x9fa5-0x4e00)];
+	return [NSCharacterSet characterSetWithRange:NSMakeRange(0x4e00, 0x9fa5-0x4e00)];
 }
 
 + (NSCharacterSet *)identifyCardCharacterSet {
-  return [NSCharacterSet characterSetWithCharactersInString:@"0123456789xX"];
+	return [NSCharacterSet characterSetWithCharactersInString:@"0123456789xX"];
 }
 
 + (NSCharacterSet *)numberCharacterSet {
-  return [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
+	return [NSCharacterSet characterSetWithCharactersInString:@"0123456789"];
 }
 
 @end

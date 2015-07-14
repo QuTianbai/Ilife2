@@ -27,63 +27,63 @@
 #pragma mark - Lifecycle
 
 - (void)dealloc {
-  NSLog(@"`dealloc`");
+	NSLog(@"`dealloc`");
 }
 
 - (instancetype)init {
-  self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFEditPasswordViewController.class)];
-  if (!self) {
-    return nil;
-  }
-  
-  return self;
+	self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFEditPasswordViewController.class)];
+	if (!self) {
+		return nil;
+	}
+	
+	return self;
 }
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.title = @"修改密码";
-  self.viewModel = [[MSFUserViewModel alloc] initWithClient:MSFUtils.httpClient];
-  RAC(self.viewModel,usedPassword) = self.passoword1.rac_textSignal;
-  RAC(self.viewModel,updatePassword) = self.passoword2.rac_textSignal;
-  self.button.rac_command = self.viewModel.executeUpdatePassword;
-  
-  @weakify(self)
-  [self.viewModel.executeUpdatePassword.executionSignals subscribeNext:^(RACSignal *signal) {
-    @strongify(self)
-    [self.view endEditing:YES];
-		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-    [signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"密码更新成功"];
-      [self.navigationController popViewControllerAnimated:YES];
-    }];
-  }];
-  [self.viewModel.executeUpdatePassword.errors subscribeNext:^(NSError *error) {
+	[super viewDidLoad];
+	self.title = @"修改密码";
+	self.viewModel = [[MSFUserViewModel alloc] initWithClient:MSFUtils.httpClient];
+	RAC(self.viewModel,usedPassword) = self.passoword1.rac_textSignal;
+	RAC(self.viewModel,updatePassword) = self.passoword2.rac_textSignal;
+	self.button.rac_command = self.viewModel.executeUpdatePassword;
+	
+	@weakify(self)
+	[self.viewModel.executeUpdatePassword.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-    [self.view endEditing:YES];
-    [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-  }];
-  
-  self.passoword1.clearButtonMode = UITextFieldViewModeNever;
-  self.passoword2.clearButtonMode = UITextFieldViewModeNever;
-  
-  [self.password1Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
-    @strongify(self)
-    NSString *text = self.passoword1.text;
-    self.passoword1.text = text;
+		[self.view endEditing:YES];
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD showSuccessWithStatus:@"密码更新成功"];
+			[self.navigationController popViewControllerAnimated:YES];
+		}];
+	}];
+	[self.viewModel.executeUpdatePassword.errors subscribeNext:^(NSError *error) {
+		@strongify(self)
+		[self.view endEditing:YES];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	self.passoword1.clearButtonMode = UITextFieldViewModeNever;
+	self.passoword2.clearButtonMode = UITextFieldViewModeNever;
+	
+	[self.password1Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
+		@strongify(self)
+		NSString *text = self.passoword1.text;
+		self.passoword1.text = text;
 		self.passoword1.enabled = NO;
-    [self.passoword1 setSecureTextEntry:!x.boolValue];
+		[self.passoword1 setSecureTextEntry:!x.boolValue];
 		self.passoword1.enabled = YES;
 		[self.passoword1 becomeFirstResponder];
-  }];
-  [self.password2Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
-    @strongify(self)
-    NSString *text = self.passoword2.text;
-    self.passoword2.text = text;
+	}];
+	[self.password2Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
+		@strongify(self)
+		NSString *text = self.passoword2.text;
+		self.passoword2.text = text;
 		self.passoword2.enabled = NO;
-    [self.passoword2 setSecureTextEntry:!x.boolValue];
+		[self.passoword2 setSecureTextEntry:!x.boolValue];
 		self.passoword2.enabled = YES;
 		[self.passoword2 becomeFirstResponder];
-  }];
+	}];
 }
 
 @end

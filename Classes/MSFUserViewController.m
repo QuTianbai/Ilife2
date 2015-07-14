@@ -111,7 +111,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-	cell.textLabel.text  = self.rowTitles[indexPath.row];
+	cell.textLabel.text	 = self.rowTitles[indexPath.row];
 	cell.imageView.image = self.icons[indexPath.row];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	

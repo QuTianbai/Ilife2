@@ -1,9 +1,9 @@
 //
-//  MSFAreas.m
-//  Cash
+//	MSFAreas.m
+//	Cash
 //
-//  Created by xbm on 15/5/24.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/5/24.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFAreas.h"
@@ -11,37 +11,37 @@
 @implementation MSFAreas
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-  return @{
-    @"name": @"area_name",
-    @"codeID": @"area_code",
-    @"parentCodeID": @"parent_area_code"
-    };
+	return @{
+		@"name": @"area_name",
+		@"codeID": @"area_code",
+		@"parentCodeID": @"parent_area_code"
+		};
 }
 
 + (NSDictionary *)FMDBColumnsByPropertyKey {
-  return @{
-    @"name": @"area_name",
-    @"codeID": @"area_code",
-    @"parentCodeID": @"parent_area_code"
-    };
+	return @{
+		@"name": @"area_name",
+		@"codeID": @"area_code",
+		@"parentCodeID": @"parent_area_code"
+		};
 }
 
 + (NSArray *)FMDBPrimaryKeys {
-  return @[@"area_code"];
+	return @[@"area_code"];
 }
 
 + (NSString *)FMDBTableName {
-  return @"basic_dic_area";
+	return @"basic_dic_area";
 }
 
 #pragma mark - MSFSelectionItem
 
 - (NSString *)title {
-  return self.name;
+	return self.name;
 }
 
 - (NSString *)subtitle {
-  return @"";
+	return @"";
 }
 
 @end

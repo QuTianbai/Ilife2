@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  注册
+ *	注册
  */
 @interface MSFSignUpViewController : UITableViewController
 

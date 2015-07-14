@@ -16,52 +16,52 @@ static UIColor *backupColor;
 @implementation UITableView (MSFActivityIndicatorViewAdditions)
 
 - (UIView *)viewWithSignal:(RACSignal *)signal message:(NSString *)message {
-  UIView *view = UIView.new;
-  UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-  [view addSubview:activityIndicatorView];
-  
-  [activityIndicatorView startAnimating];
-  [activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.center.equalTo(view);
-  }];
-  
-  UILabel *label = UILabel.new;
-  label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
-  label.textColor = UIColor.darkGrayColor;
-  label.numberOfLines = 2;
-  label.textAlignment = NSTextAlignmentCenter;
-  label.hidden = NO;
-  [view addSubview:label];
-  [label mas_makeConstraints:^(MASConstraintMaker *make) {
-    make.center.equalTo(view);
-    make.left.equalTo(view).offset(30);
-    make.right.equalTo(view).offset(-30);
-  }];
-  
-  //TODO: 尚未建立手动刷新机制，button在TableView中的backgroundView中无法点击
-  
-  backupView = self.backgroundView;
-  backupStyle = self.separatorStyle;
-  backupColor = self.separatorColor;
-  self.separatorStyle = UITableViewCellSeparatorStyleNone;
-  self.separatorColor = [UIColor clearColor];
-  
-  [signal subscribeNext:^(id x) {
-    [activityIndicatorView stopAnimating];
-    if ([x count] == 0) {
-      label.text = message;
-    }
-    else {
-      self.backgroundView = backupView;
-      self.separatorStyle = backupStyle;
-      self.separatorColor = backupColor;
-    }
-  } error:^(NSError *error) {
-     [activityIndicatorView stopAnimating];
-     label.text = error.userInfo[NSLocalizedFailureReasonErrorKey];
-  }];
-  
-  return view;
+	UIView *view = UIView.new;
+	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[view addSubview:activityIndicatorView];
+	
+	[activityIndicatorView startAnimating];
+	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.center.equalTo(view);
+	}];
+	
+	UILabel *label = UILabel.new;
+	label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+	label.textColor = UIColor.darkGrayColor;
+	label.numberOfLines = 2;
+	label.textAlignment = NSTextAlignmentCenter;
+	label.hidden = NO;
+	[view addSubview:label];
+	[label mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.center.equalTo(view);
+		make.left.equalTo(view).offset(30);
+		make.right.equalTo(view).offset(-30);
+	}];
+	
+	//TODO: 尚未建立手动刷新机制，button在TableView中的backgroundView中无法点击
+	
+	backupView = self.backgroundView;
+	backupStyle = self.separatorStyle;
+	backupColor = self.separatorColor;
+	self.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.separatorColor = [UIColor clearColor];
+	
+	[signal subscribeNext:^(id x) {
+		[activityIndicatorView stopAnimating];
+		if ([x count] == 0) {
+			label.text = message;
+		}
+		else {
+			self.backgroundView = backupView;
+			self.separatorStyle = backupStyle;
+			self.separatorColor = backupColor;
+		}
+	} error:^(NSError *error) {
+		 [activityIndicatorView stopAnimating];
+		 label.text = error.userInfo[NSLocalizedFailureReasonErrorKey];
+	}];
+	
+	return view;
 }
 
 @end

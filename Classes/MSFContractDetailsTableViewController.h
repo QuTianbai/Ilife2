@@ -1,12 +1,12 @@
 //
-//  MSFContractDetailsTableViewController.h
-//  Cash
+//	MSFContractDetailsTableViewController.h
+//	Cash
 //
-//  Created by xutian on 15/5/18.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xutian on 15/5/18.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 /**
- *  合同明细Controller
+ *	合同明细Controller
  */
 
 #import <UIKit/UIKit.h>

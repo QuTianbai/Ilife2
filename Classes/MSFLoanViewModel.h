@@ -8,16 +8,16 @@
 
 // 1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
 typedef NS_ENUM(NSUInteger, MSFLoanStatus) {
-  MSFLoanStatusNone,
-  MSFLoanStatusAppling,
-  MSFLoanStatusSuccess,
-  MSFLoanStatusFailed,
-  MSFLoanStatusRepayment,
-  MSFLoanStatusCancel,
-  MSFLoanStatusFinished,
-  MSFLoanStatusExpired,
-  MSFLoanStatusExpectedSuccess,
-  MSFLoanStatusLoan,
+	MSFLoanStatusNone,
+	MSFLoanStatusAppling,
+	MSFLoanStatusSuccess,
+	MSFLoanStatusFailed,
+	MSFLoanStatusRepayment,
+	MSFLoanStatusCancel,
+	MSFLoanStatusFinished,
+	MSFLoanStatusExpired,
+	MSFLoanStatusExpectedSuccess,
+	MSFLoanStatusLoan,
 };
 
 @interface MSFLoanViewModel : RVMViewModel
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, MSFLoanStatus) {
 // 标题
 @property (nonatomic, strong, readonly) NSString *title;
 
-// 状态,字符串描述  例 `审核通过`
+// 状态,字符串描述	例 `审核通过`
 @property (nonatomic, strong, readonly) NSString *status;
 
 // 申请是时间 `2015-07-14`

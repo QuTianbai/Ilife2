@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  登录
+ *	登录
  */
 @interface MSFLoginViewController : UIViewController
 

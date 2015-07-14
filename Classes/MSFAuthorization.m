@@ -9,10 +9,10 @@
 @implementation MSFAuthorization
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-  return @{
-    @"session": @"msfinance",
-    @"token": @"finance"
-    };
+	return @{
+		@"session": @"msfinance",
+		@"token": @"finance"
+		};
 }
 
 @end

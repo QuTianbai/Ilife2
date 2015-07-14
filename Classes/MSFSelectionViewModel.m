@@ -23,38 +23,38 @@
 #pragma mark - Lifecycle
 
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items {
-  MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
-  viewModel.models = items;
+	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
+	viewModel.models = items;
 
-  return viewModel;
+	return viewModel;
 }
 
 + (MSFSelectionViewModel *)selectKeyValuesViewModel:(NSArray *)items {
-  MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
-  viewModel.models = items;
+	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
+	viewModel.models = items;
 
-  return viewModel;
+	return viewModel;
 }
 
 + (MSFSelectionViewModel *)monthsViewModelWithProducts:(MSFMarket *)products total:(NSInteger)amount {
-  MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
-  viewModel.models = [[[products.teams.rac_sequence filter:^BOOL(MSFTeams *terms) {
-    return (terms.minAmount.integerValue <= amount) && (terms.maxAmount.integerValue >=  amount);
-    }]
-   flattenMap:^RACStream *(MSFTeams *value) {
-     return value.team.rac_sequence;
-   }].array sortedArrayUsingComparator:^NSComparisonResult(MSFProduct *obj1, MSFProduct *obj2) {
-     if (obj1.period.integerValue < obj2.period.integerValue) {
-       return NSOrderedAscending;
-     }
-     else if (obj1.period.integerValue > obj2.period.integerValue) {
-       return NSOrderedDescending;
-     }
-     
-     return NSOrderedSame;
-   }];
-  
-  return viewModel;
+	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
+	viewModel.models = [[[products.teams.rac_sequence filter:^BOOL(MSFTeams *terms) {
+		return (terms.minAmount.integerValue <= amount) && (terms.maxAmount.integerValue >=	 amount);
+		}]
+	 flattenMap:^RACStream *(MSFTeams *value) {
+		 return value.team.rac_sequence;
+	 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFProduct *obj1, MSFProduct *obj2) {
+		 if (obj1.period.integerValue < obj2.period.integerValue) {
+			 return NSOrderedAscending;
+		 }
+		 else if (obj1.period.integerValue > obj2.period.integerValue) {
+			 return NSOrderedDescending;
+		 }
+		 
+		 return NSOrderedSame;
+	 }];
+	
+	return viewModel;
 }
 
 + (MSFSelectionViewModel *)selectViewModelWithFilename:(NSString *)filename {
@@ -64,29 +64,29 @@
 #pragma mark - Public
 
 - (NSInteger)numberOfSections {
-  return 1;
+	return 1;
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-  return self.models.count;
+	return self.models.count;
 }
 
 - (NSString *)titleForIndexPath:(NSIndexPath *)indexPath {
-  return [self itemForIndexPath:indexPath].title;
+	return [self itemForIndexPath:indexPath].title;
 }
 
 - (NSString *)subtitleForIndexPath:(NSIndexPath *)indexPath {
-  return [self itemForIndexPath:indexPath].subtitle;
+	return [self itemForIndexPath:indexPath].subtitle;
 }
 
 - (id)modelForIndexPath:(NSIndexPath *)indexPath {
-  return [self itemForIndexPath:indexPath];
+	return [self itemForIndexPath:indexPath];
 }
 
 #pragma mark - Private
 
 - (NSObject <MSFSelectionItem> *)itemForIndexPath:(NSIndexPath *)indexPath {
-  return self.models[indexPath.row];
+	return self.models[indexPath.row];
 }
 
 @end

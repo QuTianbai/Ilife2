@@ -9,9 +9,9 @@
 @interface MSFClient (ReleaseNote)
 
 /**
- *  获取服务器记录的版本信息
+ *	获取服务器记录的版本信息
  *
- *  @return ReleaseNote
+ *	@return ReleaseNote
  */
 - (RACSignal *)fetchReleaseNote;
 

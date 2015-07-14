@@ -12,7 +12,7 @@
 @class RACCommand;
 
 /**
- *  基本信息
+ *	基本信息
 */
 @interface MSFPersonalViewModel : RVMViewModel
 

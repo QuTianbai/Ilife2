@@ -1,9 +1,9 @@
 //
-//  MSFPlanDetails.h
-//  Cash
-//  计划详情
-//  Created by xutian on 15/5/15.
-//  Copyright (c) 2015年 Zēng Liàng. All rights reserved.
+//	MSFPlanDetails.h
+//	Cash
+//	计划详情
+//	Created by xutian on 15/5/15.
+//	Copyright (c) 2015年 Zēng Liàng. All rights reserved.
 //
 
 #import "MSFObject.h"

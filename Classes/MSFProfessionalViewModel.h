@@ -61,7 +61,7 @@
 @property(nonatomic,strong) NSString *extensionTelephone;
 
 /**
- *  详细地址
+ *	详细地址
  */
 @property(nonatomic,strong) NSString *address;
 

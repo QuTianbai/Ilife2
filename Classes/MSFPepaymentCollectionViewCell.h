@@ -8,7 +8,7 @@
 #import "MSFReactiveView.h"
 
 /**
- *  还款中Cell
+ *	还款中Cell
  */
 @interface MSFPepaymentCollectionViewCell : UICollectionViewCell <MSFReactiveView>
 

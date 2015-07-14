@@ -27,32 +27,32 @@
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  self.edgesForExtendedLayout = UIRectEdgeNone;
-  self.viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:MSFUtils.httpClient controller:self];
-  RAC(self.viewModel,name) = self.procedureViewController.name.rac_textSignal;
-  RAC(self.viewModel,card) = self.procedureViewController.card.rac_textSignal;
+	[super viewDidLoad];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:MSFUtils.httpClient controller:self];
+	RAC(self.viewModel,name) = self.procedureViewController.name.rac_textSignal;
+	RAC(self.viewModel,card) = self.procedureViewController.card.rac_textSignal;
 	RAC(self.viewModel,bankNO) = self.procedureViewController.bankNO.rac_textSignal;
 	
 	// Submit
-  self.procedureViewController.submitButton.rac_command = self.viewModel.executeAuth;
-  @weakify(self)
-  [self.procedureViewController.submitButton.rac_command.executionSignals subscribeNext:^(RACSignal *authSignal) {
-    @strongify(self)
-    [self.procedureViewController.view endEditing:YES];
+	self.procedureViewController.submitButton.rac_command = self.viewModel.executeAuth;
+	@weakify(self)
+	[self.procedureViewController.submitButton.rac_command.executionSignals subscribeNext:^(RACSignal *authSignal) {
+		@strongify(self)
+		[self.procedureViewController.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-    [authSignal subscribeNext:^(id x) {
+		[authSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-      [self dismissViewControllerAnimated:YES completion:nil];
-    }];
-  }];
-  [self.procedureViewController.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
-    [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-  }];
+			[self dismissViewControllerAnimated:YES completion:nil];
+		}];
+	}];
+	[self.procedureViewController.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 	
 	// Identifier Card Lifelong
-  RAC(self.procedureViewController.permanentButton,selected) =  RACObserve(self.viewModel,permanent);
-  RAC(self.procedureViewController.datePickerButton,enabled) = [RACSignal
+	RAC(self.procedureViewController.permanentButton,selected) =	RACObserve(self.viewModel,permanent);
+	RAC(self.procedureViewController.datePickerButton,enabled) = [RACSignal
 		combineLatest:@[RACObserve(self.viewModel, permanent)]
 		reduce:^id(NSNumber *permanent){
 			return @(!permanent.boolValue);
@@ -67,18 +67,18 @@
 			[self.procedureViewController.expired setBackgroundColor:[UIColor whiteColor]];
 		}
 	}];
-  self.procedureViewController.permanentButton.rac_command = self.viewModel.executePermanent;
+	self.procedureViewController.permanentButton.rac_command = self.viewModel.executePermanent;
 	
 	// Left Bar button
-  UIBarButtonItem *item = [[UIBarButtonItem alloc]
-    initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:nil action:nil];
-  item.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self)
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    return [RACSignal empty];
-  }];
-  self.navigationItem.leftBarButtonItem = item;
+	UIBarButtonItem *item = [[UIBarButtonItem alloc]
+		initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:nil action:nil];
+	item.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		[self dismissViewControllerAnimated:YES completion:nil];
+		
+		return [RACSignal empty];
+	}];
+	self.navigationItem.leftBarButtonItem = item;
 	
 	// Bank name
 	RAC(self.procedureViewController.bankName,text) = RACObserve(self.viewModel, bankName);
@@ -92,7 +92,7 @@
 			
 			[selectViewController.selectedSignal subscribeNext:^(MSFSelectKeyValues *selectValue) {
 				[selectViewController.navigationController popViewControllerAnimated:YES];
-			  self.viewModel.bankName = selectValue.text;
+				self.viewModel.bankName = selectValue.text;
 				self.viewModel.bankCode = selectValue.code;
 			}];
 		}];
@@ -114,9 +114,9 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  if ([segue.identifier isEqualToString:@"procedure"]) {
-    self.procedureViewController = segue.destinationViewController;
-  }
+	if ([segue.identifier isEqualToString:@"procedure"]) {
+		self.procedureViewController = segue.destinationViewController;
+	}
 }
 
 @end
