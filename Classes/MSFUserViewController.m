@@ -20,6 +20,7 @@
 #import "MSFLoanListViewController.h"
 #import "UIButton+BottomTitles.h"
 #import "UIColor+Utils.h"
+#import "MSFSettingsViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -99,6 +100,18 @@
 			userinfoViewController.hidesBottomBarWhenPushed = YES;
 			[self.navigationController pushViewController:userinfoViewController animated:YES];
 	}];
+	
+	self.navigationItem.rightBarButtonItem =
+		[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-setting"]
+		style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.rightBarButtonItem.rac_command =
+		[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			@strongify(self)
+			MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
+			settingsViewController.hidesBottomBarWhenPushed = YES;
+			[self.navigationController pushViewController:settingsViewController animated:YES];
+			return [RACSignal empty];
+		}];
  
 	return view;
 }
