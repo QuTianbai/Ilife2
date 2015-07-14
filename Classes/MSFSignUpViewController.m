@@ -9,6 +9,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <libextobjc/extobjc.h>
 #import "MSFAuthorizeViewModel.h"
+#import "MSFUtils.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -35,6 +36,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-login"]];
+	self.username.text = MSFUtils.phone;
   if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
     self.username.text = @"18223959242";
   }

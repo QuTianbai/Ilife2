@@ -27,7 +27,6 @@ NSString *const MSFAuthorizationDidLoseConnectNotification = @"MSFAuthorizationD
 static MSFClient *client;
 static MSFServer *server;
 static NSString *cachePath;
-static NSString *phone;
 
 static BOOL isRunningTests(void) __attribute__((const));
 
@@ -137,11 +136,11 @@ static BOOL isRunningTests(void) {
 }
 
 + (void)setPhone:(NSString *)_phone {
-  phone = _phone;
+	[[NSUserDefaults standardUserDefaults] setObject:_phone?:@"" forKey:@"user-phone"];
 }
 
 + (NSString *)phone {
-  return phone;
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-phone"];
 }
 
 @end
