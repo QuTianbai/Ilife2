@@ -129,29 +129,38 @@
 }
 
 - (NSString *)getStatus:(NSInteger)status {
-  //0 1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
+  //0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
   //NSString* resultStr=@"";
   switch (status) {
+    case 0:
+      return @"审核中";
+      break;
     case 1:
-      return @"申请中";
+      return @"审核中";
       break;
     case 2:
-      return @"申请成功";
+      return @"审核通过";
       break;
     case 3:
-      return @"申请失败";
+      return @"审核未通过";
       break;
     case 4:
       return @"还款中";
       break;
     case 5:
-      return @"取消";
+      return @"已取消";
       break;
     case 6:
-      return @"已完结";
+      return @"已结束";
       break;
     case 7:
       return @"已逾期";
+      break;
+    case 8:
+      return @"预审核通过";
+      break;
+    case 9:
+      return @"待放款";
       break;
     default:
       return @"";
