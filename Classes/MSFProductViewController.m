@@ -30,22 +30,22 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFProductViewController ()
 
-@property(weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
-@property(weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
-@property(weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
-@property(weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
-@property(weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
-@property(weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
-@property(weak, nonatomic) IBOutlet UILabel *repayMoneyMonth;
-@property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
-@property(weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
+@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
+@property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
+@property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
+@property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
+@property (weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
+@property (weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
+@property (weak, nonatomic) IBOutlet UILabel *repayMoneyMonth;
+@property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
+@property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
-@property(nonatomic,strong) MSFProductViewModel *viewModel;
+@property (nonatomic, strong) MSFProductViewModel *viewModel;
 
-@property(nonatomic,strong) RACCommand *executePurposeCommand;
-@property(nonatomic,strong) RACCommand *executeTermCommand;
-@property(nonatomic,strong) RACCommand *executeNextCommand;
-@property(nonatomic,strong) RACCommand *executeLifeInsuranceCommand;
+@property (nonatomic, strong) RACCommand *executePurposeCommand;
+@property (nonatomic, strong) RACCommand *executeTermCommand;
+@property (nonatomic, strong) RACCommand *executeNextCommand;
+@property (nonatomic, strong) RACCommand *executeLifeInsuranceCommand;
 
 @end
 
@@ -75,13 +75,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	@weakify(self)
-	RAC(self.viewModel,totalAmount) = self.applyCashNumTF.rac_textSignal;
-	RAC(self.viewModel,insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+	RAC(self.viewModel, totalAmount) = self.applyCashNumTF.rac_textSignal;
+	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
-	RAC(self.applyCashNumTF,placeholder) = RACObserve(self.viewModel, totalAmountPlacholder);
-	RAC(self.repayMoneyMonth,text) = RACObserve(self.viewModel, termAmountText);
-	RAC(self.moneyUsesTF,text) = RACObserve(self.viewModel, purposeText);
-	RAC(self.applyMonthsTF,text) = RACObserve(self.viewModel, productTitle);
+	RAC(self.applyCashNumTF, placeholder) = RACObserve(self.viewModel, totalAmountPlacholder);
+	RAC(self.repayMoneyMonth, text) = RACObserve(self.viewModel, termAmountText);
+	RAC(self.moneyUsesTF, text) = RACObserve(self.viewModel, purposeText);
+	RAC(self.applyMonthsTF, text) = RACObserve(self.viewModel, productTitle);
 	self.applyMonthsBT.rac_command = self.executeTermCommand;
 	[self.executeTermCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)

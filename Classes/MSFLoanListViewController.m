@@ -24,16 +24,14 @@
 #define TYPEFACECOLOR @"5787c0"
 #define REPAYMENTCOLOR @"#477dbd"
 
-@interface MSFLoanListViewController()<UITableViewDataSource,UITableViewDelegate>
+@interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic,strong) UITableView *dataTableView;
-
-@property(nonatomic,strong) NSArray *dataArray;
-
-@property(strong, nonatomic)  UILabel *money;
-@property(strong, nonatomic)  UILabel *months;
-@property(strong, nonatomic)  UILabel *time;
-@property(strong, nonatomic)  UILabel *check;
+@property (nonatomic, strong) UITableView *dataTableView;
+@property (nonatomic, strong) NSArray *dataArray;
+@property (strong, nonatomic)  UILabel *money;
+@property (strong, nonatomic)  UILabel *months;
+@property (strong, nonatomic)  UILabel *time;
+@property (strong, nonatomic)  UILabel *check;
 
 @end
 
@@ -96,7 +94,7 @@
   [cell.timeLabel setTextAlignment:NSTextAlignmentCenter];
   
   cell.moneyLabel.text = listModel.total_amount;
-  cell.monthsLabel.text = [NSString stringWithFormat:@"%ld",(long)listModel.total_installments];
+  cell.monthsLabel.text = [NSString stringWithFormat:@"%ld", (long)listModel.total_installments];
   
   NSString *df = [NSDateFormatter msf_stringFromDate:listModel.apply_time];
   
@@ -110,8 +108,7 @@
     cell.selected = NO;
     _dataTableView.allowsSelection = NO;
     cell.selectionStyle = UITableViewCellEditingStyleNone;
-  }
-  else {
+  } else {
     [cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:REPAYMENTCOLOR] forState:UIControlStateNormal];
     cell.selected = YES;
     _dataTableView.allowsSelection = YES;
@@ -205,7 +202,7 @@
   [_money mas_makeConstraints:^(MASConstraintMaker *make) {
     make.centerY.equalTo(superView);
     make.left.equalTo(superView.mas_left).offset(20);
-    make.height.equalTo(@[_check,_months,_time]);
+    make.height.equalTo(@[_check, _months,_time]);
   }];
   
   [_months mas_makeConstraints:^(MASConstraintMaker *make) {

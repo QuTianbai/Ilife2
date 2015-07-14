@@ -37,7 +37,7 @@
 
 @interface AppDelegate () <UITabBarControllerDelegate>
 
-@property(nonatomic,strong) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
 
 @end
 
@@ -125,7 +125,7 @@
   [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"tabbar-apply-normal"] selectedImage:[UIImage imageNamed:@"tabbar-apply-selected"]];
   apply.tabBarItem.imageInsets = UIEdgeInsetsMake(7, 0, -7, 0);
   
-  tabBarViewController.viewControllers = @[homepage,apply,userpage];
+  tabBarViewController.viewControllers = @[homepage, apply,userpage];
   tabBarViewController.tabBar.selectedImageTintColor = UIColor.themeColor;
   tabBarViewController.delegate = self;
 	self.tabBarController = tabBarViewController;
@@ -257,8 +257,7 @@
      MSFClient *client = notifi.object;
      if (client.isAuthenticated) {
        homePageViewController.navigationItem.leftBarButtonItem = nil;
-     }
-     else {
+     } else {
        homePageViewController.navigationItem.leftBarButtonItem =
        [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStyleDone target:nil action:nil];
        homePageViewController.navigationItem.leftBarButtonItem.rac_command =
@@ -291,11 +290,9 @@
     if ([cell isKindOfClass:MSFPlaceholderCollectionViewCell.class]) {
       if (!MSFUtils.httpClient.isAuthenticated) {
         [self signIn];
-      }
-      else if (![MSFUtils.httpClient.user isAuthenticated]) {
+      } else if (![MSFUtils.httpClient.user isAuthenticated]) {
         [self auth];
-      }
-      else {
+      } else {
         [(UITabBarController *)self.window.rootViewController setSelectedIndex:1];
       }
     }

@@ -11,13 +11,13 @@
 @interface MSFCipher : NSObject
 
 // 服务器返回的时间戳
-@property(nonatomic,assign,readonly) long long sessionId;
+@property (nonatomic, assign, readonly) long long sessionId;
 
 // 请求服务器后对应的本地接收的时间戳
-@property(nonatomic,assign,readonly) long long serialization;
+@property (nonatomic, assign, readonly) long long serialization;
 
 // 加密密钥
-@property(nonatomic,copy,readonly) NSString *signKey;
+@property (nonatomic, copy, readonly) NSString *signKey;
 
 - (instancetype)initWithSession:(long long)contestant;
 
