@@ -30,27 +30,32 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFProductViewController ()
 
-@property(weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
-@property(weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
-@property(weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
-@property(weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
-@property(weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
-@property(weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
-@property(weak, nonatomic) IBOutlet UILabel *repayMoneyMonth;
-@property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
-@property(weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
+@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
+@property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
+@property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
+@property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
+@property (weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
+@property (weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
+@property (weak, nonatomic) IBOutlet UILabel *repayMoneyMonth;
+@property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
+@property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
-@property(nonatomic,strong) MSFProductViewModel *viewModel;
-@property(nonatomic,strong) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong) MSFProductViewModel *viewModel;
 
-@property(nonatomic,strong) RACCommand *executePurposeCommand;
-@property(nonatomic,strong) RACCommand *executeTermCommand;
-@property(nonatomic,strong) RACCommand *executeNextCommand;
-@property(nonatomic,strong) RACCommand *executeLifeInsuranceCommand;
+@property (nonatomic, strong) RACCommand *executePurposeCommand;
+@property (nonatomic, strong) RACCommand *executeTermCommand;
+@property (nonatomic, strong) RACCommand *executeNextCommand;
+@property (nonatomic, strong) RACCommand *executeLifeInsuranceCommand;
 
 @end
 
 @implementation MSFProductViewController
+
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
+}
 
 #pragma mark - Lifecycle
 
@@ -70,16 +75,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	@weakify(self)
-	self.formsViewModel = [[MSFFormsViewModel alloc] initWithClient:MSFUtils.httpClient];
+	RAC(self.viewModel, totalAmount) = self.applyCashNumTF.rac_textSignal;
+	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
-	self.viewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.formsViewModel];
-	RAC(self.viewModel,totalAmount) = self.applyCashNumTF.rac_textSignal;
-	RAC(self.viewModel,insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
-	
-	RAC(self.applyCashNumTF,placeholder) = RACObserve(self.viewModel, totalAmountPlacholder);
-	RAC(self.repayMoneyMonth,text) = RACObserve(self.viewModel, termAmountText);
-	RAC(self.moneyUsesTF,text) = RACObserve(self.viewModel, purposeText);
-	RAC(self.applyMonthsTF,text) = RACObserve(self.viewModel, productTitle);
+	RAC(self.applyCashNumTF, placeholder) = RACObserve(self.viewModel, totalAmountPlacholder);
+	RAC(self.repayMoneyMonth, text) = RACObserve(self.viewModel, termAmountText);
+	RAC(self.moneyUsesTF, text) = RACObserve(self.viewModel, purposeText);
+	RAC(self.applyMonthsTF, text) = RACObserve(self.viewModel, productTitle);
 	self.applyMonthsBT.rac_command = self.executeTermCommand;
 	[self.executeTermCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -103,16 +105,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+  
 	self.lifeInsuranceButton.rac_command = self.executeLifeInsuranceCommand;
-	
-	self.formsViewModel.active = YES;
-	[[self.tabBarController rac_signalForSelector:@selector(setSelectedViewController:)] subscribeNext:^(id x) {
-		@strongify(self)
-		UINavigationController *navigationController = [x first];
-		self.viewModel.product = nil;
-		self.viewModel.purpose = nil;
-		self.formsViewModel.active = [navigationController.topViewController isKindOfClass:self.class];
-	}];
 }
 
 #pragma mark - Private
@@ -216,7 +210,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			}
 			MSFLoanAgreementController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
 			vc.hidesBottomBarWhenPushed = YES;
-			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.viewModel.product];
+			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.viewModel.formsViewModel product:self.viewModel.product];
 			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 			[subscriber sendCompleted];

@@ -13,7 +13,7 @@
 
 @interface MSFWebViewController () <UIWebViewDelegate>
 
-@property(nonatomic,strong) NSURL *HTMLURL;
+@property (nonatomic, strong) NSURL *HTMLURL;
 
 @end
 
@@ -38,7 +38,6 @@
     make.edges.equalTo(self.view);
   }];
   
-  @weakify(self)
   [webView loadRequest:[NSURLRequest requestWithURL:_HTMLURL]
    progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
 		 [SVProgressHUD showWithStatus:@"正在加载...."];
@@ -48,7 +47,6 @@
      return HTML;
    }
    failure:^(NSError *error) {
-     @strongify(self)
 		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
    }];
   

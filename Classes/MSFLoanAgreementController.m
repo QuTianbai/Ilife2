@@ -22,10 +22,10 @@
 
 @interface MSFLoanAgreementController ()
 
-@property(weak, nonatomic) IBOutlet UIWebView *LoanAgreenmentWV;
-@property(nonatomic,strong) MSFLoanAgreementViewModel *viewModel;
-@property(nonatomic,weak) IBOutlet UIButton *agreeButton;
-@property(nonatomic,weak) IBOutlet UIButton *disAgreeButton;
+@property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
+@property (nonatomic, strong) MSFLoanAgreementViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UIButton *agreeButton;
+@property (nonatomic, weak) IBOutlet UIButton *disAgreeButton;
 
 @end
 
@@ -35,8 +35,21 @@
   self.title = @"贷款协议";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal = [MSFUtils.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
-  [self.LoanAgreenmentWV rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[signal,[RACSignal return:nil]]]];
+  
+  [SVProgressHUD showWithStatus:@"正在加载..."];
+  [[[self.LoanAgreenmentWV
+     rac_liftSelector:@selector(loadHTMLString:baseURL:)
+     withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
+    deliverOn:[RACScheduler mainThreadScheduler]]
+   subscribeNext:^(id x) {
+     [SVProgressHUD dismiss];
+   }
+   error:^(NSError *error) {
+     [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+   }];
+  [[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+    [SVProgressHUD dismiss];
+  }];
 	
 	@weakify(self)
 	self.agreeButton.rac_command = self.viewModel.executeRequest;

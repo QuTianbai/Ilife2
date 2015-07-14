@@ -321,7 +321,6 @@
 		49E22B061B37EDF700749717 /* icon-loan-question.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22B031B37EDF700749717 /* icon-loan-question.png */; };
 		49E22B071B37EDF700749717 /* icon-loan-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22B041B37EDF700749717 /* icon-loan-question@2x.png */; };
 		49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22B051B37EDF700749717 /* icon-loan-question@3x.png */; };
-		49E4187E1B4CCFE100422C20 /* MSFAFViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E4187D1B4CCFE100422C20 /* MSFAFViewModelSpec.m */; };
 		49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */; };
 		49EAABA41B0DC5B800E5FF32 /* launch-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EAABA31B0DC5B800E5FF32 /* launch-screen.png */; };
 		49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */; };
@@ -930,7 +929,6 @@
 		49E22B031B37EDF700749717 /* icon-loan-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-loan-question.png"; sourceTree = "<group>"; };
 		49E22B041B37EDF700749717 /* icon-loan-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-loan-question@2x.png"; sourceTree = "<group>"; };
 		49E22B051B37EDF700749717 /* icon-loan-question@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-loan-question@3x.png"; sourceTree = "<group>"; };
-		49E4187D1B4CCFE100422C20 /* MSFAFViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAFViewModelSpec.m; sourceTree = "<group>"; };
 		49E418821B4CD18400422C20 /* MSFPersonalViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPersonalViewModel.h; sourceTree = "<group>"; };
 		49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPersonalViewModel.m; sourceTree = "<group>"; };
 		49EAABA31B0DC5B800E5FF32 /* launch-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-screen.png"; sourceTree = "<group>"; };
@@ -1608,7 +1606,6 @@
 				499147181B244D5600260E97 /* MSFSelectionViewModelSpec.m */,
 				C7D7DB111B2EF85A005ECA0C /* MSFRelationViewModelSpec.m */,
 				49C2FE4C1B466A3E00B6B20A /* MSFAddressViewModelSpec.m */,
-				49E4187D1B4CCFE100422C20 /* MSFAFViewModelSpec.m */,
 				492C6A061B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m */,
 			);
 			name = Specs;
@@ -2964,7 +2961,6 @@
 				C72149F41B05C8A40045F919 /* MSFPlanDetailsSpec.m in Sources */,
 				49C7CB9F1B049D7500EF5A68 /* MSFReleaseNoteSpec.m in Sources */,
 				4967EE7D1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m in Sources */,
-				49E4187E1B4CCFE100422C20 /* MSFAFViewModelSpec.m in Sources */,
 				498113DA1B1C581D003D1B7A /* MSFHomePageViewModelSpec.m in Sources */,
 				49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */,
 				C718843D1B06F89D00C25955 /* MSFAccordToNperListsSpec.m in Sources */,

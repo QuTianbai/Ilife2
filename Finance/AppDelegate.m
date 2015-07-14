@@ -23,6 +23,11 @@
 #import "MSFLoginViewController.h"
 #import "MSFClozeViewController.h"
 #import "MSFGuideViewController.h"
+#import "MSFProductViewController.h"
+#import "MSFFormsViewModel.h"
+#import "MSFClient+Users.h"
+#import "MSFResponse.h"
+#import "MSFProductViewModel.h"
 
 #import "MSFPlaceholderCollectionViewCell.h"
 #import <Fabric/Fabric.h>
@@ -31,6 +36,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface AppDelegate () <UITabBarControllerDelegate>
+
+@property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
 
 @end
 
@@ -118,9 +125,10 @@
   [[UITabBarItem alloc] initWithTitle:nil image:[UIImage imageNamed:@"tabbar-apply-normal"] selectedImage:[UIImage imageNamed:@"tabbar-apply-selected"]];
   apply.tabBarItem.imageInsets = UIEdgeInsetsMake(7, 0, -7, 0);
   
-  tabBarViewController.viewControllers = @[homepage,apply,userpage];
+  tabBarViewController.viewControllers = @[homepage, apply,userpage];
   tabBarViewController.tabBar.selectedImageTintColor = UIColor.themeColor;
   tabBarViewController.delegate = self;
+	self.tabBarController = tabBarViewController;
   
   self.window.rootViewController = tabBarViewController;
   
@@ -164,6 +172,7 @@
     @strongify(self)
     [MSFUtils.setupSignal subscribeNext:^(id x) {
       self.window.rootViewController = tabBarViewController;
+			self.tabBarController = tabBarViewController;
     }];
   }];
   [[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
@@ -178,6 +187,7 @@
   @weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
+		self.formsViewModel = nil;
     MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] init];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [self.window.rootViewController presentViewController:navigationController animated:YES completion:nil];
@@ -247,8 +257,7 @@
      MSFClient *client = notifi.object;
      if (client.isAuthenticated) {
        homePageViewController.navigationItem.leftBarButtonItem = nil;
-     }
-     else {
+     } else {
        homePageViewController.navigationItem.leftBarButtonItem =
        [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStyleDone target:nil action:nil];
        homePageViewController.navigationItem.leftBarButtonItem.rac_command =
@@ -281,11 +290,9 @@
     if ([cell isKindOfClass:MSFPlaceholderCollectionViewCell.class]) {
       if (!MSFUtils.httpClient.isAuthenticated) {
         [self signIn];
-      }
-      else if (![MSFUtils.httpClient.user isAuthenticated]) {
+      } else if (![MSFUtils.httpClient.user isAuthenticated]) {
         [self auth];
-      }
-      else {
+      } else {
         [(UITabBarController *)self.window.rootViewController setSelectedIndex:1];
       }
     }
@@ -299,20 +306,41 @@
   return storyboard.instantiateInitialViewController;
 }
 
+- (void)displayProduct {
+	[[MSFUtils.httpClient checkUserHasCredit] subscribeNext:^(MSFResponse *response) {
+		if ([response.parsedResult[@"processing"] boolValue]) {
+			[SVProgressHUD showInfoWithStatus:@"您的提交的申请已经在审核中，请耐心等待!"];
+		} else {
+			self.formsViewModel = [[MSFFormsViewModel alloc] init];
+			self.formsViewModel.active = YES;
+			@weakify(self)
+			[SVProgressHUD showWithStatus:nil];
+			[self.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
+				[SVProgressHUD dismiss];
+				@strongify(self)
+				MSFProductViewModel *viewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.formsViewModel];
+				MSFProductViewController *productViewController = [(UINavigationController *)[self.tabBarController.viewControllers objectAtIndex:1] viewControllers].firstObject;
+				[productViewController bindViewModel:viewModel];
+				[self.tabBarController setSelectedIndex:1];
+			}];
+		}
+	}];
+}
+
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+	// 登录验证
   if (![MSFUtils.httpClient isAuthenticated]) {
-    [self signIn];
-    
-    return NO;
-  }
-  else if (![MSFUtils.httpClient.user isAuthenticated]) {
-    [self auth];
-    
-    return NO;
-  }
-  
+    [self signIn]; return NO;
+	// 实名认证验证
+  } else if (![MSFUtils.httpClient.user isAuthenticated]) {
+    [self auth]; return NO;
+  } else if ([tabBarController.viewControllers indexOfObjectIdenticalTo:viewController] == 1 && !self.formsViewModel) {
+		[self displayProduct];
+		return NO;
+	}
+	
   return YES;
 }
 

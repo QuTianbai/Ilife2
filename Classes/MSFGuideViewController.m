@@ -10,7 +10,7 @@
 
 @interface MSFGuideViewController ()
 
-@property(nonatomic,strong) NSArray *paths;
+@property (nonatomic, strong) NSArray *paths;
 
 @end
 
@@ -30,8 +30,7 @@
   if (self = [super init]) {
     if ([[UIScreen mainScreen] bounds].size.height >= 568) {
       self.paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:@"guide.bundle"];
-    }
-    else {
+    } else {
       self.paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:@"guide.bundle"];
     }
   }
@@ -39,9 +38,6 @@
 }
 
 - (void)show {
-#if DEBUG
-	return;
-#endif
   // 如果存储的版本号小于获取的APP版本号，则显示引导界面,否则不显示
   NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
   NSString *local = [[NSUserDefaults standardUserDefaults] stringForKey:@"CFBundleVersion"];
@@ -49,8 +45,7 @@
   if (([remote compare:local options:NSNumericSearch] == NSOrderedDescending)) {
     [[NSUserDefaults standardUserDefaults] setObject:remote forKey:@"CFBundleVersion"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-  }
-  else {
+  } else {
 #if !FORCE_DISPLAY
     return;
 #endif
@@ -63,7 +58,7 @@
   scrollView.bounces = NO;
   scrollView.contentSize = CGSizeMake(CGRectGetWidth(scrollView.bounds) * self.paths.count, CGRectGetHeight(scrollView.bounds));
   
-  CGRect(^guideFrame)(CGRect,NSInteger) = ^(CGRect frame,NSInteger index) {
+  CGRect(^guideFrame)(CGRect, NSInteger) = ^(CGRect frame, NSInteger index) {
     frame.origin.x = index * CGRectGetWidth(frame);
     return frame;
   };
@@ -71,7 +66,7 @@
   for (int i = 0; i < _paths.count; i++) {
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:scrollView.bounds];
     imageView.image = [UIImage imageWithContentsOfFile:_paths[i]];
-    imageView.frame = guideFrame(imageView.frame,i);
+    imageView.frame = guideFrame(imageView.frame, i);
     [scrollView addSubview:imageView];
     
     if (i == self.paths.count - 1) {
