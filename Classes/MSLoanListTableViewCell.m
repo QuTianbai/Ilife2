@@ -32,10 +32,10 @@ reuseIdentifier {
     _checkLabel.titleLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
     
     
-    _moneyLabel.font = [UIFont systemFontOfSize:11];
-    _monthsLabel.font = [UIFont systemFontOfSize:11];
-    _timeLabel.font = [UIFont systemFontOfSize:11];
-    _checkLabel.titleLabel.font = [UIFont systemFontOfSize:11];
+    _moneyLabel.font = [UIFont systemFontOfSize:13];
+    _monthsLabel.font = [UIFont systemFontOfSize:13];
+    _timeLabel.font = [UIFont systemFontOfSize:13];
+    _checkLabel.titleLabel.font = [UIFont systemFontOfSize:12];
     
     
     [self addSubview:_moneyLabel];
