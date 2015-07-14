@@ -40,12 +40,6 @@
         [(RACSubject *)self.updateContentSignal sendNext:nil];
       }
 			error:^(NSError *error) {
-				NSURL *URL = [[NSBundle mainBundle] URLForResource:@"banners" withExtension:@"json"];
-				NSData *data = [NSData dataWithContentsOfURL:URL];
-				NSArray *reprenstation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-				NSArray *banners = [MTLJSONAdapter modelsOfClass:MSFAdver.class fromJSONArray:reprenstation error:nil];
-				self.banners = banners;
-				[(RACSubject *)self.updateContentSignal sendNext:nil];
 			}];
   }];
   
