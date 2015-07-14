@@ -8,6 +8,7 @@
 #import "MSFServer.h"
 #import <libextobjc/extobjc.h>
 #import "MSFProduct.h"
+#import "MSFApplyList.h"
 
 @implementation MSFAgreement
 
@@ -40,10 +41,6 @@
   return [self.server.baseWebURL URLByAppendingPathComponent:@"app/branch.htm"];
 }
 
-- (NSURL *)repayURL {
-  return [self.server.APIEndpoint URLByAppendingPathComponent:@"/coresys/cont/contract/pageQuery?applyId="];
-}
-
 - (NSURL *)registerURL {
   return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement.htm"];
 }
@@ -53,7 +50,7 @@
 }
 
 - (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product {
-	//TODO: 暂缺贷款协议地址格式
+	//TODO: 暂缺贷款协议地址格式,参见- (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
 	NSString *path = [NSString stringWithFormat:@"https://192.168.2.51:8443/msfinanceapi/v1/coresys/cont/contract/fineinfo?productId=%@",product.productId];
 	return [NSURL URLWithString:path];
 	//TODO: 协议server需要更新

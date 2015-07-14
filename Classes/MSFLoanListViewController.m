@@ -18,11 +18,17 @@
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
 #import "MSFRepayViewController.h"
+#import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"5787c0"
+//审核中  是#ff6600 橙色
+//还款中  是#477dbd 蓝色（主色）
+//其他的  是#585858
 #define REPAYMENTCOLOR @"#477dbd"
+#define CHECKCOLOR @"#ff6600"
+#define STATUSCOLOR @"#585858"
 
 @interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
 
@@ -75,7 +81,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  return 35;
+  return 44;
 }
 
 - (MSLoanListTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,12 +108,15 @@
   
   NSNumber *checkNum = listModel.status;
   
-  if ([checkNum integerValue] != 4) {
-
+  if ([checkNum integerValue] != 4 || [checkNum integerValue] != 6 ||[checkNum integerValue] != 7) {
     [cell.checkLabel setEnabled:NO];
     cell.selected = NO;
     _dataTableView.allowsSelection = NO;
     cell.selectionStyle = UITableViewCellEditingStyleNone;
+    [cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:STATUSCOLOR] forState:UIControlStateNormal];
+  }
+  if ([checkNum integerValue] == 0 || [checkNum integerValue] == 1) {
+    [cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:CHECKCOLOR] forState:UIControlStateNormal];
   } else {
     [cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:REPAYMENTCOLOR] forState:UIControlStateNormal];
     cell.selected = YES;
@@ -116,18 +125,23 @@
   }
   
   [cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
-
+  
   return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  MSFRepayViewController *repayMentView = [[MSFRepayViewController alloc]init];
-  [self.navigationController pushViewController:repayMentView animated:YES];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
+			[self.navigationController pushViewController:webViewController animated:YES];
+		}];
+	}
 }
 
 - (NSString *)getStatus:(NSInteger)status {
   //0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
-  //NSString* resultStr=@"";
   switch (status) {
     case 0:
       return @"审核中";
