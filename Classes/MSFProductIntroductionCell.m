@@ -8,6 +8,7 @@
 
 #import "MSFProductIntroductionCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
 #import "MSFAgreementViewModel.h"
 
@@ -17,9 +18,20 @@
   
   self.title = @"产品介绍";
   
-  [_productWebView
-   rac_liftSelector:@selector(loadHTMLString:baseURL:)
-   withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.productAgreementSignal,[RACSignal return:nil]]]];
+  [SVProgressHUD showWithStatus:@"正在加载..."];
+  [[[_productWebView
+     rac_liftSelector:@selector(loadHTMLString:baseURL:)
+     withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.productAgreementSignal,[RACSignal return:nil]]]]
+    deliverOn:[RACScheduler mainThreadScheduler]]
+   subscribeNext:^(id x) {
+     [SVProgressHUD dismiss];
+   }
+   error:^(NSError *error) {
+     [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+   }];
+  [[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+    [SVProgressHUD dismiss];
+  }];
 }
 
 @end
