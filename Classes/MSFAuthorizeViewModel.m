@@ -21,7 +21,7 @@ static const int kCounterLength = 60;
 
 @interface MSFAuthorizeViewModel ()
 
-@property(nonatomic,assign) BOOL counting;
+@property (nonatomic, assign) BOOL counting;
 
 @end
 

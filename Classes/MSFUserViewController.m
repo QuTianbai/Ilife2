@@ -33,7 +33,7 @@
 #pragma mark - Lifecycle
 
 - (void)loadView {
-  self.tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStylePlain];
+  self.tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
 }
 
 - (void)viewDidLoad {
@@ -42,7 +42,6 @@
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
   self.tableView.tableHeaderView = self.tableViewHeader;
-  self.tableView.tableFooterView = UIView.new;
   self.tableView.backgroundColor = [UIColor darkBackgroundColor];
   
   self.rowTitles = @[
