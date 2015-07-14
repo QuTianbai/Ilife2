@@ -17,6 +17,12 @@
   }];
 }
 
++ (NSValueTransformer *)loan_id_installmentsJSONTransformer {
+  return [MTLValueTransformer transformerWithBlock:^id(id object) {
+    return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+  }];
+}
+
 + (NSValueTransformer *)total_installmentsJSONTransformer {
   return [MTLValueTransformer transformerWithBlock:^id(id object) {
     return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;

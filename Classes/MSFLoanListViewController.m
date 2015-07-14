@@ -107,7 +107,7 @@
   
   NSNumber *checkNum = listModel.status;
   
-  if ([checkNum integerValue] != 4) {
+  if ([checkNum integerValue] != 4 || [checkNum integerValue] != 6 ||[checkNum integerValue] != 7) {
     [cell.checkLabel setEnabled:NO];
     cell.selected = NO;
     _dataTableView.allowsSelection = NO;

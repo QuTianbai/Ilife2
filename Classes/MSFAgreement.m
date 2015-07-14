@@ -8,6 +8,7 @@
 #import "MSFServer.h"
 #import <libextobjc/extobjc.h>
 #import "MSFProduct.h"
+#import "MSFApplyList.h"
 
 @implementation MSFAgreement
 
@@ -40,8 +41,11 @@
   return [self.server.baseWebURL URLByAppendingPathComponent:@"app/branch.htm"];
 }
 
-- (NSURL *)repayURL {
-  return [self.server.APIEndpoint URLByAppendingPathComponent:@"/coresys/cont/contract/pageQuery?applyId="];
+- (NSURL *)repayURL:(MSFApplyList *)applyList {
+  NSString *path = [NSString stringWithFormat:@"/coresys/cont/contract/pageQuery?applyId=%@",applyList.loan_id];
+  return [NSURL URLWithString:path];
+  return [self.server.baseWebURL URLByAppendingPathComponent:path];
+//  return [self.server.APIEndpoint URLByAppendingPathComponent:path];
 }
 
 - (NSURL *)registerURL {
