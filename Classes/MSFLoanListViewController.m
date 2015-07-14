@@ -128,7 +128,6 @@
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
 	
-//	[cell.checkLabel addTarget:self action:@selector(onClickCheckButton) forControlEvents:UIControlEventTouchUpInside];
 	@weakify(self)
 	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
 		takeUntil:cell.rac_prepareForReuseSignal]
@@ -144,16 +143,6 @@
 		}];
 	
 	return cell;
-}
-
-#pragma mark - onClickCheckButton
-//可以点击的状态button跳转方法，亮哥你在这里修改
-- (void)onClickCheckButton {
-//	MSFApplyList *listModel;
-//	[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
-//		MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
-//		[self.navigationController pushViewController:webViewController animated:YES];
-//	}];
 }
 
 - (NSString *)getStatus:(NSInteger)status {
