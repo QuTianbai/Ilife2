@@ -107,10 +107,33 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 			NSLocalizedFailureReasonErrorKey: @"请输入18位身份证号",
 		}];
 	}
+	if (self.bankName.length == 0) {
+		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请选择开发银行",
+		}];
+	}
+	if (self.addressViewModel.provinceCode.length == 0) {
+		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请选择开发省市",
+		}];
+	}
+	if (self.bankNO.length == 0) {
+		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请输入银行卡号",
+		}];
+	}
 	if (error) {
 		return [RACSignal error:error];
 	}
-  return [self.client realnameAuthentication:self.name idcard:self.card expire:self.expired session:self.permanent];
+	return [self.client
+		realnameAuthentication:self.name
+		idcard:self.card
+		expire:self.expired
+		session:self.permanent
+		province:self.addressViewModel.provinceCode
+		city:self.addressViewModel.cityCode
+		bank:self.bankCode
+		card:self.bankNO];
 }
 
 @end

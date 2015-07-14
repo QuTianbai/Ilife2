@@ -43,22 +43,6 @@
 	self.city = [self regionWithCode:model.workCityCode];
 	self.area = [self regionWithCode:model.workCountryCode];
 	
-	@weakify(self)
-	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.provinceName = x.name;
-		self.provinceCode = x.codeID;
-	}];
-	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.cityName = x.name;
-		self.cityCode = x.codeID;
-	}];
-	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.areaName = x.name;
-		self.areaCode = x.codeID;
-	}];
 	return self;
 }
 
@@ -70,22 +54,6 @@
 	self.city = [self regionWithCode:model.currentCityCode];
 	self.area = [self regionWithCode:model.currentCountryCode];
 	
-	@weakify(self)
-	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.provinceName = x.name;
-		self.provinceCode = x.codeID;
-	}];
-	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.cityName = x.name;
-		self.cityCode = x.codeID;
-	}];
-	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.areaName = x.name;
-		self.areaCode = x.codeID;
-	}];
 	return self;
 }
 
@@ -147,6 +115,22 @@
 		doNext:^(id x) {
 			NSLog(@"`Address:`%@",x);
 		}];
+	
+	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.provinceName = x.name;
+		self.provinceCode = x.codeID;
+	}];
+	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.cityName = x.name;
+		self.cityCode = x.codeID;
+	}];
+	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
+		@strongify(self)
+		self.areaName = x.name;
+		self.areaCode = x.codeID;
+	}];
 	
   return self;
 }

@@ -93,6 +93,7 @@
 			[selectViewController.selectedSignal subscribeNext:^(MSFSelectKeyValues *selectValue) {
 				[selectViewController.navigationController popViewControllerAnimated:YES];
 			  self.viewModel.bankName = selectValue.text;
+				self.viewModel.bankCode = selectValue.code;
 			}];
 		}];
 	

@@ -37,6 +37,7 @@
  *  The bank name
  */
 @property(nonatomic,strong) NSString *bankName;
+@property(nonatomic,strong) NSString *bankCode;
 
 /**
  *  The bank no

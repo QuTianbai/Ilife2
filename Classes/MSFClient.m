@@ -319,6 +319,29 @@ static BOOL isRunningTests(void) {
     }];
 }
 
+- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session  province:(NSString *)provinceCode city:(NSString *)cityCode bank:(NSString *)bankCode card:(NSString *)card {
+  NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+  parameters[@"username"] = name;
+  parameters[@"id_card"] = idcard;
+  parameters[@"expire"] = [NSDateFormatter msf_stringFromDate:date];;
+  parameters[@"valid_for_lifetime"] = @(session);
+  parameters[@"bank_card_number"] = [card stringByReplacingOccurrencesOfString:@" " withString:@""];
+  parameters[@"bankCode"] = bankCode;
+  parameters[@"bankProvinceCode"] = provinceCode;
+  parameters[@"bankCityCode"] = cityCode;
+  NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
+  NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:parameters];
+  [request setHTTPMethod:@"POST"];
+  
+  return [[[self enqueueRequest:request resultClass:MSFUser.class]
+    flattenMap:^RACStream *(id value) {
+      return [self fetchUserInfo];
+    }]
+    doNext:^(id x) {
+      self.user = x;
+    }];
+}
+
 #pragma mark - Request
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void(^)(id <AFMultipartFormData> formData))block {

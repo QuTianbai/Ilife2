@@ -31,7 +31,7 @@
 }
 
 - (BOOL)isAuthenticated {
-	return [self.idcard isKindOfClass:NSString.class] && self.idcard.length == 18;
+	return [self.idcard isKindOfClass:NSString.class] && self.idcard.length == 18 && self.passcard.length > 0;
 }
 
 @end

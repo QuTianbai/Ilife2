@@ -108,7 +108,8 @@ extern const NSInteger MSFClientErrorAuthenticationFailed;
  */
 - (RACSignal *)signOut;
 
-- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session;
+- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session __deprecated_msg("Use `Next one`");
+- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session  province:(NSString *)provinceCode city:(NSString *)cityCode bank:(NSString *)bankCode card:(NSString *)card;
 
 + (void)setCipher:(MSFCipher *)cipher;
 + (MSFCipher *)cipher;
