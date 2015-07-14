@@ -268,7 +268,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfo-ut-sxs">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-6N-x5o">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfo-ut-sxs">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc" customClass="MSFEdgeButton">
@@ -298,10 +302,6 @@
                                     <constraint firstItem="a7E-MQ-EQc" firstAttribute="width" secondItem="NgC-b2-JGu" secondAttribute="width" id="x9N-sC-19U"/>
                                 </constraints>
                             </view>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-6N-x5o">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -317,6 +317,7 @@
                     <navigationItem key="navigationItem" id="HAt-5T-X9L"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="BottomBtVIew" destination="kfo-ut-sxs" id="7p1-cL-Ly0"/>
                         <outlet property="LoanAgreenmentWV" destination="usZ-6N-x5o" id="xrK-vX-ZVX"/>
                         <outlet property="agreeButton" destination="a7E-MQ-EQc" id="iVK-uA-VLq"/>
                         <outlet property="disAgreeButton" destination="NgC-b2-JGu" id="ZNE-Ts-yoe"/>
