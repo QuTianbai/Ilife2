@@ -69,8 +69,7 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
     }
     
     return [NSURL URLWithString:MSFServerDotComAPIEndpoint];
-  }
-  else {
+  } else {
     return [self.baseURL URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
   }
 }
@@ -78,8 +77,7 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 - (NSURL *)baseWebURL {
   if (self.baseURL == nil) {
     return [NSURL URLWithString:MSFServerDotComBaseWebURL];
-  }
-  else {
+  } else {
     return self.baseURL;
   }
 }

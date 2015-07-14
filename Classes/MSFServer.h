@@ -14,17 +14,17 @@
 /**
  *  The baseURL
  */
-@property(nonatomic,copy,readonly) NSURL *baseURL;
+@property (nonatomic, copy, readonly) NSURL *baseURL;
 
 /**
  *  API 调用URL
  */
-@property(nonatomic,copy,readonly) NSURL *APIEndpoint;
+@property (nonatomic, copy, readonly) NSURL *APIEndpoint;
 
 /**
  *  WebView 基本URL
  */
-@property(nonatomic,copy,readonly) NSURL *baseWebURL;
+@property (nonatomic, copy, readonly) NSURL *baseWebURL;
 
 /**
  *  默认服务器地址,不包含接口版本信息
