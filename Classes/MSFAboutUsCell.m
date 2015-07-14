@@ -8,6 +8,7 @@
 
 #import "MSFAboutUsCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
 #import "MSFAgreementViewModel.h"
 
@@ -16,9 +17,20 @@
 - (void)viewDidLoad {
   self.title = @"关于我们";
 
-  [_aboutWebView
-   rac_liftSelector:@selector(loadHTMLString:baseURL:)
-   withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.aboutAgreementSignal,[RACSignal return:nil]]]];
+	[SVProgressHUD showWithStatus:@"正在加载..."];
+	[[[_aboutWebView
+		rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.aboutAgreementSignal,[RACSignal return:nil]]]]
+		deliverOn:[RACScheduler mainThreadScheduler]]
+		subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}
+		error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+	}];
 }
 
 @end

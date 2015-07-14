@@ -84,7 +84,6 @@
 		492C6A071B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A061B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m */; };
 		492C6A0A1B4CFF2B00547616 /* MSFTestAFViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A091B4CFF2B00547616 /* MSFTestAFViewModel.m */; };
 		492C6A181B4D174900547616 /* loan-response-cash.json in Resources */ = {isa = PBXBuildFile; fileRef = 492C6A171B4D174900547616 /* loan-response-cash.json */; };
-		492D132A1B2EB1C80094699A /* MSFProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 492D13291B2EB1C80094699A /* MSFProgressHUD.m */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
 		492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */; };
@@ -614,8 +613,6 @@
 		492C6A081B4CFF2B00547616 /* MSFTestAFViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTestAFViewModel.h; sourceTree = "<group>"; };
 		492C6A091B4CFF2B00547616 /* MSFTestAFViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTestAFViewModel.m; sourceTree = "<group>"; };
 		492C6A171B4D174900547616 /* loan-response-cash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loan-response-cash.json"; sourceTree = "<group>"; };
-		492D13281B2EB1C80094699A /* MSFProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProgressHUD.h; sourceTree = "<group>"; };
-		492D13291B2EB1C80094699A /* MSFProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProgressHUD.m; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
 		492E62B41B0ECCCB00D34069 /* UIButton+BottomTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BottomTitles.h"; sourceTree = "<group>"; };
@@ -2080,8 +2077,6 @@
 			children = (
 				49DA22621B062AF200DD4483 /* MSFUtils.h */,
 				49DA22631B062AF200DD4483 /* MSFUtils.m */,
-				492D13281B2EB1C80094699A /* MSFProgressHUD.h */,
-				492D13291B2EB1C80094699A /* MSFProgressHUD.m */,
 				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
 				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
 				07C2E0731B1AE9FE00C7FEDE /* MSFReactiveView.h */,
@@ -2802,7 +2797,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/Script/xcode-build-bump.sh";
+			shellScript = "#${SRCROOT}/Script/xcode-build-bump.sh";
 		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2939,7 +2934,6 @@
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */,
-				492D132A1B2EB1C80094699A /* MSFProgressHUD.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
 				49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */,

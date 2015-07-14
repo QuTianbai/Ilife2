@@ -9,7 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import <AFNetworking/UIWebView+AFNetworking.h>
-#import "MSFProgressHUD.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFWebViewController () <UIWebViewDelegate>
 
@@ -41,17 +41,15 @@
   @weakify(self)
   [webView loadRequest:[NSURLRequest requestWithURL:_HTMLURL]
    progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-     @strongify(self)
-     [MSFProgressHUD showStatusMessage:@"正在加载..." inView:self.navigationController.view];
+		 [SVProgressHUD showWithStatus:@"正在加载...."];
    }
    success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
-     [MSFProgressHUD hidden];
-     
+		 [SVProgressHUD dismiss];
      return HTML;
    }
    failure:^(NSError *error) {
      @strongify(self)
-     [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
    }];
   
   [[self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)]

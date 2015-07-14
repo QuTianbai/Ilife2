@@ -9,13 +9,13 @@
 #import "MSFRelationshipViewController.h"
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFRelationshipViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFApplicationResponse.h"
-#import "MSFProgressHUD.h"
 #import "MSFCommandView.h"
 #import "MSFRelationshipViewModel.h"
 
@@ -191,15 +191,15 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		[MSFProgressHUD showStatusMessage:@"申请提交中..."];
+		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[MSFProgressHUD showSuccessMessage:@"申请提交成功"];
+			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
 			@strongify(self)
 			[self.navigationController popToRootViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
-		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
 }

@@ -7,8 +7,8 @@
 #import "MSFEditPasswordViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUserViewModel.h"
-#import "MSFProgressHUD.h"
 #import "MSFUtils.h"
 
 @interface MSFEditPasswordViewController ()
@@ -51,16 +51,16 @@
   [self.viewModel.executeUpdatePassword.executionSignals subscribeNext:^(RACSignal *signal) {
     @strongify(self)
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     [signal subscribeNext:^(id x) {
-      [MSFProgressHUD showSuccessMessage:@"密码更新成功" inView:self.navigationController.view];
+			[SVProgressHUD showSuccessWithStatus:@"密码更新成功"];
       [self.navigationController popViewControllerAnimated:YES];
     }];
   }];
   [self.viewModel.executeUpdatePassword.errors subscribeNext:^(NSError *error) {
+		@strongify(self)
     [self.view endEditing:YES];
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+    [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   
   self.passoword1.clearButtonMode = UITextFieldViewModeNever;

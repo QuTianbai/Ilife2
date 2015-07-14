@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RMPickerViewController/RMPickerViewController.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationForms.h"
 #import <libextobjc/extobjc.h>
@@ -17,7 +18,6 @@
 #import "MSFAreas.h"
 #import <FMDB/FMDatabase.h>
 #import "MSFApplicationResponse.h"
-#import "MSFProgressHUD.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
@@ -112,7 +112,9 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"relationship" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel contentViewController:vc];
@@ -121,7 +123,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
-		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }
 

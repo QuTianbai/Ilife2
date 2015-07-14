@@ -7,9 +7,9 @@
 #import "MSFLoginViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
-#import "MSFProgressHUD.h"
 #import "MSFUtils.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
@@ -58,30 +58,27 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     @strongify(self)
     [MSFUtils setPhone:self.signInViewController.username.text];
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在登录..."];
+    [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
     [execution subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+      [SVProgressHUD dismiss];
       [self dismissViewControllerAnimated:YES completion:nil];
     }];
   }];
   [self.viewModel.executeSignIn.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [self.view endEditing:YES];
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   
   self.signInViewController.captchaButton.rac_command = self.viewModel.executeLoginCaptcha;
   [self.signInViewController.captchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
     @strongify(self)
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在发送验证码..." inView:self.navigationController.view];
+    [SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
     [captchaSignal subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+      [SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
     }];
   }];
   [self.signInViewController.captchaButton.rac_command.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   
   RAC(self.signInViewController.counterLabel,text) = RACObserve(self.viewModel, counter);

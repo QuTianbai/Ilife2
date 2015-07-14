@@ -14,7 +14,6 @@
 #import "MSFReleaseNote.h"
 #import "MSFClient+ReleaseNote.h"
 #import "UIColor+Utils.h"
-#import "MSFProgressHUD.h"
 #import "RCLocationManager.h"
 
 #import "MSFHomepageViewController.h"
@@ -29,6 +28,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Masonry/Masonry.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface AppDelegate () <UITabBarControllerDelegate>
 
@@ -151,7 +151,7 @@
      @strongify(self)
      NSError *error = notification.object;
      if ([error.userInfo[NSLocalizedFailureReasonErrorKey] isEqualToString:@"已在另一设备上登录，如非本人操作请立即修改密码"]) {
-       [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.window];
+       [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
      }
      UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
      [tabBarController setSelectedIndex:0];

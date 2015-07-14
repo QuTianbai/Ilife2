@@ -18,7 +18,6 @@
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
 #import "MSFRepayViewController.h"
-#import "MSFProgressHUD.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"

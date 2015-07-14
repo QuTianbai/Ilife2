@@ -19,7 +19,6 @@
 
 #import "MSFTradeTableViewCell.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#import "MSFProgressHUD.h"
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"5787c0"
