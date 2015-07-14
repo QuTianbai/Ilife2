@@ -12,10 +12,10 @@
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClozeViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFClient+Users.h"
-#import "MSFProgressHUD.h"
 #import "MSFUser.h"
 #import "MSFUserViewModel.h"
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
@@ -152,10 +152,10 @@
         [[MSFUtils.httpClient updateUserAvatarWithFileURL:[NSURL fileURLWithPath:path]]
          subscribeNext:^(MSFUser *user) {
            [MSFUtils.httpClient.user mergeValuesForKeysFromModel:user];
-           [MSFProgressHUD showSuccessMessage:@"上传成功" inView:self.navigationController.view];
+					 [SVProgressHUD showSuccessWithStatus:@"上传成功..."];
          }
          error:^(NSError *error) {
-           [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+					 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
          }];
      }];
      [self.photoPickerController showFromRect:CGRectZero];

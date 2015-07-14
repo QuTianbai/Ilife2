@@ -7,9 +7,9 @@
 #import "MSFFindPasswordViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"
-#import "MSFProgressHUD.h"
 
 @interface MSFFindPasswordViewController ()
 
@@ -45,30 +45,28 @@
   [self.captchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
     @strongify(self)
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在发送验证码..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
     [captchaSignal subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+      [SVProgressHUD showSuccessWithStatus:@"验证码发送成功"];
     }];
   }];
   [self.captchaButton.rac_command.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   self.commitButton.rac_command = self.viewModel.executeFindPassword;
   [self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
     @strongify(self)
     [MSFUtils setPhone:self.username.text];
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在发送..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     [signUpSignal subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+			[SVProgressHUD dismiss];
       [self.navigationController popViewControllerAnimated:YES];
     }];
   }];
   
   [self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   
   [[self.passwordSwith rac_newOnChannel] subscribeNext:^(NSNumber *x) {

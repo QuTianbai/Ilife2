@@ -9,11 +9,11 @@
 #import <libextobjc/extobjc.h>
 #import "MSFClozeViewModel.h"
 #import "MSFUtils.h"
-#import "MSFProgressHUD.h"
 #import "MSFProcedureViewController.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectKeyValues.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFClozeViewController () <UITextFieldDelegate>
 
@@ -40,15 +40,14 @@
   [self.procedureViewController.submitButton.rac_command.executionSignals subscribeNext:^(RACSignal *authSignal) {
     @strongify(self)
     [self.procedureViewController.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
     [authSignal subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+			[SVProgressHUD dismiss];
       [self dismissViewControllerAnimated:YES completion:nil];
     }];
   }];
   [self.procedureViewController.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+    [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
 	
 	// Identifier Card Lifelong

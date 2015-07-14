@@ -10,10 +10,10 @@
 #import <FMDB/FMDatabase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAreas.h"
 #import "MSFApplicationForms.h"
 #import "MSFApplicationResponse.h"
-#import "MSFProgressHUD.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "NSString+Matches.h"
@@ -117,7 +117,9 @@
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel contentViewController:vc];
@@ -126,7 +128,7 @@
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
-		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }
 

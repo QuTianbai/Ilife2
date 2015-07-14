@@ -7,6 +7,7 @@
 #import "MSFProductViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
 #import "MSFMarket.h"
 #import "MSFProduct.h"
@@ -15,7 +16,6 @@
 #import "MSFEdgeButton.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationResponse.h"
-#import "MSFProgressHUD.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFProductViewModel.h"
@@ -88,8 +88,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		}];
 	}];
 	[self.executeTermCommand.errors subscribeNext:^(NSError *error) {
-		@strongify(self)
-		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
 	self.moneyUsedBT.rac_command = self.executePurposeCommand;
@@ -102,8 +101,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	self.nextPageBT.rac_command = self.executeNextCommand;
 	[self.executeNextCommand.errors subscribeNext:^(NSError *error) {
-		@strongify(self)
-		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	self.lifeInsuranceButton.rac_command = self.executeLifeInsuranceCommand;
 	

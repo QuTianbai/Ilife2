@@ -9,10 +9,10 @@
 #import "MSFLoanAgreementController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFProductViewModel.h"
-#import "MSFProgressHUD.h"
 #import "MSFApplicationResponse.h"
 #import "MSFApplicationForms.h"
 #import "MSFLoanAgreementViewModel.h"
@@ -42,9 +42,9 @@
 	self.agreeButton.rac_command = self.viewModel.executeRequest;
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		[MSFProgressHUD showStatusMessage:@"正在提交..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFApplicationResponse *applyCash) {
-			[MSFProgressHUD hidden];
+			[SVProgressHUD dismiss];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
@@ -55,8 +55,7 @@
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
-		@strongify(self)
-		[MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[[self.disAgreeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)

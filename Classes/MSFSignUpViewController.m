@@ -6,8 +6,8 @@
 
 #import "MSFSignUpViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <libextobjc/extobjc.h>
-#import "MSFProgressHUD.h"
 #import "MSFAuthorizeViewModel.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
@@ -57,30 +57,28 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
     @strongify(self)
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在申请..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
     [signUpSignal subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+      [SVProgressHUD dismiss];
       [self performSegueWithIdentifier:@"complement" sender:nil];
     }];
   }];
   
   [self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   
   self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
   [self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
     @strongify(self)
     [self.view endEditing:YES];
-    [MSFProgressHUD showStatusMessage:@"正在发送验证码..." inView:self.navigationController.view];
+		[SVProgressHUD showWithStatus:@"正在发送验证码" maskType:SVProgressHUDMaskTypeClear];
     [captchaSignal subscribeNext:^(id x) {
-      [MSFProgressHUD hidden];
+      [SVProgressHUD dismiss];
     }];
   }];
   [self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
-    @strongify(self)
-    [MSFProgressHUD showErrorMessage:error.userInfo[NSLocalizedFailureReasonErrorKey] inView:self.navigationController.view];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
   }];
   
   [self.passwordSwith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
