@@ -21,6 +21,7 @@
 
 @interface MSFApplicationForms : MSFObject
 @property(nonatomic,copy) NSString *loanId;//申请ID long类型
+
 /*
  居住地址
 */

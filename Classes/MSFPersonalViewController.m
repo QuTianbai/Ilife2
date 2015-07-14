@@ -46,19 +46,56 @@
 	[super viewDidLoad];
 	self.title = @"基本信息";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	
+  
+	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+   subscribeNext:^(UITextField *textField) {
+     if (textField.text.length > 5) {
+       textField.text = [textField.text substringToIndex:5];
+     }
+   }];
 	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.model, income);
 	RAC(self.monthInComeTF, text) = incomeChannel;
 	[self.monthInComeTF.rac_textSignal subscribe:incomeChannel];
 
+  [[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
+   subscribeNext:^(UITextField *textField) {
+     if (textField.text.length > 5) {
+       if (textField.text.length > 5) {
+         textField.text = [textField.text substringToIndex:5];
+       }
+     }
+   }];
 	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
 	RAC(self.repayMonthTF,text) = familyExpenseChannel;
 	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
-	
+
+  [[self.familyOtherIncomeYF rac_signalForControlEvents:UIControlEventEditingChanged]
+   subscribeNext:^(UITextField *textField) {
+     if (textField.text.length > 5) {
+       if (textField.text.length > 5) {
+         textField.text = [textField.text substringToIndex:5];
+       }
+     }
+   }];
 	RACChannelTerminal *otherIncomeChannel = RACChannelTo(self.viewModel.model, otherIncome);
 	RAC(self.familyOtherIncomeYF,text) = otherIncomeChannel;
 	[self.familyOtherIncomeYF.rac_textSignal subscribe:otherIncomeChannel];
 	
+  [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    NSLog(@"%@",textField.text);
+    if (textField.text.length >4 ) {
+      textField.text = [textField.text substringToIndex:4];
+    }
+  }];
+  [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    if (textField.text.length>8) {
+      if (textField.text.length >4 ) {
+        textField.text = [textField.text substringToIndex:8];
+      }
+    }
+  }];
 	RACChannelTerminal *homecodeChannel = RACChannelTo(self.viewModel.model, homeCode);
 	RAC(self.homeLineCodeTF,text) = homecodeChannel;
 	[self.homeLineCodeTF.rac_textSignal subscribe:homecodeChannel];

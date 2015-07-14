@@ -27,4 +27,40 @@
 	}];
 }
 
++ (NSValueTransformer *)incomeJSONTransformer {
+  return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
+				return num.intValue>0?num:@"";
+		} reverseBlock:^id(NSString *str) {
+      if (str==nil) {
+        return [NSDecimalNumber decimalNumberWithString:str];
+      }
+      
+      return nil;
+    }];
+}
+
++ (NSValueTransformer *)otherIncomeJSONTransformer {
+  return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
+				return num.intValue>0?num:@"";
+		} reverseBlock:^id(NSString *str) {
+      if (str==nil) {
+        return [NSDecimalNumber decimalNumberWithString:str];
+      }
+      
+      return nil;
+    }];
+}
+
++ (NSValueTransformer *)familyExpenseJSONTransformer {
+  return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
+				return num.intValue>0?num:@"";
+		} reverseBlock:^id(NSString *str) {
+      if (str==nil) {
+        return [NSDecimalNumber decimalNumberWithString:str];
+      }
+      
+      return nil;
+    }];
+}
+
 @end
