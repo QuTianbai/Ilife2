@@ -306,7 +306,6 @@
 		49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7D1B2E83E4009433C5 /* personal.storyboard */; };
 		49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7F1B2E83F9009433C5 /* professional.storyboard */; };
 		49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE811B2E840A009433C5 /* relationship.storyboard */; };
-		49DAEE841B2E8421009433C5 /* commit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE831B2E8421009433C5 /* commit.storyboard */; };
 		49E22AF01B37ED5D00749717 /* icon-cloze-idcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AE91B37ED5D00749717 /* icon-cloze-idcard.png */; };
 		49E22AF11B37ED5D00749717 /* icon-cloze-idcard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AEA1B37ED5D00749717 /* icon-cloze-idcard@2x.png */; };
 		49E22AF21B37ED5D00749717 /* icon-cloze-idcard@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AEB1B37ED5D00749717 /* icon-cloze-idcard@3x.png */; };
@@ -914,7 +913,6 @@
 		49DAEE7D1B2E83E4009433C5 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
 		49DAEE811B2E840A009433C5 /* relationship.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = relationship.storyboard; sourceTree = "<group>"; };
-		49DAEE831B2E8421009433C5 /* commit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = commit.storyboard; sourceTree = "<group>"; };
 		49E22AE91B37ED5D00749717 /* icon-cloze-idcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard.png"; sourceTree = "<group>"; };
 		49E22AEA1B37ED5D00749717 /* icon-cloze-idcard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard@2x.png"; sourceTree = "<group>"; };
 		49E22AEB1B37ED5D00749717 /* icon-cloze-idcard@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard@3x.png"; sourceTree = "<group>"; };
@@ -2126,7 +2124,6 @@
 				49DAEE7D1B2E83E4009433C5 /* personal.storyboard */,
 				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
 				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
-				49DAEE831B2E8421009433C5 /* commit.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -2562,7 +2559,6 @@
 				49C0F1A21B2C315100E92572 /* icon-check-normal@3x.png in Resources */,
 				49C0F1621B2C30A200E92572 /* icon-account-repay@3x.png in Resources */,
 				49BAB2BE1B3BDF09004B4170 /* icon-cloze-name@3x.png in Resources */,
-				49DAEE841B2E8421009433C5 /* commit.storyboard in Resources */,
 				49C0F1D41B2C341400E92572 /* tabbar-home-selected@2x.png in Resources */,
 				07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
