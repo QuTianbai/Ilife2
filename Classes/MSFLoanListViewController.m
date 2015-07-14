@@ -129,7 +129,20 @@
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
 	
-	[cell.checkLabel addTarget:self action:@selector(onClickCheckButton) forControlEvents:UIControlEventTouchUpInside];
+//	[cell.checkLabel addTarget:self action:@selector(onClickCheckButton) forControlEvents:UIControlEventTouchUpInside];
+	@weakify(self)
+	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
+		takeUntil:cell.rac_prepareForReuseSignal]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
+			if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+				[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+					MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
+					[self.navigationController pushViewController:webViewController animated:YES];
+				}];
+			}
+		}];
 	
 	return cell;
 }
@@ -142,17 +155,6 @@
 //		MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
 //		[self.navigationController pushViewController:webViewController animated:YES];
 //	}];
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
-	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
-			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
-			[self.navigationController pushViewController:webViewController animated:YES];
-		}];
-	}
 }
 
 - (NSString *)getStatus:(NSInteger)status {
