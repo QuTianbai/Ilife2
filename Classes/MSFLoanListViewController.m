@@ -34,10 +34,10 @@
 
 @property (nonatomic, strong) UITableView *dataTableView;
 @property (nonatomic, strong) NSArray *dataArray;
-@property (strong, nonatomic)	 UILabel *money;
-@property (strong, nonatomic)	 UILabel *months;
-@property (strong, nonatomic)	 UILabel *time;
-@property (strong, nonatomic)	 UILabel *check;
+@property (strong, nonatomic)  UILabel *money;
+@property (strong, nonatomic)  UILabel *months;
+@property (strong, nonatomic)  UILabel *time;
+@property (strong, nonatomic)  UILabel *check;
 
 @end
 

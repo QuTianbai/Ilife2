@@ -307,6 +307,7 @@
 }
 
 - (void)displayProduct {
+	[SVProgressHUD showWithStatus:nil maskType:SVProgressHUDMaskTypeClear];
 	[[MSFUtils.httpClient checkUserHasCredit] subscribeNext:^(MSFResponse *response) {
 		if ([response.parsedResult[@"processing"] boolValue]) {
 			[SVProgressHUD showInfoWithStatus:@"您的提交的申请已经在审核中，请耐心等待!"];
@@ -314,7 +315,6 @@
 			self.formsViewModel = [[MSFFormsViewModel alloc] init];
 			self.formsViewModel.active = YES;
 			@weakify(self)
-			[SVProgressHUD showWithStatus:nil];
 			[self.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
 				[SVProgressHUD dismiss];
 				@strongify(self)
@@ -322,8 +322,12 @@
 				MSFProductViewController *productViewController = [(UINavigationController *)[self.tabBarController.viewControllers objectAtIndex:1] viewControllers].firstObject;
 				[productViewController bindViewModel:viewModel];
 				[self.tabBarController setSelectedIndex:1];
+			} error:^(NSError *error) {
+				[SVProgressHUD showErrorWithStatus:@"获取贷款信息错误,请稍候重试"];
 			}];
 		}
+	} error:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }
 

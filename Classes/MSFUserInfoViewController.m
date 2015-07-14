@@ -59,9 +59,9 @@
 	[self.viewModel.contentUpdateSignal subscribeNext:^(id x) {
 		@strongify(self)
 		self.rowSubtitles = @[
-			self.viewModel.username,
-			self.viewModel.identifyCard,
-			self.viewModel.mobile,
+			self.viewModel.username?:@"",
+			self.viewModel.identifyCard?:@"",
+			self.viewModel.mobile?:@"",
 			];
 		[self.tableView reloadData];
 		if (self.viewModel.identifyCard.length == 0) {
