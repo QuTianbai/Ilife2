@@ -11,7 +11,7 @@
 
 @interface MSFLoanViewModel ()
 
-@property(nonatomic,strong) MSFApplyList *loan;
+@property (nonatomic, strong) MSFApplyList *loan;
 
 @end
 
@@ -28,32 +28,34 @@
   RAC(self,status) = [RACObserve(model,status) map:^id(id status){
     NSDictionary *statusValues = @{
       @(MSFLoanStatusNone): @"无效",
-      @(MSFLoanStatusAppling): @"申请中",
-      @(MSFLoanStatusSuccess): @"申请成功",
-      @(MSFLoanStatusFailed): @"申请失败",
+      @(MSFLoanStatusAppling): @"审核中",
+      @(MSFLoanStatusSuccess): @"审核通过",
+      @(MSFLoanStatusFailed): @"审核未通过",
       @(MSFLoanStatusRepayment): @"还款中",
       @(MSFLoanStatusCancel): @"已取消",
       @(MSFLoanStatusFinished): @"已完结",
       @(MSFLoanStatusExpired): @"已逾期",
+      @(MSFLoanStatusExpectedSuccess): @"预审核通过",
+      @(MSFLoanStatusLoan): @"待放款",
     };
   
     return statusValues[status];
   }];
   
-  RAC(self,applyDate) = [RACObserve(model, apply_time) map:^id(NSDate *date){
+  RAC(self, applyDate) = [RACObserve(model, apply_time) map:^id(NSDate *date){
     return [NSDateFormatter msf_stringFromDate:date];
   }];
-  RAC(self,title) = [RACObserve(model, status) map:^id(id value) {
+  RAC(self, title) = [RACObserve(model, status) map:^id(id value) {
     return [value integerValue] > 4 ? @"贷款处理状态" :@"贷款申请状态";
   }];
-  RAC(self,repaidAmount) = [RACObserve(model, payed_amount) map:^id(id value) {
-    return [NSString stringWithFormat:@"¥ %@",value];
+  RAC(self, repaidAmount) = [RACObserve(model, payed_amount) map:^id(id value) {
+    return [NSString stringWithFormat:@"¥ %@", value];
   }];
-  RAC(self,totalAmount) = [RACObserve(model, total_amount) map:^id(id value) {
-    return [NSString stringWithFormat:@"¥ %@",value];
+  RAC(self, totalAmount) = [RACObserve(model, total_amount) map:^id(id value) {
+    return [NSString stringWithFormat:@"¥ %@", value];
   }];
-  RAC(self,mothlyRepaymentAmount) = [RACObserve(model, monthly_repayment_amount) map:^id(id value) {
-    return [NSString stringWithFormat:@"¥ %@",value];
+  RAC(self, mothlyRepaymentAmount) = [RACObserve(model, monthly_repayment_amount) map:^id(id value) {
+    return [NSString stringWithFormat:@"¥ %@", value];
   }];
   
   _totalInstallments = model.total_installments;
