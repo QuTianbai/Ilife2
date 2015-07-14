@@ -20,12 +20,13 @@
 #import "MSFAddressViewModel.h"
 #import "MSFFormsViewModel.h"
 
-@interface MSFLoanAgreementController ()
+@interface MSFLoanAgreementController ()<UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
 @property (nonatomic, strong) MSFLoanAgreementViewModel *viewModel;
 @property (nonatomic, weak) IBOutlet UIButton *agreeButton;
 @property (nonatomic, weak) IBOutlet UIButton *disAgreeButton;
+@property (weak, nonatomic) IBOutlet UIView *BottomBtVIew;
 
 @end
 
@@ -33,6 +34,7 @@
 
 - (void)viewDidLoad {
 	self.title = @"贷款协议";
+  self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal = [MSFUtils.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
 	
@@ -78,6 +80,11 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+  self.BottomBtVIew.hidden = NO;
+  //self.agreeButton.hidden = YES;
 }
 
 @end
