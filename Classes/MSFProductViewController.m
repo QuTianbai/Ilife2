@@ -103,6 +103,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+  
 	self.lifeInsuranceButton.rac_command = self.executeLifeInsuranceCommand;
 	
 	self.formsViewModel.active = YES;
