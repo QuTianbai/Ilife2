@@ -38,7 +38,6 @@
 @property (strong, nonatomic)  UILabel *months;
 @property (strong, nonatomic)  UILabel *time;
 @property (strong, nonatomic)  UILabel *check;
-
 @end
 
 @implementation MSFLoanListViewController

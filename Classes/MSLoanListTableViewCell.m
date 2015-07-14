@@ -10,7 +10,6 @@
 #import <Masonry/Masonry.h>
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
-
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"#585858"
@@ -22,7 +21,6 @@ reuseIdentifier {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   
   if (self) {
-
     _moneyLabel = [[UILabel alloc] init];
     _monthsLabel = [[UILabel alloc] init];
     _timeLabel = [[UILabel alloc] init];
@@ -57,8 +55,8 @@ reuseIdentifier {
     }];
 
     [_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-      make .centerY.equalTo(self);
-      make.right.equalTo(self.mas_right).offset(-25);
+      make.centerY.equalTo(self);
+      make.centerX.equalTo(self).offset(120);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
