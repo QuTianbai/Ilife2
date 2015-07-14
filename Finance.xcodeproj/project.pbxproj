@@ -2802,7 +2802,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${SRCROOT}/Script/xcode-build-bump.sh";
+			shellScript = "#${SRCROOT}/Script/xcode-build-bump.sh";
 		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
