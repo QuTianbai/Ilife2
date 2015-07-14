@@ -53,7 +53,7 @@ reuseIdentifier {
     
     [_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
-      make.left.equalTo(_moneyLabel.mas_right).offset(18);
+      make.left.equalTo(_moneyLabel.mas_right).offset(25);
     }];
 
     [_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,7 +63,7 @@ reuseIdentifier {
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
-      make.left.equalTo(self.mas_centerX).offset(20);
+      make.left.equalTo(self.mas_centerX).offset(18);
     }];
   }
   
