@@ -8,4 +8,6 @@
 
 @interface MSFTestAFViewModel : MSFFormsViewModel
 
+- (instancetype)initWithClient:(MSFClient *)client;
+
 @end

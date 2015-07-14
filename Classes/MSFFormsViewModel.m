@@ -29,13 +29,11 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithClient:(MSFClient *)client {
+- (instancetype)init {
   self = [super init];
   if (!self) {
     return nil;
   }
-	//TODO: 从这里看，退出登录需要更新，所有的控制器，所有的控制器中的ViewModel,涉及到ViewModel中的Client授权问题
-	_client = client;
 	_model = [[MSFApplicationForms alloc] init];
 	_market = [[MSFMarket alloc] init];
 
@@ -65,6 +63,12 @@
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
 	self.model.page = [@(page) stringValue];
 	return [self.client applyInfoSubmit1:self.model];
+}
+
+#pragma mark - Private
+
+- (MSFClient *)client {
+	return MSFUtils.httpClient;
 }
 
 @end

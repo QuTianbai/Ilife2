@@ -41,7 +41,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property(weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
 @property(nonatomic,strong) MSFProductViewModel *viewModel;
-@property(nonatomic,strong) MSFFormsViewModel *formsViewModel;
 
 @property(nonatomic,strong) RACCommand *executePurposeCommand;
 @property(nonatomic,strong) RACCommand *executeTermCommand;
@@ -51,6 +50,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @end
 
 @implementation MSFProductViewController
+
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
+}
 
 #pragma mark - Lifecycle
 
@@ -70,9 +75,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	@weakify(self)
-	self.formsViewModel = [[MSFFormsViewModel alloc] initWithClient:MSFUtils.httpClient];
-	
-	self.viewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.formsViewModel];
 	RAC(self.viewModel,totalAmount) = self.applyCashNumTF.rac_textSignal;
 	RAC(self.viewModel,insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
@@ -104,15 +106,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	self.lifeInsuranceButton.rac_command = self.executeLifeInsuranceCommand;
-	
-	self.formsViewModel.active = YES;
-	[[self.tabBarController rac_signalForSelector:@selector(setSelectedViewController:)] subscribeNext:^(id x) {
-		@strongify(self)
-		UINavigationController *navigationController = [x first];
-		self.viewModel.product = nil;
-		self.viewModel.purpose = nil;
-		self.formsViewModel.active = [navigationController.topViewController isKindOfClass:self.class];
-	}];
 }
 
 #pragma mark - Private
@@ -216,7 +209,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			}
 			MSFLoanAgreementController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
 			vc.hidesBottomBarWhenPushed = YES;
-			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.viewModel.product];
+			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.viewModel.formsViewModel product:self.viewModel.product];
 			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 			[subscriber sendCompleted];

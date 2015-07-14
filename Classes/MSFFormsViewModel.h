@@ -21,8 +21,6 @@
 @property(nonatomic,strong,readonly) MSFMarket *market;
 @property(nonatomic,strong,readonly) RACSignal *updatedContentSignal;
 
-- (instancetype)initWithClient:(MSFClient *)client;
-
 - (RACSignal *)submitSignalWithPage:(NSInteger)page;
 
 @end

@@ -11,9 +11,8 @@
 
 @implementation MSFTestAFViewModel
 
-
 - (instancetype)initWithClient:(MSFClient *)client {
-  self = [super initWithClient:client];
+  self = [super init];
   if (!self) {
     return nil;
   }
