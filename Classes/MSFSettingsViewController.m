@@ -21,8 +21,7 @@
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"5787c0"
 
-@implementation MSFSettingsViewController
-{
+@implementation MSFSettingsViewController {
   NSArray *_imageArray;
   NSArray *_textArray;
 }
@@ -44,24 +43,21 @@
   [super viewDidLoad];
   self.title = @"设置";
   
-  _imageArray = [[NSArray alloc] initWithObjects:@"iconfont-guanyuwomen.png",@"iconfont-chanpinjieshao.png",@"iconfont-bangzhu.png",@"iconfont-wangdian.png", nil];
-  
-  _textArray = [[NSArray alloc] initWithObjects:@"关于我们",@"产品介绍",@"用户帮助",@"网点分布", nil];
-  
-  UIBarButtonItem *leftBtn = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"left_arrow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(onClickBackBtn)];
-  
-  self.navigationItem.leftBarButtonItem = leftBtn;
-  
-  self.tableView.delegate = self;
-  self.tableView.dataSource = self;
-  UIEdgeInsets edgeInset = self.tableView.separatorInset;
-  self.tableView.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, edgeInset.right);
-  self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-  
-  self.edgesForExtendedLayout = UIRectEdgeNone;
-  
-  [self.tableView setScrollEnabled:NO];
-  [self setExtraCellLineHidden:self.tableView];
+  _imageArray = @[
+		@"iconfont-guanyuwomen.png",
+		@"iconfont-chanpinjieshao.png",
+		@"iconfont-bangzhu.png",
+		@"iconfont-wangdian.png",
+		@"iconfont-mianxingtubiao3gengxin.png"
+	];
+	
+  _textArray = @[
+		@"关于我们",
+		@"产品介绍",
+		@"用户帮助",
+		@"网点分布",
+		@"软件版本",
+	];
 }
 
 #pragma mark - 去掉多余分割线
@@ -78,34 +74,42 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 4;
+  return 5;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 1;
 }
 
-- (MSFSettingTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *cellID = @"cellID";
-  
-  MSFSettingTableViewCell *cell = (MSFSettingTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
-  
-  if (cell == nil) {
-    
-    cell = [[MSFSettingTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-  }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *cellID = @"Cell";
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
   [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-  cell.text_label.text = [_textArray objectAtIndex:indexPath.row];
-  cell.picImageView.image = [UIImage imageNamed:[_imageArray objectAtIndex:indexPath.row]];
-  
+  cell.textLabel.text = [_textArray objectAtIndex:indexPath.row];
+  cell.imageView.image = [UIImage imageNamed:[_imageArray objectAtIndex:indexPath.row]];
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	if (indexPath.row == 4) {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	  NSDictionary *infodictionary = [NSBundle bundleForClass:self.class].infoDictionary;
+		NSString *version = infodictionary[@"CFBundleShortVersionString"];
+		NSString *builds = infodictionary[@"CFBundleVersion"];
+		NSString *about = [NSString stringWithFormat:@"%@(%@)", version, builds];
+		cell.detailTextLabel.text = about;
+	}
+	
   return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return 50;
+  return 44;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
   switch (indexPath.row) {
     case 0:
       [self performSegueWithIdentifier:@"aboutCell" sender:self];
