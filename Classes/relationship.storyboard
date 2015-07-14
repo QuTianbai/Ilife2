@@ -10,18 +10,18 @@
         <scene sceneID="en9-eF-MWA">
             <objects>
                 <tableViewController storyboardIdentifier="page4" id="Azx-1y-zfJ" customClass="MSFRelationshipViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="DqE-oL-o7n">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="30" sectionFooterHeight="22" id="DqE-oL-o7n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <color key="sectionIndexBackgroundColor" red="0.38779159730000001" green="0.59311091530000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Z1D-ef-5S0">
-                            <rect key="frame" x="0.0" y="1093" width="320" height="65"/>
+                            <rect key="frame" x="0.0" y="1000" width="320" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fM6-Pb-nNF" customClass="MSFEdgeButton">
-                                    <rect key="frame" x="10" y="15" width="300" height="44"/>
+                                    <rect key="frame" x="10" y="10" width="300" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="7Ix-6r-pjo"/>
                                         <constraint firstAttribute="width" constant="45" id="xJL-iF-5W3"/>
@@ -38,12 +38,18 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="fM6-Pb-nNF" secondAttribute="bottom" constant="6" id="6IH-y9-Oqk"/>
+                                <constraint firstAttribute="bottom" secondItem="fM6-Pb-nNF" secondAttribute="bottom" constant="10" id="6IH-y9-Oqk"/>
                                 <constraint firstItem="fM6-Pb-nNF" firstAttribute="leading" secondItem="Z1D-ef-5S0" secondAttribute="leading" constant="10" id="CYA-0F-UQQ"/>
                                 <constraint firstAttribute="centerX" secondItem="fM6-Pb-nNF" secondAttribute="centerX" id="PAw-AI-HHn"/>
                                 <constraint firstAttribute="trailing" secondItem="fM6-Pb-nNF" secondAttribute="trailing" constant="10" id="ZwV-0Q-wrr"/>
                                 <constraint firstAttribute="centerX" secondItem="fM6-Pb-nNF" secondAttribute="centerX" id="gSu-cU-r3W"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="PAw-AI-HHn"/>
+                                    <exclude reference="gSu-cU-r3W"/>
+                                </mask>
+                            </variation>
                         </view>
                         <sections>
                             <tableViewSection headerTitle="" id="ML6-Np-k9i">
