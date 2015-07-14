@@ -31,7 +31,9 @@
 }
 
 - (BOOL)isAuthenticated {
-	return [self.idcard isKindOfClass:NSString.class] && self.idcard.length == 18 && self.passcard.length > 0;
+	//TODO: 服务器接口未通过验证
+	return [self.idcard isKindOfClass:NSString.class] && self.idcard.length == 18;
+	//return [self.idcard isKindOfClass:NSString.class] && self.idcard.length == 18 && self.passcard.length > 0;
 }
 
 @end
