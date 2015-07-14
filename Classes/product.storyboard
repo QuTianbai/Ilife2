@@ -83,7 +83,7 @@
                         <sections>
                             <tableViewSection id="mNA-YV-i0A">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="T3d-Nm-rQd">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="T3d-Nm-rQd">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3d-Nm-rQd" id="ewd-85-E2l">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -116,7 +116,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="acD-NK-drc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="acD-NK-drc">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="acD-NK-drc" id="KhJ-lm-0pO">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -152,7 +152,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="BsE-t9-tn6">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="BsE-t9-tn6">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BsE-t9-tn6" id="rOp-zt-akU">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -187,7 +187,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="BQW-NB-2IL">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="BQW-NB-2IL">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BQW-NB-2IL" id="HRc-3v-mWf">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -200,8 +200,11 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BWq-ao-haB">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
-                                                    <rect key="frame" x="153" y="0.0" width="36" height="44"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
+                                                    <rect key="frame" x="153" y="0.0" width="36" height="43"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="36" id="H5u-kk-ckn"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Q7-j3-dwM">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
@@ -219,8 +222,11 @@
                                                 <constraint firstAttribute="centerY" secondItem="XNL-hI-c1l" secondAttribute="centerY" id="EAO-Lj-AWv"/>
                                                 <constraint firstAttribute="centerY" secondItem="BWq-ao-haB" secondAttribute="centerY" id="H82-gg-ho4"/>
                                                 <constraint firstItem="5Q7-j3-dwM" firstAttribute="leading" secondItem="HRc-3v-mWf" secondAttribute="leading" id="NHb-vo-oCF"/>
+                                                <constraint firstItem="Gyv-Sb-YJH" firstAttribute="leading" secondItem="XNL-hI-c1l" secondAttribute="trailing" constant="2" id="PHL-iL-EY5"/>
                                                 <constraint firstAttribute="trailing" secondItem="BWq-ao-haB" secondAttribute="trailing" constant="15" id="S00-CV-bM0"/>
                                                 <constraint firstItem="5Q7-j3-dwM" firstAttribute="top" secondItem="HRc-3v-mWf" secondAttribute="top" id="e2P-8G-j8m"/>
+                                                <constraint firstItem="Gyv-Sb-YJH" firstAttribute="top" secondItem="HRc-3v-mWf" secondAttribute="top" id="jJC-P4-YD9"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gyv-Sb-YJH" secondAttribute="bottom" constant="0.5" id="vu7-cW-gDL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
