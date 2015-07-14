@@ -43,10 +43,10 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3NG-MO-iuA" id="dGQ-uR-OOq">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UP1-Ud-7b5">
-                                                    <rect key="frame" x="270" y="12" width="40" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UP1-Ud-7b5">
+                                                    <rect key="frame" x="260" y="12" width="50" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="hNe-Hb-QDe"/>
+                                                        <constraint firstAttribute="width" constant="50" id="XqQ-bK-veN"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,8 +61,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入月工资收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HiU-b9-1sf">
-                                                    <rect key="frame" x="120" y="7" width="140" height="30"/>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1000" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入月工资收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HiU-b9-1sf">
+                                                    <rect key="frame" x="120" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
@@ -87,14 +87,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="其他贷款还款" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="98y-Y7-3hv">
-                                                    <rect key="frame" x="120" y="7" width="140" height="30"/>
+                                                    <rect key="frame" x="120" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ho6-fd-U42">
-                                                    <rect key="frame" x="270" y="12" width="40" height="21"/>
+                                                    <rect key="frame" x="260" y="12" width="50" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="prX-wj-Etz"/>
+                                                        <constraint firstAttribute="width" constant="50" id="prX-wj-Etz"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -139,14 +139,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1s-SW-Pd2">
-                                                    <rect key="frame" x="120" y="7" width="140" height="30"/>
+                                                    <rect key="frame" x="120" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6O-E5-H2Y">
-                                                    <rect key="frame" x="270" y="12" width="40" height="21"/>
+                                                    <rect key="frame" x="260" y="12" width="50" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="JUH-Nx-oCJ"/>
+                                                        <constraint firstAttribute="width" constant="50" id="JUH-Nx-oCJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
