@@ -41,13 +41,6 @@
   return [self.server.baseWebURL URLByAppendingPathComponent:@"app/branch.htm"];
 }
 
-- (NSURL *)repayURL:(MSFApplyList *)applyList {
-  NSString *path = [NSString stringWithFormat:@"/coresys/cont/contract/pageQuery?applyId=%@",applyList.loan_id];
-  return [NSURL URLWithString:path];
-  return [self.server.baseWebURL URLByAppendingPathComponent:path];
-//  return [self.server.APIEndpoint URLByAppendingPathComponent:path];
-}
-
 - (NSURL *)registerURL {
   return [self.server.baseWebURL URLByAppendingPathComponent:@"agreement.htm"];
 }
@@ -57,7 +50,7 @@
 }
 
 - (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product {
-	//TODO: 暂缺贷款协议地址格式
+	//TODO: 暂缺贷款协议地址格式,参见- (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
 	NSString *path = [NSString stringWithFormat:@"https://192.168.2.51:8443/msfinanceapi/v1/coresys/cont/contract/fineinfo?productId=%@",product.productId];
 	return [NSURL URLWithString:path];
 	//TODO: 协议server需要更新

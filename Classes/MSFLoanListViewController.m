@@ -18,6 +18,7 @@
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
 #import "MSFRepayViewController.h"
+#import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
@@ -80,7 +81,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-  return 35;
+  return 44;
 }
 
 - (MSLoanListTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,8 +130,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  MSFRepayViewController *repayMentView = [[MSFRepayViewController alloc]init];
-  [self.navigationController pushViewController:repayMentView animated:YES];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
+			[self.navigationController pushViewController:webViewController animated:YES];
+		}];
+	}
 }
 
 - (NSString *)getStatus:(NSInteger)status {

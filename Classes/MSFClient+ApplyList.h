@@ -8,8 +8,11 @@
 
 #import "MSFClient.h"
 
+@class MSFApplyList;
+
 @interface MSFClient (ApplyList)
 
 - (RACSignal *)fetchApplyList;
+- (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
 
 @end
