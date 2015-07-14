@@ -49,6 +49,9 @@ static const int kCounterLength = 60;
       if (![self.username isMobile]) {
         return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
       }
+      if ([self.password isEqualToString:@""]) {
+        return [RACSignal error:[self.class errorWithFailureReason:@"请输入密码"]];
+      }
      
       return [self executeSignInSignal];
     }];
