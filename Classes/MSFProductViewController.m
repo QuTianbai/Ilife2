@@ -90,7 +90,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		}];
 	}];
 	[self.executeTermCommand.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		[SVProgressHUD showInfoWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
 	self.moneyUsedBT.rac_command = self.executePurposeCommand;
