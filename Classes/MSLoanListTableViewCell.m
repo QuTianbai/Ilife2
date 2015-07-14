@@ -42,26 +42,28 @@ reuseIdentifier {
     [self addSubview:_monthsLabel];
     [self addSubview:_timeLabel];
     [self addSubview:_checkLabel];
-    
+		
+		NSInteger edges = [UIScreen mainScreen].bounds.size.width/8;
+		
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
-      make.left.equalTo(self.mas_left).offset(15);
+      make.centerX.equalTo(self.mas_left).offset(edges);
       make.height.equalTo(@[_checkLabel,_monthsLabel,_timeLabel]);
     }];
     
     [_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
-      make.left.equalTo(_moneyLabel.mas_right).offset(25);
+      make.centerX.equalTo(self.mas_centerX).offset(edges);
     }];
 
     [_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
-      make.centerX.equalTo(self).offset(120);
+      make.centerX.equalTo(self.mas_right).offset(-edges);
     }];
     
     [_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
-      make.left.equalTo(self.mas_centerX).offset(18);
+      make.centerX.equalTo(self.mas_centerX).offset(-edges);
     }];
   }
   

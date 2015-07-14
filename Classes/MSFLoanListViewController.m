@@ -229,25 +229,27 @@
 	[superView addSubview:_time];
 	[superView addSubview:_check];
 	
+	NSInteger edges = [UIScreen mainScreen].bounds.size.width/8;
+	
 	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(superView.mas_left).offset(20);
+		make.centerX.equalTo(superView.mas_left).offset(edges);
 		make.height.equalTo(@[_check, _months,_time]);
 	}];
 	
 	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(_money.mas_right).offset(48);
+		make.centerX.equalTo(superView.mas_centerX).offset(edges);
 	}];
 	
 	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.right.equalTo(superView.mas_right).offset(-25);
+		make.centerX.equalTo(superView.mas_right).offset(-edges);
 	}];
 	
 	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(superView.mas_centerX).offset(28);
+		make.centerX.equalTo(superView.mas_centerX).offset(-edges);
 	}];
 	
 }
