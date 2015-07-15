@@ -102,8 +102,12 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 - (RACSignal *)executeAuthSignal {
 	NSError *error = nil;
   if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+    NSString *str = @"姓名只能输入2-20个字符的中文";
+    if (self.name.length == 0) {
+      str = @"请输入姓名";
+    }
     error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: @"姓名只能输入2-20个字符的中文",
+      NSLocalizedFailureReasonErrorKey: str,
       }];
     return [RACSignal error:error];
   }
