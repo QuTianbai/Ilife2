@@ -177,9 +177,10 @@
 		4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDB1B4B6D2C0086B5ED /* 5.png */; };
 		4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */; };
 		4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */; };
-		499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */; };
 		499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2491B55F6550051AF66 /* MSFTabBarController.m */; };
+		499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */; };
 		499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */; };
+		499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */ = {isa = PBXBuildFile; fileRef = 499EA2B51B5679E50051AF66 /* familyMember_type2.json */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */; };
@@ -753,12 +754,13 @@
 		4995DCDB1B4B6D2C0086B5ED /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@2x.png"; sourceTree = "<group>"; };
 		4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@3x.png"; sourceTree = "<group>"; };
-		499EA25E1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RACKeyboardSupport.h"; sourceTree = "<group>"; };
 		499EA2481B55F6550051AF66 /* MSFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarController.h; sourceTree = "<group>"; };
 		499EA2491B55F6550051AF66 /* MSFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarController.m; sourceTree = "<group>"; };
+		499EA25E1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RACKeyboardSupport.h"; sourceTree = "<group>"; };
 		499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RACKeyboardSupport.m"; sourceTree = "<group>"; };
 		499EA2841B560ACB0051AF66 /* MSFTabBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarViewModel.h; sourceTree = "<group>"; };
 		499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarViewModel.m; sourceTree = "<group>"; };
+		499EA2B51B5679E50051AF66 /* familyMember_type2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type2.json; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpViewController.h; sourceTree = "<group>"; };
 		49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpViewController.m; sourceTree = "<group>"; };
@@ -1099,6 +1101,7 @@
 				49CBDDB31B0DF03E009EF662 /* banners.json */,
 				4925AD571B2A786900872A8A /* products.json */,
 				07AFE59F1B26D202009E0124 /* position.json */,
+				499EA2B51B5679E50051AF66 /* familyMember_type2.json */,
 				07C06C6E1B1347C200F2DFCC /* familyMember_type.json */,
 				07C06C6F1B1347C200F2DFCC /* housing_conditions.json */,
 				07C06C701B1347C200F2DFCC /* json_banks.json */,
@@ -2541,6 +2544,7 @@
 				4995DCDE1B4B6D2C0086B5ED /* 1.png in Resources */,
 				49C2FE491B4654D100B6B20A /* icon-question@2x.png in Resources */,
 				07CB4C4B1B1017AE006C220E /* right_arrow@3x.png in Resources */,
+				499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */,
 				4925ADF51B2AFD8800872A8A /* btn_uncheck.png in Resources */,
 				07C06C7C1B1347C200F2DFCC /* sex.json in Resources */,
 				49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */,
@@ -3101,7 +3105,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
+				PROVISIONING_PROFILE = "997a587c-8137-4f67-b25a-82467424cb73";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3162,7 +3166,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
+				PROVISIONING_PROFILE = "997a587c-8137-4f67-b25a-82467424cb73";
 			};
 			name = Debug;
 		};
@@ -3181,7 +3185,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
+				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
 			};
 			name = Release;
 		};

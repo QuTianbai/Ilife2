@@ -1,0 +1,21 @@
+ [
+  {
+  "text": "父亲",
+  "code": "RF02",
+  "typeId": "009"
+  },
+  {
+  "text": "母亲",
+  "code": "RF03",
+  "typeId": "009"
+  },{
+  "text": "兄弟",
+  "code": "RF04",
+  "typeId": "009"
+  },
+  {
+  "text": "姐妹",
+  "code": "RF05",
+  "typeId": "009"
+  }
+]
