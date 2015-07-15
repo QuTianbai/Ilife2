@@ -3147,7 +3147,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
 			};
 			name = Release;
 		};
