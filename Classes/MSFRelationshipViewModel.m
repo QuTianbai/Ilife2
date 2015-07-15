@@ -14,6 +14,7 @@
 #import <UIKit/UIKit.h>
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
+#import "NSString+Matches.h"
 
 @interface MSFRelationshipViewModel ()
 
@@ -89,12 +90,16 @@
 		@strongify(self)
 		return [self otherTwoValuesSignal];
 	}];
-	
-	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		self.model.applyStatus1 = @"1";
-		return [self commitSignal];
-	}];
+  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+    self.model.applyStatus1 = @"1";
+    return [self commitSignal];
+  }];
+//	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
+//		@strongify(self)
+//		self.model.applyStatus1 = @"1";
+//		return [self commitSignal];
+//	}];
 	
 	return self;
 }
@@ -306,6 +311,32 @@
 }
 
 - (RACSignal *)commitSignal {
+  
+  if ([self.model.maritalStatus isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请选择婚姻状况"}]];
+  }
+  if ([self.model.houseType isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请选择住房状况"}]];
+  }
+  if ([self.model.memberName isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入家庭成员姓名"}]];
+  }
+  if ([self.model.memberRelation isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请选择与申请人关系"}]];
+  }
+  if ([self.model.memberCellNum isTelephone]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入正确的家庭成员机号"}]];
+  }
+  if ([self.model.name1 isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入其他联系人姓名"}]];
+  }
+  if ([self.model.relation1 isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请选择联系人与声请人关系"}]];
+  }
+  if ([self.model.phone1 isTelephone]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入联系人正确地手机号"}]];
+  }
+  
 	return [self.formsViewModel submitSignalWithPage:4];
 }
 

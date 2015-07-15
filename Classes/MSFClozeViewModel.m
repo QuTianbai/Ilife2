@@ -10,6 +10,7 @@
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "MSFAddressViewModel.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDomain";
 
@@ -43,17 +44,23 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	_name = @"";
 	_card = @"";
 	_expired = [NSDate date];
+  _expired1 = [NSDateFormatter msf_stringFromDate:_expired];
+  
 	_bankNO = @"";
 	_bankAddress = @"";
 	_bankName = @"";
 	
 	@weakify(self)
+  _executeAuth = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+    return [self executeAuthSignal];
+  }];
 	
-	_executeAuth = [[RACCommand alloc] initWithEnabled:self.authoriseValidSignal
-		signalBlock:^RACSignal *(id input) {
-			@strongify(self)
-			return [self executeAuthSignal];
-		}];
+//	_executeAuth = [[RACCommand alloc] initWithEnabled:self.authoriseValidSignal
+//		signalBlock:^RACSignal *(id input) {
+//			@strongify(self)
+//			return [self executeAuthSignal];
+//		}];
 	
 	_executePermanent = [[RACCommand alloc]
 		initWithSignalBlock:^RACSignal *(id input) {
@@ -84,11 +91,11 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 			NSString *bankaddress
 		 ) {
 			return @(
-				name.length > 1 &&
-				card.length > 1 &&
-				bankname.length > 1 &&
-				bankno.length > 1 &&
-				bankaddress.length > 1
+				name.length > 0 &&
+				card.length > 0 &&
+				bankname.length > 0 &&
+				bankno.length > 0 &&
+				bankaddress.length > 0
 			);
 		}];
 }
@@ -97,38 +104,47 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 
 - (RACSignal *)executeAuthSignal {
 	NSError *error = nil;
-	if (![self.name isChineseName] && (self.name.length < 2 || self.name.length > 20)) {
-		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"姓名只能输入2-20个字符的中文",
-		}];
-	}
+  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+    NSString *str = @"姓名只能输入2-20个字符的中文";
+    if (self.name.length == 0) {
+      str = @"请输入姓名";
+    }
+    error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: str,
+      }];
+    return [RACSignal error:error];
+  }
 	if (self.card.length != 18) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输入18位身份证号",
 		}];
+    return [RACSignal error:error];
 	}
+  if (self.expired) {
+    
+  }
 	if (self.bankName.length == 0) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择开发银行",
+			NSLocalizedFailureReasonErrorKey: @"请选择开户发银行",
 		}];
+    return [RACSignal error:error];
 	}
 	if (self.addressViewModel.provinceCode.length == 0) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请选择开发省市",
 		}];
+    return [RACSignal error:error];
 	}
-	if (self.bankNO.length == 0) {
+	if (self.bankNO.length == 0 || self.bankNO.length < 16 ) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请输入银行卡号",
+			NSLocalizedFailureReasonErrorKey: @"请输入正确地银行卡号",
 		}];
-	}
-	if (error) {
-		return [RACSignal error:error];
+    return [RACSignal error:error];
 	}
 	return [self.client
 		realnameAuthentication:self.name
 		idcard:self.card
-		expire:self.expired
+          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil?[NSDate date]:[NSDateFormatter msf_dateFromString:self.expired1]
 		session:self.permanent
 		province:self.addressViewModel.provinceCode
 		city:self.addressViewModel.cityCode

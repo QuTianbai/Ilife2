@@ -32,6 +32,7 @@
  *	The identifer Card invalid time
  */
 @property(nonatomic,strong) NSDate *expired;
+@property(nonatomic,strong) NSString *expired1;
 
 /**
  *	The bank name

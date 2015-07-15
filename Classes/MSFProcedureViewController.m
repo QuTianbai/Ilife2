@@ -65,8 +65,8 @@
 	
 	if ([textField isEqual:self.name]) {
 		NSCharacterSet *blockedCharacters = [[NSCharacterSet letterCharacterSet] invertedSet];
-		
-		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+    NSCharacterSet *blockedCharatersSquared = [NSCharacterSet characterSetWithCharactersInString:@"➋➌➍➎➏➐➑➒"];
+		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound) || ([string rangeOfCharacterFromSet:blockedCharatersSquared].location != NSNotFound);
 	}
 	else if ([textField isEqual:self.card]) {
 		if (range.location > 17) {
