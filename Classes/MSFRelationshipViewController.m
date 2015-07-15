@@ -131,6 +131,14 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	self.relationBT.rac_command = self.viewModel.executeFamilyOneValuesCommand;
 	RACChannelTerminal *member1PhoneChannel = RACChannelTo(self.viewModel.model, memberCellNum);
 	RAC(self.telTF, text) = member1PhoneChannel;
+	
+	[[self.telTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
+		 }
+	 }];
+	
 	[self.telTF.rac_textSignal subscribe:member1PhoneChannel];
 	RACChannelTerminal *member1AddressChannel = RACChannelTo(self.viewModel.model, memberAddress);
 	RAC(self.diffCurrentTF, text) = member1AddressChannel;
@@ -152,6 +160,13 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	self.num2RelationBT.rac_command = self.viewModel.executeFamilyTwoValuesCommand;
 	RACChannelTerminal *member2PhoneChannel = RACChannelTo(self.viewModel.model, memberCellNum2);
 	RAC(self.num2TelTF, text) = member2PhoneChannel;
+	
+	[[self.num2TelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
+		 }
+	 }];
 	[self.num2TelTF.rac_textSignal subscribe:member2PhoneChannel];
 	RACChannelTerminal *member2AddressChannel = RACChannelTo(self.viewModel.model, memberAddress2);
 	RAC(self.num2DiffCurrentTF, text) = member2AddressChannel;
@@ -169,10 +184,16 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	RACChannelTerminal *name1Channel = RACChannelTo(self.viewModel.model, name1);
 	RAC(self.otherNameTF, text) = name1Channel;
 	[self.otherNameTF.rac_textSignal subscribe:name1Channel];
-	
 	RAC(self.otherRelationTF, text) = RACObserve(self.viewModel, otherOneValuesTitle);
 	self.otherRelationBT.rac_command = self.viewModel.executeOtherOneValuesCommand;
 	RACChannelTerminal *phone1Channel = RACChannelTo(self.viewModel.model, phone1);
+	
+	[[self.otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
+		 }
+	 }];
 	
 	RAC(self.otherTelTF, text) = phone1Channel;
 	[self.otherTelTF.rac_textSignal subscribe:phone1Channel];
@@ -185,6 +206,12 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	RAC(self.num2_otherRelationTF, text) = RACObserve(self.viewModel, otherTwoValuesTitle);
 	self.num2_otherRelationBT.rac_command = self.viewModel.executeOtherTwoValuesCommand;
 	
+	[[self.num2_otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
+		 }
+	 }];
 	RACChannelTerminal *phone2Channel = RACChannelTo(self.viewModel.model, phone2);
 	RAC(self.num2_otherTelTF, text) = phone2Channel;
 	[self.num2_otherTelTF.rac_textSignal subscribe:phone2Channel];
