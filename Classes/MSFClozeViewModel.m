@@ -107,7 +107,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
   if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
     NSString *str = @"姓名只能输入2-20个字符的中文";
     if (self.name.length == 0) {
-      str = @"请输入姓名";
+      str = @"请输入您的名字";
     }
     error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
       NSLocalizedFailureReasonErrorKey: str,
@@ -120,18 +120,21 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
-  if (self.expired) {
-    
+  if (self.expired1.length ==0 && !self.permanent ) {
+    error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: @"请选择身份证过期日期",
+                                                                                    }];
+    return [RACSignal error:error];
   }
 	if (self.bankName.length == 0) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择开户发银行",
+			NSLocalizedFailureReasonErrorKey: @"请选择银行名称",
 		}];
     return [RACSignal error:error];
 	}
 	if (self.addressViewModel.provinceCode.length == 0) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择开发省市",
+			NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
 		}];
     return [RACSignal error:error];
 	}

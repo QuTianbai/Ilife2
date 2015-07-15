@@ -106,10 +106,10 @@
 	// Bank No button
 	[[self.procedureViewController.bankNOButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@""
 				message:@"为保证账户资金安全,仅支持本人的储蓄卡(借记卡)收款"
 				delegate:nil
-				cancelButtonTitle:@"￼关闭"
+				cancelButtonTitle:@"￼知道了"
 				otherButtonTitles:nil];
 			[alertView show];
 		}];
