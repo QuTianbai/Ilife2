@@ -39,6 +39,15 @@
 		@strongify(self)
 		self.model.maritalStatus = object.code;
 		self.marryValuesTitle = object.text;
+		if ([object.code isEqualToString:@"MG02"]) {
+				self.familyOneValues = [MTLJSONAdapter modelOfClass:MSFSelectKeyValues.class fromJSONDictionary:@{
+					@"text": @"配偶",
+					@"code": @"RF01",
+					@"typeId": @"009"
+				} error:nil];
+		} else if ([object.code isEqualToString:@"MG01"] && [self.familyOneValues.code isEqualToString:@"RF01"]) {
+			self.familyOneValues = nil;
+		}
 	}];
 	[RACObserve(self, houseValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
@@ -70,26 +79,32 @@
 		@strongify(self)
 		return [self marryValuesSignal];
 	}];
+	_executeMarryValuesCommand.allowsConcurrentExecution = YES;
 	_executeHouseValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self houseValuesSignal];
 	}];
-	_executeFamilyOneValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
+	_executeFamilyOneValuesCommand = [[RACCommand alloc] initWithEnabled:[self familyOneValidSignal] signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self familyOneValuesSignal];
 	}];
+	_executeFamilyOneValuesCommand.allowsConcurrentExecution = YES;
 	_executeFamilyTwoValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self familyTwoValuesSignal];
 	}];
+	_executeFamilyTwoValuesCommand.allowsConcurrentExecution = YES;
 	_executeOtherOneValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self otherOneValuesSignal];
 	}];
+	_executeOtherOneValuesCommand.allowsConcurrentExecution = YES;
 	_executeOtherTwoValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self otherTwoValuesSignal];
 	}];
+	_executeOtherTwoValuesCommand.allowsConcurrentExecution = YES;
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     @strongify(self)
     self.model.applyStatus1 = @"1";
@@ -194,6 +209,9 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type"]];
+		if ([self.model.maritalStatus isEqualToString:@"MG01"]) {
+			viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type2"]];
+		}
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"家庭成员关系";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
@@ -213,6 +231,9 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type"]];
+		if ([self.model.maritalStatus isEqualToString:@"MG02"] || [self.model.maritalStatus isEqualToString:@"MG01"]) {
+			viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type2"]];
+		}
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
 		selectionViewController.title = @"家庭成员关系";
 		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
@@ -338,6 +359,12 @@
   }
   
 	return [self.formsViewModel submitSignalWithPage:4];
+}
+
+- (RACSignal *)familyOneValidSignal {
+	return [RACSignal  combineLatest:@[RACObserve(self.model, maritalStatus)] reduce:^id(NSString *code) {
+		return @(![code isEqualToString:@"MG02"]);
+	}];
 }
 
 @end
