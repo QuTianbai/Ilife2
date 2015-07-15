@@ -21,6 +21,8 @@
 @property(nonatomic,strong,readonly) MSFMarket *market;
 @property(nonatomic,strong,readonly) RACSignal *updatedContentSignal;
 
+@property(nonatomic,assign,readonly) BOOL pending;
+
 - (RACSignal *)submitSignalWithPage:(NSInteger)page;
 
 @end

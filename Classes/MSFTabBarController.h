@@ -6,7 +6,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFTabBarController : UITabBarController
+@class MSFTabBarViewModel;
 
+@interface MSFTabBarController : UITabBarController <UITabBarControllerDelegate>
+
+@property (nonatomic, strong, readonly) MSFTabBarViewModel *viewModel;
+
+- (instancetype)initWithViewModel:(MSFTabBarViewModel *)tabBarViewModel;
 
 @end

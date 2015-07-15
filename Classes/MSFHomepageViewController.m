@@ -15,11 +15,12 @@
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
 #import "MSFUtils.h"
+#import "MSFSettingsViewController.h"
 
 @interface MSFHomepageViewController () <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property(nonatomic,strong) UIView *separatorView;
-@property(nonatomic,strong) MSFHomepageViewModel *viewModel;
+@property(nonatomic,strong,readwrite) MSFHomepageViewModel *viewModel;
 
 @end
 
@@ -27,8 +28,25 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithViewModel:(MSFHomepageViewModel *)viewModel {
+	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+  self = [super initWithCollectionViewLayout:flowLayout];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+	label.text = @"马上贷";
+	label.textColor = [UIColor whiteColor];
+	label.font = [UIFont boldSystemFontOfSize:17];
+	label.textAlignment = NSTextAlignmentCenter;
+	self.navigationItem.titleView = label;
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
@@ -38,22 +56,9 @@
 	[self.collectionView registerClass:MSFPepaymentCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPepaymentCollectionViewCell"];
 	
 	@weakify(self)
-	self.viewModel = [[MSFHomepageViewModel alloc] initWithClient:MSFUtils.httpClient];
-	[RACObserve(self.viewModel, viewModels)
-		subscribeNext:^(id x) {
-			@strongify(self)
-			[self.collectionView reloadData];
-	}];
-	[[[[NSNotificationCenter defaultCenter]
-		rac_addObserverForName:MSFAuthorizationDidUpdateNotification object:nil]
-		takeUntil:self.rac_willDeallocSignal]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			self.viewModel = [[MSFHomepageViewModel alloc] initWithClient:MSFUtils.httpClient];
-			[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
-				@strongify(self)
-				[self.collectionView reloadData];
-			}];
+	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.collectionView reloadData];
 	}];
 	
 	[self.collectionView addPullToRefreshWithActionHandler:^{
@@ -64,6 +69,17 @@
 				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
+	self.navigationItem.rightBarButtonItem =
+		[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-setting"]
+		style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.rightBarButtonItem.rac_command =
+		[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			@strongify(self)
+			MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
+			settingsViewController.hidesBottomBarWhenPushed = YES;
+			[self.navigationController pushViewController:settingsViewController animated:YES];
+			return [RACSignal empty];
+		}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

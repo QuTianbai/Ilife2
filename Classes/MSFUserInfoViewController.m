@@ -18,6 +18,7 @@
 #import "MSFClient+Users.h"
 #import "MSFUser.h"
 #import "MSFUserViewModel.h"
+#import "MSFAuthorizeViewModel.h"
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
 @interface MSFUserInfoViewController ()
@@ -37,11 +38,12 @@
 	NSLog(@"MSFUserInfoViewController -`dealloc`");
 }
 
-- (instancetype)initWithStyle:(UITableViewStyle)style {
+
+- (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel {
 	if (!(self = [super initWithStyle:UITableViewStyleGrouped])) {
 		return nil;
 	}
-	_viewModel = [[MSFUserViewModel alloc] initWithClient:MSFUtils.httpClient];
+	_viewModel = viewModel;
 	
 	return self;
 }
@@ -78,6 +80,10 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	self.viewModel.active = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	self.viewModel.active = NO;
 }
 
 #pragma mark - Private
@@ -175,13 +181,13 @@
 		make.edges.equalTo(view).with.insets(UIEdgeInsetsMake(5, 10, 5, 10));
 	}];
 	@weakify(self)
-	[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
-	 subscribeNext:^(id x) {
-		 @strongify(self)
-		 [MSFUtils.httpClient signOut];
-		 [MSFUtils setHttpClient:nil];
-		 [self.navigationController popToRootViewControllerAnimated:YES];
-	 }];
+	button.rac_command = self.viewModel.authorizeViewModel.executeSignOut;
+	[self.viewModel.authorizeViewModel.executeSignOut.executionSignals subscribeNext:^(RACSignal *signal) {
+		[signal subscribeNext:^(id x) {
+			@strongify(self)
+			[self.navigationController popToRootViewControllerAnimated:YES];
+		}];
+	}];
 	
 	return view;
 }

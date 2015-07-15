@@ -33,12 +33,24 @@
 
 #pragma mark - Lifecycle
 
-- (void)loadView {
-	self.tableView = [[UITableView alloc] initWithFrame:[UIScreen mainScreen].bounds style:UITableViewStyleGrouped];
+- (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel {
+  self = [super initWithStyle:UITableViewStyleGrouped];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+	label.text = @"个人中心";
+	label.textColor = [UIColor whiteColor];
+	label.font = [UIFont boldSystemFontOfSize:17];
+	label.textAlignment = NSTextAlignmentCenter;
+	self.navigationItem.titleView = label;
 	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
 	self.tableView.delegate = self;
 	self.tableView.dataSource = self;
@@ -96,7 +108,7 @@
 	[[avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
 			@strongify(self)
-			MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] init];
+			MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];
 			userinfoViewController.hidesBottomBarWhenPushed = YES;
 			[self.navigationController pushViewController:userinfoViewController animated:YES];
 	}];

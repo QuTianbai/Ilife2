@@ -9,6 +9,13 @@
 /**
  *	登录
  */
+
+ @class MSFAuthorizeViewModel;
+
 @interface MSFLoginViewController : UIViewController
+
+@property (nonatomic, strong, readonly) MSFAuthorizeViewModel *viewModel;
+
+- (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel;
 
 @end
