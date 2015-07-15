@@ -66,6 +66,12 @@
 			self.viewModel.formsViewModel.active = NO;
 			[self authenticatedControllers];
 		}];
+	[[[NSNotificationCenter defaultCenter]
+		rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			[self.viewModel.signInCommand execute:nil];
+		}];
 	
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已在另一设备上登录，如非本人操作请立即修改密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	alertView.delegate = self;
