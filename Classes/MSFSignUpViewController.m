@@ -10,6 +10,7 @@
 #import <libextobjc/extobjc.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"
+#import "UITextField+RACKeyboardSupport.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -68,6 +69,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeSignUp execute:nil];
 	}];
 	
 	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;

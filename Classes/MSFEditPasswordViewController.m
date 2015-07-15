@@ -10,6 +10,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUserViewModel.h"
 #import "MSFUtils.h"
+#import "UITextField+RACKeyboardSupport.h"
 
 @interface MSFEditPasswordViewController ()
 @property(nonatomic,weak) IBOutlet UITextField *passoword1;
@@ -61,6 +62,11 @@
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[self.passoword2.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeUpdatePassword execute:nil];
 	}];
 	
 	self.passoword1.clearButtonMode = UITextFieldViewModeNever;
