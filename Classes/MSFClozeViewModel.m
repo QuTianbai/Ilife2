@@ -129,7 +129,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
-	if (self.bankNO.length == 0 || self.bankNO.length < 16 || self.bankNO.length > 19) {
+	if (self.bankNO.length == 0 || self.bankNO.length < 16 ) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输入正确地银行卡号",
 		}];
