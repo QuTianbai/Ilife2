@@ -177,6 +177,7 @@
 		4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDB1B4B6D2C0086B5ED /* 5.png */; };
 		4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */; };
 		4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */; };
+		499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2491B55F6550051AF66 /* MSFTabBarController.m */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */; };
@@ -750,6 +751,8 @@
 		4995DCDB1B4B6D2C0086B5ED /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@2x.png"; sourceTree = "<group>"; };
 		4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@3x.png"; sourceTree = "<group>"; };
+		499EA2481B55F6550051AF66 /* MSFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarController.h; sourceTree = "<group>"; };
+		499EA2491B55F6550051AF66 /* MSFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarController.m; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpViewController.h; sourceTree = "<group>"; };
 		49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpViewController.m; sourceTree = "<group>"; };
@@ -1552,6 +1555,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				499EA23A1B55F6400051AF66 /* TabBarController */,
 				49C2FE2E1B4652FA00B6B20A /* View */,
 				4925ADBB1B2AB91500872A8A /* Blur */,
 				4925AD791B2A80A100872A8A /* Guide */,
@@ -1794,6 +1798,15 @@
 				4991471C1B246B7100260E97 /* MSFSelectionItem.h */,
 			);
 			name = Selection;
+			sourceTree = "<group>";
+		};
+		499EA23A1B55F6400051AF66 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				499EA2481B55F6550051AF66 /* MSFTabBarController.h */,
+				499EA2491B55F6550051AF66 /* MSFTabBarController.m */,
+			);
+			name = TabBarController;
 			sourceTree = "<group>";
 		};
 		49B5D7AF1B08460800917D2C /* Authorization */ = {
@@ -2910,6 +2923,7 @@
 				49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */,
 				498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */,
 				49DA22681B062AF200DD4483 /* MSFUser.m in Sources */,
+				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
 				C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */,
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
