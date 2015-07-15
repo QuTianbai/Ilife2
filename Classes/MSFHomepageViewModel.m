@@ -36,11 +36,14 @@
 			return [RACSignal return:nil];
 		}
 		
-		return [[[self.client fetchApplyList]
+		return [[[[self.client fetchApplyList]
 			map:^id(id value) {
 				return [[MSFLoanViewModel alloc] initWithModel:value];
 			}]
-			collect];
+			collect]
+			map:^id(NSArray *viewModels) {
+				return @[viewModels.firstObject];
+			}];
 	}];
 	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {

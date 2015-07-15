@@ -62,6 +62,7 @@
 		make.left.equalTo(self.contentView);
 		make.right.equalTo(self.contentView);
 	}];
+	line.hidden = YES;
 	
 	return self;
 }
