@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
 #import "MSFUtils.h"
+#import "UITextField+RACKeyboardSupport.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -66,6 +67,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}];
 	[self.viewModel.executeSignIn.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[self.signInViewController.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeSignIn execute:nil];
 	}];
 	
 	self.signInViewController.captchaButton.rac_command = self.viewModel.executeLoginCaptcha;
