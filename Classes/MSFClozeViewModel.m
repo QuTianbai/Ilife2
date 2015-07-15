@@ -10,6 +10,7 @@
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "MSFAddressViewModel.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDomain";
 
@@ -43,6 +44,8 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	_name = @"";
 	_card = @"";
 	_expired = [NSDate date];
+  _expired1 = [NSDateFormatter msf_stringFromDate:_expired];
+  
 	_bankNO = @"";
 	_bankAddress = @"";
 	_bankName = @"";
@@ -117,9 +120,12 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
+  if (self.expired) {
+    
+  }
 	if (self.bankName.length == 0) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择开发银行",
+			NSLocalizedFailureReasonErrorKey: @"请选择开户发银行",
 		}];
     return [RACSignal error:error];
 	}
@@ -138,7 +144,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	return [self.client
 		realnameAuthentication:self.name
 		idcard:self.card
-		expire:self.expired
+          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil?[NSDate date]:[NSDateFormatter msf_dateFromString:self.expired1]
 		session:self.permanent
 		province:self.addressViewModel.provinceCode
 		city:self.addressViewModel.cityCode

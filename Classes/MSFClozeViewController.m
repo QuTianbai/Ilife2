@@ -49,7 +49,9 @@
 	[self.procedureViewController.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
+  //Identifier Card OutTime
+ // RAC(self.procedureViewController.expired,text) = RACObserve(self.viewModel, expired1);
+  RAC(self.viewModel,expired1) = RACObserve(self.procedureViewController.expired, text);
 	// Identifier Card Lifelong
 	RAC(self.procedureViewController.permanentButton,selected) =	RACObserve(self.viewModel,permanent);
 	RAC(self.procedureViewController.datePickerButton,enabled) = [RACSignal
