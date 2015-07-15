@@ -21,6 +21,7 @@
 #import "MSFAddressViewModel.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFProfessionalViewController.h"
+#import "UITextField+RACKeyboardSupport.h"
 
 @interface MSFPersonalViewController ()
 
@@ -166,6 +167,19 @@
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[self.tencentUsername.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeCommitCommand execute:nil];
+	}];
+	[self.jdPasscode.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeCommitCommand execute:nil];
+	}];
+	[self.taobaoPasscode.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeCommitCommand execute:nil];
 	}];
 }
 

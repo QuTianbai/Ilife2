@@ -23,6 +23,7 @@
 #import "MSFSelectionViewController.h"
 #import "MSFRelationshipViewModel.h"
 #import "MSFRelationshipViewController.h"
+#import "UITextField+RACKeyboardSupport.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		MSFProfessionalViewSectionSchool = 1,
@@ -124,6 +125,10 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	[self.workTown.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeCommitCommand execute:nil];
 	}];
 }
 
