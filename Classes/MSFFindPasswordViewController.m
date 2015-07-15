@@ -10,6 +10,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"
+#import "UITextField+RACKeyboardSupport.h"
 
 @interface MSFFindPasswordViewController ()
 
@@ -67,6 +68,11 @@
 	
 	[self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeFindPassword execute:nil];
 	}];
 	
 	[[self.passwordSwith rac_newOnChannel] subscribeNext:^(NSNumber *x) {
