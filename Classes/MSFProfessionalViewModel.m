@@ -243,7 +243,9 @@
 }
 
 - (RACSignal *)educationSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"edu_background"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -262,7 +264,9 @@
 }
 
 - (RACSignal *)socialStatusSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"social_status"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -281,7 +285,9 @@
 }
 
 - (RACSignal *)eductionalSystmeSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"school_system"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -300,7 +306,9 @@
 }
 
 - (RACSignal *)workingLengthSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"service_year"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -319,7 +327,9 @@
 }
 
 - (RACSignal *)enrollmentYearSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate date];
@@ -351,7 +361,9 @@
 }
 
 - (RACSignal *)industrySignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"industry_category"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -370,7 +382,9 @@
 }
 
 - (RACSignal *)natureSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"unit_nature"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -389,7 +403,9 @@
 }
 
 - (RACSignal *)departmentSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"professional"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -408,7 +424,9 @@
 }
 
 - (RACSignal *)positionSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"position"]];
 		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
@@ -427,7 +445,9 @@
 }
 
 - (RACSignal *)startedDateSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		[self.viewController.view endEditing:YES];
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate date];
@@ -459,80 +479,85 @@
 }
 
 - (RACSignal *)commitSignal {
-  if ([self.model.education isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: @"请选择教育程度",
-      }]];
-  }
-  if ([self.model.socialStatus isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
-    }]];
-  }
-  else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
-    if ([self.model.universityName isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
-        }]];
-    }
-    if ([self.model.enrollmentYear isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
-      }]];
-    }
-    if ([self.model.programLength isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择学制",
-                                                                                                  }]];
-    }
-  } else if ([self.model.socialStatus isEqualToString:@"SI02"]) {
-    if ([self.model.workingLength isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择g工作年限",
-                                                                                                  }]];
-    }
-    if ([self.model.company isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请输入单位全称",
-                                                                                                  }]];
-    }
-    if ([self.model.industry isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择行业类别",
-                                                                                                  }]];
-    }
-    
-    if ([self.model.companyType isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择行业性质",
-                                                                                                  }]];
-    }
-    if ([self.model.department isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择部门",
-                                                                                                  }]];
-    }
-    if ([self.model.title isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择职位",
-                                                                                                  }]];
-    }
-    if ([self.model.currentJobDate isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入职时间",
-                                                                                                  }]];
-    }
-    if (![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-                                                                                                 NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
-                                                                                                 }]];
-    }
-    if ([self.model.workProvince isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入所在地区",
-                                                                                                  }]];
-    }
-    if ([self.model.workTown isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请输入详细地址",
-                                                                                                  }]];
-    }
-  }
-  
- 
-//	if ([self.model.socialStatus isEqualToString:@"SI02"] && ![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
-//		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-//			NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
-//		}]];
-//	}
+	if ([self.model.education isEqualToString:@""]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请选择教育程度",
+		}]];
+	}
+	if ([self.model.socialStatus isEqualToString:@""]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
+		}]];
+	}
+	else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
+		if ([self.model.universityName isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
+			}]];
+		}
+		if ([self.model.enrollmentYear isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
+			}]];
+		}
+		if ([self.model.programLength isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择学制",
+			}]];
+		}
+	} else if ([self.model.socialStatus isEqualToString:@"SI02"]) {
+		if ([self.model.workingLength isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择工作年限",
+			}]];
+		}
+		if ([self.model.company isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入单位全称",
+			}]];
+		}
+		if ([self.model.industry isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择行业类别",
+			}]];
+		}
+		
+		if ([self.model.companyType isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择行业性质",
+			}]];
+		}
+		if ([self.model.department isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择部门",
+			}]];
+		}
+		if ([self.model.title isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择职位",
+			}]];
+		}
+		if ([self.model.currentJobDate isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择入职时间",
+			}]];
+		}
+		if (![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
+			}]];
+		}
+		if ([self.model.workProvince isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择入所在地区",
+			}]];
+		}
+		if ([self.model.workTown isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入详细地址",
+			}]];
+		}
+	}
 	
 	return [self.formsViewModel submitSignalWithPage:3];
 }
