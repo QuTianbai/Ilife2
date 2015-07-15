@@ -3105,7 +3105,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "997a587c-8137-4f67-b25a-82467424cb73";
+				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3166,7 +3166,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "997a587c-8137-4f67-b25a-82467424cb73";
+				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
 			};
 			name = Debug;
 		};
