@@ -48,7 +48,6 @@
 		@"iconfont-chanpinjieshao.png",
 		@"iconfont-bangzhu.png",
 		@"iconfont-wangdian.png",
-		@"iconfont-mianxingtubiao3gengxin.png"
 	];
 	
 	_textArray = @[
@@ -56,7 +55,6 @@
 		@"产品介绍",
 		@"用户帮助",
 		@"网点分布",
-		@"软件版本",
 	];
 }
 
@@ -74,7 +72,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 5;
+	return 4;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
