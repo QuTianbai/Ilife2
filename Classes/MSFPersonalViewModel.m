@@ -41,10 +41,14 @@
 	
 	_executeAlterAddressCommand = self.addressViewModel.selectCommand;
 	@weakify(self)
-	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self commitSignal];
-	}];
+  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self);
+    return [self commitSignal];
+  }];
+//	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
+//		@strongify(self)
+//		return [self commitSignal];
+//	}];
 	
 	return self;
 }
@@ -52,6 +56,15 @@
 #pragma mark - Private
 
 - (RACSignal *)commitSignal {
+  if ([self.model.income isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月工资收入"}]];
+  }
+  if ([self.model.familyExpense isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月还贷额"}]];
+  }
+  if ([self.model.otherIncome isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月其他收入"}]];
+  }
 	if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",

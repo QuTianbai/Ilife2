@@ -1,9 +1,9 @@
 //
-//  MSFLoanListViewController.m
-//  Cash
+//	MSFLoanListViewController.m
+//	Cash
 //
-//  Created by xbm on 15/5/20.
-//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
+//	Created by xbm on 15/5/20.
+//	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
 #import <Masonry/Masonry.h>
@@ -23,9 +23,9 @@
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"5787c0"
-//审核中  是#ff6600 橙色
-//还款中  是#477dbd 蓝色（主色）
-//其他的  是#585858
+//审核中	是#ff6600 橙色
+//还款中	是#477dbd 蓝色（主色）
+//其他的	是#585858
 #define REPAYMENTCOLOR @"#477dbd"
 #define CHECKCOLOR @"#ff6600"
 #define STATUSCOLOR @"#585858"
@@ -38,12 +38,13 @@
 @property (strong, nonatomic)  UILabel *months;
 @property (strong, nonatomic)  UILabel *time;
 @property (strong, nonatomic)  UILabel *check;
+
 @end
 
 @implementation MSFLoanListViewController
 
 - (void)dealloc {
-	NSLog(@"MSFLoanListViewController `-dealloc`");
+		NSLog(@"MSFLoanListViewController `-dealloc`");
 }
 
 - (void)viewDidLoad {
@@ -91,9 +92,7 @@
 	if (cell == nil) {
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
-	cell.selected = NO;
-	_dataTableView.allowsSelection = NO;
-	[cell setUserInteractionEnabled:NO];
+	
 	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
 	
 	[cell.moneyLabel setTextAlignment:NSTextAlignmentCenter];
@@ -109,25 +108,25 @@
 	
 	NSNumber *checkNum = listModel.status;
 	
-	if (checkNum.integerValue == 4 || checkNum.integerValue == 6 || checkNum.integerValue == 7) {
+	if ([checkNum integerValue] != 4 || [checkNum integerValue] != 6 ||[checkNum integerValue] != 7) {
+		[cell.checkLabel setEnabled:NO];
+		cell.selected = NO;
+		_dataTableView.allowsSelection = NO;
 		cell.selectionStyle = UITableViewCellEditingStyleNone;
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:STATUSCOLOR] forState:UIControlStateNormal];
 	}
-	
 	if ([checkNum integerValue] == 0 || [checkNum integerValue] == 1) {
-		[cell.checkLabel setUserInteractionEnabled:NO];
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:CHECKCOLOR] forState:UIControlStateNormal];
-	}
-	
-	else {
-		[cell.checkLabel setUserInteractionEnabled:NO];
+	} else {
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:REPAYMENTCOLOR] forState:UIControlStateNormal];
+		cell.selected = YES;
 		_dataTableView.allowsSelection = YES;
 		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 	}
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
 	
+<<<<<<< HEAD
 	@weakify(self)
 	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
 		takeUntil:cell.rac_prepareForReuseSignal]
@@ -145,6 +144,22 @@
 	return cell;
 }
 
+=======
+	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
+			[self.navigationController pushViewController:webViewController animated:YES];
+		}];
+	}
+}
+
+>>>>>>> msfinance/xbmDev
 - (NSString *)getStatus:(NSInteger)status {
 	//0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
 	switch (status) {
