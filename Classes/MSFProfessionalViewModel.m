@@ -478,16 +478,16 @@
       return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
       }]];
     }
-    if ([self.model.enrollmentYear isEqualToString:@""]) {
-      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
+    if ([self.model.programLength isEqualToString:@""]) {
+      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择学制",
                                                                                                   }]];
     }
+  } else if ([self.model.socialStatus isEqualToString:@"SI02"]) {
+    if ([self.model.workingLength isEqualToString:@""]) {
+      
+    }
   }
-  if ([self.model.education isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-                                                                                               NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
-                                                                                               }]];
-  }
+  
  
 	if ([self.model.socialStatus isEqualToString:@"SI02"] && ![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
