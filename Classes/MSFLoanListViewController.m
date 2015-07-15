@@ -55,7 +55,7 @@
 	
 	[self creatTableView];
 	RACSignal *signal = [[MSFUtils.httpClient fetchApplyList].collect replayLazily];
-	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟!"];
+	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧"];
 	[signal subscribeNext:^(id x) {
 		if ([x count] != 0) {
 			[self headView];
