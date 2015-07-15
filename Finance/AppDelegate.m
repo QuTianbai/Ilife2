@@ -28,12 +28,6 @@
 #import <Crashlytics/Crashlytics.h>
 #import <Masonry/Masonry.h>
 
-@interface AppDelegate () <UITabBarControllerDelegate>
-
-@property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
-
-@end
-
 @implementation AppDelegate
 
 #pragma mark - UIApplicationDelegate
@@ -67,9 +61,6 @@
 		[indicatorView removeFromSuperview];
 		[self setup];
 		[MSFGuideViewController.guide show];
-		MSFTabBarViewModel *viewModel = [[MSFTabBarViewModel alloc] init];
-		self.tabBarController = [[MSFTabBarController alloc] initWithViewModel:viewModel];
-		self.window.rootViewController = self.tabBarController;
 	}];
 	
 	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
@@ -101,6 +92,10 @@
 	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
 	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
+	
+	MSFTabBarViewModel *viewModel = [[MSFTabBarViewModel alloc] init];
+	self.tabBarController = [[MSFTabBarController alloc] initWithViewModel:viewModel];
+	self.window.rootViewController = self.tabBarController;
 	
 	@weakify(self)
 	[[self rac_signalForSelector:@selector(applicationDidBecomeActive:)]
