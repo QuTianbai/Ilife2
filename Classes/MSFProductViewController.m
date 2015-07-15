@@ -170,10 +170,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			if ([viewModel numberOfItemsInSection:0] == 0) {
 				NSString *string;
 				NSMutableArray *region = [[NSMutableArray alloc] init];
+       // [region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", self.viewModel.mar]];
 				[self.viewModel.market.teams enumerateObjectsUsingBlock:^(MSFTeams *obj, NSUInteger idx, BOOL *stop) {
 					[region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", obj.minAmount,obj.maxAmount]];
 				}];
-				string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 的数字", [region componentsJoinedByString:@","]];
+        //string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字",self.viewModel.market.allMinAmount,self.viewModel.market.allMaxAmount];
+        
+				string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字", [region componentsJoinedByString:@","]];
 				
 				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
 					NSLocalizedFailureReasonErrorKey: string,
