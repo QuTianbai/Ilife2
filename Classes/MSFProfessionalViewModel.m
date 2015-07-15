@@ -169,7 +169,10 @@
 		@strongify(self)
 		return [self startedDateSignal];
 	}];
-	
+//  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+//    @strongify(self)
+//    return [self commitSignal];
+//  }];
 	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self commitSignal];
@@ -456,6 +459,36 @@
 }
 
 - (RACSignal *)commitSignal {
+  if ([self.model.education isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: @"请选择教育程度",
+      }]];
+  }
+  if ([self.model.socialStatus isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
+    }]];
+  }
+  else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
+    if ([self.model.universityName isEqualToString:@""]) {
+      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
+        }]];
+    }
+    if ([self.model.enrollmentYear isEqualToString:@""]) {
+      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
+      }]];
+    }
+    if ([self.model.enrollmentYear isEqualToString:@""]) {
+      return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
+                                                                                                  }]];
+    }
+  }
+  if ([self.model.education isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+                                                                                               NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
+                                                                                               }]];
+  }
+ 
 	if ([self.model.socialStatus isEqualToString:@"SI02"] && ![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
