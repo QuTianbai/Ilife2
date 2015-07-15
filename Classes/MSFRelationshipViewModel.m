@@ -324,7 +324,7 @@
   if ([self.model.memberRelation isEqualToString:@""]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请选择与申请人关系"}]];
   }
-  if ([self.model.memberCellNum isTelephone]) {
+  if (![self.model.memberCellNum isMobile]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入正确的家庭成员机号"}]];
   }
   if ([self.model.name1 isEqualToString:@""]) {
@@ -333,7 +333,7 @@
   if ([self.model.relation1 isEqualToString:@""]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请选择联系人与声请人关系"}]];
   }
-  if ([self.model.phone1 isTelephone]) {
+  if (![self.model.phone1 isMobile]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFRelationshipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入联系人正确地手机号"}]];
   }
   
