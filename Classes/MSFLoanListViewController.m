@@ -126,6 +126,25 @@
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
 	
+<<<<<<< HEAD
+	@weakify(self)
+	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
+		takeUntil:cell.rac_prepareForReuseSignal]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
+			if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+				[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+					MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
+					[self.navigationController pushViewController:webViewController animated:YES];
+				}];
+			}
+		}];
+	
+	return cell;
+}
+
+=======
 	return cell;
 }
 
@@ -140,6 +159,7 @@
 	}
 }
 
+>>>>>>> msfinance/xbmDev
 - (NSString *)getStatus:(NSInteger)status {
 	//0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
 	switch (status) {
@@ -213,25 +233,27 @@
 	[superView addSubview:_time];
 	[superView addSubview:_check];
 	
+	NSInteger edges = [UIScreen mainScreen].bounds.size.width/8;
+	
 	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(superView.mas_left).offset(20);
+		make.centerX.equalTo(superView.mas_left).offset(edges);
 		make.height.equalTo(@[_check, _months,_time]);
 	}];
 	
 	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(_money.mas_right).offset(48);
+		make.centerX.equalTo(superView.mas_centerX).offset(edges);
 	}];
 	
 	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.right.equalTo(superView.mas_right).offset(-25);
+		make.centerX.equalTo(superView.mas_right).offset(-edges);
 	}];
 	
 	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(superView.mas_centerX).offset(28);
+		make.centerX.equalTo(superView.mas_centerX).offset(-edges);
 	}];
 	
 }
