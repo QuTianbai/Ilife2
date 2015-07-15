@@ -43,7 +43,9 @@
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[authSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[self dismissViewControllerAnimated:YES completion:^{
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:nil];
+			}];
 		}];
 	}];
 	[self.procedureViewController.submitButton.rac_command.errors subscribeNext:^(NSError *error) {

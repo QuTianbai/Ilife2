@@ -144,7 +144,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
-	return [[self.client
+	return [self.client
 		realnameAuthentication:self.name
 		idcard:self.card
           expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil?[NSDate date]:[NSDateFormatter msf_dateFromString:self.expired1]
@@ -152,10 +152,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		province:self.addressViewModel.provinceCode
 		city:self.addressViewModel.cityCode
 		bank:self.bankCode
-		card:self.bankNO] doNext:^(id x) {
-			//TODO: 完善资料临时通知
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:nil];
-		}];
+		card:self.bankNO];
 }
 
 @end
