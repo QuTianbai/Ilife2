@@ -44,7 +44,7 @@
 	[self.tableView setEditing:NO];
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchTrades].collect replayLazily];
-	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"苍茫的天空,一个字都没有"];
+	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有历史交易哦......"];
 	[signal subscribeNext:^(id x) {
 		[self setExtraCellLineHidden:self.tableView];
 		self.objects = x;
