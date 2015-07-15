@@ -126,7 +126,6 @@
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
 	
-<<<<<<< HEAD
 	@weakify(self)
 	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
 		takeUntil:cell.rac_prepareForReuseSignal]
@@ -144,22 +143,6 @@
 	return cell;
 }
 
-=======
-	return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
-	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
-			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:x];
-			[self.navigationController pushViewController:webViewController animated:YES];
-		}];
-	}
-}
-
->>>>>>> msfinance/xbmDev
 - (NSString *)getStatus:(NSInteger)status {
 	//0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
 	switch (status) {
