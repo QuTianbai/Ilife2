@@ -20,6 +20,7 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 @property (nonatomic, strong) RACCommand *executeSignIn;
 @property (nonatomic, strong) RACCommand *executeSignUp;
+@property (nonatomic, strong) RACCommand *executeSignOut;
 
 @property (nonatomic, assign) BOOL agreeOnLicense;
 @property (nonatomic, strong) RACCommand *executeAgreeOnLicense;

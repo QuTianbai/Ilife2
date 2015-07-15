@@ -6,6 +6,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class MSFUserViewModel;
+
 @interface MSFUserInfoViewController : UITableViewController
+
+- (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel;
 
 @end

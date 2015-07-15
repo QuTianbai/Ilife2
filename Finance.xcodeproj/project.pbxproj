@@ -178,6 +178,8 @@
 		4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */; };
 		4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */; };
 		499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */; };
+		499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2491B55F6550051AF66 /* MSFTabBarController.m */; };
+		499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */; };
@@ -752,7 +754,11 @@
 		4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@2x.png"; sourceTree = "<group>"; };
 		4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@3x.png"; sourceTree = "<group>"; };
 		499EA25E1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RACKeyboardSupport.h"; sourceTree = "<group>"; };
+		499EA2481B55F6550051AF66 /* MSFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarController.h; sourceTree = "<group>"; };
+		499EA2491B55F6550051AF66 /* MSFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarController.m; sourceTree = "<group>"; };
 		499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+RACKeyboardSupport.m"; sourceTree = "<group>"; };
+		499EA2841B560ACB0051AF66 /* MSFTabBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarViewModel.h; sourceTree = "<group>"; };
+		499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarViewModel.m; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpViewController.h; sourceTree = "<group>"; };
 		49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpViewController.m; sourceTree = "<group>"; };
@@ -1539,6 +1545,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				499EA2761B560ABA0051AF66 /* Tabbar */,
 				49C2FE4B1B466A2300B6B20A /* Address */,
 				4991470A1B24489800260E97 /* Selection */,
 				498113BD1B1C4231003D1B7A /* HomePage */,
@@ -1555,6 +1562,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				499EA23A1B55F6400051AF66 /* TabBarController */,
 				49C2FE2E1B4652FA00B6B20A /* View */,
 				4925ADBB1B2AB91500872A8A /* Blur */,
 				4925AD791B2A80A100872A8A /* Guide */,
@@ -1797,6 +1805,24 @@
 				4991471C1B246B7100260E97 /* MSFSelectionItem.h */,
 			);
 			name = Selection;
+			sourceTree = "<group>";
+		};
+		499EA23A1B55F6400051AF66 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				499EA2481B55F6550051AF66 /* MSFTabBarController.h */,
+				499EA2491B55F6550051AF66 /* MSFTabBarController.m */,
+			);
+			name = TabBarController;
+			sourceTree = "<group>";
+		};
+		499EA2761B560ABA0051AF66 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				499EA2841B560ACB0051AF66 /* MSFTabBarViewModel.h */,
+				499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */,
+			);
+			name = Tabbar;
 			sourceTree = "<group>";
 		};
 		49B5D7AF1B08460800917D2C /* Authorization */ = {
@@ -2916,6 +2942,7 @@
 				49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */,
 				498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */,
 				49DA22681B062AF200DD4483 /* MSFUser.m in Sources */,
+				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
 				C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */,
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
@@ -2939,6 +2966,7 @@
 				4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */,
 				C7B978111B099CAC005F247C /* MSFProductIntroductionCell.m in Sources */,
 				49DA22651B062AF200DD4483 /* MSFClient+Captcha.m in Sources */,
+				499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */,
 				490BDE7B1B0824DF00D53391 /* MSFSignInViewController.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,

@@ -40,7 +40,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
-@property (nonatomic, strong) MSFProductViewModel *viewModel;
 
 @property (nonatomic, strong) RACCommand *executePurposeCommand;
 @property (nonatomic, strong) RACCommand *executeTermCommand;
@@ -54,7 +53,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
-	self.viewModel = viewModel;
+//	self.viewModel = viewModel;
+}
+
+- (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel {
+	self = [UIStoryboard storyboardWithName:@"product" bundle:nil].instantiateInitialViewController;
+  if (!self) {
+    return nil;
+  }
+	
+	_viewModel = viewModel;
+  
+  return self;
 }
 
 #pragma mark - Lifecycle

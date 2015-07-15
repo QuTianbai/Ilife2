@@ -48,7 +48,7 @@ extern NSString *const MSFAuthorizationDidLoseConnectNotification;
 
 /**
  *	登录 需要更新这里的client以保证client是授权的
- *	退出登录 需要设置为nil
+ *	退出登录 需要设置为nil,检测到其他设备登录的时候都应该设置为nil
  *
  *	@param httpClient
  */

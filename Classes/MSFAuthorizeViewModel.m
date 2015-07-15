@@ -131,6 +131,12 @@ static const int kCounterLength = 60;
 			}];
 		}];
 	
+	_executeSignOut = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [[MSFUtils.httpClient signOut] doNext:^(id x) {
+			[MSFUtils setHttpClient:nil];
+		}];
+	}];
+	
 	return self;
 }
 

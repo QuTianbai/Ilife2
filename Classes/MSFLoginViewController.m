@@ -18,7 +18,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @interface MSFLoginViewController ()
 
 @property(nonatomic,strong) MSFSignInViewController *signInViewController;
-@property(nonatomic,strong) MSFAuthorizeViewModel *viewModel;
+@property(nonatomic,strong,readwrite) MSFAuthorizeViewModel *viewModel;
 
 @end
 
@@ -26,12 +26,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
+- (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
 	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
 	if (!self) {
 		return nil;
 	}
+	_viewModel = viewModel;
 	
 	return self;
 }
@@ -43,12 +44,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.signInViewController.username.text = MSFUtils.phone;
 	
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-		self.signInViewController.username.text = @"18696995689";
+		self.signInViewController.username.text = @"18696995688";
 		self.signInViewController.captcha.text = @"666666";
 		self.signInViewController.password.text = @"123456qw";
 	}
 	
-	self.viewModel = [[MSFAuthorizeViewModel alloc] init];
 	RAC(self.viewModel,username) = self.signInViewController.username.rac_textSignal;
 	RAC(self.viewModel,password) = self.signInViewController.password.rac_textSignal;
 	RAC(self.viewModel,captcha) = self.signInViewController.captcha.rac_textSignal;

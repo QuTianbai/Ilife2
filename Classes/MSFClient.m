@@ -286,6 +286,11 @@ static BOOL isRunningTests(void) {
 }
 
 - (RACSignal *)signOut {
+	self.user = nil;
+	self.token = nil;
+	self.session = nil;
+	return [RACSignal return:self];
+	//TODO: 退出登录，接口调用失败暂时取消对服务器的退出，采用本地退出
 	NSURLRequest *request = [self requestWithMethod:@"DELETE" path:@"authenticate" parameters:nil];
 	@weakify(self)
 	

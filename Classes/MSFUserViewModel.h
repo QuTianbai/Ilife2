@@ -8,6 +8,7 @@
 
 @class RACCommand;
 @class MSFClient;
+@class MSFAuthorizeViewModel;
 
 @interface MSFUserViewModel : RVMViewModel
 
@@ -27,5 +28,8 @@
 - (RACSignal *)updateValidSignal;
 
 @property(nonatomic,strong,readonly) RACSignal *contentUpdateSignal;
+@property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
+
+- (instancetype)initWithAuthorizeViewModel:(MSFAuthorizeViewModel *)viewModel;
 
 @end

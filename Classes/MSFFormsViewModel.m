@@ -16,12 +16,17 @@
 #import "MSFApplicationForms.h"
 #import "MSFClient+MSFApplyInfo.h"
 #import "MSFClient+MSFApplyCash.h"
+#import "MSFClient+Users.h"
 #import "MSFMarket.h"
 #import "MSFClient+MSFCheckEmploee.h"
+#import "MSFResponse.h"
 
 @interface MSFFormsViewModel ()
 
 @property(nonatomic,strong,readwrite) RACSubject *updatedContentSignal;
+@property(nonatomic,strong,readwrite) MSFApplicationForms *model;
+@property(nonatomic,strong,readwrite) MSFMarket *market;
+@property(nonatomic,assign,readwrite) BOOL pending;
 
 @end
 
@@ -36,18 +41,23 @@
 	}
 	_model = [[MSFApplicationForms alloc] init];
 	_market = [[MSFMarket alloc] init];
+	_pending = NO;
 
 	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFAFViewModel updatedContentSignal"];
 	
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[[self.client fetchApplyInfo]
+		[[[[self.client fetchApplyInfo]
 			zipWith:[self.client fetchCheckEmployee]]
-			subscribeNext:^(RACTuple *modelAndMarket) {
+			flattenMap:^RACStream *(RACTuple *modelAndMarket) {
 				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
-				[self.model mergeValuesForKeysFromModel:model];
-				[self.market mergeValuesForKeysFromModel:market];
+				self.model = model;
+				self.market = market;
+				return [self.client checkUserHasCredit];
+			}]
+			subscribeNext:^(MSFResponse *response) {
+				self.pending = [response.parsedResult[@"processing"] boolValue];
 				[(RACSubject *)self.updatedContentSignal sendNext:nil];
 				[(RACSubject *)self.updatedContentSignal sendCompleted];
 			} error:^(NSError *error) {

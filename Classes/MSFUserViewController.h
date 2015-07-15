@@ -9,6 +9,12 @@
 /**
  *	用户中心
  */
+@class MSFUserViewModel;
+
 @interface MSFUserViewController : UITableViewController
+
+@property (nonatomic, strong, readonly) MSFUserViewModel *viewModel;
+
+- (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel;
 
 @end
