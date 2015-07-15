@@ -8,6 +8,7 @@
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAgreementViewModel.h"
 #import "MSFUtils.h"
 
@@ -25,12 +26,22 @@
 	[webView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);
 	}];
-	[webView
-		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[
-			MSFUtils.agreementViewModel.registerAgreementSignal,
-			[RACSignal return:nil]
-		]]];
+	
+	[SVProgressHUD showWithStatus:@"正在加载..."];
+	[[[webView
+		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.registerAgreementSignal,[RACSignal return:nil]]]]
+		deliverOn:
+		[RACScheduler mainThreadScheduler]]
+		subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}
+		error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+	}];
 }
 
 @end

@@ -21,7 +21,8 @@
 	[[[_aboutWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
 		withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.aboutAgreementSignal,[RACSignal return:nil]]]]
-		deliverOn:[RACScheduler mainThreadScheduler]]
+		deliverOn:
+		[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 		}
