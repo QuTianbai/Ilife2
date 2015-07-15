@@ -307,6 +307,12 @@
 }
 
 - (void)displayProduct {
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"application-success" object:nil]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			self.formsViewModel = nil;
+		}];
 	[SVProgressHUD showWithStatus:nil maskType:SVProgressHUDMaskTypeClear];
 	[[MSFUtils.httpClient checkUserHasCredit] subscribeNext:^(MSFResponse *response) {
 		if ([response.parsedResult[@"processing"] boolValue]) {
@@ -314,7 +320,6 @@
 		} else {
 			self.formsViewModel = [[MSFFormsViewModel alloc] init];
 			self.formsViewModel.active = YES;
-			@weakify(self)
 			[self.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
 				[SVProgressHUD dismiss];
 				@strongify(self)
