@@ -38,9 +38,10 @@
 		make.edges.equalTo(self.view);
 	}];
 	
+	[SVProgressHUD showWithStatus:@"正在加载...."];
+
 	[webView loadRequest:[NSURLRequest requestWithURL:_HTMLURL]
 	 progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-		 [SVProgressHUD showWithStatus:@"正在加载...."];
 	 }
 	 success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
 		 [SVProgressHUD dismiss];

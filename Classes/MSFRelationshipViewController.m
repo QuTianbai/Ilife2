@@ -124,6 +124,13 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	self.housesBT.rac_command = self.viewModel.executeHouseValuesCommand;
 	
 	// 第一位家庭成员
+	[[self.familyNameTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 20) {
+			 textField.text = [textField.text substringToIndex:20];
+		 }
+	 }];
+	
 	RACChannelTerminal *memer1Channel = RACChannelTo(self.viewModel.model, memberName);
 	RAC(self.familyNameTF, text) = memer1Channel;
 	[self.familyNameTF.rac_textSignal subscribe:memer1Channel];
@@ -153,6 +160,12 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	}];
 	
 	// 第二位家庭成员
+	[[self.num2FamilyNameTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 20) {
+			 textField.text = [textField.text substringToIndex:20];
+		 }
+	 }];
 	RACChannelTerminal *memer2Channel = RACChannelTo(self.viewModel.model, memberName2);
 	RAC(self.num2FamilyNameTF, text) = memer2Channel;
 	[self.num2FamilyNameTF.rac_textSignal subscribe:memer2Channel];
@@ -181,6 +194,12 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	}];
 	
 	// 其他联系人一
+	[[self.otherNameTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 20) {
+			 textField.text = [textField.text substringToIndex:20];
+		 }
+	 }];
 	RACChannelTerminal *name1Channel = RACChannelTo(self.viewModel.model, name1);
 	RAC(self.otherNameTF, text) = name1Channel;
 	[self.otherNameTF.rac_textSignal subscribe:name1Channel];
@@ -199,6 +218,12 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	[self.otherTelTF.rac_textSignal subscribe:phone1Channel];
 	
 	// 其他联系人二
+	[[self.num2_otherNameTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 20) {
+			 textField.text = [textField.text substringToIndex:20];
+		 }
+	 }];
 	RACChannelTerminal *name2Channel = RACChannelTo(self.viewModel.model, name2);
 	RAC(self.num2_otherNameTF, text) = name2Channel;
 	[self.num2_otherNameTF.rac_textSignal subscribe:name2Channel];
