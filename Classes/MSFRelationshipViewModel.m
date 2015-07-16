@@ -367,4 +367,23 @@
 	}];
 }
 
+#pragma mark - Custom Accessors
+
+- (NSString *)confirmMessage {
+	__block NSString *usage;
+	NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
+	[items enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.usageCode]) {
+			usage = obj.text;
+		}
+	}];
+	NSString *message = [NSString stringWithFormat:@"贷款金额 %@元\n贷款期数 %@期\n贷款用途 %@\n预计每期还款金额 %@元 ",
+		self.model.principal,
+		self.model.tenor,
+		usage,
+		self.model.repayMoneyMonth
+		];
+	return message;
+}
+
 @end

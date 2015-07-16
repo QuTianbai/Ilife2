@@ -87,6 +87,7 @@
 
 @property(nonatomic,assign) BOOL hasMember2;
 @property(nonatomic,assign) BOOL hasContact2;
+@property(nonatomic,strong,readonly) NSString *confirmMessage;
 
 @property(nonatomic,strong,readonly) RACCommand *executeMarryValuesCommand;
 @property(nonatomic,strong,readonly) RACCommand *executeHouseValuesCommand;

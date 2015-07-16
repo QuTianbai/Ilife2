@@ -62,8 +62,6 @@
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		490312A81B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */; };
 		490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */; };
-		490312AE1B0CA49300DC33B4 /* MSFProcedureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AD1B0CA49300DC33B4 /* MSFProcedureViewController.m */; };
-		490BDE7B1B0824DF00D53391 /* MSFSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BDE7A1B0824DF00D53391 /* MSFSignInViewController.m */; };
 		490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BDE7E1B08265700D53391 /* NSString+Matches.m */; };
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
 		490E77221B15B763003F7137 /* MSFBannersViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */; };
@@ -288,7 +286,7 @@
 		49CBDD9F1B0DD919009EF662 /* MSFBannersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDD9E1B0DD919009EF662 /* MSFBannersCollectionViewCell.m */; };
 		49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */; };
 		49CBDDB41B0DF03E009EF662 /* banners.json in Resources */ = {isa = PBXBuildFile; fileRef = 49CBDDB31B0DF03E009EF662 /* banners.json */; };
-		49CCFBD51B072327008A9CD1 /* MSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD41B072327008A9CD1 /* MSFLoginViewController.m */; };
+		49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */; };
 		49CCFBD81B07233F008A9CD1 /* MSFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD71B07233F008A9CD1 /* MSFSettingsViewController.m */; };
 		49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBDA1B072359008A9CD1 /* MSFHomepageViewController.m */; };
 		49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBE01B072397008A9CD1 /* MSFUserViewController.m */; };
@@ -585,10 +583,6 @@
 		490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClozeViewModelSpec.m; sourceTree = "<group>"; };
 		490312A91B0C8AB000DC33B4 /* MSFClozeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFClozeViewModel.h; sourceTree = "<group>"; };
 		490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClozeViewModel.m; sourceTree = "<group>"; };
-		490312AC1B0CA49300DC33B4 /* MSFProcedureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProcedureViewController.h; sourceTree = "<group>"; };
-		490312AD1B0CA49300DC33B4 /* MSFProcedureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProcedureViewController.m; sourceTree = "<group>"; };
-		490BDE791B0824DF00D53391 /* MSFSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInViewController.h; sourceTree = "<group>"; };
-		490BDE7A1B0824DF00D53391 /* MSFSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInViewController.m; sourceTree = "<group>"; };
 		490BDE7D1B08265700D53391 /* NSString+Matches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Matches.h"; sourceTree = "<group>"; };
 		490BDE7E1B08265700D53391 /* NSString+Matches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Matches.m"; sourceTree = "<group>"; };
 		490DB83A1B1FF10100EEA5C9 /* MSFSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignature.h; sourceTree = "<group>"; };
@@ -891,8 +885,8 @@
 		49CBDDA01B0DD9C3009EF662 /* MSFBannersViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBannersViewModel.h; sourceTree = "<group>"; };
 		49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewModel.m; sourceTree = "<group>"; };
 		49CBDDB31B0DF03E009EF662 /* banners.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banners.json; sourceTree = "<group>"; };
-		49CCFBD31B072327008A9CD1 /* MSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginViewController.h; sourceTree = "<group>"; };
-		49CCFBD41B072327008A9CD1 /* MSFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginViewController.m; sourceTree = "<group>"; };
+		49CCFBD31B072327008A9CD1 /* MSFSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInViewController.h; sourceTree = "<group>"; };
+		49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInViewController.m; sourceTree = "<group>"; };
 		49CCFBD61B07233F008A9CD1 /* MSFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSettingsViewController.h; sourceTree = "<group>"; };
 		49CCFBD71B07233F008A9CD1 /* MSFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSettingsViewController.m; sourceTree = "<group>"; };
 		49CCFBD91B072359008A9CD1 /* MSFHomepageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomepageViewController.h; sourceTree = "<group>"; };
@@ -1995,16 +1989,12 @@
 		49CCFBE21B0724EA008A9CD1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				490312AC1B0CA49300DC33B4 /* MSFProcedureViewController.h */,
-				490312AD1B0CA49300DC33B4 /* MSFProcedureViewController.m */,
 				49B5D7AB1B08379800917D2C /* MSFClozeViewController.h */,
 				49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */,
 				49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */,
 				49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */,
-				490BDE791B0824DF00D53391 /* MSFSignInViewController.h */,
-				490BDE7A1B0824DF00D53391 /* MSFSignInViewController.m */,
-				49CCFBD31B072327008A9CD1 /* MSFLoginViewController.h */,
-				49CCFBD41B072327008A9CD1 /* MSFLoginViewController.m */,
+				49CCFBD31B072327008A9CD1 /* MSFSignInViewController.h */,
+				49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */,
 				498F3D4B1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.h */,
 				498F3D4C1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m */,
 				4967EE6C1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.h */,
@@ -2917,7 +2907,7 @@
 				07BD83FC1B156CAA00D731BF /* MSFProduct.m in Sources */,
 				07BE0E741B0D8D2B00D11F1A /* MSFTeams.m in Sources */,
 				490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */,
-				49CCFBD51B072327008A9CD1 /* MSFLoginViewController.m in Sources */,
+				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
@@ -2944,7 +2934,6 @@
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
 				4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */,
-				490312AE1B0CA49300DC33B4 /* MSFProcedureViewController.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
 				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
@@ -3003,7 +2992,6 @@
 				C7B978111B099CAC005F247C /* MSFProductIntroductionCell.m in Sources */,
 				49DA22651B062AF200DD4483 /* MSFClient+Captcha.m in Sources */,
 				499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */,
-				490BDE7B1B0824DF00D53391 /* MSFSignInViewController.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,

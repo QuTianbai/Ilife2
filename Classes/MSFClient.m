@@ -342,8 +342,9 @@ static BOOL isRunningTests(void) {
 		flattenMap:^RACStream *(id value) {
 			return [self fetchUserInfo];
 		}]
-		doNext:^(id x) {
-			self.user = x;
+		map:^id(id value) {
+			self.user = value;
+			return self;
 		}];
 }
 

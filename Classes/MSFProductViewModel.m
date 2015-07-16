@@ -36,6 +36,7 @@
 	_productTerms = @"";
 	_termAmount = 0;
 	
+	RAC(self.formsViewModel.model,repayMoneyMonth) = RACObserve(self, termAmount);
 	RAC(self.formsViewModel.model,principal) = RACObserve(self, totalAmount);
 	RAC(self.formsViewModel.model,isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
 		return [value stringValue];

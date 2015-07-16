@@ -216,7 +216,21 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	RAC(self.num2_otherTelTF, text) = phone2Channel;
 	[self.num2_otherTelTF.rac_textSignal subscribe:phone2Channel];
 	
-	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
+	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		UIAlertView *alertView = [[UIAlertView alloc] init];
+		alertView.title = @"提示";
+		alertView.message = self.viewModel.confirmMessage;
+		[alertView addButtonWithTitle:@"取消"];
+		[alertView addButtonWithTitle:@"确认"];
+		[alertView setCancelButtonIndex:0];
+		[alertView show];
+		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+			if (index.integerValue == 1) {
+				[self.viewModel.executeCommitCommand execute:nil];
+			}
+		}];
+	}];
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {

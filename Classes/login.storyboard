@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--登录-输入-->
+        <!--登录-->
         <scene sceneID="eSg-Iq-TFA">
             <objects>
-                <tableViewController title="登录-输入" id="xFo-OI-4wy" customClass="MSFSignInViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFSignInViewController" id="xFo-OI-4wy" customClass="MSFSignInViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KuV-7h-fJJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,10 +180,15 @@
                             <outlet property="delegate" destination="xFo-OI-4wy" id="i05-x4-C5r"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="OQw-od-8Ei"/>
+                    <navigationItem key="navigationItem" title="登录" id="OQw-od-8Ei">
+                        <barButtonItem key="rightBarButtonItem" title="注册" id="dlX-nY-Q2U">
+                            <connections>
+                                <segue destination="CgY-uc-PJc" kind="push" id="HMU-uf-l30"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="loginCell" destination="ohq-yS-mCi" id="c1x-D0-Suf"/>
                         <outlet property="password" destination="XiB-Rb-FPG" id="uNZ-dk-7Hr"/>
                         <outlet property="signInButton" destination="7qp-Gb-kxz" id="v56-3a-wfe"/>
                         <outlet property="username" destination="VKK-ZO-rze" id="0DT-Ne-gCy"/>
@@ -191,46 +196,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cdH-yV-21i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43" y="-433"/>
-        </scene>
-        <!--登录-->
-        <scene sceneID="hqt-E3-QeI">
-            <objects>
-                <viewController storyboardIdentifier="MSFLoginViewController" title="登录" id="O2U-kJ-0p2" customClass="MSFLoginViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="b5Z-Us-kyQ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Mil-4E-C7i"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hwe-95-D65">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XXi-O7-Hwk">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                                <connections>
-                                    <segue destination="xFo-OI-4wy" kind="embed" identifier="signin" id="oa7-or-m9X"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XXi-O7-Hwk" firstAttribute="top" secondItem="b5Z-Us-kyQ" secondAttribute="bottom" id="DOW-SZ-2JS"/>
-                            <constraint firstItem="Mil-4E-C7i" firstAttribute="top" secondItem="XXi-O7-Hwk" secondAttribute="bottom" id="N8b-Uh-zeL"/>
-                            <constraint firstItem="XXi-O7-Hwk" firstAttribute="leading" secondItem="hwe-95-D65" secondAttribute="leading" id="QlL-yb-XS0"/>
-                            <constraint firstAttribute="trailing" secondItem="XXi-O7-Hwk" secondAttribute="trailing" id="fLj-eo-onN"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="y6j-sa-Hw2">
-                        <barButtonItem key="rightBarButtonItem" title="注册" id="6zE-oL-Nhb">
-                            <connections>
-                                <segue destination="CgY-uc-PJc" kind="show" id="tXz-sx-b5a"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IgA-VU-g3C" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-393" y="13"/>
+            <point key="canvasLocation" x="-431" y="13"/>
         </scene>
         <!--忘记密码-->
         <scene sceneID="xjU-Yo-MP8">
@@ -388,7 +354,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdx-Vx-ALi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="445" y="-490"/>
+            <point key="canvasLocation" x="9" y="-366"/>
         </scene>
         <!--注册-->
         <scene sceneID="L93-sD-o2b">
@@ -679,6 +645,7 @@
                             <outlet property="delegate" destination="CgY-uc-PJc" id="uXH-tF-amu"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="注册" id="4G2-dp-cHt"/>
                     <connections>
                         <outlet property="agreeButton" destination="NMa-oD-Bfz" id="Anf-pr-6hA"/>
                         <outlet property="captcha" destination="gjr-yN-AXS" id="5uD-L4-TL2"/>
@@ -688,44 +655,12 @@
                         <outlet property="password" destination="tap-h5-xY0" id="F67-0S-uDP"/>
                         <outlet property="sendCaptchaButton" destination="q7N-fA-FFQ" id="nZN-yB-Wr1"/>
                         <outlet property="username" destination="JLT-7y-G1q" id="DXi-dv-lY4"/>
-                        <segue destination="oPf-Xn-ISJ" kind="show" identifier="complement" id="rhY-nH-9dt"/>
+                        <segue destination="gqY-Z9-IbC" kind="push" identifier="complement" id="qXP-sY-L47"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8B-Wx-Mgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="43" y="336"/>
-        </scene>
-        <!--完善资料-->
-        <scene sceneID="yU8-Yb-FVa">
-            <objects>
-                <viewController storyboardIdentifier="MSFClozeViewController" title="完善资料" id="oPf-Xn-ISJ" customClass="MSFClozeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mLM-Dd-Lig"/>
-                        <viewControllerLayoutGuide type="bottom" id="atx-yR-svn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="PS1-CN-KZb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPx-x9-wjr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <connections>
-                                    <segue destination="gqY-Z9-IbC" kind="embed" identifier="procedure" id="4Kh-Rf-6ek"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XPx-x9-wjr" firstAttribute="top" secondItem="PS1-CN-KZb" secondAttribute="top" id="KHU-uP-8N5"/>
-                            <constraint firstItem="atx-yR-svn" firstAttribute="top" secondItem="XPx-x9-wjr" secondAttribute="bottom" id="Pjp-Df-Zvm"/>
-                            <constraint firstAttribute="trailing" secondItem="XPx-x9-wjr" secondAttribute="trailing" id="XOm-NR-TtI"/>
-                            <constraint firstItem="XPx-x9-wjr" firstAttribute="leading" secondItem="PS1-CN-KZb" secondAttribute="leading" id="XPG-Cq-vLH"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lb7-bT-69b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="477" y="123"/>
+            <point key="canvasLocation" x="3" y="344"/>
         </scene>
         <!--用户协议-->
         <scene sceneID="BMd-ao-cXw">
@@ -743,12 +678,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbT-4v-Idz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="477" y="752"/>
+            <point key="canvasLocation" x="447" y="762"/>
         </scene>
         <!--完善资料-输入-->
         <scene sceneID="SAK-ZI-r2L">
             <objects>
-                <tableViewController title="完善资料-输入" clearsSelectionOnViewWillAppear="NO" id="gqY-Z9-IbC" customClass="MSFProcedureViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFClozeViewController" title="完善资料-输入" clearsSelectionOnViewWillAppear="NO" id="gqY-Z9-IbC" customClass="MSFClozeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qHS-jI-8qT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1111,6 +1046,7 @@
                             <outlet property="delegate" destination="gqY-Z9-IbC" id="5oS-tf-PHs"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="完善资料" id="sIA-4U-3g3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bankAddress" destination="zAo-Wo-VKg" id="dms-Rf-xOm"/>
@@ -1129,7 +1065,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbk-sv-t5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="-95"/>
+            <point key="canvasLocation" x="442" y="67"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hnP-tO-ggP">
@@ -1141,7 +1077,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="O2U-kJ-0p2" kind="relationship" relationship="rootViewController" id="d9b-MG-j2z"/>
+                        <segue destination="xFo-OI-4wy" kind="relationship" relationship="rootViewController" id="tei-vi-DkC"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPM-fI-D1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1275,7 +1211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3z-cc-fPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3" y="948"/>
+            <point key="canvasLocation" x="923" y="744"/>
         </scene>
     </scenes>
     <resources>

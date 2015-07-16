@@ -9,7 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
 #import "MSFUtils.h"
-#import "MSFLoginViewController.h"
+#import "MSFSignInViewController.h"
 #import "MSFClozeViewController.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
@@ -74,7 +74,7 @@
   @weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-    MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel];
+    MSFSignInViewController *loginViewController = [[MSFSignInViewController alloc] initWithViewModel:self.authorizeViewModel];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
 		
@@ -100,7 +100,7 @@
 	@weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-    MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel];
+    MSFSignInViewController *loginViewController = [[MSFSignInViewController alloc] initWithViewModel:self.authorizeViewModel];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
 		UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignUpViewController"];
