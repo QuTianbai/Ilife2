@@ -8,7 +8,7 @@
         <!--登录-->
         <scene sceneID="eSg-Iq-TFA">
             <objects>
-                <tableViewController storyboardIdentifier="MSFLoginViewController" id="xFo-OI-4wy" customClass="MSFLoginViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFSignInViewController" id="xFo-OI-4wy" customClass="MSFSignInViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="KuV-7h-fJJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
