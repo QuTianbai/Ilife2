@@ -17,7 +17,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFLoginViewController ()
 
-@property(nonatomic,strong) MSFSignInViewController *signInViewController;
 @property(nonatomic,strong,readwrite) MSFAuthorizeViewModel *viewModel;
 
 @end
@@ -44,22 +43,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
+	self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-login"]];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.signInViewController.username.text = MSFUtils.phone;
+	self.username.text = MSFUtils.phone;
 	
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-		self.signInViewController.username.text = @"18696995689";
-		self.signInViewController.password.text = @"123456qw";
+		self.username.text = @"18696995689";
+		self.password.text = @"123456qw";
 	}
   @weakify(self)
 	
-	RAC(self.viewModel,username) = RACObserve(self.signInViewController.username, text);
-	RAC(self.viewModel,password) = RACObserve(self.signInViewController.password, text);
+	RAC(self.viewModel,username) = RACObserve(self.username, text);
+	RAC(self.viewModel,password) = RACObserve(self.password, text);
 	
-	self.signInViewController.signInButton.rac_command = self.viewModel.executeSignIn;
+	self.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
 		@strongify(self)
-		[MSFUtils setPhone:self.signInViewController.username.text];
+		[MSFUtils setPhone:self.username.text];
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
@@ -71,16 +71,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	[self.signInViewController.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
+	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
 	}];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString:@"signin"]) {
-		self.signInViewController = segue.destinationViewController;
-	}
 }
 
 @end

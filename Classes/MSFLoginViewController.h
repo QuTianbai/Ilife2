@@ -12,8 +12,11 @@
 
  @class MSFAuthorizeViewModel;
 
-@interface MSFLoginViewController : UIViewController
+@interface MSFLoginViewController : UITableViewController
 
+@property(nonatomic,weak) IBOutlet UITextField *username;
+@property(nonatomic,weak) IBOutlet UITextField *password;
+@property(nonatomic,weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *viewModel;
 
 - (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel;
