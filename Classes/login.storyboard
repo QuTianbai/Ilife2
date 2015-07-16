@@ -655,44 +655,12 @@
                         <outlet property="password" destination="tap-h5-xY0" id="F67-0S-uDP"/>
                         <outlet property="sendCaptchaButton" destination="q7N-fA-FFQ" id="nZN-yB-Wr1"/>
                         <outlet property="username" destination="JLT-7y-G1q" id="DXi-dv-lY4"/>
-                        <segue destination="oPf-Xn-ISJ" kind="show" identifier="complement" id="rhY-nH-9dt"/>
+                        <segue destination="gqY-Z9-IbC" kind="push" identifier="complement" id="qXP-sY-L47"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8B-Wx-Mgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3" y="344"/>
-        </scene>
-        <!--完善资料-->
-        <scene sceneID="yU8-Yb-FVa">
-            <objects>
-                <viewController storyboardIdentifier="MSFClozeViewController" title="完善资料" id="oPf-Xn-ISJ" customClass="MSFClozeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mLM-Dd-Lig"/>
-                        <viewControllerLayoutGuide type="bottom" id="atx-yR-svn"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="PS1-CN-KZb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XPx-x9-wjr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <connections>
-                                    <segue destination="gqY-Z9-IbC" kind="embed" identifier="procedure" id="4Kh-Rf-6ek"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="XPx-x9-wjr" firstAttribute="top" secondItem="PS1-CN-KZb" secondAttribute="top" id="KHU-uP-8N5"/>
-                            <constraint firstItem="atx-yR-svn" firstAttribute="top" secondItem="XPx-x9-wjr" secondAttribute="bottom" id="Pjp-Df-Zvm"/>
-                            <constraint firstAttribute="trailing" secondItem="XPx-x9-wjr" secondAttribute="trailing" id="XOm-NR-TtI"/>
-                            <constraint firstItem="XPx-x9-wjr" firstAttribute="leading" secondItem="PS1-CN-KZb" secondAttribute="leading" id="XPG-Cq-vLH"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lb7-bT-69b" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="439" y="111"/>
         </scene>
         <!--用户协议-->
         <scene sceneID="BMd-ao-cXw">
@@ -715,7 +683,7 @@
         <!--完善资料-输入-->
         <scene sceneID="SAK-ZI-r2L">
             <objects>
-                <tableViewController title="完善资料-输入" clearsSelectionOnViewWillAppear="NO" id="gqY-Z9-IbC" customClass="MSFProcedureViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFClozeViewController" title="完善资料-输入" clearsSelectionOnViewWillAppear="NO" id="gqY-Z9-IbC" customClass="MSFClozeViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qHS-jI-8qT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1078,6 +1046,7 @@
                             <outlet property="delegate" destination="gqY-Z9-IbC" id="5oS-tf-PHs"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="完善资料" id="sIA-4U-3g3"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bankAddress" destination="zAo-Wo-VKg" id="dms-Rf-xOm"/>
@@ -1096,7 +1065,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wbk-sv-t5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="-95"/>
+            <point key="canvasLocation" x="442" y="67"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hnP-tO-ggP">
@@ -1242,7 +1211,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3z-cc-fPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3" y="948"/>
+            <point key="canvasLocation" x="923" y="744"/>
         </scene>
     </scenes>
     <resources>
