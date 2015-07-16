@@ -53,8 +53,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}
   @weakify(self)
 	
-	RAC(self.viewModel,username) = RACObserve(self.username, text);
-	RAC(self.viewModel,password) = RACObserve(self.password, text);
+	RAC(self.viewModel,username) = [self.username.rac_textSignal takeUntil:self.rac_willDeallocSignal];
+	RAC(self.viewModel,password) = [self.password.rac_textSignal takeUntil:self.rac_willDeallocSignal];
 	
 	self.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
