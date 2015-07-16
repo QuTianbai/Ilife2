@@ -181,7 +181,8 @@
 		userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 		
 		self.viewControllers = @[homepage, productpage, userpage];
-		//self.selectedIndex = 1;
+    //防止在加载完贷款信息和贷款期数产品后自动跳回第一个tabBarViewContrller
+		//self.selectedIndex = 0;
 	}];
 }
 
