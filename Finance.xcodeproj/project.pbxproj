@@ -181,6 +181,9 @@
 		499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */; };
 		499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */; };
 		499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */ = {isa = PBXBuildFile; fileRef = 499EA2B51B5679E50051AF66 /* familyMember_type2.json */; };
+		49A954FA1B574AF6000852E3 /* MSFAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A954F91B574AF6000852E3 /* MSFAuthorizationViewController.m */; };
+		49A955021B574B14000852E3 /* bk-iphone6plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */; };
+		49A955061B574CAA000852E3 /* MSFAuthorizationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A955051B574CAA000852E3 /* MSFAuthorizationView.m */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */; };
@@ -761,6 +764,11 @@
 		499EA2841B560ACB0051AF66 /* MSFTabBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarViewModel.h; sourceTree = "<group>"; };
 		499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarViewModel.m; sourceTree = "<group>"; };
 		499EA2B51B5679E50051AF66 /* familyMember_type2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type2.json; sourceTree = "<group>"; };
+		49A954F81B574AF6000852E3 /* MSFAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorizationViewController.h; sourceTree = "<group>"; };
+		49A954F91B574AF6000852E3 /* MSFAuthorizationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorizationViewController.m; sourceTree = "<group>"; };
+		49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bk-iphone6plus.jpg"; sourceTree = "<group>"; };
+		49A955041B574CAA000852E3 /* MSFAuthorizationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorizationView.h; sourceTree = "<group>"; };
+		49A955051B574CAA000852E3 /* MSFAuthorizationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorizationView.m; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpViewController.h; sourceTree = "<group>"; };
 		49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpViewController.m; sourceTree = "<group>"; };
@@ -1565,6 +1573,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				49A954E81B574AB8000852E3 /* Authentic */,
 				499EA23A1B55F6400051AF66 /* TabBarController */,
 				49C2FE2E1B4652FA00B6B20A /* View */,
 				4925ADBB1B2AB91500872A8A /* Blur */,
@@ -1826,6 +1835,25 @@
 				499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */,
 			);
 			name = Tabbar;
+			sourceTree = "<group>";
+		};
+		49A954E81B574AB8000852E3 /* Authentic */ = {
+			isa = PBXGroup;
+			children = (
+				49A954F81B574AF6000852E3 /* MSFAuthorizationViewController.h */,
+				49A954F91B574AF6000852E3 /* MSFAuthorizationViewController.m */,
+				49A955041B574CAA000852E3 /* MSFAuthorizationView.h */,
+				49A955051B574CAA000852E3 /* MSFAuthorizationView.m */,
+			);
+			name = Authentic;
+			sourceTree = "<group>";
+		};
+		49A954FB1B574B09000852E3 /* homepage */ = {
+			isa = PBXGroup;
+			children = (
+				49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */,
+			);
+			name = homepage;
 			sourceTree = "<group>";
 		};
 		49B5D7AF1B08460800917D2C /* Authorization */ = {
@@ -2165,6 +2193,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				49A954FB1B574B09000852E3 /* homepage */,
 				492D13111B2EAEAA0094699A /* common */,
 				492D13101B2EAEA10094699A /* db */,
 				492D13021B2EAE5A0094699A /* bundle */,
@@ -2689,6 +2718,7 @@
 				4995DCE91B4B6D2C0086B5ED /* 4@3x.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
+				49A955021B574B14000852E3 /* bk-iphone6plus.jpg in Resources */,
 				07C06C521B1345A300F2DFCC /* installments.json in Resources */,
 				C7A351791B217CB10001DF6A /* iconfont-chanpinjieshao@3x.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
@@ -2872,6 +2902,7 @@
 				C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */,
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */,
+				49A954FA1B574AF6000852E3 /* MSFAuthorizationViewController.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				49BE4B581B393367005084D5 /* UIDevice-Hardware.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
@@ -2931,6 +2962,7 @@
 				495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */,
 				498113D01B1C451B003D1B7A /* MSFPepaymentCollectionViewCell.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
+				49A955061B574CAA000852E3 /* MSFAuthorizationView.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
 				C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */,
 				49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */,

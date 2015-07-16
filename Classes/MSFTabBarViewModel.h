@@ -20,6 +20,7 @@
 
 // 登录控制
 @property (nonatomic, strong, readonly) RACCommand *signInCommand;
+@property (nonatomic, strong, readonly) RACCommand *signUpCommand;
 @property (nonatomic, strong, readonly) RACCommand *verifyCommand;
 
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;

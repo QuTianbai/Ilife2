@@ -392,7 +392,7 @@
         <!--注册-->
         <scene sceneID="L93-sD-o2b">
             <objects>
-                <tableViewController title="注册" id="CgY-uc-PJc" customClass="MSFSignUpViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFSignUpViewController" title="注册" id="CgY-uc-PJc" customClass="MSFSignUpViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wib-WX-lMr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
