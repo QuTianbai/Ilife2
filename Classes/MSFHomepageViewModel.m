@@ -36,15 +36,13 @@
 			return [RACSignal return:nil];
 		}
 		
-		return [[[[[self.client fetchApplyList]
+		return [[[[self.client fetchApplyList]
 			map:^id(id value) {
 				return [[MSFLoanViewModel alloc] initWithModel:value];
 			}]
 			collect]
-			filter:^BOOL(id value) {
-				return [value count] > 0;
-			}]
 			map:^id(NSArray *viewModels) {
+				if (viewModels.count == 0) return @[];
 				return @[viewModels.firstObject];
 			}];
 	}];
