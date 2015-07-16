@@ -100,25 +100,22 @@
 	@weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-    MSFSignInViewController *loginViewController = [[MSFSignInViewController alloc] initWithViewModel:self.authorizeViewModel];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
 		UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignUpViewController"];
-		navigationController.viewControllers = @[loginViewController,viewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
-		
 		UIImage *backButtonImage = [UIImage imageNamed:@"left_arrow"];
-    loginViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStyleDone target:nil action:nil];
-    @weakify(loginViewController);
-    loginViewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-      @strongify(loginViewController);
-      [loginViewController dismissViewControllerAnimated:YES completion:nil];
+    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStyleDone target:nil action:nil];
+    @weakify(viewController);
+    viewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+      @strongify(viewController);
+      [viewController dismissViewControllerAnimated:YES completion:nil];
       return [RACSignal empty];
     }];
 		[subscriber sendCompleted];
 		
     return [RACDisposable disposableWithBlock:^{
-      [loginViewController.navigationItem.leftBarButtonItem.rac_command executionSignals];
+      [viewController.navigationItem.leftBarButtonItem.rac_command executionSignals];
     }];
   }];
   
