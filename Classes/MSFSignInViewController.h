@@ -20,5 +20,6 @@
 @property(nonatomic,weak) IBOutlet UIButton *captchaButton;
 @property(nonatomic,weak) IBOutlet UIButton *findButton;
 @property(nonatomic,weak) IBOutlet UISwitch *passwordSwitch;
+@property (weak, nonatomic) IBOutlet UITableViewCell *loginCell;
 
 @end
