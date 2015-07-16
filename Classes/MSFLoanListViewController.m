@@ -93,6 +93,11 @@
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
 	
+	
+	cell.selected = NO;
+	cell.selectionStyle = UITableViewCellAccessoryNone;
+	_dataTableView.allowsSelection = NO;
+	
 	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
 	
 	[cell.moneyLabel setTextAlignment:NSTextAlignmentCenter];
@@ -109,19 +114,15 @@
 	NSNumber *checkNum = listModel.status;
 	
 	if ([checkNum integerValue] != 4 || [checkNum integerValue] != 6 ||[checkNum integerValue] != 7) {
-		[cell.checkLabel setEnabled:NO];
-		cell.selected = NO;
-		_dataTableView.allowsSelection = NO;
-		cell.selectionStyle = UITableViewCellEditingStyleNone;
+		[cell.checkLabel setEnabled:YES];
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:STATUSCOLOR] forState:UIControlStateNormal];
 	}
 	if ([checkNum integerValue] == 0 || [checkNum integerValue] == 1) {
+		[cell.checkLabel setEnabled:NO];
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:CHECKCOLOR] forState:UIControlStateNormal];
 	} else {
+		[cell.checkLabel setEnabled:NO];
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:REPAYMENTCOLOR] forState:UIControlStateNormal];
-		cell.selected = YES;
-		_dataTableView.allowsSelection = YES;
-		cell.selectionStyle = UITableViewCellSelectionStyleDefault;
 	}
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
