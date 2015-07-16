@@ -10,20 +10,45 @@
 @implementation NSString (Matches)
 
 - (BOOL)isMobile {
+	
 	if (self.length == 0) {
 		return NO;
 	}
 	
-	if (![[self substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"1"]) {
-		return NO;
+	return [self isIphoneNumber:self];
+	
+//	if (![[self substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"1"]) {
+//		return NO;
+//	}
+//	
+//	if (self.length != 11) {
+//		return NO;
+//	}
+//
+//	return YES;
+}
+
+-(BOOL)isIphoneNumber:(NSString *)iphoneNumber
+{
+	BOOL flag=NO;
+	NSString* stringRegex=@"";
+	if (iphoneNumber.length<=11) {
+		//stringRegex=@"";
+		if (iphoneNumber.length==1) {
+			stringRegex=@"[1]";
+		}
+		else
+		{
+			stringRegex=[NSString stringWithFormat:@"[1][34578]\\d{0,9}"];
+		}
+		
+		NSPredicate* phoneTest=[NSPredicate predicateWithFormat:@"SELF MATCHES %@",stringRegex];
+		flag=[phoneTest evaluateWithObject:iphoneNumber];
 	}
 	
-	if (self.length != 11) {
-		return NO;
-	}
-
-	return YES;
+	return flag;
 }
+
 
 - (BOOL)isScalar {
 	NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];

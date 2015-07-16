@@ -57,7 +57,7 @@
 	self.agreeButton.rac_command = self.viewModel.executeRequest;
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFApplicationResponse *applyCash) {
 			[SVProgressHUD dismiss];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
