@@ -94,7 +94,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TSC-Kd-H1T">
-                                                    <rect key="frame" x="93" y="11" width="185" height="20"/>
+                                                    <rect key="frame" x="93" y="7" width="185" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -106,10 +106,13 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="TSC-Kd-H1T" firstAttribute="top" secondItem="ewd-85-E2l" secondAttribute="top" constant="7" id="2rD-Wt-jVe"/>
                                                 <constraint firstItem="TSC-Kd-H1T" firstAttribute="leading" secondItem="fcI-Jx-EUS" secondAttribute="trailing" constant="10" id="474-BD-5CM"/>
                                                 <constraint firstItem="fcI-Jx-EUS" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" constant="15" id="BBN-PO-cDv"/>
                                                 <constraint firstAttribute="trailing" secondItem="LRK-3t-cSm" secondAttribute="trailing" constant="15" id="Mck-3n-Xg0"/>
+                                                <constraint firstItem="LRK-3t-cSm" firstAttribute="leading" secondItem="TSC-Kd-H1T" secondAttribute="trailing" constant="10" id="SC2-DD-Wu8"/>
                                                 <constraint firstAttribute="centerY" secondItem="fcI-Jx-EUS" secondAttribute="centerY" id="XJA-a3-Dgt"/>
+                                                <constraint firstAttribute="bottom" secondItem="TSC-Kd-H1T" secondAttribute="bottom" constant="7" id="cLL-qV-lgj"/>
                                                 <constraint firstAttribute="centerY" secondItem="LRK-3t-cSm" secondAttribute="centerY" id="hJ8-Xm-8uu"/>
                                                 <constraint firstAttribute="centerY" secondItem="TSC-Kd-H1T" secondAttribute="centerY" id="tTJ-ax-bFs"/>
                                                 <constraint firstItem="LRK-3t-cSm" firstAttribute="leading" secondItem="TSC-Kd-H1T" secondAttribute="trailing" constant="10" id="vlT-Op-SSb"/>
