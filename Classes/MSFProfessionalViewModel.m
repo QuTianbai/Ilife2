@@ -169,14 +169,14 @@
 		@strongify(self)
 		return [self startedDateSignal];
 	}];
-//  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//    @strongify(self)
-//    return [self commitSignal];
-//  }];
-	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self commitSignal];
-	}];
+  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+    return [self commitSignal];
+  }];
+//	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
+//		@strongify(self)
+//		return [self commitSignal];
+//	}];
 	
 	return self;
 }

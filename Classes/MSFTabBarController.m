@@ -181,7 +181,7 @@
 		userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 		
 		self.viewControllers = @[homepage, productpage, userpage];
-		self.selectedIndex = 0;
+		//self.selectedIndex = 1;
 	}];
 }
 
