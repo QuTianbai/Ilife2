@@ -12,6 +12,7 @@
 #import "MSFHomepageViewController.h"
 #import "MSFUserViewController.h"
 #import "MSFProductViewController.h"
+#import "MSFAuthorizationView.h"
 
 #import "MSFTabBarViewModel.h"
 #import "MSFHomepageViewModel.h"
@@ -48,6 +49,15 @@
 			[self authenticatedControllers];
 		} else {
 			[self unAuthenticatedControllers];
+		}
+	}];
+	MSFAuthorizationView *view = [[MSFAuthorizationView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+	[self.view addSubview:view];
+	[view bindViewModel:self.viewModel];
+	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+		@strongify(self)
+		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
+			[view removeFromSuperview];
 		}
 	}];
 	

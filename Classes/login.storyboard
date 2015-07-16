@@ -183,6 +183,7 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="OQw-od-8Ei"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="loginCell" destination="ohq-yS-mCi" id="c1x-D0-Suf"/>
                         <outlet property="password" destination="XiB-Rb-FPG" id="uNZ-dk-7Hr"/>
                         <outlet property="signInButton" destination="7qp-Gb-kxz" id="v56-3a-wfe"/>
                         <outlet property="username" destination="VKK-ZO-rze" id="0DT-Ne-gCy"/>
@@ -392,7 +393,7 @@
         <!--注册-->
         <scene sceneID="L93-sD-o2b">
             <objects>
-                <tableViewController title="注册" id="CgY-uc-PJc" customClass="MSFSignUpViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFSignUpViewController" title="注册" id="CgY-uc-PJc" customClass="MSFSignUpViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wib-WX-lMr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
