@@ -10,16 +10,15 @@
 
 @implementation MSFSignInViewController
 
+#pragma mark - Lifecycle
+
+- (void)dealloc {
+	NSLog(@"MSFSignInViewController `-dealloc`");
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-login"]];
-	self.passwordSwitch.on = NO;
-	
-	@weakify(self)
-	[[self.passwordSwitch rac_newOnChannel] subscribeNext:^(NSNumber *x) {
-		@strongify(self)
-		[self.password setSecureTextEntry:!x.boolValue];
-	}];
 }
 
 @end

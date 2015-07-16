@@ -26,6 +26,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFLoginViewController `-dealloc`");
+}
+
 - (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
 	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
@@ -45,45 +49,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.signInViewController.username.text = @"18696995689";
-		self.signInViewController.captcha.text = @"666666";
 		self.signInViewController.password.text = @"123456qw";
 	}
   @weakify(self)
-  [[[self.viewModel rac_valuesForKeyPath:@"username" observer:self.signInViewController.loginCell] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
-   subscribeNext:^(NSString *text) {
-     @strongify(self);
-     self.signInViewController.username.text = text;
-   }];
-  [[[self.signInViewController.username rac_textSignal] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
-   subscribeNext:^(NSString *text) {
-     @strongify(self);
-     [self.viewModel setValue:text forKey:@"username"];
-   }];
-	//RAC(self.viewModel,username) = self.signInViewController.username.rac_textSignal;
-  [[[self.viewModel rac_valuesForKeyPath:@"password" observer:self.signInViewController.loginCell] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
-   subscribeNext:^(NSString *text) {
-     @strongify(self);
-     self.signInViewController.password.text = text;
-   }];
-  [[[self.signInViewController.password rac_textSignal] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
-   subscribeNext:^(NSString *text) {
-     @strongify(self);
-     [self.viewModel setValue:text forKey:@"password"];
-   }];
-	//RAC(self.viewModel,password) = self.signInViewController.password.rac_textSignal;
-  
-  [[[self.viewModel rac_valuesForKeyPath:@"captcha" observer:self.signInViewController.loginCell] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
-   subscribeNext:^(NSString *text) {
-     @strongify(self);
-     self.signInViewController.captcha.text = text;
-   }];
-  [[[self.signInViewController.captcha rac_textSignal] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
-   subscribeNext:^(NSString *text) {
-     @strongify(self);
-     [self.viewModel setValue:text forKey:@"captcha"];
-   }];
-	//RAC(self.viewModel,captcha) = self.signInViewController.captcha.rac_textSignal;
 	
+	RAC(self.viewModel,username) = RACObserve(self.signInViewController.username, text);
+	RAC(self.viewModel,password) = RACObserve(self.signInViewController.password, text);
 	
 	self.signInViewController.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
@@ -103,27 +74,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.signInViewController.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
-	}];
-	
-	self.signInViewController.captchaButton.rac_command = self.viewModel.executeLoginCaptcha;
-	[self.signInViewController.captchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
-		@strongify(self)
-		[self.view endEditing:YES];
-		[SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
-		[captchaSignal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"验证码已发送"];
-		}];
-	}];
-	[self.signInViewController.captchaButton.rac_command.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-	
-	RAC(self.signInViewController.counterLabel,text) = RACObserve(self.viewModel, counter);
-	
-	RAC(self.signInViewController.counterLabel,textColor) =
-	[self.viewModel.captchaRequestValidSignal
-		map:^id(NSNumber *valid) {
-			return valid.boolValue ? UIColor.whiteColor : UIColor.lightGrayColor;
 	}];
 }
 

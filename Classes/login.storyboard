@@ -183,7 +183,6 @@
                     <navigationItem key="navigationItem" title="Root View Controller" id="OQw-od-8Ei"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="loginCell" destination="ohq-yS-mCi" id="c1x-D0-Suf"/>
                         <outlet property="password" destination="XiB-Rb-FPG" id="uNZ-dk-7Hr"/>
                         <outlet property="signInButton" destination="7qp-Gb-kxz" id="v56-3a-wfe"/>
                         <outlet property="username" destination="VKK-ZO-rze" id="0DT-Ne-gCy"/>
