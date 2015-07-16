@@ -23,6 +23,7 @@ static NSString *const MSFAutologinbuggingEnvironmentKey = @"LOGIN_AUTO_DEBUG";
 NSString *const MSFAuthorizationDidUpdateNotification = @"MSFAuthorizationDidUpdateNotification";
 NSString *const MSFAuthorizationDidErrorNotification = @"MSFAuthorizationDidErrorNotification";
 NSString *const MSFAuthorizationDidLoseConnectNotification = @"MSFAuthorizationDidLoseConnectNotification";
+NSString *const MSFAuthorizationDidReGetTimeServer = @"MSFAuthorizationDidReGetTimeServer";
 
 static MSFClient *client;
 static MSFServer *server;
@@ -61,7 +62,7 @@ static BOOL isRunningTests(void) {
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
 		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
 		[MSFClient setCipher:cipher];
-	}];
+	} ] ;
 }
 
 + (MSFClient *)httpClient {

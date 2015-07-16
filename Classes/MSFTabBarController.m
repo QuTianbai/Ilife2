@@ -116,6 +116,16 @@
        [alertView2 show];
      }
    }];
+ 
+  [[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidReGetTimeServer object:nil]
+  subscribeNext:^(id x) {
+    [MSFUtils.setupSignal subscribeNext:^(id x) {
+     // [self unAuthenticatedControllers];
+    }];
+  }];
+  
+  
+  
 }
 
 #pragma mark - UIAlertViewDelegate
