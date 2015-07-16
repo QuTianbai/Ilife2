@@ -48,7 +48,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.signInViewController.captcha.text = @"666666";
 		self.signInViewController.password.text = @"123456qw";
 	}
-  NSLog(@"te01");
   @weakify(self)
   [[[self.viewModel rac_valuesForKeyPath:@"username" observer:self.signInViewController.loginCell] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
    subscribeNext:^(NSString *text) {
@@ -61,7 +60,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
      [self.viewModel setValue:text forKey:@"username"];
    }];
 	//RAC(self.viewModel,username) = self.signInViewController.username.rac_textSignal;
-  NSLog(@"te02");
   [[[self.viewModel rac_valuesForKeyPath:@"password" observer:self.signInViewController.loginCell] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
    subscribeNext:^(NSString *text) {
      @strongify(self);
@@ -74,7 +72,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
    }];
 	//RAC(self.viewModel,password) = self.signInViewController.password.rac_textSignal;
   
-  NSLog(@"te03");
   [[[self.viewModel rac_valuesForKeyPath:@"captcha" observer:self.signInViewController.loginCell] takeUntil:[self.signInViewController.loginCell rac_prepareForReuseSignal]]
    subscribeNext:^(NSString *text) {
      @strongify(self);
