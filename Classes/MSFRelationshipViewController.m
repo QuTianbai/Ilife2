@@ -290,9 +290,17 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (section == MSFRelationshipViewSectionMember1) {
+		if ([_isSameCurrentSW isOn]) {
+			return 4;
+		}
+	}
 	if (section == MSFRelationshipViewSectionMember2) {
 		if (!self.viewModel.hasMember2) {
 			return 0;
+		}
+		if ([_num2IsSameCurrentSW isOn]) {
+			return 4;
 		}
 	}
 	if (section == MSFRelationshipViewSectionContact2) {
