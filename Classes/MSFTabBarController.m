@@ -205,11 +205,24 @@
     [self.viewModel.verifyCommand execute:nil];
 		return NO;
   }
-	if ([tabBarController.viewControllers indexOfObject:viewController] == 1 && self.viewModel.formsViewModel.pending) {
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的提交的申请已经在审核中，请耐心等待!" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
-		[alertView show];
-		return NO;
-	}
+  if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+    if (!self.viewModel.formsViewModel.isHaveProduct) {
+      self.viewModel.formsViewModel.active = YES;
+    }
+    if (self.viewModel.formsViewModel.pending) {
+      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的提交的申请已经在审核中，请耐心等待!" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
+      [alertView show];
+      return NO;
+    }
+  } else {
+    self.viewModel.formsViewModel.active = NO;
+  }
+//	if ([tabBarController.viewControllers indexOfObject:viewController] == 1 && self.viewModel.formsViewModel.pending) {
+//    //self.viewModel.formsViewModel.active = YES;
+//		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的提交的申请已经在审核中，请耐心等待!" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
+//		[alertView show];
+//		return NO;
+//	}
 	
   return YES;
 }

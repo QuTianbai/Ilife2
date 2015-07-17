@@ -54,6 +54,7 @@
 				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
 				self.model = model;
 				self.market = market;
+        self.isHaveProduct = YES;
 				return [self.client checkUserHasCredit];
 			}]
 			subscribeNext:^(MSFResponse *response) {
@@ -61,6 +62,7 @@
 				[(RACSubject *)self.updatedContentSignal sendNext:nil];
 				[(RACSubject *)self.updatedContentSignal sendCompleted];
 			} error:^(NSError *error) {
+        self.isHaveProduct = NO;
 				[(RACSubject *)self.updatedContentSignal sendError:error];
 			}];
 	}];
