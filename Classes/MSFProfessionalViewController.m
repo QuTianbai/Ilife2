@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"在职人员";
+	self.title = @"职业信息";
 	
 	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, universityName);
 	RAC(self.universityName, text) = universityNameChannel;
@@ -64,14 +64,32 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.company, text) = companyChannel;
 	[self.company.rac_textSignal subscribe:companyChannel];
 	
+  [[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    if (textField.text.length > 10) {
+      textField.text = [textField.text substringToIndex:10];
+    }
+  }];
 	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
+  [[self.unitAreaCode rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    if (textField.text.length > 4) {
+      textField.text = [textField.text substringToIndex:4];
+    }
+  }];
 	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
 	
+  [[self.unitTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    if (textField.text.length>8) {
+      textField.text = [textField.text substringToIndex:8];
+    }
+  }];
 	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
@@ -83,6 +101,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
 	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
+  RAC(self,title) = RACObserve(self.viewModel, socialstatusTitle);
 	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
 	RAC(self.programLength, text) = RACObserve(self.viewModel, eductionalSystmeTitle);
 	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
