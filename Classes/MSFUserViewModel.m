@@ -36,18 +36,25 @@ static const int kPasswordMinLength = 8;
 	_updatePassword = @"";
 	
 	@weakify(self)
-	_executeUpdatePassword =
-	[[RACCommand alloc] initWithEnabled:self.updateValidSignal signalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		if (![self.updatePassword isPassword]) {
-			return [RACSignal
-				error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey:@"请输入8位以上数字和字母混合密码"
-				}]];
-		}
-		
-		return [self executeUpdatePasswordSignal];
-	}];
+  _executeUpdatePassword = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+    if (![self.updatePassword isPassword]) {
+      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入8位以上数组和字母混合密码"}]];
+    }
+    return [self executeUpdatePasswordSignal];
+  }];
+//	_executeUpdatePassword =
+//	[[RACCommand alloc] initWithEnabled:self.updateValidSignal signalBlock:^RACSignal *(id input) {
+//		@strongify(self)
+//		if (![self.updatePassword isPassword]) {
+//			return [RACSignal
+//				error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
+//					NSLocalizedFailureReasonErrorKey:@"请输入8位以上数字和字母混合密码"
+//				}]];
+//		}
+//		
+//		return [self executeUpdatePasswordSignal];
+//	}];
 	
 	self.contentUpdateSignal = [[RACSubject subject] setNameWithFormat:@"MSFUserViewModel `contentUpdateSignal`"];
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
@@ -72,18 +79,34 @@ static const int kPasswordMinLength = 8;
 	_updatePassword = @"";
 	
 	@weakify(self)
-	_executeUpdatePassword =
-	[[RACCommand alloc] initWithEnabled:self.updateValidSignal signalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		if (![self.updatePassword isPassword]) {
-			return [RACSignal
-				error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey:@"请输入8位以上数字和字母混合密码"
-				}]];
-		}
-		
-		return [self executeUpdatePasswordSignal];
-	}];
+  _executeUpdatePassword = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+    NSString *errorStr = @"";
+    if (self.usedPassword.length == 0) {
+      errorStr = @"请输入原密码";
+      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:errorStr}]];
+    } else if (self.updatePassword.length == 0) {
+      errorStr = @"请输入新密码";
+      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:errorStr}]];
+    }
+    if (![self.updatePassword isPassword]) {
+      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入8位以上数组和字母混合密码"}]];
+    }
+    return [self executeUpdatePasswordSignal];
+  }];
+
+//	_executeUpdatePassword =
+//	[[RACCommand alloc] initWithEnabled:self.updateValidSignal signalBlock:^RACSignal *(id input) {
+//		@strongify(self)
+//		if (![self.updatePassword isPassword]) {
+//			return [RACSignal
+//				error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
+//					NSLocalizedFailureReasonErrorKey:@"请输入8位以上数字和字母混合密码"
+//				}]];
+//		}
+//		
+//		return [self executeUpdatePasswordSignal];
+//	}];
 	
 	self.contentUpdateSignal = [[RACSubject subject] setNameWithFormat:@"MSFUserViewModel `contentUpdateSignal`"];
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
