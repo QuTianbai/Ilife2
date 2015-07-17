@@ -77,7 +77,7 @@
 	}
 	else if (![self validAddress]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"详细地址至少输入三个地址",
+			NSLocalizedFailureReasonErrorKey: @"详细地址至少输入两项",
 		}]];
 	}
 	
@@ -112,7 +112,7 @@
 	NSInteger length3 = self.model.currentApartment.length > 1 ? 1: 0;
 	NSInteger length4 = self.model.currentStreet.length > 1 ? 1: 0;
 	
-	return (length1 + length2 + length3 + length4) > 2;
+	return (length1 + length2 + length3 + length4) >= 2;
 }
 
 @end
