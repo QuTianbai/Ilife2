@@ -89,3 +89,12 @@ msfinance@2015
 统计分析：umeng
 崩溃收集：fabric
 ```
+
+## 信用卡扫描控件
+
+```
+pod 'CardIO'
+
+https://github.com/card-io/card.io-iOS-source
+https://github.com/card-io/card.io-iOS-SDK
+```
