@@ -28,6 +28,8 @@
 NSString * const RCLocationManagerUserLocationDidChangeNotification = @"RCLocationManagerUserLocationDidChangeNotification";
 NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocation";
 
+static NSString *const RCLocationManagerLoggingEnvironmentKey = @"DEBUG_LOG";
+
 @interface RCLocationManager () <CLLocationManagerDelegate>
 {
     BOOL _isUpdatingUserLocation;
@@ -98,8 +100,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (id)init
 {
-    NSLog(@"[%@] init:", NSStringFromClass([self class]));
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+				NSLog(@"[%@] init:", NSStringFromClass([self class]));
+		}
+	
     if (self = [super init]) {
         // Init
         [self _init];
@@ -110,9 +114,11 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (id)initWithUserDistanceFilter:(CLLocationDistance)userDistanceFilter userDesiredAccuracy:(CLLocationAccuracy)userDesiredAccuracy purpose:(NSString *)purpose delegate:(id<RCLocationManagerDelegate>)delegate
 {
-    
-    NSLog(@"[%@] init:", NSStringFromClass([self class]));
-    
+	
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] init:", NSStringFromClass([self class]));
+		}
+	
     if (self = [super init]) {
         // Init
         [self _init];
@@ -128,7 +134,9 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)_init
 {
-    NSLog(@"[%@] _init:", NSStringFromClass([self class]));
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] _init:", NSStringFromClass([self class]));
+		}
     
     _isUpdatingUserLocation = NO;
     _isOnlyOneRefresh = NO;
@@ -158,8 +166,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 - (void)_addRegionForMonitoring:(CLRegion *)region desiredAccuracy:(CLLocationAccuracy)accuracy
 {
     NSSet *regions = self.regionLocationManager.monitoredRegions;
-    NSLog(@"[%@] _addRegionForMonitoring:desiredAccuracy: [regions count]: %d", NSStringFromClass([self class]), [regions count]);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] _addRegionForMonitoring:desiredAccuracy: [regions count]: %d", NSStringFromClass([self class]), [regions count]);
+		}
+	
     NSAssert([CLLocationManager regionMonitoringAvailable] || [CLLocationManager regionMonitoringEnabled], @"RegionMonitoring not available!");
     NSAssert([regions count] < MAX_MONITORING_REGIONS, @"Only support %d regions!", MAX_MONITORING_REGIONS);
     NSAssert(accuracy < self.regionLocationManager.maximumRegionMonitoringDistance, @"Accuracy is too long!");
@@ -174,7 +184,9 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
  */
 - (BOOL)region:(CLRegion *)region inRegion:(CLRegion *)otherRegion
 {
-    NSLog(@"[%@] region:containsRegion:", NSStringFromClass([self class]));
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] region:containsRegion:", NSStringFromClass([self class]));
+		}
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:region.center.latitude longitude:region.center.longitude];
     CLLocation *otherLocation = [[CLLocation alloc] initWithLatitude:otherRegion.center.latitude longitude:otherRegion.center.longitude];
@@ -192,8 +204,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
  */
 - (BOOL)isMonitoringThisCoordinate:(CLLocationCoordinate2D)coordinate
 {
-    NSLog(@"[%@] isMonitoringThisCoordinate:", NSStringFromClass([self class]));
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] isMonitoringThisCoordinate:", NSStringFromClass([self class]));
+		}
+	
     NSSet *regions = self.regionLocationManager.monitoredRegions;
     
     for (CLRegion *reg in regions) {
@@ -209,8 +223,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
  */
 - (BOOL)isMonitoringThisRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] isMonitoringThisRegion:", NSStringFromClass([self class]));
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] isMonitoringThisRegion:", NSStringFromClass([self class]));
+		}
+	
     NSSet *regions = self.regionLocationManager.monitoredRegions;
     
     for (CLRegion *reg in regions) {
@@ -225,47 +241,59 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setDefaultTimeout:(CGFloat)defaultTimeout
 {
-    NSLog(@"[%@] setDefaultTimeout:%f", NSStringFromClass([self class]), defaultTimeout);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setDefaultTimeout:%f", NSStringFromClass([self class]), defaultTimeout);
+		}
+	
     _defaultTimeout = defaultTimeout;
 }
 
 - (void)setUserDistanceFilter:(CLLocationDistance)userDistanceFilter
 {
-    NSLog(@"[%@] setUserDistanceFilter:%f", NSStringFromClass([self class]), userDistanceFilter);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setUserDistanceFilter:%f", NSStringFromClass([self class]), userDistanceFilter);
+		}
+	
     _userDistanceFilter = userDistanceFilter;
     [_userLocationManager setDistanceFilter:_userDistanceFilter];
 }
 
 - (void)setUserDesiredAccuracy:(CLLocationAccuracy)userDesiredAccuracy
 {
-    NSLog(@"[%@] setUserDesiredAccuracy:%f", NSStringFromClass([self class]), userDesiredAccuracy);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setUserDesiredAccuracy:%f", NSStringFromClass([self class]), userDesiredAccuracy);
+		}
+	
     _userDesiredAccuracy = userDesiredAccuracy;
     [_userLocationManager setDesiredAccuracy:_userDesiredAccuracy];
 }
 
 - (void)setRegionDistanceFilter:(CLLocationDistance)regionDistanceFilter
 {
-    NSLog(@"[%@] setRegionDistanceFilter:%f", NSStringFromClass([self class]), regionDistanceFilter);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setRegionDistanceFilter:%f", NSStringFromClass([self class]), regionDistanceFilter);
+		}
+	
     _regionDistanceFilter = regionDistanceFilter;
     [_regionLocationManager setDistanceFilter:_regionDistanceFilter];
 }
 
 - (void)setRegionDesiredAccuracy:(CLLocationAccuracy)regionDesiredAccuracy
 {
-    NSLog(@"[%@] setRegionDesiredAccuracy:%f", NSStringFromClass([self class]), regionDesiredAccuracy);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setRegionDesiredAccuracy:%f", NSStringFromClass([self class]), regionDesiredAccuracy);
+		}
+	
     _regionDesiredAccuracy = regionDesiredAccuracy;
     [_regionLocationManager setDesiredAccuracy:_regionDesiredAccuracy];
 }
 
 - (void)setDelegate:(id<RCLocationManagerDelegate>)delegate
 {
-    NSLog(@"[%@] setDelegate:", NSStringFromClass([self class]));
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setDelegate:", NSStringFromClass([self class]));
+		}
+	
     if (_delegate != delegate) {
         _delegate = delegate;
     }
@@ -273,8 +301,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)setPurpose:(NSString *)purpose
 {
-    NSLog(@"[%@] setPurpose:%@", NSStringFromClass([self class]), purpose);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] setPurpose:%@", NSStringFromClass([self class]), purpose);
+		}
+	
     if (![_purpose isEqualToString:purpose]) {
         self.userLocationManager.purpose = [purpose copy];
         self.regionLocationManager.purpose = [purpose copy];
@@ -299,7 +329,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-	NSLog(@"[%@] locationManager:didFailWithError:%@", NSStringFromClass([self class]), error);
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] locationManager:didFailWithError:%@", NSStringFromClass([self class]), error);
+		}
+	
     
     // Call location block
     if (self.errorLocationBlock != nil) {
@@ -317,7 +350,9 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
     NSTimeInterval howRecent	= [eventDate timeIntervalSinceNow];
     
     if(abs(howRecent) > 10.0) {
-        NSLog(@"locationManager didUpdateToLocation with timestamp %@ which is to old to use", newLocation.timestamp);
+			if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+					NSLog(@"locationManager didUpdateToLocation with timestamp %@ which is to old to use", newLocation.timestamp);
+				}
         return;
     }
     
@@ -325,8 +360,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
     _location = newLocation;
     
     if (newLocation.horizontalAccuracy <= manager.desiredAccuracy || _isOnlyOneRefresh == NO) {
+			if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
         NSLog(@"[%@] locationManager:didUpdateToLocation:fromLocation: %@", NSStringFromClass([self class]), newLocation);
-        
+			}
+			
         if (_isOnlyOneRefresh) {
             // Stop querying timer because accurate location was obtained
             [self stopQueryingTimer];
@@ -353,7 +390,9 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] locationManager:didEnterRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] locationManager:didEnterRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
+		}
     
     if (self.regionBlock != nil) {
         self.regionBlock(manager, region, YES);
@@ -367,8 +406,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSLog(@"[%@] locationManager:didExitRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] locationManager:didExitRegion:%@ at %@", NSStringFromClass([self class]), region.identifier, [NSDate date]);
+		}
+			
     if (self.regionBlock != nil) {
         self.regionBlock(manager, region, NO);
     }
@@ -381,7 +422,9 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error
 {
-    NSLog(@"[%@] locationManager:monitoringDidFailForRegion:%@: %@", NSStringFromClass([self class]), region.identifier, error);
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] locationManager:monitoringDidFailForRegion:%@: %@", NSStringFromClass([self class]), region.identifier, error);
+		}
 	
     if (self.errorRegionBlock != nil) {
         self.errorRegionBlock(manager, region, error);
@@ -602,8 +645,10 @@ NSString * const RCLocationManagerNotificationLocationUserInfoKey = @"newLocatio
 
 - (void)startUpdatingLocation
 {
-    NSLog(@"[%@] startUpdatingLocation:", NSStringFromClass([self class]));
-    
+		if (NSProcessInfo.processInfo.environment[RCLocationManagerLoggingEnvironmentKey] != nil) {
+			NSLog(@"[%@] startUpdatingLocation:", NSStringFromClass([self class]));
+		}
+	
     _isUpdatingUserLocation = YES;
     [self.userLocationManager startUpdatingLocation];
 }
