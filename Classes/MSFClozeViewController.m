@@ -163,8 +163,6 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-	NSLog(@"textField:%@ shouldChangeCharactersInRange:%@ replacementString: %@",textField.text,NSStringFromRange(range),string);
-	
 	if ([textField isEqual:self.name]) {
 		NSCharacterSet *blockedCharacters = [[NSCharacterSet letterCharacterSet] invertedSet];
     NSCharacterSet *blockedCharatersSquared = [NSCharacterSet characterSetWithCharactersInString:@"➋➌➍➎➏➐➑➒"];
