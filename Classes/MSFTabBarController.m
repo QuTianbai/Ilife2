@@ -219,12 +219,6 @@
   } else {
     self.viewModel.formsViewModel.active = NO;
   }
-//	if ([tabBarController.viewControllers indexOfObject:viewController] == 1 && self.viewModel.formsViewModel.pending) {
-//    //self.viewModel.formsViewModel.active = YES;
-//		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的提交的申请已经在审核中，请耐心等待!" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
-//		[alertView show];
-//		return NO;
-//	}
 	
   return YES;
 }
