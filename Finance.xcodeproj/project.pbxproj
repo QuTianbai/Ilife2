@@ -114,6 +114,9 @@
 		4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */; };
 		4967EE7D1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */; };
 		4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7F1B1A9E9E001A8F27 /* MSFAgreementViewModel.m */; };
+		497269D61B5F38AE000F1E82 /* MSFLoginSwapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269D51B5F38AE000F1E82 /* MSFLoginSwapController.m */; };
+		497269E61B5F39A7000F1E82 /* MSFSwapSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269E51B5F39A7000F1E82 /* MSFSwapSegue.m */; };
+		497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */; };
 		4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4975C97C1B46D6D400AA79EB /* AppDelegate.m */; };
 		4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */; };
 		4975C98A1B46D6D400AA79EB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4975C97F1B46D6D400AA79EB /* Localizable.strings */; };
@@ -669,6 +672,12 @@
 		4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAgreementViewModelSpec.m; sourceTree = "<group>"; };
 		4967EE7E1B1A9E9E001A8F27 /* MSFAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAgreementViewModel.h; sourceTree = "<group>"; };
 		4967EE7F1B1A9E9E001A8F27 /* MSFAgreementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAgreementViewModel.m; sourceTree = "<group>"; };
+		497269D41B5F38AE000F1E82 /* MSFLoginSwapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginSwapController.h; sourceTree = "<group>"; };
+		497269D51B5F38AE000F1E82 /* MSFLoginSwapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginSwapController.m; sourceTree = "<group>"; };
+		497269E41B5F39A7000F1E82 /* MSFSwapSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSwapSegue.h; sourceTree = "<group>"; };
+		497269E51B5F39A7000F1E82 /* MSFSwapSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSwapSegue.m; sourceTree = "<group>"; };
+		497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginViewController.h; sourceTree = "<group>"; };
+		497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginViewController.m; sourceTree = "<group>"; };
 		4975C97B1B46D6D400AA79EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4975C97C1B46D6D400AA79EB /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4975C97E1B46D6D400AA79EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -2002,6 +2011,12 @@
 		49CCFBE21B0724EA008A9CD1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				497269E41B5F39A7000F1E82 /* MSFSwapSegue.h */,
+				497269E51B5F39A7000F1E82 /* MSFSwapSegue.m */,
+				497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */,
+				497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */,
+				497269D41B5F38AE000F1E82 /* MSFLoginSwapController.h */,
+				497269D51B5F38AE000F1E82 /* MSFLoginSwapController.m */,
 				49B5D7AB1B08379800917D2C /* MSFClozeViewController.h */,
 				49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */,
 				49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */,
@@ -2955,6 +2970,7 @@
 				C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */,
 				499147231B256D0D00260E97 /* MSFClient+Months.m in Sources */,
 				49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */,
+				497269D61B5F38AE000F1E82 /* MSFLoginSwapController.m in Sources */,
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,
 				C7B978141B099CD9005F247C /* MSFUserHelpCell.m in Sources */,
@@ -2984,11 +3000,13 @@
 				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
 				C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */,
+				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
+				497269E61B5F39A7000F1E82 /* MSFSwapSegue.m in Sources */,
 				49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,

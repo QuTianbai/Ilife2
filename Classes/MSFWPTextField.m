@@ -28,7 +28,7 @@
 
 - (void)commonInit {
 	self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
-	 attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	 attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
 }
 
 @end

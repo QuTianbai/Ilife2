@@ -5,6 +5,7 @@
 //
 
 #import "MSFBlurButton.h"
+#import "UIColor+Utils.h"
 
 @implementation MSFBlurButton
 
@@ -12,8 +13,9 @@
 	if (!(self = [super initWithCoder:aDecoder])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.200];
-	self.tintColor = [UIColor whiteColor];
+	self.backgroundColor = [UIColor tintColor];
+	self.tintColor = [UIColor fontColor];
+	self.layer.cornerRadius = 5;
 	
 	return self;
 }
@@ -22,8 +24,9 @@
 	if (!(self = [super initWithFrame:frame])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.200];
-	self.tintColor = [UIColor whiteColor];
+	self.backgroundColor = [UIColor tintColor];
+	self.tintColor = [UIColor fontColor];
+	self.layer.cornerRadius = 5;
 	
 	return self;
 }

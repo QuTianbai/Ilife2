@@ -9,7 +9,8 @@
 @implementation MSFClient (Cipher)
 
 - (RACSignal *)fetchServerInterval {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"app/server_time" parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"app/server_time" parameters:nil];
+	request.timeoutInterval = 3;
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
