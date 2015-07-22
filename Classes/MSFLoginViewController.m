@@ -68,30 +68,24 @@
 	
 	[self.loginSwapController swap:self.loginType];
 	[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
-	//TODO: 增加切换动画
+	
 	@weakify(self)
 	[[self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.signInButton.enabled = NO;
 		self.signUpButton.enabled = YES;
+		self.signInIndicatorView.hidden = NO;
+		self.signUpIndicatorView.hidden = YES;
 		[self.loginSwapController swap:MSFLoginSignIn];
-		[UIView animateWithDuration:.3 animations:^{
-			CGPoint center = self.indicatorView.center;
-			center.x = self.signInButton.center.x;
-			self.indicatorView.center = center;
-		}];
 		[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
 	}];
 	[[self.signUpButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.signInButton.enabled = YES;
 		self.signUpButton.enabled = NO;
+		self.signInIndicatorView.hidden = YES;
+		self.signUpIndicatorView.hidden = NO;
 		[self.loginSwapController swap:MSFLoginSignUp];
-		[UIView animateWithDuration:.3 animations:^{
-			CGPoint center = self.indicatorView.center;
-			center.x = self.signUpButton.center.x;
-			self.indicatorView.center = center;
-		}];
 		[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
 	}];
 }
@@ -100,6 +94,16 @@
 	if ([segue.identifier isEqualToString:@"swap"]) {
 		self.loginSwapController = segue.destinationViewController;
 	}
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark - Private

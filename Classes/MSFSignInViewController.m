@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
 #import "MSFUtils.h"
+#import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
@@ -75,10 +76,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-login"]];
+	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.username.text = MSFUtils.phone;
+	self.backgroundView.layer.masksToBounds = YES;
+	self.backgroundView.layer.cornerRadius = 5;
+	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
+	self.backgroundView.layer.borderWidth = 1;
 	
+	self.username.text = MSFUtils.phone;
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = @"18696995689";
 		self.password.text = @"123456qw";
