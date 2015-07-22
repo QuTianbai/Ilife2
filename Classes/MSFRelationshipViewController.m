@@ -336,6 +336,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	titleLabel.text = sectionTitle;
 	titleLabel.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	[titleLabel setFont:[UIFont systemFontOfSize:14]];
 	titleLabel.backgroundColor = [UIColor clearColor];
 	
 	[sectionView addSubview:titleLabel];
