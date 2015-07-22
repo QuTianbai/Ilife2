@@ -10,6 +10,7 @@
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <Masonry/Masonry.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
@@ -102,22 +103,23 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	[super viewDidLoad];
 	self.title = @"家庭信息";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.tableView.sectionIndexColor = [MSFCommandView getColorWithString:BLUECOLOR];
-	self.tableView.sectionIndexBackgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.hasMember2 = !self.viewModel.hasMember2;
-		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"-删除第二位家庭成员" : @"✚增加第二位家庭成员" forState:UIControlStateNormal];
+		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"- 删除第二位家庭成员" : @"✚ 增加第二位家庭成员" forState:UIControlStateNormal];
 		[self.tableView reloadData];
 	}];
+	[self.addFamilyBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
+	
 	[[self.addOtherBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.hasContact2 = !self.viewModel.hasContact2;
-		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"-删除第二位联系人" : @"✚增加第二位联系人" forState:UIControlStateNormal];
+		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"- 删除第二位联系人" : @"✚ 增加第二位其他联系人" forState:UIControlStateNormal];
 		[self.tableView reloadData];
 	}];
+	[self.addOtherBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
 	
 	RAC(self.marriageTF, text) = RACObserve(self.viewModel, marryValuesTitle);
 	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
@@ -279,20 +281,19 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 
 #pragma mark - UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == MSFRelationshipViewSectionMember2) {
-		if (!self.viewModel.hasMember2) {
-			return nil;
-		}
-	}
-	if (section == MSFRelationshipViewSectionContact2) {
-		if (!self.viewModel.hasContact2) {
-			return nil;
-		}
-	}
-	
-	return [super tableView:tableView titleForHeaderInSection:section];
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//	if (section == MSFRelationshipViewSectionMember2) {
+//		if (!self.viewModel.hasMember2) {
+//			return nil;
+//		}
+//	}
+//	if (section == MSFRelationshipViewSectionContact2) {
+//		if (!self.viewModel.hasContact2) {
+//			return nil;
+//		}
+//	}
+//	return [super tableView:tableView titleForHeaderInSection:section];
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == MSFRelationshipViewSectionMember1) {
@@ -316,4 +317,42 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	return [super tableView:tableView numberOfRowsInSection:section];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	UIView* myView = [[UIView alloc] init];
+	myView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+	
+	UILabel *titleLabel = [[UILabel alloc] init];
+	[titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(myView);
+		make.left.equalTo(myView.mas_left).offset(10);
+	}];
+	
+	titleLabel.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	titleLabel.backgroundColor = [UIColor clearColor];
+	if (section == MSFRelationshipViewSectionTitle) {
+		return nil;
+	}
+	if (section == MSFRelationshipViewSectionMember1) {
+		titleLabel.text = @"家庭成员一";
+	}
+	if (section == MSFRelationshipViewSectionMember2) {
+		if (!self.viewModel.hasMember2) {
+			return nil;
+		}
+		titleLabel.text = @"家庭成员二";
+	}
+	if (section == MSFRelationshipViewSectionContact1) {
+		titleLabel.text = @"其他联系人一";
+	}
+	if (section == MSFRelationshipViewSectionContact2) {
+		if (!self.viewModel.hasContact2) {
+			return nil;
+		}
+		titleLabel.text = @"其他联系人二";
+	}
+	
+	[myView addSubview:titleLabel];
+	
+	return myView;
+}
 @end
