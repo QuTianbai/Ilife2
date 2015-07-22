@@ -18,10 +18,9 @@
 #import "MSFApplicationResponse.h"
 #import "MSFCommandView.h"
 #import "MSFRelationshipViewModel.h"
+#import "UIColor+Utils.h"
 
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
+#define BLUECOLOR @"#007ee5"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
@@ -103,6 +102,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	[super viewDidLoad];
 	self.title = @"家庭信息";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.tableView.sectionIndexColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	self.tableView.sectionIndexBackgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -256,6 +257,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 			}
 		}];
 	}];
+	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:BLUECOLOR]];
+	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
@@ -286,13 +290,14 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 			return nil;
 		}
 	}
+	
 	return [super tableView:tableView titleForHeaderInSection:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == MSFRelationshipViewSectionMember1) {
 		if ([_isSameCurrentSW isOn]) {
-			return 4;
+			return 5;
 		}
 	}
 	if (section == MSFRelationshipViewSectionMember2) {
