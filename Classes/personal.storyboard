@@ -59,6 +59,7 @@
                                                 <constraint firstItem="8Z3-IP-VP3" firstAttribute="leading" secondItem="Yp4-WO-VB3" secondAttribute="leading" constant="15" id="qig-FW-HLc"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.9485282512626263" green="0.9485282512626263" blue="0.9485282512626263" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="3NG-MO-iuA">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -210,6 +211,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="vA5-ZT-8wv" secondAttribute="bottom" constant="10.5" id="wTI-bQ-xFL"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="kwd-oc-b0u">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -305,6 +307,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="4aM-ph-64v" secondAttribute="bottom" constant="10.5" id="gmo-ud-wLk"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="W7W-cf-paF">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -430,8 +433,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kKd-4f-l0m" id="5pH-3e-bGN">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <segmentedControl opaque="NO" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-Dh-Beh" customClass="MSFSegment">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
+                                                <segmentedControl opaque="NO" multipleTouchEnabled="YES" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-Dh-Beh" customClass="MSFSegment">
+                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="44.5"/>
+                                                    <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <segments>
                                                         <segment title="QQ"/>
                                                         <segment title="淘宝"/>
@@ -443,9 +447,10 @@
                                                 <constraint firstItem="k0S-Dh-Beh" firstAttribute="top" secondItem="5pH-3e-bGN" secondAttribute="top" id="JTW-Qa-BQ9"/>
                                                 <constraint firstAttribute="bottom" secondItem="k0S-Dh-Beh" secondAttribute="bottom" id="Nl2-VJ-aL3"/>
                                                 <constraint firstItem="k0S-Dh-Beh" firstAttribute="leading" secondItem="5pH-3e-bGN" secondAttribute="leading" id="Qwd-oz-9QA"/>
-                                                <constraint firstAttribute="trailing" secondItem="k0S-Dh-Beh" secondAttribute="trailing" id="xvZ-CT-s66"/>
+                                                <constraint firstAttribute="trailing" secondItem="k0S-Dh-Beh" secondAttribute="trailing" constant="-3" id="xvZ-CT-s66"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>
