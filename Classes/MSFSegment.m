@@ -44,25 +44,36 @@
   self.momentary = YES;
   NSArray *array = self.subviews;
   for (UIView *view in array) {
+    UILabel *labelH=[[UILabel alloc] initWithFrame:CGRectMake(view.bounds.size.width, 0, 3, view.frame.size.height)];
+    labelH.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+    //labelH.backgroundColor = [UIColor redColor];
+    [view addSubview:labelH];
     NSUInteger i = [array indexOfObject:view];
     
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-4, view.frame.size.width, 2)];
     
     label.tag =self.numberOfSegments-1-i;
     if (label.tag == 0) {
+      //view.backgroundColor = [UIColor blueColor];
       label.hidden = NO;
     } else {
       label.hidden = YES;
     }
    // if (i<2) {
-      UILabel *labelH=[[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width, 0, 50, view.frame.size.height)];
-      labelH.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
-      [view addSubview:labelH];
+    
     //}
     [labelArray addObject:label];
     label.backgroundColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
     [view addSubview:label];
   }
+  
+  self.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见
+  NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
+                                           NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
+  [self setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
+  NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
+                                             NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
+  [self setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
 }
 
 - (void)setLineColors {
