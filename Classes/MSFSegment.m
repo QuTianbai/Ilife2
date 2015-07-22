@@ -44,13 +44,14 @@
   for (UIView *view in array) {
     NSUInteger i = [array indexOfObject:view];
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-3, self.frame.size.width/2, 2)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-3, view.frame.size.width, 2)];
     label.tag =self.numberOfSegments-1-i;
     if (label.tag == 0) {
       label.hidden = NO;
     } else {
       label.hidden = YES;
     }
+    [labelArray addObject:label];
     label.backgroundColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
     [view addSubview:label];
   }
