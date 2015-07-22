@@ -24,6 +24,8 @@
 #import "MSFRelationshipViewModel.h"
 #import "MSFRelationshipViewController.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		MSFProfessionalViewSectionSchool = 1,
@@ -215,6 +217,28 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+  
+  NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
+  if (sectionTitle == nil) {
+    return  nil;
+  }
+  
+  UIView * sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
+  sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+  
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
+  
+  titleLabel.text = sectionTitle;
+  titleLabel.font = [UIFont systemFontOfSize:14];
+  titleLabel.textColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
+  titleLabel.backgroundColor = [UIColor clearColor];
+  
+  [sectionView addSubview:titleLabel];
+  
+  return sectionView;
 }
 
 @end
