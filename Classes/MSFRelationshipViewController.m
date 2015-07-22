@@ -281,32 +281,37 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 
 #pragma mark - UITableViewDataSource
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//	if (section == MSFRelationshipViewSectionMember2) {
-//		if (!self.viewModel.hasMember2) {
-//			return nil;
-//		}
-//	}
-//	if (section == MSFRelationshipViewSectionContact2) {
-//		if (!self.viewModel.hasContact2) {
-//			return nil;
-//		}
-//	}
-//	return [super tableView:tableView titleForHeaderInSection:section];
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == MSFRelationshipViewSectionMember2) {
+		if (!self.viewModel.hasMember2) {
+			return nil;
+		}
+	}
+	if (section == MSFRelationshipViewSectionContact2) {
+		if (!self.viewModel.hasContact2) {
+			return nil;
+		}
+	}
+	return [super tableView:tableView titleForHeaderInSection:section];
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == MSFRelationshipViewSectionMember1) {
-		if ([_isSameCurrentSW isOn]) {
-			return 5;
+		if (![_isSameCurrentSW isOn]) {
+			return 6;
 		}
 	}
 	if (section == MSFRelationshipViewSectionMember2) {
 		if (!self.viewModel.hasMember2) {
 			return 0;
 		}
-		if ([_num2IsSameCurrentSW isOn]) {
-			return 4;
+		else {
+			if (![_num2IsSameCurrentSW isOn]) {
+				return 5;
+			}
+			else {
+				return 4;
+			}
 		}
 	}
 	if (section == MSFRelationshipViewSectionContact2) {
@@ -318,41 +323,23 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView* myView = [[UIView alloc] init];
-	myView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
-	UILabel *titleLabel = [[UILabel alloc] init];
-	[titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(myView);
-		make.left.equalTo(myView.mas_left).offset(10);
-	}];
+	NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
+	if (sectionTitle == nil) {
+		return  nil;
+	}
 	
+	UIView * sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
+	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+	
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
+	
+	titleLabel.text = sectionTitle;
 	titleLabel.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
 	titleLabel.backgroundColor = [UIColor clearColor];
-	if (section == MSFRelationshipViewSectionTitle) {
-		return nil;
-	}
-	if (section == MSFRelationshipViewSectionMember1) {
-		titleLabel.text = @"家庭成员一";
-	}
-	if (section == MSFRelationshipViewSectionMember2) {
-		if (!self.viewModel.hasMember2) {
-			return nil;
-		}
-		titleLabel.text = @"家庭成员二";
-	}
-	if (section == MSFRelationshipViewSectionContact1) {
-		titleLabel.text = @"其他联系人一";
-	}
-	if (section == MSFRelationshipViewSectionContact2) {
-		if (!self.viewModel.hasContact2) {
-			return nil;
-		}
-		titleLabel.text = @"其他联系人二";
-	}
 	
-	[myView addSubview:titleLabel];
+	[sectionView addSubview:titleLabel];
 	
-	return myView;
+	return sectionView;
 }
 @end
