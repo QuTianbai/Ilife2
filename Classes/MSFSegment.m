@@ -36,6 +36,7 @@
 }
 
 - (void)commonInit {
+  self.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
   CGRect frame = [[UIScreen mainScreen]bounds];
   labelArray = [[NSMutableArray alloc] init];
   self.layer.borderWidth = 2;
@@ -53,6 +54,11 @@
     } else {
       label.hidden = YES;
     }
+   // if (i<2) {
+      UILabel *labelH=[[UILabel alloc] initWithFrame:CGRectMake(view.frame.size.width, 0, 50, view.frame.size.height)];
+      labelH.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+      [view addSubview:labelH];
+    //}
     [labelArray addObject:label];
     label.backgroundColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
     [view addSubview:label];
