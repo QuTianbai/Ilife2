@@ -16,7 +16,7 @@
 	self.layer.cornerRadius = 5.0f;
 	self.layer.masksToBounds = YES;
 	//self.titleLabel.font = [UIFont systemFontOfSize:[UIFont buttonFontSize]];
-	self.backgroundColor = [UIColor themeColor];
+	self.backgroundColor = [UIColor tintColor];
 	
 	return self;
 }
@@ -28,7 +28,7 @@
 	self.layer.cornerRadius = 5.0f;
 	self.layer.masksToBounds = YES;
 	//self.titleLabel.font = [UIFont systemFontOfSize:[UIFont buttonFontSize]];
-	self.backgroundColor = [UIColor themeColor];
+	self.backgroundColor = [UIColor tintColor];
 	
 	return self;
 }
