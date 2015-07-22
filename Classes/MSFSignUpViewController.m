@@ -10,6 +10,7 @@
 #import <libextobjc/extobjc.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"
+#import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
@@ -24,7 +25,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property(nonatomic,weak) IBOutlet UIButton *iAgreeButton;
 @property(nonatomic,weak) IBOutlet UIButton *agreeButton;
 @property(nonatomic,weak) IBOutlet UIButton *sendCaptchaButton;
-@property(nonatomic,weak) IBOutlet UISwitch *passwordSwith;
+@property(nonatomic,weak) IBOutlet UIView *backgroundView;
 
 @property(nonatomic,weak) IBOutlet UILabel *counterLabel;
 
@@ -36,7 +37,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-login"]];
+	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	self.backgroundView.layer.masksToBounds = YES;
+	self.backgroundView.layer.cornerRadius = 5;
+	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
+	self.backgroundView.layer.borderWidth = 1;
 	self.username.text = MSFUtils.phone;
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = @"18223959242";
@@ -49,7 +54,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	RAC(self.counterLabel,textColor) = [self.viewModel.captchaRequestValidSignal
 		map:^id(NSNumber *valid) {
-			return valid.boolValue ? UIColor.whiteColor : UIColor.lightGrayColor;
+			return valid.boolValue ? UIColor.darkGrayColor: UIColor.lightGrayColor;
 		}];
 	self.iAgreeButton.rac_command = self.viewModel.executeAgreeOnLicense;
 	self.agreeButton.rac_command	= self.viewModel.executeAgreeOnLicense;
@@ -88,11 +93,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
-	[self.passwordSwith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
-		@strongify(self)
-		[self.password setSecureTextEntry:!x.boolValue];
-	}];
+}
+
+- (void)bindViewModel:(id)viewModel {
 }
 
 @end

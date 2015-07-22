@@ -5,10 +5,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
 /**
  *	注册
  */
-@interface MSFSignUpViewController : UITableViewController
+@interface MSFSignUpViewController : UITableViewController <MSFReactiveView>
 
 @end

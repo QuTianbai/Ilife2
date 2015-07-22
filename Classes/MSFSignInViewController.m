@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
 #import "MSFUtils.h"
+#import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
@@ -36,25 +37,20 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		return nil;
 	}
 	_viewModel = viewModel;
+	[self bindViewModel:self.viewModel];
 	
 	return self;
 }
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	self.title = @"登录";
-	self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg-login"]];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.username.text = MSFUtils.phone;
-	
-	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-		self.username.text = @"18696995689";
-		self.password.text = @"123456qw";
-	}
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
   @weakify(self)
-	
-	RAC(self.viewModel,username) = [self.username.rac_textSignal takeUntil:self.rac_willDeallocSignal];
-	RAC(self.viewModel,password) = [self.password.rac_textSignal takeUntil:self.rac_willDeallocSignal];
+	[RACObserve(self.username, text) subscribeNext:^(id x) {
+		self.viewModel.username = x;
+	}];
+	[RACObserve(self.password, text) subscribeNext:^(id x) {
+		self.viewModel.password = x;
+	}];
 	
 	self.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
@@ -75,6 +71,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
 	}];
+}
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.title = @"登录";
+	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.backgroundView.layer.masksToBounds = YES;
+	self.backgroundView.layer.cornerRadius = 5;
+	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
+	self.backgroundView.layer.borderWidth = 1;
+	
+	self.username.text = MSFUtils.phone;
+	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
+		self.username.text = @"18696995689";
+		self.password.text = @"123456qw";
+	}
 }
 
 @end
