@@ -15,6 +15,7 @@
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
 #import "MSFUtils.h"
+#import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
 
 @interface MSFHomepageViewController () <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -43,7 +44,7 @@
 	[super viewDidLoad];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
 	label.text = @"马上贷";
-	label.textColor = [UIColor whiteColor];
+	label.textColor = [UIColor tintColor];
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;

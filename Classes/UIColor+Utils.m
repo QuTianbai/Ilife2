@@ -30,11 +30,31 @@
 }
 
 + (UIColor *)barTintColor {
-	return [UIColor colorWithHex:0x477dbd];
+	return [UIColor whiteColor];
 }
 
 + (UIColor *)tintColor {
-	return [UIColor colorWithHex:0xffffff];
+	return [UIColor colorWithRed:0.047 green:0.404 blue:0.875 alpha:1.000];
+}
+
++ (UIColor *)buttonNormalColor {
+	return [UIColor colorWithRed:0.047 green:0.404 blue:0.875 alpha:1.000];
+}
+
++ (UIColor *)buttonDisableColor {
+	return [UIColor colorWithRed:0.255 green:0.506 blue:0.784 alpha:1.000];
+}
+
++ (UIColor *)buttonSelectedColor {
+	return [UIColor colorWithRed:0.231 green:0.455 blue:0.710 alpha:1.000];
+}
+
++ (UIColor *)fontHighlightedColor {
+	return [UIColor colorWithRed:0.047 green:0.404 blue:0.875 alpha:1.000];
+}
+
++ (UIColor *)fontNormalColor {
+	return [UIColor colorWithWhite:0.529 alpha:1.000];
 }
 
 @end
