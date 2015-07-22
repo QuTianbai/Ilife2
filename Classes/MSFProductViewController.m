@@ -25,6 +25,7 @@
 #import "MSFLoanAgreementController.h"
 #import "MSFFormsViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
+#import "UIColor+Utils.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -72,12 +73,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey]) {
-		self.applyCashNumTF.text = @"5000";
+		self.applyCashNumTF.text = @"2000";
 	}
 	
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
 	label.text = @"贷款申请";
-	label.textColor = [UIColor whiteColor];
+	label.textColor = [UIColor fontHighlightedColor];
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
