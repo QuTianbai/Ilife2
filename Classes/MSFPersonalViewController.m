@@ -189,9 +189,14 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  
+  NSLog(@"%ld",self.selectQQorJDSegment.selectedSegmentIndex);
 	if (section == 0 || section == self.selectQQorJDSegment.selectedSegmentIndex + 1) {
 		return [super tableView:tableView numberOfRowsInSection:section];
 	}
+  if (section ==1 && self.selectQQorJDSegment.selectedSegmentIndex == -1) {
+    return [super tableView:tableView numberOfRowsInSection:1];
+  }
 	return 0;
 }
 

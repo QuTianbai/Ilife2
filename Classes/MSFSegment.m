@@ -36,6 +36,7 @@
 }
 
 - (void)commonInit {
+  CGRect frame = [[UIScreen mainScreen]bounds];
   labelArray = [[NSMutableArray alloc] init];
   self.layer.borderWidth = 2;
   self.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -44,7 +45,8 @@
   for (UIView *view in array) {
     NSUInteger i = [array indexOfObject:view];
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-3, view.frame.size.width, 2)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-4, view.frame.size.width, 2)];
+    
     label.tag =self.numberOfSegments-1-i;
     if (label.tag == 0) {
       label.hidden = NO;
