@@ -13,6 +13,8 @@
 #import "MSFClozeViewController.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
+#import "MSFLoginViewController.h"
+#import "MSFLoginSwapController.h"
 
 @interface MSFTabBarViewModel ()
 
@@ -74,18 +76,10 @@
   @weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-    MSFSignInViewController *loginViewController = [[MSFSignInViewController alloc] initWithViewModel:self.authorizeViewModel];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+    MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel loginType:MSFLoginSignIn];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+		navigationController.navigationBarHidden = YES;
     [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
-		
-		UIImage *backButtonImage = [UIImage imageNamed:@"left_arrow"];
-    loginViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStyleDone target:nil action:nil];
-    @weakify(loginViewController);
-    loginViewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-      @strongify(loginViewController);
-      [loginViewController dismissViewControllerAnimated:YES completion:nil];
-      return [RACSignal empty];
-    }];
 		[subscriber sendCompleted];
 		
     return [RACDisposable disposableWithBlock:^{
@@ -100,22 +94,13 @@
 	@weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-		UIViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignUpViewController"];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel loginType:MSFLoginSignUp];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+		navigationController.navigationBarHidden = YES;
     [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
-		UIImage *backButtonImage = [UIImage imageNamed:@"left_arrow"];
-    viewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStyleDone target:nil action:nil];
-    @weakify(viewController);
-    viewController.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-      @strongify(viewController);
-      [viewController dismissViewControllerAnimated:YES completion:nil];
-      return [RACSignal empty];
-    }];
 		[subscriber sendCompleted];
 		
     return [RACDisposable disposableWithBlock:^{
-      [viewController.navigationItem.leftBarButtonItem.rac_command executionSignals];
     }];
   }];
   

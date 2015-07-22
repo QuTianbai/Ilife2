@@ -95,4 +95,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}];
 }
 
+- (void)bindViewModel:(id)viewModel {
+}
+
 @end
