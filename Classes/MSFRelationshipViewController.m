@@ -10,6 +10,7 @@
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <Masonry/Masonry.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
@@ -18,10 +19,9 @@
 #import "MSFApplicationResponse.h"
 #import "MSFCommandView.h"
 #import "MSFRelationshipViewModel.h"
+#import "UIColor+Utils.h"
 
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
+#define BLUECOLOR @"#007ee5"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
@@ -108,15 +108,18 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.hasMember2 = !self.viewModel.hasMember2;
-		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"-删除第二位家庭成员" : @"✚增加第二位家庭成员" forState:UIControlStateNormal];
+		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"- 删除第二位家庭成员" : @"✚ 增加第二位家庭成员" forState:UIControlStateNormal];
 		[self.tableView reloadData];
 	}];
+	[self.addFamilyBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
+	
 	[[self.addOtherBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.hasContact2 = !self.viewModel.hasContact2;
-		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"-删除第二位联系人" : @"✚增加第二位联系人" forState:UIControlStateNormal];
+		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"- 删除第二位联系人" : @"✚ 增加第二位其他联系人" forState:UIControlStateNormal];
 		[self.tableView reloadData];
 	}];
+	[self.addOtherBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
 	
 	RAC(self.marriageTF, text) = RACObserve(self.viewModel, marryValuesTitle);
 	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
@@ -256,6 +259,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 			}
 		}];
 	}];
+	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:BLUECOLOR]];
+	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
@@ -291,16 +297,21 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == MSFRelationshipViewSectionMember1) {
-		if ([_isSameCurrentSW isOn]) {
-			return 4;
+		if (![_isSameCurrentSW isOn]) {
+			return 6;
 		}
 	}
 	if (section == MSFRelationshipViewSectionMember2) {
 		if (!self.viewModel.hasMember2) {
 			return 0;
 		}
-		if ([_num2IsSameCurrentSW isOn]) {
-			return 4;
+		else {
+			if (![_num2IsSameCurrentSW isOn]) {
+				return 5;
+			}
+			else {
+				return 4;
+			}
 		}
 	}
 	if (section == MSFRelationshipViewSectionContact2) {
@@ -309,6 +320,47 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		}
 	}
 	return [super tableView:tableView numberOfRowsInSection:section];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	
+	NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
+	if (sectionTitle == nil) {
+		return  nil;
+	}
+	
+	UIView * sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
+	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+	
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
+	
+	titleLabel.text = sectionTitle;
+	titleLabel.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	titleLabel.backgroundColor = [UIColor clearColor];
+	
+	[sectionView addSubview:titleLabel];
+	
+	return sectionView;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+		[cell setSeparatorInset:UIEdgeInsetsZero];
+	}
+
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+- (void)viewDidLayoutSubviews {
+	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+
+	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 @end

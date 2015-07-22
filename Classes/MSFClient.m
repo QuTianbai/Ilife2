@@ -176,7 +176,7 @@ static BOOL isRunningTests(void) {
 	return client;
 }
 
-+ (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session {
++ (instancetype)autehenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(token != nil);
 	
