@@ -22,8 +22,9 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFProfessionalViewController.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFCommandView.h"
 
-@interface MSFPersonalViewController ()
+@interface MSFPersonalViewController ()<MSFSegmentDelegate>
 
 @property(nonatomic,strong) MSFPersonalViewModel *viewModel;
 
@@ -148,8 +149,10 @@
 	@weakify(self)
 	RAC(self.provinceTF,text) = RACObserve(self.viewModel, address);
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+  self.selectQQorJDSegment.delegate = self;
 	[[self.selectQQorJDSegment rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
 		@strongify(self)
+    [self.selectQQorJDSegment setLineColors];
 		[self.tableView reloadData];
 	}];
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
@@ -190,6 +193,19 @@
 		return [super tableView:tableView numberOfRowsInSection:section];
 	}
 	return 0;
+}
+
+#pragma mark - MSFSegmenDelegate
+
+- (void)setLineColor:(NSMutableArray *)array {
+  for (UILabel *label in array) {
+    if (label.tag == self.selectQQorJDSegment.selectedSegmentIndex) {
+      label.hidden = NO;
+    }
+    else {
+      label.hidden = YES;
+    }
+  }
 }
 
 @end

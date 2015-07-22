@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
+#import "MSFSegment.h"
 
 // 基本信息
 @interface MSFPersonalViewController : UITableViewController <MSFReactiveView>
@@ -29,7 +30,7 @@
 @property(weak,nonatomic) IBOutlet UIButton *selectAreasBT;
 
 @property(weak,nonatomic) IBOutlet UIButton *nextPageBT;
-@property(weak,nonatomic) IBOutlet UISegmentedControl *selectQQorJDSegment;
+@property(weak,nonatomic) IBOutlet MSFSegment *selectQQorJDSegment;
 
 @property(nonatomic,weak) IBOutlet UITextField *tencentUsername;
 @property(nonatomic,weak) IBOutlet UITextField *taobaoUsername;
