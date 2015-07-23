@@ -105,6 +105,7 @@
 		494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBE0D1B16B1BC005F0454 /* MSFCipher.m */; };
 		495020F71B130FFF00605666 /* MSFUserViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 495020F61B130FFF00605666 /* MSFUserViewModelSpec.m */; };
 		495021071B13103400605666 /* MSFUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495021061B13103400605666 /* MSFUserViewModel.m */; };
+		4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */; };
 		4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952E5901B0B6D490036A6ED /* MSFAuthorizeViewModel.m */; };
 		4952E5931B0B6DBD0036A6ED /* MSFAuthorizeViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952E5921B0B6DBD0036A6ED /* MSFAuthorizeViewModelSpec.m */; };
 		4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4955B1C61B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m */; };
@@ -680,6 +681,9 @@
 		495020F61B130FFF00605666 /* MSFUserViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserViewModelSpec.m; sourceTree = "<group>"; };
 		495021051B13103400605666 /* MSFUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserViewModel.h; sourceTree = "<group>"; };
 		495021061B13103400605666 /* MSFUserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserViewModel.m; sourceTree = "<group>"; };
+		4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFViewModelServices.h; sourceTree = "<group>"; };
+		4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFViewModelServicesImpl.h; sourceTree = "<group>"; };
+		4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFViewModelServicesImpl.m; sourceTree = "<group>"; };
 		4952E58F1B0B6D490036A6ED /* MSFAuthorizeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorizeViewModel.h; sourceTree = "<group>"; };
 		4952E5901B0B6D490036A6ED /* MSFAuthorizeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorizeViewModel.m; sourceTree = "<group>"; };
 		4952E5921B0B6DBD0036A6ED /* MSFAuthorizeViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorizeViewModelSpec.m; sourceTree = "<group>"; };
@@ -2240,6 +2244,9 @@
 				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
 				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
 				07C2E0731B1AE9FE00C7FEDE /* MSFReactiveView.h */,
+				4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */,
+				4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */,
+				4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -3089,6 +3096,7 @@
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,
 				C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */,
+				4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */,
 				499147231B256D0D00260E97 /* MSFClient+Months.m in Sources */,
 				49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */,
 				497269D61B5F38AE000F1E82 /* MSFLoginSwapController.m in Sources */,

@@ -19,6 +19,7 @@
 @interface MSFTabBarViewModel ()
 
 @property (nonatomic, strong, readwrite) RACSubject *authorizationUpdatedSignal;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -26,12 +27,29 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
+	if (!(self = [self init])) {
+    return nil;
+	}
+	_services = services;
+	[self initialize];
+	
+	return self;
+}
+
 - (instancetype)init {
   self = [super init];
   if (!self) {
     return nil;
   }
-	
+	[self initialize];
+
+  return self;
+}
+
+#pragma mark - Private
+
+- (void)initialize {
 	_formsViewModel = [[MSFFormsViewModel alloc] init];
 	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] init];
 	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel updatedContentSignal"];
@@ -62,8 +80,6 @@
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
-	
-  return self;
 }
 
 #pragma mark - Custom Accessors

@@ -5,6 +5,7 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @class MSFClient;
 @class RACCommand;
@@ -30,5 +31,7 @@
 
 - (RACSignal *)signInSignal;
 - (RACSignal *)verifySignal;
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end

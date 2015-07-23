@@ -74,6 +74,40 @@
   return self;
 }
 
+- (void)bindViewModel:(id)viewModel {
+	_viewModel = viewModel;
+	[self unAuthenticatedControllers];
+	@weakify(self)
+	MSFAuthorizationView *view = [[MSFAuthorizationView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+	[self.view addSubview:view];
+	[view bindViewModel:self.viewModel];
+	
+	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+		@strongify(self)
+		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
+			[view removeFromSuperview];
+		}
+		self.viewModel.formsViewModel.active = NO;
+		if (client.authenticated) {
+			[self authenticatedControllers];
+		} else {
+			[self unAuthenticatedControllers];
+		}
+	}];
+	
+	[[[NSNotificationCenter defaultCenter]
+	rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
+	subscribeNext:^(NSNotification *notification) {
+		@strongify(self)
+		MSFClient *client = notification.object;
+		self.viewModel.formsViewModel.active = NO;
+		[self authenticatedControllers];
+		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
+			[view removeFromSuperview];
+		}
+	}];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
   self.tabBar.selectedImageTintColor = UIColor.themeColor;
