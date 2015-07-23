@@ -37,7 +37,6 @@
 
 - (void)commonInit {
   self.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
-  CGRect frame = [[UIScreen mainScreen]bounds];
   labelArray = [[NSMutableArray alloc] init];
   self.layer.borderWidth = 2;
   self.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -53,17 +52,16 @@
     } else {
       label.hidden = YES;
     }
-   
     [labelArray addObject:label];
     label.backgroundColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
     [view addSubview:label];
   }
   
   self.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见
-  NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
+  NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
                                            NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
   [self setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
-  NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:16],
+  NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
                                              NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
   [self setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
 }
