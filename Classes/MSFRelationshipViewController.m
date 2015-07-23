@@ -20,6 +20,7 @@
 #import "MSFCommandView.h"
 #import "MSFRelationshipViewModel.h"
 #import "UIColor+Utils.h"
+#import "MSFHeaderView.h"
 
 #define BLUECOLOR @"#007ee5"
 
@@ -102,7 +103,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"家庭信息";
-	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
 	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
