@@ -53,6 +53,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 @property(weak, nonatomic) IBOutlet UISwitch *isSameCurrentSW;
 @property(weak, nonatomic) IBOutlet UITextField *diffCurrentTF;
 @property(weak, nonatomic) IBOutlet UIButton *addFamilyBT;
+@property (weak, nonatomic) IBOutlet UILabel *relationAddressLabel;
+
 
 /**
  *	家庭联系人二
@@ -63,6 +65,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 @property(weak, nonatomic) IBOutlet UITextField *num2TelTF;
 @property(weak, nonatomic) IBOutlet UISwitch *num2IsSameCurrentSW;
 @property(weak, nonatomic) IBOutlet UITextField *num2DiffCurrentTF;
+@property (weak, nonatomic) IBOutlet UILabel *num2RelationAddressLabel;
 
 /**
  *	其他联系人一
@@ -316,10 +319,28 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == MSFRelationshipViewSectionMember1 && indexPath.row == 4 && self.isSameCurrentSW.on) {
+	if (indexPath.section == MSFRelationshipViewSectionMember1 && indexPath.row == 4 ) {
+		if (self.isSameCurrentSW.isOn) {
+			[_relationAddressLabel setHidden:YES];
+			[_diffCurrentTF setHidden:YES];
+		}
+		else {
+			[_relationAddressLabel setHidden:NO];
+			[_diffCurrentTF setHidden:NO];
+			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+		}
 		return 0;
 	}
-	if (indexPath.section == MSFRelationshipViewSectionMember2 && indexPath.row == 4 && self.num2IsSameCurrentSW.on) {
+	if (indexPath.section == MSFRelationshipViewSectionMember2 && indexPath.row == 4 ) {
+		if (self.num2IsSameCurrentSW.isOn) {
+			[_num2RelationAddressLabel setHidden:YES];
+			[_num2DiffCurrentTF setHidden:YES];
+		}
+		else {
+			[_num2RelationAddressLabel setHidden:NO];
+			[_num2DiffCurrentTF setHidden:NO];
+			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+		}
 		return 0;
 	}
 	return [super tableView:tableView heightForRowAtIndexPath:indexPath];
