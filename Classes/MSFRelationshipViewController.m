@@ -86,6 +86,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
  */
 @property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
+@property (nonatomic, assign) BOOL sameMember1Address;
+@property (nonatomic, assign) BOOL sameMember2Address;
+
 #define RELATION_VIEW_MODEL self.viewModel.relationViewModel
 
 @end
@@ -161,6 +164,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		if (value.boolValue) {
 			self.diffCurrentTF.text = @"";
 		}
+		[self.tableView reloadData];
 	}];
 	
 	// 第二位家庭成员
@@ -195,6 +199,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		if (value.boolValue) {
 			self.num2DiffCurrentTF.text = @"";
 		}
+		[self.tableView reloadData];
 	}];
 	
 	// 其他联系人一
@@ -297,22 +302,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == MSFRelationshipViewSectionMember1) {
-		if (![_isSameCurrentSW isOn]) {
-			return 6;
-		}
-	}
 	if (section == MSFRelationshipViewSectionMember2) {
 		if (!self.viewModel.hasMember2) {
 			return 0;
-		}
-		else {
-			if (![_num2IsSameCurrentSW isOn]) {
-				return 5;
-			}
-			else {
-				return 4;
-			}
 		}
 	}
 	if (section == MSFRelationshipViewSectionContact2) {
@@ -321,6 +313,16 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		}
 	}
 	return [super tableView:tableView numberOfRowsInSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == MSFRelationshipViewSectionMember1 && indexPath.row == 4 && self.isSameCurrentSW.on) {
+		return 0;
+	}
+	if (indexPath.section == MSFRelationshipViewSectionMember2 && indexPath.row == 4 && self.num2IsSameCurrentSW.on) {
+		return 0;
+	}
+	return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
