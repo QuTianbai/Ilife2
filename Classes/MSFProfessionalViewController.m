@@ -26,6 +26,7 @@
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
+#import "MSFHeaderView.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		MSFProfessionalViewSectionSchool = 1,
@@ -57,6 +58,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"职业信息";
+	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:1];
 	
 	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, universityName);
 	RAC(self.universityName, text) = universityNameChannel;

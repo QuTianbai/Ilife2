@@ -23,6 +23,7 @@
 #import "MSFProfessionalViewController.h"
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
+#import "MSFHeaderView.h"
 
 @interface MSFPersonalViewController ()<MSFSegmentDelegate>
 
@@ -47,8 +48,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"基本信息";
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-  
+	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:0];
+	
 	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]
    subscribeNext:^(UITextField *textField) {
      if (textField.text.length > 5) {
