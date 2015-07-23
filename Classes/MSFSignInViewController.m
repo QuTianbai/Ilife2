@@ -45,18 +45,20 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
   @weakify(self)
-	[RACObserve(self.username, text) subscribeNext:^(id x) {
+	[self.username.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
 		self.viewModel.username = x;
 	}];
-	[RACObserve(self.password, text) subscribeNext:^(id x) {
+	[self.password.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
 		self.viewModel.password = x;
 	}];
 	
 	self.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
 		@strongify(self)
-		[MSFUtils setPhone:self.username.text];
 		[self.view endEditing:YES];
+		[MSFUtils setPhone:self.username.text];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
