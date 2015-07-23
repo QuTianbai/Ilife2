@@ -44,24 +44,16 @@
   self.momentary = YES;
   NSArray *array = self.subviews;
   for (UIView *view in array) {
-    UILabel *labelH=[[UILabel alloc] initWithFrame:CGRectMake(view.bounds.size.width, 0, 3, view.frame.size.height)];
-    labelH.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
-    //labelH.backgroundColor = [UIColor redColor];
-    [view addSubview:labelH];
     NSUInteger i = [array indexOfObject:view];
-    
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-4, view.frame.size.width, 2)];
     
     label.tag =self.numberOfSegments-1-i;
     if (label.tag == 0) {
-      //view.backgroundColor = [UIColor blueColor];
       label.hidden = NO;
     } else {
       label.hidden = YES;
     }
-   // if (i<2) {
-    
-    //}
+   
     [labelArray addObject:label];
     label.backgroundColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
     [view addSubview:label];
