@@ -26,7 +26,7 @@
 #import "UIColor+Utils.h"
 
 @interface MSFTabBarController () <UIAlertViewDelegate>
-
+@property(nonatomic,strong)	UINavigationController *productpage;
 @end
 
 @implementation MSFTabBarController
@@ -161,6 +161,8 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
+  @weakify(self)
+  
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithClient:self.viewModel.client];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
@@ -169,15 +171,24 @@
 	
 	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
-	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
-	productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	self.productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
+	self.productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel];
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
 	userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
-	
-	self.viewControllers = @[homepage, productpage, userpage];
+  [self.viewModel.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
+    // @strongify(self)
+    NSLog(@"woshuo");
+    MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+    MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
+    self.productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
+    self.productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+    self.viewControllers = @[homepage, self.productpage, userpage];
+    
+  }];
+	self.viewControllers = @[homepage, self.productpage, userpage];
 	/*
 	@weakify(self)
 	[self.viewModel.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
