@@ -36,13 +36,13 @@
 	_productTerms = @"";
 	_termAmount = 0;
 	
-	RAC(self.formsViewModel.model,repayMoneyMonth) = RACObserve(self, termAmount);
-	RAC(self.formsViewModel.model,principal) = RACObserve(self, totalAmount);
-	RAC(self.formsViewModel.model,isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
+	RAC(self.formsViewModel.model,repayMoneyMonth) = RACObserve(self, termAmount).rac_willDeallocSignal;
+	RAC(self.formsViewModel.model,principal) = RACObserve(self, totalAmount).rac_willDeallocSignal;
+	RAC(self.formsViewModel.model,isSafePlan) = [RACObserve(self, insurance).rac_willDeallocSignal map:^id(id value) {
 		return [value stringValue];
 	}];
   
-	RAC(self.formsViewModel.model,usageCode) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
+	RAC(self.formsViewModel.model,usageCode) = [RACObserve(self, purpose).rac_willDeallocSignal map:^id(MSFSelectKeyValues *value) {
 		return value.code;
 	}];
 	
