@@ -11,6 +11,7 @@
 @protocol MSFViewModelServices <NSObject>
 
 - (void)pushViewModel:(id)viewModel;
+- (void)presentViewModel:(id)viewModel;
 - (MSFClient *)httpClient;
 
 @end

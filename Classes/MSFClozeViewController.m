@@ -30,6 +30,17 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.edgesForExtendedLayout = UIRectEdgeNone;

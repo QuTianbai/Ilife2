@@ -28,14 +28,26 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+	_loginType = self.viewModel.loginType;
+	
+  return self;
+}
+
 - (instancetype)initWithViewModel:(id)viewModel loginType:(MSFLoginType)loginType {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
 	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
   if (!self) {
     return nil;
   }
-	_loginType = loginType;
 	_viewModel = viewModel;
+	_loginType = self.viewModel.loginType;
 	
   return self;
 }

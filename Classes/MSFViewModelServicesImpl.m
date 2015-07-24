@@ -11,6 +11,12 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
+#import "MSFAuthorizeViewModel.h"
+#import "MSFLoginViewController.h"
+
+#import "MSFClozeViewModel.h"
+#import "MSFClozeViewController.h"
+
 @interface MSFViewModelServicesImpl ()
 
 @property (nonatomic, weak) UITabBarController *tabBarController;
@@ -43,9 +49,24 @@
   [(UINavigationController *)self.tabBarController.selectedViewController pushViewController:viewController animated:YES];
 }
 
+- (void)presentViewModel:(id)viewModel {
+	id viewController;
+  
+	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
+		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
+		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+	} else if ([viewModel isKindOfClass:MSFClozeViewModel.class]) {
+    MSFClozeViewController *clozeViewController = [[MSFClozeViewController alloc] initWithViewModel:viewModel];
+		viewController = [[UINavigationController alloc] initWithRootViewController:clozeViewController];
+	} else {
+    NSLog(@"an unknown ViewModel was present!");
+  }
+  
+  [self.tabBarController.selectedViewController presentViewController:viewController animated:YES completion:nil];
+}
+
 - (MSFClient *)httpClient {
 	return MSFUtils.httpClient;
 }
-
 
 @end

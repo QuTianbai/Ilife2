@@ -5,6 +5,7 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFLoginSwapController.h"
 
 @class MSFServer;
 @class RACCommand;
@@ -12,6 +13,8 @@
 extern NSString *const MSFAuthorizeErrorDomain;
 
 @interface MSFAuthorizeViewModel : RVMViewModel
+
+@property (nonatomic, assign) MSFLoginType loginType;
 
 @property (nonatomic, strong, readonly) MSFServer *server;
 

@@ -8,13 +8,11 @@
 #import <UIKit/UIKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
-#import "MSFUtils.h"
-#import "MSFSignInViewController.h"
-#import "MSFClozeViewController.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFLoginViewController.h"
-#import "MSFLoginSwapController.h"
+#import "MSFClozeViewModel.h"
+
+#import "MSFUtils.h"
 
 @interface MSFTabBarViewModel ()
 
@@ -35,16 +33,6 @@
 	[self initialize];
 	
 	return self;
-}
-
-- (instancetype)init {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	[self initialize];
-
-  return self;
 }
 
 #pragma mark - Private
@@ -82,71 +70,44 @@
 	}];
 }
 
-#pragma mark - Custom Accessors
-
 - (MSFClient *)client {
-	return MSFUtils.httpClient;
+	return [MSFUtils httpClient];
 }
+
+#pragma mark - Custom Accessors
 
 - (RACSignal *)signInSignal {
   @weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-    MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel loginType:MSFLoginSignIn];
-		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-		navigationController.navigationBarHidden = YES;
-    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
+		self.authorizeViewModel.loginType = MSFLoginSignIn;
+		[self.services presentViewModel:self.authorizeViewModel];
 		[subscriber sendCompleted];
-		
-    return [RACDisposable disposableWithBlock:^{
-      [loginViewController.navigationItem.leftBarButtonItem.rac_command executionSignals];
-    }];
+		return nil;
   }];
   
-  return [[signal replay] setNameWithFormat:@"%@ -`signIn`",self.class];
+  return [[signal replay] setNameWithFormat:@"%@ `-signIn`",self.class];
 }
 
 - (RACSignal *)signUpSignal {
 	@weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel loginType:MSFLoginSignUp];
-		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-		navigationController.navigationBarHidden = YES;
-    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
-		[subscriber sendCompleted];
-		
-    return [RACDisposable disposableWithBlock:^{
-    }];
+		self.authorizeViewModel.loginType = MSFLoginSignUp;
+		[self.services presentViewModel:self.authorizeViewModel];
+		return nil;
   }];
   
-  return [[signal replay] setNameWithFormat:@"%@ -`signIn`",self.class];
+  return [[signal replay] setNameWithFormat:@"%@ `-signUp`",self.class];
 }
 
 - (RACSignal *)verifySignal {
-  return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-    MSFClozeViewController *clozeViewController =
-    [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
-    UINavigationController *navigationController =
-    [[UINavigationController alloc] initWithRootViewController:clozeViewController];
-    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
+  return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.services];
+		[self.services presentViewModel:viewModel];
     [subscriber sendCompleted];
-    
-    return [RACDisposable disposableWithBlock:^{
-      
-    }];
-  }] replay];
-}
-
-#pragma mark - Privat
-
-+ (UIViewController *)topMostController {
-  UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-  while (topController.presentedViewController) {
-    topController = topController.presentedViewController;
-  }
-  return topController;
+		return nil;
+  }] replay] setNameWithFormat:@"%@ `-verify`", self.class];
 }
 
 @end
