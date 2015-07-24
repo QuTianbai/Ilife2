@@ -34,60 +34,60 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 
 @interface MSFRelationshipViewController ()
 
-@property(nonatomic,strong) MSFRelationshipViewModel *viewModel;
+@property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 /**
  *	婚姻状况，住房状况
  */
-@property(weak, nonatomic) IBOutlet UITextField *marriageTF;
-@property(weak, nonatomic) IBOutlet UIButton *marriageBT;
-@property(weak, nonatomic) IBOutlet UITextField *houseTF;
-@property(weak, nonatomic) IBOutlet UIButton *housesBT;
+@property (weak, nonatomic) IBOutlet UITextField *marriageTF;
+@property (weak, nonatomic) IBOutlet UIButton *marriageBT;
+@property (weak, nonatomic) IBOutlet UITextField *houseTF;
+@property (weak, nonatomic) IBOutlet UIButton *housesBT;
 
 /**
  *	家庭联系人一
  */
-@property(weak, nonatomic) IBOutlet UITextField *familyNameTF;
-@property(weak, nonatomic) IBOutlet UIButton *relationBT;
-@property(weak, nonatomic) IBOutlet UITextField *relationTF;
-@property(weak, nonatomic) IBOutlet UITextField *telTF;
-@property(weak, nonatomic) IBOutlet UISwitch *isSameCurrentSW;
-@property(weak, nonatomic) IBOutlet UITextField *diffCurrentTF;
-@property(weak, nonatomic) IBOutlet UIButton *addFamilyBT;
+@property (weak, nonatomic) IBOutlet UITextField *familyNameTF;
+@property (weak, nonatomic) IBOutlet UIButton *relationBT;
+@property (weak, nonatomic) IBOutlet UITextField *relationTF;
+@property (weak, nonatomic) IBOutlet UITextField *telTF;
+@property (weak, nonatomic) IBOutlet UISwitch *isSameCurrentSW;
+@property (weak, nonatomic) IBOutlet UITextField *diffCurrentTF;
+@property (weak, nonatomic) IBOutlet UIButton *addFamilyBT;
 @property (weak, nonatomic) IBOutlet UILabel *relationAddressLabel;
 
 
 /**
  *	家庭联系人二
  */
-@property(weak, nonatomic) IBOutlet UITextField *num2FamilyNameTF;
-@property(weak, nonatomic) IBOutlet UIButton *num2RelationBT;
-@property(weak, nonatomic) IBOutlet UITextField *num2RelationTF;
-@property(weak, nonatomic) IBOutlet UITextField *num2TelTF;
-@property(weak, nonatomic) IBOutlet UISwitch *num2IsSameCurrentSW;
-@property(weak, nonatomic) IBOutlet UITextField *num2DiffCurrentTF;
+@property (weak, nonatomic) IBOutlet UITextField *num2FamilyNameTF;
+@property (weak, nonatomic) IBOutlet UIButton *num2RelationBT;
+@property (weak, nonatomic) IBOutlet UITextField *num2RelationTF;
+@property (weak, nonatomic) IBOutlet UITextField *num2TelTF;
+@property (weak, nonatomic) IBOutlet UISwitch *num2IsSameCurrentSW;
+@property (weak, nonatomic) IBOutlet UITextField *num2DiffCurrentTF;
 @property (weak, nonatomic) IBOutlet UILabel *num2RelationAddressLabel;
 
 /**
  *	其他联系人一
  */
-@property(weak, nonatomic) IBOutlet UITextField *otherNameTF;
-@property(weak, nonatomic) IBOutlet UIButton *otherRelationBT;
-@property(weak, nonatomic) IBOutlet UITextField *otherRelationTF;
-@property(weak, nonatomic) IBOutlet UITextField *otherTelTF;
+@property (weak, nonatomic) IBOutlet UITextField *otherNameTF;
+@property (weak, nonatomic) IBOutlet UIButton *otherRelationBT;
+@property (weak, nonatomic) IBOutlet UITextField *otherRelationTF;
+@property (weak, nonatomic) IBOutlet UITextField *otherTelTF;
 
 /**
  *	其他联系人二
  */
-@property(weak, nonatomic) IBOutlet UITextField *num2_otherNameTF;
-@property(weak, nonatomic) IBOutlet UIButton *num2_otherRelationBT;
-@property(weak, nonatomic) IBOutlet UITextField *num2_otherRelationTF;
-@property(weak, nonatomic) IBOutlet UITextField *num2_otherTelTF;
-@property(weak, nonatomic) IBOutlet UIButton *addOtherBT;
+@property (weak, nonatomic) IBOutlet UITextField *num2_otherNameTF;
+@property (weak, nonatomic) IBOutlet UIButton *num2_otherRelationBT;
+@property (weak, nonatomic) IBOutlet UITextField *num2_otherRelationTF;
+@property (weak, nonatomic) IBOutlet UITextField *num2_otherTelTF;
+@property (weak, nonatomic) IBOutlet UIButton *addOtherBT;
 
 /**
  *	下一步
  */
-@property(weak, nonatomic) IBOutlet UIButton *nextPageBT;
+@property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
 @property (nonatomic, assign) BOOL sameMember1Address;
 @property (nonatomic, assign) BOOL sameMember2Address;
@@ -323,8 +323,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		if (self.isSameCurrentSW.isOn) {
 			[_relationAddressLabel setHidden:YES];
 			[_diffCurrentTF setHidden:YES];
-		}
-		else {
+		} else {
 			[_relationAddressLabel setHidden:NO];
 			[_diffCurrentTF setHidden:NO];
 			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -335,8 +334,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		if (self.num2IsSameCurrentSW.isOn) {
 			[_num2RelationAddressLabel setHidden:YES];
 			[_num2DiffCurrentTF setHidden:YES];
-		}
-		else {
+		} else {
 			[_num2RelationAddressLabel setHidden:NO];
 			[_num2DiffCurrentTF setHidden:NO];
 			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
@@ -353,7 +351,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		return  nil;
 	}
 	
-	UIView * sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
+	UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
 	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];

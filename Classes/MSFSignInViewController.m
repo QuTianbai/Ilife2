@@ -18,7 +18,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFSignInViewController ()
 
-@property(nonatomic,strong,readwrite) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, strong, readwrite) MSFAuthorizeViewModel *viewModel;
 
 @end
 

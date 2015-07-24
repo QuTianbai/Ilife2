@@ -27,7 +27,7 @@
 
 @interface MSFPersonalViewController ()<MSFSegmentDelegate>
 
-@property(nonatomic,strong) MSFPersonalViewModel *viewModel;
+@property (nonatomic, strong) MSFPersonalViewModel *viewModel;
 
 @end
 
@@ -69,7 +69,7 @@
      }
    }];
 	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
-	RAC(self.repayMonthTF,text) = familyExpenseChannel;
+	RAC(self.repayMonthTF, text) = familyExpenseChannel;
 	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
 
   [[self.familyOtherIncomeYF rac_signalForControlEvents:UIControlEventEditingChanged]
@@ -81,12 +81,11 @@
      }
    }];
 	RACChannelTerminal *otherIncomeChannel = RACChannelTo(self.viewModel.model, otherIncome);
-	RAC(self.familyOtherIncomeYF,text) = otherIncomeChannel;
+	RAC(self.familyOtherIncomeYF, text) = otherIncomeChannel;
 	[self.familyOtherIncomeYF.rac_textSignal subscribe:otherIncomeChannel];
 	
   [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-    NSLog(@"%@",textField.text);
     if (textField.text.length >4 ) {
       textField.text = [textField.text substringToIndex:4];
     }
@@ -100,55 +99,55 @@
     }
   }];
 	RACChannelTerminal *homecodeChannel = RACChannelTo(self.viewModel.model, homeCode);
-	RAC(self.homeLineCodeTF,text) = homecodeChannel;
+	RAC(self.homeLineCodeTF, text) = homecodeChannel;
 	[self.homeLineCodeTF.rac_textSignal subscribe:homecodeChannel];
 	
 	RACChannelTerminal *hometelephoneChannel = RACChannelTo(self.viewModel.model, homeLine);
-	RAC(self.homeTelTF,text) = hometelephoneChannel;
+	RAC(self.homeTelTF, text) = hometelephoneChannel;
 	[self.homeTelTF.rac_textSignal subscribe:hometelephoneChannel];
 	
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
-	RAC(self.emailTF,text) = emailChannel;
+	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
 	
 	RACChannelTerminal *townChannel = RACChannelTo(self.viewModel.model, currentTown);
-	RAC(self.townTF,text) = townChannel;
+	RAC(self.townTF, text) = townChannel;
 	[self.townTF.rac_textSignal subscribe:townChannel];
 	
 	RACChannelTerminal *streetChannel = RACChannelTo(self.viewModel.model, currentStreet);
-	RAC(self.currentStreetTF,text) = streetChannel;
+	RAC(self.currentStreetTF, text) = streetChannel;
 	[self.currentStreetTF.rac_textSignal subscribe:streetChannel];
 	
 	RACChannelTerminal *communityChannel = RACChannelTo(self.viewModel.model, currentCommunity);
-	RAC(self.currentCommunityTF,text) = communityChannel;
+	RAC(self.currentCommunityTF, text) = communityChannel;
 	[self.currentCommunityTF.rac_textSignal subscribe:communityChannel];
 	
 	RACChannelTerminal *apartmentChannel = RACChannelTo(self.viewModel.model, currentApartment);
-	RAC(self.currentApartmentTF,text) = apartmentChannel;
+	RAC(self.currentApartmentTF, text) = apartmentChannel;
 	[self.currentApartmentTF.rac_textSignal subscribe:apartmentChannel];
 	
 	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.model, qq);
-	RAC(self.tencentUsername,text) = tencentUsernameChannel;
+	RAC(self.tencentUsername, text) = tencentUsernameChannel;
 	[self.tencentUsername.rac_textSignal subscribe:tencentUsernameChannel];
 	
 	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.model, taobao);
-	RAC(self.taobaoUsername,text) = taobaoUsernameChannel;
+	RAC(self.taobaoUsername, text) = taobaoUsernameChannel;
 	[self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
 	
 	RACChannelTerminal *taobaoPasscodeChannel = RACChannelTo(self.viewModel.model, taobaoPassword);
-	RAC(self.taobaoPasscode,text) = taobaoPasscodeChannel;
+	RAC(self.taobaoPasscode, text) = taobaoPasscodeChannel;
 	[self.taobaoPasscode.rac_textSignal subscribe:taobaoPasscodeChannel];
 	
 	RACChannelTerminal *jdPasscodeChannel = RACChannelTo(self.viewModel.model, jdAccountPwd);
-	RAC(self.jdPasscode,text) = jdPasscodeChannel;
+	RAC(self.jdPasscode, text) = jdPasscodeChannel;
 	[self.jdPasscode.rac_textSignal subscribe:jdPasscodeChannel];
 	
 	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
-	RAC(self.jdUsername,text) = jdUsernameChannel;
+	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
 	
 	@weakify(self)
-	RAC(self.provinceTF,text) = RACObserve(self.viewModel, address);
+	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
   self.selectQQorJDSegment.delegate = self;
 	[[self.selectQQorJDSegment rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
@@ -191,7 +190,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-  NSLog(@"%ld",self.selectQQorJDSegment.selectedSegmentIndex);
+  NSLog(@"%ld", (long)self.selectQQorJDSegment.selectedSegmentIndex);
 	if (section == 0 || section == self.selectQQorJDSegment.selectedSegmentIndex + 1) {
 		return [super tableView:tableView numberOfRowsInSection:section];
 	}
@@ -227,8 +226,7 @@
   for (UILabel *label in array) {
     if (label.tag == self.selectQQorJDSegment.selectedSegmentIndex) {
       label.hidden = NO;
-    }
-    else {
+    } else {
       label.hidden = YES;
     }
   }

@@ -30,7 +30,7 @@
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[webView
 		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.registerAgreementSignal,[RACSignal return:nil]]]]
+		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.registerAgreementSignal, [RACSignal return:nil]]]]
 		deliverOn:
 		[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {

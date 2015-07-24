@@ -206,7 +206,7 @@
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
-	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel];
+	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
 	userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
@@ -234,10 +234,10 @@
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-  if (!self.viewModel.client.isAuthenticated) {
+  if (!self.viewModel.isAuthenticated) {
 		[self.viewModel.signInCommand execute:nil];
 		return NO;
-  } else if (![self.viewModel.client.user isAuthenticated]) {
+  } else if (!self.viewModel.isUserAuthenticated) {
     [self.viewModel.verifyCommand execute:nil];
 		return NO;
   }

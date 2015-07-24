@@ -9,7 +9,7 @@
 
 @interface MSFObject ()
 
-@property(nonatomic,strong,readwrite) MSFServer *server;
+@property (nonatomic, strong, readwrite) MSFServer *server;
 
 @end
 
@@ -42,12 +42,11 @@
 }
 
 - (BOOL)validateObjectID:(id *)objectID error:(NSError **)error {
-	if ([*objectID isKindOfClass:NSString.class]) {
+	id object  = *objectID;
+	if ([object isKindOfClass:NSString.class]) {
 		return YES;
-	}
-	else if ([*objectID isKindOfClass:NSNumber.class]) {
+	} else if ([object isKindOfClass:NSNumber.class]) {
 		*objectID = [*objectID stringValue];
-		
 		return YES;
 	}
 	
@@ -68,8 +67,7 @@
 	//TODO: baseURL host
 	if (baseURL == nil || [baseURL.host isEqual:@"example.com"]) {
 		self.server = MSFServer.dotComServer;
-	}
-	else {
+	} else {
 		NSString *baseURLString = [NSString stringWithFormat:@"%@://%@", baseURL.scheme, baseURL.host];
 		self.server = [MSFServer serverWithBaseURL:[NSURL URLWithString:baseURLString]];
 	}

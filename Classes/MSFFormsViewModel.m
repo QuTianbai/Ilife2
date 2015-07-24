@@ -23,10 +23,10 @@
 
 @interface MSFFormsViewModel ()
 
-@property(nonatomic,strong,readwrite) RACSubject *updatedContentSignal;
-@property(nonatomic,strong,readwrite) MSFApplicationForms *model;
-@property(nonatomic,strong,readwrite) MSFMarket *market;
-@property(nonatomic,assign,readwrite) BOOL pending;
+@property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
+@property (nonatomic, strong, readwrite) MSFApplicationForms *model;
+@property (nonatomic, strong, readwrite) MSFMarket *market;
+@property (nonatomic, assign, readwrite) BOOL pending;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end

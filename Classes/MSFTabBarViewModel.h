@@ -13,7 +13,6 @@
 
 @interface MSFTabBarViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) MSFClient *client __deprecated;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 // 登录控制
@@ -25,6 +24,9 @@
 
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
 @property (nonatomic, strong, readonly) RACSignal *authorizationUpdatedSignal;
+
+@property (nonatomic, assign, readonly) BOOL isAuthenticated;
+@property (nonatomic, assign, readonly) BOOL isUserAuthenticated;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 

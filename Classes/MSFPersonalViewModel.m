@@ -14,7 +14,7 @@
 
 @interface MSFPersonalViewModel ()
 
-@property(nonatomic,readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 
 @end
 
@@ -31,13 +31,13 @@
 	_addressViewModel = addressViewModel;
 	_model = viewModel.model;
 	
-	RAC(self,address) = RACObserve(self.addressViewModel, address);
-	RAC(self.model,currentProvince) = RACObserve(self.addressViewModel, provinceName);
-	RAC(self.model,currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
-	RAC(self.model,currentCity) = RACObserve(self.addressViewModel, cityName);
-	RAC(self.model,currentCityCode) = RACObserve(self.addressViewModel, cityCode);
-	RAC(self.model,currentCountry) = RACObserve(self.addressViewModel, areaName);
-	RAC(self.model,currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
+	RAC(self, address) = RACObserve(self.addressViewModel, address);
+	RAC(self.model, currentProvince) = RACObserve(self.addressViewModel, provinceName);
+	RAC(self.model, currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
+	RAC(self.model,  currentCity) = RACObserve(self.addressViewModel, cityName);
+	RAC(self.model, currentCityCode) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self.model, currentCountry) = RACObserve(self.addressViewModel, areaName);
+	RAC(self.model, currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
 	
 	_executeAlterAddressCommand = self.addressViewModel.selectCommand;
 	@weakify(self)
@@ -69,13 +69,11 @@
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
 		}]];
-	}
-	else if (![self.model.email isMail]) {
+	} else if (![self.model.email isMail]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输正确的邮箱",
 		}]];
-	}
-	else if (![self validAddress]) {
+	} else if (![self validAddress]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"详细地址至少输入两项",
 		}]];

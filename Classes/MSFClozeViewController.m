@@ -22,7 +22,7 @@
 
 @interface MSFClozeViewController () <UITextFieldDelegate>
 
-@property(nonatomic,strong) MSFClozeViewModel *viewModel;
+@property (nonatomic, strong) MSFClozeViewModel *viewModel;
 
 @end
 
@@ -45,9 +45,9 @@
 	[super viewDidLoad];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:MSFUtils.httpClient controller:self];
-	RAC(self.viewModel,name) = self.name.rac_textSignal;
-	RAC(self.viewModel,card) = self.card.rac_textSignal;
-	RAC(self.viewModel,bankNO) = self.bankNO.rac_textSignal;
+	RAC(self.viewModel, name) = self.name.rac_textSignal;
+	RAC(self.viewModel, card) = self.card.rac_textSignal;
+	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;
 	
 	// Submit
 	self.submitButton.rac_command = self.viewModel.executeAuth;
@@ -68,10 +68,10 @@
 	}];
   //Identifier Card OutTime
  // RAC(self.expired,text) = RACObserve(self.viewModel, expired1);
-  RAC(self.viewModel,expired1) = RACObserve(self.expired, text);
+  RAC(self.viewModel, expired1) = RACObserve(self.expired, text);
 	// Identifier Card Lifelong
-	RAC(self.permanentButton,selected) =	RACObserve(self.viewModel,permanent);
-	RAC(self.datePickerButton,enabled) = [RACSignal
+	RAC(self.permanentButton, selected) = RACObserve(self.viewModel, permanent);
+	RAC(self.datePickerButton, enabled) = [RACSignal
 		combineLatest:@[RACObserve(self.viewModel, permanent)]
 		reduce:^id(NSNumber *permanent){
 			return @(!permanent.boolValue);
@@ -81,8 +81,7 @@
 		if (permanent.boolValue) {
 			self.expired.text = @"";
 			[self.expired setBackgroundColor:[UIColor colorWithWhite:0.902 alpha:1.000]];
-		}
-		else {
+		} else {
 			[self.expired setBackgroundColor:[UIColor whiteColor]];
 		}
 	}];
@@ -100,7 +99,7 @@
 	self.navigationItem.leftBarButtonItem = item;
 	
 	// Bank name
-	RAC(self.bankName,text) = RACObserve(self.viewModel, bankName);
+	RAC(self.bankName, text) = RACObserve(self.viewModel, bankName);
 	[[self.bankNameButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
 			[self.view endEditing:YES];
@@ -117,7 +116,7 @@
 		}];
 	
 	// Bank Address
-	RAC(self.bankAddress,text) = RACObserve(self.viewModel, bankAddress);
+	RAC(self.bankAddress, text) = RACObserve(self.viewModel, bankAddress);
 	self.bankAddressButton.rac_command = self.viewModel.executeSelected;
 	
 	// Bank No button
@@ -178,8 +177,7 @@
 		NSCharacterSet *blockedCharacters = [[NSCharacterSet letterCharacterSet] invertedSet];
     NSCharacterSet *blockedCharatersSquared = [NSCharacterSet characterSetWithCharactersInString:@"➋➌➍➎➏➐➑➒"];
 		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound) || ([string rangeOfCharacterFromSet:blockedCharatersSquared].location != NSNotFound);
-	}
-	else if ([textField isEqual:self.card]) {
+	} else if ([textField isEqual:self.card]) {
 		if (range.location > 17) {
 			return NO;
 		}

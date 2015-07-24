@@ -12,6 +12,6 @@
 /**
  *	设置界面_产品介绍_Webview
  */
-@property(weak, nonatomic) IBOutlet UIWebView *productWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *productWebView;
 
 @end

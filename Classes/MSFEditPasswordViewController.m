@@ -13,13 +13,13 @@
 #import "UITextField+RACKeyboardSupport.h"
 
 @interface MSFEditPasswordViewController ()
-@property(nonatomic,weak) IBOutlet UITextField *passoword1;
-@property(nonatomic,weak) IBOutlet UITextField *passoword2;
-@property(nonatomic,weak) IBOutlet UIButton *button;
-@property(nonatomic,weak) MSFUserViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UITextField *passoword1;
+@property (nonatomic, weak) IBOutlet UITextField *passoword2;
+@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic, weak) MSFUserViewModel *viewModel;
 
-@property(nonatomic,weak) IBOutlet UISwitch *password1Swith;
-@property(nonatomic,weak) IBOutlet UISwitch *password2Swith;
+@property (nonatomic, weak) IBOutlet UISwitch *password1Swith;
+@property (nonatomic, weak) IBOutlet UISwitch *password2Swith;
 
 @end
 
@@ -44,8 +44,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"修改密码";
-	RAC(self.viewModel,usedPassword) = self.passoword1.rac_textSignal;
-	RAC(self.viewModel,updatePassword) = self.passoword2.rac_textSignal;
+	RAC(self.viewModel, usedPassword) = self.passoword1.rac_textSignal;
+	RAC(self.viewModel, updatePassword) = self.passoword2.rac_textSignal;
 	self.button.rac_command = self.viewModel.executeUpdatePassword;
 	
 	@weakify(self)

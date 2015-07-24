@@ -16,10 +16,9 @@
 
 @interface MSFAddressViewModel ()
 
-@property(nonatomic,strong) FMDatabase *fmdb;
-
-@property(nonatomic,weak,readwrite) UIViewController *viewController;
-@property(nonatomic,strong) MSFApplicationForms *form;
+@property (nonatomic, strong) FMDatabase *fmdb;
+@property (nonatomic, strong) MSFApplicationForms *form;
+@property (nonatomic, weak, readwrite) UIViewController *viewController;
 
 @end
 
@@ -89,7 +88,7 @@
 	}];
 	_selectCommand.allowsConcurrentExecution = YES;
 	
-	RAC(self,address) = [[RACSignal
+	RAC(self, address) = [[RACSignal
 		combineLatest:@[
 			RACObserve(self, province),
 			RACObserve(self, city),
@@ -113,7 +112,7 @@
 			return address;
 		}]
 		doNext:^(id x) {
-			NSLog(@"`Address:`%@",x);
+			NSLog(@"`Address:`%@", x);
 		}];
 	
 	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
@@ -213,7 +212,7 @@
 - (NSArray *)citiesWithProvince:(MSFAreas *)province {
 	[self.fmdb open];
 	NSMutableArray *regions = [NSMutableArray array];
-	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'",province.codeID];
+	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'", province.codeID];
 	FMResultSet *rs = [self.fmdb executeQuery:sql];
 	while ([rs next]) {
 	MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
@@ -227,7 +226,7 @@
 - (NSArray *)areasWitchCity:(MSFAreas *)city {
 	[self.fmdb open];
 	NSMutableArray *regions = [NSMutableArray array];
-	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'",city.codeID];
+	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'", city.codeID];
 	FMResultSet *rs = [self.fmdb executeQuery:sql];
 	while ([rs next]) {
 	MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
@@ -240,7 +239,7 @@
 
 - (MSFAreas *)regionWithCode:(NSString *)code {
 	[self.fmdb open];
-	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'",code];
+	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'", code];
 	FMResultSet *rs = [self.fmdb executeQuery:sql];
 	MSFAreas *region;
 	if (rs.next) {

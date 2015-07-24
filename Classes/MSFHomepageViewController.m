@@ -18,10 +18,10 @@
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
 
-@interface MSFHomepageViewController () <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface MSFHomepageViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic,strong) UIView *separatorView;
-@property(nonatomic,strong,readwrite) MSFHomepageViewModel *viewModel;
+@property (nonatomic, strong) UIView *separatorView;
+@property (nonatomic, strong, readwrite) MSFHomepageViewModel *viewModel;
 
 @end
 

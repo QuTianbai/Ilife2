@@ -13,7 +13,7 @@
 @implementation MSFClient (Installment)
 
 - (RACSignal *)fetchInstallment:(MSFPlanPerodicTables *)planPerodicTables {
-	NSString *contractNum = [NSString stringWithFormat:@"installments/%@",planPerodicTables.contractNum];
+	NSString *contractNum = [NSString stringWithFormat:@"installments/%@", planPerodicTables.contractNum];
 	NSURLRequest *requset = [self requestWithMethod:@"GET" path:contractNum parameters:nil];
 	
 	return [[self enqueueRequest:requset resultClass:MSFInstallment.class] msf_parsedResults];

@@ -12,6 +12,6 @@
 /**
  *	设置界面_网点分布_Webview
  */
-@property(weak,nonatomic) IBOutlet UIWebView *branchWebView;
+@property (nonatomic, weak) IBOutlet UIWebView *branchWebView;
 
 @end

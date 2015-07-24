@@ -24,8 +24,8 @@
 
 @interface MSFProfessionalViewModel ( )
 
-@property(nonatomic,weak) UIViewController *viewController;
-@property(nonatomic,readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak) UIViewController *viewController;
+@property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 
 @end
 
@@ -488,8 +488,7 @@
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
 		}]];
-	}
-	else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
+	} else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
 		if ([self.model.universityName isEqualToString:@""]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
@@ -614,22 +613,7 @@
 		RACObserve(self.model, workCountryCode),
 		
 		RACObserve(self.model, workTown)
-	] reduce:^id(
-		NSString *socail,
-		NSString *company,
-		NSString *industry,
-		NSString *companyType,
-		NSString *department,
-		NSString *title,
-		NSString *currentJobDate,
-		NSString *unitAreaCode,
-		NSString *unitTelephone,
-		NSString *unitExtensionTelephone,
-		NSString *workProvinceCode,
-		NSString *workCityCode,
-		NSString *workCountryCode,
-		NSString *workTown
-	) {
+	] reduce:^id( NSString *socail, NSString *company, NSString *industry, NSString *companyType, NSString *department, NSString *title, NSString *currentJobDate, NSString *unitAreaCode, NSString *unitTelephone, NSString *unitExtensionTelephone, NSString *workProvinceCode, NSString *workCityCode, NSString *workCountryCode, NSString *workTown) {
 		return @(
 			[socail isEqualToString:@"SI02"] &&
 			company.length != 0 &&

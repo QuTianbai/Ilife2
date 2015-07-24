@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 @interface MSFProfessionalViewController ()
 
-@property(nonatomic,strong) MSFProfessionalViewModel *viewModel;
+@property (nonatomic, strong) MSFProfessionalViewModel *viewModel;
 
 @end
 
@@ -105,7 +105,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
 	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
-  RAC(self,title) = RACObserve(self.viewModel, socialstatusTitle);
+  RAC(self, title) = RACObserve(self.viewModel, socialstatusTitle);
 	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
 	RAC(self.programLength, text) = RACObserve(self.viewModel, eductionalSystmeTitle);
 	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
     return  nil;
   }
   
-  UIView * sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
+  UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
   sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
   
   UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];

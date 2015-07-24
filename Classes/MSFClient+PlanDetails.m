@@ -13,7 +13,7 @@
 @implementation MSFClient (PlanDetails)
 
 - (RACSignal *)fetchPlanDetails:(MSFRepaymentSchedules *)repaymentSchedulesID {
-	NSString *planID = [NSString stringWithFormat:@"plans/%@",repaymentSchedulesID.repaymentTime];
+	NSString *planID = [NSString stringWithFormat:@"plans/%@", repaymentSchedulesID.repaymentTime];
 	NSURLRequest *requset = [self requestWithMethod:@"GET" path:planID parameters:nil];
 	
 	return [[self enqueueRequest:requset resultClass:MSFPlanDetails.class] msf_parsedResults];

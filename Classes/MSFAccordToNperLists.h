@@ -10,7 +10,7 @@
 
 @interface MSFAccordToNperLists : MSFObject
 
-@property(nonatomic,copy,readonly) NSString *installmentID;
-@property(nonatomic,assign,readonly) int nper;
+@property (nonatomic, copy, readonly) NSString *installmentID;
+@property (nonatomic, assign, readonly) int nper;
 
 @end

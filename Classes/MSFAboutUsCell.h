@@ -13,6 +13,6 @@
 
 @interface MSFAboutUsCell : UIViewController
 
-@property(weak, nonatomic) IBOutlet UIWebView *aboutWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *aboutWebView;
 
 @end

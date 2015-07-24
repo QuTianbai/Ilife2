@@ -10,13 +10,14 @@
 
 @protocol MSFSegmentDelegate <NSObject>
 
--(void)setLineColor:(NSMutableArray *)array;
+- (void)setLineColor:(NSMutableArray *)array;
 
 @end
 
 @interface MSFSegment : UISegmentedControl
 
-@property(nonatomic,assign)id<MSFSegmentDelegate> delegate;
+@property (nonatomic, assign) id <MSFSegmentDelegate> delegate;
 
 - (void)setLineColors;
+
 @end

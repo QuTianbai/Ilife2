@@ -5,16 +5,8 @@
 //
 
 #import "MSFAgreementViewModel.h"
-#import "MSFAgreement.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFUtils.h"
-#import "MSFClient.h"
-
-@interface MSFAgreementViewModel ()
-
-@property(nonatomic,strong,readwrite) MSFAgreement *agreement;
-
-@end
+#import "MSFAgreement.h"
 
 @implementation MSFAgreementViewModel
 

@@ -9,7 +9,7 @@
 
 @interface MSFBannersViewModel : RVMViewModel
 
-@property(nonatomic,strong,readonly) RACSignal *updateContentSignal;
+@property (nonatomic, strong, readonly) RACSignal *updateContentSignal;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 

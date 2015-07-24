@@ -8,8 +8,8 @@
 
 @interface MSFResponse : MTLModel
 
-@property(nonatomic,assign,readonly) NSUInteger statusCode;
-@property(nonatomic,strong,readonly) id parsedResult;
+@property (nonatomic, assign, readonly) NSUInteger statusCode;
+@property (nonatomic, strong, readonly) id parsedResult;
 
 - (instancetype)initWithHTTPURLResponse:(NSHTTPURLResponse *)response parsedResult:(id)parsedResult;
 

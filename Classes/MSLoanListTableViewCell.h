@@ -11,9 +11,9 @@
 
 @interface MSLoanListTableViewCell : UITableViewCell
 
-@property(strong, nonatomic)	UILabel *moneyLabel;
-@property(strong, nonatomic)	UILabel *monthsLabel;
-@property(strong, nonatomic)	UILabel *timeLabel;
-@property(strong, nonatomic)	UIButton *checkLabel;
+@property (strong, nonatomic) UILabel *moneyLabel;
+@property (strong, nonatomic) UILabel *monthsLabel;
+@property (strong, nonatomic) UILabel *timeLabel;
+@property (strong, nonatomic) UIButton *checkLabel;
 
 @end

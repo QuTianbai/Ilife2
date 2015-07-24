@@ -13,15 +13,11 @@
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
-@property(nonatomic,readonly) MSFFormsViewModel *formsViewModel;
-@property(nonatomic,strong) MSFApplicationResponse *applyCash;
-@property(nonatomic,strong,readonly) MSFProduct *product;
+@property (nonatomic, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong) MSFApplicationResponse *applyCash;
+@property (nonatomic, strong, readonly) MSFProduct *product;
+@property (nonatomic, strong, readonly) RACCommand *executeRequest;
 
 - (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFProduct *)product;
-
-/**
- * 申请贷款
- */
-@property(nonatomic,strong,readonly) RACCommand *executeRequest;
 
 @end

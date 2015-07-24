@@ -13,7 +13,7 @@
 
 @interface MSFHomepageViewModel ()
 
-@property(nonatomic,readwrite) NSArray *viewModels;
+@property (nonatomic, readwrite) NSArray *viewModels;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
@@ -53,7 +53,7 @@
 		[self.refreshCommand execute:nil];
 	}];
 	
-	RAC(self,viewModels) = [[self.refreshCommand.executionSignals switchToLatest] ignore:nil];
+	RAC(self, viewModels) = [[self.refreshCommand.executionSignals switchToLatest] ignore:nil];
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
@@ -81,8 +81,7 @@
 	}
 	if ([viewModel.status isEqualToString:@"还款中"]) {
 		return @"MSFPepaymentCollectionViewCell";
-	}
-	else {
+	} else {
 		return @"MSFRequisitionCollectionViewCell";
 	}
 }

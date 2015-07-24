@@ -18,7 +18,7 @@
 
 @interface MSFRelationshipViewModel ()
 
-@property(nonatomic,weak) UIViewController *viewController;
+@property (nonatomic, weak) UIViewController *viewController;
 
 @end
 
@@ -304,8 +304,7 @@
 	reduce:^id(NSNumber *hasMember2, NSString *name, NSString *relation, NSString *phone, NSString *name2, NSString *relation2, NSString *phone2) {
 		if (hasMember2.boolValue) {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0 && name2.length > 0 && relation2.length > 0 && phone2.length > 0);
-		}
-		else {
+		} else {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0);
 		}
 	}];
@@ -324,8 +323,7 @@
 	reduce:^id(NSNumber *hasMember2, NSString *name, NSString *relation, NSString *phone, NSString *name2, NSString *relation2, NSString *phone2) {
 		if (hasMember2.boolValue) {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0 && name2.length > 0 && relation2.length > 0 && phone2.length > 0);
-		}
-		else {
+		} else {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0);
 		}
 	}];

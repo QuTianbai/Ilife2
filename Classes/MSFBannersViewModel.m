@@ -11,8 +11,8 @@
 
 @interface MSFBannersViewModel ()
 
-@property(nonatomic,strong) NSArray *banners;
-@property(nonatomic,strong,readwrite) RACSubject *updateContentSignal;
+@property (nonatomic, strong) NSArray *banners;
+@property (nonatomic, strong, readwrite) RACSubject *updateContentSignal;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end

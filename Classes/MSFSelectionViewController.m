@@ -9,10 +9,10 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionTableViewCell.h"
 
-@interface MSFSelectionViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface MSFSelectionViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property(nonatomic,strong) MSFSelectionViewModel *viewModel;
-@property(nonatomic,strong,readwrite) RACSubject *selectedSignal;
+@property (nonatomic, strong) MSFSelectionViewModel *viewModel;
+@property (nonatomic, strong, readwrite) RACSubject *selectedSignal;
 
 @end
 

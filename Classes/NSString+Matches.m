@@ -28,27 +28,21 @@
 //	return YES;
 }
 
--(BOOL)isIphoneNumber:(NSString *)iphoneNumber
-{
-	BOOL flag=NO;
-	NSString* stringRegex=@"";
+- (BOOL)isIphoneNumber:(NSString *)iphoneNumber {
+	BOOL flag = NO;
+	NSString *stringRegex = @"";
 	if (iphoneNumber.length<=11) {
 		//stringRegex=@"";
 		if (iphoneNumber.length==1) {
-			stringRegex=@"[1]";
+			stringRegex = @"[1]";
+		} else {
+			stringRegex = [NSString stringWithFormat:@"[1][34578]\\d{0,9}"];
 		}
-		else
-		{
-			stringRegex=[NSString stringWithFormat:@"[1][34578]\\d{0,9}"];
-		}
-		
-		NSPredicate* phoneTest=[NSPredicate predicateWithFormat:@"SELF MATCHES %@",stringRegex];
-		flag=[phoneTest evaluateWithObject:iphoneNumber];
+		NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", stringRegex];
+		flag = [phoneTest evaluateWithObject:iphoneNumber];
 	}
-	
 	return flag;
 }
-
 
 - (BOOL)isScalar {
 	NSNumberFormatter *nf = [[NSNumberFormatter alloc] init];
@@ -58,8 +52,7 @@
 	
 	if (number) {
 		return YES;
-	}
-	else {
+	} else {
 		return NO;
 	}
 }
@@ -94,8 +87,7 @@
 			|| ([regextestphs evaluateWithObject:self] == YES)) {
 		
 		return YES;
-	}
-	else {
+	} else {
 		return NO;
 	}
 }
@@ -108,7 +100,7 @@
 		return flag;
 	}
 	NSString *regex2 = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
-	NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex2];
+	NSPredicate *identityCardPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex2];
 	
 	return [identityCardPredicate evaluateWithObject:self];
 }

@@ -10,9 +10,9 @@
 
 @interface MSFTrade : MSFObject
 
-@property(nonatomic,copy,readonly) NSString *tradeID;
-@property(nonatomic,copy,readonly) NSString *tradeDate;
-@property(nonatomic,assign,readonly) double	 tradeAmount;
-@property(nonatomic,copy,readonly) NSString *tradeDescription;
+@property (nonatomic, copy, readonly) NSString *tradeID;
+@property (nonatomic, copy, readonly) NSString *tradeDate;
+@property (nonatomic, assign, readonly) double	 tradeAmount;
+@property (nonatomic, copy, readonly) NSString *tradeDescription;
 
 @end

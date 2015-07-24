@@ -10,12 +10,12 @@
 
 @interface MSFAdver : MSFObject
 
-@property(nonatomic,copy,readonly) NSString *adID;
-@property(nonatomic,copy,readonly) NSString *title;
-@property(nonatomic,assign,readonly) NSInteger type;
-@property(nonatomic,copy,readonly) NSString *adDescription;
-@property(nonatomic,copy,readonly) NSURL *adURL;
-@property(nonatomic,copy,readonly) NSURL *imgURL;
-@property(nonatomic,copy,readonly) NSString *imageName;
+@property (nonatomic, copy, readonly) NSString *adID;
+@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, assign, readonly) NSInteger type;
+@property (nonatomic, copy, readonly) NSString *adDescription;
+@property (nonatomic, copy, readonly) NSURL *adURL;
+@property (nonatomic, copy, readonly) NSURL *imgURL;
+@property (nonatomic, copy, readonly) NSString *imageName;
 
 @end

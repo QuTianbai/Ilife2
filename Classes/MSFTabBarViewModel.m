@@ -11,8 +11,8 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFClozeViewModel.h"
-
-#import "MSFUtils.h"
+#import "MSFUser.h"
+#import "MSFClient.h"
 #import "MSFClozeViewController.h"
 
 @interface MSFTabBarViewModel ()
@@ -71,10 +71,6 @@
 	}];
 }
 
-- (MSFClient *)client {
-	return [MSFUtils httpClient];
-}
-
 #pragma mark - Custom Accessors
 
 - (RACSignal *)signInSignal {
@@ -87,7 +83,7 @@
 		return nil;
   }];
   
-  return [[signal replay] setNameWithFormat:@"%@ `-signIn`",self.class];
+  return [[signal replay] setNameWithFormat:@"%@ `-signIn`", self.class];
 }
 
 - (RACSignal *)signUpSignal {
@@ -99,7 +95,7 @@
 		return nil;
   }];
   
-  return [[signal replay] setNameWithFormat:@"%@ `-signUp`",self.class];
+  return [[signal replay] setNameWithFormat:@"%@ `-signUp`", self.class];
 }
 
 - (RACSignal *)verifySignal {
@@ -112,6 +108,7 @@
   }] replay] setNameWithFormat:@"%@ `-verify`", self.class];
 */
   return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		//TODO: 改进这里的代码
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
     MSFClozeViewController *clozeViewController =
     [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
@@ -134,6 +131,16 @@
     topController = topController.presentedViewController;
   }
   return topController;
+}
+
+#pragma mark - Custom Accessors
+
+- (BOOL)isAuthenticated {
+	return [self.services httpClient].isAuthenticated;
+}
+
+- (BOOL)isUserAuthenticated {
+	return [self.services httpClient].user.isAuthenticated;
 }
 
 @end

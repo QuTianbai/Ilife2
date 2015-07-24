@@ -12,9 +12,9 @@
 
 @interface MSFHomepageViewModel : RVMViewModel
 
-@property(nonatomic,readonly) NSArray *viewModels;
-@property(nonatomic,readonly) RACCommand *refreshCommand;
-@property(nonatomic,readonly) MSFBannersViewModel *bannersViewModel;
+@property (nonatomic, readonly) NSArray *viewModels;
+@property (nonatomic, readonly) RACCommand *refreshCommand;
+@property (nonatomic, readonly) MSFBannersViewModel *bannersViewModel;
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath;

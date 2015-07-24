@@ -51,7 +51,7 @@
 
 - (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product {
 	//TODO: 暂缺贷款协议地址格式,参见- (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
-	NSString *path = [NSString stringWithFormat:@"https://192.168.2.51:8443/msfinanceapi/v1/coresys/cont/contract/fineinfo?productId=%@",product.productId];
+	NSString *path = [NSString stringWithFormat:@"https://192.168.2.51:8443/msfinanceapi/v1/coresys/cont/contract/fineinfo?productId=%@", product.productId];
 	return [NSURL URLWithString:path];
 	//TODO: 协议server需要更新
 	return [self.server.baseWebURL URLByAppendingPathComponent:path];

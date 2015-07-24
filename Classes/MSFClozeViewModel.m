@@ -16,7 +16,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 
 @interface MSFClozeViewModel ()
 
-@property(nonatomic,strong,readwrite) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, strong, readwrite) MSFAddressViewModel *addressViewModel;
 
 @end
 
@@ -30,7 +30,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	}
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithController:controller needArea:NO];
 	_executeSelected = self.addressViewModel.selectCommand;
-	RAC(self,bankAddress) = [RACObserve(self.addressViewModel, address) ignore:nil];
+	RAC(self, bankAddress) = [RACObserve(self.addressViewModel, address) ignore:nil];
 	
 	return self;
 }
@@ -56,18 +56,11 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
     return [self executeAuthSignal];
   }];
 	
-//	_executeAuth = [[RACCommand alloc] initWithEnabled:self.authoriseValidSignal
-//		signalBlock:^RACSignal *(id input) {
-//			@strongify(self)
-//			return [self executeAuthSignal];
-//		}];
-	
-	_executePermanent = [[RACCommand alloc]
-		initWithSignalBlock:^RACSignal *(id input) {
-			@strongify(self)
-			self.permanent = !self.permanent;
-			return [RACSignal return:@(self.permanent)];
-		}];
+	_executePermanent = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		self.permanent = !self.permanent;
+		return [RACSignal return:@(self.permanent)];
+	}];
 	
 	return self;
 }
@@ -83,13 +76,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 			RACObserve(self, bankNO),
 			RACObserve(self, bankAddress),
 			]
-		reduce:^id(
-			NSString *name,
-			NSString *card,
-			NSString *bankname,
-			NSString *bankno,
-			NSString *bankaddress
-		 ) {
+		reduce:^id( NSString *name, NSString *card, NSString *bankname, NSString *bankno, NSString *bankaddress) {
 			return @(
 				name.length > 0 &&
 				card.length > 0 &&
@@ -147,7 +134,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	return [self.client
 		realnameAuthentication:self.name
 		idcard:self.card
-          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil?[NSDate date]:[NSDateFormatter msf_dateFromString:self.expired1]
+          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil ? [NSDate date] : [NSDateFormatter msf_dateFromString:self.expired1]
 		session:self.permanent
 		province:self.addressViewModel.provinceCode
 		city:self.addressViewModel.cityCode

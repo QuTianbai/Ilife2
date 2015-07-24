@@ -43,17 +43,17 @@
 	_productTerms = @"";
 	_termAmount = 0;
 	
-	RAC(self.formsViewModel.model,repayMoneyMonth) = RACObserve(self, termAmount);
-	RAC(self.formsViewModel.model,principal) = RACObserve(self, totalAmount);
-	RAC(self.formsViewModel.model,isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
+	RAC(self.formsViewModel.model, repayMoneyMonth) = RACObserve(self, termAmount);
+	RAC(self.formsViewModel.model, principal) = RACObserve(self, totalAmount);
+	RAC(self.formsViewModel.model, isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
 		return [value stringValue];
 	}];
   
-	RAC(self.formsViewModel.model,usageCode) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
+	RAC(self.formsViewModel.model, usageCode) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		return value.code;
 	}];
 	
-	RAC(self,market) = RACObserve(self.formsViewModel, market);
+	RAC(self, market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
 	[RACObserve(self, product) subscribeNext:^(MSFProduct *product) {
@@ -71,7 +71,7 @@
 		self.productTerms = product.title;
 	}];
 	
-	RAC(self,termAmount) = [[RACSignal
+	RAC(self, termAmount) = [[RACSignal
 		combineLatest:@[
 			RACObserve(self, product),
 			RACObserve(self, insurance),
@@ -87,20 +87,20 @@
 					return value.parsedResult[@"repayMoneyMonth"];
 				}];
 		}];
-	RAC(self,totalAmountPlacholder) = [RACSignal combineLatest:@[
-		RACObserve(self.formsViewModel.market,allMinAmount),
-		RACObserve(self.formsViewModel.market,allMaxAmount),
+	RAC(self, totalAmountPlacholder) = [RACSignal combineLatest:@[
+		RACObserve(self.formsViewModel.market, allMinAmount),
+		RACObserve(self.formsViewModel.market, allMaxAmount),
 	] reduce:^id(NSString *min, NSString *max) {
 		return min.integerValue != 0 ? [NSString stringWithFormat:@"请输入%@-%@之间的数字", min,max] : @"请输入贷款金额";
 	}];
 	
-	RAC(self,termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
+	RAC(self, termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
 		return value.integerValue != 0 ? value.stringValue : @"未知";
 	}];
-	RAC(self,purposeText) = [RACObserve(self, purpose) map:^id(id value) {
+	RAC(self, purposeText) = [RACObserve(self, purpose) map:^id(id value) {
 		return [value text];
 	}];
-	RAC(self,productTitle) = [RACObserve(self, product) map:^id(id value) {
+	RAC(self, productTitle) = [RACObserve(self, product) map:^id(id value) {
 		return [value title];
 	}];
 	

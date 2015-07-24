@@ -19,7 +19,7 @@
 }
 
 - (RACSignal *)fetchAdverWithCategory:(NSString *)category {
-	NSString *path = [NSString stringWithFormat:@"ads/%@",category];
+	NSString *path = [NSString stringWithFormat:@"ads/%@", category];
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil];
 	
 	return [[self enqueueRequest:request resultClass:MSFAdver.class] msf_parsedResults];
