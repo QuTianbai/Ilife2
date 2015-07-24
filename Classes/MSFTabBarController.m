@@ -27,6 +27,8 @@
 
 @interface MSFTabBarController () <UIAlertViewDelegate>
 @property(nonatomic,strong)	UINavigationController *productpage;
+@property(nonatomic,strong) NSArray *vcArray;
+@property(nonatomic,strong)MSFProductViewModel *productViewModel;
 @end
 
 @implementation MSFTabBarController
@@ -168,9 +170,11 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
+  if (!self.productViewModel) {
+    self.productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+  }
 	
-	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
+	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.productViewModel];
 	self.productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	self.productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
@@ -181,13 +185,18 @@
   [self.viewModel.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
     // @strongify(self)
     NSLog(@"woshuo");
-    MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-    MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
+    //if (!self.productViewModel) {
+      self.productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+    //}
+    
+    MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.productViewModel];
     self.productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
     self.productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+    //self.vcArray = [NSArray arrayWithObjects:homepage,self.productpage,userpage, nil];
     self.viewControllers = @[homepage, self.productpage, userpage];
     
   }];
+  //self.vcArray = [NSArray arrayWithObjects:homepage,self.productpage,userpage, nil];
 	self.viewControllers = @[homepage, self.productpage, userpage];
 	/*
 	@weakify(self)
