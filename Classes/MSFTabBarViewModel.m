@@ -13,6 +13,7 @@
 #import "MSFClozeViewModel.h"
 
 #import "MSFUtils.h"
+#import "MSFClozeViewController.h"
 
 @interface MSFTabBarViewModel ()
 
@@ -102,12 +103,37 @@
 }
 
 - (RACSignal *)verifySignal {
+/*
   return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.services];
 		[self.services presentViewModel:viewModel];
     [subscriber sendCompleted];
 		return nil;
   }] replay] setNameWithFormat:@"%@ `-verify`", self.class];
+*/
+  return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+    MSFClozeViewController *clozeViewController =
+    [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
+    UINavigationController *navigationController =
+    [[UINavigationController alloc] initWithRootViewController:clozeViewController];
+    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
+    [subscriber sendCompleted];
+    
+    return [RACDisposable disposableWithBlock:^{
+      
+    }];
+  }] replay];
+}
+
+#pragma mark - Private
+
++ (UIViewController *)topMostController {
+  UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
+  while (topController.presentedViewController) {
+    topController = topController.presentedViewController;
+  }
+  return topController;
 }
 
 @end
