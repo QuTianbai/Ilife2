@@ -36,6 +36,7 @@
   if (!self) {
     return nil;
   }
+	//TODO: 完善这里的ViewModel获取方法
 	_viewModel = viewModel;
   
   return self;
@@ -44,7 +45,6 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:MSFUtils.httpClient controller:self];
 	RAC(self.viewModel, name) = self.name.rac_textSignal;
 	RAC(self.viewModel, card) = self.card.rac_textSignal;
 	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;

@@ -14,15 +14,14 @@
 
 @interface MSFFindPasswordViewController ()
 
+@property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *captcha;
 @property (nonatomic, weak) IBOutlet UITextField *password;
 @property (nonatomic, weak) IBOutlet UIButton *captchaButton;
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
-@property (nonatomic, weak) IBOutlet UISwitch *passwordSwith;
-
-@property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
 
 @end
 
@@ -30,9 +29,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	//TODO: 更新初始化方法
 	self.username.text = MSFUtils.phone;
-	self.viewModel = [[MSFAuthorizeViewModel alloc] init];
 	RAC(self.viewModel, username) = self.username.rac_textSignal;
 	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
 	RAC(self.viewModel, password) = self.password.rac_textSignal;
@@ -75,11 +72,12 @@
 		@strongify(self)
 		[self.viewModel.executeFindPassword execute:nil];
 	}];
-	
-	[[self.passwordSwith rac_newOnChannel] subscribeNext:^(NSNumber *x) {
-		@strongify(self)
-		[self.password setSecureTextEntry:!x.boolValue];
-	}];
+}
+
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
 }
 
 @end

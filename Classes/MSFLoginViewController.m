@@ -14,13 +14,14 @@
 
 @interface MSFLoginViewController ()
 
-@property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
-@property (nonatomic, strong, readwrite) MSFLoginSwapController *loginSwapController;
-@property (nonatomic, assign) MSFLoginType loginType;
+@property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, weak) IBOutlet UIButton *signUpButton;
 @property (nonatomic, weak) IBOutlet UIView *signInIndicatorView;
 @property (nonatomic, weak) IBOutlet UIView *signUpIndicatorView;
+
+@property (nonatomic, strong, readwrite) MSFLoginSwapController *loginSwapController;
 
 @end
 
@@ -35,19 +36,6 @@
     return nil;
   }
 	_viewModel = viewModel;
-	_loginType = self.viewModel.loginType;
-	
-  return self;
-}
-
-- (instancetype)initWithViewModel:(id)viewModel loginType:(MSFLoginType)loginType {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
-  if (!self) {
-    return nil;
-  }
-	_viewModel = viewModel;
-	_loginType = self.viewModel.loginType;
 	
   return self;
 }
@@ -58,7 +46,7 @@
 	[self.signInButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
 	[self.signUpButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
 	[self.signUpButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
-	switch (self.loginType) {
+	switch (self.viewModel.loginType) {
 		case MSFLoginSignIn: {
 			self.signInButton.enabled = NO;
 			self.signUpButton.enabled = YES;
@@ -78,7 +66,7 @@
 		}
 	}
 	
-	[self.loginSwapController swap:self.loginType];
+	[self.loginSwapController swap:self.viewModel.loginType];
 	[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
 	
 	@weakify(self)
@@ -121,7 +109,7 @@
 #pragma mark - Private
 
 - (UIView *)indicatorView {
-	return self.loginType == MSFLoginSignIn ? self.signInIndicatorView : self.signUpIndicatorView;
+	return self.viewModel.loginType == MSFLoginSignIn ? self.signInIndicatorView : self.signUpIndicatorView;
 }
 
 @end

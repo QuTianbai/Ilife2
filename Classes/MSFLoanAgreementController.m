@@ -70,8 +70,7 @@
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
-#warning 测试临时用
-    //添加跳转
+		//FIXME: 临时使用代码，错误的情况也进入个人信息
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
     UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
     vc.hidesBottomBarWhenPushed = YES;

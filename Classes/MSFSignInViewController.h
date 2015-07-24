@@ -15,10 +15,11 @@
 
 @interface MSFSignInViewController : UITableViewController <MSFReactiveView>
 
+@property (nonatomic, weak, readonly) MSFAuthorizeViewModel *viewModel;
+
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *password;
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
-@property (nonatomic, strong, readonly) MSFAuthorizeViewModel *viewModel;
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 
 - (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel;

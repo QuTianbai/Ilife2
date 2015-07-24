@@ -14,6 +14,8 @@
 
 @implementation MSFRegisterAgreementViewController
 
+#pragma mark - Lifecycle
+
 - (void)dealloc {
 	NSLog(@"MSFRegisterAgreementViewController `dealloc`");
 }

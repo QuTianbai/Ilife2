@@ -17,6 +17,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFSignUpViewController ()
 
+@property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *captcha;
 @property (nonatomic, weak) IBOutlet UITextField *password;
@@ -29,11 +31,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 
-@property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
-
 @end
 
 @implementation MSFSignUpViewController
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -48,9 +50,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}
 }
 
-#pragma mark - Private
+#pragma mark - MSFReactiveView
 
-- (void)initialize {
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
 	@weakify(self)
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
@@ -114,13 +117,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-}
-
-#pragma mark - MSFReactiveView
-
-- (void)bindViewModel:(id)viewModel {
-	self.viewModel = viewModel;
-	[self initialize];
 }
 
 @end
