@@ -2492,6 +2492,7 @@
 				493AC3671B12F7D500DE58B4 /* objcclean */,
 				49ACBC201B3004ED007E1F6B /* Exportenv */,
 				49E4186F1B4CCF7600422C20 /* buildbump */,
+				4912D7AB1B622E230014059D /* todo */,
 			);
 			buildRules = (
 			);
@@ -2968,6 +2969,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		4912D7AB1B622E230014059D /* todo */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = todo;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/script/xcode-todo-warnings.sh\"";
 		};
 		493AC3671B12F7D500DE58B4 /* objcclean */ = {
 			isa = PBXShellScriptBuildPhase;
