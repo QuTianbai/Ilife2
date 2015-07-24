@@ -22,15 +22,22 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
+@interface MSFProductViewModel ()
+
+@property (nonatomic, weak) id <MSFViewModelServices> services;
+
+@end
+
 @implementation MSFProductViewModel
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(id)viewModel {
+- (instancetype)initWithFormsViewModel:(id)viewModel services:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_services = services;
 	_formsViewModel = viewModel;
 	_totalAmount = @"";
 	_productTerms = @"";
@@ -74,7 +81,7 @@
 			if (!product) {
 				return [RACSignal return:@0];
 			}
-			return	[[self.formsViewModel.client
+			return	[[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
 					return value.parsedResult[@"repayMoneyMonth"];

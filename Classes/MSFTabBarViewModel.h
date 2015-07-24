@@ -14,6 +14,7 @@
 @interface MSFTabBarViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFClient *client __deprecated;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 // 登录控制
 @property (nonatomic, strong, readonly) RACCommand *signInCommand;

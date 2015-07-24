@@ -100,8 +100,4 @@
 		}];
 }
 
-- (MSFClient *)client {
-	return MSFUtils.httpClient;
-}
-
 @end

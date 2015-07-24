@@ -1341,6 +1341,15 @@
 			name = AppliInfo;
 			sourceTree = "<group>";
 		};
+		4912D79D1B6213E20014059D /* Loan */ = {
+			isa = PBXGroup;
+			children = (
+				498113D41B1C4856003D1B7A /* MSFLoanViewModel.h */,
+				498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */,
+			);
+			name = Loan;
+			sourceTree = "<group>";
+		};
 		491C5F9C1B0F0EF400CADF8E /* TextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1628,6 +1637,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4912D79D1B6213E20014059D /* Loan */,
 				499EA2761B560ABA0051AF66 /* Tabbar */,
 				49C2FE4B1B466A2300B6B20A /* Address */,
 				4991470A1B24489800260E97 /* Selection */,
@@ -1850,8 +1860,6 @@
 			children = (
 				498113CB1B1C4242003D1B7A /* MSFHomepageViewModel.h */,
 				498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */,
-				498113D41B1C4856003D1B7A /* MSFLoanViewModel.h */,
-				498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */,
 			);
 			name = HomePage;
 			sourceTree = "<group>";

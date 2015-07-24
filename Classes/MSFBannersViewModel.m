@@ -6,7 +6,6 @@
 
 #import "MSFBannersViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFUtils.h"
 #import "MSFClient+Adver.h"
 #import "MSFAdver.h"
 
@@ -14,6 +13,7 @@
 
 @property(nonatomic,strong) NSArray *banners;
 @property(nonatomic,strong,readwrite) RACSubject *updateContentSignal;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -21,18 +21,18 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithClient:(MSFClient *)client {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_client = client;
+	_services = services;
 	_updateContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFBannersViewModel updateContentSignal"];
 	
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[[self.client
+		[[[self.services.httpClient
 			fetchAdverWithCategory:@"1"]
 			collect]
 			subscribeNext:^(id x) {

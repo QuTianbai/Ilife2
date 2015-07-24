@@ -18,7 +18,7 @@
 @interface MSFTabBarViewModel ()
 
 @property (nonatomic, strong, readwrite) RACSubject *authorizationUpdatedSignal;
-@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, weak, readwrite) id <MSFViewModelServices> services;
 
 @end
 
@@ -39,8 +39,8 @@
 #pragma mark - Private
 
 - (void)initialize {
-	_formsViewModel = [[MSFFormsViewModel alloc] init];
-	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] init];
+	_formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
+	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
 	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel updatedContentSignal"];
 	
 	@weakify(self)

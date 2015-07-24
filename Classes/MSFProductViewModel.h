@@ -5,6 +5,7 @@
 //
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
+#import "MSFViewModelServices.h"
 
 @class MSFProduct;
 @class MSFSelectKeyValues;
@@ -51,6 +52,6 @@
  */
 @property(nonatomic,assign) BOOL insurance;
 
-- (instancetype)initWithFormsViewModel:(id)viewModel;
+- (instancetype)initWithFormsViewModel:(id)viewModel services:(id <MSFViewModelServices>)services;
 
 @end

@@ -5,8 +5,8 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
-@class MSFClient;
 @class RACCommand;
 @class MSFBannersViewModel;
 
@@ -14,13 +14,12 @@
 
 @property(nonatomic,readonly) NSArray *viewModels;
 @property(nonatomic,readonly) RACCommand *refreshCommand;
-@property(nonatomic,readonly) MSFClient *client;
 @property(nonatomic,readonly) MSFBannersViewModel *bannersViewModel;
-
-- (instancetype)initWithClient:(MSFClient *)client;
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath;
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end

@@ -180,7 +180,7 @@
 }
 
 - (IBAction)editUserInfo:(id)sender {
-	MSFEditPasswordViewController *editUserinfoViewController = [[MSFEditPasswordViewController alloc] init];
+	MSFEditPasswordViewController *editUserinfoViewController = [[MSFEditPasswordViewController alloc] initWithViewModel:self.viewModel];
 	editUserinfoViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:editUserinfoViewController animated:YES];
 }

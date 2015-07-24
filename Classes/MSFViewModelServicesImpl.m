@@ -69,4 +69,8 @@
 	return MSFUtils.httpClient;
 }
 
+- (MSFServer *)server {
+	return MSFUtils.server;
+}
+
 @end

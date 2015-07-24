@@ -95,19 +95,6 @@ static const int kPasswordMinLength = 8;
     return [self executeUpdatePasswordSignal];
   }];
 
-//	_executeUpdatePassword =
-//	[[RACCommand alloc] initWithEnabled:self.updateValidSignal signalBlock:^RACSignal *(id input) {
-//		@strongify(self)
-//		if (![self.updatePassword isPassword]) {
-//			return [RACSignal
-//				error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
-//					NSLocalizedFailureReasonErrorKey:@"请输入8位以上数字和字母混合密码"
-//				}]];
-//		}
-//		
-//		return [self executeUpdatePasswordSignal];
-//	}];
-	
 	self.contentUpdateSignal = [[RACSubject subject] setNameWithFormat:@"MSFUserViewModel `contentUpdateSignal`"];
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)

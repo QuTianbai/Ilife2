@@ -20,7 +20,7 @@ __block NSError *error;
 __block BOOL success;
 
 beforeEach(^{
-  viewModel = [[MSFAuthorizeViewModel alloc] initWithServer:MSFServer.dotComServer];
+//  viewModel = [[MSFAuthorizeViewModel alloc] initWithServer:MSFServer.dotComServer];
   error = nil;
   success = NO;
 });
@@ -28,7 +28,7 @@ beforeEach(^{
 it(@"should initialize", ^{
   // then
   expect(viewModel).notTo(beNil());
-  expect(viewModel.server).to(equal(MSFServer.dotComServer));
+//  expect(viewModel.server).to(equal(MSFServer.dotComServer));
 });
 
 it(@"should has username", ^{

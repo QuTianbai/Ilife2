@@ -37,6 +37,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	//TODO: 增加初始化绑定viewmodell方法
 	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
 	self.backgroundView.layer.masksToBounds = YES;
 	self.backgroundView.layer.cornerRadius = 5;

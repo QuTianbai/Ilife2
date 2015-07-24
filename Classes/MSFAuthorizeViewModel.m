@@ -29,12 +29,12 @@ static const int kCounterLength = 60;
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithServer:(MSFServer *)server {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_server = server;
+	_services = services;
 	_username = @"";
 	_password = @"";
 	_captcha = @"";
@@ -140,10 +140,6 @@ static const int kCounterLength = 60;
 	return self;
 }
 
-- (instancetype)init {
-	return [self initWithServer:MSFUtils.server];
-}
-
 #pragma mark - Public
 
 - (RACSignal *)signInValidSignal {
@@ -195,7 +191,7 @@ static const int kCounterLength = 60;
 #pragma mark - Private
 
 - (RACSignal *)executeSignInSignal {
-	MSFUser *user = [MSFUser userWithServer:self.server];
+	MSFUser *user = [MSFUser userWithServer:self.services.server];
 	return [[MSFClient
 		signInAsUser:user password:self.password phone:self.username captcha:self.captcha]
 		doNext:^(id x) {
@@ -204,7 +200,7 @@ static const int kCounterLength = 60;
 }
 
 - (RACSignal *)executeSignUpSignal {
-	MSFUser *user = [MSFUser userWithServer:self.server];
+	MSFUser *user = [MSFUser userWithServer:self.services.server];
 	return [[MSFClient
 		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
 		doNext:^(id x) {
@@ -213,22 +209,22 @@ static const int kCounterLength = 60;
 }
 
 - (RACSignal *)executeCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.server];
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client fetchSignUpCaptchaWithPhone:self.username];
 }
 
 - (RACSignal *)executeFindPasswordSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.server];
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client resetPassword:self.password phone:self.username captcha:self.captcha];
 }
 
 - (RACSignal *)executeFindPasswordCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.server];
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client fetchResetPasswordCaptchaWithPhone:self.username];
 }
 
 - (RACSignal *)executeLoginCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.server];
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client fetchLoginCaptchaWithPhone:self.username];
 }
 

@@ -14,29 +14,30 @@
 @interface MSFHomepageViewModel ()
 
 @property(nonatomic,readwrite) NSArray *viewModels;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
 @implementation MSFHomepageViewModel
 
-- (instancetype)initWithClient:(MSFClient *)client {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_client = client;
-	_bannersViewModel = [[MSFBannersViewModel alloc] initWithClient:client];
+	_services = services;
+	_bannersViewModel = [[MSFBannersViewModel alloc] initWithServices:self.services];
 	
 	@weakify(self)
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		self.bannersViewModel.active = NO;
 		self.bannersViewModel.active = YES;
-		if (!self.client.isAuthenticated) {
+		if (!self.services.httpClient.isAuthenticated) {
 			return [RACSignal return:nil];
 		}
 		
-		return [[[[self.client fetchApplyList]
+		return [[[[self.services.httpClient fetchApplyList]
 			map:^id(id value) {
 				return [[MSFLoanViewModel alloc] initWithModel:value];
 			}]

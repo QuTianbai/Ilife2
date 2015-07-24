@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	//TODO: 更新初始化方法
 	self.username.text = MSFUtils.phone;
 	self.viewModel = [[MSFAuthorizeViewModel alloc] init];
 	RAC(self.viewModel,username) = self.username.rac_textSignal;

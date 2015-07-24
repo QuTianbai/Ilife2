@@ -173,7 +173,7 @@
 #pragma mark - Private
 
 - (void)unAuthenticatedControllers {
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithClient:self.viewModel.client];
+	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
   MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
   homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
@@ -195,13 +195,13 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithClient:self.viewModel.client];
+	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
 	
-	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];

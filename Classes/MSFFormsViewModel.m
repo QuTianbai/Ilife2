@@ -27,6 +27,7 @@
 @property(nonatomic,strong,readwrite) MSFApplicationForms *model;
 @property(nonatomic,strong,readwrite) MSFMarket *market;
 @property(nonatomic,assign,readwrite) BOOL pending;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -34,11 +35,12 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_services = services;
 	_model = [[MSFApplicationForms alloc] init];
 	_market = [[MSFMarket alloc] init];
 	_pending = NO;
@@ -48,14 +50,14 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[[[self.client fetchApplyInfo]
-			zipWith:[self.client fetchCheckEmployee]]
+		[[[[self.services.httpClient fetchApplyInfo]
+			zipWith:[self.services.httpClient fetchCheckEmployee]]
 			flattenMap:^RACStream *(RACTuple *modelAndMarket) {
 				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
 				self.model = model;
 				self.market = market;
         self.isHaveProduct = YES;
-				return [self.client checkUserHasCredit];
+				return [self.services.httpClient checkUserHasCredit];
 			}]
 			subscribeNext:^(MSFResponse *response) {
 				self.pending = [response.parsedResult[@"processing"] boolValue];
@@ -74,13 +76,7 @@
 
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
 	self.model.page = [@(page) stringValue];
-	return [self.client applyInfoSubmit1:self.model];
-}
-
-#pragma mark - Private
-
-- (MSFClient *)client {
-	return MSFUtils.httpClient;
+	return [self.services.httpClient applyInfoSubmit1:self.model];
 }
 
 @end

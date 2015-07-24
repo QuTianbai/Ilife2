@@ -7,12 +7,9 @@
 #import "RVMViewModel.h"
 
 @class RACCommand;
-@class MSFClient;
 @class MSFAuthorizeViewModel;
 
 @interface MSFUserViewModel : RVMViewModel
-
-@property(nonatomic,strong,readonly) MSFClient *client;
 
 @property(nonatomic,strong) NSString *usedPassword;
 @property(nonatomic,strong) NSString *updatePassword;
@@ -22,8 +19,6 @@
 @property(nonatomic,strong) NSString *identifyCard;
 
 @property(nonatomic,strong) RACCommand *executeUpdatePassword;
-
-- (instancetype)initWithClient:(MSFClient *)client;
 
 - (RACSignal *)updateValidSignal;
 
