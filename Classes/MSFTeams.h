@@ -10,9 +10,9 @@
 
 @interface MSFTeams : MSFObject
 
-@property(nonatomic,copy,readonly) NSString *maxAmount;
-@property(nonatomic,copy,readonly) NSString *minAmount;
-@property(nonatomic,copy,readonly) NSString *teamId;
-@property(nonatomic,strong,readonly) NSArray *team;
+@property (nonatomic, copy, readonly) NSString *maxAmount;
+@property (nonatomic, copy, readonly) NSString *minAmount;
+@property (nonatomic, copy, readonly) NSString *teamId;
+@property (nonatomic, strong, readonly) NSArray *team;
 
 @end

@@ -23,10 +23,10 @@
 
 @interface MSFUserInfoViewController ()
 
-@property(nonatomic,strong) NSArray *rowTitles;
-@property(nonatomic,strong) NSArray *rowSubtitles;
-@property(nonatomic,strong) MSFUserViewModel *viewModel;
-@property(nonatomic,strong) CZPhotoPickerController *photoPickerController;
+@property (nonatomic, strong) NSArray *rowTitles;
+@property (nonatomic, strong) NSArray *rowSubtitles;
+@property (nonatomic, strong) MSFUserViewModel *viewModel;
+@property (nonatomic, strong) CZPhotoPickerController *photoPickerController;
 
 @end
 
@@ -37,7 +37,6 @@
 - (void)dealloc {
 	NSLog(@"MSFUserInfoViewController -`dealloc`");
 }
-
 
 - (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel {
 	if (!(self = [super initWithStyle:UITableViewStyleGrouped])) {
@@ -51,7 +50,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"个人信息";
-	self.rowTitles = @[@"姓名",@"身份证号",@"联系方式"];
+	self.rowTitles = @[@"姓名", @"身份证号", @"联系方式"];
 	[self.tableView registerClass:MSFUserInfoTableViewCell.class forCellReuseIdentifier:@"Cell"];
 	self.tableView.tableFooterView = self.tableViewFooter;
 	self.tableView.tableHeaderView = self.tableViewHeader;
@@ -105,6 +104,7 @@
 	avatarView.hidden = YES;
 	[view addSubview:avatarView];
 	UIButton *imageView = [UIButton buttonWithType:UIButtonTypeCustom];
+	imageView.userInteractionEnabled = NO;
 	[imageView setBackgroundImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
 	[view addSubview:imageView];
 	[avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -130,12 +130,12 @@
 	}];
 	
 	[[avatarView rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(id x) {
-		avatarView.layer.cornerRadius = CGRectGetWidth(avatarView.bounds)/2.0;
+		avatarView.layer.cornerRadius = CGRectGetWidth(avatarView.bounds) / 2.0;
 		avatarView.layer.masksToBounds = YES;
 	}];
 	
 	[[imageView rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(id x) {
-		imageView.layer.cornerRadius = CGRectGetWidth(imageView.bounds)/2.0;
+		imageView.layer.cornerRadius = CGRectGetWidth(imageView.bounds) / 2.0;
 		imageView.layer.masksToBounds = YES;
 	}];
 	

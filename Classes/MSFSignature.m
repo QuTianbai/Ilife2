@@ -9,7 +9,7 @@
 @implementation MSFSignature
 
 - (NSString *)query {
-	return [NSString stringWithFormat:@"?sign=%@&timestamp=%@",self.sign,self.timestamp];
+	return [NSString stringWithFormat:@"?sign=%@&timestamp=%@", self.sign, self.timestamp];
 }
 
 @end

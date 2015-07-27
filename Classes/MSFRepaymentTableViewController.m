@@ -29,8 +29,8 @@
 
 @interface MSFRepaymentTableViewController ()
 
-@property(nonatomic,strong) NSArray *objects;
-@property(nonatomic,strong) MSFRepaymentSchedules *rs;
+@property (nonatomic, strong) NSArray *objects;
+@property (nonatomic, strong) MSFRepaymentSchedules *rs;
 
 @end
 
@@ -48,7 +48,7 @@
 	self.tableView.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, edgeInset.right);
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	self.tableView.separatorColor = [MSFCommandView getColorWithString:SEPARATORCOLOR];
-	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width,0.6)];
+	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.6)];
 	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:SEPARATORCOLOR]];
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchRepaymentSchedules].collect replayLazily];
@@ -106,7 +106,7 @@
 	
 	cell.contractNumLabel.text = _rs.contractNum;
 	cell.contractStatusLabel.text = _rs.contractStatus;
-	cell.shouldAmountLabel.text = [NSString stringWithFormat:@".2%f",_rs.repaymentTotalAmount];
+	cell.shouldAmountLabel.text = [NSString stringWithFormat:@".2%f", _rs.repaymentTotalAmount];
 	cell.asOfDateLabel.text = [df stringFromDate:time];
 	
 	return cell;

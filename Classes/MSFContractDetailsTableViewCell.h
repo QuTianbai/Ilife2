@@ -16,18 +16,18 @@
 /**
  *	截止日期
  */
-@property(strong,nonatomic) UILabel *asOfDateLabel;
+@property (strong, nonatomic) UILabel *asOfDateLabel;
 /**
  *	应还金额
  */
-@property(strong,nonatomic) UILabel *shouldAmountLabel;
+@property (strong, nonatomic) UILabel *shouldAmountLabel;
 /**
  *	款项
  */
-@property(strong,nonatomic) UILabel *paymentLabel;
+@property (strong, nonatomic) UILabel *paymentLabel;
 /**
  *	状态
  */
-@property(strong,nonatomic) UILabel *stateLabel;
+@property (strong, nonatomic) UILabel *stateLabel;
 
 @end

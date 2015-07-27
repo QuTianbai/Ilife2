@@ -23,10 +23,18 @@
 
 #import "MSFAuthorizeViewModel.h"
 #import "MSFTabBarViewModel.h"
+#import "MSFViewModelServicesImpl.h"
 
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import <Masonry/Masonry.h>
+
+@interface AppDelegate ()
+
+@property (nonatomic, strong) MSFTabBarViewModel *viewModel;
+@property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
+
+@end
 
 @implementation AppDelegate
 
@@ -93,8 +101,10 @@
 	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
 	
-	MSFTabBarViewModel *viewModel = [[MSFTabBarViewModel alloc] init];
-	self.tabBarController = [[MSFTabBarController alloc] initWithViewModel:viewModel];
+	self.tabBarController = [[MSFTabBarController alloc] init];
+	self.viewModelServices = [[MSFViewModelServicesImpl alloc] initWithTabBarController:self.tabBarController];
+	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	[self.tabBarController bindViewModel:self.viewModel];
 	self.window.rootViewController = self.tabBarController;
 	
 	@weakify(self)

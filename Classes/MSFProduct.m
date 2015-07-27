@@ -35,12 +35,11 @@
 }
 
 - (BOOL)validatePeriod:(id *)period error:(NSError **)error {
-	if ([*period isKindOfClass:NSString.class]) {
+	id temp = *period;
+	if ([temp isKindOfClass:NSString.class]) {
 		return YES;
-	}
-	else if ([*period isKindOfClass:NSNumber.class]) {
-		*period = [*period stringValue];
-		
+	} else if ([temp isKindOfClass:NSNumber.class]) {
+		*period = [temp stringValue];
 		return YES;
 	}
 	
@@ -48,12 +47,11 @@
 }
 
 - (BOOL)validateProductId:(id *)productId error:(NSError **)error {
-	if ([*productId isKindOfClass:NSString.class]) {
+	id product = *productId;
+	if ([product isKindOfClass:NSString.class]) {
 		return YES;
-	}
-	else if ([*productId isKindOfClass:NSNumber.class]) {
-		*productId = [*productId stringValue];
-		
+	} else if ([product isKindOfClass:NSNumber.class]) {
+		*productId = [product stringValue];
 		return YES;
 	}
 	

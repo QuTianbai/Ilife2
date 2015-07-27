@@ -27,7 +27,8 @@
 #define TYPEFACECOLOR @"5787c0"
 
 @interface MSFContractDetailsTableViewController ()
-@property(nonatomic,strong) NSArray *objects;
+
+@property (nonatomic, strong) NSArray *objects;
 
 @end
 
@@ -48,7 +49,7 @@
 	 }
 	 error:^(NSError *error) {
 		 
-		 NSLog(@"fetchPlanPerodicTablesERROR----%@",error);
+		 NSLog(@"fetchPlanPerodicTablesERROR----%@", error);
 	 }];
 }
 
@@ -86,13 +87,12 @@
 		[cell.paymentLabel setText:@"款项"];
 		[cell.stateLabel setText:@"状态"];
 		cell.backgroundColor = [MSFCommandView getColorWithString:CELLBACKGROUNDCOLOR];
-	}
-	else {
+	} else {
 		NSDate *time = [NSDateFormatter msf_dateFromString:ppt.repaymentTime];
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		df.dateFormat = @"yyyy/MM/dd";
 		[cell.asOfDateLabel setText:[df stringFromDate:time]];
-		[cell.shouldAmountLabel setText:[NSString stringWithFormat:@"%.2f",ppt.repaymentAmount]];
+		[cell.shouldAmountLabel setText:[NSString stringWithFormat:@"%.2f", ppt.repaymentAmount]];
 		[cell.paymentLabel setText:ppt.amountType];
 		[cell.stateLabel setText:ppt.contractStatus];
 	}

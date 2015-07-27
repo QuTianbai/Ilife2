@@ -5,7 +5,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
-@interface MSFFindPasswordViewController : UITableViewController
+@interface MSFFindPasswordViewController : UITableViewController <MSFReactiveView>
 
 @end

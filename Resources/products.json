@@ -70,7 +70,7 @@
             "minAmount": "2000"
             }
             ],
-  "white": "0",
+  "white": 0,
   "allMinAmount": "2000",
   "allMaxAmount": "25000"
 }

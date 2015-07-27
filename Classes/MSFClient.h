@@ -53,11 +53,11 @@ extern const NSInteger MSFClientErrorAuthenticationFailed;
  */
 - (instancetype)initWithServer:(MSFServer *)server;
 
-@property(nonatomic,strong,readonly) MSFUser *user;
-@property(nonatomic,copy,readonly) NSString *token;
-@property(nonatomic,copy,readonly) NSString *session;
+@property (nonatomic, strong, readonly) MSFUser *user;
+@property (nonatomic, copy, readonly) NSString *token;
+@property (nonatomic, copy, readonly) NSString *session;
 
-@property(nonatomic,readonly,getter=isAuthenticated) BOOL authenticated;
+@property (nonatomic, readonly, getter = isAuthenticated) BOOL authenticated;
 
 /**
  *	创建未授权的Client

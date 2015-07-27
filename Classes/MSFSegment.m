@@ -44,9 +44,9 @@
   NSArray *array = self.subviews;
   for (UIView *view in array) {
     NSUInteger i = [array indexOfObject:view];
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-4, view.frame.size.width, 2)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height-4, view.frame.size.width, 2)];
     
-    label.tag =self.numberOfSegments-1-i;
+    label.tag = self.numberOfSegments - 1 - i;
     if (label.tag == 0) {
       label.hidden = NO;
     } else {
@@ -58,10 +58,10 @@
   }
   
   self.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见
-  NSDictionary* selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
+  NSDictionary *selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
                                            NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
   [self setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
-  NSDictionary* unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
+  NSDictionary *unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
                                              NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
   [self setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
 }

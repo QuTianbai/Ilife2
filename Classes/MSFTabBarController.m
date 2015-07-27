@@ -26,9 +26,7 @@
 #import "UIColor+Utils.h"
 
 @interface MSFTabBarController () <UIAlertViewDelegate>
-@property(nonatomic,strong)	UINavigationController *productpage;
-@property(nonatomic,strong) NSArray *vcArray;
-@property(nonatomic,strong)MSFProductViewModel *productViewModel;
+
 @end
 
 @implementation MSFTabBarController
@@ -74,6 +72,40 @@
 	}];
 	
   return self;
+}
+
+- (void)bindViewModel:(id)viewModel {
+	_viewModel = viewModel;
+	[self unAuthenticatedControllers];
+	@weakify(self)
+	MSFAuthorizationView *view = [[MSFAuthorizationView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+	[self.view addSubview:view];
+	[view bindViewModel:self.viewModel];
+	
+	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+		@strongify(self)
+		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
+			[view removeFromSuperview];
+		}
+		self.viewModel.formsViewModel.active = NO;
+		if (client.authenticated) {
+			[self authenticatedControllers];
+		} else {
+			[self unAuthenticatedControllers];
+		}
+	}];
+	
+	[[[NSNotificationCenter defaultCenter]
+	rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
+	subscribeNext:^(NSNotification *notification) {
+		@strongify(self)
+		MSFClient *client = notification.object;
+		self.viewModel.formsViewModel.active = NO;
+		[self authenticatedControllers];
+		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
+			[view removeFromSuperview];
+		}
+	}];
 }
 
 - (void)viewDidLoad {
@@ -125,9 +157,6 @@
      // [self unAuthenticatedControllers];
     }];
   }];
-  
-  
-  
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -141,7 +170,7 @@
 #pragma mark - Private
 
 - (void)unAuthenticatedControllers {
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithClient:self.viewModel.client];
+	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
   MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
   homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
@@ -163,49 +192,23 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
-  @weakify(self)
-  
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithClient:self.viewModel.client];
+	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
-  if (!self.productViewModel) {
-    self.productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-  }
 	
-	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.productViewModel];
-	self.productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
-	self.productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
+	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
+	productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
-	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel];
+	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
 	userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
-  [self.viewModel.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
-    // @strongify(self)
-    NSLog(@"woshuo");
-    //if (!self.productViewModel) {
-      self.productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-    //}
-    
-    MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.productViewModel];
-    self.productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
-    self.productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
-    //self.vcArray = [NSArray arrayWithObjects:homepage,self.productpage,userpage, nil];
-    self.viewControllers = @[homepage, self.productpage, userpage];
-    
-  }];
-  //self.vcArray = [NSArray arrayWithObjects:homepage,self.productpage,userpage, nil];
-	self.viewControllers = @[homepage, self.productpage, userpage];
-	/*
-	@weakify(self)
-	[self.viewModel.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
-		@strongify(self)
-    //防止在加载完贷款信息和贷款期数产品后自动跳回第一个tabBarViewContrller
-		//self.selectedIndex = 0;
-	}];
-	*/
+	
+	self.viewControllers = @[homepage, productpage, userpage];
 }
 
 - (UITabBarItem *)itemWithNormal:(NSString *)normalName selected:(NSString *)selectedName {
@@ -220,10 +223,10 @@
 #pragma mark - UITabBarControllerDelegate
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-  if (!self.viewModel.client.isAuthenticated) {
+  if (!self.viewModel.isAuthenticated) {
 		[self.viewModel.signInCommand execute:nil];
 		return NO;
-  } else if (![self.viewModel.client.user isAuthenticated]) {
+  } else if (!self.viewModel.isUserAuthenticated) {
     [self.viewModel.verifyCommand execute:nil];
 		return NO;
   }

@@ -9,7 +9,7 @@
 @implementation NSCharacterSet (MSFCharacterSetAdditions)
 
 + (NSCharacterSet *)chineseCharacterSet {
-	return [NSCharacterSet characterSetWithRange:NSMakeRange(0x4e00, 0x9fa5-0x4e00)];
+	return [NSCharacterSet characterSetWithRange:NSMakeRange(0x4e00, 0x9fa5 - 0x4e00)];
 }
 
 + (NSCharacterSet *)identifyCardCharacterSet {

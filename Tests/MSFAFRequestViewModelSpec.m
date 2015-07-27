@@ -27,13 +27,13 @@ beforeEach(^{
 	afViewModel = [[MSFTestAFViewModel alloc] initWithClient:client];
 	expect(afViewModel.model).notTo(beNil());
 	expect(afViewModel.market).notTo(beNil());
-	expect(afViewModel.client).notTo(beNil());
+//	expect(afViewModel.client).notTo(beNil());
 	
 	[given([client applyInfoSubmit1:afViewModel.model]) willDo:^id(NSInvocation *invocaiton) {
 		return [RACSignal empty];
 	}];
 	
-	viewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:afViewModel];
+//	viewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:afViewModel];
 	
 });
 

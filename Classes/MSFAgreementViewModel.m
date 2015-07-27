@@ -5,16 +5,8 @@
 //
 
 #import "MSFAgreementViewModel.h"
-#import "MSFAgreement.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFUtils.h"
-#import "MSFClient.h"
-
-@interface MSFAgreementViewModel ()
-
-@property(nonatomic,strong,readwrite) MSFAgreement *agreement;
-
-@end
+#import "MSFAgreement.h"
 
 @implementation MSFAgreementViewModel
 
@@ -98,10 +90,6 @@
 		reduceEach:^id(NSURLResponse *response, NSData *data){
 				return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
-}
-
-- (MSFClient *)client {
-	return MSFUtils.httpClient;
 }
 
 @end

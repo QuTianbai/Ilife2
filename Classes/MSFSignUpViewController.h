@@ -6,10 +6,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
+#import <MSPageViewController/MSPageViewControllerPage.h>
 
-/**
- *	注册
- */
-@interface MSFSignUpViewController : UITableViewController <MSFReactiveView>
+@interface MSFSignUpViewController : UITableViewController <MSFReactiveView, MSPageViewControllerChild>
 
 @end

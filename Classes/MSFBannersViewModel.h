@@ -5,15 +5,13 @@
 //
 
 #import "RVMViewModel.h"
-
-@class MSFClient;
+#import "MSFViewModelServices.h"
 
 @interface MSFBannersViewModel : RVMViewModel
 
-@property(nonatomic,strong,readonly) RACSignal *updateContentSignal;
-@property(nonatomic,strong,readonly) MSFClient *client;
+@property (nonatomic, strong, readonly) RACSignal *updateContentSignal;
 
-- (instancetype)initWithClient:(MSFClient *)client;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;

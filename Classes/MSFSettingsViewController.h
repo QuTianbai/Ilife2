@@ -9,6 +9,6 @@
 /**
  *	设置
  */
-@interface MSFSettingsViewController : UITableViewController <UITableViewDataSource,UITableViewDelegate>
+@interface MSFSettingsViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

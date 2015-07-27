@@ -10,7 +10,7 @@
 
 @interface MSFObject : MTLModel <MTLJSONSerializing>
 
-@property(nonatomic,copy,readonly) NSString *objectID;
-@property(nonatomic,strong,readonly) MSFServer *server;
+@property (nonatomic, copy, readonly) NSString *objectID;
+@property (nonatomic, strong, readonly) MSFServer *server;
 
 @end
