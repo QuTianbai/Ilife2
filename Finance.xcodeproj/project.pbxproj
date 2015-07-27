@@ -67,7 +67,7 @@
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
 		490E77221B15B763003F7137 /* MSFBannersViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */; };
 		491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E011B65E1B200D28455 /* MSFAddress.m */; };
-		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; };
+		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */; };
 		491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */; };
 		491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */; };
