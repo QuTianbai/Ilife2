@@ -19,6 +19,7 @@
 #import "MSFPersonalViewModel.h"
 #import "MSFAddressViewModel.h"
 #import "MSFFormsViewModel.h"
+#import "MSFAddress.h"
 
 @interface MSFLoanAgreementController ()<UIWebViewDelegate>
 
@@ -26,7 +27,7 @@
 @property (nonatomic, strong) MSFLoanAgreementViewModel *viewModel;
 @property (nonatomic, weak) IBOutlet UIButton *agreeButton;
 @property (nonatomic, weak) IBOutlet UIButton *disAgreeButton;
-@property (weak, nonatomic) IBOutlet UIView *BottomBtVIew;
+@property (nonatomic, weak) IBOutlet UIView *BottomBtVIew;
 
 @end
 
@@ -40,10 +41,10 @@
 	
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[self.LoanAgreenmentWV
-		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		 withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
+		rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
-	 subscribeNext:^(id x) {
+		subscribeNext:^(id x) {
 		 [SVProgressHUD dismiss];
 	 }
 	 error:^(NSError *error) {
@@ -63,7 +64,7 @@
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
-			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithApplicationForm:self.viewModel.formsViewModel.model controller:vc];
+			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
 			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
@@ -74,7 +75,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
     UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
     vc.hidesBottomBarWhenPushed = YES;
-    MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithApplicationForm:self.viewModel.formsViewModel.model controller:vc];
+		MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
     MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
     [vc bindViewModel:viewModel];
     [self.navigationController pushViewController:vc animated:YES];
@@ -92,7 +93,6 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
   self.BottomBtVIew.hidden = NO;
-  //self.agreeButton.hidden = YES;
 }
 
 @end

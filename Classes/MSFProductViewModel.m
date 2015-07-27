@@ -32,16 +32,16 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(id)viewModel services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormsViewModel:(id)viewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_services = services;
 	_formsViewModel = viewModel;
 	_totalAmount = @"";
 	_productTerms = @"";
 	_termAmount = 0;
+	_services = self.formsViewModel.services;
 	
 	RAC(self.formsViewModel.model, repayMoneyMonth) = RACObserve(self, termAmount);
 	RAC(self.formsViewModel.model, principal) = RACObserve(self, totalAmount);

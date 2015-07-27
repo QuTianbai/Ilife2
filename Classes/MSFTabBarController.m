@@ -157,9 +157,6 @@
      // [self unAuthenticatedControllers];
     }];
   }];
-  
-  
-  
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -201,7 +198,7 @@
 	homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
 	
-	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
+	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
@@ -212,14 +209,6 @@
 	userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 	
 	self.viewControllers = @[homepage, productpage, userpage];
-	/*
-	@weakify(self)
-	[self.viewModel.formsViewModel.updatedContentSignal subscribeNext:^(id x) {
-		@strongify(self)
-    //防止在加载完贷款信息和贷款期数产品后自动跳回第一个tabBarViewContrller
-		//self.selectedIndex = 0;
-	}];
-	*/
 }
 
 - (UITabBarItem *)itemWithNormal:(NSString *)normalName selected:(NSString *)selectedName {

@@ -8,9 +8,9 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFSelectKeyValues.h"
+#import "MSFViewModelServices.h"
 
 @class MSFFormsViewModel;
-@class UIViewController;
 @class RACCommand;
 @class MSFApplicationForms;
 
@@ -98,6 +98,6 @@
 
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel contentViewController:(UIViewController *)controller;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
 @end

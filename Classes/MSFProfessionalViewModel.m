@@ -16,7 +16,6 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSString+Matches.h"
 #import "MSFFormsViewModel.h"
-#import <UIKit/UIKit.h>
 #import <ActionSheetPicker-3.0/ActionSheetPicker.h>
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
@@ -24,8 +23,8 @@
 
 @interface MSFProfessionalViewModel ( )
 
-@property (nonatomic, weak) UIViewController *viewController;
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -37,17 +36,83 @@
 	NSLog(@"MSFProfessionalViewModel `-dealloc`");
 }
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel  {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_services = formsViewModel.services;
 	_formsViewModel = formsViewModel;
-	_viewController = viewController;
 	_model = formsViewModel.model;
-	_addressViewModel = [[MSFAddressViewModel alloc] initWithWorkApplicationForm:self.model controller:self.viewController];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:formsViewModel.workAddress services:formsViewModel.services];
 	[self initialize];
 	
+	return self;
+}
+
+#pragma mark - Private
+
+- (void)commonInit {
+	NSArray *degress = [MSFSelectKeyValues getSelectKeys:@"edu_background"];
+	[degress enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.education]) {
+			self.degrees = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"social_status"];
+	[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.socialStatus]) {
+			self.socialstatus = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *seniorities = [MSFSelectKeyValues getSelectKeys:@"service_year"];
+	[seniorities enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.workingLength]) {
+			self.seniority = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *industries = [MSFSelectKeyValues getSelectKeys:@"industry_category"];
+	[industries enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.industry]) {
+			self.industry = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"position"];
+	[positions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.title]) {
+			self.position = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *natures = [MSFSelectKeyValues getSelectKeys:@"unit_nature"];
+	[natures enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.companyType]) {
+			self.nature = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *eductionalSystme = [MSFSelectKeyValues getSelectKeys:@"school_system"];
+	[eductionalSystme enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.programLength]) {
+			self.eductionalSystme = obj;
+			*stop = YES;
+		}
+	}];
+	NSArray *department = [MSFSelectKeyValues getSelectKeys:@"professional"];
+	[department enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.department]) {
+			self.department = obj;
+			*stop = YES;
+		}
+	}];
+}
+
+- (void)initialize {
+	[self commonInit];
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, workProvince) = RACObserve(self.addressViewModel, provinceName);
 	RAC(self.model, workProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
@@ -130,11 +195,6 @@
 	}];
 	_executeEductionalSystmeCommand.allowsConcurrentExecution = YES;
 	
-	_executeEnrollmentYearCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self enrollmentYearSignal];
-	}];
-	
 	_executeWorkingLengthCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self workingLengthSignal];
@@ -165,99 +225,23 @@
 	}];
 	_executePositionCommand.allowsConcurrentExecution = YES;
 	
-	_executeStartedDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self startedDateSignal];
-	}];
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     @strongify(self)
     return [self commitSignal];
   }];
-//	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
-//		@strongify(self)
-//		return [self commitSignal];
-//	}];
-	
-	return self;
-}
-
-#pragma mark - Private
-
-- (void)initialize {
-	NSArray *degress = [MSFSelectKeyValues getSelectKeys:@"edu_background"];
-	[degress enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.education]) {
-			self.degrees = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"social_status"];
-	[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.socialStatus]) {
-			self.socialstatus = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *seniorities = [MSFSelectKeyValues getSelectKeys:@"service_year"];
-	[seniorities enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.workingLength]) {
-			self.seniority = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *industries = [MSFSelectKeyValues getSelectKeys:@"industry_category"];
-	[industries enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.industry]) {
-			self.industry = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"position"];
-	[positions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.title]) {
-			self.position = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *natures = [MSFSelectKeyValues getSelectKeys:@"unit_nature"];
-	[natures enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.companyType]) {
-			self.nature = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *eductionalSystme = [MSFSelectKeyValues getSelectKeys:@"school_system"];
-	[eductionalSystme enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.programLength]) {
-			self.eductionalSystme = obj;
-			*stop = YES;
-		}
-	}];
-	NSArray *department = [MSFSelectKeyValues getSelectKeys:@"professional"];
-	[department enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.department]) {
-			self.department = obj;
-			*stop = YES;
-		}
-	}];
 }
 
 - (RACSignal *)educationSignal {
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"edu_background"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"教育信息";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.degrees = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -267,18 +251,13 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"social_status"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"社会身份";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.socialstatus = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -288,18 +267,13 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"school_system"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"学制";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.eductionalSystme = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -309,53 +283,14 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"service_year"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"工作年限";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.seniority = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
-		return nil;
-	}];
-}
-
-- (RACSignal *)enrollmentYearSignal {
-	@weakify(self)
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		[self.viewController.view endEditing:YES];
-		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:0];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-50];
-		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-	 
-		[ActionSheetDatePicker
-			showPickerWithTitle:@""
-			datePickerMode:UIDatePickerModeDate
-			selectedDate:[NSDate date]
-			minimumDate:minDate
-			maximumDate:maxDate
-			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			cancelBlock:^(ActionSheetDatePicker *picker) {
-				self.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			origin:self.viewController.view];
 		return nil;
 	}];
 }
@@ -364,18 +299,13 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"industry_category"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"行业类别";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.industry = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -385,18 +315,13 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"unit_nature"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"行业性质";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.nature = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -406,18 +331,13 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"professional"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"部门";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.department = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -427,53 +347,14 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"position"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"职位";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.position = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
-		return nil;
-	}];
-}
-
-- (RACSignal *)startedDateSignal {
-	@weakify(self)
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		[self.viewController.view endEditing:YES];
-		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:0];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-50];
-		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-	 
-		[ActionSheetDatePicker
-			showPickerWithTitle:@""
-			datePickerMode:UIDatePickerModeDate
-			selectedDate:[NSDate date]
-			minimumDate:minDate
-			maximumDate:maxDate
-			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			cancelBlock:^(ActionSheetDatePicker *picker) {
-				self.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			origin:self.viewController.view];
 		return nil;
 	}];
 }

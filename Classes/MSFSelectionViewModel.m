@@ -15,12 +15,24 @@
 @interface MSFSelectionViewModel ()
 
 @property (nonatomic, strong) NSArray *models;
+@property (nonatomic, strong, readwrite) RACSubject *selectedSignal;
 
 @end
 
 @implementation MSFSelectionViewModel
 
 #pragma mark - Lifecycle
+
+- (instancetype)init {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	
+	self.selectedSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewModel -selectedSignal"];
+	
+  return self;
+}
 
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items {
 	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];

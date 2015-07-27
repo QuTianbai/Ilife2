@@ -5,7 +5,6 @@
 //
 
 #import "MSFAddressViewModel.h"
-#import <UIKit/UIKit.h>
 #import <FMDB/FMDB.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
@@ -13,12 +12,13 @@
 #import "MSFSelectionViewController.h"
 #import "MSFAreas.h"
 #import "MSFApplicationForms.h"
+#import "MSFAddress.h"
 
 @interface MSFAddressViewModel ()
 
 @property (nonatomic, strong) FMDatabase *fmdb;
 @property (nonatomic, strong) MSFApplicationForms *form;
-@property (nonatomic, weak, readwrite) UIViewController *viewController;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -30,42 +30,38 @@
 	NSLog(@"MSFAddressViewModel ``-dealloc");
 }
 
-- (instancetype)initWithController:(UIViewController *)contentViewController {
-	return [self initWithController:contentViewController needArea:NO];
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_services = services;
+	[self initialize];
+  
+  return self;
 }
 
-- (instancetype)initWithWorkApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController {
-	if (!(self = [self initWithController:viewController needArea:YES])) {
-		return nil;
-	}
-	self.province = [self regionWithCode:model.workProvinceCode];
-	self.city = [self regionWithCode:model.workCityCode];
-	self.area = [self regionWithCode:model.workCountryCode];
+- (instancetype)initWithAddress:(MSFAddress *)address services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	[self initialize];
+	_needArea = YES;
+	self.services = services;
+	self.province = [self regionWithCode:address.province];
+	self.city = [self regionWithCode:address.city];
+	self.area = [self regionWithCode:address.area];
 	
-	return self;
+  return self;
 }
 
-- (instancetype)initWithApplicationForm:(MSFApplicationForms *)model controller:(UIViewController *)viewController {
-	if (!(self = [self initWithController:viewController needArea:YES])) {
-		return nil;
-	}
-	self.province = [self regionWithCode:model.currentProvinceCode];
-	self.city = [self regionWithCode:model.currentCityCode];
-	self.area = [self regionWithCode:model.currentCountryCode];
-	
-	return self;
-}
+#pragma mark - Private
 
-- (instancetype)initWithController:(UIViewController *)contentViewController needArea:(BOOL)needArea {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
+- (void)initialize {
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
 	_fmdb = [FMDatabase databaseWithPath:path];
-	_viewController = contentViewController;
 	_address = @"";
-	_needArea = needArea;
 	
 	@weakify(self)
 	_selectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -130,20 +126,12 @@
 		self.areaName = x.name;
 		self.areaCode = x.codeID;
 	}];
-	
-	return self;
 }
-
-#pragma mark - Private
 
 - (RACSignal *)fetchProvince {
 	MSFSelectionViewModel *provinceViewModel = [MSFSelectionViewModel areaViewModel:self.provinces];
-	MSFSelectionViewController *viewController = [[MSFSelectionViewController alloc] initWithViewModel:provinceViewModel];
-	viewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	viewController.title = @"中国";
-	[self.viewController.navigationController pushViewController:viewController animated:YES];
-	
-	return [viewController.selectedSignal doNext:^(id x) {
+	[self.services pushViewModel:provinceViewModel];
+	return [provinceViewModel.selectedSignal doNext:^(id x) {
 		self.province = x;
 	}];
 }
@@ -151,15 +139,11 @@
 - (RACSignal *)fetchCity {
 	NSParameterAssert(self.province);
 	MSFSelectionViewModel *citiesViewModel = [MSFSelectionViewModel areaViewModel:[self citiesWithProvince:self.province]];
-	MSFSelectionViewController *viewController = [[MSFSelectionViewController alloc] initWithViewModel:citiesViewModel];
-	viewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	viewController.title = self.province.title;
-	[self.viewController.navigationController pushViewController:viewController animated:YES];
-	
-	return [viewController.selectedSignal doNext:^(id x) {
+	[self.services pushViewModel:citiesViewModel];
+	return [citiesViewModel.selectedSignal doNext:^(id x) {
 		self.city = x;
 		if (!self.needArea) {
-			[self.viewController.navigationController popToViewController:self.viewController animated:YES];
+			[self.services popViewModel];
 		}
 	}];
 }
@@ -167,18 +151,12 @@
 - (RACSignal *)fetchArea {
 	NSParameterAssert(self.city);
 	MSFSelectionViewModel *areasViewModel = [MSFSelectionViewModel areaViewModel:[self areasWitchCity:self.city]];
-	MSFSelectionViewController *viewController = [[MSFSelectionViewController alloc] initWithViewModel:areasViewModel];
-	viewController.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	viewController.title = self.city.title;
-	[self.viewController.navigationController pushViewController:viewController animated:YES];
-	
-	return [viewController.selectedSignal doNext:^(id x) {
+	[self.services pushViewModel:areasViewModel];
+	return [areasViewModel.selectedSignal doNext:^(id x) {
 		self.area = x;
-		[self.viewController.navigationController popToViewController:self.viewController animated:YES];
+		[self.services popViewModel];
 	}];
 }
-
-#pragma mark - Custom Accessors
 
 - (NSArray *)provinces {
 	if (![self.fmdb open]) {

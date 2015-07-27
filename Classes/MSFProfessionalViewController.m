@@ -109,8 +109,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
 	RAC(self.programLength, text) = RACObserve(self.viewModel, eductionalSystmeTitle);
 	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
-	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
-	self.enrollmentYearButton.rac_command = self.viewModel.executeEnrollmentYearCommand;
 	RAC(self.workingLength, text) = RACObserve(self.viewModel, seniorityTitle);
 	self.workingLengthButton.rac_command = self.viewModel.executeWorkingLengthCommand;
 	RAC(self.industry, text) = RACObserve(self.viewModel, industryTitle);
@@ -121,13 +119,21 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.departmentButton.rac_command = self.viewModel.executeDepartmentCommand;
 	RAC(self.position, text) = RACObserve(self.viewModel, positionTitle);
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
-	RAC(self.currentJobDate, text) = RACObserve(self.viewModel, startedDate);
-	self.currentJobDateButton.rac_command = self.viewModel.executeStartedDateCommand;
 	RAC(self.address, text) = RACObserve(self.viewModel, address);
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
-	
 	@weakify(self)
+	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
+	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		[self enrollmentYearSignal];
+	}];
+	RAC(self.currentJobDate, text) = RACObserve(self.viewModel, startedDate);
+	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		[self startedDateSignal];
+	}];
+	
 	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.tableView reloadData];
@@ -141,7 +147,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			[SVProgressHUD dismiss];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"relationship" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel contentViewController:vc];
+			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
 			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 		}];
@@ -241,6 +247,74 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
   [sectionView addSubview:titleLabel];
   
   return sectionView;
+}
+
+#pragma mark - Private
+
+- (RACSignal *)startedDateSignal {
+	@weakify(self)
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-50];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+	 
+		[ActionSheetDatePicker
+			showPickerWithTitle:@""
+			datePickerMode:UIDatePickerModeDate
+			selectedDate:[NSDate date]
+			minimumDate:minDate
+			maximumDate:maxDate
+			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+				self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			cancelBlock:^(ActionSheetDatePicker *picker) {
+				self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			origin:self.view];
+		return nil;
+	}] replay];
+}
+
+- (RACSignal *)enrollmentYearSignal {
+	@weakify(self)
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-50];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+	 
+		[ActionSheetDatePicker
+			showPickerWithTitle:@""
+			datePickerMode:UIDatePickerModeDate
+			selectedDate:[NSDate date]
+			minimumDate:minDate
+			maximumDate:maxDate
+			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+				self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			cancelBlock:^(ActionSheetDatePicker *picker) {
+				self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+				[subscriber sendNext:nil];
+				[subscriber sendCompleted];
+			}
+			origin:self.view];
+		return nil;
+	}] replay];
 }
 
 @end

@@ -59,45 +59,6 @@ static const int kPasswordMinLength = 8;
 	return self;
 }
 
-- (instancetype)initWithClient:(MSFClient *)client {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-	_usedPassword = @"";
-	_updatePassword = @"";
-	
-	@weakify(self)
-  _executeUpdatePassword = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self)
-    NSString *errorStr = @"";
-    if (self.usedPassword.length == 0) {
-      errorStr = @"请输入原密码";
-      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:errorStr}]];
-    } else if (self.updatePassword.length == 0) {
-      errorStr = @"请输入新密码";
-      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:errorStr}]];
-    }
-    if (![self.updatePassword isPassword]) {
-      return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入8位以上数组和字母混合密码"}]];
-    }
-    return [self executeUpdatePasswordSignal];
-  }];
-
-	self.contentUpdateSignal = [[RACSubject subject] setNameWithFormat:@"MSFUserViewModel `contentUpdateSignal`"];
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[[self.servcies.httpClient fetchUserInfo] subscribeNext:^(MSFUser *user) {
-			self.username = user.name;
-			self.mobile = user.phone;
-			self.identifyCard = user.idcard;
-			[(RACSubject *)self.contentUpdateSignal sendNext:nil];
-		}];
-	}];
-	
-	return self;
-}
-
 #pragma mark - Public
 
 - (RACSignal *)updateValidSignal {

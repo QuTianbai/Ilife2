@@ -12,7 +12,6 @@
 @interface MSFSelectionViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) MSFSelectionViewModel *viewModel;
-@property (nonatomic, strong, readwrite) RACSubject *selectedSignal;
 
 @end
 
@@ -24,8 +23,7 @@
 	if (!(self = [super initWithStyle:UITableViewStylePlain])) {
 		return nil;
 	}
-	self.viewModel = viewModel;
-	self.selectedSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewController `selectedSignal`"];
+	_viewModel = viewModel;
 	
 	return self;
 }
@@ -57,7 +55,7 @@
 	MSFSelectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 	cell.textLabel.text = [self.viewModel titleForIndexPath:indexPath];
 	cell.detailTextLabel.text = [self.viewModel subtitleForIndexPath:indexPath];
-	cell.accessoryType = self.accessoryType;
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	return cell;
 }
@@ -66,7 +64,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	[(RACSubject *)self.selectedSignal sendNext:[self.viewModel modelForIndexPath:indexPath]];
+	[(RACSubject *)self.viewModel.selectedSignal sendNext:[self.viewModel modelForIndexPath:indexPath]];
 }
 
 @end

@@ -25,6 +25,8 @@
 
 @implementation MSFViewModelServicesImpl
 
+#pragma mark - Lifecycle
+
 - (instancetype)initWithTabBarController:(UITabBarController *)tabBarController {
   self = [super init];
   if (!self) {
@@ -47,6 +49,20 @@
   }
   
   [(UINavigationController *)self.tabBarController.selectedViewController pushViewController:viewController animated:YES];
+}
+
+- (void)popViewModel {
+	UINavigationController *navigationController = (UINavigationController *)self.tabBarController.selectedViewController;
+	if ([navigationController.topViewController isKindOfClass:MSFSelectionViewController.class]) {
+		[[navigationController.viewControllers reverseObjectEnumerator].allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			if (![obj isKindOfClass:MSFSelectionViewController.class]) {
+				[navigationController popToViewController:obj animated:YES];
+				*stop = YES;
+			}
+		}];
+  } else {
+    NSLog(@"an unknown ViewModel was pop!");
+  }
 }
 
 - (void)presentViewModel:(id)viewModel {

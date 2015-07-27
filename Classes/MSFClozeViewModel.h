@@ -5,18 +5,13 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @class RACCommand;
 @class MSFClient;
-@class UIViewController;
 @class MSFAddressViewModel;
 
 @interface MSFClozeViewModel : RVMViewModel
-
-/**
- *	HTTPRequest Client, Create by Init method
- */
-@property (nonatomic, strong, readonly) MSFClient *client;
 
 /**
  *	The User realname, Identifier Card name
@@ -80,16 +75,6 @@
  */
 - (RACSignal *)authoriseValidSignal;
 
-- (instancetype)initWithAuthorizedClient:(MSFClient *)client __deprecated_msg("Use `initWithAuthorizedClient:controller:`");
-
-/**
- *	Create ViewModel instance
- *
- *	@param client			The HTTP Request Client
- *	@param controller Current Top ViewController
- *
- *	@return ViewModel Instance
- */
-- (instancetype)initWithAuthorizedClient:(MSFClient *)client controller:(UIViewController *)controller;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end

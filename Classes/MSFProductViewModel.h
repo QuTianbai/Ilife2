@@ -52,6 +52,6 @@
  */
 @property (nonatomic, assign) BOOL insurance;
 
-- (instancetype)initWithFormsViewModel:(id)viewModel services:(id <MSFViewModelServices>)services;
+- (instancetype)initWithFormsViewModel:(id)viewModel;
 
 @end

@@ -20,14 +20,17 @@
 #import "MSFMarket.h"
 #import "MSFClient+MSFCheckEmploee.h"
 #import "MSFResponse.h"
+#import "MSFAddress.h"
 
 @interface MSFFormsViewModel ()
 
 @property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
 @property (nonatomic, strong, readwrite) MSFApplicationForms *model;
 @property (nonatomic, strong, readwrite) MSFMarket *market;
+@property (nonatomic, strong, readwrite) MSFAddress *currentAddress;
+@property (nonatomic, strong, readwrite) MSFAddress *workAddress;
 @property (nonatomic, assign, readwrite) BOOL pending;
-@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, weak, readwrite) id <MSFViewModelServices> services;
 
 @end
 
@@ -57,6 +60,16 @@
 				self.model = model;
 				self.market = market;
         self.isHaveProduct = YES;
+				self.currentAddress = [[MSFAddress alloc] initWithDictionary:@{
+					@"province": self.model.currentProvinceCode,
+					@"city": self.model.currentCityCode,
+					@"area": self.model.currentCountryCode,
+				} error:nil];
+				self.workAddress = [[MSFAddress alloc] initWithDictionary:@{
+					@"province": self.model.workProvinceCode,
+					@"city": self.model.workCityCode,
+					@"area": self.model.workCountryCode,
+				} error:nil];
 				return [self.services.httpClient checkUserHasCredit];
 			}]
 			subscribeNext:^(MSFResponse *response) {

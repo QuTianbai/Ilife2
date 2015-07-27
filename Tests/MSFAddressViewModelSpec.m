@@ -16,12 +16,12 @@ __block UIViewController *contentViewContrller;
 
 beforeEach(^{
 	contentViewContrller = mock(UIViewController.class);
-	viewModel = [[MSFTestAddressViewModel alloc] initWithController:contentViewContrller needArea:YES];
+//	viewModel = [[MSFTestAddressViewModel alloc] initWithController:contentViewContrller needArea:YES];
 });
 
 it(@"should initialize", ^{
 	expect(viewModel).notTo(beNil());
-	expect(viewModel.viewController).notTo(beNil());
+//	expect(viewModel.viewController).notTo(beNil());
 });
 
 it(@"should has province", ^{

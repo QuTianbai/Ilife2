@@ -21,8 +21,6 @@
 
 @property (nonatomic, strong) RACCommand *executeUpdatePassword;
 
-- (RACSignal *)updateValidSignal;
-
 @property (nonatomic, strong, readonly) RACSignal *contentUpdateSignal;
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
 

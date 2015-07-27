@@ -66,6 +66,7 @@
 		490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BDE7E1B08265700D53391 /* NSString+Matches.m */; };
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
 		490E77221B15B763003F7137 /* MSFBannersViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */; };
+		491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E011B65E1B200D28455 /* MSFAddress.m */; };
 		491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */; };
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
@@ -621,6 +622,8 @@
 		490DB83A1B1FF10100EEA5C9 /* MSFSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignature.h; sourceTree = "<group>"; };
 		490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignature.m; sourceTree = "<group>"; };
 		490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewModelSpec.m; sourceTree = "<group>"; };
+		491B3E001B65E1B200D28455 /* MSFAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddress.h; sourceTree = "<group>"; };
+		491B3E011B65E1B200D28455 /* MSFAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddress.m; sourceTree = "<group>"; };
 		491C5FAD1B0F0F5E00CADF8E /* MSFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTextField.h; sourceTree = "<group>"; };
 		491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTextField.m; sourceTree = "<group>"; };
 		491C5FB11B0F17A900CADF8E /* MSFEdgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEdgeButton.h; sourceTree = "<group>"; };
@@ -1179,7 +1182,6 @@
 			isa = PBXGroup;
 			children = (
 				49CBDDB31B0DF03E009EF662 /* banners.json */,
-				4925AD571B2A786900872A8A /* products.json */,
 				07AFE59F1B26D202009E0124 /* position.json */,
 				499EA2B51B5679E50051AF66 /* familyMember_type2.json */,
 				07C06C6E1B1347C200F2DFCC /* familyMember_type.json */,
@@ -1197,7 +1199,6 @@
 				07C06C571B13461E00F2DFCC /* professional.json */,
 				07C06C591B13464200F2DFCC /* edu_background.json */,
 				07C06C5B1B13465A00F2DFCC /* school_system.json */,
-				072328BB1B37B481008E9DF1 /* applyInfo.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -1348,6 +1349,24 @@
 				498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */,
 			);
 			name = Loan;
+			sourceTree = "<group>";
+		};
+		491B3DF11B65D68C00D28455 /* stubs */ = {
+			isa = PBXGroup;
+			children = (
+				072328BB1B37B481008E9DF1 /* applyInfo.json */,
+				4925AD571B2A786900872A8A /* products.json */,
+			);
+			name = stubs;
+			sourceTree = "<group>";
+		};
+		491B3DFF1B65E1A600D28455 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				491B3E001B65E1B200D28455 /* MSFAddress.h */,
+				491B3E011B65E1B200D28455 /* MSFAddress.m */,
+			);
+			name = Address;
 			sourceTree = "<group>";
 		};
 		491C5F9C1B0F0EF400CADF8E /* TextView */ = {
@@ -1606,6 +1625,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				491B3DFF1B65E1A600D28455 /* Address */,
 				4991471B1B246B5D00260E97 /* Selection */,
 				494FBE0B1B16B1AE005F0454 /* Cipher */,
 				07C06C7E1B134ED300F2DFCC /* SelectKeyValues */,
@@ -2321,6 +2341,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				491B3DF11B65D68C00D28455 /* stubs */,
 				49B37B3E1B608F39004EED47 /* progressbar */,
 				49A954FB1B574B09000852E3 /* homepage */,
 				492D13111B2EAEAA0094699A /* common */,
@@ -3144,6 +3165,7 @@
 				49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */,
 				498113D61B1C4856003D1B7A /* MSFLoanViewModel.m in Sources */,
 				C7DCC7371B228570004A1B0E /* MSFRepayViewController.m in Sources */,
+				491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */,
 				07C924E31B0C8F4D00FA73BD /* MSFClient+MSFCheckEmploee.m in Sources */,
 				C7AF47081B04E127001B39F2 /* MSFInstallment.m in Sources */,
 				49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */,

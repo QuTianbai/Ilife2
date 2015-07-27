@@ -4,14 +4,15 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import <ReactiveViewModel/ReactiveViewModel.h>
+#import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @class RACCommand;
 @class MSFSelectKeyValues;
 @class MSFAreas;
 @class MSFFormsViewModel;
-@class UIViewController;
 @class MSFApplicationForms;
+@class MSFAddressViewModel;
 
 // 职业－学生/在职人员/自由职业
 @interface MSFProfessionalViewModel : RVMViewModel
@@ -70,7 +71,6 @@
 @property (nonatomic, readonly) RACCommand *executeEducationCommand;
 @property (nonatomic, readonly) RACCommand *executeSocialStatusCommand;
 @property (nonatomic, readonly) RACCommand *executeEductionalSystmeCommand;
-@property (nonatomic, readonly) RACCommand *executeEnrollmentYearCommand;
 @property (nonatomic, readonly) RACCommand *executeWorkingLengthCommand;
 
 // 单位信息
@@ -80,11 +80,10 @@
 // 部门信息
 @property (nonatomic, readonly) RACCommand *executeDepartmentCommand;
 @property (nonatomic, readonly) RACCommand *executePositionCommand;
-@property (nonatomic, readonly) RACCommand *executeStartedDateCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel contentViewController:(UIViewController *)viewController;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
 @end
