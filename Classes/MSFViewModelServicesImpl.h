@@ -10,6 +10,11 @@
 
 @interface MSFViewModelServicesImpl : NSObject <MSFViewModelServices>
 
+// Create MSFViewModelServicesImpl services
+//
+// tabBarController - Application RootViewController
+//
+// Return MSFViewModelServicesImpl instance
 - (instancetype)initWithTabBarController:(UITabBarController *)tabBarController;
 
 @end

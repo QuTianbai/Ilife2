@@ -15,10 +15,10 @@
 #import "MSFWebViewController.h"
 #import "UIColor+Utils.h"
 
-@interface MSFBannersViewController () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface MSFBannersViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
-@property(nonatomic,strong) MSFBannersViewModel *viewModel;
-@property(nonatomic,strong) UIPageControl *pageControl;
+@property (nonatomic, strong) MSFBannersViewModel *viewModel;
+@property (nonatomic, strong) UIPageControl *pageControl;
 
 @end
 

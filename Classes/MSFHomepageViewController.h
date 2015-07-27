@@ -7,9 +7,7 @@
 #import <UIKit/UIKit.h>
 
 @class MSFHomepageViewModel;
-/**
- *	首页
- */
+
 @interface MSFHomepageViewController : UICollectionViewController
 
 @property (nonatomic, strong, readonly) MSFHomepageViewModel *viewModel;

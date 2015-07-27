@@ -14,15 +14,14 @@
 
 @interface MSFFindPasswordViewController ()
 
-@property(nonatomic,weak) IBOutlet UITextField *username;
-@property(nonatomic,weak) IBOutlet UITextField *captcha;
-@property(nonatomic,weak) IBOutlet UITextField *password;
-@property(nonatomic,weak) IBOutlet UIButton *captchaButton;
-@property(nonatomic,weak) IBOutlet UIButton *commitButton;
-@property(nonatomic,weak) IBOutlet UILabel *counterLabel;
-@property(nonatomic,weak) IBOutlet UISwitch *passwordSwith;
+@property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
-@property(nonatomic,strong) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UITextField *username;
+@property (nonatomic, weak) IBOutlet UITextField *captcha;
+@property (nonatomic, weak) IBOutlet UITextField *password;
+@property (nonatomic, weak) IBOutlet UIButton *captchaButton;
+@property (nonatomic, weak) IBOutlet UIButton *commitButton;
+@property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 
 @end
 
@@ -31,12 +30,11 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.username.text = MSFUtils.phone;
-	self.viewModel = [[MSFAuthorizeViewModel alloc] init];
-	RAC(self.viewModel,username) = self.username.rac_textSignal;
-	RAC(self.viewModel,captcha) = self.captcha.rac_textSignal;
-	RAC(self.viewModel,password) = self.password.rac_textSignal;
-	RAC(self.counterLabel,text) = RACObserve(self.viewModel, counter);
-	RAC(self.counterLabel,textColor) =
+	RAC(self.viewModel, username) = self.username.rac_textSignal;
+	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
+	RAC(self.viewModel, password) = self.password.rac_textSignal;
+	RAC(self.counterLabel, text) = RACObserve(self.viewModel, counter);
+	RAC(self.counterLabel, textColor) =
 	[self.viewModel.captchaRequestValidSignal
 		map:^id(NSNumber *valid) {
 			return valid.boolValue ? UIColor.whiteColor : UIColor.lightGrayColor;
@@ -74,11 +72,12 @@
 		@strongify(self)
 		[self.viewModel.executeFindPassword execute:nil];
 	}];
-	
-	[[self.passwordSwith rac_newOnChannel] subscribeNext:^(NSNumber *x) {
-		@strongify(self)
-		[self.password setSecureTextEntry:!x.boolValue];
-	}];
+}
+
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
 }
 
 @end

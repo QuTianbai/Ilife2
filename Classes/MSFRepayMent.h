@@ -10,8 +10,8 @@
 
 @interface MSFRepayMent : MSFObject
 
-@property(nonatomic,copy,readonly) NSString *repaymentID;
-@property(nonatomic,copy,readonly) NSString *expireDate;
-@property(nonatomic,assign,readonly) double allAmount;
+@property (nonatomic, copy, readonly) NSString *repaymentID;
+@property (nonatomic, copy, readonly) NSString *expireDate;
+@property (nonatomic, assign, readonly) double allAmount;
 
 @end

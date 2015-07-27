@@ -38,8 +38,7 @@
 	if (self.enabled) {
 		self.layer.borderColor = UIColor.borderColor.CGColor;
 		self.titleLabel.textColor = UIColor.fontColor;
-	}
-	else {
+	} else {
 		self.layer.borderColor = UIColor.lightGrayColor.CGColor;
 		self.titleLabel.textColor = UIColor.lightGrayColor;
 	}

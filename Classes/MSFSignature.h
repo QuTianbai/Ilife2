@@ -8,8 +8,8 @@
 
 @interface MSFSignature : MTLModel
 
-@property(nonatomic,copy,readonly) NSString *sign;
-@property(nonatomic,copy,readonly) NSString *timestamp;
-@property(nonatomic,readonly) NSString *query;
+@property (nonatomic, copy, readonly) NSString *sign;
+@property (nonatomic, copy, readonly) NSString *timestamp;
+@property (nonatomic, readonly) NSString *query;
 
 @end

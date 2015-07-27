@@ -11,13 +11,13 @@
 
 @interface MSFProduct : MSFObject <MSFSelectionItem>
 
-@property(nonatomic,copy,readonly) NSString *productId;
-@property(nonatomic,copy,readonly) NSString *period;
-@property(nonatomic,copy,readonly) NSString *proGroupId;
-@property(nonatomic,copy,readonly) NSString *proGroupName;
-@property(nonatomic,copy,readonly) NSString *monthlyFeeRate;
-@property(nonatomic,copy,readonly) NSString *monthlyInterestRate;
-@property(nonatomic,copy,readonly) NSString *productGroupCode;
-@property(nonatomic,copy,readonly) NSString *productName;
+@property (nonatomic, copy, readonly) NSString *productId;
+@property (nonatomic, copy, readonly) NSString *period;
+@property (nonatomic, copy, readonly) NSString *proGroupId;
+@property (nonatomic, copy, readonly) NSString *proGroupName;
+@property (nonatomic, copy, readonly) NSString *monthlyFeeRate;
+@property (nonatomic, copy, readonly) NSString *monthlyInterestRate;
+@property (nonatomic, copy, readonly) NSString *productGroupCode;
+@property (nonatomic, copy, readonly) NSString *productName;
 
 @end

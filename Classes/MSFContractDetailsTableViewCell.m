@@ -47,9 +47,9 @@
 			make.centerY.equalTo(self);
 			make.left.equalTo(self).offset(8);
 			make.width.equalTo(@90);
-			make.width.equalTo(@[_shouldAmountLabel,_paymentLabel,_stateLabel]);
+			make.width.equalTo(@[_shouldAmountLabel, _paymentLabel,_stateLabel]);
 			make.height.equalTo(@30);
-			make.height.equalTo(@[_shouldAmountLabel,_paymentLabel,_stateLabel]);
+			make.height.equalTo(@[_shouldAmountLabel, _paymentLabel,_stateLabel]);
 		}];
 		
 		[_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {

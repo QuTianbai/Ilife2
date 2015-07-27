@@ -7,17 +7,13 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 
-@class MSFClient;
 @class RACCommand;
 @class MSFFormsViewModel;
 @class MSFAuthorizeViewModel;
 
 @interface MSFTabBarViewModel : RVMViewModel
 
-// HTTP Request client
-//
-// MSFUtils httpClient
-@property (nonatomic, strong, readonly) MSFClient *client;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 // 登录控制
 @property (nonatomic, strong, readonly) RACCommand *signInCommand;
@@ -29,8 +25,8 @@
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
 @property (nonatomic, strong, readonly) RACSignal *authorizationUpdatedSignal;
 
-- (RACSignal *)signInSignal;
-- (RACSignal *)verifySignal;
+@property (nonatomic, assign, readonly) BOOL isAuthenticated;
+@property (nonatomic, assign, readonly) BOOL isUserAuthenticated;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 

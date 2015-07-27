@@ -14,13 +14,25 @@
 
 @interface MSFSelectionViewModel ()
 
-@property(nonatomic,strong) NSArray *models;
+@property (nonatomic, strong) NSArray *models;
+@property (nonatomic, strong, readwrite) RACSubject *selectedSignal;
 
 @end
 
 @implementation MSFSelectionViewModel
 
 #pragma mark - Lifecycle
+
+- (instancetype)init {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	
+	self.selectedSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewModel -selectedSignal"];
+	
+  return self;
+}
 
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items {
 	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
@@ -46,8 +58,7 @@
 	 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFProduct *obj1, MSFProduct *obj2) {
 		 if (obj1.period.integerValue < obj2.period.integerValue) {
 			 return NSOrderedAscending;
-		 }
-		 else if (obj1.period.integerValue > obj2.period.integerValue) {
+		 } else if (obj1.period.integerValue > obj2.period.integerValue) {
 			 return NSOrderedDescending;
 		 }
 		 

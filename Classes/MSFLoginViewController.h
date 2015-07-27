@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong, readonly) MSFLoginSwapController *loginSwapController;
 
-- (instancetype)initWithViewModel:(id)viewModel loginType:(MSFLoginType)loginType;
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

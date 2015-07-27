@@ -18,7 +18,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFSignInViewController ()
 
-@property(nonatomic,strong,readwrite) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, weak, readwrite) MSFAuthorizeViewModel *viewModel;
 
 @end
 
@@ -41,6 +41,29 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	return self;
 }
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.title = @"登录";
+	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.backgroundView.layer.masksToBounds = YES;
+	self.backgroundView.layer.cornerRadius = 5;
+	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
+	self.backgroundView.layer.borderWidth = 1;
+	
+	self.username.text = MSFUtils.phone;
+	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
+		self.username.text = @"18696995689";
+		self.password.text = @"123456qw";
+	}
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[segue.destinationViewController bindViewModel:self.viewModel];
+}
+
+#pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
@@ -73,23 +96,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
 	}];
-}
-
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	self.title = @"登录";
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.backgroundView.layer.masksToBounds = YES;
-	self.backgroundView.layer.cornerRadius = 5;
-	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
-	self.backgroundView.layer.borderWidth = 1;
-	
-	self.username.text = MSFUtils.phone;
-	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-		self.username.text = @"18696995689";
-		self.password.text = @"123456qw";
-	}
 }
 
 @end

@@ -7,8 +7,11 @@
 #import "RVMViewModel.h"
 
 @class MSFMarket;
+@class RACCommand;
 
 @interface MSFSelectionViewModel : RVMViewModel
+
+@property (nonatomic, strong, readonly) RACSignal *selectedSignal;
 
 + (MSFSelectionViewModel *)monthsViewModelWithProducts:(MSFMarket *)products total:(NSInteger)amount;
 + (MSFSelectionViewModel *)selectKeyValuesViewModel:(NSArray *)items;

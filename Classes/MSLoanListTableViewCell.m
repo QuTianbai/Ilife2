@@ -43,12 +43,12 @@ reuseIdentifier {
     [self addSubview:_timeLabel];
     [self addSubview:_checkLabel];
 		
-		NSInteger edges = [UIScreen mainScreen].bounds.size.width/8;
+		NSInteger edges = [UIScreen mainScreen].bounds.size.width / 8;
 		
     [_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
       make.centerY.equalTo(self);
       make.centerX.equalTo(self.mas_left).offset(edges);
-      make.height.equalTo(@[_checkLabel,_monthsLabel,_timeLabel]);
+      make.height.equalTo(@[_checkLabel, _monthsLabel,_timeLabel]);
     }];
     
     [_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -175,7 +175,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 				[self.viewModel.market.teams enumerateObjectsUsingBlock:^(MSFTeams *obj, NSUInteger idx, BOOL *stop) {
 					[region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", obj.minAmount,obj.maxAmount]];
 				}];
-        string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字",self.viewModel.market.allMinAmount,self.viewModel.market.allMaxAmount];
+        string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字", self.viewModel.market.allMinAmount,self.viewModel.market.allMaxAmount];
         
 				//string = [NSString stringWithFormat:@"请输入贷款金额范围在  %@ 的数字", [region componentsJoinedByString:@","]];
 				

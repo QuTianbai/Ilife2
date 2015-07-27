@@ -10,7 +10,7 @@ IB_DESIGNABLE
 
 @interface MSFTextField : UITextField
 
-@property(IBInspectable) BOOL disablePaste;
-@property(IBInspectable) CGFloat offsetBounds;
+@property (IBInspectable) BOOL disablePaste;
+@property (IBInspectable) CGFloat offsetBounds;
 
 @end
