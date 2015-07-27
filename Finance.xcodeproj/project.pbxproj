@@ -67,6 +67,9 @@
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
 		490E77221B15B763003F7137 /* MSFBannersViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */; };
 		491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E011B65E1B200D28455 /* MSFAddress.m */; };
+		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; };
+		491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */; };
+		491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */; };
 		491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */; };
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
@@ -116,8 +119,6 @@
 		4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */; };
 		4967EE7D1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */; };
 		4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7F1B1A9E9E001A8F27 /* MSFAgreementViewModel.m */; };
-		497269D61B5F38AE000F1E82 /* MSFLoginSwapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269D51B5F38AE000F1E82 /* MSFLoginSwapController.m */; };
-		497269E61B5F39A7000F1E82 /* MSFSwapSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269E51B5F39A7000F1E82 /* MSFSwapSegue.m */; };
 		497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */; };
 		4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4975C97C1B46D6D400AA79EB /* AppDelegate.m */; };
 		4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */; };
@@ -130,7 +131,6 @@
 		4977BFDB1B16B79000A259F6 /* timestamp.json in Resources */ = {isa = PBXBuildFile; fileRef = 4977BFDA1B16B79000A259F6 /* timestamp.json */; };
 		4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977BFEA1B16BDA100A259F6 /* MSFClient+Cipher.m */; };
 		4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4977BFED1B16E9C200A259F6 /* NSURL+QueryDictionary.m */; };
-		497CA1261B3128120099CE56 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 497CA1251B3128120099CE56 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		497F98231B2B0BAF00DD6F2D /* guide.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 497F98221B2B0BAF00DD6F2D /* guide.bundle */; };
 		497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497F98381B2B0C4400DD6F2D /* MSFGuideViewController.m */; };
 		4980E3DD1B0734AB00B21A6A /* MSFClient+Adver.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEF1B072EA4008A9CD1 /* MSFClient+Adver.m */; };
@@ -222,7 +222,6 @@
 		49BAB2BC1B3BDF09004B4170 /* icon-cloze-name.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B61B3BDF09004B4170 /* icon-cloze-name.png */; };
 		49BAB2BD1B3BDF09004B4170 /* icon-cloze-name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B71B3BDF09004B4170 /* icon-cloze-name@2x.png */; };
 		49BAB2BE1B3BDF09004B4170 /* icon-cloze-name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B81B3BDF09004B4170 /* icon-cloze-name@3x.png */; };
-		49BE4B581B393367005084D5 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BE4B571B393367005084D5 /* UIDevice-Hardware.m */; };
 		49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BE4B631B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m */; };
 		49C027B41B1469D900735DC6 /* progress-status-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C027B11B1469D900735DC6 /* progress-status-default.png */; };
 		49C027B51B1469D900735DC6 /* progress-status-default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C027B21B1469D900735DC6 /* progress-status-default@2x.png */; };
@@ -624,6 +623,12 @@
 		490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewModelSpec.m; sourceTree = "<group>"; };
 		491B3E001B65E1B200D28455 /* MSFAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddress.h; sourceTree = "<group>"; };
 		491B3E011B65E1B200D28455 /* MSFAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddress.m; sourceTree = "<group>"; };
+		491B3E2B1B662CCE00D28455 /* RCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationManager.h; sourceTree = "<group>"; };
+		491B3E2C1B662CCE00D28455 /* RCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationManager.m; sourceTree = "<group>"; };
+		491B3E2F1B662CEC00D28455 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
+		491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
+		491B3E321B662D3000D28455 /* MSFLoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginPageViewController.h; sourceTree = "<group>"; };
+		491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginPageViewController.m; sourceTree = "<group>"; };
 		491C5FAD1B0F0F5E00CADF8E /* MSFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTextField.h; sourceTree = "<group>"; };
 		491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTextField.m; sourceTree = "<group>"; };
 		491C5FB11B0F17A900CADF8E /* MSFEdgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEdgeButton.h; sourceTree = "<group>"; };
@@ -705,10 +710,6 @@
 		4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAgreementViewModelSpec.m; sourceTree = "<group>"; };
 		4967EE7E1B1A9E9E001A8F27 /* MSFAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAgreementViewModel.h; sourceTree = "<group>"; };
 		4967EE7F1B1A9E9E001A8F27 /* MSFAgreementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAgreementViewModel.m; sourceTree = "<group>"; };
-		497269D41B5F38AE000F1E82 /* MSFLoginSwapController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginSwapController.h; sourceTree = "<group>"; };
-		497269D51B5F38AE000F1E82 /* MSFLoginSwapController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginSwapController.m; sourceTree = "<group>"; };
-		497269E41B5F39A7000F1E82 /* MSFSwapSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSwapSegue.h; sourceTree = "<group>"; };
-		497269E51B5F39A7000F1E82 /* MSFSwapSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSwapSegue.m; sourceTree = "<group>"; };
 		497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginViewController.h; sourceTree = "<group>"; };
 		497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginViewController.m; sourceTree = "<group>"; };
 		4975C97B1B46D6D400AA79EB /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -727,8 +728,6 @@
 		4977BFEA1B16BDA100A259F6 /* MSFClient+Cipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Cipher.m"; sourceTree = "<group>"; };
 		4977BFEC1B16E9C200A259F6 /* NSURL+QueryDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+QueryDictionary.h"; sourceTree = "<group>"; };
 		4977BFED1B16E9C200A259F6 /* NSURL+QueryDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+QueryDictionary.m"; sourceTree = "<group>"; };
-		497CA1241B3128120099CE56 /* RCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationManager.h; sourceTree = "<group>"; };
-		497CA1251B3128120099CE56 /* RCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationManager.m; sourceTree = "<group>"; };
 		497F98221B2B0BAF00DD6F2D /* guide.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = guide.bundle; sourceTree = "<group>"; };
 		497F98371B2B0C4400DD6F2D /* MSFGuideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGuideViewController.h; sourceTree = "<group>"; };
 		497F98381B2B0C4400DD6F2D /* MSFGuideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGuideViewController.m; sourceTree = "<group>"; };
@@ -846,8 +845,6 @@
 		49BAB2B61B3BDF09004B4170 /* icon-cloze-name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name.png"; sourceTree = "<group>"; };
 		49BAB2B71B3BDF09004B4170 /* icon-cloze-name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name@2x.png"; sourceTree = "<group>"; };
 		49BAB2B81B3BDF09004B4170 /* icon-cloze-name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name@3x.png"; sourceTree = "<group>"; };
-		49BE4B561B393367005084D5 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
-		49BE4B571B393367005084D5 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		49BE4B621B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MSFActivityIndicatorViewAdditions.h"; sourceTree = "<group>"; };
 		49BE4B631B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MSFActivityIndicatorViewAdditions.m"; sourceTree = "<group>"; };
 		49C027B11B1469D900735DC6 /* progress-status-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-status-default.png"; sourceTree = "<group>"; };
@@ -1369,6 +1366,24 @@
 			name = Address;
 			sourceTree = "<group>";
 		};
+		491B3E2A1B662CCE00D28455 /* RCLocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				491B3E2B1B662CCE00D28455 /* RCLocationManager.h */,
+				491B3E2C1B662CCE00D28455 /* RCLocationManager.m */,
+			);
+			path = RCLocationManager;
+			sourceTree = "<group>";
+		};
+		491B3E2E1B662CEC00D28455 /* UIDevice-Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				491B3E2F1B662CEC00D28455 /* UIDevice-Hardware.h */,
+				491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */,
+			);
+			path = "UIDevice-Hardware";
+			sourceTree = "<group>";
+		};
 		491C5F9C1B0F0EF400CADF8E /* TextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1867,10 +1882,8 @@
 		497CA1231B3128120099CE56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				49BE4B561B393367005084D5 /* UIDevice-Hardware.h */,
-				49BE4B571B393367005084D5 /* UIDevice-Hardware.m */,
-				497CA1241B3128120099CE56 /* RCLocationManager.h */,
-				497CA1251B3128120099CE56 /* RCLocationManager.m */,
+				491B3E2E1B662CEC00D28455 /* UIDevice-Hardware */,
+				491B3E2A1B662CCE00D28455 /* RCLocationManager */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -2128,12 +2141,10 @@
 		49CCFBE21B0724EA008A9CD1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				497269E41B5F39A7000F1E82 /* MSFSwapSegue.h */,
-				497269E51B5F39A7000F1E82 /* MSFSwapSegue.m */,
+				491B3E321B662D3000D28455 /* MSFLoginPageViewController.h */,
+				491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */,
 				497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */,
 				497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */,
-				497269D41B5F38AE000F1E82 /* MSFLoginSwapController.h */,
-				497269D51B5F38AE000F1E82 /* MSFLoginSwapController.m */,
 				49B5D7AB1B08379800917D2C /* MSFClozeViewController.h */,
 				49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */,
 				49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */,
@@ -3095,12 +3106,12 @@
 				4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */,
 				49A954FA1B574AF6000852E3 /* MSFAuthorizationViewController.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
-				49BE4B581B393367005084D5 /* UIDevice-Hardware.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
 				C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */,
+				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
 				C7AF470B1B04E154001B39F2 /* MSFClient+Installment.m in Sources */,
 				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
@@ -3127,7 +3138,6 @@
 				0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */,
 				4980E3DF1B0734D000B21A6A /* MSFClient+ApplyList.m in Sources */,
 				07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */,
-				497CA1261B3128120099CE56 /* RCLocationManager.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
@@ -3143,7 +3153,6 @@
 				4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */,
 				499147231B256D0D00260E97 /* MSFClient+Months.m in Sources */,
 				49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */,
-				497269D61B5F38AE000F1E82 /* MSFLoginSwapController.m in Sources */,
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,
 				C7B978141B099CD9005F247C /* MSFUserHelpCell.m in Sources */,
@@ -3151,8 +3160,10 @@
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
 				499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */,
 				49CBDD9C1B0DD904009EF662 /* MSFBannersViewController.m in Sources */,
+				491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */,
 				495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */,
 				498113D01B1C451B003D1B7A /* MSFPepaymentCollectionViewCell.m in Sources */,
+				491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
 				49A955061B574CAA000852E3 /* MSFAuthorizationView.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
@@ -3180,7 +3191,6 @@
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
-				497269E61B5F39A7000F1E82 /* MSFSwapSegue.m in Sources */,
 				49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,

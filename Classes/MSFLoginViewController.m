@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "UIColor+Utils.h"
 #import "MSFReactiveView.h"
+#import "MSFLoginPageViewController.h"
 
 @interface MSFLoginViewController ()
 
@@ -18,10 +19,9 @@
 
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, weak) IBOutlet UIButton *signUpButton;
-@property (nonatomic, weak) IBOutlet UIView *signInIndicatorView;
-@property (nonatomic, weak) IBOutlet UIView *signUpIndicatorView;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *leading;
 
-@property (nonatomic, strong, readwrite) MSFLoginSwapController *loginSwapController;
+@property (nonatomic, strong, readwrite) MSFLoginPageViewController *loginPageController;
 
 @end
 
@@ -46,53 +46,53 @@
 	[self.signInButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
 	[self.signUpButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
 	[self.signUpButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
-	switch (self.viewModel.loginType) {
-		case MSFLoginSignIn: {
-			self.signInButton.enabled = NO;
-			self.signUpButton.enabled = YES;
-			self.signInIndicatorView.hidden = NO;
-			self.signUpIndicatorView.hidden = YES;
-			break;
-		}
-		case MSFLoginSignUp: {
-			self.signInButton.enabled = YES;
-			self.signUpButton.enabled = NO;
-			self.signInIndicatorView.hidden = YES;
-			self.signUpIndicatorView.hidden = NO;
-			break;
-		}
-		default: {
-			break;
-		}
-	}
-	
-	[self.loginSwapController swap:self.viewModel.loginType];
-	[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
+	[self updateButtons:self.viewModel.loginType];
 	
 	@weakify(self)
+	id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:self.viewModel.loginType];
+	[currentViewController bindViewModel:self.viewModel];
+	[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionReverse animated:NO completion:nil];
+	
 	[[self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		self.signInButton.enabled = NO;
-		self.signUpButton.enabled = YES;
-		self.signInIndicatorView.hidden = NO;
-		self.signUpIndicatorView.hidden = YES;
-		[self.loginSwapController swap:MSFLoginSignIn];
-		[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
+		id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:1];
+		[currentViewController bindViewModel:self.viewModel];
+		[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+		[self updateButtons:MSFLoginSignIn];
 	}];
 	[[self.signUpButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		self.signInButton.enabled = YES;
-		self.signUpButton.enabled = NO;
-		self.signInIndicatorView.hidden = YES;
-		self.signUpIndicatorView.hidden = NO;
-		[self.loginSwapController swap:MSFLoginSignUp];
-		[(id <MSFReactiveView>)self.loginSwapController.contentViewController bindViewModel:self.viewModel];
+		id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:0];
+		[currentViewController bindViewModel:self.viewModel];
+		[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+		[self updateButtons:MSFLoginSignUp];
+	}];
+	
+	[[self.loginPageController
+		rac_signalForSelector:@selector(pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:)
+		fromProtocol:@protocol(UIPageViewControllerDelegate)]
+		subscribeNext:^(RACTuple *x) {
+			@strongify(self)
+			BOOL completed = [x.last boolValue];
+			if (!completed) {
+				return;
+			}
+			// Find index of current page
+			id currentViewController = [self.loginPageController.viewControllers lastObject];
+			NSInteger index = [self.loginPageController.pageIdentifiers indexOfObject:NSStringFromClass([currentViewController class])];
+			[currentViewController bindViewModel:self.viewModel];
+			[self updateButtons:index];
+	}];
+	
+	[[self.loginPageController rac_signalForSelector:@selector(setUpViewController:atIndex:)] subscribeNext:^(RACTuple *x) {
+		@strongify(self)
+		[x.first bindViewModel:self.viewModel];
 	}];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString:@"swap"]) {
-		self.loginSwapController = segue.destinationViewController;
+	if ([segue.identifier isEqualToString:@"page"]) {
+		self.loginPageController = segue.destinationViewController;
 	}
 }
 
@@ -108,8 +108,28 @@
 
 #pragma mark - Private
 
-- (UIView *)indicatorView {
-	return self.viewModel.loginType == MSFLoginSignIn ? self.signInIndicatorView : self.signUpIndicatorView;
+- (void)updateButtons:(NSInteger)type {
+	switch (type) {
+		case MSFLoginSignIn: {
+			self.signInButton.enabled = NO;
+			self.signUpButton.enabled = YES;
+			[self updateIndicatorViewWithButton:self.signInButton];
+			break;
+		}
+		case MSFLoginSignUp: {
+			self.signInButton.enabled = YES;
+			self.signUpButton.enabled = NO;
+			[self updateIndicatorViewWithButton:self.signUpButton];
+			break;
+		}
+	}
+}
+
+- (void)updateIndicatorViewWithButton:(UIButton *)button {
+	self.leading.constant = [button isEqual:self.signUpButton] ? 0 : CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
+	[UIView animateWithDuration:.3 animations:^{
+		[self.view layoutIfNeeded];
+	}];
 }
 
 @end

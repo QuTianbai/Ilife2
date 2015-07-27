@@ -18,28 +18,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @interface MSFSignInViewController ()
 
-@property (nonatomic, weak, readwrite) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
 @end
 
 @implementation MSFSignInViewController
 
+@synthesize pageIndex;
+
 #pragma mark - Lifecycle
 
 - (void)dealloc {
 	NSLog(@"MSFSignInViewController `-dealloc`");
-}
-
-- (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
-	if (!self) {
-		return nil;
-	}
-	_viewModel = viewModel;
-	[self bindViewModel:self.viewModel];
-	
-	return self;
 }
 
 - (void)viewDidLoad {
@@ -57,17 +47,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.username.text = @"18696995689";
 		self.password.text = @"123456qw";
 	}
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	[segue.destinationViewController bindViewModel:self.viewModel];
-}
-
-#pragma mark - MSFReactiveView
-
-- (void)bindViewModel:(id)viewModel {
-	self.viewModel = viewModel;
-  @weakify(self)
+	@weakify(self)
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = x;
@@ -96,6 +76,16 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
 	}];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[segue.destinationViewController bindViewModel:self.viewModel];
+}
+
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
 }
 
 @end

@@ -35,6 +35,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @implementation MSFSignUpViewController
 
+@synthesize pageIndex;
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
@@ -48,12 +50,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = @"18223959242";
 	}
-}
-
-#pragma mark - MSFReactiveView
-
-- (void)bindViewModel:(id)viewModel {
-	self.viewModel = viewModel;
+	
 	@weakify(self)
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
@@ -117,6 +114,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+}
+
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
 }
 
 @end

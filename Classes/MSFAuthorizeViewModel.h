@@ -5,8 +5,12 @@
 //
 
 #import "RVMViewModel.h"
-#import "MSFLoginSwapController.h"
 #import "MSFViewModelServices.h"
+
+typedef NS_ENUM(NSUInteger, MSFLoginType) {
+	MSFLoginSignUp,
+	MSFLoginSignIn,
+};
 
 @class MSFServer;
 @class RACCommand;
