@@ -831,6 +831,7 @@
                         <outlet property="num2DiffCurrentTF" destination="OVc-oo-g7D" id="2K5-2h-ZLg"/>
                         <outlet property="num2FamilyNameTF" destination="QTu-1A-QUD" id="q2C-4z-MQu"/>
                         <outlet property="num2IsSameCurrentSW" destination="l8F-c4-EA7" id="1Tr-H4-Znn"/>
+                        <outlet property="num2RelationAddressLabel" destination="gi5-i1-eJ0" id="3HJ-qd-MYc"/>
                         <outlet property="num2RelationBT" destination="lcb-gd-Qii" id="yLe-yM-OOB"/>
                         <outlet property="num2RelationTF" destination="nEL-hP-kwc" id="8cs-d6-TTF"/>
                         <outlet property="num2TelTF" destination="nDz-yx-ed6" id="M3a-6K-F6D"/>
@@ -842,6 +843,7 @@
                         <outlet property="otherRelationBT" destination="1JX-KG-b49" id="jSV-mf-Nh6"/>
                         <outlet property="otherRelationTF" destination="o66-id-ZLr" id="nIK-Ga-dRm"/>
                         <outlet property="otherTelTF" destination="mrp-Mg-nZ5" id="92L-HI-ewl"/>
+                        <outlet property="relationAddressLabel" destination="mVL-OO-Ib2" id="1Wp-AZ-MdO"/>
                         <outlet property="relationBT" destination="b2s-e1-pDB" id="iSt-iy-csN"/>
                         <outlet property="relationTF" destination="hzi-wO-TyH" id="0Ce-oO-6d2"/>
                         <outlet property="telTF" destination="ch7-4n-Jni" id="z5u-tw-Wkn"/>
@@ -849,7 +851,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mrI-04-bMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="234" y="-382"/>
+            <point key="canvasLocation" x="613" y="-489"/>
         </scene>
     </scenes>
 </document>
