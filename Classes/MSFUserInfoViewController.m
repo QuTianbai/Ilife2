@@ -104,6 +104,7 @@
 	avatarView.hidden = YES;
 	[view addSubview:avatarView];
 	UIButton *imageView = [UIButton buttonWithType:UIButtonTypeCustom];
+	imageView.userInteractionEnabled = NO;
 	[imageView setBackgroundImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
 	[view addSubview:imageView];
 	[avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
