@@ -50,8 +50,7 @@ static UIColor *backupColor;
 		[activityIndicatorView stopAnimating];
 		if ([x count] == 0) {
 			label.text = message;
-		}
-		else {
+		} else {
 			self.backgroundView = backupView;
 			self.separatorStyle = backupStyle;
 			self.separatorColor = backupColor;

@@ -217,7 +217,7 @@
 	[superView addSubview:_time];
 	[superView addSubview:_check];
 	
-	NSInteger edges = [UIScreen mainScreen].bounds.size.width/8;
+	NSInteger edges = [UIScreen mainScreen].bounds.size.width / 8;
 	
 	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);

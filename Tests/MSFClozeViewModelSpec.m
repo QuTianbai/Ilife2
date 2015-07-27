@@ -25,7 +25,7 @@ beforeEach(^{
 	UIViewController *viewController = mock([UIViewController class]);
 	
   MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"bar" session:@""];
-  viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:client controller:viewController];
+//  viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:client controller:viewController];
 });
 
 it(@"should initialize", ^{

@@ -8,6 +8,6 @@
 
 @interface MSFObject (Private)
 
-@property(nonatomic,strong) NSURL *baseURL;
+@property (nonatomic, strong) NSURL *baseURL;
 
 @end

@@ -11,9 +11,9 @@
 
 @interface MSFSelectKeyValues : MSFObject <MSFSelectionItem>
 
-@property(nonatomic,copy,readonly) NSString *typeId;
-@property(nonatomic,copy,readonly) NSString *code;
-@property(nonatomic,copy,readonly) NSString *text;
+@property (nonatomic, copy, readonly) NSString *typeId;
+@property (nonatomic, copy, readonly) NSString *code;
+@property (nonatomic, copy, readonly) NSString *text;
 
 + (NSArray *)getSelectKeys:(NSString *)fileName;
 

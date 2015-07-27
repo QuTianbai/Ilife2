@@ -8,11 +8,11 @@
 
 #import "NSURL+QueryDictionary.h"
 
-NSString *const uq_URLReservedChars			= @"￼=,!$&'()*+;@?\r\n\"<>#\t :/";
-static NSString *const kQuerySeparator	= @"&";
-static NSString *const kQueryDivider		= @"=";
-static NSString *const kQueryBegin			= @"?";
-static NSString *const kFragmentBegin		= @"#";
+NSString *const uq_URLReservedChars = @"￼=,!$&'()*+;@?\r\n\"<>#\t :/";
+static NSString *const kQuerySeparator = @"&";
+static NSString *const kQueryDivider = @"=";
+static NSString *const kQueryBegin = @"?";
+static NSString *const kFragmentBegin = @"#";
 
 @implementation NSURL (UQ_URLQuery)
 
@@ -38,7 +38,7 @@ static NSString *const kFragmentBegin		= @"#";
 		if (queryComponents.count) {
 			return [NSURL URLWithString:
 							[NSString stringWithFormat:@"%@%@%@%@%@",
-							 queryComponents[0],											// existing url
+							 queryComponents[0], // existing url
 							 kQueryBegin,
 							 newQuery,
 							 self.fragment.length ? kFragmentBegin : @"",
@@ -106,7 +106,7 @@ static inline NSString *uq_URLEscape(NSString *string);
 			value = uq_URLEscape([self[key] description]);
 		}
 		[queryString appendFormat:@"%@%@%@%@",
-		 queryString.length ? kQuerySeparator : @"",		// appending?
+		 queryString.length ? kQuerySeparator : @"", // appending?
 		 uq_URLEscape(key),
 		 value ? kQueryDivider : @"",
 		 value ? value : @""];

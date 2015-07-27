@@ -63,26 +63,26 @@
 		 */
 		[_contractNum mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.greaterThanOrEqualTo(superView.mas_top).offset(padding);
-			make.left.equalTo(superView.mas_left).offset(4*padding);
+			make.left.equalTo(superView.mas_left).offset(4 * padding);
 			make.bottom.equalTo(_contractStatus.mas_top).offset(-padding);
-			make.width.equalTo(@[_contractStatus.mas_width,_shouldAmount.mas_width,_asOfDate.mas_width]);
+			make.width.equalTo(@[_contractStatus.mas_width, _shouldAmount.mas_width,_asOfDate.mas_width]);
 			make.height.equalTo(@30);
-			make.height.equalTo(@[_contractStatus.mas_height,_shouldAmount.mas_height,_asOfDate.mas_height,_contractStatusLabel.mas_height,_shouldAmountLabel.mas_height,_asOfDateLabel.mas_height
-														,_contractNumLabel.mas_height]);
+			make.height.equalTo(@[_contractStatus.mas_height, _shouldAmount.mas_height, _asOfDate.mas_height,_contractStatusLabel.mas_height, _shouldAmountLabel.mas_height, _asOfDateLabel.mas_height
+														, _contractNumLabel.mas_height]);
 		}];
 		
 		[_contractStatus mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(superView.mas_left).offset(4*padding);
+			make.left.equalTo(superView.mas_left).offset(4 * padding);
 			make.bottom.equalTo(_shouldAmount.mas_top).offset(-padding);
 		}];
 		
 		[_shouldAmount mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(superView.mas_left).offset(4*padding);
+			make.left.equalTo(superView.mas_left).offset(4 * padding);
 			make.bottom.equalTo(_asOfDate.mas_top).offset(-padding);
 		}];
 		
 		[_asOfDate mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(superView.mas_left).offset(4*padding);
+			make.left.equalTo(superView.mas_left).offset(4 * padding);
 		}];
 		
 		/**
@@ -91,23 +91,23 @@
 		[_contractNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.greaterThanOrEqualTo(superView.mas_top).offset(padding);
 			make.bottom.equalTo(_contractStatusLabel.mas_top).offset(-padding);
-			make.right.equalTo(self.mas_right).offset(-7*padding);
-			make.width.equalTo(@[_contractStatusLabel.mas_width,_shouldAmountLabel.mas_width,
+			make.right.equalTo(self.mas_right).offset(-7 * padding);
+			make.width.equalTo(@[_contractStatusLabel.mas_width, _shouldAmountLabel.mas_width,
 													 _asOfDateLabel.mas_width]);
 		}];
 		
 		[_contractStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.bottom.equalTo(_shouldAmountLabel.mas_top).offset(-padding);
-			make.right.equalTo(self.mas_right).offset(-7*padding);
+			make.right.equalTo(self.mas_right).offset(-7 * padding);
 		}];
 		
 		[_shouldAmountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.bottom.equalTo(_asOfDateLabel.mas_top).offset(-padding);
-			make.right.equalTo(self.mas_right).offset(-7*padding);
+			make.right.equalTo(self.mas_right).offset(-7 * padding);
 		}];
 		
 		[_asOfDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.right.equalTo(self.mas_right).offset(-7*padding);
+			make.right.equalTo(self.mas_right).offset(-7 * padding);
 		}];
 		
 	}

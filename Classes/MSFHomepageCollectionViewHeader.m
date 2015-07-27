@@ -11,8 +11,8 @@
 
 @interface MSFHomepageCollectionViewHeader ()
 
-@property(nonatomic,strong) MSFBannersViewController *bannersViewController;
-@property(nonatomic,strong) MSFHomepageViewModel *viewModel;
+@property (nonatomic, strong) MSFBannersViewController *bannersViewController;
+@property (nonatomic, strong) MSFHomepageViewModel *viewModel;
 
 @end
 

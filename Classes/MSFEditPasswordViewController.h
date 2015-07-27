@@ -8,4 +8,6 @@
 
 @interface MSFEditPasswordViewController : UITableViewController
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

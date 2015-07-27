@@ -16,7 +16,8 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 
 @interface MSFClozeViewModel ()
 
-@property(nonatomic,strong,readwrite) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, strong, readwrite) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 @end
 
@@ -24,23 +25,11 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithAuthorizedClient:(MSFClient *)client controller:(UIViewController *)controller {
-	if (!(self = [[self.class alloc] initWithAuthorizedClient:client])) {
-		return nil;
-	}
-	_addressViewModel = [[MSFAddressViewModel alloc] initWithController:controller needArea:NO];
-	_executeSelected = self.addressViewModel.selectCommand;
-	RAC(self,bankAddress) = [RACObserve(self.addressViewModel, address) ignore:nil];
-	
-	return self;
-}
-
-- (instancetype)initWithAuthorizedClient:(MSFClient *)client {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_client = client;
 	_name = @"";
 	_card = @"";
 	_expired = [NSDate date];
@@ -49,6 +38,11 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	_bankNO = @"";
 	_bankAddress = @"";
 	_bankName = @"";
+	_services = services;
+	
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:services];
+	_executeSelected = self.addressViewModel.selectCommand;
+	RAC(self, bankAddress) = [RACObserve(self.addressViewModel, address) ignore:nil];
 	
 	@weakify(self)
   _executeAuth = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -56,18 +50,11 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
     return [self executeAuthSignal];
   }];
 	
-//	_executeAuth = [[RACCommand alloc] initWithEnabled:self.authoriseValidSignal
-//		signalBlock:^RACSignal *(id input) {
-//			@strongify(self)
-//			return [self executeAuthSignal];
-//		}];
-	
-	_executePermanent = [[RACCommand alloc]
-		initWithSignalBlock:^RACSignal *(id input) {
-			@strongify(self)
-			self.permanent = !self.permanent;
-			return [RACSignal return:@(self.permanent)];
-		}];
+	_executePermanent = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		self.permanent = !self.permanent;
+		return [RACSignal return:@(self.permanent)];
+	}];
 	
 	return self;
 }
@@ -83,13 +70,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 			RACObserve(self, bankNO),
 			RACObserve(self, bankAddress),
 			]
-		reduce:^id(
-			NSString *name,
-			NSString *card,
-			NSString *bankname,
-			NSString *bankno,
-			NSString *bankaddress
-		 ) {
+		reduce:^id( NSString *name, NSString *card, NSString *bankname, NSString *bankno, NSString *bankaddress) {
 			return @(
 				name.length > 0 &&
 				card.length > 0 &&
@@ -144,10 +125,10 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
-	return [self.client
+	return [self.services.httpClient
 		realnameAuthentication:self.name
 		idcard:self.card
-          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil?[NSDate date]:[NSDateFormatter msf_dateFromString:self.expired1]
+          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil ? [NSDate date] : [NSDateFormatter msf_dateFromString:self.expired1]
 		session:self.permanent
 		province:self.addressViewModel.provinceCode
 		city:self.addressViewModel.cityCode

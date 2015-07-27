@@ -10,10 +10,8 @@
 
 @interface MSFSelectionViewController : UITableViewController
 
-@property(nonatomic,assign) UITableViewCellAccessoryType accessoryType;
-
 - (instancetype)initWithViewModel:(id)viewModel;
 
-@property(nonatomic,strong,readonly) RACSignal *selectedSignal;
+@property (nonatomic, strong, readonly) RACSignal *selectedSignal;
 
 @end

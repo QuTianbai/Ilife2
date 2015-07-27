@@ -38,22 +38,21 @@ static BOOL isRunningTests(void) __attribute__((const));
 
 static BOOL isRunningTests(void) {
 	NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-	NSString *injectBundle		= environment[@"XCInjectBundle"];
-	BOOL isTestsRunning				= [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
+	NSString *injectBundle = environment[@"XCInjectBundle"];
+	BOOL isTestsRunning = [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
 	[[injectBundle pathExtension] isEqualToString:@"octest"];
 
 	return isTestsRunning;
 }
 
-@interface MSFClient ()
-{
+@interface MSFClient () {
   BOOL _isReConnection;
 }
 
-@property(nonatomic,strong) NSMutableDictionary *defaultHeaders;
-@property(nonatomic,strong,readwrite) MSFUser *user;
-@property(nonatomic,copy,readwrite) NSString *token;
-@property(nonatomic,copy,readwrite) NSString *session;
+@property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
+@property (nonatomic, strong, readwrite) MSFUser *user;
+@property (nonatomic, copy, readwrite) NSString *token;
+@property (nonatomic, copy, readwrite) NSString *session;
 
 @end
 
@@ -72,7 +71,7 @@ static BOOL isRunningTests(void) {
 		// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
 		NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 		NSMutableArray *devices = NSMutableArray.new;
-		[devices addObject:[NSString stringWithFormat:@"iOS %@",[UIDevice currentDevice].systemVersion]];
+		[devices addObject:[NSString stringWithFormat:@"iOS %@", [UIDevice currentDevice].systemVersion]];
 		[devices addObject:@"appstore"];
 		[devices addObject:info[@"CFBundleShortVersionString"]];
 		[devices addObject:@"Apple"];
@@ -81,7 +80,7 @@ static BOOL isRunningTests(void) {
 		[devices addObject:info[@"CFBundleVersion"]];
 		[devices addObject:OpenUDID.value];
 		[devices addObject:@"00"];
-		NSString *cookie = [NSString stringWithFormat:@"uid=\"%@\";Domain=i.msxf.com;isHttpOnly=true",OpenUDID.value];
+		NSString *cookie = [NSString stringWithFormat:@"uid=\"%@\";Domain=i.msxf.com;isHttpOnly=true", OpenUDID.value];
 		
 		return [@{
 			@"Device": [devices componentsJoinedByString:@";"],
@@ -117,8 +116,7 @@ static BOOL isRunningTests(void) {
 	
 	if (token == nil) {
 		[self clearAuthorizationHeader];
-	}
-	else {
+	} else {
 		[self setAuthorizationHeaderWithToken:token];
 	}
 }
@@ -127,8 +125,7 @@ static BOOL isRunningTests(void) {
 	_session = [session copy];
 	if (session == nil) {
 		[self clearAuthorizationHeader];
-	}
-	else {
+	} else {
 		[self setAuthorizationHeaderWithSession:session];
 	}
 }
@@ -159,7 +156,7 @@ static BOOL isRunningTests(void) {
 		return [cipher signatureWithPath:path parameters:parameters];
 	}
 	
-	return [[MSFSignature alloc] initWithDictionary:@{@"sign":@"",@"timestamp":@""} error:nil];
+	return [[MSFSignature alloc] initWithDictionary:@{@"sign": @"", @"timestamp":@""} error:nil];
 }
 
 #pragma mark - Public
@@ -176,7 +173,7 @@ static BOOL isRunningTests(void) {
 	return client;
 }
 
-+ (instancetype)autehenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session {
++ (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(token != nil);
 	
@@ -239,7 +236,7 @@ static BOOL isRunningTests(void) {
 			
 			return client;
 		}]
-		replayLazily] setNameWithFormat:@"`signInAsUser:%@ password:`",user];
+		replayLazily] setNameWithFormat:@"`signInAsUser:%@ password:`", user];
 }
 
 + (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha {
@@ -286,7 +283,7 @@ static BOOL isRunningTests(void) {
 		 
 			return client;
 		}]
-		replayLazily] setNameWithFormat:@"`signUpAsUser:%@ password: phone: captcha`",user];
+		replayLazily] setNameWithFormat:@"`signUpAsUser:%@ password: phone: captcha`", user];
 }
 
 - (RACSignal *)signOut {
@@ -410,8 +407,7 @@ static BOOL isRunningTests(void) {
 	NSString *path;
 	if (self.user != nil) {
 		path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, relativePath];
-	}
-	else {
+	} else {
 		return [RACSignal error:self.class.userRequiredError];
 	}
 	
@@ -430,7 +426,7 @@ static BOOL isRunningTests(void) {
 	// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
 	NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 	NSMutableArray *devices = NSMutableArray.new;
-	[devices addObject:[NSString stringWithFormat:@"iOS %@",[UIDevice currentDevice].systemVersion]];
+	[devices addObject:[NSString stringWithFormat:@"iOS %@", [UIDevice currentDevice].systemVersion]];
 	[devices addObject:@"appstore"];
 	[devices addObject:info[@"CFBundleShortVersionString"]];
 	[devices addObject:@"Apple"];
@@ -438,7 +434,7 @@ static BOOL isRunningTests(void) {
 	[devices addObject:[UIDevice currentDevice].systemName];
 	[devices addObject:info[@"CFBundleVersion"]];
 	[devices addObject:OpenUDID.value];
-	[devices addObject:[NSString stringWithFormat:@"%f,%f",coordinate.latitude,coordinate.longitude]];
+	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	
 	return [devices componentsJoinedByString:@";"];
 }
@@ -456,8 +452,7 @@ static BOOL isRunningTests(void) {
 	NSDictionary *userinfo = @{};
 	if ([operation.responseObject isKindOfClass:NSDictionary.class]) {
 		userinfo = @{NSLocalizedFailureReasonErrorKey: operation.responseObject[@"message"]?:@""};
-	}
-	else {
+	} else {
 		userinfo = @{NSLocalizedFailureReasonErrorKey: @"网络繁忙请稍候再试"};
 	}
 	
@@ -512,16 +507,13 @@ static BOOL isRunningTests(void) {
 			}
 			
 			[subscriber sendCompleted];
-		}
-		else if ([responseObject isKindOfClass:NSDictionary.class]) {
+		} else if ([responseObject isKindOfClass:NSDictionary.class]) {
 			parseJSONDictionary(responseObject);
 			[subscriber sendCompleted];
-		}
-		else if (responseObject == nil) {
+		} else if (responseObject == nil) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
-		}
-		else {
+		} else {
 			NSString *failureReason = [NSString stringWithFormat:NSLocalizedString(@"Response wasn't an array or dictionary (%@): %@", @""), [responseObject class], responseObject];
 			[subscriber sendError:[self parsingErrorWithFailureReason:failureReason]];
 		}
@@ -573,12 +565,10 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     
-			if (error.code == -1004 ) {
+     if (error.code == -1004 ) {
         _isReConnection = YES;
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
-			}
-      else if (cipher == nil) {
+			} else if (cipher == nil) {
         [[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidReGetTimeServer object:nil];
       }
 
@@ -611,7 +601,7 @@ static BOOL isRunningTests(void) {
 		}];
 	}];
 	
-	return [[signal replayLazily] setNameWithFormat:@"`enqueueRequest: %@`",request];
+	return [[signal replayLazily] setNameWithFormat:@"`enqueueRequest: %@`", request];
 }
 
 - (void)enqueueHTTPRequestOperation:(AFHTTPRequestOperation *)operation {

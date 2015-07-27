@@ -25,7 +25,7 @@
 
 @interface MSFTradeTableViewController ()
 
-@property(nonatomic,strong) NSArray *objects;
+@property (nonatomic, strong) NSArray *objects;
 
 @end
 
@@ -39,7 +39,7 @@
 	self.tableView.allowsSelection = NO;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
 	self.tableView.separatorColor = [MSFCommandView getColorWithString:SEPARATORCOLOR];
-	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width,0.6)];
+	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.6)];
 	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:SEPARATORCOLOR]];
 	[self.tableView setEditing:NO];
 	
@@ -98,11 +98,10 @@
 		cell.tradeDescription.text = @"交易描述";
 		cell.amount.text = @"金额";
 		[cell setBackgroundColor:[MSFCommandView getColorWithString:CELLBACKGROUNDCOLOR]];
-	}
-	else {
-		cell.date.text = [NSString stringWithFormat:@"%@",trade.tradeDate];
-		cell.tradeDescription.text = [NSString stringWithFormat:@"%@",trade.tradeDescription];
-		cell.amount.text = [NSString stringWithFormat:@"%.lf",trade.tradeAmount];
+	} else {
+		cell.date.text = [NSString stringWithFormat:@"%@", trade.tradeDate];
+		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
+		cell.amount.text = [NSString stringWithFormat:@"%.lf", trade.tradeAmount];
 	}
 
 	return cell;

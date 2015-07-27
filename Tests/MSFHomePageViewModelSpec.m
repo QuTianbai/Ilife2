@@ -54,7 +54,7 @@ it(@"should has a appling viewmodel", ^{
   MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"" session:@""];
   
   // when
-  viewModel = [[MSFHomepageViewModel alloc] initWithClient:client];
+//  viewModel = [[MSFHomepageViewModel alloc] initWithClient:client];
   [[viewModel.refreshCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
   MSFLoanViewModel *sub = [viewModel viewModelForIndexPath:indexPah];
   

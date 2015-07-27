@@ -43,12 +43,11 @@
 }
 
 - (BOOL)validateCode:(id *)code error:(NSError **)error {
-	if ([*code isKindOfClass:NSString.class]) {
+	id codeid = *code;
+	if ([codeid isKindOfClass:NSString.class]) {
 		return YES;
-	}
-	else if ([*code isKindOfClass:NSNumber.class]) {
-		*code = [*code stringValue];
-		
+	} else if ([codeid isKindOfClass:NSNumber.class]) {
+		*code = [codeid stringValue];
 		return YES;
 	}
 	

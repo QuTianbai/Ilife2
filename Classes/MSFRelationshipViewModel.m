@@ -18,20 +18,20 @@
 
 @interface MSFRelationshipViewModel ()
 
-@property(nonatomic,weak) UIViewController *viewController;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
 @implementation MSFRelationshipViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel contentViewController:(UIViewController *)controller {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_formsViewModel = viewModel;
 	_model = viewModel.model;
-	_viewController = controller;
+	_services = viewModel.services;
 	[self initialize];
 	
 	@weakify(self)
@@ -110,11 +110,6 @@
     self.model.applyStatus1 = @"1";
     return [self commitSignal];
   }];
-//	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:self.commitValidSignal signalBlock:^RACSignal *(id input) {
-//		@strongify(self)
-//		self.model.applyStatus1 = @"1";
-//		return [self commitSignal];
-//	}];
 	
 	return self;
 }
@@ -169,18 +164,13 @@
 
 - (RACSignal *)marryValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"marital_status"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"婚姻状况";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.marryValues = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -188,18 +178,13 @@
 
 - (RACSignal *)houseValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"housing_conditions"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"住房状况";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.houseValues = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -207,21 +192,16 @@
 
 - (RACSignal *)familyOneValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type"]];
 		if ([self.model.maritalStatus isEqualToString:@"MG01"]) {
 			viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type2"]];
 		}
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"家庭成员关系";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.familyOneValues = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -229,21 +209,16 @@
 
 - (RACSignal *)familyTwoValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type"]];
 		if ([self.model.maritalStatus isEqualToString:@"MG02"] || [self.model.maritalStatus isEqualToString:@"MG01"]) {
 			viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type2"]];
 		}
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"家庭成员关系";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.familyTwoValues = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -251,18 +226,13 @@
 
 - (RACSignal *)otherOneValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"relationship"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"联系人关系";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.otherOneValues = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -270,18 +240,13 @@
 
 - (RACSignal *)otherTwoValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		[self.viewController.view endEditing:YES];
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"relationship"]];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"联系人关系";
-		[self.viewController.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		[selectionViewController.selectedSignal subscribeNext:^(id x) {
-			@strongify(selectionViewController)
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.otherTwoValues = x;
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
+			[self.services popViewModel];
 		}];
 		return nil;
 	}];
@@ -304,8 +269,7 @@
 	reduce:^id(NSNumber *hasMember2, NSString *name, NSString *relation, NSString *phone, NSString *name2, NSString *relation2, NSString *phone2) {
 		if (hasMember2.boolValue) {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0 && name2.length > 0 && relation2.length > 0 && phone2.length > 0);
-		}
-		else {
+		} else {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0);
 		}
 	}];
@@ -324,8 +288,7 @@
 	reduce:^id(NSNumber *hasMember2, NSString *name, NSString *relation, NSString *phone, NSString *name2, NSString *relation2, NSString *phone2) {
 		if (hasMember2.boolValue) {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0 && name2.length > 0 && relation2.length > 0 && phone2.length > 0);
-		}
-		else {
+		} else {
 			return @(name.length > 0 && relation.length > 0 && phone.length > 0);
 		}
 	}];

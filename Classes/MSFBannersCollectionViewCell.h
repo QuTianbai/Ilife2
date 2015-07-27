@@ -8,6 +8,6 @@
 
 @interface MSFBannersCollectionViewCell : UICollectionViewCell
 
-@property(nonatomic,strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end

@@ -25,7 +25,7 @@
 		return nil;
 	}
 	
-	RAC(self, status) = [RACObserve(model, status) map:^id(id status){
+	RAC(self, status) = [RACObserve(model, status) map:^id(id status) {
 		NSDictionary *statusValues = @{
 			@(MSFLoanStatusNone): @"无效",
 			@(MSFLoanStatusAppling): @"审核中",

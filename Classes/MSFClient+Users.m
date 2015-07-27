@@ -31,7 +31,7 @@
 }
 
 - (RACSignal *)updateUserAvatarWithFileURL:(NSURL *)URL {
-	NSString *path = [NSString stringWithFormat:@"users/%@/update_avatar",self.user.objectID];
+	NSString *path = [NSString stringWithFormat:@"users/%@/update_avatar", self.user.objectID];
 	NSMutableURLRequest *request =
 	[self requestWithMethod:@"PUT" path:path parameters:nil
 		constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

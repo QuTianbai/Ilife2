@@ -13,7 +13,7 @@
 @implementation MSFClient (PlanPerodicTables)
 
 - (RACSignal *)fetchPlanPerodicTables:(MSFRepaymentSchedules *)repaymentSchedules {
-	NSString *pPerodTableID = [NSString stringWithFormat:@"plans/%@/installments",repaymentSchedules.contractNum];
+	NSString *pPerodTableID = [NSString stringWithFormat:@"plans/%@/installments", repaymentSchedules.contractNum];
 	NSURLRequest *requset = [self requestWithMethod:@"GET" path:pPerodTableID parameters:nil];
 	
 	return [[self enqueueRequest:requset resultClass:MSFPlanPerodicTables.class] msf_parsedResults];
