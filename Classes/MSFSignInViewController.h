@@ -6,21 +6,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
+#import <MSPageViewController/MSPageViewControllerPage.h>
 
-/**
- *	登录
- */
+@interface MSFSignInViewController : UITableViewController <MSFReactiveView, MSPageViewControllerChild>
 
-@class MSFAuthorizeViewModel;
-
-@interface MSFSignInViewController : UITableViewController <MSFReactiveView>
-
-@property(nonatomic,weak) IBOutlet UITextField *username;
-@property(nonatomic,weak) IBOutlet UITextField *password;
-@property(nonatomic,weak) IBOutlet UIButton *signInButton;
-@property (nonatomic, strong, readonly) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UITextField *username;
+@property (nonatomic, weak) IBOutlet UITextField *password;
+@property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
-
-- (instancetype)initWithViewModel:(MSFAuthorizeViewModel *)viewModel;
 
 @end

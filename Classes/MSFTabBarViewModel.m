@@ -8,17 +8,17 @@
 #import <UIKit/UIKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
-#import "MSFUtils.h"
-#import "MSFSignInViewController.h"
-#import "MSFClozeViewController.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFLoginViewController.h"
-#import "MSFLoginSwapController.h"
+#import "MSFClozeViewModel.h"
+#import "MSFUser.h"
+#import "MSFClient.h"
+#import "MSFClozeViewController.h"
 
 @interface MSFTabBarViewModel ()
 
 @property (nonatomic, strong, readwrite) RACSubject *authorizationUpdatedSignal;
+@property (nonatomic, weak, readwrite) id <MSFViewModelServices> services;
 
 @end
 
@@ -26,14 +26,21 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
-  self = [super init];
-  if (!self) {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
+	if (!(self = [self init])) {
     return nil;
-  }
+	}
+	_services = services;
+	[self initialize];
 	
-	_formsViewModel = [[MSFFormsViewModel alloc] init];
-	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] init];
+	return self;
+}
+
+#pragma mark - Private
+
+- (void)initialize {
+	_formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
+	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
 	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel updatedContentSignal"];
 	
 	@weakify(self)
@@ -62,68 +69,45 @@
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
-	
-  return self;
 }
 
 #pragma mark - Custom Accessors
-
-- (MSFClient *)client {
-	return MSFUtils.httpClient;
-}
 
 - (RACSignal *)signInSignal {
   @weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-    MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel loginType:MSFLoginSignIn];
-		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-		navigationController.navigationBarHidden = YES;
-    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
+		self.authorizeViewModel.loginType = MSFLoginSignIn;
+		[self.services presentViewModel:self.authorizeViewModel];
 		[subscriber sendCompleted];
-		
-    return [RACDisposable disposableWithBlock:^{
-      [loginViewController.navigationItem.leftBarButtonItem.rac_command executionSignals];
-    }];
+		return nil;
   }];
   
-  return [[signal replay] setNameWithFormat:@"%@ -`signIn`",self.class];
+  return [[signal replay] setNameWithFormat:@"%@ `-signIn`", self.class];
 }
 
 - (RACSignal *)signUpSignal {
 	@weakify(self)
   RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
     @strongify(self)
-		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:self.authorizeViewModel loginType:MSFLoginSignUp];
-		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-		navigationController.navigationBarHidden = YES;
-    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
-		[subscriber sendCompleted];
-		
-    return [RACDisposable disposableWithBlock:^{
-    }];
+		self.authorizeViewModel.loginType = MSFLoginSignUp;
+		[self.services presentViewModel:self.authorizeViewModel];
+		return nil;
   }];
   
-  return [[signal replay] setNameWithFormat:@"%@ -`signIn`",self.class];
+  return [[signal replay] setNameWithFormat:@"%@ `-signUp`", self.class];
 }
 
 - (RACSignal *)verifySignal {
-  return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-    MSFClozeViewController *clozeViewController =
-    [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
-    UINavigationController *navigationController =
-    [[UINavigationController alloc] initWithRootViewController:clozeViewController];
-    [self.class.topMostController presentViewController:navigationController animated:YES completion:nil];
+  return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.services];
+		[self.services presentViewModel:viewModel];
     [subscriber sendCompleted];
-    
-    return [RACDisposable disposableWithBlock:^{
-      
-    }];
-  }] replay];
+		return nil;
+  }] replay] setNameWithFormat:@"%@ `-verify`", self.class];
 }
 
-#pragma mark - Privat
+#pragma mark - Private
 
 + (UIViewController *)topMostController {
   UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
@@ -131,6 +115,16 @@
     topController = topController.presentedViewController;
   }
   return topController;
+}
+
+#pragma mark - Custom Accessors
+
+- (BOOL)isAuthenticated {
+	return [self.services httpClient].isAuthenticated;
+}
+
+- (BOOL)isUserAuthenticated {
+	return [self.services httpClient].user.isAuthenticated;
 }
 
 @end

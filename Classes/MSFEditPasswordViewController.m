@@ -13,13 +13,13 @@
 #import "UITextField+RACKeyboardSupport.h"
 
 @interface MSFEditPasswordViewController ()
-@property(nonatomic,weak) IBOutlet UITextField *passoword1;
-@property(nonatomic,weak) IBOutlet UITextField *passoword2;
-@property(nonatomic,weak) IBOutlet UIButton *button;
-@property(nonatomic,strong) MSFUserViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UITextField *passoword1;
+@property (nonatomic, weak) IBOutlet UITextField *passoword2;
+@property (nonatomic, weak) IBOutlet UIButton *button;
+@property (nonatomic, weak) MSFUserViewModel *viewModel;
 
-@property(nonatomic,weak) IBOutlet UISwitch *password1Swith;
-@property(nonatomic,weak) IBOutlet UISwitch *password2Swith;
+@property (nonatomic, weak) IBOutlet UISwitch *password1Swith;
+@property (nonatomic, weak) IBOutlet UISwitch *password2Swith;
 
 @end
 
@@ -31,11 +31,12 @@
 	NSLog(@"`dealloc`");
 }
 
-- (instancetype)init {
+- (instancetype)initWithViewModel:(id)viewModel {
 	self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFEditPasswordViewController.class)];
 	if (!self) {
 		return nil;
 	}
+	_viewModel = viewModel;
 	
 	return self;
 }
@@ -43,9 +44,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"修改密码";
-	self.viewModel = [[MSFUserViewModel alloc] initWithClient:MSFUtils.httpClient];
-	RAC(self.viewModel,usedPassword) = self.passoword1.rac_textSignal;
-	RAC(self.viewModel,updatePassword) = self.passoword2.rac_textSignal;
+	RAC(self.viewModel, usedPassword) = self.passoword1.rac_textSignal;
+	RAC(self.viewModel, updatePassword) = self.passoword2.rac_textSignal;
 	self.button.rac_command = self.viewModel.executeUpdatePassword;
 	
 	@weakify(self)

@@ -9,7 +9,7 @@
 
 @interface MSFResponse ()
 
-@property(nonatomic,strong) NSHTTPURLResponse *HTTPURLResponse;
+@property (nonatomic, strong) NSHTTPURLResponse *HTTPURLResponse;
 
 @end
 

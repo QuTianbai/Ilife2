@@ -21,7 +21,7 @@
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_productWebView
 		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.productAgreementSignal,[RACSignal return:nil]]]]
+		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.productAgreementSignal, [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 	 subscribeNext:^(id x) {
 		 [SVProgressHUD dismiss];

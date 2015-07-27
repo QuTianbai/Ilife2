@@ -12,7 +12,7 @@
 
 @interface MSFPhotoStatus : MSFObject
 
-@property(nonatomic,copy) MSFPhoto *id_photo;
-@property(nonatomic,copy) MSFPhoto *owner_photo;
+@property (nonatomic, copy) MSFPhoto *id_photo;
+@property (nonatomic, copy) MSFPhoto *owner_photo;
 
 @end

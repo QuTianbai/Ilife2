@@ -10,10 +10,10 @@
 #import <MTLFMDBAdapter/MTLFMDBAdapter.h>
 #import "MSFSelectionItem.h"
 
-@interface MSFAreas : MTLModel <MTLJSONSerializing,MTLFMDBSerializing,MSFSelectionItem>
+@interface MSFAreas : MTLModel <MTLJSONSerializing, MTLFMDBSerializing, MSFSelectionItem>
 
-@property(strong,nonatomic) NSString *name;
-@property(strong,nonatomic) NSString *codeID;
-@property(strong,nonatomic) NSString *parentCodeID;
+@property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *codeID;
+@property (strong, nonatomic) NSString *parentCodeID;
 
 @end

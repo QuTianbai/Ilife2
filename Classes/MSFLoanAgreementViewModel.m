@@ -10,6 +10,7 @@
 #import "MSFApplicationResponse.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
+#import "MSFAddress.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -20,6 +21,7 @@
 	}
 	_formsViewModel = formsViewModel;
 	_product = product;
+	_services = formsViewModel.services;
 	@weakify(self)
 	[[RACObserve(self, applyCash) ignore:nil] subscribeNext:^(MSFApplicationResponse *applyCash) {
 		@strongify(self)

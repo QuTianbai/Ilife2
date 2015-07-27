@@ -13,6 +13,6 @@
 /**
  *	设置界面_用户帮助_Webview
  */
-@property(weak, nonatomic) IBOutlet UIWebView *userHelpWebView;
+@property (weak, nonatomic) IBOutlet UIWebView *userHelpWebView;
 
 @end

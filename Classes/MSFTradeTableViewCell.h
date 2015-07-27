@@ -10,8 +10,8 @@
 
 @interface MSFTradeTableViewCell : UITableViewCell
 
-@property(strong,nonatomic) UILabel *date;
-@property(strong,nonatomic) UILabel *tradeDescription;
-@property(strong,nonatomic) UILabel *amount;
+@property (strong, nonatomic) UILabel *date;
+@property (strong, nonatomic) UILabel *tradeDescription;
+@property (strong, nonatomic) UILabel *amount;
 
 @end

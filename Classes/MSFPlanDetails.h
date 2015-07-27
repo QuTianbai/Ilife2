@@ -10,11 +10,11 @@
 
 @interface MSFPlanDetails : MSFObject
 
-@property(nonatomic,copy,readonly) NSString *planID;
-@property(nonatomic,copy,readonly) NSString *time;
-@property(nonatomic,assign,readonly) double repaymentAmount;
-@property(nonatomic,assign,readonly) double interest;
-@property(nonatomic,assign,readonly) double serviceCharge;
-@property(nonatomic,assign,readonly) double totalMoney;
+@property (nonatomic, copy, readonly) NSString *planID;
+@property (nonatomic, copy, readonly) NSString *time;
+@property (nonatomic, assign, readonly) double repaymentAmount;
+@property (nonatomic, assign, readonly) double interest;
+@property (nonatomic, assign, readonly) double serviceCharge;
+@property (nonatomic, assign, readonly) double totalMoney;
 
 @end

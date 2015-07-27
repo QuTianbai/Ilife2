@@ -10,7 +10,7 @@
 #import "MSFLoanViewModel.h"
 
 NSString *(^CNY)(NSString *) = ^(NSString *string) {
-	return [NSString stringWithFormat:@"¥ %@",string];
+	return [NSString stringWithFormat:@"¥ %@", string];
 };
 
 @interface MSFCycleView : UIView

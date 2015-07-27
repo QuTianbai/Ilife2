@@ -33,8 +33,8 @@ static BOOL isRunningTests(void) __attribute__((const));
 
 static BOOL isRunningTests(void) {
 	NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-	NSString *injectBundle		= environment[@"XCInjectBundle"];
-	BOOL isTestsRunning				= [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
+	NSString *injectBundle = environment[@"XCInjectBundle"];
+	BOOL isTestsRunning = [[injectBundle pathExtension] isEqualToString:@"xctest"] ||
 	[[injectBundle pathExtension] isEqualToString:@"octest"];
 	
 	return isTestsRunning;

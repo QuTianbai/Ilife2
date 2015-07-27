@@ -20,7 +20,6 @@
 @class MSFPhotoStatus;
 
 @interface MSFApplicationForms : MSFObject
-
 @property (nonatomic, copy) NSString *loanId;//申请ID long类型
 
 /*
@@ -65,7 +64,7 @@
 @property (nonatomic, copy) NSString *homeCode;//住宅电话区号
 @property (nonatomic, copy) NSString *homeLine;//住宅电话 户籍小区
 @property (nonatomic, copy) NSString *homeLineOwner;//住宅电话登记人
-@property (nonatomic, copy) NSString *mailAddress;//邮寄地址 (1.与工作地址相同		2.与现居地址相同 )
+@property (nonatomic, copy) NSString *mailAddress;//邮寄地址(1.与工作地址相同		2.与现居地址相同 )
 
 @property (nonatomic, copy) NSString *unitAreaCode;//办公/个体电话区号
 @property (nonatomic, copy) NSString *unitTelephone;//办公/个体电话
@@ -109,7 +108,7 @@
 @property (nonatomic, copy) NSString *jdAccount;//京东账号
 @property (nonatomic, copy) NSString *jdAccountPwd;//京东密码
 
-@property (nonatomic, copy) NSString *isSafePlan;//是否寿险计划 (1:是，0:否)
+@property (nonatomic, copy) NSString *isSafePlan;//是否寿险计划(1:是，0:否)
 @property (nonatomic, copy) NSString *bankName;//银行名称
 @property (nonatomic, copy) NSString *bankNumber;//银行号码
 @property (nonatomic, copy) NSString *page;//页数

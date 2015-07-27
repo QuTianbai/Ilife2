@@ -5,6 +5,12 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
+
+typedef NS_ENUM(NSUInteger, MSFLoginType) {
+	MSFLoginSignUp,
+	MSFLoginSignIn,
+};
 
 @class MSFServer;
 @class RACCommand;
@@ -13,7 +19,8 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 @interface MSFAuthorizeViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) MSFServer *server;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, assign) MSFLoginType loginType;
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
@@ -39,6 +46,6 @@ extern NSString *const MSFAuthorizeErrorDomain;
 - (RACSignal *)findPasswordValidSignal;
 - (RACSignal *)captchaRequestValidSignal;
 
-- (instancetype)initWithServer:(MSFServer *)server;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end

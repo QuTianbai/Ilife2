@@ -14,6 +14,6 @@
 
 @interface MSFContractDetailsTableViewController : UITableViewController
 
-@property(nonatomic,strong) MSFRepaymentSchedules *repayMentSchdues;
+@property (nonatomic, strong) MSFRepaymentSchedules *repayMentSchdues;
 
 @end

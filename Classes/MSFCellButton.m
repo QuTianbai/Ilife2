@@ -19,8 +19,7 @@
 		self.layer.cornerRadius = 7.0f;
 		self.layer.masksToBounds = YES;
 		self.layer.borderWidth = 1.0f;
-	}
-	else {
+	} else {
 		self.layer.borderColor = UIColor.lightGrayColor.CGColor;
 		self.titleLabel.textColor = UIColor.lightGrayColor;
 		self.layer.cornerRadius = 0.0f;
@@ -33,8 +32,7 @@
 	[super setSelected:selected];
 	if (selected) {
 		[self setBackgroundColor:UIColor.themeColor];
-	}
-	else {
+	} else {
 		[self setBackgroundColor:UIColor.whiteColor];
 	}
 }

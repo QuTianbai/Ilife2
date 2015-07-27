@@ -10,8 +10,8 @@
 
 @interface MSFPhoto : MSFObject
 
-@property(nonatomic,copy) NSString *photoID;
-@property(nonatomic,copy) NSString *type;
-@property(nonatomic,copy) NSString *name;
+@property (nonatomic, copy) NSString *photoID;
+@property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *name;
 
 @end

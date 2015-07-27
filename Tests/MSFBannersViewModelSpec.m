@@ -18,13 +18,13 @@ __block MSFClient *client;
 
 beforeEach(^{
   client = mock(MSFClient.class);
-  viewModel = [[MSFBannersViewModel alloc] initWithClient:client];
+//  viewModel = [[MSFBannersViewModel alloc] initWithClient:client];
 });
 
 it(@"should initialize", ^{
   // then
   expect(viewModel).notTo(beNil());
-  expect(viewModel.client).notTo(beNil());
+//  expect(viewModel.client).notTo(beNil());
 });
 
 it(@"should return number of section", ^{
