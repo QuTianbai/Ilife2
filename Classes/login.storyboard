@@ -747,21 +747,21 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73f-Sg-lyr">
                                                     <rect key="frame" x="10" y="0.0" width="300" height="134.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="LrB-SZ-loC">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="LrB-SZ-loC">
                                                             <rect key="frame" x="8" y="9" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="Upz-0g-BeT"/>
                                                                 <constraint firstAttribute="width" constant="26" id="bgc-WZ-EFz"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="gFT-e1-WwU">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="gFT-e1-WwU">
                                                             <rect key="frame" x="8" y="54" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="26" id="4KI-Uf-Lqh"/>
                                                                 <constraint firstAttribute="height" constant="26" id="kuS-2a-6mU"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcarddate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hiu-mh-rkL">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcarddate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Hiu-mh-rkL">
                                                             <rect key="frame" x="8" y="99" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="26" id="H0j-pP-ydY"/>
@@ -817,9 +817,10 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="90" id="Eyd-BE-0bH"/>
                                                             </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                             <state key="normal" title="长期有效" image="icon-cloze-normal.png">
-                                                                <color key="titleColor" red="0.20580332602441431" green="0.42309556752585065" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <state key="selected" image="icon-cloze-selected.png"/>
@@ -879,21 +880,21 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4b-bc-Trc">
                                                     <rect key="frame" x="10" y="0.0" width="300" height="134.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankName.png" translatesAutoresizingMaskIntoConstraints="NO" id="udO-kI-ciR">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankName.png" translatesAutoresizingMaskIntoConstraints="NO" id="udO-kI-ciR">
                                                             <rect key="frame" x="8" y="9" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="AvT-zH-kVq"/>
                                                                 <constraint firstAttribute="width" constant="26" id="ss6-d4-WHQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankAddress.png" translatesAutoresizingMaskIntoConstraints="NO" id="xTJ-yk-fRq">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankAddress.png" translatesAutoresizingMaskIntoConstraints="NO" id="xTJ-yk-fRq">
                                                             <rect key="frame" x="8" y="54" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="FTp-3Y-0lQ"/>
                                                                 <constraint firstAttribute="width" constant="26" id="L0n-gI-lqo"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankNO.png" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-Ly-jAE">
+                                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankNO.png" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-Ly-jAE">
                                                             <rect key="frame" x="8" y="99" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="jdS-Xw-1vh"/>
