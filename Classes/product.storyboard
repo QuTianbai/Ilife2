@@ -104,7 +104,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RE3-Es-42M">
-                                                    <rect key="frame" x="15" y="91" width="290" height="80"/>
+                                                    <rect key="frame" x="0.0" y="91" width="320" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="60J-z9-a4H"/>
                                                     </constraints>
@@ -135,44 +135,8 @@
                                                 <constraint firstItem="hWj-Vn-WwI" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" constant="15" id="bu3-qi-37S"/>
                                                 <constraint firstItem="PEb-pB-EYl" firstAttribute="top" secondItem="hWj-Vn-WwI" secondAttribute="bottom" constant="10" id="dHD-B9-SXS"/>
                                                 <constraint firstAttribute="trailing" secondItem="hWj-Vn-WwI" secondAttribute="trailing" constant="15" id="dxF-Q1-AzT"/>
-                                                <constraint firstAttribute="trailing" secondItem="RE3-Es-42M" secondAttribute="trailing" constant="15" id="fda-7B-YPs"/>
-                                                <constraint firstItem="RE3-Es-42M" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" constant="15" id="xe8-Jo-QCk"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="acD-NK-drc">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="acD-NK-drc" id="KhJ-lm-0pO">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="贷款期数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2E9-G1-r5e">
-                                                    <rect key="frame" x="15" y="11.5" width="68" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ivi-bG-ipa">
-                                                    <rect key="frame" x="93" y="11" width="184" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9kc-wI-oyz">
-                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Ivi-bG-ipa" firstAttribute="leading" secondItem="2E9-G1-r5e" secondAttribute="trailing" constant="10" id="105-jr-KpO"/>
-                                                <constraint firstAttribute="centerY" secondItem="2E9-G1-r5e" secondAttribute="centerY" id="4OT-M1-fZt"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ivi-bG-ipa" secondAttribute="trailing" constant="10" id="S17-Ne-XiS"/>
-                                                <constraint firstAttribute="centerY" secondItem="Ivi-bG-ipa" secondAttribute="centerY" id="SVW-ab-6Lh"/>
-                                                <constraint firstItem="9kc-wI-oyz" firstAttribute="top" secondItem="KhJ-lm-0pO" secondAttribute="top" id="Sm6-v9-jSd"/>
-                                                <constraint firstItem="2E9-G1-r5e" firstAttribute="leading" secondItem="KhJ-lm-0pO" secondAttribute="leading" constant="15" id="UJJ-7W-JIh"/>
-                                                <constraint firstAttribute="bottom" secondItem="9kc-wI-oyz" secondAttribute="bottom" id="US1-Nv-2ee"/>
-                                                <constraint firstAttribute="trailing" secondItem="9kc-wI-oyz" secondAttribute="trailing" id="hBc-3R-5fH"/>
-                                                <constraint firstItem="9kc-wI-oyz" firstAttribute="leading" secondItem="KhJ-lm-0pO" secondAttribute="leading" id="sQ4-Ef-eGr"/>
+                                                <constraint firstAttribute="trailing" secondItem="RE3-Es-42M" secondAttribute="trailing" id="fda-7B-YPs"/>
+                                                <constraint firstItem="RE3-Es-42M" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" id="xe8-Jo-QCk"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -265,8 +229,6 @@
                     <navigationItem key="navigationItem" id="wFA-RZ-Eut"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="applyMonthsBT" destination="9kc-wI-oyz" id="DtN-OL-TkC"/>
-                        <outlet property="applyMonthsTF" destination="Ivi-bG-ipa" id="eQY-62-uyH"/>
                         <outlet property="isInLifeInsurancePlaneSW" destination="BWq-ao-haB" id="ulE-Ua-WJS"/>
                         <outlet property="lifeInsuranceButton" destination="5Q7-j3-dwM" id="gbU-Cd-UfT"/>
                         <outlet property="moneyCell" destination="T3d-Nm-rQd" id="sUJ-r1-FMv"/>

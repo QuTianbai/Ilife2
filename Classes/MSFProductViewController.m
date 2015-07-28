@@ -87,16 +87,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   
   [collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
   self.monthCollectionView.collectionViewLayout = collectionFlowLayout;
-  //self.monthCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 80) collectionViewLayout:collectionFlowLayout];
-  self.monthCollectionView.backgroundColor = [UIColor redColor];
   self.monthCollectionView.showsHorizontalScrollIndicator = NO;
   self.monthCollectionView.delegate = self;
   self.monthCollectionView.dataSource = self;
   [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
-  
-  //[self.moneyCell addSubview:self.monthCollectionView];
   
   _loanPeriodsAry = [NSArray arrayWithObjects:@"6个月", @"9个月", @"10个月", @"12个月" , @"18个月",nil];
   
@@ -340,31 +336,33 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   cell.layer.masksToBounds = YES;
   cell.loacPeriodsLabel.backgroundColor = [UIColor clearColor];
   cell.loacPeriodsLabel.textColor = [UIColor grayColor];
-  cell.loacPeriodsLabel.text = [NSString stringWithFormat:@"%@",[_loanPeriodsAry objectAtIndex:indexPath.row]];
+  cell.loacPeriodsLabel.text = [NSString stringWithFormat:@"%@", [_loanPeriodsAry objectAtIndex:indexPath.row]];
   
   return cell;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-  return CGSizeMake(([UIScreen mainScreen].bounds.size.width-15*2-5*5)/4,self.monthCollectionView.frame.size.height/2);
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 15 * 2 - 5 * 5 ) / 4, self.monthCollectionView.frame.size.height / 2);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-  return UIEdgeInsetsMake(20, 15, 20, 15);
+  return UIEdgeInsetsMake(10, 15, 20, 15);
 }
 
 #pragma mark - UICollectionViewDelegate
+
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  MSFPeriodsCollectionViewCell * cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
   cell.loacPeriodsLabel.textColor = [UIColor blueColor];
   cell.layer.borderColor   = [UIColor blueColor].CGColor;
 }
+
 //UICollectionView取消选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-  MSFPeriodsCollectionViewCell * cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
   cell.loacPeriodsLabel.textColor = [UIColor grayColor];
   cell.layer.borderColor   = [UIColor grayColor].CGColor;
 }
