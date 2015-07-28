@@ -74,6 +74,8 @@
 		10DE89201B67676A009025C4 /* icon-account-repay.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE891D1B67676A009025C4 /* icon-account-repay.png */; };
 		10DE89211B67676A009025C4 /* icon-account-repay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE891E1B67676A009025C4 /* icon-account-repay@2x.png */; };
 		10DE89221B67676A009025C4 /* icon-account-repay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE891F1B67676A009025C4 /* icon-account-repay@3x.png */; };
+		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
+		10DE89391B6776E2009025C4 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89381B6776E2009025C4 /* home-banner-pl.png */; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		490312A81B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */; };
@@ -629,6 +631,8 @@
 		10DE891D1B67676A009025C4 /* icon-account-repay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay.png"; sourceTree = "<group>"; };
 		10DE891E1B67676A009025C4 /* icon-account-repay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay@2x.png"; sourceTree = "<group>"; };
 		10DE891F1B67676A009025C4 /* icon-account-repay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay@3x.png"; sourceTree = "<group>"; };
+		10DE89291B677690009025C4 /* home-fourStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-fourStatus.png"; sourceTree = "<group>"; };
+		10DE89381B6776E2009025C4 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		1F02B5C08373E00BAD678B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4902EE101B195A2F00EC836C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Externals/Crashlytics.framework; sourceTree = "<group>"; };
@@ -1979,6 +1983,8 @@
 			isa = PBXGroup;
 			children = (
 				49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */,
+				10DE89291B677690009025C4 /* home-fourStatus.png */,
+				10DE89381B6776E2009025C4 /* home-banner-pl.png */,
 			);
 			name = homepage;
 			sourceTree = "<group>";
@@ -2767,6 +2773,7 @@
 				49C027B41B1469D900735DC6 /* progress-status-default.png in Resources */,
 				4993E0B41B2D9E8800090F26 /* icon-avatar-placeholder@2x.png in Resources */,
 				4925ADF41B2AFD8800872A8A /* btn_checked@3x.png in Resources */,
+				10DE89391B6776E2009025C4 /* home-banner-pl.png in Resources */,
 				C7A3517E1B217CB10001DF6A /* iconfont-jiantouyou@2x.png in Resources */,
 				492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */,
 				49BAB2BB1B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png in Resources */,
@@ -2916,6 +2923,7 @@
 				49C0F1B11B2C315100E92572 /* logo@3x.png in Resources */,
 				07C06C7A1B1347C200F2DFCC /* relationship.json in Resources */,
 				10DE89161B676699009025C4 /* icon-account-history@2x.png in Resources */,
+				10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */,
 				10DE891A1B6766AB009025C4 /* icon-account-about@2x.png in Resources */,
 				49B37B6A1B608F39004EED47 /* bar-progress-3-highlighted@2x.png in Resources */,
 				49C027B61B1469D900735DC6 /* progress-status-default@3x.png in Resources */,

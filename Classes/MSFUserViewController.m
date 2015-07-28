@@ -154,7 +154,7 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"sectionHeader"];
 	if (section == 1) {
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 8, 100, 20)];
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 6, 100, 20)];
 		label.text = @"贷款信息";
 		label.textColor = [UIColor tintColor];
 		label.font = [UIFont boldSystemFontOfSize:13];
