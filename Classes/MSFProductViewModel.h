@@ -16,7 +16,7 @@
 // 贷款申请入口－第一个界面
 @interface MSFProductViewModel : RVMViewModel
 
-@property (nonatomic, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, weak, readonly) MSFFormsViewModel *formsViewModel;
 
 @property (nonatomic, strong, readonly) MSFMarket *market;
 

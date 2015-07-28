@@ -42,27 +42,15 @@ static BOOL isRunningTests(void) {
 
 @implementation MSFUtils
 
-//TODO: 更新这里的服务器地址
 + (RACSignal *)setupSignal {
-#if DEBUG
-//	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.41:8443"]];
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
-#else
-	[MSFUtils cleanupArchive];
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51"]];
-#endif
 	MSFClient *client = self.unArchiveClient;
 	[self setHttpClient:client];
-	
-	[[AFNetworkReachabilityManager sharedManager] startMonitoring];
-	[[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-		NSLog(@"网络情况发生变化");
-	}];
 	
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
 		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
 		[MSFClient setCipher:cipher];
-	} ] ;
+	}];
 }
 
 + (MSFClient *)httpClient {
@@ -127,7 +115,6 @@ static BOOL isRunningTests(void) {
 	static dispatch_once_t onceToken;
 	static MSFAgreementViewModel *viewModel;
 	dispatch_once(&onceToken, ^{
-		//TODO: 需要更新协议地址
 		MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://www.msxf.com"]];
 		MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
 		viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];

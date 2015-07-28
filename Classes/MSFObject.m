@@ -64,7 +64,6 @@
 		return;
 	}
 	
-	//TODO: baseURL host
 	if (baseURL == nil || [baseURL.host isEqual:@"example.com"]) {
 		self.server = MSFServer.dotComServer;
 	} else {

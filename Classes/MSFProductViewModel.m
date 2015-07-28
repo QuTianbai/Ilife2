@@ -42,7 +42,6 @@
 	_productTerms = @"";
 	_termAmount = 0;
 	_services = self.formsViewModel.services;
-	
 	RAC(self.formsViewModel.model, repayMoneyMonth) = RACObserve(self, termAmount);
 	RAC(self.formsViewModel.model, principal) = RACObserve(self, totalAmount);
 	RAC(self.formsViewModel.model, isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
@@ -56,6 +55,15 @@
 	RAC(self, market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
+	
+	[self.formsViewModel.didBecomeActiveSignal subscribeNext:^(id x) {
+		@strongify(self)
+		self.purpose = nil;
+		self.product = nil;
+		self.productTerms = @"";
+		self.totalAmount = @"";
+	}];
+	
 	[RACObserve(self, product) subscribeNext:^(MSFProduct *product) {
 		@strongify(self)
 		self.formsViewModel.model.productId = product.productId;
@@ -84,7 +92,7 @@
 			return	[[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
-					return value.parsedResult[@"repayMoneyMonth"];
+					return [NSString stringWithFormat:@"%.2f", [value.parsedResult[@"repayMoneyMonth"] floatValue]];
 				}];
 		}];
   RAC(self, minMoney) = RACObserve(self.formsViewModel.market, allMinAmount);

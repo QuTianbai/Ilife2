@@ -31,48 +31,7 @@
 
 @implementation MSFTabBarController
 
-#pragma mark - Lifecycle
-
-- (instancetype)initWithViewModel:(MSFTabBarViewModel *)tabBarViewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	
-	_viewModel = tabBarViewModel;
-	[self unAuthenticatedControllers];
-	@weakify(self)
-	MSFAuthorizationView *view = [[MSFAuthorizationView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-	[self.view addSubview:view];
-	[view bindViewModel:self.viewModel];
-	
-	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
-		@strongify(self)
-		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
-			[view removeFromSuperview];
-		}
-		self.viewModel.formsViewModel.active = NO;
-		if (client.authenticated) {
-			[self authenticatedControllers];
-		} else {
-			[self unAuthenticatedControllers];
-		}
-	}];
-	
-	[[[NSNotificationCenter defaultCenter]
-	rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
-	subscribeNext:^(NSNotification *notification) {
-		@strongify(self)
-		MSFClient *client = notification.object;
-		self.viewModel.formsViewModel.active = NO;
-		[self authenticatedControllers];
-		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
-			[view removeFromSuperview];
-		}
-	}];
-	
-  return self;
-}
+#pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
 	_viewModel = viewModel;
@@ -87,7 +46,6 @@
 		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
 			[view removeFromSuperview];
 		}
-		self.viewModel.formsViewModel.active = NO;
 		if (client.authenticated) {
 			[self authenticatedControllers];
 		} else {
@@ -96,31 +54,24 @@
 	}];
 	
 	[[[NSNotificationCenter defaultCenter]
-	rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
-	subscribeNext:^(NSNotification *notification) {
-		@strongify(self)
-		MSFClient *client = notification.object;
-		self.viewModel.formsViewModel.active = NO;
-		[self authenticatedControllers];
-		if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
-			[view removeFromSuperview];
-		}
-	}];
+		rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
+		subscribeNext:^(NSNotification *notification) {
+			@strongify(self)
+			MSFClient *client = notification.object;
+			if ([self.view.subviews containsObject:view] && client.isAuthenticated) {
+				[view removeFromSuperview];
+			}
+			[self authenticatedControllers];
+		}];
 }
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
   self.tabBar.selectedImageTintColor = UIColor.themeColor;
 	self.delegate = self;
 	@weakify(self)
-	[[[NSNotificationCenter defaultCenter]
-		rac_addObserverForName:@"application-success" object:nil]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			self.viewModel.formsViewModel.active = NO;
-			[self authenticatedControllers];
-		}];
-	
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已在另一设备上登录，如非本人操作请立即修改密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	alertView.delegate = self;
 	[[[NSNotificationCenter defaultCenter]
@@ -136,8 +87,7 @@
 				}
 			}
 		}];
-	UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"无法连接到服务器"
-   message:nil delegate:nil cancelButtonTitle:@"重新连接" otherButtonTitles:nil];
+	UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"无法连接到服务器" message:nil delegate:nil cancelButtonTitle:@"重新连接" otherButtonTitles:nil];
   [alertView2.rac_buttonClickedSignal subscribeNext:^(id x) {
     [MSFUtils.setupSignal subscribeNext:^(id x) {
 			[self unAuthenticatedControllers];
@@ -151,12 +101,11 @@
      }
    }];
  
-  [[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidReGetTimeServer object:nil]
-  subscribeNext:^(id x) {
-    [MSFUtils.setupSignal subscribeNext:^(id x) {
-     // [self unAuthenticatedControllers];
-    }];
-  }];
+  [[[NSNotificationCenter defaultCenter]
+		rac_addObserverForName:MSFAuthorizationDidReGetTimeServer object:nil]
+		subscribeNext:^(id x) {
+			[MSFUtils.setupSignal replay];
+		}];
 }
 
 #pragma mark - UIAlertViewDelegate
@@ -231,9 +180,7 @@
 		return NO;
   }
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
-    if (!self.viewModel.formsViewModel.isHaveProduct) {
-      self.viewModel.formsViewModel.active = YES;
-    }
+		self.viewModel.formsViewModel.active = YES;
     if (self.viewModel.formsViewModel.pending) {
       UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的提交的申请已经在审核中，请耐心等待!" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil];
       [alertView show];

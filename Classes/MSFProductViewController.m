@@ -56,16 +56,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (nonatomic, strong) RACCommand *executeTermCommand;
 @property (nonatomic, strong) RACCommand *executeNextCommand;
 @property (nonatomic, strong) RACCommand *executeLifeInsuranceCommand;
+@property (nonatomic, strong, readwrite) MSFProductViewModel *viewModel;
 
 @end
 
 @implementation MSFProductViewController
 
-#pragma mark - MSFReactiveView
-
-- (void)bindViewModel:(id)viewModel {
-//	self.viewModel = viewModel;
-}
+#pragma mark - Lifecycle
 
 - (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel {
 	self = [UIStoryboard storyboardWithName:@"product" bundle:nil].instantiateInitialViewController;
@@ -77,8 +74,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   
   return self;
 }
-
-#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -113,6 +108,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	@weakify(self)
+	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+	
+	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
+	RAC(self.repayMoneyMonth, text) = RACObserve(self, viewModel.termAmountText);
+	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
+	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
+	
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
       return @100;
@@ -125,17 +127,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     }
     return value;
   }];
- RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSNumber *value) {
-   //return [NSString stringWithFormat:@"%f",value];
-   return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
- }];
-	//RAC(self.viewModel, totalAmount) = self.applyCashNumTF.rac_textSignal;
-	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
-	
-	//RAC(self.applyCashNumTF, placeholder) = RACObserve(self.viewModel, totalAmountPlacholder);
-	RAC(self.repayMoneyMonth, text) = RACObserve(self.viewModel, termAmountText);
-	RAC(self.moneyUsesTF, text) = RACObserve(self.viewModel, purposeText);
-	RAC(self.applyMonthsTF, text) = RACObserve(self.viewModel, productTitle);
+	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSNumber *value) {
+	 //return [NSString stringWithFormat:@"%f",value];
+	 return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
+	}];
 	self.applyMonthsBT.rac_command = self.executeTermCommand;
 	[self.executeTermCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)

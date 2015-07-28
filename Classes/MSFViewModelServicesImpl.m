@@ -7,6 +7,7 @@
 #import "MSFViewModelServicesImpl.h"
 #import "MSFClient.h"
 #import "MSFUtils.h"
+#import "UIWindow+PazLabs.h"
 
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
@@ -37,6 +38,16 @@
   return self;
 }
 
+#pragma mark - Private
+
+- (UIViewController *)visibleViewController {
+	return [[[UIApplication sharedApplication] delegate] window].visibleViewController;
+}
+
+- (UINavigationController *)navigationController {
+	return [[[[UIApplication sharedApplication] delegate] window].visibleViewController navigationController];
+}
+
 #pragma mark - MSFViewModelServices
 
 - (void)pushViewModel:(id)viewModel {
@@ -48,15 +59,14 @@
     NSLog(@"an unknown ViewModel was pushed!");
   }
   
-  [(UINavigationController *)self.tabBarController.selectedViewController pushViewController:viewController animated:YES];
+  [self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)popViewModel {
-	UINavigationController *navigationController = (UINavigationController *)self.tabBarController.selectedViewController;
-	if ([navigationController.topViewController isKindOfClass:MSFSelectionViewController.class]) {
-		[[navigationController.viewControllers reverseObjectEnumerator].allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+	if ([self.navigationController.topViewController isKindOfClass:MSFSelectionViewController.class]) {
+		[[self.navigationController.viewControllers reverseObjectEnumerator].allObjects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 			if (![obj isKindOfClass:MSFSelectionViewController.class]) {
-				[navigationController popToViewController:obj animated:YES];
+				[self.navigationController popToViewController:obj animated:YES];
 				*stop = YES;
 			}
 		}];
@@ -78,7 +88,7 @@
     NSLog(@"an unknown ViewModel was present!");
   }
   
-  [self.tabBarController.selectedViewController presentViewController:viewController animated:YES completion:nil];
+  [self.navigationController presentViewController:viewController animated:YES completion:nil];
 }
 
 - (MSFClient *)httpClient {

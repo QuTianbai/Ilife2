@@ -226,7 +226,6 @@ static BOOL isRunningTests(void) {
 			return [RACSignal return:clientAndResponse];
 		}]
 		catch:^RACSignal *(NSError *error) {
-		 //TODO: 错误转换处理
 		 return [RACSignal error:error];
 		}]
 		reduceEach:^id(MSFClient *client, MSFResponse *response){
@@ -303,7 +302,6 @@ static BOOL isRunningTests(void) {
 }
 
 - (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session {
-	//TODO: 需要增加银行卡参数接口,需要去掉银行的卡的空格间隔符号 `1111 1111 1111`
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"username"] = name;
 	parameters[@"id_card"] = idcard;
@@ -533,7 +531,7 @@ static BOOL isRunningTests(void) {
 				self.token = authorization.token;
 				self.session = authorization.session;
 			}
-			//TODO: 验证码正确测试验证
+			//!!!:  这里的代码，是因为后台返回的成功信息没有按照文档的格式返回做临时处理
 			if (!responseObject) {
 				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
 					responseObject = @{@"message": @"验证码发送成功"};

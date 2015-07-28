@@ -277,9 +277,6 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
 			@strongify(self)
 			self.tabBarController.selectedIndex = 0;
-			//[self.navigationController popToRootViewControllerAnimated:YES];
-			//TODO: 临时跳转方案
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"application-success" object:nil];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {

@@ -51,6 +51,4 @@
 
 - (instancetype)initWithServer:(MSFServer *)server;
 
-- (NSURL *)loanAgreementURLWithProduct:(MSFProduct *)product;
-
 @end
