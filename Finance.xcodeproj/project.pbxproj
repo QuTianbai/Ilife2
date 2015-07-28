@@ -218,12 +218,6 @@
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7AC1B08379800917D2C /* MSFClozeViewController.m */; };
 		49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7B11B08461700917D2C /* MSFAuthorization.m */; };
-		49BAB2B91B3BDF09004B4170 /* icon-cloze-idcarddate.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B31B3BDF09004B4170 /* icon-cloze-idcarddate.png */; };
-		49BAB2BA1B3BDF09004B4170 /* icon-cloze-idcarddate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B41B3BDF09004B4170 /* icon-cloze-idcarddate@2x.png */; };
-		49BAB2BB1B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B51B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png */; };
-		49BAB2BC1B3BDF09004B4170 /* icon-cloze-name.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B61B3BDF09004B4170 /* icon-cloze-name.png */; };
-		49BAB2BD1B3BDF09004B4170 /* icon-cloze-name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B71B3BDF09004B4170 /* icon-cloze-name@2x.png */; };
-		49BAB2BE1B3BDF09004B4170 /* icon-cloze-name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49BAB2B81B3BDF09004B4170 /* icon-cloze-name@3x.png */; };
 		49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BE4B631B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m */; };
 		49C027B41B1469D900735DC6 /* progress-status-default.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C027B11B1469D900735DC6 /* progress-status-default.png */; };
 		49C027B51B1469D900735DC6 /* progress-status-default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C027B21B1469D900735DC6 /* progress-status-default@2x.png */; };
@@ -298,9 +292,6 @@
 		49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE3F1B4654D100B6B20A /* icon-arrow-down.png */; };
 		49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE401B4654D100B6B20A /* icon-arrow-down@2x.png */; };
 		49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE411B4654D100B6B20A /* icon-arrow-down@3x.png */; };
-		49C2FE481B4654D100B6B20A /* icon-question.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE421B4654D100B6B20A /* icon-question.png */; };
-		49C2FE491B4654D100B6B20A /* icon-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE431B4654D100B6B20A /* icon-question@2x.png */; };
-		49C2FE4A1B4654D100B6B20A /* icon-question@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE441B4654D100B6B20A /* icon-question@3x.png */; };
 		49C2FE4D1B466A3E00B6B20A /* MSFAddressViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2FE4C1B466A3E00B6B20A /* MSFAddressViewModelSpec.m */; };
 		49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2FE4F1B466A6B00B6B20A /* MSFAddressViewModel.m */; };
 		49C2FE531B4677D200B6B20A /* MSFTestAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2FE521B4677D200B6B20A /* MSFTestAddressViewModel.m */; };
@@ -342,11 +333,6 @@
 		49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7D1B2E83E4009433C5 /* personal.storyboard */; };
 		49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7F1B2E83F9009433C5 /* professional.storyboard */; };
 		49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE811B2E840A009433C5 /* relationship.storyboard */; };
-		49E22AF01B37ED5D00749717 /* icon-cloze-idcard.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AE91B37ED5D00749717 /* icon-cloze-idcard.png */; };
-		49E22AF11B37ED5D00749717 /* icon-cloze-idcard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AEA1B37ED5D00749717 /* icon-cloze-idcard@2x.png */; };
-		49E22AF21B37ED5D00749717 /* icon-cloze-idcard@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AEB1B37ED5D00749717 /* icon-cloze-idcard@3x.png */; };
-		49E22AF51B37ED5D00749717 /* icon-cloze-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AEE1B37ED5D00749717 /* icon-cloze-normal.png */; };
-		49E22AF61B37ED5D00749717 /* icon-cloze-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AEF1B37ED5D00749717 /* icon-cloze-selected.png */; };
 		49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF71B37ED9E00749717 /* btn-family-add.png */; };
 		49E22AFE1B37ED9E00749717 /* btn-family-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */; };
 		49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */; };
@@ -425,6 +411,33 @@
 		C7B978141B099CD9005F247C /* MSFUserHelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B978131B099CD9005F247C /* MSFUserHelpCell.m */; };
 		C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B978161B099D02005F247C /* MSFBranchesCell.m */; };
 		C7B9FF631B2C1BD100FEF72F /* MSFRelationshipViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C7B9FF621B2C1BD100FEF72F /* MSFRelationshipViewModel.m */; };
+		C7D2D11C1B67938C000F51ED /* icon-cloze-bankAddress.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1011B67938C000F51ED /* icon-cloze-bankAddress.png */; };
+		C7D2D11D1B67938C000F51ED /* icon-cloze-bankAddress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1021B67938C000F51ED /* icon-cloze-bankAddress@2x.png */; };
+		C7D2D11E1B67938C000F51ED /* icon-cloze-bankAddress@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1031B67938C000F51ED /* icon-cloze-bankAddress@3x.png */; };
+		C7D2D11F1B67938C000F51ED /* icon-cloze-bankName.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1041B67938C000F51ED /* icon-cloze-bankName.png */; };
+		C7D2D1201B67938C000F51ED /* icon-cloze-bankName@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1051B67938C000F51ED /* icon-cloze-bankName@2x.png */; };
+		C7D2D1211B67938C000F51ED /* icon-cloze-bankName@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1061B67938C000F51ED /* icon-cloze-bankName@3x.png */; };
+		C7D2D1221B67938C000F51ED /* icon-cloze-bankNO.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1071B67938C000F51ED /* icon-cloze-bankNO.png */; };
+		C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1081B67938C000F51ED /* icon-cloze-bankNO@2x.png */; };
+		C7D2D1241B67938C000F51ED /* icon-cloze-bankNO@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1091B67938C000F51ED /* icon-cloze-bankNO@3x.png */; };
+		C7D2D1251B67938C000F51ED /* icon-cloze-idcard.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D10A1B67938C000F51ED /* icon-cloze-idcard.png */; };
+		C7D2D1261B67938C000F51ED /* icon-cloze-idcard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D10B1B67938C000F51ED /* icon-cloze-idcard@2x.png */; };
+		C7D2D1271B67938C000F51ED /* icon-cloze-idcard@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D10C1B67938C000F51ED /* icon-cloze-idcard@3x.png */; };
+		C7D2D1281B67938C000F51ED /* icon-cloze-idcarddate.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D10D1B67938C000F51ED /* icon-cloze-idcarddate.png */; };
+		C7D2D1291B67938C000F51ED /* icon-cloze-idcarddate@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D10E1B67938C000F51ED /* icon-cloze-idcarddate@2x.png */; };
+		C7D2D12A1B67938C000F51ED /* icon-cloze-idcarddate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D10F1B67938C000F51ED /* icon-cloze-idcarddate@3x.png */; };
+		C7D2D12B1B67938C000F51ED /* icon-cloze-name.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1101B67938C000F51ED /* icon-cloze-name.png */; };
+		C7D2D12C1B67938C000F51ED /* icon-cloze-name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1111B67938C000F51ED /* icon-cloze-name@2x.png */; };
+		C7D2D12D1B67938C000F51ED /* icon-cloze-name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1121B67938C000F51ED /* icon-cloze-name@3x.png */; };
+		C7D2D12E1B67938C000F51ED /* icon-cloze-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1131B67938C000F51ED /* icon-cloze-normal.png */; };
+		C7D2D12F1B67938C000F51ED /* icon-cloze-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1141B67938C000F51ED /* icon-cloze-normal@2x.png */; };
+		C7D2D1301B67938C000F51ED /* icon-cloze-normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1151B67938C000F51ED /* icon-cloze-normal@3x.png */; };
+		C7D2D1311B67938C000F51ED /* icon-cloze-question.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1161B67938C000F51ED /* icon-cloze-question.png */; };
+		C7D2D1321B67938C000F51ED /* icon-cloze-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1171B67938C000F51ED /* icon-cloze-question@2x.png */; };
+		C7D2D1331B67938C000F51ED /* icon-cloze-question@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */; };
+		C7D2D1341B67938C000F51ED /* icon-cloze-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1191B67938C000F51ED /* icon-cloze-selected.png */; };
+		C7D2D1351B67938C000F51ED /* icon-cloze-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */; };
+		C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */; };
 		C7D7DB121B2EF85A005ECA0C /* MSFRelationViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = C7D7DB111B2EF85A005ECA0C /* MSFRelationViewModelSpec.m */; };
 		C7DCC7371B228570004A1B0E /* MSFRepayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DCC7361B228570004A1B0E /* MSFRepayViewController.m */; };
 		C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149ED1B05C0620045F919 /* MSFClient+PlanPerodicTables.m */; };
@@ -845,12 +858,6 @@
 		49B5D7B01B08461700917D2C /* MSFAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorization.h; sourceTree = "<group>"; };
 		49B5D7B11B08461700917D2C /* MSFAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorization.m; sourceTree = "<group>"; };
 		49BAB2821B3B96ED004B4170 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		49BAB2B31B3BDF09004B4170 /* icon-cloze-idcarddate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcarddate.png"; sourceTree = "<group>"; };
-		49BAB2B41B3BDF09004B4170 /* icon-cloze-idcarddate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcarddate@2x.png"; sourceTree = "<group>"; };
-		49BAB2B51B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcarddate@3x.png"; sourceTree = "<group>"; };
-		49BAB2B61B3BDF09004B4170 /* icon-cloze-name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name.png"; sourceTree = "<group>"; };
-		49BAB2B71B3BDF09004B4170 /* icon-cloze-name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name@2x.png"; sourceTree = "<group>"; };
-		49BAB2B81B3BDF09004B4170 /* icon-cloze-name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name@3x.png"; sourceTree = "<group>"; };
 		49BE4B621B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MSFActivityIndicatorViewAdditions.h"; sourceTree = "<group>"; };
 		49BE4B631B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MSFActivityIndicatorViewAdditions.m"; sourceTree = "<group>"; };
 		49C027B11B1469D900735DC6 /* progress-status-default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-status-default.png"; sourceTree = "<group>"; };
@@ -927,9 +934,6 @@
 		49C2FE3F1B4654D100B6B20A /* icon-arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-down.png"; sourceTree = "<group>"; };
 		49C2FE401B4654D100B6B20A /* icon-arrow-down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-down@2x.png"; sourceTree = "<group>"; };
 		49C2FE411B4654D100B6B20A /* icon-arrow-down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-down@3x.png"; sourceTree = "<group>"; };
-		49C2FE421B4654D100B6B20A /* icon-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-question.png"; sourceTree = "<group>"; };
-		49C2FE431B4654D100B6B20A /* icon-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-question@2x.png"; sourceTree = "<group>"; };
-		49C2FE441B4654D100B6B20A /* icon-question@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-question@3x.png"; sourceTree = "<group>"; };
 		49C2FE4C1B466A3E00B6B20A /* MSFAddressViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddressViewModelSpec.m; sourceTree = "<group>"; };
 		49C2FE4E1B466A6B00B6B20A /* MSFAddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddressViewModel.h; sourceTree = "<group>"; };
 		49C2FE4F1B466A6B00B6B20A /* MSFAddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddressViewModel.m; sourceTree = "<group>"; };
@@ -998,11 +1002,6 @@
 		49DAEE7D1B2E83E4009433C5 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
 		49DAEE811B2E840A009433C5 /* relationship.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = relationship.storyboard; sourceTree = "<group>"; };
-		49E22AE91B37ED5D00749717 /* icon-cloze-idcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard.png"; sourceTree = "<group>"; };
-		49E22AEA1B37ED5D00749717 /* icon-cloze-idcard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard@2x.png"; sourceTree = "<group>"; };
-		49E22AEB1B37ED5D00749717 /* icon-cloze-idcard@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard@3x.png"; sourceTree = "<group>"; };
-		49E22AEE1B37ED5D00749717 /* icon-cloze-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-normal.png"; sourceTree = "<group>"; };
-		49E22AEF1B37ED5D00749717 /* icon-cloze-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected.png"; sourceTree = "<group>"; };
 		49E22AF71B37ED9E00749717 /* btn-family-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add.png"; sourceTree = "<group>"; };
 		49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add@2x.png"; sourceTree = "<group>"; };
 		49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add@3x.png"; sourceTree = "<group>"; };
@@ -1113,6 +1112,33 @@
 		C7B978161B099D02005F247C /* MSFBranchesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBranchesCell.m; sourceTree = "<group>"; };
 		C7B9FF611B2C1BD100FEF72F /* MSFRelationshipViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationshipViewModel.h; sourceTree = "<group>"; };
 		C7B9FF621B2C1BD100FEF72F /* MSFRelationshipViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationshipViewModel.m; sourceTree = "<group>"; };
+		C7D2D1011B67938C000F51ED /* icon-cloze-bankAddress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankAddress.png"; sourceTree = "<group>"; };
+		C7D2D1021B67938C000F51ED /* icon-cloze-bankAddress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankAddress@2x.png"; sourceTree = "<group>"; };
+		C7D2D1031B67938C000F51ED /* icon-cloze-bankAddress@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankAddress@3x.png"; sourceTree = "<group>"; };
+		C7D2D1041B67938C000F51ED /* icon-cloze-bankName.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankName.png"; sourceTree = "<group>"; };
+		C7D2D1051B67938C000F51ED /* icon-cloze-bankName@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankName@2x.png"; sourceTree = "<group>"; };
+		C7D2D1061B67938C000F51ED /* icon-cloze-bankName@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankName@3x.png"; sourceTree = "<group>"; };
+		C7D2D1071B67938C000F51ED /* icon-cloze-bankNO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankNO.png"; sourceTree = "<group>"; };
+		C7D2D1081B67938C000F51ED /* icon-cloze-bankNO@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankNO@2x.png"; sourceTree = "<group>"; };
+		C7D2D1091B67938C000F51ED /* icon-cloze-bankNO@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-bankNO@3x.png"; sourceTree = "<group>"; };
+		C7D2D10A1B67938C000F51ED /* icon-cloze-idcard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard.png"; sourceTree = "<group>"; };
+		C7D2D10B1B67938C000F51ED /* icon-cloze-idcard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard@2x.png"; sourceTree = "<group>"; };
+		C7D2D10C1B67938C000F51ED /* icon-cloze-idcard@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcard@3x.png"; sourceTree = "<group>"; };
+		C7D2D10D1B67938C000F51ED /* icon-cloze-idcarddate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcarddate.png"; sourceTree = "<group>"; };
+		C7D2D10E1B67938C000F51ED /* icon-cloze-idcarddate@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcarddate@2x.png"; sourceTree = "<group>"; };
+		C7D2D10F1B67938C000F51ED /* icon-cloze-idcarddate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-idcarddate@3x.png"; sourceTree = "<group>"; };
+		C7D2D1101B67938C000F51ED /* icon-cloze-name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name.png"; sourceTree = "<group>"; };
+		C7D2D1111B67938C000F51ED /* icon-cloze-name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name@2x.png"; sourceTree = "<group>"; };
+		C7D2D1121B67938C000F51ED /* icon-cloze-name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-name@3x.png"; sourceTree = "<group>"; };
+		C7D2D1131B67938C000F51ED /* icon-cloze-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-normal.png"; sourceTree = "<group>"; };
+		C7D2D1141B67938C000F51ED /* icon-cloze-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-normal@2x.png"; sourceTree = "<group>"; };
+		C7D2D1151B67938C000F51ED /* icon-cloze-normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-normal@3x.png"; sourceTree = "<group>"; };
+		C7D2D1161B67938C000F51ED /* icon-cloze-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-question.png"; sourceTree = "<group>"; };
+		C7D2D1171B67938C000F51ED /* icon-cloze-question@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-question@2x.png"; sourceTree = "<group>"; };
+		C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-question@3x.png"; sourceTree = "<group>"; };
+		C7D2D1191B67938C000F51ED /* icon-cloze-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected.png"; sourceTree = "<group>"; };
+		C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@2x.png"; sourceTree = "<group>"; };
+		C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@3x.png"; sourceTree = "<group>"; };
 		C7D7DB111B2EF85A005ECA0C /* MSFRelationViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationViewModelSpec.m; sourceTree = "<group>"; };
 		C7DCC7351B228570004A1B0E /* MSFRepayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepayViewController.h; sourceTree = "<group>"; };
 		C7DCC7361B228570004A1B0E /* MSFRepayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepayViewController.m; sourceTree = "<group>"; };
@@ -1431,9 +1457,6 @@
 				49C2FE3F1B4654D100B6B20A /* icon-arrow-down.png */,
 				49C2FE401B4654D100B6B20A /* icon-arrow-down@2x.png */,
 				49C2FE411B4654D100B6B20A /* icon-arrow-down@3x.png */,
-				49C2FE421B4654D100B6B20A /* icon-question.png */,
-				49C2FE431B4654D100B6B20A /* icon-question@2x.png */,
-				49C2FE441B4654D100B6B20A /* icon-question@3x.png */,
 				49C0F1881B2C315100E92572 /* bg-login.png */,
 				49C0F1891B2C315100E92572 /* bg-login@2x.png */,
 				49C0F18A1B2C315100E92572 /* bg-login@3x.png */,
@@ -2020,17 +2043,6 @@
 		49C0F12C1B2C308700E92572 /* account */ = {
 			isa = PBXGroup;
 			children = (
-				49BAB2B31B3BDF09004B4170 /* icon-cloze-idcarddate.png */,
-				49BAB2B41B3BDF09004B4170 /* icon-cloze-idcarddate@2x.png */,
-				49BAB2B51B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png */,
-				49BAB2B61B3BDF09004B4170 /* icon-cloze-name.png */,
-				49BAB2B71B3BDF09004B4170 /* icon-cloze-name@2x.png */,
-				49BAB2B81B3BDF09004B4170 /* icon-cloze-name@3x.png */,
-				49E22AE91B37ED5D00749717 /* icon-cloze-idcard.png */,
-				49E22AEA1B37ED5D00749717 /* icon-cloze-idcard@2x.png */,
-				49E22AEB1B37ED5D00749717 /* icon-cloze-idcard@3x.png */,
-				49E22AEE1B37ED5D00749717 /* icon-cloze-normal.png */,
-				49E22AEF1B37ED5D00749717 /* icon-cloze-selected.png */,
 				4993E0B01B2D9E8800090F26 /* icon-avatar-placeholder.png */,
 				4993E0B11B2D9E8800090F26 /* icon-avatar-placeholder@2x.png */,
 				4993E0B21B2D9E8800090F26 /* icon-avatar-placeholder@3x.png */,
@@ -2362,6 +2374,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C7D2D1001B679346000F51ED /* perfectMeans */,
 				491B3DF11B65D68C00D28455 /* stubs */,
 				49B37B3E1B608F39004EED47 /* progressbar */,
 				49A954FB1B574B09000852E3 /* homepage */,
@@ -2492,6 +2505,40 @@
 				C7B91FAA1B04BE4F0091B091 /* MSFClient+Trades.m */,
 			);
 			name = Trade;
+			sourceTree = "<group>";
+		};
+		C7D2D1001B679346000F51ED /* perfectMeans */ = {
+			isa = PBXGroup;
+			children = (
+				C7D2D1011B67938C000F51ED /* icon-cloze-bankAddress.png */,
+				C7D2D1021B67938C000F51ED /* icon-cloze-bankAddress@2x.png */,
+				C7D2D1031B67938C000F51ED /* icon-cloze-bankAddress@3x.png */,
+				C7D2D1041B67938C000F51ED /* icon-cloze-bankName.png */,
+				C7D2D1051B67938C000F51ED /* icon-cloze-bankName@2x.png */,
+				C7D2D1061B67938C000F51ED /* icon-cloze-bankName@3x.png */,
+				C7D2D1071B67938C000F51ED /* icon-cloze-bankNO.png */,
+				C7D2D1081B67938C000F51ED /* icon-cloze-bankNO@2x.png */,
+				C7D2D1091B67938C000F51ED /* icon-cloze-bankNO@3x.png */,
+				C7D2D10A1B67938C000F51ED /* icon-cloze-idcard.png */,
+				C7D2D10B1B67938C000F51ED /* icon-cloze-idcard@2x.png */,
+				C7D2D10C1B67938C000F51ED /* icon-cloze-idcard@3x.png */,
+				C7D2D10D1B67938C000F51ED /* icon-cloze-idcarddate.png */,
+				C7D2D10E1B67938C000F51ED /* icon-cloze-idcarddate@2x.png */,
+				C7D2D10F1B67938C000F51ED /* icon-cloze-idcarddate@3x.png */,
+				C7D2D1101B67938C000F51ED /* icon-cloze-name.png */,
+				C7D2D1111B67938C000F51ED /* icon-cloze-name@2x.png */,
+				C7D2D1121B67938C000F51ED /* icon-cloze-name@3x.png */,
+				C7D2D1131B67938C000F51ED /* icon-cloze-normal.png */,
+				C7D2D1141B67938C000F51ED /* icon-cloze-normal@2x.png */,
+				C7D2D1151B67938C000F51ED /* icon-cloze-normal@3x.png */,
+				C7D2D1161B67938C000F51ED /* icon-cloze-question.png */,
+				C7D2D1171B67938C000F51ED /* icon-cloze-question@2x.png */,
+				C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */,
+				C7D2D1191B67938C000F51ED /* icon-cloze-selected.png */,
+				C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */,
+				C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */,
+			);
+			name = perfectMeans;
 			sourceTree = "<group>";
 		};
 		EB6A691AD330CF63D40A9883 /* Frameworks */ = {
@@ -2730,14 +2777,12 @@
 				49C0F1AE1B2C315100E92572 /* icon-verify-code@3x.png in Resources */,
 				4995DCE21B4B6D2C0086B5ED /* 2@2x.png in Resources */,
 				49B37B5B1B608F39004EED47 /* bar-normal@2x.png in Resources */,
-				49BAB2B91B3BDF09004B4170 /* icon-cloze-idcarddate.png in Resources */,
 				49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
 				49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */,
 				4975C98C1B46D6D400AA79EB /* Info.plist in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
-				49E22AF51B37ED5D00749717 /* icon-cloze-normal.png in Resources */,
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
 				07C06C791B1347C200F2DFCC /* marital_status.json in Resources */,
 				49C0F1AB1B2C315100E92572 /* icon-phone@3x.png in Resources */,
@@ -2747,7 +2792,6 @@
 				49B37B6D1B608F39004EED47 /* bar-progress-3-normal@2x.png in Resources */,
 				49C0F13B1B2C308E00E92572 /* font-signin@3x.png in Resources */,
 				4995DCDE1B4B6D2C0086B5ED /* 1.png in Resources */,
-				49C2FE491B4654D100B6B20A /* icon-question@2x.png in Resources */,
 				07CB4C4B1B1017AE006C220E /* right_arrow@3x.png in Resources */,
 				499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */,
 				4925ADF51B2AFD8800872A8A /* btn_uncheck.png in Resources */,
@@ -2760,13 +2804,14 @@
 				49C0F15D1B2C30A200E92572 /* icon-account-history.png in Resources */,
 				C7A3517E1B217CB10001DF6A /* iconfont-jiantouyou@2x.png in Resources */,
 				492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */,
-				49BAB2BB1B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png in Resources */,
+				C7D2D1331B67938C000F51ED /* icon-cloze-question@3x.png in Resources */,
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
 				4995DCE81B4B6D2C0086B5ED /* 4@2x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
 				49C0F15B1B2C30A200E92572 /* icon-account-edit@2x.png in Resources */,
 				07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */,
 				49B37B6C1B608F39004EED47 /* bar-progress-3-normal.png in Resources */,
+				C7D2D11D1B67938C000F51ED /* icon-cloze-bankAddress@2x.png in Resources */,
 				49B37B641B608F39004EED47 /* bar-progress-2-highlighted@2x.png in Resources */,
 				C7A3517D1B217CB10001DF6A /* iconfont-jiantouyou.png in Resources */,
 				4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */,
@@ -2781,36 +2826,40 @@
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
 				49C027B51B1469D900735DC6 /* progress-status-default@2x.png in Resources */,
-				49C2FE4A1B4654D100B6B20A /* icon-question@3x.png in Resources */,
 				C7A351801B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin.png in Resources */,
 				49B37B631B608F39004EED47 /* bar-progress-2-highlighted.png in Resources */,
 				4975C98E1B46D6D400AA79EB /* StyleSettings.plist in Resources */,
 				49AFD9A51B073F5600438183 /* login.storyboard in Resources */,
+				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				49B37B5A1B608F39004EED47 /* bar-normal.png in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
 				49C0F1551B2C30A200E92572 /* bg-account-header@2x.png in Resources */,
 				4995DCE61B4B6D2C0086B5ED /* 3@3x.png in Resources */,
 				49E22B001B37ED9E00749717 /* btn-family-reduce.png in Resources */,
 				C7A351841B217CB10001DF6A /* iconfont-wangdian@2x.png in Resources */,
+				C7D2D1271B67938C000F51ED /* icon-cloze-idcard@3x.png in Resources */,
 				49C0F1C61B2C341400E92572 /* tabbar-account-normal@3x.png in Resources */,
-				49E22AF01B37ED5D00749717 /* icon-cloze-idcard.png in Resources */,
 				49C0F13E1B2C308E00E92572 /* font-signup@3x.png in Resources */,
 				49DAEE7C1B2E83D7009433C5 /* product.storyboard in Resources */,
 				492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */,
 				49C0F1401B2C308E00E92572 /* nav-back@2x.png in Resources */,
 				49B37B5F1B608F39004EED47 /* bar-progress-1-highlighted@3x.png in Resources */,
+				C7D2D11F1B67938C000F51ED /* icon-cloze-bankName.png in Resources */,
 				C7A351831B217CB10001DF6A /* iconfont-wangdian.png in Resources */,
 				49C0F19F1B2C315100E92572 /* bg-login@3x.png in Resources */,
 				C767BDD31B0830DD007E71A5 /* MSFRepaymentTableViewController.xib in Resources */,
 				49C0F1CE1B2C341400E92572 /* tabbar-apply-selected@2x.png in Resources */,
 				49C0F1A21B2C315100E92572 /* icon-check-normal@3x.png in Resources */,
 				49C0F1621B2C30A200E92572 /* icon-account-repay@3x.png in Resources */,
-				49BAB2BE1B3BDF09004B4170 /* icon-cloze-name@3x.png in Resources */,
+				C7D2D1281B67938C000F51ED /* icon-cloze-idcarddate.png in Resources */,
 				49C0F1D41B2C341400E92572 /* tabbar-home-selected@2x.png in Resources */,
 				07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */,
+				C7D2D1221B67938C000F51ED /* icon-cloze-bankNO.png in Resources */,
 				49B37B601B608F39004EED47 /* bar-progress-1-normal.png in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
 				4975C98B1B46D6D400AA79EB /* Images.xcassets in Resources */,
+				C7D2D1291B67938C000F51ED /* icon-cloze-idcarddate@2x.png in Resources */,
+				C7D2D1211B67938C000F51ED /* icon-cloze-bankName@3x.png in Resources */,
 				49C0F15F1B2C30A200E92572 /* icon-account-history@3x.png in Resources */,
 				49B37B591B608F39004EED47 /* bar-highlighted@3x.png in Resources */,
 				C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */,
@@ -2819,70 +2868,77 @@
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
 				49C0F1A81B2C315100E92572 /* icon-password@3x.png in Resources */,
 				C7A3517B1B217CB10001DF6A /* iconfont-guanyuwomen@2x.png in Resources */,
+				C7D2D1341B67938C000F51ED /* icon-cloze-selected.png in Resources */,
 				49C0F13D1B2C308E00E92572 /* font-signup@2x.png in Resources */,
 				07C06C501B1344AA00F2DFCC /* moneyUse.json in Resources */,
 				4993E0DA1B2DA65B00090F26 /* bg-loan-installment@2x.png in Resources */,
 				4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */,
 				49B37B671B608F39004EED47 /* bar-progress-2-normal@2x.png in Resources */,
+				C7D2D1301B67938C000F51ED /* icon-cloze-normal@3x.png in Resources */,
 				C7AD13871B0CA6B1004D112D /* MSFTradeTableViewCell.xib in Resources */,
 				49C0F13A1B2C308E00E92572 /* font-signin@2x.png in Resources */,
 				07C06C7D1B1347C200F2DFCC /* social_status.json in Resources */,
 				4975C98A1B46D6D400AA79EB /* Localizable.strings in Resources */,
 				072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */,
+				C7D2D11E1B67938C000F51ED /* icon-cloze-bankAddress@3x.png in Resources */,
 				49C0F1CA1B2C341400E92572 /* tabbar-apply-normal.png in Resources */,
 				C7A351851B217CB10001DF6A /* iconfont-wangdian@3x.png in Resources */,
 				49C0F15A1B2C30A200E92572 /* icon-account-edit.png in Resources */,
 				49B37B681B608F39004EED47 /* bar-progress-2-normal@3x.png in Resources */,
 				C7A351771B217CB10001DF6A /* iconfont-chanpinjieshao.png in Resources */,
+				C7D2D1351B67938C000F51ED /* icon-cloze-selected@2x.png in Resources */,
 				49C0F1CC1B2C341400E92572 /* tabbar-apply-normal@3x.png in Resources */,
 				49C0F1411B2C308E00E92572 /* nav-back@3x.png in Resources */,
 				49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */,
 				07C06C761B1347C200F2DFCC /* familyMember_type.json in Resources */,
-				49E22AF11B37ED5D00749717 /* icon-cloze-idcard@2x.png in Resources */,
 				49E22B061B37EDF700749717 /* icon-loan-question.png in Resources */,
+				C7D2D12E1B67938C000F51ED /* icon-cloze-normal.png in Resources */,
 				49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */,
-				49E22AF61B37ED5D00749717 /* icon-cloze-selected.png in Resources */,
 				49B37B661B608F39004EED47 /* bar-progress-2-normal.png in Resources */,
 				07CB4C4A1B1017AE006C220E /* right_arrow@2x.png in Resources */,
 				07C06C5A1B13464200F2DFCC /* edu_background.json in Resources */,
+				C7D2D12A1B67938C000F51ED /* icon-cloze-idcarddate@3x.png in Resources */,
 				07C06C581B13461F00F2DFCC /* professional.json in Resources */,
 				4995DCE51B4B6D2C0086B5ED /* 3@2x.png in Resources */,
 				49C0F13F1B2C308E00E92572 /* nav-back.png in Resources */,
 				49C0F1441B2C308E00E92572 /* nav-setting@3x.png in Resources */,
 				49C0F1611B2C30A200E92572 /* icon-account-repay@2x.png in Resources */,
 				49B37B691B608F39004EED47 /* bar-progress-3-highlighted.png in Resources */,
-				49BAB2BC1B3BDF09004B4170 /* icon-cloze-name.png in Resources */,
 				4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */,
 				4995DCE31B4B6D2C0086B5ED /* 2@3x.png in Resources */,
 				497F98231B2B0BAF00DD6F2D /* guide.bundle in Resources */,
-				49C2FE481B4654D100B6B20A /* icon-question.png in Resources */,
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
 				49B37B5E1B608F39004EED47 /* bar-progress-1-highlighted@2x.png in Resources */,
 				49B37B6E1B608F39004EED47 /* bar-progress-3-normal@3x.png in Resources */,
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
+				C7D2D12D1B67938C000F51ED /* icon-cloze-name@3x.png in Resources */,
 				49C0F1A51B2C315100E92572 /* icon-check-selected@3x.png in Resources */,
+				C7D2D1321B67938C000F51ED /* icon-cloze-question@2x.png in Resources */,
 				49CBDDB41B0DF03E009EF662 /* banners.json in Resources */,
-				49BAB2BD1B3BDF09004B4170 /* icon-cloze-name@2x.png in Resources */,
 				C7A351811B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@2x.png in Resources */,
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
-				49BAB2BA1B3BDF09004B4170 /* icon-cloze-idcarddate@2x.png in Resources */,
 				49C0F1AF1B2C315100E92572 /* logo.png in Resources */,
 				49C0F1D11B2C341400E92572 /* tabbar-home-normal@2x.png in Resources */,
 				07C06C781B1347C200F2DFCC /* json_banks.json in Resources */,
 				49B37B6B1B608F39004EED47 /* bar-progress-3-highlighted@3x.png in Resources */,
 				49B37B571B608F39004EED47 /* bar-highlighted.png in Resources */,
 				49C0F1A01B2C315100E92572 /* icon-check-normal.png in Resources */,
+				C7D2D1241B67938C000F51ED /* icon-cloze-bankNO@3x.png in Resources */,
+				C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */,
 				49EAABA41B0DC5B800E5FF32 /* launch-screen.png in Resources */,
 				07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */,
 				49C0F1541B2C30A200E92572 /* bg-account-header.png in Resources */,
+				C7D2D12F1B67938C000F51ED /* icon-cloze-normal@2x.png in Resources */,
 				49C0F1CB1B2C341400E92572 /* tabbar-apply-normal@2x.png in Resources */,
 				49C0F1C41B2C341400E92572 /* tabbar-account-normal.png in Resources */,
 				4925AD581B2A786900872A8A /* products.json in Resources */,
 				49C0F1A41B2C315100E92572 /* icon-check-selected@2x.png in Resources */,
 				49C0F1591B2C30A200E92572 /* icon-account-apply@3x.png in Resources */,
 				49C0F13C1B2C308E00E92572 /* font-signup.png in Resources */,
+				C7D2D1251B67938C000F51ED /* icon-cloze-idcard.png in Resources */,
 				49C0F1AA1B2C315100E92572 /* icon-phone@2x.png in Resources */,
 				49C0F1391B2C308E00E92572 /* font-signin.png in Resources */,
+				C7D2D12C1B67938C000F51ED /* icon-cloze-name@2x.png in Resources */,
 				49E22B021B37ED9E00749717 /* btn-family-reduce@3x.png in Resources */,
 				07AFE5A01B26D202009E0124 /* position.json in Resources */,
 				49E22B071B37EDF700749717 /* icon-loan-question@2x.png in Resources */,
@@ -2895,6 +2951,7 @@
 				4993E0DB1B2DA65B00090F26 /* bg-loan-installment@3x.png in Resources */,
 				49C0F1561B2C30A200E92572 /* bg-account-header@3x.png in Resources */,
 				4995DCE41B4B6D2C0086B5ED /* 3.png in Resources */,
+				C7D2D1261B67938C000F51ED /* icon-cloze-idcard@2x.png in Resources */,
 				49C0F1421B2C308E00E92572 /* nav-setting.png in Resources */,
 				49C0F19D1B2C315100E92572 /* bg-login.png in Resources */,
 				49C0F1A71B2C315100E92572 /* icon-password@2x.png in Resources */,
@@ -2914,10 +2971,12 @@
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
 				49A955021B574B14000852E3 /* bk-iphone6plus.jpg in Resources */,
+				C7D2D1311B67938C000F51ED /* icon-cloze-question.png in Resources */,
 				07C06C521B1345A300F2DFCC /* installments.json in Resources */,
 				C7A351791B217CB10001DF6A /* iconfont-chanpinjieshao@3x.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
+				C7D2D11C1B67938C000F51ED /* icon-cloze-bankAddress.png in Resources */,
 				49B37B5D1B608F39004EED47 /* bar-progress-1-highlighted.png in Resources */,
 				49B37B611B608F39004EED47 /* bar-progress-1-normal@2x.png in Resources */,
 				49C0F1581B2C30A200E92572 /* icon-account-apply@2x.png in Resources */,
@@ -2927,9 +2986,10 @@
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				4993E0B31B2D9E8800090F26 /* icon-avatar-placeholder.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
+				C7D2D12B1B67938C000F51ED /* icon-cloze-name.png in Resources */,
+				C7D2D1201B67938C000F51ED /* icon-cloze-bankName@2x.png in Resources */,
 				4995DCE71B4B6D2C0086B5ED /* 4.png in Resources */,
 				C7A351821B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@3x.png in Resources */,
-				49E22AF21B37ED5D00749717 /* icon-cloze-idcard@3x.png in Resources */,
 				49C0F1431B2C308E00E92572 /* nav-setting@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
