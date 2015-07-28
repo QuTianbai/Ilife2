@@ -818,11 +818,11 @@
                                                                 <constraint firstAttribute="width" constant="90" id="Eyd-BE-0bH"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <state key="normal" title="长期有效" image="icon-cloze-name.png">
+                                                            <state key="normal" title="长期有效" image="icon-cloze-normal.png">
                                                                 <color key="titleColor" red="0.20580332602441431" green="0.42309556752585065" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
-                                                            <state key="selected" image="1.png"/>
+                                                            <state key="selected" image="icon-cloze-selected.png"/>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -879,21 +879,21 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4b-bc-Trc">
                                                     <rect key="frame" x="10" y="0.0" width="300" height="134.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="udO-kI-ciR">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankName.png" translatesAutoresizingMaskIntoConstraints="NO" id="udO-kI-ciR">
                                                             <rect key="frame" x="8" y="9" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="AvT-zH-kVq"/>
                                                                 <constraint firstAttribute="width" constant="26" id="ss6-d4-WHQ"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="xTJ-yk-fRq">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankAddress.png" translatesAutoresizingMaskIntoConstraints="NO" id="xTJ-yk-fRq">
                                                             <rect key="frame" x="8" y="54" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="FTp-3Y-0lQ"/>
                                                                 <constraint firstAttribute="width" constant="26" id="L0n-gI-lqo"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcarddate.png" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-Ly-jAE">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-bankNO.png" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-Ly-jAE">
                                                             <rect key="frame" x="8" y="99" width="26" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="jdS-Xw-1vh"/>
@@ -963,7 +963,7 @@
                                                                 <constraint firstAttribute="width" constant="30" id="h7f-tg-R9N"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <state key="normal" image="icon-cloze-idcarddate.png">
+                                                            <state key="normal" image="icon-cloze-question.png">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                         </button>
@@ -1224,10 +1224,15 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1.png" width="116" height="83"/>
-        <image name="icon-cloze-idcard.png" width="23" height="23"/>
-        <image name="icon-cloze-idcarddate.png" width="23" height="23"/>
-        <image name="icon-cloze-name.png" width="23" height="23"/>
+        <image name="icon-cloze-bankAddress.png" width="20" height="23"/>
+        <image name="icon-cloze-bankNO.png" width="21" height="16"/>
+        <image name="icon-cloze-bankName.png" width="21" height="22"/>
+        <image name="icon-cloze-idcard.png" width="22" height="16"/>
+        <image name="icon-cloze-idcarddate.png" width="21" height="20"/>
+        <image name="icon-cloze-name.png" width="16" height="18"/>
+        <image name="icon-cloze-normal.png" width="17" height="17"/>
+        <image name="icon-cloze-question.png" width="20" height="20"/>
+        <image name="icon-cloze-selected.png" width="17" height="17"/>
         <image name="icon-password.png" width="26" height="26"/>
         <image name="icon-phone.png" width="26" height="26"/>
         <image name="icon-verify-code.png" width="17" height="25"/>
