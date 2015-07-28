@@ -84,7 +84,7 @@
 			return	[[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
-					return [NSString stringWithFormat:@"%.2f",[value.parsedResult[@"repayMoneyMonth"] floatValue]];
+					return [NSString stringWithFormat:@"%.2f", [value.parsedResult[@"repayMoneyMonth"] floatValue]];
 				}];
 		}];
 	RAC(self, totalAmountPlacholder) = [RACSignal combineLatest:@[
