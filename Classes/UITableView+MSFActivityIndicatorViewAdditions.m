@@ -38,8 +38,6 @@ static UIColor *backupColor;
 		make.right.equalTo(view).offset(-30);
 	}];
 	
-	//TODO: 尚未建立手动刷新机制，button在TableView中的backgroundView中无法点击
-	
 	backupView = self.backgroundView;
 	backupStyle = self.separatorStyle;
 	backupColor = self.separatorColor;

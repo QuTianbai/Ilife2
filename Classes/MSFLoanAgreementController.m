@@ -37,7 +37,7 @@
 	self.title = @"贷款协议";
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RACSignal *signal = [MSFUtils.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
+	RACSignal *signal = [self.viewModel.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
 	
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[self.LoanAgreenmentWV

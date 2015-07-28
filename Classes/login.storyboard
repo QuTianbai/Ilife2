@@ -31,6 +31,11 @@
                                     <state key="normal" title="登录">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="9qM-Sl-w9e"/>
+                                        </mask>
+                                    </variation>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bye-Cc-vjR">
                                     <rect key="frame" x="248" y="8" width="52" height="28"/>
@@ -46,6 +51,8 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="7qp-Gb-kxz" firstAttribute="leading" secondItem="JxN-2M-z7W" secondAttribute="leading" constant="20" id="0Ln-nw-qWD"/>
+                                <constraint firstAttribute="trailing" secondItem="7qp-Gb-kxz" secondAttribute="trailing" constant="20" id="G2v-Up-I3x"/>
                                 <constraint firstAttribute="centerX" secondItem="7qp-Gb-kxz" secondAttribute="centerX" id="Hkm-Xp-8nd"/>
                                 <constraint firstItem="bye-Cc-vjR" firstAttribute="top" secondItem="JxN-2M-z7W" secondAttribute="top" constant="8" id="JOq-1g-M2D"/>
                                 <constraint firstAttribute="trailing" secondItem="bye-Cc-vjR" secondAttribute="trailing" constant="20" id="cTA-Pe-Rak"/>
@@ -415,18 +422,22 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="YNE-Pw-kXl">
-                            <rect key="frame" x="-10" y="250" width="320" height="110"/>
+                            <rect key="frame" x="0.0" y="164" width="320" height="120"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMa-oD-Bfz" customClass="MSFCheckButton">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMa-oD-Bfz" customClass="MSFCheckButton">
                                     <rect key="frame" x="20" y="25" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="20" id="5tI-XM-RqK"/>
+                                        <constraint firstAttribute="width" constant="20" id="Eti-4d-twl"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                     <state key="normal" title=" ">
                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                     <state key="selected" title="✓"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wes-xf-lsO">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wes-xf-lsO">
                                     <rect key="frame" x="154" y="21" width="130" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="《马上金融注册协议》">
@@ -437,14 +448,17 @@
                                         <segue destination="Zsc-eE-Cda" kind="push" id="cNl-UU-bWa"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3w-qu-T3j" customClass="MSFBlurButton">
-                                    <rect key="frame" x="20" y="50" width="280" height="40"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3w-qu-T3j" customClass="MSFBlurButton">
+                                    <rect key="frame" x="20" y="56" width="280" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="Dgs-zv-0ZP"/>
+                                    </constraints>
                                     <state key="normal" title="确定">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-2a-bUJ">
-                                    <rect key="frame" x="50" y="20" width="104" height="28"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-2a-bUJ">
+                                    <rect key="frame" x="50" y="21" width="104" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="我已经阅读且同意">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -453,6 +467,27 @@
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="NMa-oD-Bfz" firstAttribute="leading" secondItem="YNE-Pw-kXl" secondAttribute="leading" constant="20" id="3WA-Wj-pKq"/>
+                                <constraint firstAttribute="trailing" secondItem="S3w-qu-T3j" secondAttribute="trailing" constant="10" id="Ap0-Hz-Bj3"/>
+                                <constraint firstItem="Wes-xf-lsO" firstAttribute="leading" secondItem="bXH-2a-bUJ" secondAttribute="trailing" id="AvN-sA-dzC"/>
+                                <constraint firstAttribute="trailing" secondItem="S3w-qu-T3j" secondAttribute="trailing" constant="20" id="G2O-gA-CXu"/>
+                                <constraint firstItem="S3w-qu-T3j" firstAttribute="leading" secondItem="YNE-Pw-kXl" secondAttribute="leading" constant="20" id="GvF-FT-xpm"/>
+                                <constraint firstItem="S3w-qu-T3j" firstAttribute="leading" secondItem="YNE-Pw-kXl" secondAttribute="leading" constant="10" id="bu6-se-d0b"/>
+                                <constraint firstItem="Wes-xf-lsO" firstAttribute="leading" secondItem="bXH-2a-bUJ" secondAttribute="trailing" id="h51-xf-2j9"/>
+                                <constraint firstAttribute="centerX" secondItem="S3w-qu-T3j" secondAttribute="centerX" id="hbX-wd-W6J"/>
+                                <constraint firstItem="NMa-oD-Bfz" firstAttribute="top" secondItem="YNE-Pw-kXl" secondAttribute="top" constant="25" id="lGO-iU-hHp"/>
+                                <constraint firstAttribute="bottom" secondItem="S3w-qu-T3j" secondAttribute="bottom" constant="20" id="nor-rg-zPS"/>
+                                <constraint firstItem="bXH-2a-bUJ" firstAttribute="leading" secondItem="NMa-oD-Bfz" secondAttribute="trailing" constant="10" id="uJT-J0-b8R"/>
+                                <constraint firstItem="NMa-oD-Bfz" firstAttribute="centerY" secondItem="Wes-xf-lsO" secondAttribute="centerY" id="xQS-qy-oUp"/>
+                                <constraint firstItem="NMa-oD-Bfz" firstAttribute="centerY" secondItem="bXH-2a-bUJ" secondAttribute="centerY" id="yXp-XQ-lKw"/>
+                            </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Ap0-Hz-Bj3"/>
+                                    <exclude reference="bu6-se-d0b"/>
+                                </mask>
+                            </variation>
                         </view>
                         <sections>
                             <tableViewSection id="Vg7-qf-hyb">

@@ -12,6 +12,8 @@
 #import "MSFUtils.h"
 #import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFClozeViewModel.h"
+#import "MSFClozeViewController.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -89,7 +91,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[self performSegueWithIdentifier:@"complement" sender:nil];
+			MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.viewModel.services];
+			MSFClozeViewController *clozeViewController = [[MSFClozeViewController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:clozeViewController animated:YES];
 		}];
 	}];
 	
