@@ -33,9 +33,8 @@
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-{
-  NSArray *_loanPeriodsAry;
-}
+
+@property (nonatomic, strong) NSArray *loanPeriodsAry;
 @property (weak, nonatomic) IBOutlet UICollectionView *monthCollectionView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
 //@property (nonatomic,strong) UICollectionView *periodsCollectionView;
@@ -88,9 +87,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
-  
-  _loanPeriodsAry = [NSArray arrayWithObjects:@"6个月", @"9个月", @"10个月", @"12个月" , @"18个月",nil];
-  
+  //_loanPeriodsAry = [NSArray arrayWithObjects:@"6个月", @"9个月", @"10个月", @"12个月" , @"18个月",nil];
+  //RAC(self,loanPeriodsAry) = RACObserve(self, <#KEYPATH#>)
   
   
   
@@ -117,13 +115,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
-      return @100;
+      return @0;
     }
     return value;
   }];
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
     if (!value) {
-      return @10000;
+      return @0;
     }
     return value;
   }];
