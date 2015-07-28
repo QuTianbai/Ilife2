@@ -71,20 +71,6 @@
 	
 	self.collectionView.bounces = NO;
 	[self.collectionView registerClass:MSFBannersCollectionViewCell.class forCellWithReuseIdentifier:@"Cell"];
-	
-	/*
-	//TODO: 开启广告内容页面的跳转
-	[[self rac_signalForSelector:@selector(collectionView:didSelectItemAtIndexPath:)
-	 fromProtocol:@protocol(UICollectionViewDelegate)]
-	 subscribeNext:^(RACTuple *collectionViewAndIndexPath) {
-		 @strongify(self)
-		 NSIndexPath *indexPath = collectionViewAndIndexPath.last;
-		 NSURL *HTMLURL = [self.viewModel HTMLURLAtIndexPath:indexPath];
-		 MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:HTMLURL];
-		 webViewController.hidesBottomBarWhenPushed = YES;
-		 [self.navigationController pushViewController:webViewController animated:YES];
-	 }];
-	 */
 }
 
 #pragma mark - MSFReactiveView
