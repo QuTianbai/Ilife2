@@ -46,7 +46,7 @@
 	self.pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:0.902 alpha:1.000];
 	self.pageControl.hidesForSinglePage = YES;
 	[self.collectionView.superview addSubview:self.pageControl];
-	self.collectionView.backgroundColor = UIColor.whiteColor;
+	self.collectionView.backgroundColor = UIColor.blackColor;
 	self.collectionView.pagingEnabled = YES;
 	self.collectionView.showsVerticalScrollIndicator = NO;
 	self.collectionView.showsHorizontalScrollIndicator = NO;
@@ -93,8 +93,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	MSFBannersCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-	[cell.imageView setImageWithURL:[self.viewModel imageURLAtIndexPath:indexPath]
-		placeholderImage:[UIImage imageNamed:[self.viewModel imageNameAtIndexPath:indexPath]]];
+	[cell.imageView setImageWithURL:[self.viewModel imageURLAtIndexPath:indexPath] placeholderImage:[UIImage imageNamed:[self.viewModel imageNameAtIndexPath:indexPath]]];
 	self.pageControl.currentPage = indexPath.item;
 	
 	return cell;
