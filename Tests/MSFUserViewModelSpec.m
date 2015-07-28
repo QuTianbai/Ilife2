@@ -11,23 +11,25 @@
 #import "MSFUser.h"
 #import "MSFClient.h"
 #import "MSFServer.h"
+#import "MSFAuthorizeViewModel.h"
 
 QuickSpecBegin(MSFUserViewModelSpec)
 
 __block MSFUserViewModel *viewModel = nil;
+__block id <MSFViewModelServices> services;
+__block MSFAuthorizeViewModel *authorizeViewModel;
 
 beforeEach(^{
   MSFUser *user = mock(MSFUser.class);
   stubProperty(user, objectID, @"xx");
   stubProperty(user, server, MSFServer.dotComServer);
   MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"xxx" session:@""];
-//  viewModel = [[MSFUserViewModel alloc] initWithClient:client];
-});
-
-it(@"should initialize", ^{
-  expect(viewModel).notTo(beNil());
-//  expect(viewModel.client).notTo(beNil());
-//  expect(viewModel.client.user.objectID).notTo(beNil());
+	
+	services = mockProtocol(@protocol(MSFViewModelServices));
+	[given([services httpClient]) willReturn:client];
+	authorizeViewModel = mock([MSFAuthorizeViewModel class]);
+	
+	viewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:authorizeViewModel services:services];
 });
 
 it(@"should update user password", ^{
@@ -48,21 +50,6 @@ it(@"should update user password", ^{
   
   // then
   expect(response.parsedResult[@"message"]).to(equal(@"send success"));
-});
-
-it(@"should can't update user password", ^{
-  // given
-  viewModel.usedPassword = @"123456";
-  viewModel.updatePassword = @"1234";
-  
-  // when
-  __block BOOL valid;
-//  [viewModel.updateValidSignal subscribeNext:^(id x) {
-//    valid = [x boolValue];
-//  }];
-	
-  // then
-  expect(@(valid)).to(beFalsy());
 });
 
 it(@"should has user information", ^{
