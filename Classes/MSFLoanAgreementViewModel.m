@@ -11,6 +11,7 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFAddress.h"
+#import "MSFAgreementViewModel.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -19,6 +20,7 @@
 	if (!self) {
 		return nil;
 	}
+	_agreementViewModel = [[MSFAgreementViewModel alloc] initWithServices:formsViewModel.services];
 	_formsViewModel = formsViewModel;
 	_product = product;
 	_services = formsViewModel.services;

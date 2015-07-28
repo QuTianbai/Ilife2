@@ -12,9 +12,11 @@
 @class MSFProduct;
 @class RACCommand;
 @class MSFAddress;
+@class MSFAgreementViewModel;
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
+@property (nonatomic, strong, readonly) MSFAgreementViewModel *agreementViewModel;
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) MSFApplicationResponse *applyCash;
 @property (nonatomic, strong, readonly) MSFProduct *product;

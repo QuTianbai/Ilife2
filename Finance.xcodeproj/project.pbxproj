@@ -104,6 +104,7 @@
 		4943C3861B04803D000BBF5E /* MSFClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3851B04803D000BBF5E /* MSFClientSpec.m */; };
 		4943C38A1B0481E4000BBF5E /* MSFServerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3891B0481E4000BBF5E /* MSFServerSpec.m */; };
 		494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */ = {isa = PBXBuildFile; fileRef = 494417E71B671B5000FF964D /* UIWindow+PazLabs.m */; };
+		494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */ = {isa = PBXBuildFile; fileRef = 494417F71B672C2200FF964D /* MSFClient+Agreements.m */; };
 		4946ABE91B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */; };
 		494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 494ED8671B2D2798000AD8EA /* MSFWPTextField.m */; };
 		494FBDFD1B16B19C005F0454 /* MSFCipherSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBDFC1B16B19C005F0454 /* MSFCipherSpec.m */; };
@@ -682,6 +683,8 @@
 		4943C3891B0481E4000BBF5E /* MSFServerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFServerSpec.m; sourceTree = "<group>"; };
 		494417E61B671B5000FF964D /* UIWindow+PazLabs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+PazLabs.h"; sourceTree = "<group>"; };
 		494417E71B671B5000FF964D /* UIWindow+PazLabs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+PazLabs.m"; sourceTree = "<group>"; };
+		494417F61B672C2200FF964D /* MSFClient+Agreements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Agreements.h"; sourceTree = "<group>"; };
+		494417F71B672C2200FF964D /* MSFClient+Agreements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Agreements.m"; sourceTree = "<group>"; };
 		4946ABE71B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoTableViewCell.h; sourceTree = "<group>"; };
 		4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoTableViewCell.m; sourceTree = "<group>"; };
 		494ED8661B2D2798000AD8EA /* MSFWPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWPTextField.h; sourceTree = "<group>"; };
@@ -2329,6 +2332,8 @@
 			children = (
 				49DA22581B062AF200DD4483 /* MSFAgreement.h */,
 				49DA22591B062AF200DD4483 /* MSFAgreement.m */,
+				494417F61B672C2200FF964D /* MSFClient+Agreements.h */,
+				494417F71B672C2200FF964D /* MSFClient+Agreements.m */,
 			);
 			name = Agreement;
 			sourceTree = "<group>";
@@ -3193,6 +3198,7 @@
 				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
+				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
