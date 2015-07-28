@@ -26,11 +26,21 @@
 #import "MSFFormsViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "UIColor+Utils.h"
+#import "MSFSlider.h"
+#import <Masonry/Masonry.h>
+#import "MSFPeriodsCollectionViewCell.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
-@interface MSFProductViewController ()
+@interface MSFProductViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+{
+  NSArray *_loanPeriodsAry;
+}
+@property (weak, nonatomic) IBOutlet UICollectionView *monthCollectionView;
+@property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
+//@property (nonatomic,strong) UICollectionView *periodsCollectionView;
 
+@property (weak, nonatomic) IBOutlet MSFSlider *moneySlider;
 @property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
 @property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
 @property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
@@ -67,6 +77,27 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+  
+  UICollectionViewFlowLayout *collectionFlowLayout = [[UICollectionViewFlowLayout alloc]init];
+  
+  [collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+  self.monthCollectionView.collectionViewLayout = collectionFlowLayout;
+  //self.monthCollectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 80, self.view.frame.size.width, 80) collectionViewLayout:collectionFlowLayout];
+  self.monthCollectionView.backgroundColor = [UIColor redColor];
+  self.monthCollectionView.showsHorizontalScrollIndicator = NO;
+  self.monthCollectionView.delegate = self;
+  self.monthCollectionView.dataSource = self;
+  [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
+  self.monthCollectionView.showsVerticalScrollIndicator = NO;
+  [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
+  
+  //[self.moneyCell addSubview:self.monthCollectionView];
+  
+  _loanPeriodsAry = [NSArray arrayWithObjects:@"6个月", @"9个月", @"10个月", @"12个月" , @"18个月",nil];
+  
+  
+  
+  
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey]) {
 		self.applyCashNumTF.text = @"2000";
 	}
@@ -81,16 +112,29 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	@weakify(self)
-	RACChannelTerminal *amountChannel = RACChannelTo(self, viewModel.totalAmount);
-	RAC(self.applyCashNumTF, text) = amountChannel;
-	[self.applyCashNumTF.rac_textSignal subscribe:amountChannel];
-	
 	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
 	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
 	RAC(self.repayMoneyMonth, text) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
+	
+  RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
+    if (!value) {
+      return @100;
+    }
+    return value;
+  }];
+  RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
+    if (!value) {
+      return @10000;
+    }
+    return value;
+  }];
+	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSNumber *value) {
+	 //return [NSString stringWithFormat:@"%f",value];
+	 return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
+	}];
 	self.applyMonthsBT.rac_command = self.executeTermCommand;
 	[self.executeTermCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -153,12 +197,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		@strongify(self)
 		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 			[self.view endEditing:YES];
-				if (self.applyCashNumTF.text.integerValue % 100 != 0) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: @"贷款金额必须为100的整数倍"
-				}]];
-				return nil;
-			}
+//				if (self.applyCashNumTF.text.integerValue % 100 != 0) {
+//				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
+//					NSLocalizedFailureReasonErrorKey: @"贷款金额必须为100的整数倍"
+//				}]];
+//				return nil;
+//			}
 			if (self.viewModel.market.teams.count == 0) {
 				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
 					NSLocalizedFailureReasonErrorKey: @"网络繁忙请稍后再试"
@@ -271,6 +315,57 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+  return _loanPeriodsAry.count;
+}
+
+- (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+  static NSString *cellID = @"MSFPeriodsCollectionViewCell";
+  
+  MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+  
+  
+  cell.layer.borderColor   = [UIColor grayColor].CGColor;
+  cell.layer.borderWidth   = 1;
+  cell.layer.cornerRadius  = 7;
+  cell.layer.masksToBounds = YES;
+  cell.loacPeriodsLabel.backgroundColor = [UIColor clearColor];
+  cell.loacPeriodsLabel.textColor = [UIColor grayColor];
+  cell.loacPeriodsLabel.text = [NSString stringWithFormat:@"%@",[_loanPeriodsAry objectAtIndex:indexPath.row]];
+  
+  return cell;
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+  return CGSizeMake(([UIScreen mainScreen].bounds.size.width-15*2-5*5)/4,self.monthCollectionView.frame.size.height/2);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+  return UIEdgeInsetsMake(20, 15, 20, 15);
+}
+
+#pragma mark - UICollectionViewDelegate
+//UICollectionView被选中时调用的方法
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  MSFPeriodsCollectionViewCell * cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  cell.loacPeriodsLabel.textColor = [UIColor blueColor];
+  cell.layer.borderColor   = [UIColor blueColor].CGColor;
+}
+//UICollectionView取消选中时调用的方法
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+  MSFPeriodsCollectionViewCell * cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+  cell.loacPeriodsLabel.textColor = [UIColor grayColor];
+  cell.layer.borderColor   = [UIColor grayColor].CGColor;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  return YES;
 }
 
 @end

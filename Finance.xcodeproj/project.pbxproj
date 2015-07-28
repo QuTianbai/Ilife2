@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0707248D1B6718A80089916B /* MSFSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0707248C1B6718A80089916B /* MSFSlider.m */; };
+		070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249D1B671A240089916B /* 1242-2208-灰色.png */; };
+		070724A11B671A240089916B /* 1242-2208-蓝色.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249E1B671A240089916B /* 1242-2208-蓝色.png */; };
+		070724A21B671A240089916B /* btnSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249F1B671A240089916B /* btnSlider.png */; };
+		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
+		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
 		0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */; };
 		0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF6D1B1F05D200880617 /* MSFPhoto.m */; };
@@ -533,6 +539,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0707248B1B6718A80089916B /* MSFSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSlider.h; sourceTree = "<group>"; };
+		0707248C1B6718A80089916B /* MSFSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSlider.m; sourceTree = "<group>"; };
+		0707249D1B671A240089916B /* 1242-2208-灰色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1242-2208-灰色.png"; sourceTree = "<group>"; };
+		0707249E1B671A240089916B /* 1242-2208-蓝色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1242-2208-蓝色.png"; sourceTree = "<group>"; };
+		0707249F1B671A240089916B /* btnSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSlider.png; sourceTree = "<group>"; };
+		070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPeriodsCollectionViewCell.h; sourceTree = "<group>"; };
+		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
+		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0788FF5C1B1F046E00880617 /* MSFPhotoStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoStatus.h; sourceTree = "<group>"; };
 		0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoStatus.m; sourceTree = "<group>"; };
@@ -1144,6 +1158,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0707249B1B6718BE0089916B /* MSFSlider */ = {
+			isa = PBXGroup;
+			children = (
+				0707248B1B6718A80089916B /* MSFSlider.h */,
+				0707248C1B6718A80089916B /* MSFSlider.m */,
+			);
+			name = MSFSlider;
+			sourceTree = "<group>";
+		};
+		0707249C1B671A080089916B /* ApplyProduct */ = {
+			isa = PBXGroup;
+			children = (
+				0707249D1B671A240089916B /* 1242-2208-灰色.png */,
+				0707249E1B671A240089916B /* 1242-2208-蓝色.png */,
+				0707249F1B671A240089916B /* btnSlider.png */,
+			);
+			name = ApplyProduct;
+			sourceTree = "<group>";
+		};
+		070724A61B67625A0089916B /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */,
+				070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */,
+				070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1286,6 +1329,8 @@
 		07CD30FD1B0981A000E0C2DF /* CommandClass */ = {
 			isa = PBXGroup;
 			children = (
+				070724A61B67625A0089916B /* CollectionView */,
+				0707249B1B6718BE0089916B /* MSFSlider */,
 				07CD79721B0B0B1C004627F5 /* ClassCatory */,
 				07CD310B1B09D06D00E0C2DF /* DefineHeader */,
 				07CD31071B09CAF600E0C2DF /* CommandView */,
@@ -2362,6 +2407,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0707249C1B671A080089916B /* ApplyProduct */,
 				491B3DF11B65D68C00D28455 /* stubs */,
 				49B37B3E1B608F39004EED47 /* progressbar */,
 				49A954FB1B574B09000852E3 /* homepage */,
@@ -2745,6 +2791,7 @@
 				C7A351781B217CB10001DF6A /* iconfont-chanpinjieshao@2x.png in Resources */,
 				C7B9780B1B099150005F247C /* MSFSettingsViewController.storyboard in Resources */,
 				49B37B6D1B608F39004EED47 /* bar-progress-3-normal@2x.png in Resources */,
+				070724A21B671A240089916B /* btnSlider.png in Resources */,
 				49C0F13B1B2C308E00E92572 /* font-signin@3x.png in Resources */,
 				4995DCDE1B4B6D2C0086B5ED /* 1.png in Resources */,
 				49C2FE491B4654D100B6B20A /* icon-question@2x.png in Resources */,
@@ -2764,6 +2811,7 @@
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
 				4995DCE81B4B6D2C0086B5ED /* 4@2x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
+				070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */,
 				49C0F15B1B2C30A200E92572 /* icon-account-edit@2x.png in Resources */,
 				07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */,
 				49B37B6C1B608F39004EED47 /* bar-progress-3-normal.png in Resources */,
@@ -2786,6 +2834,7 @@
 				49B37B631B608F39004EED47 /* bar-progress-2-highlighted.png in Resources */,
 				4975C98E1B46D6D400AA79EB /* StyleSettings.plist in Resources */,
 				49AFD9A51B073F5600438183 /* login.storyboard in Resources */,
+				070724A11B671A240089916B /* 1242-2208-蓝色.png in Resources */,
 				49B37B5A1B608F39004EED47 /* bar-normal.png in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
 				49C0F1551B2C30A200E92572 /* bg-account-header@2x.png in Resources */,
@@ -2924,6 +2973,7 @@
 				4995DCE01B4B6D2C0086B5ED /* 1@3x.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
+				070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */,
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				4993E0B31B2D9E8800090F26 /* icon-avatar-placeholder.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
@@ -3134,6 +3184,7 @@
 				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
+				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
 				49CCFBF91B072EA4008A9CD1 /* MSFClient+ApplyList.m in Sources */,
@@ -3180,6 +3231,7 @@
 				C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */,
 				49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */,
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
+				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,
 				498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */,
 				495021071B13103400605666 /* MSFUserViewModel.m in Sources */,
 				49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */,
