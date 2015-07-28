@@ -107,16 +107,6 @@
   }] replay] setNameWithFormat:@"%@ `-verify`", self.class];
 }
 
-#pragma mark - Private
-
-+ (UIViewController *)topMostController {
-  UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-  while (topController.presentedViewController) {
-    topController = topController.presentedViewController;
-  }
-  return topController;
-}
-
 #pragma mark - Custom Accessors
 
 - (BOOL)isAuthenticated {

@@ -50,7 +50,7 @@ static BOOL isRunningTests(void) {
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
 		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
 		[MSFClient setCipher:cipher];
-	}] ;
+	}];
 }
 
 + (MSFClient *)httpClient {

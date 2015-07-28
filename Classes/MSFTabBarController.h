@@ -13,6 +13,4 @@
 
 @property (nonatomic, weak, readonly) MSFTabBarViewModel *viewModel;
 
-- (instancetype)initWithViewModel:(MSFTabBarViewModel *)tabBarViewModel;
-
 @end
