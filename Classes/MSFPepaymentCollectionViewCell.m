@@ -68,7 +68,6 @@
 }
 
 - (void)bindViewModel:(MSFLoanViewModel *)viewModel {
-	//TODO: 这里应该是每月的截止还款时间，这里目前使用的是申请时间用于测试显示
 	titleLabel.text = [NSString stringWithFormat:@"本期截止还款日期: %@", viewModel.applyDate];
 	amountLabel.text = viewModel.mothlyRepaymentAmount;
 }

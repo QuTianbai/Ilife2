@@ -36,7 +36,6 @@
   if (!self) {
     return nil;
   }
-	//TODO: 完善这里的ViewModel获取方法
 	_viewModel = viewModel;
   
   return self;
@@ -66,16 +65,14 @@
 	[self.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-  //Identifier Card OutTime
- // RAC(self.expired,text) = RACObserve(self.viewModel, expired1);
   RAC(self.viewModel, expired1) = RACObserve(self.expired, text);
-	// Identifier Card Lifelong
 	RAC(self.permanentButton, selected) = RACObserve(self.viewModel, permanent);
-	RAC(self.datePickerButton, enabled) = [RACSignal
+	RAC(self.datePickerButton, enabled) =
+	[RACSignal
 		combineLatest:@[RACObserve(self.viewModel, permanent)]
 		reduce:^id(NSNumber *permanent){
 			return @(!permanent.boolValue);
-	}];
+		}];
 	[RACObserve(self.viewModel, permanent) subscribeNext:^(NSNumber *permanent) {
 		@strongify(self)
 		if (permanent.boolValue) {

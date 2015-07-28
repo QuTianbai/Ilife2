@@ -7,8 +7,6 @@
 #import "MSFServer.h"
 #import "MSFServer+Private.h"
 
-//TODO: 更新这里的服务器相关地址
-
 #if DEBUG
 
 NSString *const MSFServerDotComAPIEndpoint = @"https://api.msfinance.cn";
