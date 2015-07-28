@@ -43,10 +43,12 @@
 	if (!self) {
 		return nil;
 	}
+	_pending = NO;
 	_services = services;
 	_model = [[MSFApplicationForms alloc] init];
 	_market = [[MSFMarket alloc] init];
-	_pending = NO;
+	_currentAddress = [[MSFAddress alloc] init];
+	_workAddress = [[MSFAddress alloc] init];
 
 	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFAFViewModel updatedContentSignal"];
 	
@@ -57,19 +59,19 @@
 			zipWith:[self.services.httpClient fetchCheckEmployee]]
 			flattenMap:^RACStream *(RACTuple *modelAndMarket) {
 				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
-				self.model = model;
-				self.market = market;
+				[self.model mergeValuesForKeysFromModel:model];
+				[self.market mergeValuesForKeysFromModel:market];
         self.isHaveProduct = YES;
-				self.currentAddress = [[MSFAddress alloc] initWithDictionary:@{
+				[self.currentAddress mergeValuesForKeysFromModel:[[MSFAddress alloc] initWithDictionary:@{
 					@"province": self.model.currentProvinceCode,
 					@"city": self.model.currentCityCode,
 					@"area": self.model.currentCountryCode,
-				} error:nil];
-				self.workAddress = [[MSFAddress alloc] initWithDictionary:@{
+				} error:nil]];
+				[self.workAddress mergeValuesForKeysFromModel: [[MSFAddress alloc] initWithDictionary:@{
 					@"province": self.model.workProvinceCode,
 					@"city": self.model.workCityCode,
 					@"area": self.model.workCountryCode,
-				} error:nil];
+				} error:nil]];
 				return [self.services.httpClient checkUserHasCredit];
 			}]
 			subscribeNext:^(MSFResponse *response) {

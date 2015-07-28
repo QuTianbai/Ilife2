@@ -5,11 +5,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFReactiveView.h"
 
 @class MSFProductViewModel;
 
-@interface MSFProductViewController : UITableViewController <MSFReactiveView>
+@interface MSFProductViewController : UITableViewController
 
 @property (nonatomic, strong, readonly) MSFProductViewModel *viewModel;
 
