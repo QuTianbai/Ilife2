@@ -59,6 +59,21 @@
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
 		07FE07351B0741BF00484069 /* MSFApplyInfoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07341B0741BF00484069 /* MSFApplyInfoSpec.m */; };
+		10DE89021B6764E6009025C4 /* icon-account-info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE88FF1B6764E6009025C4 /* icon-account-info@3x.png */; };
+		10DE89031B6764E6009025C4 /* icon-account-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89001B6764E6009025C4 /* icon-account-info.png */; };
+		10DE89041B6764E6009025C4 /* icon-account-info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89011B6764E6009025C4 /* icon-account-info@2x.png */; };
+		10DE89081B676681009025C4 /* icon-account-apply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89051B676681009025C4 /* icon-account-apply@2x.png */; };
+		10DE89091B676681009025C4 /* icon-account-apply.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89061B676681009025C4 /* icon-account-apply.png */; };
+		10DE890A1B676681009025C4 /* icon-account-apply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89071B676681009025C4 /* icon-account-apply@3x.png */; };
+		10DE89141B676699009025C4 /* icon-account-history.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89111B676699009025C4 /* icon-account-history.png */; };
+		10DE89151B676699009025C4 /* icon-account-history@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89121B676699009025C4 /* icon-account-history@3x.png */; };
+		10DE89161B676699009025C4 /* icon-account-history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89131B676699009025C4 /* icon-account-history@2x.png */; };
+		10DE891A1B6766AB009025C4 /* icon-account-about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89171B6766AB009025C4 /* icon-account-about@2x.png */; };
+		10DE891B1B6766AB009025C4 /* icon-account-about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89181B6766AB009025C4 /* icon-account-about@3x.png */; };
+		10DE891C1B6766AB009025C4 /* icon-account-about.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89191B6766AB009025C4 /* icon-account-about.png */; };
+		10DE89201B67676A009025C4 /* icon-account-repay.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE891D1B67676A009025C4 /* icon-account-repay.png */; };
+		10DE89211B67676A009025C4 /* icon-account-repay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE891E1B67676A009025C4 /* icon-account-repay@2x.png */; };
+		10DE89221B67676A009025C4 /* icon-account-repay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE891F1B67676A009025C4 /* icon-account-repay@3x.png */; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		490312A81B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */; };
@@ -243,18 +258,6 @@
 		49C0F1541B2C30A200E92572 /* bg-account-header.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1451B2C30A200E92572 /* bg-account-header.png */; };
 		49C0F1551B2C30A200E92572 /* bg-account-header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1461B2C30A200E92572 /* bg-account-header@2x.png */; };
 		49C0F1561B2C30A200E92572 /* bg-account-header@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1471B2C30A200E92572 /* bg-account-header@3x.png */; };
-		49C0F1571B2C30A200E92572 /* icon-account-apply.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1481B2C30A200E92572 /* icon-account-apply.png */; };
-		49C0F1581B2C30A200E92572 /* icon-account-apply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1491B2C30A200E92572 /* icon-account-apply@2x.png */; };
-		49C0F1591B2C30A200E92572 /* icon-account-apply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F14A1B2C30A200E92572 /* icon-account-apply@3x.png */; };
-		49C0F15A1B2C30A200E92572 /* icon-account-edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F14B1B2C30A200E92572 /* icon-account-edit.png */; };
-		49C0F15B1B2C30A200E92572 /* icon-account-edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F14C1B2C30A200E92572 /* icon-account-edit@2x.png */; };
-		49C0F15C1B2C30A200E92572 /* icon-account-edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F14D1B2C30A200E92572 /* icon-account-edit@3x.png */; };
-		49C0F15D1B2C30A200E92572 /* icon-account-history.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F14E1B2C30A200E92572 /* icon-account-history.png */; };
-		49C0F15E1B2C30A200E92572 /* icon-account-history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F14F1B2C30A200E92572 /* icon-account-history@2x.png */; };
-		49C0F15F1B2C30A200E92572 /* icon-account-history@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1501B2C30A200E92572 /* icon-account-history@3x.png */; };
-		49C0F1601B2C30A200E92572 /* icon-account-repay.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1511B2C30A200E92572 /* icon-account-repay.png */; };
-		49C0F1611B2C30A200E92572 /* icon-account-repay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1521B2C30A200E92572 /* icon-account-repay@2x.png */; };
-		49C0F1621B2C30A200E92572 /* icon-account-repay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1531B2C30A200E92572 /* icon-account-repay@3x.png */; };
 		49C0F19D1B2C315100E92572 /* bg-login.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1881B2C315100E92572 /* bg-login.png */; };
 		49C0F19E1B2C315100E92572 /* bg-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1891B2C315100E92572 /* bg-login@2x.png */; };
 		49C0F19F1B2C315100E92572 /* bg-login@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F18A1B2C315100E92572 /* bg-login@3x.png */; };
@@ -611,6 +614,21 @@
 		07FE07321B0740ED00484069 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		07FE07341B0741BF00484069 /* MSFApplyInfoSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyInfoSpec.m; sourceTree = "<group>"; };
 		0C902AAFF4566E5C3F86DCD0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		10DE88FF1B6764E6009025C4 /* icon-account-info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-info@3x.png"; sourceTree = "<group>"; };
+		10DE89001B6764E6009025C4 /* icon-account-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-info.png"; sourceTree = "<group>"; };
+		10DE89011B6764E6009025C4 /* icon-account-info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-info@2x.png"; sourceTree = "<group>"; };
+		10DE89051B676681009025C4 /* icon-account-apply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-apply@2x.png"; sourceTree = "<group>"; };
+		10DE89061B676681009025C4 /* icon-account-apply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-apply.png"; sourceTree = "<group>"; };
+		10DE89071B676681009025C4 /* icon-account-apply@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-apply@3x.png"; sourceTree = "<group>"; };
+		10DE89111B676699009025C4 /* icon-account-history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-history.png"; sourceTree = "<group>"; };
+		10DE89121B676699009025C4 /* icon-account-history@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-history@3x.png"; sourceTree = "<group>"; };
+		10DE89131B676699009025C4 /* icon-account-history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-history@2x.png"; sourceTree = "<group>"; };
+		10DE89171B6766AB009025C4 /* icon-account-about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about@2x.png"; sourceTree = "<group>"; };
+		10DE89181B6766AB009025C4 /* icon-account-about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about@3x.png"; sourceTree = "<group>"; };
+		10DE89191B6766AB009025C4 /* icon-account-about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about.png"; sourceTree = "<group>"; };
+		10DE891D1B67676A009025C4 /* icon-account-repay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay.png"; sourceTree = "<group>"; };
+		10DE891E1B67676A009025C4 /* icon-account-repay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay@2x.png"; sourceTree = "<group>"; };
+		10DE891F1B67676A009025C4 /* icon-account-repay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay@3x.png"; sourceTree = "<group>"; };
 		1F02B5C08373E00BAD678B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4902EE101B195A2F00EC836C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Externals/Crashlytics.framework; sourceTree = "<group>"; };
@@ -871,18 +889,6 @@
 		49C0F1451B2C30A200E92572 /* bg-account-header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-account-header.png"; sourceTree = "<group>"; };
 		49C0F1461B2C30A200E92572 /* bg-account-header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-account-header@2x.png"; sourceTree = "<group>"; };
 		49C0F1471B2C30A200E92572 /* bg-account-header@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-account-header@3x.png"; sourceTree = "<group>"; };
-		49C0F1481B2C30A200E92572 /* icon-account-apply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-apply.png"; sourceTree = "<group>"; };
-		49C0F1491B2C30A200E92572 /* icon-account-apply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-apply@2x.png"; sourceTree = "<group>"; };
-		49C0F14A1B2C30A200E92572 /* icon-account-apply@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-apply@3x.png"; sourceTree = "<group>"; };
-		49C0F14B1B2C30A200E92572 /* icon-account-edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-edit.png"; sourceTree = "<group>"; };
-		49C0F14C1B2C30A200E92572 /* icon-account-edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-edit@2x.png"; sourceTree = "<group>"; };
-		49C0F14D1B2C30A200E92572 /* icon-account-edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-edit@3x.png"; sourceTree = "<group>"; };
-		49C0F14E1B2C30A200E92572 /* icon-account-history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-history.png"; sourceTree = "<group>"; };
-		49C0F14F1B2C30A200E92572 /* icon-account-history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-history@2x.png"; sourceTree = "<group>"; };
-		49C0F1501B2C30A200E92572 /* icon-account-history@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-history@3x.png"; sourceTree = "<group>"; };
-		49C0F1511B2C30A200E92572 /* icon-account-repay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay.png"; sourceTree = "<group>"; };
-		49C0F1521B2C30A200E92572 /* icon-account-repay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay@2x.png"; sourceTree = "<group>"; };
-		49C0F1531B2C30A200E92572 /* icon-account-repay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-repay@3x.png"; sourceTree = "<group>"; };
 		49C0F1881B2C315100E92572 /* bg-login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-login.png"; sourceTree = "<group>"; };
 		49C0F1891B2C315100E92572 /* bg-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-login@2x.png"; sourceTree = "<group>"; };
 		49C0F18A1B2C315100E92572 /* bg-login@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-login@3x.png"; sourceTree = "<group>"; };
@@ -2037,18 +2043,21 @@
 				49C0F1451B2C30A200E92572 /* bg-account-header.png */,
 				49C0F1461B2C30A200E92572 /* bg-account-header@2x.png */,
 				49C0F1471B2C30A200E92572 /* bg-account-header@3x.png */,
-				49C0F1481B2C30A200E92572 /* icon-account-apply.png */,
-				49C0F1491B2C30A200E92572 /* icon-account-apply@2x.png */,
-				49C0F14A1B2C30A200E92572 /* icon-account-apply@3x.png */,
-				49C0F14B1B2C30A200E92572 /* icon-account-edit.png */,
-				49C0F14C1B2C30A200E92572 /* icon-account-edit@2x.png */,
-				49C0F14D1B2C30A200E92572 /* icon-account-edit@3x.png */,
-				49C0F14E1B2C30A200E92572 /* icon-account-history.png */,
-				49C0F14F1B2C30A200E92572 /* icon-account-history@2x.png */,
-				49C0F1501B2C30A200E92572 /* icon-account-history@3x.png */,
-				49C0F1511B2C30A200E92572 /* icon-account-repay.png */,
-				49C0F1521B2C30A200E92572 /* icon-account-repay@2x.png */,
-				49C0F1531B2C30A200E92572 /* icon-account-repay@3x.png */,
+				10DE89001B6764E6009025C4 /* icon-account-info.png */,
+				10DE89011B6764E6009025C4 /* icon-account-info@2x.png */,
+				10DE88FF1B6764E6009025C4 /* icon-account-info@3x.png */,
+				10DE89061B676681009025C4 /* icon-account-apply.png */,
+				10DE89051B676681009025C4 /* icon-account-apply@2x.png */,
+				10DE89071B676681009025C4 /* icon-account-apply@3x.png */,
+				10DE891D1B67676A009025C4 /* icon-account-repay.png */,
+				10DE891E1B67676A009025C4 /* icon-account-repay@2x.png */,
+				10DE891F1B67676A009025C4 /* icon-account-repay@3x.png */,
+				10DE89111B676699009025C4 /* icon-account-history.png */,
+				10DE89131B676699009025C4 /* icon-account-history@2x.png */,
+				10DE89121B676699009025C4 /* icon-account-history@3x.png */,
+				10DE89191B6766AB009025C4 /* icon-account-about.png */,
+				10DE89171B6766AB009025C4 /* icon-account-about@2x.png */,
+				10DE89181B6766AB009025C4 /* icon-account-about@3x.png */,
 				49C0F12D1B2C308E00E92572 /* font-signin.png */,
 				49C0F12E1B2C308E00E92572 /* font-signin@2x.png */,
 				49C0F12F1B2C308E00E92572 /* font-signin@3x.png */,
@@ -2725,14 +2734,15 @@
 				49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */,
 				49C0F1C51B2C341400E92572 /* tabbar-account-normal@2x.png in Resources */,
 				4993E0B51B2D9E8800090F26 /* icon-avatar-placeholder@3x.png in Resources */,
-				49C0F15E1B2C30A200E92572 /* icon-account-history@2x.png in Resources */,
 				4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */,
 				49C0F1AE1B2C315100E92572 /* icon-verify-code@3x.png in Resources */,
 				4995DCE21B4B6D2C0086B5ED /* 2@2x.png in Resources */,
+				10DE89081B676681009025C4 /* icon-account-apply@2x.png in Resources */,
 				49B37B5B1B608F39004EED47 /* bar-normal@2x.png in Resources */,
 				49BAB2B91B3BDF09004B4170 /* icon-cloze-idcarddate.png in Resources */,
 				49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
+				10DE89151B676699009025C4 /* icon-account-history@3x.png in Resources */,
 				49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */,
 				4975C98C1B46D6D400AA79EB /* Info.plist in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
@@ -2757,14 +2767,12 @@
 				49C027B41B1469D900735DC6 /* progress-status-default.png in Resources */,
 				4993E0B41B2D9E8800090F26 /* icon-avatar-placeholder@2x.png in Resources */,
 				4925ADF41B2AFD8800872A8A /* btn_checked@3x.png in Resources */,
-				49C0F15D1B2C30A200E92572 /* icon-account-history.png in Resources */,
 				C7A3517E1B217CB10001DF6A /* iconfont-jiantouyou@2x.png in Resources */,
 				492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */,
 				49BAB2BB1B3BDF09004B4170 /* icon-cloze-idcarddate@3x.png in Resources */,
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
 				4995DCE81B4B6D2C0086B5ED /* 4@2x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
-				49C0F15B1B2C30A200E92572 /* icon-account-edit@2x.png in Resources */,
 				07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */,
 				49B37B6C1B608F39004EED47 /* bar-progress-3-normal.png in Resources */,
 				49B37B641B608F39004EED47 /* bar-progress-2-highlighted@2x.png in Resources */,
@@ -2777,7 +2785,6 @@
 				C7A3517A1B217CB10001DF6A /* iconfont-guanyuwomen.png in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				4995DCDF1B4B6D2C0086B5ED /* 1@2x.png in Resources */,
-				49C0F1601B2C30A200E92572 /* icon-account-repay.png in Resources */,
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
 				49C027B51B1469D900735DC6 /* progress-status-default@2x.png in Resources */,
@@ -2792,6 +2799,7 @@
 				4995DCE61B4B6D2C0086B5ED /* 3@3x.png in Resources */,
 				49E22B001B37ED9E00749717 /* btn-family-reduce.png in Resources */,
 				C7A351841B217CB10001DF6A /* iconfont-wangdian@2x.png in Resources */,
+				10DE89201B67676A009025C4 /* icon-account-repay.png in Resources */,
 				49C0F1C61B2C341400E92572 /* tabbar-account-normal@3x.png in Resources */,
 				49E22AF01B37ED5D00749717 /* icon-cloze-idcard.png in Resources */,
 				49C0F13E1B2C308E00E92572 /* font-signup@3x.png in Resources */,
@@ -2804,17 +2812,15 @@
 				C767BDD31B0830DD007E71A5 /* MSFRepaymentTableViewController.xib in Resources */,
 				49C0F1CE1B2C341400E92572 /* tabbar-apply-selected@2x.png in Resources */,
 				49C0F1A21B2C315100E92572 /* icon-check-normal@3x.png in Resources */,
-				49C0F1621B2C30A200E92572 /* icon-account-repay@3x.png in Resources */,
 				49BAB2BE1B3BDF09004B4170 /* icon-cloze-name@3x.png in Resources */,
 				49C0F1D41B2C341400E92572 /* tabbar-home-selected@2x.png in Resources */,
 				07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */,
 				49B37B601B608F39004EED47 /* bar-progress-1-normal.png in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
 				4975C98B1B46D6D400AA79EB /* Images.xcassets in Resources */,
-				49C0F15F1B2C30A200E92572 /* icon-account-history@3x.png in Resources */,
 				49B37B591B608F39004EED47 /* bar-highlighted@3x.png in Resources */,
+				10DE89041B6764E6009025C4 /* icon-account-info@2x.png in Resources */,
 				C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */,
-				49C0F15C1B2C30A200E92572 /* icon-account-edit@3x.png in Resources */,
 				49C0F1C81B2C341400E92572 /* tabbar-account-selected@2x.png in Resources */,
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
 				49C0F1A81B2C315100E92572 /* icon-password@3x.png in Resources */,
@@ -2831,7 +2837,6 @@
 				072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */,
 				49C0F1CA1B2C341400E92572 /* tabbar-apply-normal.png in Resources */,
 				C7A351851B217CB10001DF6A /* iconfont-wangdian@3x.png in Resources */,
-				49C0F15A1B2C30A200E92572 /* icon-account-edit.png in Resources */,
 				49B37B681B608F39004EED47 /* bar-progress-2-normal@3x.png in Resources */,
 				C7A351771B217CB10001DF6A /* iconfont-chanpinjieshao.png in Resources */,
 				49C0F1CC1B2C341400E92572 /* tabbar-apply-normal@3x.png in Resources */,
@@ -2849,17 +2854,18 @@
 				4995DCE51B4B6D2C0086B5ED /* 3@2x.png in Resources */,
 				49C0F13F1B2C308E00E92572 /* nav-back.png in Resources */,
 				49C0F1441B2C308E00E92572 /* nav-setting@3x.png in Resources */,
-				49C0F1611B2C30A200E92572 /* icon-account-repay@2x.png in Resources */,
 				49B37B691B608F39004EED47 /* bar-progress-3-highlighted.png in Resources */,
 				49BAB2BC1B3BDF09004B4170 /* icon-cloze-name.png in Resources */,
 				4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */,
 				4995DCE31B4B6D2C0086B5ED /* 2@3x.png in Resources */,
+				10DE89031B6764E6009025C4 /* icon-account-info.png in Resources */,
 				497F98231B2B0BAF00DD6F2D /* guide.bundle in Resources */,
 				49C2FE481B4654D100B6B20A /* icon-question.png in Resources */,
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
 				49B37B5E1B608F39004EED47 /* bar-progress-1-highlighted@2x.png in Resources */,
 				49B37B6E1B608F39004EED47 /* bar-progress-3-normal@3x.png in Resources */,
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
+				10DE891B1B6766AB009025C4 /* icon-account-about@3x.png in Resources */,
 				49C0F1A51B2C315100E92572 /* icon-check-selected@3x.png in Resources */,
 				49CBDDB41B0DF03E009EF662 /* banners.json in Resources */,
 				49BAB2BD1B3BDF09004B4170 /* icon-cloze-name@2x.png in Resources */,
@@ -2868,6 +2874,7 @@
 				49BAB2BA1B3BDF09004B4170 /* icon-cloze-idcarddate@2x.png in Resources */,
 				49C0F1AF1B2C315100E92572 /* logo.png in Resources */,
 				49C0F1D11B2C341400E92572 /* tabbar-home-normal@2x.png in Resources */,
+				10DE891C1B6766AB009025C4 /* icon-account-about.png in Resources */,
 				07C06C781B1347C200F2DFCC /* json_banks.json in Resources */,
 				49B37B6B1B608F39004EED47 /* bar-progress-3-highlighted@3x.png in Resources */,
 				49B37B571B608F39004EED47 /* bar-highlighted.png in Resources */,
@@ -2875,11 +2882,12 @@
 				49EAABA41B0DC5B800E5FF32 /* launch-screen.png in Resources */,
 				07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */,
 				49C0F1541B2C30A200E92572 /* bg-account-header.png in Resources */,
+				10DE89091B676681009025C4 /* icon-account-apply.png in Resources */,
 				49C0F1CB1B2C341400E92572 /* tabbar-apply-normal@2x.png in Resources */,
 				49C0F1C41B2C341400E92572 /* tabbar-account-normal.png in Resources */,
 				4925AD581B2A786900872A8A /* products.json in Resources */,
 				49C0F1A41B2C315100E92572 /* icon-check-selected@2x.png in Resources */,
-				49C0F1591B2C30A200E92572 /* icon-account-apply@3x.png in Resources */,
+				10DE89211B67676A009025C4 /* icon-account-repay@2x.png in Resources */,
 				49C0F13C1B2C308E00E92572 /* font-signup.png in Resources */,
 				49C0F1AA1B2C315100E92572 /* icon-phone@2x.png in Resources */,
 				49C0F1391B2C308E00E92572 /* font-signin.png in Resources */,
@@ -2890,27 +2898,32 @@
 				C7A351761B217CB10001DF6A /* iconfont-bangzhu@3x.png in Resources */,
 				07C06C771B1347C200F2DFCC /* housing_conditions.json in Resources */,
 				4995DCE11B4B6D2C0086B5ED /* 2.png in Resources */,
+				10DE89021B6764E6009025C4 /* icon-account-info@3x.png in Resources */,
 				4925ADF21B2AFD8800872A8A /* btn_checked.png in Resources */,
 				49C0F1CD1B2C341400E92572 /* tabbar-apply-selected.png in Resources */,
 				4993E0DB1B2DA65B00090F26 /* bg-loan-installment@3x.png in Resources */,
 				49C0F1561B2C30A200E92572 /* bg-account-header@3x.png in Resources */,
 				4995DCE41B4B6D2C0086B5ED /* 3.png in Resources */,
 				49C0F1421B2C308E00E92572 /* nav-setting.png in Resources */,
+				10DE890A1B676681009025C4 /* icon-account-apply@3x.png in Resources */,
 				49C0F19D1B2C315100E92572 /* bg-login.png in Resources */,
+				10DE89221B67676A009025C4 /* icon-account-repay@3x.png in Resources */,
 				49C0F1A71B2C315100E92572 /* icon-password@2x.png in Resources */,
 				07C06C5C1B13465A00F2DFCC /* school_system.json in Resources */,
 				49C0F1A31B2C315100E92572 /* icon-check-selected.png in Resources */,
 				49E22AFE1B37ED9E00749717 /* btn-family-add@2x.png in Resources */,
 				4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */,
 				49C0F1B11B2C315100E92572 /* logo@3x.png in Resources */,
-				49C0F1571B2C30A200E92572 /* icon-account-apply.png in Resources */,
 				07C06C7A1B1347C200F2DFCC /* relationship.json in Resources */,
+				10DE89161B676699009025C4 /* icon-account-history@2x.png in Resources */,
+				10DE891A1B6766AB009025C4 /* icon-account-about@2x.png in Resources */,
 				49B37B6A1B608F39004EED47 /* bar-progress-3-highlighted@2x.png in Resources */,
 				49C027B61B1469D900735DC6 /* progress-status-default@3x.png in Resources */,
 				C7A3517C1B217CB10001DF6A /* iconfont-guanyuwomen@3x.png in Resources */,
 				07C4980F1B1420E900069F74 /* 拍摄.png in Resources */,
 				49B37B581B608F39004EED47 /* bar-highlighted@2x.png in Resources */,
 				4995DCE91B4B6D2C0086B5ED /* 4@3x.png in Resources */,
+				10DE89141B676699009025C4 /* icon-account-history.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
 				49A955021B574B14000852E3 /* bk-iphone6plus.jpg in Resources */,
@@ -2920,7 +2933,6 @@
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
 				49B37B5D1B608F39004EED47 /* bar-progress-1-highlighted.png in Resources */,
 				49B37B611B608F39004EED47 /* bar-progress-1-normal@2x.png in Resources */,
-				49C0F1581B2C30A200E92572 /* icon-account-apply@2x.png in Resources */,
 				4995DCE01B4B6D2C0086B5ED /* 1@3x.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
@@ -3354,7 +3366,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3392,7 +3404,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3415,7 +3427,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Debug;
 		};
@@ -3434,7 +3446,7 @@
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Release;
 		};
