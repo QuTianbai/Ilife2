@@ -87,6 +87,9 @@
 					return value.parsedResult[@"repayMoneyMonth"];
 				}];
 		}];
+  RAC(self, minMoney) = RACObserve(self.formsViewModel.market, allMinAmount);
+                         
+  RAC(self, maxMoney) = RACObserve(self.formsViewModel.market, allMaxAmount);
 	RAC(self, totalAmountPlacholder) = [RACSignal combineLatest:@[
 		RACObserve(self.formsViewModel.market, allMinAmount),
 		RACObserve(self.formsViewModel.market, allMaxAmount),

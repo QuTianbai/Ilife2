@@ -28,6 +28,8 @@
  *	总金额
  */
 @property (nonatomic, strong) NSString *totalAmount;
+@property (nonatomic, copy) NSString *minMoney;
+@property (nonatomic, copy) NSString *maxMoney;
 @property (nonatomic, strong, readonly) NSString *totalAmountPlacholder;
 
 /**
