@@ -54,6 +54,11 @@
  */
 @property (nonatomic, assign) BOOL insurance;
 
+@property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
+@property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeNextCommand;
+
 - (instancetype)initWithFormsViewModel:(id)viewModel;
 
 @end

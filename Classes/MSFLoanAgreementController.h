@@ -12,4 +12,6 @@
 // 贷款协议
 @interface MSFLoanAgreementController : UIViewController <MSFReactiveView>
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end
