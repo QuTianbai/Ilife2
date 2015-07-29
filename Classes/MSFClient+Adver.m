@@ -12,12 +12,6 @@
 
 @implementation MSFClient (Adver)
 
-- (RACSignal *)fetchAdver {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"ads/1" parameters:nil];
-	
-	return [[self enqueueRequest:request resultClass:MSFAdver.class] msf_parsedResults];
-}
-
 - (RACSignal *)fetchAdverWithCategory:(NSString *)category {
 	NSString *path = [NSString stringWithFormat:@"ads/%@", category];
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil];
