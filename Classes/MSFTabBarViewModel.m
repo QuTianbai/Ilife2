@@ -69,6 +69,13 @@
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
+	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
+		takeUntil:self.rac_willDeallocSignal]
+		subscribeNext:^(NSNotification *notification) {
+			@strongify(self)
+			MSFClient *client = notification.object;
+			[(RACSubject *)self.authorizationUpdatedSignal sendNext:client];
+	}];
 }
 
 #pragma mark - Custom Accessors

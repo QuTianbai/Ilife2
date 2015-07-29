@@ -5,6 +5,23 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="GW5-z8-qah">
+            <objects>
+                <navigationController storyboardIdentifier="nav" id="vxc-Z8-1Kt" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="haY-U5-RKb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="fD0-9H-iqe" kind="relationship" relationship="rootViewController" id="x3y-zK-xNg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fe5-Sr-ate" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-630" y="-913"/>
+        </scene>
         <!--Settings View Controller-->
         <scene sceneID="j9c-rO-bzg">
             <objects>
@@ -46,12 +63,13 @@
                             <outlet property="delegate" destination="fD0-9H-iqe" id="UCB-do-Xwy"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="aI7-0g-iWw"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="N6A-9r-2ct" kind="push" identifier="productCell" id="3tT-RV-Hry"/>
-                        <segue destination="G2c-a5-3wG" kind="push" identifier="aboutCell" id="qsw-t7-mlb"/>
-                        <segue destination="Zgw-EY-d8c" kind="push" identifier="branchCell" id="e9f-Fq-lXw"/>
-                        <segue destination="jnu-UX-XfS" kind="push" identifier="userHelpCell" id="AUX-79-Gub"/>
+                        <segue destination="N6A-9r-2ct" kind="show" identifier="productCell" id="3tT-RV-Hry"/>
+                        <segue destination="G2c-a5-3wG" kind="show" identifier="aboutCell" id="qsw-t7-mlb"/>
+                        <segue destination="Zgw-EY-d8c" kind="show" identifier="branchCell" id="e9f-Fq-lXw"/>
+                        <segue destination="jnu-UX-XfS" kind="show" identifier="userHelpCell" id="AUX-79-Gub"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ek-sh-epi" userLabel="First Responder" sceneMemberID="firstResponder"/>

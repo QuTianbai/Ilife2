@@ -20,6 +20,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, weak) IBOutlet UIButton *signUpButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *leading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
 
 @property (nonatomic, strong, readwrite) MSFLoginPageViewController *loginPageController;
 
@@ -42,11 +43,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self.signInButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
-	[self.signInButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
-	[self.signUpButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
-	[self.signUpButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
-	[self updateButtons:self.viewModel.loginType];
+	[self didLoad];
 	
 	@weakify(self)
 	id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:self.viewModel.loginType];
@@ -107,6 +104,28 @@
 }
 
 #pragma mark - Private
+
+- (void)didLoad {
+	[self.signInButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
+	[self.signInButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
+	[self.signUpButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
+	[self.signUpButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
+	self.width.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
+	switch (self.viewModel.loginType) {
+		case MSFLoginSignIn: {
+			self.signInButton.enabled = NO;
+			self.signUpButton.enabled = YES;
+			self.leading.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
+			break;
+		}
+		case MSFLoginSignUp: {
+			self.signInButton.enabled = YES;
+			self.signUpButton.enabled = NO;
+			self.leading.constant =  0;
+			break;
+		}
+	}
+}
 
 - (void)updateButtons:(NSInteger)type {
 	switch (type) {

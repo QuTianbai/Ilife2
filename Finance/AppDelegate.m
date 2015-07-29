@@ -12,6 +12,7 @@
 
 #import "MSFTabBarController.h"
 #import "MSFGuideViewController.h"
+#import "MSFLoginViewController.h"
 
 #import "MSFUtils.h"
 #import "MSFUser.h"
@@ -57,13 +58,14 @@
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
 		[indicatorView removeFromSuperview];
 #if DEBUG
-//TODO: 测试无法获取时间戳的情况
+		//!!!: 测试无法获取时间戳的情况
 		[self setup];
 		[MSFGuideViewController.guide show];
 		
 		return [RACSignal empty];
 #endif
 		
+		// 在正式环境下,如果第一次进入app没有获取到时间戳，就持续循环获取时间戳－待测试
 		return MSFUtils.setupSignal;
 	}] subscribeNext:^(id x) {
 		[indicatorView removeFromSuperview];
@@ -101,13 +103,21 @@
 	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
 	
-	self.tabBarController = [[MSFTabBarController alloc] init];
-	self.viewModelServices = [[MSFViewModelServicesImpl alloc] initWithTabBarController:self.tabBarController];
+	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
-	[self.tabBarController bindViewModel:self.viewModel];
-	self.window.rootViewController = self.tabBarController;
+	[self unAuthenticatedControllers];
 	
 	@weakify(self)
+	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+		@strongify(self)
+		if (client.isAuthenticated) {
+			[self authenticatedControllers];
+		} else {
+			[self unAuthenticatedControllers];
+		}
+	}];
+	
+	// Timeout Handle
 	[[self rac_signalForSelector:@selector(applicationDidBecomeActive:)]
 		subscribeNext:^(id x) {
 			@strongify(self)
@@ -116,7 +126,7 @@
 			NSDate *date = [NSDate dateWithTimeIntervalSince1970:string.doubleValue];
 			if ([NSDate.date timeIntervalSinceDate:date] > 3 * 60) {
 				[MSFUtils cleanupArchive];
-				[self.tabBarController.viewModel.authorizeViewModel.executeSignOut execute:nil];
+				[self.viewModel.authorizeViewModel.executeSignOut execute:nil];
 			}
 	 }];
 	
@@ -134,6 +144,61 @@
 		[MSFUtils cleanupArchive];
 #endif
 	 }];
+	
+	// Error Handle
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+																											message:@"已在另一设备上登录，如非本人操作请立即修改密码"
+																										 delegate:nil
+																						cancelButtonTitle:@"取消"
+																						otherButtonTitles:@"确定", nil];
+	[[[[NSNotificationCenter defaultCenter]
+		rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
+		takeUntil:self.rac_willDeallocSignal]
+		subscribeNext:^(NSNotification *notification) {
+			@strongify(self)
+			[self unAuthenticatedControllers];
+			NSError *error = notification.object;
+			if ([error.userInfo[NSLocalizedFailureReasonErrorKey] isEqualToString:@"已在另一设备上登录，如非本人操作请立即修改密码"]) {
+				[MSFUtils setHttpClient:nil];
+				if (!alertView.isVisible) {
+					[alertView show];
+				}
+			}
+		}];
+	UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"无法连接到服务器"
+																											 message:nil
+																											delegate:nil
+																						 cancelButtonTitle:@"重新连接"
+																						 otherButtonTitles:nil];
+  [alertView2.rac_buttonClickedSignal subscribeNext:^(id x) {
+    [MSFUtils.setupSignal subscribeNext:^(id x) {
+			[self unAuthenticatedControllers];
+    }];
+  }];
+  [[[NSNotificationCenter defaultCenter]
+		rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
+		subscribeNext:^(id x) {
+     if (!alertView2.isVisible) {
+       [alertView2 show];
+     }
+   }];
+ 
+  [[[NSNotificationCenter defaultCenter]
+		rac_addObserverForName:MSFAuthorizationDidReGetTimeServer object:nil]
+		subscribeNext:^(id x) {
+			[MSFUtils.setupSignal replay];
+		}];
+}
+
+- (void)unAuthenticatedControllers {
+	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	self.window.rootViewController = navigationController;
+}
+
+- (void)authenticatedControllers {
+	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+	self.window.rootViewController = tabBarController;
 }
 
 @end
