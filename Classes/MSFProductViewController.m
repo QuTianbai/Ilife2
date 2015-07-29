@@ -104,7 +104,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.applyMonthsTF.placeholder = @"请选择期数";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
-	@weakify(self)
 	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
 	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
@@ -129,167 +128,16 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     
 	 return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
-	self.applyMonthsBT.rac_command = self.executeTermCommand;
-	[self.executeTermCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		@strongify(self)
-		[signal subscribeNext:^(id x) {
-			self.viewModel.product = x;
-		}];
-	}];
-	[self.executeTermCommand.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showInfoWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-	
-	self.moneyUsedBT.rac_command = self.executePurposeCommand;
-	[self.executePurposeCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		@strongify(self)
-		[signal subscribeNext:^(id x) {
-			self.viewModel.purpose = x;
-		}];
-	}];
-	
-	self.nextPageBT.rac_command = self.executeNextCommand;
+	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
+	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
+	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
 	[self.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
-	self.lifeInsuranceButton.rac_command = self.executeLifeInsuranceCommand;
+	self.lifeInsuranceButton.rac_command = self.viewModel.executeLifeInsuranceCommand;
 }
 
-#pragma mark - Private
-
-- (RACCommand *)executePurposeCommand {
-	if (_executePurposeCommand) {
-		return _executePurposeCommand;
-	}
-	@weakify(self)
-	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		[self.view endEditing:YES];
-		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectViewModelWithFilename:@"moneyUse"];
-		MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-		selectionViewController.title = @"选择贷款用途";
-		[self.navigationController pushViewController:selectionViewController animated:YES];
-		@weakify(selectionViewController)
-		return [selectionViewController.selectedSignal doNext:^(id x) {
-			@strongify(selectionViewController)
-			[selectionViewController.navigationController popViewControllerAnimated:YES];
-		}];
-	}];
-	_executePurposeCommand.allowsConcurrentExecution = YES;
-	
-	return _executePurposeCommand;
-}
-
-- (RACCommand *)executeTermCommand {
-	if (_executeTermCommand) {
-		return _executeTermCommand;
-	}
-	
-	@weakify(self)
-	_executeTermCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			[self.view endEditing:YES];
-//				if (self.applyCashNumTF.text.integerValue % 100 != 0) {
-//				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-//					NSLocalizedFailureReasonErrorKey: @"贷款金额必须为100的整数倍"
-//				}]];
-//				return nil;
-//			}
-			if (self.viewModel.market.teams.count == 0) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: @"网络繁忙请稍后再试"
-				}]];
-				return nil;
-			}
-			MSFSelectionViewModel *viewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue];
-			if ([viewModel numberOfItemsInSection:0] == 0) {
-				NSString *string;
-				NSMutableArray *region = [[NSMutableArray alloc] init];
-       // [region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", self.viewModel.mar]];
-				[self.viewModel.market.teams enumerateObjectsUsingBlock:^(MSFTeams *obj, NSUInteger idx, BOOL *stop) {
-					[region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", obj.minAmount,obj.maxAmount]];
-				}];
-        string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字", self.viewModel.market.allMinAmount,self.viewModel.market.allMaxAmount];
-        
-				//string = [NSString stringWithFormat:@"请输入贷款金额范围在  %@ 的数字", [region componentsJoinedByString:@","]];
-				
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: string,
-				}]];
-				return nil;
-			}
-			MSFSelectionViewController *selectionViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-			selectionViewController.title = @"选择贷款期数";
-			[self.navigationController pushViewController:selectionViewController animated:YES];
-			@weakify(selectionViewController)
-			[selectionViewController.selectedSignal subscribeNext:^(id x) {
-				[subscriber sendNext:x];
-				@strongify(selectionViewController)
-				[selectionViewController.navigationController popViewControllerAnimated:YES];
-			}];
-			
-			return nil;
-		}];
-	}];
-	_executeTermCommand.allowsConcurrentExecution = YES;
-	
-	return _executeTermCommand;
-}
-
-- (RACCommand *)executeNextCommand {
-	if (_executeNextCommand) {
-		return _executeNextCommand;
-	}
-	@weakify(self)
-	_executeNextCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			@strongify(self)
-			if (!self.viewModel.product) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: @"请选择贷款期数",
-				}]];
-				return nil;
-			}
-			if (!self.viewModel.purpose) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: @"请选择贷款用途",
-				}]];
-				return nil;
-			}
-			MSFLoanAgreementController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
-			vc.hidesBottomBarWhenPushed = YES;
-			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.viewModel.formsViewModel product:self.viewModel.product];
-			[vc bindViewModel:viewModel];
-			[self.navigationController pushViewController:vc animated:YES];
-			[subscriber sendCompleted];
-			return nil;
-		}];
-	}];
-	
-	return _executeNextCommand;
-}
-
-- (RACCommand *)executeLifeInsuranceCommand {
-	if (_executeLifeInsuranceCommand) {
-		return _executeLifeInsuranceCommand;
-	}
-		@weakify(self)
-	_executeLifeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			@strongify(self)
-			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithHTMLURL:
-			[MSFUtils.agreementViewModel.agreement lifeInsuranceURL]];
-			webViewController.hidesBottomBarWhenPushed = YES;
-			[self.navigationController pushViewController:webViewController animated:YES];
-			return nil;
-		}];
-	}];
-	_executeLifeInsuranceCommand.allowsConcurrentExecution = YES;
-	
-	return _executeLifeInsuranceCommand;
-}
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {

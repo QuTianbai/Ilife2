@@ -18,6 +18,12 @@
 #import "MSFClozeViewModel.h"
 #import "MSFClozeViewController.h"
 
+#import "MSFLoanAgreementViewModel.h"
+#import "MSFLoanAgreementController.h"
+
+#import "MSFWebViewModel.h"
+#import "MSFWebViewController.h"
+
 @implementation MSFViewModelServicesImpl
 
 #pragma mark - Private
@@ -37,7 +43,13 @@
   
   if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
     viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-  } else {
+  } else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
+    viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+  } else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
+		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }
   

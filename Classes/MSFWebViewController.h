@@ -9,5 +9,6 @@
 @interface MSFWebViewController : UIViewController
 
 - (instancetype)initWithHTMLURL:(NSURL *)URL;
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

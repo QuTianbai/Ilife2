@@ -33,6 +33,19 @@
 
 @implementation MSFLoanAgreementController
 
+#pragma mark - Lifecycle
+
+- (instancetype)initWithViewModel:(id)viewModel {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"product" bundle:nil];
+	self =  [storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
 - (void)viewDidLoad {
 	self.title = @"贷款协议";
   self.LoanAgreenmentWV.delegate = self;
