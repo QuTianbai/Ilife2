@@ -35,7 +35,7 @@
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
-@property (nonatomic,strong) MSFMarket *market;
+@property (nonatomic, strong) MSFMarket *market;
 @property (nonatomic, strong) MSFSelectionViewModel *selectViewModel;
 @property (nonatomic, strong) NSArray *loanPeriodsAry;
 @property (weak, nonatomic) IBOutlet UICollectionView *monthCollectionView;
@@ -313,8 +313,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  NSLog(@"%ld", self.selectViewModel.numberOfSections);
-  NSLog(@"%ld", [self.selectViewModel numberOfItemsInSection:section]);
+  NSLog(@"%ld", (long)self.selectViewModel.numberOfSections);
+  NSLog(@"%ld", (long)[self.selectViewModel numberOfItemsInSection:section]);
   return [self.selectViewModel numberOfItemsInSection:section];
   //return _loanPeriodsAry.count;
 }
@@ -364,7 +364,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   return YES;
 }
+
 #pragma mark - MSFSlider Delegate
+
 - (void)getStringValue:(NSString *)stringvalue {
   self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
   [self.monthCollectionView reloadData];

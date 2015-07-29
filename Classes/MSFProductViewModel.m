@@ -94,10 +94,9 @@
 			if (!product) {
 				return [RACSignal return:@0];
 			}
-			return	[[self.services.httpClient
+			return [[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
-          NSLog(@"repay:%@",[NSString stringWithFormat:@"%.2f", [value.parsedResult[@"repayMoneyMonth"] floatValue]]);
 					return [NSString stringWithFormat:@"%.2f", [value.parsedResult[@"repayMoneyMonth"] floatValue]];
 				}];
 		}];

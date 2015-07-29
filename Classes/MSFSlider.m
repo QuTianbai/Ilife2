@@ -10,7 +10,7 @@
 
 @interface MSFSlider ()
 
-@property (nonatomic,strong) UILabel *moneyNumLabel;
+@property (nonatomic, strong) UILabel *moneyNumLabel;
 
 @end
 
@@ -57,27 +57,13 @@
 }
 
 - (void)slideerValueChanged:(UISlider *)slider {
-  self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元",(int)slider.value/100*100];
+  self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", (int)slider.value / 100 * 100];
 }
 
--(void)sliderGragUp:(UISlider *)slider {
+- (void)sliderGragUp:(UISlider *)slider {
   if ([self.delegate respondsToSelector:@selector(getStringValue:)]) {
-    [self.delegate getStringValue:[NSString stringWithFormat:@"%d",(int)slider.value/100*100]];
+    [self.delegate getStringValue:[NSString stringWithFormat:@"%d", (int)slider.value / 100 * 100]];
   }
 }
-
-//- (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize
-//
-//{
-//  UIGraphicsBeginImageContext(CGSizeMake(reSize.width, reSize.height));
-//  [image drawInRect:CGRectMake(0, 0, reSize.width, reSize.height)];
-//  UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
-//  UIGraphicsEndImageContext();
-//  
-//  return reSizeImage;
-//  
-//}
-
-
 
 @end

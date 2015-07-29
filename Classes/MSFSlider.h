@@ -13,11 +13,9 @@
 - (void)getStringValue:(NSString *)stringvalue;
 
 @end
-//typedef void (^ReturnMoneyNum)(NSString *moneyNum);
 
 @interface MSFSlider : UISlider
-//@property(nonatomic,copy) ReturnMoneyNum returnMoneyNum;
 
-@property(nonatomic,assign) id<MSFSliderDelegate> delegate;
+@property (nonatomic, assign) id<MSFSliderDelegate> delegate;
 
 @end
