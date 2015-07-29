@@ -21,7 +21,7 @@
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
+#define TYPEFACECOLOR @"#007ee5"
 
 @interface MSFTradeTableViewController ()
 
@@ -36,11 +36,8 @@
 	self.title = @"历史交易";
 	UIEdgeInsets edgeInset = self.tableView.separatorInset;
 	self.tableView.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, edgeInset.right);
+	self.tableView.separatorColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.04];
 	self.tableView.allowsSelection = NO;
-	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-	self.tableView.separatorColor = [MSFCommandView getColorWithString:SEPARATORCOLOR];
-	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.6)];
-	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:SEPARATORCOLOR]];
 	[self.tableView setEditing:NO];
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchTrades].collect replayLazily];
@@ -86,25 +83,40 @@
 	
 	MSFTrade *trade = [self.objects objectAtIndex:indexPath.row];
 	
-	[cell.date setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
-	[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
-	[cell.amount setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
-//	[cell.tradeDescription setFont:[UIFont systemFontOfSize:18]];
-//	[cell.date setFont:[UIFont systemFontOfSize:18]];
-//	[cell.amount setFont:[UIFont systemFontOfSize:18]];
-	
 	if (indexPath.row == 0) {
+		[cell.date setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[cell.amount setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[cell.date setFont:[UIFont systemFontOfSize:15]];
+		[cell.amount setFont:[UIFont systemFontOfSize:15]];
+		[cell.tradeDescription setFont:[UIFont systemFontOfSize:15]];
 		cell.date.text = @"日期";
 		cell.tradeDescription.text = @"交易描述";
 		cell.amount.text = @"金额";
-		[cell setBackgroundColor:[MSFCommandView getColorWithString:CELLBACKGROUNDCOLOR]];
+		[cell setBackgroundColor:[UIColor whiteColor]];
+		
 	} else {
+		
+		[cell.date setTextColor:[UIColor blackColor]];
+		[cell.tradeDescription setTextColor:[UIColor blackColor]];
+		[cell.amount setTextColor:[UIColor blackColor]];
+		[cell.date setFont:[UIFont systemFontOfSize:14]];
+		[cell.amount setFont:[UIFont systemFontOfSize:14]];
+		[cell.tradeDescription setFont:[UIFont systemFontOfSize:14]];
 		cell.date.text = [NSString stringWithFormat:@"%@", trade.tradeDate];
 		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
 		cell.amount.text = [NSString stringWithFormat:@"%.lf", trade.tradeAmount];
+//		cell.date.text = @"2015/04/12";
+//		cell.tradeDescription.text = @"主动还款";
+//		cell.amount.text = @"-666.00";
+		[cell setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.03]];
 	}
 
 	return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 44;
 }
 
 @end

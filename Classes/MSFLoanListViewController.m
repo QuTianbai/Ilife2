@@ -20,13 +20,11 @@
 #import "MSFRepayViewController.h"
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
+
 //审核中	是#ff6600 橙色
 //还款中	是#477dbd 蓝色（主色）
 //其他的	是#585858
-#define REPAYMENTCOLOR @"#477dbd"
+#define REPAYMENTCOLOR @"#007ee5"
 #define CHECKCOLOR @"#ff6600"
 #define STATUSCOLOR @"#585858"
 
@@ -69,6 +67,7 @@
 	self.dataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStylePlain];
 	self.dataTableView.dataSource = self;
 	self.dataTableView.delegate = self;
+	self.dataTableView.tableFooterView = [UIView new];
 	
 	[self.view addSubview:self.dataTableView];
 }
@@ -93,6 +92,7 @@
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
 	
+	cell.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.03];
 	
 	cell.selected = NO;
 	cell.selectionStyle = UITableViewCellAccessoryNone;
@@ -120,6 +120,7 @@
 	if ([checkNum integerValue] == 0 || [checkNum integerValue] == 1) {
 		[cell.checkLabel setEnabled:NO];
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:CHECKCOLOR] forState:UIControlStateNormal];
+		
 	} else {
 		[cell.checkLabel setEnabled:NO];
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:REPAYMENTCOLOR] forState:UIControlStateNormal];
@@ -191,9 +192,12 @@
 	_time = [[UILabel alloc] init];
 	_check = [[UILabel alloc] init];
 	
-	UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
+	UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+	headView.layer.masksToBounds = YES;
+	headView.layer.borderWidth = 0.9;
+	headView.layer.borderColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.08] CGColor];
 	
-	[headView setBackgroundColor:[MSFCommandView getColorWithString:CELLBACKGROUNDCOLOR]];
+	[headView setBackgroundColor:[UIColor clearColor]];
 	
 	[self.view addSubview:headView];
 	
@@ -201,10 +205,10 @@
 	
 	UIView *superView = _dataTableView.tableHeaderView;
 	
-	_money.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-	_months.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-	_time.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-	_check.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+	_money.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
+	_months.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
+	_time.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
+	_check.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
 	
 	_money.text = @"金额";
 	_months.text = @"期数";
@@ -218,26 +222,26 @@
 	[superView addSubview:_check];
 	
 	NSInteger edges = [UIScreen mainScreen].bounds.size.width / 8;
-	
-	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
+	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
 		make.centerX.equalTo(superView.mas_left).offset(edges);
-		make.height.equalTo(@[_check, _months,_time]);
+		make.height.equalTo(@[_check, _months,_money]);
 	}];
 	
 	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
+		make.centerX.equalTo(superView.mas_centerX).offset(-edges);
+	}];
+	
+	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(superView);
 		make.centerX.equalTo(superView.mas_centerX).offset(edges);
+		
 	}];
 	
 	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
 		make.centerX.equalTo(superView.mas_right).offset(-edges);
-	}];
-	
-	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(superView);
-		make.centerX.equalTo(superView.mas_centerX).offset(-edges);
 	}];
 	
 }

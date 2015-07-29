@@ -18,25 +18,7 @@
 #import "MSFClozeViewModel.h"
 #import "MSFClozeViewController.h"
 
-@interface MSFViewModelServicesImpl ()
-
-@property (nonatomic, weak) UITabBarController *tabBarController;
-
-@end
-
 @implementation MSFViewModelServicesImpl
-
-#pragma mark - Lifecycle
-
-- (instancetype)initWithTabBarController:(UITabBarController *)tabBarController {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_tabBarController = tabBarController;
-  
-  return self;
-}
 
 #pragma mark - Private
 

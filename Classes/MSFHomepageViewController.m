@@ -10,6 +10,7 @@
 #import "MSFHomepageCollectionViewHeader.h"
 #import "MSFHomePageContentCollectionViewCell.h"
 #import "MSFPlaceholderCollectionViewCell.h"
+#import "MSFPepaymentCollectionViewCell.h"
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
@@ -53,6 +54,7 @@
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
 	[self.collectionView registerClass:MSFPlaceholderCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell"];
+	[self.collectionView registerClass:MSFPepaymentCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPepaymentCollectionViewCell"];
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
@@ -117,7 +119,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.0 - 112.5;
+	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.0 - 110;
 	
 	return CGSizeMake(width, height);
 }
@@ -126,6 +128,11 @@
 	MSFLoanViewModel *viewModel = [self.viewModel viewModelForIndexPath:indexPath];
 	NSString *reusableIdentifier = [self.viewModel reusableIdentifierForIndexPath:indexPath];
 	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusableIdentifier forIndexPath:indexPath];
+	if (!viewModel) {
+		MSFPlaceholderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell" forIndexPath:indexPath];
+		
+		return cell;
+	}
 	if (viewModel) [cell bindViewModel:viewModel];
 
 	return cell;
