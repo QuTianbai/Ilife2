@@ -66,6 +66,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFProductViewController `-dealloc`");
+}
+
 - (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel {
 	self = [UIStoryboard storyboardWithName:@"product" bundle:nil].instantiateInitialViewController;
   if (!self) {

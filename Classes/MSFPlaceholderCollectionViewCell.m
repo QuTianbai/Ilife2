@@ -15,12 +15,14 @@
 	if (!self) {
 		return nil;
 	}
-	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress-status-default.png"]];
+	UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home-fourStatus.png"]];
 	imageView.contentMode = UIViewContentModeScaleAspectFit;
 	imageView.clipsToBounds = YES;
 	[self.contentView addSubview:imageView];
 	[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.contentView);
+		make.center.equalTo(self.contentView);
+		make.width.equalTo(@(self.contentView.frame.size.width / 2));
+		make.height.equalTo(@(self.contentView.frame.size.width / 2));
 	}];
 	
 	return self;

@@ -7,7 +7,7 @@
 #import "MSFBannersViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient.h"
-#import "MSFClient+Adver.h"
+#import "MSFClient+Advers.h"
 #import "MSFResponse.h"
 #import "MSFAdver.h"
 

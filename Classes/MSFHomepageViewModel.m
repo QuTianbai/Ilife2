@@ -20,6 +20,10 @@
 
 @implementation MSFHomepageViewModel
 
+- (void)dealloc {
+	NSLog(@"MSFHomepageViewModel `-dealloc`");
+}
+
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
@@ -78,11 +82,8 @@
 	MSFLoanViewModel *viewModel = [self viewModelForIndexPath:indexPath];
 	if (!viewModel) {
 		return @"MSFPlaceholderCollectionViewCell";
-	}
-	if ([viewModel.status isEqualToString:@"还款中"]) {
-		return @"MSFPepaymentCollectionViewCell";
 	} else {
-		return @"MSFRequisitionCollectionViewCell";
+		return @"MSFHomePageContentCollectionViewCell";
 	}
 }
 

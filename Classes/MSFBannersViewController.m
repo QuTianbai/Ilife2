@@ -11,14 +11,14 @@
 #import <Masonry/Masonry.h>
 #import "MSFUtils.h"
 #import "MSFBannersViewModel.h"
-#import "MSFBannersCollectionViewCell.h"
 #import "MSFWebViewController.h"
 #import "UIColor+Utils.h"
+#import "MSFInfinityScroll.h"
 
-@interface MSFBannersViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface MSFBannersViewController ()
 
 @property (nonatomic, strong) MSFBannersViewModel *viewModel;
-@property (nonatomic, strong) UIPageControl *pageControl;
+@property (nonatomic, strong) MSFInfinityScroll *infinityScroll;
 
 @end
 
@@ -26,88 +26,38 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)init {
-	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-	flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-	flowLayout.minimumLineSpacing = 0;
-	flowLayout.minimumInteritemSpacing = 0;
-	flowLayout.sectionInset = UIEdgeInsetsZero;
-	if (!(self = [super initWithCollectionViewLayout:flowLayout])) {
-		return nil;
-	}
-	
-	return self;
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.pageControl = [[UIPageControl alloc] init];
-	self.pageControl.currentPageIndicatorTintColor = UIColor.themeColor;
-	self.pageControl.pageIndicatorTintColor = [UIColor colorWithWhite:0.902 alpha:1.000];
-	self.pageControl.hidesForSinglePage = YES;
-	[self.collectionView.superview addSubview:self.pageControl];
-	self.collectionView.backgroundColor = UIColor.whiteColor;
-	self.collectionView.pagingEnabled = YES;
-	self.collectionView.showsVerticalScrollIndicator = NO;
-	self.collectionView.showsHorizontalScrollIndicator = NO;
-	
-	UIView *superview = self.collectionView.superview;
-	[self.pageControl mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@30);
-		make.bottom.equalTo(superview);
-		make.left.equalTo(superview);
-		make.right.equalTo(superview);
+
+	self.infinityScroll = [[MSFInfinityScroll alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+	[self.view addSubview:self.infinityScroll];
+	@weakify(self);
+	self.infinityScroll.numberOfPages = ^{
+		@strongify(self)
+		return [self.viewModel numberOfItemsInSection:0];
+	};
+	self.infinityScroll.imageUrlAtIndex = ^(NSInteger index){
+		@strongify(self)
+		return [self.viewModel imageURLAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
+	};
+	self.infinityScroll.selectedBlock = ^(NSInteger index) {
+		NSLog(@"选择了---%ld", (long)index);
+	};
+	[self.infinityScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
 	}];
-	
-	UIView *line = UIView.new;
-	line.backgroundColor = UIColor.themeColor;
-	[superview addSubview:line];
-	[line mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@1);
-		make.bottom.equalTo(superview);
-		make.left.equalTo(superview);
-		make.right.equalTo(superview);
-	}];
-	
-	self.collectionView.bounces = NO;
-	[self.collectionView registerClass:MSFBannersCollectionViewCell.class forCellWithReuseIdentifier:@"Cell"];
 }
 
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	[self.infinityScroll reloadData];
 	@weakify(self)
 	[self.viewModel.updateContentSignal subscribeNext:^(id x) {
 		@strongify(self)
-		self.pageControl.numberOfPages = [self.viewModel numberOfItemsInSection:0];
-		[self.collectionView reloadData];
+		[self.infinityScroll reloadData];
 	}];
-}
-
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return [self.viewModel numberOfItemsInSection:section];
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	MSFBannersCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-	[cell.imageView setImageWithURL:[self.viewModel imageURLAtIndexPath:indexPath]
-		placeholderImage:[UIImage imageNamed:[self.viewModel imageNameAtIndexPath:indexPath]]];
-	self.pageControl.currentPage = indexPath.item;
-	
-	return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return self.view.bounds.size;
 }
 
 @end

@@ -16,7 +16,7 @@
 #import "MSFResponse.h"
 
 #import "MSFAdver.h"
-#import "MSFClient+Adver.h"
+#import "MSFClient+Advers.h"
 
 #import "MSFApplicationForms.h"
 #import "MSFClient+MSFApplyInfo.h"

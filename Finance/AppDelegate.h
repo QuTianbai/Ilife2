@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class MSFTabBarController;
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
-@property (nonatomic, strong) MSFTabBarController *tabBarController;
 
 @end
 

@@ -32,6 +32,10 @@
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFProductViewModel `-dealloc`");
+}
+
 - (instancetype)initWithFormsViewModel:(id)viewModel {
 	self = [super init];
 	if (!self) {
@@ -85,6 +89,7 @@
 			RACObserve(self, insurance),
 		]]
 		flattenMap:^RACStream *(RACTuple *productAndInsurance) {
+			@strongify(self)
 			RACTupleUnpack(MSFProduct *product, NSNumber *insurance) = productAndInsurance;
 			if (!product) {
 				return [RACSignal return:@0];

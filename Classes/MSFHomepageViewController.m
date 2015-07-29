@@ -8,9 +8,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFHomepageCollectionViewHeader.h"
-#import "MSFRequisitionCollectionViewCell.h"
+#import "MSFHomePageContentCollectionViewCell.h"
 #import "MSFPlaceholderCollectionViewCell.h"
-#import "MSFPepaymentCollectionViewCell.h"
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
@@ -52,9 +51,8 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-	[self.collectionView registerClass:MSFRequisitionCollectionViewCell.class forCellWithReuseIdentifier:@"MSFRequisitionCollectionViewCell"];
+	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
 	[self.collectionView registerClass:MSFPlaceholderCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell"];
-	[self.collectionView registerClass:MSFPepaymentCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPepaymentCollectionViewCell"];
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
@@ -97,8 +95,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = (width / 4.0) * 3.0 + 70;
-	
+	CGFloat height = width / 2;
 	return CGSizeMake(width, height);
 }
 
@@ -108,7 +105,6 @@
 		[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
 		 withReuseIdentifier:@"header" forIndexPath:indexPath];
 		[header bindViewModel:self.viewModel];
-		
 		return header;
 	}
 	
@@ -121,7 +117,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = CGRectGetHeight(self.view.bounds) - (width / 4.0) * 3.0 + 10 - 70;
+	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.0 - 110;
 	
 	return CGSizeMake(width, height);
 }
@@ -135,8 +131,8 @@
 		
 		return cell;
 	}
-	[cell bindViewModel:viewModel];
-	
+	if (viewModel) [cell bindViewModel:viewModel];
+
 	return cell;
 }
 

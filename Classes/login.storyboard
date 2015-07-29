@@ -45,7 +45,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="8P2-Mp-wfs" kind="push" id="GG4-ef-aId"/>
+                                        <segue destination="8P2-Mp-wfs" kind="show" id="GG4-ef-aId"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -402,11 +402,12 @@
                         <outlet property="leading" destination="PDU-Bc-RrC" id="IBK-ll-4r2"/>
                         <outlet property="signInButton" destination="4Gw-h1-8id" id="HYC-3r-58h"/>
                         <outlet property="signUpButton" destination="aYY-mG-gh7" id="wqs-od-cKB"/>
+                        <outlet property="width" destination="rdI-8V-Vcb" id="hFX-wr-tEr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5W-wL-mel" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1241" y="1009"/>
+            <point key="canvasLocation" x="-1485" y="393"/>
         </scene>
         <!--注册-->
         <scene sceneID="L93-sD-o2b">
@@ -445,7 +446,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="Zsc-eE-Cda" kind="push" id="cNl-UU-bWa"/>
+                                        <segue destination="Zsc-eE-Cda" kind="show" id="cNl-UU-bWa"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3w-qu-T3j" customClass="MSFBlurButton">
@@ -672,12 +673,29 @@
                         <outlet property="password" destination="tap-h5-xY0" id="F67-0S-uDP"/>
                         <outlet property="sendCaptchaButton" destination="q7N-fA-FFQ" id="nZN-yB-Wr1"/>
                         <outlet property="username" destination="JLT-7y-G1q" id="DXi-dv-lY4"/>
-                        <segue destination="gqY-Z9-IbC" kind="push" identifier="complement" id="qXP-sY-L47"/>
+                        <segue destination="gqY-Z9-IbC" kind="show" identifier="complement" id="qXP-sY-L47"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z8B-Wx-Mgb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9" y="1324"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sWI-t4-6TL">
+            <objects>
+                <navigationController storyboardIdentifier="nav2" id="kgj-2x-pqc" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WXh-SX-x3K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CgY-uc-PJc" kind="relationship" relationship="rootViewController" id="bvb-9z-gV0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y3q-fn-gqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-432" y="1238"/>
         </scene>
         <!--用户协议-->
         <scene sceneID="BMd-ao-cXw">
@@ -1093,24 +1111,24 @@
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0e-U6-1Vg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-813" y="1009"/>
+            <point key="canvasLocation" x="-1057" y="393"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hnP-tO-ggP">
             <objects>
-                <navigationController navigationBarHidden="YES" id="IDU-zp-Uah" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="nav1" id="IDU-zp-Uah" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dEx-av-Owc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="NLo-GN-gAy" kind="relationship" relationship="rootViewController" id="3Pr-yC-erP"/>
+                        <segue destination="xFo-OI-4wy" kind="relationship" relationship="rootViewController" id="o5B-EL-DsD"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPM-fI-D1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-420" y="293"/>
+            <point key="canvasLocation" x="-432" y="555"/>
         </scene>
         <!--修改密码-->
         <scene sceneID="UOU-Wa-w0D">
@@ -1239,32 +1257,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3z-cc-fPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-453" y="1690"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="ZuR-NP-zMB">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="NLo-GN-gAy" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mI9-Ev-GUs"/>
-                        <viewControllerLayoutGuide type="bottom" id="K3B-Ry-kQi"/>
-                    </layoutGuides>
-                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iXC-ch-5Zm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Ce4-8l-5kT"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <segue destination="xFo-OI-4wy" kind="custom" identifier="signin" customClass="MSFSwapSegue" id="Ltw-lR-ZDJ"/>
-                        <segue destination="CgY-uc-PJc" kind="custom" identifier="signup" customClass="MSFSwapSegue" id="lWS-zO-32n"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e87-pX-r5U" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-420" y="1009"/>
+            <point key="canvasLocation" x="-1485" y="1114"/>
         </scene>
     </scenes>
     <resources>
