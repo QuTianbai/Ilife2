@@ -29,9 +29,11 @@
 	
 	[self addSubview:_amount];
 	
+	NSInteger edges = [UIScreen mainScreen].bounds.size.width / 6;
+	
 	[_date mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(self);
-		make.left.equalTo(@10);
+		make.centerX.equalTo(self.mas_left).offset(edges);
 	}];
 	
 	[_tradeDescription mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -40,7 +42,7 @@
 	
 	[_amount mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(self);
-		make.right.equalTo(@-10);
+		make.centerX.equalTo(self.mas_right).offset(-edges);
 	}];
 }
 
