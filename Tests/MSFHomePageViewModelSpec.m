@@ -17,9 +17,11 @@
 QuickSpecBegin(MSFHomePageViewModelSpec)
 
 __block MSFHomepageViewModel *viewModel;
+__block id <MSFViewModelServices> services;
 
 beforeEach(^{
-  viewModel = [[MSFHomepageViewModel alloc] init];
+	services = mockProtocol(@protocol(MSFViewModelServices));
+  viewModel = [[MSFHomepageViewModel alloc] initWithServices:services];
 });
 
 it(@"should initialize", ^{
@@ -42,23 +44,32 @@ it(@"should not has viewmodel for placeholder", ^{
 
 it(@"should has a appling viewmodel", ^{
   // given
-  [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
-    NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"applyList" withExtension:@"json"];
-    return [OHHTTPStubsResponse responseWithFileURL:URL statusCode:200 responseTime:0 headers:@{@"Content-Type": @"application/json"}];
-  }];
+	MSFClient *client = mock([MSFClient class]);
+	[given([services httpClient]) willReturn:client];
+	
+	[given([client isAuthenticated]) willReturn:@YES];
+	[given([client fetchApplyList]) willDo:^id(NSInvocation *invocation) {
+		MSFApplyList *model = [[MSFApplyList alloc] initWithDictionary:@{
+			@"loan_id": @"1dafds782nj2",
+			@"apply_time": @"2015-05-03T15:38:45Z",
+			@"payed_amount": @"200",
+			@"total_amount": @"300",
+			@"monthly_repayment_amount": @"400",
+			@"current_installment": @4,
+			@"total_installments": @10,
+			@"status": @0
+		} error:nil];
+		return [RACSignal return:model];
+	}];
+	
+  // when
+  [[viewModel.refreshCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	
+  // then
   NSIndexPath *indexPah = mock(NSIndexPath.class);
   stubProperty(indexPah, item, 0);
-  MSFUser *user = mock(MSFUser.class);
-  stubProperty(user, objectID, @"");
-  stubProperty(user, server, MSFServer.dotComServer);
-  MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"" session:@""];
-  
-  // when
-//  viewModel = [[MSFHomepageViewModel alloc] initWithClient:client];
-  [[viewModel.refreshCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
   MSFLoanViewModel *sub = [viewModel viewModelForIndexPath:indexPah];
-  
-  // then
+	
   expect(sub.status).to(equal(@"无效"));
   expect([viewModel reusableIdentifierForIndexPath:indexPah]).to(equal(@"MSFApplyCollectionViewCell"));
 });
