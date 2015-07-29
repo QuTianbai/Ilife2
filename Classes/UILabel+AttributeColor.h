@@ -10,6 +10,6 @@
 
 @interface UILabel(AttributeColor)
 
-- (void) setText:(NSString *)text highLightText:(NSString *)hText highLightColor:(UIColor *)color;
+- (void)setText:(NSString *)text highLightText:(NSString *)hText highLightColor:(UIColor *)color;
 
 @end

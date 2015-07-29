@@ -10,7 +10,7 @@
 
 @implementation UILabel(AttributeColor)
 
-- (void) setText:(NSString *)text highLightText:(NSString *)hText highLightColor:(UIColor *)color {
+- (void)setText:(NSString *)text highLightText:(NSString *)hText highLightColor:(UIColor *)color {
 	NSRange highLightRange = [text rangeOfString:hText];
 	NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:text];
 	[str addAttribute:NSForegroundColorAttributeName value:color range:highLightRange];;
