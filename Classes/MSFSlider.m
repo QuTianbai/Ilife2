@@ -24,7 +24,7 @@
   return self;
 }
 
-- (instancetype) initWithCoder:(NSCoder *)aDecoder {
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   if (!(self = [super initWithCoder:aDecoder])) {
     return nil;
   }
@@ -41,10 +41,11 @@
   self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 100, 20)];
   self.moneyNumLabel.textColor = [UIColor blackColor];
   self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
+  self.moneyNumLabel.text = @"0元";
   [self addSubview:self.moneyNumLabel];
   
   [self setMinimumTrackImage:[UIImage imageNamed:@"1242-2208-蓝色"] forState:UIControlStateNormal];
-  [self setMaximumTrackImage: [UIImage imageNamed:@"1242-2208-灰色"] forState:UIControlStateNormal];
+  [self setMaximumTrackImage:[UIImage imageNamed:@"1242-2208-灰色"] forState:UIControlStateNormal];
   UIImage *thumbImage = [UIImage imageNamed:@"btnSlider"];
   [self setThumbImage:thumbImage forState:UIControlStateHighlighted];
   

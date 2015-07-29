@@ -27,20 +27,16 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAM-Hj-ofJ">
                                     <rect key="frame" x="75" y="41" width="170" height="170"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-loan-installment.png" translatesAutoresizingMaskIntoConstraints="NO" id="teQ-7w-5EM">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预计每期还款金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iot-0D-2xc">
                                             <rect key="frame" x="25" y="60" width="120" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未知" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX">
                                             <rect key="frame" x="61" y="91" width="48" height="29"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -48,10 +44,6 @@
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="iot-0D-2xc" secondAttribute="centerX" id="1nI-KN-pCT"/>
                                         <constraint firstAttribute="centerX" secondItem="v6U-t7-RUX" secondAttribute="centerX" id="2Qp-NY-Z1f"/>
-                                        <constraint firstItem="teQ-7w-5EM" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" id="2cz-cm-U7l"/>
-                                        <constraint firstAttribute="trailing" secondItem="teQ-7w-5EM" secondAttribute="trailing" id="FDf-fy-dAW"/>
-                                        <constraint firstAttribute="bottom" secondItem="teQ-7w-5EM" secondAttribute="bottom" id="Lxx-e9-tfK"/>
-                                        <constraint firstItem="teQ-7w-5EM" firstAttribute="leading" secondItem="rAM-Hj-ofJ" secondAttribute="leading" id="NSS-WP-cJu"/>
                                         <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="50" id="On4-ru-LLb"/>
                                         <constraint firstAttribute="width" constant="170" id="aml-Wl-Dqa"/>
                                         <constraint firstAttribute="height" constant="170" id="bIk-8Z-A3k"/>
@@ -67,16 +59,40 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此服务为可选增值服务，请仔细阅读后选择" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dE5-fc-Du5">
+                                    <rect key="frame" x="15" y="0.0" width="200" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="1UI-Hm-TGC"/>
+                                        <constraint firstAttribute="height" constant="21" id="49g-iT-UWk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寿险金额：10元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="826-SW-x5j">
+                                    <rect key="frame" x="215" y="0.0" width="95" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="dLI-UO-hOB"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="rAM-Hj-ofJ" secondAttribute="centerX" id="Bct-Cc-y2F"/>
+                                <constraint firstItem="dE5-fc-Du5" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" constant="15" id="Bze-V9-VDT"/>
                                 <constraint firstItem="rAM-Hj-ofJ" firstAttribute="top" secondItem="CS3-WP-hrb" secondAttribute="bottom" constant="40" id="Eaf-5F-6pq"/>
+                                <constraint firstAttribute="trailing" secondItem="826-SW-x5j" secondAttribute="trailing" constant="10" id="IXb-Ue-jal"/>
                                 <constraint firstAttribute="trailing" secondItem="CS3-WP-hrb" secondAttribute="trailing" id="Mwr-8E-qOn"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ddS-PJ-7S2"/>
                                 <constraint firstItem="xaO-by-3e5" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="bottom" constant="30" id="ee4-co-666"/>
+                                <constraint firstItem="826-SW-x5j" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ijx-8A-nId"/>
                                 <constraint firstAttribute="trailing" secondItem="xaO-by-3e5" secondAttribute="trailing" constant="10" id="mWZ-Mw-jkk"/>
+                                <constraint firstItem="dE5-fc-Du5" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="q8L-rt-l6h"/>
                                 <constraint firstItem="xaO-by-3e5" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" constant="10" id="uey-Lo-fVr"/>
+                                <constraint firstItem="826-SW-x5j" firstAttribute="leading" secondItem="dE5-fc-Du5" secondAttribute="trailing" id="vCQ-Dm-tie"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" id="zwi-km-nNs"/>
                             </constraints>
                         </view>
@@ -334,7 +350,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg-loan-installment.png" width="203" height="202"/>
         <image name="icon-question.png" width="36" height="44"/>
     </resources>
 </document>

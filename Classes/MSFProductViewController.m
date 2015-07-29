@@ -29,6 +29,8 @@
 #import "MSFSlider.h"
 #import <Masonry/Masonry.h>
 #import "MSFPeriodsCollectionViewCell.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -88,22 +90,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
-  //_loanPeriodsAry = [NSArray arrayWithObjects:@"6个月", @"9个月", @"10个月", @"12个月" , @"18个月",nil];
-//  RAC(self, loanPeriodsAry) = [RACObserve(self, viewModel.market.teams) map:^id(id value) {
-//    self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self,view total:<#(NSInteger)#>]
-//    return value;
-//  }];
   
-//  RAC(self,selectViewModel) = [RACObserve(self.viewModel,market) map:^id(MSFMarket *market) {
-//    return [MSFSelectionViewModel monthsViewModelWithProducts:market total:self.viewModel.totalAmount.integerValue];
-//  }];
-  
-  //MSFSelectionViewModel *viewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue];
-  
-//	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey]) {
-//		self.applyCashNumTF.text = @"2000";
-//	}
-	
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
 	label.text = @"贷款申请";
 	label.textColor = [UIColor fontHighlightedColor];
@@ -356,15 +343,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  
+ self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath]; 
   MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-  cell.loacPeriodsLabel.textColor = [UIColor blueColor];
-  cell.layer.borderColor   = [UIColor blueColor].CGColor;
+  cell.loacPeriodsLabel.textColor = [UIColor tintColor];
+  cell.layer.borderColor   = [UIColor tintColor].CGColor;
 }
 
 //UICollectionView取消选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-  self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+  
   MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
   cell.loacPeriodsLabel.textColor = [UIColor grayColor];
   cell.layer.borderColor   = [UIColor grayColor].CGColor;
@@ -373,7 +360,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   return YES;
 }
-
+#pragma mark - MSFSlider Delegate
 - (void)getStringValue:(NSString *)stringvalue {
   self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
   [self.monthCollectionView reloadData];

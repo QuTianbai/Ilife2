@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="66" height="35"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6y-AB-gaE">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6y-AB-gaE">
                         <rect key="frame" x="0.0" y="0.0" width="66" height="35"/>
                         <color key="backgroundColor" red="1" green="0.06819049576947811" blue="0.034768487371485302" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.24309269157140687" green="0.23410445203880026" blue="0.85197679924242431" alpha="1" colorSpace="calibratedRGB"/>
