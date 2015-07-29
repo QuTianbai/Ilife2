@@ -12,6 +12,7 @@
 #import "MSFUser.h"
 #import "MSFClient.h"
 #import "MSFSelectKeyValues.h"
+#import "MSFAddressViewModel.h"
 
 QuickSpecBegin(MSFClozeViewModelSpec)
 
@@ -21,11 +22,11 @@ beforeEach(^{
   MSFUser *user = mock(MSFUser.class);
   stubProperty(user, objectID, @"foo");
   stubProperty(user, server, MSFServer.dotComServer);
-	
-	UIViewController *viewController = mock([UIViewController class]);
-	
   MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"bar" session:@""];
-//  viewModel = [[MSFClozeViewModel alloc] initWithAuthorizedClient:client controller:viewController];
+	
+	id <MSFViewModelServices> servcies = mockProtocol(@protocol(MSFViewModelServices));
+	[given([servcies httpClient]) willReturn:client];
+	viewModel = [[MSFClozeViewModel alloc] initWithServices:servcies];
 });
 
 it(@"should initialize", ^{
@@ -57,9 +58,12 @@ it(@"should execute submit", ^{
   viewModel.name = @"张三";
   viewModel.card = @"111111111111111111";
   viewModel.expired = [NSDate date];
-	viewModel.bankNO = @"xx";
+	viewModel.bankNO = @"10000000000000000";
 	viewModel.bankName = @"xx";
 	viewModel.bankAddress = @"mmm";
+	viewModel.bankCode = @"1000";
+	viewModel.addressViewModel.provinceCode = @"1000";
+	viewModel.addressViewModel.cityCode = @"1000";
   [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
     NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
     return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
@@ -68,10 +72,10 @@ it(@"should execute submit", ^{
        @"msfinance": @"objectid",
        }];
   }];
-  
-  __block MSFUser *user;
+	
+  __block MSFClient *client;
   [[viewModel.executeAuth.executionSignals concat] subscribeNext:^(id x) {
-    user = x;
+    client = x;
   }];
   
   BOOL success = NO;
@@ -82,7 +86,7 @@ it(@"should execute submit", ^{
   // then
   expect(@(success)).to(beTruthy());
   expect(error).to(beNil());
-  expect(user.objectID).to(equal(@"ds13dsaf21d"));
+  expect(client.user.objectID).to(equal(@"ds13dsaf21d"));
 });
 
 QuickSpecEnd

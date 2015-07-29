@@ -101,8 +101,7 @@
 		4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF01B2AFD8800872A8A /* btn_uncheck@2x.png */; };
 		4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */; };
 		492BB43F1B1C0D3C0024897C /* loaninfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 492BB43E1B1C0D3C0024897C /* loaninfo.json */; };
-		492C6A071B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A061B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m */; };
-		492C6A0A1B4CFF2B00547616 /* MSFTestAFViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A091B4CFF2B00547616 /* MSFTestAFViewModel.m */; };
+		492C6A071B4CFB7E00547616 /* MSFProductViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A061B4CFB7E00547616 /* MSFProductViewModelSpec.m */; };
 		492C6A181B4D174900547616 /* loan-response-cash.json in Resources */ = {isa = PBXBuildFile; fileRef = 492C6A171B4D174900547616 /* loan-response-cash.json */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
@@ -695,9 +694,7 @@
 		4925ADF01B2AFD8800872A8A /* btn_uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_uncheck@2x.png"; sourceTree = "<group>"; };
 		4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_uncheck@3x.png"; sourceTree = "<group>"; };
 		492BB43E1B1C0D3C0024897C /* loaninfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loaninfo.json; sourceTree = "<group>"; };
-		492C6A061B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAFRequestViewModelSpec.m; sourceTree = "<group>"; };
-		492C6A081B4CFF2B00547616 /* MSFTestAFViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTestAFViewModel.h; sourceTree = "<group>"; };
-		492C6A091B4CFF2B00547616 /* MSFTestAFViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTestAFViewModel.m; sourceTree = "<group>"; };
+		492C6A061B4CFB7E00547616 /* MSFProductViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProductViewModelSpec.m; sourceTree = "<group>"; };
 		492C6A171B4D174900547616 /* loan-response-cash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loan-response-cash.json"; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
@@ -1678,8 +1675,6 @@
 				49C9DE561B171FC300399DFE /* MSFTestCipher.m */,
 				49C2FE511B4677D200B6B20A /* MSFTestAddressViewModel.h */,
 				49C2FE521B4677D200B6B20A /* MSFTestAddressViewModel.m */,
-				492C6A081B4CFF2B00547616 /* MSFTestAFViewModel.h */,
-				492C6A091B4CFF2B00547616 /* MSFTestAFViewModel.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1805,7 +1800,7 @@
 				499147181B244D5600260E97 /* MSFSelectionViewModelSpec.m */,
 				C7D7DB111B2EF85A005ECA0C /* MSFRelationViewModelSpec.m */,
 				49C2FE4C1B466A3E00B6B20A /* MSFAddressViewModelSpec.m */,
-				492C6A061B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m */,
+				492C6A061B4CFB7E00547616 /* MSFProductViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -3389,11 +3384,10 @@
 				4943C3711B047C4C000BBF5E /* MSFObjectSpec.m in Sources */,
 				49569A371B08B7FC00DAEB66 /* MSFAuthorizationSpec.m in Sources */,
 				498113D81B1C4FF2003D1B7A /* MSFLoanViewModelSpec.m in Sources */,
-				492C6A071B4CFB7E00547616 /* MSFAFRequestViewModelSpec.m in Sources */,
+				492C6A071B4CFB7E00547616 /* MSFProductViewModelSpec.m in Sources */,
 				C7D7DB121B2EF85A005ECA0C /* MSFRelationViewModelSpec.m in Sources */,
 				4943C3861B04803D000BBF5E /* MSFClientSpec.m in Sources */,
 				C72149F21B05C8920045F919 /* MSFRepaymentSchedulesSpec.m in Sources */,
-				492C6A0A1B4CFF2B00547616 /* MSFTestAFViewModel.m in Sources */,
 				49DA22511B062AB400DD4483 /* MSFUserSpec.m in Sources */,
 				4943C3571B047437000BBF5E /* Tests.m in Sources */,
 				49C2FE531B4677D200B6B20A /* MSFTestAddressViewModel.m in Sources */,

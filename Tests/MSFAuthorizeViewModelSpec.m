@@ -20,7 +20,9 @@ __block NSError *error;
 __block BOOL success;
 
 beforeEach(^{
-//  viewModel = [[MSFAuthorizeViewModel alloc] initWithServer:MSFServer.dotComServer];
+	id <MSFViewModelServices> services = mockProtocol(@protocol(MSFViewModelServices));
+	[given([services server]) willReturn:[MSFServer dotComServer]];
+  viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:services];
   error = nil;
   success = NO;
 });
