@@ -1,16 +1,14 @@
 //
-//	MSFClient+MSFAdver.m
-//	Cash
+// MSFClient+Advers.m
 //
-//	Created by xbm on 15/5/14.
-//	Copyright (c) 2015年 Zēng Liàng. All rights reserved.
+// Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFClient+Adver.h"
+#import "MSFClient+Advers.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFAdver.h"
 
-@implementation MSFClient (Adver)
+@implementation MSFClient (Advers)
 
 - (RACSignal *)fetchAdverWithCategory:(NSString *)category {
 	NSString *path = [NSString stringWithFormat:@"ads/%@", category];
