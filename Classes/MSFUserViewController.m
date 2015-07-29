@@ -72,65 +72,9 @@
 								 @[[UIImage imageNamed:@"icon-account-about"]]];
 }
 
-#pragma mark - Private
-/*
-- (UIView *)tableViewHeader {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 170)];
-	view.backgroundColor = [UIColor whiteColor];
-	
-	UIImageView *backgroundView = UIImageView.new;
-	backgroundView.image = [UIImage imageNamed:@"bg-account-header"];
-	[view addSubview:backgroundView];
-	[backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(view);
-	}];
-	
-	UIButton *avatarButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	[avatarButton setBackgroundImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
-	[view addSubview:avatarButton];
-	[avatarButton mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@75);
-		make.width.equalTo(@75);
-		make.center.equalTo(view);
-	}];
-	
-	UILabel *label = UILabel.new;
-	label.textAlignment = NSTextAlignmentCenter;
-	label.textColor = [UIColor whiteColor];
-	label.text = [MSFUtils.httpClient user].name;
-	label.hidden = YES;
-	[view addSubview:label];
-	[label mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(avatarButton.mas_bottom).offset(-10);
-		make.centerX.equalTo(avatarButton);
-	}];
-	
-	@weakify(self)
-	[[avatarButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];
-			userinfoViewController.hidesBottomBarWhenPushed = YES;
-			[self.navigationController pushViewController:userinfoViewController animated:YES];
-	}];
-	
-	self.navigationItem.rightBarButtonItem =
-		[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-setting"]
-		style:UIBarButtonItemStyleDone target:nil action:nil];
-	self.navigationItem.rightBarButtonItem.rac_command =
-		[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			@strongify(self)
-			MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
-			settingsViewController.hidesBottomBarWhenPushed = YES;
-			[self.navigationController pushViewController:settingsViewController animated:YES];
-			return [RACSignal empty];
-		}];
- 
-	return view;
-}*/
-
 #pragma mark - UITableViewDataSource
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	return self.rowTitles.count;
 }
 
@@ -138,7 +82,7 @@
 	return [self.rowTitles[section] count];
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	switch (section) {
 		case 0: return 0.1;
 		case 1: return 32;
@@ -147,11 +91,11 @@
 	}
 }
 
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
 	return 0.1;
 }
 
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"sectionHeader"];
 	if (section == 1) {
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 6, 100, 20)];
@@ -192,7 +136,7 @@
 
 #pragma mark - IBActions
 
-- (void) userInfo {
+- (void)userInfo {
 	MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];
 	userinfoViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:userinfoViewController animated:YES];

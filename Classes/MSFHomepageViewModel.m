@@ -20,6 +20,10 @@
 
 @implementation MSFHomepageViewModel
 
+- (void)dealloc {
+	NSLog(@"MSFHomepageViewModel `-dealloc`");
+}
+
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
