@@ -32,8 +32,9 @@
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
-@interface MSFProductViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-
+@interface MSFProductViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
+@property (nonatomic,strong) MSFMarket *market;
+@property (nonatomic, strong) MSFSelectionViewModel *selectViewModel;
 @property (nonatomic, strong) NSArray *loanPeriodsAry;
 @property (weak, nonatomic) IBOutlet UICollectionView *monthCollectionView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
@@ -88,13 +89,20 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
   //_loanPeriodsAry = [NSArray arrayWithObjects:@"6个月", @"9个月", @"10个月", @"12个月" , @"18个月",nil];
-  //RAC(self,loanPeriodsAry) = RACObserve(self, <#KEYPATH#>)
+//  RAC(self, loanPeriodsAry) = [RACObserve(self, viewModel.market.teams) map:^id(id value) {
+//    self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self,view total:<#(NSInteger)#>]
+//    return value;
+//  }];
   
+//  RAC(self,selectViewModel) = [RACObserve(self.viewModel,market) map:^id(MSFMarket *market) {
+//    return [MSFSelectionViewModel monthsViewModelWithProducts:market total:self.viewModel.totalAmount.integerValue];
+//  }];
   
+  //MSFSelectionViewModel *viewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue];
   
-	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey]) {
-		self.applyCashNumTF.text = @"2000";
-	}
+//	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey]) {
+//		self.applyCashNumTF.text = @"2000";
+//	}
 	
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
 	label.text = @"贷款申请";
@@ -125,10 +133,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     }
     return value;
   }];
+  self.moneySlider.delegate = self;
 	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSNumber *value) {
-	 //return [NSString stringWithFormat:@"%f",value];
+    
 	 return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
-	}];
+	}] ;
 	self.applyMonthsBT.rac_command = self.executeTermCommand;
 	[self.executeTermCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -305,7 +314,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
 		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	}
-
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -314,23 +322,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return _loanPeriodsAry.count;
+  NSLog(@"%ld", self.selectViewModel.numberOfSections);
+  NSLog(@"%ld", [self.selectViewModel numberOfItemsInSection:section]);
+  return [self.selectViewModel numberOfItemsInSection:section];
+  //return _loanPeriodsAry.count;
 }
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *cellID = @"MSFPeriodsCollectionViewCell";
   
   MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-  
-  
   cell.layer.borderColor   = [UIColor grayColor].CGColor;
   cell.layer.borderWidth   = 1;
   cell.layer.cornerRadius  = 7;
   cell.layer.masksToBounds = YES;
   cell.loacPeriodsLabel.backgroundColor = [UIColor clearColor];
   cell.loacPeriodsLabel.textColor = [UIColor grayColor];
-  cell.loacPeriodsLabel.text = [NSString stringWithFormat:@"%@", [_loanPeriodsAry objectAtIndex:indexPath.row]];
-  
+  cell.loacPeriodsLabel.text = [self.selectViewModel titleForIndexPath:indexPath];
   return cell;
 }
 
@@ -348,6 +356,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  
   MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
   cell.loacPeriodsLabel.textColor = [UIColor blueColor];
   cell.layer.borderColor   = [UIColor blueColor].CGColor;
@@ -355,6 +364,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView取消选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+  self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
   cell.loacPeriodsLabel.textColor = [UIColor grayColor];
   cell.layer.borderColor   = [UIColor grayColor].CGColor;
@@ -362,6 +372,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   return YES;
+}
+
+- (void)getStringValue:(NSString *)stringvalue {
+  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
+  [self.monthCollectionView reloadData];
 }
 
 @end
