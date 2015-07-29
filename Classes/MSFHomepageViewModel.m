@@ -78,7 +78,7 @@
 	MSFLoanViewModel *viewModel = [self viewModelForIndexPath:indexPath];
 	if (!viewModel) {
 		return @"MSFPlaceholderCollectionViewCell";
-	}else {
+	} else {
 		return @"MSFHomePageContentCollectionViewCell";
 	}
 }

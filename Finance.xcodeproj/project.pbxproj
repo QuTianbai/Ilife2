@@ -315,7 +315,6 @@
 		49C7CBAC1B04A4FC00EF5A68 /* releasenote.json in Resources */ = {isa = PBXBuildFile; fileRef = 49C7CBAB1B04A4FC00EF5A68 /* releasenote.json */; };
 		49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C9DE561B171FC300399DFE /* MSFTestCipher.m */; };
 		49CBDD9C1B0DD904009EF662 /* MSFBannersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDD9B1B0DD904009EF662 /* MSFBannersViewController.m */; };
-		49CBDD9F1B0DD919009EF662 /* MSFBannersCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDD9E1B0DD919009EF662 /* MSFBannersCollectionViewCell.m */; };
 		49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */; };
 		49CBDDB41B0DF03E009EF662 /* banners.json in Resources */ = {isa = PBXBuildFile; fileRef = 49CBDDB31B0DF03E009EF662 /* banners.json */; };
 		49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */; };
@@ -983,8 +982,6 @@
 		49C9DE561B171FC300399DFE /* MSFTestCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTestCipher.m; sourceTree = "<group>"; };
 		49CBDD9A1B0DD904009EF662 /* MSFBannersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBannersViewController.h; sourceTree = "<group>"; };
 		49CBDD9B1B0DD904009EF662 /* MSFBannersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewController.m; sourceTree = "<group>"; };
-		49CBDD9D1B0DD919009EF662 /* MSFBannersCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBannersCollectionViewCell.h; sourceTree = "<group>"; };
-		49CBDD9E1B0DD919009EF662 /* MSFBannersCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersCollectionViewCell.m; sourceTree = "<group>"; };
 		49CBDDA01B0DD9C3009EF662 /* MSFBannersViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBannersViewModel.h; sourceTree = "<group>"; };
 		49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewModel.m; sourceTree = "<group>"; };
 		49CBDDB31B0DF03E009EF662 /* banners.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banners.json; sourceTree = "<group>"; };
@@ -2296,8 +2293,6 @@
 				49CCFBDA1B072359008A9CD1 /* MSFHomepageViewController.m */,
 				49CBDD9A1B0DD904009EF662 /* MSFBannersViewController.h */,
 				49CBDD9B1B0DD904009EF662 /* MSFBannersViewController.m */,
-				49CBDD9D1B0DD919009EF662 /* MSFBannersCollectionViewCell.h */,
-				49CBDD9E1B0DD919009EF662 /* MSFBannersCollectionViewCell.m */,
 				4958FBE81B1C35680090E663 /* MSFHomepageCollectionViewHeader.h */,
 				4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */,
 				10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */,
@@ -3217,7 +3212,6 @@
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
 				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */,
 				491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */,
-				49CBDD9F1B0DD919009EF662 /* MSFBannersCollectionViewCell.m in Sources */,
 				07C924D71B0C2D1C00FA73BD /* MSFLoanListViewController.m in Sources */,
 				07CB4C7F1B104944006C220E /* MSFProfessionalViewController.m in Sources */,
 				49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */,

@@ -32,6 +32,7 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
+		/*
 		NSDictionary *json1 = @{@"adID":@"1",
 								@"title":@"test1",
 								@"type":@"type1",
@@ -50,7 +51,8 @@
 		MSFAdver *ad2 = [MSFAdver modelWithDictionary:json2 error:nil];
 		self.banners = @[ad1,ad2];
 		[(RACSubject *)self.updateContentSignal sendNext:nil];
-		/*
+		 */
+		
 		[[[self.services.httpClient
 			fetchAdverWithCategory:@"1"]
 			collect]
@@ -59,7 +61,7 @@
 				[(RACSubject *)self.updateContentSignal sendNext:nil];
 			}
 			error:^(NSError *error) {
-			}];*/
+			}];
 	}];
 	
 	return self;

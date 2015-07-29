@@ -28,25 +28,19 @@
 	_statusLabel.layer.borderWidth = 1;
 }
 
-- (void) bindViewModel:(MSFLoanViewModel *)viewModel {
-	_titleLabel.text  = @"合同还款状态";
-	_statusLabel.text = @"还款中";
-	_amountLabel.text = @"4000";
-	_infoLabel.text = @"申请日期   2015年6月10日";
-	
-	/*
+- (void)bindViewModel:(MSFLoanViewModel *)viewModel {
 	_titleLabel.text  = viewModel.title;
 	_statusLabel.text = viewModel.status;
 	_amountLabel.text = viewModel.mothlyRepaymentAmount;
 	
 	if ([viewModel.status isEqualToString:@"审核中"]) {
-		_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@",viewModel.applyDate,viewModel.totalInstallments];
-	}else if ([viewModel.status isEqualToString:@"已逾期"]) {
+		_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@", viewModel.applyDate, viewModel.totalInstallments];
+	} else if ([viewModel.status isEqualToString:@"已逾期"]) {
 		[_infoLabel setText:[NSString stringWithFormat:@"您的合同已逾期   请及时还款www.msxf.com"] highLightText:@"已逾期" highLightColor:UIColor.tintColor];
-	}else {
-		_infoLabel.text = [NSString stringWithFormat:@"申请日期   %@",viewModel.applyDate];
+	} else {
+		_infoLabel.text = [NSString stringWithFormat:@"申请日期   %@", viewModel.applyDate];
 	}
-	 */
+	 
 }
 
 @end

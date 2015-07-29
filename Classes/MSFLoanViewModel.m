@@ -49,13 +49,13 @@
 		return [value integerValue] > 4 ? @"贷款处理状态" :@"贷款申请状态";
 	}];
 	RAC(self, repaidAmount) = [RACObserve(model, payed_amount) map:^id(id value) {
-		return [NSString stringWithFormat:@"¥ %@", value];
+		return [NSString stringWithFormat:@"%@", value];
 	}];
 	RAC(self, totalAmount) = [RACObserve(model, total_amount) map:^id(id value) {
-		return [NSString stringWithFormat:@"¥ %@", value];
+		return [NSString stringWithFormat:@"%@", value];
 	}];
 	RAC(self, mothlyRepaymentAmount) = [RACObserve(model, monthly_repayment_amount) map:^id(id value) {
-		return [NSString stringWithFormat:@"¥ %@", value];
+		return [NSString stringWithFormat:@"%@", value];
 	}];
 	
 	_totalInstallments = model.total_installments;
