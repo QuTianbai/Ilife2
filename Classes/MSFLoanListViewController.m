@@ -67,6 +67,7 @@
 	self.dataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStylePlain];
 	self.dataTableView.dataSource = self;
 	self.dataTableView.delegate = self;
+	self.dataTableView.tableFooterView = [UIView new];
 	
 	[self.view addSubview:self.dataTableView];
 }
