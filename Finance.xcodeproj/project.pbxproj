@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0707248D1B6718A80089916B /* MSFSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0707248C1B6718A80089916B /* MSFSlider.m */; };
+		070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249D1B671A240089916B /* 1242-2208-灰色.png */; };
+		070724A11B671A240089916B /* 1242-2208-蓝色.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249E1B671A240089916B /* 1242-2208-蓝色.png */; };
+		070724A21B671A240089916B /* btnSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249F1B671A240089916B /* btnSlider.png */; };
+		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
+		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
 		0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */; };
 		0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF6D1B1F05D200880617 /* MSFPhoto.m */; };
@@ -67,7 +73,6 @@
 		10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
-		490312A81B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */; };
 		490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */; };
 		490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BDE7E1B08265700D53391 /* NSString+Matches.m */; };
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
@@ -90,7 +95,6 @@
 		4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF01B2AFD8800872A8A /* btn_uncheck@2x.png */; };
 		4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */; };
 		492BB43F1B1C0D3C0024897C /* loaninfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 492BB43E1B1C0D3C0024897C /* loaninfo.json */; };
-		492C6A071B4CFB7E00547616 /* MSFProductViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C6A061B4CFB7E00547616 /* MSFProductViewModelSpec.m */; };
 		492C6A181B4D174900547616 /* loan-response-cash.json in Resources */ = {isa = PBXBuildFile; fileRef = 492C6A171B4D174900547616 /* loan-response-cash.json */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
@@ -154,7 +158,6 @@
 		494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 494ED8671B2D2798000AD8EA /* MSFWPTextField.m */; };
 		494FBDFD1B16B19C005F0454 /* MSFCipherSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBDFC1B16B19C005F0454 /* MSFCipherSpec.m */; };
 		494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBE0D1B16B1BC005F0454 /* MSFCipher.m */; };
-		495020F71B130FFF00605666 /* MSFUserViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 495020F61B130FFF00605666 /* MSFUserViewModelSpec.m */; };
 		495021071B13103400605666 /* MSFUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495021061B13103400605666 /* MSFUserViewModel.m */; };
 		4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */; };
 		4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952E5901B0B6D490036A6ED /* MSFAuthorizeViewModel.m */; };
@@ -182,7 +185,6 @@
 		498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */; };
 		498113D61B1C4856003D1B7A /* MSFLoanViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */; };
 		498113D81B1C4FF2003D1B7A /* MSFLoanViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113D71B1C4FF2003D1B7A /* MSFLoanViewModelSpec.m */; };
-		498113DA1B1C581D003D1B7A /* MSFHomePageViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113D91B1C581D003D1B7A /* MSFHomePageViewModelSpec.m */; };
 		498113DD1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113DC1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m */; };
 		4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58921B06E38600120D93 /* applycash.json */; };
 		4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983ED9F1B09CC0E00ADE3E5 /* applyList.json */; };
@@ -540,6 +542,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0707248B1B6718A80089916B /* MSFSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSlider.h; sourceTree = "<group>"; };
+		0707248C1B6718A80089916B /* MSFSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSlider.m; sourceTree = "<group>"; };
+		0707249D1B671A240089916B /* 1242-2208-灰色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1242-2208-灰色.png"; sourceTree = "<group>"; };
+		0707249E1B671A240089916B /* 1242-2208-蓝色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1242-2208-蓝色.png"; sourceTree = "<group>"; };
+		0707249F1B671A240089916B /* btnSlider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnSlider.png; sourceTree = "<group>"; };
+		070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPeriodsCollectionViewCell.h; sourceTree = "<group>"; };
+		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
+		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0788FF5C1B1F046E00880617 /* MSFPhotoStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoStatus.h; sourceTree = "<group>"; };
 		0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoStatus.m; sourceTree = "<group>"; };
@@ -631,7 +641,6 @@
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4902EE101B195A2F00EC836C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Externals/Crashlytics.framework; sourceTree = "<group>"; };
 		4902EE111B195A2F00EC836C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Externals/Fabric.framework; sourceTree = "<group>"; };
-		490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClozeViewModelSpec.m; sourceTree = "<group>"; };
 		490312A91B0C8AB000DC33B4 /* MSFClozeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFClozeViewModel.h; sourceTree = "<group>"; };
 		490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClozeViewModel.m; sourceTree = "<group>"; };
 		490BDE7D1B08265700D53391 /* NSString+Matches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Matches.h"; sourceTree = "<group>"; };
@@ -667,7 +676,6 @@
 		4925ADF01B2AFD8800872A8A /* btn_uncheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_uncheck@2x.png"; sourceTree = "<group>"; };
 		4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_uncheck@3x.png"; sourceTree = "<group>"; };
 		492BB43E1B1C0D3C0024897C /* loaninfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loaninfo.json; sourceTree = "<group>"; };
-		492C6A061B4CFB7E00547616 /* MSFProductViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProductViewModelSpec.m; sourceTree = "<group>"; };
 		492C6A171B4D174900547616 /* loan-response-cash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loan-response-cash.json"; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
@@ -748,7 +756,6 @@
 		494FBDFC1B16B19C005F0454 /* MSFCipherSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCipherSpec.m; sourceTree = "<group>"; };
 		494FBE0C1B16B1BC005F0454 /* MSFCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCipher.h; sourceTree = "<group>"; };
 		494FBE0D1B16B1BC005F0454 /* MSFCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCipher.m; sourceTree = "<group>"; };
-		495020F61B130FFF00605666 /* MSFUserViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserViewModelSpec.m; sourceTree = "<group>"; };
 		495021051B13103400605666 /* MSFUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserViewModel.h; sourceTree = "<group>"; };
 		495021061B13103400605666 /* MSFUserViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserViewModel.m; sourceTree = "<group>"; };
 		4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFViewModelServices.h; sourceTree = "<group>"; };
@@ -798,7 +805,6 @@
 		498113D41B1C4856003D1B7A /* MSFLoanViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanViewModel.h; sourceTree = "<group>"; };
 		498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanViewModel.m; sourceTree = "<group>"; };
 		498113D71B1C4FF2003D1B7A /* MSFLoanViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanViewModelSpec.m; sourceTree = "<group>"; };
-		498113D91B1C581D003D1B7A /* MSFHomePageViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageViewModelSpec.m; sourceTree = "<group>"; };
 		498113DB1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlaceholderCollectionViewCell.h; sourceTree = "<group>"; };
 		498113DC1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlaceholderCollectionViewCell.m; sourceTree = "<group>"; };
 		4983ED9F1B09CC0E00ADE3E5 /* applyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyList.json; sourceTree = "<group>"; };
@@ -1158,6 +1164,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0707249B1B6718BE0089916B /* MSFSlider */ = {
+			isa = PBXGroup;
+			children = (
+				0707248B1B6718A80089916B /* MSFSlider.h */,
+				0707248C1B6718A80089916B /* MSFSlider.m */,
+			);
+			name = MSFSlider;
+			sourceTree = "<group>";
+		};
+		0707249C1B671A080089916B /* ApplyProduct */ = {
+			isa = PBXGroup;
+			children = (
+				0707249D1B671A240089916B /* 1242-2208-灰色.png */,
+				0707249E1B671A240089916B /* 1242-2208-蓝色.png */,
+				0707249F1B671A240089916B /* btnSlider.png */,
+			);
+			name = ApplyProduct;
+			sourceTree = "<group>";
+		};
+		070724A61B67625A0089916B /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */,
+				070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */,
+				070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */,
+			);
+			name = CollectionView;
+			sourceTree = "<group>";
+		};
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1300,6 +1335,8 @@
 		07CD30FD1B0981A000E0C2DF /* CommandClass */ = {
 			isa = PBXGroup;
 			children = (
+				070724A61B67625A0089916B /* CollectionView */,
+				0707249B1B6718BE0089916B /* MSFSlider */,
 				07CD79721B0B0B1C004627F5 /* ClassCatory */,
 				07CD310B1B09D06D00E0C2DF /* DefineHeader */,
 				07CD31071B09CAF600E0C2DF /* CommandView */,
@@ -1748,19 +1785,15 @@
 				07FE07341B0741BF00484069 /* MSFApplyInfoSpec.m */,
 				49569A361B08B7FC00DAEB66 /* MSFAuthorizationSpec.m */,
 				4952E5921B0B6DBD0036A6ED /* MSFAuthorizeViewModelSpec.m */,
-				490312A71B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m */,
 				07C924EC1B0CBB2800FA73BD /* MSFcheckEmploySpec.m */,
-				495020F61B130FFF00605666 /* MSFUserViewModelSpec.m */,
 				490E77211B15B763003F7137 /* MSFBannersViewModelSpec.m */,
 				494FBDFC1B16B19C005F0454 /* MSFCipherSpec.m */,
 				49C3B6121B1819C9005B86AD /* MSFUtilsSpec.m */,
 				4967EE7C1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m */,
 				498113D71B1C4FF2003D1B7A /* MSFLoanViewModelSpec.m */,
-				498113D91B1C581D003D1B7A /* MSFHomePageViewModelSpec.m */,
 				499147181B244D5600260E97 /* MSFSelectionViewModelSpec.m */,
 				C7D7DB111B2EF85A005ECA0C /* MSFRelationViewModelSpec.m */,
 				49C2FE4C1B466A3E00B6B20A /* MSFAddressViewModelSpec.m */,
-				492C6A061B4CFB7E00547616 /* MSFProductViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -2314,6 +2347,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0707249C1B671A080089916B /* ApplyProduct */,
 				C7D2D1001B679346000F51ED /* perfectMeans */,
 				491B3DF11B65D68C00D28455 /* stubs */,
 				49B37B3E1B608F39004EED47 /* progressbar */,
@@ -2756,6 +2790,7 @@
 				C7A351781B217CB10001DF6A /* iconfont-chanpinjieshao@2x.png in Resources */,
 				C7B9780B1B099150005F247C /* MSFSettingsViewController.storyboard in Resources */,
 				49B37B6D1B608F39004EED47 /* bar-progress-3-normal@2x.png in Resources */,
+				070724A21B671A240089916B /* btnSlider.png in Resources */,
 				4995DCDE1B4B6D2C0086B5ED /* 1.png in Resources */,
 				07CB4C4B1B1017AE006C220E /* right_arrow@3x.png in Resources */,
 				4944C04E1B68A5DA00805C0A /* nav-setting@2x.png in Resources */,
@@ -2775,6 +2810,7 @@
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
 				4995DCE81B4B6D2C0086B5ED /* 4@2x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
+				070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */,
 				07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */,
 				4944C02E1B68A5A100805C0A /* icon-account-history.png in Resources */,
 				49B37B6C1B608F39004EED47 /* bar-progress-3-normal.png in Resources */,
@@ -2799,6 +2835,7 @@
 				49B37B631B608F39004EED47 /* bar-progress-2-highlighted.png in Resources */,
 				4975C98E1B46D6D400AA79EB /* StyleSettings.plist in Resources */,
 				49AFD9A51B073F5600438183 /* login.storyboard in Resources */,
+				070724A11B671A240089916B /* 1242-2208-蓝色.png in Resources */,
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				49B37B5A1B608F39004EED47 /* bar-normal.png in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
@@ -2950,6 +2987,7 @@
 				4995DCE01B4B6D2C0086B5ED /* 1@3x.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
+				070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */,
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
 				C7D2D1201B67938C000F51ED /* icon-cloze-bankName@2x.png in Resources */,
@@ -3156,6 +3194,7 @@
 				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
+				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
@@ -3199,6 +3238,7 @@
 				C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */,
 				49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */,
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
+				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,
 				498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */,
 				495021071B13103400605666 /* MSFUserViewModel.m in Sources */,
 				49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */,
@@ -3265,7 +3305,6 @@
 				C72149F41B05C8A40045F919 /* MSFPlanDetailsSpec.m in Sources */,
 				49C7CB9F1B049D7500EF5A68 /* MSFReleaseNoteSpec.m in Sources */,
 				4967EE7D1B1A9E84001A8F27 /* MSFAgreementViewModelSpec.m in Sources */,
-				498113DA1B1C581D003D1B7A /* MSFHomePageViewModelSpec.m in Sources */,
 				49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */,
 				C718843D1B06F89D00C25955 /* MSFAccordToNperListsSpec.m in Sources */,
 				C72149F61B05C8B60045F919 /* MSFPlanPerodicTablesSpec.m in Sources */,
@@ -3278,8 +3317,6 @@
 				4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */,
 				07BF58911B06E2C000120D93 /* MSFApplyCashSpec.m in Sources */,
 				07BF588A1B06DF1600120D93 /* MSFClientXBMSpec.m in Sources */,
-				490312A81B0C8A8500DC33B4 /* MSFClozeViewModelSpec.m in Sources */,
-				495020F71B130FFF00605666 /* MSFUserViewModelSpec.m in Sources */,
 				49C2FE4D1B466A3E00B6B20A /* MSFAddressViewModelSpec.m in Sources */,
 				07C924ED1B0CBB2800FA73BD /* MSFcheckEmploySpec.m in Sources */,
 				07BF58891B06DF1600120D93 /* MSFAdverSpec.m in Sources */,
@@ -3290,7 +3327,6 @@
 				4943C3711B047C4C000BBF5E /* MSFObjectSpec.m in Sources */,
 				49569A371B08B7FC00DAEB66 /* MSFAuthorizationSpec.m in Sources */,
 				498113D81B1C4FF2003D1B7A /* MSFLoanViewModelSpec.m in Sources */,
-				492C6A071B4CFB7E00547616 /* MSFProductViewModelSpec.m in Sources */,
 				C7D7DB121B2EF85A005ECA0C /* MSFRelationViewModelSpec.m in Sources */,
 				4943C3861B04803D000BBF5E /* MSFClientSpec.m in Sources */,
 				C72149F21B05C8920045F919 /* MSFRepaymentSchedulesSpec.m in Sources */,
