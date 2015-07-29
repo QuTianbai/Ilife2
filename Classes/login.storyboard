@@ -402,6 +402,7 @@
                         <outlet property="leading" destination="PDU-Bc-RrC" id="IBK-ll-4r2"/>
                         <outlet property="signInButton" destination="4Gw-h1-8id" id="HYC-3r-58h"/>
                         <outlet property="signUpButton" destination="aYY-mG-gh7" id="wqs-od-cKB"/>
+                        <outlet property="width" destination="rdI-8V-Vcb" id="hFX-wr-tEr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5W-wL-mel" userLabel="First Responder" sceneMemberID="firstResponder"/>

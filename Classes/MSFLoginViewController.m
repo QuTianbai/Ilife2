@@ -20,6 +20,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, weak) IBOutlet UIButton *signUpButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *leading;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
 
 @property (nonatomic, strong, readwrite) MSFLoginPageViewController *loginPageController;
 
@@ -47,6 +48,7 @@
 	[self.signUpButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
 	[self.signUpButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
 	[self updateButtons:self.viewModel.loginType];
+	self.width.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
 	
 	@weakify(self)
 	id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:self.viewModel.loginType];
