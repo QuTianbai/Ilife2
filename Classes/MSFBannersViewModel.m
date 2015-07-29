@@ -32,6 +32,25 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
+		NSDictionary *json1 = @{@"adID":@"1",
+								@"title":@"test1",
+								@"type":@"type1",
+								@"adDescription":@"testDesc",
+								@"adURL":[NSNull null],
+								@"imgURL":[NSNull null],
+								@"imageName":@"home-banner-pl.png"};
+		NSDictionary *json2 = @{@"adID":@"2",
+								@"title":@"test2",
+								@"type":@"type2",
+								@"adDescription":@"testDesc",
+								@"adURL":[NSNull null],
+								@"imgURL":[NSNull null],
+								@"imageName":@"home-banner-pl.png"};
+		MSFAdver *ad1 = [MSFAdver modelWithDictionary:json1 error:nil];
+		MSFAdver *ad2 = [MSFAdver modelWithDictionary:json2 error:nil];
+		self.banners = @[ad1,ad2];
+		[(RACSubject *)self.updateContentSignal sendNext:nil];
+		/*
 		[[[self.services.httpClient
 			fetchAdverWithCategory:@"1"]
 			collect]
@@ -40,7 +59,7 @@
 				[(RACSubject *)self.updateContentSignal sendNext:nil];
 			}
 			error:^(NSError *error) {
-			}];
+			}];*/
 	}];
 	
 	return self;

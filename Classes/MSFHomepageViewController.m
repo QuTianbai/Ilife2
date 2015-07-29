@@ -51,7 +51,7 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-	[self.collectionView registerClass:MSFHomePageContentCollectionViewCell.class forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
+	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
 	[self.collectionView registerClass:MSFPlaceholderCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell"];
 	
 	@weakify(self)
@@ -117,16 +117,20 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width/2.0 - 110;
+	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width/2.0 - 112.5;
 	
 	return CGSizeMake(width, height);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	MSFLoanViewModel *viewModel = [self.viewModel viewModelForIndexPath:indexPath];
+	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell" forIndexPath:indexPath];
+	[cell bindViewModel:viewModel];
+	/*
 	NSString *reusableIdentifier = [self.viewModel reusableIdentifierForIndexPath:indexPath];
 	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusableIdentifier forIndexPath:indexPath];
 	if (viewModel) [cell bindViewModel:viewModel];
+	 */
 	return cell;
 }
 

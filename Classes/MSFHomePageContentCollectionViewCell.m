@@ -29,6 +29,12 @@
 }
 
 - (void) bindViewModel:(MSFLoanViewModel *)viewModel {
+	_titleLabel.text  = @"合同还款状态";
+	_statusLabel.text = @"还款中";
+	_amountLabel.text = @"4000";
+	_infoLabel.text = @"申请日期   2015年6月10日";
+	
+	/*
 	_titleLabel.text  = viewModel.title;
 	_statusLabel.text = viewModel.status;
 	_amountLabel.text = viewModel.mothlyRepaymentAmount;
@@ -40,6 +46,7 @@
 	}else {
 		_infoLabel.text = [NSString stringWithFormat:@"申请日期   %@",viewModel.applyDate];
 	}
+	 */
 }
 
 @end

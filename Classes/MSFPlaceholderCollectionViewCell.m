@@ -21,8 +21,8 @@
 	[self.contentView addSubview:imageView];
 	[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.center.equalTo(self.contentView);
-		make.width.equalTo(@(self.contentView.frame.size.width/2));
-		make.height.equalTo(@(self.contentView.frame.size.width/2));
+		make.width.equalTo(@(self.contentView.frame.size.width*0.66));
+		make.height.equalTo(@(self.contentView.frame.size.width*0.66));
 	}];
 	
 	return self;

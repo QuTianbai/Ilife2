@@ -14,8 +14,9 @@
 #import "MSFBannersCollectionViewCell.h"
 #import "MSFWebViewController.h"
 #import "UIColor+Utils.h"
+#import "MSFInfinityScroll.h"
 
-@interface MSFBannersViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
+@interface MSFBannersViewController ()
 
 @property (nonatomic, strong) MSFBannersViewModel *viewModel;
 @property (nonatomic, strong) UIPageControl *pageControl;
@@ -27,8 +28,10 @@
 #pragma mark - Lifecycle
 
 - (instancetype)init {
+	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
 	flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+	flowLayout.itemSize = CGSizeMake(screenWidth, screenWidth/2);
 	flowLayout.minimumLineSpacing = 0;
 	flowLayout.minimumInteritemSpacing = 0;
 	flowLayout.sectionInset = UIEdgeInsetsZero;
@@ -59,16 +62,6 @@
 		make.right.equalTo(superview);
 	}];
 	
-	UIView *line = UIView.new;
-	line.backgroundColor = UIColor.themeColor;
-	[superview addSubview:line];
-	[line mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@1);
-		make.bottom.equalTo(superview);
-		make.left.equalTo(superview);
-		make.right.equalTo(superview);
-	}];
-	
 	self.collectionView.bounces = NO;
 	[self.collectionView registerClass:MSFBannersCollectionViewCell.class forCellWithReuseIdentifier:@"Cell"];
 }
@@ -77,6 +70,7 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	self.pageControl.numberOfPages = [self.viewModel numberOfItemsInSection:0];
 	@weakify(self)
 	[self.viewModel.updateContentSignal subscribeNext:^(id x) {
 		@strongify(self)
@@ -103,10 +97,5 @@
 	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - UICollectionViewDelegateFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return self.view.bounds.size;
-}
 
 @end
