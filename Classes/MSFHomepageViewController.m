@@ -8,9 +8,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFHomepageCollectionViewHeader.h"
-#import "MSFRequisitionCollectionViewCell.h"
+#import "MSFHomePageContentCollectionViewCell.h"
 #import "MSFPlaceholderCollectionViewCell.h"
-#import "MSFPepaymentCollectionViewCell.h"
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
@@ -52,9 +51,8 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-	[self.collectionView registerClass:MSFRequisitionCollectionViewCell.class forCellWithReuseIdentifier:@"MSFRequisitionCollectionViewCell"];
+	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
 	[self.collectionView registerClass:MSFPlaceholderCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell"];
-	[self.collectionView registerClass:MSFPepaymentCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPepaymentCollectionViewCell"];
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
@@ -133,8 +131,8 @@
 		
 		return cell;
 	}
-	[cell bindViewModel:viewModel];
-	
+	if (viewModel) [cell bindViewModel:viewModel];
+
 	return cell;
 }
 

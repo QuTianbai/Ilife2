@@ -101,7 +101,7 @@
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 6, 100, 20)];
 		label.text = @"贷款信息";
 		label.textColor = [UIColor tintColor];
-		label.font = [UIFont boldSystemFontOfSize:13];
+		label.font = [UIFont systemFontOfSize:13];
 		[view.contentView addSubview:label];
 	}
 	return view;
@@ -109,7 +109,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-	cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+	cell.textLabel.font = [UIFont systemFontOfSize:16];
 	cell.textLabel.text	 = self.rowTitles[indexPath.section][indexPath.row];
 	cell.imageView.image = self.icons[indexPath.section][indexPath.row];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

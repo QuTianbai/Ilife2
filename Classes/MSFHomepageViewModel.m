@@ -82,11 +82,8 @@
 	MSFLoanViewModel *viewModel = [self viewModelForIndexPath:indexPath];
 	if (!viewModel) {
 		return @"MSFPlaceholderCollectionViewCell";
-	}
-	if ([viewModel.status isEqualToString:@"还款中"]) {
-		return @"MSFPepaymentCollectionViewCell";
 	} else {
-		return @"MSFRequisitionCollectionViewCell";
+		return @"MSFHomePageContentCollectionViewCell";
 	}
 }
 

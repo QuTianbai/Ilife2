@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFBannersViewController : UICollectionViewController <MSFReactiveView>
+@interface MSFBannersViewController : UIViewController <MSFReactiveView>
 
 - (void)bindViewModel:(id)viewModel;
 

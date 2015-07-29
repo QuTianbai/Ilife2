@@ -71,7 +71,7 @@ it(@"should has a appling viewmodel", ^{
   MSFLoanViewModel *sub = [viewModel viewModelForIndexPath:indexPah];
 	
   expect(sub.status).to(equal(@"无效"));
-  expect([viewModel reusableIdentifierForIndexPath:indexPah]).to(equal(@"MSFRequisitionCollectionViewCell"));
+  expect([viewModel reusableIdentifierForIndexPath:indexPah]).to(equal(@"MSFApplyCollectionViewCell"));
 });
 
 QuickSpecEnd
