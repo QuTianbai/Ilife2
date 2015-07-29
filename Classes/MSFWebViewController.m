@@ -10,6 +10,7 @@
 #import <libextobjc/extobjc.h>
 #import <AFNetworking/UIWebView+AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFWebViewModel.h"
 
 @interface MSFWebViewController () <UIWebViewDelegate>
 
@@ -18,6 +19,16 @@
 @end
 
 @implementation MSFWebViewController
+
+- (instancetype)initWithViewModel:(MSFWebViewModel *)viewModel {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_HTMLURL = viewModel.URL;
+	
+	return self;
+}
 
 - (instancetype)initWithHTMLURL:(NSURL *)URL {
 	self = [super init];

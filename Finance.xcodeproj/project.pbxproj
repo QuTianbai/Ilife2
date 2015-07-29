@@ -222,6 +222,7 @@
 		4995DCEA1B4B6D2C0086B5ED /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDB1B4B6D2C0086B5ED /* 5.png */; };
 		4995DCEB1B4B6D2C0086B5ED /* 5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */; };
 		4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */; };
+		499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499B1B781B68DC73002D5ED7 /* MSFWebViewModel.m */; };
 		499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2491B55F6550051AF66 /* MSFTabBarController.m */; };
 		499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */; };
 		499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */; };
@@ -856,6 +857,8 @@
 		4995DCDB1B4B6D2C0086B5ED /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		4995DCDC1B4B6D2C0086B5ED /* 5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@2x.png"; sourceTree = "<group>"; };
 		4995DCDD1B4B6D2C0086B5ED /* 5@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@3x.png"; sourceTree = "<group>"; };
+		499B1B771B68DC73002D5ED7 /* MSFWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWebViewModel.h; sourceTree = "<group>"; };
+		499B1B781B68DC73002D5ED7 /* MSFWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewModel.m; sourceTree = "<group>"; };
 		499EA2481B55F6550051AF66 /* MSFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarController.h; sourceTree = "<group>"; };
 		499EA2491B55F6550051AF66 /* MSFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarController.m; sourceTree = "<group>"; };
 		499EA25E1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RACKeyboardSupport.h"; sourceTree = "<group>"; };
@@ -1724,6 +1727,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				499B1B691B68DC5B002D5ED7 /* WebView */,
 				4912D79D1B6213E20014059D /* Loan */,
 				499EA2761B560ABA0051AF66 /* Tabbar */,
 				49C2FE4B1B466A2300B6B20A /* Address */,
@@ -1979,6 +1983,15 @@
 				4991471C1B246B7100260E97 /* MSFSelectionItem.h */,
 			);
 			name = Selection;
+			sourceTree = "<group>";
+		};
+		499B1B691B68DC5B002D5ED7 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				499B1B771B68DC73002D5ED7 /* MSFWebViewModel.h */,
+				499B1B781B68DC73002D5ED7 /* MSFWebViewModel.m */,
+			);
+			name = WebView;
 			sourceTree = "<group>";
 		};
 		499EA23A1B55F6400051AF66 /* TabBarController */ = {
@@ -3264,6 +3277,7 @@
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
 				49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
+				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,

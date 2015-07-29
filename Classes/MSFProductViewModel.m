@@ -21,6 +21,9 @@
 #import "MSFFormsViewModel.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
+#import "MSFLoanAgreementViewModel.h"
+#import "MSFWebViewModel.h"
+#import "MSFTeams.h"
 
 @interface MSFProductViewModel ()
 
@@ -119,8 +122,104 @@
 	RAC(self, productTitle) = [RACObserve(self, product) map:^id(id value) {
 		return [value title];
 	}];
+	_executeLifeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeLifeInsuranceSignal];
+	}];
+	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executePurposeSignal];
+	}];
+	_executeTermCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeTermSignal];
+	}];
+	_executeNextCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeNextSignal];
+	}];
 	
 	return self;
+}
+
+#pragma mark - Private
+
+- (RACSignal *)executeLifeInsuranceSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFWebViewModel *viewModel = [[MSFWebViewModel alloc] initWithURL:[MSFUtils.agreementViewModel.agreement lifeInsuranceURL]];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)executePurposeSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectViewModelWithFilename:@"moneyUse"];
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
+			self.purpose = x;
+			[self.services popViewModel];
+		}];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+	return nil;
+}
+
+- (RACSignal *)executeTermSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		if (self.market.teams.count == 0) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"网络繁忙请稍后再试"
+			}]];
+			return nil;
+		}
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.market total:self.totalAmount.integerValue];
+		if ([viewModel numberOfItemsInSection:0] == 0) {
+			NSString *string;
+			NSMutableArray *region = [[NSMutableArray alloc] init];
+			[self.market.teams enumerateObjectsUsingBlock:^(MSFTeams *obj, NSUInteger idx, BOOL *stop) {
+				[region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", obj.minAmount,obj.maxAmount]];
+			}];
+			string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字", self.market.allMinAmount,self.market.allMaxAmount];
+			
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: string,
+			}]];
+			return nil;
+		}
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(id x) {
+			self.product = x;
+			[self.services popViewModel];
+		}];
+		
+		return nil;
+	}];
+}
+
+- (RACSignal *)executeNextSignal {
+	@weakify(self)
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		if (!self.product) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择贷款期数",
+			}]];
+			return nil;
+		}
+		if (!self.purpose) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择贷款用途",
+			}]];
+			return nil;
+		}
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end
