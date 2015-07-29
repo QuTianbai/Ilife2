@@ -28,6 +28,8 @@
  *	总金额
  */
 @property (nonatomic, strong) NSString *totalAmount;
+@property (nonatomic, copy) NSString *minMoney;
+@property (nonatomic, copy) NSString *maxMoney;
 @property (nonatomic, strong, readonly) NSString *totalAmountPlacholder;
 
 /**
@@ -51,6 +53,11 @@
  *	是否加入寿险计划
  */
 @property (nonatomic, assign) BOOL insurance;
+
+@property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
+@property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeNextCommand;
 
 - (instancetype)initWithFormsViewModel:(id)viewModel;
 

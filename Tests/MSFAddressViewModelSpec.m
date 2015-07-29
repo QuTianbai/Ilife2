@@ -16,12 +16,12 @@ __block UIViewController *contentViewContrller;
 
 beforeEach(^{
 	contentViewContrller = mock(UIViewController.class);
-	id <MSFViewModelServices> services = mockProtocol(@protocol(MSFViewModelServices));
-	viewModel = [[MSFTestAddressViewModel alloc] initWithServices:services];
+//	viewModel = [[MSFTestAddressViewModel alloc] initWithController:contentViewContrller needArea:YES];
 });
 
 it(@"should initialize", ^{
 	expect(viewModel).notTo(beNil());
+//	expect(viewModel.viewController).notTo(beNil());
 });
 
 it(@"should has province", ^{
@@ -67,7 +67,7 @@ it(@"should execute select command", ^{
 	[viewModel.selectCommand execute:nil];
 	
   // then
-	expect(viewModel.address).to(equal(@"重庆市直辖市"));
+	expect(viewModel.address).to(equal(@"重庆市直辖市沙坪坝区"));
 });
 
 QuickSpecEnd

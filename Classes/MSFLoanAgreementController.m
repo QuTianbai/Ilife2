@@ -33,6 +33,19 @@
 
 @implementation MSFLoanAgreementController
 
+#pragma mark - Lifecycle
+
+- (instancetype)initWithViewModel:(id)viewModel {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"product" bundle:nil];
+	self =  [storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
 - (void)viewDidLoad {
 	self.title = @"贷款协议";
   self.LoanAgreenmentWV.delegate = self;
@@ -71,6 +84,7 @@
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
+		@strongify(self)
 		//FIXME: 临时使用代码，错误的情况也进入个人信息
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
     UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;

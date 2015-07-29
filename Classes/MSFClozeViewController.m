@@ -43,17 +43,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
-	_bankArcView.layer.cornerRadius = 8;
-	_bankArcView.layer.masksToBounds = YES;
-  _bankArcView.layer.borderWidth = 1;
-	_bankArcView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-	
-	_personArcView.layer.cornerRadius = 8;
-	_personArcView.layer.masksToBounds = YES;
-	_personArcView.layer.borderWidth = 1;
-	_personArcView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-	
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RAC(self.viewModel, name) = self.name.rac_textSignal;
 	RAC(self.viewModel, card) = self.card.rac_textSignal;
@@ -170,7 +159,6 @@
 	self.card.delegate = self;
 	self.card.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
 	[(REFormattedNumberField *)self.bankNO setFormat:@"XXXX XXXX XXXX XXXX XXX"];
-	
 }
 
 #pragma mark - UITextFieldDelegate
@@ -201,28 +189,6 @@
 	}
 	
 	return YES;
-}
-
-#pragma mark - UITableViewDelegate
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
-	UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
-	
-	[label setBackgroundColor:[UIColor clearColor]];
-	
-	[label setText:@"    银行信息"];
-	if (section == 1) {
-	return label;
-	}
-	return nil;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	if (section == 1) {
-		return 44;
-	}
-	return 0;
 }
 
 @end
