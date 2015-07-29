@@ -38,7 +38,7 @@
 			@(MSFLoanStatusExpectedSuccess): @"预审核通过",
 			@(MSFLoanStatusLoan): @"待放款",
 		};
-	
+		
 		return statusValues[status];
 	}];
 	

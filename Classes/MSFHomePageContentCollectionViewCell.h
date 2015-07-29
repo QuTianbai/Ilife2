@@ -1,8 +1,8 @@
 //
-//  MSFApplyCollectionViewCell.h
+//  MSFHomePageContentCollectionViewCell.h
 //  Finance
 //
-//  Created by 赵勇 on 7/28/15.
+//  Created by 赵勇 on 7/29/15.
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
@@ -12,7 +12,7 @@
 /**
  *	申请状态下的Cell
  */
-@interface MSFApplyCollectionViewCell : UICollectionViewCell<MSFReactiveView>
+@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell<MSFReactiveView>
 
 - (void)bindViewModel:(id)viewModel;
 
