@@ -18,7 +18,7 @@
 
 @property (nonatomic, weak, readonly) MSFFormsViewModel *formsViewModel;
 
-@property (nonatomic, strong, readonly) MSFMarket *market;
+@property (nonatomic, weak, readonly) MSFMarket *market;
 
 // 贷款期数对应的产品
 @property (nonatomic, strong) MSFProduct *product;

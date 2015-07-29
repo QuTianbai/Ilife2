@@ -97,7 +97,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = width/2;
+	CGFloat height = width / 2;
 	return CGSizeMake(width, height);
 }
 
@@ -119,7 +119,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width/2.0 - 110;
+	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.0 - 110;
 	
 	return CGSizeMake(width, height);
 }

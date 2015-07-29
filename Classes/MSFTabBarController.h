@@ -5,12 +5,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFReactiveView.h"
 
 @class MSFTabBarViewModel;
 
-@interface MSFTabBarController : UITabBarController <UITabBarControllerDelegate, MSFReactiveView>
+@interface MSFTabBarController : UITabBarController <UITabBarControllerDelegate>
 
 @property (nonatomic, weak, readonly) MSFTabBarViewModel *viewModel;
+
+- (instancetype)initWithViewModel:(MSFTabBarViewModel *)viewModel;
 
 @end
