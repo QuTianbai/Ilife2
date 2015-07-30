@@ -8,6 +8,7 @@
 
 @interface MSFClient (Cipher)
 
+// 获取服务器时间戳，用于加密
 - (RACSignal *)fetchServerInterval;
 
 @end
