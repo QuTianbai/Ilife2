@@ -106,9 +106,6 @@
 		cell.date.text = [NSString stringWithFormat:@"%@", trade.tradeDate];
 		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
 		cell.amount.text = [NSString stringWithFormat:@"%.lf", trade.tradeAmount];
-//		cell.date.text = @"2015/04/12";
-//		cell.tradeDescription.text = @"主动还款";
-//		cell.amount.text = @"-666.00";
 		[cell setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.03]];
 	}
 

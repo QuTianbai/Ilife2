@@ -22,7 +22,7 @@
 #import "MSFRelationshipViewModel.h"
 #import "UIColor+Utils.h"
 #import "MSFHeaderView.h"
-
+#import "MSFSubmitAlertView.h"
 #define BLUECOLOR @"#007ee5"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
@@ -274,6 +274,18 @@ ABPersonViewControllerDelegate>
 		[alertView addButtonWithTitle:@"确认"];
 		[alertView setCancelButtonIndex:0];
 		[alertView show];
+		//新alertview
+		/*
+		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
+		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+		 //替换我写的假数据就可以了
+		submitAlertView.loanAccountLabel.text = @"100元";
+		submitAlertView.loanNper.text = @"3期";
+		submitAlertView.loanPayBack.text = @"35.27";
+		submitAlertView.loanUse.text = @"租赁";
+		
+		[self.view addSubview:submitAlertView];
+		 */
 		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 			if (index.integerValue == 1) {
 				[self.viewModel.executeCommitCommand execute:nil];
@@ -425,10 +437,9 @@ ABPersonViewControllerDelegate>
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 
-- (void)peoplePickerNavigationController :(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+- (void)peoplePickerNavigationController :(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
 	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
 	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
-	
 	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
 		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
 		[phones addObject:aPhone];
@@ -457,11 +468,12 @@ ABPersonViewControllerDelegate>
 			break;
 	}
 
-	NSLog(@"................%@",phone);
 }
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
 	return NO;
 }
-
+- (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+	return NO;
+}
 @end

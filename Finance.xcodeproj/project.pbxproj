@@ -357,6 +357,8 @@
 		4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */; };
 		4EDB520E1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */; };
 		4EDB520F1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */; };
+		4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */; };
+		4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */; };
 		6BC3A55CCC9A340BB762528E /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C468932002FC66C8F9BB2 /* libPods-Tests.a */; };
 		C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884351B06F16200C25955 /* MSFAccordToNperLists.m */; };
 		C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884381B06F65D00C25955 /* MSFClient+AccordToNperLists.m */; };
@@ -1030,6 +1032,9 @@
 		4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone.png"; sourceTree = "<group>"; };
 		4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone@2x.png"; sourceTree = "<group>"; };
 		4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone@3x.png"; sourceTree = "<group>"; };
+		4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSubmitAlertView.h; sourceTree = "<group>"; };
+		4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSubmitAlertView.m; sourceTree = "<group>"; };
+		4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFSubmitAlertView.xib; sourceTree = "<group>"; };
 		51C6EF7905007621DE33981F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C71884341B06F16200C25955 /* MSFAccordToNperLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAccordToNperLists.h; sourceTree = "<group>"; };
@@ -1303,6 +1308,9 @@
 				07CB4C7E1B104944006C220E /* MSFProfessionalViewController.m */,
 				07CB4C801B104AE8006C220E /* MSFRelationshipViewController.h */,
 				07CB4C811B104AE8006C220E /* MSFRelationshipViewController.m */,
+				4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */,
+				4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */,
+				4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */,
 				07BD841E1B15B73E00D731BF /* MSFProductViewController.h */,
 				07CBA7F61B203AC00020116E /* MSFProductViewController.m */,
 				07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementController.h */,
@@ -2873,6 +2881,7 @@
 				C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */,
 				4944C0101B68A44A00805C0A /* icon-cloze-idcarddate@3x.png in Resources */,
 				4944C04B1B68A5DA00805C0A /* nav-back@2x.png in Resources */,
+				4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */,
 				49C0F1C81B2C341400E92572 /* tabbar-account-selected@2x.png in Resources */,
 				4944C0141B68A44A00805C0A /* icon-cloze-normal.png in Resources */,
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
@@ -3285,6 +3294,7 @@
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
+				4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
 				49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */,
