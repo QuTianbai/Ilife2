@@ -13,13 +13,14 @@
 #import "UITextField+RACKeyboardSupport.h"
 
 @interface MSFEditPasswordViewController ()
+
 @property (nonatomic, weak) IBOutlet UITextField *passoword1;
 @property (nonatomic, weak) IBOutlet UITextField *passoword2;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 @property (nonatomic, weak) MSFUserViewModel *viewModel;
 
-@property (nonatomic, weak) IBOutlet UISwitch *password1Swith;
-@property (nonatomic, weak) IBOutlet UISwitch *password2Swith;
+@property (nonatomic, weak) IBOutlet UIButton *password1Button;
+@property (nonatomic, weak) IBOutlet UIButton *password2Button;
 
 @end
 
@@ -72,21 +73,23 @@
 	self.passoword1.clearButtonMode = UITextFieldViewModeNever;
 	self.passoword2.clearButtonMode = UITextFieldViewModeNever;
 	
-	[self.password1Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
+	[[self.password1Button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(NSNumber *x) {
 		@strongify(self)
+		self.password1Button.selected = !self.password1Button.selected;
 		NSString *text = self.passoword1.text;
 		self.passoword1.text = text;
 		self.passoword1.enabled = NO;
-		[self.passoword1 setSecureTextEntry:!x.boolValue];
+		[self.passoword1 setSecureTextEntry:!self.password1Button.selected];
 		self.passoword1.enabled = YES;
 		[self.passoword1 becomeFirstResponder];
 	}];
-	[self.password2Swith.rac_newOnChannel subscribeNext:^(NSNumber *x) {
+	[[self.password2Button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(NSNumber *x) {
 		@strongify(self)
+		self.password2Button.selected = !self.password2Button.selected;
 		NSString *text = self.passoword2.text;
 		self.passoword2.text = text;
 		self.passoword2.enabled = NO;
-		[self.passoword2 setSecureTextEntry:!x.boolValue];
+		[self.passoword2 setSecureTextEntry:!self.password2Button.selected];
 		self.passoword2.enabled = YES;
 		[self.passoword2 becomeFirstResponder];
 	}];

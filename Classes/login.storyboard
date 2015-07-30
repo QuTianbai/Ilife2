@@ -70,7 +70,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKy-FC-2bA">
                                                     <rect key="frame" x="20" y="1" width="280" height="89"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="GRv-6O-9gB">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="GRv-6O-9gB">
                                                             <rect key="frame" x="10" y="54" width="26" height="26"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kn1-Kb-6TC">
@@ -81,7 +81,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XiB-Rb-FPG" customClass="MSFWPTextField">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XiB-Rb-FPG" customClass="MSFWPTextField">
                                                             <rect key="frame" x="46" y="45" width="224" height="44"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES"/>
@@ -283,7 +283,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wxx-Cn-YHl">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wxx-Cn-YHl">
                                                     <rect key="frame" x="20" y="12" width="26" height="26"/>
                                                 </imageView>
                                             </subviews>
@@ -758,7 +758,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-jT-4rT">
-                                                    <rect key="frame" x="20" y="13" width="23" height="23"/>
+                                                    <rect key="frame" x="20" y="15.5" width="16" height="18"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -782,7 +782,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="cS0-vl-XnK">
-                                                    <rect key="frame" x="20" y="13" width="23" height="23"/>
+                                                    <rect key="frame" x="20" y="16.5" width="22" height="16"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -824,7 +824,7 @@
                                                     <state key="selected" image="icon-check-selected.png"/>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcarddate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iui-Mn-KiF">
-                                                    <rect key="frame" x="20" y="13" width="23" height="23"/>
+                                                    <rect key="frame" x="20" y="14.5" width="21" height="20"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -1173,29 +1173,31 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="WWV-eu-Eud">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="WWV-eu-Eud">
                                                     <rect key="frame" x="20" y="12" width="26" height="26"/>
                                                 </imageView>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0Fp-y0-BN3">
-                                                    <rect key="frame" x="251" y="9" width="51" height="31"/>
-                                                </switch>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="86L-qp-EVV">
+                                                    <rect key="frame" x="266" y="3" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="IWK-Q5-S28"/>
+                                                        <constraint firstAttribute="height" constant="44" id="zr9-Tx-r4Q"/>
+                                                    </constraints>
+                                                    <state key="normal" image="btn-showpwd-normal.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="btn-showpwd-selected.png"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0Fp-y0-BN3" firstAttribute="leading" secondItem="EcN-2P-b9l" secondAttribute="trailing" constant="10" id="Al0-4t-ahL"/>
+                                                <constraint firstAttribute="centerY" secondItem="86L-qp-EVV" secondAttribute="centerY" id="1tz-8k-Gk0"/>
                                                 <constraint firstItem="WWV-eu-Eud" firstAttribute="leading" secondItem="svP-VZ-6Bd" secondAttribute="leading" constant="20" id="EJA-IT-mLL"/>
-                                                <constraint firstAttribute="trailing" secondItem="0Fp-y0-BN3" secondAttribute="trailing" constant="20" id="F2G-L0-nUI"/>
-                                                <constraint firstAttribute="centerY" secondItem="0Fp-y0-BN3" secondAttribute="centerY" id="HZy-r0-Tdy"/>
                                                 <constraint firstItem="EcN-2P-b9l" firstAttribute="leading" secondItem="svP-VZ-6Bd" secondAttribute="leading" constant="10" id="Ll2-JP-V4F"/>
                                                 <constraint firstAttribute="bottom" secondItem="EcN-2P-b9l" secondAttribute="bottom" constant="5" id="Mn8-DY-it1"/>
                                                 <constraint firstAttribute="trailing" secondItem="EcN-2P-b9l" secondAttribute="trailing" constant="10" id="R2T-pH-hAf"/>
                                                 <constraint firstItem="EcN-2P-b9l" firstAttribute="top" secondItem="svP-VZ-6Bd" secondAttribute="top" constant="5" id="lnf-kV-FRN"/>
                                                 <constraint firstAttribute="centerY" secondItem="WWV-eu-Eud" secondAttribute="centerY" id="p2w-hC-blE"/>
+                                                <constraint firstAttribute="trailing" secondItem="86L-qp-EVV" secondAttribute="trailing" constant="10" id="sc3-bz-LdV"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="Al0-4t-ahL"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="50" id="fUC-hd-t2j">
@@ -1211,29 +1213,35 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="nnh-jF-TAV">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="nnh-jF-TAV">
                                                     <rect key="frame" x="20" y="12" width="26" height="26"/>
                                                 </imageView>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="z7d-4H-7sm">
-                                                    <rect key="frame" x="251" y="9" width="51" height="31"/>
-                                                </switch>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mUM-p7-cMz">
+                                                    <rect key="frame" x="266" y="3" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="peL-bh-t0X"/>
+                                                        <constraint firstAttribute="width" constant="44" id="u6o-9m-7mw"/>
+                                                    </constraints>
+                                                    <state key="normal" image="btn-showpwd-normal.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="btn-showpwd-selected.png"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ZNa-bi-xUm" firstAttribute="top" secondItem="dFV-K0-YpL" secondAttribute="top" constant="5" id="7Ra-Rq-yyJ"/>
                                                 <constraint firstAttribute="bottom" secondItem="ZNa-bi-xUm" secondAttribute="bottom" constant="5" id="9lB-1U-FEE"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZNa-bi-xUm" secondAttribute="trailing" constant="10" id="HrO-94-6Ef"/>
-                                                <constraint firstAttribute="centerY" secondItem="z7d-4H-7sm" secondAttribute="centerY" id="L4i-t5-0HY"/>
+                                                <constraint firstAttribute="trailing" secondItem="mUM-p7-cMz" secondAttribute="trailing" constant="10" id="YGc-Tg-aLn"/>
                                                 <constraint firstAttribute="centerY" secondItem="nnh-jF-TAV" secondAttribute="centerY" id="auD-zj-XND"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZNa-bi-xUm" secondAttribute="trailing" constant="10" id="mcK-uv-Xng"/>
-                                                <constraint firstAttribute="trailing" secondItem="z7d-4H-7sm" secondAttribute="trailing" constant="20" id="oUY-kn-hcA"/>
                                                 <constraint firstItem="nnh-jF-TAV" firstAttribute="leading" secondItem="dFV-K0-YpL" secondAttribute="leading" constant="20" id="pzv-aw-6Yh"/>
-                                                <constraint firstItem="z7d-4H-7sm" firstAttribute="leading" secondItem="ZNa-bi-xUm" secondAttribute="trailing" constant="10" id="uPV-Zi-Fij"/>
                                                 <constraint firstItem="ZNa-bi-xUm" firstAttribute="leading" secondItem="dFV-K0-YpL" secondAttribute="leading" constant="10" id="v6z-EK-Wzv"/>
+                                                <constraint firstAttribute="centerY" secondItem="mUM-p7-cMz" secondAttribute="centerY" id="zmX-Oz-7Tc"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="mcK-uv-Xng"/>
-                                                    <exclude reference="uPV-Zi-Fij"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -1251,8 +1259,8 @@
                         <outlet property="button" destination="msm-Th-gwt" id="fWH-Ip-leK"/>
                         <outlet property="passoword1" destination="EcN-2P-b9l" id="pDb-VH-eSb"/>
                         <outlet property="passoword2" destination="ZNa-bi-xUm" id="89x-lo-kaU"/>
-                        <outlet property="password1Swith" destination="0Fp-y0-BN3" id="xHu-VA-6F9"/>
-                        <outlet property="password2Swith" destination="z7d-4H-7sm" id="zPS-J2-hgy"/>
+                        <outlet property="password1Button" destination="86L-qp-EVV" id="odp-V8-pXc"/>
+                        <outlet property="password2Button" destination="mUM-p7-cMz" id="pnD-2D-2h9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q3z-cc-fPj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1261,12 +1269,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn-showpwd-normal.png" width="22" height="14"/>
+        <image name="btn-showpwd-selected.png" width="22" height="14"/>
         <image name="icon-arrow-down.png" width="44" height="44"/>
-        <image name="icon-check-normal.png" width="25" height="26"/>
-        <image name="icon-check-selected.png" width="25" height="26"/>
-        <image name="icon-cloze-idcard.png" width="23" height="23"/>
-        <image name="icon-cloze-idcarddate.png" width="23" height="23"/>
-        <image name="icon-cloze-name.png" width="23" height="23"/>
+        <image name="icon-check-normal.png" width="52" height="52"/>
+        <image name="icon-check-selected.png" width="52" height="52"/>
+        <image name="icon-cloze-idcard.png" width="22" height="16"/>
+        <image name="icon-cloze-idcarddate.png" width="21" height="20"/>
+        <image name="icon-cloze-name.png" width="16" height="18"/>
         <image name="icon-password.png" width="26" height="26"/>
         <image name="icon-phone.png" width="26" height="26"/>
         <image name="icon-question.png" width="36" height="44"/>
