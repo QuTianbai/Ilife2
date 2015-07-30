@@ -120,6 +120,9 @@
 		return NO;
   }
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+    UINavigationController *navigationController = (UINavigationController *)viewController;
+    MSFProductViewController *productViewcontroller = navigationController.viewControllers.firstObject;
+    [productViewcontroller setEmptyMoney];
 		self.viewModel.formsViewModel.active = YES;
     if (self.viewModel.formsViewModel.pending) {
 			[[[UIAlertView alloc] initWithTitle:@"提示"

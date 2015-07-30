@@ -138,11 +138,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+ //  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue / 100 * 100];
+}
+
+- (void)setEmptyMoney {
   self.moneySlider.value = 0;
   self.moneySlider.moneyNumLabel.text = @"0元";
   self.viewModel.totalAmount = @"0";
   [self getStringValue:@"0"];
-//  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue / 100 * 100];
+ 
 }
 
 #pragma mark - UITableViewDelegate
