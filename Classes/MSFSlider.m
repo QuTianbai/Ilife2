@@ -34,6 +34,7 @@
 
 - (void)customSlider {
   UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];
+  titleLabel.font = [UIFont systemFontOfSize:15];
   titleLabel.text = @"贷款金额";
   titleLabel.textColor = [UIColor blackColor];
   [self addSubview:titleLabel];
