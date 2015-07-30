@@ -11,6 +11,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Masonry/Masonry.h>
+#import <AddressBookUI/AddressBookUI.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
@@ -32,7 +33,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionContact2,
 };
 
-@interface MSFRelationshipViewController ()
+@interface MSFRelationshipViewController ()<ABPeoplePickerNavigationControllerDelegate,
+ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 /**
@@ -92,6 +94,14 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 @property (nonatomic, assign) BOOL sameMember1Address;
 @property (nonatomic, assign) BOOL sameMember2Address;
 
+/**
+ *	通讯录按钮
+ */
+- (IBAction)firstFamilyPhoneBtn:(id)sender;
+- (IBAction)secondFamilyPhoneBtn:(id)sender;
+- (IBAction)firstOtherContactBtn:(id)sender;
+- (IBAction)secondOtherContactBtn:(id)sender;
+
 #define RELATION_VIEW_MODEL self.viewModel.relationViewModel
 
 @end
@@ -110,6 +120,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	[super viewDidLoad];
 	self.title = @"家庭信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
+	
+	
 	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -151,8 +163,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.telTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	
@@ -187,8 +199,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.num2TelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	[self.num2TelTF.rac_textSignal subscribe:member2PhoneChannel];
@@ -221,8 +233,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	
@@ -245,8 +257,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.num2_otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	RACChannelTerminal *phone2Channel = RACChannelTo(self.viewModel.model, phone2);
@@ -381,6 +393,75 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+#pragma mark - phone_button
+
+- (IBAction)firstFamilyPhoneBtn:(id)sender {
+	[self fetchAddressBook:_telTF];
+}
+
+- (IBAction)secondFamilyPhoneBtn:(id)sender {
+	[self fetchAddressBook:_num2TelTF];
+}
+
+- (IBAction)firstOtherContactBtn:(id)sender {
+	[self fetchAddressBook:_otherTelTF];
+}
+
+- (IBAction)secondOtherContactBtn:(id)sender {
+	[self fetchAddressBook:_num2_otherTelTF];
+}
+
+- (void)fetchAddressBook:(UITextField *)textField {
+	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+	picker.peoplePickerDelegate = self;
+	picker.view.tag = textField.tag;
+	NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
+	picker.displayedProperties = displayedItems;
+	[self presentViewController:picker animated:YES completion:^{
+	}];
+}
+
+#pragma mark - ABPeoplePickerNavigationControllerDelegate
+
+- (void)peoplePickerNavigationController :(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
+	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
+	
+	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
+		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
+		[phones addObject:aPhone];
+	}
+		NSString *phone = @"";
+	
+	if (phones.count > 0) {
+		phone = [phones objectAtIndex:0];
+	}
+	
+	switch (peoplePicker.view.tag) {
+  case 10000:
+			self.telTF.text = phone;
+			break;
+	case 10001:
+			self.num2TelTF.text = phone;
+			break;
+	case 10002:
+			self.otherTelTF.text = phone;
+			break;
+	case 10003:
+			self.num2_otherTelTF.text = phone;
+			break;
+			
+  default:
+			break;
+	}
+
+	NSLog(@"................%@",phone);
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+	return NO;
 }
 
 @end

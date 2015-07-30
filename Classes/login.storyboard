@@ -758,7 +758,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="9Mi-jT-4rT">
-                                                    <rect key="frame" x="20" y="13" width="23" height="23"/>
+                                                    <rect key="frame" x="20" y="15.5" width="16" height="18"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -776,14 +776,14 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0u8-Pp-Bqe" id="wt9-sk-vzu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="cS0-vl-XnK">
+                                                    <rect key="frame" x="20" y="16.5" width="22" height="16"/>
+                                                </imageView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入身份证号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p9W-QB-x3m" customClass="MSFTextField">
                                                     <rect key="frame" x="10" y="5" width="300" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcard.png" translatesAutoresizingMaskIntoConstraints="NO" id="cS0-vl-XnK">
-                                                    <rect key="frame" x="20" y="13" width="23" height="23"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="p9W-QB-x3m" secondAttribute="trailing" constant="10" id="98H-JY-rxy"/>
@@ -824,7 +824,7 @@
                                                     <state key="selected" image="icon-check-selected.png"/>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcarddate.png" translatesAutoresizingMaskIntoConstraints="NO" id="Iui-Mn-KiF">
-                                                    <rect key="frame" x="20" y="13" width="23" height="23"/>
+                                                    <rect key="frame" x="20" y="14.5" width="21" height="20"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -1027,12 +1027,6 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpk-d3-yjr">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="40"/>
-                                                            <state key="normal">
-                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                            </state>
-                                                        </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="xWG-lL-pM5">
                                                             <rect key="frame" x="70" y="0.0" width="40" height="40"/>
                                                             <constraints>
@@ -1040,6 +1034,12 @@
                                                                 <constraint firstAttribute="height" constant="40" id="XLe-19-g98"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpk-d3-yjr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="105" height="40"/>
+                                                            <state key="normal">
+                                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1262,11 +1262,11 @@
     </scenes>
     <resources>
         <image name="icon-arrow-down.png" width="44" height="44"/>
-        <image name="icon-check-normal.png" width="25" height="26"/>
-        <image name="icon-check-selected.png" width="25" height="26"/>
-        <image name="icon-cloze-idcard.png" width="23" height="23"/>
-        <image name="icon-cloze-idcarddate.png" width="23" height="23"/>
-        <image name="icon-cloze-name.png" width="23" height="23"/>
+        <image name="icon-check-normal.png" width="52" height="52"/>
+        <image name="icon-check-selected.png" width="52" height="52"/>
+        <image name="icon-cloze-idcard.png" width="22" height="16"/>
+        <image name="icon-cloze-idcarddate.png" width="21" height="20"/>
+        <image name="icon-cloze-name.png" width="16" height="18"/>
         <image name="icon-password.png" width="26" height="26"/>
         <image name="icon-phone.png" width="26" height="26"/>
         <image name="icon-question.png" width="36" height="44"/>

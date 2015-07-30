@@ -354,6 +354,9 @@
 		49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E8B8F11B5FA02200680061 /* MSFHeaderView.xib */; };
 		49EAABA41B0DC5B800E5FF32 /* launch-screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EAABA31B0DC5B800E5FF32 /* launch-screen.png */; };
 		49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */; };
+		4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */; };
+		4EDB520E1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */; };
+		4EDB520F1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */; };
 		6BC3A55CCC9A340BB762528E /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C468932002FC66C8F9BB2 /* libPods-Tests.a */; };
 		C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884351B06F16200C25955 /* MSFAccordToNperLists.m */; };
 		C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884381B06F65D00C25955 /* MSFClient+AccordToNperLists.m */; };
@@ -1024,6 +1027,9 @@
 		49EAABA31B0DC5B800E5FF32 /* launch-screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-screen.png"; sourceTree = "<group>"; };
 		49F3D4B71B2685FD0053A1F5 /* MSFProfessionalViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProfessionalViewModel.h; sourceTree = "<group>"; };
 		49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProfessionalViewModel.m; sourceTree = "<group>"; };
+		4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone.png"; sourceTree = "<group>"; };
+		4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone@2x.png"; sourceTree = "<group>"; };
+		4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone@3x.png"; sourceTree = "<group>"; };
 		51C6EF7905007621DE33981F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C71884341B06F16200C25955 /* MSFAccordToNperLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAccordToNperLists.h; sourceTree = "<group>"; };
@@ -1267,6 +1273,9 @@
 		07C497FF1B1420BE00069F74 /* loan */ = {
 			isa = PBXGroup;
 			children = (
+				4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */,
+				4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */,
+				4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */,
 				49E22B031B37EDF700749717 /* icon-loan-question.png */,
 				49E22B041B37EDF700749717 /* icon-loan-question@2x.png */,
 				49E22B051B37EDF700749717 /* icon-loan-question@3x.png */,
@@ -2907,6 +2916,7 @@
 				49B37B5E1B608F39004EED47 /* bar-progress-1-highlighted@2x.png in Resources */,
 				49B37B6E1B608F39004EED47 /* bar-progress-3-normal@3x.png in Resources */,
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
+				4EDB520E1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png in Resources */,
 				4944C00F1B68A44A00805C0A /* icon-cloze-idcarddate@2x.png in Resources */,
 				49C0F1A51B2C315100E92572 /* icon-check-selected@3x.png in Resources */,
 				C7D2D1321B67938C000F51ED /* icon-cloze-question@2x.png in Resources */,
@@ -2943,6 +2953,7 @@
 				49C0F1C41B2C341400E92572 /* tabbar-account-normal.png in Resources */,
 				4925AD581B2A786900872A8A /* products.json in Resources */,
 				49C0F1A41B2C315100E92572 /* icon-check-selected@2x.png in Resources */,
+				4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */,
 				4944C04C1B68A5DA00805C0A /* nav-back@3x.png in Resources */,
 				49C0F1AA1B2C315100E92572 /* icon-phone@2x.png in Resources */,
 				49E22B021B37ED9E00749717 /* btn-family-reduce@3x.png in Resources */,
@@ -2951,6 +2962,7 @@
 				4944C04D1B68A5DA00805C0A /* nav-setting.png in Resources */,
 				C7B978041B08E8DF005F247C /* MSFTradeTableViewController.xib in Resources */,
 				C7A351761B217CB10001DF6A /* iconfont-bangzhu@3x.png in Resources */,
+				4EDB520F1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png in Resources */,
 				07C06C771B1347C200F2DFCC /* housing_conditions.json in Resources */,
 				4995DCE11B4B6D2C0086B5ED /* 2.png in Resources */,
 				4925ADF21B2AFD8800872A8A /* btn_checked.png in Resources */,
