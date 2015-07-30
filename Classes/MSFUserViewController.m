@@ -130,7 +130,7 @@
 				case 2:[self historyDetails:nil];break;
 			}
 		}
-		case 2: break;
+		case 2: [self pushAbout:nil]; break;
 	}
 }
 
@@ -164,6 +164,12 @@
 	MSFLoanListViewController *loanListVC = [[MSFLoanListViewController alloc] init];
 	loanListVC.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:loanListVC animated:YES];
+}
+
+- (IBAction)pushAbout:(id)sender {
+	MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
+	settingsViewController.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 @end
