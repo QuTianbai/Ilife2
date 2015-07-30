@@ -16,6 +16,8 @@
 
 @interface MSFSlider : UISlider
 
+@property (nonatomic, strong) UILabel *moneyNumLabel;
+
 @property (nonatomic, assign) id<MSFSliderDelegate> delegate;
 
 @end

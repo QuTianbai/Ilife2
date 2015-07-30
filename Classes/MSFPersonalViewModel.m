@@ -11,10 +11,16 @@
 #import "MSFAddressViewModel.h"
 #import "MSFAreas.h"
 #import "NSString+Matches.h"
+#import "MSFLocation.h"
+#import <CoreLocation/CoreLocation.h>
+#import "MSFLocationModel.h"
+#import "MSFClient+MSFLocation.h"
 
-@interface MSFPersonalViewModel ()
+@interface MSFPersonalViewModel ()<MSFLocationDelegate>
 
+@property (nonatomic, strong) MSFLocation *location;
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -27,10 +33,14 @@
 	if (!self) {
 		return nil;
 	}
+  _services = viewModel.services;
+  self.location = [[MSFLocation alloc] init];
+  self.location.delegate = self;
+  [self.location startLocation];
+  
 	_formsViewModel = viewModel;
 	_addressViewModel = addressViewModel;
 	_model = viewModel.model;
-	
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, currentProvince) = RACObserve(self.addressViewModel, provinceName);
 	RAC(self.model, currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
@@ -47,6 +57,16 @@
   }];
 	
 	return self;
+}
+
+- (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
+  [[self.services.httpClient fetchLocationAdress:coordinate]
+   subscribeNext:^(id x) {
+     NSLog(@"%@",x);
+   }
+   error:^(NSError *error) {
+     NSLog(@"%@",error);
+   }];
 }
 
 #pragma mark - Private

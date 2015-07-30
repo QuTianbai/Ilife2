@@ -101,12 +101,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
-	self.applyMonthsTF.placeholder = @"请选择期数";
+	//self.applyMonthsTF.placeholder = @"请选择期数";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
-	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
+	//RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
 	RAC(self.repayMoneyMonth, text) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
@@ -135,6 +135,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	self.lifeInsuranceButton.rac_command = self.viewModel.executeLifeInsuranceCommand;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+  self.moneySlider.value = 0;
+  self.moneySlider.moneyNumLabel.text = @"0元";
+  self.viewModel.totalAmount = @"0";
+  [self getStringValue:@"0"];
+//  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue / 100 * 100];
 }
 
 #pragma mark - UITableViewDelegate
