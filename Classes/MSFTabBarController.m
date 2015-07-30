@@ -24,6 +24,8 @@
 #import "MSFUser.h"
 #import "MSFUtils.h"
 #import "UIColor+Utils.h"
+#import "MobClick.h"
+#import "MSFUmengMacro.h"
 
 @interface MSFTabBarController () 
 
@@ -110,6 +112,17 @@
 }
 
 #pragma mark - UITabBarControllerDelegate
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+	NSString *tabName = @"";
+	NSString *selectedIndex = [@(tabBarController.selectedIndex) stringValue];
+	switch (tabBarController.selectedIndex) {
+		case 0:tabName = @"马上贷";break;
+		case 1:tabName = @"申请贷款";break;
+		case 2:tabName = @"我的账户";break;
+	}
+	[MobClick event:MSF_Umeng_Statistics_TaskId_Tabs attributes:@{@"tabName":tabName, @"tabIndex":selectedIndex}];
+}
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
   if (!self.viewModel.isAuthenticated) {
