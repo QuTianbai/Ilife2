@@ -129,6 +129,7 @@
 				case 1:[self repayMentPlan:nil];break;
 				case 2:[self historyDetails:nil];break;
 			}
+			break;
 		}
 		case 2: [self pushAbout:nil]; break;
 	}
