@@ -30,6 +30,9 @@
 #import <Crashlytics/Crashlytics.h>
 #import <Masonry/Masonry.h>
 
+#import "MobClick.h"
+#import "MSFUmengMacro.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
@@ -55,6 +58,16 @@
 		make.center.equalTo(self.window);
 	}];
 	
+	///添加Umeng统计
+	NSString *umengAppKey = nil;
+#if DEBUG
+	umengAppKey = MSF_Umeng_AppKey_Test;
+#else
+	umengAppKey = MSF_Umeng_AppKey;
+#endif
+	[MobClick startWithAppkey:umengAppKey reportPolicy:BATCH channelId:nil];
+	[MobClick setAppVersion:[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]];
+	
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
 		[indicatorView removeFromSuperview];
 #if DEBUG
@@ -75,6 +88,7 @@
 	
 	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
 		//TODO: 更新提醒
+		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 	}];
 	
 	[[RCLocationManager sharedManager]

@@ -107,7 +107,6 @@
 		[header bindViewModel:self.viewModel];
 		return header;
 	}
-	
 	return UICollectionReusableView.new;
 }
 
@@ -117,8 +116,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.0 - 110;
-	
+	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.0 - 112.5;
 	return CGSizeMake(width, height);
 }
 
@@ -126,13 +124,7 @@
 	MSFLoanViewModel *viewModel = [self.viewModel viewModelForIndexPath:indexPath];
 	NSString *reusableIdentifier = [self.viewModel reusableIdentifierForIndexPath:indexPath];
 	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusableIdentifier forIndexPath:indexPath];
-	if (!viewModel) {
-		MSFPlaceholderCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell" forIndexPath:indexPath];
-		
-		return cell;
-	}
 	if (viewModel) [cell bindViewModel:viewModel];
-
 	return cell;
 }
 

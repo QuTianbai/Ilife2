@@ -71,6 +71,7 @@
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
 		10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */; };
 		10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */; };
+		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */; };
@@ -644,6 +645,10 @@
 		10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFHomePageContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		10DE89721B68AEDE009025C4 /* MSFInfinityScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInfinityScroll.h; sourceTree = "<group>"; };
 		10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInfinityScroll.m; sourceTree = "<group>"; };
+		10DE899B1B69B882009025C4 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		10DE899C1B69B882009025C4 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		10DE899D1B69B882009025C4 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
+		10DE89AC1B69C17F009025C4 /* MSFUmengMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFUmengMacro.h; sourceTree = "<group>"; };
 		1F02B5C08373E00BAD678B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4902EE101B195A2F00EC836C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Externals/Crashlytics.framework; sourceTree = "<group>"; };
@@ -1162,6 +1167,7 @@
 				4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */,
 				C7886771DDAD4ABCF2398DFC /* libPods.a in Frameworks */,
 				4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */,
+				10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1409,6 +1415,17 @@
 				0788FF6D1B1F05D200880617 /* MSFPhoto.m */,
 			);
 			name = AppliInfo;
+			sourceTree = "<group>";
+		};
+		10DE899A1B69B882009025C4 /* UMAnalytics_Sdk_3.5.10 */ = {
+			isa = PBXGroup;
+			children = (
+				10DE899B1B69B882009025C4 /* libMobClickLibrary.a */,
+				10DE899C1B69B882009025C4 /* MobClick.h */,
+				10DE899D1B69B882009025C4 /* MobClickSocialAnalytics.h */,
+				10DE89AC1B69C17F009025C4 /* MSFUmengMacro.h */,
+			);
+			path = UMAnalytics_Sdk_3.5.10;
 			sourceTree = "<group>";
 		};
 		4912D79D1B6213E20014059D /* Loan */ = {
@@ -1951,6 +1968,7 @@
 		497CA1231B3128120099CE56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				10DE899A1B69B882009025C4 /* UMAnalytics_Sdk_3.5.10 */,
 				491B3E2E1B662CEC00D28455 /* UIDevice-Hardware */,
 				491B3E2A1B662CCE00D28455 /* RCLocationManager */,
 			);
@@ -3508,6 +3526,10 @@
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
+				);
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
@@ -3527,6 +3549,10 @@
 				);
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
+				);
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
