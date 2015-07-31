@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="h0b-Vw-fP4">
-                            <rect key="frame" x="0.0" y="176" width="320" height="328"/>
+                            <rect key="frame" x="0.0" y="259" width="320" height="228"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CS3-WP-hrb">
@@ -25,15 +25,15 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAM-Hj-ofJ">
-                                    <rect key="frame" x="75" y="41" width="170" height="170"/>
+                                    <rect key="frame" x="75" y="41" width="170" height="90"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预计每期还款金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iot-0D-2xc">
-                                            <rect key="frame" x="25" y="60" width="120" height="18"/>
+                                            <rect key="frame" x="25" y="10" width="120" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
-                                            <rect key="frame" x="62" y="91" width="46" height="29"/>
+                                            <rect key="frame" x="62" y="51" width="46" height="29"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,14 +44,14 @@
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="iot-0D-2xc" secondAttribute="centerX" id="1nI-KN-pCT"/>
                                         <constraint firstAttribute="centerX" secondItem="v6U-t7-RUX" secondAttribute="centerX" id="2Qp-NY-Z1f"/>
-                                        <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="50" id="On4-ru-LLb"/>
+                                        <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="10" id="On4-ru-LLb"/>
                                         <constraint firstAttribute="width" constant="170" id="aml-Wl-Dqa"/>
-                                        <constraint firstAttribute="height" constant="170" id="bIk-8Z-A3k"/>
-                                        <constraint firstItem="iot-0D-2xc" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" constant="60" id="mWu-Rf-Lff"/>
+                                        <constraint firstAttribute="height" constant="90" id="bIk-8Z-A3k"/>
+                                        <constraint firstItem="iot-0D-2xc" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" constant="10" id="mWu-Rf-Lff"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-by-3e5" customClass="MSFEdgeButton">
-                                    <rect key="frame" x="10" y="241" width="300" height="44"/>
+                                    <rect key="frame" x="10" y="161" width="300" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="23j-ba-cDM"/>
                                     </constraints>
@@ -66,7 +66,7 @@
                                         <constraint firstAttribute="height" constant="21" id="49g-iT-UWk"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寿险金额：10元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="826-SW-x5j">
@@ -75,7 +75,7 @@
                                         <constraint firstAttribute="height" constant="21" id="dLI-UO-hOB"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -116,7 +116,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="NzZ-am-OXq"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RE3-Es-42M">
