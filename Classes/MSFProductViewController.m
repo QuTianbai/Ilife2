@@ -190,6 +190,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 #pragma mark - MSFSlider Delegate
 
 - (void)startSliding {
+	self.viewModel.termAmount = 0;
 	[self.monthCollectionView reloadData];
 }
 
