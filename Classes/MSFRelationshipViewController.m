@@ -128,7 +128,9 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.viewModel.hasMember2 = !self.viewModel.hasMember2;
 		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"- 删除第二位家庭成员" : @"✚ 增加第二位家庭成员" forState:UIControlStateNormal];
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	[self.addFamilyBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
 	
@@ -136,7 +138,9 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.viewModel.hasContact2 = !self.viewModel.hasContact2;
 		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"- 删除第二位联系人" : @"✚ 增加第二位其他联系人" forState:UIControlStateNormal];
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	[self.addOtherBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
 	
@@ -179,7 +183,9 @@ ABPersonViewControllerDelegate>
 		if (value.boolValue) {
 			self.diffCurrentTF.text = @"";
 		}
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	
 	// 第二位家庭成员
@@ -214,7 +220,9 @@ ABPersonViewControllerDelegate>
 		if (value.boolValue) {
 			self.num2DiffCurrentTF.text = @"";
 		}
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	
 	// 其他联系人一

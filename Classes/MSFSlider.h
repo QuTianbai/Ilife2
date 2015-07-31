@@ -10,6 +10,8 @@
 
 @protocol MSFSliderDelegate <NSObject>
 
+@required
+- (void)startSliding;
 - (void)getStringValue:(NSString *)stringvalue;
 
 @end
