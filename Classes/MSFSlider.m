@@ -10,8 +10,6 @@
 
 @interface MSFSlider ()
 
-
-
 @end
 
 @implementation MSFSlider
