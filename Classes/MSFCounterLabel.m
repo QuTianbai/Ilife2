@@ -42,6 +42,9 @@
 	if (self.animationCount < self.maxTimes) {
 		self.animationCount ++;
 		double value = self.text.doubleValue + self.interval;
+		if (value < 0) {
+			value = 0.f;
+		}
 		self.text = [NSString stringWithFormat:@"%.2f", value];
 	} else {
 		self.text = _valueText;
