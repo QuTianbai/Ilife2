@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="nsX-e7-wUx">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
@@ -23,7 +23,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qp-Gb-kxz" customClass="MSFBlurButton">
-                                    <rect key="frame" x="20" y="68" width="280" height="44"/>
+                                    <rect key="frame" x="20" y="46" width="280" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="280" id="9qM-Sl-w9e"/>
                                         <constraint firstAttribute="height" constant="44" id="t7P-Hv-eCm"/>
@@ -56,7 +56,7 @@
                                 <constraint firstAttribute="centerX" secondItem="7qp-Gb-kxz" secondAttribute="centerX" id="Hkm-Xp-8nd"/>
                                 <constraint firstItem="bye-Cc-vjR" firstAttribute="top" secondItem="JxN-2M-z7W" secondAttribute="top" constant="8" id="JOq-1g-M2D"/>
                                 <constraint firstAttribute="trailing" secondItem="bye-Cc-vjR" secondAttribute="trailing" constant="20" id="cTA-Pe-Rak"/>
-                                <constraint firstAttribute="bottom" secondItem="7qp-Gb-kxz" secondAttribute="bottom" constant="8" id="doS-7u-Lg1"/>
+                                <constraint firstAttribute="bottom" secondItem="7qp-Gb-kxz" secondAttribute="bottom" constant="30" id="doS-7u-Lg1"/>
                             </constraints>
                         </view>
                         <sections>
@@ -418,7 +418,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="9sI-6b-OwO">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
@@ -427,7 +427,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NMa-oD-Bfz" customClass="MSFCheckButton">
-                                    <rect key="frame" x="20" y="25" width="20" height="20"/>
+                                    <rect key="frame" x="20" y="15" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="5tI-XM-RqK"/>
                                         <constraint firstAttribute="width" constant="20" id="Eti-4d-twl"/>
@@ -439,7 +439,7 @@
                                     <state key="selected" title="✓"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wes-xf-lsO">
-                                    <rect key="frame" x="154" y="21" width="130" height="28"/>
+                                    <rect key="frame" x="154" y="11" width="130" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="《马上金融注册协议》">
                                         <color key="titleColor" red="0.14117647059999999" green="0.51372549020000002" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
@@ -450,7 +450,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3w-qu-T3j" customClass="MSFBlurButton">
-                                    <rect key="frame" x="20" y="56" width="280" height="44"/>
+                                    <rect key="frame" x="20" y="46" width="280" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="Dgs-zv-0ZP"/>
                                     </constraints>
@@ -459,7 +459,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-2a-bUJ">
-                                    <rect key="frame" x="50" y="21" width="104" height="28"/>
+                                    <rect key="frame" x="50" y="11" width="104" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="我已经阅读且同意">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -477,8 +477,8 @@
                                 <constraint firstItem="S3w-qu-T3j" firstAttribute="leading" secondItem="YNE-Pw-kXl" secondAttribute="leading" constant="10" id="bu6-se-d0b"/>
                                 <constraint firstItem="Wes-xf-lsO" firstAttribute="leading" secondItem="bXH-2a-bUJ" secondAttribute="trailing" id="h51-xf-2j9"/>
                                 <constraint firstAttribute="centerX" secondItem="S3w-qu-T3j" secondAttribute="centerX" id="hbX-wd-W6J"/>
-                                <constraint firstItem="NMa-oD-Bfz" firstAttribute="top" secondItem="YNE-Pw-kXl" secondAttribute="top" constant="25" id="lGO-iU-hHp"/>
-                                <constraint firstAttribute="bottom" secondItem="S3w-qu-T3j" secondAttribute="bottom" constant="20" id="nor-rg-zPS"/>
+                                <constraint firstItem="NMa-oD-Bfz" firstAttribute="top" secondItem="YNE-Pw-kXl" secondAttribute="top" constant="15" id="lGO-iU-hHp"/>
+                                <constraint firstAttribute="bottom" secondItem="S3w-qu-T3j" secondAttribute="bottom" constant="30" id="nor-rg-zPS"/>
                                 <constraint firstItem="bXH-2a-bUJ" firstAttribute="leading" secondItem="NMa-oD-Bfz" secondAttribute="trailing" constant="10" id="uJT-J0-b8R"/>
                                 <constraint firstItem="NMa-oD-Bfz" firstAttribute="centerY" secondItem="Wes-xf-lsO" secondAttribute="centerY" id="xQS-qy-oUp"/>
                                 <constraint firstItem="NMa-oD-Bfz" firstAttribute="centerY" secondItem="bXH-2a-bUJ" secondAttribute="centerY" id="yXp-XQ-lKw"/>

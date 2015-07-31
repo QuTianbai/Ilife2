@@ -574,12 +574,14 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="cancelButton" destination="gyo-a2-rQE" id="Wbc-pa-Oop"/>
                 <outlet property="loanAccountLabel" destination="Qgh-Hw-liB" id="hnW-mL-4gy"/>
                 <outlet property="loanConfirmAlertView" destination="fNt-nA-goR" id="4gq-k7-yTI"/>
                 <outlet property="loanConfirmLabel" destination="E54-B3-g6V" id="y18-nT-Maf"/>
                 <outlet property="loanNper" destination="Vbk-bD-zvv" id="ewc-GR-Juf"/>
                 <outlet property="loanPayBack" destination="wQl-el-mfX" id="wIr-ct-926"/>
                 <outlet property="loanUse" destination="wPJ-Nf-wQu" id="nSV-R8-UlQ"/>
+                <outlet property="submitButton" destination="JgD-n6-WEq" id="A9j-vu-PEO"/>
             </connections>
             <point key="canvasLocation" x="303" y="252"/>
         </view>

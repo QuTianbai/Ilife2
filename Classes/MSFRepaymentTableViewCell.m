@@ -12,7 +12,7 @@
 #import <Masonry/Masonry.h>
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
+#define TYPEFACECOLOR @"#007ee5"
 
 @implementation MSFRepaymentTableViewCell
 

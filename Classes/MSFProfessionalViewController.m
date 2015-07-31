@@ -29,10 +29,10 @@
 #import "MSFHeaderView.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
-		MSFProfessionalViewSectionSchool = 1,
-		MSFProfessionalViewSectionCompany = 2,
-		MSFProfessionalViewSectionDepartment = 3,
-		MSFProfessionalViewSectionContact = 4,
+	MSFProfessionalViewSectionSchool = 1,
+	MSFProfessionalViewSectionCompany = 2,
+	MSFProfessionalViewSectionDepartment = 3,
+	MSFProfessionalViewSectionContact = 4,
 };
 
 @interface MSFProfessionalViewController ()
@@ -68,32 +68,32 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.company, text) = companyChannel;
 	[self.company.rac_textSignal subscribe:companyChannel];
 	
-  [[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
-  subscribeNext:^(UITextField *textField) {
-    if (textField.text.length > 10) {
-      textField.text = [textField.text substringToIndex:10];
-    }
-  }];
+	[[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 10) {
+				textField.text = [textField.text substringToIndex:10];
+			}
+		}];
 	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
-  [[self.unitAreaCode rac_signalForControlEvents:UIControlEventEditingChanged]
-  subscribeNext:^(UITextField *textField) {
-    if (textField.text.length > 4) {
-      textField.text = [textField.text substringToIndex:4];
-    }
-  }];
+	[[self.unitAreaCode rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 4) {
+				textField.text = [textField.text substringToIndex:4];
+			}
+		}];
 	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
 	
-  [[self.unitTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
-  subscribeNext:^(UITextField *textField) {
-    if (textField.text.length>8) {
-      textField.text = [textField.text substringToIndex:8];
-    }
-  }];
+	[[self.unitTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length>8) {
+				textField.text = [textField.text substringToIndex:8];
+			}
+		}];
 	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
@@ -105,7 +105,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
 	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
-  RAC(self, title) = RACObserve(self.viewModel, socialstatusTitle);
+	RAC(self, title) = RACObserve(self.viewModel, socialstatusTitle);
 	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
 	RAC(self.programLength, text) = RACObserve(self.viewModel, eductionalSystmeTitle);
 	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
@@ -153,7 +153,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
-	[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[self.workTown.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
@@ -180,7 +180,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if ([self.viewModel.socialstatus.code isEqualToString:@"SI03"] && section == 0) {
 		return [super tableView:tableView titleForHeaderInSection:section];
 	}
-
+	
 	return nil;
 }
 
@@ -211,7 +211,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 		[cell setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
 		[cell setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -221,32 +221,32 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
 		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-  
-  NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
-  if (sectionTitle == nil) {
-    return  nil;
-  }
-  
-  UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
-  sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
-  
-  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
-  
-  titleLabel.text = sectionTitle;
-  titleLabel.font = [UIFont systemFontOfSize:14];
-  titleLabel.textColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
-  titleLabel.backgroundColor = [UIColor clearColor];
-  
-  [sectionView addSubview:titleLabel];
-  
-  return sectionView;
+	
+	NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
+	if (sectionTitle == nil) {
+		return  nil;
+	}
+	
+	UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
+	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
+	
+	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
+	
+	titleLabel.text = sectionTitle;
+	titleLabel.font = [UIFont systemFontOfSize:14];
+	titleLabel.textColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
+	titleLabel.backgroundColor = [UIColor clearColor];
+	
+	[sectionView addSubview:titleLabel];
+	
+	return sectionView;
 }
 
 #pragma mark - Private
@@ -262,24 +262,24 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[comps setYear:-50];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-	 
+		
 		[ActionSheetDatePicker
-			showPickerWithTitle:@""
-			datePickerMode:UIDatePickerModeDate
-			selectedDate:[NSDate date]
-			minimumDate:minDate
-			maximumDate:maxDate
-			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			cancelBlock:^(ActionSheetDatePicker *picker) {
-				self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			origin:self.view];
+		 showPickerWithTitle:@""
+		 datePickerMode:UIDatePickerModeDate
+		 selectedDate:[NSDate date]
+		 minimumDate:minDate
+		 maximumDate:maxDate
+		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 cancelBlock:^(ActionSheetDatePicker *picker) {
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 origin:self.view];
 		return nil;
 	}] replay];
 }
@@ -295,24 +295,24 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[comps setYear:-50];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-	 
+		
 		[ActionSheetDatePicker
-			showPickerWithTitle:@""
-			datePickerMode:UIDatePickerModeDate
-			selectedDate:[NSDate date]
-			minimumDate:minDate
-			maximumDate:maxDate
-			doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			cancelBlock:^(ActionSheetDatePicker *picker) {
-				self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
-				[subscriber sendNext:nil];
-				[subscriber sendCompleted];
-			}
-			origin:self.view];
+		 showPickerWithTitle:@""
+		 datePickerMode:UIDatePickerModeDate
+		 selectedDate:[NSDate date]
+		 minimumDate:minDate
+		 maximumDate:maxDate
+		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 cancelBlock:^(ActionSheetDatePicker *picker) {
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 origin:self.view];
 		return nil;
 	}] replay];
 }

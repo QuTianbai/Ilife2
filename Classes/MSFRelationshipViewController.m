@@ -12,6 +12,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Masonry/Masonry.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "AppDelegate.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
@@ -23,6 +24,7 @@
 #import "UIColor+Utils.h"
 #import "MSFHeaderView.h"
 #import "MSFSubmitAlertView.h"
+#import "MSFSelectKeyValues.h"
 #define BLUECOLOR @"#007ee5"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
@@ -37,6 +39,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
+@property (nonatomic, strong) MSFSelectKeyValues *selectKeyValues;
 /**
  *	婚姻状况，住房状况
  */
@@ -101,8 +104,6 @@ ABPersonViewControllerDelegate>
 - (IBAction)secondFamilyPhoneBtn:(id)sender;
 - (IBAction)firstOtherContactBtn:(id)sender;
 - (IBAction)secondOtherContactBtn:(id)sender;
-
-#define RELATION_VIEW_MODEL self.viewModel.relationViewModel
 
 @end
 
@@ -282,18 +283,24 @@ ABPersonViewControllerDelegate>
 		[alertView addButtonWithTitle:@"确认"];
 		[alertView setCancelButtonIndex:0];
 		[alertView show];
-		//新alertview
-		/*
-		 MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
-		 [submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-		 //替换我写的假数据就可以了
-		 submitAlertView.loanAccountLabel.text = @"100元";
-		 submitAlertView.loanNper.text = @"3期";
-		 submitAlertView.loanPayBack.text = @"35.27";
-		 submitAlertView.loanUse.text = @"租赁";
-		 
-		 [self.view addSubview:submitAlertView];
-		 */
+//		AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+//		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
+//		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+//		
+//		__block NSString *usage;
+//		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
+//		[items enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+//			if ([obj.code isEqualToString:self.viewModel.model.usageCode]) {
+//				usage = obj.text;
+//			}
+//		}];
+//		 submitAlertView.loanAccountLabel.text = self.viewModel.model.principal;
+//		 submitAlertView.loanNper.text = self.viewModel.model.tenor;
+//		 submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
+//		 submitAlertView.loanUse.text = usage;
+//		
+//		[appdelegate.window addSubview:submitAlertView];
+		
 		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 			if (index.integerValue == 1) {
 				[self.viewModel.executeCommitCommand execute:nil];
