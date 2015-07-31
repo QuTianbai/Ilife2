@@ -12,4 +12,6 @@
 
 @interface MSFRelationshipViewController : UITableViewController <MSFReactiveView>
 
+- (void)fetchAddressBook:(UITextField *)textField;
+
 @end

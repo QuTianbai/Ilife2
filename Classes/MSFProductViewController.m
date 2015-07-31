@@ -31,6 +31,7 @@
 #import "MSFPeriodsCollectionViewCell.h"
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
+#import "MSFCounterLabel.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -49,7 +50,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
 @property (weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
 @property (weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
-@property (weak, nonatomic) IBOutlet UILabel *repayMoneyMonth;
+@property (weak, nonatomic) IBOutlet MSFCounterLabel *repayMoneyMonth;
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
@@ -101,8 +102,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
 	
-	//RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
-	RAC(self.repayMoneyMonth, text) = RACObserve(self, viewModel.termAmountText);
+	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
+	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
 	
@@ -175,16 +176,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 }
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *cellID = @"MSFPeriodsCollectionViewCell";
-  
-  MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-  cell.layer.borderColor   = [UIColor grayColor].CGColor;
-  cell.layer.borderWidth   = 1;
-  cell.layer.cornerRadius  = 7;
-  cell.layer.masksToBounds = YES;
-  cell.loacPeriodsLabel.backgroundColor = [UIColor clearColor];
-  cell.loacPeriodsLabel.textColor = [UIColor grayColor];
-  cell.loacPeriodsLabel.text = [self.selectViewModel titleForIndexPath:indexPath];
+  MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
+	cell.text = [self.selectViewModel titleForIndexPath:indexPath];
+	cell.locked = self.moneySlider.tracking;
   return cell;
 }
 
@@ -202,25 +196,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
- self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath]; 
-  MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-  cell.loacPeriodsLabel.textColor = [UIColor tintColor];
-  cell.layer.borderColor   = [UIColor tintColor].CGColor;
-}
-
-//UICollectionView取消选中时调用的方法
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-  
-  MSFPeriodsCollectionViewCell *cell = (MSFPeriodsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-  cell.loacPeriodsLabel.textColor = [UIColor grayColor];
-  cell.layer.borderColor   = [UIColor grayColor].CGColor;
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  return YES;
+	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 
 #pragma mark - MSFSlider Delegate
+
+- (void)startSliding {
+	[self.monthCollectionView reloadData];
+}
 
 - (void)getStringValue:(NSString *)stringvalue {
   self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
