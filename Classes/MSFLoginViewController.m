@@ -52,6 +52,7 @@
 	
 	[[self.signInButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		self.loginPageController.dragging = NO;
 		id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:1];
 		[currentViewController bindViewModel:self.viewModel];
 		[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -59,6 +60,7 @@
 	}];
 	[[self.signUpButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		self.loginPageController.dragging = NO;
 		id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:0];
 		[currentViewController bindViewModel:self.viewModel];
 		[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
@@ -85,6 +87,16 @@
 		@strongify(self)
 		[x.first bindViewModel:self.viewModel];
 	}];
+	
+	[RACObserve(self.loginPageController, offset) subscribeNext:^(NSNumber *x) {
+		@strongify(self)
+		CGFloat offset = x.doubleValue - 320;
+		if (self.currentLoginType == MSFLoginSignUp) {
+			self.leading.constant = offset / 2.0;
+		} else {
+			self.leading.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2 + offset / 2.0;
+		}
+	}];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -104,6 +116,10 @@
 }
 
 #pragma mark - Private
+
+- (MSFLoginType)currentLoginType {
+	return !self.signInButton.enabled ? MSFLoginSignIn : MSFLoginSignUp;
+}
 
 - (void)didLoad {
 	[self.signInButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];

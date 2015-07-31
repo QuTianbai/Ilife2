@@ -41,7 +41,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"设置";
+	self.title = @"关于";
 	
 	_imageArray = @[
 		@"iconfont-guanyuwomen.png",

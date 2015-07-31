@@ -19,6 +19,7 @@
 #import "MSFUser.h"
 #import "MSFUserViewModel.h"
 #import "MSFAuthorizeViewModel.h"
+#import "MSFEditPasswordViewController.h"
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
 @interface MSFUserInfoViewController ()
@@ -53,8 +54,9 @@
 	self.rowTitles = @[@"姓名", @"身份证号", @"联系方式"];
 	[self.tableView registerClass:MSFUserInfoTableViewCell.class forCellReuseIdentifier:@"Cell"];
 	self.tableView.tableFooterView = self.tableViewFooter;
-	self.tableView.tableHeaderView = self.tableViewHeader;
-	self.tableView.backgroundColor = [UIColor whiteColor];
+	UIView *view = [[UIView alloc] init];
+	view.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 1);
+	self.tableView.tableHeaderView = view;
 	
 	@weakify(self)
 	[self.viewModel.contentUpdateSignal subscribeNext:^(id x) {
@@ -87,92 +89,9 @@
 
 #pragma mark - Private
 
-- (UIView *)tableViewHeader {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 170)];
-	view.backgroundColor = [UIColor whiteColor];
-	
-	UIImageView *backgroundView = UIImageView.new;
-	backgroundView.image = [UIImage imageNamed:@"bg-account-header"];
-	[view addSubview:backgroundView];
-	[backgroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(view);
-	}];
-	
-	UIView *avatarView = UIView.new;
-	avatarView.layer.borderColor = UIColor.themeColor.CGColor;
-	avatarView.layer.borderWidth = 2;
-	avatarView.hidden = YES;
-	[view addSubview:avatarView];
-	UIButton *imageView = [UIButton buttonWithType:UIButtonTypeCustom];
-	imageView.userInteractionEnabled = NO;
-	[imageView setBackgroundImage:[UIImage imageNamed:@"icon-avatar-placeholder"] forState:UIControlStateNormal];
-	[view addSubview:imageView];
-	[avatarView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@120);
-		make.width.equalTo(@120);
-		make.center.equalTo(view);
-	}];
-	[imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.height.equalTo(@75);
-		make.width.equalTo(@75);
-		make.center.equalTo(view);
-	}];
-	
-	UILabel *label = UILabel.new;
-	label.textAlignment = NSTextAlignmentCenter;
-	label.textColor = [UIColor whiteColor];
-	label.text = [MSFUtils.httpClient user].name;
-	label.hidden = YES;
-	[view addSubview:label];
-	[label mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(imageView.mas_bottom).offset(-10);
-		make.centerX.equalTo(imageView);
-	}];
-	
-	[[avatarView rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(id x) {
-		avatarView.layer.cornerRadius = CGRectGetWidth(avatarView.bounds) / 2.0;
-		avatarView.layer.masksToBounds = YES;
-	}];
-	
-	[[imageView rac_signalForSelector:@selector(layoutSubviews)] subscribeNext:^(id x) {
-		imageView.layer.cornerRadius = CGRectGetWidth(imageView.bounds) / 2.0;
-		imageView.layer.masksToBounds = YES;
-	}];
-	
-	@weakify(self)
-	[[imageView rac_signalForControlEvents:UIControlEventTouchUpInside]
-	 subscribeNext:^(id x) {
-		 @strongify(self)
-		 self.photoPickerController = [[CZPhotoPickerController alloc] initWithPresentingViewController:self
-			withCompletionBlock:^(UIImagePickerController *imagePickerController, NSDictionary *imageInfoDict) {
-				[self.photoPickerController dismissAnimated:YES];
-				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage];
-				if (!image) {
-					return ;
-				}
-				[imageView setImage:image forState:UIControlStateNormal];
-				NSData *data = UIImageJPEGRepresentation(image, 0.8);
-				NSString *file = [[@([[NSDate date] timeIntervalSince1970]) stringValue] stringByAppendingString:@".jpg"];
-				NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:file];
-				[data writeToFile:path atomically:YES];
-				[[MSFUtils.httpClient updateUserAvatarWithFileURL:[NSURL fileURLWithPath:path]]
-				 subscribeNext:^(MSFUser *user) {
-					 [MSFUtils.httpClient.user mergeValuesForKeysFromModel:user];
-					 [SVProgressHUD showSuccessWithStatus:@"上传成功..."];
-				 }
-				 error:^(NSError *error) {
-					 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-				 }];
-		 }];
-		 [self.photoPickerController showFromRect:CGRectZero];
-	 }];
- 
-	return view;
-}
-
 - (UIView *)tableViewFooter {
 	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 50)];
-	view.backgroundColor = [UIColor whiteColor];
+	view.backgroundColor = [UIColor clearColor];
 	MSFEdgeButton *button = MSFEdgeButton.new;
 	[button setTitleColor:UIColor.themeColor forState:UIControlStateNormal];
 	[button setTitle:@"退出登录" forState:UIControlStateNormal];
@@ -194,17 +113,34 @@
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 3;
+	return section == 0 ? 3 : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	MSFUserInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-	cell.textLabel.text = self.rowTitles[indexPath.row];
-	cell.detailTextLabel.text = self.rowSubtitles[indexPath.row];
+	if (indexPath.section == 0) {
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.textLabel.text = self.rowTitles[indexPath.row];
+		cell.detailTextLabel.text = self.rowSubtitles[indexPath.row];
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.textLabel.text = @"修改密码";
+	}
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if (indexPath.section == 1) {
+		MSFEditPasswordViewController *vc = [[MSFEditPasswordViewController alloc] initWithViewModel:self.viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+	}
 }
 
 @end

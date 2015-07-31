@@ -75,6 +75,8 @@
  */
 - (RACSignal *)authoriseValidSignal;
 
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end

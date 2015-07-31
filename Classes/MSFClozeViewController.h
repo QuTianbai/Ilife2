@@ -25,5 +25,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *bankAddressButton;
 
 - (instancetype)initWithViewModel:(id)viewModel;
+@property (weak, nonatomic) IBOutlet UIView *personArcView;
+@property (weak, nonatomic) IBOutlet UIView *bankArcView;
 
 @end

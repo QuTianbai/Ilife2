@@ -53,11 +53,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
-
-@property (nonatomic, strong) RACCommand *executePurposeCommand;
-@property (nonatomic, strong) RACCommand *executeTermCommand;
-@property (nonatomic, strong) RACCommand *executeNextCommand;
-@property (nonatomic, strong) RACCommand *executeLifeInsuranceCommand;
 @property (nonatomic, strong, readwrite) MSFProductViewModel *viewModel;
 
 @end
@@ -131,7 +126,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
-	[self.executeNextCommand.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	self.lifeInsuranceButton.rac_command = self.viewModel.executeLifeInsuranceCommand;

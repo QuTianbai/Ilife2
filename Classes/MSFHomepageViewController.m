@@ -68,17 +68,6 @@
 				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
-	self.navigationItem.rightBarButtonItem =
-		[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav-setting"]
-		style:UIBarButtonItemStyleDone target:nil action:nil];
-	self.navigationItem.rightBarButtonItem.rac_command =
-		[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			@strongify(self)
-			MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
-			settingsViewController.hidesBottomBarWhenPushed = YES;
-			[self.navigationController pushViewController:settingsViewController animated:YES];
-			return [RACSignal empty];
-		}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
