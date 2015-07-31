@@ -97,7 +97,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
-	self.applyMonthsTF.placeholder = @"请选择期数";
+	//self.applyMonthsTF.placeholder = @"请选择期数";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
@@ -131,6 +131,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	self.lifeInsuranceButton.rac_command = self.viewModel.executeLifeInsuranceCommand;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+ //  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue / 100 * 100];
+}
+
+- (void)setEmptyMoney {
+  self.moneySlider.value = 0;
+  self.moneySlider.moneyNumLabel.text = @"0元";
+  self.viewModel.totalAmount = @"0";
+  [self getStringValue:@"0"];
+ 
 }
 
 #pragma mark - UITableViewDelegate

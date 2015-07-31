@@ -66,6 +66,7 @@
 	@weakify(self)
 	_selectCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
+    self.isStopAutoLocation = YES;
 		if (!self.needArea) {
 			return [[[self fetchProvince]
 				flattenMap:^RACStream *(id value) {

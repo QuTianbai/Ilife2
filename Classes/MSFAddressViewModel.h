@@ -32,6 +32,7 @@
 @property (nonatomic, strong, readonly) NSString *address;
 
 @property (nonatomic, assign, readonly) BOOL needArea;
+@property (nonatomic, assign) BOOL isStopAutoLocation;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 - (instancetype)initWithAddress:(MSFAddress *)address services:(id <MSFViewModelServices>)services;

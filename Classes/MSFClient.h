@@ -32,6 +32,8 @@ extern const NSInteger MSFClientErrorAuthenticationFailed;
  */
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request resultClass:(Class)resultClass;
 
+- (RACSignal *)enqueueRequestCustom:(NSURLRequest *)request resultClass:(Class)resultClass;
+
 /**
  *	添加与用户相关的请求到队列
  *
