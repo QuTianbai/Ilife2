@@ -17,7 +17,6 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 @interface MSFClozeViewModel ()
 
 @property (nonatomic, strong, readwrite) MSFAddressViewModel *addressViewModel;
-@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 @end
 
