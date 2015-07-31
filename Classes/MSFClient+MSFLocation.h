@@ -9,7 +9,6 @@
 #import "MSFClient.h"
 #import <CoreLocation/CoreLocation.h>
 
-
 @interface MSFClient (MSFLocation)
 
 - (RACSignal *)fetchLocationAdress:(CLLocationCoordinate2D)coordinate;

@@ -17,7 +17,7 @@
 
 @interface MSFLocation : NSObject
 
-@property (nonatomic,assign) id<MSFLocationDelegate> delegate;
+@property (nonatomic, assign) id<MSFLocationDelegate> delegate;
 
 - (void)startLocation;
 
