@@ -276,15 +276,15 @@ ABPersonViewControllerDelegate>
 		[alertView show];
 		//新alertview
 		/*
-		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
-		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+		 MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
+		 [submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 		 //替换我写的假数据就可以了
-		submitAlertView.loanAccountLabel.text = @"100元";
-		submitAlertView.loanNper.text = @"3期";
-		submitAlertView.loanPayBack.text = @"35.27";
-		submitAlertView.loanUse.text = @"租赁";
-		
-		[self.view addSubview:submitAlertView];
+		 submitAlertView.loanAccountLabel.text = @"100元";
+		 submitAlertView.loanNper.text = @"3期";
+		 submitAlertView.loanPayBack.text = @"35.27";
+		 submitAlertView.loanUse.text = @"租赁";
+		 
+		 [self.view addSubview:submitAlertView];
 		 */
 		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 			if (index.integerValue == 1) {
@@ -391,7 +391,7 @@ ABPersonViewControllerDelegate>
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 		[cell setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
 		[cell setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -401,7 +401,7 @@ ABPersonViewControllerDelegate>
 	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
 		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -433,18 +433,22 @@ ABPersonViewControllerDelegate>
 	picker.displayedProperties = displayedItems;
 	[self presentViewController:picker animated:YES completion:^{
 	}];
+	if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+		picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];
+	}
 }
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
 
-- (void)peoplePickerNavigationController :(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
 	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
 	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
 	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
 		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
+		aPhone = [aPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
 		[phones addObject:aPhone];
 	}
-		NSString *phone = @"";
+	NSString *phone = @"";
 	
 	if (phones.count > 0) {
 		phone = [phones objectAtIndex:0];
@@ -454,26 +458,70 @@ ABPersonViewControllerDelegate>
   case 10000:
 			self.telTF.text = phone;
 			break;
-	case 10001:
+		case 10001:
 			self.num2TelTF.text = phone;
 			break;
-	case 10002:
+		case 10002:
 			self.otherTelTF.text = phone;
 			break;
-	case 10003:
+		case 10003:
 			self.num2_otherTelTF.text = phone;
 			break;
 			
   default:
 			break;
 	}
-
+	
 }
 
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-	return NO;
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+			shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+	return YES;
 }
-- (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-	return NO;
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+	[peoplePicker dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+			shouldContinueAfterSelectingPerson:(ABRecordRef)person
+																property:(ABPropertyID)property
+															identifier:(ABMultiValueIdentifier)identifier {
+	
+	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
+	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
+	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
+		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
+		aPhone = [aPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+		[phones addObject:aPhone];
+	}
+	NSString *phone = @"";
+	
+	if (phones.count > 0) {
+		phone = [phones objectAtIndex:0];
+	}
+	
+	switch (peoplePicker.view.tag) {
+  case 10000:
+			self.telTF.text = phone;
+			break;
+		case 10001:
+			self.num2TelTF.text = phone;
+			break;
+		case 10002:
+			self.otherTelTF.text = phone;
+			break;
+		case 10003:
+			self.num2_otherTelTF.text = phone;
+			break;
+			
+  default:
+			break;
+	}
+ [peoplePicker dismissViewControllerAnimated:YES completion:nil];
+	
+	return NO;
+	
+}
+
 @end
