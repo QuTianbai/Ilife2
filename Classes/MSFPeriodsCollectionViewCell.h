@@ -10,6 +10,10 @@
 
 @interface MSFPeriodsCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *loacPeriodsLabel;
+// cell显示期数的文本
+@property (nonatomic, strong) NSString *text;
+
+// slide滑动时cell处于锁定状态（不可点击颜色变浅）设为YES，否则为NO
+@property (nonatomic, assign) BOOL locked;
 
 @end
