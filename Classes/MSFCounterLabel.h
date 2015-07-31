@@ -10,4 +10,6 @@
 
 @interface MSFCounterLabel : UILabel
 
+@property (nonatomic, strong) NSString *valueText;
+
 @end

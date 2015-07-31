@@ -32,6 +32,13 @@
   return self;
 }
 
+- (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+	if ([self.delegate respondsToSelector:@selector(startSliding)]) {
+		[self.delegate startSliding];
+	}
+	return YES;
+}
+
 - (void)customSlider {
   UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];
   titleLabel.font = [UIFont systemFontOfSize:15];
