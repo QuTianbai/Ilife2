@@ -633,9 +633,11 @@ static BOOL isRunningTests(void) {
 
 //地理位置反解析
 - (RACSignal *)enqueueRequestCustom:(NSURLRequest *)request resultClass:(Class)resultClass {
-  return [[self requestBaidu:request]map:^id(RACTuple *responseAndData) {
-           // __block BOOL loggedRemaining = NO;
+  return [[self requestBaidu:request] map:^id(RACTuple *responseAndData) {
     RACTupleUnpack(NSHTTPURLResponse *reponse, NSData *data) = responseAndData;
+		if (reponse.statusCode != 200) {
+			return nil;
+		}
     NSString *resourceStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSString *dataStr = [resourceStr stringByReplacingOccurrencesOfString:@"renderReverse&&renderReverse(" withString:@""] ;
     NSString *str = [dataStr substringToIndex:dataStr.length - 1];
