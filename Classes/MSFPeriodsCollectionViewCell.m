@@ -27,12 +27,12 @@
 	self.loacPeriodsLabel.textColor = [UIColor grayColor];
 }
 
-- (void) setText:(NSString *)text {
+- (void)setText:(NSString *)text {
 	_text = text;
 	self.loacPeriodsLabel.text = text;
 }
 
-- (void) setLocked:(BOOL)locked {
+- (void)setLocked:(BOOL)locked {
 	_locked = locked;
 	if (locked) {
 		self.userInteractionEnabled = NO;
@@ -46,7 +46,7 @@
 	}
 }
 
-- (void) setSelected:(BOOL)selected {
+- (void)setSelected:(BOOL)selected {
 	[super setSelected:selected];
 	if (selected) {
 		self.layer.borderColor = [UIColor tintColor].CGColor;

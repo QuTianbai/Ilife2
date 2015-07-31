@@ -32,7 +32,7 @@
   return self;
 }
 
-- (BOOL) beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
 	if ([self.delegate respondsToSelector:@selector(startSliding)]) {
 		[self.delegate startSliding];
 	}
