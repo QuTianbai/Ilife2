@@ -467,8 +467,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9q-IJ-dIB">
-                                                    <rect key="frame" x="263" y="0.0" width="44" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9q-IJ-dIB">
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="tdv-q0-I8h"/>
                                                     </constraints>
@@ -477,7 +477,7 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etz-sm-yJ0">
-                                                    <rect key="frame" x="276" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="276" y="0.0" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="EOO-Pw-IpR"/>
                                                         <constraint firstAttribute="width" constant="44" id="OdW-ai-bQy"/>
@@ -503,10 +503,12 @@
                                             <constraints>
                                                 <constraint firstItem="IOh-8Y-DjX" firstAttribute="leading" secondItem="GSs-kx-wWG" secondAttribute="leadingMargin" constant="5" id="1bd-JI-eJj"/>
                                                 <constraint firstItem="nDz-yx-ed6" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" constant="7" id="76y-Di-Pnf"/>
+                                                <constraint firstItem="d9q-IJ-dIB" firstAttribute="top" secondItem="Etz-sm-yJ0" secondAttribute="top" id="9jf-pj-Cna"/>
                                                 <constraint firstItem="Etz-sm-yJ0" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" id="Dsc-An-v1R"/>
                                                 <constraint firstAttribute="bottom" secondItem="IOh-8Y-DjX" secondAttribute="bottom" constant="11.5" id="FpN-z6-38R"/>
                                                 <constraint firstAttribute="bottom" secondItem="nDz-yx-ed6" secondAttribute="bottom" constant="7" id="Jg9-eO-3Gt"/>
                                                 <constraint firstAttribute="trailing" secondItem="Etz-sm-yJ0" secondAttribute="trailing" id="Kfo-xi-cmd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="d9q-IJ-dIB" secondAttribute="trailing" constant="-2" id="M5X-PZ-mbe"/>
                                                 <constraint firstItem="nDz-yx-ed6" firstAttribute="leading" secondItem="IOh-8Y-DjX" secondAttribute="trailing" constant="8" id="U4o-zP-2lw"/>
                                                 <constraint firstItem="IOh-8Y-DjX" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" constant="11" id="beo-00-q9i"/>
                                                 <constraint firstItem="Etz-sm-yJ0" firstAttribute="leading" secondItem="nDz-yx-ed6" secondAttribute="trailing" id="c5h-GM-diu"/>
