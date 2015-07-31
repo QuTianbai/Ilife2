@@ -531,7 +531,6 @@ static BOOL isRunningTests(void) {
 				self.token = authorization.token;
 				self.session = authorization.session;
 			}
-			//!!!:  这里的代码，是因为后台返回的成功信息没有按照文档的格式返回做临时处理
 			if (!responseObject) {
 				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
 					responseObject = @{@"message": @"验证码发送成功"};
