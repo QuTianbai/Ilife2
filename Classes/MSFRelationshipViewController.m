@@ -273,9 +273,8 @@ ABPersonViewControllerDelegate>
 		[alertView addButtonWithTitle:@"取消"];
 		[alertView addButtonWithTitle:@"确认"];
 		[alertView setCancelButtonIndex:0];
-		[alertView show];
-		//新alertview
-		/*
+		//[alertView show];
+		UIWindow *window = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 		 MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
 		 [submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 		 //替换我写的假数据就可以了
@@ -283,9 +282,10 @@ ABPersonViewControllerDelegate>
 		 submitAlertView.loanNper.text = @"3期";
 		 submitAlertView.loanPayBack.text = @"35.27";
 		 submitAlertView.loanUse.text = @"租赁";
-		 
-		 [self.view addSubview:submitAlertView];
-		 */
+		
+		 [window addSubview:submitAlertView];
+		 [self.view addSubview:window];
+		
 		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 			if (index.integerValue == 1) {
 				[self.viewModel.executeCommitCommand execute:nil];
