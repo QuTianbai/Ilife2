@@ -15,12 +15,15 @@
 QuickSpecBegin(MSFAuthorizeViewModelSpec)
 
 __block MSFAuthorizeViewModel *viewModel;
+__block id <MSFViewModelServices> services;
 
 __block NSError *error;
 __block BOOL success;
 
 beforeEach(^{
-//  viewModel = [[MSFAuthorizeViewModel alloc] initWithServer:MSFServer.dotComServer];
+	services = mockProtocol(@protocol(MSFViewModelServices));
+	[given([services server]) willReturn:[MSFServer dotComServer]];
+  viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:services];
   error = nil;
   success = NO;
 });

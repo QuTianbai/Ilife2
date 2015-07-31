@@ -11,6 +11,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Masonry/Masonry.h>
+#import <AddressBookUI/AddressBookUI.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
@@ -21,7 +22,7 @@
 #import "MSFRelationshipViewModel.h"
 #import "UIColor+Utils.h"
 #import "MSFHeaderView.h"
-
+#import "MSFSubmitAlertView.h"
 #define BLUECOLOR @"#007ee5"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
@@ -32,7 +33,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionContact2,
 };
 
-@interface MSFRelationshipViewController ()
+@interface MSFRelationshipViewController ()<ABPeoplePickerNavigationControllerDelegate,
+ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 /**
@@ -92,6 +94,14 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 @property (nonatomic, assign) BOOL sameMember1Address;
 @property (nonatomic, assign) BOOL sameMember2Address;
 
+/**
+ *	通讯录按钮
+ */
+- (IBAction)firstFamilyPhoneBtn:(id)sender;
+- (IBAction)secondFamilyPhoneBtn:(id)sender;
+- (IBAction)firstOtherContactBtn:(id)sender;
+- (IBAction)secondOtherContactBtn:(id)sender;
+
 #define RELATION_VIEW_MODEL self.viewModel.relationViewModel
 
 @end
@@ -111,12 +121,16 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	self.title = @"家庭信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
 	
+	
+	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.hasMember2 = !self.viewModel.hasMember2;
 		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"- 删除第二位家庭成员" : @"✚ 增加第二位家庭成员" forState:UIControlStateNormal];
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	[self.addFamilyBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
 	
@@ -124,7 +138,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		@strongify(self)
 		self.viewModel.hasContact2 = !self.viewModel.hasContact2;
 		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"- 删除第二位联系人" : @"✚ 增加第二位其他联系人" forState:UIControlStateNormal];
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	[self.addOtherBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
 	
@@ -151,8 +167,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.telTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	
@@ -167,7 +183,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		if (value.boolValue) {
 			self.diffCurrentTF.text = @"";
 		}
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	
 	// 第二位家庭成员
@@ -187,8 +205,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.num2TelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	[self.num2TelTF.rac_textSignal subscribe:member2PhoneChannel];
@@ -202,7 +220,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		if (value.boolValue) {
 			self.num2DiffCurrentTF.text = @"";
 		}
-		[self.tableView reloadData];
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}];
 	
 	// 其他联系人一
@@ -221,8 +241,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	
@@ -245,8 +265,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	
 	[[self.num2_otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
+		 if (textField.text.length > 13) {
+			 textField.text = [textField.text substringToIndex:13];
 		 }
 	 }];
 	RACChannelTerminal *phone2Channel = RACChannelTo(self.viewModel.model, phone2);
@@ -262,6 +282,18 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 		[alertView addButtonWithTitle:@"确认"];
 		[alertView setCancelButtonIndex:0];
 		[alertView show];
+		//新alertview
+		/*
+		 MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
+		 [submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+		 //替换我写的假数据就可以了
+		 submitAlertView.loanAccountLabel.text = @"100元";
+		 submitAlertView.loanNper.text = @"3期";
+		 submitAlertView.loanPayBack.text = @"35.27";
+		 submitAlertView.loanUse.text = @"租赁";
+		 
+		 [self.view addSubview:submitAlertView];
+		 */
 		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 			if (index.integerValue == 1) {
 				[self.viewModel.executeCommitCommand execute:nil];
@@ -367,7 +399,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 		[cell setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
 		[cell setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -377,10 +409,133 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
 		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+#pragma mark - phone_button
+
+- (IBAction)firstFamilyPhoneBtn:(id)sender {
+	[self fetchAddressBook:_telTF];
+}
+
+- (IBAction)secondFamilyPhoneBtn:(id)sender {
+	[self fetchAddressBook:_num2TelTF];
+}
+
+- (IBAction)firstOtherContactBtn:(id)sender {
+	[self fetchAddressBook:_otherTelTF];
+}
+
+- (IBAction)secondOtherContactBtn:(id)sender {
+	[self fetchAddressBook:_num2_otherTelTF];
+}
+
+- (void)fetchAddressBook:(UITextField *)textField {
+	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+	picker.peoplePickerDelegate = self;
+	picker.view.tag = textField.tag;
+	NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
+	picker.displayedProperties = displayedItems;
+	[self presentViewController:picker animated:YES completion:^{
+	}];
+	if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+		picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];
+	}
+}
+
+#pragma mark - ABPeoplePickerNavigationControllerDelegate
+
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
+	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
+	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
+		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
+		aPhone = [aPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+		[phones addObject:aPhone];
+	}
+	NSString *phone = @"";
+	
+	if (phones.count > 0) {
+		phone = [phones objectAtIndex:0];
+	}
+	
+	switch (peoplePicker.view.tag) {
+  case 10000:
+			self.telTF.text = phone;
+			break;
+		case 10001:
+			self.num2TelTF.text = phone;
+			break;
+		case 10002:
+			self.otherTelTF.text = phone;
+			break;
+		case 10003:
+			self.num2_otherTelTF.text = phone;
+			break;
+			
+  default:
+			break;
+	}
+	
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+			shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+	return YES;
+}
+
+- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
+	[peoplePicker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
+			shouldContinueAfterSelectingPerson:(ABRecordRef)person
+																property:(ABPropertyID)property
+															identifier:(ABMultiValueIdentifier)identifier {
+	
+	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
+	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
+	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
+		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
+		aPhone = [aPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
+		[phones addObject:aPhone];
+	}
+	NSString *phone = @"";
+	
+	if (phones.count > 0) {
+		phone = [phones objectAtIndex:0];
+	}
+	
+	switch (peoplePicker.view.tag) {
+  case 10000:
+			self.telTF.text = phone;
+			break;
+		case 10001:
+			self.num2TelTF.text = phone;
+			break;
+		case 10002:
+			self.otherTelTF.text = phone;
+			break;
+		case 10003:
+			self.num2_otherTelTF.text = phone;
+			break;
+			
+  default:
+			break;
+	}
+ [peoplePicker dismissViewControllerAnimated:YES completion:nil];
+	
+	return NO;
+	
+}
+
+#pragma mark - ABPersonViewControllerDelegate
+
+- (BOOL)personViewController:(ABPersonViewController *)personViewController shouldPerformDefaultActionForPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+	return YES;
 }
 
 @end

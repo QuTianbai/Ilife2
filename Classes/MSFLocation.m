@@ -23,7 +23,9 @@
 - (void)startLocation {
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
-  [self.locationManager requestAlwaysAuthorization];
+	if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+		[self.locationManager requestAlwaysAuthorization];
+	}
   self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
   self.locationManager.distanceFilter = 100;
   [self.locationManager startUpdatingLocation];

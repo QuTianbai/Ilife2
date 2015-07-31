@@ -153,7 +153,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[self.workTown.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
