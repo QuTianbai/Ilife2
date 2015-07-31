@@ -14,7 +14,7 @@
 - (void)drawRect:(CGRect)rect {
 	[_loanConfirmAlertView setClipsToBounds:YES];
 	[_loanConfirmAlertView.layer setCornerRadius:7];
-	[_loanConfirmLabel setTextColor:[MSFCommandView getColorWithString:@"#477dbd"]];
+	[_loanConfirmLabel setTextColor:[MSFCommandView getColorWithString:@"#007ee5"]];
 	[self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
 }
 
