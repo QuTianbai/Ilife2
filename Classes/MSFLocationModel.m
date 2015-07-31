@@ -7,7 +7,12 @@
 //
 
 #import "MSFLocationModel.h"
+#import "MSFResultModel.h"
 
 @implementation MSFLocationModel
+
++ (NSValueTransformer *)resultJSONTransformer {
+  return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFResultModel.class];
+}
 
 @end

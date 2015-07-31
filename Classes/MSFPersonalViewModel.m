@@ -15,6 +15,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import "MSFLocationModel.h"
 #import "MSFClient+MSFLocation.h"
+#import "MSFLocationModel.h"
+#import "MSFResultModel.h"
+#import "MSFAddressInfo.h"
+#import <FMDB/FMDB.h>
 
 @interface MSFPersonalViewModel ()<MSFLocationDelegate>
 
@@ -61,11 +65,44 @@
 
 - (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
   [[self.services.httpClient fetchLocationAdress:coordinate]
-   subscribeNext:^(id x) {
-     NSLog(@"%@",x);
+   subscribeNext:^(MSFLocationModel *model) {
+     if (self.addressViewModel.isStopAutoLocation) {
+       return;
+     }
+     //NSLog(@"%@",model);
+     NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
+     FMDatabase *fmdb = [FMDatabase databaseWithPath:path];
+     [fmdb open];
+     NSError *error ;
+     //NSMutableArray *regions = [NSMutableArray array];
+     FMResultSet *s = [fmdb executeQuery:@"select * from basic_dic_area"];
+     while ([s next]) {
+       MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
+       if ([area.name isEqualToString:model.result.addressComponent.city]) {
+         MSFAreas *province = [[MSFAreas alloc] init];
+         province.name = area.name;
+         province.codeID = area.codeID;
+         province.parentCodeID = area.parentCodeID;
+         self.addressViewModel.province = province;
+       }
+       if ([area.name isEqualToString:model.result.addressComponent.province]) {
+         MSFAreas *city = [[MSFAreas alloc] init];
+         city.name = area.name;
+         city.codeID = area.codeID;
+         city.parentCodeID = area.parentCodeID;
+         self.addressViewModel.city = city;
+       }
+       if ([area.name isEqualToString:model.result.addressComponent.district]) {
+         MSFAreas *district = [[MSFAreas alloc] init];
+         district.name = area.name;
+         district.codeID = area.codeID;
+         district.parentCodeID = area.parentCodeID;
+         self.addressViewModel.area = district;
+       }
+     }
    }
    error:^(NSError *error) {
-     NSLog(@"%@",error);
+     NSLog(@"%@", error);
    }];
 }
 

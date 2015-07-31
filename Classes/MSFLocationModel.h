@@ -6,12 +6,15 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MSFObject.h"
 
-@interface MSFLocationModel : NSObject
+@class MSFResultModel;
 
+@interface MSFLocationModel : MSFObject
+
+@property (nonatomic, strong) MSFResultModel *result;
+@property (nonatomic, assign) NSString *status;
 @property (nonatomic, copy) NSString *province;
 @property (nonatomic, copy) NSString *city;
-
 
 @end

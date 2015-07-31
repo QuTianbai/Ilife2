@@ -10,6 +10,8 @@
 		0704EB141B69C840000F5369 /* MSFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0704EB131B69C840000F5369 /* MSFLocation.m */; };
 		0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0704EB171B69CDCF000F5369 /* MSFLocationModel.m */; };
 		0704EB1C1B69FCCF000F5369 /* MSFClient+MSFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0704EB1B1B69FCCF000F5369 /* MSFClient+MSFLocation.m */; };
+		0704EB6A1B6B52EB000F5369 /* MSFResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0704EB691B6B52EB000F5369 /* MSFResultModel.m */; };
+		0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0704EB6C1B6B5327000F5369 /* MSFAddressInfo.m */; };
 		0707248D1B6718A80089916B /* MSFSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 0707248C1B6718A80089916B /* MSFSlider.m */; };
 		070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249D1B671A240089916B /* 1242-2208-灰色.png */; };
 		070724A11B671A240089916B /* 1242-2208-蓝色.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249E1B671A240089916B /* 1242-2208-蓝色.png */; };
@@ -559,6 +561,10 @@
 		0704EB171B69CDCF000F5369 /* MSFLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLocationModel.m; sourceTree = "<group>"; };
 		0704EB1A1B69FCCF000F5369 /* MSFClient+MSFLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFLocation.h"; sourceTree = "<group>"; };
 		0704EB1B1B69FCCF000F5369 /* MSFClient+MSFLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFLocation.m"; sourceTree = "<group>"; };
+		0704EB681B6B52EB000F5369 /* MSFResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFResultModel.h; sourceTree = "<group>"; };
+		0704EB691B6B52EB000F5369 /* MSFResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFResultModel.m; sourceTree = "<group>"; };
+		0704EB6B1B6B5327000F5369 /* MSFAddressInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddressInfo.h; sourceTree = "<group>"; };
+		0704EB6C1B6B5327000F5369 /* MSFAddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddressInfo.m; sourceTree = "<group>"; };
 		0707248B1B6718A80089916B /* MSFSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSlider.h; sourceTree = "<group>"; };
 		0707248C1B6718A80089916B /* MSFSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSlider.m; sourceTree = "<group>"; };
 		0707249D1B671A240089916B /* 1242-2208-灰色.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1242-2208-灰色.png"; sourceTree = "<group>"; };
@@ -1216,6 +1222,10 @@
 			children = (
 				0704EB161B69CDCF000F5369 /* MSFLocationModel.h */,
 				0704EB171B69CDCF000F5369 /* MSFLocationModel.m */,
+				0704EB681B6B52EB000F5369 /* MSFResultModel.h */,
+				0704EB691B6B52EB000F5369 /* MSFResultModel.m */,
+				0704EB6B1B6B5327000F5369 /* MSFAddressInfo.h */,
+				0704EB6C1B6B5327000F5369 /* MSFAddressInfo.m */,
 				0704EB1A1B69FCCF000F5369 /* MSFClient+MSFLocation.h */,
 				0704EB1B1B69FCCF000F5369 /* MSFClient+MSFLocation.m */,
 			);
@@ -3350,6 +3360,7 @@
 				49DA22681B062AF200DD4483 /* MSFUser.m in Sources */,
 				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
+				0704EB6A1B6B52EB000F5369 /* MSFResultModel.m in Sources */,
 				C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */,
 				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
@@ -3389,6 +3400,7 @@
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
 				490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m in Sources */,
+				0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */,
 				4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */,
 				49C7CBA61B04A34200EF5A68 /* MSFClient+ReleaseNote.m in Sources */,
 				10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */,

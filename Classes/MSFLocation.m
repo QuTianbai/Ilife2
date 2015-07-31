@@ -20,15 +20,6 @@
 
 @implementation MSFLocation
 
-- (id)init {
-  if (self = [super init]) {
-    
-    
-  }
-  
-  return self;
-}
-
 - (void)startLocation {
   self.locationManager = [[CLLocationManager alloc] init];
   self.locationManager.delegate = self;
@@ -53,14 +44,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   CLLocation *location = [locations lastObject];
-  NSDate *eventDate = location.timestamp;
-  NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
-  
-  //if (fabs(howRecent)<15.0) {
-    if ([self.delegate respondsToSelector:@selector(getLocationCoordinate:)]) {
-      [self.delegate getLocationCoordinate:location.coordinate];
-    }
- // }
+  if ([self.delegate respondsToSelector:@selector(getLocationCoordinate:)]) {
+    [self.delegate getLocationCoordinate:location.coordinate];
+    [self.locationManager stopUpdatingLocation];
+  }
   
 }
 
