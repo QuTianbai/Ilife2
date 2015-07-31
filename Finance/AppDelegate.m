@@ -32,6 +32,7 @@
 
 #import "MobClick.h"
 #import "MSFUmengMacro.h"
+#import "MSFActivityIndicatorViewController.h"
 
 @interface AppDelegate ()
 
@@ -49,14 +50,8 @@
 	
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	self.window.backgroundColor = UIColor.whiteColor;
+	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
-	
-	UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[indicatorView startAnimating];
-	[self.window addSubview:indicatorView];
-	[indicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.equalTo(self.window);
-	}];
 	
 	///添加Umeng统计
 	NSString *umengAppKey = nil;
@@ -69,7 +64,6 @@
 	[MobClick setAppVersion:[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]];
 	
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-		[indicatorView removeFromSuperview];
 #if DEBUG
 		//!!!: 测试无法获取时间戳的情况
 		[self setup];
@@ -81,7 +75,6 @@
 		// 在正式环境下,如果第一次进入app没有获取到时间戳，就持续循环获取时间戳－待测试
 		return MSFUtils.setupSignal;
 	}] subscribeNext:^(id x) {
-		[indicatorView removeFromSuperview];
 		[self setup];
 		[MSFGuideViewController.guide show];
 	}];
