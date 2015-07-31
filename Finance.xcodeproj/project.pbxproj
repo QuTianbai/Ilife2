@@ -65,7 +65,6 @@
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
-		07FE07351B0741BF00484069 /* MSFApplyInfoSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07341B0741BF00484069 /* MSFApplyInfoSpec.m */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
 		10DE89391B6776E2009025C4 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89381B6776E2009025C4 /* home-banner-pl.png */; };
@@ -3650,7 +3649,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals\"",
-					"$(PROJECT_DIR)/Classes/Release-iphoneos",
 				);
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -3676,7 +3674,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals\"",
-					"$(PROJECT_DIR)/Classes/Release-iphoneos",
 				);
 				INFOPLIST_FILE = Finance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
