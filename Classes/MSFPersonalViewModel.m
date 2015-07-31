@@ -11,10 +11,20 @@
 #import "MSFAddressViewModel.h"
 #import "MSFAreas.h"
 #import "NSString+Matches.h"
+#import "MSFLocation.h"
+#import <CoreLocation/CoreLocation.h>
+#import "MSFLocationModel.h"
+#import "MSFClient+MSFLocation.h"
+#import "MSFLocationModel.h"
+#import "MSFResultModel.h"
+#import "MSFAddressInfo.h"
+#import <FMDB/FMDB.h>
 
-@interface MSFPersonalViewModel ()
+@interface MSFPersonalViewModel ()<MSFLocationDelegate>
 
+@property (nonatomic, strong) MSFLocation *location;
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -27,10 +37,14 @@
 	if (!self) {
 		return nil;
 	}
+  _services = viewModel.services;
+  self.location = [[MSFLocation alloc] init];
+  self.location.delegate = self;
+  [self.location startLocation];
+  
 	_formsViewModel = viewModel;
 	_addressViewModel = addressViewModel;
 	_model = viewModel.model;
-	
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, currentProvince) = RACObserve(self.addressViewModel, provinceName);
 	RAC(self.model, currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
@@ -47,6 +61,64 @@
   }];
 	
 	return self;
+}
+
+- (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
+  [[self.services.httpClient fetchLocationAdress:coordinate]
+   subscribeNext:^(MSFLocationModel *model) {
+     if (self.addressViewModel.isStopAutoLocation) {
+       return;
+     }
+     //NSLog(@"%@",model);
+     NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
+     FMDatabase *fmdb = [FMDatabase databaseWithPath:path];
+     [fmdb open];
+     NSError *error ;
+     //NSMutableArray *regions = [NSMutableArray array];
+     FMResultSet *s = [fmdb executeQuery:@"select * from basic_dic_area"];
+     int i = 0;
+     int j = 0;
+     int k = 0;
+     while ([s next]) {
+       MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
+       if ([area.name isEqualToString:model.result.addressComponent.city]) {
+         i++;
+         MSFAreas *province = [[MSFAreas alloc] init];
+         province.name = area.name;
+         province.codeID = area.codeID;
+         province.parentCodeID = area.parentCodeID;
+         self.addressViewModel.province = province;
+         if (i > 0 && j > 0 && k > 0) {
+           break;
+         }
+       }
+       if ([area.name isEqualToString:model.result.addressComponent.province]) {
+         j++;
+         MSFAreas *city = [[MSFAreas alloc] init];
+         city.name = area.name;
+         city.codeID = area.codeID;
+         city.parentCodeID = area.parentCodeID;
+         self.addressViewModel.city = city;
+         if (i > 0 && j > 0 && k > 0) {
+           break;
+         }
+       }
+       if ([area.name isEqualToString:model.result.addressComponent.district]) {
+         k++;
+         MSFAreas *district = [[MSFAreas alloc] init];
+         district.name = area.name;
+         district.codeID = area.codeID;
+         district.parentCodeID = area.parentCodeID;
+         self.addressViewModel.area = district;
+         if (i > 0 && j > 0 && k > 0) {
+           break;
+         }
+       }
+     }
+   }
+   error:^(NSError *error) {
+     NSLog(@"%@", error);
+   }];
 }
 
 #pragma mark - Private

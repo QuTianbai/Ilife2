@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) double interval;
 @property (nonatomic, assign) int animationCount;
+@property (nonatomic, assign) int maxTimes;
 
 @end
 
@@ -23,16 +24,27 @@
 		self.text = valueText;
 		return;
 	}
+	if (valueText.doubleValue == self.text.doubleValue) {
+		return;
+	}
 	double value = valueText.doubleValue - self.text.doubleValue;
-	self.interval = value / 35;
+	if (valueText.doubleValue == 0) {
+		self.maxTimes = 15;
+	} else {
+		self.maxTimes = 35;
+	}
+	self.interval = value / self.maxTimes;
 	self.animationCount = 0;
 	[self change];
 }
 
 - (void)change {
-	if (self.animationCount < 35) {
+	if (self.animationCount < self.maxTimes) {
 		self.animationCount ++;
 		double value = self.text.doubleValue + self.interval;
+		if (value < 0) {
+			value = 0.f;
+		}
 		self.text = [NSString stringWithFormat:@"%.2f", value];
 	} else {
 		self.text = _valueText;

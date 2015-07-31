@@ -531,7 +531,6 @@ static BOOL isRunningTests(void) {
 				self.token = authorization.token;
 				self.session = authorization.session;
 			}
-			//!!!:  这里的代码，是因为后台返回的成功信息没有按照文档的格式返回做临时处理
 			if (!responseObject) {
 				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
 					responseObject = @{@"message": @"验证码发送成功"};
@@ -627,6 +626,31 @@ static BOOL isRunningTests(void) {
 - (void)clearAuthorizationHeader {
 	[self.defaultHeaders removeObjectForKey:@"msfinance"];
 	[self.defaultHeaders removeObjectForKey:@"finance"];
+}
+
+#pragma mark - custom自定义百度api接口调用
+
+//地理位置反解析
+- (RACSignal *)enqueueRequestCustom:(NSURLRequest *)request resultClass:(Class)resultClass {
+  return [[self requestBaidu:request] map:^id(RACTuple *responseAndData) {
+    RACTupleUnpack(NSHTTPURLResponse *reponse, NSData *data) = responseAndData;
+		if (reponse.statusCode != 200) {
+			return nil;
+		}
+    NSString *resourceStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString *dataStr = [resourceStr stringByReplacingOccurrencesOfString:@"renderReverse&&renderReverse(" withString:@""] ;
+    NSString *str = [dataStr substringToIndex:dataStr.length - 1];
+    NSData *data1 = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [NSJSONSerialization  JSONObjectWithData:data1 options:0 error:nil];
+    NSError *error = nil;
+    id myObject = [MTLJSONAdapter modelOfClass:resultClass fromJSONDictionary:dict error:&error];
+    return myObject;
+  }];
+
+}
+
+- (RACSignal *)requestBaidu:(NSURLRequest *)request {
+  return [NSURLConnection rac_sendAsynchronousRequest:request];
 }
 
 @end

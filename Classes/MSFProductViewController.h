@@ -14,4 +14,6 @@
 
 - (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel;
 
+- (void)setEmptyMoney;
+
 @end

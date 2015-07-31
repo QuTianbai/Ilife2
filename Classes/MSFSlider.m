@@ -10,8 +10,6 @@
 
 @interface MSFSlider ()
 
-@property (nonatomic, strong) UILabel *moneyNumLabel;
-
 @end
 
 @implementation MSFSlider

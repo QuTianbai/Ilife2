@@ -100,7 +100,7 @@
 			return [[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
-					return [NSString stringWithFormat:@"%.2f", [value.parsedResult[@"repayMoneyMonth"] floatValue]];
+					return value.parsedResult[@"repayMoneyMonth"];
 				}];
 		}];
   RAC(self, minMoney) = RACObserve(self.formsViewModel.market, allMinAmount);
@@ -114,7 +114,7 @@
 	}];
 	
 	RAC(self, termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
-		return value.integerValue != 0 ? value.stringValue : @"未知";
+		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"0.00";
 	}];
 	RAC(self, purposeText) = [RACObserve(self, purpose) map:^id(id value) {
 		return [value text];
@@ -203,7 +203,7 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		if (!self.product) {
+		if (!self.product || self.termAmount == 0) {
 			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择贷款期数",
 			}]];
