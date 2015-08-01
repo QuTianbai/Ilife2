@@ -295,22 +295,30 @@ ABPersonViewControllerDelegate>
 		submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
 		submitAlertView.loanNper.text = nper;
 		submitAlertView.loanUse.text = usage;
+		submitAlertView.alpha = 0;
 		[appdelegate.window addSubview:submitAlertView];
+		[UIView animateWithDuration:.3 animations:^{
+			submitAlertView.alpha = 1;
+		}];
 		
 		[[submitAlertView.cancelButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
 			NSLog(@"on click cancelButton");
-			[submitAlertView removeFromSuperview];
+			[UIView animateWithDuration:.3 animations:^{
+				submitAlertView.alpha = 0;
+			} completion:^(BOOL finished) {
+				[submitAlertView removeFromSuperview];
+			}];
 		}];
 		[[submitAlertView.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		 subscribeNext:^(id x) {
-			 NSLog(@"on click submitButton");
+			[UIView animateWithDuration:.3 animations:^{
+				submitAlertView.alpha = 0;
+			} completion:^(BOOL finished) {
+				[submitAlertView removeFromSuperview];
+			}];
+			[self.viewModel.executeCommitCommand execute:nil];
 		 }];
-//		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-//			if (index.integerValue == 1) {
-//				[self.viewModel.executeCommitCommand execute:nil];
-//			}
-//		}];
 	}];
 	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:BLUECOLOR]];
