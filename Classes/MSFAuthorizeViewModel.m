@@ -41,6 +41,8 @@ static const int kCounterLength = 60;
 	_counter = @"发送验证码";
 	_agreeOnLicense = NO;
 	_counting = NO;
+	_loginType = [[NSUserDefaults standardUserDefaults] boolForKey:@"install-boot"] ? MSFLoginSignIn :MSFLoginSignUp;
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"install-boot"];
 	
 	@weakify(self)
 	_executeSignIn = [[RACCommand alloc] initWithEnabled:self.signInValidSignal
