@@ -112,6 +112,12 @@
 	
 	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	CATransition *transition = [CATransition animation];
+	transition.duration = 0.7;
+	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	transition.type = kCATransitionFade;
+	transition.subtype = kCATransitionReveal;
+	[self.window.layer addAnimation:transition forKey:nil];
 	[self unAuthenticatedControllers];
 	
 	@weakify(self)
