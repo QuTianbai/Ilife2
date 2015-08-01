@@ -31,15 +31,23 @@
 
 	self.infinityScroll = [[MSFInfinityScroll alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	[self.view addSubview:self.infinityScroll];
-	@weakify(self);
+	
+#warning 此处为测试方法，发布时需改正
+	
+	//@weakify(self);
 	self.infinityScroll.numberOfPages = ^{
-		@strongify(self)
-		return [self.viewModel numberOfItemsInSection:0];
+		return (NSInteger)3;
+		//@strongify(self)
+		//return [self.viewModel numberOfItemsInSection:0];
 	};
+	self.infinityScroll.imageNameAtIndex = ^(NSInteger index) {
+		return @"home-banner-pl.png";
+	};
+	/**正式发布时恢复此方法
 	self.infinityScroll.imageUrlAtIndex = ^(NSInteger index){
 		@strongify(self)
 		return [self.viewModel imageURLAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
-	};
+	};*/
 	self.infinityScroll.selectedBlock = ^(NSInteger index) {
 		NSLog(@"选择了---%ld", (long)index);
 	};
