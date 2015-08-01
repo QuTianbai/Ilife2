@@ -6,7 +6,7 @@
   Copyright (c) 2014 Zeng Liang. All rights reserved.
 */
 "Pull to refresh..." = "下拉即可刷新...";
-"Release to refresh..." = "释放立即更新..";
+"Release to refresh..." = "释放立即更新...";
 "Loading..." = "正在加载...";
 "Cancel" = "取消";
 "Use Last Photo Taken" = "使用最新的图片";
@@ -19,3 +19,4 @@
 "%ld Photos Selected" = "%ld 已选中";
 "Choose" = "确定";
 "Close" = "关闭";
+"calculate..." = "计算每期还款金额...";
