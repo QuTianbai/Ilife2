@@ -138,10 +138,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 }
 
 - (void)setEmptyMoney {
-  self.moneySlider.value = 0;
-  self.moneySlider.moneyNumLabel.text = @"0元";
-  self.viewModel.totalAmount = @"0";
-  [self getStringValue:@"0"];
+//  self.moneySlider.value = 0;
+//  self.moneySlider.moneyNumLabel.text = @"0元";
+//  self.viewModel.totalAmount = @"0";
+//  [self getStringValue:@"0"];
  
 }
 

@@ -24,6 +24,8 @@
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
 #import "MSFHeaderView.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 @interface MSFPersonalViewController ()<MSFSegmentDelegate>
 
@@ -47,9 +49,29 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+  
+  // Left Bar button
+  UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+  backBtn.frame = CGRectMake(0, 0, 100, 44);
+  [backBtn setTitle:@"贷款申请" forState:UIControlStateNormal];
+  [backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
+  backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+  [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+  [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
+  [backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
+  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+  //UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:nil action:nil];
+  //item.title  = @"贷款申请";
+  @weakify(self)
+  backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    return [RACSignal empty];
+  }];
+  self.navigationItem.leftBarButtonItem = item;
+  
 	self.title = @"基本信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:0];
-	
 	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]
    subscribeNext:^(UITextField *textField) {
      if (textField.text.length > 5) {
@@ -146,7 +168,7 @@
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
 	
-	@weakify(self)
+	
 	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
   self.selectQQorJDSegment.delegate = self;
