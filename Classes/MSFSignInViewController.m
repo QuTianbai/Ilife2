@@ -48,6 +48,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.password.text = @"123456qw";
 	}
 	@weakify(self)
+	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
+		@strongify(self)
+		self.viewModel.username = self.username.text;
+		self.viewModel.password = self.password.text;
+	}];
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = x;
