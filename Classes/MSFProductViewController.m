@@ -207,7 +207,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   if (self.moneySlider.maximumValue == 0) {
     [SVProgressHUD showInfoWithStatus:@"网络异常，请稍后重试"];
   }
-	self.viewModel.termAmount = 0;
+	//self.viewModel.termAmount = 0;
 	[self.monthCollectionView reloadData];
 }
 
@@ -224,7 +224,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
     self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
-  
 }
 
 @end
