@@ -8,6 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFResponse.h"
 #import "MSFProduct.h"
+#import "SVProgressHUD.h"
 
 @implementation MSFClient (Months)
 
@@ -17,7 +18,7 @@
 	parameters[@"productId"] = product.productId;
 	parameters[@"isSafePlan"] = @(insurance);
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loans/product" parameters:parameters];
-	
+	[SVProgressHUD showWithStatus:@"正在计算每月所需还款金额..."];
 	return [self enqueueRequest:request resultClass:nil];
 }
 

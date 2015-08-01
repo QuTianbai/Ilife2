@@ -24,6 +24,7 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFWebViewModel.h"
 #import "MSFTeams.h"
+#import "SVProgressHUD.h"
 
 @interface MSFProductViewModel ()
 
@@ -49,7 +50,9 @@
 	_productTerms = @"";
 	_termAmount = 0;
 	_services = self.formsViewModel.services;
-	RAC(self.formsViewModel.model, repayMoneyMonth) = RACObserve(self, termAmount);
+	RAC(self.formsViewModel.model, repayMoneyMonth) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
+		return [NSString stringWithFormat:@"%.2lf", value.doubleValue];
+	}];
 	RAC(self.formsViewModel.model, principal) = RACObserve(self, totalAmount);
 	RAC(self.formsViewModel.model, isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
 		return [value stringValue];
@@ -100,6 +103,7 @@
 			return [[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
+          [SVProgressHUD dismiss];
 					return value.parsedResult[@"repayMoneyMonth"];
 				}];
 		}];

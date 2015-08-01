@@ -144,8 +144,6 @@
 												otherButtonTitles:nil] show];
       return NO;
     }
-  } else {
-    self.viewModel.formsViewModel.active = NO;
   }
 	
   return YES;

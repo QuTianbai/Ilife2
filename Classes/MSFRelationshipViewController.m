@@ -276,37 +276,42 @@ ABPersonViewControllerDelegate>
 	
 	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		UIAlertView *alertView = [[UIAlertView alloc] init];
-		alertView.title = @"提示";
-		alertView.message = self.viewModel.confirmMessage;
-		[alertView addButtonWithTitle:@"取消"];
-		[alertView addButtonWithTitle:@"确认"];
-		[alertView setCancelButtonIndex:0];
-		[alertView show];
-//		AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-//		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:self options:nil] firstObject];
-//		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-//		
-//		__block NSString *usage;
-//		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
-//		[items enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-//			if ([obj.code isEqualToString:self.viewModel.model.usageCode]) {
-//				usage = obj.text;
-//			}
-//		}];
-//		 submitAlertView.loanAccountLabel.text = self.viewModel.model.principal;
-//		 submitAlertView.loanNper.text = self.viewModel.model.tenor;
-//		 submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
-//		 submitAlertView.loanUse.text = usage;
-//		
-//		[appdelegate.window addSubview:submitAlertView];
+//		UIAlertView *alertView = [[UIAlertView alloc] init];
+//		alertView.title = @"提示";
+//		alertView.message = self.viewModel.confirmMessage;
+//		[alertView addButtonWithTitle:@"取消"];
+//		[alertView addButtonWithTitle:@"确认"];
+//		[alertView setCancelButtonIndex:0];
+//		[alertView show];
+		AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:nil options:nil] firstObject];
+		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 		
-		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-			if (index.integerValue == 1) {
-				[self.viewModel.executeCommitCommand execute:nil];
+		__block NSString *usage;
+		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
+		[items enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+			if ([obj.code isEqualToString:self.viewModel.model.usageCode]) {
+				usage = obj.text;
 			}
 		}];
+		
+		submitAlertView.loanAccountLabel.text = self.viewModel.model.principal;
+		submitAlertView.loanNper.text = self.viewModel.model.tenor;
+		submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
+		submitAlertView.loanUse.text = usage;
+		[appdelegate.window addSubview:submitAlertView];
+		
+		[[submitAlertView.cancelButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			NSLog(@"xxx");
+		}];
+//		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+//			if (index.integerValue == 1) {
+//				[self.viewModel.executeCommitCommand execute:nil];
+//			}
+//		}];
 	}];
+	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:BLUECOLOR]];
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	

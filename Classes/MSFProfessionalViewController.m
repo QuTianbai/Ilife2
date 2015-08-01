@@ -153,6 +153,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD dismiss];
+		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"relationship" bundle:nil];
+		UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
+		MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+		[vc bindViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[self.workTown.rac_keyboardReturnSignal subscribeNext:^(id x) {

@@ -80,6 +80,7 @@
 				[(RACSubject *)self.updatedContentSignal sendCompleted];
 			} error:^(NSError *error) {
         self.isHaveProduct = NO;
+				self.active = NO;
 				[(RACSubject *)self.updatedContentSignal sendError:error];
 			}];
 	}];
