@@ -217,7 +217,6 @@
 		497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497F98381B2B0C4400DD6F2D /* MSFGuideViewController.m */; };
 		498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */; };
 		498113D61B1C4856003D1B7A /* MSFLoanViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */; };
-		498113DD1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113DC1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m */; };
 		4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58921B06E38600120D93 /* applycash.json */; };
 		4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983ED9F1B09CC0E00ADE3E5 /* applyList.json */; };
 		4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */; };
@@ -872,8 +871,6 @@
 		498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageViewModel.m; sourceTree = "<group>"; };
 		498113D41B1C4856003D1B7A /* MSFLoanViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanViewModel.h; sourceTree = "<group>"; };
 		498113D51B1C4856003D1B7A /* MSFLoanViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanViewModel.m; sourceTree = "<group>"; };
-		498113DB1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlaceholderCollectionViewCell.h; sourceTree = "<group>"; };
-		498113DC1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlaceholderCollectionViewCell.m; sourceTree = "<group>"; };
 		4983ED9F1B09CC0E00ADE3E5 /* applyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyList.json; sourceTree = "<group>"; };
 		4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEditPasswordViewController.h; sourceTree = "<group>"; };
 		4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEditPasswordViewController.m; sourceTree = "<group>"; };
@@ -2375,8 +2372,6 @@
 				10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */,
 				10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */,
 				10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */,
-				498113DB1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.h */,
-				498113DC1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m */,
 				10DE89721B68AEDE009025C4 /* MSFInfinityScroll.h */,
 				10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */,
 			);
@@ -3464,7 +3459,6 @@
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
-				498113DD1B1C5B03003D1B7A /* MSFPlaceholderCollectionViewCell.m in Sources */,
 				492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
@@ -3659,7 +3653,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "fc3b6e2e-5b63-4996-930e-ade37a50f67a";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Debug;
 		};

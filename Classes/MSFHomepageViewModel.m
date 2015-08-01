@@ -79,12 +79,7 @@
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	MSFLoanViewModel *viewModel = [self viewModelForIndexPath:indexPath];
-	if (!viewModel) {
-		return @"MSFPlaceholderCollectionViewCell";
-	} else {
-		return @"MSFHomePageContentCollectionViewCell";
-	}
+	return @"MSFHomePageContentCollectionViewCell";
 }
 
 @end
