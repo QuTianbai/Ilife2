@@ -289,15 +289,9 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfo-ut-sxs">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc" customClass="MSFEdgeButton">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc" customClass="MSFEdgeButton">
                                         <rect key="frame" x="165" y="5" width="145" height="40"/>
                                         <state key="normal" title="同意">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NgC-b2-JGu" customClass="MSFEdgeButton">
-                                        <rect key="frame" x="10" y="5" width="145" height="40"/>
-                                        <state key="normal" title="不同意">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
@@ -305,15 +299,9 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="a7E-MQ-EQc" firstAttribute="top" secondItem="kfo-ut-sxs" secondAttribute="top" constant="5" id="1GN-lH-IQ8"/>
-                                    <constraint firstItem="NgC-b2-JGu" firstAttribute="leading" secondItem="kfo-ut-sxs" secondAttribute="leading" constant="10" id="1S3-E8-hc5"/>
-                                    <constraint firstAttribute="bottom" secondItem="NgC-b2-JGu" secondAttribute="bottom" constant="5" id="B7Q-Om-mNb"/>
-                                    <constraint firstItem="a7E-MQ-EQc" firstAttribute="leading" secondItem="NgC-b2-JGu" secondAttribute="trailing" constant="10" id="KOo-Y1-Eeo"/>
-                                    <constraint firstItem="NgC-b2-JGu" firstAttribute="top" secondItem="kfo-ut-sxs" secondAttribute="top" constant="5" id="Lju-8U-8kG"/>
                                     <constraint firstAttribute="bottom" secondItem="a7E-MQ-EQc" secondAttribute="bottom" constant="5" id="jbo-FU-wS5"/>
                                     <constraint firstAttribute="trailing" secondItem="a7E-MQ-EQc" secondAttribute="trailing" constant="10" id="lDJ-xG-v9I"/>
                                     <constraint firstAttribute="height" constant="50" id="q6C-Kr-xqy"/>
-                                    <constraint firstItem="a7E-MQ-EQc" firstAttribute="height" secondItem="NgC-b2-JGu" secondAttribute="height" id="qle-6H-h9h"/>
-                                    <constraint firstItem="a7E-MQ-EQc" firstAttribute="width" secondItem="NgC-b2-JGu" secondAttribute="width" id="x9N-sC-19U"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -334,7 +322,6 @@
                         <outlet property="BottomBtVIew" destination="kfo-ut-sxs" id="7p1-cL-Ly0"/>
                         <outlet property="LoanAgreenmentWV" destination="usZ-6N-x5o" id="xrK-vX-ZVX"/>
                         <outlet property="agreeButton" destination="a7E-MQ-EQc" id="iVK-uA-VLq"/>
-                        <outlet property="disAgreeButton" destination="NgC-b2-JGu" id="ZNE-Ts-yoe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99z-ai-wgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
