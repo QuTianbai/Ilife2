@@ -289,8 +289,8 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfo-ut-sxs">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc" customClass="MSFEdgeButton">
-                                        <rect key="frame" x="165" y="5" width="145" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc" customClass="MSFEdgeButton">
+                                        <rect key="frame" x="10" y="5" width="300" height="40"/>
                                         <state key="normal" title="同意">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -299,6 +299,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="a7E-MQ-EQc" firstAttribute="top" secondItem="kfo-ut-sxs" secondAttribute="top" constant="5" id="1GN-lH-IQ8"/>
+                                    <constraint firstItem="a7E-MQ-EQc" firstAttribute="leading" secondItem="kfo-ut-sxs" secondAttribute="leading" constant="10" id="cHL-UF-CxW"/>
                                     <constraint firstAttribute="bottom" secondItem="a7E-MQ-EQc" secondAttribute="bottom" constant="5" id="jbo-FU-wS5"/>
                                     <constraint firstAttribute="trailing" secondItem="a7E-MQ-EQc" secondAttribute="trailing" constant="10" id="lDJ-xG-v9I"/>
                                     <constraint firstAttribute="height" constant="50" id="q6C-Kr-xqy"/>

@@ -21,7 +21,7 @@
                                 <constraint firstAttribute="width" constant="68" id="Loa-hq-2a4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.21101335045145314" green="0.21410244399022704" blue="0.22991542260843723" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
@@ -138,11 +138,11 @@
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款期数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WaZ-gB-YkR">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="X5o-qa-oeH"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.26120580808080807" green="0.26120580808080807" blue="0.26120580808080807" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
@@ -157,6 +157,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款用途" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oi-Iu-IRw">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="Mx8-Gs-awo"/>
                             </constraints>
@@ -176,11 +177,11 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每期还款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aS3-aJ-72T">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="68" id="EYh-qw-ZF4"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                             <variation key="default">
                                 <mask key="constraints">
@@ -195,6 +196,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vbk-bD-zvv" userLabel="贷款期数label">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="wwK-Td-0Qh"/>
                             </constraints>
@@ -214,6 +216,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQl-el-mfX" userLabel="每期还款label">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="NiP-XE-KO9"/>
                             </constraints>
@@ -274,7 +277,7 @@
                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                             <state key="normal" title="返回">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgD-n6-WEq">
@@ -284,27 +287,9 @@
                                 <color key="titleShadowColor" cocoaTouchSystemColor="darkTextColor"/>
                             </state>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgh-Hw-liB" userLabel="贷款金额label">
-                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="120" id="ujK-i7-H4f"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="ujK-i7-H4f"/>
-                                </mask>
-                            </variation>
-                            <variation key="widthClass=compact">
-                                <mask key="constraints">
-                                    <include reference="ujK-i7-H4f"/>
-                                </mask>
-                            </variation>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPJ-Nf-wQu" userLabel="贷款用途label">
                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="120" id="fV5-OJ-l6N"/>
                             </constraints>
@@ -322,7 +307,28 @@
                                 </mask>
                             </variation>
                         </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgh-Hw-liB" userLabel="贷款金额label">
+                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="ujK-i7-H4f"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="ujK-i7-H4f"/>
+                                </mask>
+                            </variation>
+                            <variation key="widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="ujK-i7-H4f"/>
+                                </mask>
+                            </variation>
+                        </label>
                     </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="280" id="0J4-41-Fve"/>
                         <constraint firstAttribute="bottom" secondItem="XRo-s9-EGm" secondAttribute="bottom" constant="44" id="3aS-mf-qHg"/>
@@ -351,23 +357,23 @@
                         <constraint firstAttribute="trailing" secondItem="71d-Rn-4lQ" secondAttribute="trailing" id="Z7n-5O-Tl0"/>
                         <constraint firstItem="XRo-s9-EGm" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" id="Z9m-r2-8tq"/>
                         <constraint firstAttribute="bottom" secondItem="3Ej-7b-2Xh" secondAttribute="bottom" id="bGK-ON-JF5"/>
-                        <constraint firstItem="gyo-a2-rQE" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" constant="54" id="bqj-Nu-APa"/>
+                        <constraint firstItem="gyo-a2-rQE" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" constant="24" id="bqj-Nu-APa"/>
                         <constraint firstItem="Vbk-bD-zvv" firstAttribute="top" secondItem="4tT-mL-iN6" secondAttribute="bottom" constant="10" id="cgK-oW-uTw"/>
                         <constraint firstItem="4tT-mL-iN6" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" id="dBd-br-AZc"/>
                         <constraint firstItem="fLG-TP-kbq" firstAttribute="top" secondItem="WaZ-gB-YkR" secondAttribute="bottom" constant="10" id="dRu-rs-oIS"/>
                         <constraint firstItem="cYS-Dn-CMh" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" id="dru-VH-MXy"/>
                         <constraint firstItem="7oi-Iu-IRw" firstAttribute="top" secondItem="fLG-TP-kbq" secondAttribute="bottom" constant="10" id="e2N-sr-1DQ"/>
                         <constraint firstItem="71d-Rn-4lQ" firstAttribute="top" secondItem="DKF-Gc-SeS" secondAttribute="bottom" constant="44" id="ehD-g5-J3N"/>
-                        <constraint firstAttribute="trailing" secondItem="JgD-n6-WEq" secondAttribute="trailing" constant="54" id="ewZ-v5-cgg"/>
+                        <constraint firstAttribute="trailing" secondItem="JgD-n6-WEq" secondAttribute="trailing" constant="24" id="ewZ-v5-cgg"/>
                         <constraint firstAttribute="bottom" secondItem="gyo-a2-rQE" secondAttribute="bottom" constant="7" id="fIz-IO-O64"/>
-                        <constraint firstItem="JgD-n6-WEq" firstAttribute="leading" secondItem="3Ej-7b-2Xh" secondAttribute="trailing" constant="54" id="fxq-Mu-cUz"/>
+                        <constraint firstItem="JgD-n6-WEq" firstAttribute="leading" secondItem="3Ej-7b-2Xh" secondAttribute="trailing" constant="24" id="fxq-Mu-cUz"/>
                         <constraint firstAttribute="trailing" secondItem="Vbk-bD-zvv" secondAttribute="trailing" constant="10" id="gM3-mW-B8C"/>
                         <constraint firstAttribute="trailing" secondItem="fLG-TP-kbq" secondAttribute="trailing" id="hIA-ep-mpG"/>
                         <constraint firstItem="WDz-fn-sME" firstAttribute="top" secondItem="cYS-Dn-CMh" secondAttribute="bottom" constant="10" id="hcu-VP-3UE"/>
                         <constraint firstItem="aS3-aJ-72T" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" constant="15" id="i6w-mf-DES"/>
                         <constraint firstItem="WaZ-gB-YkR" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" constant="15" id="kA3-Uk-G4P"/>
                         <constraint firstItem="wQl-el-mfX" firstAttribute="top" secondItem="71d-Rn-4lQ" secondAttribute="bottom" constant="10" id="lK4-hS-uo0"/>
-                        <constraint firstItem="3Ej-7b-2Xh" firstAttribute="leading" secondItem="gyo-a2-rQE" secondAttribute="trailing" constant="54" id="ldb-yd-hfc"/>
+                        <constraint firstItem="3Ej-7b-2Xh" firstAttribute="leading" secondItem="gyo-a2-rQE" secondAttribute="trailing" constant="24" id="ldb-yd-hfc"/>
                         <constraint firstItem="E54-B3-g6V" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" constant="98" id="ntG-jq-tuB"/>
                         <constraint firstItem="71d-Rn-4lQ" firstAttribute="leading" secondItem="fNt-nA-goR" secondAttribute="leading" id="nvs-ep-3LO"/>
                         <constraint firstItem="WaZ-gB-YkR" firstAttribute="top" secondItem="4tT-mL-iN6" secondAttribute="bottom" constant="10" id="ozm-xm-pWy"/>
@@ -401,8 +407,8 @@
                             <exclude reference="3Ej-7b-2Xh"/>
                             <exclude reference="gyo-a2-rQE"/>
                             <exclude reference="JgD-n6-WEq"/>
-                            <exclude reference="Qgh-Hw-liB"/>
                             <exclude reference="wPJ-Nf-wQu"/>
+                            <exclude reference="Qgh-Hw-liB"/>
                         </mask>
                         <mask key="constraints">
                             <exclude reference="0J4-41-Fve"/>
@@ -483,8 +489,8 @@
                             <include reference="3Ej-7b-2Xh"/>
                             <include reference="gyo-a2-rQE"/>
                             <include reference="JgD-n6-WEq"/>
-                            <include reference="Qgh-Hw-liB"/>
                             <include reference="wPJ-Nf-wQu"/>
+                            <include reference="Qgh-Hw-liB"/>
                         </mask>
                         <mask key="constraints">
                             <include reference="0J4-41-Fve"/>
@@ -549,7 +555,7 @@
                     </variation>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.76473721590909094" green="0.76473721590909094" blue="0.76473721590909094" alpha="0.96999999999999997" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerY" secondItem="fNt-nA-goR" secondAttribute="centerY" id="Az2-XG-uPj"/>
                 <constraint firstAttribute="centerX" secondItem="fNt-nA-goR" secondAttribute="centerX" id="Tjl-T0-hrm"/>
