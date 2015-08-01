@@ -36,8 +36,8 @@
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
-@interface MSFProductViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
-@property (nonatomic,assign) BOOL isSelectedRow;
+@interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
+@property (nonatomic, assign) BOOL isSelectedRow;
 
 @property (nonatomic, strong) MSFMarket *market;
 @property (nonatomic, strong) MSFSelectionViewModel *selectViewModel;
