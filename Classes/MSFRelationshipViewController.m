@@ -121,8 +121,8 @@ ABPersonViewControllerDelegate>
 	[super viewDidLoad];
 	self.title = @"家庭信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
-	
-	
+	self.viewModel.model.memberAddress = self.viewModel.model.currentAddress;
+	self.viewModel.model.memberAddress2 = self.viewModel.model.currentAddress;
 	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
