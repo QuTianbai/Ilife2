@@ -80,6 +80,8 @@
 			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
 			[vc bindViewModel:viewModel];
+      UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"贷款申请" style:UIBarButtonItemStyleBordered target:nil action:nil];
+      [self.navigationItem setBackBarButtonItem:backItem];
 			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
@@ -92,6 +94,8 @@
 			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
 			[vc bindViewModel:viewModel];
+      UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:@"贷款申请" style:UIBarButtonItemStyleBordered target:nil action:nil];
+      [self.navigationItem setBackBarButtonItem:backItem];
 			[self.navigationController pushViewController:vc animated:YES];
 		#endif
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];

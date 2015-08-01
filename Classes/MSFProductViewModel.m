@@ -64,14 +64,14 @@
 	RAC(self, market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
-	
-	[self.formsViewModel.didBecomeActiveSignal subscribeNext:^(id x) {
-		@strongify(self)
-		self.purpose = nil;
-		self.product = nil;
-		self.productTerms = @"";
-		self.totalAmount = @"";
-	}];
+//应要求，切换tabbar时不进行数据请空
+//	[self.formsViewModel.didBecomeActiveSignal subscribeNext:^(id x) {
+//		@strongify(self)
+//		//self.purpose = nil;
+//		//self.product = nil;
+//		//self.productTerms = @"";
+//		//self.totalAmount = @"";
+//	}];
 	
 	[RACObserve(self, product) subscribeNext:^(MSFProduct *product) {
 		@strongify(self)
