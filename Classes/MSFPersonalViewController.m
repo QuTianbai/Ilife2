@@ -169,6 +169,12 @@
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
+		UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
+		UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
+		MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+		[vc bindViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	

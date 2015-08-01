@@ -49,7 +49,9 @@
 	_productTerms = @"";
 	_termAmount = 0;
 	_services = self.formsViewModel.services;
-	RAC(self.formsViewModel.model, repayMoneyMonth) = RACObserve(self, termAmount);
+	RAC(self.formsViewModel.model, repayMoneyMonth) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
+		return [NSString stringWithFormat:@"%.2lf", value.doubleValue];
+	}];
 	RAC(self.formsViewModel.model, principal) = RACObserve(self, totalAmount);
 	RAC(self.formsViewModel.model, isSafePlan) = [RACObserve(self, insurance) map:^id(id value) {
 		return [value stringValue];
