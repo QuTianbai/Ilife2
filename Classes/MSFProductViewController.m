@@ -32,10 +32,13 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSFCounterLabel.h"
+#import "SVProgressHUD.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController ()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
+@property (nonatomic,assign) BOOL isSelectedRow;
+
 @property (nonatomic, strong) MSFMarket *market;
 @property (nonatomic, strong) MSFSelectionViewModel *selectViewModel;
 @property (nonatomic, strong) NSArray *loanPeriodsAry;
@@ -71,7 +74,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   if (!self) {
     return nil;
   }
-	
 	_viewModel = viewModel;
   
   return self;
@@ -177,6 +179,21 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
+  MSFProduct *model = [self.selectViewModel modelForIndexPath:indexPath];
+  if ([model.productId isEqualToString:self.viewModel.product.productId]) {
+    
+    //selectItemAtIndexPath:animated:scrollPosition:
+    //[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+   cell.selected = YES;
+   self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+  } else {
+    if (indexPath.row == [self.selectViewModel numberOfItemsInSection:0] - 1) {
+      cell.selected = YES;
+      //[self.monthCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
+     // [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+    }
+  }
 	cell.text = [self.selectViewModel titleForIndexPath:indexPath];
 	cell.locked = self.moneySlider.tracking;
   return cell;
@@ -196,20 +213,27 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  
 	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 
 #pragma mark - MSFSlider Delegate
 
 - (void)startSliding {
+  if (self.moneySlider.maximumValue == 0) {
+    [SVProgressHUD showInfoWithStatus:@"网络异常，请稍后重试"];
+  }
 	self.viewModel.termAmount = 0;
 	[self.monthCollectionView reloadData];
 }
 
 - (void)getStringValue:(NSString *)stringvalue {
+  if (stringvalue.integerValue == 0) {
+    self.viewModel.product = nil;
+    //return;
+  }
   self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
   [self.monthCollectionView reloadData];
+  
 }
 
 @end
