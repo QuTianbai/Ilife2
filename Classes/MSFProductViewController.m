@@ -179,22 +179,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
-  MSFProduct *model = [self.selectViewModel modelForIndexPath:indexPath];
-  if ([model.productId isEqualToString:self.viewModel.product.productId]) {
-    
-    //selectItemAtIndexPath:animated:scrollPosition:
-    //[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-   cell.selected = YES;
-   self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-  } else {
-    if (indexPath.row == [self.selectViewModel numberOfItemsInSection:0] - 1) {
-      cell.selected = YES;
-      //[self.monthCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-     // [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-    }
-  }
-	cell.text = [self.selectViewModel titleForIndexPath:indexPath];
+  cell.text = [self.selectViewModel titleForIndexPath:indexPath];
 	cell.locked = self.moneySlider.tracking;
   return cell;
 }
@@ -233,6 +218,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   }
   self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
   [self.monthCollectionView reloadData];
+ 
+  if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
+    [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+    self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+  }
   
 }
 
