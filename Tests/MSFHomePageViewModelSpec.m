@@ -39,7 +39,7 @@ it(@"should not has viewmodel for placeholder", ^{
   
   // then
   expect(sub).to(beNil());
-  expect(reusableIdentifier).to(equal(@"MSFPlaceholderCollectionViewCell"));
+  expect(reusableIdentifier).to(equal(@"MSFHomePageContentCollectionViewCell"));
 });
 
 it(@"should has a appling viewmodel", ^{

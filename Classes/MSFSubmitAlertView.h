@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MSFSubmitAlertView : UIView
+@property (weak, nonatomic) IBOutlet UIView *backGroundView;
 /**
  *	整个alertview
  */

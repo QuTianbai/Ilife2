@@ -7,7 +7,8 @@
 #import "MSFSettingsViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
-
+#import "MSFUtils.h"
+#import "MSFClient.h"
 #import "MSFCommandView.h"
 
 #import "MSFAboutUsCell.h"
@@ -43,19 +44,13 @@
 	[super viewDidLoad];
 	self.title = @"关于";
 	
-	_imageArray = @[
-		@"iconfont-guanyuwomen.png",
-		@"iconfont-chanpinjieshao.png",
-		@"iconfont-bangzhu.png",
-		@"iconfont-wangdian.png",
-	];
-	
 	_textArray = @[
 		@"关于我们",
 		@"产品介绍",
 		@"用户帮助",
 		@"网点分布",
 	];
+	
 }
 
 #pragma mark - 去掉多余分割线
@@ -82,19 +77,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *cellID = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-	[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
 	cell.textLabel.text = [_textArray objectAtIndex:indexPath.row];
-	cell.imageView.image = [UIImage imageNamed:[_imageArray objectAtIndex:indexPath.row]];
+	[cell.textLabel setFont:[UIFont systemFontOfSize:18]];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	if (indexPath.row == 4) {
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		NSDictionary *infodictionary = [NSBundle bundleForClass:self.class].infoDictionary;
-		NSString *version = infodictionary[@"CFBundleShortVersionString"];
-		NSString *builds = infodictionary[@"CFBundleVersion"];
-		NSString *about = [NSString stringWithFormat:@"%@(%@)", version, builds];
-		cell.detailTextLabel.text = about;
-	}
-	
 	return cell;
 }
 
@@ -124,6 +109,41 @@
 		default:
 			break;
 	}
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+		[cell setSeparatorInset:UIEdgeInsetsZero];
+	}
+	
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+- (void)viewDidLayoutSubviews {
+	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+	
+	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	NSDictionary *infodictionary = [NSBundle bundleForClass:self.class].infoDictionary;
+	NSString *version = infodictionary[@"CFBundleShortVersionString"];
+	NSString *builds = infodictionary[@"CFBundleVersion"];
+	NSString *about = [NSString stringWithFormat:@"版本号:%@ (%@)", version, builds];
+	UIView *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 66)];
+	UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 66)];
+	[label setText:about];
+	[label setTextColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+	[label setFont:[UIFont systemFontOfSize:15]];
+	[label setTextAlignment:NSTextAlignmentCenter];
+	[view addSubview:label];
+	return view;
 }
 
 #pragma mark - onClickBackBtn

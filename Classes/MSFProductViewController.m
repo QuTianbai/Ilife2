@@ -122,9 +122,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return value;
   }];
   self.moneySlider.delegate = self;
-	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSNumber *value) {
-    
-	 return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
+	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
+		return [NSString stringWithFormat:@"%ld", (long)value.integerValue / 100 * 100];
+	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
 	//self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;

@@ -15,7 +15,14 @@
 	[_loanConfirmAlertView setClipsToBounds:YES];
 	[_loanConfirmAlertView.layer setCornerRadius:7];
 	[_loanConfirmLabel setTextColor:[MSFCommandView getColorWithString:@"#007ee5"]];
-	[self setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+	[self setBackgroundColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:0.2]];
+	//self.backgroundColor = [UIColor clearColor];
+	//self.backGroundView.alpha = 0.2;
+	//self.alpha = 0.5;
+//	NSArray *array = self.subviews;
+//	for (UIView *view in array) {
+//		view.alpha = 1;
+//	}
 }
 
 @end
