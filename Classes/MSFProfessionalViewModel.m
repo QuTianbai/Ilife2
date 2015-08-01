@@ -114,6 +114,7 @@
 - (void)initialize {
 	[self commonInit];
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
+	RAC(self.model, currentAddress) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, workProvince) = RACObserve(self.addressViewModel, provinceName);
 	RAC(self.model, workProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
 	RAC(self.model, workCity) = RACObserve(self.addressViewModel, cityName);

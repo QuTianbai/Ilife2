@@ -182,6 +182,8 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.diffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
+			self.diffCurrentTF.text = self.viewModel.model.currentAddress;
+		} else {
 			self.diffCurrentTF.text = @"";
 		}
 		[UIView animateWithDuration:.3 animations:^{
@@ -219,6 +221,8 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.num2DiffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
+			self.num2DiffCurrentTF.text = self.viewModel.model.currentAddress;
+		} else {
 			self.num2DiffCurrentTF.text = @"";
 		}
 		[UIView animateWithDuration:.3 animations:^{

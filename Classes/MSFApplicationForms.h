@@ -35,6 +35,9 @@
 @property (nonatomic, copy) NSString *currentStreet;//现居街道/村/路 居住街道
 @property (nonatomic, copy) NSString *currentCommunity;//现居小区/楼盘 居住小区
 @property (nonatomic, copy) NSString *currentApartment;//现居栋/单元/房间号 居住栋
+// 自定义地址信息
+@property (nonatomic, copy) NSString *currentAddress;//现居栋/单元/房间号 居住栋
+
 /*
  教育程度
 */
