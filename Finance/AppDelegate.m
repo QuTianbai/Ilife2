@@ -84,9 +84,6 @@
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 	}];
 	
-	[[RCLocationManager sharedManager]
-		requestUserLocationWhenInUseWithBlockOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {}];
-	
 	return YES;
 }
 

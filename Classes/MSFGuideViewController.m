@@ -5,6 +5,7 @@
 //
 
 #import "MSFGuideViewController.h"
+#import "RCLocationManager.h"
 
 #define FORCE_DISPLAY 0
 
@@ -83,6 +84,9 @@
 		gesture.view.superview.alpha = 0;
 	} completion:^(BOOL finished) {
 		[gesture.view.superview removeFromSuperview];
+		[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+			[manager startUpdatingLocation];
+		}];
 	}];
 }
 

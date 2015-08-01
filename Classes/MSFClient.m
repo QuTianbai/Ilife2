@@ -94,12 +94,15 @@ static BOOL isRunningTests(void) {
 	if (isRunningTests()) {
 		return self;
 	}
-	[[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
-	[[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
-	[[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
-		[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:newLocation.coordinate]];
-		[[RCLocationManager sharedManager] stopUpdatingLocation];
-	} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
+	CLAuthorizationStatus const status = [CLLocationManager authorizationStatus];
+	if (status > 1) {
+		[[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
+		[[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
+		[[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
+			[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:newLocation.coordinate]];
+			[[RCLocationManager sharedManager] stopUpdatingLocation];
+		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
+	}
 	
 	return self;
 }
