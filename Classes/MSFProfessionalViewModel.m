@@ -410,7 +410,7 @@
 		}
 		if ([self.model.department isEqualToString:@""]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择部门",
+				NSLocalizedFailureReasonErrorKey: @"请输入部门",
 			}]];
 		}
 		if ([self.model.title isEqualToString:@""]) {
