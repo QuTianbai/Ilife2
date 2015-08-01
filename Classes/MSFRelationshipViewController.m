@@ -299,9 +299,13 @@ ABPersonViewControllerDelegate>
 		
 		[[submitAlertView.cancelButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
-			NSLog(@"xxx");
+			NSLog(@"on click cancelButton");
 			[submitAlertView removeFromSuperview];
 		}];
+		[[submitAlertView.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+		 subscribeNext:^(id x) {
+			 NSLog(@"on click submitButton");
+		 }];
 //		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 //			if (index.integerValue == 1) {
 //				[self.viewModel.executeCommitCommand execute:nil];
