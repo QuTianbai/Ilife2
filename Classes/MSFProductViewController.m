@@ -196,7 +196,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [SVProgressHUD showWithStatus:@"正在计算美元所需还款金额..."];
+  
 	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 
