@@ -276,16 +276,12 @@ ABPersonViewControllerDelegate>
 	
 	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-//		UIAlertView *alertView = [[UIAlertView alloc] init];
-//		alertView.title = @"提示";
-//		alertView.message = self.viewModel.confirmMessage;
-//		[alertView addButtonWithTitle:@"取消"];
-//		[alertView addButtonWithTitle:@"确认"];
-//		[alertView setCancelButtonIndex:0];
-//		[alertView show];
+		
 		AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
 		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:nil options:nil] firstObject];
 		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+		[submitAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.6]];
+		NSString *nper = [NSString stringWithFormat:@"%@期" , self.viewModel.model.tenor];
 		
 		__block NSString *usage;
 		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
@@ -296,14 +292,15 @@ ABPersonViewControllerDelegate>
 		}];
 		
 		submitAlertView.loanAccountLabel.text = self.viewModel.model.principal;
-		submitAlertView.loanNper.text = self.viewModel.model.tenor;
 		submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
+		submitAlertView.loanNper.text = nper;
 		submitAlertView.loanUse.text = usage;
 		[appdelegate.window addSubview:submitAlertView];
 		
 		[[submitAlertView.cancelButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
 			NSLog(@"xxx");
+			[submitAlertView removeFromSuperview];
 		}];
 //		[alertView.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 //			if (index.integerValue == 1) {
