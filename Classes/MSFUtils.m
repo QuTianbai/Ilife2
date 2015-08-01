@@ -17,6 +17,7 @@
 #import "MSFAuthorization.h"
 #import "MSFAgreement.h"
 #import "MSFAgreementViewModel.h"
+#import "MSFUtilsViewController.h"
 
 static NSString *const MSFAutologinbuggingEnvironmentKey = @"LOGIN_AUTO_DEBUG";
 
@@ -43,6 +44,17 @@ static BOOL isRunningTests(void) {
 @implementation MSFUtils
 
 + (RACSignal *)setupSignal {
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil]
+		subscribeNext:^(NSNotification *notificaiton) {
+			NSURL *URL = [NSURL URLWithString:notificaiton.object];
+			server = [MSFServer serverWithBaseURL:URL];
+			MSFClient *client = self.unArchiveClient;
+			[self setHttpClient:client];
+			[[[self.httpClient fetchServerInterval] replay] doNext:^(MSFResponse *resposne) {
+				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
+				[MSFClient setCipher:cipher];
+			}];
+		}];
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
 	MSFClient *client = self.unArchiveClient;
 	[self setHttpClient:client];
