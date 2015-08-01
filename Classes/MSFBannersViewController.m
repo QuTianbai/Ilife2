@@ -28,9 +28,12 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
+	self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width / 2);
 	self.infinityScroll = [[MSFInfinityScroll alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	[self.view addSubview:self.infinityScroll];
+	[self.infinityScroll mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.view);
+	}];
 	
 #warning 此处为测试方法，发布时需改正
 	
@@ -51,9 +54,7 @@
 	self.infinityScroll.selectedBlock = ^(NSInteger index) {
 		NSLog(@"选择了---%ld", (long)index);
 	};
-	[self.infinityScroll mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.view);
-	}];
+
 }
 
 #pragma mark - MSFReactiveView

@@ -9,7 +9,6 @@
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFHomepageCollectionViewHeader.h"
 #import "MSFHomePageContentCollectionViewCell.h"
-#import "MSFPlaceholderCollectionViewCell.h"
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
@@ -52,7 +51,6 @@
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
-	[self.collectionView registerClass:MSFPlaceholderCollectionViewCell.class forCellWithReuseIdentifier:@"MSFPlaceholderCollectionViewCell"];
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
@@ -113,7 +111,7 @@
 	MSFLoanViewModel *viewModel = [self.viewModel viewModelForIndexPath:indexPath];
 	NSString *reusableIdentifier = [self.viewModel reusableIdentifierForIndexPath:indexPath];
 	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusableIdentifier forIndexPath:indexPath];
-	if (viewModel) [cell bindViewModel:viewModel];
+	[cell bindViewModel:viewModel];
 	return cell;
 }
 
