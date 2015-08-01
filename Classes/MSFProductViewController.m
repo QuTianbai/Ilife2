@@ -124,7 +124,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		return [NSString stringWithFormat:@"%ld",value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
-	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
+	//self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
 	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
@@ -196,6 +196,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  
 	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 

@@ -33,9 +33,9 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
-                                            <rect key="frame" x="62" y="51" width="46" height="29"/>
+                                            <rect key="frame" x="58.5" y="36.5" width="53.5" height="33.5"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -44,14 +44,14 @@
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="iot-0D-2xc" secondAttribute="centerX" id="1nI-KN-pCT"/>
                                         <constraint firstAttribute="centerX" secondItem="v6U-t7-RUX" secondAttribute="centerX" id="2Qp-NY-Z1f"/>
-                                        <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="10" id="On4-ru-LLb"/>
+                                        <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="20" id="On4-ru-LLb"/>
                                         <constraint firstAttribute="width" constant="170" id="aml-Wl-Dqa"/>
                                         <constraint firstAttribute="height" constant="90" id="bIk-8Z-A3k"/>
                                         <constraint firstItem="iot-0D-2xc" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" constant="10" id="mWu-Rf-Lff"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-by-3e5" customClass="MSFEdgeButton">
-                                    <rect key="frame" x="10" y="161" width="300" height="44"/>
+                                    <rect key="frame" x="10" y="141" width="300" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="23j-ba-cDM"/>
                                     </constraints>
@@ -87,7 +87,7 @@
                                 <constraint firstAttribute="trailing" secondItem="826-SW-x5j" secondAttribute="trailing" constant="10" id="IXb-Ue-jal"/>
                                 <constraint firstAttribute="trailing" secondItem="CS3-WP-hrb" secondAttribute="trailing" id="Mwr-8E-qOn"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ddS-PJ-7S2"/>
-                                <constraint firstItem="xaO-by-3e5" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="bottom" constant="30" id="ee4-co-666"/>
+                                <constraint firstItem="xaO-by-3e5" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="bottom" constant="10" id="ee4-co-666"/>
                                 <constraint firstItem="826-SW-x5j" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ijx-8A-nId"/>
                                 <constraint firstAttribute="trailing" secondItem="xaO-by-3e5" secondAttribute="trailing" constant="10" id="mWZ-Mw-jkk"/>
                                 <constraint firstItem="dE5-fc-Du5" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="q8L-rt-l6h"/>
@@ -105,13 +105,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="hWj-Vn-WwI" customClass="MSFSlider">
-                                                    <rect key="frame" x="13" y="30" width="294" height="31"/>
+                                                    <rect key="frame" x="13" y="30" width="294" height="45"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="XAT-d6-hvv"/>
+                                                        <constraint firstAttribute="height" constant="44" id="XAT-d6-hvv"/>
                                                     </constraints>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款期数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-pB-EYl">
-                                                    <rect key="frame" x="15" y="70" width="68" height="21"/>
+                                                    <rect key="frame" x="15" y="84" width="68" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="NzZ-am-OXq"/>
                                                     </constraints>
@@ -120,7 +120,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RE3-Es-42M">
-                                                    <rect key="frame" x="0.0" y="91" width="320" height="80"/>
+                                                    <rect key="frame" x="0.0" y="105" width="320" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="80" id="60J-z9-a4H"/>
                                                     </constraints>
@@ -142,8 +142,17 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8O-yI-GEF">
+                                                    <rect key="frame" x="0.0" y="74" width="320" height="1"/>
+                                                    <color key="backgroundColor" red="0.78454468527225529" green="0.78454468527225529" blue="0.78454468527225529" alpha="0.64000000000000001" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="OrO-9X-vq5"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="j8O-yI-GEF" secondAttribute="trailing" id="5dM-Ea-BGl"/>
+                                                <constraint firstItem="j8O-yI-GEF" firstAttribute="top" secondItem="hWj-Vn-WwI" secondAttribute="bottom" id="71H-do-dbe"/>
                                                 <constraint firstItem="RE3-Es-42M" firstAttribute="top" secondItem="PEb-pB-EYl" secondAttribute="bottom" id="75g-34-NtL"/>
                                                 <constraint firstItem="hWj-Vn-WwI" firstAttribute="top" secondItem="ewd-85-E2l" secondAttribute="top" constant="30" id="7ZS-xe-j7e"/>
                                                 <constraint firstAttribute="trailing" secondItem="PEb-pB-EYl" secondAttribute="trailing" constant="237" id="Bmm-2H-IpP"/>
@@ -152,6 +161,7 @@
                                                 <constraint firstItem="PEb-pB-EYl" firstAttribute="top" secondItem="hWj-Vn-WwI" secondAttribute="bottom" constant="10" id="dHD-B9-SXS"/>
                                                 <constraint firstAttribute="trailing" secondItem="hWj-Vn-WwI" secondAttribute="trailing" constant="15" id="dxF-Q1-AzT"/>
                                                 <constraint firstAttribute="trailing" secondItem="RE3-Es-42M" secondAttribute="trailing" id="fda-7B-YPs"/>
+                                                <constraint firstItem="j8O-yI-GEF" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" id="hDA-tX-47k"/>
                                                 <constraint firstItem="RE3-Es-42M" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" id="xe8-Jo-QCk"/>
                                             </constraints>
                                         </tableViewCellContentView>

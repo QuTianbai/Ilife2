@@ -24,6 +24,7 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFWebViewModel.h"
 #import "MSFTeams.h"
+#import "SVProgressHUD.h"
 
 @interface MSFProductViewModel ()
 
@@ -102,6 +103,7 @@
 			return [[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
+          [SVProgressHUD dismiss];
 					return value.parsedResult[@"repayMoneyMonth"];
 				}];
 		}];

@@ -60,12 +60,14 @@
 	[self.authorizeViewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
+			self.formsViewModel.active = NO;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
 	[self.authorizeViewModel.executeSignOut.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
+			self.formsViewModel.active = NO;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
@@ -73,6 +75,7 @@
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(NSNotification *notification) {
 			@strongify(self)
+			self.formsViewModel.active = NO;
 			MSFClient *client = notification.object;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:client];
 	}];
