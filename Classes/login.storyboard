@@ -539,13 +539,25 @@
                                                                     </constraints>
                                                                 </imageView>
                                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入8位以上数字和字母混合密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tap-h5-xY0" customClass="MSFWPTextField">
-                                                                    <rect key="frame" x="46" y="0.0" width="244" height="44"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="214" height="44"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
                                                                 </textField>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfy-He-egp">
+                                                                    <rect key="frame" x="251" y="0.0" width="44" height="44"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="44" id="M99-4K-Q8w"/>
+                                                                        <constraint firstAttribute="height" constant="44" id="j2o-bS-8yq"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="btn-showpwd-normal.png">
+                                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <state key="selected" image="btn-showpwd-selected.png"/>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="centerY" secondItem="cfy-He-egp" secondAttribute="centerY" id="5Ve-eY-sLc"/>
                                                                 <constraint firstAttribute="bottom" secondItem="pPf-9H-Cob" secondAttribute="bottom" constant="9" id="8mT-Sh-pWk"/>
                                                                 <constraint firstAttribute="bottom" secondItem="tap-h5-xY0" secondAttribute="bottom" id="CqW-iK-lJk"/>
                                                                 <constraint firstAttribute="height" constant="44" id="KoH-Uy-UPb"/>
@@ -553,7 +565,8 @@
                                                                 <constraint firstItem="tap-h5-xY0" firstAttribute="top" secondItem="g9H-db-zh5" secondAttribute="top" id="WW2-b2-8ti"/>
                                                                 <constraint firstItem="tap-h5-xY0" firstAttribute="leading" secondItem="pPf-9H-Cob" secondAttribute="trailing" constant="10" id="Yr0-sZ-Tfq"/>
                                                                 <constraint firstItem="pPf-9H-Cob" firstAttribute="leading" secondItem="g9H-db-zh5" secondAttribute="leading" constant="10" id="h8V-To-IkQ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="tap-h5-xY0" secondAttribute="trailing" constant="10" id="uv6-qv-IJj"/>
+                                                                <constraint firstAttribute="trailing" secondItem="cfy-He-egp" secondAttribute="trailing" constant="5" id="lhm-NU-alv"/>
+                                                                <constraint firstAttribute="trailing" secondItem="tap-h5-xY0" secondAttribute="trailing" constant="40" id="uv6-qv-IJj"/>
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Muz-Wd-01o">
@@ -672,6 +685,7 @@
                         <outlet property="iAgreeButton" destination="bXH-2a-bUJ" id="tw8-HC-jyH"/>
                         <outlet property="password" destination="tap-h5-xY0" id="F67-0S-uDP"/>
                         <outlet property="sendCaptchaButton" destination="q7N-fA-FFQ" id="nZN-yB-Wr1"/>
+                        <outlet property="showPasswordButton" destination="cfy-He-egp" id="iXN-S2-c8v"/>
                         <outlet property="username" destination="JLT-7y-G1q" id="DXi-dv-lY4"/>
                         <segue destination="gqY-Z9-IbC" kind="show" identifier="complement" id="qXP-sY-L47"/>
                     </connections>
