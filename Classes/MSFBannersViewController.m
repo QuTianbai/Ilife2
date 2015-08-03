@@ -60,6 +60,7 @@
 
 	self.infinityScroll.selectedBlock = ^(NSInteger index) {
 		NSLog(@"选择了---%ld", (long)index);
+
 	};
 
 }
