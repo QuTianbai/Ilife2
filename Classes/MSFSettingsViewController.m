@@ -78,7 +78,7 @@
 	static NSString *cellID = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 	cell.textLabel.text = [_textArray objectAtIndex:indexPath.row];
-	[cell.textLabel setFont:[UIFont systemFontOfSize:18]];
+	[cell.textLabel setFont:[UIFont systemFontOfSize:16]];
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	return cell;
 }

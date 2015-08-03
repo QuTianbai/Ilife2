@@ -115,8 +115,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.industryButton.rac_command = self.viewModel.executeIndustryCommand;
 	RAC(self.companyType, text) = RACObserve(self.viewModel, natureTitle);
 	self.companyTypeButton.rac_command = self.viewModel.executeNatureCommand;
-	RAC(self.department, text) = RACObserve(self.viewModel, departmentTitle);
-	self.departmentButton.rac_command = self.viewModel.executeDepartmentCommand;
+	
+	RACChannelTerminal *departmentChannel = RACChannelTo(self.viewModel.model, department);
+	RAC(self.department, text) = departmentChannel;
+	[self.department.rac_textSignal subscribe:departmentChannel];
+
 	RAC(self.position, text) = RACObserve(self.viewModel, positionTitle);
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	RAC(self.address, text) = RACObserve(self.viewModel, address);

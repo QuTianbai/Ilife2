@@ -121,8 +121,8 @@ ABPersonViewControllerDelegate>
 	[super viewDidLoad];
 	self.title = @"家庭信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
-	
-	
+	self.viewModel.model.memberAddress = self.viewModel.model.currentAddress;
+	self.viewModel.model.memberAddress2 = self.viewModel.model.currentAddress;
 	
 	@weakify(self)
 	[[self.addFamilyBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -182,6 +182,8 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.diffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
+			self.diffCurrentTF.text = self.viewModel.model.currentAddress;
+		} else {
 			self.diffCurrentTF.text = @"";
 		}
 		[UIView animateWithDuration:.3 animations:^{
@@ -219,6 +221,8 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.num2DiffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
+			self.num2DiffCurrentTF.text = self.viewModel.model.currentAddress;
+		} else {
 			self.num2DiffCurrentTF.text = @"";
 		}
 		[UIView animateWithDuration:.3 animations:^{
@@ -281,7 +285,7 @@ ABPersonViewControllerDelegate>
 		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:nil options:nil] firstObject];
 		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 		[submitAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.6]];
-		NSString *nper = [NSString stringWithFormat:@"%@期" , self.viewModel.model.tenor];
+		NSString *nper = [NSString stringWithFormat:@"%@个月" , self.viewModel.model.tenor];
 		
 		__block NSString *usage;
 		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];

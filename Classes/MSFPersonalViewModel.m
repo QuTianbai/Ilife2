@@ -19,6 +19,7 @@
 #import "MSFResultModel.h"
 #import "MSFAddressInfo.h"
 #import <FMDB/FMDB.h>
+#import "RCLocationManager.h"
 
 @interface MSFPersonalViewModel ()<MSFLocationDelegate>
 
@@ -38,10 +39,10 @@
 		return nil;
 	}
   _services = viewModel.services;
-  self.location = [[MSFLocation alloc] init];
-  self.location.delegate = self;
-  [self.location startLocation];
-  
+	if (CLLocationCoordinate2DIsValid([RCLocationManager sharedManager].location.coordinate)) {
+		[self getLocationCoordinate:[RCLocationManager sharedManager].location.coordinate];
+	}
+	
 	_formsViewModel = viewModel;
 	_addressViewModel = addressViewModel;
 	_model = viewModel.model;

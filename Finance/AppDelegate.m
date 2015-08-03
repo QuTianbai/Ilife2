@@ -47,6 +47,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[Fabric with:@[CrashlyticsKit]];
+	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
+	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+		[manager startUpdatingLocation];
+	}];
 	
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	self.window.backgroundColor = UIColor.whiteColor;
@@ -67,7 +71,6 @@
 #if DEBUG
 		//!!!: 测试无法获取时间戳的情况
 		[self setup];
-		[MSFGuideViewController.guide show];
 		
 		return [RACSignal empty];
 #endif
@@ -76,16 +79,12 @@
 		return MSFUtils.setupSignal;
 	}] subscribeNext:^(id x) {
 		[self setup];
-		[MSFGuideViewController.guide show];
 	}];
 	
 	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
 		//TODO: 更新提醒
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 	}];
-	
-	[[RCLocationManager sharedManager]
-		requestUserLocationWhenInUseWithBlockOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {}];
 	
 	return YES;
 }

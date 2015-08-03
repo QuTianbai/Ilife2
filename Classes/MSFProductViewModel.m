@@ -65,6 +65,7 @@
 	RAC(self, market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
+	//TODO: Remove the code
 //应要求，切换tabbar时不进行数据请空
 //	[self.formsViewModel.didBecomeActiveSignal subscribeNext:^(id x) {
 //		@strongify(self)

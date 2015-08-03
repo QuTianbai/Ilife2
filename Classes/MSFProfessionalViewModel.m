@@ -114,6 +114,7 @@
 - (void)initialize {
 	[self commonInit];
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
+	RAC(self.model, currentAddress) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, workProvince) = RACObserve(self.addressViewModel, provinceName);
 	RAC(self.model, workProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
 	RAC(self.model, workCity) = RACObserve(self.addressViewModel, cityName);
@@ -409,7 +410,7 @@
 		}
 		if ([self.model.department isEqualToString:@""]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择部门",
+				NSLocalizedFailureReasonErrorKey: @"请输入部门",
 			}]];
 		}
 		if ([self.model.title isEqualToString:@""]) {
