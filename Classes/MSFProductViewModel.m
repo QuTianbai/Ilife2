@@ -100,8 +100,12 @@
 			if (!product) {
 				return [RACSignal return:@0];
 			}
-			return [[self.services.httpClient
+			return [[[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
+				catch:^RACSignal *(NSError *error) {
+					MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
+					return [RACSignal return:response];
+				}]
 				map:^id(MSFResponse *value) {
           [SVProgressHUD dismiss];
 					return value.parsedResult[@"repayMoneyMonth"];
