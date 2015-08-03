@@ -6,13 +6,13 @@
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-// Convenience category to retreive parsedResults from OCTResponses.
+// Convenience category to retreive parsedResults from MSFResponses.
 @interface RACSignal (MSFClientAdditions)
 
-// This method assumes that the receiver is a signal of OCTResponses.
+// This method assumes that the receiver is a signal of MSFResponses.
 //
 // Returns a signal that maps the receiver to become a signal of
-// OCTResponse.parsedResult.
+// MSFResponse.parsedResult.
 - (RACSignal *)msf_parsedResults;
 
 @end
