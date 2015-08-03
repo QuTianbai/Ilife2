@@ -383,7 +383,7 @@ static BOOL isRunningTests(void) {
 				parsedResponseOfClass:resultClass fromJSON:responseObject]
 				map:^(id parsedResult) {
 					MSFResponse *parsedResponse = [[MSFResponse alloc] initWithHTTPURLResponse:HTTPURLResponse parsedResult:parsedResult];
-					NSAssert(parsedResponse != nil, @"Could not create OCTResponse with response %@ and parsedResult %@", HTTPURLResponse, parsedResult);
+					NSAssert(parsedResponse != nil, @"Could not create MSFResponse with response %@ and parsedResult %@", HTTPURLResponse, parsedResult);
 					
 					return parsedResponse;
 				}]

@@ -11,7 +11,7 @@
 
 - (RACSignal *)msf_parsedResults {
 	return [self map:^(MSFResponse *response) {
-		NSAssert([response isKindOfClass:MSFResponse.class], @"Expected %@ to be an OCTResponse.", response);
+		NSAssert([response isKindOfClass:MSFResponse.class], @"Expected %@ to be an MSFResponse.", response);
 		
 		return response.parsedResult;
 	}];
