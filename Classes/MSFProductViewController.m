@@ -37,6 +37,8 @@
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *moneyInsuranceLabel;
+@property (weak, nonatomic) IBOutlet UIView *repayMoneyBackgroundView;
 @property (nonatomic, assign) BOOL isSelectedRow;
 
 @property (nonatomic, strong) MSFMarket *market;
@@ -81,7 +83,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-  
+  @weakify(self)
+  [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
+		takeUntil:self.rac_willDeallocSignal]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			[self setRepayMoneyBackgroundViewAniMation:NO];
+		}];
   UICollectionViewFlowLayout *collectionFlowLayout = [[UICollectionViewFlowLayout alloc]init];
   
   [collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
@@ -103,6 +111,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+  RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, moneyInsurance) map:^id(NSString *value) {
+    return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
+  }];
 	
 	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
@@ -210,6 +221,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 //UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  [self setRepayMoneyBackgroundViewAniMation:YES];
 	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 
@@ -227,6 +239,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   if (stringvalue.integerValue == 0) {
     self.viewModel.product = nil;
     //return;
+  } else {
+    [self setRepayMoneyBackgroundViewAniMation:YES];
   }
   self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
   [self.monthCollectionView reloadData];
@@ -250,6 +264,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     }
     
   }
+}
+
+- (void)setRepayMoneyBackgroundViewAniMation:(BOOL)isHiddin {
+  [UIView beginAnimations:nil context:nil];
+  [UIView setAnimationDuration:0.3];
+  if (isHiddin) {
+    [UIView setAnimationDuration:0];
+    self.repayMoneyBackgroundView.alpha = 0.2;
+  } else {
+    self.repayMoneyBackgroundView.alpha = 1;
+  }
+  [UIView commitAnimations];
 }
 
 @end

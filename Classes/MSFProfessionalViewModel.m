@@ -102,13 +102,6 @@
 			*stop = YES;
 		}
 	}];
-	NSArray *department = [MSFSelectKeyValues getSelectKeys:@"professional"];
-	[department enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.model.department]) {
-			self.department = obj;
-			*stop = YES;
-		}
-	}];
 }
 
 - (void)initialize {
@@ -165,12 +158,8 @@
 		self.model.companyType = object.code;
 		self.natureTitle = object.text;
 	}];
-	
-	[RACObserve(self, department) subscribeNext:^(MSFSelectKeyValues *object) {
-		@strongify(self)
-		self.model.department = object.code;
-		self.departmentTitle = object.text;
-	}];
+  
+  RACChannelTo(self, departmentTitle) = RACChannelTo(self.model, department);
 	
 	[RACObserve(self, position) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)

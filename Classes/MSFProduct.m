@@ -61,7 +61,7 @@
 #pragma mark - MSFSelectionItem
 
 - (NSString *)title {
-	return [self.period stringByAppendingString:@"期"];
+	return [self.period stringByAppendingString:@"个月"];
 }
 
 - (NSString *)subtitle {

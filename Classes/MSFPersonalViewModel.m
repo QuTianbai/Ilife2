@@ -174,10 +174,10 @@
 }
 
 - (BOOL)validAddress {
-	NSInteger length1 = self.model.currentTown.length > 1 ? 1: 0;
-	NSInteger length2 = self.model.currentCommunity.length > 1 ? 1: 0;
-	NSInteger length3 = self.model.currentApartment.length > 1 ? 1: 0;
-	NSInteger length4 = self.model.currentStreet.length > 1 ? 1: 0;
+	NSInteger length1 = self.model.currentTown.length > 0 ? 1: 0;
+	NSInteger length2 = self.model.currentCommunity.length > 0 ? 1: 0;
+	NSInteger length3 = self.model.currentApartment.length > 0 ? 1: 0;
+	NSInteger length4 = self.model.currentStreet.length > 0 ? 1: 0;
 	
 	return (length1 + length2 + length3 + length4) >= 2;
 }
