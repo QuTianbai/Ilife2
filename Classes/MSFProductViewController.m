@@ -84,11 +84,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
   @weakify(self)
-  [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
-  subscribeNext:^(id x) {
-    @strongify(self)
-    [self setRepayMoneyBackgroundViewAniMation:NO];
-  }];
+  [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
+		takeUntil:self.rac_willDeallocSignal]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			[self setRepayMoneyBackgroundViewAniMation:NO];
+		}];
   UICollectionViewFlowLayout *collectionFlowLayout = [[UICollectionViewFlowLayout alloc]init];
   
   [collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
