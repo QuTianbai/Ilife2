@@ -103,6 +103,7 @@
 			return [[self.services.httpClient
 				fetchTermPayWithProduct:product totalAmount:self.totalAmount.integerValue insurance:insurance.boolValue]
 				map:^id(MSFResponse *value) {
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
           [SVProgressHUD dismiss];
 					return value.parsedResult[@"repayMoneyMonth"];
 				}];
