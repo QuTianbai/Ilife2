@@ -64,18 +64,18 @@
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
   MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
-  homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
+  homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 	homePageViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStyleDone target:nil action:nil];
 	homePageViewController.navigationItem.leftBarButtonItem.rac_command = self.viewModel.signInCommand;
 	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
 	
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:nil];
   UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
-  productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+  productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
   MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:nil];
   UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
-  userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
+  userpage.tabBarItem =  [self itemWithNormal:@"我的账户" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 	
 	self.viewControllers = @[homepage, productpage, userpage];
 	self.selectedIndex = 0;
@@ -86,25 +86,25 @@
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
-	homepage.tabBarItem = [self itemWithNormal:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
+	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
 	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
-	productpage.tabBarItem = [self itemWithNormal:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
-	userpage.tabBarItem =  [self itemWithNormal:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
+	userpage.tabBarItem =  [self itemWithNormal:@"我的账户" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 	
 	self.viewControllers = @[homepage, productpage, userpage];
 }
 
-- (UITabBarItem *)itemWithNormal:(NSString *)normalName selected:(NSString *)selectedName {
+- (UITabBarItem *)itemWithNormal:(NSString *)title nomalImage:(NSString *)normalName selected:(NSString *)selectedName {
 	UIImage *normal = [UIImage imageNamed:normalName];
 	UIImage *selected = [UIImage imageNamed:selectedName];
-	UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:nil image:normal selectedImage:selected];
+	UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:title image:normal selectedImage:selected];
 	item.imageInsets = UIEdgeInsetsMake(7, 0, -7, 0);
 	
 	return item;
