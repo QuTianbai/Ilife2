@@ -32,6 +32,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
+@property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
 
 @end
 
@@ -115,13 +116,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		[SVProgressHUD showWithStatus:@"正在发送验证码" maskType:SVProgressHUDMaskTypeClear];
+		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
 		[captchaSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 		}];
 	}];
 	[self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	[[self.showPasswordButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		self.showPasswordButton.selected = !self.showPasswordButton.selected;
+		NSString *text = self.password.text;
+		self.password.text = text;
+		self.password.enabled = NO;
+		[self.password setSecureTextEntry:!self.showPasswordButton.selected];
+		self.password.enabled = YES;
+		[self.password becomeFirstResponder];
 	}];
 }
 

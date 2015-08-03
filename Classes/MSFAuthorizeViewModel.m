@@ -38,7 +38,7 @@ static const int kCounterLength = 60;
 	_username = @"";
 	_password = @"";
 	_captcha = @"";
-	_counter = @"发送验证码";
+	_counter = @"获取验证码";
 	_agreeOnLicense = NO;
 	_counting = NO;
 	_loginType = [[NSUserDefaults standardUserDefaults] boolForKey:@"install-boot"] ? MSFLoginSignIn :MSFLoginSignUp;
@@ -94,7 +94,7 @@ static const int kCounterLength = 60;
 				[repetitiveEventSignal subscribeNext:^(id x) {
 					self.counter = [@(--repetCount) stringValue];
 				} completed:^{
-					self.counter = @"发送验证码";
+					self.counter = @"获取验证码";
 					self.counting = NO;
 				}];
 			}];
@@ -127,7 +127,7 @@ static const int kCounterLength = 60;
 				[repetitiveEventSignal subscribeNext:^(id x) {
 					 self.counter = [@(--repetCount) stringValue];
 				} completed:^{
-					self.counter = @"发送验证码";
+					self.counter = @"获取验证码";
 					self.counting = NO;
 				}];
 			}];

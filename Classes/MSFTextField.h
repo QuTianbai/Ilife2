@@ -12,5 +12,6 @@ IB_DESIGNABLE
 
 @property (IBInspectable) BOOL disablePaste;
 @property (IBInspectable) CGFloat offsetBounds;
+@property (IBInspectable) CGFloat offsetBoundsRight;
 
 @end

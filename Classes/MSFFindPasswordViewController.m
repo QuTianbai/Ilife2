@@ -22,6 +22,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *captchaButton;
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
+@property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
 
 @end
 
@@ -30,6 +31,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.username.text = MSFUtils.phone;
+	self.title = @"忘记密码";
 	RAC(self.viewModel, username) = self.username.rac_textSignal;
 	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
 	RAC(self.viewModel, password) = self.password.rac_textSignal;
@@ -44,7 +46,7 @@
 	[self.captchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		[SVProgressHUD showWithStatus:@"正在发送验证码..." maskType:SVProgressHUDMaskTypeClear];
+		[SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
 		[captchaSignal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"验证码发送成功"];
 		}];
@@ -71,6 +73,17 @@
 	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeFindPassword execute:nil];
+	}];
+	self.password.clearButtonMode = UITextFieldViewModeNever;
+	[[self.showPasswordButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		self.showPasswordButton.selected = !self.showPasswordButton.selected;
+		NSString *text = self.password.text;
+		self.password.text = text;
+		self.password.enabled = NO;
+		[self.password setSecureTextEntry:!self.showPasswordButton.selected];
+		self.password.enabled = YES;
+		[self.password becomeFirstResponder];
 	}];
 }
 
