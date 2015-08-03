@@ -15,6 +15,10 @@
 	[_loanConfirmAlertView setClipsToBounds:YES];
 	[_loanConfirmAlertView.layer setCornerRadius:7];
 	[_loanConfirmLabel setTextColor:[MSFCommandView getColorWithString:@"#007ee5"]];
+	[_loanAccountLabel setFont:[UIFont systemFontOfSize:16]];
+	[_loanNper setFont:[UIFont systemFontOfSize:16]];
+	[_loanUse setFont:[UIFont systemFontOfSize:16]];
+	[_loanPayBack setFont:[UIFont systemFontOfSize:16]];
 }
 
 @end
