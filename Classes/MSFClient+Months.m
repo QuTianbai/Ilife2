@@ -11,6 +11,9 @@
 #import "SVProgressHUD.h"
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
+#import <NSString-Hashes/NSString+Hashes.h>
+
+static NSMutableDictionary *mouths;
 
 @implementation MSFClient (Months)
 
@@ -24,8 +27,18 @@
   [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 130)];
   [SVProgressHUD setForegroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[SVProgressHUD showWithStatus:@""];
-  
-	return [self enqueueRequest:request resultClass:nil];
+	
+	if (!mouths) {
+		mouths = [[NSMutableDictionary alloc] init];
+	}
+	
+	if ([mouths objectForKey:[request.URL.absoluteString md5]]) {
+		return [RACSignal return:mouths[[request.URL.absoluteString md5]]];
+	} else {
+		return [[self enqueueRequest:request resultClass:nil] doNext:^(id x) {
+			[mouths setObject:x forKey:[request.URL.absoluteString md5]];
+		}];
+	}
 }
 
 @end
