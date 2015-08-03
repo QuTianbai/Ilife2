@@ -144,16 +144,16 @@
 	
 	[[self rac_signalForSelector:@selector(applicationDidEnterBackground:)]
 		subscribeNext:^(RACTuple *tuple) {
-			 NSString *string = [@(NSDate.date.timeIntervalSince1970) stringValue];
-			 NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"expire-string-file"];
-			 [string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+			NSString *string = [@(NSDate.date.timeIntervalSince1970) stringValue];
+			NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"expire-string-file"];
+			[string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		}];
 	
 	[[self rac_signalForSelector:@selector(applicationWillTerminate:)]
 		subscribeNext:^(RACTuple *tuple) {
 #if DEBUG
 #else
-		[MSFUtils cleanupArchive];
+			[MSFUtils cleanupArchive];
 #endif
 	 }];
 	
@@ -164,7 +164,7 @@
 																						cancelButtonTitle:@"取消"
 																						otherButtonTitles:@"确定", nil];
 	[[[[NSNotificationCenter defaultCenter]
-		rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
+		 rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(NSNotification *notification) {
 			@strongify(self)
@@ -182,20 +182,20 @@
 																											delegate:nil
 																						 cancelButtonTitle:@"重新连接"
 																						 otherButtonTitles:nil];
-  [alertView2.rac_buttonClickedSignal subscribeNext:^(id x) {
-    [MSFUtils.setupSignal subscribeNext:^(id x) {
+	[alertView2.rac_buttonClickedSignal subscribeNext:^(id x) {
+		[MSFUtils.setupSignal subscribeNext:^(id x) {
 			[self unAuthenticatedControllers];
-    }];
-  }];
-  [[[NSNotificationCenter defaultCenter]
+		}];
+	}];
+	[[[NSNotificationCenter defaultCenter]
 		rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
 		subscribeNext:^(id x) {
-     if (!alertView2.isVisible) {
-       [alertView2 show];
-     }
-   }];
+			if (!alertView2.isVisible) {
+				[alertView2 show];
+			}
+		}];
  
-  [[[NSNotificationCenter defaultCenter]
+	[[[NSNotificationCenter defaultCenter]
 		rac_addObserverForName:MSFAuthorizationDidReGetTimeServer object:nil]
 		subscribeNext:^(id x) {
 			[MSFUtils.setupSignal replay];
