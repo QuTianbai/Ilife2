@@ -22,6 +22,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *captchaButton;
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
+@property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
 
 @end
 
@@ -72,6 +73,17 @@
 	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeFindPassword execute:nil];
+	}];
+	self.password.clearButtonMode = UITextFieldViewModeNever;
+	[[self.showPasswordButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		self.showPasswordButton.selected = !self.showPasswordButton.selected;
+		NSString *text = self.password.text;
+		self.password.text = text;
+		self.password.enabled = NO;
+		[self.password setSecureTextEntry:!self.showPasswordButton.selected];
+		self.password.enabled = YES;
+		[self.password becomeFirstResponder];
 	}];
 }
 

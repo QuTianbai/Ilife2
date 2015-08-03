@@ -281,20 +281,36 @@
                                                     <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="offsetBoundsRight">
+                                                            <integer key="value" value="70"/>
+                                                        </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="Wxx-Cn-YHl">
                                                     <rect key="frame" x="20" y="12" width="26" height="26"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7M-kK-6m6">
+                                                    <rect key="frame" x="266" y="3" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="cj2-vC-X5K"/>
+                                                        <constraint firstAttribute="height" constant="44" id="n9p-yU-2PD"/>
+                                                    </constraints>
+                                                    <state key="normal" image="btn-showpwd-normal.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="btn-showpwd-selected.png"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="Wxx-Cn-YHl" secondAttribute="centerY" id="7z0-BM-3kN"/>
+                                                <constraint firstAttribute="trailing" secondItem="F7M-kK-6m6" secondAttribute="trailing" constant="10" id="JVV-sT-GZk"/>
                                                 <constraint firstItem="Wxx-Cn-YHl" firstAttribute="leading" secondItem="dMG-91-V0q" secondAttribute="leading" constant="20" id="TfA-1i-Xvn"/>
                                                 <constraint firstAttribute="trailing" secondItem="GpV-e2-rtq" secondAttribute="trailing" constant="10" id="XPz-8K-GGe"/>
                                                 <constraint firstAttribute="trailing" secondItem="GpV-e2-rtq" secondAttribute="trailing" constant="10" id="cRu-Fl-ehP"/>
                                                 <constraint firstAttribute="bottom" secondItem="GpV-e2-rtq" secondAttribute="bottom" constant="5" id="hFH-EX-0yT"/>
                                                 <constraint firstItem="GpV-e2-rtq" firstAttribute="top" secondItem="dMG-91-V0q" secondAttribute="top" constant="5" id="neE-nM-Qkb"/>
                                                 <constraint firstItem="GpV-e2-rtq" firstAttribute="leading" secondItem="dMG-91-V0q" secondAttribute="leading" constant="10" id="sLW-ke-zda"/>
+                                                <constraint firstAttribute="centerY" secondItem="F7M-kK-6m6" secondAttribute="centerY" id="zmD-uY-SQ1"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -318,6 +334,7 @@
                         <outlet property="commitButton" destination="Zgs-qz-BSd" id="uBi-dh-74x"/>
                         <outlet property="counterLabel" destination="sMX-EE-Etg" id="jMQ-30-ekg"/>
                         <outlet property="password" destination="GpV-e2-rtq" id="q6Q-1S-9Hd"/>
+                        <outlet property="showPasswordButton" destination="F7M-kK-6m6" id="k7s-hE-0x7"/>
                         <outlet property="username" destination="Ipe-IS-vah" id="2hM-MD-mVH"/>
                     </connections>
                 </tableViewController>
