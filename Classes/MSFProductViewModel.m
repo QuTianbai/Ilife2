@@ -61,6 +61,7 @@
 	RAC(self.formsViewModel.model, usageCode) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		return value.code;
 	}];
+  
 	
 	RAC(self, market) = RACObserve(self.formsViewModel, market);
 	
@@ -105,6 +106,10 @@
 				map:^id(MSFResponse *value) {
           [[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
           [SVProgressHUD dismiss];
+          [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+          [SVProgressHUD setForegroundColor:[UIColor blackColor]];
+          [SVProgressHUD resetOffsetFromCenter];
+          self.moneyInsurance = value.parsedResult[@"fee"];
 					return value.parsedResult[@"repayMoneyMonth"];
 				}];
 		}];
