@@ -33,7 +33,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
-                                            <rect key="frame" x="58.5" y="36.5" width="53.5" height="33.5"/>
+                                            <rect key="frame" x="58" y="36" width="53.5" height="33.5"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -171,13 +171,13 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BsE-t9-tn6" id="rOp-zt-akU">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" text="贷款用途" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcS-jj-9vG">
-                                                    <rect key="frame" x="15" y="11" width="68" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="贷款用途" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcS-jj-9vG">
+                                                    <rect key="frame" x="15" y="12" width="60" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="msP-ti-bA9">
-                                                    <rect key="frame" x="93" y="12" width="184" height="20"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="msP-ti-bA9">
+                                                    <rect key="frame" x="85" y="12" width="192" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -206,16 +206,16 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BQW-NB-2IL" id="HRc-3v-mWf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="是否加入寿险计划" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-hI-c1l">
-                                                    <rect key="frame" x="15" y="11" width="136" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否加入寿险计划" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-hI-c1l">
+                                                    <rect key="frame" x="15" y="12" width="120" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BWq-ao-haB">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
-                                                    <rect key="frame" x="153" y="0.0" width="36" height="43"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
+                                                    <rect key="frame" x="137" y="0.0" width="36" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="H5u-kk-ckn"/>
                                                     </constraints>
@@ -258,6 +258,7 @@
                         <outlet property="isInLifeInsurancePlaneSW" destination="BWq-ao-haB" id="ulE-Ua-WJS"/>
                         <outlet property="lifeInsuranceButton" destination="5Q7-j3-dwM" id="gbU-Cd-UfT"/>
                         <outlet property="moneyCell" destination="T3d-Nm-rQd" id="sUJ-r1-FMv"/>
+                        <outlet property="moneyInsuranceLabel" destination="826-SW-x5j" id="Zce-Gd-bwC"/>
                         <outlet property="moneySlider" destination="hWj-Vn-WwI" id="cQO-rV-Tk9"/>
                         <outlet property="moneyUsedBT" destination="odI-h8-qPc" id="wf4-cK-vRC"/>
                         <outlet property="moneyUsesTF" destination="msP-ti-bA9" id="huV-up-353"/>

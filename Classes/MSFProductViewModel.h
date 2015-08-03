@@ -53,6 +53,7 @@
  *	是否加入寿险计划
  */
 @property (nonatomic, assign) BOOL insurance;
+@property (nonatomic, copy) NSString *moneyInsurance;
 
 @property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
