@@ -123,6 +123,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	MSFUserInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+	cell.textLabel.font = [UIFont systemFontOfSize:16];
 	if (indexPath.section == 0) {
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		cell.textLabel.text = self.rowTitles[indexPath.row];
