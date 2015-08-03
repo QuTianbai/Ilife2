@@ -285,7 +285,7 @@ ABPersonViewControllerDelegate>
 		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:nil options:nil] firstObject];
 		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
 		[submitAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.6]];
-		NSString *nper = [NSString stringWithFormat:@"%@期" , self.viewModel.model.tenor];
+		NSString *nper = [NSString stringWithFormat:@"%@个月" , self.viewModel.model.tenor];
 		
 		__block NSString *usage;
 		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
