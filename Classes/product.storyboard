@@ -263,6 +263,7 @@
                         <outlet property="moneyUsesTF" destination="msP-ti-bA9" id="huV-up-353"/>
                         <outlet property="monthCollectionView" destination="RE3-Es-42M" id="o4H-0C-hIT"/>
                         <outlet property="nextPageBT" destination="xaO-by-3e5" id="olV-kQ-qAF"/>
+                        <outlet property="repayMoneyBackgroundView" destination="rAM-Hj-ofJ" id="HUL-ek-305"/>
                         <outlet property="repayMoneyMonth" destination="v6U-t7-RUX" id="kNG-N6-ouA"/>
                     </connections>
                 </tableViewController>

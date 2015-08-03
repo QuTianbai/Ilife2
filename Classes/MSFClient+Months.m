@@ -9,6 +9,8 @@
 #import "MSFResponse.h"
 #import "MSFProduct.h"
 #import "SVProgressHUD.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 @implementation MSFClient (Months)
 
@@ -18,7 +20,11 @@
 	parameters[@"productId"] = product.productId;
 	parameters[@"isSafePlan"] = @(insurance);
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loans/product" parameters:parameters];
-	[SVProgressHUD showWithStatus:@"正在计算每月所需还款金额..."];
+  [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+  [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 130)];
+  [SVProgressHUD setForegroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
+	[SVProgressHUD showWithStatus:@""];
+  
 	return [self enqueueRequest:request resultClass:nil];
 }
 
