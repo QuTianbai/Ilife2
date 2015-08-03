@@ -33,19 +33,20 @@
 	self.layer.borderColor = UIColor.borderColor.CGColor;
 	self.layer.borderWidth = 1.0f;
 	self.offsetBounds = 40;
+	self.offsetBoundsRight = 100;
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
 	return CGRectMake(CGRectGetMinX(bounds) + self.offsetBounds,
 		CGRectGetMinY(bounds),
-		CGRectGetWidth(bounds),
+		CGRectGetWidth(bounds) - self.offsetBoundsRight,
 		CGRectGetHeight(bounds));
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds {
 	return CGRectMake(CGRectGetMinX(bounds) + self.offsetBounds,
 		CGRectGetMinY(bounds),
-		CGRectGetWidth(bounds),
+		CGRectGetWidth(bounds) - self.offsetBoundsRight,
 		CGRectGetHeight(bounds));
 }
 
