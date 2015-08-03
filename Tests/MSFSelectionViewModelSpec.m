@@ -51,7 +51,7 @@ it(@"should get terms items", ^{
   expect(@(team.team.count)).notTo(equal(@0));
   
   expect(@([viewModel numberOfItemsInSection:0])).notTo(equal(@0));
-  expect([viewModel titleForIndexPath:indexPath]).to(equal(@"3期"));
+  expect([viewModel titleForIndexPath:indexPath]).to(equal(@"3个月"));
   expect([viewModel modelForIndexPath:indexPath]).notTo(beNil());
 });
 
