@@ -30,6 +30,7 @@ static NSString *const kParametersSignKey = @"sign";
 	_sessionId = contestant;
 	_serialization = [self bumpstamp];
 	_signKey = kEncrpytinoKey;
+	NSLog(@"<\nserver %@ \n local %@\n \n diff %@\n>", @(contestant), @(_serialization), @(contestant - _serialization));
 	
 	return self;
 }
