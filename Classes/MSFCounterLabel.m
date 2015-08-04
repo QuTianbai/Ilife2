@@ -19,15 +19,21 @@
 @implementation MSFCounterLabel
 
 - (void)setValueText:(NSString *)valueText {
-	_valueText = valueText;
-	if ([valueText isEqualToString:@"未知"]) {
+	if ([valueText isEqualToString:@"￥_._ _"]) {
 		self.text = valueText;
 		return;
 	}
+  
 	if (valueText.doubleValue == self.text.doubleValue) {
 		return;
 	}
-	double value = valueText.doubleValue - self.text.doubleValue;
+  
+  if ([valueText containsString:@"￥"]) {
+    [valueText stringByReplacingOccurrencesOfString:@"￥" withString:@""];
+  }
+  _valueText = valueText;
+  
+  double value = valueText.doubleValue - ([self.text containsString:@"￥"] ? [self.text stringByReplacingOccurrencesOfString:@"￥" withString:@""] :self.text).doubleValue ;
 	if (valueText.doubleValue == 0) {
 		self.maxTimes = 15;
 	} else {
@@ -41,13 +47,13 @@
 - (void)change {
 	if (self.animationCount < self.maxTimes) {
 		self.animationCount ++;
-		double value = self.text.doubleValue + self.interval;
+		double value = ([self.text containsString:@"￥"] ? [self.text stringByReplacingOccurrencesOfString:@"￥" withString:@""] :self.text).doubleValue + self.interval;
 		if (value < 0) {
 			value = 0.f;
 		}
-		self.text = [NSString stringWithFormat:@"%.2f", value];
+		self.text = [NSString stringWithFormat:@"￥%.2f", value];
 	} else {
-		self.text = _valueText;
+    self.text = [_valueText isEqualToString:@"0.00"] ? @"￥_._ _" :[NSString stringWithFormat:@"￥%@", _valueText];
 		return;
 	}
 	[self performSelector:@selector(change)

@@ -3689,7 +3689,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "2749116e-9d0c-4374-a91a-18d213b57565";
 			};
 			name = Release;
 		};
