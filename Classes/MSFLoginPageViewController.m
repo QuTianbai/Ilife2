@@ -32,7 +32,7 @@
 			((UIScrollView *)v).delegate = self;
 		}
 	}
-	self.offset = 320;
+	self.offset = CGRectGetWidth([UIScreen mainScreen].bounds);
 }
 
 #pragma mark - UIPageViewControllerDelegate
