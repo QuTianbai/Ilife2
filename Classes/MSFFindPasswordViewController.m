@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"忘记密码";
 	self.username.text = MSFUtils.phone;
 	self.title = @"忘记密码";
 	RAC(self.viewModel, username) = self.username.rac_textSignal;
