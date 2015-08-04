@@ -33,7 +33,7 @@
 		}];
 }
 
-+ (NSValueTransformer *)typeJSONTransfromer {
++ (NSValueTransformer *)typeJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
 				return num.stringValue;
 		} reverseBlock:^id(NSString *str) {
