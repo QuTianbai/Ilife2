@@ -51,3 +51,12 @@ pod 'CardIO'
 https://github.com/card-io/card.io-iOS-source
 https://github.com/card-io/card.io-iOS-SDK
 ```
+
+### 测试数据库地址及密码
+
+testgrouprw
+testgroup111111
+两服务器的数据库地址
+test的ip: 192.168.2.61
+tp的ip: 192.168.7.28
+
