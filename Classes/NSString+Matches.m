@@ -106,9 +106,7 @@
 }
 
 - (BOOL)isPassword {
-	return
-		([self rangeOfCharacterFromSet:NSCharacterSet.decimalDigitCharacterSet].location != NSNotFound) &&
-		([self rangeOfCharacterFromSet:NSCharacterSet.letterCharacterSet].location != NSNotFound);
+	return self.length > 5 && self.length < 21;
 }
 
 - (BOOL)isCaptcha {
