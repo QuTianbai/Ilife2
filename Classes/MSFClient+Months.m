@@ -32,11 +32,12 @@ static NSMutableDictionary *mouths;
 		mouths = [[NSMutableDictionary alloc] init];
 	}
 	
-	if ([mouths objectForKey:[request.URL.absoluteString md5]]) {
-		return [RACSignal return:mouths[[request.URL.absoluteString md5]]];
+	NSString *key = [[request.URL.absoluteString stringByAppendingString:parameters.description] md5];
+	if ([mouths objectForKey:key]) {
+		return [RACSignal return:mouths[key]];
 	} else {
 		return [[self enqueueRequest:request resultClass:nil] doNext:^(id x) {
-			[mouths setObject:x forKey:[request.URL.absoluteString md5]];
+			[mouths setObject:x forKey:key];
 		}];
 	}
 }
