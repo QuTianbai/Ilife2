@@ -32,7 +32,6 @@
 	[super viewDidLoad];
 	self.title = @"忘记密码";
 	self.username.text = MSFUtils.phone;
-	self.title = @"忘记密码";
 	RAC(self.viewModel, username) = self.username.rac_textSignal;
 	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
 	RAC(self.viewModel, password) = self.password.rac_textSignal;
