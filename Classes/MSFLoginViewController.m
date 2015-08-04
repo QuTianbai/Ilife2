@@ -90,7 +90,7 @@
 	
 	[RACObserve(self.loginPageController, offset) subscribeNext:^(NSNumber *x) {
 		@strongify(self)
-		CGFloat offset = x.doubleValue - 320;
+		CGFloat offset = x.doubleValue - CGRectGetWidth([UIScreen mainScreen].bounds);
 		if (self.currentLoginType == MSFLoginSignUp) {
 			self.leading.constant = offset / 2.0;
 		} else {
