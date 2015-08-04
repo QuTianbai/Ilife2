@@ -51,7 +51,7 @@ static const int kCounterLength = 60;
 			if (![self.username isMobile]) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
 			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8位以上数字和字母混合密码"]];
+				return [RACSignal error:[self.class errorWithFailureReason:@"密码错误"]];
 			}
 		 
 			return [self executeSignInSignal];
@@ -65,7 +65,7 @@ static const int kCounterLength = 60;
 			} else if (![self.captcha isCaptcha]) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请输入6位验证码"]];
 			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8位以上数字和字母混合密码"]];
+				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8~16位字母和数字组合的密码"]];
 			} else if (!self.agreeOnLicense) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请仔细阅读贷款协议"]];
 			}
@@ -108,7 +108,7 @@ static const int kCounterLength = 60;
 			} else if (![self.captcha isCaptcha]) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请输入6位验证码"]];
 			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8位以上数字和字母混合密码"]];
+				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8~16位字母和数字组合的新密码"]];
 			}
 		 
 			return [self executeFindPasswordSignal];
