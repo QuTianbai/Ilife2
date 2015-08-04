@@ -20,7 +20,7 @@
 
 - (void)setValueText:(NSString *)valueText {
 	_valueText = valueText;
-	if ([valueText isEqualToString:@"_._ _"]) {
+	if ([valueText isEqualToString:@"未知"]) {
 		self.text = valueText;
 		return;
 	}
