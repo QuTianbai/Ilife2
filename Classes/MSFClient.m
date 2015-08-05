@@ -537,7 +537,7 @@ static BOOL isRunningTests(void) {
 			}
 			if (!responseObject) {
 				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
-					responseObject = @{@"message": @"验证码发送成功"};
+					responseObject = @{@"message": @"短信已下发,请注意查收"};
 				}
 				if ([request.URL.absoluteString rangeOfString:@"users/forget_password"].length > 0) {
 					responseObject = @{@"message": @"更新成功"};
