@@ -226,7 +226,7 @@
 }
 
 - (void)setSVPBackGround {
-  [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
   [SVProgressHUD setForegroundColor:[UIColor blackColor]];
   [SVProgressHUD resetOffsetFromCenter];
   
