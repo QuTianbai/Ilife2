@@ -103,7 +103,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
 	label.text = @"贷款申请";
-	label.textColor = [UIColor fontHighlightedColor];
+	label.textColor = [UIColor tintColor];
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;

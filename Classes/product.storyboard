@@ -69,7 +69,7 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="寿险金额：10元" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="826-SW-x5j">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="826-SW-x5j">
                                     <rect key="frame" x="215" y="0.0" width="95" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="dLI-UO-hOB"/>
@@ -261,11 +261,13 @@
                         <outlet property="isInLifeInsurancePlaneSW" destination="BWq-ao-haB" id="ulE-Ua-WJS"/>
                         <outlet property="lifeInsuranceButton" destination="5Q7-j3-dwM" id="gbU-Cd-UfT"/>
                         <outlet property="moneyCell" destination="T3d-Nm-rQd" id="sUJ-r1-FMv"/>
+                        <outlet property="moneyInsuranceLabel" destination="826-SW-x5j" id="mP4-gN-jiN"/>
                         <outlet property="moneySlider" destination="hWj-Vn-WwI" id="cQO-rV-Tk9"/>
                         <outlet property="moneyUsedBT" destination="odI-h8-qPc" id="wf4-cK-vRC"/>
                         <outlet property="moneyUsesTF" destination="msP-ti-bA9" id="huV-up-353"/>
                         <outlet property="monthCollectionView" destination="RE3-Es-42M" id="o4H-0C-hIT"/>
                         <outlet property="nextPageBT" destination="xaO-by-3e5" id="olV-kQ-qAF"/>
+                        <outlet property="repayMoneyBackgroundView" destination="rAM-Hj-ofJ" id="aWr-xC-1Ra"/>
                         <outlet property="repayMoneyMonth" destination="v6U-t7-RUX" id="kNG-N6-ouA"/>
                     </connections>
                 </tableViewController>
@@ -334,6 +336,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-question.png" width="36" height="44"/>
+        <image name="icon-question.png" width="26" height="28"/>
     </resources>
 </document>
