@@ -53,16 +53,16 @@
       label.hidden = YES;
     }
     [labelArray addObject:label];
-    label.backgroundColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
+    label.backgroundColor = [MSFCommandView getColorWithString:POINTCOLOR];
     [view addSubview:label];
   }
   
   self.tintColor = [UIColor clearColor];//去掉颜色,现在整个segment都看不见
   NSDictionary *selectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
-                                           NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
+                                           NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTCOLOR]};
   [self setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];//设置文字属性
   NSDictionary *unselectedTextAttributes = @{NSFontAttributeName:[UIFont boldSystemFontOfSize:15],
-                                             NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTWHITECOLR]};
+                                             NSForegroundColorAttributeName: [MSFCommandView getColorWithString:POINTCOLOR]};
   [self setTitleTextAttributes:unselectedTextAttributes forState:UIControlStateNormal];
 }
 

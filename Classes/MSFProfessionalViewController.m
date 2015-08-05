@@ -244,7 +244,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	titleLabel.text = sectionTitle;
 	titleLabel.font = [UIFont systemFontOfSize:14];
-	titleLabel.textColor = [MSFCommandView getColorWithString:POINTWHITECOLR];
+	titleLabel.textColor = [MSFCommandView getColorWithString:POINTCOLOR];
 	titleLabel.backgroundColor = [UIColor clearColor];
 	
 	[sectionView addSubview:titleLabel];

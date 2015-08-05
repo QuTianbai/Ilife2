@@ -141,11 +141,11 @@
     <resources>
         <image name="bar-highlighted.png" width="3" height="4"/>
         <image name="bar-normal.png" width="3" height="4"/>
-        <image name="bar-progress-1-highlighted.png" width="45" height="45"/>
+        <image name="bar-progress-1-highlighted.png" width="53" height="53"/>
         <image name="bar-progress-1-normal.png" width="45" height="45"/>
-        <image name="bar-progress-2-highlighted.png" width="45" height="45"/>
+        <image name="bar-progress-2-highlighted.png" width="53" height="53"/>
         <image name="bar-progress-2-normal.png" width="45" height="45"/>
-        <image name="bar-progress-3-highlighted.png" width="45" height="45"/>
+        <image name="bar-progress-3-highlighted.png" width="53" height="53"/>
         <image name="bar-progress-3-normal.png" width="45" height="45"/>
     </resources>
 </document>

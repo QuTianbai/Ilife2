@@ -122,9 +122,9 @@
 }
 
 - (void)didLoad {
-	[self.signInButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
+	[self.signInButton setTitleColor:[UIColor tintColor] forState:UIControlStateDisabled];
 	[self.signInButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
-	[self.signUpButton setTitleColor:[UIColor fontHighlightedColor] forState:UIControlStateDisabled];
+  [self.signUpButton setTitleColor:[UIColor tintColor] forState:UIControlStateDisabled];
 	[self.signUpButton setTitleColor:[UIColor fontNormalColor] forState:UIControlStateNormal];
 	self.width.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
 	switch (self.viewModel.loginType) {

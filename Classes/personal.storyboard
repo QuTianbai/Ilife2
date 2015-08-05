@@ -49,7 +49,7 @@
                                                         <constraint firstAttribute="width" constant="85" id="epO-eW-DC9"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.091142807899999997" green="0.58872711119999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -201,7 +201,7 @@
                                                         <constraint firstAttribute="width" constant="85" id="LhZ-Lo-ncy"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.091142807899999997" green="0.58872711119999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -297,7 +297,7 @@
                                                         <constraint firstAttribute="width" constant="85" id="7TP-c0-6Kx"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.091142807899999997" green="0.58872711119999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -434,7 +434,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" multipleTouchEnabled="YES" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-Dh-Beh" customClass="MSFSegment">
-                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="44.5"/>
+                                                    <rect key="frame" x="0.0" y="-1" width="323" height="46.5"/>
                                                     <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
                                                     <segments>
                                                         <segment title="QQ"/>
@@ -444,8 +444,8 @@
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="k0S-Dh-Beh" firstAttribute="top" secondItem="5pH-3e-bGN" secondAttribute="top" id="JTW-Qa-BQ9"/>
-                                                <constraint firstAttribute="bottom" secondItem="k0S-Dh-Beh" secondAttribute="bottom" id="Nl2-VJ-aL3"/>
+                                                <constraint firstItem="k0S-Dh-Beh" firstAttribute="top" secondItem="5pH-3e-bGN" secondAttribute="top" constant="-1" id="JTW-Qa-BQ9"/>
+                                                <constraint firstAttribute="bottom" secondItem="k0S-Dh-Beh" secondAttribute="bottom" constant="-1" id="Nl2-VJ-aL3"/>
                                                 <constraint firstItem="k0S-Dh-Beh" firstAttribute="leading" secondItem="5pH-3e-bGN" secondAttribute="leading" id="Qwd-oz-9QA"/>
                                                 <constraint firstAttribute="trailing" secondItem="k0S-Dh-Beh" secondAttribute="trailing" constant="-3" id="xvZ-CT-s66"/>
                                             </constraints>

@@ -50,7 +50,7 @@
   self.moneyNumLabel.text = @"0元";
   [self addSubview:self.moneyNumLabel];
   
-  [self setMinimumTrackImage:[UIImage imageNamed:@"1242-2208-蓝色"] forState:UIControlStateNormal];
+  [self setMinimumTrackImage:[UIImage imageNamed:@"bar-highlighted"] forState:UIControlStateNormal];
   [self setMaximumTrackImage:[UIImage imageNamed:@"1242-2208-灰色"] forState:UIControlStateNormal];
   UIImage *thumbImage = [UIImage imageNamed:@"btnSlider"];
   [self setThumbImage:thumbImage forState:UIControlStateHighlighted];

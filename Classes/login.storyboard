@@ -42,7 +42,7 @@
                                     <rect key="frame" x="248" y="8" width="52" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="忘记密码">
-                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.066666666666666666" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -79,12 +79,12 @@
                                                         </imageView>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入注册手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VKK-ZO-rze" customClass="MSFWPTextField">
                                                             <rect key="frame" x="46" y="0.0" width="234" height="44"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XiB-Rb-FPG" customClass="MSFWPTextField">
                                                             <rect key="frame" x="46" y="45" width="224" height="44"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES"/>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JDg-Ia-hQs">
@@ -205,7 +205,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入注册手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ipe-IS-vah" customClass="MSFTextField">
                                                     <rect key="frame" x="10" y="5" width="300" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pdu-Gx-9eP">
@@ -229,7 +229,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tyL-fK-CnV" customClass="MSFTextField">
                                                     <rect key="frame" x="10" y="5" width="190" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHO-ZR-ibd" customClass="MSFEdgeButton">
@@ -251,8 +251,8 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-verify-code.png" translatesAutoresizingMaskIntoConstraints="NO" id="fj5-Ar-gc9">
-                                                    <rect key="frame" x="25" y="12" width="17" height="25"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-verify-code.png" translatesAutoresizingMaskIntoConstraints="NO" id="fj5-Ar-gc9">
+                                                    <rect key="frame" x="25" y="11" width="26" height="26"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -278,7 +278,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GpV-e2-rtq" customClass="MSFTextField">
                                                     <rect key="frame" x="10" y="5" width="300" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
@@ -361,18 +361,20 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYY-mG-gh7">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
                                         <state key="normal" title="注册">
+                                            <color key="titleColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gw-h1-8id">
                                         <rect key="frame" x="160" y="0.0" width="160" height="44"/>
+                                        <color key="tintColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="登录">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bcT-dh-nxS">
                                         <rect key="frame" x="0.0" y="41" width="160" height="3"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.043137254901960784" green="0.6705882352941176" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="3" id="EEi-xh-QbF"/>
                                             <constraint firstAttribute="width" constant="160" id="rdI-8V-Vcb"/>
@@ -460,7 +462,7 @@
                                     <rect key="frame" x="154" y="11" width="130" height="28"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="《马上金融注册协议》">
-                                        <color key="titleColor" red="0.14117647059999999" green="0.51372549020000002" blue="0.8862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
@@ -531,7 +533,7 @@
                                                                 </imageView>
                                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入常用手机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JLT-7y-G1q" customClass="MSFWPTextField">
                                                                     <rect key="frame" x="46" y="0.0" width="254" height="44"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                             </subviews>
@@ -558,7 +560,7 @@
                                                                 </imageView>
                                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入8~16位字母和数字组合的密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tap-h5-xY0" customClass="MSFWPTextField">
                                                                     <rect key="frame" x="46" y="0.0" width="214" height="44"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
                                                                 </textField>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfy-He-egp">
@@ -591,15 +593,15 @@
                                                             <rect key="frame" x="0.0" y="90" width="300" height="44"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-verify-code.png" translatesAutoresizingMaskIntoConstraints="NO" id="3kZ-Xf-Qrc">
-                                                                    <rect key="frame" x="15" y="9" width="17" height="25"/>
+                                                                    <rect key="frame" x="10" y="9" width="26" height="25"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="17" id="HH3-IJ-CyR"/>
+                                                                        <constraint firstAttribute="width" constant="26" id="HH3-IJ-CyR"/>
                                                                         <constraint firstAttribute="height" constant="25" id="cfD-WS-dOM"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjr-yN-AXS" customClass="MSFWPTextField">
-                                                                    <rect key="frame" x="42" y="0.0" width="157" height="44"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <rect key="frame" x="46" y="0.0" width="153" height="44"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                 </textField>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKa-VP-iDp">
@@ -648,7 +650,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="EKa-VP-iDp" firstAttribute="leading" secondItem="gjr-yN-AXS" secondAttribute="trailing" constant="1" id="0UB-jv-K8V"/>
                                                                 <constraint firstAttribute="bottom" secondItem="EKa-VP-iDp" secondAttribute="bottom" id="0Xm-fH-9cF"/>
-                                                                <constraint firstItem="3kZ-Xf-Qrc" firstAttribute="leading" secondItem="Muz-Wd-01o" secondAttribute="leading" constant="15" id="4Jn-bI-baL"/>
+                                                                <constraint firstItem="3kZ-Xf-Qrc" firstAttribute="leading" secondItem="Muz-Wd-01o" secondAttribute="leading" constant="10" id="4Jn-bI-baL"/>
                                                                 <constraint firstAttribute="bottom" secondItem="3kZ-Xf-Qrc" secondAttribute="bottom" constant="10" id="6ZU-ja-64a"/>
                                                                 <constraint firstItem="3kZ-Xf-Qrc" firstAttribute="top" secondItem="Muz-Wd-01o" secondAttribute="top" constant="9" id="FmN-VD-cgi"/>
                                                                 <constraint firstAttribute="bottom" secondItem="gjr-yN-AXS" secondAttribute="bottom" id="GRc-W5-3Ps"/>
@@ -870,7 +872,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                             <state key="normal" title="长期有效" image="icon-cloze-normal.png">
-                                                                <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <color key="titleColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <state key="selected" image="icon-cloze-selected.png"/>
@@ -1271,6 +1273,6 @@
         <image name="icon-cloze-selected.png" width="17" height="17"/>
         <image name="icon-password.png" width="26" height="26"/>
         <image name="icon-phone.png" width="26" height="26"/>
-        <image name="icon-verify-code.png" width="17" height="25"/>
+        <image name="icon-verify-code.png" width="26" height="26"/>
     </resources>
 </document>

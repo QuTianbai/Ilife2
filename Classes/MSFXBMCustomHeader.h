@@ -9,8 +9,7 @@
 #ifndef Cash_MSFXBMCustomHeader_h
 #define Cash_MSFXBMCustomHeader_h
 
-#define POINTCOLOR @"2582e2"//蓝色圆圈
-#define POINTWHITECOLR @"348be4"//圆圈内部白色
+#define POINTCOLOR @"0babed"//蓝色圆圈
 #define BOTTOMCOLOR @"dce6f2"//底部
 #define BUTTOMLINE @"4f81bd"//底部分割线
 #define SCREENWIDTH ([UIScreen mainScreen].bounds.size.width)//屏幕宽度

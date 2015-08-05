@@ -25,7 +25,7 @@
 #import "MSFHeaderView.h"
 #import "MSFSubmitAlertView.h"
 #import "MSFSelectKeyValues.h"
-#define BLUECOLOR @"#007ee5"
+#import "MSFXBMCustomHeader.h"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
@@ -133,7 +133,7 @@ ABPersonViewControllerDelegate>
 			[self.tableView reloadData];
 		}];
 	}];
-	[self.addFamilyBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
+	[self.addFamilyBT setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
 	
 	[[self.addOtherBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
@@ -143,7 +143,7 @@ ABPersonViewControllerDelegate>
 			[self.tableView reloadData];
 		}];
 	}];
-	[self.addOtherBT setTitleColor:[MSFCommandView getColorWithString:BLUECOLOR] forState:UIControlStateNormal];
+	[self.addOtherBT setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
 	
 	RAC(self.marriageTF, text) = RACObserve(self.viewModel, marryValuesTitle);
 	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
@@ -325,7 +325,7 @@ ABPersonViewControllerDelegate>
 		 }];
 	}];
 	
-	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:BLUECOLOR]];
+	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
@@ -411,7 +411,7 @@ ABPersonViewControllerDelegate>
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
 	
 	titleLabel.text = sectionTitle;
-	titleLabel.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	titleLabel.textColor = [MSFCommandView getColorWithString:POINTCOLOR];
 	[titleLabel setFont:[UIFont systemFontOfSize:14]];
 	titleLabel.backgroundColor = [UIColor clearColor];
 	
