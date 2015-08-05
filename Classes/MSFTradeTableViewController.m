@@ -19,10 +19,7 @@
 
 #import "MSFTradeTableViewCell.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"#007ee5"
-
+#define BLUETCOLOR @"0babed"
 @interface MSFTradeTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
@@ -84,9 +81,9 @@
 	MSFTrade *trade = [self.objects objectAtIndex:indexPath.row];
 	
 	if (indexPath.row == 0) {
-		[cell.date setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
-		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
-		[cell.amount setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[cell.date setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+		[cell.amount setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		[cell.date setFont:[UIFont systemFontOfSize:15]];
 		[cell.amount setFont:[UIFont systemFontOfSize:15]];
 		[cell.tradeDescription setFont:[UIFont systemFontOfSize:15]];

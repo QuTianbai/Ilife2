@@ -8,12 +8,9 @@
 
 #import "MSFRepaymentTableViewCell.h"
 #import "MSFCommandView.h"
-
 #import <Masonry/Masonry.h>
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"#007ee5"
 #define BLUETCOLOR @"0babed"
+
 @implementation MSFRepaymentTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {

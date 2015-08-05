@@ -9,8 +9,6 @@
 #import "MSFTradeTableViewCell.h"
 #import "MSFCommandView.h"
 #import <Masonry/Masonry.h>
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
 
 @interface MSFTradeTableViewCell()
 

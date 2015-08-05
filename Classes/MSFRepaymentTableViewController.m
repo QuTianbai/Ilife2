@@ -23,9 +23,8 @@
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 
 #import "MSFCommandView.h"
-#define SEPARATORCOLOR @"5787c0"
+
 #define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
 #define BLUETCOLOR @"0babed"
 @interface MSFRepaymentTableViewController ()
 
@@ -47,9 +46,9 @@
 	UIEdgeInsets edgeInset = self.tableView.separatorInset;
 	self.tableView.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, edgeInset.right);
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-	self.tableView.separatorColor = [MSFCommandView getColorWithString:SEPARATORCOLOR];
+	self.tableView.separatorColor = [MSFCommandView getColorWithString:BLUETCOLOR];
 	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.6)];
-	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:SEPARATORCOLOR]];
+	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchRepaymentSchedules].collect replayLazily];
 	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有还款计划哦......"];

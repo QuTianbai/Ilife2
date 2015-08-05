@@ -21,12 +21,7 @@
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 
-//审核中	是#ff6600 橙色
-//还款中	是#477dbd 蓝色（主色）
-//其他的	是#585858
 #define BLUETCOLOR @"0babed"
-#define CHECKCOLOR @"#ff6600"
-#define STATUSCOLOR @"#585858"
 
 @interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
 

@@ -10,8 +10,6 @@
 #import <Masonry/Masonry.h>
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"#585858"
 
 @implementation MSLoanListTableViewCell
