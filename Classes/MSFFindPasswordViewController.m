@@ -48,7 +48,7 @@
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
 		[captchaSignal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"验证码发送成功"];
+			[SVProgressHUD showSuccessWithStatus:@"短信已下发,请注意查收"];
 		}];
 	}];
 	[self.captchaButton.rac_command.errors subscribeNext:^(NSError *error) {

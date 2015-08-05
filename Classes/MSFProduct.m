@@ -10,30 +10,6 @@
 
 @implementation MSFProduct
 
-+ (NSValueTransformer *)productIdJSONTransfromer {
-	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
-		return num.stringValue;
-	} reverseBlock:^id(NSString *str) {
-		if (str==nil) {
-			return [NSDecimalNumber decimalNumberWithString:str];
-		}
-		
-		return nil;
-	}];
-}
-
-+ (NSValueTransformer *)periodJSONTransfromer {
-	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
-		return num.stringValue;
-	} reverseBlock:^id(NSString *str) {
-		if (str==nil) {
-			return [NSDecimalNumber decimalNumberWithString:str];
-		}
-		
-		return nil;
-	}];
-}
-
 - (BOOL)validatePeriod:(id *)period error:(NSError **)error {
 	id temp = *period;
 	if ([temp isKindOfClass:NSString.class]) {
@@ -66,7 +42,6 @@
 
 - (NSString *)subtitle {
 	return @"";
-	//return self.productName;
 }
 
 @end

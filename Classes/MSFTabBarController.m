@@ -105,7 +105,6 @@
 	UIImage *normal = [UIImage imageNamed:normalName];
 	UIImage *selected = [UIImage imageNamed:selectedName];
 	UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:title image:normal selectedImage:selected];
-	item.imageInsets = UIEdgeInsetsMake(7, 0, -7, 0);
 	
 	return item;
 }
