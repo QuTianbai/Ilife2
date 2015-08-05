@@ -305,25 +305,6 @@ static BOOL isRunningTests(void) {
 		replay];
 }
 
-- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session {
-	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"username"] = name;
-	parameters[@"id_card"] = idcard;
-	parameters[@"expire"] = [NSDateFormatter msf_stringFromDate:date];;
-	parameters[@"valid_for_lifetime"] = @(session);
-	NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:parameters];
-	[request setHTTPMethod:@"POST"];
-	
-	return [[[self enqueueRequest:request resultClass:MSFUser.class]
-		flattenMap:^RACStream *(id value) {
-			return [self fetchUserInfo];
-		}]
-		doNext:^(id x) {
-			self.user = x;
-		}];
-}
-
 - (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session	province:(NSString *)provinceCode city:(NSString *)cityCode bank:(NSString *)bankCode card:(NSString *)card {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"username"] = name;
