@@ -39,15 +39,23 @@
                                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pbc-3C-caM">
+                                            <rect key="frame" x="41.5" y="49" width="17" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="iot-0D-2xc" secondAttribute="centerX" id="1nI-KN-pCT"/>
                                         <constraint firstAttribute="centerX" secondItem="v6U-t7-RUX" secondAttribute="centerX" id="2Qp-NY-Z1f"/>
+                                        <constraint firstItem="v6U-t7-RUX" firstAttribute="leading" secondItem="Pbc-3C-caM" secondAttribute="trailing" id="It9-N3-Pel"/>
                                         <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="20" id="On4-ru-LLb"/>
                                         <constraint firstAttribute="width" constant="170" id="aml-Wl-Dqa"/>
                                         <constraint firstAttribute="height" constant="90" id="bIk-8Z-A3k"/>
                                         <constraint firstItem="iot-0D-2xc" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" constant="10" id="mWu-Rf-Lff"/>
+                                        <constraint firstAttribute="bottom" secondItem="Pbc-3C-caM" secondAttribute="bottom" constant="20" id="oJC-cB-bSO"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-by-3e5" customClass="MSFEdgeButton">
