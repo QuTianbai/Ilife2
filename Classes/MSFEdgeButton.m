@@ -6,6 +6,8 @@
 
 #import "MSFEdgeButton.h"
 #import "UIColor+Utils.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 @implementation MSFEdgeButton
 
@@ -28,8 +30,9 @@
 	self.layer.cornerRadius = 5.0f;
 	self.layer.masksToBounds = YES;
 	//self.titleLabel.font = [UIFont systemFontOfSize:[UIFont buttonFontSize]];
-	self.backgroundColor = [UIColor tintColor];
-	
+	//self.backgroundColor = [UIColor tintColor];
+  self.backgroundColor = [MSFCommandView getColorWithString:@"#3ea3e4"];
+  
 	return self;
 }
 

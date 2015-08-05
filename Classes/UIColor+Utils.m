@@ -6,6 +6,8 @@
 
 #import "UIColor+Utils.h"
 #import <UIColor-Hex/UIColor+Hex.h>
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 @implementation UIColor (Utils)
 
@@ -34,6 +36,7 @@
 }
 
 + (UIColor *)tintColor {
+  return [MSFCommandView getColorWithString:@"#3ea3e4"];
 	return [UIColor colorWithRed:0.047 green:0.404 blue:0.875 alpha:1.000];
 }
 
