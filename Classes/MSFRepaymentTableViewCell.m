@@ -13,7 +13,7 @@
 #define SEPARATORCOLOR @"5787c0"
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define TYPEFACECOLOR @"#007ee5"
-
+#define BLUETCOLOR @"0babed"
 @implementation MSFRepaymentTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -29,22 +29,22 @@
 		_asOfDateLabel = [[UILabel alloc]init];
 		
 		[_contractNum setText:@"合同编号"];
-		[_contractNum setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_contractNum setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		[_contractStatus setText:@"合同状态"];
-		[_contractStatus setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_contractStatus setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		[_shouldAmount setText:@"应还金额"];
-		[_shouldAmount setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_shouldAmount setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		[_asOfDate setText:@"截止日期"];
-		[_asOfDate setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_asOfDate setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		
 		//[_contractNumLabel setText:@"1231525346"];
-		[_contractNumLabel setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_contractNumLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		//[_contractStatusLabel setText:@"已逾期"];
-		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		//[_shouldAmountLabel setText:@"716.00"];
-		[_shouldAmountLabel setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_shouldAmountLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		//[_asOfDateLabel setText:@"现在"];
-		[_asOfDateLabel setTextColor:[MSFCommandView getColorWithString:TYPEFACECOLOR]];
+		[_asOfDateLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 		
 		
 		[self addSubview:_contractNum];
