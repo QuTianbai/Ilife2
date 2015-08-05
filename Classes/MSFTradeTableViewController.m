@@ -20,6 +20,7 @@
 #import "MSFTradeTableViewCell.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define BLUETCOLOR @"0babed"
+
 @interface MSFTradeTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;

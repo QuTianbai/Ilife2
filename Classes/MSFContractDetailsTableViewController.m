@@ -25,7 +25,6 @@
 
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 
-
 @interface MSFContractDetailsTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
