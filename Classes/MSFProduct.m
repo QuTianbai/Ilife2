@@ -10,7 +10,7 @@
 
 @implementation MSFProduct
 
-+ (NSValueTransformer *)productIdJSONTransfromer {
++ (NSValueTransformer *)productIdJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
 		return num.stringValue;
 	} reverseBlock:^id(NSString *str) {
@@ -22,7 +22,7 @@
 	}];
 }
 
-+ (NSValueTransformer *)periodJSONTransfromer {
++ (NSValueTransformer *)periodJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
 		return num.stringValue;
 	} reverseBlock:^id(NSString *str) {

@@ -117,7 +117,7 @@
 	}];
 	
 	RAC(self, termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
-		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"0.00";
+		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"-.--";
 	}];
 	RAC(self, purposeText) = [RACObserve(self, purpose) map:^id(id value) {
 		return [value text];
