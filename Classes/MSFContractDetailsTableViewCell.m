@@ -10,9 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "MSFCommandView.h"
 
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
+#define BLUETCOLOR @"0babed"
 
 @implementation MSFContractDetailsTableViewCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -23,10 +21,10 @@
 		_paymentLabel = [[UILabel alloc]init];
 		_stateLabel = [[UILabel alloc]init];
 		
-		_asOfDateLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-		_shouldAmountLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-		_paymentLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-		_stateLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+		_asOfDateLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+		_shouldAmountLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+		_paymentLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+		_stateLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
 		
 		[self addSubview:_asOfDateLabel];
 		[self addSubview:_shouldAmountLabel];

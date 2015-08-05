@@ -21,12 +21,7 @@
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 
-//审核中	是#ff6600 橙色
-//还款中	是#477dbd 蓝色（主色）
-//其他的	是#585858
-#define REPAYMENTCOLOR @"#007ee5"
-#define CHECKCOLOR @"#ff6600"
-#define STATUSCOLOR @"#585858"
+#define BLUETCOLOR @"0babed"
 
 @interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
 
@@ -115,15 +110,15 @@
 	
 	if ([checkNum integerValue] != 4 || [checkNum integerValue] != 6 ||[checkNum integerValue] != 7) {
 		[cell.checkLabel setEnabled:YES];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:STATUSCOLOR] forState:UIControlStateNormal];
+		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:BLUETCOLOR] forState:UIControlStateNormal];
 	}
 	if ([checkNum integerValue] == 0 || [checkNum integerValue] == 1) {
 		[cell.checkLabel setEnabled:NO];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:CHECKCOLOR] forState:UIControlStateNormal];
+		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:@""] forState:UIControlStateNormal];
 		
 	} else {
 		[cell.checkLabel setEnabled:NO];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:REPAYMENTCOLOR] forState:UIControlStateNormal];
+		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:BLUETCOLOR] forState:UIControlStateNormal];
 	}
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
@@ -205,10 +200,10 @@
 	
 	UIView *superView = _dataTableView.tableHeaderView;
 	
-	_money.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
-	_months.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
-	_time.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
-	_check.textColor = [MSFCommandView getColorWithString:REPAYMENTCOLOR];
+	_money.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+	_months.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+	_time.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+	_check.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
 	
 	_money.text = @"金额";
 	_months.text = @"期数";
