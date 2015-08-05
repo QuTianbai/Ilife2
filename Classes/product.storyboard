@@ -33,10 +33,16 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-.--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
-                                            <rect key="frame" x="65.5" y="36.5" width="39.5" height="33.5"/>
+                                            <rect key="frame" x="65" y="36" width="39.5" height="33.5"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSK-6s-ZoD">
+                                            <rect key="frame" x="37" y="38.5" width="28" height="33.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -44,7 +50,9 @@
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="iot-0D-2xc" secondAttribute="centerX" id="1nI-KN-pCT"/>
                                         <constraint firstAttribute="centerX" secondItem="v6U-t7-RUX" secondAttribute="centerX" id="2Qp-NY-Z1f"/>
+                                        <constraint firstAttribute="bottom" secondItem="TSK-6s-ZoD" secondAttribute="bottom" constant="18" id="KN7-vg-hUf"/>
                                         <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="20" id="On4-ru-LLb"/>
+                                        <constraint firstItem="v6U-t7-RUX" firstAttribute="leading" secondItem="TSK-6s-ZoD" secondAttribute="trailing" id="P9l-Me-18m"/>
                                         <constraint firstAttribute="width" constant="170" id="aml-Wl-Dqa"/>
                                         <constraint firstAttribute="height" constant="90" id="bIk-8Z-A3k"/>
                                         <constraint firstItem="iot-0D-2xc" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" constant="10" id="mWu-Rf-Lff"/>
