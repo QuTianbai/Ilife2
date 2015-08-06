@@ -217,16 +217,16 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BQW-NB-2IL" id="HRc-3v-mWf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="是否加入寿险计划" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-hI-c1l">
-                                                    <rect key="frame" x="15" y="11" width="136" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否加入寿险计划" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-hI-c1l">
+                                                    <rect key="frame" x="15" y="12.5" width="120" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BWq-ao-haB">
                                                     <rect key="frame" x="256" y="6" width="51" height="31"/>
                                                 </switch>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
-                                                    <rect key="frame" x="153" y="0.0" width="36" height="43"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="Gyv-Sb-YJH">
+                                                    <rect key="frame" x="137" y="0.0" width="36" height="43"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="36" id="H5u-kk-ckn"/>
                                                     </constraints>
@@ -344,6 +344,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icon-question.png" width="26" height="28"/>
+        <image name="icon-cloze-question.png" width="20" height="20"/>
     </resources>
 </document>
