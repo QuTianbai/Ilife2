@@ -87,7 +87,7 @@
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
 	
-	cell.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.03];
+//	cell.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.03];
 	
 	cell.selected = NO;
 	cell.selectionStyle = UITableViewCellAccessoryNone;
@@ -139,6 +139,28 @@
 	
 	return cell;
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+		[cell setSeparatorInset:UIEdgeInsetsZero];
+	}
+
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+- (void)viewDidLayoutSubviews {
+	if ([self.dataTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[self.dataTableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+
+	if ([self.dataTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[self.dataTableView setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+#pragma mark - Private
 
 - (NSString *)getStatus:(NSInteger)status {
 	//0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
