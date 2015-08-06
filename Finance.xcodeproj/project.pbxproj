@@ -199,7 +199,6 @@
 		496A447D1B6A57BF00104215 /* MSFTradeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445B1B6A57BE00104215 /* MSFTradeSpec.m */; };
 		496A447E1B6A57BF00104215 /* MSFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445C1B6A57BE00104215 /* MSFUserSpec.m */; };
 		496A447F1B6A57BF00104215 /* MSFUserViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */; };
-		496A44801B6A57BF00104215 /* MSFUtilsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445E1B6A57BE00104215 /* MSFUtilsSpec.m */; };
 		496A44811B6A57BF00104215 /* MSFXTClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */; };
 		497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */; };
 		4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4975C97C1B46D6D400AA79EB /* AppDelegate.m */; };
@@ -841,7 +840,6 @@
 		496A445B1B6A57BE00104215 /* MSFTradeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTradeSpec.m; sourceTree = "<group>"; };
 		496A445C1B6A57BE00104215 /* MSFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserSpec.m; sourceTree = "<group>"; };
 		496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserViewModelSpec.m; sourceTree = "<group>"; };
-		496A445E1B6A57BE00104215 /* MSFUtilsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsSpec.m; sourceTree = "<group>"; };
 		496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFXTClientSpec.m; sourceTree = "<group>"; };
 		497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginViewController.h; sourceTree = "<group>"; };
 		497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginViewController.m; sourceTree = "<group>"; };
@@ -1922,7 +1920,6 @@
 				496A445B1B6A57BE00104215 /* MSFTradeSpec.m */,
 				496A445C1B6A57BE00104215 /* MSFUserSpec.m */,
 				496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */,
-				496A445E1B6A57BE00104215 /* MSFUtilsSpec.m */,
 				496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */,
 			);
 			name = Specs;
@@ -3496,7 +3493,6 @@
 				496A447F1B6A57BF00104215 /* MSFUserViewModelSpec.m in Sources */,
 				496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */,
 				496A44741B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m in Sources */,
-				496A44801B6A57BF00104215 /* MSFUtilsSpec.m in Sources */,
 				496A447A1B6A57BE00104215 /* MSFResponseSpec.m in Sources */,
 				496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */,
 				496A44641B6A57BE00104215 /* MSFAgreementViewModelSpec.m in Sources */,

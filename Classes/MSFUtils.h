@@ -56,13 +56,6 @@ extern NSString *const MSFAuthorizationDidReGetTimeServer;
 + (void)setHttpClient:(MSFClient *)httpClient;
 
 /**
- *	登录缓存
- */
-+ (void)archiveClient:(MSFClient *)client;
-+ (MSFClient *)unArchiveClient;
-+ (void)cleanupArchive;
-
-/**
  *	用户登录手机号
  */
 + (void)setPhone:(NSString *)phone;

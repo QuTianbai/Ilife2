@@ -141,7 +141,6 @@
 			NSString *string = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:path] encoding:NSUTF8StringEncoding];
 			NSDate *date = [NSDate dateWithTimeIntervalSince1970:string.doubleValue];
 			if ([NSDate.date timeIntervalSinceDate:date] > 3 * 60) {
-				[MSFUtils cleanupArchive];
 				[self.viewModel.authorizeViewModel.executeSignOut execute:nil];
 			}
 	 }];
