@@ -61,7 +61,7 @@
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
+			[SVProgressHUD showSuccessWithStatus:@"重置密码成功，请重新登录"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
