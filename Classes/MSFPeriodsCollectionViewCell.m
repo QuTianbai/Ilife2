@@ -38,16 +38,12 @@
 		self.userInteractionEnabled = NO;
 		self.selected = NO;
     self.alpha = 0.2;
-		//self.layer.borderColor = [UIColor lightGrayColor].CGColor;
-		//self.loacPeriodsLabel.textColor = [UIColor lightGrayColor];
 	} else {
     self.alpha = 0.2;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     self.alpha = 1;    
 		self.userInteractionEnabled = YES;
-		//self.layer.borderColor = [UIColor redColor].CGColor;
-//		self.loacPeriodsLabel.textColor = [UIColor grayColor];
     [UIView commitAnimations];
 	}
 }

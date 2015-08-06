@@ -211,7 +211,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="vA5-ZT-8wv" secondAttribute="bottom" constant="5" id="wTI-bQ-xFL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="kwd-oc-b0u">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -307,7 +307,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="4aM-ph-64v" secondAttribute="bottom" constant="5" id="gmo-ud-wLk"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="W7W-cf-paF">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -435,7 +435,7 @@
                                             <subviews>
                                                 <segmentedControl opaque="NO" multipleTouchEnabled="YES" tag="2000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bar" momentary="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0S-Dh-Beh" customClass="MSFSegment">
                                                     <rect key="frame" x="0.0" y="-1" width="323" height="46.5"/>
-                                                    <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                                     <segments>
                                                         <segment title="QQ"/>
                                                         <segment title="淘宝"/>
