@@ -29,7 +29,7 @@ static MSFServer *server;
 
 + (RACSignal *)setupSignal {
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
+//	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
 	[self setHttpClient:nil];
 	
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
