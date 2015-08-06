@@ -44,6 +44,7 @@ static BOOL isRunningTests(void) {
 
 + (RACSignal *)setupSignal {
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+//	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
 	MSFClient *client = self.unArchiveClient;
 	[self setHttpClient:client];
 	

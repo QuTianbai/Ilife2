@@ -85,6 +85,7 @@ static BOOL isRunningTests(void) {
 		return [@{
 			@"Device": [devices componentsJoinedByString:@";"],
 			@"Set-Cookie": cookie,
+			@"Content-Type": @"application/x-www-form-urlencoded; charset=utf-8",
 		} mutableCopy];
 	};
 	self.defaultHeaders = MFSClientDefaultHeaders();
