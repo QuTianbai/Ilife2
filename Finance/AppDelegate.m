@@ -167,14 +167,6 @@
 			[string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		}];
 	
-	[[self rac_signalForSelector:@selector(applicationWillTerminate:)]
-		subscribeNext:^(RACTuple *tuple) {
-#if DEBUG
-#else
-			[MSFUtils cleanupArchive];
-#endif
-	 }];
-	
 	// Error Handle
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"已在另一设备上登录，如非本人操作请立即修改密码"
