@@ -34,6 +34,7 @@
 #import "MSFUmengMacro.h"
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFUtilsViewController.h"
 
 @interface AppDelegate ()
 
@@ -133,6 +134,20 @@
 		}
 	}];
 	
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil] subscribeNext:^(id x) {
+		self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+		self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+		[self unAuthenticatedControllers];
+		[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+			@strongify(self)
+			if (client.isAuthenticated) {
+				[self authenticatedControllers];
+			} else {
+				[self unAuthenticatedControllers];
+			}
+		}];
+	}];
+	
 	// Timeout Handle
 	[[self rac_signalForSelector:@selector(applicationDidBecomeActive:)]
 		subscribeNext:^(id x) {
@@ -151,14 +166,6 @@
 			NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"expire-string-file"];
 			[string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		}];
-	
-	[[self rac_signalForSelector:@selector(applicationWillTerminate:)]
-		subscribeNext:^(RACTuple *tuple) {
-#if DEBUG
-#else
-			[MSFUtils cleanupArchive];
-#endif
-	 }];
 	
 	// Error Handle
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"

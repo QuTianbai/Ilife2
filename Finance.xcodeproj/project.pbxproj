@@ -165,6 +165,7 @@
 		4964448A1B69BA77001FB1BE /* btn-showpwd-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444841B69BA77001FB1BE /* btn-showpwd-selected.png */; };
 		4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444851B69BA77001FB1BE /* btn-showpwd-selected@2x.png */; };
 		4964448C1B69BA77001FB1BE /* btn-showpwd-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444861B69BA77001FB1BE /* btn-showpwd-selected@3x.png */; };
+		49679CBB1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 49679CBA1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m */; };
 		4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */; };
 		4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE7F1B1A9E9E001A8F27 /* MSFAgreementViewModel.m */; };
 		496A44601B6A57BE00104215 /* MSFAccordToNperListsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A443E1B6A57BE00104215 /* MSFAccordToNperListsSpec.m */; };
@@ -257,6 +258,7 @@
 		499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */ = {isa = PBXBuildFile; fileRef = 499EA2B51B5679E50051AF66 /* familyMember_type2.json */; };
 		49A955021B574B14000852E3 /* bk-iphone6plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
+		49B1750C1B6CED5D00728085 /* MSFUtilsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1750B1B6CED5D00728085 /* MSFUtilsViewController.m */; };
 		49B37B571B608F39004EED47 /* bar-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B37B3F1B608F39004EED47 /* bar-highlighted.png */; };
 		49B37B581B608F39004EED47 /* bar-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B37B401B608F39004EED47 /* bar-highlighted@2x.png */; };
 		49B37B591B608F39004EED47 /* bar-highlighted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B37B411B608F39004EED47 /* bar-highlighted@3x.png */; };
@@ -804,6 +806,8 @@
 		496444841B69BA77001FB1BE /* btn-showpwd-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-selected.png"; sourceTree = "<group>"; };
 		496444851B69BA77001FB1BE /* btn-showpwd-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-selected@2x.png"; sourceTree = "<group>"; };
 		496444861B69BA77001FB1BE /* btn-showpwd-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-selected@3x.png"; sourceTree = "<group>"; };
+		49679CB91B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+RequestWithIgnoreSSL.h"; sourceTree = "<group>"; };
+		49679CBA1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+RequestWithIgnoreSSL.m"; sourceTree = "<group>"; };
 		4967EE6C1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRegisterAgreementViewController.h; sourceTree = "<group>"; };
 		4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRegisterAgreementViewController.m; sourceTree = "<group>"; };
 		4967EE7E1B1A9E9E001A8F27 /* MSFAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAgreementViewModel.h; sourceTree = "<group>"; };
@@ -925,6 +929,8 @@
 		499EA2B51B5679E50051AF66 /* familyMember_type2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type2.json; sourceTree = "<group>"; };
 		49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bk-iphone6plus.jpg"; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
+		49B1750A1B6CED5D00728085 /* MSFUtilsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsViewController.h; sourceTree = "<group>"; };
+		49B1750B1B6CED5D00728085 /* MSFUtilsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsViewController.m; sourceTree = "<group>"; };
 		49B37B3F1B608F39004EED47 /* bar-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-highlighted.png"; sourceTree = "<group>"; };
 		49B37B401B608F39004EED47 /* bar-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-highlighted@2x.png"; sourceTree = "<group>"; };
 		49B37B411B608F39004EED47 /* bar-highlighted@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-highlighted@3x.png"; sourceTree = "<group>"; };
@@ -2265,6 +2271,8 @@
 				494417E71B671B5000FF964D /* UIWindow+PazLabs.m */,
 				10DE89671B686C2A009025C4 /* UILabel+AttributeColor.h */,
 				10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */,
+				49679CB91B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.h */,
+				49679CBA1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2414,6 +2422,8 @@
 				4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */,
 				4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */,
 				4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */,
+				49B1750A1B6CED5D00728085 /* MSFUtilsViewController.h */,
+				49B1750B1B6CED5D00728085 /* MSFUtilsViewController.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -3324,6 +3334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B1750C1B6CED5D00728085 /* MSFUtilsViewController.m in Sources */,
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
 				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */,
 				491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */,
@@ -3396,6 +3407,7 @@
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,
 				C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */,
 				4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */,
+				49679CBB1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m in Sources */,
 				499147231B256D0D00260E97 /* MSFClient+Months.m in Sources */,
 				49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */,
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
@@ -3682,7 +3694,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "2749116e-9d0c-4374-a91a-18d213b57565";
+				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
 			};
 			name = Release;
 		};
