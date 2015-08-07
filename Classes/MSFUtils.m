@@ -30,15 +30,14 @@ static MSFServer *server;
 
 + (RACSignal *)setupSignal {
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
-//	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
 	[self setHttpClient:nil];
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil]
 		subscribeNext:^(NSNotification *notificaiton) {
 			NSURL *URL = [NSURL URLWithString:notificaiton.object];
 			server = [MSFServer serverWithBaseURL:URL];
-			[self setHttpClient:client];
-			[[[self.httpClient fetchServerInterval] replay] doNext:^(MSFResponse *resposne) {
-				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
+			[self setHttpClient:nil];
+			[[self.httpClient fetchServerInterval] subscribeNext:^(MSFResponse *response) {
+				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[response.parsedResult[@"time"] longLongValue]];
 				[MSFClient setCipher:cipher];
 			}];
 		}];
