@@ -34,6 +34,7 @@
 #import "MSFUmengMacro.h"
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFUtilsViewController.h"
 
 @interface AppDelegate ()
 
@@ -131,6 +132,20 @@
 		} else {
 			[self unAuthenticatedControllers];
 		}
+	}];
+	
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil] subscribeNext:^(id x) {
+		self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+		self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+		[self unAuthenticatedControllers];
+		[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+			@strongify(self)
+			if (client.isAuthenticated) {
+				[self authenticatedControllers];
+			} else {
+				[self unAuthenticatedControllers];
+			}
+		}];
 	}];
 	
 	// Timeout Handle

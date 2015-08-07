@@ -17,6 +17,7 @@
 #import "MSFAuthorization.h"
 #import "MSFAgreement.h"
 #import "MSFAgreementViewModel.h"
+#import "MSFUtilsViewController.h"
 
 NSString *const MSFAuthorizationDidErrorNotification = @"MSFAuthorizationDidErrorNotification";
 NSString *const MSFAuthorizationDidLoseConnectNotification = @"MSFAuthorizationDidLoseConnectNotification";
@@ -31,6 +32,18 @@ static MSFServer *server;
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
 //	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
 	[self setHttpClient:nil];
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil]
+		subscribeNext:^(NSNotification *notificaiton) {
+			NSURL *URL = [NSURL URLWithString:notificaiton.object];
+			server = [MSFServer serverWithBaseURL:URL];
+			[self setHttpClient:client];
+			[[[self.httpClient fetchServerInterval] replay] doNext:^(MSFResponse *resposne) {
+				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
+				[MSFClient setCipher:cipher];
+			}];
+		}];
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
+	[self setHttpClient:client];
 	
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
 		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
