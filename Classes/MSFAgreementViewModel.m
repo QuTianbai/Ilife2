@@ -8,6 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFAgreement.h"
 #import "MSFClient+Agreements.h"
+#import "NSURLRequest+RequestWithIgnoreSSL.h"
 
 @interface MSFAgreementViewModel ()
 
