@@ -73,15 +73,8 @@
 	[MobClick setAppVersion:[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]];
 	
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-#if DEBUG
-		//!!!: 测试无法获取时间戳的情况
 		[self setup];
-		
 		return [RACSignal empty];
-#endif
-		
-		// 在正式环境下,如果第一次进入app没有获取到时间戳，就持续循环获取时间戳－待测试
-		return MSFUtils.setupSignal;
 	}] subscribeNext:^(id x) {
 		[self setup];
 	}];
