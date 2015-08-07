@@ -42,8 +42,6 @@ static MSFServer *server;
 				[MSFClient setCipher:cipher];
 			}];
 		}];
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
-	[self setHttpClient:client];
 	
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
 		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
