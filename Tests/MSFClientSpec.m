@@ -84,10 +84,10 @@ beforeEach(^{
   success = NO;
   error = nil;
   NSDictionary *userDictionary = @{
-    @keypath(MSFUser.new, objectID) : @"1",
-    @keypath(MSFUser.new, phone) : @"18696995689",
-    @keypath(MSFUser.new, server) : MSFServer.dotComServer,
-     };
+    @keypath(MSFUser.new, objectID): @"1",
+    @keypath(MSFUser.new, phone): @"18696995689",
+    @keypath(MSFUser.new, server): MSFServer.dotComServer,
+	};
   user = [MSFUser modelWithDictionary:userDictionary error:nil];
 });
 
@@ -109,8 +109,6 @@ describe(@"without a user", ^{
   });
   
   it(@"should create a GET request whith default paramters", ^{
-    // given
-    
     // when
     NSURLRequest *request = [client requestWithMethod:@"GET" path:@"get" parameters:nil];
     

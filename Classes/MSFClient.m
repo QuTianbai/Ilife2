@@ -614,29 +614,4 @@ static BOOL isRunningTests(void) {
 	[self.defaultHeaders removeObjectForKey:@"finance"];
 }
 
-#pragma mark - custom自定义百度api接口调用
-
-//地理位置反解析
-- (RACSignal *)enqueueRequestCustom:(NSURLRequest *)request resultClass:(Class)resultClass {
-  return [[self requestBaidu:request] map:^id(RACTuple *responseAndData) {
-    RACTupleUnpack(NSHTTPURLResponse *reponse, NSData *data) = responseAndData;
-		if (reponse.statusCode != 200) {
-			return nil;
-		}
-    NSString *resourceStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *dataStr = [resourceStr stringByReplacingOccurrencesOfString:@"renderReverse&&renderReverse(" withString:@""] ;
-    NSString *str = [dataStr substringToIndex:dataStr.length - 1];
-    NSData *data1 = [str dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *dict = [NSJSONSerialization  JSONObjectWithData:data1 options:0 error:nil];
-    NSError *error = nil;
-    id myObject = [MTLJSONAdapter modelOfClass:resultClass fromJSONDictionary:dict error:&error];
-    return myObject;
-  }];
-
-}
-
-- (RACSignal *)requestBaidu:(NSURLRequest *)request {
-  return [NSURLConnection rac_sendAsynchronousRequest:request];
-}
-
 @end

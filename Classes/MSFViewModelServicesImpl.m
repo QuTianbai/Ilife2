@@ -5,6 +5,9 @@
 //
 
 #import "MSFViewModelServicesImpl.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <libextobjc/extobjc.h>
+
 #import "MSFClient.h"
 #import "MSFUtils.h"
 #import "UIWindow+PazLabs.h"
@@ -23,6 +26,8 @@
 
 #import "MSFWebViewModel.h"
 #import "MSFWebViewController.h"
+
+#import "MSFLocationModel.h"
 
 @implementation MSFViewModelServicesImpl
 
@@ -91,6 +96,26 @@
 
 - (MSFServer *)server {
 	return MSFUtils.server;
+}
+
+- (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=sTLArkR5mCiQrGcflln8li7c&location=%f,%f&output=json&pois=1", latitude, longitude]];
+		[[NSURLConnection rac_sendAsynchronousRequest:[NSURLRequest requestWithURL:URL]] subscribeNext:^(id x) {
+			RACTupleUnpack(NSHTTPURLResponse *response, NSData *data) = x;
+			if (response.statusCode != 200) {
+				[subscriber sendCompleted];
+			} else {
+				NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+				MSFLocationModel *model = [MTLJSONAdapter modelOfClass:MSFLocationModel.class fromJSONDictionary:representation	error:nil];
+				[subscriber sendNext:model];
+				[subscriber sendCompleted];
+			}
+		}];
+	
+		return nil;
+	}];
+	return nil;
 }
 
 @end

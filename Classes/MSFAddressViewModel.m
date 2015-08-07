@@ -99,6 +99,7 @@
 					[city.name isEqualToString:@"县"] ||
 					[city.name isEqualToString:@"市辖区"] ||
 					[city.name isEqualToString:@"区"] ||
+					[city.name isEqualToString:province.name] ||
 					city.name == nil) {
 					return @"";
 				}

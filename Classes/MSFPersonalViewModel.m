@@ -11,19 +11,16 @@
 #import "MSFAddressViewModel.h"
 #import "MSFAreas.h"
 #import "NSString+Matches.h"
-#import "MSFLocation.h"
 #import <CoreLocation/CoreLocation.h>
 #import "MSFLocationModel.h"
-#import "MSFClient+MSFLocation.h"
 #import "MSFLocationModel.h"
 #import "MSFResultModel.h"
 #import "MSFAddressInfo.h"
 #import <FMDB/FMDB.h>
 #import "RCLocationManager.h"
 
-@interface MSFPersonalViewModel ()<MSFLocationDelegate>
+@interface MSFPersonalViewModel ()
 
-@property (nonatomic, strong) MSFLocation *location;
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
@@ -49,7 +46,7 @@
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
 	RAC(self.model, currentProvince) = RACObserve(self.addressViewModel, provinceName);
 	RAC(self.model, currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
-	RAC(self.model,  currentCity) = RACObserve(self.addressViewModel, cityName);
+	RAC(self.model, currentCity) = RACObserve(self.addressViewModel, cityName);
 	RAC(self.model, currentCityCode) = RACObserve(self.addressViewModel, cityCode);
 	RAC(self.model, currentCountry) = RACObserve(self.addressViewModel, areaName);
 	RAC(self.model, currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
@@ -65,7 +62,7 @@
 }
 
 - (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
-  [[self.services.httpClient fetchLocationAdress:coordinate]
+  [[self.services fetchLocationWithLatitude:coordinate.latitude longitude:coordinate.longitude]
    subscribeNext:^(MSFLocationModel *model) {
      if (self.addressViewModel.isStopAutoLocation) {
        return;

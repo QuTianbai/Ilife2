@@ -8,6 +8,7 @@
 
 @class MSFClient;
 @class MSFServer;
+@class RACSignal;
 
 @protocol MSFViewModelServices <NSObject>
 
@@ -16,5 +17,6 @@
 - (void)presentViewModel:(id)viewModel;
 - (MSFClient *)httpClient;
 - (MSFServer *)server;
+- (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude;
 
 @end

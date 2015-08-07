@@ -60,8 +60,6 @@
   [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
   [backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
   UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-  //UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:nil action:nil];
-  //item.title  = @"贷款申请";
   @weakify(self)
   backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     @strongify(self)
