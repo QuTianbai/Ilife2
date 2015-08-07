@@ -437,7 +437,7 @@ static BOOL isRunningTests(void) {
 	if ([operation.responseObject isKindOfClass:NSDictionary.class]) {
 		userinfo = @{NSLocalizedFailureReasonErrorKey: operation.responseObject[@"message"]?:@""};
 	} else {
-		userinfo = @{NSLocalizedFailureReasonErrorKey: @"网络繁忙请稍候再试"};
+		userinfo = @{NSLocalizedFailureReasonErrorKey: @"系统繁忙，请稍后再试"};
 	}
 	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];

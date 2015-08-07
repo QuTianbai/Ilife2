@@ -174,7 +174,7 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		if (self.market.teams.count == 0) {
 			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"网络繁忙请稍后再试"
+				NSLocalizedFailureReasonErrorKey: @"系统繁忙，请稍后再试"
 			}]];
 			return nil;
 		}

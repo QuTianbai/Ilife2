@@ -229,7 +229,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)startSliding {
   if (self.moneySlider.maximumValue == 0) {
-    [SVProgressHUD showInfoWithStatus:@"获取产品信息失败,请联系客服"];
+    [SVProgressHUD showInfoWithStatus:@"系统繁忙，请稍后再试"];
   }
 	//self.viewModel.termAmount = 0;
 	[self.monthCollectionView reloadData];
