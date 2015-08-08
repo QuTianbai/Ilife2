@@ -211,4 +211,20 @@
 	self.window.rootViewController = tabBarController;
 }
 
+#pragma mark - Status bar touch tracking
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+	[super touchesBegan:touches withEvent:event];
+	CGPoint location = [[[event allTouches] anyObject] locationInView:[self window]];
+	CGRect statusBarFrame = [UIApplication sharedApplication].statusBarFrame;
+	if (CGRectContainsPoint(statusBarFrame, location)) {
+		[self statusBarTouchedAction];
+	}
+}
+
+- (void)statusBarTouchedAction {
+	MSFUtilsViewController *vc = [[MSFUtilsViewController alloc] initWithStyle:UITableViewStylePlain];
+	[self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+}
+
 @end
