@@ -7,6 +7,7 @@
 //
 
 #import "MSFSlider.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFSlider ()
 
@@ -47,7 +48,13 @@
   self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 100, 20)];
   self.moneyNumLabel.textColor = [UIColor blackColor];
   self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
-  self.moneyNumLabel.text = @"0元";
+  //self.moneyNumLabel.text = @"0元";
+  RAC(self.moneyNumLabel, text) = [RACObserve(self, minimumValue) map:^id(NSString *value) {
+    if (!value) {
+      return [NSString stringWithFormat:@"0.00元"];
+    }
+    return [NSString stringWithFormat:@"%@元", value];
+  }];
   [self addSubview:self.moneyNumLabel];
   
   [self setMinimumTrackImage:[UIImage imageNamed:@"bar-highlighted"] forState:UIControlStateNormal];
