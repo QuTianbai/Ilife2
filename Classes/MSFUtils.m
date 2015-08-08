@@ -21,7 +21,6 @@
 
 NSString *const MSFAuthorizationDidErrorNotification = @"MSFAuthorizationDidErrorNotification";
 NSString *const MSFAuthorizationDidLoseConnectNotification = @"MSFAuthorizationDidLoseConnectNotification";
-NSString *const MSFAuthorizationDidReGetTimeServer = @"MSFAuthorizationDidReGetTimeServer";
 
 static MSFClient *client;
 static MSFServer *server;
@@ -29,7 +28,7 @@ static MSFServer *server;
 @implementation MSFUtils
 
 + (RACSignal *)setupSignal {
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://i.msxf.tp"]];
 	[self setHttpClient:nil];
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil]
 		subscribeNext:^(NSNotification *notificaiton) {

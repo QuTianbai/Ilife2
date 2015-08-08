@@ -14,7 +14,6 @@ extern NSString *const MSFAuthorizationDidErrorNotification;
 
 // 服务器连接丢失通知,告知本地缓存的服务区时间戳失效
 extern NSString *const MSFAuthorizationDidLoseConnectNotification;
-extern NSString *const MSFAuthorizationDidReGetTimeServer;
 
 @class MSFClient;
 @class MSFServer;

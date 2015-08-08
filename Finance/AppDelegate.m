@@ -193,15 +193,10 @@
 	[[[NSNotificationCenter defaultCenter]
 		rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
 		subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			if (!alertView2.isVisible) {
 				[alertView2 show];
 			}
-		}];
- 
-	[[[NSNotificationCenter defaultCenter]
-		rac_addObserverForName:MSFAuthorizationDidReGetTimeServer object:nil]
-		subscribeNext:^(id x) {
-			[MSFUtils.setupSignal replay];
 		}];
 }
 

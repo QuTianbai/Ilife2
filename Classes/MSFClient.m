@@ -45,9 +45,7 @@ static BOOL isRunningTests(void) {
 	return isTestsRunning;
 }
 
-@interface MSFClient () {
-  BOOL _isReConnection;
-}
+@interface MSFClient ()
 
 @property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
 @property (nonatomic, strong, readwrite) MSFUser *user;
@@ -548,12 +546,9 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     if (error.code == -1004 ) {
-        _isReConnection = YES;
+     if (error.code == -1004 || cipher == nil) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
-			} else if (cipher == nil) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidReGetTimeServer object:nil];
-      }
+			}
 
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
