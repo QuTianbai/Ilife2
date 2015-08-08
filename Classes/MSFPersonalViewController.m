@@ -85,9 +85,7 @@
   [[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
    subscribeNext:^(UITextField *textField) {
      if (textField.text.length > 5) {
-       if (textField.text.length > 5) {
-         textField.text = [textField.text substringToIndex:5];
-       }
+        textField.text = [textField.text substringToIndex:5];
      }
    }];
 	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);

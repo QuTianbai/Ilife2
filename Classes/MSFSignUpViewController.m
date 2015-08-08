@@ -64,14 +64,32 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		@strongify(self)
 		self.viewModel.username = x;
 	}];
+  [[self.username rac_signalForControlEvents:UIControlEventEditingChanged]
+   subscribeNext:^(UITextField *textField) {
+     if (textField.text.length > 11) {
+       textField.text = [textField.text substringToIndex:11];
+     }
+  }];
 	[self.password.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.password = x;
 	}];
+  [[self.password rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    if (textField.text.length > 16) {
+      textField.text = [textField.text substringToIndex:16];
+    }
+  }];
 	[self.captcha.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.captcha = x;
 	}];
+  [[self.captcha rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+    if (textField.text.length > 6) {
+      textField.text = [textField.text substringToIndex:6];
+    }
+  }];
 	[RACObserve(self.viewModel, counter) subscribeNext:^(id x) {
 		@strongify(self)
 		self.counterLabel.text = x;
