@@ -76,6 +76,13 @@
 	}];
   RAC(self.viewModel, expired1) = RACObserve(self.expired, text);
 	RAC(self.permanentButton, selected) = RACObserve(self.viewModel, permanent);
+	
+	[[self.permanentButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+	 subscribeNext:^(id x) {
+			self.datePickerButton.enabled = NO;
+		 self.expired.enabled = NO;
+		 }];
+	
 	RAC(self.datePickerButton, enabled) =
 	[RACSignal
 		combineLatest:@[RACObserve(self.viewModel, permanent)]
