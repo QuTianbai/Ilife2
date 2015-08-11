@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width / 2);
+	self.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.width / 2.162);
 	self.infinityScroll = [[MSFInfinityScroll alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 	[self.view addSubview:self.infinityScroll];
 	[self.infinityScroll mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,7 +42,7 @@
 		@strongify(self)
 		NSInteger num = [self.viewModel numberOfItemsInSection:0];
 		if (num == 0) {
-			num = 3;
+			num = 1;
 		}
 		return num;
 	};
