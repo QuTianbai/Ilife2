@@ -36,7 +36,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
 
-
 @end
 
 @implementation MSFSignUpViewController
