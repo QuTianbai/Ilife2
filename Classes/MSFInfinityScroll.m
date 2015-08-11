@@ -51,7 +51,7 @@
 		
 		for (int i = 0; i < 3; i++) {
 			UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height)];
-			imageView.contentMode = UIViewContentModeScaleAspectFill;
+			imageView.contentMode = UIViewContentModeScaleToFill;
 			imageView.userInteractionEnabled = YES;
 			UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
 			[imageView addGestureRecognizer:tapGesture];
