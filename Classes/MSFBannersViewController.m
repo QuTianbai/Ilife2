@@ -42,7 +42,7 @@
 		@strongify(self)
 		NSInteger num = [self.viewModel numberOfItemsInSection:0];
 		if (num == 0) {
-			num = 3;
+			num = 1;
 		}
 		return num;
 	};
