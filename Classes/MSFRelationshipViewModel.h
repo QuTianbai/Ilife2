@@ -50,39 +50,56 @@
  */
 @property (nonatomic, strong) MSFSelectKeyValues *otherTwoValues;
 @property (nonatomic, strong) NSString *otherTwoValuesTitle;
-
+/**
+ *家庭成员一姓名
+ */
+@property (nonatomic, strong) MSFSelectKeyValues *familyOneNameValues;
+@property (nonatomic, copy) NSString *familyOneNameValuesTitle;
+/**
+ *家庭成员一手机号
+ */
+@property (nonatomic, strong) MSFSelectKeyValues *phoneNumOneValues;
+@property (nonatomic, copy) NSString *phoneNumOneValuesTitle;
 /**
  *同现居地址一
  */
 @property (nonatomic, strong) MSFSelectKeyValues *addressOneValues;
+@property (nonatomic, copy) NSString *addressOneValuesTitle;
 /**
  *家庭成员二姓名
  */
-@property (nonatomic, copy) NSString *familyTwoNameValues;
+@property (nonatomic, strong) MSFSelectKeyValues *familyTwoNameValues;
+@property (nonatomic, copy) NSString *familyTwoNameValuesTitle;
 /**
  *家庭成员二手机号
  */
-@property (nonatomic, copy) NSString *phoneNumTwoValues;
+@property (nonatomic, strong) MSFSelectKeyValues *phoneNumTwoValues;
+@property (nonatomic, copy) NSString *phoneNumTwoValuesTitle;
 /**
  *同现居地址二
  */
-@property (nonatomic, copy) NSString *addressTwoValues;
+@property (nonatomic, strong) MSFSelectKeyValues *addressTwoValues;
+@property (nonatomic, copy) NSString *addressTwoValuesTitle;
 /**
  *其他联系人姓名
  */
-@property (nonatomic, copy) NSString *otherOneNameValues;
+@property (nonatomic, strong) MSFSelectKeyValues *otherOneNameValues;
+@property (nonatomic, copy) NSString *otherOneNameValuesTitle;
 /**
  *其他联系人手机号
  */
-@property (nonatomic, copy) NSString *otherPhoneOneValues;
+@property (nonatomic, strong) MSFSelectKeyValues *otherPhoneOneValues;
+@property (nonatomic, copy) NSString *otherPhoneOneValuesTitle;
 /**
  *其他联系人姓名二
  */
-@property (nonatomic, copy) NSString *otherTwoNameValues;
+@property (nonatomic, strong) MSFSelectKeyValues *otherTwoNameValues;
+@property (nonatomic, copy) NSString *otherTwoNameValuesTitle;
 /**
  *其他联系人手机号二
  */
-@property (nonatomic, copy) NSString *otherPhoneTwoValues;
+@property (nonatomic, strong) MSFSelectKeyValues *otherPhoneTwoValues;
+@property (nonatomic, copy) NSString *otherPhoneTwoValuesTitle;
 @property (nonatomic, strong) RACCommand *executeRequest;
 
 @property (nonatomic, assign) BOOL hasMember2;
