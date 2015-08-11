@@ -62,11 +62,11 @@ static const int kCounterLength = 60;
 			@strongify(self)
 			if (![self.username isMobile]) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
+			}else if (![self.password isPassword]) {
+				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8~16位字母和数字组合的密码"]];
 			} else if (![self.captcha isCaptcha]) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请输入6位验证码"]];
-			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8~16位字母和数字组合的密码"]];
-			} else if (!self.agreeOnLicense) {
+			}  else if (!self.agreeOnLicense) {
 				return [RACSignal error:[self.class errorWithFailureReason:@"请仔细阅读贷款协议"]];
 			}
 		 
