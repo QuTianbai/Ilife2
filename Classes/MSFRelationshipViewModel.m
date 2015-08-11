@@ -74,22 +74,22 @@
 		self.model.relation2 = object.code;
 		self.otherTwoValuesTitle = object.text;
 	}];
-	[RACObserve(self, familyOneNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
+	[RACObserve(self, familyOneNameValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.memberName = object.code;
 		self.familyOneNameValuesTitle = object.text;
 	}];
-	[RACObserve(self, phoneNumOneValues) subscribeNext:^(MSFSelectKeyValues * object) {
+	[RACObserve(self, phoneNumOneValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.memberCellNum = object.code;
 		self.phoneNumOneValuesTitle = object.text;
 	}];
-	[RACObserve(self, familyTwoNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
+	[RACObserve(self, familyTwoNameValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.memberName2 = object.code;
 		self.familyTwoNameValuesTitle = object.text;
 	}];
-	[RACObserve(self, phoneNumTwoValues) subscribeNext:^(MSFSelectKeyValues * object) {
+	[RACObserve(self, phoneNumTwoValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.memberCellNum2 = object.code;
 		self.phoneNumTwoValuesTitle = object.text;
@@ -107,12 +107,12 @@
 	}];
 	
 	
-	[RACObserve(self, otherOneNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
+	[RACObserve(self, otherOneNameValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.name1 = object.code;
 		self.otherOneNameValuesTitle = object.text;
 	}];
-	[RACObserve(self, otherTwoNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
+	[RACObserve(self, otherTwoNameValues) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.model.name2 = object.code;
 		self.otherTwoNameValuesTitle = object.text;
