@@ -119,11 +119,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
-	
+	self.moneySlider.delegate = self;
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
       return @0;
     }
+		self.viewModel.totalAmount = value;
     return value;
   }];
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
@@ -132,7 +133,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     }
     return value;
   }];
-  self.moneySlider.delegate = self;
+	
 	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"%ld", (long)value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];

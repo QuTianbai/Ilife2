@@ -27,6 +27,9 @@
 #import "MobClick.h"
 #import "MSFUmengMacro.h"
 
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
+
 @interface MSFTabBarController () 
 
 @property (nonatomic, weak, readwrite) MSFTabBarViewModel *viewModel;
@@ -102,10 +105,11 @@
 }
 
 - (UITabBarItem *)itemWithNormal:(NSString *)title nomalImage:(NSString *)normalName selected:(NSString *)selectedName {
-	UIImage *normal = [UIImage imageNamed:normalName];
-	UIImage *selected = [UIImage imageNamed:selectedName];
+	UIImage *normal = [[UIImage imageNamed:normalName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+	UIImage *selected = [[UIImage imageNamed:selectedName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 	UITabBarItem *item = [[UITabBarItem alloc] initWithTitle:title image:normal selectedImage:selected];
-	
+	NSDictionary *titleAttributs = @{NSForegroundColorAttributeName:[MSFCommandView getColorWithString:POINTCOLOR]};
+	[item setTitleTextAttributes:titleAttributs forState:UIControlStateSelected];
 	return item;
 }
 

@@ -11,6 +11,9 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
+#import "UIColor+Utils.h"
 
 @interface MSFFindPasswordViewController ()
 
@@ -23,6 +26,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
+@property (weak, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
@@ -31,15 +35,28 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"忘记密码";
+	
+	self.backgroundView.layer.masksToBounds = YES;
+	self.backgroundView.layer.cornerRadius = 5;
+	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
+	self.backgroundView.layer.borderWidth = 1;
+	self.username.text = MSFUtils.phone;
+	
 	self.username.text = MSFUtils.phone;
 	RAC(self.viewModel, username) = self.username.rac_textSignal;
 	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
 	RAC(self.viewModel, password) = self.password.rac_textSignal;
 	RAC(self.counterLabel, text) = RACObserve(self.viewModel, counter);
+	self.counterLabel.layer.cornerRadius = 5.0;
+	self.counterLabel.layer.borderWidth = 1;
+	self.counterLabel.layer.borderColor = [UIColor clearColor].CGColor;
 	RAC(self.counterLabel, textColor) =
 	[self.viewModel.captchaRequestValidSignal
 		map:^id(NSNumber *valid) {
-			return valid.boolValue ? UIColor.whiteColor : UIColor.lightGrayColor;
+			return valid.boolValue ? UIColor.whiteColor : [MSFCommandView getColorWithString:@"999999"];
+	}];
+	RAC(self.counterLabel, backgroundColor) = [self.viewModel.captchaRequestValidSignal map:^id(NSNumber *value) {
+		return value.boolValue ? [MSFCommandView getColorWithString:POINTCOLOR] : [MSFCommandView getColorWithString:@"cccccc"];
 	}];
 	@weakify(self)
 	self.captchaButton.rac_command = self.viewModel.executeFindPasswordCaptcha;

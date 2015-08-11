@@ -14,6 +14,8 @@
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFClozeViewModel.h"
 #import "MSFClozeViewController.h"
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -101,8 +103,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
-		self.counterLabel.textColor = value.boolValue ? UIColor.darkGrayColor: UIColor.lightGrayColor;
+		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [MSFCommandView getColorWithString:@"999999"];
+		self.counterLabel.backgroundColor = value.boolValue ? [MSFCommandView getColorWithString:POINTCOLOR] : [MSFCommandView getColorWithString:@"cccccc"];
 	}];
+	
+	
 	
 	self.iAgreeButton.rac_command = self.viewModel.executeAgreeOnLicense;
 	self.agreeButton.rac_command = self.viewModel.executeAgreeOnLicense;

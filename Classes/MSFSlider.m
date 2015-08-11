@@ -53,6 +53,7 @@
     if (!value) {
       return [NSString stringWithFormat:@"0.00元"];
     }
+		[self sliderGragUp:self];
     return [NSString stringWithFormat:@"%@元", value];
   }];
   [self addSubview:self.moneyNumLabel];
