@@ -45,4 +45,15 @@
 	return [formatter stringFromDate:date];
 }
 
++ (NSString *)msf_stringFromDateForDash:(NSDate *)date {
+	NSParameterAssert(date != nil);
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+	formatter.dateFormat = @"yyyy-MM-dd";
+	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+	
+	return [formatter stringFromDate:date];
+}
+
 @end

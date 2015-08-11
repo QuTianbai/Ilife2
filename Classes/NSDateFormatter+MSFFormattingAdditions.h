@@ -12,4 +12,6 @@
 
 + (NSString *)msf_stringFromDate:(NSDate *)date;
 
++ (NSString *)msf_stringFromDateForDash:(NSDate *)date;
+
 @end
