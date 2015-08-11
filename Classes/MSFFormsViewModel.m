@@ -93,7 +93,7 @@
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
 	self.model.page = [@(page) stringValue];
 	return [[self.services.httpClient applyInfoSubmit1:self.model] doNext:^(id x) {
-		if ([x integerValue] == 4) self.pending = YES;
+		if (page == 4) self.pending = YES;
 	}];
 }
 
