@@ -29,7 +29,7 @@
 @property (nonatomic, strong, readwrite) MSFMarket *market;
 @property (nonatomic, strong, readwrite) MSFAddress *currentAddress;
 @property (nonatomic, strong, readwrite) MSFAddress *workAddress;
-@property (nonatomic, assign, readwrite) BOOL pending;
+//@property (nonatomic, assign) BOOL pending;
 @property (nonatomic, weak, readwrite) id <MSFViewModelServices> services;
 
 @end
