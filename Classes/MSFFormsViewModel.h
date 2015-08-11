@@ -24,7 +24,7 @@
 @property (nonatomic, strong, readonly) MSFAddress *currentAddress;
 @property (nonatomic, strong, readonly) MSFAddress *workAddress;
 
-@property (nonatomic, assign) BOOL pending;
+@property (nonatomic, assign, readonly) BOOL pending;
 @property (nonatomic, assign) BOOL isHaveProduct;//是否请求到贷款信息和贷款期数
 
 - (RACSignal *)submitSignalWithPage:(NSInteger)page;
