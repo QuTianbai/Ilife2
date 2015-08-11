@@ -173,7 +173,8 @@
 					self.expired.text = [NSDateFormatter msf_stringFromDate:selectedDate];
 				}
 				cancelBlock:^(ActionSheetDatePicker *picker) {
-					self.expired.text = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+					//self.expired.text = @"";
+					//self.expired.text = [NSDateFormatter msf_stringFromDate:[NSDate date]];
 				}
 				origin:self.view];
 	}];
