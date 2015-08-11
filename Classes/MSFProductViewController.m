@@ -33,10 +33,13 @@
 #import "MSFXBMCustomHeader.h"
 #import "MSFCounterLabel.h"
 #import "SVProgressHUD.h"
+#import <KGModal/KGModal.h>
+#import <ZSWTappableLabel/ZSWTappableLabel.h>
+#import <ZSWTaggedString/ZSWTaggedString.h>
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
-@interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate>
+@interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *moneyInsuranceLabel;
 @property (weak, nonatomic) IBOutlet UIView *repayMoneyBackgroundView;
 @property (nonatomic, assign) BOOL isSelectedRow;
@@ -144,7 +147,39 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	self.lifeInsuranceButton.rac_command = self.viewModel.executeLifeInsuranceCommand;
+	
+	[[self.lifeInsuranceButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 330)];
+		contentView.backgroundColor = [UIColor whiteColor];
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"life-insurance" ofType:nil];
+		NSString *string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:contentView.bounds];
+		label.numberOfLines = 0;
+		label.font = [UIFont systemFontOfSize:15];
+		label.tapDelegate = self;
+		
+		ZSWTaggedStringOptions *options = [ZSWTaggedStringOptions defaultOptions];
+		[options setAttributes:@{
+			ZSWTappableLabelTappableRegionAttributeName: @YES,
+			ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
+			ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
+			NSForegroundColorAttributeName: [UIColor blueColor],
+			NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+			@"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
+		} forTagName:@"link"];
+		label.attributedText = [[ZSWTaggedString stringWithString:string] attributedStringWithOptions:options];
+		[contentView addSubview:label];
+		[[KGModal sharedInstance] setCloseButtonLocation:KGModalCloseButtonLocationRight];
+		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+		[[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+	}];
+	[[self rac_signalForSelector:@selector(tappableLabel:tappedAtIndex:withAttributes:) fromProtocol:@protocol(ZSWTappableLabelTapDelegate)] subscribeNext:^(id x) {
+		@strongify(self)
+		[[KGModal sharedInstance] hideWithCompletionBlock:^{
+			[self.viewModel.executeLifeInsuranceCommand execute:nil];
+		}];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -277,6 +312,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     self.repayMoneyBackgroundView.alpha = 1;
   }
   [UIView commitAnimations];
+}
+
+#pragma mark - ZSWTappableLabelTapDelegate
+
+- (void)tappableLabel:(ZSWTappableLabel *)tappableLabel tappedAtIndex:(NSInteger)idx withAttributes:(NSDictionary *)attributes {
 }
 
 @end

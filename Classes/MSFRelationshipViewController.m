@@ -295,8 +295,8 @@ ABPersonViewControllerDelegate>
 			}
 		}];
 		
-		submitAlertView.loanAccountLabel.text = self.viewModel.model.principal;
-		submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
+		submitAlertView.loanAccountLabel.text = [NSString stringWithFormat:@"%@", self.viewModel.model.principal];
+		submitAlertView.loanPayBack.text = [NSString stringWithFormat:@"%@", self.viewModel.model.repayMoneyMonth];
 		submitAlertView.loanNper.text = nper;
 		submitAlertView.loanUse.text = usage;
 		submitAlertView.alpha = 0;
@@ -333,7 +333,7 @@ ABPersonViewControllerDelegate>
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
 			@strongify(self)
-			self.tabBarController.selectedIndex = 0;
+			[self.navigationController popToRootViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
@@ -535,7 +535,7 @@ ABPersonViewControllerDelegate>
 	}
 	
 	switch (peoplePicker.view.tag) {
-  case 10000:
+	case 10000:
 			self.telTF.text = phone;
 			break;
 		case 10001:

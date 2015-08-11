@@ -43,11 +43,9 @@
 		_amountLabel.text = viewModel.mothlyRepaymentAmount;
 		
 		if ([viewModel.status isEqualToString:@"审核中"]) {
-			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@", viewModel.applyDate, viewModel.totalInstallments];
-		} else if ([viewModel.status isEqualToString:@"已逾期"]) {
-			[_infoLabel setText:[NSString stringWithFormat:@"您的合同已逾期   请及时还款www.msxf.com"] highLightText:@"已逾期" highLightColor:UIColor.tintColor];
+			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyDate, viewModel.totalInstallments];
 		} else {
-			_infoLabel.text = [NSString stringWithFormat:@"申请日期   %@", viewModel.applyDate];
+			_infoLabel.text = nil;
 		}
 		[self placeholderShow:NO];
 		return;

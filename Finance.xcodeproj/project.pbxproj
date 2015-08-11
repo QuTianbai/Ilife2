@@ -62,9 +62,9 @@
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
+		1077330E1B79944500F3BAA6 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 1077330D1B79944500F3BAA6 /* home-banner-pl.png */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
-		10DE89391B6776E2009025C4 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89381B6776E2009025C4 /* home-banner-pl.png */; };
 		10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */; };
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
 		10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */; };
@@ -254,6 +254,7 @@
 		499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA25F1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m */; };
 		499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */; };
 		499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */ = {isa = PBXBuildFile; fileRef = 499EA2B51B5679E50051AF66 /* familyMember_type2.json */; };
+		49A342391B7992DF006F5106 /* life-insurance in Resources */ = {isa = PBXBuildFile; fileRef = 49A342381B7992DF006F5106 /* life-insurance */; };
 		49A955021B574B14000852E3 /* bk-iphone6plus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B1750C1B6CED5D00728085 /* MSFUtilsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B1750B1B6CED5D00728085 /* MSFUtilsViewController.m */; };
@@ -650,10 +651,10 @@
 		07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyInfo.m"; sourceTree = "<group>"; };
 		07FE07321B0740ED00484069 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0C902AAFF4566E5C3F86DCD0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1077330D1B79944500F3BAA6 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
 		10DE89291B677690009025C4 /* home-fourStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-fourStatus.png"; sourceTree = "<group>"; };
-		10DE89381B6776E2009025C4 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		10DE89671B686C2A009025C4 /* UILabel+AttributeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AttributeColor.h"; sourceTree = "<group>"; };
 		10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AttributeColor.m"; sourceTree = "<group>"; };
 		10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomePageContentCollectionViewCell.h; sourceTree = "<group>"; };
@@ -921,6 +922,7 @@
 		499EA2841B560ACB0051AF66 /* MSFTabBarViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarViewModel.h; sourceTree = "<group>"; };
 		499EA2851B560ACB0051AF66 /* MSFTabBarViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarViewModel.m; sourceTree = "<group>"; };
 		499EA2B51B5679E50051AF66 /* familyMember_type2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type2.json; sourceTree = "<group>"; };
+		49A342381B7992DF006F5106 /* life-insurance */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "life-insurance"; sourceTree = "<group>"; };
 		49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bk-iphone6plus.jpg"; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B1750A1B6CED5D00728085 /* MSFUtilsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsViewController.h; sourceTree = "<group>"; };
@@ -1319,6 +1321,7 @@
 				07C06C571B13461E00F2DFCC /* professional.json */,
 				07C06C591B13464200F2DFCC /* edu_background.json */,
 				07C06C5B1B13465A00F2DFCC /* school_system.json */,
+				49A342381B7992DF006F5106 /* life-insurance */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -2121,7 +2124,7 @@
 			children = (
 				49A954FE1B574B14000852E3 /* bk-iphone6plus.jpg */,
 				10DE89291B677690009025C4 /* home-fourStatus.png */,
-				10DE89381B6776E2009025C4 /* home-banner-pl.png */,
+				1077330D1B79944500F3BAA6 /* home-banner-pl.png */,
 			);
 			name = homepage;
 			sourceTree = "<group>";
@@ -2934,7 +2937,6 @@
 				49C0F1A61B2C315100E92572 /* icon-password.png in Resources */,
 				49C027B41B1469D900735DC6 /* progress-status-default.png in Resources */,
 				4925ADF41B2AFD8800872A8A /* btn_checked@3x.png in Resources */,
-				10DE89391B6776E2009025C4 /* home-banner-pl.png in Resources */,
 				C7A3517E1B217CB10001DF6A /* iconfont-jiantouyou@2x.png in Resources */,
 				49EA18AE1B6A4421006EEB9F /* launch.jpg in Resources */,
 				492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */,
@@ -2991,6 +2993,7 @@
 				07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */,
 				C7D2D1221B67938C000F51ED /* icon-cloze-bankNO.png in Resources */,
 				49B37B601B608F39004EED47 /* bar-progress-1-normal.png in Resources */,
+				1077330E1B79944500F3BAA6 /* home-banner-pl.png in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
 				4975C98B1B46D6D400AA79EB /* Images.xcassets in Resources */,
 				C7D2D1211B67938C000F51ED /* icon-cloze-bankName@3x.png in Resources */,
@@ -3007,6 +3010,7 @@
 				49C0F1A81B2C315100E92572 /* icon-password@3x.png in Resources */,
 				C7A3517B1B217CB10001DF6A /* iconfont-guanyuwomen@2x.png in Resources */,
 				07C06C501B1344AA00F2DFCC /* moneyUse.json in Resources */,
+				49A342391B7992DF006F5106 /* life-insurance in Resources */,
 				4944C0591B68A64400805C0A /* bg-account-header.png in Resources */,
 				4993E0DA1B2DA65B00090F26 /* bg-loan-installment@2x.png in Resources */,
 				4995DCEC1B4B6D2C0086B5ED /* 5@3x.png in Resources */,

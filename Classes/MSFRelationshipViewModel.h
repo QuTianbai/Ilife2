@@ -50,11 +50,18 @@
  */
 @property (nonatomic, strong) MSFSelectKeyValues *otherTwoValues;
 @property (nonatomic, strong) NSString *otherTwoValuesTitle;
-
+/**
+ *家庭成员一姓名
+ */
+@property (nonatomic, copy) NSString *familyOneNameValues;
+/**
+ *家庭成员一手机号
+ */
+@property (nonatomic, copy) NSString *phoneNumOneValues;
 /**
  *同现居地址一
  */
-@property (nonatomic, strong) MSFSelectKeyValues *addressOneValues;
+@property (nonatomic, copy) NSString *addressOneValues;
 /**
  *家庭成员二姓名
  */
@@ -83,6 +90,7 @@
  *其他联系人手机号二
  */
 @property (nonatomic, copy) NSString *otherPhoneTwoValues;
+
 @property (nonatomic, strong) RACCommand *executeRequest;
 
 @property (nonatomic, assign) BOOL hasMember2;

@@ -546,7 +546,7 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     if (error.code == -1004 || cipher == nil) {
+     if (error.code == -1004 || cipher == nil || (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
 			}
 

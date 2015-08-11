@@ -74,7 +74,7 @@
 		self.model.relation2 = object.code;
 		self.otherTwoValuesTitle = object.text;
 	}];
-	
+
 	_executeMarryValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self marryValuesSignal];

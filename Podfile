@@ -25,8 +25,11 @@ pod 'XcodeCoverage', '1.2.2'
 pod 'SVPullToRefresh', '0.4.1'
 pod 'REFormattedNumberField', '1.1.1'
 pod 'SVProgressHUD', '1.1.3'
-pod 'Fabric', '~> 1.2.8'
-pod 'Crashlytics', '~> 3.1.0'
+pod 'Fabric', '1.2.8'
+pod 'Crashlytics', '3.1.0'
+pod 'KGModal', '1.1.0'
+pod 'ZSWTappableLabel', '1.1'
+pod 'ZSWTaggedString', '1.1'
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', '1.4.0'
