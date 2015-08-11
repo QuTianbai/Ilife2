@@ -74,60 +74,7 @@
 		self.model.relation2 = object.code;
 		self.otherTwoValuesTitle = object.text;
 	}];
-	[RACObserve(self, familyOneNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
-		@strongify(self)
-		self.model.memberName = object.code;
-		self.familyOneNameValuesTitle = object.text;
-	}];
-	[RACObserve(self, phoneNumOneValues) subscribeNext:^(MSFSelectKeyValues * object) {
-		@strongify(self)
-		self.model.memberCellNum = object.code;
-		self.phoneNumOneValuesTitle = object.text;
-	}];
-	[RACObserve(self, familyTwoNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
-		@strongify(self)
-		self.model.memberName2 = object.code;
-		self.familyTwoNameValuesTitle = object.text;
-	}];
-	[RACObserve(self, phoneNumTwoValues) subscribeNext:^(MSFSelectKeyValues * object) {
-		@strongify(self)
-		self.model.memberCellNum2 = object.code;
-		self.phoneNumTwoValuesTitle = object.text;
-	}];
 	
-	[RACObserve(self, addressOneValues) subscribeNext:^(MSFSelectKeyValues *object) {
-		@strongify(self)
-		self.model.memberAddress = object.code;
-		self.addressOneValuesTitle = object.text;
-	}];
-	[RACObserve(self, addressTwoValues) subscribeNext:^(MSFSelectKeyValues *object) {
-		@strongify(self)
-		self.model.memberAddress2 = object.code;
-		self.addressTwoValuesTitle = object.text;
-	}];
-	
-	
-	[RACObserve(self, otherOneNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
-		@strongify(self)
-		self.model.name1 = object.code;
-		self.otherOneNameValuesTitle = object.text;
-	}];
-	[RACObserve(self, otherTwoNameValues) subscribeNext:^(MSFSelectKeyValues * object) {
-		@strongify(self)
-		self.model.name2 = object.code;
-		self.otherTwoNameValuesTitle = object.text;
-	}];
-	
-	[RACObserve(self, otherPhoneOneValues) subscribeNext:^(MSFSelectKeyValues *object) {
-		@strongify(self)
-		self.model.phone1 = object.code;
-		self.otherPhoneOneValuesTitle = object.text;
-	}];
-	[RACObserve(self, otherPhoneTwoValues) subscribeNext:^(MSFSelectKeyValues *object) {
-		@strongify(self)
-		self.model.phone2 = object.code;
-		self.otherPhoneTwoValuesTitle = object.text;
-	}];
 	_executeMarryValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self marryValuesSignal];
