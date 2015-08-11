@@ -26,6 +26,7 @@
 #import "MSFSubmitAlertView.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFXBMCustomHeader.h"
+#import "MSFFormsViewModel.h"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
@@ -331,6 +332,7 @@ ABPersonViewControllerDelegate>
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			self.viewModel.formsViewModel.pending = YES;
 			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
 			@strongify(self)
 			[self.navigationController popToRootViewControllerAnimated:YES];
