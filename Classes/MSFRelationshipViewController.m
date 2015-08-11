@@ -295,8 +295,8 @@ ABPersonViewControllerDelegate>
 			}
 		}];
 		
-		submitAlertView.loanAccountLabel.text = self.viewModel.model.principal;
-		submitAlertView.loanPayBack.text = self.viewModel.model.repayMoneyMonth;
+		submitAlertView.loanAccountLabel.text = [NSString stringWithFormat:@"%@", self.viewModel.model.principal];
+		submitAlertView.loanPayBack.text = [NSString stringWithFormat:@"%@", self.viewModel.model.repayMoneyMonth];
 		submitAlertView.loanNper.text = nper;
 		submitAlertView.loanUse.text = usage;
 		submitAlertView.alpha = 0;
