@@ -537,7 +537,7 @@ ABPersonViewControllerDelegate>
 	}
 	
 	switch (peoplePicker.view.tag) {
-  case 10000:
+	case 10000:
 			self.telTF.text = phone;
 			break;
 		case 10001:
