@@ -218,11 +218,6 @@
 			}]];
 			return nil;
 		}
-		if (self.formsViewModel.pending) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"您的提交的申请已经在审核中，请耐心等待!",
-			}]];
-			return nil;
-		}
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
