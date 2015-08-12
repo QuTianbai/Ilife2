@@ -489,11 +489,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7wZ-Fl-gLu" id="eDM-Vx-e9B">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系地址" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="OVc-oo-g7D">
-                                                    <rect key="frame" x="142" y="0.0" width="168" height="43.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
-                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gi5-i1-eJ0">
                                                     <rect key="frame" x="13" y="0.0" width="119" height="43.5"/>
                                                     <constraints>
@@ -503,6 +498,11 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系地址" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="OVc-oo-g7D">
+                                                    <rect key="frame" x="142" y="0.0" width="168" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="OVc-oo-g7D" firstAttribute="top" secondItem="eDM-Vx-e9B" secondAttribute="top" id="2kq-Jy-Zed"/>
