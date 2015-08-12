@@ -3580,7 +3580,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3602,8 +3602,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3618,7 +3618,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3630,7 +3630,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3646,7 +3646,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Debug;
 		};
@@ -3656,8 +3656,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals\"",
@@ -3670,7 +3670,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Release;
 		};
