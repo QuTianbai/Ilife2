@@ -852,7 +852,7 @@
                                                                 <constraint firstAttribute="height" constant="30" id="j2Q-cD-XWL"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择身份证过期日期" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwz-jZ-1AB">
                                                             <rect key="frame" x="42" y="97" width="148" height="30"/>
