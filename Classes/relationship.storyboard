@@ -212,8 +212,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-4n-Jni">
+                                                    <rect key="frame" x="142" y="7" width="120" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X7-TH-oac">
-                                                    <rect key="frame" x="270" y="7" width="44" height="28"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="MXH-5S-suH"/>
                                                     </constraints>
@@ -224,14 +229,9 @@
                                                         <action selector="firstFamilyPhoneBtn:" destination="Azx-1y-zfJ" eventType="touchUpInside" id="k0A-VM-KQO"/>
                                                     </connections>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-4n-Jni">
-                                                    <rect key="frame" x="142" y="7" width="120" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="8X7-TH-oac" firstAttribute="top" secondItem="kae-6h-Vb3" secondAttribute="top" constant="7" id="32d-LV-hg1"/>
+                                                <constraint firstItem="8X7-TH-oac" firstAttribute="top" secondItem="kae-6h-Vb3" secondAttribute="top" id="32d-LV-hg1"/>
                                                 <constraint firstAttribute="bottom" secondItem="ch7-4n-Jni" secondAttribute="bottom" constant="7" id="C2i-Y4-XgG"/>
                                                 <constraint firstAttribute="bottom" secondItem="UJJ-uN-2p1" secondAttribute="bottom" constant="7" id="Hgc-o2-1Cr"/>
                                                 <constraint firstAttribute="trailing" secondItem="8X7-TH-oac" secondAttribute="trailing" constant="6" id="Iid-zp-dqX"/>
@@ -239,6 +239,7 @@
                                                 <constraint firstItem="ch7-4n-Jni" firstAttribute="leading" secondItem="UJJ-uN-2p1" secondAttribute="trailing" constant="10" id="Kvr-dC-qmD"/>
                                                 <constraint firstItem="8X7-TH-oac" firstAttribute="leading" secondItem="ch7-4n-Jni" secondAttribute="trailing" constant="8" id="LSQ-r3-06r"/>
                                                 <constraint firstItem="UJJ-uN-2p1" firstAttribute="top" secondItem="kae-6h-Vb3" secondAttribute="top" constant="7" id="UaC-OO-qkl"/>
+                                                <constraint firstAttribute="bottom" secondItem="8X7-TH-oac" secondAttribute="bottom" id="WqV-2z-UGd"/>
                                                 <constraint firstItem="ch7-4n-Jni" firstAttribute="top" secondItem="kae-6h-Vb3" secondAttribute="top" constant="7" id="gsQ-Na-4Hy"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -420,7 +421,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Etz-sm-yJ0">
-                                                    <rect key="frame" x="270" y="7" width="44" height="28"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="vHD-bj-WvI"/>
                                                     </constraints>
@@ -440,11 +441,12 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="nDz-yx-ed6" secondAttribute="bottom" constant="7" id="0ZG-BY-NE4"/>
                                                 <constraint firstItem="nDz-yx-ed6" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" constant="7" id="58j-hE-MZr"/>
+                                                <constraint firstAttribute="bottom" secondItem="Etz-sm-yJ0" secondAttribute="bottom" id="73i-Ft-v9L"/>
                                                 <constraint firstItem="IOh-8Y-DjX" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" constant="7" id="Dci-OI-Gdt"/>
                                                 <constraint firstItem="IOh-8Y-DjX" firstAttribute="leading" secondItem="GSs-kx-wWG" secondAttribute="leading" constant="13" id="LZC-NM-GeA"/>
                                                 <constraint firstAttribute="bottom" secondItem="IOh-8Y-DjX" secondAttribute="bottom" constant="7" id="Oag-HI-Tjn"/>
                                                 <constraint firstAttribute="trailing" secondItem="Etz-sm-yJ0" secondAttribute="trailing" constant="6" id="Wet-uC-iES"/>
-                                                <constraint firstItem="Etz-sm-yJ0" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" constant="7" id="aAG-kp-7FS"/>
+                                                <constraint firstItem="Etz-sm-yJ0" firstAttribute="top" secondItem="GSs-kx-wWG" secondAttribute="top" id="aAG-kp-7FS"/>
                                                 <constraint firstItem="nDz-yx-ed6" firstAttribute="leading" secondItem="IOh-8Y-DjX" secondAttribute="trailing" constant="10" id="jo4-Dn-nyD"/>
                                                 <constraint firstItem="Etz-sm-yJ0" firstAttribute="leading" secondItem="nDz-yx-ed6" secondAttribute="trailing" constant="8" id="miU-0s-iUa"/>
                                             </constraints>
@@ -604,9 +606,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddz-DK-0i6">
-                                                    <rect key="frame" x="270" y="0.0" width="44" height="28"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="2BX-UA-r8J"/>
                                                         <constraint firstAttribute="width" constant="44" id="Z93-B7-bDj"/>
                                                     </constraints>
                                                     <state key="normal" image="btn-FamilyInformation-phone.png">
@@ -629,6 +630,7 @@
                                                 <constraint firstItem="Nzp-a4-DJa" firstAttribute="top" secondItem="PNr-bo-Rhi" secondAttribute="top" id="L44-08-KQu"/>
                                                 <constraint firstItem="ddz-DK-0i6" firstAttribute="top" secondItem="PNr-bo-Rhi" secondAttribute="top" id="UF0-V9-eNh"/>
                                                 <constraint firstAttribute="bottom" secondItem="mrp-Mg-nZ5" secondAttribute="bottom" id="V29-wb-tn2"/>
+                                                <constraint firstAttribute="bottom" secondItem="ddz-DK-0i6" secondAttribute="bottom" id="XJY-fv-SY7"/>
                                                 <constraint firstAttribute="trailing" secondItem="ddz-DK-0i6" secondAttribute="trailing" constant="6" id="aKe-0R-stY"/>
                                                 <constraint firstItem="Nzp-a4-DJa" firstAttribute="leading" secondItem="PNr-bo-Rhi" secondAttribute="leading" constant="13" id="inC-Ud-Wq7"/>
                                                 <constraint firstItem="mrp-Mg-nZ5" firstAttribute="leading" secondItem="Nzp-a4-DJa" secondAttribute="trailing" constant="10" id="spl-Eg-Gw5"/>
@@ -753,10 +755,10 @@
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3h-K7-6Sk">
-                                                    <rect key="frame" x="270" y="0.0" width="44" height="28"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="9Of-cM-3eB"/>
-                                                        <constraint firstAttribute="height" constant="28" id="Z4W-Lq-L5k"/>
+                                                        <constraint firstAttribute="height" constant="44" id="Z4W-Lq-L5k"/>
                                                     </constraints>
                                                     <state key="normal" image="btn-FamilyInformation-phone.png">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
