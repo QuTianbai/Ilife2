@@ -57,7 +57,6 @@
 	MSFSelectionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 	cell.textLabel.text = [self.viewModel titleForIndexPath:indexPath];
 	cell.detailTextLabel.text = [self.viewModel subtitleForIndexPath:indexPath];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	
 	return cell;
 }
