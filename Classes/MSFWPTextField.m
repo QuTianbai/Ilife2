@@ -31,4 +31,12 @@
 	 attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
 }
 
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+	if (!self.disablePaste) {
+		return [super canPerformAction:action withSender:sender];
+	}
+	
+	return NO;
+}
+
 @end
