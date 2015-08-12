@@ -23,7 +23,7 @@ it(@"should initialize", ^{
   // then
   expect(viewModel).notTo(beNil());
   expect(viewModel.status).to(equal(@"无效"));
-  expect(viewModel.applyDate).to(equal(@"2015/05/03"));
+  expect(viewModel.applyDate).to(equal(@"2015年05月03日"));
   expect(viewModel.repaidAmount).to(equal(@"200"));
   expect(viewModel.totalAmount).to(equal(@"300"));
   expect(viewModel.mothlyRepaymentAmount).to(equal(@"400"));
