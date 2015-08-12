@@ -168,8 +168,8 @@ ABPersonViewControllerDelegate>
 	
 	[[self.telTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 13) {
-			 textField.text = [textField.text substringToIndex:13];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	
@@ -208,8 +208,8 @@ ABPersonViewControllerDelegate>
 	
 	[[self.num2TelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 13) {
-			 textField.text = [textField.text substringToIndex:13];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	[self.num2TelTF.rac_textSignal subscribe:member2PhoneChannel];
@@ -246,8 +246,8 @@ ABPersonViewControllerDelegate>
 	
 	[[self.otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 13) {
-			 textField.text = [textField.text substringToIndex:13];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	
@@ -270,8 +270,8 @@ ABPersonViewControllerDelegate>
 	
 	[[self.num2_otherTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 13) {
-			 textField.text = [textField.text substringToIndex:13];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	RACChannelTerminal *phone2Channel = RACChannelTo(self.viewModel.model, phone2);
