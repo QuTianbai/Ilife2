@@ -225,11 +225,6 @@ static const int kCounterLength = 60;
 	return [client fetchResetPasswordCaptchaWithPhone:self.username];
 }
 
-- (RACSignal *)executeLoginCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchLoginCaptchaWithPhone:self.username];
-}
-
 + (NSError *)errorWithFailureReason:(NSString *)string {
 	return [NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:string}];
 }

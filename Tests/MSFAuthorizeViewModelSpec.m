@@ -31,7 +31,15 @@ beforeEach(^{
 it(@"should initialize", ^{
   // then
   expect(viewModel).notTo(beNil());
-//  expect(viewModel.server).to(equal(MSFServer.dotComServer));
+  expect(viewModel.services).to(equal(services));
+});
+
+it(@"should change login type", ^{
+	// when
+	viewModel.loginType = MSFLoginSignUp;
+	
+	// then
+	expect(@(viewModel.loginType)).to(equal(@(MSFLoginSignUp)));
 });
 
 it(@"should has username", ^{
@@ -39,6 +47,7 @@ it(@"should has username", ^{
   expect(viewModel.username).to(equal(@""));
   expect(viewModel.password).to(equal(@""));
   expect(viewModel.captcha).to(equal(@""));
+	expect(viewModel.counter).to(equal(@"获取验证码"));
 });
 
 it(@"should can signin", ^{
@@ -91,7 +100,7 @@ it(@"should can signup", ^{
   expect(@(valid)).to(beTruthy());
 });
 
-it(@"should can't signup", ^{
+it(@"should signup valid", ^{
   // given
   viewModel.username = @"18696995689";
   viewModel.password = @"123456";
@@ -105,6 +114,49 @@ it(@"should can't signup", ^{
   
   // then
   expect(@(valid)).to(beTruthy());
+});
+
+it(@"should signup invalid", ^{
+	// given
+	__block BOOL valid = YES;
+	
+	// when
+	[viewModel.signUpValidSignal subscribeNext:^(id x) {
+		valid = [x boolValue];
+	}];
+	
+	// then
+	expect(@(valid)).notTo(beFalsy());
+});
+
+it(@"should sign up server", ^{
+  // given
+  viewModel.username = @"18696995689";
+  viewModel.password = @"123456qw";
+  viewModel.captcha = @"123456";
+  viewModel.agreeOnLicense = YES;
+  
+  [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+    NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
+    return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
+       @"Content-Type": @"application/json",
+       @"finance": @"token",
+       @"msfinance": @"objectid",
+       }];
+  }];
+  
+  // when
+  __block MSFClient *client;
+  [[viewModel.executeSignUp.executionSignals concat] subscribeNext:^(id x) {
+    client = x;
+  }];
+  [[viewModel.executeSignUp execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
+  
+  // then
+  expect(error).to(beNil());
+  expect(client).to(beAKindOf(MSFClient.class));
+  expect(@(client.authenticated)).to(beTruthy());
+  expect(client.token).to(equal(@"token"));
 });
 
 it(@"should request captcha code valid", ^{
@@ -143,36 +195,6 @@ it(@"should signin server", ^{
   }];
   
   [[viewModel.executeSignIn execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
-  
-  // then
-  expect(error).to(beNil());
-  expect(client).to(beAKindOf(MSFClient.class));
-  expect(@(client.authenticated)).to(beTruthy());
-  expect(client.token).to(equal(@"token"));
-});
-
-it(@"should sign up server", ^{
-  // given
-  viewModel.username = @"18696995689";
-  viewModel.password = @"123456qw";
-  viewModel.captcha = @"123456";
-  viewModel.agreeOnLicense = YES;
-  
-  [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
-    NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
-    return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
-       @"Content-Type": @"application/json",
-       @"finance": @"token",
-       @"msfinance": @"objectid",
-       }];
-  }];
-  
-  // when
-  __block MSFClient *client;
-  [[viewModel.executeSignUp.executionSignals concat] subscribeNext:^(id x) {
-    client = x;
-  }];
-  [[viewModel.executeSignUp execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
   
   // then
   expect(error).to(beNil());
