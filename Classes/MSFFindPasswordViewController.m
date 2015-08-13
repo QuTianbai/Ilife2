@@ -40,11 +40,22 @@
 	self.backgroundView.layer.cornerRadius = 5;
 	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
 	self.backgroundView.layer.borderWidth = 1;
-	self.username.text = MSFUtils.phone;
 	
 	self.username.text = MSFUtils.phone;
+	[[self.username rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
+		 }
+	 }];
 	RAC(self.viewModel, username) = self.username.rac_textSignal;
 	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
+	[[self.captcha rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 textField.text = [textField.text substringToIndex:6];
+		 }
+	 }];
 	RAC(self.viewModel, password) = self.password.rac_textSignal;
 	RAC(self.counterLabel, text) = RACObserve(self.viewModel, counter);
 	self.counterLabel.layer.cornerRadius = 5.0;
