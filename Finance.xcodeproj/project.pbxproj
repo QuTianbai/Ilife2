@@ -358,7 +358,6 @@
 		49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22591B062AF200DD4483 /* MSFAgreement.m */; };
 		49DA22651B062AF200DD4483 /* MSFClient+Captcha.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */; };
 		49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225D1B062AF200DD4483 /* MSFClient+Users.m */; };
-		49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225F1B062AF200DD4483 /* MSFEntity.m */; };
 		49DA22681B062AF200DD4483 /* MSFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22611B062AF200DD4483 /* MSFUser.m */; };
 		49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22631B062AF200DD4483 /* MSFUtils.m */; };
 		49DAEE7C1B2E83D7009433C5 /* product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7B1B2E83D7009433C5 /* product.storyboard */; };
@@ -381,6 +380,7 @@
 		49EA18B21B6A44A7006EEB9F /* MSFActivityIndicatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EA18B11B6A44A7006EEB9F /* MSFActivityIndicatorViewController.m */; };
 		49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EA18B31B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib */; };
 		49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */; };
+		4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */; };
 		4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */; };
 		4EDB520E1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */; };
 		4EDB520F1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */; };
@@ -1054,8 +1054,6 @@
 		49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Captcha.m"; sourceTree = "<group>"; };
 		49DA225C1B062AF200DD4483 /* MSFClient+Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Users.h"; sourceTree = "<group>"; };
 		49DA225D1B062AF200DD4483 /* MSFClient+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Users.m"; sourceTree = "<group>"; };
-		49DA225E1B062AF200DD4483 /* MSFEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEntity.h; sourceTree = "<group>"; };
-		49DA225F1B062AF200DD4483 /* MSFEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEntity.m; sourceTree = "<group>"; };
 		49DA22601B062AF200DD4483 /* MSFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUser.h; sourceTree = "<group>"; };
 		49DA22611B062AF200DD4483 /* MSFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUser.m; sourceTree = "<group>"; };
 		49DA22621B062AF200DD4483 /* MSFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtils.h; sourceTree = "<group>"; };
@@ -1084,6 +1082,8 @@
 		49EA18B31B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFActivityIndicatorViewController.xib; sourceTree = "<group>"; };
 		49F3D4B71B2685FD0053A1F5 /* MSFProfessionalViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProfessionalViewModel.h; sourceTree = "<group>"; };
 		49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProfessionalViewModel.m; sourceTree = "<group>"; };
+		4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBPTextField.h; sourceTree = "<group>"; };
+		4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBPTextField.m; sourceTree = "<group>"; };
 		4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone.png"; sourceTree = "<group>"; };
 		4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone@2x.png"; sourceTree = "<group>"; };
 		4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone@3x.png"; sourceTree = "<group>"; };
@@ -1546,6 +1546,8 @@
 				491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */,
 				494ED8661B2D2798000AD8EA /* MSFWPTextField.h */,
 				494ED8671B2D2798000AD8EA /* MSFWPTextField.m */,
+				4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */,
+				4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */,
 			);
 			name = TextView;
 			sourceTree = "<group>";
@@ -1809,7 +1811,6 @@
 				49CCFBFB1B072EAF008A9CD1 /* Cash */,
 				49CCFBFA1B072EA6008A9CD1 /* Adver */,
 				49DA226E1B062B2600DD4483 /* Agreement */,
-				49DA226D1B062B1B00DD4483 /* Entity */,
 				49DA226C1B062B1100DD4483 /* Captcha */,
 				49DA226B1B062B0300DD4483 /* Users */,
 				C71884301B06EDBF00C25955 /* According to the amount of nper list */,
@@ -2423,15 +2424,6 @@
 				49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */,
 			);
 			name = Captcha;
-			sourceTree = "<group>";
-		};
-		49DA226D1B062B1B00DD4483 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				49DA225E1B062AF200DD4483 /* MSFEntity.h */,
-				49DA225F1B062AF200DD4483 /* MSFEntity.m */,
-			);
-			name = Entity;
 			sourceTree = "<group>";
 		};
 		49DA226E1B062B2600DD4483 /* Agreement */ = {
@@ -3347,6 +3339,7 @@
 				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
+				4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */,
 				07BD83FC1B156CAA00D731BF /* MSFProduct.m in Sources */,
 				07BE0E741B0D8D2B00D11F1A /* MSFTeams.m in Sources */,
 				490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */,
@@ -3426,7 +3419,6 @@
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
-				49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
 				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,
@@ -3580,7 +3572,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
+				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3602,8 +3594,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3618,7 +3610,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
+				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3630,7 +3622,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3646,7 +3638,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
+				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
 			};
 			name = Debug;
 		};
@@ -3656,8 +3648,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals\"",
@@ -3670,7 +3662,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
+				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
 			};
 			name = Release;
 		};

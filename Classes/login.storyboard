@@ -82,7 +82,7 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
-                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XiB-Rb-FPG" customClass="MSFWPTextField">
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XiB-Rb-FPG" customClass="MSFBPTextField">
                                                             <rect key="frame" x="46" y="45" width="224" height="44"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                             <textInputTraits key="textInputTraits" returnKeyType="join" secureTextEntry="YES"/>
@@ -285,7 +285,7 @@
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tok-v7-rNe">
                                                             <rect key="frame" x="0.0" y="90" width="300" height="44"/>
                                                             <subviews>
-                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyE-1S-0N2" customClass="MSFWPTextField">
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GyE-1S-0N2" customClass="MSFBPTextField">
                                                                     <rect key="frame" x="10" y="0.0" width="246" height="44"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" secureTextEntry="YES"/>
@@ -575,11 +575,6 @@
                                                                         <constraint firstAttribute="width" constant="26" id="pEz-wR-rZM"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入8~16位字母和数字组合的密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tap-h5-xY0" customClass="MSFWPTextField">
-                                                                    <rect key="frame" x="46" y="0.0" width="214" height="44"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                                    <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
-                                                                </textField>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfy-He-egp">
                                                                     <rect key="frame" x="251" y="0.0" width="44" height="44"/>
                                                                     <constraints>
@@ -591,6 +586,11 @@
                                                                     </state>
                                                                     <state key="selected" image="btn-showpwd-selected.png"/>
                                                                 </button>
+                                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入8~16位字母和数字组合的密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tap-h5-xY0" customClass="MSFBPTextField">
+                                                                    <rect key="frame" x="46" y="0.0" width="214" height="44"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                    <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
+                                                                </textField>
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -993,7 +993,7 @@
                                                                 <constraint firstAttribute="height" constant="30" id="r0Z-rX-3XV"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                         </textField>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ALk-jD-F2n">
                                                             <rect key="frame" x="0.0" y="44" width="300" height="1"/>
@@ -1214,14 +1214,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fUC-hd-t2j" id="dFV-K0-YpL">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-bi-xUm" customClass="MSFTextField">
-                                                    <rect key="frame" x="10" y="5" width="300" height="40"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="nnh-jF-TAV">
                                                     <rect key="frame" x="20" y="12" width="26" height="26"/>
                                                 </imageView>
@@ -1236,6 +1228,14 @@
                                                     </state>
                                                     <state key="selected" image="btn-showpwd-selected.png"/>
                                                 </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入新密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZNa-bi-xUm" customClass="MSFTextField">
+                                                    <rect key="frame" x="10" y="5" width="300" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="send" secureTextEntry="YES"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="disablePaste" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ZNa-bi-xUm" firstAttribute="top" secondItem="dFV-K0-YpL" secondAttribute="top" constant="5" id="7Ra-Rq-yyJ"/>
