@@ -26,7 +26,17 @@
 	[dict removeObjectForKey:@"loanId"];
 	[dict removeObjectForKey:@"objectID"];
 	[dict setValue:model.loanId forKey:@"id"];
-	
+//	for (NSString *str in [dict allKeys]) {
+//		NSString *temp = @"";
+//		NSLog(@"%@:%@", str, [dict objectForKey:str]);
+//		if ([[dict objectForKey:str] isKindOfClass:[NSNumber class]]) {
+//			NSNumber *numStr = dict[str];
+//			
+//		}
+//		if ([[dict objectForKey:str] isEqualToString:@"<null>"]) {
+//			[dict setObject:@"" forKey:str];
+//		}
+//	}
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	NSDictionary *paramDict = [NSDictionary dictionaryWithObject:jsonStr forKey:@"loans"];
