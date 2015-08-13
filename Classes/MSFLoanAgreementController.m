@@ -87,16 +87,6 @@
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
-		#if DEBUG // 临时使用代码，错误的情况也进入个人信息
-			@strongify(self)
-//			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
-//			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-//			vc.hidesBottomBarWhenPushed = YES;
-//			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
-//			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
-//			[vc bindViewModel:viewModel];
-//			[self.navigationController pushViewController:vc animated:YES];
-		#endif
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[[self.disAgreeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
