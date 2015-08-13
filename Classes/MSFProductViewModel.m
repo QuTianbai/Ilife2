@@ -111,15 +111,15 @@
   RAC(self, minMoney) = RACObserve(self.formsViewModel.market, allMinAmount);
                          
   RAC(self, maxMoney) = RACObserve(self.formsViewModel.market, allMaxAmount);
-	RAC(self, totalAmountPlacholder) = [RACSignal combineLatest:@[
-		RACObserve(self.formsViewModel.market, allMinAmount),
-		RACObserve(self.formsViewModel.market, allMaxAmount),
-	] reduce:^id(NSString *min, NSString *max) {
-		return min.integerValue != 0 ? [NSString stringWithFormat:@"请输入%@-%@之间的数字", min,max] : @"请输入贷款金额";
-	}];
+//	RAC(self, totalAmountPlacholder) = [RACSignal combineLatest:@[
+//		RACObserve(self.formsViewModel.market, allMinAmount),
+//		RACObserve(self.formsViewModel.market, allMaxAmount),
+//	] reduce:^id(NSString *min, NSString *max) {
+//		return min.integerValue != 0 ? [NSString stringWithFormat:@"请选择%@-%@之间的数字", min,max] : @"请输入贷款金额";
+//	}];
 	
 	RAC(self, termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
-		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"-.--";
+		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"0.00";
 	}];
 	RAC(self, purposeText) = [RACObserve(self, purpose) map:^id(id value) {
 		return [value text];

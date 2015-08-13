@@ -52,7 +52,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 //@property (nonatomic,strong) UICollectionView *periodsCollectionView;
 
 @property (weak, nonatomic) IBOutlet MSFSlider *moneySlider;
-@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
+//@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
 @property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
 @property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
 @property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
@@ -118,7 +118,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
 	
-	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
+	//RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
