@@ -35,6 +35,7 @@ it(@"should initialize", ^{
   expect(viewModel.name).to(equal(@""));
   expect(viewModel.card).to(equal(@""));
   expect(viewModel.expired).to(beAKindOf(NSDate.class));
+	expect(viewModel.services).notTo(beNil());
 });
 
 it(@"should can execute valid", ^{
