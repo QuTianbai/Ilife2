@@ -358,7 +358,6 @@
 		49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22591B062AF200DD4483 /* MSFAgreement.m */; };
 		49DA22651B062AF200DD4483 /* MSFClient+Captcha.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */; };
 		49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225D1B062AF200DD4483 /* MSFClient+Users.m */; };
-		49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225F1B062AF200DD4483 /* MSFEntity.m */; };
 		49DA22681B062AF200DD4483 /* MSFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22611B062AF200DD4483 /* MSFUser.m */; };
 		49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22631B062AF200DD4483 /* MSFUtils.m */; };
 		49DAEE7C1B2E83D7009433C5 /* product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7B1B2E83D7009433C5 /* product.storyboard */; };
@@ -1055,8 +1054,6 @@
 		49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Captcha.m"; sourceTree = "<group>"; };
 		49DA225C1B062AF200DD4483 /* MSFClient+Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Users.h"; sourceTree = "<group>"; };
 		49DA225D1B062AF200DD4483 /* MSFClient+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Users.m"; sourceTree = "<group>"; };
-		49DA225E1B062AF200DD4483 /* MSFEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEntity.h; sourceTree = "<group>"; };
-		49DA225F1B062AF200DD4483 /* MSFEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEntity.m; sourceTree = "<group>"; };
 		49DA22601B062AF200DD4483 /* MSFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUser.h; sourceTree = "<group>"; };
 		49DA22611B062AF200DD4483 /* MSFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUser.m; sourceTree = "<group>"; };
 		49DA22621B062AF200DD4483 /* MSFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtils.h; sourceTree = "<group>"; };
@@ -1814,7 +1811,6 @@
 				49CCFBFB1B072EAF008A9CD1 /* Cash */,
 				49CCFBFA1B072EA6008A9CD1 /* Adver */,
 				49DA226E1B062B2600DD4483 /* Agreement */,
-				49DA226D1B062B1B00DD4483 /* Entity */,
 				49DA226C1B062B1100DD4483 /* Captcha */,
 				49DA226B1B062B0300DD4483 /* Users */,
 				C71884301B06EDBF00C25955 /* According to the amount of nper list */,
@@ -2428,15 +2424,6 @@
 				49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */,
 			);
 			name = Captcha;
-			sourceTree = "<group>";
-		};
-		49DA226D1B062B1B00DD4483 /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-				49DA225E1B062AF200DD4483 /* MSFEntity.h */,
-				49DA225F1B062AF200DD4483 /* MSFEntity.m */,
-			);
-			name = Entity;
 			sourceTree = "<group>";
 		};
 		49DA226E1B062B2600DD4483 /* Agreement */ = {
@@ -3432,7 +3419,6 @@
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
-				49DA22671B062AF200DD4483 /* MSFEntity.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
 				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,

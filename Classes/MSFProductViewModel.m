@@ -26,6 +26,8 @@
 #import "MSFTeams.h"
 #import "SVProgressHUD.h"
 
+#import "MSFClient+Users.h"
+
 @interface MSFProductViewModel ()
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;

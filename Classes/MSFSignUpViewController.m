@@ -82,16 +82,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
       textField.text = [textField.text substringToIndex:16];
     }
   }];
-	[self.captcha.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		self.viewModel.captcha = x;
-	}];
+	
   [[self.captcha rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
     if (textField.text.length > 6) {
       textField.text = [textField.text substringToIndex:6];
     }
+		self.viewModel.captcha = textField.text;
   }];
+	[self.captcha.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		self.viewModel.captcha = x;
+	}];
 	[RACObserve(self.viewModel, counter) subscribeNext:^(id x) {
 		@strongify(self)
 		self.counterLabel.text = x;

@@ -26,7 +26,6 @@
 	[dict removeObjectForKey:@"loanId"];
 	[dict removeObjectForKey:@"objectID"];
 	[dict setValue:model.loanId forKey:@"id"];
-	
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	NSDictionary *paramDict = [NSDictionary dictionaryWithObject:jsonStr forKey:@"loans"];
