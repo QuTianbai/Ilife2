@@ -308,7 +308,7 @@ static BOOL isRunningTests(void) {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"username"] = name;
 	parameters[@"id_card"] = idcard;
-	parameters[@"expire"] = !session?[NSDateFormatter msf_stringFromDate:date]:@"";
+	parameters[@"expire"] = !session ? [NSDateFormatter msf_stringFromDate:date] : @"";
 	parameters[@"valid_for_lifetime"] = @(session);
 	parameters[@"bank_card_number"] = [card stringByReplacingOccurrencesOfString:@" " withString:@""];
 	parameters[@"bankCode"] = bankCode;

@@ -1,12 +1,14 @@
 //
-// MSFWPTextField.m
+//  MSFBPTextField.m
+//  Finance
 //
-// Copyright (c) 2015 Zēng Liàng. All rights reserved.
+//  Created by tian.xu on 15/8/13.
+//  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFWPTextField.h"
+#import "MSFBPTextField.h"
 
-@implementation MSFWPTextField
+@implementation MSFBPTextField
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
 	if (!(self = [super initWithCoder:aDecoder])) {
@@ -28,7 +30,12 @@
 
 - (void)commonInit {
 	self.attributedPlaceholder = [[NSAttributedString alloc] initWithString:self.placeholder
-	 attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
+	attributes:@{NSForegroundColorAttributeName: [UIColor grayColor]}];
 }
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+	return NO;
+}
+
 
 @end

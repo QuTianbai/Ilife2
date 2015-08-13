@@ -5,8 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
-IB_DESIGNABLE
 
 @interface MSFWPTextField : UITextField
-@property (IBInspectable) BOOL disablePaste;
+
 @end
