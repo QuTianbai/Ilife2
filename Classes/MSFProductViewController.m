@@ -295,7 +295,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
            [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
           self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
           break;
-        }
+				} else if (i == [self.selectViewModel numberOfItemsInSection:0] - 1) {
+					[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+					self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+				}
       }
     }
     
