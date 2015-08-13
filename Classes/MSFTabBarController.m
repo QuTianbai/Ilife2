@@ -139,14 +139,7 @@
     MSFProductViewController *productViewcontroller = navigationController.viewControllers.firstObject;
     [productViewcontroller setEmptyMoney];
 		self.viewModel.formsViewModel.active = YES;
-    if (self.viewModel.formsViewModel.pending) {
-			[[[UIAlertView alloc] initWithTitle:@"提示"
-																	message:@"您的提交的申请已经在审核中，请耐心等待!"
-																 delegate:nil
-												cancelButtonTitle:@"确认"
-												otherButtonTitles:nil] show];
-      return NO;
-    }
+    
   }
 	
   return YES;
