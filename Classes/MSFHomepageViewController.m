@@ -64,6 +64,8 @@
 			execute:nil]
 			subscribeNext:^(id x) {
 				[self.collectionView.pullToRefreshView stopAnimating];
+			} error:^(NSError *error) {
+				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
 }
