@@ -220,27 +220,8 @@
 			}]];
 			return nil;
 		}
-//		if (self.formsViewModel.pending) {
-//			[[[UIAlertView alloc] initWithTitle:@"提示"
-//																	message:@"您的提交的申请已经在审核中，请耐心等待!"
-//																 delegate:nil
-//												cancelButtonTitle:@"确认"
-//												otherButtonTitles:nil] show];
-//			return nil;
-//		}
-		[[self.services.httpClient checkUserHasCredit] subscribeNext:^(MSFResponse *response) {
-			if ([response.parsedResult[@"processing"] boolValue]) {
-				[[[UIAlertView alloc] initWithTitle:@"提示"
-																		message:@"您的提交的申请已经在审核中，请耐心等待!"
-																	 delegate:nil
-													cancelButtonTitle:@"确认"
-													otherButtonTitles:nil] show];
-			} else {
-				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
-				[self.services pushViewModel:viewModel];
-				
-			}
-		}];
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
+		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
 	}];
