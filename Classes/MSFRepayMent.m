@@ -15,6 +15,8 @@
 						 @"repaymentID": @"repayment_id",
 						 @"expireDate": @"expire_date",
 						 @"allAmount": @"amount",
+						 @"contractStatus" : @"contract_status",
+						 @"repaymentStatus" : @"repayment_status"
 						 };
 }
 

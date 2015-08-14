@@ -7,6 +7,10 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 
+@interface MSFHomepageDisplayModel : NSObject
+
+@end
+
 @class RACCommand;
 @class MSFBannersViewModel;
 

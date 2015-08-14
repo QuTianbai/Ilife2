@@ -42,8 +42,8 @@
 		return statusValues[status];
 	}];
 	
-	RAC(self, applyDate) = [RACObserve(model, apply_time) map:^id(NSDate *date){
-		return [NSDateFormatter msf_Chinese_stringFromDate:date];
+	RAC(self, applyDate) = [RACObserve(model, apply_time) map:^id(id date){
+		return [NSDateFormatter msf_Chinese_stringFromDateString:date];
 	}];
 	RAC(self, title) = [RACObserve(model, status) map:^id(id value) {
 		return [value integerValue] > 4 ? @"贷款处理状态" :@"贷款申请状态";

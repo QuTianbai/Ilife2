@@ -32,4 +32,7 @@
 + (UIColor *)fontHighlightedColor;
 + (UIColor *)fontNormalColor;
 
+//新主题色
++ (UIColor *)themeColorNew;
+
 @end

@@ -62,6 +62,7 @@
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
+		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
 		1077330E1B79944500F3BAA6 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 1077330D1B79944500F3BAA6 /* home-banner-pl.png */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
@@ -651,6 +652,8 @@
 		07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyInfo.m"; sourceTree = "<group>"; };
 		07FE07321B0740ED00484069 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0C902AAFF4566E5C3F86DCD0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		105E839A1B7E074500E821CB /* MSFRepaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentViewModel.h; sourceTree = "<group>"; };
+		105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentViewModel.m; sourceTree = "<group>"; };
 		1077330D1B79944500F3BAA6 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
@@ -2052,6 +2055,8 @@
 			children = (
 				498113CB1B1C4242003D1B7A /* MSFHomepageViewModel.h */,
 				498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */,
+				105E839A1B7E074500E821CB /* MSFRepaymentViewModel.h */,
+				105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */,
 			);
 			name = HomePage;
 			sourceTree = "<group>";
@@ -3385,6 +3390,7 @@
 				C7B977FE1B08C568005F247C /* MSFRepaymentTableViewCell.m in Sources */,
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
 				499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */,
+				105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */,
 				49CBDD9C1B0DD904009EF662 /* MSFBannersViewController.m in Sources */,
 				491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */,
 				495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */,
