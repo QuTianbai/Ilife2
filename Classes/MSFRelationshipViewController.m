@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 
 @interface MSFRelationshipViewController ()<ABPeoplePickerNavigationControllerDelegate,
 ABPersonViewControllerDelegate>
-
+@property (nonatomic,copy) NSString *currendAddress;
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) MSFSelectKeyValues *selectKeyValues;
 /**
@@ -176,13 +176,16 @@ ABPersonViewControllerDelegate>
 	[self.telTF.rac_textSignal subscribe:member1PhoneChannel];
 	RACChannelTerminal *member1AddressChannel = RACChannelTo(self.viewModel.model, memberAddress);
 	RAC(self.diffCurrentTF, text) = member1AddressChannel;
+	self.currendAddress = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.viewModel.model.currentProvince,self.viewModel.model.currentCity,self.viewModel.model.currentCountry,self.viewModel.model.currentTown,self.viewModel.model.currentStreet,self.viewModel.model.currentCommunity,self.viewModel.model.currentApartment];
+	self.diffCurrentTF.text = self.currendAddress;
 	[self.diffCurrentTF.rac_textSignal subscribe:member1AddressChannel];
 	self.diffCurrentTF.enabled = !self.isSameCurrentSW.on;
 	[self.isSameCurrentSW.rac_newOnChannel subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.diffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
-			self.diffCurrentTF.text = self.viewModel.model.currentAddress;
+			self.diffCurrentTF.text = self.currendAddress;
+			//self.diffCurrentTF.text = self.viewModel.model.currentAddress;
 		} else {
 			self.diffCurrentTF.text = @"";
 		}
@@ -214,6 +217,7 @@ ABPersonViewControllerDelegate>
 	 }];
 	[self.num2TelTF.rac_textSignal subscribe:member2PhoneChannel];
 	RACChannelTerminal *member2AddressChannel = RACChannelTo(self.viewModel.model, memberAddress2);
+	self.num2DiffCurrentTF.text = self.currendAddress;
 	RAC(self.num2DiffCurrentTF, text) = member2AddressChannel;
 	[self.num2DiffCurrentTF.rac_textSignal subscribe:member2AddressChannel];
 	self.num2DiffCurrentTF.enabled = !self.num2IsSameCurrentSW.on;
@@ -221,7 +225,8 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.num2DiffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
-			self.num2DiffCurrentTF.text = self.viewModel.model.currentAddress;
+			self.num2DiffCurrentTF.text = self.currendAddress;
+			//self.num2DiffCurrentTF.text = self.viewModel.model.currentAddress;
 		} else {
 			self.num2DiffCurrentTF.text = @"";
 		}
