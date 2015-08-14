@@ -36,10 +36,21 @@
 #import <KGModal/KGModal.h>
 #import <ZSWTappableLabel/ZSWTappableLabel.h>
 #import <ZSWTaggedString/ZSWTaggedString.h>
+#import "MSFDeviceGet.h"
+
+//static NSString *const DeviceModel = [UIDevice currentDevice].model;
+static const CGFloat heightOfAboveCell = 259;//上面cell总高度
+static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
+static const CGFloat heightOfRepayView = 90;//预计每期还款金额的高度
+static const CGFloat heightOfPlace = 30;//button与下方tabbar的空白高度
+static const CGFloat heightOfButton = 44;
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
+@property (weak, nonatomic) IBOutlet UIView *footerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *repayConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *footerVer;
 @property (weak, nonatomic) IBOutlet UILabel *moneyInsuranceLabel;
 @property (weak, nonatomic) IBOutlet UIView *repayMoneyBackgroundView;
 @property (nonatomic, assign) BOOL isSelectedRow;
@@ -52,7 +63,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 //@property (nonatomic,strong) UICollectionView *periodsCollectionView;
 
 @property (weak, nonatomic) IBOutlet MSFSlider *moneySlider;
-@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
+//@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
 @property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
 @property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
 @property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
@@ -80,13 +91,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return nil;
   }
 	_viewModel = viewModel;
-  
+	
   return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
   @weakify(self)
+	DeviceTypeNum deviceType = [MSFDeviceGet deviceNum];
+	if (litter6 & deviceType) {
+		self.repayConstraint.constant = 40;
+		self.footerVer.constant = 40;
+	} else if (bigger6 & deviceType) {
+		self.footerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - heightOfAboveCell  - heightOfNavigationANDTabbar - heightOfPlace);
+		self.footerVer.constant = 0;
+		self.repayConstraint.constant = ([UIScreen mainScreen].bounds.size.height - heightOfAboveCell - heightOfPlace - heightOfButton - heightOfNavigationANDTabbar - heightOfRepayView ) / 2;
+	}
+	
   [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(id x) {
@@ -118,7 +139,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
 	
-	RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
+	//RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
@@ -224,6 +245,16 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//	DeviceTypeNum deviceType = [MSFDeviceGet deviceNum];
+//	if (bigger6 & deviceType) {
+//		return 328;
+//	} else {
+//		return 228;
+//	}
+//	
+//}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -304,7 +335,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
            [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
           self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
           break;
-        }
+				} else if (i == [self.selectViewModel numberOfItemsInSection:0] - 1) {
+					[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+					self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+				}
       }
     }
     
@@ -327,5 +361,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)tappableLabel:(ZSWTappableLabel *)tappableLabel tappedAtIndex:(NSInteger)idx withAttributes:(NSDictionary *)attributes {
 }
+
+
 
 @end

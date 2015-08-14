@@ -67,7 +67,7 @@
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[authSignal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"您已通过实名认证"];
+			[SVProgressHUD showSuccessWithStatus:@"恭喜,您的实名认证已通过!"];
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
 		}];
 	}];

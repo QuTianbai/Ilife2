@@ -26,6 +26,7 @@
 		07BDE4CC1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BDE4CB1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m */; };
 		07BE0E741B0D8D2B00D11F1A /* MSFTeams.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C924E71B0CB81000FA73BD /* MSFTeams.m */; };
 		07BF58861B06DECF00120D93 /* adver.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58851B06DECF00120D93 /* adver.json */; };
+		07BFC90A1B7D962D00F9A1BA /* MSFDeviceGet.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */; };
 		07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C06C3C1B121D2E00F2DFCC /* MSFAreas.m */; };
 		07C06C501B1344AA00F2DFCC /* moneyUse.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C4F1B1344AA00F2DFCC /* moneyUse.json */; };
 		07C06C521B1345A300F2DFCC /* installments.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C511B1345A300F2DFCC /* installments.json */; };
@@ -596,6 +597,8 @@
 		07BDE4CB1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFPhotoStatus.m"; sourceTree = "<group>"; };
 		07BF58851B06DECF00120D93 /* adver.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = adver.json; sourceTree = "<group>"; };
 		07BF58921B06E38600120D93 /* applycash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applycash.json; sourceTree = "<group>"; };
+		07BFC9081B7D962D00F9A1BA /* MSFDeviceGet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDeviceGet.h; sourceTree = "<group>"; };
+		07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDeviceGet.m; sourceTree = "<group>"; };
 		07C06C3B1B121D2E00F2DFCC /* MSFAreas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAreas.h; sourceTree = "<group>"; };
 		07C06C3C1B121D2E00F2DFCC /* MSFAreas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAreas.m; sourceTree = "<group>"; };
 		07C06C4F1B1344AA00F2DFCC /* moneyUse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moneyUse.json; sourceTree = "<group>"; };
@@ -2256,6 +2259,8 @@
 				10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */,
 				49679CB91B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.h */,
 				49679CBA1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m */,
+				07BFC9081B7D962D00F9A1BA /* MSFDeviceGet.h */,
+				07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3317,6 +3322,7 @@
 				07CB4C7F1B104944006C220E /* MSFProfessionalViewController.m in Sources */,
 				49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */,
 				49C7CB9D1B049CDD00EF5A68 /* MSFReleaseNote.m in Sources */,
+				07BFC90A1B7D962D00F9A1BA /* MSFDeviceGet.m in Sources */,
 				49CCFBF41B072EA4008A9CD1 /* MSFAdver.m in Sources */,
 				498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */,
 				49CCFBD81B07233F008A9CD1 /* MSFSettingsViewController.m in Sources */,

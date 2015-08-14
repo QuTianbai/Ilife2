@@ -33,9 +33,16 @@
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
 	if ([self.delegate respondsToSelector:@selector(startSliding)]) {
+		NSLog(@"slder");
 		[self.delegate startSliding];
 	}
+	
 	return YES;
+}
+
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+	NSLog(@"slder1");
+	[self sliderGragUp:self];
 }
 
 - (void)customSlider {
@@ -66,8 +73,9 @@
   [self setThumbImage:thumbImage forState:UIControlStateNormal];
   
   [self addTarget:self action:@selector(slideerValueChanged:) forControlEvents:UIControlEventValueChanged];
-  [self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpInside];
-  
+  //[self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpOutside];
+//	[self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpInside];
+	
 }
 
 - (void)slideerValueChanged:(UISlider *)slider {
@@ -75,6 +83,7 @@
 }
 
 - (void)sliderGragUp:(UISlider *)slider {
+	NSLog(@"slider3");
   if ([self.delegate respondsToSelector:@selector(getStringValue:)]) {
     [self.delegate getStringValue:[NSString stringWithFormat:@"%d", (int)slider.value / 100 * 100]];
   }
