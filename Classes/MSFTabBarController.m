@@ -139,7 +139,6 @@
     MSFProductViewController *productViewcontroller = navigationController.viewControllers.firstObject;
     [productViewcontroller setEmptyMoney];
 		self.viewModel.formsViewModel.active = YES;
-    
   }
 	
   return YES;
