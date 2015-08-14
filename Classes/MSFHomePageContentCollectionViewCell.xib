@@ -46,8 +46,8 @@
                                 <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015年5月25日     |     9个月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVN-1q-TlX">
-                                <rect key="frame" x="87" y="266" width="178.5" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015年5月25日     |     9个月" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVN-1q-TlX">
+                                <rect key="frame" x="8" y="266" width="337" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -59,11 +59,13 @@
                             <constraint firstAttribute="centerX" secondItem="juA-PJ-DxE" secondAttribute="centerX" id="3Hf-8O-so1"/>
                             <constraint firstAttribute="centerY" secondItem="juA-PJ-DxE" secondAttribute="centerY" constant="-15" id="At4-oF-5sb"/>
                             <constraint firstAttribute="centerX" secondItem="gVN-1q-TlX" secondAttribute="centerX" id="EDA-ZI-obO"/>
+                            <constraint firstAttribute="trailing" secondItem="gVN-1q-TlX" secondAttribute="trailing" constant="8" id="Gfz-hX-4dF"/>
                             <constraint firstAttribute="centerX" secondItem="QkP-8q-kE0" secondAttribute="centerX" id="IfW-Ae-7Z2"/>
                             <constraint firstItem="QkP-8q-kE0" firstAttribute="top" secondItem="f0e-uZ-TFK" secondAttribute="bottom" constant="20" id="NST-a6-ore"/>
                             <constraint firstItem="juA-PJ-DxE" firstAttribute="top" secondItem="QkP-8q-kE0" secondAttribute="bottom" constant="15" id="VmE-pb-HVy"/>
                             <constraint firstAttribute="centerX" secondItem="f0e-uZ-TFK" secondAttribute="centerX" id="Xdv-Mf-p5y"/>
                             <constraint firstItem="juA-PJ-DxE" firstAttribute="leading" secondItem="k7y-dR-6kX" secondAttribute="trailing" id="Xtl-gz-Aom"/>
+                            <constraint firstItem="gVN-1q-TlX" firstAttribute="leading" secondItem="bS2-FN-dOQ" secondAttribute="leading" constant="8" id="cgT-49-SJJ"/>
                             <constraint firstAttribute="centerY" secondItem="k7y-dR-6kX" secondAttribute="centerY" constant="-16" id="iYI-dq-scl"/>
                         </constraints>
                     </view>
