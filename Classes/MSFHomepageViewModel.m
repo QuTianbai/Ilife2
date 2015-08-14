@@ -15,8 +15,6 @@
 #import "MSFBannersViewModel.h"
 #import "MSFApplyList.h"
 
-
-
 @interface MSFHomepageViewModel ()
 
 @property (nonatomic, readwrite) NSArray *viewModels;
