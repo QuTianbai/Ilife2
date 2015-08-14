@@ -9,7 +9,7 @@
         <scene sceneID="CJb-fS-o2R">
             <objects>
                 <tableViewController storyboardIdentifier="page1" id="e6S-hE-cme" customClass="MSFProductViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ogf-29-YCd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ogf-29-YCd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -78,7 +78,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaO-by-3e5" customClass="MSFEdgeButton">
-                                    <rect key="frame" x="10" y="184" width="300" height="44"/>
+                                    <rect key="frame" x="10" y="144" width="300" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="23j-ba-cDM"/>
                                     </constraints>
@@ -92,7 +92,7 @@
                                 <constraint firstAttribute="centerX" secondItem="rAM-Hj-ofJ" secondAttribute="centerX" id="Bct-Cc-y2F"/>
                                 <constraint firstItem="dE5-fc-Du5" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" constant="15" id="Bze-V9-VDT"/>
                                 <constraint firstItem="rAM-Hj-ofJ" firstAttribute="top" secondItem="CS3-WP-hrb" secondAttribute="bottom" constant="40" id="Eaf-5F-6pq"/>
-                                <constraint firstAttribute="bottom" secondItem="xaO-by-3e5" secondAttribute="bottom" id="IS7-uJ-Hev"/>
+                                <constraint firstAttribute="bottom" secondItem="xaO-by-3e5" secondAttribute="bottom" constant="40" id="IS7-uJ-Hev"/>
                                 <constraint firstAttribute="trailing" secondItem="826-SW-x5j" secondAttribute="trailing" constant="10" id="IXb-Ue-jal"/>
                                 <constraint firstAttribute="trailing" secondItem="CS3-WP-hrb" secondAttribute="trailing" id="Mwr-8E-qOn"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ddS-PJ-7S2"/>
@@ -266,6 +266,8 @@
                     <navigationItem key="navigationItem" id="wFA-RZ-Eut"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="footerVer" destination="IS7-uJ-Hev" id="Ui6-o2-A4s"/>
+                        <outlet property="footerView" destination="h0b-Vw-fP4" id="6ii-vk-2c8"/>
                         <outlet property="isInLifeInsurancePlaneSW" destination="BWq-ao-haB" id="ulE-Ua-WJS"/>
                         <outlet property="lifeInsuranceButton" destination="5Q7-j3-dwM" id="gbU-Cd-UfT"/>
                         <outlet property="moneyCell" destination="T3d-Nm-rQd" id="sUJ-r1-FMv"/>
@@ -275,6 +277,7 @@
                         <outlet property="moneyUsesTF" destination="msP-ti-bA9" id="huV-up-353"/>
                         <outlet property="monthCollectionView" destination="RE3-Es-42M" id="o4H-0C-hIT"/>
                         <outlet property="nextPageBT" destination="xaO-by-3e5" id="olV-kQ-qAF"/>
+                        <outlet property="repayConstraint" destination="Eaf-5F-6pq" id="D30-hf-Y7r"/>
                         <outlet property="repayMoneyBackgroundView" destination="rAM-Hj-ofJ" id="aWr-xC-1Ra"/>
                         <outlet property="repayMoneyMonth" destination="v6U-t7-RUX" id="kNG-N6-ouA"/>
                     </connections>
