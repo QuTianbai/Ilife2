@@ -27,8 +27,6 @@ reuseIdentifier {
     _moneyLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
     _monthsLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
     _timeLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-    _checkLabel.titleLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-    
     
     _moneyLabel.font = [UIFont systemFontOfSize:13];
     _monthsLabel.font = [UIFont systemFontOfSize:13];

@@ -23,7 +23,8 @@
 
 #import "MSFCommandView.h"
 
-#define CELLBACKGROUNDCOLOR @"dce6f2"
+#define BLUETCOLOR @"#0babed"
+#define BLACKCOLOR @"#585858"
 
 @interface MSFContractDetailsTableViewController ()
 
@@ -81,12 +82,19 @@
 	
 	MSFPlanPerodicTables *ppt = self.objects[indexPath.row];
 	if (indexPath.row == 0) {
+		cell.asOfDateLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+		cell.shouldAmountLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+		cell.paymentLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+		cell.stateLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
 		[cell.asOfDateLabel setText:@"截止日期"];
 		[cell.shouldAmountLabel setText:@"应还金额"];
 		[cell.paymentLabel setText:@"款项"];
 		[cell.stateLabel setText:@"状态"];
-		cell.backgroundColor = [MSFCommandView getColorWithString:CELLBACKGROUNDCOLOR];
 	} else {
+		cell.asOfDateLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
+		cell.shouldAmountLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
+		cell.paymentLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
+		cell.stateLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
 		NSDate *time = [NSDateFormatter msf_dateFromString:ppt.repaymentTime];
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		df.dateFormat = @"yyyy/MM/dd";

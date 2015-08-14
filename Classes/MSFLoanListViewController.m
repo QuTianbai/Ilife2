@@ -21,8 +21,8 @@
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 
-#define BLUETCOLOR @"0babed"
-
+#define ORAGECOLOR @"ff6600"
+#define BLUECOLOR @"#0babed"
 @interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *dataTableView;
@@ -87,8 +87,6 @@
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
 	
-//	cell.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.03];
-	
 	cell.selected = NO;
 	cell.selectionStyle = UITableViewCellAccessoryNone;
 	_dataTableView.allowsSelection = NO;
@@ -100,7 +98,7 @@
 	[cell.timeLabel setTextAlignment:NSTextAlignmentCenter];
 	
 	cell.moneyLabel.text = listModel.total_amount;
-	cell.monthsLabel.text = [NSString stringWithFormat:@"%ld", (long)listModel.total_installments];
+	cell.monthsLabel.text = [NSString stringWithFormat:@"%@期", listModel.total_installments];
 	
 	NSString *df = [NSDateFormatter msf_stringFromDate:listModel.apply_time];
 	
@@ -108,17 +106,12 @@
 	
 	NSNumber *checkNum = listModel.status;
 	
-	if ([checkNum integerValue] != 4 || [checkNum integerValue] != 6 ||[checkNum integerValue] != 7) {
+	if ([checkNum integerValue] == 4 || [checkNum integerValue] == 6 ||[checkNum integerValue] == 7) {
 		[cell.checkLabel setEnabled:YES];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:BLUETCOLOR] forState:UIControlStateNormal];
-	}
-	if ([checkNum integerValue] == 0 || [checkNum integerValue] == 1) {
-		[cell.checkLabel setEnabled:NO];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:@""] forState:UIControlStateNormal];
-		
+		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:ORAGECOLOR] forState:UIControlStateNormal];
 	} else {
 		[cell.checkLabel setEnabled:NO];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:BLUETCOLOR] forState:UIControlStateNormal];
+		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:@"#585858"] forState:UIControlStateNormal];
 	}
 	
 	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
@@ -222,10 +215,10 @@
 	
 	UIView *superView = _dataTableView.tableHeaderView;
 	
-	_money.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
-	_months.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
-	_time.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
-	_check.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
+	_money.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	_months.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	_time.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+	_check.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
 	
 	_money.text = @"金额";
 	_months.text = @"期数";

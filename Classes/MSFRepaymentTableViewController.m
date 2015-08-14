@@ -26,7 +26,6 @@
 
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define BLUETCOLOR @"0babed"
-
 @interface MSFRepaymentTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
@@ -95,9 +94,7 @@
 		
 	}
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
-	[cell setBackgroundColor:[MSFCommandView getColorWithString:CELLBACKGROUNDCOLOR]];
-	
+
 	_rs = self.objects[indexPath.row];
 	
 	NSDate *time = [NSDateFormatter msf_dateFromString:_rs.repaymentTime];
@@ -106,7 +103,7 @@
 	
 	cell.contractNumLabel.text = _rs.contractNum;
 	cell.contractStatusLabel.text = _rs.contractStatus;
-	cell.shouldAmountLabel.text = [NSString stringWithFormat:@".2%f", _rs.repaymentTotalAmount];
+	cell.shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", _rs.repaymentTotalAmount];
 	cell.asOfDateLabel.text = [df stringFromDate:time];
 	
 	return cell;
