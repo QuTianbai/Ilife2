@@ -26,6 +26,7 @@
 #import "MSFTeams.h"
 #import "SVProgressHUD.h"
 
+#import "MSFClient+MSFApplyInfo.h"
 #import "MSFClient+Users.h"
 
 @interface MSFProductViewModel ()
@@ -111,15 +112,9 @@
   RAC(self, minMoney) = RACObserve(self.formsViewModel.market, allMinAmount);
                          
   RAC(self, maxMoney) = RACObserve(self.formsViewModel.market, allMaxAmount);
-	RAC(self, totalAmountPlacholder) = [RACSignal combineLatest:@[
-		RACObserve(self.formsViewModel.market, allMinAmount),
-		RACObserve(self.formsViewModel.market, allMaxAmount),
-	] reduce:^id(NSString *min, NSString *max) {
-		return min.integerValue != 0 ? [NSString stringWithFormat:@"请输入%@-%@之间的数字", min,max] : @"请输入贷款金额";
-	}];
 	
 	RAC(self, termAmountText) = [RACObserve(self, termAmount) map:^id(NSNumber *value) {
-		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"-.--";
+		return value.integerValue != 0 ? [NSString stringWithFormat:@"%.2f", value.doubleValue] : @"0.00";
 	}];
 	RAC(self, purposeText) = [RACObserve(self, purpose) map:^id(id value) {
 		return [value text];
@@ -220,11 +215,44 @@
 			}]];
 			return nil;
 		}
+		[[[self.services.httpClient checkUserHasCredit] zipWith:[self.services.httpClient fetchApplyInfo]] subscribeNext:^(RACTuple *applyInfoANDisHasCredut) {
+			RACTupleUnpack(MSFResponse *response, MSFApplicationForms *applyInfo) = applyInfoANDisHasCredut;
+			if ([response.parsedResult[@"processing"] boolValue]) {
+				[[[UIAlertView alloc] initWithTitle:@"提示"
+																		message:@"您的提交的申请已经在审核中，请耐心等待!"
+																	 delegate:nil
+													cancelButtonTitle:@"确认"
+													otherButtonTitles:nil] show];
+			} else {
+//				applyInfo.principal = self.formsViewModel.model.principal;
+//				applyInfo.tenor = self.formsViewModel.model.tenor;
+//				applyInfo.usageCode = self.formsViewModel.model.tenor;
+//				applyInfo
+				
+//				NSSet *propertyKeys = model.class.propertyKeys;
+//				for (NSString *key in self.class.propertyKeys) {
+//					if (![propertyKeys containsObject:key]) continue;
+//					
+//					[self mergeValueForKey:key fromModel:model];
+//				}
+				[self setModelData:applyInfo with:self.formsViewModel.model];
+				[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
 		[self.services pushViewModel:viewModel];
+				
+			}
+		}];
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+- (void)setModelData:(MSFApplicationForms *)model with:(MSFApplicationForms *)Reginmodel {
+	NSArray *proArray = @[@"principal", @"usageCode", @"tenor", @"isSafePlan", @"productId", @"productName", @"proGroupId", @"proGroupName", @"productGroupCode", @"repayMoneyMonth", @"monthlyInterestRate", @"monthlyFeeRate"];
+	for (NSString *key in proArray) {
+		[model mergeValueForKey:key fromModel:Reginmodel];
+	}
+	
 }
 
 - (void)setSVPBackGround {
