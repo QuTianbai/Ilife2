@@ -9,7 +9,7 @@
 #import "MSFTradeTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
-
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFTrade.h"
 #import "MSFClient+Trades.h"
 
@@ -101,9 +101,12 @@
 		[cell.date setFont:[UIFont systemFontOfSize:14]];
 		[cell.amount setFont:[UIFont systemFontOfSize:14]];
 		[cell.tradeDescription setFont:[UIFont systemFontOfSize:14]];
-		cell.date.text = [NSString stringWithFormat:@"%@", trade.tradeDate];
+		
+		NSString *df = [NSDateFormatter msf_stringFromDate:trade.tradeDate];
+		
+		cell.date.text = df;
 		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
-		cell.amount.text = [NSString stringWithFormat:@"%.lf", trade.tradeAmount];
+		cell.amount.text = [NSString stringWithFormat:@"%@", trade.tradeAmount];
 		[cell setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.03]];
 	}
 
