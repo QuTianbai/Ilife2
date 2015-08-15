@@ -53,16 +53,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 	}];
-	[self.username.rac_textSignal subscribeNext:^(id x) {
+	[self.username.rac_textSignal subscribeNext:^(NSString *value) {
 		@strongify(self)
-		self.viewModel.username = x;
+		if (value.length > 11) {
+			value = [value substringToIndex:11];
+			self.username.text = value;
+		}
+		
+		self.viewModel.username = value;
 	}];
-  [[self.username rac_signalForControlEvents:UIControlEventEditingChanged]
-   subscribeNext:^(UITextField *textField) {
-     if (textField.text.length > 11) {
-       textField.text = [textField.text substringToIndex:11];
-     }
-   }];
 	[self.password.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.password = x;
