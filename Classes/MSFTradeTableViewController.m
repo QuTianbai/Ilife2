@@ -21,6 +21,7 @@
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define BLUETCOLOR @"0babed"
 #define BLACKCOLOR @"#585858"
+
 @interface MSFTradeTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
