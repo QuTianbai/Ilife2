@@ -20,7 +20,7 @@
 #import "MSFTradeTableViewCell.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define BLUETCOLOR @"0babed"
-
+#define BLACKCOLOR @"#585858"
 @interface MSFTradeTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
@@ -94,17 +94,18 @@
 		[cell setBackgroundColor:[UIColor whiteColor]];
 		
 	} else {
+		[cell.date setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
+		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
+		[cell.amount setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
 		
-		[cell.date setTextColor:[UIColor blackColor]];
-		[cell.tradeDescription setTextColor:[UIColor blackColor]];
-		[cell.amount setTextColor:[UIColor blackColor]];
 		[cell.date setFont:[UIFont systemFontOfSize:14]];
 		[cell.amount setFont:[UIFont systemFontOfSize:14]];
 		[cell.tradeDescription setFont:[UIFont systemFontOfSize:14]];
 		
-		NSString *df = [NSDateFormatter msf_stringFromDate:trade.tradeDate];
+		NSArray *df = [trade.tradeDate componentsSeparatedByString:@"T"];
 		
-		cell.date.text = df;
+		cell.date.text = [df.firstObject stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+		
 		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
 		cell.amount.text = [NSString stringWithFormat:@"%@", trade.tradeAmount];
 		[cell setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.03]];
