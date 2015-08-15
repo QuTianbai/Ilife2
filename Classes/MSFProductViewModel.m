@@ -227,8 +227,8 @@
 
 				[self setModelData:applyInfo with:self.formsViewModel.model];
 				[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
-				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
-				[self.services pushViewModel:viewModel];
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
+		[self.services pushViewModel:viewModel];
 				
 			}
 		}];
