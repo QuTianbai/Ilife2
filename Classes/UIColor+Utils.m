@@ -59,4 +59,8 @@
 	return [UIColor colorWithWhite:0.529 alpha:1.000];
 }
 
++ (UIColor *)themeColorNew {
+	return [UIColor colorWithHex:0x0BABED];
+}
+
 @end

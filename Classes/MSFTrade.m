@@ -7,6 +7,7 @@
 //
 
 #import "MSFTrade.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @implementation MSFTrade
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -18,16 +19,10 @@
 		};
 }
 
-+ (NSValueTransformer *)dateJSONTransformer {
-		return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
-				return num.stringValue;
-		} reverseBlock:^ id (NSString *str) {
-			if (str == nil) {
-			 return nil;
-			}
-				
-			return [NSDecimalNumber decimalNumberWithString:str];
-		}];
++ (NSValueTransformer *)tradeDateJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^(NSString *num) {
+		return [NSDateFormatter msf_dateFromString:num];
+	}];
 }
 
 @end

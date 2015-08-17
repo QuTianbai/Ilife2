@@ -82,7 +82,19 @@
 }
 
 - (BOOL)isPassword {
-	return self.length > 5 && self.length < 21;
+	BOOL lengValid = self.length > 7 && self.length < 17;
+	if (!lengValid) {
+		return NO;
+	}
+	
+	BOOL formValid = [self isFormValid];
+	return lengValid && formValid;
+}
+
+- (BOOL)isFormValid {
+	NSString *digitTrimming  = [self stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+	BOOL b =  digitTrimming.length > 0 && digitTrimming.length < self.length;
+	return b;
 }
 
 - (BOOL)isCaptcha {

@@ -39,10 +39,10 @@
 			@(MSFLoanStatusLoan): @"待放款",
 		};
 		
-		return statusValues[status];
+		return statusValues[@([status integerValue])];
 	}];
 	
-	RAC(self, applyDate) = [RACObserve(model, apply_time) map:^id(NSDate *date){
+	RAC(self, applyDate) = [RACObserve(model, apply_time) map:^id(id date){
 		return [NSDateFormatter msf_Chinese_stringFromDate:date];
 	}];
 	RAC(self, title) = [RACObserve(model, status) map:^id(id value) {
