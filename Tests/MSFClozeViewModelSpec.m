@@ -35,7 +35,7 @@ it(@"should initialize", ^{
   // then
   expect(viewModel.name).to(equal(@""));
   expect(viewModel.card).to(equal(@""));
-  expect(viewModel.expired).to(beAKindOf(NSDate.class));
+  expect(viewModel.expired).to(beNil());
 	expect(viewModel.services).notTo(beNil());
 });
 
@@ -97,7 +97,7 @@ it(@"should update identifier expired date", ^{
 	viewModel.expired = [NSDateFormatter msf_dateFromString:@"2015-07-01 16:30:00"];
 	
 	// then
-	expect(viewModel.expired1).to(equal(@"2015-07-01"));
+	expect([NSDateFormatter msf_stringFromDate:viewModel.expired]).to(equal(@"2015-07-01"));
 });
 
 it(@"should not parser nil date", ^{
@@ -105,7 +105,7 @@ it(@"should not parser nil date", ^{
 	viewModel.permanent = YES;
 	
 	// then
-	expect(viewModel.expired1).to(equal(@""));
+	expect(viewModel.expired).to(beNil());
 });
 
 QuickSpecEnd

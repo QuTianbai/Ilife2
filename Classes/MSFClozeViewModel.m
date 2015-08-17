@@ -31,9 +31,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	}
 	_name = @"";
 	_card = @"";
-	_expired = [NSDate date];
-  _expired1 = [NSDateFormatter msf_stringFromDate:_expired];
-  
+	
 	_bankNO = @"";
 	_bankAddress = @"";
 	_bankName = @"";
@@ -48,15 +46,6 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
     @strongify(self)
     return [self executeAuthSignal];
   }];
-	RAC(self, expired) =
-		[[[RACObserve(self, expired1)
-			ignore:nil]
-			filter:^BOOL(id value) {
-				return [value length] > 0;
-			}]
-			map:^id(id value) {
-				return [NSDateFormatter msf_dateFromString:value];
-			}];
 	
 	_executePermanent = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -109,7 +98,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
-  if (self.expired1.length ==0 && !self.permanent ) {
+  if (!self.expired && !self.permanent ) {
     error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
       NSLocalizedFailureReasonErrorKey: @"请选择身份证过期日期",
                                                                                     }];
@@ -136,7 +125,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	return [self.services.httpClient
 		realnameAuthentication:self.name
 		idcard:self.card
-          expire:[NSDateFormatter msf_dateFromString:self.expired1] == nil ? [NSDate date] : [NSDateFormatter msf_dateFromString:self.expired1]
+          expire:self.expired
 		session:self.permanent
 		province:self.addressViewModel.provinceCode
 		city:self.addressViewModel.cityCode
