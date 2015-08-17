@@ -56,28 +56,6 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	return self;
 }
 
-#pragma mark - Custom Accessors
-
-- (RACSignal *)authoriseValidSignal {
-	return [RACSignal
-		combineLatest:@[
-			RACObserve(self, name),
-			RACObserve(self, card),
-			RACObserve(self, bankName),
-			RACObserve(self, bankNO),
-			RACObserve(self, bankAddress),
-			]
-		reduce:^id( NSString *name, NSString *card, NSString *bankname, NSString *bankno, NSString *bankaddress) {
-			return @(
-				name.length > 0 &&
-				card.length > 0 &&
-				bankname.length > 0 &&
-				bankno.length > 0 &&
-				bankaddress.length > 0
-			);
-		}];
-}
-
 #pragma mark - Private
 
 - (RACSignal *)executeAuthSignal {

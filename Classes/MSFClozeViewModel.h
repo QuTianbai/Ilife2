@@ -49,9 +49,6 @@
 // Address Select ViewModel
 @property (nonatomic, strong, readonly) MSFAddressViewModel *addressViewModel;
 
-// Request valid signal
-- (RACSignal *)authoriseValidSignal;
-
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;

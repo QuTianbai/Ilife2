@@ -14,6 +14,7 @@
 #import "MSFSelectKeyValues.h"
 #import "MSFAddressViewModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFAreas.h"
 
 QuickSpecBegin(MSFClozeViewModelSpec)
 
@@ -37,23 +38,7 @@ it(@"should initialize", ^{
   expect(viewModel.card).to(equal(@""));
   expect(viewModel.expired).to(beNil());
 	expect(viewModel.services).notTo(beNil());
-});
-
-it(@"should can execute valid", ^{
-  // given
-  viewModel.name = @"xxx";
-  viewModel.card = @"111111111111111111";
-	viewModel.bankNO = @"xx";
-	viewModel.bankName = @"yy";
-	viewModel.bankAddress = @"zz";
- __block BOOL valid = NO;
-  // when
-  [viewModel.authoriseValidSignal subscribeNext:^(id x) {
-    valid = [x boolValue];
-  }];
-  
-  // then
-  expect(@(valid)).to(beTruthy());
+	expect(viewModel.addressViewModel).notTo(beNil());
 });
 
 it(@"should execute submit", ^{
@@ -106,6 +91,25 @@ it(@"should not parser nil date", ^{
 	
 	// then
 	expect(viewModel.expired).to(beNil());
+});
+
+it(@"should has address viewModel", ^{
+	// given
+	MSFAreas *provice = mock([MSFAreas class]);
+	stubProperty(provice, name, @"重庆");
+	stubProperty(provice, codeID, @"1");
+	MSFAreas *city = mock([MSFAreas class]);
+	stubProperty(city, name, @"重庆");
+	stubProperty(city, codeID, @"2");
+	
+	// when
+	RAC(viewModel.addressViewModel, province) = [RACSignal return:provice];
+	RAC(viewModel.addressViewModel, city) = [RACSignal return:city];
+	
+	// then
+	expect(viewModel.addressViewModel.provinceCode).to(equal(@"1"));
+	expect(viewModel.addressViewModel.cityCode).to(equal(@"2"));
+	expect(viewModel.bankAddress).to(equal(@"重庆"));
 });
 
 QuickSpecEnd
