@@ -39,6 +39,7 @@ it(@"should initialize", ^{
   expect(viewModel.expired).to(beNil());
 	expect(viewModel.services).notTo(beNil());
 	expect(viewModel.addressViewModel).notTo(beNil());
+	expect(viewModel.executeSelected).to(equal(viewModel.addressViewModel.selectCommand));
 });
 
 it(@"should execute submit", ^{
@@ -91,6 +92,14 @@ it(@"should not parser nil date", ^{
 	
 	// then
 	expect(viewModel.expired).to(beNil());
+});
+
+it(@"should update permanent status", ^{
+	// when
+	[viewModel.executePermanent execute:nil];
+	
+	// then
+	expect(@(viewModel.permanent)).to(beTruthy());
 });
 
 it(@"should has address viewModel", ^{
