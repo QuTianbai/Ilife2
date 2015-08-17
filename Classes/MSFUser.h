@@ -36,16 +36,6 @@
 @property (nonatomic, copy, readonly) NSURL *avatarURL;
 
 /**
- *	创建用户
- *
- *	@param name	 用户名，可以为 ""
- *	@param phone 用户手机号，必须
- *
- *	@return user
- */
-+ (instancetype)userWithName:(NSString *)name phone:(NSString *)phone __deprecated_msg("`Use -userWithServer:`");
-
-/**
  *	Create The user instance
  *
  *	@param server server
