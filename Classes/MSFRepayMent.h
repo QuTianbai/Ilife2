@@ -10,7 +10,9 @@
 
 @interface MSFRepayMent : MSFObject
 
-@property (nonatomic, copy, readonly) NSString *repaymentID;
+@property (nonatomic, copy, readonly) NSString *repaymentID;//首页接口中已废弃
+@property (nonatomic, assign, readonly) NSInteger contractStatus;
+@property (nonatomic, assign, readonly) BOOL repaymentStatus;
 @property (nonatomic, copy, readonly) NSString *expireDate;
 @property (nonatomic, assign, readonly) double allAmount;
 

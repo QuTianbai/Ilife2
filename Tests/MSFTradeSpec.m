@@ -23,9 +23,9 @@ beforeEach(^{
 });
 
 it(@"should has tradeDate tradeID tradeAmount tradeDescription", ^{
-    expect(trade.tradeDate).to(equal(@"20150516"));
+    expect(trade.tradeDate).to(beAKindOf([NSDate class]));
     expect(trade.tradeID).to(equal(@"1dafds782nj2"));
-    expect((trade.tradeAmount)).to(equal(@6000));
+    expect(@(trade.tradeAmount)).to(equal(@6000));
     expect(trade.tradeDescription).to(equal(@"借款六千元"));
     
 });

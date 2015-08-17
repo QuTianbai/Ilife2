@@ -7,6 +7,7 @@
 //
 
 #import "MSFRepayMent.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @implementation MSFRepayMent
 
@@ -15,7 +16,15 @@
 						 @"repaymentID": @"repayment_id",
 						 @"expireDate": @"expire_date",
 						 @"allAmount": @"amount",
+						 @"contractStatus" : @"contract_status",
+						 @"repaymentStatus" : @"repayment_status"
 						 };
+}
+
++ (NSValueTransformer *)expireDateJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(NSString *string) {
+		return [NSDateFormatter msf_Chinese_stringFromDateString:string];
+	}];
 }
 
 @end

@@ -103,12 +103,10 @@
 		[cell.amount setFont:[UIFont systemFontOfSize:14]];
 		[cell.tradeDescription setFont:[UIFont systemFontOfSize:14]];
 		
-		NSArray *df = [trade.tradeDate componentsSeparatedByString:@"T"];
-		
-		cell.date.text = [df.firstObject stringByReplacingOccurrencesOfString:@"-" withString:@"/"];
+		cell.date.text = [NSDateFormatter msf_stringFromDate:trade.tradeDate];
 		
 		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
-		cell.amount.text = [NSString stringWithFormat:@"%@", trade.tradeAmount];
+		cell.amount.text = [NSString stringWithFormat:@"%.2f", trade.tradeAmount];
 		[cell setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.03]];
 	}
 

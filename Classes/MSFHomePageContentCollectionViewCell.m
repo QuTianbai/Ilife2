@@ -9,6 +9,7 @@
 #import "MSFHomePageContentCollectionViewCell.h"
 #import <Masonry/Masonry.h>
 #import "MSFLoanViewModel.h"
+#import "MSFRepaymentViewModel.h"
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
 
@@ -36,19 +37,37 @@
 	self.placeholderShow = YES;
 }
 
-- (void)bindViewModel:(MSFLoanViewModel *)viewModel {
+- (void)bindViewModel:(id)viewModel {
 	if (viewModel) {
-		_titleLabel.text  = viewModel.title;
-		_statusLabel.text = viewModel.status;
-		_amountLabel.text = viewModel.mothlyRepaymentAmount;
-		
-		if ([viewModel.status isEqualToString:@"审核中"]) {
-			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyDate, viewModel.totalInstallments];
-		} else {
-			_infoLabel.text = nil;
+		if ([viewModel isKindOfClass:MSFLoanViewModel.class]) {
+			MSFLoanViewModel *model = viewModel;
+			_titleLabel.text  = model.title;
+			_statusLabel.text = model.status;
+			_amountLabel.text = model.totalAmount;
+			if ([model.status isEqualToString:@"审核中"]) {
+				_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
+			} else {
+				_infoLabel.text = nil;
+			}
+			[self placeholderShow:NO];
+			return;
+		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
+			MSFRepaymentViewModel *model = viewModel;
+			if (model.repaymentStatus) {
+				_titleLabel.text  = model.title;
+				_statusLabel.text = model.status;
+				_amountLabel.text = model.repaidAmount;
+				if ([model.status isEqualToString:@"还款中"]) {
+					_infoLabel.text = [NSString stringWithFormat:@"%@", model.expireDate];
+				} else if ([model.status isEqualToString:@"已逾期"]) {
+					[_infoLabel setText:@"您的合同已逾期\n请及时联系客服还款：400-036-8876" highLightText:@"已逾期" highLightColor:[UIColor themeColorNew]];
+				} else {
+					_infoLabel.text = nil;
+				}
+				[self placeholderShow:NO];
+				return;
+			}
 		}
-		[self placeholderShow:NO];
-		return;
 	}
 	[self placeholderShow:YES];
 }

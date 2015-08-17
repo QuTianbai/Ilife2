@@ -23,7 +23,7 @@ beforeEach(^{
 
 it(@"should has repaymentID expireDate allAmount", ^{
     expect(repayMent.repaymentID).to(equal(@"1dafds782nj6"));
-    expect(repayMent.expireDate).to(equal(@"2015-01-01T01:00:00Z"));
+    expect(repayMent.expireDate).to(equal(@"2015年01月01日"));
     expect(@(repayMent.allAmount)).to(equal(@197));
     
 });
