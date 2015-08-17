@@ -48,6 +48,7 @@ static const CGFloat heightOfButton = 44;
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *repayConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *footerVer;
@@ -108,6 +109,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.repayConstraint.constant = ([UIScreen mainScreen].bounds.size.height - heightOfAboveCell - heightOfPlace - heightOfButton - heightOfNavigationANDTabbar - heightOfRepayView ) / 2;
 	}
 	
+	self.warningLabel.numberOfLines = 0;
+	
   [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(id x) {
@@ -163,17 +166,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
-	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		if (self.viewModel.formsViewModel.pending) {
-			[[[UIAlertView alloc] initWithTitle:@"提示"
-																			message:@"您的提交的申请已经在审核中，请耐心等待!"
-																		 delegate:nil
-														cancelButtonTitle:@"确认"
-														otherButtonTitles:nil] show];
-		} else {
-			[self.viewModel.executeNextCommand execute:nil];
-		}
-	}];
+	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
+//	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//		if (self.viewModel.formsViewModel.pending) {
+//			[[[UIAlertView alloc] initWithTitle:@"提示"
+//																			message:@"您的提交的申请已经在审核中，请耐心等待!"
+//																		 delegate:nil
+//														cancelButtonTitle:@"确认"
+//														otherButtonTitles:nil] show];
+//		} else {
+//			[self.viewModel.executeNextCommand execute:nil];
+//		}
+//	}];
 	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];

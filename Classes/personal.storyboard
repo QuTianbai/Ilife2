@@ -453,6 +453,34 @@
                                         <color key="backgroundColor" red="0.94852825129999996" green="0.94852825129999996" blue="0.94852825129999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="30" id="o4v-O0-VIa">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o4v-O0-VIa" id="3nv-ML-Ayu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic-information-prompt-1242.png" translatesAutoresizingMaskIntoConstraints="NO" id="KGG-lW-Q0w">
+                                                    <rect key="frame" x="15" y="5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="FJE-je-DZ3"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="填写社交账号可提高授权额度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i46-G6-H8H">
+                                                    <rect key="frame" x="45" y="7" width="156" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KGG-lW-Q0w" firstAttribute="leading" secondItem="3nv-ML-Ayu" secondAttribute="leading" constant="15" id="3jn-Ov-3kA"/>
+                                                <constraint firstAttribute="centerY" secondItem="i46-G6-H8H" secondAttribute="centerY" id="7YO-hE-oXA"/>
+                                                <constraint firstItem="i46-G6-H8H" firstAttribute="leading" secondItem="KGG-lW-Q0w" secondAttribute="trailing" constant="10" id="dfj-C5-ABO"/>
+                                                <constraint firstAttribute="centerY" secondItem="KGG-lW-Q0w" secondAttribute="centerY" id="hso-u2-P6C"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="uUs-8h-O1V">
@@ -656,5 +684,25 @@
             </objects>
             <point key="canvasLocation" x="-1439" y="-491"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="pKe-oh-rTz">
+            <objects>
+                <viewController id="ngh-MG-gW9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zxG-ej-yDP"/>
+                        <viewControllerLayoutGuide type="bottom" id="SRN-8Y-qIE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kuh-Wp-CAu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qPw-UY-XXT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
+    <resources>
+        <image name="basic-information-prompt-1242.png" width="20" height="20"/>
+    </resources>
 </document>
