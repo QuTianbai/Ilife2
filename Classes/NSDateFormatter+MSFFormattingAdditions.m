@@ -56,14 +56,15 @@
 	return [formatter stringFromDate:date];
 }
 
-+ (NSString *)msf_Chinese_stringFromDate:(NSDate *)date {
-	NSParameterAssert(date != nil);
++ (NSString *)msf_Chinese_stringFromDateString:(NSString *)str {
+	NSParameterAssert(str != nil);
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy年MM月dd日";
+	formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	
+	NSDate *date = [formatter dateFromString:str];
+	formatter.dateFormat = @"yyyy年MM月dd日";
 	return [formatter stringFromDate:date];
 }
 
