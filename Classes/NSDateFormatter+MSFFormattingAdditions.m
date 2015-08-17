@@ -39,8 +39,8 @@
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy/MM/dd";
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+	formatter.dateFormat = @"yyyy-MM-dd";
 	
 	return [formatter stringFromDate:date];
 }
@@ -50,7 +50,7 @@
 	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy-MM-dd";
+	formatter.dateFormat = @"yyyy/MM/dd";
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 	
 	return [formatter stringFromDate:date];

@@ -13,6 +13,7 @@
 #import "MSFClient.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFAddressViewModel.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 QuickSpecBegin(MSFClozeViewModelSpec)
 
@@ -89,6 +90,22 @@ it(@"should execute submit", ^{
   expect(@(success)).to(beTruthy());
   expect(error).to(beNil());
   expect(client.user.objectID).to(equal(@"ds13dsaf21d"));
+});
+
+it(@"should update identifier expired date", ^{
+	// when
+	viewModel.expired = [NSDateFormatter msf_dateFromString:@"2015-07-01 16:30:00"];
+	
+	// then
+	expect(viewModel.expired1).to(equal(@"2015-07-01"));
+});
+
+it(@"should not parser nil date", ^{
+	// when
+	viewModel.permanent = YES;
+	
+	// then
+	expect(viewModel.expired1).to(equal(@""));
 });
 
 QuickSpecEnd

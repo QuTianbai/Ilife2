@@ -48,6 +48,15 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
     @strongify(self)
     return [self executeAuthSignal];
   }];
+	RAC(self, expired) =
+		[[[RACObserve(self, expired1)
+			ignore:nil]
+			filter:^BOOL(id value) {
+				return [value length] > 0;
+			}]
+			map:^id(id value) {
+				return [NSDateFormatter msf_dateFromString:value];
+			}];
 	
 	_executePermanent = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
