@@ -68,4 +68,14 @@
 	return [formatter stringFromDate:date];
 }
 
++ (NSString *)msf_Chinese_stringFromDate:(NSDate *)str {
+	NSParameterAssert(str != nil);
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+	formatter.dateFormat = @"yyyy年MM月dd日";
+	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+	
+	return [formatter stringFromDate:str];
+}
+
 @end

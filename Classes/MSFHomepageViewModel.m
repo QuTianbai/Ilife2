@@ -47,7 +47,7 @@
 		
 		return [[self.services.httpClient checkUserHasCredit] flattenMap:^RACStream *(MSFResponse *value) {
 			if ([value.parsedResult[@"processing"] boolValue]) {
-				MSFApplyList *applyList = [MSFApplyList modelWithDictionary:value.parsedResult[@"data"] error:nil];
+				MSFApplyList *applyList = [MTLJSONAdapter modelOfClass:MSFApplyList.class fromJSONDictionary:value.parsedResult[@"data"] error:nil];
 				MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:applyList];
 				return [RACSignal return:@[viewModel]];
 			} else {

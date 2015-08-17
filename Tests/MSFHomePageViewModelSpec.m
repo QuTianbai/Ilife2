@@ -13,6 +13,8 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "MSFUser.h"
 #import "MSFServer.h"
+#import "MSFClient+Users.h"
+#import "MSFResponse.h"
 
 QuickSpecBegin(MSFHomePageViewModelSpec)
 
@@ -48,18 +50,19 @@ it(@"should has a appling viewmodel", ^{
 	[given([services httpClient]) willReturn:client];
 	
 	[given([client isAuthenticated]) willReturn:@YES];
-	[given([client fetchApplyList]) willDo:^id(NSInvocation *invocation) {
-		MSFApplyList *model = [[MSFApplyList alloc] initWithDictionary:@{
-			@"loan_id": @"1dafds782nj2",
-			@"apply_time": @"2015-05-03T15:38:45Z",
-			@"payed_amount": @"200",
-			@"total_amount": @"300",
-			@"monthly_repayment_amount": @"400",
-			@"current_installment": @4,
-			@"total_installments": @10,
-			@"status": @0
-		} error:nil];
-		return [RACSignal return:model];
+	[given([client checkUserHasCredit]) willDo:^id(NSInvocation *invocation) {
+		NSDictionary *representation = @{
+			@"data" : @{
+				@"status" : @"1",
+				@"apply_time" : @"2015-08-12T15:30:37Z",
+				@"total_amount" : @"0.00",
+				@"total_installments" : @"0",
+				@"monthly_repayment_amount" : @"0.00"
+			},
+			@"processing" : @"1"
+		};
+		MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:representation];
+		return [RACSignal return:response];
 	}];
 	
   // when
@@ -70,7 +73,7 @@ it(@"should has a appling viewmodel", ^{
   stubProperty(indexPah, item, 0);
   MSFLoanViewModel *sub = [viewModel viewModelForIndexPath:indexPah];
 	
-  expect(sub.status).to(equal(@"无效"));
+  expect(sub.status).to(equal(@"审核中"));
   expect([viewModel reusableIdentifierForIndexPath:indexPah]).to(equal(@"MSFHomePageContentCollectionViewCell"));
 });
 

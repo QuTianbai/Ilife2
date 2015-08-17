@@ -13,6 +13,7 @@
 + (NSString *)msf_stringFromDate:(NSDate *)date;
 
 + (NSString *)msf_Chinese_stringFromDateString:(NSString *)str;
++ (NSString *)msf_Chinese_stringFromDate:(NSDate *)date;
 + (NSString *)msf_stringFromDateForDash:(NSDate *)date;
 
 @end
