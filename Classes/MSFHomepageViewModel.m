@@ -9,6 +9,7 @@
 #import <libextobjc/extobjc.h>
 #import "MSFClient+Users.h"
 #import "MSFClient+Repayment.h"
+#import "MSFUser.h"
 #import "MSFResponse.h"
 #import "MSFLoanViewModel.h"
 #import "MSFRepaymentViewModel.h"
@@ -61,7 +62,9 @@
 	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[self.refreshCommand execute:nil];
+		if (self.services.httpClient.user.isAuthenticated) {
+			[self.refreshCommand execute:nil];
+		}
 	}];
 	
 	RAC(self, viewModels) = [[self.refreshCommand.executionSignals switchToLatest] ignore:nil];
