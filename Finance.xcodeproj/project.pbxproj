@@ -155,6 +155,7 @@
 		4944C05E1B68A6CA00805C0A /* MSFClient+ApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4944C05D1B68A6CA00805C0A /* MSFClient+ApplyList.m */; };
 		4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4944C0631B68AB6F00805C0A /* MSFClient+Advers.m */; };
 		4946ABE91B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */; };
+		4949BF961B81CB95006BB287 /* MSFWebViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949BF951B81CB95006BB287 /* MSFWebViewModelSpec.m */; };
 		494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 494ED8671B2D2798000AD8EA /* MSFWPTextField.m */; };
 		494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBE0D1B16B1BC005F0454 /* MSFCipher.m */; };
 		495021071B13103400605666 /* MSFUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495021061B13103400605666 /* MSFUserViewModel.m */; };
@@ -789,6 +790,7 @@
 		4944C0631B68AB6F00805C0A /* MSFClient+Advers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Advers.m"; sourceTree = "<group>"; };
 		4946ABE71B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoTableViewCell.h; sourceTree = "<group>"; };
 		4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoTableViewCell.m; sourceTree = "<group>"; };
+		4949BF951B81CB95006BB287 /* MSFWebViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewModelSpec.m; sourceTree = "<group>"; };
 		494ED8661B2D2798000AD8EA /* MSFWPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWPTextField.h; sourceTree = "<group>"; };
 		494ED8671B2D2798000AD8EA /* MSFWPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWPTextField.m; sourceTree = "<group>"; };
 		494FBE0C1B16B1BC005F0454 /* MSFCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCipher.h; sourceTree = "<group>"; };
@@ -1922,6 +1924,7 @@
 				496A445C1B6A57BE00104215 /* MSFUserSpec.m */,
 				496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */,
 				496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */,
+				4949BF951B81CB95006BB287 /* MSFWebViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -3512,6 +3515,7 @@
 				496A447D1B6A57BF00104215 /* MSFTradeSpec.m in Sources */,
 				496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */,
 				496A447E1B6A57BF00104215 /* MSFUserSpec.m in Sources */,
+				4949BF961B81CB95006BB287 /* MSFWebViewModelSpec.m in Sources */,
 				496A446A1B6A57BE00104215 /* MSFcheckEmploySpec.m in Sources */,
 				496A447C1B6A57BF00104215 /* MSFServerSpec.m in Sources */,
 				496A446E1B6A57BE00104215 /* MSFClozeViewModelSpec.m in Sources */,
