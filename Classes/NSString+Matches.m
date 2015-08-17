@@ -92,10 +92,9 @@
 }
 
 - (BOOL)isFormValid {
-	NSString *letterTrimming = [self stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]];
 	NSString *digitTrimming  = [self stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
-	BOOL b = letterTrimming.length + digitTrimming.length == self.length;
-	return letterTrimming.length > 0 && digitTrimming.length > 0 && b;
+	BOOL b =  digitTrimming.length > 0 && digitTrimming.length < self.length;
+	return b;
 }
 
 - (BOOL)isCaptcha {
