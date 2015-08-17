@@ -684,23 +684,6 @@
             </objects>
             <point key="canvasLocation" x="-1439" y="-491"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="pKe-oh-rTz">
-            <objects>
-                <viewController id="ngh-MG-gW9" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zxG-ej-yDP"/>
-                        <viewControllerLayoutGuide type="bottom" id="SRN-8Y-qIE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kuh-Wp-CAu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qPw-UY-XXT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
     </scenes>
     <resources>
         <image name="basic-information-prompt-1242.png" width="20" height="20"/>

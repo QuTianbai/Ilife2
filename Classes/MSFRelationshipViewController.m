@@ -37,7 +37,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 
 @interface MSFRelationshipViewController ()<ABPeoplePickerNavigationControllerDelegate,
 ABPersonViewControllerDelegate>
-@property (nonatomic,copy) NSString *currendAddress;
+
+@property (nonatomic, copy) NSString *currendAddress;
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) MSFSelectKeyValues *selectKeyValues;
 /**
@@ -176,7 +177,7 @@ ABPersonViewControllerDelegate>
 	[self.telTF.rac_textSignal subscribe:member1PhoneChannel];
 	RACChannelTerminal *member1AddressChannel = RACChannelTo(self.viewModel.model, memberAddress);
 	RAC(self.diffCurrentTF, text) = member1AddressChannel;
-	self.currendAddress = [NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.viewModel.model.currentProvince,self.viewModel.model.currentCity,self.viewModel.model.currentCountry,self.viewModel.model.currentTown,self.viewModel.model.currentStreet,self.viewModel.model.currentCommunity,self.viewModel.model.currentApartment];
+	self.currendAddress = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", self.viewModel.model.currentProvince,self.viewModel.model.currentCity,self.viewModel.model.currentCountry,self.viewModel.model.currentTown,self.viewModel.model.currentStreet,self.viewModel.model.currentCommunity,self.viewModel.model.currentApartment];
 	self.diffCurrentTF.text = self.currendAddress;
 	[self.diffCurrentTF.rac_textSignal subscribe:member1AddressChannel];
 	self.diffCurrentTF.enabled = !self.isSameCurrentSW.on;
