@@ -27,8 +27,11 @@ static MSFServer *server;
 
 @implementation MSFUtils
 
-+ (RACSignal *)setupSignal {
++ (void)initialize {
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+}
+
++ (RACSignal *)setupSignal {
 	[self setHttpClient:nil];
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil]
 		subscribeNext:^(NSNotification *notificaiton) {
