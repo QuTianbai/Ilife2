@@ -5,6 +5,7 @@
 //
 
 #import "MSFSelectionViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFMarket.h"
 #import "MSFTeams.h"
 #import "MSFProduct.h"
@@ -57,6 +58,24 @@ it(@"should get terms items", ^{
   expect(@([viewModel numberOfItemsInSection:0])).notTo(equal(@0));
   expect([viewModel titleForIndexPath:indexPath]).to(equal(@"3个月"));
   expect([viewModel modelForIndexPath:indexPath]).notTo(beNil());
+});
+
+it(@"should select item", ^{
+	// given
+	id <MSFSelectionItem> mockItem = mockProtocol(@protocol(MSFSelectionItem));
+	[given([mockItem title]) willReturn:@"bar"];
+	
+	// when
+	__block id <MSFSelectionItem> item;
+	[viewModel.selectedSignal subscribeNext:^(id x) {
+		item = x;
+	}];
+	
+	[(RACSubject *)viewModel.selectedSignal sendNext:mockItem];
+	
+	// then
+	expect([item title]).to(equal(@"bar"));
+	
 });
 
 QuickSpecEnd
