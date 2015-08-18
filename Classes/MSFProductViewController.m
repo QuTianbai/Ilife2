@@ -316,28 +316,29 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView reloadData];
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
-    if (self.viewModel.product == nil) {
+    //if (self.viewModel.product == nil) {
       NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
       [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
       self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
      // self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-    } else {
-      for (int i = 0; i<[self.selectViewModel numberOfItemsInSection:0]; i++) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        MSFProduct *model = [self.selectViewModel modelForIndexPath:indexPath];
-        if ([self.viewModel.product.productId isEqualToString:model.productId]) {
-           [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-          self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-          break;
-				} else if (i == [self.selectViewModel numberOfItemsInSection:0] - 1) {
-					[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-					self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-				}
-      }
-    }
+//    } else {
+//      for (int i = 0; i<[self.selectViewModel numberOfItemsInSection:0]; i++) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//        MSFProduct *model = [self.selectViewModel modelForIndexPath:indexPath];
+//        if ([self.viewModel.product.productId isEqualToString:model.productId]) {
+//           [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+//          self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+//          break;
+//				} else if (i == [self.selectViewModel numberOfItemsInSection:0] - 1) {
+//					[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+//					self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+//				}
+//      }
+   // }
     
   }
 }
+
 
 - (void)setRepayMoneyBackgroundViewAniMation:(BOOL)isHiddin {
   [UIView beginAnimations:nil context:nil];
