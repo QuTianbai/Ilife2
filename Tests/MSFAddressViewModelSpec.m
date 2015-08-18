@@ -70,4 +70,15 @@ it(@"should execute select command", ^{
 	expect(viewModel.address).to(equal(@"重庆市直辖市"));
 });
 
+it(@"should has right address", ^{
+	// when
+	[viewModel.selectCommand execute:nil];
+	
+	// then
+	expect(viewModel.address).to(equal(@"重庆市直辖市"));
+	expect(viewModel.provinceName).to(equal(@"重庆市"));
+	expect(viewModel.cityName).to(equal(@"直辖市"));
+	expect(viewModel.areaName).to(beNil());
+});
+
 QuickSpecEnd
