@@ -28,7 +28,7 @@ static MSFServer *server;
 @implementation MSFUtils
 
 + (void)initialize {
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://i.msxf.tp"]];
 }
 
 + (RACSignal *)setupSignal {
