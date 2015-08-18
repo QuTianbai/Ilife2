@@ -74,7 +74,6 @@
 	[self.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-  RAC(self.viewModel, expired1) = RACObserve(self.expired, text);
 	RAC(self.permanentButton, selected) = RACObserve(self.viewModel, permanent);
 	
 	[[self.permanentButton rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -171,10 +170,9 @@
 				maximumDate:maxDate
 				doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
 					self.expired.text = [NSDateFormatter msf_stringFromDate:selectedDate];
+					self.viewModel.expired = selectedDate;
 				}
 				cancelBlock:^(ActionSheetDatePicker *picker) {
-					//self.expired.text = @"";
-					//self.expired.text = [NSDateFormatter msf_stringFromDate:[NSDate date]];
 				}
 				origin:self.view];
 	}];

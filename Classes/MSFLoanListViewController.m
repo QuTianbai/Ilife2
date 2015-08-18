@@ -101,7 +101,7 @@
 	cell.moneyLabel.text = listModel.total_amount;
 	cell.monthsLabel.text = [NSString stringWithFormat:@"%@期", listModel.total_installments];
 	
-	NSString *df = [NSDateFormatter msf_stringFromDate:listModel.apply_time];
+	NSString *df = [NSDateFormatter msf_stringFromDateForDash:listModel.apply_time];
 	
 	cell.timeLabel.text = df;
 	

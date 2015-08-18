@@ -8,12 +8,15 @@
 
 @interface NSDateFormatter (MSFFormattingAdditions)
 
+// 2015-08-01
 + (NSDate *)msf_dateFromString:(NSString *)str;
-
 + (NSString *)msf_stringFromDate:(NSDate *)date;
 
+// 2015年08月01日
 + (NSString *)msf_Chinese_stringFromDateString:(NSString *)str;
 + (NSString *)msf_Chinese_stringFromDate:(NSDate *)date;
+
+// 2015/08/01
 + (NSString *)msf_stringFromDateForDash:(NSDate *)date;
 
 @end

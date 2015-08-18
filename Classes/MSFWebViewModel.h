@@ -8,8 +8,14 @@
 
 @interface MSFWebViewModel : RVMViewModel
 
+// viewModel URL load html
 @property (nonatomic, strong, readonly) NSURL *URL;
 
+// Create new viewModel
+//
+// URL - Use to load webview html
+//
+// return viewModel instance
 - (instancetype)initWithURL:(NSURL *)URL;
 
 @end

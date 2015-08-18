@@ -102,8 +102,7 @@
 		[cell.date setFont:[UIFont systemFontOfSize:14]];
 		[cell.amount setFont:[UIFont systemFontOfSize:14]];
 		[cell.tradeDescription setFont:[UIFont systemFontOfSize:14]];
-		
-		cell.date.text = [NSDateFormatter msf_stringFromDate:trade.tradeDate];
+		cell.date.text = [NSDateFormatter msf_stringFromDateForDash:trade.tradeDate];
 		
 		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
 		cell.amount.text = [NSString stringWithFormat:@"%.2f", trade.tradeAmount];

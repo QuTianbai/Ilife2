@@ -273,12 +273,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDateForDash:selectedDate];
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDateForDash:[NSDate date]];
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -306,12 +306,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDateForDash:selectedDate];
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDateForDash:[NSDate date]];
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }

@@ -16,7 +16,7 @@ beforeEach(^{
     @"user_id" : @"ds13dsaf21d",
     @"phone_number" : @"15222222222",
     @"username" : @"xxx",
-    @"id_card" : @"123",
+    @"id_card" : @"500111198702230022",
     @"bank_card_number" : @"888",
     @"avatar" : @{
         @"width" : @100,
@@ -35,10 +35,11 @@ it(@"msfinance user", ^{
   expect(user.objectID).to(equal(@"ds13dsaf21d"));
   expect(user.phone).to(equal(@"15222222222"));
   expect(user.name).to(equal(@"xxx"));
-  expect(user.idcard).to(equal(@"123"));
+  expect(user.idcard).to(equal(@"500111198702230022"));
   expect(user.passcard).to(equal(@"888"));
   expect(user.avatarURL).to(equal([NSURL URLWithString:@"http://avatar.com"]));
   expect(user.server).to(equal(MSFServer.dotComServer));
+	expect(@(user.isAuthenticated)).to(beTruthy());
 });
 
 it(@"should create user", ^{
