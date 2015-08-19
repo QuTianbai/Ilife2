@@ -339,7 +339,8 @@ ABPersonViewControllerDelegate>
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
 			@strongify(self)
-			[self.navigationController popToRootViewControllerAnimated:YES];
+			[self.tabBarController setSelectedIndex:0];
+			[self.navigationController popToRootViewControllerAnimated:NO];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {

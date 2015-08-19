@@ -38,7 +38,7 @@
 #import <ZSWTaggedString/ZSWTaggedString.h>
 #import "MSFDeviceGet.h"
 
-static const CGFloat heightOfAboveCell = 259;//上面cell总高度
+static const CGFloat heightOfAboveCell = 303;//上面cell总高度
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
 static const CGFloat heightOfRepayView = 90;//预计每期还款金额的高度
 static const CGFloat heightOfPlace = 30;//button与下方tabbar的空白高度
@@ -158,6 +158,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"%ld", (long)value.integerValue / 100 * 100];
+	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
@@ -167,11 +168,22 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[[self.lifeInsuranceButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 330)];
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 380)];
 		contentView.backgroundColor = [UIColor whiteColor];
+		
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 80, 20)];
+		titleLabel.textColor = [UIColor themeColorNew];
+		titleLabel.font = [UIFont boldSystemFontOfSize:18];
+		titleLabel.text = @"寿险条约";
+		[contentView addSubview:titleLabel];
+		
+		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-16, 1)];
+		line.backgroundColor = [UIColor themeColorNew];
+		[contentView addSubview:line];
+		
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"life-insurance" ofType:nil];
 		NSString *string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:contentView.bounds];
+		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-8, contentView.frame.size.height-40)];
 		label.numberOfLines = 0;
 		label.font = [UIFont systemFontOfSize:15];
 		label.tapDelegate = self;
@@ -181,7 +193,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			ZSWTappableLabelTappableRegionAttributeName: @YES,
 			ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
 			ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
-			NSForegroundColorAttributeName: [UIColor blueColor],
+			NSForegroundColorAttributeName: [UIColor themeColorNew],
 			NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
 			@"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
 		} forTagName:@"link"];
@@ -228,6 +240,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
+	
   cell.text = [self.selectViewModel titleForIndexPath:indexPath];
 	cell.locked = self.moneySlider.tracking;
   return cell;
@@ -248,7 +261,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 #pragma mark - UICollectionViewDelegate
 
-//UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [self setRepayMoneyBackgroundViewAniMation:YES];
 	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
@@ -260,6 +272,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   if (self.moneySlider.maximumValue == 0) {
     [SVProgressHUD showInfoWithStatus:@"系统繁忙，请稍后再试"];
   }
+	//self.viewModel.termAmount = 0;
 	[self.monthCollectionView reloadData];
 }
 
@@ -274,6 +287,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
+      [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }

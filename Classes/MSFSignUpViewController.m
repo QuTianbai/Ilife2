@@ -51,7 +51,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.backgroundView.layer.cornerRadius = 5;
 	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
 	self.backgroundView.layer.borderWidth = 1;
-	self.username.text = MSFUtils.phone;
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = @"18223959242";
 	}

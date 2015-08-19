@@ -104,16 +104,30 @@
 	
   [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-    if (textField.text.length >4 ) {
-      textField.text = [textField.text substringToIndex:4];
-    }
+		
+		
+		if (textField.text.length == 3) {
+			if ([self validaCode:textField.text]) {
+				[self.homeTelTF becomeFirstResponder];
+			}
+		} else if (textField.text.length == 4 ) {
+			//textField.text = [textField.text substringToIndex:4];
+			[textField endEditing:YES];
+			[self.homeTelTF becomeFirstResponder];
+		}
+		
   }];
   [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
+		
+		if (textField.text.length == 0) {
+			[self.homeLineCodeTF becomeFirstResponder];
+		}
+		
     if (textField.text.length>8) {
-      if (textField.text.length >4 ) {
-        textField.text = [textField.text substringToIndex:8];
-      }
+      //if (textField.text.length >4 ) {
+			textField.text = [textField.text substringToIndex:8];
+      //}
     }
   }];
 	RACChannelTerminal *homecodeChannel = RACChannelTo(self.viewModel.model, homeCode);
@@ -248,6 +262,20 @@
       label.hidden = YES;
     }
   }
+}
+
+- (BOOL)validaCode:(NSString *)code {
+	NSMutableArray *codeArray = [[NSMutableArray alloc] init];
+	[codeArray addObject:@"010"];
+	for ( int i=0; i < 10; i++) {
+		if (i != 6) {
+			[codeArray addObject:[NSString stringWithFormat:@"02%d", i]];
+		}
+	}
+	
+	
+	
+	return [codeArray containsObject:code] ? YES : NO;
 }
 
 @end
