@@ -180,11 +180,22 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[[self.lifeInsuranceButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 330)];
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 380)];
 		contentView.backgroundColor = [UIColor whiteColor];
+		
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 80, 20)];
+		titleLabel.textColor = [UIColor themeColorNew];
+		titleLabel.font = [UIFont boldSystemFontOfSize:18];
+		titleLabel.text = @"寿险条约";
+		[contentView addSubview:titleLabel];
+		
+		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-16, 1)];
+		line.backgroundColor = [UIColor themeColorNew];
+		[contentView addSubview:line];
+		
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"life-insurance" ofType:nil];
 		NSString *string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:contentView.bounds];
+		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-8, contentView.frame.size.height-40)];
 		label.numberOfLines = 0;
 		label.font = [UIFont systemFontOfSize:15];
 		label.tapDelegate = self;
@@ -194,7 +205,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			ZSWTappableLabelTappableRegionAttributeName: @YES,
 			ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
 			ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
-			NSForegroundColorAttributeName: [UIColor blueColor],
+			NSForegroundColorAttributeName: [UIColor themeColorNew],
 			NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
 			@"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
 		} forTagName:@"link"];
