@@ -422,6 +422,11 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择入所在地区",
 			}]];
 		}
+		if ([self.model.workProvinceCode isEqualToString:@""]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+			}]];
+		}
 		if ([self.model.workTown isEqualToString:@""]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入详细地址",
