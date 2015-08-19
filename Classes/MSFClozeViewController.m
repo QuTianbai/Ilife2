@@ -69,8 +69,9 @@
 		[authSignal subscribeNext:^(id x) {
 			
 			[SVProgressHUD showSuccessWithStatus:@"恭喜,您的实名认证已通过!"];
-			[self performSelector:@selector(afterMetod:) withObject:x afterDelay:2.0];
-			//[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
+			});
 		}];
 	}];
 	[self.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
@@ -242,10 +243,6 @@
 		return 44;
 	}
 	return 0;
-}
-
-- (void)afterMetod:(id)x {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
 }
 
 @end
