@@ -67,8 +67,10 @@
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[authSignal subscribeNext:^(id x) {
+			
 			[SVProgressHUD showSuccessWithStatus:@"恭喜,您的实名认证已通过!"];
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
+			[self performSelector:@selector(afterMetod:) withObject:x afterDelay:2.0];
+			//[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
 		}];
 	}];
 	[self.submitButton.rac_command.errors subscribeNext:^(NSError *error) {
@@ -157,15 +159,21 @@
 			NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 			NSDate *currentDate = [NSDate date];
 			NSDateComponents *comps = [[NSDateComponents alloc] init];
-			[comps setYear:50];
+			[comps setYear:100];
 			NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 			[comps setYear:0];
-			NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		 
+			NSDate *minDate = [NSDate date];
+		  NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+			NSTimeZone *zone = [NSTimeZone systemTimeZone];
+			[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+			NSDate *date = [NSDate date];
+			NSInteger interval = [zone secondsFromGMTForDate:date];
+			NSDate *localeDate = [date  dateByAddingTimeInterval:interval];
+			NSLog(@"%@", localeDate);
 			[ActionSheetDatePicker
 				showPickerWithTitle:@""
 				datePickerMode:UIDatePickerModeDate
-				selectedDate:[NSDate date]
+				selectedDate:localeDate
 				minimumDate:minDate
 				maximumDate:maxDate
 				doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
@@ -234,6 +242,10 @@
 		return 44;
 	}
 	return 0;
+}
+
+- (void)afterMetod:(id)x {
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFClozeViewModelDidUpdateNotification" object:x];
 }
 
 @end

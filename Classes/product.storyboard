@@ -117,7 +117,7 @@
                                                     <rect key="frame" x="15" y="12" width="20" height="20"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="初期系统还在测试阶段，仅对重庆地区的客户发放贷款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn9-qx-hg2">
-                                                    <rect key="frame" x="45" y="14.5" width="260" height="14.5"/>
+                                                    <rect key="frame" x="45" y="14" width="260" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
