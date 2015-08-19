@@ -178,8 +178,8 @@
 				minimumDate:minDate
 				maximumDate:maxDate
 				doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-					self.expired.text = [NSDateFormatter msf_stringFromDate:selectedDate];
-					self.viewModel.expired = selectedDate;
+					self.expired.text = [NSDateFormatter msf_stringFromDate:localeDate];
+					self.viewModel.expired = localeDate;
 				}
 				cancelBlock:^(ActionSheetDatePicker *picker) {
 				}

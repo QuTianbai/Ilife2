@@ -350,84 +350,104 @@
 }
 
 - (RACSignal *)commitSignal {
-	if ([self.model.education isEqualToString:@""]) {
+	if ([self.model.education isEqualToString:@""] || self.model.education == nil) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请选择教育程度",
 		}]];
 	}
-	if ([self.model.socialStatus isEqualToString:@""]) {
+	if ([self.model.socialStatus isEqualToString:@""] || self.model.socialStatus == nil) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
 		}]];
 	} else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
-		if ([self.model.universityName isEqualToString:@""]) {
+		if ([self.model.universityName isEqualToString:@""] || self.model.universityName == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
 			}]];
 		}
-		if ([self.model.enrollmentYear isEqualToString:@""]) {
+		if ([self.model.enrollmentYear isEqualToString:@""] || self.model.enrollmentYear == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择入学年份",
 			}]];
 		}
-		if ([self.model.programLength isEqualToString:@""]) {
+		if ([self.model.programLength isEqualToString:@""] || self.model.programLength == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择学制",
 			}]];
 		}
 	} else if ([self.model.socialStatus isEqualToString:@"SI02"]) {
-		if ([self.model.workingLength isEqualToString:@""]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+		if ([self.model.workingLength isEqualToString:@""] || self.model.workingLength == nil) {
+			return [RACSignal error:[NSError	errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择工作年限",
 			}]];
 		}
-		if ([self.model.company isEqualToString:@""]) {
+		if ([self.model.company isEqualToString:@""] || self.model.company == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入单位全称",
 			}]];
 		}
-		if ([self.model.industry isEqualToString:@""]) {
+		if ([self.model.industry isEqualToString:@""] || self.model.industry == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择行业类别",
 			}]];
 		}
 		
-		if ([self.model.companyType isEqualToString:@""]) {
+		if ([self.model.companyType isEqualToString:@""] || self.model.companyType == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择行业性质",
 			}]];
 		}
-		if ([self.model.department isEqualToString:@""]) {
+		if ([self.model.department isEqualToString:@""] || self.model.department == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入部门",
 			}]];
 		}
-		if ([self.model.title isEqualToString:@""]) {
+		if ([self.model.title isEqualToString:@""] || self.model.title == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择职位",
 			}]];
 		}
-		if ([self.model.currentJobDate isEqualToString:@""]) {
+		if ([self.model.currentJobDate isEqualToString:@""] || self.model.currentJobDate == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择入职时间",
 			}]];
 		}
-		if (![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone]) {
+		if (![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone] || self.model.unitAreaCode == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
 			}]];
 		}
-		if ([self.model.workProvince isEqualToString:@""]) {
+		if ([self.model.workProvinceCode isEqualToString:@""] || self.model.workProvinceCode == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择入所在地区",
-			}]];
+				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+	    }]];
 		}
-		if ([self.model.workProvinceCode isEqualToString:@""]) {
+		if ([self.model.workProvince isEqualToString:@""] || self.model.workProvince == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
 			}]];
 		}
-		if ([self.model.workTown isEqualToString:@""]) {
+		if ([self.model.workCityCode isEqualToString:@""] || self.model.workCityCode == nil) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+			}]];
+		}
+		if ([self.model.workCity isEqualToString:@""] || self.model.workCity == nil) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+			}]];
+		}
+		if ([self.model.workCountryCode isEqualToString:@""] || self.model.workCountryCode == nil) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+			  NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+			}]];
+		}
+		if ([self.model.workCountry isEqualToString:@""] || self.model.workCountry == nil) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+			}]];
+		}
+		if ([self.model.workTown isEqualToString:@""] || self.model.workTown == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入详细地址",
 			}]];

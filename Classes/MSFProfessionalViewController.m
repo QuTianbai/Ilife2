@@ -100,7 +100,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.model, workTown);
 	RAC(self.workTown, text) = workTownChannel;
-	[self.unitTelephone.rac_textSignal subscribe:workTownChannel];
+	[self.workTown.rac_textSignal subscribe:workTownChannel];
 	
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
