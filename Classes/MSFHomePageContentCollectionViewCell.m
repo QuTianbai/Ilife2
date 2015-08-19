@@ -44,11 +44,7 @@
 			_titleLabel.text  = model.title;
 			_statusLabel.text = model.status;
 			_amountLabel.text = model.totalAmount;
-			if ([model.status isEqualToString:@"审核中"]) {
-				_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
-			} else {
-				_infoLabel.text = nil;
-			}
+			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
 			[self placeholderShow:NO];
 			return;
 		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
