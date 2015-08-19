@@ -75,13 +75,28 @@
                             <constraint firstAttribute="width" secondItem="blQ-GM-dmG" secondAttribute="height" id="mid-ED-ptv"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lsB-fc-6QZ">
+                        <rect key="frame" x="59" y="88.5" width="122" height="122"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="lsB-fc-6QZ" secondAttribute="height" id="vlj-j9-xgA"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onApply:" destination="qxk-5Z-PyQ" eventType="touchUpInside" id="02x-kY-a6p"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="bS2-FN-dOQ" firstAttribute="leading" secondItem="qxk-5Z-PyQ" secondAttribute="leading" id="7vX-ra-9Np"/>
                 <constraint firstItem="bS2-FN-dOQ" firstAttribute="top" secondItem="qxk-5Z-PyQ" secondAttribute="top" id="Aiu-6V-2Dw"/>
+                <constraint firstItem="lsB-fc-6QZ" firstAttribute="width" secondItem="blQ-GM-dmG" secondAttribute="height" multiplier="122:235" id="Flw-Pb-FTq"/>
                 <constraint firstAttribute="bottom" secondItem="bS2-FN-dOQ" secondAttribute="bottom" id="LqX-y5-cwc"/>
+                <constraint firstAttribute="centerX" secondItem="lsB-fc-6QZ" secondAttribute="centerX" constant="57" id="SAO-j7-0Lb"/>
+                <constraint firstAttribute="centerY" secondItem="lsB-fc-6QZ" secondAttribute="centerY" constant="57" id="Ysz-CF-c6e"/>
                 <constraint firstItem="blQ-GM-dmG" firstAttribute="width" secondItem="bS2-FN-dOQ" secondAttribute="width" multiplier="2:3" id="c89-LH-GL1"/>
                 <constraint firstAttribute="centerY" secondItem="blQ-GM-dmG" secondAttribute="centerY" id="is9-f9-rfd"/>
                 <constraint firstAttribute="trailing" secondItem="bS2-FN-dOQ" secondAttribute="trailing" id="j7q-3j-MV0"/>
@@ -90,6 +105,7 @@
             <size key="customSize" width="353" height="414"/>
             <connections>
                 <outlet property="amountLabel" destination="juA-PJ-DxE" id="oj2-kr-ZLG"/>
+                <outlet property="applyButton" destination="lsB-fc-6QZ" id="luG-xN-6pw"/>
                 <outlet property="content" destination="bS2-FN-dOQ" id="U8v-7d-EZA"/>
                 <outlet property="infoLabel" destination="gVN-1q-TlX" id="qzh-Uf-9fo"/>
                 <outlet property="placeholder" destination="blQ-GM-dmG" id="axc-QA-nC5"/>
