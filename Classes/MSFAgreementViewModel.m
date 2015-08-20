@@ -105,7 +105,8 @@
 	return [[self.services.httpClient
 		fetchAgreementURLWithProduct:product]
 		flattenMap:^RACStream *(id value) {
-			NSURLRequest *request = [NSURLRequest requestWithURL:value];
+			NSURLRequest *request = value;
+			//NSURLRequest *request = [NSURLRequest requestWithURL:value];
 			return [[NSURLConnection rac_sendAsynchronousRequest:request]
 				reduceEach:^id(NSURLResponse *response, NSData *data){
 					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
