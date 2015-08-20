@@ -60,9 +60,23 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.title = @"职业信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:1];
 	
+	[[self.universityName rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 14) {
+				textField.text = [textField.text substringToIndex:14];
+			}
+		}];
+	
 	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, universityName);
 	RAC(self.universityName, text) = universityNameChannel;
 	[self.universityName.rac_textSignal subscribe:universityNameChannel];
+	
+	[[self.company rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 20) {
+				textField.text = [textField.text substringToIndex:20];
+			}
+		}];
 	
 	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.model, company);
 	RAC(self.company, text) = companyChannel;
@@ -115,6 +129,13 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.industryButton.rac_command = self.viewModel.executeIndustryCommand;
 	RAC(self.companyType, text) = RACObserve(self.viewModel, natureTitle);
 	self.companyTypeButton.rac_command = self.viewModel.executeNatureCommand;
+	
+	[[self.department rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 20) {
+				textField.text = [textField.text substringToIndex:20];
+			}
+		}];
 	
 	RACChannelTerminal *departmentChannel = RACChannelTo(self.viewModel.model, department);
 	RAC(self.department, text) = departmentChannel;
