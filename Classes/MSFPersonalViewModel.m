@@ -147,6 +147,31 @@
 	return [self.formsViewModel submitSignalWithPage:2];
 }
 
+- (NSString *)checkForm {
+	if ([self.model.income isEqualToString:@""]) {
+		return @"请输入月工资收入";
+	}
+	if ([self.model.familyExpense isEqualToString:@""]) {
+		return @"请输入每月还贷额";
+	}
+	if ([self.model.otherIncome isEqualToString:@""]) {
+		return @"请输入月其他收入";
+	}
+	if (self.model.homeCode.length < 3 || ![self.model.homeCode isScalar]) {
+		return @"请输入正确的住宅座机区号";
+	}
+	if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
+		return @"请输正确的联系电话";
+	}
+	if (![self.model.email isMail]) {
+		return @"请输正确的邮箱";
+	}
+	if (![self validAddress]) {
+		return @"详细地址至少输入两项";
+	}
+	return nil;
+}
+
 - (RACSignal *)commitValidSignal {
 	return [RACSignal
 		combineLatest:@[
