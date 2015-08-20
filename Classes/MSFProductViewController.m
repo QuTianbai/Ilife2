@@ -137,7 +137,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	//self.applyMonthsTF.placeholder = @"请选择期数";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
-	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+	self.viewModel.insurance = self.isInLifeInsurancePlaneSW.on;
+	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, moneyInsurance) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
