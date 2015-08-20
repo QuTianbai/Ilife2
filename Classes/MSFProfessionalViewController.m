@@ -317,7 +317,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setYear:0];
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-50];
+		[comps setYear:-7];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		
 		[ActionSheetDatePicker

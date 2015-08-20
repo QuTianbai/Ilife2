@@ -366,7 +366,7 @@
 				|| ![self.model.universityName isChineseName]
 				|| self.model.universityName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
+				NSLocalizedFailureReasonErrorKey: @"请输入学校全称",
 			}]];
 		}
 		if ([self.model.enrollmentYear isEqualToString:@""] || self.model.enrollmentYear == nil) {
