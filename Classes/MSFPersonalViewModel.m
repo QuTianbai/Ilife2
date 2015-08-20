@@ -123,7 +123,7 @@
 
 - (RACSignal *)commitSignal {
   if ([self.model.income isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月工资收入"}]];
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月税前收入"}]];
   }
   if ([self.model.familyExpense isEqualToString:@""]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月还贷额"}]];
@@ -142,6 +142,10 @@
 	} else if (![self validAddress]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"详细地址至少输入两项",
+		}]];
+	} else if (![self.model.qq isNum]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入正确地qq号",
 		}]];
 	}
 	

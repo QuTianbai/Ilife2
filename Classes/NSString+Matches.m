@@ -107,4 +107,10 @@
 	return [regextetmobile evaluateWithObject:self];
 }
 
+- (BOOL)isNum {
+ NSScanner* scan = [NSScanner scannerWithString:self];
+	int val;
+	return[scan scanInt:&val] && [scan isAtEnd];
+}
+
 @end
