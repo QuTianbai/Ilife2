@@ -34,4 +34,12 @@
 	return [RACSignal return:area];
 }
 
+- (MSFAreas *)regionWithCode:(NSString *)code {
+	if ([code isEqualToString:@"0"]) return [[MSFAreas alloc] initWithDictionary:@{@"name": @"重庆市", @"codeID": @"0"} error:nil];
+	if ([code isEqualToString:@"1"]) return [[MSFAreas alloc] initWithDictionary:@{@"name": @"直辖市", @"codeID": @"1"} error:nil];
+	if ([code isEqualToString:@"2"]) return [[MSFAreas alloc] initWithDictionary:@{@"name": @"沙坪坝区", @"codeID": @"2"} error:nil];
+
+	return nil;
+}
+
 @end
