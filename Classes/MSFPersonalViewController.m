@@ -104,8 +104,7 @@
 	
   [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-		
-		
+		@strongify(self)
 		if (textField.text.length == 3) {
 			if ([self validaCode:textField.text]) {
 				[self.homeTelTF becomeFirstResponder];
@@ -119,7 +118,7 @@
   }];
   [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-		
+		@strongify(self)
 		if (textField.text.length == 0) {
 			[self.homeLineCodeTF becomeFirstResponder];
 		}
