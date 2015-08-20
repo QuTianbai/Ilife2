@@ -51,7 +51,12 @@
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal = [self.viewModel.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
-	
+	[self.LoanAgreenmentWV stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
+	 "script.type = 'text/javascript';"
+	 "script.text = \"function confirm() { "
+	 "window.location.href ='objc';"
+	 "}\";"
+	 "document.getElementsByTagName('head')[0].appendChild(script);"];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[self.LoanAgreenmentWV
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
@@ -68,7 +73,7 @@
 	}];
 	
 	@weakify(self)
-	self.agreeButton.rac_command = self.viewModel.executeRequest;
+	//self.agreeButton.rac_command = self.viewModel.executeRequest;
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
@@ -101,6 +106,16 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
   self.BottomBtVIew.hidden = NO;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	NSString *urlString = [[request URL] absoluteString];
+	urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+	if ([urlString containsString:@"objc"]) {
+		[self.viewModel.executeRequest execute:nil];
+		return NO;
+	}
+	return YES;
 }
 
 @end

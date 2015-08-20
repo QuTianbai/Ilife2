@@ -53,7 +53,7 @@
   // Left Bar button
   UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
   backBtn.frame = CGRectMake(0, 0, 100, 44);
-  [backBtn setTitle:@"贷款申请" forState:UIControlStateNormal];
+  [backBtn setTitle:@"申请贷款" forState:UIControlStateNormal];
   [backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
   backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
   [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];

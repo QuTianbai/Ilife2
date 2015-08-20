@@ -6,10 +6,21 @@
 http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10000
 ```
 
+```
+```
 
 ## API
 
-- 开发接口地址：http://192.168.2.51:8088/msfinanceweb/  数据库 41 - core20150621
+- https://www.msxf.dev 
+- database
+
+```
+数据库  ip 192.168.2.60  
+core20150818
+用户名: corerw
+密码: core111111
+```
+
 
 ---
 

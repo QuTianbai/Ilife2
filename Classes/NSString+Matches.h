@@ -47,4 +47,8 @@
 
 - (BOOL)isChineseName;
 
+- (BOOL)isFormValid;
+
+- (BOOL)isNum;
+
 @end

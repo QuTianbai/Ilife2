@@ -11,7 +11,7 @@
 // 2015-08-01
 + (NSDate *)msf_dateFromString:(NSString *)str;
 + (NSString *)msf_stringFromDate:(NSDate *)date;
-
++ (NSString *)msf_stringFromDate2:(NSDate *)date;
 // 2015年08月01日
 + (NSString *)msf_Chinese_stringFromDateString:(NSString *)str;
 + (NSString *)msf_Chinese_stringFromDate:(NSDate *)date;

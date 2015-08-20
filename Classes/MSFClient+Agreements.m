@@ -15,7 +15,7 @@
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"coresys/cont/contract/fineinfo" parameters:@{
 			@"productId": product.productId ?: @"",
 		}];
-		[subscriber sendNext:request.URL];
+		[subscriber sendNext:request];
 		[subscriber sendCompleted];
 		return nil;
 	}];

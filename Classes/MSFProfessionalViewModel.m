@@ -20,6 +20,7 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFAddressViewModel.h"
+#import "NSString+Matches.h"
 
 @interface MSFProfessionalViewModel ( )
 
@@ -360,9 +361,12 @@
 			NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
 		}]];
 	} else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
-		if ([self.model.universityName isEqualToString:@""] || self.model.universityName == nil) {
+		if ([self.model.universityName isEqualToString:@""]
+				|| self.model.universityName == nil
+				|| ![self.model.universityName isChineseName]
+				|| self.model.universityName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入学校名称",
+				NSLocalizedFailureReasonErrorKey: @"请输入学校全称",
 			}]];
 		}
 		if ([self.model.enrollmentYear isEqualToString:@""] || self.model.enrollmentYear == nil) {
@@ -381,9 +385,9 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择工作年限",
 			}]];
 		}
-		if ([self.model.company isEqualToString:@""] || self.model.company == nil) {
+		if ([self.model.company isEqualToString:@""] || self.model.company == nil || ![self.model.company isChineseName] || self.model.company.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入单位全称",
+				NSLocalizedFailureReasonErrorKey: @"请输入当前就职单位全称",
 			}]];
 		}
 		if ([self.model.industry isEqualToString:@""] || self.model.industry == nil) {
@@ -397,7 +401,7 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择行业性质",
 			}]];
 		}
-		if ([self.model.department isEqualToString:@""] || self.model.department == nil) {
+		if ([self.model.department isEqualToString:@""] || self.model.department == nil || ![self.model.department isChineseName] || ![self.model.department isChineseName]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入部门",
 			}]];
