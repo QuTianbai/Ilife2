@@ -44,7 +44,6 @@
 /**
  *	网点分布地址
  */
-@property (nonatomic, strong, readonly) NSURL *repayURL;
 @property (nonatomic, strong, readonly) NSURL *registerURL;
 
 @property (nonatomic, strong, readonly) NSURL *lifeInsuranceURL;
