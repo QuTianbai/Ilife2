@@ -387,7 +387,7 @@
 		}
 		if ([self.model.company isEqualToString:@""] || self.model.company == nil || ![self.model.company isChineseName] || self.model.company.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入单位全称",
+				NSLocalizedFailureReasonErrorKey: @"请输入当前就职单位全称",
 			}]];
 		}
 		if ([self.model.industry isEqualToString:@""] || self.model.industry == nil) {
