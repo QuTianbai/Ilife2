@@ -167,17 +167,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
-//	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//		if (self.viewModel.formsViewModel.pending) {
-//			[[[UIAlertView alloc] initWithTitle:@"提示"
-//																			message:@"您的提交的申请已经在审核中，请耐心等待!"
-//																		 delegate:nil
-//														cancelButtonTitle:@"确认"
-//														otherButtonTitles:nil] show];
-//		} else {
-//			[self.viewModel.executeNextCommand execute:nil];
-//		}
-//	}];
+	[self.viewModel.executeNextCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}];
+	}];
 	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
