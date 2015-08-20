@@ -111,7 +111,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSString *urlString = [[request URL] absoluteString];
 	urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	if ([urlString containsString:@"objc"]) {
+	if ([urlString rangeOfString:@"objc"].length != 0) {
 		[self.viewModel.executeRequest execute:nil];
 		return NO;
 	}
