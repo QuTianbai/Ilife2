@@ -35,6 +35,10 @@
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFLoanAgreementController dealloc");
+}
+
 - (instancetype)initWithViewModel:(id)viewModel {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"product" bundle:nil];
 	self =  [storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
