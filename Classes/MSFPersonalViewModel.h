@@ -24,4 +24,6 @@
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel addressViewModel:(MSFAddressViewModel *)addressViewModel;
 
+- (NSString *)checkForm;
+
 @end

@@ -210,6 +210,13 @@
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		
+		NSString *checkForm = [self.viewModel checkForm];
+		if (checkForm) {
+			[SVProgressHUD showErrorWithStatus:checkForm];
+			return;
+		}
+		
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

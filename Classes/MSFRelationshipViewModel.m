@@ -342,7 +342,7 @@
 	if (![self.model.memberCellNum isMobile]) {
 		return @"请输入正确的家庭成员手机号";
 	}
-	if (self.model.memberAddress.length == 0) {
+	if (self.model.memberAddress.length < 8 || self.model.memberAddress.length > 60 ) {
 		return @"请输入正确的家庭成员地址";
 	}
 	
