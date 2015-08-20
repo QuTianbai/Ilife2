@@ -38,7 +38,6 @@
 #import <ZSWTaggedString/ZSWTaggedString.h>
 #import "MSFDeviceGet.h"
 
-//static NSString *const DeviceModel = [UIDevice currentDevice].model;
 static const CGFloat heightOfAboveCell = 303;//上面cell总高度
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
 static const CGFloat heightOfRepayView = 90;//预计每期还款金额的高度
@@ -61,10 +60,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (nonatomic, strong) NSArray *loanPeriodsAry;
 @property (weak, nonatomic) IBOutlet UICollectionView *monthCollectionView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
-//@property (nonatomic,strong) UICollectionView *periodsCollectionView;
 
 @property (weak, nonatomic) IBOutlet MSFSlider *moneySlider;
-//@property (weak, nonatomic) IBOutlet UITextField *applyCashNumTF;
 @property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
 @property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
 @property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
@@ -134,7 +131,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
-	//self.applyMonthsTF.placeholder = @"请选择期数";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	self.viewModel.insurance = self.isInLifeInsurancePlaneSW.on;
@@ -143,7 +139,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
 	
-	//RAC(self.applyCashNumTF, placeholder) = RACObserve(self, viewModel.totalAmountPlacholder);
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
 	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
@@ -180,11 +175,22 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[[self.lifeInsuranceButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 330)];
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 380)];
 		contentView.backgroundColor = [UIColor whiteColor];
+		
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 80, 20)];
+		titleLabel.textColor = [UIColor themeColorNew];
+		titleLabel.font = [UIFont boldSystemFontOfSize:18];
+		titleLabel.text = @"寿险条约";
+		[contentView addSubview:titleLabel];
+		
+		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-16, 1)];
+		line.backgroundColor = [UIColor themeColorNew];
+		[contentView addSubview:line];
+		
 		NSString *path = [[NSBundle mainBundle] pathForResource:@"life-insurance" ofType:nil];
 		NSString *string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:contentView.bounds];
+		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-8, contentView.frame.size.height-40)];
 		label.numberOfLines = 0;
 		label.font = [UIFont systemFontOfSize:15];
 		label.tapDelegate = self;
@@ -194,7 +200,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			ZSWTappableLabelTappableRegionAttributeName: @YES,
 			ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
 			ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
-			NSForegroundColorAttributeName: [UIColor blueColor],
+			NSForegroundColorAttributeName: [UIColor themeColorNew],
 			NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
 			@"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
 		} forTagName:@"link"];
@@ -210,18 +216,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			[self.viewModel.executeLifeInsuranceCommand execute:nil];
 		}];
 	}];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
- //  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:self.viewModel.totalAmount.integerValue / 100 * 100];
-}
-
-- (void)setEmptyMoney {
-//  self.moneySlider.value = 0;
-//  self.moneySlider.moneyNumLabel.text = @"0元";
-//  self.viewModel.totalAmount = @"0";
-//  [self getStringValue:@"0"];
- 
 }
 
 #pragma mark - UITableViewDelegate
@@ -248,23 +242,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  NSLog(@"%ld", (long)self.selectViewModel.numberOfSections);
-  NSLog(@"%ld", (long)[self.selectViewModel numberOfItemsInSection:section]);
   return [self.selectViewModel numberOfItemsInSection:section];
-  //return _loanPeriodsAry.count;
 }
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
-//  MSFProduct *model = [self.selectViewModel modelForIndexPath:indexPath];
-//  if ([self.viewModel.product.productId isEqualToString:model.productId]) {
-//    self.viewModel.product = model;
-//  } else {
-//    if (indexPath.row == [self.selectViewModel numberOfItemsInSection:0]) {
-//      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-//    }
-//  }
-  
+	
   cell.text = [self.selectViewModel titleForIndexPath:indexPath];
 	cell.locked = self.moneySlider.tracking;
   return cell;
@@ -285,7 +268,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 #pragma mark - UICollectionViewDelegate
 
-//UICollectionView被选中时调用的方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [self setRepayMoneyBackgroundViewAniMation:YES];
 	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
@@ -304,7 +286,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)getStringValue:(NSString *)stringvalue {
   if (stringvalue.integerValue == 0) {
     self.viewModel.product = nil;
-    //return;
   } else {
     [self setRepayMoneyBackgroundViewAniMation:YES];
   }
@@ -312,29 +293,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView reloadData];
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
-    //if (self.viewModel.product == nil) {
-      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
+		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
       [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
       self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-     // self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-//    } else {
-//      for (int i = 0; i<[self.selectViewModel numberOfItemsInSection:0]; i++) {
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//        MSFProduct *model = [self.selectViewModel modelForIndexPath:indexPath];
-//        if ([self.viewModel.product.productId isEqualToString:model.productId]) {
-//           [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-//          self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-//          break;
-//				} else if (i == [self.selectViewModel numberOfItemsInSection:0] - 1) {
-//					[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-//					self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-//				}
-//      }
-   // }
-    
+		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
 }
-
 
 - (void)setRepayMoneyBackgroundViewAniMation:(BOOL)isHiddin {
   [UIView beginAnimations:nil context:nil];

@@ -186,9 +186,11 @@ ABPersonViewControllerDelegate>
 		self.diffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
 			self.diffCurrentTF.text = self.currendAddress;
+			self.viewModel.model.memberAddress = self.currendAddress;
 			//self.diffCurrentTF.text = self.viewModel.model.currentAddress;
 		} else {
 			self.diffCurrentTF.text = @"";
+			self.viewModel.model.memberAddress = @"";
 		}
 		[UIView animateWithDuration:.3 animations:^{
 			[self.tableView reloadData];
@@ -227,9 +229,11 @@ ABPersonViewControllerDelegate>
 		self.num2DiffCurrentTF.enabled = !value.boolValue;
 		if (value.boolValue) {
 			self.num2DiffCurrentTF.text = self.currendAddress;
+			self.viewModel.model.memberAddress2 = self.currendAddress;
 			//self.num2DiffCurrentTF.text = self.viewModel.model.currentAddress;
 		} else {
 			self.num2DiffCurrentTF.text = @"";
+			self.viewModel.model.memberAddress2 = @"";
 		}
 		[UIView animateWithDuration:.3 animations:^{
 			[self.tableView reloadData];
@@ -287,6 +291,12 @@ ABPersonViewControllerDelegate>
 	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		
+		NSString *checkForm = [self.viewModel checkForm];
+		if (checkForm) {
+			[SVProgressHUD showErrorWithStatus:checkForm];
+			return;
+		}
+		
 		AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
 		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:nil options:nil] firstObject];
 		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
@@ -339,7 +349,8 @@ ABPersonViewControllerDelegate>
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
 			@strongify(self)
-			[self.navigationController popToRootViewControllerAnimated:YES];
+			[self.tabBarController setSelectedIndex:0];
+			[self.navigationController popToRootViewControllerAnimated:NO];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {

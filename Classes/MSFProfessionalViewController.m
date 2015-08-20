@@ -100,7 +100,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.model, workTown);
 	RAC(self.workTown, text) = workTownChannel;
-	[self.unitTelephone.rac_textSignal subscribe:workTownChannel];
+	[self.workTown.rac_textSignal subscribe:workTownChannel];
 	
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
 	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
@@ -265,11 +265,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[comps setYear:-50];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		
+
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
-		 selectedDate:[NSDate date]
+		 selectedDate:[self localeDate]
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
@@ -302,7 +302,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
-		 selectedDate:[NSDate date]
+		 selectedDate:[self localeDate]
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
@@ -318,6 +318,20 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 origin:self.view];
 		return nil;
 	}] replay];
+}
+
+#pragma mark - datePickerView当天时间
+
+- (NSDate *)localeDate {
+	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+	NSTimeZone *zone = [NSTimeZone systemTimeZone];
+	[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+	NSDate *date = [NSDate date];
+	NSInteger interval = [zone secondsFromGMTForDate:date];
+	NSDate *localeDate = [date  dateByAddingTimeInterval:interval];
+	NSLog(@"%@", localeDate);
+	
+	return localeDate;
 }
 
 @end

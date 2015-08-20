@@ -12,6 +12,7 @@
 #import "MSFRepaymentViewModel.h"
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
+#import "MSFTabBarController.h"
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *placeholder;
+@property (weak, nonatomic) IBOutlet UIButton *applyButton;
 @property (assign, nonatomic) BOOL placeholderShow;
 
 @end
@@ -33,6 +35,7 @@
 	_statusLabel.layer.borderWidth = 1;
 	
 	self.placeholder.alpha = 1;
+	self.applyButton.hidden = NO;
 	self.content.alpha = 0;
 	self.placeholderShow = YES;
 }
@@ -44,11 +47,7 @@
 			_titleLabel.text  = model.title;
 			_statusLabel.text = model.status;
 			_amountLabel.text = model.totalAmount;
-			if ([model.status isEqualToString:@"审核中"]) {
-				_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
-			} else {
-				_infoLabel.text = nil;
-			}
+			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
 			[self placeholderShow:NO];
 			return;
 		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
@@ -72,10 +71,19 @@
 	[self placeholderShow:YES];
 }
 
+- (IBAction)onApply:(UIButton *)sender {
+	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+	if ([tab isKindOfClass:MSFTabBarController.class]) {
+		tab.selectedIndex = 1;
+	}
+}
+
 - (void)placeholderShow:(BOOL)b {
 	[self bringSubviewToFront:self.placeholder];
+	[self bringSubviewToFront:self.applyButton];
 	if (b) {
 		if (!self.placeholderShow) {
+			self.applyButton.hidden = NO;
 			self.placeholderShow = YES;
 			self.placeholder.transform = CGAffineTransformMakeScale(0.6, 0.6);
 			[UIView animateWithDuration:0.25 animations:^{
@@ -89,6 +97,7 @@
 		}
 	} else {
 		if (self.placeholderShow) {
+			self.applyButton.hidden = YES;
 			self.placeholderShow = NO;
 			[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
 				self.placeholder.alpha = 0.5;

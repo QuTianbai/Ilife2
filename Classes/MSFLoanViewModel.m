@@ -46,7 +46,12 @@
 		return [NSDateFormatter msf_Chinese_stringFromDate:date];
 	}];
 	RAC(self, title) = [RACObserve(model, status) map:^id(id value) {
-		return [value integerValue] > 4 ? @"贷款处理状态" :@"贷款申请状态";
+		NSInteger intStatus = [value integerValue];
+		if (intStatus < 4 || intStatus == 8) {
+			return @"贷款申请状态";
+		} else {
+			return @"贷款处理状态";
+		}
 	}];
 	RAC(self, repaidAmount) = [RACObserve(model, payed_amount) map:^id(id value) {
 		return [NSString stringWithFormat:@"%@", value];

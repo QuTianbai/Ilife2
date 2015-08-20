@@ -34,7 +34,15 @@
 @property (nonatomic, assign, readonly) BOOL needArea;
 @property (nonatomic, assign) BOOL isStopAutoLocation;
 
+// 通过这个方法创建的viewmodel忽略区的选择
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+
+// 使用外面的地址信息创建viewModel,在这个初始化方法中，需要选择区
+//
+// address	- 传入的地址信息，默认nil address `省ID 城市ID 区域ID`
+// services - 服务用于加载城市选择控制器
+//
+// return new viewModel
 - (instancetype)initWithAddress:(MSFAddress *)address services:(id <MSFViewModelServices>)services;
 
 @end
