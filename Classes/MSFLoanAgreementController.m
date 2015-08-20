@@ -73,7 +73,6 @@
 	}];
 	
 	@weakify(self)
-	//self.agreeButton.rac_command = self.viewModel.executeRequest;
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
