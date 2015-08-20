@@ -294,12 +294,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:selectedDate];
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate date]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
