@@ -299,7 +299,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate date]];
+			 self.viewModel.startedDate = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }

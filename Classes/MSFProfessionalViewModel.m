@@ -385,7 +385,7 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择工作年限",
 			}]];
 		}
-		if ([self.model.company isEqualToString:@""] || self.model.company == nil || ![self.model.company isChineseName]) {
+		if ([self.model.company isEqualToString:@""] || self.model.company == nil || ![self.model.company isChineseName] || self.model.company.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入单位全称",
 			}]];
@@ -460,7 +460,6 @@
 	
 	return [self.formsViewModel submitSignalWithPage:3];
 }
-
 
 - (RACSignal *)commitValidSignal {
 	return [[RACSignal
