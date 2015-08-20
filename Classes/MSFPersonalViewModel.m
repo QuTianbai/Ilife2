@@ -130,12 +130,7 @@
   }
   if ([self.model.otherIncome isEqualToString:@""]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月其他收入"}]];
-  }
-	if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
-		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
-		}]];
-	} else if (![self.model.email isMail]) {
+  } else if (![self.model.email isMail]) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请输正确的邮箱",
 		}]];
