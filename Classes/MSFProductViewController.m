@@ -126,14 +126,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
   
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-	label.text = @"贷款申请";
+	label.text = @"申请贷款";
 	label.textColor = [UIColor tintColor];
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
-	RAC(self, viewModel.insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+	self.viewModel.insurance = self.isInLifeInsurancePlaneSW.on;
+	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, moneyInsurance) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
@@ -162,6 +163,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
+	[self.viewModel.executeNextCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}];
+	}];
 	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
