@@ -126,7 +126,7 @@
     return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月税前收入"}]];
   }
   if ([self.model.familyExpense isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月还贷额"}]];
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入其他贷款/信用卡每月应还金额"}]];
   }
   if ([self.model.otherIncome isEqualToString:@""]) {
     return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月其他收入"}]];
