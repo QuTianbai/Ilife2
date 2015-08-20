@@ -108,4 +108,6 @@
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
+- (NSString *)checkForm;
+
 @end

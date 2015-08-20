@@ -142,18 +142,38 @@
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
 	
+	[[self.townTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 10) {
+			textField.text = [textField.text substringToIndex:10];
+		}
+	}];
 	RACChannelTerminal *townChannel = RACChannelTo(self.viewModel.model, currentTown);
 	RAC(self.townTF, text) = townChannel;
 	[self.townTF.rac_textSignal subscribe:townChannel];
 	
+	[[self.currentStreetTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 10) {
+			textField.text = [textField.text substringToIndex:10];
+		}
+	}];
 	RACChannelTerminal *streetChannel = RACChannelTo(self.viewModel.model, currentStreet);
 	RAC(self.currentStreetTF, text) = streetChannel;
 	[self.currentStreetTF.rac_textSignal subscribe:streetChannel];
-	
+
+	[[self.currentCommunityTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 10) {
+			textField.text = [textField.text substringToIndex:10];
+		}
+	}];
 	RACChannelTerminal *communityChannel = RACChannelTo(self.viewModel.model, currentCommunity);
 	RAC(self.currentCommunityTF, text) = communityChannel;
 	[self.currentCommunityTF.rac_textSignal subscribe:communityChannel];
-	
+
+	[[self.currentApartmentTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 10) {
+			textField.text = [textField.text substringToIndex:10];
+		}
+	}];
 	RACChannelTerminal *apartmentChannel = RACChannelTo(self.viewModel.model, currentApartment);
 	RAC(self.currentApartmentTF, text) = apartmentChannel;
 	[self.currentApartmentTF.rac_textSignal subscribe:apartmentChannel];
