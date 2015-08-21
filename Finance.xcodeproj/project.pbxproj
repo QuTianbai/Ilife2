@@ -3604,7 +3604,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "2005a59a-5a50-4eba-a357-665970edebd7";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3670,7 +3670,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "2005a59a-5a50-4eba-a357-665970edebd7";
 			};
 			name = Debug;
 		};
