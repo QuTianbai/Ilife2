@@ -361,10 +361,7 @@
 			NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
 		}]];
 	} else if ([self.model.socialStatus isEqualToString:@"SI01"]) {
-		if ([self.model.universityName isEqualToString:@""]
-				|| self.model.universityName == nil
-				|| ![self.model.universityName isChineseName]
-				|| self.model.universityName.length < 4) {
+		if (self.model.universityName.length == 0 || ![self.model.universityName isChineseName] || self.model.universityName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入学校全称",
 			}]];
@@ -385,17 +382,19 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择工作年限",
 			}]];
 		}
-		if ([self.model.company isEqualToString:@""] || self.model.company == nil || ![self.model.company isChineseName] || self.model.company.length < 4) {
+		if (self.model.company.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请输入当前就职单位全称",
 			}]];
+		}
+		if (![self.model.company isChineseName] || self.model.company.length < 4 || self.model.company.length > 20) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的当前就职单位全称"}]];
 		}
 		if ([self.model.industry isEqualToString:@""] || self.model.industry == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择行业类别",
 			}]];
 		}
-		
 		if ([self.model.companyType isEqualToString:@""] || self.model.companyType == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择行业性质",
@@ -416,10 +415,16 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择入职时间",
 			}]];
 		}
+		if (self.model.unitAreaCode.length < 2 || self.model.unitAreaCode.length > 4 || ![self.model.unitAreaCode isScalar]) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的单位电话区号"}]];
+		}
 		if (![[self.model.unitAreaCode stringByAppendingString:self.model.unitTelephone] isTelephone] || self.model.unitAreaCode == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输正确的联系电话",
+				NSLocalizedFailureReasonErrorKey: @"请输入正确的单位座机号码",
 			}]];
+		}
+		if (self.model.unitExtensionTelephone.length > 0 && (self.model.unitExtensionTelephone.length > 4 || ![self.model.unitExtensionTelephone isScalar])) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的单位电话分机号"}]];
 		}
 		if ([self.model.workProvinceCode isEqualToString:@""] || self.model.workProvinceCode == nil) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
@@ -451,10 +456,12 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
 			}]];
 		}
-		if ([self.model.workTown isEqualToString:@""] || self.model.workTown == nil) {
+		if (self.model.workTown.length == 0) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入详细地址信息"}]];
+		}
+		if (self.model.workTown.length > 0 && (self.model.workTown.length < 4 || self.model.workTown.length > 40)) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入详细地址",
-			}]];
+				NSLocalizedFailureReasonErrorKey: @"请输入正确的详细地址"}]];
 		}
 	}
 	
