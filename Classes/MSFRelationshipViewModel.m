@@ -333,53 +333,75 @@
 	if (self.model.houseType.length == 0) {
 		return @"请选择住房状况";
 	}
-	if (self.model.memberName.length < 2) {
-		return @"请输入正确的家庭成员姓名";
+	
+	if (self.model.memberName.length == 0 && self.model.memberName2.length == 0) {
+		return @"请输入至少一位家庭成员姓名";
 	}
-	if (self.model.memberRelation.length == 0) {
-		return @"请选择家庭成员与申请人关系";
-	}
-	if (![self.model.memberCellNum isMobile]) {
-		return @"请输入正确的家庭成员手机号";
-	}
-	if (self.model.memberAddress.length < 8 || self.model.memberAddress.length > 60 ) {
-		return @"请输入正确的家庭成员地址";
+	
+	if (self.model.memberRelation.length > 0 || self.model.memberName.length > 0 || self.model.memberCellNum.length > 0 || self.model.memberAddress.length > 0) {
+		if (![self.model.memberName isChineseName]) {
+			return @"请输入正确的家庭成员姓名";
+		}
+		if (self.model.memberRelation.length == 0) {
+			return @"请选择家庭成员与申请人关系";
+		}
+		if (![self.model.memberCellNum isMobile]) {
+			return @"请输入正确的家庭成员电话";
+		}
+		if (self.model.memberAddress.length < 8 || self.model.memberAddress.length > 60 ) {
+			return @"请输入家庭成员现住所详细地址";
+		}
 	}
 	
 	if (self.model.memberRelation2.length > 0 || self.model.memberName2.length > 0 || self.model.memberCellNum2.length > 0 || self.model.memberAddress2.length > 0) {
-		if (self.model.memberName2.length < 2) {
+		if (![self.model.memberName2 isChineseName]) {
 			return @"请输入正确的家庭成员二的姓名";
 		}
 		if (self.model.memberRelation2.length == 0) {
 			return @"请选择家庭成员二与申请人关系";
 		}
 		if (![self.model.memberCellNum2 isMobile]) {
-			return @"请输入正确的家庭成员二的手机号";
+			return @"请输入正确的家庭成员二的电话";
 		}
-		if (self.model.memberAddress2.length == 0) {
-			return @"请输入正确的家庭成员二的地址";
+		if (self.model.memberAddress2.length < 8 || self.model.memberAddress2.length > 60 ) {
+			return @"请输入家庭成员二现住所详细地址";
 		}
 	}
 	
-	if (self.model.name1.length < 2) {
-		return @"请输入正确的其他联系人姓名";
+	if (self.model.name1.length == 0 && self.model.name2.length == 0) {
+		return @"请输入至少一位联系人姓名";
 	}
-	if (self.model.relation1.length == 0) {
-		return @"请选择联系人与申请人关系";
-	}
-	if (![self.model.phone1 isMobile]) {
-		return @"请输入正确的其他联系人手机号";
+	
+	if (self.model.name1.length > 0 || self.model.relation1.length > 0 || self.model.phone1.length > 0) {
+		if (self.model.name1.length == 0) {
+			return @"请输入正确的其他联系人姓名";
+		}
+		if (self.model.relation1.length == 0) {
+			return @"请选择联系人与申请人关系";
+		}
+		if (![self.model.phone1 isMobile]) {
+			return @"请输入正确的其他联系人电话";
+		}
 	}
 	
 	if (self.model.name2.length > 0 || self.model.relation2.length > 0 || self.model.phone2.length > 0) {
-		if (self.model.name2.length < 2) {
+		if (self.model.name2.length == 0) {
 			return @"请输入正确的其他联系人二的姓名";
 		}
 		if (self.model.relation2.length == 0) {
 			return @"请选择联系人二与申请人关系";
 		}
 		if (![self.model.phone2 isMobile]) {
-			return @"请输入正确的其他联系人二的手机号";
+			return @"请输入正确的其他联系人二的电话";
+		}
+	}
+	
+	NSArray *tempArray = @[self.model.memberCellNum, self.model.memberCellNum2, self.model.phone1, self.model.phone2];
+	for (int i = 0 ; i < tempArray.count ; i ++) {
+		for (int j = i + 1; j < tempArray.count; j++) {
+			if ([tempArray[i] isEqualToString:tempArray[j]]) {
+				return @"家庭成员（或者其他联系人）之间手机号不能相同";
+			}
 		}
 	}
 	
