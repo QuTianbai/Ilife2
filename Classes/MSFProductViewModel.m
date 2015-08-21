@@ -216,6 +216,7 @@
 			return nil;
 		}
 		[[[self.services.httpClient checkUserHasCredit] zipWith:[self.services.httpClient fetchApplyInfo]] subscribeNext:^(RACTuple *applyInfoANDisHasCredut) {
+		[SVProgressHUD dismiss];
 			RACTupleUnpack(MSFResponse *response, MSFApplicationForms *applyInfo) = applyInfoANDisHasCredut;
 			if ([response.parsedResult[@"processing"] boolValue]) {
 				[[[UIAlertView alloc] initWithTitle:@"提示"
@@ -231,6 +232,8 @@
 		[self.services pushViewModel:viewModel];
 				
 			}
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 		[subscriber sendCompleted];
 		return nil;
