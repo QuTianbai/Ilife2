@@ -109,7 +109,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cSu-4k-8qq" id="8tI-bp-20Q">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="家庭投资等收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1s-SW-Pd2">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="家庭、投资等收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V1s-SW-Pd2">
                                                     <rect key="frame" x="120" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>

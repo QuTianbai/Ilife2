@@ -128,7 +128,7 @@
 
 - (NSString *)checkForm {
 	if ([self.model.income isEqualToString:@""]) {
-		return @"请输入月工资收入";
+		return @"请输入每月税前收入";
 	}
 	if ([self.model.familyExpense isEqualToString:@""]) {
 		return @"请输入每月还贷额";

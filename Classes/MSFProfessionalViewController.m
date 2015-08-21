@@ -85,8 +85,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	[[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
-			if (textField.text.length > 10) {
-				textField.text = [textField.text substringToIndex:10];
+			if (textField.text.length > 4) {
+				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
 	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);

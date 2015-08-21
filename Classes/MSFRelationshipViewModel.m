@@ -353,7 +353,7 @@
 		}
 	}
 	
-	if (self.model.memberRelation2.length > 0 || self.model.memberName2.length > 0 || self.model.memberCellNum2.length > 0 || self.model.memberAddress2.length > 0) {
+	if (self.hasMember2 && (self.model.memberRelation2.length > 0 || self.model.memberName2.length > 0 || self.model.memberCellNum2.length > 0 || self.model.memberAddress2.length > 0)) {
 		if (![self.model.memberName2 isChineseName]) {
 			return @"请输入正确的家庭成员二的姓名";
 		}
@@ -384,21 +384,16 @@
 		}
 	}
 	
-	if (self.model.name2.length > 0 || self.model.relation2.length > 0 || self.model.phone2.length > 0) {
-		if (self.model.name2.length == 0) {
-			return @"请输入正确的其他联系人二的姓名";
-		}
-		if (self.model.relation2.length == 0) {
-			return @"请选择联系人二与申请人关系";
-		}
-		if (![self.model.phone2 isMobile]) {
-			return @"请输入正确的其他联系人二的电话";
-		}
+	if (self.hasContact2 && (self.model.name2.length > 0 || self.model.relation2.length > 0 || self.model.phone2.length > 0) && (self.model.name2.length == 0 || self.model.relation2.length == 0 || self.model.phone2.length == 0)) {
+		return @"请填写完第二位联系人信息";
 	}
 	
 	NSArray *tempArray = @[self.model.memberCellNum, self.model.memberCellNum2, self.model.phone1, self.model.phone2];
 	for (int i = 0 ; i < tempArray.count ; i ++) {
 		for (int j = i + 1; j < tempArray.count; j++) {
+			if ([tempArray[i] length] == 0) {
+				continue;
+			}
 			if ([tempArray[i] isEqualToString:tempArray[j]]) {
 				return @"家庭成员（或者其他联系人）之间手机号不能相同";
 			}
