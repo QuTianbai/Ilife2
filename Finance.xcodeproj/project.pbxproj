@@ -162,6 +162,10 @@
 		4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */; };
 		4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952E5901B0B6D490036A6ED /* MSFAuthorizeViewModel.m */; };
 		4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4955B1C61B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m */; };
+		49588DEC1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */; };
+		49588DEE1B86FC6A00FCF171 /* MSFProductSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DED1B86FC6A00FCF171 /* MSFProductSpec.m */; };
+		49588DF61B87021800FCF171 /* MSFPersonalViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */; };
+		49588E051B87102F00FCF171 /* form.json in Resources */ = {isa = PBXBuildFile; fileRef = 49588E041B87102F00FCF171 /* form.json */; };
 		4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */; };
 		495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */; };
 		496444871B69BA77001FB1BE /* btn-showpwd-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444811B69BA77001FB1BE /* btn-showpwd-normal.png */; };
@@ -807,6 +811,10 @@
 		4955DBB81B0DF40000582A69 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Externals/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
 		4955DBC71B0DF40600582A69 /* OHHTTPStubs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHHTTPStubs.xcodeproj; path = Externals/OHHTTPStubs/OHHTTPStubs/OHHTTPStubs.xcodeproj; sourceTree = SOURCE_ROOT; };
 		4955DBD31B0DF40E00582A69 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Externals/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
+		49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementViewModelSpec.m; sourceTree = "<group>"; };
+		49588DED1B86FC6A00FCF171 /* MSFProductSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProductSpec.m; sourceTree = "<group>"; };
+		49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPersonalViewModelSpec.m; sourceTree = "<group>"; };
+		49588E041B87102F00FCF171 /* form.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = form.json; sourceTree = "<group>"; };
 		4958FBE81B1C35680090E663 /* MSFHomepageCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomepageCollectionViewHeader.h; sourceTree = "<group>"; };
 		4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageCollectionViewHeader.m; sourceTree = "<group>"; };
 		495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementViewModel.h; sourceTree = "<group>"; };
@@ -1925,6 +1933,9 @@
 				496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */,
 				496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */,
 				4949BF951B81CB95006BB287 /* MSFWebViewModelSpec.m */,
+				49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */,
+				49588DED1B86FC6A00FCF171 /* MSFProductSpec.m */,
+				49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -1952,6 +1963,7 @@
 				07BF58921B06E38600120D93 /* applycash.json */,
 				C718843A1B06F87200C25955 /* accordtonperlist.json */,
 				07FE07321B0740ED00484069 /* applyInfo.json */,
+				49588E041B87102F00FCF171 /* form.json */,
 				498F3D4E1B0D894100ED0B20 /* message.json */,
 				4977BFDA1B16B79000A259F6 /* timestamp.json */,
 				492BB43E1B1C0D3C0024897C /* loaninfo.json */,
@@ -3168,6 +3180,7 @@
 			files = (
 				07FE07331B0740ED00484069 /* applyInfo.json in Resources */,
 				07BF58861B06DECF00120D93 /* adver.json in Resources */,
+				49588E051B87102F00FCF171 /* form.json in Resources */,
 				492C6A181B4D174900547616 /* loan-response-cash.json in Resources */,
 				C72149F81B05C8E70045F919 /* repayment.json in Resources */,
 				49C7CB991B048F4800EF5A68 /* error.json in Resources */,
@@ -3519,7 +3532,10 @@
 				496A446A1B6A57BE00104215 /* MSFcheckEmploySpec.m in Sources */,
 				496A447C1B6A57BF00104215 /* MSFServerSpec.m in Sources */,
 				496A446E1B6A57BE00104215 /* MSFClozeViewModelSpec.m in Sources */,
+				49588DF61B87021800FCF171 /* MSFPersonalViewModelSpec.m in Sources */,
 				496A44701B6A57BE00104215 /* MSFInstallmentSpec.m in Sources */,
+				49588DEC1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m in Sources */,
+				49588DEE1B86FC6A00FCF171 /* MSFProductSpec.m in Sources */,
 				496A44671B6A57BE00104215 /* MSFAuthorizationSpec.m in Sources */,
 				496A44721B6A57BE00104215 /* MSFObjectSpec.m in Sources */,
 				49C2FE531B4677D200B6B20A /* MSFTestAddressViewModel.m in Sources */,

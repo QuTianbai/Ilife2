@@ -25,13 +25,6 @@
 	_product = product;
 	_services = formsViewModel.services;
 	@weakify(self)
-	[[RACObserve(self, applyCash) ignore:nil] subscribeNext:^(MSFApplicationResponse *applyCash) {
-		@strongify(self)
-		self.formsViewModel.model.loanId = applyCash.applyID;
-		self.formsViewModel.model.personId = applyCash.personId;
-		self.formsViewModel.model.applyNo = applyCash.applyNo;
-	}];
-	
 	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self.formsViewModel submitSignalWithPage:1];

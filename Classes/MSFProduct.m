@@ -34,6 +34,18 @@
 	return *productId == nil;
 }
 
+- (BOOL)validateProGroupId:(id *)proGroupId error:(NSError **)error {
+	id product = *proGroupId;
+	if ([product isKindOfClass:NSString.class]) {
+		return YES;
+	} else if ([product isKindOfClass:NSNumber.class]) {
+		*proGroupId = [product stringValue];
+		return YES;
+	}
+	
+	return *proGroupId == nil;
+}
+
 #pragma mark - MSFSelectionItem
 
 - (NSString *)title {

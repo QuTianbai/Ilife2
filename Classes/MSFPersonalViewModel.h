@@ -5,6 +5,7 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @class MSFApplicationForms;
 @class MSFFormsViewModel;
@@ -16,6 +17,8 @@
 */
 @interface MSFPersonalViewModel : RVMViewModel
 
+@property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) NSString *address;
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) MSFApplicationForms *model;
