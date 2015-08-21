@@ -172,6 +172,9 @@
 	if (![self validAddress]) {
 		return @"详细地址至少输入两项";
 	}
+	if ([self.address length] < 1) {
+		return @"请选择现居地区";
+	}
 	return nil;
 }
 
