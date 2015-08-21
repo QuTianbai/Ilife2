@@ -63,7 +63,11 @@
   @weakify(self)
   backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     @strongify(self)
-    [self.navigationController popToRootViewControllerAnimated:YES];
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出" message:@"您确定放弃贷款申请?" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			if ([x integerValue] == 1) [self.navigationController popToRootViewControllerAnimated:YES];
+		}];
+		[alert show];
     return [RACSignal empty];
   }];
   self.navigationItem.leftBarButtonItem = item;
