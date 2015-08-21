@@ -3670,7 +3670,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Debug;
 		};
@@ -3694,7 +3694,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "8db9e5f2-09de-45bd-a6bf-d09691b7ac4b";
+				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
 			};
 			name = Release;
 		};

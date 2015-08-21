@@ -92,9 +92,9 @@
 
   [[self.familyOtherIncomeYF rac_signalForControlEvents:UIControlEventEditingChanged]
    subscribeNext:^(UITextField *textField) {
-     if (textField.text.length > 5) {
-       if (textField.text.length > 5) {
-         textField.text = [textField.text substringToIndex:5];
+     if (textField.text.length > 6) {
+       if (textField.text.length > 6) {
+         textField.text = [textField.text substringToIndex:6];
        }
      }
    }];

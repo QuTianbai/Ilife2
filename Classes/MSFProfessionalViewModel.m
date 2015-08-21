@@ -403,7 +403,7 @@
 		}
 		if ([self.model.department isEqualToString:@""] || self.model.department == nil || ![self.model.department isChineseName] || ![self.model.department isChineseName]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入部门",
+				NSLocalizedFailureReasonErrorKey: @"请输入当前就职部门全称",
 			}]];
 		}
 		if ([self.model.title isEqualToString:@""] || self.model.title == nil) {
