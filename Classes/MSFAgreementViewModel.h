@@ -22,7 +22,6 @@
 - (RACSignal *)productAgreementSignal;
 - (RACSignal *)usersAgreementSignal;
 - (RACSignal *)branchAgreementSignal;
-- (RACSignal *)repayAgreementSignal;
 - (RACSignal *)loanAgreementSignalWithProduct:(MSFProduct *)product;
 
 @end

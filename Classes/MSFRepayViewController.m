@@ -27,21 +27,12 @@
 	UIWebView *webView = UIWebView.new;
 	webView.delegate = self;
 	[self.view addSubview:webView];
+	//TODO: 缺少贷款合同内容加载，以前的加载代码不正确
 	[webView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.view);
 	}];
 	
 	[SVProgressHUD showWithStatus:@"正在加载..."];
-	[[[webView
-		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.repayAgreementSignal, [RACSignal return:nil]]]]
-		deliverOn:[RACScheduler mainThreadScheduler]]
-	 subscribeNext:^(id x) {
-		 [SVProgressHUD dismiss];
-	 }
-	 error:^(NSError *error) {
-		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	 }];
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];

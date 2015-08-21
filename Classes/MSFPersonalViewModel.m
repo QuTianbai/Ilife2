@@ -122,6 +122,28 @@
 #pragma mark - Private
 
 - (RACSignal *)commitSignal {
+  if ([self.model.income isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月税前收入"}]];
+  }
+  if ([self.model.familyExpense isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入其他贷款/信用卡每月应还金额"}]];
+  }
+  if ([self.model.otherIncome isEqualToString:@""]) {
+    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月其他收入"}]];
+  } else if (![self.model.email isMail]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请输正确的邮箱",
+		}]];
+	} else if (![self validAddress]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"详细地址至少输入两项",
+		}]];
+	} else if (![self.model.qq isNum]) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入正确地qq号",
+		}]];
+	}
+	
 	return [self.formsViewModel submitSignalWithPage:2];
 }
 

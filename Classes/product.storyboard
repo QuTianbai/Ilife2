@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -330,46 +330,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="usZ-6N-x5o">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kfo-ut-sxs">
-                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7E-MQ-EQc" customClass="MSFEdgeButton">
-                                        <rect key="frame" x="10" y="5" width="300" height="40"/>
-                                        <state key="normal" title="同意">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="a7E-MQ-EQc" firstAttribute="top" secondItem="kfo-ut-sxs" secondAttribute="top" constant="5" id="1GN-lH-IQ8"/>
-                                    <constraint firstItem="a7E-MQ-EQc" firstAttribute="leading" secondItem="kfo-ut-sxs" secondAttribute="leading" constant="10" id="cHL-UF-CxW"/>
-                                    <constraint firstAttribute="bottom" secondItem="a7E-MQ-EQc" secondAttribute="bottom" constant="5" id="jbo-FU-wS5"/>
-                                    <constraint firstAttribute="trailing" secondItem="a7E-MQ-EQc" secondAttribute="trailing" constant="10" id="lDJ-xG-v9I"/>
-                                    <constraint firstAttribute="height" constant="50" id="q6C-Kr-xqy"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="kfo-ut-sxs" secondAttribute="bottom" id="A7K-4N-vcz"/>
-                            <constraint firstAttribute="trailing" secondItem="kfo-ut-sxs" secondAttribute="trailing" id="EB2-aT-zQM"/>
-                            <constraint firstItem="usZ-6N-x5o" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="HVP-1f-QRX"/>
-                            <constraint firstAttribute="trailing" secondItem="usZ-6N-x5o" secondAttribute="trailing" id="MxH-j4-aoE"/>
-                            <constraint firstItem="usZ-6N-x5o" firstAttribute="top" secondItem="HL6-Of-Dkt" secondAttribute="top" id="UdD-eK-l4e"/>
-                            <constraint firstItem="kfo-ut-sxs" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="las-64-yLJ"/>
-                            <constraint firstItem="kfo-ut-sxs" firstAttribute="top" secondItem="usZ-6N-x5o" secondAttribute="bottom" id="weo-nd-QTU"/>
+                            <constraint firstItem="usZ-6N-x5o" firstAttribute="top" secondItem="HL6-Of-Dkt" secondAttribute="top" id="La7-lv-yxI"/>
+                            <constraint firstAttribute="bottom" secondItem="usZ-6N-x5o" secondAttribute="bottom" id="Noa-qb-bGH"/>
+                            <constraint firstItem="usZ-6N-x5o" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="ngr-s4-Fy4"/>
+                            <constraint firstAttribute="trailing" secondItem="usZ-6N-x5o" secondAttribute="trailing" id="zbi-h7-Ayb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HAt-5T-X9L"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="BottomBtVIew" destination="kfo-ut-sxs" id="7p1-cL-Ly0"/>
                         <outlet property="LoanAgreenmentWV" destination="usZ-6N-x5o" id="xrK-vX-ZVX"/>
-                        <outlet property="agreeButton" destination="a7E-MQ-EQc" id="iVK-uA-VLq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99z-ai-wgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
