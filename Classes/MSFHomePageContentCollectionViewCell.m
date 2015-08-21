@@ -74,7 +74,8 @@
 - (IBAction)onApply:(UIButton *)sender {
 	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
 	if ([tab isKindOfClass:MSFTabBarController.class]) {
-		tab.selectedIndex = 1;
+		if ([tab.delegate tabBarController:tab shouldSelectViewController:tab.viewControllers[1]])
+			tab.selectedIndex = 1;
 	}
 }
 
