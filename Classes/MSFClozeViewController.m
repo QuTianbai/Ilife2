@@ -19,6 +19,7 @@
 #import <REFormattedNumberField/REFormattedNumberField.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
+#import "NSDate+UTC0800.h"
 
 @interface MSFClozeViewController () <UITextFieldDelegate>
 
@@ -158,32 +159,24 @@
 			@strongify(self)
 			[self.view endEditing:YES];
 			NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-			NSDate *currentDate = [NSDate date];
+			NSDate *currentDate = [NSDate msf_date];
 			NSDateComponents *comps = [[NSDateComponents alloc] init];
 			[comps setYear:100];
 			NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 			[comps setYear:0];
-			NSDate *minDate = [NSDate date];
+			NSDate *minDate = [NSDate msf_date];
 			
-			NSTimeZone *zone = [NSTimeZone systemTimeZone];
-		  NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-			[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-			
-			NSDate *date = self.viewModel.expired ?: [NSDate date];
-			NSInteger interval = [zone secondsFromGMTForDate:date];
-			NSDate *localeDate = [date  dateByAddingTimeInterval:interval];
+			NSDate *date = self.viewModel.expired ?: [NSDate msf_date];
 			
 			[ActionSheetDatePicker
 				showPickerWithTitle:@""
 				datePickerMode:UIDatePickerModeDate
-				selectedDate:localeDate
+				selectedDate:date
 				minimumDate:minDate
 				maximumDate:maxDate
 				doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-					NSInteger interval = [zone secondsFromGMTForDate:selectedDate];
-					NSDate *zoneDate = [selectedDate dateByAddingTimeInterval:interval];
-					self.expired.text = [NSDateFormatter msf_stringFromDate:zoneDate];
-					self.viewModel.expired = zoneDate;
+					self.expired.text = [NSDateFormatter msf_stringFromDate:[NSDate msf_date:selectedDate]];
+					self.viewModel.expired = selectedDate;
 				} cancelBlock:^(ActionSheetDatePicker *picker) {
 				} origin:self.view];
 	}];

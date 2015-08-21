@@ -27,6 +27,7 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSFHeaderView.h"
+#import "NSDate+UTC0800.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionSchool = 1,
@@ -280,7 +281,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate date];
+		NSDate *currentDate = [NSDate msf_date];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setYear:0];
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
@@ -290,11 +291,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
-		 selectedDate:[self localeDate]
+		 selectedDate:currentDate
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -313,7 +314,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate date];
+		NSDate *currentDate = [NSDate msf_date];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setYear:0];
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
@@ -323,36 +324,22 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
-		 selectedDate:[self localeDate]
+		 selectedDate:currentDate
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:selectedDate];
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate msf_date:selectedDate]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate date]];
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate msf_date]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 origin:self.view];
 		return nil;
 	}] replay];
-}
-
-#pragma mark - datePickerView当天时间
-
-- (NSDate *)localeDate {
-	NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-	NSTimeZone *zone = [NSTimeZone systemTimeZone];
-	[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-	NSDate *date = [NSDate date];
-	NSInteger interval = [zone secondsFromGMTForDate:date];
-	NSDate *localeDate = [date  dateByAddingTimeInterval:interval];
-	NSLog(@"%@", localeDate);
-	
-	return localeDate;
 }
 
 @end
