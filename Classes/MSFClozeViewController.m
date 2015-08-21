@@ -164,13 +164,15 @@
 			NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 			[comps setYear:0];
 			NSDate *minDate = [NSDate date];
-		  NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+			
 			NSTimeZone *zone = [NSTimeZone systemTimeZone];
+		  NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
 			[formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-			NSDate *date = [NSDate date];
+			
+			NSDate *date = self.viewModel.expired ?: [NSDate date];
 			NSInteger interval = [zone secondsFromGMTForDate:date];
 			NSDate *localeDate = [date  dateByAddingTimeInterval:interval];
-			NSLog(@"%@", localeDate);
+			
 			[ActionSheetDatePicker
 				showPickerWithTitle:@""
 				datePickerMode:UIDatePickerModeDate
@@ -178,12 +180,12 @@
 				minimumDate:minDate
 				maximumDate:maxDate
 				doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-					self.expired.text = [NSDateFormatter msf_stringFromDate:localeDate];
-					self.viewModel.expired = localeDate;
-				}
-				cancelBlock:^(ActionSheetDatePicker *picker) {
-				}
-				origin:self.view];
+					NSInteger interval = [zone secondsFromGMTForDate:selectedDate];
+					NSDate *zoneDate = [selectedDate dateByAddingTimeInterval:interval];
+					self.expired.text = [NSDateFormatter msf_stringFromDate:zoneDate];
+					self.viewModel.expired = zoneDate;
+				} cancelBlock:^(ActionSheetDatePicker *picker) {
+				} origin:self.view];
 	}];
 	
 	self.name.delegate = self;
