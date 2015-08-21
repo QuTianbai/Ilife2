@@ -351,7 +351,7 @@ ABPersonViewControllerDelegate>
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"申请提交成功"];
+			[SVProgressHUD showSuccessWithStatus:@"恭喜您! 申请已提交!"];
 			@strongify(self)
 			[self.tabBarController setSelectedIndex:0];
 			[self.navigationController popToRootViewControllerAnimated:NO];
