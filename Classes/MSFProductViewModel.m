@@ -68,6 +68,11 @@
 	RAC(self, market) = RACObserve(self.formsViewModel, market);
 	
 	@weakify(self)
+	[RACObserve(self, totalAmount) subscribeNext:^(id x) {
+		@strongify(self)
+		self.formsViewModel.model.principal = x;
+		if ([x doubleValue] == 0) self.moneyInsurance = @"";
+	}];
 	[RACObserve(self, product) subscribeNext:^(MSFProduct *product) {
 		@strongify(self)
 		self.formsViewModel.model.productId = product.productId;
@@ -216,6 +221,7 @@
 			return nil;
 		}
 		[[[self.services.httpClient checkUserHasCredit] zipWith:[self.services.httpClient fetchApplyInfo]] subscribeNext:^(RACTuple *applyInfoANDisHasCredut) {
+		[SVProgressHUD dismiss];
 			RACTupleUnpack(MSFResponse *response, MSFApplicationForms *applyInfo) = applyInfoANDisHasCredut;
 			if ([response.parsedResult[@"processing"] boolValue]) {
 				[[[UIAlertView alloc] initWithTitle:@"提示"
@@ -231,6 +237,8 @@
 		[self.services pushViewModel:viewModel];
 				
 			}
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 		[subscriber sendCompleted];
 		return nil;

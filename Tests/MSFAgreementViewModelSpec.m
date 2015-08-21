@@ -101,7 +101,7 @@ it(@"should fetch loan agreement html with product", ^{
 	
 	MSFClient *client = mock([MSFClient class]);
 	[given([client fetchAgreementURLWithProduct:product]) willDo:^id(NSInvocation *invocation) {
-		return [RACSignal return:URL];
+		return [RACSignal return:[NSURLRequest requestWithURL:URL]];
 	}];
 	id <MSFViewModelServices> services = mockProtocol(@protocol(MSFViewModelServices));
 	[given([services httpClient]) willReturn:client];

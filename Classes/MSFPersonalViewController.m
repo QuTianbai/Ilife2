@@ -104,8 +104,7 @@
 	
   [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-		
-		
+		@strongify(self)
 		if (textField.text.length == 3) {
 			if ([self validaCode:textField.text]) {
 				[self.homeTelTF becomeFirstResponder];
@@ -119,7 +118,7 @@
   }];
   [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-		
+		@strongify(self)
 		if (textField.text.length == 0) {
 			[self.homeLineCodeTF becomeFirstResponder];
 		}
@@ -294,7 +293,7 @@
 - (BOOL)validaCode:(NSString *)code {
 	NSMutableArray *codeArray = [[NSMutableArray alloc] init];
 	[codeArray addObject:@"010"];
-	for ( int i=0; i < 10; i++) {
+	for ( int i = 0; i < 10; i++) {
 		if (i != 6) {
 			[codeArray addObject:[NSString stringWithFormat:@"02%d", i]];
 		}

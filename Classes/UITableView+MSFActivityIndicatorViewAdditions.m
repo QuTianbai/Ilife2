@@ -34,6 +34,7 @@ static UIColor *backupColor;
 	[view addSubview:label];
 	[label mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.center.equalTo(view);
+		make.height.equalTo(@40);
 		make.left.equalTo(view).offset(30);
 		make.right.equalTo(view).offset(-30);
 	}];

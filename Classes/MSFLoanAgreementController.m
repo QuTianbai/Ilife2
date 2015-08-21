@@ -35,6 +35,10 @@
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFLoanAgreementController dealloc");
+}
+
 - (instancetype)initWithViewModel:(id)viewModel {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"product" bundle:nil];
 	self =  [storyboard instantiateViewControllerWithIdentifier:@"MSFLoanAgreementWebView"];
@@ -73,7 +77,6 @@
 	}];
 	
 	@weakify(self)
-	//self.agreeButton.rac_command = self.viewModel.executeRequest;
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
@@ -111,7 +114,7 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSString *urlString = [[request URL] absoluteString];
 	urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	if ([urlString containsString:@"objc"]) {
+	if ([urlString rangeOfString:@"objc"].length != 0) {
 		[self.viewModel.executeRequest execute:nil];
 		return NO;
 	}
