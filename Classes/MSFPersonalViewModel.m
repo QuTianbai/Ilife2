@@ -164,7 +164,7 @@
 		return @"请填写完住宅电话";
 	}
 	if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
-		return @"请输正确的联系电话";
+		return @"请输正确的住宅电话";
 	}
 	if (![self.model.email isMail]) {
 		return @"请输正确的邮箱";
