@@ -92,9 +92,18 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
+	@weakify(self)
 	[[self.unitAreaCode rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
-			if (textField.text.length > 4) {
+			@strongify(self)
+			if (textField.text.length == 3) {
+				NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+				if ([validArea containsObject:textField.text]) {
+					[self.unitTelephone becomeFirstResponder];
+				}
+			} else if (textField.text.length == 4) {
+				[self.unitTelephone becomeFirstResponder];
+			} else if (textField.text.length > 4) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
@@ -146,7 +155,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.address, text) = RACObserve(self.viewModel, address);
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
-	@weakify(self)
 	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)

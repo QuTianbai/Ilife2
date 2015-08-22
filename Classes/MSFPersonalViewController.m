@@ -49,87 +49,84 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-  
-  // Left Bar button
-  UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-  backBtn.frame = CGRectMake(0, 0, 100, 44);
-  [backBtn setTitle:@"申请贷款" forState:UIControlStateNormal];
-  [backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
-  backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-  [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-  [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
-  [backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
-  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-  @weakify(self)
-  backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self)
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    return [RACSignal empty];
-  }];
-  self.navigationItem.leftBarButtonItem = item;
-  
+	
+	// Left Bar button
+	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	backBtn.frame = CGRectMake(0, 0, 100, 44);
+	[backBtn setTitle:@"申请贷款" forState:UIControlStateNormal];
+	[backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
+	backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+	[backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+	[backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
+	[backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+	@weakify(self)
+	backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		[self.navigationController popToRootViewControllerAnimated:YES];
+		return [RACSignal empty];
+	}];
+	self.navigationItem.leftBarButtonItem = item;
+	
 	self.title = @"基本信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:0];
 	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-   subscribeNext:^(UITextField *textField) {
-     if (textField.text.length > 5) {
-       textField.text = [textField.text substringToIndex:5];
-     }
-   }];
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 5) {
+			 textField.text = [textField.text substringToIndex:5];
+		 }
+	 }];
 	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.model, income);
 	RAC(self.monthInComeTF, text) = incomeChannel;
 	[self.monthInComeTF.rac_textSignal subscribe:incomeChannel];
-
-  [[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
-   subscribeNext:^(UITextField *textField) {
-     if (textField.text.length > 5) {
-        textField.text = [textField.text substringToIndex:5];
-     }
-   }];
+	
+	[[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 5) {
+			 textField.text = [textField.text substringToIndex:5];
+		 }
+	 }];
 	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
 	RAC(self.repayMonthTF, text) = familyExpenseChannel;
 	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
-
-  [[self.familyOtherIncomeYF rac_signalForControlEvents:UIControlEventEditingChanged]
-   subscribeNext:^(UITextField *textField) {
-     if (textField.text.length > 6) {
-       if (textField.text.length > 6) {
-         textField.text = [textField.text substringToIndex:6];
-       }
-     }
-   }];
+	
+	[[self.familyOtherIncomeYF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 if (textField.text.length > 6) {
+				 textField.text = [textField.text substringToIndex:6];
+			 }
+		 }
+	 }];
 	RACChannelTerminal *otherIncomeChannel = RACChannelTo(self.viewModel.model, otherIncome);
 	RAC(self.familyOtherIncomeYF, text) = otherIncomeChannel;
 	[self.familyOtherIncomeYF.rac_textSignal subscribe:otherIncomeChannel];
 	
-  [[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	[[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
-		
-		
+		@strongify(self)
 		if (textField.text.length == 3) {
-			if ([self validaCode:textField.text]) {
+			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+			if ([validArea containsObject:textField.text]) {
 				[self.homeTelTF becomeFirstResponder];
 			}
-		} else if (textField.text.length == 4 ) {
-			//textField.text = [textField.text substringToIndex:4];
-			[textField endEditing:YES];
+		} else if (textField.text.length == 4) {
 			[self.homeTelTF becomeFirstResponder];
 		}
-		
-  }];
-  [[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	}];
+	[[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
 		
 		if (textField.text.length == 0) {
 			[self.homeLineCodeTF becomeFirstResponder];
 		}
 		
-    if (textField.text.length>8) {
-      //if (textField.text.length >4 ) {
+		if (textField.text.length>8) {
+			//if (textField.text.length >4 ) {
 			textField.text = [textField.text substringToIndex:8];
-      //}
-    }
-  }];
+			//}
+		}
+	}];
 	RACChannelTerminal *homecodeChannel = RACChannelTo(self.viewModel.model, homeCode);
 	RAC(self.homeLineCodeTF, text) = homecodeChannel;
 	[self.homeLineCodeTF.rac_textSignal subscribe:homecodeChannel];
@@ -159,7 +156,7 @@
 	RACChannelTerminal *streetChannel = RACChannelTo(self.viewModel.model, currentStreet);
 	RAC(self.currentStreetTF, text) = streetChannel;
 	[self.currentStreetTF.rac_textSignal subscribe:streetChannel];
-
+	
 	[[self.currentCommunityTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
 		if (textField.text.length > 10) {
 			textField.text = [textField.text substringToIndex:10];
@@ -168,7 +165,7 @@
 	RACChannelTerminal *communityChannel = RACChannelTo(self.viewModel.model, currentCommunity);
 	RAC(self.currentCommunityTF, text) = communityChannel;
 	[self.currentCommunityTF.rac_textSignal subscribe:communityChannel];
-
+	
 	[[self.currentApartmentTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
 		if (textField.text.length > 10) {
 			textField.text = [textField.text substringToIndex:10];
@@ -201,10 +198,10 @@
 	
 	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
-  self.selectQQorJDSegment.delegate = self;
+	self.selectQQorJDSegment.delegate = self;
 	[[self.selectQQorJDSegment rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
 		@strongify(self)
-    [self.selectQQorJDSegment setLineColors];
+		[self.selectQQorJDSegment setLineColors];
 		[self.tableView reloadData];
 	}];
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
@@ -248,14 +245,14 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  
-  NSLog(@"%ld", (long)self.selectQQorJDSegment.selectedSegmentIndex);
+	
+	NSLog(@"%ld", (long)self.selectQQorJDSegment.selectedSegmentIndex);
 	if (section == 0 || section == self.selectQQorJDSegment.selectedSegmentIndex + 1) {
 		return [super tableView:tableView numberOfRowsInSection:section];
 	}
-  if (section ==1 && self.selectQQorJDSegment.selectedSegmentIndex == -1) {
-    return [super tableView:tableView numberOfRowsInSection:1];
-  }
+	if (section ==1 && self.selectQQorJDSegment.selectedSegmentIndex == -1) {
+		return [super tableView:tableView numberOfRowsInSection:1];
+	}
 	return 0;
 }
 
@@ -263,7 +260,7 @@
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 		[cell setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
 		[cell setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -273,7 +270,7 @@
 	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
 		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 	}
-
+	
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
@@ -282,13 +279,13 @@
 #pragma mark - MSFSegmenDelegate
 
 - (void)setLineColor:(NSMutableArray *)array {
-  for (UILabel *label in array) {
-    if (label.tag == self.selectQQorJDSegment.selectedSegmentIndex) {
-      label.hidden = NO;
-    } else {
-      label.hidden = YES;
-    }
-  }
+	for (UILabel *label in array) {
+		if (label.tag == self.selectQQorJDSegment.selectedSegmentIndex) {
+			label.hidden = NO;
+		} else {
+			label.hidden = YES;
+		}
+	}
 }
 
 - (BOOL)validaCode:(NSString *)code {

@@ -130,6 +130,13 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.viewModel.hasMember2 = !self.viewModel.hasMember2;
 		[self.addFamilyBT setTitle:self.viewModel.hasMember2 ? @"- 删除第二位家庭成员" : @"✚ 增加第二位家庭成员" forState:UIControlStateNormal];
+		if (self.viewModel.hasMember2) {
+			if (self.num2IsSameCurrentSW.on) {
+				self.viewModel.model.memberAddress2 = self.currendAddress;
+			} else {
+				self.viewModel.model.memberAddress2 = @"";
+			}
+		}
 		[UIView animateWithDuration:.3 animations:^{
 			[self.tableView reloadData];
 		}];

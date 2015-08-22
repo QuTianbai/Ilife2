@@ -348,7 +348,7 @@
 		if (![self.model.memberCellNum isMobile]) {
 			return @"请输入正确的家庭成员电话";
 		}
-		if (self.model.memberAddress.length < 8 || self.model.memberAddress.length > 60 ) {
+		if (self.model.memberAddress.length > 0 && (self.model.memberAddress.length < 8 || self.model.memberAddress.length > 60)) {
 			return @"请输入家庭成员现住所详细地址";
 		}
 	}
@@ -363,7 +363,7 @@
 		if (![self.model.memberCellNum2 isMobile]) {
 			return @"请输入正确的家庭成员二的电话";
 		}
-		if (self.model.memberAddress2.length < 8 || self.model.memberAddress2.length > 60 ) {
+		if (self.model.memberAddress2.length > 0 && (self.model.memberAddress2.length < 8 || self.model.memberAddress2.length > 60)) {
 			return @"请输入家庭成员二现住所详细地址";
 		}
 	}
@@ -388,13 +388,34 @@
 		return @"请填写完第二位联系人信息";
 	}
 	
-	NSArray *tempArray = @[self.model.memberCellNum, self.model.memberCellNum2, self.model.phone1, self.model.phone2];
-	for (int i = 0 ; i < tempArray.count ; i ++) {
-		for (int j = i + 1; j < tempArray.count; j++) {
-			if ([tempArray[i] length] == 0) {
+	NSMutableArray *phoneArray = [NSMutableArray arrayWithArray:@[self.model.memberCellNum, self.model.phone1]];
+	NSMutableArray *nameArray  = [NSMutableArray arrayWithArray:@[self.model.memberName, self.model.name1]];
+	if (self.hasMember2) {
+		[phoneArray addObject:self.model.memberCellNum2];
+		[nameArray addObject:self.model.memberName2];
+	}
+	if (self.hasContact2) {
+		[phoneArray addObject:self.model.phone2];
+		[nameArray addObject:self.model.name2];
+	}
+	
+	for (int i = 0 ; i < nameArray.count ; i ++) {
+		for (int j = i + 1; j < nameArray.count; j++) {
+			if ([nameArray[i] length] == 0) {
 				continue;
 			}
-			if ([tempArray[i] isEqualToString:tempArray[j]]) {
+			if ([nameArray[i] isEqualToString:nameArray[j]]) {
+				return @"家庭成员（或者其他联系人）之间姓名不能相同";
+			}
+		}
+	}
+
+	for (int i = 0 ; i < phoneArray.count ; i ++) {
+		for (int j = i + 1; j < phoneArray.count; j++) {
+			if ([phoneArray[i] length] == 0) {
+				continue;
+			}
+			if ([phoneArray[i] isEqualToString:phoneArray[j]]) {
 				return @"家庭成员（或者其他联系人）之间手机号不能相同";
 			}
 		}
