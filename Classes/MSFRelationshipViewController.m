@@ -118,6 +118,10 @@ ABPersonViewControllerDelegate>
 
 #pragma mark - Lifecycle
 
+- (void)dealloc {
+	NSLog(@"MSFRelationshipViewController dealloc");
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"家庭信息";

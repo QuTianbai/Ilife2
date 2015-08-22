@@ -108,7 +108,7 @@
 }
 
 - (BOOL)isNum {
- NSScanner* scan = [NSScanner scannerWithString:self];
+ NSScanner *scan = [NSScanner scannerWithString:self];
 	int val;
 	return[scan scanInt:&val] && [scan isAtEnd];
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -25,22 +25,22 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAM-Hj-ofJ">
-                                    <rect key="frame" x="75" y="41" width="170" height="90"/>
+                                    <rect key="frame" x="0.0" y="41" width="320" height="90"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预计每期还款金额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iot-0D-2xc">
-                                            <rect key="frame" x="25" y="10" width="120" height="18"/>
+                                            <rect key="frame" x="100" y="10" width="120" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
-                                            <rect key="frame" x="58" y="36" width="53.5" height="33.5"/>
+                                            <rect key="frame" x="133" y="36" width="53.5" height="33.5"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSK-6s-ZoD">
-                                            <rect key="frame" x="30" y="38" width="28" height="33.5"/>
+                                            <rect key="frame" x="105" y="38" width="28" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" red="0.043137254899999998" green="0.6705882353" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -53,10 +53,17 @@
                                         <constraint firstAttribute="bottom" secondItem="TSK-6s-ZoD" secondAttribute="bottom" constant="18" id="KN7-vg-hUf"/>
                                         <constraint firstAttribute="bottom" secondItem="v6U-t7-RUX" secondAttribute="bottom" constant="20" id="On4-ru-LLb"/>
                                         <constraint firstItem="v6U-t7-RUX" firstAttribute="leading" secondItem="TSK-6s-ZoD" secondAttribute="trailing" id="P9l-Me-18m"/>
-                                        <constraint firstAttribute="width" constant="170" id="aml-Wl-Dqa"/>
+                                        <constraint firstAttribute="width" constant="320" id="aml-Wl-Dqa"/>
                                         <constraint firstAttribute="height" constant="90" id="bIk-8Z-A3k"/>
                                         <constraint firstItem="iot-0D-2xc" firstAttribute="top" secondItem="rAM-Hj-ofJ" secondAttribute="top" constant="10" id="mWu-Rf-Lff"/>
+                                        <constraint firstItem="v6U-t7-RUX" firstAttribute="leading" secondItem="TSK-6s-ZoD" secondAttribute="trailing" id="mzY-cb-y2e"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="aml-Wl-Dqa"/>
+                                            <exclude reference="P9l-Me-18m"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此服务为可选增值服务，请仔细阅读后选择" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dE5-fc-Du5">
                                     <rect key="frame" x="15" y="0.0" width="200" height="21"/>
@@ -95,8 +102,10 @@
                                 <constraint firstAttribute="bottom" secondItem="xaO-by-3e5" secondAttribute="bottom" constant="40" id="IS7-uJ-Hev"/>
                                 <constraint firstAttribute="trailing" secondItem="826-SW-x5j" secondAttribute="trailing" constant="10" id="IXb-Ue-jal"/>
                                 <constraint firstAttribute="trailing" secondItem="CS3-WP-hrb" secondAttribute="trailing" id="Mwr-8E-qOn"/>
+                                <constraint firstAttribute="trailing" secondItem="rAM-Hj-ofJ" secondAttribute="trailing" id="Umw-Km-4Ux"/>
                                 <constraint firstItem="CS3-WP-hrb" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ddS-PJ-7S2"/>
                                 <constraint firstItem="826-SW-x5j" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="ijx-8A-nId"/>
+                                <constraint firstItem="rAM-Hj-ofJ" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" id="iz2-gv-yvd"/>
                                 <constraint firstAttribute="trailing" secondItem="xaO-by-3e5" secondAttribute="trailing" constant="10" id="mWZ-Mw-jkk"/>
                                 <constraint firstItem="dE5-fc-Du5" firstAttribute="top" secondItem="h0b-Vw-fP4" secondAttribute="top" id="q8L-rt-l6h"/>
                                 <constraint firstItem="xaO-by-3e5" firstAttribute="leading" secondItem="h0b-Vw-fP4" secondAttribute="leading" constant="10" id="uey-Lo-fVr"/>
