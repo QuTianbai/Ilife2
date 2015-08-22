@@ -62,16 +62,6 @@
 				[self.model mergeValuesForKeysFromModel:model];
 				[self.market mergeValuesForKeysFromModel:market];
         self.isHaveProduct = YES;
-				[self.currentAddress mergeValuesForKeysFromModel:[[MSFAddress alloc] initWithDictionary:@{
-					@"province": self.model.currentProvinceCode,
-					@"city": self.model.currentCityCode,
-					@"area": self.model.currentCountryCode,
-				} error:nil]];
-				[self.workAddress mergeValuesForKeysFromModel: [[MSFAddress alloc] initWithDictionary:@{
-					@"province": self.model.workProvinceCode,
-					@"city": self.model.workCityCode,
-					@"area": self.model.workCountryCode,
-				} error:nil]];
 				return [self.services.httpClient checkUserHasCredit];
 			}]
 			subscribeNext:^(MSFResponse *response) {
@@ -84,6 +74,13 @@
 				[(RACSubject *)self.updatedContentSignal sendError:error];
 			}];
 	}];
+	
+	RAC(self.currentAddress, province) = RACObserve(self.model, currentProvinceCode);
+	RAC(self.currentAddress, city) = RACObserve(self.model, currentCityCode);
+	RAC(self.currentAddress, area) = RACObserve(self.model, currentCountryCode);
+	RAC(self.workAddress, province) = RACObserve(self.model, workProvinceCode);
+	RAC(self.workAddress, city) = RACObserve(self.model, workCityCode);
+	RAC(self.workAddress, area) = RACObserve(self.model, workCountryCode);
 	
 	return self;
 }

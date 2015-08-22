@@ -546,17 +546,8 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     if (error.code == -1004 || cipher == nil || (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
-			}
-
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
-			}
-			
-			if (operation.response.statusCode == 401) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidErrorNotification
-				 object:[self.class errorFromRequestOperation:operation]];
 			}
 			
 			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
@@ -564,12 +555,16 @@ static BOOL isRunningTests(void) {
 				self.token = authorization.token;
 				self.session = authorization.session;
 			}
-			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
 			
-			// 授权失败删除授权信息
+			if (error.code == -1004 || cipher == nil || (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
+			}
 			if (operation.response.statusCode == 401) {
 				[MSFUtils setHttpClient:nil];
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidErrorNotification object:[self.class errorFromRequestOperation:operation]];
 			}
+			
+			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
 		}];
 		
 		[self enqueueHTTPRequestOperation:operation];

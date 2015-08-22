@@ -105,6 +105,7 @@
 @property (nonatomic, strong, readonly) RACCommand *executeOtherTwoValuesCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 

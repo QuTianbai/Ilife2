@@ -9,7 +9,7 @@
 #import "MSFObject.h"
 
 @interface MSFApplicationResponse : MSFObject
-//@property(nonatomic, copy, readonly)NSString* message;
+
 @property (nonatomic, copy, readonly) NSString *applyID;
 @property (nonatomic, copy, readonly) NSString *personId;
 @property (nonatomic, copy, readonly) NSString *applyNo;

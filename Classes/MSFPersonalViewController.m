@@ -50,24 +50,27 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	// Left Bar button
-	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	backBtn.frame = CGRectMake(0, 0, 100, 44);
-	[backBtn setTitle:@"申请贷款" forState:UIControlStateNormal];
-	[backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
-	backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-	[backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-	[backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
-	[backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
-	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-	@weakify(self)
-	backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		[self.navigationController popToRootViewControllerAnimated:YES];
-		return [RACSignal empty];
-	}];
-	self.navigationItem.leftBarButtonItem = item;
-	
+  // Left Bar button
+  UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+  backBtn.frame = CGRectMake(0, 0, 100, 44);
+  [backBtn setTitle:@"申请贷款" forState:UIControlStateNormal];
+  [backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
+  backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+  [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+  [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
+  [backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
+  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+  @weakify(self)
+  backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+    @strongify(self)
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出" message:@"您确定放弃贷款申请?" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			if ([x integerValue] == 1) [self.navigationController popToRootViewControllerAnimated:YES];
+		}];
+		[alert show];
+    return [RACSignal empty];
+  }];
+  self.navigationItem.leftBarButtonItem = item;
 	self.title = @"基本信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:0];
 	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]

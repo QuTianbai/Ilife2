@@ -19,13 +19,6 @@
 #import <FMDB/FMDB.h>
 #import "RCLocationManager.h"
 
-@interface MSFPersonalViewModel ()
-
-@property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
-@property (nonatomic, weak) id <MSFViewModelServices> services;
-
-@end
-
 @implementation MSFPersonalViewModel
 
 #pragma mark - Lifecycle
@@ -35,6 +28,7 @@
 	if (!self) {
 		return nil;
 	}
+	_address = @"";
   _services = viewModel.services;
 	if (CLLocationCoordinate2DIsValid([RCLocationManager sharedManager].location.coordinate)) {
 		[self getLocationCoordinate:[RCLocationManager sharedManager].location.coordinate];
@@ -122,25 +116,10 @@
 #pragma mark - Private
 
 - (RACSignal *)commitSignal {
-  if ([self.model.income isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入每月税前收入"}]];
-  }
-  if ([self.model.familyExpense isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入其他贷款/信用卡每月应还金额"}]];
-  }
-  if ([self.model.otherIncome isEqualToString:@""]) {
-    return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请输入月其他收入"}]];
-  } else if (![self.model.email isMail]) {
+	NSString *error = [self checkForm];
+	if (error) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请输正确的邮箱",
-		}]];
-	} else if (![self validAddress]) {
-		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"详细地址至少输入两项",
-		}]];
-	} else if (![self.model.qq isNum]) {
-		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请输入正确地qq号",
+				NSLocalizedFailureReasonErrorKey: error,
 		}]];
 	}
 	
@@ -157,14 +136,16 @@
 	if ([self.model.otherIncome isEqualToString:@""]) {
 		return @"请输入月其他收入";
 	}
-	if (self.model.homeCode.length < 3 || ![self.model.homeCode isScalar]) {
-		return @"请输入正确的住宅座机区号";
-	}
-	if (self.model.homeLine.length == 0) {
-		return @"请填写完住宅电话";
-	}
-	if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
-		return @"请输正确的住宅电话";
+	if (self.model.homeCode.length != 0 || self.model.homeLine.length != 0) {
+		if (self.model.homeCode.length < 3 || ![self.model.homeCode isScalar]) {
+			return @"请输入正确的住宅座机区号";
+		}
+		if (self.model.homeLine.length == 0) {
+			return @"请填写完住宅电话";
+		}
+		if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
+			return @"请输正确的住宅电话";
+		}
 	}
 	if (![self.model.email isMail]) {
 		return @"请输正确的邮箱";
@@ -175,8 +156,8 @@
 	if ([self.address length] < 1) {
 		return @"请选择现居地区";
 	}
-	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 11 || ![self.model.qq isNum])) {
-		return @"请输入正确的qq号";
+	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
+		return @"请输入正确的QQ号";
 	}
 	return nil;
 }

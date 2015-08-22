@@ -16,4 +16,26 @@
 		};
 }
 
+- (BOOL)validateApplyID:(id *)applyID error:(NSError **)error {
+	id product = *applyID;
+	if ([product isKindOfClass:NSString.class]) {
+		return YES;
+	} else if ([product isKindOfClass:NSNumber.class]) {
+		*applyID = [product stringValue];
+		return YES;
+	}
+	return *applyID == nil;
+}
+
+- (BOOL)validatePersonId:(id *)personId error:(NSError **)error {
+	id product = *personId;
+	if ([product isKindOfClass:NSString.class]) {
+		return YES;
+	} else if ([product isKindOfClass:NSNumber.class]) {
+		*personId = [product stringValue];
+		return YES;
+	}
+	return *personId == nil;
+}
+
 @end
