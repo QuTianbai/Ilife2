@@ -106,4 +106,36 @@ it(@"should not accept with error QQ", ^{
 	expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"请输入正确的QQ号"));
 });
 
+it(@"should accept none home telephone", ^{
+	// given
+	[given([viewModel.formsViewModel submitSignalWithPage:2]) willDo:^id(NSInvocation *invocation) {
+		MSFApplicationResponse *model = [MTLJSONAdapter modelOfClass:[MSFApplicationResponse class] fromJSONDictionary:@{
+			@"applyNo": @"20150821000368",
+			@"id": @368,
+			@"personId": @388
+		} error:nil];
+		return [RACSignal return:model];
+	}];
+	
+	NSError *error = nil;
+	
+	model.income = @"1000";
+	model.familyExpense = @"0";
+	model.otherIncome = @"100";
+	model.email = @"gitmac@qq.com";
+	model.currentTown = @"foo";
+	model.currentStreet = @"bar";
+	model.qq = @"12345";
+	
+	// when
+	model.homeCode = @"";
+	model.homeLine = @"";
+	
+	[[viewModel.executeAlterAddressCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	[[viewModel.executeCommitCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
+	
+	// then
+	expect(error).to(beNil());
+});
+
 QuickSpecEnd

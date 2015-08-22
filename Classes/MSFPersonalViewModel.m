@@ -136,14 +136,16 @@
 	if ([self.model.otherIncome isEqualToString:@""]) {
 		return @"请输入月其他收入";
 	}
-	if (self.model.homeCode.length < 3 || ![self.model.homeCode isScalar]) {
-		return @"请输入正确的住宅座机区号";
-	}
-	if (self.model.homeLine.length == 0) {
-		return @"请填写完住宅电话";
-	}
-	if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
-		return @"请输正确的住宅电话";
+	if (self.model.homeCode.length != 0 || self.model.homeLine.length != 0) {
+		if (self.model.homeCode.length < 3 || ![self.model.homeCode isScalar]) {
+			return @"请输入正确的住宅座机区号";
+		}
+		if (self.model.homeLine.length == 0) {
+			return @"请填写完住宅电话";
+		}
+		if (![[self.model.homeCode stringByAppendingString:self.model.homeLine] isTelephone]) {
+			return @"请输正确的住宅电话";
+		}
 	}
 	if (![self.model.email isMail]) {
 		return @"请输正确的邮箱";
