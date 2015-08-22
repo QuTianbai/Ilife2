@@ -10,6 +10,7 @@
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <KGModal/KGModal.h>
 #import <Masonry/Masonry.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "AppDelegate.h"
@@ -26,6 +27,9 @@
 #import "MSFSubmitAlertView.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFXBMCustomHeader.h"
+#import "MSFAlertViewModel.h"
+#import "MSFAlertViewController.h"
+#import "MSFClient.h"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
@@ -294,55 +298,23 @@ ABPersonViewControllerDelegate>
 	
 	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		
-		NSString *checkForm = [self.viewModel checkForm];
-		if (checkForm) {
-			[SVProgressHUD showErrorWithStatus:checkForm];
+		if ([self.viewModel checkForm]) {
+			[SVProgressHUD showErrorWithStatus:[self.viewModel checkForm]];
 			return;
 		}
+		MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.services httpClient].user];
+		MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+		[[KGModal sharedInstance] setShowCloseButton:NO];
+		[[KGModal sharedInstance] showWithContentViewController:alertViewController];
 		
-		AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-		MSFSubmitAlertView *submitAlertView = [[[NSBundle mainBundle] loadNibNamed:@"MSFSubmitAlertView" owner:nil options:nil] firstObject];
-		[submitAlertView setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-		[submitAlertView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.6]];
-		NSString *nper = [NSString stringWithFormat:@"%@个月" , self.viewModel.model.tenor];
-		
-		__block NSString *usage;
-		NSArray *items = [MSFSelectKeyValues getSelectKeys:@"moneyUse"];
-		[items enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-			if ([obj.code isEqualToString:self.viewModel.model.usageCode]) {
-				usage = obj.text;
-			}
-		}];
-		
-		submitAlertView.loanAccountLabel.text = [NSString stringWithFormat:@"%@", self.viewModel.model.principal];
-		submitAlertView.loanPayBack.text = [NSString stringWithFormat:@"%@", self.viewModel.model.repayMoneyMonth];
-		submitAlertView.loanNper.text = nper;
-		submitAlertView.loanUse.text = usage;
-		submitAlertView.alpha = 0;
-		[appdelegate.window addSubview:submitAlertView];
-		[UIView animateWithDuration:.3 animations:^{
-			submitAlertView.alpha = 1;
-		}];
-		
-		[[submitAlertView.cancelButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-		subscribeNext:^(id x) {
-			NSLog(@"on click cancelButton");
-			[UIView animateWithDuration:.3 animations:^{
-				submitAlertView.alpha = 0;
-			} completion:^(BOOL finished) {
-				[submitAlertView removeFromSuperview];
+		[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+			[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+				[self.viewModel.executeCommitCommand execute:nil];
 			}];
+		} completed:^{
+			[[KGModal sharedInstance] hideAnimated:YES];
 		}];
-		[[submitAlertView.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-		 subscribeNext:^(id x) {
-			[UIView animateWithDuration:.3 animations:^{
-				submitAlertView.alpha = 0;
-			} completion:^(BOOL finished) {
-				[submitAlertView removeFromSuperview];
-			}];
-			[self.viewModel.executeCommitCommand execute:nil];
-		 }];
 	}];
 	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];

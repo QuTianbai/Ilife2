@@ -99,6 +99,10 @@
 		4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */; };
 		492BB43F1B1C0D3C0024897C /* loaninfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 492BB43E1B1C0D3C0024897C /* loaninfo.json */; };
 		492C6A181B4D174900547616 /* loan-response-cash.json in Resources */ = {isa = PBXBuildFile; fileRef = 492C6A171B4D174900547616 /* loan-response-cash.json */; };
+		492CBE991B8811740059B6C2 /* Utils.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492CBE981B8811740059B6C2 /* Utils.storyboard */; };
+		492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */; };
+		492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEAB1B88151A0059B6C2 /* MSFAlertViewModel.m */; };
+		492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
 		492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */; };
@@ -724,6 +728,13 @@
 		4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_uncheck@3x.png"; sourceTree = "<group>"; };
 		492BB43E1B1C0D3C0024897C /* loaninfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loaninfo.json; sourceTree = "<group>"; };
 		492C6A171B4D174900547616 /* loan-response-cash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loan-response-cash.json"; sourceTree = "<group>"; };
+		492CBE981B8811740059B6C2 /* Utils.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Utils.storyboard; sourceTree = "<group>"; };
+		492CBEA71B8814EF0059B6C2 /* MSFAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAlertViewController.h; sourceTree = "<group>"; };
+		492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAlertViewController.m; sourceTree = "<group>"; };
+		492CBEAA1B88151A0059B6C2 /* MSFAlertViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAlertViewModel.h; sourceTree = "<group>"; };
+		492CBEAB1B88151A0059B6C2 /* MSFAlertViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAlertViewModel.m; sourceTree = "<group>"; };
+		492CBEAD1B8815FB0059B6C2 /* MSFAlertContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAlertContentViewController.h; sourceTree = "<group>"; };
+		492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAlertContentViewController.m; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
 		492E62B41B0ECCCB00D34069 /* UIButton+BottomTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BottomTitles.h"; sourceTree = "<group>"; };
@@ -2444,6 +2455,13 @@
 				4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */,
 				49B1750A1B6CED5D00728085 /* MSFUtilsViewController.h */,
 				49B1750B1B6CED5D00728085 /* MSFUtilsViewController.m */,
+				492CBEA71B8814EF0059B6C2 /* MSFAlertViewController.h */,
+				492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */,
+				492CBEAD1B8815FB0059B6C2 /* MSFAlertContentViewController.h */,
+				492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */,
+				492CBEAA1B88151A0059B6C2 /* MSFAlertViewModel.h */,
+				492CBEAB1B88151A0059B6C2 /* MSFAlertViewModel.m */,
+				492CBE981B8811740059B6C2 /* Utils.storyboard */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -3009,6 +3027,7 @@
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */,
 				49B37B5A1B608F39004EED47 /* bar-normal.png in Resources */,
+				492CBE991B8811740059B6C2 /* Utils.storyboard in Resources */,
 				49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
 				4995DCE61B4B6D2C0086B5ED /* 3@3x.png in Resources */,
@@ -3416,10 +3435,12 @@
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
 				0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */,
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
+				492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
 				4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
 				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
+				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,
 				C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */,
@@ -3471,6 +3492,7 @@
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
 				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
+				492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,

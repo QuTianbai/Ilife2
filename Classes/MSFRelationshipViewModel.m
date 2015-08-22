@@ -16,12 +16,6 @@
 #import "MSFSelectionViewController.h"
 #import "NSString+Matches.h"
 
-@interface MSFRelationshipViewModel ()
-
-@property (nonatomic, weak) id <MSFViewModelServices> services;
-
-@end
-
 @implementation MSFRelationshipViewModel
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
