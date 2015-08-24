@@ -44,7 +44,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	self.username.text = MSFUtils.phone;
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-		self.username.text = @"18696995687";
+		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey];
 		self.password.text = @"123456qw";
 	}
 	@weakify(self)
