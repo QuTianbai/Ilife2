@@ -336,7 +336,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate msf_date:selectedDate]];
+			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate3:[NSDate msf_date:selectedDate]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
