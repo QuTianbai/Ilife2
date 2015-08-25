@@ -9,5 +9,4 @@
 
 @interface MSFAlertContentViewController : UITableViewController <MSFReactiveView>
 
-
 @end
