@@ -62,7 +62,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	return self.objects.count;
+	return self.objects.count + 1;
 }
 
 - (MSFContractDetailsTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,7 +80,6 @@
 	[cell.paymentLabel setTextAlignment:NSTextAlignmentCenter];
 	[cell.stateLabel setTextAlignment:NSTextAlignmentCenter];
 	
-	MSFPlanPerodicTables *ppt = self.objects[indexPath.row];
 	if (indexPath.row == 0) {
 		cell.asOfDateLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
 		cell.shouldAmountLabel.textColor = [MSFCommandView getColorWithString:BLUETCOLOR];
@@ -91,6 +90,7 @@
 		[cell.paymentLabel setText:@"款项"];
 		[cell.stateLabel setText:@"状态"];
 	} else {
+		MSFPlanPerodicTables *ppt = self.objects[indexPath.row - 1];
 		cell.asOfDateLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
 		cell.shouldAmountLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
 		cell.paymentLabel.textColor = [MSFCommandView getColorWithString:BLACKCOLOR];
