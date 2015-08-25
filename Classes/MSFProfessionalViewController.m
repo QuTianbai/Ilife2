@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RMPickerViewController/RMPickerViewController.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
+#import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationForms.h"
@@ -291,6 +292,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	@weakify(self)
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
+		
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate msf_date];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -332,6 +334,25 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[comps setYear:-7];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		
+		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
+		NSInteger year = [components year];
+		NSMutableArray *dataSource = [NSMutableArray array];
+		for (int i = 0; i < 50; i ++) {
+			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 49)]];
+		}
+		
+		[ActionSheetStringPicker showPickerWithTitle:nil rows:dataSource initialSelection:dataSource.count-1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+			NSInteger selectedYear = [(NSString *)selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""].integerValue;
+			components.year = selectedYear;
+			self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:components.date]];
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+		} cancelBlock:^(ActionSheetStringPicker *picker) {
+			self.viewModel.startedDate = nil;
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+		} origin:self.view];
+		/*
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
@@ -348,7 +369,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
-		 origin:self.view];
+		 origin:self.view];*/
 		return nil;
 	}] replay];
 }
