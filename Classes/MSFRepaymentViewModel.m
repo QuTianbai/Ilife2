@@ -49,7 +49,7 @@
 	RAC(self, expireDate) = RACObserve(model, expireDate);
 
 	RAC(self, repaidAmount) = [RACObserve(model, allAmount) map:^id(id value) {
-		return [NSString stringWithFormat:@"%@", value];
+		return [NSString stringWithFormat:@"%.2f", [value doubleValue]];
 	}];
 
 	return self;

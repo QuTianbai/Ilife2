@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RMPickerViewController/RMPickerViewController.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
+#import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationForms.h"
@@ -89,6 +90,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
+	
 	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
@@ -108,6 +110,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
+	
 	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
@@ -118,6 +121,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:8];
 			}
 		}];
+	
 	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
@@ -156,7 +160,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.address, text) = RACObserve(self.viewModel, address);
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
-	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
+	[RACObserve(self.viewModel, enrollmentYear) subscribeNext:^(NSString *x) {
+		if (x.length > 0) {
+			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
+		}
+	}];
+	
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self enrollmentYearSignal];
@@ -288,6 +297,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	@weakify(self)
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
+		
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate msf_date];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -323,11 +333,21 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		@strongify(self)
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate msf_date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:0];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-7];
-		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
+		NSInteger year = [components year];
+		NSMutableArray *dataSource = [NSMutableArray array];
+		for (int i = 0; i < 15; i ++) {
+			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 14)]];
+		}
+		
+		[ActionSheetStringPicker showPickerWithTitle:nil rows:dataSource initialSelection:dataSource.count-1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
+			self.viewModel.enrollmentYear = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+		} cancelBlock:^(ActionSheetStringPicker *picker) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+		} origin:self.view];
 		
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""

@@ -57,7 +57,7 @@
 				_statusLabel.text = model.status;
 				_amountLabel.text = model.repaidAmount;
 				if ([model.status isEqualToString:@"还款中"]) {
-					_infoLabel.text = [NSString stringWithFormat:@"%@", model.expireDate];
+					_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", model.expireDate];
 				} else if ([model.status isEqualToString:@"已逾期"]) {
 					[_infoLabel setText:@"您的合同已逾期\n请及时联系客服还款：400-036-8876" highLightText:@"已逾期" highLightColor:[UIColor themeColorNew]];
 				} else {
