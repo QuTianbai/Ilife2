@@ -89,6 +89,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
+	
 	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
@@ -108,6 +109,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
+	
 	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
@@ -118,6 +120,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:8];
 			}
 		}];
+	
 	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
