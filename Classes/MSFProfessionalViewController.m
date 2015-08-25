@@ -160,7 +160,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.address, text) = RACObserve(self.viewModel, address);
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
-	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel, enrollmentYear);
+	[RACObserve(self.viewModel, enrollmentYear) subscribeNext:^(NSString *x) {
+		if (x.length > 0) {
+			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
+		}
+	}];
+	
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self enrollmentYearSignal];
@@ -328,48 +333,22 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		@strongify(self)
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate msf_date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:0];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-7];
-		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		
 		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
 		NSInteger year = [components year];
 		NSMutableArray *dataSource = [NSMutableArray array];
-		for (int i = 0; i < 50; i ++) {
-			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 49)]];
+		for (int i = 0; i < 15; i ++) {
+			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 14)]];
 		}
 		
-		[ActionSheetStringPicker showPickerWithTitle:nil rows:dataSource initialSelection:dataSource.count-1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-			NSInteger selectedYear = [(NSString *)selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""].integerValue;
-			components.year = selectedYear;
-			self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:components.date]];
+		[ActionSheetStringPicker showPickerWithTitle:nil rows:dataSource initialSelection:dataSource.count-1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
+			self.viewModel.enrollmentYear = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 		} cancelBlock:^(ActionSheetStringPicker *picker) {
-			self.viewModel.startedDate = nil;
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 		} origin:self.view];
-		/*
-		[ActionSheetDatePicker
-		 showPickerWithTitle:@""
-		 datePickerMode:UIDatePickerModeDate
-		 selectedDate:currentDate
-		 minimumDate:minDate
-		 maximumDate:maxDate
-		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate msf_date:selectedDate]];
-			 [subscriber sendNext:nil];
-			 [subscriber sendCompleted];
-		 }
-		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.enrollmentYear = [NSDateFormatter msf_stringFromDate:[NSDate msf_date]];
-			 [subscriber sendNext:nil];
-			 [subscriber sendCompleted];
-		 }
-		 origin:self.view];*/
+		
 		return nil;
 	}] replay];
 }

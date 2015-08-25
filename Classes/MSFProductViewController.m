@@ -175,7 +175,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[[self.lifeInsuranceButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 380)];
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 390)];
 		contentView.backgroundColor = [UIColor whiteColor];
 		
 		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 80, 20)];
