@@ -56,7 +56,11 @@
 			 textField.text = [textField.text substringToIndex:6];
 		 }
 	 }];
-	RAC(self.viewModel, password) = self.password.rac_textSignal;
+	RAC(self.viewModel, password) = [self.password.rac_textSignal map:^id(NSString *value) {
+		NSString * tempStr = value.length > 16 ? [value substringToIndex:16] : value;
+		self.password.text = tempStr;
+		return tempStr;
+	}];
 	RAC(self.counterLabel, text) = RACObserve(self.viewModel, counter);
 	self.counterLabel.layer.cornerRadius = 5.0;
 	self.counterLabel.layer.borderWidth = 1;
@@ -97,7 +101,10 @@
 	[self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
+//	[[self.password rac_signalForControlEvents:UIControlEventEditingChanged]
+//	subscribeNext:^(UITextField *textField) {
+//		
+//	}];
 	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeFindPassword execute:nil];
