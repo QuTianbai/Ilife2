@@ -67,7 +67,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.objects.count;
+	return self.objects.count + 1;
 }
 
 - (MSFTradeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -80,7 +80,7 @@
 		cell = [[[NSBundle mainBundle] loadNibNamed:@"MSFTradeTableViewCell" owner:self options:nil] lastObject];
 	}
 	
-	MSFTrade *trade = [self.objects objectAtIndex:indexPath.row];
+	
 	
 	if (indexPath.row == 0) {
 		[cell.date setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
@@ -95,6 +95,7 @@
 		[cell setBackgroundColor:[UIColor whiteColor]];
 		
 	} else {
+		MSFTrade *trade = [self.objects objectAtIndex:indexPath.row - 1];
 		[cell.date setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
 		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
 		[cell.amount setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];

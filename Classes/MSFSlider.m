@@ -39,11 +39,11 @@
 	
 	return YES;
 }
-
-- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-	NSLog(@"slder1");
-	[self sliderGragUp:self];
-}
+//
+//- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
+//	NSLog(@"slder1");
+//	//[self sliderGragUp:self];
+//}
 
 - (void)customSlider {
   UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];
@@ -73,8 +73,8 @@
   [self setThumbImage:thumbImage forState:UIControlStateNormal];
   
   [self addTarget:self action:@selector(slideerValueChanged:) forControlEvents:UIControlEventValueChanged];
-  //[self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpOutside];
-//	[self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpInside];
+  [self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpOutside];
+	[self addTarget:self action:@selector(sliderGragUp:) forControlEvents:UIControlEventTouchUpInside];
 	
 }
 

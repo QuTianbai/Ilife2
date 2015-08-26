@@ -6,9 +6,6 @@
 http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10000
 ```
 
-```
-```
-
 ## API
 
 - https://www.msxf.dev 
