@@ -93,8 +93,18 @@
 
 - (BOOL)isFormValid {
 	NSString *digitTrimming  = [self stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
-	BOOL b =  digitTrimming.length > 0 && digitTrimming.length < self.length;
-	return b;
+	NSString *letter = [self stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]];
+	NSString *upper = [letter stringByTrimmingCharactersInSet:[NSCharacterSet uppercaseLetterCharacterSet]];
+	//BOOL b =  digitTrimming.length > 0 && digitTrimming.length < self.length;
+	if (digitTrimming.length > 0 && digitTrimming.length < self.length) {
+		return YES;
+	}
+	else if(upper.length > 0 && upper.length < self.length) {
+		return YES;
+	} else if (digitTrimming.length == self.length && upper.length == self.length) {
+		return YES;
+	}
+	return NO;
 }
 
 - (BOOL)isCaptcha {
