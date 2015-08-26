@@ -161,6 +161,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
 	[RACObserve(self.viewModel, enrollmentYear) subscribeNext:^(NSString *x) {
+		@strongify(self)
 		if (x.length > 0) {
 			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
 		}
@@ -336,11 +337,15 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
 		NSInteger year = [components year];
 		NSMutableArray *dataSource = [NSMutableArray array];
-		for (int i = 0; i < 15; i ++) {
-			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 14)]];
+		for (int i = 0; i < 7; i ++) {
+			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 6)]];
 		}
 		
-		[ActionSheetStringPicker showPickerWithTitle:nil rows:dataSource initialSelection:dataSource.count-1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
+		[ActionSheetStringPicker
+		 showPickerWithTitle:nil
+		 rows:dataSource
+		 initialSelection:dataSource.count-1
+		 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
 			self.viewModel.enrollmentYear = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
