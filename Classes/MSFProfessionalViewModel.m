@@ -51,6 +51,20 @@
 	return self;
 }
 
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel addressViewModel:(MSFAddressViewModel *)addressViewModel {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_services = formsViewModel.services;
+	_formsViewModel = formsViewModel;
+	_model = formsViewModel.model;
+	_addressViewModel = addressViewModel;
+	[self initialize];
+	
+	return self;
+}
+
 #pragma mark - Private
 
 - (void)commonInit {
@@ -121,6 +135,10 @@
 	RACChannelTo(self, school) = RACChannelTo(self.model, universityName);
 	RACChannelTo(self, enrollmentYear) = RACChannelTo(self.model, enrollmentYear);
 	RACChannelTo(self, startedDate) = RACChannelTo(self.model, currentJobDate);
+	RACChannelTo(self, company) = RACChannelTo(self.model, company);
+	RACChannelTo(self, unitAreaCode) = RACChannelTo(self.model, unitAreaCode);
+	RACChannelTo(self, unitTelephone) = RACChannelTo(self.model, unitTelephone);
+	RACChannelTo(self, unitExtensionTelephone) = RACChannelTo(self.model, unitExtensionTelephone);
 	
 	@weakify(self)
 	

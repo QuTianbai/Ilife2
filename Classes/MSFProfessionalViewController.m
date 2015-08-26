@@ -80,7 +80,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			}
 		}];
 	
-	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.model, company);
+	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel, company);
 	RAC(self.company, text) = companyChannel;
 	[self.company.rac_textSignal subscribe:companyChannel];
 	
@@ -91,7 +91,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			}
 		}];
 	
-	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
+	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel, unitExtensionTelephone);
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
@@ -111,7 +111,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			}
 		}];
 	
-	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
+	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
 	
@@ -122,7 +122,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			}
 		}];
 	
-	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
+	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
 	

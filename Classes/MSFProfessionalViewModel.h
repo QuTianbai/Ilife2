@@ -49,7 +49,7 @@
 @property (nonatomic, strong) NSString *natureTitle; // 单位性质
 
 // 职位信息
-@property (nonatomic, strong) MSFSelectKeyValues *department; // 部门
+@property (nonatomic, strong) MSFSelectKeyValues *department __deprecated; // 部门
 @property (nonatomic, strong) MSFSelectKeyValues *position; // 职位
 @property (nonatomic, strong) NSString *startedDate; // 入职时间
 
@@ -57,9 +57,9 @@
 @property (nonatomic, strong) NSString *positionTitle; // 职位
 
 
-@property (nonatomic, strong) NSString *areaCode;
-@property (nonatomic, strong) NSString *telephone;
-@property (nonatomic, strong) NSString *extensionTelephone;
+@property (nonatomic, strong) NSString *unitAreaCode;
+@property (nonatomic, strong) NSString *unitTelephone;
+@property (nonatomic, strong) NSString *unitExtensionTelephone;
 
 /**
  *	详细地址
@@ -78,12 +78,13 @@
 @property (nonatomic, readonly) RACCommand *executeNatureCommand;
 
 // 部门信息
-@property (nonatomic, readonly) RACCommand *executeDepartmentCommand;
+@property (nonatomic, readonly) RACCommand *executeDepartmentCommand __deprecated;
 @property (nonatomic, readonly) RACCommand *executePositionCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel addressViewModel:(MSFAddressViewModel *)addressViewModel;
 
 @end
