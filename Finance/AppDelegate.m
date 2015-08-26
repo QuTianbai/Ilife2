@@ -32,6 +32,7 @@
 
 #import "MobClick.h"
 #import "MSFUmengMacro.h"
+#import "MSFVersion.h"
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtilsViewController.h"
@@ -79,11 +80,6 @@
 		[self setup];
 	}];
 	
-	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
-		//TODO: 更新提醒
-		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
-	}];
-	
 	return YES;
 }
 
@@ -94,6 +90,24 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	NSLog(@"applicationDidBecomeActive:");
+	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
+		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+		if (releasenote.status == 1) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+				message:releasenote.version.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+				[[UIApplication sharedApplication] openURL:releasenote.version.updateURL];
+			}];
+		} else if (releasenote.status == 2) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+				message:releasenote.version.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.version.updateURL];
+			}];
+		}
+	}];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

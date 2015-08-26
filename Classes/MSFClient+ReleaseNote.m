@@ -12,7 +12,7 @@
 
 - (RACSignal *)fetchReleaseNote {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"versionCode"] = [NSBundle mainBundle].infoDictionary[@"CFBundleVersion"];
+	parameters[@"versionCode"] = [[NSBundle mainBundle].infoDictionary[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""];
 	parameters[@"channel"] = @"appstore";
 	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"app/check_version" parameters:parameters];
 	
