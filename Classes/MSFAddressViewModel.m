@@ -135,6 +135,8 @@
 	[self.services pushViewModel:provinceViewModel];
 	return [provinceViewModel.selectedSignal doNext:^(id x) {
 		self.province = x;
+		[self.city mergeValuesForKeysFromModel:[[MSFAreas alloc] initWithDictionary:@{} error:nil]];
+		[self.area mergeValuesForKeysFromModel:[[MSFAreas alloc] initWithDictionary:@{} error:nil]];
 	}];
 }
 
@@ -144,6 +146,7 @@
 	[self.services pushViewModel:citiesViewModel];
 	return [citiesViewModel.selectedSignal doNext:^(id x) {
 		self.city = x;
+		[self.area mergeValuesForKeysFromModel:[[MSFAreas alloc] initWithDictionary:@{} error:nil]];
 		if (!self.needArea) {
 			[self.services popViewModel];
 		}
