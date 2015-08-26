@@ -161,6 +161,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
 	[RACObserve(self.viewModel, enrollmentYear) subscribeNext:^(NSString *x) {
+		@strongify(self)
 		if (x.length > 0) {
 			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
 		}
