@@ -57,7 +57,7 @@
 		 }
 	 }];
 	RAC(self.viewModel, password) = [self.password.rac_textSignal map:^id(NSString *value) {
-		NSString * tempStr = value.length > 16 ? [value substringToIndex:16] : value;
+		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
 		self.password.text = tempStr;
 		return tempStr;
 	}];

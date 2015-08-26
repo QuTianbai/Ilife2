@@ -45,8 +45,16 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"修改密码";
-	RAC(self.viewModel, usedPassword) = self.passoword1.rac_textSignal;
-	RAC(self.viewModel, updatePassword) = self.passoword2.rac_textSignal;
+	RAC(self.viewModel, usedPassword) = [self.passoword1.rac_textSignal map:^id(NSString *value) {
+		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
+		self.passoword1.text = tempStr;
+		return tempStr;
+	}];
+	RAC(self.viewModel, updatePassword) = [self.passoword2.rac_textSignal map:^id(NSString *value) {
+		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
+		self.passoword2.text = tempStr;
+		return tempStr;
+	}];
 	self.button.rac_command = self.viewModel.executeUpdatePassword;
 	
 	@weakify(self)
