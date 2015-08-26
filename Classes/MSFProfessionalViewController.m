@@ -340,7 +340,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 14)]];
 		}
 		
-		[ActionSheetStringPicker showPickerWithTitle:nil rows:dataSource initialSelection:dataSource.count-1 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
+		[ActionSheetStringPicker
+		 showPickerWithTitle:nil
+		 rows:dataSource
+		 initialSelection:dataSource.count-1
+		 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
 			self.viewModel.enrollmentYear = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
