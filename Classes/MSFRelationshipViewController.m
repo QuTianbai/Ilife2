@@ -142,8 +142,13 @@ ABPersonViewControllerDelegate>
 			if (self.num2IsSameCurrentSW.on) {
 				self.viewModel.model.memberAddress2 = self.currendAddress;
 			} else {
-				self.viewModel.model.memberAddress2 = @"";
+				self.viewModel.model.memberAddress2 = nil;
 			}
+		} else {
+			self.viewModel.model.memberName2 = nil;
+			self.viewModel.model.memberRelation2 = nil;
+			self.viewModel.model.memberCellNum2 = nil;
+			self.viewModel.model.memberAddress2 = nil;
 		}
 		[UIView animateWithDuration:.3 animations:^{
 			[self.tableView reloadData];
@@ -155,6 +160,13 @@ ABPersonViewControllerDelegate>
 		@strongify(self)
 		self.viewModel.hasContact2 = !self.viewModel.hasContact2;
 		[self.addOtherBT setTitle:self.viewModel.hasContact2 ? @"- 删除第二位联系人" : @"✚ 增加第二位其他联系人" forState:UIControlStateNormal];
+		
+		if (!self.viewModel.hasContact2) {
+			self.viewModel.model.name2 = nil;
+			self.viewModel.model.relation2 = nil;
+			self.viewModel.model.phone2 = nil;
+		}
+		
 		[UIView animateWithDuration:.3 animations:^{
 			[self.tableView reloadData];
 		}];

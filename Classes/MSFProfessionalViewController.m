@@ -337,8 +337,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
 		NSInteger year = [components year];
 		NSMutableArray *dataSource = [NSMutableArray array];
-		for (int i = 0; i < 15; i ++) {
-			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 14)]];
+		for (int i = 0; i < 7; i ++) {
+			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 6)]];
 		}
 		
 		[ActionSheetStringPicker
