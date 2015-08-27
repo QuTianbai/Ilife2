@@ -99,7 +99,7 @@
 	if (digitTrimming.length > 0 && digitTrimming.length < self.length) {
 		return YES;
 	}
-	else if(upper.length > 0 && upper.length < self.length) {
+	else if (upper.length > 0 && upper.length < self.length) {
 		return YES;
 	} else if (digitTrimming.length == self.length && upper.length == self.length) {
 		return YES;
