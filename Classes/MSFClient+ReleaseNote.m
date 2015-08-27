@@ -14,7 +14,7 @@
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"versionCode"] = [[NSBundle mainBundle].infoDictionary[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""];
 	parameters[@"channel"] = @"appstore";
-	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"app/check_version" parameters:parameters];
+	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"app/check_version_ios" parameters:parameters];
 	
 	return [[self enqueueRequest:requset resultClass:MSFReleaseNote.class] msf_parsedResults];
 }
