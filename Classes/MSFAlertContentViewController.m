@@ -33,6 +33,11 @@
 	RAC(self.bankNumber, text) = RACObserve(self, viewModel.bankNumber);
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
+}
+
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
