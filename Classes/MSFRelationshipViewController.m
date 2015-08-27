@@ -193,6 +193,7 @@ ABPersonViewControllerDelegate>
 	[self.familyNameTF.rac_textSignal subscribe:memer1Channel];
 	RAC(self.relationTF, text) = RACObserve(self.viewModel, familyOneValuesTitle);
 	self.relationBT.rac_command = self.viewModel.executeFamilyOneValuesCommand;
+	
 	RACChannelTerminal *member1PhoneChannel = RACChannelTo(self.viewModel.model, memberCellNum);
 	RAC(self.telTF, text) = member1PhoneChannel;
 	
@@ -204,6 +205,7 @@ ABPersonViewControllerDelegate>
 	 }];
 	
 	[self.telTF.rac_textSignal subscribe:member1PhoneChannel];
+	
 	RACChannelTerminal *member1AddressChannel = RACChannelTo(self.viewModel.model, memberAddress);
 	RAC(self.diffCurrentTF, text) = member1AddressChannel;
 	self.currendAddress = [NSString stringWithFormat:@"%@%@%@%@%@%@%@", self.viewModel.model.currentProvince,self.viewModel.model.currentCity,self.viewModel.model.currentCountry,self.viewModel.model.currentTown,self.viewModel.model.currentStreet,self.viewModel.model.currentCommunity,self.viewModel.model.currentApartment];
@@ -503,9 +505,11 @@ ABPersonViewControllerDelegate>
 	
 	switch (peoplePicker.view.tag) {
   case 10000:
+			self.viewModel.model.phone1 = phone;
 			self.telTF.text = phone;
 			break;
 		case 10001:
+			//self
 			self.num2TelTF.text = phone;
 			break;
 		case 10002:
