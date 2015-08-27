@@ -509,7 +509,7 @@ ABPersonViewControllerDelegate>
 			self.telTF.text = phone;
 			break;
 		case 10001:
-			//self
+			self.viewModel.model.memberCellNum2 = phone;
 			self.num2TelTF.text = phone;
 			break;
 		case 10002:
@@ -560,9 +560,11 @@ ABPersonViewControllerDelegate>
 			self.num2TelTF.text = phone;
 			break;
 		case 10002:
+			self.viewModel.model.phone1 = phone;
 			self.otherTelTF.text = phone;
 			break;
 		case 10003:
+			self.viewModel.model.name2 = phone;
 			self.num2_otherTelTF.text = phone;
 			break;
 			
