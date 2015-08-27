@@ -500,12 +500,13 @@ ABPersonViewControllerDelegate>
 	NSString *phone = @"";
 	
 	if (phones.count > 0) {
-		phone = [phones objectAtIndex:0];
+		phone = [phones objectAtIndex:identifier];
+		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
 	
 	switch (peoplePicker.view.tag) {
   case 10000:
-			self.viewModel.model.phone1 = phone;
+			self.viewModel.model.memberCellNum = phone;
 			self.telTF.text = phone;
 			break;
 		case 10001:
@@ -513,9 +514,11 @@ ABPersonViewControllerDelegate>
 			self.num2TelTF.text = phone;
 			break;
 		case 10002:
+			self.viewModel.model.phone1 = phone;
 			self.otherTelTF.text = phone;
 			break;
 		case 10003:
+			self.viewModel.model.phone2 = phone;
 			self.num2_otherTelTF.text = phone;
 			break;
 			
@@ -554,16 +557,18 @@ ABPersonViewControllerDelegate>
 	
 	switch (peoplePicker.view.tag) {
 	case 10000:
+			self.viewModel.model.memberCellNum = phone;
 			self.telTF.text = phone;
 			break;
-		case 10001:
+	case 10001:
+			self.viewModel.model.memberCellNum2 = phone;
 			self.num2TelTF.text = phone;
 			break;
-		case 10002:
+	case 10002:
 			self.viewModel.model.phone1 = phone;
 			self.otherTelTF.text = phone;
 			break;
-		case 10003:
+	case 10003:
 			self.viewModel.model.name2 = phone;
 			self.num2_otherTelTF.text = phone;
 			break;
