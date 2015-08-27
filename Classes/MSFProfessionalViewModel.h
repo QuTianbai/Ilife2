@@ -49,7 +49,6 @@
 @property (nonatomic, strong) NSString *natureTitle; // 单位性质
 
 // 职位信息
-@property (nonatomic, strong) MSFSelectKeyValues *department __deprecated; // 部门
 @property (nonatomic, strong) MSFSelectKeyValues *position; // 职位
 @property (nonatomic, strong) NSString *startedDate; // 入职时间
 
@@ -78,7 +77,6 @@
 @property (nonatomic, readonly) RACCommand *executeNatureCommand;
 
 // 部门信息
-@property (nonatomic, readonly) RACCommand *executeDepartmentCommand __deprecated;
 @property (nonatomic, readonly) RACCommand *executePositionCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand;

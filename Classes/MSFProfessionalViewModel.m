@@ -222,12 +222,6 @@
 	}];
 	_executeNatureCommand.allowsConcurrentExecution = YES;
 	
-	_executeDepartmentCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self departmentSignal];
-	}];
-	_executeDepartmentCommand.allowsConcurrentExecution = YES;
-	
 	_executePositionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self positionSignal];
@@ -330,22 +324,6 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.nature = x;
-			[self.services popViewModel];
-		}];
-		return nil;
-	}];
-}
-
-- (RACSignal *)departmentSignal {
-	@weakify(self)
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"professional"]];
-		[self.services pushViewModel:viewModel];
-		[viewModel.selectedSignal subscribeNext:^(id x) {
-			[subscriber sendNext:nil];
-			[subscriber sendCompleted];
-			self.department = x;
 			[self.services popViewModel];
 		}];
 		return nil;

@@ -64,13 +64,4 @@
 	return [RACSignal empty];
 }
 
-- (RACSignal *)departmentSignal {
-	MSFSelectKeyValues *model = [[MSFSelectKeyValues alloc] initWithDictionary:@{
-		@"code": @"1",
-		@"text": @"bar",
-	} error:nil];
-	self.department = model;
-	return [RACSignal empty];
-}
-
 @end
