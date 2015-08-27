@@ -543,13 +543,13 @@ ABPersonViewControllerDelegate>
 	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
 	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
 		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
-		aPhone = [aPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
 		[phones addObject:aPhone];
 	}
 	NSString *phone = @"";
 	
 	if (phones.count > 0) {
-		phone = [phones objectAtIndex:0];
+		phone = [phones objectAtIndex:identifier];
+		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
 	
 	switch (peoplePicker.view.tag) {
