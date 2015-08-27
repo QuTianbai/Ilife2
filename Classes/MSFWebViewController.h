@@ -10,5 +10,6 @@
 
 - (instancetype)initWithHTMLURL:(NSURL *)URL;
 - (instancetype)initWithViewModel:(id)viewModel;
+- (instancetype)initWithRequest:(id)request;
 
 @end

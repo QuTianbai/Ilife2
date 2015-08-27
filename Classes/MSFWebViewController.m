@@ -15,6 +15,7 @@
 @interface MSFWebViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) NSURL *HTMLURL;
+@property (nonatomic, strong) NSURLRequest *request;
 
 @end
 
@@ -26,6 +27,7 @@
 		return nil;
 	}
 	_HTMLURL = viewModel.URL;
+	_request = [NSURLRequest requestWithURL:self.HTMLURL];
 	
 	return self;
 }
@@ -36,6 +38,17 @@
 		return nil;
 	}
 	_HTMLURL = URL;
+	_request = [NSURLRequest requestWithURL:self.HTMLURL];
+	
+	return self;
+}
+
+- (instancetype)initWithRequest:(id)request {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_request = request;
 	
 	return self;
 }
@@ -51,7 +64,7 @@
 	
 	[SVProgressHUD showWithStatus:@"正在加载...."];
 
-	[webView loadRequest:[NSURLRequest requestWithURL:_HTMLURL]
+	[webView loadRequest:self.request
 	 progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
 	 }
 	 success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {

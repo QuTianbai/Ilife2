@@ -22,7 +22,7 @@
 - (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"coresys/cont/contract/pageQuery" parameters:@{@"applyId": applylist.loan_id}];
-		[subscriber sendNext:request.URL];
+		[subscriber sendNext:request];
 		[subscriber sendCompleted];
 		return nil;
 	}];
