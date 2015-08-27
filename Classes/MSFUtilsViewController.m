@@ -18,10 +18,10 @@ NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotific
 		@"https://192.168.2.41:8443",
 		@"https://192.168.2.51:8443",
 		@"https://192.168.7.28",
-		@"https://i.msxf.uat",
+		@"https://www.msxf.uat",
 		@"https://i.msxf.test",
 		@"https://i.msxf.tp",
-		@"https://i.msxf.com",
+		@"https://www.msxf.com",
 	];
 	
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];

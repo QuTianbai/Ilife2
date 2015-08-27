@@ -71,13 +71,8 @@ static MSFServer *server;
 }
 
 + (MSFAgreementViewModel *)agreementViewModel {
-	static dispatch_once_t onceToken;
-	static MSFAgreementViewModel *viewModel;
-	dispatch_once(&onceToken, ^{
-		MSFServer *server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://www.msxf.com"]];
-		MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
-		viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
-	});
+	MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
+	MSFAgreementViewModel *viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
 	
 	return viewModel;
 }
