@@ -6,6 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
+//!!!: UAT release config
+#define UAT 1
+
 // 登录认证更新通知
 extern NSString *const MSFAuthorizationDidUpdateNotification;
 
