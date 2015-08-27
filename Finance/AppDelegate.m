@@ -90,6 +90,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	NSLog(@"applicationDidBecomeActive:");
+#if DEBUG
+#else
 	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 		if (releasenote.status == 1) {
@@ -108,6 +110,7 @@
 			}];
 		}
 	}];
+#endif
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
