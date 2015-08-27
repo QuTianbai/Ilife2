@@ -147,6 +147,7 @@ ABPersonViewControllerDelegate>
 		} else {
 			self.viewModel.model.memberName2 = nil;
 			self.viewModel.model.memberRelation2 = nil;
+			self.num2RelationTF.text = @"";
 			self.viewModel.model.memberCellNum2 = nil;
 			self.viewModel.model.memberAddress2 = nil;
 		}
@@ -165,6 +166,7 @@ ABPersonViewControllerDelegate>
 			self.viewModel.model.name2 = nil;
 			self.viewModel.model.relation2 = nil;
 			self.viewModel.model.phone2 = nil;
+			self.num2_otherRelationTF.text = @"";
 		}
 		
 		[UIView animateWithDuration:.3 animations:^{
