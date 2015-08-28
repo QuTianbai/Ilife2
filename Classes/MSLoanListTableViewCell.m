@@ -39,7 +39,7 @@ reuseIdentifier {
     [self addSubview:_timeLabel];
     [self addSubview:_checkLabel];
 		
-		NSInteger edges = [UIScreen mainScreen].bounds.size.width / 8;
+		NSInteger edges = ([UIScreen mainScreen].bounds.size.width - 33) / 8;
 		[_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerY.equalTo(self);
 			make.centerX.equalTo(self.mas_left).offset(edges);
@@ -64,6 +64,17 @@ reuseIdentifier {
   }
   
   return self;
+}
+
+- (void)setSelectable:(BOOL)selectable {
+	_selectable = selectable;
+	if (selectable) {
+		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.selectionStyle = UITableViewCellSelectionStyleDefault;
+	} else {
+		self.accessoryType = UITableViewCellAccessoryNone;
+		self.selectionStyle = UITableViewCellSelectionStyleNone;
+	}
 }
 
 @end

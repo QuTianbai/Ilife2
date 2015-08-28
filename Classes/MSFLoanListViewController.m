@@ -87,11 +87,7 @@
 	if (cell == nil) {
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
-	
-	cell.selected = NO;
-	cell.selectionStyle = UITableViewCellAccessoryNone;
-	_dataTableView.allowsSelection = NO;
-	
+
 	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
 	
 	[cell.moneyLabel setTextAlignment:NSTextAlignmentCenter];
@@ -104,34 +100,29 @@
 	NSString *df = [NSDateFormatter msf_stringFromDateForDash:listModel.apply_time];
 	
 	cell.timeLabel.text = df;
-	
-	NSNumber *checkNum = listModel.status;
-	
-	if ([checkNum integerValue] == 4 || [checkNum integerValue] == 6 ||[checkNum integerValue] == 7) {
-		[cell.checkLabel setEnabled:YES];
+
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		cell.selectable = YES;
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:ORAGECOLOR] forState:UIControlStateNormal];
 	} else {
-		[cell.checkLabel setEnabled:NO];
+		cell.selectable = NO;
 		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:@"#585858"] forState:UIControlStateNormal];
 	}
-	
-	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
-	
-	@weakify(self)
-	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
-		takeUntil:cell.rac_prepareForReuseSignal]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
-			if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-				[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
-					MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithRequest:x];
-					[self.navigationController pushViewController:webViewController animated:YES];
-				}];
-			}
-		}];
+	//[self getStatus:listModel.status.integerValue]
+	[cell.checkLabel setTitle:@"预审核通过" forState:UIControlStateNormal];
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithRequest:x];
+			[self.navigationController pushViewController:webViewController animated:YES];
+		}];
+	}
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
