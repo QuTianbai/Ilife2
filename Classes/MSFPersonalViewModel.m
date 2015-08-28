@@ -61,6 +61,9 @@
      if (self.addressViewModel.isStopAutoLocation) {
        return;
      }
+		 if (self.address.length > 0) {
+			return;
+		 }
      //NSLog(@"%@",model);
      NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
      FMDatabase *fmdb = [FMDatabase databaseWithPath:path];
