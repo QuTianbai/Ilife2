@@ -25,4 +25,16 @@
 	}];
 }
 
+- (BOOL)validateTradeAmount:(id *)code error:(NSError **)error {
+	id codeid = *code;
+	if ([codeid isKindOfClass:NSString.class]) {
+		return YES;
+	} else if ([codeid isKindOfClass:NSNumber.class]) {
+		*code = [codeid stringValue];
+		return YES;
+	}
+	
+	return *code == nil;
+}
+
 @end

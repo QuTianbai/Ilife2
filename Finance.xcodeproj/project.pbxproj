@@ -477,7 +477,6 @@
 		C7D2D1331B67938C000F51ED /* icon-cloze-question@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */; };
 		C7D2D1351B67938C000F51ED /* icon-cloze-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */; };
 		C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */; };
-		C7DCC7371B228570004A1B0E /* MSFRepayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7DCC7361B228570004A1B0E /* MSFRepayViewController.m */; };
 		C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149ED1B05C0620045F919 /* MSFClient+PlanPerodicTables.m */; };
 		C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149EA1B05C0490045F919 /* MSFPlanPerodicTables.m */; };
 /* End PBXBuildFile section */
@@ -1236,8 +1235,6 @@
 		C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-question@3x.png"; sourceTree = "<group>"; };
 		C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@2x.png"; sourceTree = "<group>"; };
 		C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@3x.png"; sourceTree = "<group>"; };
-		C7DCC7351B228570004A1B0E /* MSFRepayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepayViewController.h; sourceTree = "<group>"; };
-		C7DCC7361B228570004A1B0E /* MSFRepayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepayViewController.m; sourceTree = "<group>"; };
 		C85C468932002FC66C8F9BB2 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1432,8 +1429,6 @@
 			children = (
 				07C924D51B0C2D1C00FA73BD /* MSFLoanListViewController.h */,
 				07C924D61B0C2D1C00FA73BD /* MSFLoanListViewController.m */,
-				C7DCC7351B228570004A1B0E /* MSFRepayViewController.h */,
-				C7DCC7361B228570004A1B0E /* MSFRepayViewController.m */,
 				07C924D81B0C603B00FA73BD /* MSLoanListTableViewCell.h */,
 				07C924D91B0C603B00FA73BD /* MSLoanListTableViewCell.m */,
 			);
@@ -3481,7 +3476,6 @@
 				49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */,
 				49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */,
 				498113D61B1C4856003D1B7A /* MSFLoanViewModel.m in Sources */,
-				C7DCC7371B228570004A1B0E /* MSFRepayViewController.m in Sources */,
 				491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */,
 				07C924E31B0C8F4D00FA73BD /* MSFClient+MSFCheckEmploee.m in Sources */,
 				C7AF47081B04E127001B39F2 /* MSFInstallment.m in Sources */,

@@ -37,7 +37,9 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtilsViewController.h"
 
+#if !DEBUG
 static BOOL poped;
+#endif
 
 @interface AppDelegate ()
 

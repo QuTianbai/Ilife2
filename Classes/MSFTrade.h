@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy, readonly) NSString *tradeID;
 @property (nonatomic, copy, readonly) NSDate *tradeDate;
-@property (nonatomic, copy, readonly) NSNumber *tradeAmount;
+@property (nonatomic, copy, readonly) NSString *tradeAmount;
 @property (nonatomic, copy, readonly) NSString *tradeDescription;
 
 @end

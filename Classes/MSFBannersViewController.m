@@ -35,8 +35,6 @@
 		make.edges.equalTo(self.view);
 	}];
 	
-#warning 此处为测试方法，发布时需改正
-	
 	@weakify(self);
 	self.infinityScroll.numberOfPages = ^{
 		@strongify(self)
