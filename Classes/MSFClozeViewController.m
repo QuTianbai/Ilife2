@@ -224,7 +224,7 @@
 
 	UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 44)];
 	
-	[label setBackgroundColor:[UIColor clearColor]];
+	[label setBackgroundColor:[UIColor whiteColor]];
 	
 	[label setText:@"    银行信息"];
 	if (section == 1) {
