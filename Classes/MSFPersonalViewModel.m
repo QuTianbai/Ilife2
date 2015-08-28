@@ -67,46 +67,31 @@
      [fmdb open];
      NSError *error ;
      //NSMutableArray *regions = [NSMutableArray array];
-     FMResultSet *s = [fmdb executeQuery:@"select * from basic_dic_area"];
-     int i = 0;
-     int j = 0;
-     int k = 0;
-     while ([s next]) {
-       MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
-       if ([area.name isEqualToString:model.result.addressComponent.city]) {
-         i++;
-         MSFAreas *province = [[MSFAreas alloc] init];
-         province.name = area.name;
-         province.codeID = area.codeID;
-         province.parentCodeID = area.parentCodeID;
-         self.addressViewModel.province = province;
-         if (i > 0 && j > 0 && k > 0) {
-           break;
-         }
-       }
-       if ([area.name isEqualToString:model.result.addressComponent.province]) {
-         j++;
-         MSFAreas *city = [[MSFAreas alloc] init];
-         city.name = area.name;
-         city.codeID = area.codeID;
-         city.parentCodeID = area.parentCodeID;
-         self.addressViewModel.city = city;
-         if (i > 0 && j > 0 && k > 0) {
-           break;
-         }
-       }
-       if ([area.name isEqualToString:model.result.addressComponent.district]) {
-         k++;
-         MSFAreas *district = [[MSFAreas alloc] init];
-         district.name = area.name;
-         district.codeID = area.codeID;
-         district.parentCodeID = area.parentCodeID;
-         self.addressViewModel.area = district;
-         if (i > 0 && j > 0 && k > 0) {
-           break;
-         }
-       }
-     }
+     FMResultSet *sProvince = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '000000'", model.result.addressComponent.province]];
+		 if ([sProvince next]) {
+			 MSFAreas *areaProvince = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sProvince error:&error];
+			 self.addressViewModel.province  = areaProvince;
+			 FMResultSet *sCity = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaProvince.codeID]];
+			 if ([sCity next]) {
+				 MSFAreas *areaCity = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sCity error:&error];
+				 self.addressViewModel.city = areaCity;
+				 FMResultSet *sArea = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaCity.codeID]];
+				 if ([sArea next]) {
+					 MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sArea error:&error];
+					 self.addressViewModel.area  = area;
+				 } else {
+					 [self setAreaEmpty];
+				 }
+			 } else {
+				 [self setCityEmpty];
+				 [self setAreaEmpty];
+			 }
+		 } else {
+			 [self setProvinceEmpty];
+			 [self setCityEmpty];
+			 [self setAreaEmpty];
+		 }
+		 
    }
    error:^(NSError *error) {
      NSLog(@"%@", error);
@@ -156,6 +141,12 @@
 	if ([self.address length] < 1) {
 		return @"请选择现居地区";
 	}
+	if ([self.model.currentCityCode isEqualToString:@""]) {
+		return @"请选择现居地区所在城市";
+	}
+	if ([self.model.currentCountryCode isEqualToString:@""]) {
+		return @"请选择现居地区所在县";
+	}
 	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
 		return @"请输入正确的QQ号";
 	}
@@ -193,4 +184,28 @@
 	return (length1 + length2 + length3 + length4) >= 2;
 }
 
+- (void)setProvinceEmpty {
+	self.addressViewModel.province.name = @"";
+	self.addressViewModel.province.codeID = @"";
+	self.addressViewModel.province.parentCodeID = @"";
+	self.addressViewModel.provinceName = @"";
+	self.addressViewModel.provinceCode = @"";
+}
+
+- (void)setCityEmpty {
+	self.addressViewModel.city.name = @"";
+	self.addressViewModel.city.codeID  = @"";
+	self.addressViewModel.city.parentCodeID = @"";
+	self.addressViewModel.cityName = @"";
+	self.addressViewModel.cityCode = @"";
+}
+
+- (void)setAreaEmpty {
+	self.addressViewModel.area.name  = @"";
+	self.addressViewModel.area.codeID = @"";
+	self.addressViewModel.area.parentCodeID = @"";
+	self.addressViewModel.areaCode = @"";
+	self.addressViewModel.areaName = @"";
+	
+}
 @end
