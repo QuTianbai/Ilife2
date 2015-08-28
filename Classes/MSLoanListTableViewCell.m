@@ -7,6 +7,7 @@
 //
 
 #import "MSLoanListTableViewCell.h"
+#import <libextobjc/extobjc.h>
 #import <Masonry/Masonry.h>
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
@@ -22,7 +23,7 @@ reuseIdentifier {
     _moneyLabel = [[UILabel alloc] init];
     _monthsLabel = [[UILabel alloc] init];
     _timeLabel = [[UILabel alloc] init];
-    _checkLabel = [[UIButton alloc] init];
+    _checkLabel = [[UILabel alloc] init];
     
     _moneyLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
     _monthsLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
@@ -31,34 +32,46 @@ reuseIdentifier {
     _moneyLabel.font = [UIFont systemFontOfSize:13];
     _monthsLabel.font = [UIFont systemFontOfSize:13];
     _timeLabel.font = [UIFont systemFontOfSize:13];
-    _checkLabel.titleLabel.font = [UIFont systemFontOfSize:12];
-    
+    _checkLabel.font = [UIFont systemFontOfSize:12];
+		
+		_moneyLabel.textAlignment = NSTextAlignmentCenter;
+    _monthsLabel.textAlignment = NSTextAlignmentCenter;
+		_timeLabel.textAlignment = NSTextAlignmentCenter;
+		_checkLabel.textAlignment = NSTextAlignmentCenter;
     
     [self addSubview:_moneyLabel];
     [self addSubview:_monthsLabel];
     [self addSubview:_timeLabel];
     [self addSubview:_checkLabel];
 		
-		NSInteger edges = ([UIScreen mainScreen].bounds.size.width - 33) / 8;
+		CGFloat width = ([UIScreen mainScreen].bounds.size.width - 41) / 4;
+		@weakify(self)
 		[_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			@strongify(self)
 			make.centerY.equalTo(self);
-			make.centerX.equalTo(self.mas_left).offset(edges);
-			make.height.equalTo(@[_checkLabel, _monthsLabel,_moneyLabel]);
+			make.left.equalTo(self.mas_left).offset(8);
+			make.width.equalTo(@(width));
 		}];
 		
-		[_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+		[_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {\
+			@strongify(self)
 			make.centerY.equalTo(self);
-			make.centerX.equalTo(self.mas_centerX).offset(-edges);
+			make.left.equalTo(self.timeLabel.mas_right);
+			make.width.equalTo(@(width));
 		}];
 
 		[_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+			@strongify(self)
 			make.centerY.equalTo(self);
-			make.centerX.equalTo(self.mas_centerX).offset(edges);
+			make.left.equalTo(self.monthsLabel.mas_right);
+			make.width.equalTo(@(width));
 		}];
 		
     [_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-      make.centerY.equalTo(self);
-      make.centerX.equalTo(self.mas_right).offset(-edges);
+			@strongify(self)
+			make.centerY.equalTo(self);
+			make.left.equalTo(self.moneyLabel.mas_right);
+			make.width.equalTo(@(width));
     }];
 		
   }
