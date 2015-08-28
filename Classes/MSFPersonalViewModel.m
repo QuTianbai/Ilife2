@@ -70,15 +70,24 @@
      FMResultSet *sProvince = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '000000'", model.result.addressComponent.province]];
 		 if ([sProvince next]) {
 			 MSFAreas *areaProvince = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sProvince error:&error];
-			 self.addressViewModel.province  = areaProvince;
+			 if (![self.model.currentProvinceCode isEqualToString:areaProvince.codeID]) {
+				 self.addressViewModel.province  = areaProvince;
+			 }
+			 
 			 FMResultSet *sCity = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaProvince.codeID]];
 			 if ([sCity next]) {
 				 MSFAreas *areaCity = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sCity error:&error];
-				 self.addressViewModel.city = areaCity;
+				 if (![self.model.currentCityCode isEqualToString:areaCity.codeID]) {
+					 self.addressViewModel.city = areaCity;
+				 }
+				 //self.addressViewModel.city = areaCity;
 				 FMResultSet *sArea = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaCity.codeID]];
 				 if ([sArea next]) {
 					 MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sArea error:&error];
-					 self.addressViewModel.area  = area;
+					 if (![self.model.currentCountryCode isEqualToString:area.codeID]) {
+						 self.addressViewModel.area  = area;
+					 }
+					 
 				 } else {
 					 [self setAreaEmpty];
 				 }
