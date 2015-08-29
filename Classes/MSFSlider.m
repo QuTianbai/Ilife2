@@ -79,13 +79,13 @@
 }
 
 - (void)slideerValueChanged:(UISlider *)slider {
-	self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", slider.value < 100? (int)slider.value : (int)slider.value / 100 * 100];
+	self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", slider.value < 100? (int)slider.minimumValue : (int)slider.value / 100 * 100];
 }
 
 - (void)sliderGragUp:(UISlider *)slider {
 	NSLog(@"slider3");
   if ([self.delegate respondsToSelector:@selector(getStringValue:)]) {
-    [self.delegate getStringValue:[NSString stringWithFormat:@"%d", slider.value < 100? (int)slider.value : (int)slider.value / 100 * 100]];
+    [self.delegate getStringValue:[NSString stringWithFormat:@"%d", slider.value < 100? (int)slider.minimumValue : (int)slider.value / 100 * 100]];
   }
 }
 
