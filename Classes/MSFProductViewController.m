@@ -158,7 +158,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   }];
 	
 	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
-		return [NSString stringWithFormat:@"%ld", (long)value.integerValue / 100 * 100];
+		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
@@ -289,7 +289,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   } else {
     [self setRepayMoneyBackgroundViewAniMation:YES];
   }
-  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue / 100 * 100];
+  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
   [self.monthCollectionView reloadData];
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
