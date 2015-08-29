@@ -6,9 +6,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define UAT 0
-#define DISTRIBUTION 0
-
 // 登录认证更新通知
 extern NSString *const MSFAuthorizationDidUpdateNotification;
 
