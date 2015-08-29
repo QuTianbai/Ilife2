@@ -67,7 +67,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.objects.count + 1;
+	if (self.objects.count == 0) {
+		return 0;
+	} else {
+		return self.objects.count + 1;
+	}
 }
 
 - (MSFTradeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
