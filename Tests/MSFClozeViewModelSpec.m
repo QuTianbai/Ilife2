@@ -118,7 +118,7 @@ it(@"should has address viewModel", ^{
 	// then
 	expect(viewModel.addressViewModel.provinceCode).to(equal(@"1"));
 	expect(viewModel.addressViewModel.cityCode).to(equal(@"2"));
-	expect(viewModel.bankAddress).to(equal(@"重庆"));
+	expect(viewModel.bankAddress).to(equal(@"重庆重庆"));
 });
 
 QuickSpecEnd

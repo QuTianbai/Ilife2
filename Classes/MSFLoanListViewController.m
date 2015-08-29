@@ -17,7 +17,6 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
-#import "MSFRepayViewController.h"
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 
@@ -87,51 +86,34 @@
 	if (cell == nil) {
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
 	}
-	
-	cell.selected = NO;
-	cell.selectionStyle = UITableViewCellAccessoryNone;
-	_dataTableView.allowsSelection = NO;
-	
+
 	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
-	
-	[cell.moneyLabel setTextAlignment:NSTextAlignmentCenter];
-	[cell.monthsLabel setTextAlignment:NSTextAlignmentCenter];
-	[cell.timeLabel setTextAlignment:NSTextAlignmentCenter];
-	
 	cell.moneyLabel.text = listModel.total_amount;
 	cell.monthsLabel.text = [NSString stringWithFormat:@"%@期", listModel.total_installments];
-	
-	NSString *df = [NSDateFormatter msf_stringFromDateForDash:listModel.apply_time];
-	
-	cell.timeLabel.text = df;
-	
-	NSNumber *checkNum = listModel.status;
-	
-	if ([checkNum integerValue] == 4 || [checkNum integerValue] == 6 ||[checkNum integerValue] == 7) {
-		[cell.checkLabel setEnabled:YES];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:ORAGECOLOR] forState:UIControlStateNormal];
+	cell.timeLabel.text = [NSDateFormatter msf_stringFromDateForDash:listModel.apply_time];
+
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		cell.selectable = YES;
+		cell.checkLabel.textColor = [MSFCommandView getColorWithString:ORAGECOLOR];
 	} else {
-		[cell.checkLabel setEnabled:NO];
-		[cell.checkLabel setTitleColor:[MSFCommandView getColorWithString:@"#585858"] forState:UIControlStateNormal];
+		cell.selectable = NO;
+		cell.checkLabel.textColor = [MSFCommandView getColorWithString:@"#585858"];
 	}
-	
-	[cell.checkLabel setTitle:[self getStatus:[checkNum integerValue]] forState:UIControlStateNormal];
-	
-	@weakify(self)
-	[[[cell.checkLabel rac_signalForControlEvents:UIControlEventTouchUpInside]
-		takeUntil:cell.rac_prepareForReuseSignal]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
-			if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-				[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
-					MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithRequest:x];
-					[self.navigationController pushViewController:webViewController animated:YES];
-				}];
-			}
-		}];
+
+	cell.checkLabel.text = [self getStatus:listModel.status.integerValue];
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
+	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
+			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithRequest:x];
+			[self.navigationController pushViewController:webViewController animated:YES];
+		}];
+	}
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -221,6 +203,11 @@
 	_time.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
 	_check.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
 	
+	_money.textAlignment = NSTextAlignmentCenter;
+	_months.textAlignment = NSTextAlignmentCenter;
+	_time.textAlignment = NSTextAlignmentCenter;
+	_check.textAlignment = NSTextAlignmentCenter;
+	
 	_money.text = @"金额";
 	_months.text = @"期数";
 	
@@ -232,27 +219,33 @@
 	[superView addSubview:_time];
 	[superView addSubview:_check];
 	
-	NSInteger edges = [UIScreen mainScreen].bounds.size.width / 8;
+	CGFloat width = ([UIScreen mainScreen].bounds.size.width - 41) / 4;
+	@weakify(self)
 	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.centerX.equalTo(superView.mas_left).offset(edges);
-		make.height.equalTo(@[_check, _months,_money]);
+		make.left.equalTo(superView.mas_left).offset(8);
+		make.width.equalTo(@(width));
 	}];
 	
 	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
+		@strongify(self)
 		make.centerY.equalTo(superView);
-		make.centerX.equalTo(superView.mas_centerX).offset(-edges);
+		make.left.equalTo(self.time.mas_right);
+		make.width.equalTo(@(width));
 	}];
 	
 	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
+		@strongify(self)
 		make.centerY.equalTo(superView);
-		make.centerX.equalTo(superView.mas_centerX).offset(edges);
-		
+		make.left.equalTo(self.months.mas_right);
+		make.width.equalTo(@(width));
 	}];
 	
 	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
+		@strongify(self)
 		make.centerY.equalTo(superView);
-		make.centerX.equalTo(superView.mas_right).offset(-edges);
+		make.left.equalTo(self.money.mas_right);
+		make.width.equalTo(@(width));
 	}];
 	
 }

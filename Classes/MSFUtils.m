@@ -34,6 +34,8 @@ static MSFServer *server;
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://www.msxf.uat"]];
 #else
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
+	if (MSFUtils.baseURLString.length > 0)
+		server = [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]];
 #endif
 }
 
@@ -81,10 +83,20 @@ static MSFServer *server;
 
 + (void)setPhone:(NSString *)_phone {
 	[[NSUserDefaults standardUserDefaults] setObject:_phone?:@"" forKey:@"user-phone"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 + (NSString *)phone {
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-phone"];
+}
+
++ (void)setBaseURLString:(NSString *)url {
+	[[NSUserDefaults standardUserDefaults] setObject:url?:@"" forKey:@"user-base-url"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString *)baseURLString {
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-base-url"];
 }
 
 @end

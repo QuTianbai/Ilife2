@@ -63,4 +63,7 @@ extern NSString *const MSFAuthorizationDidLoseConnectNotification;
 + (void)setPhone:(NSString *)phone;
 + (NSString *)phone;
 
++ (void)setBaseURLString:(NSString *)url;
++ (NSString *)baseURLString;
+
 @end

@@ -153,7 +153,7 @@ describe(@"without a user", ^{
   
   it(@"should fetch releasenote", ^{
     // given
-    stubResponse(@"/app/check_version",@"releasenote.json");
+    stubResponse(@"/app/check_version_ios",@"releasenote.json");
     
     // when
     RACSignal *request = [client fetchReleaseNote];
@@ -166,7 +166,7 @@ describe(@"without a user", ^{
   
   it(@"should fetch empty releasenote", ^{
     // given
-    stubResponse(@"/app/check_version",@{});
+    stubResponse(@"/app/check_version_ios",@{});
     
     // when
     RACSignal *request = [client fetchReleaseNote];

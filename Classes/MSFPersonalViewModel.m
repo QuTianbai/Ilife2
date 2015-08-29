@@ -218,6 +218,6 @@
 	self.addressViewModel.area.parentCodeID = @"";
 	self.addressViewModel.areaCode = @"";
 	self.addressViewModel.areaName = @"";
-	
 }
+
 @end

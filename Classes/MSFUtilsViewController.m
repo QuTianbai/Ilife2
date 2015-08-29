@@ -5,6 +5,7 @@
 //
 
 #import "MSFUtilsViewController.h"
+#import "MSFUtils.h"
 
 NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotification";
 
@@ -39,6 +40,7 @@ NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotific
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[[NSNotificationCenter defaultCenter] postNotificationName:MSFUtilsURLDidUpdateNotification object:URLs[indexPath.row]];
+	[MSFUtils setBaseURLString:URLs[indexPath.row]];
 }
 
 @end

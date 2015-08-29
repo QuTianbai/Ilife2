@@ -94,17 +94,7 @@
 		reduce:^id(MSFAreas *province, MSFAreas *city, MSFAreas *area) {
 			NSMutableString *address = NSMutableString.string;
 			[address appendString:province.name ?: @""];
-			[address appendString:^{
-				if ([city.name isEqualToString:@"省"] ||
-					[city.name isEqualToString:@"县"] ||
-					[city.name isEqualToString:@"市辖区"] ||
-					[city.name isEqualToString:@"区"] ||
-					[city.name isEqualToString:province.name] ||
-					city.name == nil) {
-					return @"";
-				}
-				return city.name;
-			}()];
+			[address appendString:city.name ?: @""];
 			[address appendString:area.name ?: @""];
 			
 			return address;
