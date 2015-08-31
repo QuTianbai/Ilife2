@@ -10,6 +10,7 @@
 @class RACCommand;
 @class MSFClient;
 @class MSFAddressViewModel;
+@class MSFBankInfoModel;
 
 @interface MSFClozeViewModel : RVMViewModel
 
@@ -25,11 +26,20 @@
 // The bank name
 @property (nonatomic, strong) NSString *bankName;
 
+// BankInfo
+@property (nonatomic, strong) MSFBankInfoModel *bankInfo;
+
+//BankSize
+@property (nonatomic, copy) NSString *maxSize;
+
 // Bank code
 @property (nonatomic, strong) NSString *bankCode;
 
 // The bank no
 @property (nonatomic, strong) NSString *bankNO;
+
+//The bank type
+@property (nonatomic, copy) NSString *bankType;
 
 //	The bank Address String value compose with `province city 
 @property (nonatomic, strong) NSString *bankAddress;

@@ -20,6 +20,11 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 #import "NSDate+UTC0800.h"
+#import "MSFBankInfoModel.h"
+
+static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
+static const NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
+static const NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
 @interface MSFClozeViewController () <UITextFieldDelegate>
 
@@ -48,6 +53,12 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
+	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
+	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
+	//[self.showInfoLB setAttributedText:bankCardShowInfoAttributeStr];
+	
+	
 	_bankArcView.layer.cornerRadius = 8;
 	_bankArcView.layer.masksToBounds = YES;
   _bankArcView.layer.borderWidth = 1;
@@ -59,9 +70,61 @@
 	_personArcView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
 	
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RAC(self.viewModel, name) = self.name.rac_textSignal;
+	self.bankName.alpha = 0;
+	RAC(self.bankNameLB, text) = RACObserve(self.viewModel, bankName);
+	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
+		if (bankName != nil && ![bankName isEqualToString:@""]) {
+			[UIView beginAnimations:nil context:nil];
+			[UIView setAnimationDuration:0.3];
+			self.bankNameLB.alpha = 1.0;
+			[UIView commitAnimations];
+		} else {
+			self.bankNameLB.alpha = 0;
+		}
+		
+	}];
+	//RACObserve(<#TARGET#>, <#KEYPATH#>)
+	//self.BankCardTypeLB.alpha = 0;
+	RAC(self.BankCardTypeLB, text) = [RACObserve(self.viewModel, bankType) map:^id(id value) {
+		//self.BankCardTypeLB.alpha = 0;
+		return value;
+	}];
+	[RACObserve(self.viewModel, bankType) subscribeNext:^(NSString *type) {
+		if (type != nil && ![type isEqualToString:@""] ) {
+			[UIView beginAnimations:nil context:nil];
+			[UIView setAnimationDuration:0.3];
+			self.BankCardTypeLB.alpha = 1.0;
+			[UIView commitAnimations];
+		} else {
+			self.BankCardTypeLB.alpha = 0;
+		}
+		
+	}];
+	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
+		CGFloat alpha = 0;
+		switch (support.intValue) {
+			case 1:
+				alpha = 1.0;
+				[self.showInfoLB setAttributedText:bankCardShowInfoAttributeStr];
+			break;
+			case 2:
+				alpha = 1.0;
+				self.showInfoLB.text = bankCardShowStrB;
+			break;
+		default:
+    break;
+		}
+		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.3];
+		self.showInfoLB.alpha = alpha;
+		[UIView commitAnimations];
+		
+	}];
+	//RAC(self.viewModel, name) = self.name.rac_textSignal;
 	RAC(self.viewModel, card) = self.card.rac_textSignal;
 	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;
+	
 	
 	// Submit
 	self.submitButton.rac_command = self.viewModel.executeAuth;

@@ -16,6 +16,8 @@
 		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
+		0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0738C48C1B943C98006D7177 /* MSFBankInfoModel.m */; };
+		0738C48F1B944B54006D7177 /* bank.db in Resources */ = {isa = PBXBuildFile; fileRef = 0738C48E1B944B54006D7177 /* bank.db */; };
 		0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */; };
 		0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF6D1B1F05D200880617 /* MSFPhoto.m */; };
 		07AFE5A01B26D202009E0124 /* position.json in Resources */ = {isa = PBXBuildFile; fileRef = 07AFE59F1B26D202009E0124 /* position.json */; };
@@ -569,6 +571,9 @@
 		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
 		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
+		0738C48B1B943C98006D7177 /* MSFBankInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBankInfoModel.h; sourceTree = "<group>"; };
+		0738C48C1B943C98006D7177 /* MSFBankInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBankInfoModel.m; sourceTree = "<group>"; };
+		0738C48E1B944B54006D7177 /* bank.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bank.db; sourceTree = "<group>"; };
 		0788FF5C1B1F046E00880617 /* MSFPhotoStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoStatus.h; sourceTree = "<group>"; };
 		0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoStatus.m; sourceTree = "<group>"; };
 		0788FF6C1B1F05D200880617 /* MSFPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhoto.h; sourceTree = "<group>"; };
@@ -1251,6 +1256,15 @@
 			name = CollectionView;
 			sourceTree = "<group>";
 		};
+		0738C47D1B9436F3006D7177 /* BankInfo */ = {
+			isa = PBXGroup;
+			children = (
+				0738C48B1B943C98006D7177 /* MSFBankInfoModel.h */,
+				0738C48C1B943C98006D7177 /* MSFBankInfoModel.m */,
+			);
+			name = BankInfo;
+			sourceTree = "<group>";
+		};
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1671,6 +1685,7 @@
 		492D13101B2EAEA10094699A /* db */ = {
 			isa = PBXGroup;
 			children = (
+				0738C48E1B944B54006D7177 /* bank.db */,
 				07CDAEAB1B11BC9E00B7014C /* dicareas.db */,
 			);
 			name = db;
@@ -1754,6 +1769,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0738C47D1B9436F3006D7177 /* BankInfo */,
 				0704EB151B69CDBD000F5369 /* Location */,
 				491B3DFF1B65E1A600D28455 /* Address */,
 				4991471B1B246B5D00260E97 /* Selection */,
@@ -2874,6 +2890,7 @@
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
 				07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */,
 				49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */,
+				0738C48F1B944B54006D7177 /* bank.db in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
@@ -3316,6 +3333,7 @@
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
 				0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */,
+				0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */,
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
 				492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
