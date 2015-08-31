@@ -23,6 +23,9 @@
 
 @interface MSFClozeViewController () <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *bankNameLB;
+@property (weak, nonatomic) IBOutlet UILabel *BankCardTypeLB;
+@property (weak, nonatomic) IBOutlet UILabel *showInfoLB;
 @property (nonatomic, strong) MSFClozeViewModel *viewModel;
 
 @end
