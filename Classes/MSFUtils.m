@@ -30,13 +30,14 @@ static MSFServer *server;
 + (void)initialize {
 #if DEBUG
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
-#elif UAT
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://www.msxf.uat"]];
 #else
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.7.28"]];
-	if (MSFUtils.baseURLString.length > 0)
-		server = [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]];
+	#if DISTRIBUTION
+		server = [MSFServer dotComServer];
+	#else
+		server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://www.msxf.uat"]];
+	#endif
 #endif
+
 }
 
 + (RACSignal *)setupSignal {

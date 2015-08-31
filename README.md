@@ -2,22 +2,17 @@
 
 > 测试接口例
 
-```
 http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10000
-```
 
 ## API
 
 - https://www.msxf.dev 
 - database
 
-```
 数据库  ip 192.168.2.60  
 core20150818
 用户名: corerw
 密码: core111111
-```
-
 
 ---
 
@@ -43,22 +38,18 @@ msfinance@2015
 
 ### 第三方统计平台ID
 
-```
 账号：app@msfinance.cn
 密码：@2015msfinance
 
 统计分析：umeng
 崩溃收集：fabric
-```
 
 ### 信用卡扫描控件
 
-```
 pod 'CardIO'
 
 https://github.com/card-io/card.io-iOS-source
 https://github.com/card-io/card.io-iOS-SDK
-```
 
 ### 测试数据库地址及密码
 
