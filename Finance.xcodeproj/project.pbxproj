@@ -78,6 +78,11 @@
 		490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */; };
 		490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BDE7E1B08265700D53391 /* NSString+Matches.m */; };
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
+		4917A42A1B943EAC00ADA6FC /* MSFAttachmentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */; };
+		4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A43A1B943EC100ADA6FC /* MSFAttachment.m */; };
+		4917A43D1B94409700ADA6FC /* MSFInventorySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A43C1B94409700ADA6FC /* MSFInventorySpec.m */; };
+		4917A4411B9440AF00ADA6FC /* MSFInventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A4401B9440AF00ADA6FC /* MSFInventory.m */; };
+		4917A4451B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A4441B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m */; };
 		491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E011B65E1B200D28455 /* MSFAddress.m */; };
 		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */; };
@@ -671,6 +676,14 @@
 		490BDE7E1B08265700D53391 /* NSString+Matches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Matches.m"; sourceTree = "<group>"; };
 		490DB83A1B1FF10100EEA5C9 /* MSFSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignature.h; sourceTree = "<group>"; };
 		490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignature.m; sourceTree = "<group>"; };
+		4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachmentSpec.m; sourceTree = "<group>"; };
+		4917A4391B943EC100ADA6FC /* MSFAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAttachment.h; sourceTree = "<group>"; };
+		4917A43A1B943EC100ADA6FC /* MSFAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachment.m; sourceTree = "<group>"; };
+		4917A43C1B94409700ADA6FC /* MSFInventorySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventorySpec.m; sourceTree = "<group>"; };
+		4917A43F1B9440AF00ADA6FC /* MSFInventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInventory.h; sourceTree = "<group>"; };
+		4917A4401B9440AF00ADA6FC /* MSFInventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventory.m; sourceTree = "<group>"; };
+		4917A4431B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValueTransformer+MSFPredefinedTransformerAdditions.h"; sourceTree = "<group>"; };
+		4917A4441B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValueTransformer+MSFPredefinedTransformerAdditions.m"; sourceTree = "<group>"; };
 		491B3E001B65E1B200D28455 /* MSFAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddress.h; sourceTree = "<group>"; };
 		491B3E011B65E1B200D28455 /* MSFAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddress.m; sourceTree = "<group>"; };
 		491B3E2B1B662CCE00D28455 /* RCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationManager.h; sourceTree = "<group>"; };
@@ -1490,6 +1503,24 @@
 			name = Loan;
 			sourceTree = "<group>";
 		};
+		4917A4381B943EB400ADA6FC /* Attachment */ = {
+			isa = PBXGroup;
+			children = (
+				4917A4391B943EC100ADA6FC /* MSFAttachment.h */,
+				4917A43A1B943EC100ADA6FC /* MSFAttachment.m */,
+			);
+			name = Attachment;
+			sourceTree = "<group>";
+		};
+		4917A43E1B9440A100ADA6FC /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				4917A43F1B9440AF00ADA6FC /* MSFInventory.h */,
+				4917A4401B9440AF00ADA6FC /* MSFInventory.m */,
+			);
+			name = Inventory;
+			sourceTree = "<group>";
+		};
 		491B3DF11B65D68C00D28455 /* stubs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1754,6 +1785,8 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4917A43E1B9440A100ADA6FC /* Inventory */,
+				4917A4381B943EB400ADA6FC /* Attachment */,
 				0704EB151B69CDBD000F5369 /* Location */,
 				491B3DFF1B65E1A600D28455 /* Address */,
 				4991471B1B246B5D00260E97 /* Selection */,
@@ -1867,6 +1900,8 @@
 				49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */,
 				49952F651B8AF84300CD9454 /* MSFProfessionalViewModelSpec.m */,
 				49EF59541B9039AB00BDBD44 /* MSFRelationshipViewModelSpec.m */,
+				4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */,
+				4917A43C1B94409700ADA6FC /* MSFInventorySpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -2194,6 +2229,8 @@
 		49C7CBAA1B04A3B600EF5A68 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4917A4431B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.h */,
+				4917A4441B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m */,
 				490BDE7D1B08265700D53391 /* NSString+Matches.h */,
 				490BDE7E1B08265700D53391 /* NSString+Matches.m */,
 				49C7CBA71B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.h */,
@@ -3269,6 +3306,7 @@
 				C7B978031B08E8DF005F247C /* MSFTradeTableViewController.m in Sources */,
 				C7B9FF631B2C1BD100FEF72F /* MSFRelationshipViewModel.m in Sources */,
 				49EA18B21B6A44A7006EEB9F /* MSFActivityIndicatorViewController.m in Sources */,
+				4917A4451B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m in Sources */,
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
@@ -3340,6 +3378,7 @@
 				49CBDD9C1B0DD904009EF662 /* MSFBannersViewController.m in Sources */,
 				491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */,
 				495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */,
+				4917A4411B9440AF00ADA6FC /* MSFInventory.m in Sources */,
 				491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
@@ -3397,6 +3436,7 @@
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
+				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
 				492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
@@ -3438,6 +3478,7 @@
 				496A447D1B6A57BF00104215 /* MSFTradeSpec.m in Sources */,
 				496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */,
 				49F21C591B8D635900CA96C1 /* MSFTestProfessionalViewModel.m in Sources */,
+				4917A42A1B943EAC00ADA6FC /* MSFAttachmentSpec.m in Sources */,
 				496A447E1B6A57BF00104215 /* MSFUserSpec.m in Sources */,
 				4949BF961B81CB95006BB287 /* MSFWebViewModelSpec.m in Sources */,
 				496A446A1B6A57BE00104215 /* MSFcheckEmploySpec.m in Sources */,
@@ -3451,6 +3492,7 @@
 				496A44671B6A57BE00104215 /* MSFAuthorizationSpec.m in Sources */,
 				496A44721B6A57BE00104215 /* MSFObjectSpec.m in Sources */,
 				49C2FE531B4677D200B6B20A /* MSFTestAddressViewModel.m in Sources */,
+				4917A43D1B94409700ADA6FC /* MSFInventorySpec.m in Sources */,
 				496A447B1B6A57BE00104215 /* MSFSelectionViewModelSpec.m in Sources */,
 				496A44631B6A57BE00104215 /* MSFAgreementSpec.m in Sources */,
 				496A446D1B6A57BE00104215 /* MSFClientXBMSpec.m in Sources */,
