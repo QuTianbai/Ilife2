@@ -58,8 +58,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
 	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
 	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
-	//[self.showInfoLB setAttributedText:bankCardShowInfoAttributeStr];
-	
 	
 	_bankArcView.layer.cornerRadius = 8;
 	_bankArcView.layer.masksToBounds = YES;
@@ -85,10 +83,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		}
 		
 	}];
-	//RACObserve(<#TARGET#>, <#KEYPATH#>)
-	//self.BankCardTypeLB.alpha = 0;
 	RAC(self.BankCardTypeLB, text) = [[RACObserve(self.viewModel, bankType) ignore:nil] map:^id(id value) {
-		//self.BankCardTypeLB.alpha = 0;
 		return value;
 	}];
 	[[RACObserve(self.viewModel, bankType) ignore:nil] subscribeNext:^(NSString *type) {
@@ -130,9 +125,9 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[UIView commitAnimations];
 		
 	}];
-	RAC(self.viewModel, name) = self.name.rac_textSignal;
-	RAC(self.viewModel, card) = self.card.rac_textSignal;
-	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;
+	RAC(self.viewModel, name) = self.name.rac_textSignal;//姓名
+	RAC(self.viewModel, card) = self.card.rac_textSignal;//身份证
+	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;//银行卡号
 	
 	
 	// Submit
