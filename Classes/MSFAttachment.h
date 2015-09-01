@@ -39,10 +39,12 @@
 // 附件更新时间
 @property (nonatomic, strong, readonly) NSDate *updatedDate;
 
-// 附件状态
+// 文档状态，I--初始，Y--合格，N--不合格
 @property (nonatomic, copy, readonly) NSString *status;
 
 // 附件上传，后从服务器返回的json中的文件类型 `image/jpg`
 @property (nonatomic, copy, readonly) NSString *contentType;
+
+@property (nonatomic, strong) NSURL *contentURL;
 
 @end

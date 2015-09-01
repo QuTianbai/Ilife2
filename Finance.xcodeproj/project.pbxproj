@@ -164,6 +164,10 @@
 		4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E88E1B95473B0048D125 /* MSFClient+Elements.m */; };
 		4948E8941B9548450048D125 /* MSFClient+Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8921B9548420048D125 /* MSFClient+Inventory.m */; };
 		4948E89C1B954F6E0048D125 /* MSFClient+Attachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E89B1B954F6E0048D125 /* MSFClient+Attachment.m */; };
+		4948E8AB1B9552040048D125 /* MSFElementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8AA1B9552040048D125 /* MSFElementViewModelSpec.m */; };
+		4948E8AF1B95522F0048D125 /* MSFElementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8AE1B95522F0048D125 /* MSFElementViewModel.m */; };
+		4948E8B61B9577D30048D125 /* MSFInventoryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8B51B9577D30048D125 /* MSFInventoryViewModel.m */; };
+		4948E8B81B9578050048D125 /* MSFInventoryViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8B71B9578050048D125 /* MSFInventoryViewModelSpec.m */; };
 		4949BF961B81CB95006BB287 /* MSFWebViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4949BF951B81CB95006BB287 /* MSFWebViewModelSpec.m */; };
 		494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 494ED8671B2D2798000AD8EA /* MSFWPTextField.m */; };
 		494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBE0D1B16B1BC005F0454 /* MSFCipher.m */; };
@@ -802,6 +806,12 @@
 		4948E8921B9548420048D125 /* MSFClient+Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Inventory.m"; sourceTree = "<group>"; };
 		4948E89A1B954F6E0048D125 /* MSFClient+Attachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Attachment.h"; sourceTree = "<group>"; };
 		4948E89B1B954F6E0048D125 /* MSFClient+Attachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Attachment.m"; sourceTree = "<group>"; };
+		4948E8AA1B9552040048D125 /* MSFElementViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementViewModelSpec.m; sourceTree = "<group>"; };
+		4948E8AD1B95522F0048D125 /* MSFElementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementViewModel.h; sourceTree = "<group>"; };
+		4948E8AE1B95522F0048D125 /* MSFElementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementViewModel.m; sourceTree = "<group>"; };
+		4948E8B41B9577D30048D125 /* MSFInventoryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInventoryViewModel.h; sourceTree = "<group>"; };
+		4948E8B51B9577D30048D125 /* MSFInventoryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventoryViewModel.m; sourceTree = "<group>"; };
+		4948E8B71B9578050048D125 /* MSFInventoryViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventoryViewModelSpec.m; sourceTree = "<group>"; };
 		4949BF951B81CB95006BB287 /* MSFWebViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewModelSpec.m; sourceTree = "<group>"; };
 		494ED8661B2D2798000AD8EA /* MSFWPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWPTextField.h; sourceTree = "<group>"; };
 		494ED8671B2D2798000AD8EA /* MSFWPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWPTextField.m; sourceTree = "<group>"; };
@@ -1838,6 +1848,9 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4948E8BB1B9599FB0048D125 /* Attachment */,
+				4948E8B31B9577C30048D125 /* Inventory */,
+				4948E8AC1B95521C0048D125 /* Element */,
 				499B1B691B68DC5B002D5ED7 /* WebView */,
 				4912D79D1B6213E20014059D /* Loan */,
 				499EA2761B560ABA0051AF66 /* Tabbar */,
@@ -1922,6 +1935,8 @@
 				4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */,
 				4917A43C1B94409700ADA6FC /* MSFInventorySpec.m */,
 				4948E88B1B95400A0048D125 /* MSFElementSpec.m */,
+				4948E8AA1B9552040048D125 /* MSFElementViewModelSpec.m */,
+				4948E8B71B9578050048D125 /* MSFInventoryViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -1991,6 +2006,31 @@
 				4948E88E1B95473B0048D125 /* MSFClient+Elements.m */,
 			);
 			name = Element;
+			sourceTree = "<group>";
+		};
+		4948E8AC1B95521C0048D125 /* Element */ = {
+			isa = PBXGroup;
+			children = (
+				4948E8AD1B95522F0048D125 /* MSFElementViewModel.h */,
+				4948E8AE1B95522F0048D125 /* MSFElementViewModel.m */,
+			);
+			name = Element;
+			sourceTree = "<group>";
+		};
+		4948E8B31B9577C30048D125 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				4948E8B41B9577D30048D125 /* MSFInventoryViewModel.h */,
+				4948E8B51B9577D30048D125 /* MSFInventoryViewModel.m */,
+			);
+			name = Inventory;
+			sourceTree = "<group>";
+		};
+		4948E8BB1B9599FB0048D125 /* Attachment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Attachment;
 			sourceTree = "<group>";
 		};
 		494FBE0B1B16B1AE005F0454 /* Cipher */ = {
@@ -3387,6 +3427,7 @@
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
 				0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */,
+				4948E8AF1B95522F0048D125 /* MSFElementViewModel.m in Sources */,
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
 				492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
@@ -3425,6 +3466,7 @@
 				49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */,
 				498113D61B1C4856003D1B7A /* MSFLoanViewModel.m in Sources */,
 				491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */,
+				4948E8B61B9577D30048D125 /* MSFInventoryViewModel.m in Sources */,
 				07C924E31B0C8F4D00FA73BD /* MSFClient+MSFCheckEmploee.m in Sources */,
 				C7AF47081B04E127001B39F2 /* MSFInstallment.m in Sources */,
 				49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */,
@@ -3502,6 +3544,7 @@
 				496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */,
 				496A44741B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m in Sources */,
 				496A447A1B6A57BE00104215 /* MSFResponseSpec.m in Sources */,
+				4948E8B81B9578050048D125 /* MSFInventoryViewModelSpec.m in Sources */,
 				49952F661B8AF84300CD9454 /* MSFProfessionalViewModelSpec.m in Sources */,
 				4948E88C1B95400A0048D125 /* MSFElementSpec.m in Sources */,
 				496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */,
@@ -3532,6 +3575,7 @@
 				496A447B1B6A57BE00104215 /* MSFSelectionViewModelSpec.m in Sources */,
 				496A44631B6A57BE00104215 /* MSFAgreementSpec.m in Sources */,
 				496A446D1B6A57BE00104215 /* MSFClientXBMSpec.m in Sources */,
+				4948E8AB1B9552040048D125 /* MSFElementViewModelSpec.m in Sources */,
 				496A44621B6A57BE00104215 /* MSFAdverSpec.m in Sources */,
 				496A44691B6A57BE00104215 /* MSFBannersViewModelSpec.m in Sources */,
 				496A44751B6A57BE00104215 /* MSFProductViewModelSpec.m in Sources */,

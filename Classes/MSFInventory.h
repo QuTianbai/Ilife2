@@ -14,6 +14,6 @@
 @property (nonatomic, copy, readonly) NSString *applyNo;
 
 // 附件列表
-@property (nonatomic, strong, readonly) NSArray *attachments;
+@property (nonatomic, strong) NSArray *attachments;
 
 @end
