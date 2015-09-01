@@ -130,7 +130,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[UIView commitAnimations];
 		
 	}];
-	//RAC(self.viewModel, name) = self.name.rac_textSignal;
+	RAC(self.viewModel, name) = self.name.rac_textSignal;
 	RAC(self.viewModel, card) = self.card.rac_textSignal;
 	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;
 	

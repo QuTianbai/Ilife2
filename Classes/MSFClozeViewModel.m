@@ -140,7 +140,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 		}];
     return [RACSignal error:error];
 	}
-	if (self.bankNO.length == 0 || self.bankNO.length < 14 || self.bankNO.length == self.maxSize.integerValue ) {
+	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
 		NSString *str = @"请输入正确地银行卡号";
 		if (self.bankNO.length == self.maxSize.integerValue) {
 			str = @"你的银行卡号长度有误，请修改后再试";
