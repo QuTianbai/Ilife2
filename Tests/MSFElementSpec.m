@@ -31,7 +31,7 @@ it(@"should initialize", ^{
 	expect(element.type).to(equal(@"IDCARD"));
 	expect(element.plain).to(equal(@"身份证"));
 	expect(element.comment).to(equal(@"请放在正中间"));
-	expect(element.exampleURL).to(equal([NSURL URLWithString:@"http://www.aaa.com/111.jsp"]));
+	expect(element.sampleURL).to(equal([NSURL URLWithString:@"http://www.aaa.com/111.jsp"]));
 	expect(element.thumbURL).to(equal([NSURL URLWithString:@"http://www.aaa.com/111.icon"]));
 	expect(@(element.required)).to(beTruthy());
 	expect(@(element.maximum)).to(equal(@1));

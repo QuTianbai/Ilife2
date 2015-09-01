@@ -13,14 +13,14 @@
 		@"type": @"code",
 		@"plain": @"name",
 		@"comment": @"comment",
-		@"exampleURL": @"exampleUrl",
+		@"sampleURL": @"exampleUrl",
 		@"thumbURL": @"iconUrl",
 		@"required": @"must",
 		@"maximum": @"maxNum",
 	};
 }
 
-+ (NSValueTransformer *)exampleURLJSONTransformer {
++ (NSValueTransformer *)sampleURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
 
