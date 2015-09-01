@@ -46,6 +46,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	_bankName = @"";
 	_services = services;
 	_oldBankNo = @"";
+	//_bankInfo = [[MSFBankInfoModel alloc] init];
 	
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:services];
 	_executeSelected = self.addressViewModel.selectCommand;
