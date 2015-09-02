@@ -29,6 +29,9 @@
 #import "MSFClient+MSFApplyInfo.h"
 #import "MSFClient+Users.h"
 
+#import "MSFCertificatesCollectionViewController.h"
+#import "MSFInventoryViewModel.h"
+
 @interface MSFProductViewModel ()
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
@@ -233,7 +236,9 @@
 
 				[self setModelData:applyInfo with:self.formsViewModel.model];
 				[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
-		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
+				
+				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
+//		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
 		[self.services pushViewModel:viewModel];
 				
 			}

@@ -10,15 +10,38 @@
 #import "MSFCertificateCell.h"
 #import "MSFExtraOptionCell.h"
 #import "MSFPhotosUploadConfirmView.h"
+#import "MSFInventoryViewModel.h"
 
 #import "MSFPhotoUploadCollectionViewController.h"
 
 @interface MSFCertificatesCollectionViewController ()
 <UICollectionViewDelegateFlowLayout>
 
+@property (nonatomic, strong) MSFInventoryViewModel *viewModel;
+
 @end
 
 @implementation MSFCertificatesCollectionViewController
+
+- (instancetype)initWithViewModel:(id)viewModel {
+  self = [self init];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.viewModel.active = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	self.viewModel.active = NO;
+}
 
 - (instancetype)init {
 	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:@"MSFCertificatesCollectionViewController"];

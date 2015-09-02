@@ -10,4 +10,6 @@
 
 @interface MSFCertificatesCollectionViewController : UICollectionViewController
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

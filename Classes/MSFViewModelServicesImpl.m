@@ -29,6 +29,9 @@
 
 #import "MSFLocationModel.h"
 
+#import "MSFInventoryViewModel.h"
+#import "MSFCertificatesCollectionViewController.h"
+
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
 @implementation MSFViewModelServicesImpl
@@ -55,6 +58,9 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
   } else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
 		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+  } else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
+		viewController = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
