@@ -20,7 +20,6 @@
 
 @interface MSFInventoryViewModel ()
 
-//@property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
 @property (nonatomic, weak, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 
@@ -36,7 +35,6 @@
     return nil;
   }
 	_formsViewModel = formsViewModel;
-//	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFInventoryViewModel `-updatedContentSignal`"];
 	
 	RAC(self, model) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
 		return [[MSFInventory alloc] initWithDictionary:@{
@@ -59,7 +57,6 @@
 			@"personId": formsViewModel.model.personId ?: @"",
 		} error:nil];
 	}];
-	
 	
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
