@@ -10,4 +10,6 @@
 
 @interface MSFPhotoUploadCollectionViewController : UICollectionViewController
 
+- (void)bindViewModel:(id)viewModel;
+
 @end

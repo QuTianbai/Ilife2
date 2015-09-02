@@ -10,6 +10,8 @@
 
 @interface MSFCertificatesCollectionViewController : UICollectionViewController
 
+@property (nonatomic, assign) BOOL optional;
+
 - (instancetype)initWithViewModel:(id)viewModel;
 
 @end

@@ -37,12 +37,16 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.viewModel.active = YES;
+	if (!self.optional) {
+		self.viewModel.active = YES;
+	}
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	self.viewModel.active = NO;
+	if (self.optional) {
+		self.viewModel.active = NO;
+	}
 }
 
 - (instancetype)init {
@@ -96,12 +100,18 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+	if (self.optional) {
+		return 1;
+	}
 	return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	if (self.optional) {
+		return self.viewModel.optionalViewModels.count;
+	}
 	if (section == 0) {
-		return 4;
+		return self.viewModel.requiredViewModels.count;
 	} else {
 		return 1;
 	}
@@ -119,7 +129,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
 		MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
-		[cell drawSeparatorAtIndex:indexPath total:4];
+		if (self.optional) {
+			[cell bindViewModel:self.viewModel.optionalViewModels[indexPath.row]];
+			[cell drawSeparatorAtIndex:indexPath total:self.viewModel.optionalViewModels.count];
+		} else {
+			[cell bindViewModel:self.viewModel.requiredViewModels[indexPath.row]];
+			[cell drawSeparatorAtIndex:indexPath total:self.viewModel.requiredViewModels.count];
+		}
 		return cell;
 	} else {
 		MSFExtraOptionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFExtraOptionCell" forIndexPath:indexPath];
@@ -131,7 +147,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-		[self performSegueWithIdentifier:@"photosUploadSegue" sender:nil];
+		[self performSegueWithIdentifier:@"photosUploadSegue" sender:indexPath];
+	} else {
+		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:self.viewModel];
+		vc.optional = YES;
+		[self.navigationController pushViewController:vc animated:YES];
 	}
 }
 
@@ -139,7 +159,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"photosUploadSegue"]) {
+		NSIndexPath *indexPath = sender;
 		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
+		if (self.optional) {
+			[vc bindViewModel:self.viewModel.optionalViewModels[indexPath.row]];
+		} else {
+			[vc bindViewModel:self.viewModel.requiredViewModels[indexPath.row]];
+		}
 	}
 }
 

@@ -7,13 +7,20 @@
 //
 
 #import "MSFPhotosUploadHeaderView.h"
+#import "MSFElementViewModel.h"
 
 @interface MSFPhotosUploadHeaderView ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
+@property (nonatomic, strong) MSFElementViewModel *viewModel;
 
 @end
 
 @implementation MSFPhotosUploadHeaderView
+
+- (void)bindModel:(MSFElementViewModel *)viewModel {
+	_viewModel = viewModel;
+	
+}
 
 @end
