@@ -37,6 +37,7 @@
 		*required = @([*required boolValue]);
 		return YES;
 	}
+	*required = @NO;
 	return *required == nil;
 }
 

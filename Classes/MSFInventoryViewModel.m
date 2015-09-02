@@ -16,12 +16,13 @@
 #import "MSFElementViewModel.h"
 #import "MSFInventory.h"
 #import "MSFApplicationResponse.h"
+#import "MSFAttachmentViewModel.h"
 
 @interface MSFInventoryViewModel ()
 
 //@property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
-@property (nonatomic, strong, readwrite) MSFInventory *model;
 @property (nonatomic, weak, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong, readwrite) NSArray *viewModels;
 
 @end
 
@@ -59,16 +60,39 @@
 		} error:nil];
 	}];
 	
-	RAC(self, viewModels) = [[[[self.formsViewModel.services httpClient]
-		fetchElementsWithProduct:self.product]
-		map:^id(MSFElement *element) {
-			return [[MSFElementViewModel alloc] initWithElement:element services:self.formsViewModel.services];
-		}]
-		collect];
-	RAC(self, attachments) = [[[self.formsViewModel.services httpClient] fetchAttachmentsWithCredit:self.credit] collect];
+	
+	@weakify(self)
+	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[[[[[self.formsViewModel.services httpClient]
+			fetchElementsWithProduct:self.product]
+			map:^id(MSFElement *element) {
+				return [[MSFElementViewModel alloc] initWithElement:element services:self.formsViewModel.services];
+			}]
+			collect]
+			subscribeNext:^(id x) {
+				self.viewModels = x;
+				[[[self.formsViewModel.services httpClient] fetchAttachmentsWithCredit:self.credit] subscribeNext:^(id x) {
+					[self.viewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
+						[obj addAttachment:x];
+					}];
+				}];
+			}];
+	}];
 	
 	_executeUpdateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return self.updateSignal;
+	}];
+	
+	RAC(self, requiredViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
+		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
+			return value.isRequired;
+		}] array];
+	}];
+	RAC(self, optionalViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
+		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
+			return !value.isRequired;
+		}] array];
 	}];
 	
   return self;
@@ -77,6 +101,18 @@
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
+	NSArray *attachemnts = [[self.viewModels.rac_sequence
+		flattenMap:^RACStream *(MSFElementViewModel *elemntViewModel) {
+			return [[elemntViewModel.viewModels.rac_sequence
+				filter:^BOOL(MSFAttachmentViewModel *attachmentViewModel) {
+					return attachmentViewModel.isUploaded;
+				}]
+				map:^id(MSFAttachmentViewModel *value) {
+					return value.attachment;
+				}];
+			}]
+		array];
+	self.model.attachments = attachemnts;
 	return [self.formsViewModel.services.httpClient updateInventory:self.model];
 }
 

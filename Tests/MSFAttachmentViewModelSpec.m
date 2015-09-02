@@ -78,4 +78,25 @@ it(@"should download picture", ^{
 	expect(viewModel.attachment.contentURL).notTo(beNil());
 });
 
+
+it(@"should combine array", ^{
+	// given
+	NSArray *ar1 = @[@1, @2];
+	NSArray *ar2 = @[@3, @4];
+	
+	NSArray *ar = @[ar1, ar2];
+	
+	// when
+	RACSubject *subject = [RACSubject empty];
+	
+	NSArray *result;
+	
+	result = [[ar.rac_sequence flattenMap:^RACStream *(NSArray *value) {
+		return value.rac_sequence;
+	}] array];
+	
+	// then
+	expect(result).to(equal(@[@1, @2, @3, @4]));
+});
+
 QuickSpecEnd

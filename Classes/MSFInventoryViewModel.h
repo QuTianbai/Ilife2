@@ -16,16 +16,18 @@
 @interface MSFInventoryViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFInventory *model;
+
 @property (nonatomic, strong, readonly) MSFProduct *product;
 @property (nonatomic, strong, readonly) MSFApplicationResponse *credit;
-
-@property (nonatomic, strong, readonly) NSArray *attachments;
 
 // MSFElementViewModel viewModels
 @property (nonatomic, strong, readonly) NSArray *viewModels;
 
+@property (nonatomic, strong, readonly) NSArray *requiredViewModels;
+@property (nonatomic, strong, readonly) NSArray *optionalViewModels;
+
 @property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
-//@property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
+@property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
