@@ -16,6 +16,8 @@
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
 
+#import "MSFCertificatesCollectionViewController.h"
+
 @interface MSFHomepageViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UIView *separatorView;
@@ -115,6 +117,11 @@
 	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusableIdentifier forIndexPath:indexPath];
 	[cell bindViewModel:viewModel];
 	return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
