@@ -26,7 +26,7 @@
 	
 	if (total % 2 == 0 && (indexPath.row == total - 1 || indexPath.row == total - 2)) {
 		_lastLine = YES;
-	} else if	(total % 2 == 1 && indexPath.row == total - 1) {
+	} else if (total % 2 == 1 && indexPath.row == total - 1) {
 		_lastLine = YES;
 	} else {
 		_lastLine = NO;
@@ -50,18 +50,18 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	if (_separatorType == 0) {
-		CGContextMoveToPoint(context, 0, rect.size.height - 1);
-		CGContextAddLineToPoint(context, rect.size.width - 10, rect.size.height - 1);
-//		if () {
-//			<#statements#>
-//		}
+		if (!_lastLine) {
+			CGContextMoveToPoint(context, 0, rect.size.height - 1);
+			CGContextAddLineToPoint(context, rect.size.width - 10, rect.size.height - 1);
+		}
 	} else {
-		CGContextMoveToPoint(context, 10, rect.size.height - 1);
-		CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 1);
+		if (!_lastLine) {
+			CGContextMoveToPoint(context, 10, rect.size.height - 1);
+			CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 1);
+		}
 	}
 
 	switch (_separatorType) {
