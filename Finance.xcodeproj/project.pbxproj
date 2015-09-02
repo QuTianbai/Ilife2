@@ -67,6 +67,14 @@
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
 		1077330E1B79944500F3BAA6 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 1077330D1B79944500F3BAA6 /* home-banner-pl.png */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
+		10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */; };
+		10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */; };
+		10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */; };
+		10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */; };
+		10DC2D111B969DAC00A2AF9C /* MSFExtraOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D101B969DAC00A2AF9C /* MSFExtraOptionCell.m */; };
+		10DC2D141B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */; };
+		10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */; };
+		10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */; };
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
 		10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */; };
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
@@ -649,6 +657,21 @@
 		1077330D1B79944500F3BAA6 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
+		10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photosUpload.storyboard; sourceTree = "<group>"; };
+		10DC2D051B969D1000A2AF9C /* MSFCertificatesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificatesCollectionViewController.h; sourceTree = "<group>"; };
+		10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificatesCollectionViewController.m; sourceTree = "<group>"; };
+		10DC2D081B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoUploadCollectionViewController.h; sourceTree = "<group>"; };
+		10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoUploadCollectionViewController.m; sourceTree = "<group>"; };
+		10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificateCell.h; sourceTree = "<group>"; };
+		10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificateCell.m; sourceTree = "<group>"; };
+		10DC2D0F1B969DAC00A2AF9C /* MSFExtraOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFExtraOptionCell.h; sourceTree = "<group>"; };
+		10DC2D101B969DAC00A2AF9C /* MSFExtraOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFExtraOptionCell.m; sourceTree = "<group>"; };
+		10DC2D121B969DD000A2AF9C /* MSFPhotosUploadConfirmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadConfirmView.h; sourceTree = "<group>"; };
+		10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadConfirmView.m; sourceTree = "<group>"; };
+		10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadHeaderView.h; sourceTree = "<group>"; };
+		10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadHeaderView.m; sourceTree = "<group>"; };
+		10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadCell.h; sourceTree = "<group>"; };
+		10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadCell.m; sourceTree = "<group>"; };
 		10DE89291B677690009025C4 /* home-fourStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-fourStatus.png"; sourceTree = "<group>"; };
 		10DE89671B686C2A009025C4 /* UILabel+AttributeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AttributeColor.h"; sourceTree = "<group>"; };
 		10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AttributeColor.m"; sourceTree = "<group>"; };
@@ -1357,6 +1380,7 @@
 				07CB4C7E1B104944006C220E /* MSFProfessionalViewController.m */,
 				07CB4C801B104AE8006C220E /* MSFRelationshipViewController.h */,
 				07CB4C811B104AE8006C220E /* MSFRelationshipViewController.m */,
+				10DC2CF31B96919D00A2AF9C /* PhotosUpload */,
 				4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */,
 				4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */,
 				4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */,
@@ -1468,6 +1492,36 @@
 				1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */,
 			);
 			name = CounterLabel;
+			sourceTree = "<group>";
+		};
+		10DC2CF31B96919D00A2AF9C /* PhotosUpload */ = {
+			isa = PBXGroup;
+			children = (
+				10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */,
+				10DC2D051B969D1000A2AF9C /* MSFCertificatesCollectionViewController.h */,
+				10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */,
+				10DC2D081B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.h */,
+				10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */,
+				10DC2D0B1B969D7300A2AF9C /* cells */,
+			);
+			name = PhotosUpload;
+			sourceTree = "<group>";
+		};
+		10DC2D0B1B969D7300A2AF9C /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */,
+				10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */,
+				10DC2D0F1B969DAC00A2AF9C /* MSFExtraOptionCell.h */,
+				10DC2D101B969DAC00A2AF9C /* MSFExtraOptionCell.m */,
+				10DC2D121B969DD000A2AF9C /* MSFPhotosUploadConfirmView.h */,
+				10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */,
+				10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */,
+				10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */,
+				10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */,
+				10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */,
+			);
+			name = cells;
 			sourceTree = "<group>";
 		};
 		10DE899A1B69B882009025C4 /* UMAnalytics_Sdk_3.5.10 */ = {
@@ -2988,6 +3042,7 @@
 				07CB4C4A1B1017AE006C220E /* right_arrow@2x.png in Resources */,
 				07C06C5A1B13464200F2DFCC /* edu_background.json in Resources */,
 				07C06C581B13461F00F2DFCC /* professional.json in Resources */,
+				10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */,
 				49B37B691B608F39004EED47 /* bar-progress-3-highlighted.png in Resources */,
 				4944C0551B68A60200805C0A /* icon-avatar-placeholder@3x.png in Resources */,
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
@@ -3284,6 +3339,7 @@
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
+				10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */,
 				C7AF470B1B04E154001B39F2 /* MSFClient+Installment.m in Sources */,
 				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
@@ -3295,12 +3351,14 @@
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
+				10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */,
 				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
+				10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
 				07CB4C7C1B104572006C220E /* MSFPersonalViewController.m in Sources */,
@@ -3365,6 +3423,7 @@
 				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
+				10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
@@ -3385,6 +3444,7 @@
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
 				4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
+				10DC2D141B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m in Sources */,
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
 				49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */,
 				4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */,
@@ -3395,6 +3455,8 @@
 				49E8B8F01B5FA01300680061 /* MSFHeaderView.m in Sources */,
 				1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
+				10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */,
+				10DC2D111B969DAC00A2AF9C /* MSFExtraOptionCell.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
 				492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */,

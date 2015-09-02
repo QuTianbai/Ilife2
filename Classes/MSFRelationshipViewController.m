@@ -344,6 +344,8 @@ ABPersonViewControllerDelegate>
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		
+		/*
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"恭喜您! 申请已提交!"];
@@ -351,6 +353,7 @@ ABPersonViewControllerDelegate>
 			[self.tabBarController setSelectedIndex:0];
 			[self.navigationController popToRootViewControllerAnimated:NO];
 		}];
+		 */
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];

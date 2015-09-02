@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Certificates Collection View Controller-->
+        <scene sceneID="u0l-cB-Wug">
+            <objects>
+                <collectionViewController storyboardIdentifier="MSFCertificatesCollectionViewController" id="N0L-JD-QYf" customClass="MSFCertificatesCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2I0-wq-uEa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ww8-6q-cYh">
+                            <size key="itemSize" width="193" height="139"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFCertificateCell" id="uTR-vd-Y9r" customClass="MSFCertificateCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="193" height="139"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TR5-ld-Fkr">
+                                            <rect key="frame" x="0.0" y="0.0" width="193" height="139"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sSd-LI-HMb">
+                                                    <rect key="frame" x="65" y="28" width="63.5" height="63.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="sSd-LI-HMb" secondAttribute="height" id="aR7-ic-J9R"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证验证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C11-bd-bTR">
+                                                    <rect key="frame" x="0.0" y="96" width="193" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-5e-Wmv">
+                                                    <rect key="frame" x="106.5" y="71.5" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="N6f-gq-riS"/>
+                                                        <constraint firstAttribute="height" constant="20" id="VQ8-42-Vw4"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="C11-bd-bTR" secondAttribute="trailing" id="A4w-yY-3xE"/>
+                                                <constraint firstAttribute="centerX" secondItem="sSd-LI-HMb" secondAttribute="centerX" id="DQY-Eo-48T"/>
+                                                <constraint firstItem="C11-bd-bTR" firstAttribute="top" secondItem="sSd-LI-HMb" secondAttribute="bottom" constant="5" id="Pcw-av-SBc"/>
+                                                <constraint firstAttribute="centerX" secondItem="5G8-5e-Wmv" secondAttribute="centerX" constant="-20" id="VLl-8u-Avj"/>
+                                                <constraint firstAttribute="centerY" secondItem="sSd-LI-HMb" secondAttribute="centerY" constant="10" id="XXp-Uy-Vcx"/>
+                                                <constraint firstItem="C11-bd-bTR" firstAttribute="leading" secondItem="TR5-ld-Fkr" secondAttribute="leading" id="XdG-wi-CdT"/>
+                                                <constraint firstItem="sSd-LI-HMb" firstAttribute="width" secondItem="TR5-ld-Fkr" secondAttribute="width" multiplier="0.33" id="jdI-qq-Ahl"/>
+                                                <constraint firstAttribute="centerY" secondItem="5G8-5e-Wmv" secondAttribute="centerY" constant="-12" id="ypy-Uf-cmm"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="TR5-ld-Fkr" firstAttribute="top" secondItem="uTR-vd-Y9r" secondAttribute="top" id="JoD-0u-thN"/>
+                                    <constraint firstItem="TR5-ld-Fkr" firstAttribute="leading" secondItem="uTR-vd-Y9r" secondAttribute="leading" id="QPM-5R-G2B"/>
+                                    <constraint firstAttribute="bottom" secondItem="TR5-ld-Fkr" secondAttribute="bottom" id="XIR-tG-dsd"/>
+                                    <constraint firstAttribute="trailing" secondItem="TR5-ld-Fkr" secondAttribute="trailing" id="yCV-9M-lEN"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="iconImageView" destination="sSd-LI-HMb" id="LLg-x8-6VB"/>
+                                    <outlet property="markImageView" destination="5G8-5e-Wmv" id="YEt-re-VU0"/>
+                                    <outlet property="titleLabel" destination="C11-bd-bTR" id="pe7-SP-cTK"/>
+                                </connections>
+                            </collectionViewCell>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFExtraOptionCell" id="iCQ-D8-cXz" customClass="MSFExtraOptionCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快去添加更多信息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4d-7a-7EN">
+                                            <rect key="frame" x="15" y="13" width="112" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="t4d-7a-7EN" firstAttribute="leading" secondItem="iCQ-D8-cXz" secondAttribute="leading" constant="15" id="CGl-FU-yeX"/>
+                                    <constraint firstAttribute="centerY" secondItem="t4d-7a-7EN" secondAttribute="centerY" id="uCg-pn-g0V"/>
+                                </constraints>
+                                <size key="customSize" width="320" height="44"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="t4d-7a-7EN" id="ELe-ca-iKa"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadConfirmView" id="Iur-yU-IwQ" customClass="MSFPhotosUploadConfirmView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsE-Ae-jxo">
+                                    <rect key="frame" x="20" y="10" width="280" height="40"/>
+                                    <color key="backgroundColor" red="0.086274509803921567" green="0.59999999999999998" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="0xM-h3-esa"/>
+                                    </constraints>
+                                    <state key="normal" title="提交">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="rsE-Ae-jxo" secondAttribute="bottom" id="AnI-5p-9vu"/>
+                                <constraint firstItem="rsE-Ae-jxo" firstAttribute="leading" secondItem="Iur-yU-IwQ" secondAttribute="leading" constant="20" id="VSS-yp-KZ5"/>
+                                <constraint firstAttribute="trailing" secondItem="rsE-Ae-jxo" secondAttribute="trailing" constant="20" id="aQ0-SX-vPI"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="confirmButton" destination="rsE-Ae-jxo" id="Shm-oF-vDD"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="N0L-JD-QYf" id="KQ1-yu-LAk"/>
+                            <outlet property="delegate" destination="N0L-JD-QYf" id="Zkn-3w-Yha"/>
+                        </connections>
+                    </collectionView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <segue destination="3e3-ad-7ww" kind="show" id="nT0-mV-08B"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T2d-hS-4h5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="816" y="-271"/>
+        </scene>
+        <!--Photo Upload Collection View Controller-->
+        <scene sceneID="MQy-MD-z6g">
+            <objects>
+                <collectionViewController storyboardIdentifier="MSFPhotoUploadCollectionViewController" id="3e3-ad-7ww" customClass="MSFPhotoUploadCollectionViewController" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lZ9-Be-zm6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AFb-LO-WYp">
+                            <size key="itemSize" width="154" height="95"/>
+                            <size key="headerReferenceSize" width="50" height="145"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadCell" id="kqv-uf-hKM" customClass="MSFPhotosUploadCell">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="154" height="95"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7NC-3O-Qhx">
+                                            <rect key="frame" x="10" y="10" width="134" height="75"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击拍照" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4J6-5T-cg5">
+                                            <rect key="frame" x="43" y="37.5" width="68" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="7NC-3O-Qhx" firstAttribute="leading" secondItem="kqv-uf-hKM" secondAttribute="leading" constant="10" id="4G1-m2-7Nl"/>
+                                    <constraint firstAttribute="bottom" secondItem="7NC-3O-Qhx" secondAttribute="bottom" constant="10" id="A5r-lT-nVI"/>
+                                    <constraint firstAttribute="centerY" secondItem="4J6-5T-cg5" secondAttribute="centerY" id="KeF-Hk-WGs"/>
+                                    <constraint firstAttribute="trailing" secondItem="7NC-3O-Qhx" secondAttribute="trailing" constant="10" id="OWp-Fw-MOi"/>
+                                    <constraint firstItem="7NC-3O-Qhx" firstAttribute="top" secondItem="kqv-uf-hKM" secondAttribute="top" constant="10" id="TDM-K0-MLc"/>
+                                    <constraint firstAttribute="centerX" secondItem="4J6-5T-cg5" secondAttribute="centerX" id="z4v-Og-rgT"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="tempLabel" destination="4J6-5T-cg5" id="ToB-8c-F7l"/>
+                                    <outlet property="uploadImageView" destination="7NC-3O-Qhx" id="uHO-A0-M7A"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadHeaderView" id="Ch6-7i-zZn" customClass="MSFPhotosUploadHeaderView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qx9-pt-E1p">
+                                    <rect key="frame" x="90" y="20" width="140" height="90"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="90" id="55b-bk-xUf"/>
+                                        <constraint firstAttribute="width" constant="140" id="Pir-6g-Q70"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="示例图" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxH-5a-ml3">
+                                    <rect key="frame" x="137.5" y="115" width="45" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" red="0.086274509799999996" green="0.59999999999999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="qx9-pt-E1p" firstAttribute="top" secondItem="Ch6-7i-zZn" secondAttribute="top" constant="20" id="BTx-h9-7N3"/>
+                                <constraint firstAttribute="centerX" secondItem="zxH-5a-ml3" secondAttribute="centerX" id="FDe-1r-9wa"/>
+                                <constraint firstAttribute="centerX" secondItem="qx9-pt-E1p" secondAttribute="centerX" id="Wpf-nB-5pz"/>
+                                <constraint firstItem="zxH-5a-ml3" firstAttribute="top" secondItem="qx9-pt-E1p" secondAttribute="bottom" constant="5" id="bU5-PZ-TtC"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="displayImageView" destination="qx9-pt-E1p" id="9Jv-DT-i88"/>
+                            </connections>
+                        </collectionReusableView>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadConfirmView" id="dZy-Tq-dUE" customClass="MSFPhotosUploadConfirmView">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSA-PE-Pdo">
+                                    <rect key="frame" x="20" y="10" width="280" height="40"/>
+                                    <color key="backgroundColor" red="0.086274509799999996" green="0.59999999999999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="YLC-VF-ykb"/>
+                                    </constraints>
+                                    <state key="normal" title="提交">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="oSA-PE-Pdo" firstAttribute="leading" secondItem="dZy-Tq-dUE" secondAttribute="leading" constant="20" id="01Q-by-O0v"/>
+                                <constraint firstAttribute="trailing" secondItem="oSA-PE-Pdo" secondAttribute="trailing" constant="20" id="Ypq-OS-HRz"/>
+                                <constraint firstAttribute="bottom" secondItem="oSA-PE-Pdo" secondAttribute="bottom" id="ezv-Kk-dHA"/>
+                            </constraints>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="3e3-ad-7ww" id="1IH-zu-I5C"/>
+                            <outlet property="delegate" destination="3e3-ad-7ww" id="F8E-BE-8Qx"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FA6-3D-ff6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1195" y="-271"/>
+        </scene>
+    </scenes>
+</document>
