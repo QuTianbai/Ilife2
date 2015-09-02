@@ -7,92 +7,113 @@
 //
 
 #import "MSFCertificatesCollectionViewController.h"
+#import "MSFCertificateCell.h"
+#import "MSFExtraOptionCell.h"
+#import "MSFPhotosUploadConfirmView.h"
+
+#import "MSFPhotoUploadCollectionViewController.h"
 
 @interface MSFCertificatesCollectionViewController ()
+<UICollectionViewDelegateFlowLayout>
 
 @end
 
 @implementation MSFCertificatesCollectionViewController
 
-static NSString * const reuseIdentifier = @"Cell";
+- (instancetype)init {
+	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:@"MSFCertificatesCollectionViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
     
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - UICollectionViewFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+	if (section == 0) {
+		return CGSizeZero;
+	} else {
+		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
+	}
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+	if (indexPath.section == 0) {
+		return CGSizeMake(screenWidth * 0.5, screenWidth * 0.35);
+	} else {
+		return CGSizeMake(screenWidth, 44);
+	}
 }
-*/
 
-#pragma mark <UICollectionViewDataSource>
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+	if (section == 0) {
+		return UIEdgeInsetsZero;
+	} else {
+		return UIEdgeInsetsMake(10, 0, 10, 0);
+	}
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+	return 0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+	return 0;
+}
+
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-#warning Incomplete method implementation -- Return the number of sections
-    return 0;
+	return 2;
 }
 
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-#warning Incomplete method implementation -- Return the number of items in the section
-    return 0;
+	if (section == 0) {
+		return 4;
+	} else {
+		return 1;
+	}
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+	if (kind == UICollectionElementKindSectionFooter) {
+		MSFPhotosUploadConfirmView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"MSFPhotosUploadConfirmView" forIndexPath:indexPath];
+		return view;
+	} else {
+		return [UICollectionReusableView new];
+	}
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell
-    
-    return cell;
+	if (indexPath.section == 0) {
+		MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
+		[cell drawSeparatorAtIndex:indexPath total:4];
+		return cell;
+	} else {
+		MSFExtraOptionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFExtraOptionCell" forIndexPath:indexPath];
+		return cell;
+	}
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - UICollectionViewDelegate
 
-/*
-// Uncomment this method to specify if the specified item should be highlighted during tracking
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
-	return YES;
-}
-*/
-
-/*
-// Uncomment this method to specify if the specified item should be selected
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-// Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {
-	return NO;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		[self performSegueWithIdentifier:@"photosUploadSegue" sender:nil];
+	}
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	return NO;
+#pragma mark - storyboard
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.identifier isEqualToString:@"photosUploadSegue"]) {
+		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
+	}
 }
 
-- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
-	
-}
-*/
 
 @end

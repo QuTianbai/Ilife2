@@ -7,7 +7,7 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Certificates Collection View Controller-->
+        <!--提交申请-->
         <scene sceneID="u0l-cB-Wug">
             <objects>
                 <collectionViewController storyboardIdentifier="MSFCertificatesCollectionViewController" id="N0L-JD-QYf" customClass="MSFCertificatesCollectionViewController" sceneMemberID="viewController">
@@ -39,20 +39,20 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证验证" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C11-bd-bTR">
-                                                    <rect key="frame" x="0.0" y="96" width="193" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="0.0" y="96" width="193" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-5e-Wmv">
-                                                    <rect key="frame" x="106.5" y="71.5" width="20" height="20"/>
+                                                    <rect key="frame" x="106" y="71" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="N6f-gq-riS"/>
                                                         <constraint firstAttribute="height" constant="20" id="VQ8-42-Vw4"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="C11-bd-bTR" secondAttribute="trailing" id="A4w-yY-3xE"/>
                                                 <constraint firstAttribute="centerX" secondItem="sSd-LI-HMb" secondAttribute="centerX" id="DQY-Eo-48T"/>
@@ -67,6 +67,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="TR5-ld-Fkr" firstAttribute="top" secondItem="uTR-vd-Y9r" secondAttribute="top" id="JoD-0u-thN"/>
                                     <constraint firstItem="TR5-ld-Fkr" firstAttribute="leading" secondItem="uTR-vd-Y9r" secondAttribute="leading" id="QPM-5R-G2B"/>
@@ -95,6 +96,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="t4d-7a-7EN" firstAttribute="leading" secondItem="iCQ-D8-cXz" secondAttribute="leading" constant="15" id="CGl-FU-yeX"/>
                                     <constraint firstAttribute="centerY" secondItem="t4d-7a-7EN" secondAttribute="centerY" id="uCg-pn-g0V"/>
@@ -135,9 +137,11 @@
                             <outlet property="delegate" destination="N0L-JD-QYf" id="Zkn-3w-Yha"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="提交申请" id="b8C-Me-V7s"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <segue destination="3e3-ad-7ww" kind="show" id="nT0-mV-08B"/>
+                        <segue destination="3e3-ad-7ww" kind="show" identifier="photosUploadSegue" id="nT0-mV-08B"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2d-hS-4h5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -149,9 +153,9 @@
             <objects>
                 <collectionViewController storyboardIdentifier="MSFPhotoUploadCollectionViewController" id="3e3-ad-7ww" customClass="MSFPhotoUploadCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lZ9-Be-zm6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="AFb-LO-WYp">
                             <size key="itemSize" width="154" height="95"/>
                             <size key="headerReferenceSize" width="50" height="145"/>
@@ -166,24 +170,25 @@
                                     <rect key="frame" x="0.0" y="0.0" width="154" height="95"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7NC-3O-Qhx">
-                                            <rect key="frame" x="10" y="10" width="134" height="75"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击拍照" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4J6-5T-cg5">
                                             <rect key="frame" x="43" y="37.5" width="68" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7NC-3O-Qhx">
+                                            <rect key="frame" x="0.0" y="0.0" width="154" height="95"/>
+                                            <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="7NC-3O-Qhx" firstAttribute="leading" secondItem="kqv-uf-hKM" secondAttribute="leading" constant="10" id="4G1-m2-7Nl"/>
-                                    <constraint firstAttribute="bottom" secondItem="7NC-3O-Qhx" secondAttribute="bottom" constant="10" id="A5r-lT-nVI"/>
+                                    <constraint firstItem="7NC-3O-Qhx" firstAttribute="leading" secondItem="kqv-uf-hKM" secondAttribute="leading" id="4G1-m2-7Nl"/>
+                                    <constraint firstAttribute="bottom" secondItem="7NC-3O-Qhx" secondAttribute="bottom" id="A5r-lT-nVI"/>
                                     <constraint firstAttribute="centerY" secondItem="4J6-5T-cg5" secondAttribute="centerY" id="KeF-Hk-WGs"/>
-                                    <constraint firstAttribute="trailing" secondItem="7NC-3O-Qhx" secondAttribute="trailing" constant="10" id="OWp-Fw-MOi"/>
-                                    <constraint firstItem="7NC-3O-Qhx" firstAttribute="top" secondItem="kqv-uf-hKM" secondAttribute="top" constant="10" id="TDM-K0-MLc"/>
+                                    <constraint firstAttribute="trailing" secondItem="7NC-3O-Qhx" secondAttribute="trailing" id="OWp-Fw-MOi"/>
+                                    <constraint firstItem="7NC-3O-Qhx" firstAttribute="top" secondItem="kqv-uf-hKM" secondAttribute="top" id="TDM-K0-MLc"/>
                                     <constraint firstAttribute="centerX" secondItem="4J6-5T-cg5" secondAttribute="centerX" id="z4v-Og-rgT"/>
                                 </constraints>
                                 <connections>
@@ -241,6 +246,9 @@
                                 <constraint firstAttribute="trailing" secondItem="oSA-PE-Pdo" secondAttribute="trailing" constant="20" id="Ypq-OS-HRz"/>
                                 <constraint firstAttribute="bottom" secondItem="oSA-PE-Pdo" secondAttribute="bottom" id="ezv-Kk-dHA"/>
                             </constraints>
+                            <connections>
+                                <outlet property="confirmButton" destination="oSA-PE-Pdo" id="6OW-ee-pBC"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="3e3-ad-7ww" id="1IH-zu-I5C"/>

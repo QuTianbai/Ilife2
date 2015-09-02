@@ -8,12 +8,10 @@
 
 #import "MSFPhotosUploadConfirmView.h"
 
-@interface MSFPhotosUploadConfirmView ()
-
-@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
-
-@end
-
 @implementation MSFPhotosUploadConfirmView
+
+- (void)awakeFromNib {
+	_confirmButton.layer.cornerRadius = 5;
+}
 
 @end

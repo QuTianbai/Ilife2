@@ -18,6 +18,7 @@
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFRelationshipViewModel.h"
+#import "MSFCertificatesCollectionViewController.h"
 #import "MSFApplicationForms.h"
 #import "MSFApplicationResponse.h"
 #import "MSFCommandView.h"
@@ -344,7 +345,8 @@ ABPersonViewControllerDelegate>
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		
+		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] init];
+		[self.navigationController pushViewController:vc animated:YES];
 		/*
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {

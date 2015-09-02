@@ -75,6 +75,8 @@
 		10DC2D141B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */; };
 		10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */; };
 		10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */; };
+		10DC2D1D1B96A39700A2AF9C /* MSFCertificatesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D1C1B96A39700A2AF9C /* MSFCertificatesViewModel.m */; };
+		10DC2D201B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D1F1B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.m */; };
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
 		10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */; };
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
@@ -672,6 +674,10 @@
 		10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadHeaderView.m; sourceTree = "<group>"; };
 		10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadCell.h; sourceTree = "<group>"; };
 		10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadCell.m; sourceTree = "<group>"; };
+		10DC2D1B1B96A39700A2AF9C /* MSFCertificatesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificatesViewModel.h; sourceTree = "<group>"; };
+		10DC2D1C1B96A39700A2AF9C /* MSFCertificatesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificatesViewModel.m; sourceTree = "<group>"; };
+		10DC2D1E1B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoUploadViewModel.h; sourceTree = "<group>"; };
+		10DC2D1F1B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoUploadViewModel.m; sourceTree = "<group>"; };
 		10DE89291B677690009025C4 /* home-fourStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-fourStatus.png"; sourceTree = "<group>"; };
 		10DE89671B686C2A009025C4 /* UILabel+AttributeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AttributeColor.h"; sourceTree = "<group>"; };
 		10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AttributeColor.m"; sourceTree = "<group>"; };
@@ -1298,6 +1304,10 @@
 				49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */,
 				495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */,
 				495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */,
+				10DC2D1B1B96A39700A2AF9C /* MSFCertificatesViewModel.h */,
+				10DC2D1C1B96A39700A2AF9C /* MSFCertificatesViewModel.m */,
+				10DC2D1E1B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.h */,
+				10DC2D1F1B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.m */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -3328,6 +3338,7 @@
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
+				10DC2D1D1B96A39700A2AF9C /* MSFCertificatesViewModel.m in Sources */,
 				C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */,
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */,
@@ -3435,6 +3446,7 @@
 				492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */,
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
+				10DC2D201B96A3AC00A2AF9C /* MSFPhotoUploadViewModel.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
 				49B5D7AD1B08379800917D2C /* MSFClozeViewController.m in Sources */,
 				07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */,

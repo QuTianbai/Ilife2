@@ -10,4 +10,6 @@
 
 @interface MSFPhotosUploadConfirmView : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UIButton *confirmButton;
+
 @end

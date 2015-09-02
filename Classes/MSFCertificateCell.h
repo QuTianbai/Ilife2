@@ -10,4 +10,6 @@
 
 @interface MSFCertificateCell : UICollectionViewCell
 
+- (void)drawSeparatorAtIndex:(NSIndexPath *)indexPath total:(NSInteger)total;
+
 @end
