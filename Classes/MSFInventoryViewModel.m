@@ -62,7 +62,7 @@
 	RAC(self, viewModels) = [[[[self.formsViewModel.services httpClient]
 		fetchElementsWithProduct:self.product]
 		map:^id(MSFElement *element) {
-			return [[MSFElementViewModel alloc] initWithModel:element services:self.formsViewModel.services];
+			return [[MSFElementViewModel alloc] initWithElement:element services:self.formsViewModel.services];
 		}]
 		collect];
 	RAC(self, attachments) = [[[self.formsViewModel.services httpClient] fetchAttachmentsWithCredit:self.credit] collect];

@@ -74,4 +74,18 @@
 	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
 }
 
+- (BOOL)isEqual:(MSFAttachment *)other {
+	if (other == self) {
+		return YES;
+	} else if (![super isEqual:other]) {
+		return NO;
+	} else {
+		return [other.objectID isEqualToString:self.objectID] || [other.contentURL isEqual:self.contentURL];
+	}
+}
+
+- (NSUInteger)hash {
+	return self.objectID.hash ^ self.contentURL.hash;
+}
+
 @end
