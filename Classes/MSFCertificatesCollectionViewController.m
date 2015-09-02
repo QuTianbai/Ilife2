@@ -7,6 +7,8 @@
 //
 
 #import "MSFCertificatesCollectionViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <libextobjc/extobjc.h>
 #import "MSFCertificateCell.h"
 #import "MSFExtraOptionCell.h"
 #import "MSFPhotosUploadConfirmView.h"
@@ -48,9 +50,12 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	
-    
+	[super viewDidLoad];
+	@weakify(self)
+	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.collectionView reloadData];
+	}];
 }
 
 #pragma mark - UICollectionViewFlowLayout
@@ -137,6 +142,5 @@
 		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
 	}
 }
-
 
 @end
