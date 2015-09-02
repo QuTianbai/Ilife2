@@ -19,11 +19,9 @@
 
 @interface MSFInventoryViewModel ()
 
-@property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
+//@property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
 @property (nonatomic, strong, readwrite) MSFInventory *model;
-@property (nonatomic, strong, readwrite) NSArray *elements;
-@property (nonatomic, strong) MSFProduct *product;
-@property (nonatomic, strong) MSFApplicationResponse *response;
+@property (nonatomic, weak, readonly) MSFFormsViewModel *formsViewModel;
 
 @end
 
@@ -36,34 +34,38 @@
   if (!self) {
     return nil;
   }
-	_services = formsViewModel.services;
-	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFInventoryViewModel `-updatedContentSignal`"];
+	_formsViewModel = formsViewModel;
+//	self.updatedContentSignal = [[RACSubject subject] setNameWithFormat:@"MSFInventoryViewModel `-updatedContentSignal`"];
 	
-	self.product = [[MSFProduct alloc] initWithDictionary:@{
-		@"productId": formsViewModel.model.productId ?: @"",
-	} error:nil];
-	
-	self.model = [[MSFInventory alloc] initWithDictionary:@{
-		@"objectID": formsViewModel.model.loanId ?: @"",
-		@"applyNo": formsViewModel.model.applyNo ?: @"",
-		@"attachments": @[],
-	} error:nil];
-	
-	self.response = [[MSFApplicationResponse alloc] initWithDictionary:@{
-		@"applyID": formsViewModel.model.applyNo ?: @"",
-		@"applyNo": formsViewModel.model.loanId ?: @"",
-		@"personId": formsViewModel.model.personId ?: @"",
-	} error:nil];
-	
-	@weakify(self)
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[[[self.services.httpClient fetchInventoryWithApplicaitonResponse:self.response]
-			collect]
-			subscribeNext:^(id x) {
-				self.model.attachments = x;
-			}];
+	RAC(self, model) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
+		return [[MSFInventory alloc] initWithDictionary:@{
+			@"objectID": formsViewModel.model.loanId ?: @"",
+			@"applyNo": formsViewModel.model.applyNo ?: @"",
+			@"attachments": @[],
+		} error:nil];
 	}];
+	
+	RAC(self, product) = [RACObserve(self, formsViewModel.model.productId) map:^id(id value) {
+		return [[MSFProduct alloc] initWithDictionary:@{
+			@"productId": formsViewModel.model.productId ?: @"",
+		} error:nil];
+	}];
+	
+	RAC(self, credit) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
+		return [[MSFApplicationResponse alloc] initWithDictionary:@{
+			@"applyID": formsViewModel.model.applyNo ?: @"",
+			@"applyNo": formsViewModel.model.loanId ?: @"",
+			@"personId": formsViewModel.model.personId ?: @"",
+		} error:nil];
+	}];
+	
+	RAC(self, viewModels) = [[[[self.formsViewModel.services httpClient]
+		fetchElementsWithProduct:self.product]
+		map:^id(MSFElement *element) {
+			return [[MSFElementViewModel alloc] initWithModel:element services:self.formsViewModel.services];
+		}]
+		collect];
+	RAC(self, attachments) = [[[self.formsViewModel.services httpClient] fetchAttachmentsWithCredit:self.credit] collect];
 	
 	_executeUpdateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return self.updateSignal;
@@ -75,7 +77,7 @@
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
-	return [self.services.httpClient updateInventory:self.model];
+	return [self.formsViewModel.services.httpClient updateInventory:self.model];
 }
 
 @end

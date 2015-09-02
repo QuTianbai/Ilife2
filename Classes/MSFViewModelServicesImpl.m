@@ -29,6 +29,8 @@
 
 #import "MSFLocationModel.h"
 
+#import <CZPhotoPickerController/CZPhotoPickerController.h>
+
 @implementation MSFViewModelServicesImpl
 
 #pragma mark - Private
@@ -116,6 +118,25 @@
 		return nil;
 	}];
 	return nil;
+}
+
+- (RACSignal *)takePicture {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		CZPhotoPickerController *pickerController =
+			[[CZPhotoPickerController alloc] initWithPresentingViewController:self.navigationController withCompletionBlock:^(UIImagePickerController *imagePickerController, NSDictionary *imageInfoDict) {
+				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage];
+				if (!image) {
+					image = imageInfoDict[UIImagePickerControllerOriginalImage];
+				}
+				[subscriber sendNext:image];
+				[subscriber sendCompleted];
+				[pickerController dismissAnimated:YES];
+		}];
+		[pickerController showFromTabBar:[self navigationController].tabBarController.tabBar];
+		return [RACDisposable disposableWithBlock:^{
+			[pickerController dismissAnimated:YES];
+		}];
+	}];
 }
 
 @end

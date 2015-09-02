@@ -12,9 +12,9 @@
 
 @implementation MSFClient (Inventory)
 
-- (RACSignal *)fetchInventoryWithApplicaitonResponse:(MSFApplicationResponse *)response {
+- (RACSignal *)fetchAttachmentsWithCredit:(MSFApplicationResponse *)credit {
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"attachment/getList" parameters:@{
-		@"applyId": response.applyID ?: @"",
+		@"applyId": credit.applyID ?: @"",
 	}];
 	return [[self enqueueRequest:request resultClass:MSFAttachment.class] msf_parsedResults];
 }

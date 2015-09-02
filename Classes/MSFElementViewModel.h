@@ -8,20 +8,20 @@
 #import "MSFViewModelServices.h"
 
 @class RACCommand;
+@class MSFElement;
 
 @interface MSFElementViewModel : RVMViewModel
 
-@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, strong, readonly) NSURL *thumbURL;
+@property (nonatomic, assign, readonly) BOOL validity;
+@property (nonatomic, assign, readonly) BOOL required;
 
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSURL *thumbURL;
-@property (nonatomic, assign) BOOL validity;
+@property (nonatomic, strong, readonly) MSFElement *model;
 
-@property (nonatomic, strong) NSArray *attachments;
+// MSAttachmentViewModel instances
+@property (nonatomic, strong, readonly) NSArray *viewModels;
 
-@property (nonatomic, strong, readonly) RACCommand *executeUploadCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeDownloadCommand;
-
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services model:(id)element;
+- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;
 
 @end

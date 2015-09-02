@@ -11,7 +11,7 @@
 
 @interface MSFClient (Inventory)
 
-- (RACSignal *)fetchInventoryWithApplicaitonResponse:(MSFApplicationResponse *)response;
+- (RACSignal *)fetchAttachmentsWithCredit:(MSFApplicationResponse *)credit;
 - (RACSignal *)updateInventory:(MSFInventory *)inventory;
 
 @end

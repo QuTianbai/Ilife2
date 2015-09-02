@@ -10,13 +10,22 @@
 @class MSFFormsViewModel;
 @class RACCommand;
 @class MSFInventory;
+@class MSFProduct;
+@class MSFApplicationResponse;
 
 @interface MSFInventoryViewModel : RVMViewModel
 
-@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) MSFInventory *model;
+@property (nonatomic, strong, readonly) MSFProduct *product;
+@property (nonatomic, strong, readonly) MSFApplicationResponse *credit;
+
+@property (nonatomic, strong, readonly) NSArray *attachments;
+
+// MSFElementViewModel viewModels
+@property (nonatomic, strong, readonly) NSArray *viewModels;
 
 @property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
+//@property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
