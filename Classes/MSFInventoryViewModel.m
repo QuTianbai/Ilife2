@@ -110,8 +110,6 @@
 			}]
 		array];
 	self.model.attachments = attachemnts;
-	NSLog(@"%@", [MTLJSONAdapter JSONDictionaryFromModel:self.model]);
-	return [RACSignal empty];
 	return [self.formsViewModel.services.httpClient updateInventory:self.model];
 }
 
