@@ -20,6 +20,10 @@
 @property (nonatomic, strong, readonly) RACCommand *uploadAttachmentCommand;
 @property (nonatomic, strong, readonly) RACCommand *downloadAttachmentCommand;
 
+- (RACSignal *)takePhotoValidSignal;
+- (RACSignal *)uploadValidSignal;
+- (RACSignal *)downloadValidSignal;
+
 - (instancetype)initWthAttachment:(MSFAttachment *)attachment services:(id <MSFViewModelServices>)services;
 
 @end

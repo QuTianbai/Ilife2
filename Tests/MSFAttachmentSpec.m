@@ -65,4 +65,14 @@ it(@"should fetch uploaded attachment information", ^{
 	expect(attachment.contentType).to(equal(@"image/jpg"));
 });
 
+it(@"should create placeholder attachment", ^{
+	// when
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	attachment = [[MSFAttachment alloc] initWithPlaceholderThumbURL:URL];
+	
+	// then
+	expect(@(attachment.isPlaceholder)).to(beTruthy());
+	expect(attachment.thumbURL).to(equal(URL));
+});
+
 QuickSpecEnd

@@ -45,6 +45,14 @@
 // 附件上传，后从服务器返回的json中的文件类型 `image/jpg`
 @property (nonatomic, copy, readonly) NSString *contentType;
 
-@property (nonatomic, strong) NSURL *contentURL;
+@property (nonatomic, strong) NSURL *contentURL __deprecated_msg("Remove contentURL use thumbURL");
+
+@property (nonatomic, strong) NSURL *thumbURL;
+@property (nonatomic, strong) NSURL *fileURL;
+
+@property (nonatomic, assign, readonly) BOOL isPlaceholder;
+
+// Create instance for placeholder attachment
+- (instancetype)initWithPlaceholderThumbURL:(NSURL *)URL;
 
 @end
