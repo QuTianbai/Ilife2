@@ -71,7 +71,6 @@
 		10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */; };
 		10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */; };
 		10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */; };
-		10DC2D141B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */; };
 		10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */; };
 		10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */; };
 		10DC2D331B97186000A2AF9C /* MSFExtraOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D321B97186000A2AF9C /* MSFExtraOptionCell.m */; };
@@ -682,8 +681,6 @@
 		10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoUploadCollectionViewController.m; sourceTree = "<group>"; };
 		10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificateCell.h; sourceTree = "<group>"; };
 		10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificateCell.m; sourceTree = "<group>"; };
-		10DC2D121B969DD000A2AF9C /* MSFPhotosUploadConfirmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadConfirmView.h; sourceTree = "<group>"; };
-		10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadConfirmView.m; sourceTree = "<group>"; };
 		10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadHeaderView.h; sourceTree = "<group>"; };
 		10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadHeaderView.m; sourceTree = "<group>"; };
 		10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadCell.h; sourceTree = "<group>"; };
@@ -1559,8 +1556,6 @@
 			children = (
 				10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */,
 				10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */,
-				10DC2D121B969DD000A2AF9C /* MSFPhotosUploadConfirmView.h */,
-				10DC2D131B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m */,
 				10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */,
 				10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */,
 				10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */,
@@ -3588,7 +3583,6 @@
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
 				4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
-				10DC2D141B969DD000A2AF9C /* MSFPhotosUploadConfirmView.m in Sources */,
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
 				49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */,
 				4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */,

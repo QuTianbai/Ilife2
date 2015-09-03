@@ -10,11 +10,14 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFPhotosUploadCell.h"
 #import "MSFPhotosUploadHeaderView.h"
-#import "MSFPhotosUploadConfirmView.h"
 #import "MSFElementViewModel.h"
 
 @interface MSFPhotoUploadCollectionViewController ()
+<UICollectionViewDataSource,
+UICollectionViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
 
 @end
@@ -29,12 +32,12 @@
 - (void)viewDidLoad {
 	
 	[super viewDidLoad];
+	_submitButton.layer.cornerRadius = 5;
 	
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	CGFloat width = (screenWidth - 60) / 2;
 	UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
 	layout.headerReferenceSize = CGSizeMake(screenWidth, 145);
-	layout.footerReferenceSize = CGSizeMake(screenWidth, 70);
 	layout.itemSize = CGSizeMake(width, width * 0.7);
 	layout.minimumInteritemSpacing = 20;
 	layout.minimumLineSpacing = 20;
@@ -45,29 +48,28 @@
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-
+	
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.viewModel.attachments.count;
+	return self.viewModel.viewModels.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	MSFPhotosUploadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPhotosUploadCell" forIndexPath:indexPath];
-	
-    return cell;
+	[cell bindViewModel:self.viewModel.viewModels[indexPath.row]];
+	return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 	if (kind == UICollectionElementKindSectionHeader) {
 		MSFPhotosUploadHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFPhotosUploadHeaderView" forIndexPath:indexPath];
-		return view;
-	} else {
-		MSFPhotosUploadConfirmView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"MSFPhotosUploadConfirmView" forIndexPath:indexPath];
+		[view bindModel:self.viewModel];
 		return view;
 	}
+	return nil;
 }
 
 #pragma mark - UICollectionViewDelegate

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFPhotoUploadCollectionViewController : UICollectionViewController
+@interface MSFPhotoUploadCollectionViewController : UIViewController
 
 - (void)bindViewModel:(id)viewModel;
 

@@ -10,4 +10,6 @@
 
 @interface MSFPhotosUploadCell : UICollectionViewCell
 
+- (void)bindViewModel:(id)viewModel;
+
 @end

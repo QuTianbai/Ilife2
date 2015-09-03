@@ -11,14 +11,17 @@
 #import <libextobjc/extobjc.h>
 #import "MSFCertificateCell.h"
 #import "MSFExtraOptionCell.h"
-#import "MSFPhotosUploadConfirmView.h"
 #import "MSFInventoryViewModel.h"
 
 #import "MSFPhotoUploadCollectionViewController.h"
 
 @interface MSFCertificatesCollectionViewController ()
-<UICollectionViewDelegateFlowLayout>
+<UICollectionViewDataSource,
+UICollectionViewDelegate,
+UICollectionViewDelegateFlowLayout>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
 
 @end
@@ -55,6 +58,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	_submitButton.layer.cornerRadius = 5;
+	
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
 		@strongify(self)
@@ -63,14 +68,6 @@
 }
 
 #pragma mark - UICollectionViewFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-	if (section == 0) {
-		return CGSizeZero;
-	} else {
-		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 50);
-	}
-}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -114,15 +111,6 @@
 		return self.viewModel.requiredViewModels.count;
 	} else {
 		return 1;
-	}
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-	if (kind == UICollectionElementKindSectionFooter) {
-		MSFPhotosUploadConfirmView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"MSFPhotosUploadConfirmView" forIndexPath:indexPath];
-		return view;
-	} else {
-		return [UICollectionReusableView new];
 	}
 }
 
