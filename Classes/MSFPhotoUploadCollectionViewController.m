@@ -78,7 +78,9 @@ UICollectionViewDelegate>
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == self.viewModel.viewModels.count - 1) {
 		MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[indexPath.row];
-		[viewModel.takePhotoCommand execute:nil];
+		[[viewModel.takePhotoCommand execute:nil] subscribeNext:^(id x) {
+			[self.collectionView reloadData];
+		}];
 	}
 }
 
