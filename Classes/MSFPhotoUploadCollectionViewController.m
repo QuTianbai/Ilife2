@@ -11,6 +11,7 @@
 #import "MSFPhotosUploadCell.h"
 #import "MSFPhotosUploadHeaderView.h"
 #import "MSFElementViewModel.h"
+#import "MSFAttachmentViewModel.h"
 
 @interface MSFPhotoUploadCollectionViewController ()
 <UICollectionViewDataSource,
@@ -75,8 +76,9 @@ UICollectionViewDelegate>
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == self.viewModel.viewModels.count) {
-
+	if (indexPath.row == self.viewModel.viewModels.count - 1) {
+		MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[indexPath.row];
+		[viewModel.takePhotoCommand execute:nil];
 	}
 }
 
