@@ -96,12 +96,12 @@
 	} else if (![super isEqual:other]) {
 		return NO;
 	} else {
-		return [other.objectID isEqualToString:self.objectID] || [other.fileURL isEqual:self.fileURL];
+		return [other.objectID isEqualToString:self.objectID] || [other.thumbURL isEqual:self.thumbURL];
 	}
 }
 
 - (NSUInteger)hash {
-	return self.objectID.hash ^ self.fileURL.hash;
+	return self.objectID.hash ^ self.thumbURL.hash;
 }
 
 - (instancetype)initWithPlaceholderThumbURL:(NSURL *)URL {

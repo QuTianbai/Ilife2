@@ -48,6 +48,7 @@
 			NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
 			[[NSFileManager defaultManager] createFileAtPath:path contents:UIImageJPEGRepresentation(x, .7) attributes:nil];
 			self.attachment.thumbURL = [NSURL fileURLWithPath:path];
+			self.attachment.fileURL = [NSURL URLWithString:path];
 		}];
 	}];
   

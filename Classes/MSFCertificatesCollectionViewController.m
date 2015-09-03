@@ -59,6 +59,7 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	_submitButton.layer.cornerRadius = 5;
+	self.submitButton.rac_command = self.viewModel.executeUpdateCommand;
 	
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {

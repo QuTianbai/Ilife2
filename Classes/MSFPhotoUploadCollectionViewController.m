@@ -45,7 +45,7 @@ UICollectionViewDelegate>
 	layout.sectionInset = UIEdgeInsetsMake(0, 20, 0, 20);
 	
 	@weakify(self)
-	[RACObserve(self, viewModel.attachments) subscribeNext:^(id x) {
+	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
