@@ -12,6 +12,7 @@
 #import "MSFCertificateCell.h"
 #import "MSFExtraOptionCell.h"
 #import "MSFInventoryViewModel.h"
+#import "MSFElementViewModel.h"
 
 #import "MSFPhotoUploadCollectionViewController.h"
 
@@ -59,6 +60,7 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	_submitButton.layer.cornerRadius = 5;
+	
 	self.submitButton.rac_command = self.viewModel.executeUpdateCommand;
 	
 	@weakify(self)
@@ -151,9 +153,13 @@ UICollectionViewDelegateFlowLayout>
 		NSIndexPath *indexPath = sender;
 		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
 		if (self.optional) {
-			[vc bindViewModel:self.viewModel.optionalViewModels[indexPath.row]];
+			MSFElementViewModel *viewModel = self.viewModel.optionalViewModels[indexPath.row];
+			vc.title = viewModel.title;
+			[vc bindViewModel:viewModel];
 		} else {
-			[vc bindViewModel:self.viewModel.requiredViewModels[indexPath.row]];
+			MSFElementViewModel *viewModel = self.viewModel.requiredViewModels[indexPath.row];
+			vc.title = viewModel.title;
+			[vc bindViewModel:viewModel];
 		}
 	}
 }

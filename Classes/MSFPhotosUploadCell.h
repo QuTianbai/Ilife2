@@ -10,6 +10,8 @@
 
 @interface MSFPhotosUploadCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+
 - (void)bindViewModel:(id)viewModel;
 
 @end

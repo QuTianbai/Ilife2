@@ -7,6 +7,7 @@
 //
 
 #import "MSFPhotosUploadCell.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
@@ -14,7 +15,6 @@
 @interface MSFPhotosUploadCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
-@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (nonatomic, strong) MSFAttachmentViewModel *viewModel;
 
@@ -29,7 +29,8 @@
 - (void)bindViewModel:(MSFAttachmentViewModel *)viewModel {
 	_viewModel = viewModel;
 	[_uploadImageView setImageWithURL:viewModel.thumbURL];
-	_deleteButton.hidden = viewModel.
+	_deleteButton.hidden = !viewModel.removeEnabled;
+	_deleteButton.rac_command = viewModel.removeCommand;
 }
 
 @end
