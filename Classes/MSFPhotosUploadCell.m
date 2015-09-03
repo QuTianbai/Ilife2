@@ -29,6 +29,7 @@
 - (void)bindViewModel:(MSFAttachmentViewModel *)viewModel {
 	_viewModel = viewModel;
 	[_uploadImageView setImageWithURL:viewModel.thumbURL];
+	_deleteButton.hidden = viewModel.
 }
 
 @end
