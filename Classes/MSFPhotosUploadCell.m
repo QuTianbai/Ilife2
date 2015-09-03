@@ -14,13 +14,17 @@
 @interface MSFPhotosUploadCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
-@property (weak, nonatomic) IBOutlet UILabel *tempLabel;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 
 @property (nonatomic, strong) MSFAttachmentViewModel *viewModel;
 
 @end
 
 @implementation MSFPhotosUploadCell
+
+- (void)awakeFromNib {
+	_uploadImageView.layer.cornerRadius = 5;
+}
 
 - (void)bindViewModel:(MSFAttachmentViewModel *)viewModel {
 	_viewModel = viewModel;

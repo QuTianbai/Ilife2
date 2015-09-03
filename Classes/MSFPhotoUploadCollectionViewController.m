@@ -42,7 +42,7 @@ UICollectionViewDelegate>
 	layout.itemSize = CGSizeMake(width, width * 0.7);
 	layout.minimumInteritemSpacing = 20;
 	layout.minimumLineSpacing = 20;
-	layout.sectionInset = UIEdgeInsetsMake(0, 20, 0, 20);
+	layout.sectionInset = UIEdgeInsetsMake(20, 20, 0, 20);
 	
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
