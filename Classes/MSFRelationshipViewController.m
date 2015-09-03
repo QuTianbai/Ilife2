@@ -346,7 +346,7 @@ ABPersonViewControllerDelegate>
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[NSTimer scheduledTimerWithTimeInterval:60*3 target:self selector:@selector(updateContract) userInfo:nil repeats:YES];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"REFRASHTIMERCONTRACT" object:nil];
 			[SVProgressHUD showSuccessWithStatus:@"恭喜您! 申请已提交!"];
 			@strongify(self)
 			[self.tabBarController setSelectedIndex:0];
@@ -590,8 +590,6 @@ ABPersonViewControllerDelegate>
 }
 
 #pragma mark - private method 
-- (void)updateContract {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
-}
+
 
 @end

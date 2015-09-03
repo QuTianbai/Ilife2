@@ -39,6 +39,7 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.confirmContractWebView.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
+	//self.confirmContractWebView loadRequest:<#(NSURLRequest *)#>
 	//self.confirmContractWebView.scrollView.bounces = NO;
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	RACSignal *signal = [self.viewModel requestContactInfo];
@@ -66,6 +67,11 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFCONFIRMCONTACTIONLATERNOTIFICATION" object:nil];
 	}];
 	
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[SVProgressHUD showWithStatus:@"正在加载..."];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

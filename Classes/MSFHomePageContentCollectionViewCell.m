@@ -13,6 +13,8 @@
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
 #import "MSFTabBarController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -24,6 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *placeholder;
 @property (weak, nonatomic) IBOutlet UIButton *applyButton;
 @property (assign, nonatomic) BOOL placeholderShow;
+@property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
 
 @end
 
@@ -68,6 +71,26 @@
 			}
 		}
 	}
+	self.ConFirmContractBT.hidden = YES;
+	 self.infoLabel.hidden = NO;
+	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+	 subscribeNext:^(id x) {
+		 [SVProgressHUD showWithStatus:@"正在加载..."];
+		 self.ConFirmContractBT.hidden = YES;
+		 self.infoLabel.hidden = NO;
+		 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
+	 }];
+	
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil] subscribeNext:^(id x) {
+		self.ConFirmContractBT.hidden = NO;
+		self.infoLabel.hidden = YES;
+	}];
+	
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil] subscribeNext:^(id x) {
+		self.ConFirmContractBT.hidden = YES;
+		self.infoLabel.hidden = NO;
+	}];
+	
 	[self placeholderShow:YES];
 }
 

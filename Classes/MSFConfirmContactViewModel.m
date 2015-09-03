@@ -47,16 +47,18 @@
 	
 	//[MSFConfirmContactViewModel requestContactsWithServers];
 	[[[servers.httpClient fetchContacts].collect replayLazily] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
 		self.contactsArray = x;
 		for (MSFContactListModel *model in self.contactsArray) {
-			//if ([model.contractStatus isEqualToString:@"WN"]) {
+			if ([model.contractStatus isEqualToString:@"WN"]) {
 				self.model = model;
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-				//break;
-			//}
+				break;
+			}
 		}
 	} error:^(NSError *error) {
-		NSLog(@"%@", error);
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		//NSLog(@"%@", error);
 	}];
 	return self;
 }
@@ -64,6 +66,7 @@
 
 - (RACSignal *)executeLaterConfirmContract {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 		return nil;
 	}];
@@ -73,6 +76,7 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
 		[self.servers pushViewModel:self];
 		[subscriber sendCompleted];
 		return nil;
