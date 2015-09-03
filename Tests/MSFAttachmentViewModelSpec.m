@@ -78,6 +78,7 @@ it(@"should download picture", ^{
 	
 	// then
 	expect(viewModel.attachment.thumbURL).notTo(beNil());
+	expect(viewModel.attachment.fileURL).notTo(beNil());
 });
 
 
