@@ -10,14 +10,19 @@
 #import "MSFAttachment.h"
 #import "MSFViewModelServices.h"
 #import "MSFAttachmentViewModel.h"
+#import "MSFClient+Attachment.h"
 
 QuickSpecBegin(MSFElementViewModelSpec)
 
 __block MSFElementViewModel *viewModel;
 __block id <MSFViewModelServices> services;
+__block MSFClient *client;
 __block MSFElement *element;
 
 beforeEach(^{
+	services = mockProtocol(@protocol(MSFViewModelServices));
+	client = mock([MSFClient class]);
+	[given([services httpClient]) willReturn:client];
 	element = mock(MSFElement.class);
 	stubProperty(element, required, @YES);
 	stubProperty(element, plain, @"身份证验证");
@@ -42,7 +47,7 @@ it(@"should associate attachments", ^{
 	// given
 	MSFAttachment *attachment = mock([MSFAttachment class]);
 	stubProperty(attachment, type, @"bar");
-	stubProperty(attachment, objectID, @"10");
+	stubProperty(attachment, objectID, @"foo");
 	
 	// when
 	[viewModel addAttachment:attachment];
@@ -96,6 +101,46 @@ it(@"should has palcholder viewModel", ^{
 	MSFAttachmentViewModel *attachmentViewModel = viewModel.viewModels.lastObject;
 	expect(@(attachmentViewModel.attachment.isPlaceholder)).to(beTruthy());
 	expect(attachmentViewModel).notTo(beNil());
+});
+
+it(@"should upload attachments's file", ^{
+	// given
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL, @"type": element.type} error:nil];
+	[viewModel addAttachment:attachment];
+	
+	[given([client uploadAttachment:attachment]) willDo:^id(NSInvocation *invocation) {
+		MSFAttachment *result = [[MSFAttachment alloc] initWithDictionary:@{
+			@"objectID": @"foo",
+			@"type": @"image/jpg",
+			@"name": @"foo.jpg",
+		} error:nil];
+		return [RACSignal return:result];
+	}];
+	
+	// when
+	[[viewModel.uploadCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	
+	// then
+	MSFAttachmentViewModel *expected = viewModel.viewModels.firstObject;
+	expect(@(expected.attachment.isPlaceholder)).to(beFalsy());
+	expect(expected.attachment).notTo(beNil());
+	expect(expected.attachment.objectID).to(equal(@"foo"));
+});
+
+it(@"should remove attachment in attachmentViewModel", ^{
+	// given
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL, @"type": element.type} error:nil];
+	[viewModel addAttachment:attachment];
+	
+	// when
+	MSFAttachmentViewModel *attachmentViewModel = viewModel.viewModels.firstObject;
+	[[attachmentViewModel.removeCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	
+	// then
+	MSFAttachmentViewModel *expectedViewModel = viewModel.viewModels.firstObject;
+	expect(@(expectedViewModel.attachment.isPlaceholder)).to(beTruthy());
 });
 
 QuickSpecEnd

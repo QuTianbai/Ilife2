@@ -76,6 +76,7 @@ UICollectionViewDelegate>
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
 	if (indexPath.row == self.viewModel.viewModels.count - 1) {
 		MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[indexPath.row];
 		[[viewModel.takePhotoCommand execute:nil] subscribeNext:^(id x) {

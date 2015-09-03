@@ -16,8 +16,10 @@
 @property (nonatomic, strong, readonly) NSURL *thumbURL;
 @property (nonatomic, strong, readonly) NSURL *fileURL;
 @property (nonatomic, assign, readonly) BOOL isUploaded;
+@property (nonatomic, assign, readonly) BOOL removeEnabled;
 
 @property (nonatomic, strong, readonly) RACCommand *takePhotoCommand;
+@property (nonatomic, strong, readonly) RACCommand *removeCommand;
 @property (nonatomic, strong, readonly) RACCommand *uploadAttachmentCommand;
 @property (nonatomic, strong, readonly) RACCommand *downloadAttachmentCommand;
 

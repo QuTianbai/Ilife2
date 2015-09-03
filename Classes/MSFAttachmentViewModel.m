@@ -29,6 +29,7 @@
   }
 	_services = services;
 	_attachment = attachment;
+	_removeEnabled = !attachment.isPlaceholder;
 	RACChannelTo(self, thumbURL) = RACChannelTo(self, attachment.thumbURL);
 	RACChannelTo(self, fileURL) = RACChannelTo(self, attachment.fileURL);
 	RAC(self, isUploaded) = [RACObserve(self, attachment.objectID) map:^id(id value) {
@@ -38,6 +39,7 @@
 	_takePhotoCommand = [[RACCommand alloc] initWithEnabled:self.takePhotoValidSignal signalBlock:^RACSignal *(id input) {
 		return [self takePhotoSignal];
 	}];
+	_takePhotoCommand.allowsConcurrentExecution = YES;
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
 		return [[self.services.httpClient uploadAttachment:self.attachment] doNext:^(id x) {
 			[self.attachment mergeValueForKey:@"objectID" fromModel:x];
@@ -53,6 +55,10 @@
 			self.attachment.thumbURL = [NSURL fileURLWithPath:path];
 			self.attachment.fileURL = [NSURL URLWithString:path];
 		}];
+	}];
+	
+	_removeCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@(self.removeEnabled)] signalBlock:^RACSignal *(id input) {
+		return [RACSignal empty];
 	}];
   
   return self;
@@ -96,7 +102,8 @@
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
 		[[NSFileManager defaultManager] createFileAtPath:path contents:UIImageJPEGRepresentation(x, .7) attributes:nil];
 		self.fileURL = [NSURL fileURLWithPath:path];
-		self.thumbURL = [NSURL fileURLWithPath:path];
+		if (!self.attachment.isPlaceholder)
+			self.thumbURL = [NSURL fileURLWithPath:path];
 	}];
 }
 

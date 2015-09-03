@@ -63,6 +63,10 @@
 		}
 	}];
 	
+	_uploadCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
+		return self.uploadSignal;
+	}];
+	
   return self;
 }
 
@@ -71,7 +75,11 @@
 - (void)addAttachment:(MSFAttachment *)attachment {
 	[self.attachments addObject:attachment];
 	if ([attachment.type isEqualToString:self.element.type]) {
-		self.viewModels = [self.viewModels arrayByAddingObject:[[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services]];
+		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services];
+		[viewModel.removeCommand.executionSignals subscribeNext:^(id x) {
+			[self removeAttachment:attachment];
+		}];
+		self.viewModels = [self.viewModels arrayByAddingObject:viewModel];
 	}
 	if (self.viewModels.count - 1  == self.element.maximum) {
 		self.viewModels = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
@@ -104,15 +112,30 @@
 		RACObserve(self, viewModels),
 	]
 	reduce:^id (NSArray *viewModels) {
-		if (viewModels.count == 0) return @NO;
-		__block BOOL completed = YES;
+		NSArray *models = [viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+		return @(models.count > 0);
+	}];
+}
+
+- (RACSignal *)uploadValidSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self, viewModels),
+	]
+	reduce:^id (NSArray *viewModels) {
+		__block BOOL hasUpload = NO;
 		[viewModels enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
-			if (!obj.isUploaded) {
-				completed = NO;
+			if (!obj.isUploaded && !obj.attachment.isPlaceholder) {
+				hasUpload = YES;
 				*stop = YES;
 			}
 		}];
-		return @(completed);
+		return @(hasUpload);
+	}];
+}
+
+- (RACSignal *)uploadSignal {
+	return [self.viewModels.rac_sequence.signal flattenMap:^RACStream *(MSFAttachmentViewModel *attachmentViewModel) {
+		return [attachmentViewModel.uploadAttachmentCommand execute:nil];
 	}];
 }
 

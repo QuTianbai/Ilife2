@@ -96,7 +96,7 @@
 	} else if (![super isEqual:other]) {
 		return NO;
 	} else {
-		return [other.objectID isEqualToString:self.objectID] || [other.thumbURL isEqual:self.thumbURL];
+		return [other.objectID isEqualToString:self.objectID];
 	}
 }
 
