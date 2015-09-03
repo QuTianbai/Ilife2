@@ -36,6 +36,7 @@
 	_attachments = NSMutableArray.new;
 	RAC(self, title) = RACObserve(self, element.plain);
 	RAC(self, thumbURL) = RACObserve(self, element.thumbURL);
+	RAC(self, sampleURL) = RACObserve(self, element.sampleURL);
 	RAC(self, isRequired) = RACObserve(self, element.required);
 	RAC(self, isCompleted) = self.attachmentsUploadCompletedSignal;
 	

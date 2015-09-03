@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSURL *thumbURL;
+@property (nonatomic, strong, readonly) NSURL *sampleURL;
 @property (nonatomic, assign, readonly) BOOL isCompleted;
 @property (nonatomic, assign, readonly) BOOL isRequired;
 

@@ -21,6 +21,7 @@ beforeEach(^{
 	stubProperty(element, required, @YES);
 	stubProperty(element, plain, @"身份证验证");
 	stubProperty(element, type, @"bar");
+	stubProperty(element, sampleURL, [NSURL URLWithString:@"http://sample.png"]);
 	stubProperty(element, thumbURL, [NSURL URLWithString:@"http://icon.png"]);
 	viewModel = [[MSFElementViewModel alloc] initWithElement:element services:services];
 	expect(viewModel).notTo(beNil());
@@ -70,6 +71,11 @@ it(@"should remove attachment from viewmodels", ^{
 	
 	// then
 	expect(@(viewModel.viewModels.count)).to(equal(@0));
+});
+
+it(@"should has a sampleURL for example view", ^{
+	// then
+	expect(viewModel.sampleURL).notTo(beNil());
 });
 
 QuickSpecEnd

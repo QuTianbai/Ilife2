@@ -87,8 +87,6 @@ it(@"should combine array", ^{
 	NSArray *ar = @[ar1, ar2];
 	
 	// when
-	RACSubject *subject = [RACSubject empty];
-	
 	NSArray *result;
 	
 	result = [[ar.rac_sequence flattenMap:^RACStream *(NSArray *value) {
