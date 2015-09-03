@@ -53,7 +53,8 @@
 			self.placeholderViewModel.attachment.fileURL = nil;
 			MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{
 				@"fileURL": URL,
-				@"thumbURL": URL
+				@"thumbURL": URL,
+				@"type": self.element.type,
 			} error:nil];
 			[self addAttachment:attachment];
 		}
@@ -72,7 +73,7 @@
 	if (self.viewModels.count - 1  == self.element.maximum) {
 		self.viewModels = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
 	} else {
-		[self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+		self.viewModels = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
 		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
 	}
 }
@@ -86,7 +87,7 @@
 	if (viewModel) self.viewModels = [self.viewModels mtl_arrayByRemovingObject:viewModel];
 	
 	if ([self.viewModels containsObject:self.placeholderViewModel]) {
-		[self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+		self.viewModels =  [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
 		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
 	} else {
 		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
