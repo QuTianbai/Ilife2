@@ -17,7 +17,7 @@
 // 下载服务器上已经存在的图片
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
-@property (nonatomic, strong, readwrite) NSMutableArray *attachments;
+@property (nonatomic, strong, readwrite) NSArray *attachments;
 @property (nonatomic, strong, readonly) MSFAttachmentViewModel *placeholderViewModel;
 
 @end
@@ -73,7 +73,7 @@
 #pragma mark - Custom Accessors
 
 - (void)addAttachment:(MSFAttachment *)attachment {
-	[self.attachments addObject:attachment];
+	self.attachments = [self.attachments arrayByAddingObject:attachment];
 	if ([attachment.type isEqualToString:self.element.type]) {
 		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services];
 		[viewModel.removeCommand.executionSignals subscribeNext:^(id x) {
@@ -90,7 +90,7 @@
 }
 
 - (void)removeAttachment:(MSFAttachment *)attachment {
-	[self.attachments removeObject:attachment];
+	self.attachments = [self.attachments mtl_arrayByRemovingObject:attachment];
 	__block	MSFAttachmentViewModel *viewModel;
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if ([obj.attachment isEqual:attachment]) viewModel = obj;

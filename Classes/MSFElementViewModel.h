@@ -24,7 +24,7 @@
 @property (nonatomic, strong, readonly) MSFElement *element;
 
 // MSAttachmentViewModel instances
-@property (nonatomic, strong, readonly) NSMutableArray *attachments;
+@property (nonatomic, strong, readonly) NSArray *attachments;
 @property (nonatomic, strong, readonly) NSArray *viewModels;
 
 @property (nonatomic, strong, readonly) RACCommand *uploadCommand;
