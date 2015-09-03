@@ -36,7 +36,10 @@
 	_attachments = NSMutableArray.new;
 	
 	NSURL *URL = [[NSBundle mainBundle] URLForResource:@"btn-attachment-take-photo@3x" withExtension:@"png"];
-	MSFAttachment *placheholderAttchment = [[MSFAttachment alloc] initWithPlaceholderThumbURL:URL];
+	MSFAttachment *placheholderAttchment = [[MSFAttachment alloc] initWithDictionary:@{
+		@"thumbURL": URL,
+		@"isPlaceholder": @YES
+	} error:nil];
 	_placeholderViewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:placheholderAttchment services:self.services];
 	_viewModels = @[self.placeholderViewModel];
 	

@@ -104,11 +104,4 @@
 	return self.objectID.hash ^ self.thumbURL.hash;
 }
 
-- (instancetype)initWithPlaceholderThumbURL:(NSURL *)URL {
-	return [super initWithDictionary:@{
-		@"thumbURL": URL,
-		@"isPlaceholder": @YES
-	} error:nil];
-}
-
 @end

@@ -52,7 +52,4 @@
 
 @property (nonatomic, assign, readonly) BOOL isPlaceholder;
 
-// Create instance for placeholder attachment
-- (instancetype)initWithPlaceholderThumbURL:(NSURL *)URL;
-
 @end
