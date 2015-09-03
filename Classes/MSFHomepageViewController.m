@@ -60,6 +60,7 @@
 	
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
 		[[self.viewModel.refreshCommand
 			execute:nil]
 			subscribeNext:^(id x) {

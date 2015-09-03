@@ -40,10 +40,10 @@
 	self.confirmContractWebView.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	//self.confirmContractWebView.scrollView.bounces = NO;
-	RACSignal *signal = [self.viewModel requestContactInfo];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
+	RACSignal *signal = [self.viewModel requestContactInfo];
 	[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
-		[SVProgressHUD dismiss];
+		//[SVProgressHUD dismiss];
 	}];
 	@weakify(self)
 	[self.viewModel.requestConfirmCommand.executionSignals subscribeNext:^(RACSignal *signal) {
@@ -60,6 +60,10 @@
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
+	}];
+	
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFCONFIRMCONTACTIONLATERNOTIFICATION" object:nil];
 	}];
 	
 }

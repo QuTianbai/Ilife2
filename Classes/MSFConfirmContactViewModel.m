@@ -12,6 +12,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCustomAlertView.h"
 #import "MSFClient+ConfirmContract.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFConfirmContactViewModel ()
 {
@@ -81,7 +82,7 @@
 - (RACSignal *)requestContactInfo {
 	return [[[self.servers.httpClient fetchContactsInfoWithID:self.model.contactID] flattenMap:^RACStream *(id value) {
 		NSLog(@"request:%@", value);
-		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
+		return [[NSURLConnection rac_sendAsynchronousRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.cnblogs.com/gcb999/p/3178427.html"]]] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
 	}] replay];

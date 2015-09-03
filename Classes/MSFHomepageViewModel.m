@@ -45,7 +45,6 @@
 		if (!self.services.httpClient.isAuthenticated) {
 			return [RACSignal return:nil];
 		}
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
 		return [[self.services.httpClient checkUserHasCredit] flattenMap:^RACStream *(MSFResponse *value) {
 			if ([value.parsedResult[@"processing"] boolValue]) {
 				MSFApplyList *applyList = [MTLJSONAdapter modelOfClass:MSFApplyList.class fromJSONDictionary:value.parsedResult[@"data"] error:nil];
