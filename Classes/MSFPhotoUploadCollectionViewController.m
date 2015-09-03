@@ -50,6 +50,7 @@ UICollectionViewDelegate>
 		[self.collectionView reloadData];
 	}];
 	
+	_submitButton.rac_command = _viewModel.uploadCommand;
 }
 
 #pragma mark - UICollectionViewDataSource
