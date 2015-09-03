@@ -10,4 +10,6 @@
 
 @interface MSFPhotosUploadHeaderView : UICollectionReusableView
 
+- (void)bindModel:(id)viewModel;
+
 @end

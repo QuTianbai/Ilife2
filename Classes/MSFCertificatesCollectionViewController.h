@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFCertificatesCollectionViewController : UICollectionViewController
+@interface MSFCertificatesCollectionViewController : UIViewController
+
+@property (nonatomic, assign) BOOL optional;
 
 - (instancetype)initWithViewModel:(id)viewModel;
 

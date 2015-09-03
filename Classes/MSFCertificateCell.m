@@ -7,7 +7,9 @@
 //
 
 #import "MSFCertificateCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UIColor+Utils.h"
+#import "MSFElementViewModel.h"
 
 @interface MSFCertificateCell ()
 
@@ -17,10 +19,18 @@
 
 @property (nonatomic, assign) NSInteger separatorType;
 @property (nonatomic, assign) BOOL lastLine;
+@property (nonatomic, strong) MSFElementViewModel *viewModel;
 
 @end
 
 @implementation MSFCertificateCell
+
+- (void)bindViewModel:(MSFElementViewModel *)viewModel {
+	_viewModel = viewModel;
+	_titleLabel.text = viewModel.title;
+	[_iconImageView setImageWithURL:viewModel.thumbURL];
+	
+}
 
 - (void)drawSeparatorAtIndex:(NSIndexPath *)indexPath total:(NSInteger)total {
 	
@@ -50,6 +60,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+	/*
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	if (_separatorType == 0) {
@@ -85,7 +96,7 @@
 	
 	CGContextSetLineWidth(context, 1);
 	[[UIColor borderColor] setStroke];
-	CGContextStrokePath(context);
+	CGContextStrokePath(context);*/
 }
 
 @end
