@@ -25,7 +25,6 @@
 - (RACSignal *)downloadAttachment:(MSFAttachment *)attachment {
 	NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:attachment];
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"download" parameters:parameters];
-	//TODO: 下载文件后更改文件存放路径
 	return [self enqueueRequest:request resultClass:nil];
 }
 

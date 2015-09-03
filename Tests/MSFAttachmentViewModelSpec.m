@@ -33,20 +33,22 @@ it(@"should initialize", ^{
 
 it(@"should take photo from camera and album", ^{
 	// given
+	model = [[MSFAttachment alloc] initWithPlaceholderThumbURL:[NSURL URLWithString:@"file://temp"]];
+	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model services:services];
 	[given([services takePicture]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
 	
 	// when
 	[[viewModel.takePhotoCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
 	
 	// then
-	expect(viewModel.attachment.contentURL).notTo(beNil());
+	expect(viewModel.attachment.fileURL).notTo(beNil());
 });
 
 it(@"should upload picture", ^{
 	// given
-	viewModel.attachment.contentURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.jpg"]];
+	viewModel.attachment.fileURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.jpg"]];
 	[given([services httpClient]) willReturn:client];
-	[given([client uploadAttachmentFileURL:viewModel.attachment.contentURL]) willDo:^id(NSInvocation *invocation) {
+	[given([client uploadAttachmentFileURL:viewModel.attachment.fileURL]) willDo:^id(NSInvocation *invocation) {
 		MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{
 			@"objectID": @"3033",
 			@"type": @"image/jpg",
@@ -62,7 +64,7 @@ it(@"should upload picture", ^{
 	expect(viewModel.attachment.objectID).to(equal(@"3033"));
 	expect(viewModel.attachment.type).to(equal(@"image/jpg"));
 	expect(viewModel.attachment.name).to(equal(@"foo.jpg"));
-	expect(viewModel.attachment.contentURL).notTo(beNil());
+	expect(viewModel.attachment.fileURL).notTo(beNil());
 	expect(@(viewModel.isUploaded)).to(beTruthy());
 });
 
@@ -75,7 +77,7 @@ it(@"should download picture", ^{
 	[[viewModel.downloadAttachmentCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
 	
 	// then
-	expect(viewModel.attachment.contentURL).notTo(beNil());
+	expect(viewModel.attachment.thumbURL).notTo(beNil());
 });
 
 
@@ -87,8 +89,6 @@ it(@"should combine array", ^{
 	NSArray *ar = @[ar1, ar2];
 	
 	// when
-	RACSubject *subject = [RACSubject empty];
-	
 	NSArray *result;
 	
 	result = [[ar.rac_sequence flattenMap:^RACStream *(NSArray *value) {
@@ -97,6 +97,41 @@ it(@"should combine array", ^{
 	
 	// then
 	expect(result).to(equal(@[@1, @2, @3, @4]));
+});
+
+it(@"should can't take photo when attachment is not a placholder", ^{
+	// when
+	BOOL valid = [[viewModel.takePhotoValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	
+	// then
+	expect(@(valid)).to(beFalsy());
+});
+
+it(@"should take photo when attachment is a placeholder", ^{
+	// given
+	model = mock(MSFAttachment.class);
+	stubProperty(model, isPlaceholder, @YES);
+	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model services:services];
+	
+	// when
+	BOOL valid = [[viewModel.takePhotoValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	BOOL upload = [[viewModel.uploadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	BOOL download = [[viewModel.downloadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	
+	// then
+	expect(@(valid)).to(beTruthy());
+	expect(@(upload)).to(beFalsy());
+	expect(@(download)).to(beFalsy());
+});
+
+it(@"should can download or upload when the attachment is not a placeholder", ^{
+	// when
+	BOOL upload = [[viewModel.uploadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	BOOL download = [[viewModel.downloadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	
+	// then
+	expect(@(upload)).to(beTruthy());
+	expect(@(download)).to(beTruthy());
 });
 
 QuickSpecEnd

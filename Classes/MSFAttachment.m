@@ -5,7 +5,14 @@
 //
 
 #import "MSFAttachment.h"
+#import <libextobjc/extobjc.h>
 #import "NSValueTransformer+MSFPredefinedTransformerAdditions.h"
+
+@interface MSFAttachment ()
+
+@property (nonatomic, assign, readwrite) BOOL isPlaceholder;
+
+@end
 
 @implementation MSFAttachment
 
@@ -24,6 +31,15 @@
 		@"status": @"status",
 		@"contentType": @"type",
 	};
+}
+
++ (NSSet *)propertyKeys {
+	NSMutableSet *keys = [super.propertyKeys mutableCopy];
+
+	// This is a derived property.
+	[keys removeObject:@keypath(MSFAttachment.new, isPlaceholder)];
+
+	return keys;
 }
 
 - (BOOL)validateFileID:(id *)objectID error:(NSError **)error {
@@ -80,12 +96,19 @@
 	} else if (![super isEqual:other]) {
 		return NO;
 	} else {
-		return [other.objectID isEqualToString:self.objectID] || [other.contentURL isEqual:self.contentURL];
+		return [other.objectID isEqualToString:self.objectID] || [other.fileURL isEqual:self.fileURL];
 	}
 }
 
 - (NSUInteger)hash {
-	return self.objectID.hash ^ self.contentURL.hash;
+	return self.objectID.hash ^ self.fileURL.hash;
+}
+
+- (instancetype)initWithPlaceholderThumbURL:(NSURL *)URL {
+	return [super initWithDictionary:@{
+		@"thumbURL": URL,
+		@"isPlaceholder": @YES
+	} error:nil];
 }
 
 @end

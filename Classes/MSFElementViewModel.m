@@ -18,6 +18,7 @@
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, strong, readwrite) NSMutableArray *attachments;
+@property (nonatomic, strong, readonly) MSFAttachmentViewModel *placeholderViewModel;
 
 @end
 
@@ -32,12 +33,31 @@
   }
 	_services = services;
 	_element = model;
-	_viewModels = @[];
 	_attachments = NSMutableArray.new;
+	
+	NSURL *URL = [[NSBundle mainBundle] URLForResource:@"btn-attachment-take-photo@3x" withExtension:@"png"];
+	MSFAttachment *placheholderAttchment = [[MSFAttachment alloc] initWithPlaceholderThumbURL:URL];
+	_placeholderViewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:placheholderAttchment services:self.services];
+	_viewModels = @[self.placeholderViewModel];
+	
 	RAC(self, title) = RACObserve(self, element.plain);
 	RAC(self, thumbURL) = RACObserve(self, element.thumbURL);
+	RAC(self, sampleURL) = RACObserve(self, element.sampleURL);
 	RAC(self, isRequired) = RACObserve(self, element.required);
 	RAC(self, isCompleted) = self.attachmentsUploadCompletedSignal;
+	
+	@weakify(self)
+	[RACObserve(self, placeholderViewModel.attachment.fileURL) subscribeNext:^(NSURL *URL) {
+		@strongify(self)
+		if (URL.isFileURL) {
+			self.placeholderViewModel.attachment.fileURL = nil;
+			MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{
+				@"fileURL": URL,
+				@"thumbURL": URL
+			} error:nil];
+			[self addAttachment:attachment];
+		}
+	}];
 	
   return self;
 }
@@ -46,8 +66,15 @@
 
 - (void)addAttachment:(MSFAttachment *)attachment {
 	[self.attachments addObject:attachment];
-	if ([attachment.type isEqualToString:self.element.type])
+	if ([attachment.type isEqualToString:self.element.type]) {
 		self.viewModels = [self.viewModels arrayByAddingObject:[[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services]];
+	}
+	if (self.viewModels.count - 1  == self.element.maximum) {
+		self.viewModels = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+	} else {
+		[self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
+	}
 }
 
 - (void)removeAttachment:(MSFAttachment *)attachment {
@@ -56,7 +83,14 @@
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if ([obj.attachment isEqual:attachment]) viewModel = obj;
 	}];
-	[self.viewModels mtl_arrayByRemovingObject:viewModel];
+	if (viewModel) self.viewModels = [self.viewModels mtl_arrayByRemovingObject:viewModel];
+	
+	if ([self.viewModels containsObject:self.placeholderViewModel]) {
+		[self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
+	} else {
+		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
+	}
 }
 
 #pragma mark - Private
@@ -64,9 +98,8 @@
 - (RACSignal *)attachmentsUploadCompletedSignal {
 	return [RACSignal combineLatest:@[
 		RACObserve(self, viewModels),
-		[self rac_signalForSelector:@selector(addAttachment:)]
 	]
-	reduce:^id (NSArray *viewModels, id invocation) {
+	reduce:^id (NSArray *viewModels) {
 		if (viewModels.count == 0) return @NO;
 		__block BOOL completed = YES;
 		[viewModels enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
