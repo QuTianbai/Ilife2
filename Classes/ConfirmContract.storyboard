@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="diY-Ug-NQr">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Confirm Contract View Controller-->
+        <scene sceneID="mqH-fV-S0G">
+            <objects>
+                <viewController id="diY-Ug-NQr" customClass="MSFConfirmContractViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wf9-HH-jL2"/>
+                        <viewControllerLayoutGuide type="bottom" id="R7L-yu-c30"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4e3-eE-Krw">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-cN-Bq2">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="R7L-yu-c30" firstAttribute="top" secondItem="mR0-cN-Bq2" secondAttribute="bottom" id="SP5-EZ-5Ve"/>
+                            <constraint firstAttribute="trailing" secondItem="mR0-cN-Bq2" secondAttribute="trailing" id="Zvy-hy-sRt"/>
+                            <constraint firstItem="mR0-cN-Bq2" firstAttribute="leading" secondItem="4e3-eE-Krw" secondAttribute="leading" id="mY3-aY-BIl"/>
+                            <constraint firstItem="mR0-cN-Bq2" firstAttribute="top" secondItem="4e3-eE-Krw" secondAttribute="top" id="pwa-zM-djp"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="mR0-cN-Bq2"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="SP5-EZ-5Ve"/>
+                                <exclude reference="Zvy-hy-sRt"/>
+                                <exclude reference="mY3-aY-BIl"/>
+                                <exclude reference="pwa-zM-djp"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="mR0-cN-Bq2"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="SP5-EZ-5Ve"/>
+                                <include reference="Zvy-hy-sRt"/>
+                                <include reference="mY3-aY-BIl"/>
+                                <include reference="pwa-zM-djp"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="confirmContractWebView" destination="mR0-cN-Bq2" id="WrW-zq-gYn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VDX-E4-Nwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="331.5" y="174"/>
+        </scene>
+    </scenes>
+</document>

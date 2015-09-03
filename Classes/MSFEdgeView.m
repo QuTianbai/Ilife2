@@ -26,7 +26,7 @@
 }
 
 - (void)commonInit {
-	self.layer.cornerRadius = 2;
+	self.layer.cornerRadius = 5;
 	self.layer.masksToBounds = YES;
 	self.layer.borderColor = UIColor.borderColor.CGColor;
 	self.layer.borderWidth = 1.0f;

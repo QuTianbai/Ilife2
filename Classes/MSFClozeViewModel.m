@@ -128,12 +128,6 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
                                                                                     }];
     return [RACSignal error:error];
   }
-	if (self.bankName.length == 0) {
-		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择银行名称",
-		}];
-    return [RACSignal error:error];
-	}
 	if (self.addressViewModel.provinceCode.length == 0) {
 		error = [NSError errorWithDomain:MSFClozeViewModelErrorDomain code:0 userInfo:@{
 			NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
@@ -141,7 +135,7 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
     return [RACSignal error:error];
 	}
 	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
-		NSString *str = @"请输入正确地银行卡号";
+		NSString *str = @"请输入正确的银行卡号";
 		if (self.bankNO.length == self.maxSize.integerValue) {
 			str = @"你的银行卡号长度有误，请修改后再试";
 		}

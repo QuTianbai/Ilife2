@@ -29,6 +29,9 @@
 
 #import "MSFLocationModel.h"
 
+#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewController.h"
+
 @implementation MSFViewModelServicesImpl
 
 #pragma mark - Private
@@ -53,6 +56,9 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
   } else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
 		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
+		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");

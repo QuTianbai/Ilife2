@@ -36,6 +36,10 @@
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtilsViewController.h"
+#import "MSFCustomAlertView.h"
+#import "MSFConfirmContactViewModel.h"
+
+
 
 #if !DEBUG
 static BOOL poped;
@@ -45,6 +49,7 @@ static BOOL poped;
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
 @property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
+@property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
 
 @end
 
@@ -66,6 +71,26 @@ static BOOL poped;
 	self.window.backgroundColor = UIColor.whiteColor;
 	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
+	
+	//确认合同
+	MSFCustomAlertView *alertWindow = [[MSFCustomAlertView alloc] initAlertViewWithFrame:[[UIScreen mainScreen] bounds] AndTitle:@"恭喜您" AndMessage:@"合同已通过我们的审核，赶紧去确认合同吧！" AndImage:[UIImage imageNamed:@"icon-confirm"] andCancleButtonTitle:@"稍后确认" AndConfirmButtonTitle:@"立即确认"];
+	//[alertWindow show];
+	self.confirmContactWindow = alertWindow;
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFREQUESTCONTRACTSNOTIFACATION object:nil] subscribeNext:^(id x) {
+		self.confirmContactViewModel = [[MSFConfirmContactViewModel alloc] initWithServers:self.viewModel.services];
+	}];
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTNOTIFACATION object:nil] subscribeNext:^(id x) {
+		@strongify(self)
+		self.confirmContactWindow = alertWindow;
+		[self.confirmContactWindow showWithViewModel:self.confirmContactViewModel];
+	}];
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil] subscribeNext:^(id x) {
+		@strongify(self)
+		[self.confirmContactWindow dismiss];
+		self.confirmContactWindow = nil;
+		[self.window makeKeyAndVisible];
+	}];
 	
 	///添加Umeng统计
 	NSString *umengAppKey = nil;
