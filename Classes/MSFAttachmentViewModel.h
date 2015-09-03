@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong, readonly) MSFAttachment *attachment;
 @property (nonatomic, strong, readonly) NSURL *thumbURL;
+@property (nonatomic, strong, readonly) NSURL *fileURL;
 @property (nonatomic, assign, readonly) BOOL isUploaded;
 
 @property (nonatomic, strong, readonly) RACCommand *takePhotoCommand;

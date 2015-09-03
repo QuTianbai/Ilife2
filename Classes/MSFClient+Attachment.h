@@ -10,7 +10,7 @@
 
 @interface MSFClient (Attachment)
 
-- (RACSignal *)uploadAttachmentFileURL:(NSURL *)attachmentURL;
+- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment;
 - (RACSignal *)downloadAttachment:(MSFAttachment *)attachment;
 
 @end

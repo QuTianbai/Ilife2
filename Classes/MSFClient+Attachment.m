@@ -10,13 +10,13 @@
 
 @implementation MSFClient (Attachment)
 
-- (RACSignal *)uploadAttachmentFileURL:(NSURL *)attachmentURL {
+- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment {
 	NSMutableURLRequest *request =
 	[self requestWithMethod:@"POST" path:@"upload" parameters:nil
 		constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-			NSString *fileName = [attachmentURL lastPathComponent];
+			NSString *fileName = [attachment.fileURL lastPathComponent];
 			NSString *mimeType = @"image/*";
-			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachmentURL] name:@"image" fileName:fileName mimeType:mimeType];
+			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachment.fileURL] name:@"image" fileName:fileName mimeType:mimeType];
 	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFAttachment.class] msf_parsedResults];

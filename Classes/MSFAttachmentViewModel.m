@@ -13,6 +13,8 @@
 @interface MSFAttachmentViewModel ()
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readwrite) NSURL *fileURL;
+@property (nonatomic, strong, readwrite) NSURL *thumbURL;
 
 @end
 
@@ -27,7 +29,8 @@
   }
 	_services = services;
 	_attachment = attachment;
-	RAC(self, thumbURL) = RACObserve(self, attachment.thumbURL);
+	RACChannelTo(self, thumbURL) = RACChannelTo(self, attachment.thumbURL);
+	RACChannelTo(self, fileURL) = RACChannelTo(self, attachment.fileURL);
 	RAC(self, isUploaded) = [RACObserve(self, attachment.objectID) map:^id(id value) {
 		return @([value boolValue]);
 	}];
@@ -36,7 +39,7 @@
 		return [self takePhotoSignal];
 	}];
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
-		return [[self.services.httpClient uploadAttachmentFileURL:self.attachment.fileURL] doNext:^(id x) {
+		return [[self.services.httpClient uploadAttachment:self.attachment] doNext:^(id x) {
 			[self.attachment mergeValueForKey:@"objectID" fromModel:x];
 			[self.attachment mergeValueForKey:@"name" fromModel:x];
 			[self.attachment mergeValueForKey:@"type" fromModel:x];
@@ -64,14 +67,24 @@
 }
 
 - (RACSignal *)uploadValidSignal {
-	return [RACSignal combineLatest:@[RACObserve(self, attachment.isPlaceholder)] reduce:^id(NSNumber *placeholder){
-		return @(!placeholder.boolValue);
+	return [RACSignal combineLatest:@[
+		RACObserve(self, attachment.isPlaceholder),
+		RACObserve(self, attachment.objectID),
+	]
+	reduce:^id(NSNumber *placeholder, NSString *objectID){
+		return @(!placeholder.boolValue && !objectID);
 	}];
 }
 
 - (RACSignal *)downloadValidSignal {
-	return [RACSignal combineLatest:@[RACObserve(self, attachment.isPlaceholder)] reduce:^id(NSNumber *placeholder){
-		return @(!placeholder.boolValue);
+	return [RACSignal combineLatest:@[
+		RACObserve(self, attachment.isPlaceholder),
+		RACObserve(self, attachment.name),
+	]
+	reduce:^id(NSNumber *placeholder, NSString *file){
+		NSString *path = [NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"%@", file]];
+		BOOL exist = [[NSFileManager defaultManager] fileExistsAtPath:path];
+		return @(!placeholder.boolValue && !exist);
 	}];
 }
 
@@ -82,7 +95,8 @@
 		NSString *name = [@([[NSDate date] timeIntervalSince1970]) stringValue].md5;
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
 		[[NSFileManager defaultManager] createFileAtPath:path contents:UIImageJPEGRepresentation(x, .7) attributes:nil];
-		self.attachment.fileURL = [NSURL fileURLWithPath:path];
+		self.fileURL = [NSURL fileURLWithPath:path];
+		self.thumbURL = [NSURL fileURLWithPath:path];
 	}];
 }
 
