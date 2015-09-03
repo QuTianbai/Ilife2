@@ -29,6 +29,7 @@
   }
 	_services = services;
 	_attachment = attachment;
+	_removeEnabled = !attachment.isPlaceholder;
 	RACChannelTo(self, thumbURL) = RACChannelTo(self, attachment.thumbURL);
 	RACChannelTo(self, fileURL) = RACChannelTo(self, attachment.fileURL);
 	RAC(self, isUploaded) = [RACObserve(self, attachment.objectID) map:^id(id value) {
@@ -54,6 +55,10 @@
 			self.attachment.thumbURL = [NSURL fileURLWithPath:path];
 			self.attachment.fileURL = [NSURL URLWithString:path];
 		}];
+	}];
+	
+	_removeCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@(self.removeEnabled)] signalBlock:^RACSignal *(id input) {
+		return [RACSignal empty];
 	}];
   
   return self;

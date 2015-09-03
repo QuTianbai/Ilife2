@@ -38,6 +38,7 @@ it(@"should initialize", ^{
 	expect(viewModel.uploadAttachmentCommand).notTo(beNil());
 	expect(viewModel.downloadAttachmentCommand).notTo(beNil());
 	expect(@(viewModel.isUploaded)).to(beFalsy());
+	expect(@(viewModel.removeEnabled)).to(beTruthy());
 });
 
 describe(@"attachment from server", ^{

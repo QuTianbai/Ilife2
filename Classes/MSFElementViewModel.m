@@ -75,7 +75,11 @@
 - (void)addAttachment:(MSFAttachment *)attachment {
 	[self.attachments addObject:attachment];
 	if ([attachment.type isEqualToString:self.element.type]) {
-		self.viewModels = [self.viewModels arrayByAddingObject:[[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services]];
+		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services];
+		[viewModel.removeCommand.executionSignals subscribeNext:^(id x) {
+			[self removeAttachment:attachment];
+		}];
+		self.viewModels = [self.viewModels arrayByAddingObject:viewModel];
 	}
 	if (self.viewModels.count - 1  == self.element.maximum) {
 		self.viewModels = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];

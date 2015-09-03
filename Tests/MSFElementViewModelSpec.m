@@ -128,4 +128,19 @@ it(@"should upload attachments's file", ^{
 	expect(expected.attachment.objectID).to(equal(@"foo"));
 });
 
+it(@"should remove attachment in attachmentViewModel", ^{
+	// given
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL, @"type": element.type} error:nil];
+	[viewModel addAttachment:attachment];
+	
+	// when
+	MSFAttachmentViewModel *attachmentViewModel = viewModel.viewModels.firstObject;
+	[[attachmentViewModel.removeCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	
+	// then
+	MSFAttachmentViewModel *expectedViewModel = viewModel.viewModels.firstObject;
+	expect(@(expectedViewModel.attachment.isPlaceholder)).to(beTruthy());
+});
+
 QuickSpecEnd
