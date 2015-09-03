@@ -338,6 +338,7 @@ static BOOL isRunningTests(void) {
 		parameters:nil
 		constructingBodyWithBlock:block error:nil];
 	[request setAllHTTPHeaderFields:self.defaultHeaders];
+	[request setValue:@"application/octet-stream" forHTTPHeaderField:@"content-Type"];
 	
 	return request;
 }
