@@ -131,12 +131,10 @@
 		CZPhotoPickerController *pickerController =
 			[[CZPhotoPickerController alloc] initWithPresentingViewController:self.navigationController withCompletionBlock:^(UIImagePickerController *imagePickerController, NSDictionary *imageInfoDict) {
 				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage];
-				if (!image) {
-					image = imageInfoDict[UIImagePickerControllerOriginalImage];
+				if (image) {
+					[subscriber sendNext:image];
 				}
-				[subscriber sendNext:image];
 				[subscriber sendCompleted];
-				[pickerController dismissAnimated:YES];
 		}];
 		[pickerController showFromTabBar:[self navigationController].tabBarController.tabBar];
 		return [RACDisposable disposableWithBlock:^{

@@ -32,5 +32,5 @@ pod 'ZSWTappableLabel', '1.1'
 pod 'ZSWTaggedString', '1.1'
 
 target 'Tests', :exclusive => true do
-    pod 'OCMockito', '1.4.0'
+    pod 'OCMockito', :git => 'https://github.com/jonreid/OCMockito', :commit=>'f20ee6d'
 end

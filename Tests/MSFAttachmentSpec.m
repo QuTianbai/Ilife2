@@ -68,7 +68,7 @@ it(@"should fetch uploaded attachment information", ^{
 it(@"should create placeholder attachment", ^{
 	// when
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
-	attachment = [[MSFAttachment alloc] initWithPlaceholderThumbURL:URL];
+	attachment = [[MSFAttachment alloc] initWithDictionary:@{@"isPlaceholder": @YES, @"thumbURL": URL} error:nil];
 	
 	// then
 	expect(@(attachment.isPlaceholder)).to(beTruthy());
