@@ -16,6 +16,8 @@
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSURL *thumbURL;
 @property (nonatomic, strong, readonly) NSURL *sampleURL;
+
+// 判断当前元素附件是否已经添加
 @property (nonatomic, assign, readonly) BOOL isCompleted;
 @property (nonatomic, assign, readonly) BOOL isRequired;
 
@@ -24,6 +26,8 @@
 // MSAttachmentViewModel instances
 @property (nonatomic, strong, readonly) NSMutableArray *attachments;
 @property (nonatomic, strong, readonly) NSArray *viewModels;
+
+@property (nonatomic, strong, readonly) RACCommand *uploadCommand;
 
 - (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services;
 

@@ -38,6 +38,7 @@
 	_takePhotoCommand = [[RACCommand alloc] initWithEnabled:self.takePhotoValidSignal signalBlock:^RACSignal *(id input) {
 		return [self takePhotoSignal];
 	}];
+	_takePhotoCommand.allowsConcurrentExecution = YES;
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
 		return [[self.services.httpClient uploadAttachment:self.attachment] doNext:^(id x) {
 			[self.attachment mergeValueForKey:@"objectID" fromModel:x];
