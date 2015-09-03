@@ -194,29 +194,33 @@
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击拍照" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D2-V6-Lcg">
-                                                    <rect key="frame" x="43" y="37" width="68" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A24-Yo-skN">
-                                                    <rect key="frame" x="0.0" y="0.0" width="154" height="95"/>
+                                                    <rect key="frame" x="10" y="10" width="134" height="75"/>
                                                     <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stn-9s-Cd5">
+                                                    <rect key="frame" x="132" y="2" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="OMz-1H-k9j"/>
+                                                        <constraint firstAttribute="width" constant="20" id="SFd-z1-cAK"/>
+                                                    </constraints>
+                                                    <state key="normal" backgroundImage="ic_attachment_delete.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="centerY" secondItem="9D2-V6-Lcg" secondAttribute="centerY" id="Gsc-BU-Qks"/>
-                                            <constraint firstAttribute="trailing" secondItem="A24-Yo-skN" secondAttribute="trailing" id="b6U-HP-IoJ"/>
-                                            <constraint firstItem="A24-Yo-skN" firstAttribute="top" secondItem="e3I-4q-4Ql" secondAttribute="top" id="g61-jY-lRo"/>
-                                            <constraint firstItem="A24-Yo-skN" firstAttribute="leading" secondItem="e3I-4q-4Ql" secondAttribute="leading" id="okL-Ld-j2r"/>
-                                            <constraint firstAttribute="centerX" secondItem="9D2-V6-Lcg" secondAttribute="centerX" id="oq8-ZN-3dY"/>
-                                            <constraint firstAttribute="bottom" secondItem="A24-Yo-skN" secondAttribute="bottom" id="rca-fT-88M"/>
+                                            <constraint firstItem="stn-9s-Cd5" firstAttribute="top" secondItem="e3I-4q-4Ql" secondAttribute="top" constant="2" id="Kgs-4C-fRX"/>
+                                            <constraint firstAttribute="trailing" secondItem="stn-9s-Cd5" secondAttribute="trailing" constant="2" id="VRL-Ml-z1e"/>
+                                            <constraint firstAttribute="trailing" secondItem="A24-Yo-skN" secondAttribute="trailing" constant="10" id="b6U-HP-IoJ"/>
+                                            <constraint firstItem="A24-Yo-skN" firstAttribute="top" secondItem="e3I-4q-4Ql" secondAttribute="top" constant="10" id="g61-jY-lRo"/>
+                                            <constraint firstItem="A24-Yo-skN" firstAttribute="leading" secondItem="e3I-4q-4Ql" secondAttribute="leading" constant="10" id="okL-Ld-j2r"/>
+                                            <constraint firstAttribute="bottom" secondItem="A24-Yo-skN" secondAttribute="bottom" constant="10" id="rca-fT-88M"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="tempLabel" destination="9D2-V6-Lcg" id="2zU-6f-smU"/>
+                                            <outlet property="deleteButton" destination="stn-9s-Cd5" id="gdB-uJ-Ez8"/>
                                             <outlet property="uploadImageView" destination="A24-Yo-skN" id="JQy-hh-Jmz"/>
                                         </connections>
                                     </collectionViewCell>
@@ -301,4 +305,7 @@
             <point key="canvasLocation" x="963" y="-652"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_attachment_delete.png" width="40" height="40"/>
+    </resources>
 </document>
