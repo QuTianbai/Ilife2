@@ -58,6 +58,7 @@
 				@"fileURL": URL,
 				@"thumbURL": URL,
 				@"type": self.element.type,
+				@"plain": self.element.plain,
 			} error:nil];
 			[self addAttachment:attachment];
 		}
