@@ -187,7 +187,7 @@
 			[self.market.teams enumerateObjectsUsingBlock:^(MSFTeams *obj, NSUInteger idx, BOOL *stop) {
 				[region addObject:[NSString stringWithFormat:@"%@ 到 %@ 之间", obj.minAmount,obj.maxAmount]];
 			}];
-			string = [NSString stringWithFormat:@"请输入贷款金额范围在 %@ 到 %@ 之间的数字", self.market.allMinAmount,self.market.allMaxAmount];
+			string = [NSString stringWithFormat:@"请选择贷款金额范围在 %@ 到 %@ 之间的数字", self.market.allMinAmount,self.market.allMaxAmount];
 			
 			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: string,

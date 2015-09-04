@@ -350,6 +350,7 @@ ABPersonViewControllerDelegate>
 		/*
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"REFRASHTIMERCONTRACT" object:nil];
 			[SVProgressHUD showSuccessWithStatus:@"恭喜您! 申请已提交!"];
 			@strongify(self)
 			[self.tabBarController setSelectedIndex:0];

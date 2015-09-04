@@ -47,7 +47,8 @@ it(@"should execute submit", ^{
   viewModel.name = @"张三";
   viewModel.card = @"111111111111111111";
   viewModel.expired = [NSDate date];
-	viewModel.bankNO = @"10000000000000000";
+	viewModel.bankNO = @"6222 0244 0200 6680 122";
+	viewModel.maxSize = @"19";
 	viewModel.bankName = @"xx";
 	viewModel.bankAddress = @"mmm";
 	viewModel.bankCode = @"1000";

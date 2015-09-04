@@ -36,6 +36,10 @@
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtilsViewController.h"
+#import "MSFCustomAlertView.h"
+#import "MSFConfirmContactViewModel.h"
+
+
 
 #if !DEBUG
 static BOOL poped;
@@ -45,6 +49,9 @@ static BOOL poped;
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
 @property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
+@property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
+
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -66,6 +73,44 @@ static BOOL poped;
 	self.window.backgroundColor = UIColor.whiteColor;
 	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
+	
+	//确认合同
+	//MSFCustomAlertView *alertWindow = ;
+	//[alertWindow show];
+	//self.confirmContactWindow = alertWindow;
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFREQUESTCONTRACTSNOTIFACATION object:nil] subscribeNext:^(id x) {
+		@strongify(self)
+		self.confirmContactWindow = [[MSFCustomAlertView alloc] initAlertViewWithFrame:[[UIScreen mainScreen] bounds] AndTitle:@"恭喜您" AndMessage:@"合同已通过我们的审核，赶紧去确认合同吧！" AndImage:[UIImage imageNamed:@"icon-confirm"] andCancleButtonTitle:@"稍后确认" AndConfirmButtonTitle:@"立即确认"];
+		if (self.confirmContactViewModel == nil) {
+			self.confirmContactViewModel = [[MSFConfirmContactViewModel alloc] initWithServers:self.viewModel.services];
+		} else {
+			[self.confirmContactViewModel fetchContractist];
+		}
+		
+	}];
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTNOTIFACATION object:nil] subscribeNext:^(id x) {
+		@strongify(self)
+		if (self.timer != nil) {
+			[self.timer setFireDate:[NSDate distantFuture]];
+		}
+		[self.confirmContactWindow showWithViewModel:self.confirmContactViewModel];
+	}];
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil] subscribeNext:^(id x) {
+		@strongify(self)
+		if (self.confirmContactWindow != nil) {
+			[self.confirmContactWindow dismiss];
+			self.confirmContactWindow = nil;
+			[self.window makeKeyAndVisible];
+		}
+		
+	}];
+	
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"REFRASHTIMERCONTRACT" object:nil] subscribeNext:^(id x) {
+		@strongify(self)
+		self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 3 target:self selector:@selector(updateContract) userInfo:nil repeats:YES];
+	}];
+	
 	
 	///添加Umeng统计
 	NSString *umengAppKey = nil;
@@ -120,6 +165,9 @@ static BOOL poped;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
 	NSLog(@"applicationDidEnterBackground:");
 }
 
@@ -226,6 +274,10 @@ static BOOL poped;
 }
 
 - (void)unAuthenticatedControllers {
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 	self.window.rootViewController = navigationController;
@@ -253,6 +305,10 @@ static BOOL poped;
 	MSFUtilsViewController *vc = [[MSFUtilsViewController alloc] initWithStyle:UITableViewStylePlain];
 	[self.window.rootViewController presentViewController:vc animated:YES completion:nil];
 #endif
+}
+
+- (void)updateContract {
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
 }
 
 @end

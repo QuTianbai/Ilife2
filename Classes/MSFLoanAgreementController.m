@@ -25,9 +25,6 @@
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
 @property (nonatomic, strong) MSFLoanAgreementViewModel *viewModel;
-@property (nonatomic, weak) IBOutlet UIButton *agreeButton;
-@property (nonatomic, weak) IBOutlet UIButton *disAgreeButton;
-@property (nonatomic, weak) IBOutlet UIView *BottomBtVIew;
 
 @end
 
@@ -97,18 +94,11 @@
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	[[self.disAgreeButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		@strongify(self)
-		[self.navigationController popViewControllerAnimated:YES];
-	}];
+	
 }
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-  self.BottomBtVIew.hidden = NO;
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

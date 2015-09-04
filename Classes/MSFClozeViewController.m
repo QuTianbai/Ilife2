@@ -20,10 +20,21 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 #import "NSDate+UTC0800.h"
+#import "MSFBankInfoModel.h"
+
+static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
+static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
+static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
 @interface MSFClozeViewController () <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *bankNameLB;
+@property (weak, nonatomic) IBOutlet UILabel *BankCardTypeLB;
+@property (weak, nonatomic) IBOutlet UILabel *showInfoLB;
 @property (nonatomic, strong) MSFClozeViewModel *viewModel;
+
+@property (nonatomic, assign) BOOL isFindBankCard;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankInfoCS;
 
 @end
 
@@ -44,6 +55,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
+	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
+	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 	
 	_bankArcView.layer.cornerRadius = 8;
 	_bankArcView.layer.masksToBounds = YES;
@@ -56,9 +70,65 @@
 	_personArcView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
 	
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RAC(self.viewModel, name) = self.name.rac_textSignal;
-	RAC(self.viewModel, card) = self.card.rac_textSignal;
-	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;
+	self.bankNameLB.alpha = 0;
+	RAC(self.bankNameLB, text) = RACObserve(self.viewModel, bankName);
+	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
+		if (bankName != nil && ![bankName isEqualToString:@""]) {
+			[UIView beginAnimations:nil context:nil];
+			[UIView setAnimationDuration:0.3];
+			self.bankNameLB.alpha = 1.0;
+			[UIView commitAnimations];
+		} else {
+			self.bankNameLB.alpha = 0;
+		}
+		
+	}];
+	RAC(self.BankCardTypeLB, text) = [[RACObserve(self.viewModel, bankType) ignore:nil] map:^id(id value) {
+		return value;
+	}];
+	[[RACObserve(self.viewModel, bankType) ignore:nil] subscribeNext:^(NSString *type) {
+		if (type != nil && ![type isEqualToString:@""] ) {
+			[UIView beginAnimations:nil context:nil];
+			[UIView setAnimationDuration:0.3];
+			self.BankCardTypeLB.alpha = 1.0;
+			[UIView commitAnimations];
+		} else {
+			self.BankCardTypeLB.alpha = 0;
+		}
+		
+	}];
+	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
+		CGFloat alpha = 0;
+		switch (support.intValue) {
+			case 1:
+				alpha = 1.0;
+				[self.showInfoLB setAttributedText:bankCardShowInfoAttributeStr];
+				self.bankInfoCS.constant = 100;
+			break;
+			case 2:
+				alpha = 1.0;
+				self.showInfoLB.text = bankCardShowStrB;
+				self.bankInfoCS.constant = 50;
+			break;
+				case 0:
+				case 3:
+				self.showInfoLB.text = @"";
+				self.bankInfoCS.constant = 25;
+				break;
+		default:
+    break;
+		}
+
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.3];
+		self.showInfoLB.alpha = alpha;
+		[UIView commitAnimations];
+		
+	}];
+	RAC(self.viewModel, name) = self.name.rac_textSignal;//姓名
+	RAC(self.viewModel, card) = self.card.rac_textSignal;//身份证
+	RAC(self.viewModel, bankNO) = self.bankNO.rac_textSignal;//银行卡号
+	
 	
 	// Submit
 	self.submitButton.rac_command = self.viewModel.executeAuth;
@@ -122,36 +192,36 @@
 	self.navigationItem.leftBarButtonItem = item;
 	
 	// Bank name
-	RAC(self.bankName, text) = RACObserve(self.viewModel, bankName);
-	[[self.bankNameButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-		subscribeNext:^(id x) {
-			[self.view endEditing:YES];
-			MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"json_banks"]];
-			MSFSelectionViewController *selectViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-			selectViewController.title = @"选择银行";
-			[self.navigationController pushViewController:selectViewController animated:YES];
-			
-			[selectViewController.selectedSignal subscribeNext:^(MSFSelectKeyValues *selectValue) {
-				[selectViewController.navigationController popViewControllerAnimated:YES];
-				self.viewModel.bankName = selectValue.text;
-				self.viewModel.bankCode = selectValue.code;
-			}];
-		}];
+	//RAC(self.bankName, text) = RACObserve(self.viewModel, bankName);
+//	[[self.bankNameButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+//		subscribeNext:^(id x) {
+//			[self.view endEditing:YES];
+//			MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"json_banks"]];
+//			MSFSelectionViewController *selectViewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+//			selectViewController.title = @"选择银行";
+//			[self.navigationController pushViewController:selectViewController animated:YES];
+//			
+//			[selectViewController.selectedSignal subscribeNext:^(MSFSelectKeyValues *selectValue) {
+//				[selectViewController.navigationController popViewControllerAnimated:YES];
+//				self.viewModel.bankName = selectValue.text;
+//				self.viewModel.bankCode = selectValue.code;
+//			}];
+//		}];
 	
 	// Bank Address
 	RAC(self.bankAddress, text) = RACObserve(self.viewModel, bankAddress);
 	self.bankAddressButton.rac_command = self.viewModel.executeSelected;
 	
 	// Bank No button
-	[[self.bankNOButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-		subscribeNext:^(id x) {
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@""
-				message:@"为保证账户资金安全,仅支持本人的储蓄卡(借记卡)收款"
-				delegate:nil
-				cancelButtonTitle:@"￼知道了"
-				otherButtonTitles:nil];
-			[alertView show];
-		}];
+//	[[self.bankNOButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+//		subscribeNext:^(id x) {
+//			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@""
+//				message:@"为保证账户资金安全,仅支持本人的储蓄卡(借记卡)收款"
+//				delegate:nil
+//				cancelButtonTitle:@"￼知道了"
+//				otherButtonTitles:nil];
+//			[alertView show];
+//		}];
 	
 	// common init
 	[[self.datePickerButton rac_signalForControlEvents:UIControlEventTouchUpInside]

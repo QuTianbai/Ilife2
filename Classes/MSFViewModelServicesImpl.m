@@ -31,6 +31,8 @@
 
 #import "MSFInventoryViewModel.h"
 #import "MSFCertificatesCollectionViewController.h"
+#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewController.h"
 
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
@@ -61,6 +63,9 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
   } else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
 		viewController = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
+		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");

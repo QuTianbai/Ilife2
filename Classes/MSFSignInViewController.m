@@ -13,6 +13,8 @@
 #import "MSFUtils.h"
 #import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFCustomAlertView.h"
+
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -74,6 +76,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[MSFUtils setPhone:self.username.text];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:MSFREQUESTCONTRACTSNOTIFACATION object:nil];
 			[SVProgressHUD dismiss];
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}];
