@@ -57,6 +57,9 @@ UICollectionViewDelegate>
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
+			if (_completionBlock) {
+				_completionBlock();
+			}
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];

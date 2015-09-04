@@ -15,7 +15,6 @@
 
 @interface MSFPhotosUploadHeaderView ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
 
@@ -29,8 +28,7 @@
 
 - (void)bindModel:(MSFElementViewModel *)viewModel {
 	_viewModel = viewModel;
-	[_displayImageView setImageWithURL:viewModel.element.sampleURL];
-	_titleLabel.text = viewModel.title;
+	[_displayImageView setImageWithURL:viewModel.element.sampleURL  placeholderImage:[UIImage imageNamed:@"photoUpload_placeholder.png"]];
 }
 
 - (void)drawRect:(CGRect)rect {

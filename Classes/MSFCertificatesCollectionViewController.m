@@ -40,20 +40,6 @@ UICollectionViewDelegateFlowLayout>
   return self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	if (!self.optional) {
-		self.viewModel.active = YES;
-	}
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	if (self.optional) {
-		self.viewModel.active = NO;
-	}
-}
-
 - (instancetype)init {
 	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:@"MSFCertificatesCollectionViewController"];
 }
@@ -80,6 +66,10 @@ UICollectionViewDelegateFlowLayout>
 	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	
+	if (!self.optional) {
+		self.viewModel.active = YES;
+	}
 }
 
 #pragma mark - UICollectionViewFlowLayout
@@ -185,6 +175,9 @@ UICollectionViewDelegateFlowLayout>
 	if ([segue.identifier isEqualToString:@"photosUploadSegue"]) {
 		NSIndexPath *indexPath = sender;
 		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
+		vc.completionBlock = ^{
+			[self.collectionView reloadData];
+		};
 		if (self.optional) {
 			MSFElementViewModel *viewModel = self.viewModel.optionalViewModels[indexPath.row];
 			vc.title = viewModel.title;
