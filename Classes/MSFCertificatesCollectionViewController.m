@@ -62,6 +62,7 @@ UICollectionViewDelegateFlowLayout>
 	[super viewDidLoad];
 	
 	self.submitButton.layer.cornerRadius = 5;
+	[self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"MSFBlankSpaceCell"];
 
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
@@ -70,14 +71,15 @@ UICollectionViewDelegateFlowLayout>
 	}];
 	
 	self.submitButton.rac_command = self.viewModel.executeUpdateCommand;
-	[[self.viewModel.executeUpdateCommand.executionSignals
-		doNext:^(id x) {
-			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeNone];
-		}] subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"提交申请成功"];
-		} error:^(NSError *error) {
-			[SVProgressHUD showSuccessWithStatus:@"提交申请失败"];
+	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 		}];
+	}];
+	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 #pragma mark - UICollectionViewFlowLayout
@@ -146,12 +148,8 @@ UICollectionViewDelegateFlowLayout>
 		}
 		
 		if (totalCount % 2 != 0 && indexPath.row == totalCount) {
-			static NSString *identifier = @"blankSpaceCell";
-			UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-			if (!cell) {
-				cell = [[UICollectionViewCell alloc] init];
-				cell.backgroundColor = [UIColor whiteColor];
-			}
+			UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFBlankSpaceCell" forIndexPath:indexPath];
+			cell.backgroundColor = [UIColor whiteColor];
 			return cell;
 		} else {
 			MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];

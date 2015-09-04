@@ -52,13 +52,14 @@ UICollectionViewDelegate>
 	}];
 	
 	self.submitButton.rac_command = self.viewModel.uploadCommand;
-	[[self.viewModel.uploadCommand.executionSignals
-		 doNext:^(id x) {
-		[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeNone];
-	}] subscribeNext:^(id x) {
-		[SVProgressHUD showSuccessWithStatus:@"提交图片成功"];
-	} error:^(NSError *error) {
-		[SVProgressHUD showSuccessWithStatus:@"提交图片失败"];
+	[self.viewModel.uploadCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}];
+	}];
+	[self.viewModel.uploadCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }
 
