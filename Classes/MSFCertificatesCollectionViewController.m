@@ -69,6 +69,7 @@ UICollectionViewDelegateFlowLayout>
 	}];
 	
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
 		MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
 		MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
 		
@@ -86,10 +87,12 @@ UICollectionViewDelegateFlowLayout>
 	}];
 	
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
-
+			[self.tabBarController setSelectedIndex:0];
+			[self.navigationController popToRootViewControllerAnimated:NO];
 		}];
 	}];
 	
@@ -216,7 +219,7 @@ UICollectionViewDelegateFlowLayout>
 		} else {
 			totalCount = self.viewModel.requiredViewModels.count;
 		}
-		if (totalCount % 2 != 0 && indexPath.row == totalCount) {
+		if (totalCount % 2 == 0 || indexPath.row != totalCount) {
 			[self performSegueWithIdentifier:@"photosUploadSegue" sender:indexPath];
 		}
 	} else {
