@@ -59,9 +59,6 @@ MWPhotoBrowserDelegate>
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			if (_completionBlock) {
-				_completionBlock();
-			}
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
@@ -111,6 +108,7 @@ MWPhotoBrowserDelegate>
 }
 
 #pragma mark - MWPhotoBrowserDelegate
+
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
 	MSFAttachmentViewModel *viewModel = [self.viewModel.viewModels lastObject];
 	if (viewModel.removeEnabled) {

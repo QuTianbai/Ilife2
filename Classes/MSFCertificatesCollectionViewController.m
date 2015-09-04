@@ -105,6 +105,11 @@ UICollectionViewDelegateFlowLayout>
 	}
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.collectionView reloadData];
+}
+
 #pragma mark - UICollectionViewFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -235,9 +240,6 @@ UICollectionViewDelegateFlowLayout>
 	if ([segue.identifier isEqualToString:@"photosUploadSegue"]) {
 		NSIndexPath *indexPath = sender;
 		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
-		vc.completionBlock = ^{
-			[self.collectionView reloadData];
-		};
 		if (self.optional) {
 			MSFElementViewModel *viewModel = self.viewModel.optionalViewModels[indexPath.row];
 			vc.title = viewModel.title;
