@@ -95,7 +95,7 @@
 		self.model.applyStatus1 = @"0";
 	}
 	return [[self.services.httpClient applyInfoSubmit1:self.model] doNext:^(id x) {
-		if (page == 4) self.pending = YES;
+		if (page == 5) self.pending = YES;
 	}];
 }
 
