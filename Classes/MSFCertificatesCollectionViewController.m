@@ -88,7 +88,8 @@ UICollectionViewDelegateFlowLayout>
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
+			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+
 		}];
 	}];
 	
@@ -104,7 +105,7 @@ UICollectionViewDelegateFlowLayout>
 #pragma mark - UICollectionViewFlowLayout
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-	if (section == 0) {
+	if (section == 0 && !self.optional) {
 		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 90);
 	} else {
 		return CGSizeZero;
@@ -209,7 +210,15 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-		[self performSegueWithIdentifier:@"photosUploadSegue" sender:indexPath];
+		NSInteger totalCount = 0;
+		if (self.optional) {
+			totalCount = self.viewModel.optionalViewModels.count;
+		} else {
+			totalCount = self.viewModel.requiredViewModels.count;
+		}
+		if (totalCount % 2 != 0 && indexPath.row == totalCount) {
+			[self performSegueWithIdentifier:@"photosUploadSegue" sender:indexPath];
+		}
 	} else {
 		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:self.viewModel];
 		vc.optional = YES;

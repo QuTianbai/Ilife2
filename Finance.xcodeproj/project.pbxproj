@@ -84,6 +84,7 @@
 		10DC2D6C1B998AF100A2AF9C /* bar-progress-4-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D661B998AF100A2AF9C /* bar-progress-4-normal.png */; };
 		10DC2D6D1B998AF100A2AF9C /* bar-progress-4-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D671B998AF100A2AF9C /* bar-progress-4-normal@2x.png */; };
 		10DC2D6E1B998AF100A2AF9C /* bar-progress-4-normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D681B998AF100A2AF9C /* bar-progress-4-normal@3x.png */; };
+		10DC2D761B99A43F00A2AF9C /* test4.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D751B99A43F00A2AF9C /* test4.png */; };
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
 		10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */; };
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
@@ -709,6 +710,7 @@
 		10DC2D661B998AF100A2AF9C /* bar-progress-4-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-progress-4-normal.png"; sourceTree = "<group>"; };
 		10DC2D671B998AF100A2AF9C /* bar-progress-4-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-progress-4-normal@2x.png"; sourceTree = "<group>"; };
 		10DC2D681B998AF100A2AF9C /* bar-progress-4-normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar-progress-4-normal@3x.png"; sourceTree = "<group>"; };
+		10DC2D751B99A43F00A2AF9C /* test4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test4.png; sourceTree = "<group>"; };
 		10DE89291B677690009025C4 /* home-fourStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-fourStatus.png"; sourceTree = "<group>"; };
 		10DE89671B686C2A009025C4 /* UILabel+AttributeColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+AttributeColor.h"; sourceTree = "<group>"; };
 		10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AttributeColor.m"; sourceTree = "<group>"; };
@@ -2297,6 +2299,7 @@
 		49B37B3E1B608F39004EED47 /* progressbar */ = {
 			isa = PBXGroup;
 			children = (
+				10DC2D751B99A43F00A2AF9C /* test4.png */,
 				49B37B3F1B608F39004EED47 /* bar-highlighted.png */,
 				49B37B401B608F39004EED47 /* bar-highlighted@2x.png */,
 				49B37B411B608F39004EED47 /* bar-highlighted@3x.png */,
@@ -3241,6 +3244,7 @@
 				4944C0331B68A5A100805C0A /* icon-account-info@3x.png in Resources */,
 				4944C0341B68A5A100805C0A /* icon-account-repay.png in Resources */,
 				4944C0151B68A44A00805C0A /* icon-cloze-selected.png in Resources */,
+				10DC2D761B99A43F00A2AF9C /* test4.png in Resources */,
 				4944C0351B68A5A100805C0A /* icon-account-repay@2x.png in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-about@2x.png in Resources */,
 				C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */,
