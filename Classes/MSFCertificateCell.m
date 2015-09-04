@@ -60,43 +60,43 @@
 }
 
 - (void)drawRect:(CGRect)rect {
-	/*
+	
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	
 	if (_separatorType == 0) {
 		if (!_lastLine) {
-			CGContextMoveToPoint(context, 0, rect.size.height - 1);
-			CGContextAddLineToPoint(context, rect.size.width - 10, rect.size.height - 1);
+			CGContextMoveToPoint(context, 0, rect.size.height - 0.5);
+			CGContextAddLineToPoint(context, rect.size.width - 10, rect.size.height - 0.5);
 		}
 	} else {
 		if (!_lastLine) {
-			CGContextMoveToPoint(context, 10, rect.size.height - 1);
-			CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 1);
+			CGContextMoveToPoint(context, 10, rect.size.height - 0.5);
+			CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 0.5);
 		}
 	}
 
 	switch (_separatorType) {
 		case 1: {
-			CGContextMoveToPoint(context, rect.size.width - 1, 10);
-			CGContextAddLineToPoint(context, rect.size.width - 1, rect.size.height);
+			CGContextMoveToPoint(context, rect.size.width - 0.5, 10);
+			CGContextAddLineToPoint(context, rect.size.width - 0.5, rect.size.height);
 			break;
 		}
 		case 2: {
-			CGContextMoveToPoint(context, rect.size.width - 1, 0);
-			CGContextAddLineToPoint(context, rect.size.width - 1, rect.size.height - 10);
+			CGContextMoveToPoint(context, rect.size.width - 0.5, 0);
+			CGContextAddLineToPoint(context, rect.size.width - 0.5, rect.size.height - 10);
 			break;
 		}
 		case 3: {
-			CGContextMoveToPoint(context, rect.size.width - 1, 0);
-			CGContextAddLineToPoint(context, rect.size.width - 1, rect.size.height);
+			CGContextMoveToPoint(context, rect.size.width - 0.5, 0);
+			CGContextAddLineToPoint(context, rect.size.width - 0.5, rect.size.height);
 			break;
 		}
 		default:break;
 	}
 	
-	CGContextSetLineWidth(context, 1);
+	CGContextSetLineWidth(context, 0.5);
 	[[UIColor borderColor] setStroke];
-	CGContextStrokePath(context);*/
+	CGContextStrokePath(context);
 }
 
 @end
