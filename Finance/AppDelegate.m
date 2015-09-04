@@ -164,6 +164,7 @@ static BOOL poped;
 		}];
 	}];
 	
+	/*
 	// Timeout Handle
 	[[self rac_signalForSelector:@selector(applicationDidBecomeActive:)]
 		subscribeNext:^(id x) {
@@ -182,6 +183,7 @@ static BOOL poped;
 			NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"expire-string-file"];
 			[string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 		}];
+	*/
 	
 	// Error Handle
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"

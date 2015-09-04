@@ -29,6 +29,11 @@
 
 #import "MSFLocationModel.h"
 
+#import "MSFInventoryViewModel.h"
+#import "MSFCertificatesCollectionViewController.h"
+
+#import <CZPhotoPickerController/CZPhotoPickerController.h>
+
 @implementation MSFViewModelServicesImpl
 
 #pragma mark - Private
@@ -53,6 +58,9 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
   } else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
 		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+  } else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
+		viewController = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
@@ -116,6 +124,23 @@
 		return nil;
 	}];
 	return nil;
+}
+
+- (RACSignal *)takePicture {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		CZPhotoPickerController *pickerController =
+			[[CZPhotoPickerController alloc] initWithPresentingViewController:self.navigationController withCompletionBlock:^(UIImagePickerController *imagePickerController, NSDictionary *imageInfoDict) {
+				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage] ?: imageInfoDict[UIImagePickerControllerOriginalImage];
+				if (image) {
+					[subscriber sendNext:image];
+				}
+				[subscriber sendCompleted];
+		}];
+		[pickerController showFromTabBar:[self navigationController].tabBarController.tabBar];
+		return [RACDisposable disposableWithBlock:^{
+			[pickerController dismissAnimated:YES];
+		}];
+	}];
 }
 
 @end

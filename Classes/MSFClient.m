@@ -83,7 +83,6 @@ static BOOL isRunningTests(void) {
 		return [@{
 			@"Device": [devices componentsJoinedByString:@";"],
 			@"Set-Cookie": cookie,
-			@"Content-Type": @"application/x-www-form-urlencoded; charset=utf-8",
 		} mutableCopy];
 	};
 	self.defaultHeaders = MFSClientDefaultHeaders();
@@ -337,18 +336,32 @@ static BOOL isRunningTests(void) {
 		URLString:[URL.absoluteString stringByAppendingString:signature.query]
 		parameters:nil
 		constructingBodyWithBlock:block error:nil];
-	[request setAllHTTPHeaderFields:self.defaultHeaders];
+	request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
 	
 	return request;
 }
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(id)parameters {
+	if ([path isEqualToString:@"attachment/saveList"]) {
+		NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
+		MSFSignature *signature = [self signatureWithPath:URL.path parameters:nil];
+		NSMutableURLRequest *request = [AFJSONRequestSerializer.serializer requestWithMethod:@"POST"
+			URLString:[URL.absoluteString stringByAppendingString:signature.query]
+			parameters:parameters
+			error:nil];
+		request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
+		
+		return request;
+	}
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
 	NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method
 		URLString:URL.absoluteString
 		parameters:[self signatureArgumentsWithPath:URL.path parameters:parameters]
 		error:nil];
-	[request setAllHTTPHeaderFields:self.defaultHeaders];
+	request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
+	request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"Content-Type": @"application/x-www-form-urlencoded; charset=utf-8"
+	}];
 	
 	return request;
 }
