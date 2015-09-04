@@ -45,6 +45,7 @@
 			[self.attachment mergeValueForKey:@"contentName" fromModel:x];
 			[self.attachment mergeValueForKey:@"contentType" fromModel:x];
 			[self.attachment mergeValueForKey:@"contentID" fromModel:x];
+			[self.attachment mergeValueForKey:@"objectID" fromModel:x];
 		}];
 	}];
 	_downloadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.downloadValidSignal signalBlock:^RACSignal *(id input) {

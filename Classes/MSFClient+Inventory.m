@@ -30,11 +30,9 @@
 		}];
 	}];
 	NSMutableDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:inventory].mutableCopy;
-	if (attachments.count  > 0) {
-		NSData *data = [NSJSONSerialization dataWithJSONObject:attachments options:NSJSONWritingPrettyPrinted error:nil];
-		NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		[parameters setObject:string forKey:@"fileList"];
-	}
+	NSData *data = [NSJSONSerialization dataWithJSONObject:attachments options:NSJSONWritingPrettyPrinted error:nil];
+	NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	[parameters setObject:string forKey:@"fileList"];
 	[parameters removeObjectForKey:@"server"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"attachment/saveList" parameters:parameters];
 	
