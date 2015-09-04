@@ -130,7 +130,7 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		CZPhotoPickerController *pickerController =
 			[[CZPhotoPickerController alloc] initWithPresentingViewController:self.navigationController withCompletionBlock:^(UIImagePickerController *imagePickerController, NSDictionary *imageInfoDict) {
-				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage];
+				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage] ?: imageInfoDict[UIImagePickerControllerOriginalImage];
 				if (image) {
 					[subscriber sendNext:image];
 				}
