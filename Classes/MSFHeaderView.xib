@@ -14,19 +14,47 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="lbt-Fb-eDY">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="lbt-Fb-eDY" userLabel="bar1.png">
                             <rect key="frame" x="62" y="43" width="36.5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="eFZ-ZF-O83"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="jP1-qY-kQH">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="jP1-qY-kQH" userLabel="bar2.png">
                             <rect key="frame" x="141" y="43" width="37.5" height="4"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="vU5-m5-X6N"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8L-n6-7L0">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rJP-eL-8JJ" userLabel="bar3.png">
+                            <rect key="frame" x="221" y="43" width="37.5" height="4"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="4" id="84d-V8-n1n"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-KG-JRh" userLabel="1">
+                            <rect key="frame" x="18" y="22" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="45" id="d9V-1O-NiY"/>
+                                <constraint firstAttribute="height" constant="45" id="ecd-a3-SPE"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="icon_order1_n.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="icon_order1_h.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6a-y9-i6t" userLabel="2">
+                            <rect key="frame" x="97" y="22" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="Eff-iF-9Ul"/>
+                                <constraint firstAttribute="width" constant="45" id="kh4-rM-R3G"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="icon_order2_n.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" backgroundImage="icon_order2_h.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8L-n6-7L0" userLabel="3">
                             <rect key="frame" x="177" y="22" width="45" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="KYI-Dq-bdp"/>
@@ -37,22 +65,16 @@
                             </state>
                             <state key="selected" backgroundImage="icon_order3_h.png"/>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rJP-eL-8JJ">
-                            <rect key="frame" x="221" y="43" width="37.5" height="4"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sV6-DW-0GU" userLabel="4">
+                            <rect key="frame" x="257" y="22" width="45" height="45"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="4" id="84d-V8-n1n"/>
+                                <constraint firstAttribute="width" constant="45" id="Q5l-o1-hoP"/>
+                                <constraint firstAttribute="height" constant="45" id="aad-45-cqo"/>
                             </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6a-y9-i6t">
-                            <rect key="frame" x="97" y="22" width="45" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="45" id="Eff-iF-9Ul"/>
-                                <constraint firstAttribute="width" constant="45" id="kh4-rM-R3G"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="icon_order2_n.png">
+                            <state key="normal" backgroundImage="icon_order4_n.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" backgroundImage="icon_order2_h.png"/>
+                            <state key="selected" backgroundImage="icon_order4_h.png"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基本信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoN-LX-Mfy">
                             <rect key="frame" x="0.0" y="74" width="80" height="16"/>
@@ -78,28 +100,6 @@
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-KG-JRh">
-                            <rect key="frame" x="18" y="22" width="45" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="d9V-1O-NiY"/>
-                                <constraint firstAttribute="height" constant="45" id="ecd-a3-SPE"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="icon_order1_n.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="icon_order1_h.png"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sV6-DW-0GU">
-                            <rect key="frame" x="257" y="22" width="45" height="45"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="45" id="Q5l-o1-hoP"/>
-                                <constraint firstAttribute="height" constant="45" id="aad-45-cqo"/>
-                            </constraints>
-                            <state key="normal" backgroundImage="icon_order4_n.png">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <state key="selected" backgroundImage="icon_order4_h.png"/>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
