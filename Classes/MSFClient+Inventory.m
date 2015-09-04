@@ -20,12 +20,23 @@
 }
 
 - (RACSignal *)updateInventory:(MSFInventory *)inventory {
-	NSDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:inventory];
-//	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parameters options:NSJSONWritingPrettyPrinted error:nil];
-//	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//	NSDictionary *params = [NSDictionary dictionaryWithObject:jsonStr forKey:@"attachmentData"];
+	NSMutableArray *attachments = [[NSMutableArray alloc] init];
+	[inventory.attachments enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *stop) {
+		[attachments addObject:@{
+			@"fileId": obj.contentID,
+			@"attachmentName": obj.contentName,
+			@"attachmentType": obj.type,
+			@"attachmentTypePlain": obj.plain,
+		}];
+	}];
+	NSMutableDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:inventory].mutableCopy;
+	if (attachments.count  > 0) {
+		NSData *data = [NSJSONSerialization dataWithJSONObject:attachments options:NSJSONWritingPrettyPrinted error:nil];
+		NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		[parameters setObject:string forKey:@"fileList"];
+	}
+	[parameters removeObjectForKey:@"server"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"attachment/saveList" parameters:parameters];
-//	[request setHTTPMethod:@"POST"];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
