@@ -342,6 +342,17 @@ static BOOL isRunningTests(void) {
 }
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(id)parameters {
+	if ([path isEqualToString:@"attachment/saveList"]) {
+		NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
+		MSFSignature *signature = [self signatureWithPath:URL.path parameters:nil];
+		NSMutableURLRequest *request = [AFJSONRequestSerializer.serializer requestWithMethod:@"POST"
+			URLString:[URL.absoluteString stringByAppendingString:signature.query]
+			parameters:parameters
+			error:nil];
+		request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
+		
+		return request;
+	}
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
 	NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method
 		URLString:URL.absoluteString

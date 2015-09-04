@@ -30,9 +30,7 @@
 		}];
 	}];
 	NSMutableDictionary *parameters = [MTLJSONAdapter JSONDictionaryFromModel:inventory].mutableCopy;
-	NSData *data = [NSJSONSerialization dataWithJSONObject:attachments options:NSJSONWritingPrettyPrinted error:nil];
-	NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	[parameters setObject:string forKey:@"fileList"];
+	[parameters setObject:attachments forKey:@"fileList"];
 	[parameters removeObjectForKey:@"server"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"attachment/saveList" parameters:parameters];
 	
