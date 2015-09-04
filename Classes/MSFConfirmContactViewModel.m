@@ -34,7 +34,9 @@
 	_servers = servers;
 	_laterConfirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeLaterConfirmContract];
+
 	}];
+	//_laterConfirmCommand.allowsConcurrentExecution = YES;
 	_confirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 		//[self executeLaterConfirmContract];
@@ -54,33 +56,35 @@
 		//[[self executeConfirmContract] replayLast];
 	}];
 	
-	
-	
-	//[MSFConfirmContactViewModel requestContactsWithServers];
-	[[[servers.httpClient fetchContacts].collect replayLazily] subscribeNext:^(id x) {
+	[self fetchContractist];
+		
+	return self;
+}
+
+- (void)fetchContractist {
+	@weakify(self)
+	[[[self.servers.httpClient fetchContacts].collect replayLazily] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 		@strongify(self)
 		self.contactsArray = x;
 		for (MSFContactListModel *model in self.contactsArray) {
-			//if ([model.contractStatus isEqualToString:@"WN"]) {
-				self.model = model;
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-				//break;
-			//}
+			if ([model.contractStatus isEqualToString:@"WN"]) {
+			self.model = model;
+			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
+			break;
+			}
 		}
 	} error:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		//NSLog(@"%@", error);
 	}];
-	
-	return self;
 }
-
 
 - (RACSignal *)executeLaterConfirmContract {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil];
 		[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
+		[subscriber sendCompleted];
 		return nil;
 	}];
 }
@@ -92,7 +96,9 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
 		[self.servers pushViewModel:self];
 		[subscriber sendCompleted];
-		return nil;
+		return [RACDisposable disposableWithBlock:^{
+			
+		}];
 	}];
 }
 

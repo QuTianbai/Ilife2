@@ -21,6 +21,7 @@
 
 - (RACSignal *)requestContactInfo;
 - (id)initWithServers:(id<MSFViewModelServices>)servers;
+- (void)fetchContractist;
 
 
 @end
