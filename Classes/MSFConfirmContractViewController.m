@@ -41,7 +41,7 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	//self.confirmContractWebView loadRequest:<#(NSURLRequest *)#>
 	//self.confirmContractWebView.scrollView.bounces = NO;
-	[SVProgressHUD showWithStatus:@"正在加载..."];
+	//[SVProgressHUD showWithStatus:@"正在加载..."];
 	RACSignal *signal = [self.viewModel requestContactInfo];
 	[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
 		//[SVProgressHUD dismiss];
@@ -49,9 +49,9 @@
 	@weakify(self)
 	[self.viewModel.requestConfirmCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		[SVProgressHUD showWithStatus:@"正在加载..."];
+		//[SVProgressHUD showWithStatus:@"正在加载..."];
 		[signal subscribeNext:^(MSFConfirmContractModel *model) {
-			[SVProgressHUD dismiss];
+			//[SVProgressHUD dismiss];
 			if ([model.errorCode isEqualToString:@"0"]) {
 				[self.navigationController popViewControllerAnimated:YES];
 			} else {
@@ -71,7 +71,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[SVProgressHUD showWithStatus:@"正在加载..."];
+//	[SVProgressHUD showWithStatus:@"正在加载..."];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

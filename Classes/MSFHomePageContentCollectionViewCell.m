@@ -71,24 +71,26 @@
 			}
 		}
 	}
-	self.ConFirmContractBT.hidden = YES;
-	 self.infoLabel.hidden = NO;
+	self.ConFirmContractBT.hidden = NO;
+	 self.statusLabel.hidden = YES;
 	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
-		 [SVProgressHUD showWithStatus:@"正在加载..."];
-		 self.ConFirmContractBT.hidden = YES;
-		 self.infoLabel.hidden = NO;
-		 [[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
+		 //[SVProgressHUD showWithStatus:@"正在加载..."];
+//		 self.ConFirmContractBT.hidden = YES;
+//		 self.statusLabel.hidden = NO;
+		 NSLog(@"我是发通知");
+		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+		 
 	 }];
 	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil] subscribeNext:^(id x) {
-		self.ConFirmContractBT.hidden = NO;
-		self.infoLabel.hidden = YES;
+//		self.ConFirmContractBT.hidden = NO;
+//		self.statusLabel.hidden = YES;
 	}];
 	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil] subscribeNext:^(id x) {
-		self.ConFirmContractBT.hidden = YES;
-		self.infoLabel.hidden = NO;
+//		self.ConFirmContractBT.hidden = YES;
+//		self.statusLabel.hidden = NO;
 	}];
 	
 	[self placeholderShow:YES];

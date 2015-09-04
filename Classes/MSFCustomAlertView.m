@@ -24,13 +24,13 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 @property (nonatomic, copy) UIImage *image;
 @property (nonatomic, copy) NSString *cancleTitle;
 @property (nonatomic, copy) NSString *confirmTitle;
-@property (nonatomic, strong) MSFCustomAlertViewController *rootViewController;
+@property (nonatomic, strong) MSFCustomAlertViewController *myRootViewController;
 
 @end
 
 @implementation MSFCustomAlertView
 
-- (instancetype) initAlertViewWithFrame:(CGRect)frame  AndTitle:(NSString *)title AndMessage:(NSString *)message AndImage:(UIImage *)image andCancleButtonTitle:(NSString *)cancleButton AndConfirmButtonTitle:(NSString *)confirmTitle {
+- (instancetype)initAlertViewWithFrame:(CGRect)frame  AndTitle:(NSString *)title AndMessage:(NSString *)message AndImage:(UIImage *)image andCancleButtonTitle:(NSString *)cancleButton AndConfirmButtonTitle:(NSString *)confirmTitle {
 	self = [super initWithFrame:frame];
 	if (!self) {
 		return nil;
@@ -47,8 +47,8 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 }
 
 - (void)showWithViewModel:(MSFConfirmContactViewModel *)viewmodel {
-	self.rootViewController.viewModel = viewmodel;
-	[self.rootViewController bindBTRACCommand];
+	self.myRootViewController.viewModel = viewmodel;
+	[self.myRootViewController bindBTRACCommand];
 	[self makeKeyAndVisible];
 	
 	//[UIApplication sharedApplication];
@@ -61,8 +61,8 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 }
 
 - (void)createView {
-	 self.rootViewController = [[MSFCustomAlertViewController alloc] init];
-	self.rootViewController.view.backgroundColor =self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
-	self.rootViewController = self.rootViewController;
+	 self.myRootViewController = [[MSFCustomAlertViewController alloc] init];
+	self.myRootViewController.view.backgroundColor = self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4];
+	self.rootViewController = self.myRootViewController;
 }
 @end

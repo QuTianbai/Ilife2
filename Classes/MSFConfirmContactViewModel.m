@@ -44,22 +44,35 @@
 	_requestConfirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeSubmitConfirmContract];
 	}];
+
+
+	@weakify(self)
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMCONTRACT" object:nil] subscribeNext:^(id x) {
+		NSLog(@"我是收通知");
+		@strongify(self)
+		[self.confirmCommand execute:nil];
+		//[[self executeConfirmContract] replayLast];
+	}];
+	
+	
 	
 	//[MSFConfirmContactViewModel requestContactsWithServers];
 	[[[servers.httpClient fetchContacts].collect replayLazily] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
+		@strongify(self)
 		self.contactsArray = x;
 		for (MSFContactListModel *model in self.contactsArray) {
-			if ([model.contractStatus isEqualToString:@"WN"]) {
+			//if ([model.contractStatus isEqualToString:@"WN"]) {
 				self.model = model;
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-				break;
-			}
+				//break;
+			//}
 		}
 	} error:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		//NSLog(@"%@", error);
 	}];
+	
 	return self;
 }
 
@@ -89,7 +102,7 @@
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
-	}] replay];
+	}] replayLast];
 	
 	
 }
