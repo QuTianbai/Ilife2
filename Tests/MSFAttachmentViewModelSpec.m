@@ -33,32 +33,31 @@ it(@"should initialize", ^{
   // then
 	expect(viewModel.attachment).to(equal(model));
 	expect(viewModel.thumbURL).to(beNil());
-	expect(@(viewModel.isUploaded)).to(beFalsy());
+	expect(viewModel.fileURL).to(beNil());
 	expect(viewModel.takePhotoCommand).notTo(beNil());
+	expect(viewModel.removeCommand).notTo(beNil());
 	expect(viewModel.uploadAttachmentCommand).notTo(beNil());
 	expect(viewModel.downloadAttachmentCommand).notTo(beNil());
 	expect(@(viewModel.isUploaded)).to(beFalsy());
 	expect(@(viewModel.removeEnabled)).to(beTruthy());
 });
 
-describe(@"attachment from server", ^{
-	it(@"should download picture", ^{
-		// given
-		NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
-		[given([services httpClient]) willReturn:client];
-		[given([client downloadAttachment:model]) willDo:^id(NSInvocation *invocation) {
-			stubProperty(model, thumbURL, URL);
-			stubProperty(model, fileURL, URL);
-			return [RACSignal return:UIImageJPEGRepresentation([UIImage imageNamed:@"tmp.jpg"], 1)];
-		}];
-		
-		// when
-		[[viewModel.downloadAttachmentCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
-		
-		// then
-		expect(viewModel.attachment.thumbURL).notTo(beNil());
-		expect(viewModel.attachment.fileURL).notTo(beNil());
-	});
+it(@"should download picture", ^{
+	// given
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	[given([services httpClient]) willReturn:client];
+	[given([client downloadAttachment:model]) willDo:^id(NSInvocation *invocation) {
+		stubProperty(model, thumbURL, URL);
+		stubProperty(model, fileURL, URL);
+		return [RACSignal return:UIImageJPEGRepresentation([UIImage imageNamed:@"tmp.jpg"], 1)];
+	}];
+	
+	// when
+	[[viewModel.downloadAttachmentCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	
+	// then
+	expect(viewModel.attachment.thumbURL).notTo(beNil());
+	expect(viewModel.attachment.fileURL).notTo(beNil());
 });
 
 describe(@"attachment from camera", ^{
