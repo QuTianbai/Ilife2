@@ -23,8 +23,8 @@
 	NSMutableArray *attachments = [[NSMutableArray alloc] init];
 	[inventory.attachments enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *stop) {
 		[attachments addObject:@{
-			@"fileId": obj.contentID,
-			@"attachmentName": obj.contentName,
+			@"fileId": obj.contentID ?: obj.fileID,
+			@"attachmentName": obj.contentName ?: obj.name,
 			@"attachmentType": obj.type,
 			@"attachmentTypePlain": obj.plain,
 		}];
