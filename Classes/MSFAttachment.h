@@ -44,6 +44,8 @@
 
 // 附件上传，后从服务器返回的json中的文件类型 `image/jpg`
 @property (nonatomic, copy, readonly) NSString *contentType;
+@property (nonatomic, copy, readonly) NSString *contentName;
+@property (nonatomic, copy, readonly) NSString *contentID;
 
 @property (nonatomic, strong) NSURL *contentURL __deprecated_msg("Remove contentURL use thumbURL");
 
