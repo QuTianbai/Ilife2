@@ -133,17 +133,22 @@
 
 - (RACSignal *)takePicture {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		CZPhotoPickerController *pickerController =
-			[[CZPhotoPickerController alloc] initWithPresentingViewController:self.navigationController withCompletionBlock:^(UIImagePickerController *imagePickerController, NSDictionary *imageInfoDict) {
-				UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage] ?: imageInfoDict[UIImagePickerControllerOriginalImage];
-				if (image) {
-					[subscriber sendNext:image];
-				}
-				[subscriber sendCompleted];
+		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+		} else {
+			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+		}
+		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];
+		[imagePickerController.rac_imageSelectedSignal subscribeNext:^(NSDictionary *imageInfoDict) {
+			UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage] ?: imageInfoDict[UIImagePickerControllerOriginalImage];
+			[subscriber sendNext:image];
+			[subscriber sendCompleted];
+		} completed:^{
+			[subscriber sendCompleted];
 		}];
-		[pickerController showFromTabBar:[self navigationController].tabBarController.tabBar];
 		return [RACDisposable disposableWithBlock:^{
-			[pickerController dismissAnimated:YES];
+			[imagePickerController dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}];
 }
