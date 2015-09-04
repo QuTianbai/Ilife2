@@ -53,9 +53,14 @@ UICollectionViewDelegate>
 	
 	self.submitButton.rac_command = self.viewModel.uploadCommand;
 	[self.viewModel.uploadCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
+			if (_completionBlock) {
+				_completionBlock();
+			}
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.uploadCommand.errors subscribeNext:^(NSError *error) {

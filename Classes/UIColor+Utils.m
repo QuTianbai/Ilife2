@@ -63,4 +63,8 @@
 	return [UIColor colorWithHex:0x0BABED];
 }
 
++ (UIColor *)separatorColor {
+	return [UIColor colorWithHex:0xE1E1E1];
+}
+
 @end

@@ -100,7 +100,7 @@
 	}];
 	_executeOtherTwoValuesCommand.allowsConcurrentExecution = YES;
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal empty];
+		//return [RACSignal empty];
 		
     @strongify(self)
     self.model.applyStatus1 = @"1";

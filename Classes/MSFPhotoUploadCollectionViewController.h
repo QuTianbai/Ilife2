@@ -10,6 +10,8 @@
 
 @interface MSFPhotoUploadCollectionViewController : UIViewController
 
+@property (nonatomic, copy) void (^completionBlock) ();
+
 - (void)bindViewModel:(id)viewModel;
 
 @end

@@ -27,9 +27,9 @@
 
 - (void)bindViewModel:(MSFElementViewModel *)viewModel {
 	_viewModel = viewModel;
+	_markImageView.hidden = !viewModel.isCompleted;
 	_titleLabel.text = viewModel.title;
-	[_iconImageView setImageWithURL:viewModel.thumbURL];
-	
+	[_iconImageView setImageWithURL:viewModel.thumbURL placeholderImage:[UIImage imageNamed:@"photoUpload_placeholder.png"]];
 }
 
 - (void)drawSeparatorAtIndex:(NSIndexPath *)indexPath total:(NSInteger)total {
