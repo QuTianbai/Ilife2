@@ -89,7 +89,7 @@
 
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
 	self.model.page = [@(page) stringValue];
-	if (page == 4) {
+	if (page == 5) {
 		self.model.applyStatus1 = @"1";
 	} else {
 		self.model.applyStatus1 = @"0";
