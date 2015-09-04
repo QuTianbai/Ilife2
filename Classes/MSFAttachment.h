@@ -47,8 +47,6 @@
 @property (nonatomic, copy, readonly) NSString *contentName;
 @property (nonatomic, copy, readonly) NSString *contentID;
 
-@property (nonatomic, strong) NSURL *contentURL __deprecated_msg("Remove contentURL use thumbURL");
-
 @property (nonatomic, strong) NSURL *thumbURL;
 @property (nonatomic, strong) NSURL *fileURL;
 
