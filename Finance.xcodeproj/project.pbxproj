@@ -3924,7 +3924,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "9a2024a7-4714-4479-a1d1-a80bc673f5ad";
+				PROVISIONING_PROFILE = "60d8e36e-d9b2-4b35-bae5-3c529434252d";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3952,7 +3952,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
 			};
 			name = Debug;
 		};
@@ -3976,7 +3976,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "2749116e-9d0c-4374-a91a-18d213b57565";
+				PROVISIONING_PROFILE = "60d8e36e-d9b2-4b35-bae5-3c529434252d";
 			};
 			name = Release;
 		};
@@ -4069,7 +4069,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
+				PROVISIONING_PROFILE = "9a2024a7-4714-4479-a1d1-a80bc673f5ad";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4095,7 +4095,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "644da688-821f-4b48-8527-f6689aecd933";
+				PROVISIONING_PROFILE = "b9c77414-2f83-460f-b29f-c1acfceeae6c";
 			};
 			name = Distribution;
 		};
