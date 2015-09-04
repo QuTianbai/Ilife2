@@ -43,9 +43,10 @@
                                     <constraint firstAttribute="height" constant="60" id="vYD-K8-ezY"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l5S-fv-hAN">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l5S-fv-hAN">
                                 <rect key="frame" x="0.0" y="64" width="320" height="444"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c7p-DR-FCE">
                                     <size key="itemSize" width="193" height="139"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -99,6 +100,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ln9-v8-Dgh" secondAttribute="trailing" id="FaK-mf-hgr"/>
                                             <constraint firstItem="ln9-v8-Dgh" firstAttribute="leading" secondItem="ePJ-qm-1FS" secondAttribute="leading" id="UGp-C9-tFK"/>
