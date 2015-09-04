@@ -110,7 +110,8 @@
 			}]
 		array];
 	self.model.attachments = attachemnts;
-	return [self.formsViewModel.services.httpClient updateInventory:self.model];
+	return [[self.formsViewModel.services.httpClient updateInventory:self.model]
+		zipWith:[self.formsViewModel submitSignalWithPage:5]];
 }
 
 @end
