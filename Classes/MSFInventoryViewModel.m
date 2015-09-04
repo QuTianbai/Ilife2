@@ -20,7 +20,6 @@
 
 @interface MSFInventoryViewModel ()
 
-@property (nonatomic, weak, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 
 @end

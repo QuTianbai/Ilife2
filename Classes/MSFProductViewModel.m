@@ -237,8 +237,8 @@
 				[self setModelData:applyInfo with:self.formsViewModel.model];
 				[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
 				
-				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
-//		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
+				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
 		[self.services pushViewModel:viewModel];
 				
 			}

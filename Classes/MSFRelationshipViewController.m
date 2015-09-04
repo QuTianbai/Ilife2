@@ -28,9 +28,7 @@
 #import "MSFSubmitAlertView.h"
 #import "MSFSelectKeyValues.h"
 #import "MSFXBMCustomHeader.h"
-#import "MSFAlertViewModel.h"
-#import "MSFAlertViewController.h"
-#import "MSFClient.h"
+#import "MSFInventoryViewModel.h"
 
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
@@ -326,36 +324,23 @@ ABPersonViewControllerDelegate>
 			[SVProgressHUD showErrorWithStatus:[self.viewModel checkForm]];
 			return;
 		}
-		MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.services httpClient].user];
-		MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
-		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
-		[[KGModal sharedInstance] setShowCloseButton:NO];
-		[[KGModal sharedInstance] showWithContentViewController:alertViewController];
 		
-		[viewModel.buttonClickedSignal subscribeNext:^(id x) {
-			[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-				[self.viewModel.executeCommitCommand execute:nil];
-			}];
-		} completed:^{
-			[[KGModal sharedInstance] hideAnimated:YES];
-		}];
+		[self.viewModel.executeCommitCommand execute:nil];
+
 	}];
 	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] init];
-		[self.navigationController pushViewController:vc animated:YES];
-		/*
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"恭喜您! 申请已提交!"];
-			@strongify(self)
-			[self.tabBarController setSelectedIndex:0];
-			[self.navigationController popToRootViewControllerAnimated:NO];
+			[SVProgressHUD dismiss];
+			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+			MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
 		}];
-		 */
+		
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];

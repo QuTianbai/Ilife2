@@ -16,7 +16,7 @@
 @interface MSFInventoryViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFInventory *model;
-
+@property (nonatomic, weak,   readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) MSFProduct *product;
 @property (nonatomic, strong, readonly) MSFApplicationResponse *credit;
 

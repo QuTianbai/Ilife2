@@ -10,10 +10,21 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <libextobjc/extobjc.h>
+#import <KGModal/KGModal.h>
 #import "MSFCertificateCell.h"
 #import "MSFExtraOptionCell.h"
 #import "MSFInventoryViewModel.h"
 #import "MSFElementViewModel.h"
+#import "MSFHeaderView.h"
+
+#import "MSFAlertViewModel.h"
+#import "MSFAlertViewController.h"
+#import "MSFFormsViewModel.h"
+#import "MSFViewModelServices.h"
+#import "MSFUser.h"
+#import "MSFClient.h"
+
+
 
 #import "MSFPhotoUploadCollectionViewController.h"
 
@@ -49,6 +60,7 @@ UICollectionViewDelegateFlowLayout>
 	
 	self.submitButton.layer.cornerRadius = 5;
 	[self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"MSFBlankSpaceCell"];
+	[self.collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFHeaderReuseView"];
 
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
@@ -56,13 +68,30 @@ UICollectionViewDelegateFlowLayout>
 		[self.collectionView reloadData];
 	}];
 	
-	self.submitButton.rac_command = self.viewModel.executeUpdateCommand;
+	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
+		MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+		
+		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+		[[KGModal sharedInstance] setShowCloseButton:NO];
+		[[KGModal sharedInstance] showWithContentViewController:alertViewController];
+		
+		[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+			[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+				[self.viewModel.executeUpdateCommand execute:nil];
+			}];
+		} completed:^{
+			[[KGModal sharedInstance] hideAnimated:YES];
+		}];
+	}];
+	
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 		}];
 	}];
+	
 	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
@@ -73,6 +102,14 @@ UICollectionViewDelegateFlowLayout>
 }
 
 #pragma mark - UICollectionViewFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 90);
+	} else {
+		return CGSizeZero;
+	}
+}
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
@@ -125,6 +162,17 @@ UICollectionViewDelegateFlowLayout>
 	} else {
 		return 1;
 	}
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+	if (kind == UICollectionElementKindSectionHeader) {
+		UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFHeaderReuseView" forIndexPath:indexPath];
+		MSFHeaderView *header = [MSFHeaderView headerViewWithIndex:3];
+		header.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		[view addSubview:header];
+		return view;
+	}
+	return nil;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
