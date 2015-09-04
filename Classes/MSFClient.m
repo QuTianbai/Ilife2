@@ -348,6 +348,9 @@ static BOOL isRunningTests(void) {
 		parameters:[self signatureArgumentsWithPath:URL.path parameters:parameters]
 		error:nil];
 	request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
+	request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"Content-Type": @"application/x-www-form-urlencoded; charset=utf-8"
+	}];
 	
 	return request;
 }
