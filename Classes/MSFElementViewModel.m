@@ -135,9 +135,13 @@
 }
 
 - (RACSignal *)uploadSignal {
-	return [self.viewModels.rac_sequence.signal flattenMap:^RACStream *(MSFAttachmentViewModel *attachmentViewModel) {
-		return [attachmentViewModel.uploadAttachmentCommand execute:nil];
-	}];
+	return [[self.viewModels.rac_sequence.signal flattenMap:^RACStream *(MSFAttachmentViewModel *attachmentViewModel) {
+		return [[attachmentViewModel.uploadAttachmentCommand
+			execute:nil]
+			catch:^RACSignal *(NSError *error) {
+				return [RACSignal empty];
+			}];
+	}] collect];
 }
 
 @end

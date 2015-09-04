@@ -92,12 +92,10 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sV6-DW-0GU">
                             <rect key="frame" x="257" y="22" width="45" height="45"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="DUM-YP-Vdg"/>
                                 <constraint firstAttribute="width" constant="45" id="Q5l-o1-hoP"/>
                                 <constraint firstAttribute="height" constant="45" id="aad-45-cqo"/>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="as3-mV-uAr"/>
                             </constraints>
-                            <state key="normal" backgroundImage="bar-progress-4-normal.png">
+                            <state key="normal" backgroundImage="test4.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="selected" backgroundImage="bar-progress-4-highlighted.png"/>
@@ -183,6 +181,6 @@
         <image name="bar-progress-3-highlighted.png" width="53" height="53"/>
         <image name="bar-progress-3-normal.png" width="45" height="45"/>
         <image name="bar-progress-4-highlighted.png" width="45" height="45"/>
-        <image name="bar-progress-4-normal.png" width="45" height="45"/>
+        <image name="test4.png" width="158" height="158"/>
     </resources>
 </document>
