@@ -8,6 +8,7 @@
 
 #import "MSFPhotoUploadCollectionViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFPhotosUploadCell.h"
 #import "MSFPhotosUploadHeaderView.h"
 #import "MSFElementViewModel.h"
@@ -36,13 +37,13 @@ UICollectionViewDelegate>
 	_submitButton.layer.cornerRadius = 5;
 	
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-	CGFloat width = (screenWidth - 60) / 2;
+	CGFloat width = (screenWidth - 30) / 2;
 	UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
 	layout.headerReferenceSize = CGSizeMake(screenWidth, 145);
-	layout.itemSize = CGSizeMake(width, width * 0.7);
-	layout.minimumInteritemSpacing = 20;
-	layout.minimumLineSpacing = 20;
-	layout.sectionInset = UIEdgeInsetsMake(20, 20, 0, 20);
+	layout.itemSize = CGSizeMake(width, (width - 20) * 0.62 + 20);
+	layout.minimumInteritemSpacing = 10;
+	layout.minimumLineSpacing = 10;
+	layout.sectionInset = UIEdgeInsetsMake(10, 10, 0, 10);
 	
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
@@ -50,7 +51,15 @@ UICollectionViewDelegate>
 		[self.collectionView reloadData];
 	}];
 	
-	_submitButton.rac_command = _viewModel.uploadCommand;
+	self.submitButton.rac_command = self.viewModel.uploadCommand;
+	[[self.viewModel.uploadCommand.executionSignals
+		 doNext:^(id x) {
+		[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeNone];
+	}] subscribeNext:^(id x) {
+		[SVProgressHUD showSuccessWithStatus:@"提交图片成功"];
+	} error:^(NSError *error) {
+		[SVProgressHUD showSuccessWithStatus:@"提交图片失败"];
+	}];
 }
 
 #pragma mark - UICollectionViewDataSource

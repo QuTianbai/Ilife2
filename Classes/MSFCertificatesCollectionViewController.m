@@ -8,6 +8,7 @@
 
 #import "MSFCertificatesCollectionViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <libextobjc/extobjc.h>
 #import "MSFCertificateCell.h"
 #import "MSFExtraOptionCell.h"
@@ -59,15 +60,24 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	_submitButton.layer.cornerRadius = 5;
 	
-	self.submitButton.rac_command = self.viewModel.executeUpdateCommand;
-	
+	self.submitButton.layer.cornerRadius = 5;
+
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
+	
+	self.submitButton.rac_command = self.viewModel.executeUpdateCommand;
+	[[self.viewModel.executeUpdateCommand.executionSignals
+		doNext:^(id x) {
+			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeNone];
+		}] subscribeNext:^(id x) {
+			[SVProgressHUD showSuccessWithStatus:@"提交申请成功"];
+		} error:^(NSError *error) {
+			[SVProgressHUD showSuccessWithStatus:@"提交申请失败"];
+		}];
 }
 
 #pragma mark - UICollectionViewFlowLayout
@@ -108,10 +118,18 @@ UICollectionViewDelegateFlowLayout>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 	if (self.optional) {
-		return self.viewModel.optionalViewModels.count;
+		if (self.viewModel.optionalViewModels.count % 2 == 0) {
+			return self.viewModel.optionalViewModels.count;
+		} else {
+			return self.viewModel.optionalViewModels.count + 1;
+		}
 	}
 	if (section == 0) {
-		return self.viewModel.requiredViewModels.count;
+		if (self.viewModel.requiredViewModels.count % 2 == 0) {
+			return self.viewModel.requiredViewModels.count;
+		} else {
+			return self.viewModel.requiredViewModels.count + 1;
+		}
 	} else {
 		return 1;
 	}
@@ -119,15 +137,32 @@ UICollectionViewDelegateFlowLayout>
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
-		MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
+		
+		NSInteger totalCount = 0;
 		if (self.optional) {
-			[cell bindViewModel:self.viewModel.optionalViewModels[indexPath.row]];
-			[cell drawSeparatorAtIndex:indexPath total:self.viewModel.optionalViewModels.count];
+			totalCount = self.viewModel.optionalViewModels.count;
 		} else {
-			[cell bindViewModel:self.viewModel.requiredViewModels[indexPath.row]];
-			[cell drawSeparatorAtIndex:indexPath total:self.viewModel.requiredViewModels.count];
+			totalCount = self.viewModel.requiredViewModels.count;
 		}
-		return cell;
+		
+		if (totalCount % 2 != 0 && indexPath.row == totalCount) {
+			static NSString *identifier = @"blankSpaceCell";
+			UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+			if (!cell) {
+				cell = [[UICollectionViewCell alloc] init];
+				cell.backgroundColor = [UIColor whiteColor];
+			}
+			return cell;
+		} else {
+			MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
+			if (self.optional) {
+				[cell bindViewModel:self.viewModel.optionalViewModels[indexPath.row]];
+			} else {
+				[cell bindViewModel:self.viewModel.requiredViewModels[indexPath.row]];
+			}
+			[cell drawSeparatorAtIndex:indexPath total:totalCount];
+			return cell;
+		}
 	} else {
 		MSFExtraOptionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFExtraOptionCell" forIndexPath:indexPath];
 		return cell;

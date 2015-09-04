@@ -35,9 +35,9 @@
 
 - (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextMoveToPoint(context, 0, rect.size.height - 1);
-	CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 1);
-	CGContextSetLineWidth(context, 1);
+	CGContextMoveToPoint(context, 0, rect.size.height - 0.5);
+	CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 0.5);
+	CGContextSetLineWidth(context, 0.5);
 	[[UIColor borderColor] setStroke];
 	CGContextStrokePath(context);
 }
