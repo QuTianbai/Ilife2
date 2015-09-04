@@ -98,9 +98,12 @@ static BOOL poped;
 	}];
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil] subscribeNext:^(id x) {
 		@strongify(self)
-		[self.confirmContactWindow dismiss];
-		self.confirmContactWindow = nil;
-		[self.window makeKeyAndVisible];
+		if (self.confirmContactWindow != nil) {
+			[self.confirmContactWindow dismiss];
+			self.confirmContactWindow = nil;
+			[self.window makeKeyAndVisible];
+		}
+		
 	}];
 	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"REFRASHTIMERCONTRACT" object:nil] subscribeNext:^(id x) {
@@ -272,6 +275,7 @@ static BOOL poped;
 	if (self.timer != nil) {
 		[self.timer setFireDate:[NSDate distantFuture]];
 	}
+	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 	self.window.rootViewController = navigationController;
