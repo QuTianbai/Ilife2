@@ -1826,6 +1826,21 @@
 			name = button;
 			sourceTree = "<group>";
 		};
+		4928CA881B9DB0A4000B1843 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
+				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
+				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
+				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
+				4975C9811B46D6D400AA79EB /* Images.xcassets */,
+				4975C9821B46D6D400AA79EB /* Info.plist */,
+				4975C9831B46D6D400AA79EB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		492BB41D1B1BFE870024897C /* Authorize */ = {
 			isa = PBXGroup;
 			children = (
@@ -2253,14 +2268,7 @@
 			children = (
 				4975C97B1B46D6D400AA79EB /* AppDelegate.h */,
 				4975C97C1B46D6D400AA79EB /* AppDelegate.m */,
-				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
-				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
-				4975C9811B46D6D400AA79EB /* Images.xcassets */,
-				4975C9821B46D6D400AA79EB /* Info.plist */,
-				4975C9831B46D6D400AA79EB /* main.m */,
-				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
-				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
-				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4928CA881B9DB0A4000B1843 /* Supporting Files */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -3241,7 +3249,6 @@
 				07C06C5A1B13464200F2DFCC /* edu_background.json in Resources */,
 				07C06C581B13461F00F2DFCC /* professional.json in Resources */,
 				10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */,
-				49B37B691B608F39004EED47 /* bar-progress-3-highlighted.png in Resources */,
 				0750AB121B96F77C00AD67F3 /* ConfirmContract.storyboard in Resources */,
 				4944C0551B68A60200805C0A /* icon-avatar-placeholder@3x.png in Resources */,
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
