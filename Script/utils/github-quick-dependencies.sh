@@ -18,10 +18,10 @@ cd $SRCROOT
 if [[ ! -d $QUICK_PATH ]]; then
   git clone https://github.com/Quick/Quick.git $EXTERNAL_DIR/Quick
 fi
-cd $QUICK_PATH/Externals/Nimble
-git checkout v0.4.2
 cd $QUICK_PATH
 git checkout v0.3.1
+rm -rf $QUICK_PATH/Externals/Nimble/.git
+rm -rf $QUICK_PATH/.git
 
 # Nimble
 cd $SRCROOT
@@ -30,9 +30,11 @@ if [[ ! -d $NIMBLE_PATH ]]; then
 fi
 cd $NIMBLE_PATH
 git checkout v0.4.2
+rm -rf $NIMBLE_PATH/.git
 
 # OHHTTPStubs
 cd $SRCROOT
 if [[ ! -d $OHHTTPSTUBS_PATH ]]; then
   git clone https://github.com/github/OHHTTPStubs.git $EXTERNAL_DIR/OHHTTPStubs
+	rm -rf $OHHTTPSTUBS_PATH/.git
 fi

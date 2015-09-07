@@ -1,0 +1,15 @@
+#!/bin/bash
+# Script to compile and run unit tests from the command line
+
+find_pattern () {
+    ls -d $1 2>/dev/null | head -n 1
+}
+
+XCWORKSPACE=$(find_pattern "*.xcworkspace")
+SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+
+echo "========================================================================="
+echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator clean test"
+echo "========================================================================="
+
+xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator clean test
