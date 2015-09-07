@@ -1,8 +1,6 @@
 //
 //  AppDelegate.m
-//  Cash
 //
-//  Created by gitmac on 5/14/15.
 //  Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
@@ -39,8 +37,6 @@
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 
-
-
 #if !DEBUG
 static BOOL poped;
 #endif
@@ -74,10 +70,7 @@ static BOOL poped;
 	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
 	
-	//确认合同
-	//MSFCustomAlertView *alertWindow = ;
-	//[alertWindow show];
-	//self.confirmContactWindow = alertWindow;
+	// 确认合同
 	@weakify(self)
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFREQUESTCONTRACTSNOTIFACATION object:nil] subscribeNext:^(id x) {
 		@strongify(self)
@@ -87,7 +80,6 @@ static BOOL poped;
 		} else {
 			[self.confirmContactViewModel fetchContractist];
 		}
-		
 	}];
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTNOTIFACATION object:nil] subscribeNext:^(id x) {
 		@strongify(self)
@@ -212,33 +204,8 @@ static BOOL poped;
 		}];
 	}];
 	
-	/*
-	// Timeout Handle
-	[[self rac_signalForSelector:@selector(applicationDidBecomeActive:)]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"expire-string-file"];
-			NSString *string = [[NSString alloc] initWithData:[NSData dataWithContentsOfFile:path] encoding:NSUTF8StringEncoding];
-			NSDate *date = [NSDate dateWithTimeIntervalSince1970:string.doubleValue];
-			if ([NSDate.date timeIntervalSinceDate:date] > 3 * 60) {
-				[self.viewModel.authorizeViewModel.executeSignOut execute:nil];
-			}
-	 }];
-	
-	[[self rac_signalForSelector:@selector(applicationDidEnterBackground:)]
-		subscribeNext:^(RACTuple *tuple) {
-			NSString *string = [@(NSDate.date.timeIntervalSince1970) stringValue];
-			NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"expire-string-file"];
-			[string writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-		}];
-	*/
-	
 	// Error Handle
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示"
-																											message:@"已在另一设备上登录，如非本人操作请立即修改密码"
-																										 delegate:nil
-																						cancelButtonTitle:nil
-																						otherButtonTitles:@"确定", nil];
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已在另一设备上登录，如非本人操作请立即修改密码" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
 	[[[[NSNotificationCenter defaultCenter]
 		 rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
 		takeUntil:self.rac_willDeallocSignal]
@@ -253,18 +220,13 @@ static BOOL poped;
 				}
 			}
 		}];
-	UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"无法连接到服务器"
-																											 message:nil
-																											delegate:nil
-																						 cancelButtonTitle:@"重新连接"
-																						 otherButtonTitles:nil];
+	UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"无法连接到服务器" message:nil delegate:nil cancelButtonTitle:@"重新连接" otherButtonTitles:nil];
 	[alertView2.rac_buttonClickedSignal subscribeNext:^(id x) {
 		[MSFUtils.setupSignal subscribeNext:^(id x) {
 			[self unAuthenticatedControllers];
 		}];
 	}];
-	[[[NSNotificationCenter defaultCenter]
-		rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			if (!alertView2.isVisible) {
