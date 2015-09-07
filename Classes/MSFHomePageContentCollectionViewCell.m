@@ -78,7 +78,7 @@
 		 //[SVProgressHUD showWithStatus:@"正在加载..."];
 		 self.ConFirmContractBT.hidden = YES;
 		 self.statusLabel.hidden = NO;
-		 NSLog(@"我是发通知");
+		 //NSLog(@"我是发通知");
 		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 		 
 	 }];

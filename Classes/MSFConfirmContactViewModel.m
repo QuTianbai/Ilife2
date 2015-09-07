@@ -93,7 +93,6 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
 		[self.servers pushViewModel:self];
 		[subscriber sendCompleted];
 		return [RACDisposable disposableWithBlock:^{

@@ -53,6 +53,8 @@
 		[signal subscribeNext:^(MSFConfirmContractModel *model) {
 			//[SVProgressHUD dismiss];
 			if ([model.errorCode isEqualToString:@"0"]) {
+				[SVProgressHUD showSuccessWithStatus:@"合同确认成功"];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
 				[self.navigationController popViewControllerAnimated:YES];
 			} else {
 				[SVProgressHUD showErrorWithStatus:@"确认失败，请稍后重试"];
