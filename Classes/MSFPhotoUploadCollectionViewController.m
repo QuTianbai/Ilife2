@@ -124,5 +124,4 @@ MWPhotoBrowserDelegate>
 	return photo;
 }
 
-
 @end
