@@ -11,12 +11,15 @@
 #import "MSFClient+Elements.h"
 #import "MSFProduct.h"
 #import "MSFElement.h"
+#import "MSFElementViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFResponse.h"
 #import "MSFClient+Inventory.h"
 #import "MSFAttachment.h"
 #import "MSFInventory.h"
+#import "MSFClient+MSFApplyCash.h"
+#import "MSFApplicationResponse.h"
 
 QuickSpecBegin(MSFInventoryViewModelSpec)
 
@@ -88,13 +91,19 @@ it(@"should update inventory to server", ^{
 	
 	MSFResponse *resposne = mock([MSFResponse class]);
 	stubProperty(resposne, parsedResult, @{@"message": @"success"});
+	MSFApplicationResponse *credit = mock([MSFApplicationResponse class]);
 	[given([client updateInventory:viewModel.model]) willReturn:[RACSignal return:resposne]];
+	[given([formsViewModel submitSignalWithPage:5]) willReturn:[RACSignal return:credit]];
 	
+	NSError *error;
 	// when
 	viewModel.active = YES;
-	MSFResponse *result = [[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	RACTuple *tuple = [[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
+	MSFResponse *result = tuple.first;
 	
 	// then
+	expect(error).to(beNil());
+	expect(tuple).notTo(beNil());
 	expect(viewModel.model.attachments.firstObject).to(beAKindOf(MSFAttachment.class));
 	expect(result.parsedResult[@"message"]).to(equal(@"success"));
 });

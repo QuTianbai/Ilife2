@@ -9,6 +9,7 @@
 #import "MSFPhotoUploadCollectionViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <MWPhotoBrowser/MWPhotoBrowser.h>
 #import "MSFPhotosUploadCell.h"
 #import "MSFPhotosUploadHeaderView.h"
 #import "MSFElementViewModel.h"
@@ -16,7 +17,8 @@
 
 @interface MSFPhotoUploadCollectionViewController ()
 <UICollectionViewDataSource,
-UICollectionViewDelegate>
+UICollectionViewDelegate,
+MWPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
@@ -57,9 +59,6 @@ UICollectionViewDelegate>
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			if (_completionBlock) {
-				_completionBlock();
-			}
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
@@ -93,12 +92,37 @@ UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	[collectionView deselectItemAtIndexPath:indexPath animated:YES];
-	if (indexPath.row == self.viewModel.viewModels.count - 1) {
-		MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[indexPath.row];
+	MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[indexPath.row];
+	if (!viewModel.removeEnabled) {
 		[[viewModel.takePhotoCommand execute:nil] subscribeNext:^(id x) {
 			[self.collectionView reloadData];
 		}];
+	} else {
+		MWPhotoBrowser *photoBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+		photoBrowser.enableGrid = YES;
+		photoBrowser.startOnGrid = YES;
+		photoBrowser.alwaysShowControls = YES;
+		[photoBrowser setCurrentPhotoIndex:indexPath.row];
+		[self.navigationController pushViewController:photoBrowser animated:YES];
 	}
 }
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+	MSFAttachmentViewModel *viewModel = [self.viewModel.viewModels lastObject];
+	if (viewModel.removeEnabled) {
+		return self.viewModel.viewModels.count;
+	} else {
+		return self.viewModel.viewModels.count - 1;
+	}
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+	MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[index];
+	MWPhoto *photo = [[MWPhoto alloc] initWithURL:viewModel.thumbURL];
+	return photo;
+}
+
 
 @end
