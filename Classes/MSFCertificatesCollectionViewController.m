@@ -232,7 +232,7 @@ UICollectionViewDelegateFlowLayout>
 		}
 	} else {
 		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:self.viewModel];
-		vc.navigationItem.title = @"上传更多资料";
+		vc.navigationItem.title = @"更多资料";
 		vc.optional = YES;
 		[self.navigationController pushViewController:vc animated:YES];
 	}

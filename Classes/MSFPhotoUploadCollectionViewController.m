@@ -15,6 +15,7 @@
 #import "MSFElementViewModel.h"
 #import "MSFElement.h"
 #import "MSFAttachmentViewModel.h"
+#import "UIColor+Utils.h"
 
 @interface MSFPhotoUploadCollectionViewController ()
 <UICollectionViewDataSource,
@@ -40,6 +41,8 @@ MWPhotoBrowserDelegate>
 	
 	[super viewDidLoad];
 	_submitButton.layer.cornerRadius = 5;
+	
+	[self setUpBackButton];
 	
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	CGFloat width = (screenWidth - 30) / 2;
@@ -67,6 +70,49 @@ MWPhotoBrowserDelegate>
 	[self.viewModel.uploadCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+}
+
+- (void)setUpBackButton {
+	NSInteger total = self.navigationController.viewControllers.count;
+	UIViewController *superVc = self.navigationController.viewControllers[total - 2];
+	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+	backBtn.frame = CGRectMake(0, 0, 100, 44);
+	[backBtn setTitle:superVc.navigationItem.title forState:UIControlStateNormal];
+	[backBtn setTitleColor:[UIColor themeColorNew] forState:UIControlStateNormal];
+	backBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+	[backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
+	[backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
+	[backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
+	[[backBtn rac_signalForControlEvents:UIControlEventTouchUpInside]
+	 subscribeNext:^(id x) {
+			if ([SVProgressHUD isVisible]) {
+				return;
+			}
+		 if (!self.viewModel.isCompleted && self.viewModel.attachments.count > 0) {
+			 UIAlertView *alert = [[UIAlertView alloc]
+														 initWithTitle:nil
+														 message:@"您有未提交的图片，需要提交吗？"
+														 delegate:nil
+														 cancelButtonTitle:@"放弃"
+														 otherButtonTitles:@"提交", nil];
+			 [alert show];
+			 [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *x) {
+				 if (x.integerValue == 0) {
+					 for (MSFAttachmentViewModel *viewModel in self.viewModel.viewModels) {
+						 if (viewModel.removeEnabled) {
+							 [viewModel.removeCommand execute:nil];
+						 }
+					 }
+					 [self.navigationController popViewControllerAnimated:YES];
+				 } else {
+					 [self.viewModel.uploadCommand execute:nil];
+				 }
+			 }];
+			 return;
+		 }
+		 [self.navigationController popViewControllerAnimated:YES];
+	}];
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
 }
 
 #pragma mark - UICollectionViewFlowLayout
