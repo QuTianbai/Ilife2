@@ -47,7 +47,6 @@
 	RAC(self, thumbURL) = RACObserve(self, element.thumbURL);
 	RAC(self, sampleURL) = RACObserve(self, element.sampleURL);
 	RAC(self, isRequired) = RACObserve(self, element.required);
-	RAC(self, isCompleted) = self.attachmentsUploadCompletedSignal;
 	
 	@weakify(self)
 	[RACObserve(self, placeholderViewModel.attachment.fileURL) subscribeNext:^(NSURL *URL) {
@@ -106,24 +105,19 @@
 	}
 }
 
-#pragma mark - Private
-
-- (RACSignal *)attachmentsUploadCompletedSignal {
-	return [RACSignal combineLatest:@[
-		RACObserve(self, viewModels),
-	]
-	reduce:^id (NSArray *viewModels) {
-		NSArray *models = [viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
-		if (models.count == 0) return @NO;
-		__block BOOL completed = YES;
-		[models enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
-			if (!obj.isUploaded) {
-				completed = NO;
-			}
-		}];
-		return @(completed);
+- (BOOL)isCompleted {
+	NSArray *models = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
+	if (models.count == 0) return NO;
+	__block BOOL completed = YES;
+	[models enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
+		if (!obj.isUploaded) {
+			completed = NO;
+		}
 	}];
+	return completed;
 }
+
+#pragma mark - Private
 
 - (RACSignal *)uploadValidSignal {
 	return [RACSignal combineLatest:@[
