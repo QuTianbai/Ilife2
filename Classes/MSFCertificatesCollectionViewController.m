@@ -36,6 +36,7 @@ UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
 
 @end
 
@@ -102,6 +103,8 @@ UICollectionViewDelegateFlowLayout>
 	
 	if (!self.optional) {
 		self.viewModel.active = YES;
+	} else {
+		self.constraint.constant = 0;
 	}
 }
 
@@ -229,6 +232,7 @@ UICollectionViewDelegateFlowLayout>
 		}
 	} else {
 		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:self.viewModel];
+		vc.navigationItem.title = @"上传更多资料";
 		vc.optional = YES;
 		[self.navigationController pushViewController:vc animated:YES];
 	}

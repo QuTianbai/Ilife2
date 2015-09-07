@@ -148,7 +148,7 @@
 			[subscriber sendCompleted];
 		}];
 		return [RACDisposable disposableWithBlock:^{
-			[imagePickerController dismissViewControllerAnimated:YES completion:nil];
+			[imagePickerController dismissViewControllerAnimated:NO completion:nil];
 		}];
 	}];
 }

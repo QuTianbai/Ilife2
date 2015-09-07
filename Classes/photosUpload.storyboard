@@ -156,11 +156,11 @@
                         <constraints>
                             <constraint firstItem="l5S-fv-hAN" firstAttribute="top" secondItem="LEe-hs-haB" secondAttribute="bottom" id="2Jr-Tu-aTM"/>
                             <constraint firstAttribute="trailing" secondItem="VKl-HA-CxE" secondAttribute="trailing" id="RyW-Lz-JRP"/>
+                            <constraint firstAttribute="bottom" secondItem="l5S-fv-hAN" secondAttribute="bottom" constant="60" id="Vnq-Qd-PNU"/>
                             <constraint firstAttribute="trailing" secondItem="l5S-fv-hAN" secondAttribute="trailing" id="eZh-DU-7vx"/>
                             <constraint firstItem="VKl-HA-CxE" firstAttribute="leading" secondItem="4EG-EH-atG" secondAttribute="leading" id="g3x-ab-beW"/>
                             <constraint firstItem="VKl-HA-CxE" firstAttribute="bottom" secondItem="4EG-EH-atG" secondAttribute="bottomMargin" id="jMN-bj-UwS"/>
                             <constraint firstItem="l5S-fv-hAN" firstAttribute="leading" secondItem="4EG-EH-atG" secondAttribute="leading" id="nY5-T0-uPJ"/>
-                            <constraint firstItem="VKl-HA-CxE" firstAttribute="top" secondItem="l5S-fv-hAN" secondAttribute="bottom" id="oLy-ro-29C"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="上传资料" id="Znl-vk-xdZ"/>
@@ -168,6 +168,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="collectionView" destination="l5S-fv-hAN" id="FxI-uq-DXm"/>
+                        <outlet property="constraint" destination="Vnq-Qd-PNU" id="4kU-Ab-NDw"/>
                         <outlet property="submitButton" destination="sZF-Gt-0Bt" id="HyA-6H-V9B"/>
                         <segue destination="3aB-XV-yFa" kind="push" identifier="photosUploadSegue" id="GUb-3N-L8r"/>
                     </connections>
@@ -193,7 +194,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rZO-Oy-DvQ">
                                     <size key="itemSize" width="154" height="95"/>
-                                    <size key="headerReferenceSize" width="50" height="145"/>
+                                    <size key="headerReferenceSize" width="50" height="150"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
@@ -205,7 +206,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="154" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A24-Yo-skN">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A24-Yo-skN">
                                                     <rect key="frame" x="10" y="10" width="134" height="75"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="stn-9s-Cd5">
@@ -252,14 +253,37 @@
                                             <color key="textColor" red="0.086274509799999996" green="0.59999999999999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iu-hA-Rhv">
+                                            <rect key="frame" x="90" y="20" width="140" height="90"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="140" id="haI-0q-jqR"/>
+                                                <constraint firstAttribute="height" constant="90" id="orz-PF-0Wo"/>
+                                            </constraints>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEz-ih-mAb">
+                                            <rect key="frame" x="20" y="141" width="280" height="0.0"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="centerX" secondItem="9Iu-hA-Rhv" secondAttribute="centerX" id="09x-dF-bt1"/>
                                         <constraint firstAttribute="centerX" secondItem="Tnb-sU-oQ1" secondAttribute="centerX" id="4Fo-0X-uWR"/>
+                                        <constraint firstAttribute="trailing" secondItem="aEz-ih-mAb" secondAttribute="trailing" constant="20" id="4NI-7M-qbB"/>
+                                        <constraint firstItem="9Iu-hA-Rhv" firstAttribute="top" secondItem="nP8-3v-e59" secondAttribute="top" constant="20" id="Hwg-OW-dpk"/>
+                                        <constraint firstItem="aEz-ih-mAb" firstAttribute="top" secondItem="Tnb-sU-oQ1" secondAttribute="bottom" constant="8" id="SE8-at-VgZ"/>
                                         <constraint firstAttribute="centerX" secondItem="9mU-Ju-gOF" secondAttribute="centerX" id="SX5-VW-kIP"/>
                                         <constraint firstItem="Tnb-sU-oQ1" firstAttribute="top" secondItem="9mU-Ju-gOF" secondAttribute="bottom" constant="5" id="TGa-ic-goE"/>
+                                        <constraint firstItem="aEz-ih-mAb" firstAttribute="leading" secondItem="nP8-3v-e59" secondAttribute="leading" constant="20" id="csr-8O-riG"/>
                                         <constraint firstItem="9mU-Ju-gOF" firstAttribute="top" secondItem="nP8-3v-e59" secondAttribute="top" constant="20" id="d0d-ec-M5p"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="browserButton" destination="9Iu-hA-Rhv" id="EeK-S7-Usu"/>
+                                        <outlet property="contentLabel" destination="aEz-ih-mAb" id="jnZ-42-jgw"/>
                                         <outlet property="displayImageView" destination="9mU-Ju-gOF" id="8td-LO-If1"/>
                                     </connections>
                                 </collectionReusableView>

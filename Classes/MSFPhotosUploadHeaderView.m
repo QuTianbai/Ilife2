@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
 @end
 
@@ -24,11 +25,15 @@
 
 - (void)awakeFromNib {
 	_displayImageView.layer.cornerRadius = 5;
+	//_displayImageView.layer.borderColor  = [UIColor borderColor].CGColor;
+	//_displayImageView.layer.borderWidth  = 1;
 }
 
 - (void)bindModel:(MSFElementViewModel *)viewModel {
 	_viewModel = viewModel;
 	[_displayImageView setImageWithURL:viewModel.element.sampleURL  placeholderImage:[UIImage imageNamed:@"photoUpload_placeholder.png"]];
+	_contentLabel.text = viewModel.element.comment;
+	[self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {

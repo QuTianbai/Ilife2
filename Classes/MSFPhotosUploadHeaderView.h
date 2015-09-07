@@ -10,6 +10,8 @@
 
 @interface MSFPhotosUploadHeaderView : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UIButton *browserButton;
+
 - (void)bindModel:(id)viewModel;
 
 @end

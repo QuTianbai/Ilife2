@@ -30,6 +30,7 @@
 	_markImageView.hidden = !viewModel.isCompleted;
 	_titleLabel.text = viewModel.title;
 	[_iconImageView setImageWithURL:viewModel.thumbURL placeholderImage:[UIImage imageNamed:@"photoUpload_placeholder.png"]];
+	[self setNeedsDisplay];
 }
 
 - (void)drawSeparatorAtIndex:(NSIndexPath *)indexPath total:(NSInteger)total {

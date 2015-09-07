@@ -11,6 +11,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
+#import "UIColor+Utils.h"
 
 @interface MSFPhotosUploadCell ()<UIAlertViewDelegate>
 
@@ -24,6 +25,8 @@
 
 - (void)awakeFromNib {
 	_uploadImageView.layer.cornerRadius = 5;
+	_uploadImageView.layer.borderColor = [UIColor borderColor].CGColor;
+	_uploadImageView.layer.borderWidth = 1;
 }
 
 - (void)bindViewModel:(MSFAttachmentViewModel *)viewModel {
