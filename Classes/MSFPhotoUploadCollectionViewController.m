@@ -13,16 +13,19 @@
 #import "MSFPhotosUploadCell.h"
 #import "MSFPhotosUploadHeaderView.h"
 #import "MSFElementViewModel.h"
+#import "MSFElement.h"
 #import "MSFAttachmentViewModel.h"
 
 @interface MSFPhotoUploadCollectionViewController ()
 <UICollectionViewDataSource,
 UICollectionViewDelegate,
+UICollectionViewDelegateFlowLayout,
 MWPhotoBrowserDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
+@property (nonatomic, assign) BOOL showExample;
 
 @end
 
@@ -41,7 +44,6 @@ MWPhotoBrowserDelegate>
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	CGFloat width = (screenWidth - 30) / 2;
 	UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-	layout.headerReferenceSize = CGSizeMake(screenWidth, 145);
 	layout.itemSize = CGSizeMake(width, (width - 20) * 0.62 + 20);
 	layout.minimumInteritemSpacing = 10;
 	layout.minimumLineSpacing = 10;
@@ -67,6 +69,19 @@ MWPhotoBrowserDelegate>
 	}];
 }
 
+#pragma mark - UICollectionViewFlowLayout
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+	if (self.viewModel.element.comment.length > 0) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+		CGSize size = [self.viewModel.element.comment sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(collectionView.frame.size.width - 40, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
+#pragma clang diagnostic pop
+		return CGSizeMake(collectionView.frame.size.width, 150.f + size.height);
+	}
+	return CGSizeMake(collectionView.frame.size.width, 150.f);
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -83,6 +98,10 @@ MWPhotoBrowserDelegate>
 	if (kind == UICollectionElementKindSectionHeader) {
 		MSFPhotosUploadHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFPhotosUploadHeaderView" forIndexPath:indexPath];
 		[view bindModel:self.viewModel];
+		[[[view.browserButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+		 takeUntil:view.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+			[self showPhotoBrowser:0 example:YES];
+		}];
 		return view;
 	}
 	return nil;
@@ -98,18 +117,26 @@ MWPhotoBrowserDelegate>
 			[self.collectionView reloadData];
 		}];
 	} else {
-		MWPhotoBrowser *photoBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-		photoBrowser.enableGrid = YES;
-		photoBrowser.startOnGrid = YES;
-		photoBrowser.alwaysShowControls = YES;
-		[photoBrowser setCurrentPhotoIndex:indexPath.row];
-		[self.navigationController pushViewController:photoBrowser animated:YES];
+		[self showPhotoBrowser:indexPath.row example:NO];
 	}
 }
 
-#pragma mark - MWPhotoBrowserDelegate
+#pragma mark - MWPhotoBrowser
+
+- (void)showPhotoBrowser:(NSInteger)curIndex example:(BOOL)b {
+	_showExample = b;
+	MWPhotoBrowser *photoBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+	photoBrowser.enableGrid  = YES;
+	photoBrowser.startOnGrid = YES;
+	photoBrowser.alwaysShowControls = YES;
+	[photoBrowser setCurrentPhotoIndex:curIndex];
+	[self.navigationController pushViewController:photoBrowser animated:YES];
+}
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+	if (_showExample) {
+		return 1;
+	}
 	MSFAttachmentViewModel *viewModel = [self.viewModel.viewModels lastObject];
 	if (viewModel.removeEnabled) {
 		return self.viewModel.viewModels.count;
@@ -119,10 +146,13 @@ MWPhotoBrowserDelegate>
 }
 
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+	if (_showExample) {
+		MWPhoto *photo = [[MWPhoto alloc] initWithURL:self.viewModel.sampleURL];
+		return photo;
+	}
 	MSFAttachmentViewModel *viewModel = self.viewModel.viewModels[index];
 	MWPhoto *photo = [[MWPhoto alloc] initWithURL:viewModel.thumbURL];
 	return photo;
 }
-
 
 @end

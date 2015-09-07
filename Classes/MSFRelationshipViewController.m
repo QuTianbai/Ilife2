@@ -338,6 +338,7 @@ ABPersonViewControllerDelegate>
 			[SVProgressHUD dismiss];
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
 			MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
+			vc.navigationItem.title = @"上传资料";
 			[self.navigationController pushViewController:vc animated:YES];
 		}];
 		
