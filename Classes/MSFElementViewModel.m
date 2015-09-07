@@ -114,7 +114,14 @@
 	]
 	reduce:^id (NSArray *viewModels) {
 		NSArray *models = [viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
-		return @(models.count > 0);
+		if (models.count == 0) return @NO;
+		__block BOOL completed = YES;
+		[models enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
+			if (!obj.isUploaded) {
+				completed = NO;
+			}
+		}];
+		return @(completed);
 	}];
 }
 

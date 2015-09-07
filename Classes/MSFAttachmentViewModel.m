@@ -32,9 +32,6 @@
 	_removeEnabled = !attachment.isPlaceholder;
 	RACChannelTo(self, thumbURL) = RACChannelTo(self, attachment.thumbURL);
 	RACChannelTo(self, fileURL) = RACChannelTo(self, attachment.fileURL);
-	RAC(self, isUploaded) = [RACObserve(self, attachment.objectID) map:^id(id value) {
-		return @([value boolValue]);
-	}];
 	
 	_takePhotoCommand = [[RACCommand alloc] initWithEnabled:self.takePhotoValidSignal signalBlock:^RACSignal *(id input) {
 		return [self takePhotoSignal];
@@ -94,6 +91,10 @@
 		BOOL exist = [[NSFileManager defaultManager] fileExistsAtPath:path];
 		return @(!placeholder.boolValue && !exist);
 	}];
+}
+
+- (BOOL)isUploaded {
+	return self.attachment.objectID != nil;
 }
 
 #pragma mark - Private

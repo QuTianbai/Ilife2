@@ -210,4 +210,12 @@ it(@"should can't download when attachment file download", ^{
 	expect(@(download)).to(beFalsy());
 });
 
+it(@"should be uploaded when attachment's objectID does not be nil", ^{
+	// when
+	stubProperty(model, objectID, @"123");
+	
+	// then
+	expect(@(viewModel.isUploaded)).to(beTruthy());
+});
+
 QuickSpecEnd

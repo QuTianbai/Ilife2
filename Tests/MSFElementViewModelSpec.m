@@ -143,4 +143,29 @@ it(@"should remove attachment in attachmentViewModel", ^{
 	expect(@(expectedViewModel.attachment.isPlaceholder)).to(beTruthy());
 });
 
+it(@"should complete when upload attachment successfully", ^{
+	// given
+	MSFAttachment *attachment = mock([MSFAttachment class]);
+	stubProperty(attachment, type, element.type);
+	stubProperty(attachment, objectID, @"foo");
+	
+	// when
+	[viewModel addAttachment:attachment];
+	
+	// then
+	expect(@(viewModel.isCompleted)).to(beTruthy());
+});
+
+it(@"should not be completed when not uplaod attchment", ^{
+	// given
+	MSFAttachment *attachment = mock([MSFAttachment class]);
+	stubProperty(attachment, type, element.type);
+	
+	// when
+	[viewModel addAttachment:attachment];
+	
+	// then
+	expect(@(viewModel.isCompleted)).to(beFalsy());
+});
+
 QuickSpecEnd
