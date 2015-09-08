@@ -48,7 +48,7 @@
 	@weakify(self)
 	[self.viewModel.requestConfirmCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		//[SVProgressHUD showWithStatus:@"正在加载..."];
+		[SVProgressHUD showWithStatus:@"正在加载..."];
 		[signal subscribeNext:^(MSFConfirmContractModel *model) {
 			if ([model.errorCode isEqualToString:@"0"]) {
 				[SVProgressHUD showSuccessWithStatus:@"合同确认成功"];
@@ -60,6 +60,10 @@
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
+	}];
+	
+	[self.viewModel.requestConfirmCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
