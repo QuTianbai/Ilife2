@@ -1826,6 +1826,21 @@
 			name = button;
 			sourceTree = "<group>";
 		};
+		4928CA881B9DB0A4000B1843 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
+				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
+				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
+				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
+				4975C9811B46D6D400AA79EB /* Images.xcassets */,
+				4975C9821B46D6D400AA79EB /* Info.plist */,
+				4975C9831B46D6D400AA79EB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		492BB41D1B1BFE870024897C /* Authorize */ = {
 			isa = PBXGroup;
 			children = (
@@ -2253,14 +2268,7 @@
 			children = (
 				4975C97B1B46D6D400AA79EB /* AppDelegate.h */,
 				4975C97C1B46D6D400AA79EB /* AppDelegate.m */,
-				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
-				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
-				4975C9811B46D6D400AA79EB /* Images.xcassets */,
-				4975C9821B46D6D400AA79EB /* Info.plist */,
-				4975C9831B46D6D400AA79EB /* main.m */,
-				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
-				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
-				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4928CA881B9DB0A4000B1843 /* Supporting Files */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
