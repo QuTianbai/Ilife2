@@ -13,6 +13,27 @@
 # a file called CHANGES (under the title of the new version
 # number) and create a GIT tag.
 
+find_pattern () {
+    ls -d $1 2>/dev/null | head -n 1
+}
+
+XCWORKSPACE=$(find_pattern "*.xcworkspace")
+SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+SCHEME_PLIST=$SCHEME/info.plist
+
+update_xcode_version() {
+    if [[ ! -n "$1" ]]; then
+        #statements
+        exit
+    fi
+    NEWSUBVERSION=$1
+    # Updated version
+    /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEWSUBVERSION" "$SCHEME_PLIST"
+    # Log New Version
+    VERSIONNUM=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$SCHEME_PLIST")
+    echo [$SCHEME] bumped verion to $VERSIONNUM
+}
+
 if [ -f VERSION ]; then
     BASE_STRING=`cat VERSION`
     BASE_LIST=(`echo $BASE_STRING | tr '.' ' '`)
@@ -35,10 +56,16 @@ if [ -f VERSION ]; then
     echo "" >> tmpfile
     cat CHANGES >> tmpfile
     mv tmpfile CHANGES
-    git add CHANGES VERSION
+
+    # Update xcode info.plist build verson
+    update_xcode_version $INPUT_STRING
+
+    # todo 
+    # git add VERSION CHANGES $SCHEME_PLIST
+    git add .
     git commit -m "Bumping version to $INPUT_STRING"
     git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
-    git push origin --tags
+    # git push origin --tags
 else
     echo "Could not find a VERSION file"
     read -p "Do you want to create a version file and start from scratch? [y]" RESPONSE
@@ -53,10 +80,16 @@ else
         git log --pretty=format:" - %s" >> CHANGES
         echo "" >> CHANGES
         echo "" >> CHANGES
-        git add VERSION CHANGES
+
+        # Update xcode info.plist build verson
+        update_xcode_version 0.1.0
+
+        # todo 
+        # git add VERSION CHANGES $SCHEME_PLIST
+        git add .
         git commit -m "Added VERSION and CHANGES files, Bumping version to v0.1.0"
         git tag -a -m "Tagging version 0.1.0" "v0.1.0"
-        git push origin --tags
+        # git push origin --tags
     fi
 
 fi
