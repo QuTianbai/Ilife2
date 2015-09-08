@@ -120,7 +120,7 @@ UICollectionViewDelegateFlowLayout>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 	if (section == 0 && !self.optional) {
-		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 90);
+		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 100);
 	} else {
 		return CGSizeZero;
 	}
@@ -129,7 +129,7 @@ UICollectionViewDelegateFlowLayout>
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	if (indexPath.section == 0) {
-		return CGSizeMake(screenWidth * 0.5, screenWidth * 0.35);
+		return CGSizeMake(screenWidth * 0.5, floor(screenWidth * 0.35));
 	} else {
 		return CGSizeMake(screenWidth, 44);
 	}
