@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *laterConfirmBT;
 @property (weak, nonatomic) IBOutlet UIButton *nowConfirmBT;
+@property (weak, nonatomic) IBOutlet UILabel *messageLB;
 
 @end
 
@@ -22,6 +23,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	self.messageLB.numberOfLines = 0;
 }
 
 - (void)bindBTRACCommand {
