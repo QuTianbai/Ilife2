@@ -22,10 +22,6 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-//	[[self.laterConfirmBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFCONFIRMCONTACTIONLATERNOTIFICATION" object:nil];
-//	}];
-	
 }
 
 - (void)bindBTRACCommand {
