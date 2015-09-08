@@ -68,22 +68,25 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-	
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
-		MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
-		
-		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
-		[[KGModal sharedInstance] setShowCloseButton:NO];
-		[[KGModal sharedInstance] showWithContentViewController:alertViewController];
-		
-		[viewModel.buttonClickedSignal subscribeNext:^(id x) {
-			[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-				[self.viewModel.executeUpdateCommand execute:nil];
+		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
+			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
+			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+			
+			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+			[[KGModal sharedInstance] setShowCloseButton:NO];
+			[[KGModal sharedInstance] showWithContentViewController:alertViewController];
+			
+			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+					[self.viewModel.executeUpdateCommand execute:nil];
+				}];
+			} completed:^{
+				[[KGModal sharedInstance] hideAnimated:YES];
 			}];
-		} completed:^{
-			[[KGModal sharedInstance] hideAnimated:YES];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 	}];
 	
@@ -117,7 +120,7 @@ UICollectionViewDelegateFlowLayout>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 	if (section == 0 && !self.optional) {
-		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 90);
+		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 100);
 	} else {
 		return CGSizeZero;
 	}
@@ -126,7 +129,7 @@ UICollectionViewDelegateFlowLayout>
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	if (indexPath.section == 0) {
-		return CGSizeMake(screenWidth * 0.5, screenWidth * 0.35);
+		return CGSizeMake(screenWidth * 0.5, floor(screenWidth * 0.35));
 	} else {
 		return CGSizeMake(screenWidth, 44);
 	}

@@ -61,6 +61,10 @@ MWPhotoBrowserDelegate>
 	self.submitButton.rac_command = self.viewModel.uploadCommand;
 	[self.viewModel.uploadCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		if (self.viewModel.isCompleted) {
+			[self.navigationController popViewControllerAnimated:YES];
+			return;
+		}
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

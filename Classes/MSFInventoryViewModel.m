@@ -94,23 +94,45 @@
   return self;
 }
 
+#pragma mark - Custom Accessors
+
+- (RACSignal *)updateValidSignal {
+	return [RACSignal defer:^RACSignal *{
+		NSArray *attachments = [[self.viewModels.rac_sequence
+			flattenMap:^RACStream *(MSFElementViewModel *elemntViewModel) {
+				return [[elemntViewModel.viewModels.rac_sequence
+					filter:^BOOL(MSFAttachmentViewModel *attachmentViewModel) {
+						return attachmentViewModel.isUploaded;
+					}]
+					map:^id(MSFAttachmentViewModel *value) {
+						return value.attachment;
+					}];
+				}]
+			array];
+		
+		__block NSError *error = nil;
+		[self.requiredViewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
+			if (!obj.isCompleted) {
+				error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
+					NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"请添加%@照片", obj.title]
+				}];
+				*stop = YES;
+			}
+		}];
+		if (error) return [RACSignal error:error];
+		return [RACSignal return:attachments];
+	}];
+}
+
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
-	NSArray *attachemnts = [[self.viewModels.rac_sequence
-		flattenMap:^RACStream *(MSFElementViewModel *elemntViewModel) {
-			return [[elemntViewModel.viewModels.rac_sequence
-				filter:^BOOL(MSFAttachmentViewModel *attachmentViewModel) {
-					return attachmentViewModel.isUploaded;
-				}]
-				map:^id(MSFAttachmentViewModel *value) {
-					return value.attachment;
-				}];
-			}]
-		array];
-	self.model.attachments = attachemnts;
-	return [[self.formsViewModel.services.httpClient updateInventory:self.model]
-		zipWith:[self.formsViewModel submitSignalWithPage:5]];
+	return [self.updateValidSignal flattenMap:^RACStream *(id value) {
+		self.model.attachments = value;
+		return [[self.formsViewModel.services.httpClient
+			updateInventory:self.model]
+			zipWith:[self.formsViewModel submitSignalWithPage:5]];
+	}];
 }
 
 @end

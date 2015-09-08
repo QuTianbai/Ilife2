@@ -1826,6 +1826,21 @@
 			name = button;
 			sourceTree = "<group>";
 		};
+		4928CA881B9DB0A4000B1843 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
+				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
+				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
+				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
+				4975C9811B46D6D400AA79EB /* Images.xcassets */,
+				4975C9821B46D6D400AA79EB /* Info.plist */,
+				4975C9831B46D6D400AA79EB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		492BB41D1B1BFE870024897C /* Authorize */ = {
 			isa = PBXGroup;
 			children = (
@@ -2253,14 +2268,7 @@
 			children = (
 				4975C97B1B46D6D400AA79EB /* AppDelegate.h */,
 				4975C97C1B46D6D400AA79EB /* AppDelegate.m */,
-				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
-				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
-				4975C9811B46D6D400AA79EB /* Images.xcassets */,
-				4975C9821B46D6D400AA79EB /* Info.plist */,
-				4975C9831B46D6D400AA79EB /* main.m */,
-				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
-				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
-				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4928CA881B9DB0A4000B1843 /* Supporting Files */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -3860,7 +3868,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "60d8e36e-d9b2-4b35-bae5-3c529434252d";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3888,7 +3896,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
+				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
 			};
 			name = Debug;
 		};
@@ -3912,7 +3920,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "2749116e-9d0c-4374-a91a-18d213b57565";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 			};
 			name = Release;
 		};
@@ -4031,7 +4039,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "2749116e-9d0c-4374-a91a-18d213b57565";
+				PROVISIONING_PROFILE = "9a2024a7-4714-4479-a1d1-a80bc673f5ad";
 			};
 			name = Distribution;
 		};

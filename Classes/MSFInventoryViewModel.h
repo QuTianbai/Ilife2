@@ -29,6 +29,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
 @property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
 
+- (RACSignal *)updateValidSignal;
+
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
 @end
