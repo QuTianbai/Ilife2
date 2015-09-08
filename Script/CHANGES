@@ -1,0 +1,71 @@
+Version 0.1.0
+ - Update bump-version
+ - Add bump-version
+ - Update dependencies
+ - Update
+ - Update dependencies
+ - Update bootstrap
+ - Remove .sh
+ - Update auto find sheme
+ - Update run simulator version  iPhone 5 7.1
+ - Improve Bootstrap Xcode-brsp
+ - Fix Bootstrap 转移字符
+ - Fix Bootstrap
+ - Rename Utils
+ - Merge remote-tracking branch 'origin/master'
+ - Update
+ - Add convert indentation tabs
+ - Merge remote-tracking branch 'origin/master'
+ - Update StyleSettings.plist
+ - Update Tests @import 兼容性
+ - Update StyleSettings remove return line space
+ - Update Tests-Prefix.pch Forward declaration errors with ObjC tests
+ - Update Prefix #import <Nimble/Nimble-Swift.h>
+ - Rename test
+ - Add kill xcode shell script
+ - Update clean
+ - Update Quick v0.3.1 Nimble v0.4.2
+ - Merge remote-tracking branch 'origin/master'
+ - Add Nimble-test Example for write test for every project
+ - Update bootstrap
+ - Update github
+ - update gitignore
+ - Merge remote-tracking branch 'origin/master'
+ - Add github gitignore
+ - Merge branch 'master' of https://github.com/objczl/Script
+ - Add Tests-Prefix.pch
+ - Update cocoapods
+ - Merge remote-tracking branch 'origin/master'
+ - Update submodules
+ - Update cocoapods
+ - Update objclean
+ - Update spec
+ - Update bootstrap
+ - Add SwiftSpec
+ - Update README
+ - Update bootstrap
+ - Update bootstrap
+ - Update
+ - Update test
+ - Add test-submodules-quick
+ - Merge remote-tracking branch 'origin/master'
+ - Add objclean
+ - Add xcode-todo-warnings
+ - Add todo warning
+ - Update
+ - Add Example
+ - Merge remote-tracking branch 'origin/master'
+ - Rename
+ - Update build-run.sh
+ - Add build-run.sh
+ - Add build-clean.sh
+ - Update Build-archive
+ - Update Build-archive.sh
+ - Add archive test sh
+ - Add Xcode bump
+ - Update lock info.plist
+ - Update Usage
+ - Update README Usage
+ - Add xcode scripts
+ - Initial commit
+

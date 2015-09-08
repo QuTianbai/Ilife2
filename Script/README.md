@@ -1,4 +1,4 @@
-# Script
+j# Script
 
 ## Build Version Script
 
@@ -17,13 +17,21 @@
 
 ## Tests
 
-  #import <Nimble/Nimble.h>
-  #import <Quick/Quick.h>
-  #import <Nimble/Nimble-Swift.h>
+```
+#import <Nimble/Nimble.h>
+#import <Quick/Quick.h>
+#import <Nimble/Nimble-Swift.h>
 
-  // "Enable Modules" to NO. '__Verify' is invalid in C99
-  #define MOCKITO_SHORTHAND
-  #import <OCMockito/OCMockito.h> 
+// "Enable Modules" to NO. '__Verify' is invalid in C99
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h> 
+```
+> 由于Objective-C++ 不支持@import只能才用上面的方式导入
+
+```
+@import Quick;
+@import Nimble;
+```
 
 ## Reference
 

@@ -3445,7 +3445,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/script/xcode-todo-warnings.sh\"";
+			shellScript = "\"${SRCROOT}/script/brsp/xcode-todo-warnings.sh\"";
 		};
 		493AC3671B12F7D500DE58B4 /* objcclean */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3459,7 +3459,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Script/xcode-objclean-warnings.sh\"";
+			shellScript = "\"${SRCROOT}/Script/brsp/xcode-objclean-warnings.sh\"";
 		};
 		49ACBC201B3004ED007E1F6B /* Exportenv */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3487,7 +3487,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#${SRCROOT}/Script/xcode-build-bump.sh";
+			shellScript = "#${SRCROOT}/Script/brsp/xcode-build-bump.sh";
 		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

@@ -1,0 +1,30 @@
+#!/bin/bash
+# Script to compile and run unit tests from the command line
+
+BUILD_DIR=$(pwd)/build
+
+find_pattern () {
+    ls -d $1 2>/dev/null | head -n 1
+}
+
+XCWORKSPACE=$(find_pattern "*.xcworkspace")
+SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+
+echo "========================================================================="
+echo "rm -rf $BUILD_DIR"
+echo "========================================================================="
+
+rm -rf $BUILD_DIR
+
+echo "========================================================================="
+echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator CONFIGURATION_BUILD_DIR=$BUILD_DIR clean build"
+echo "========================================================================="
+
+xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator CONFIGURATION_BUILD_DIR=$BUILD_DIR clean build
+
+echo "========================================================================="
+echo "ios-sim launch build/$SCHEME.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5, 7.1' --exit"
+echo "========================================================================="
+
+# ios-sim launch build/Example.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5, 7.1'
+ios-sim launch $BUILD_DIR/$SCHEME.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5, 7.1' --exit
