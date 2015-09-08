@@ -94,23 +94,52 @@
   return self;
 }
 
+#pragma mark - Custom Accessors
+- (RACSignal *)updateValidSignal {
+	return [RACSignal defer:^RACSignal *{
+		NSArray *attachments = [[self.viewModels.rac_sequence
+			flattenMap:^RACStream *(MSFElementViewModel *elemntViewModel) {
+				return [[elemntViewModel.viewModels.rac_sequence
+					filter:^BOOL(MSFAttachmentViewModel *attachmentViewModel) {
+						return attachmentViewModel.isUploaded;
+					}]
+					map:^id(MSFAttachmentViewModel *value) {
+						return value.attachment;
+					}];
+				}]
+			array];
+		
+		__block BOOL completed = YES;
+		[self.requiredViewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
+			if (!obj.isCompleted) {
+				completed = NO;
+				*stop = YES;
+			}
+		}];
+		NSError *error = nil;
+		if (attachments.count == 0) {
+			error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请添加必选图片",
+			}];
+		} else if (!completed) {
+			error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请添加完必选图片",
+			}];
+		}
+		if (error) return [RACSignal error:error];
+		return [RACSignal return:attachments];
+	}];
+}
+
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
-	NSArray *attachemnts = [[self.viewModels.rac_sequence
-		flattenMap:^RACStream *(MSFElementViewModel *elemntViewModel) {
-			return [[elemntViewModel.viewModels.rac_sequence
-				filter:^BOOL(MSFAttachmentViewModel *attachmentViewModel) {
-					return attachmentViewModel.isUploaded;
-				}]
-				map:^id(MSFAttachmentViewModel *value) {
-					return value.attachment;
-				}];
-			}]
-		array];
-	self.model.attachments = attachemnts;
-	return [[self.formsViewModel.services.httpClient updateInventory:self.model]
-		zipWith:[self.formsViewModel submitSignalWithPage:5]];
+	return [self.updateValidSignal flattenMap:^RACStream *(id value) {
+		self.model.attachments = value;
+		return [[self.formsViewModel.services.httpClient
+			updateInventory:self.model]
+			zipWith:[self.formsViewModel submitSignalWithPage:5]];
+	}];
 }
 
 @end
