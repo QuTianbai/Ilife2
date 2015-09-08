@@ -142,7 +142,7 @@ it(@"should get error when required element doese not have attachment", ^{
 	[[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
 	
 	// then
-	expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"请添加完必选图片"));
+	expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"请添加bar照片"));
 	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
 });
 
