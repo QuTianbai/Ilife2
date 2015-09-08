@@ -95,6 +95,7 @@
 }
 
 #pragma mark - Custom Accessors
+
 - (RACSignal *)updateValidSignal {
 	return [RACSignal defer:^RACSignal *{
 		NSArray *attachments = [[self.viewModels.rac_sequence
@@ -109,23 +110,15 @@
 				}]
 			array];
 		
-		__block BOOL completed = YES;
+		__block NSError *error = nil;
 		[self.requiredViewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
 			if (!obj.isCompleted) {
-				completed = NO;
+				error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
+					NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"请添加%@照片", obj.title]
+				}];
 				*stop = YES;
 			}
 		}];
-		NSError *error = nil;
-		if (attachments.count == 0) {
-			error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请添加必选图片",
-			}];
-		} else if (!completed) {
-			error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请添加完必选图片",
-			}];
-		}
 		if (error) return [RACSignal error:error];
 		return [RACSignal return:attachments];
 	}];
