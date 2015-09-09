@@ -98,7 +98,7 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextMoveToPoint(context, 0, rect.size.height);
 	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
-	CGContextSetLineWidth(context, 1);
+	CGContextSetLineWidth(context, 0.5);
 	[[UIColor borderColor] setStroke];
 	CGContextStrokePath(context);
 }

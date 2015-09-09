@@ -6,6 +6,7 @@
 
 #import "MSFAttachmentViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
 #import <NSString-Hashes/NSString+Hashes.h>

@@ -17,7 +17,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *markImageView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
+@property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) NSInteger separatorType;
+@property (nonatomic, assign) BOOL firstLine;
 @property (nonatomic, assign) BOOL lastLine;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
 
@@ -34,6 +36,12 @@
 }
 
 - (void)drawSeparatorAtIndex:(NSIndexPath *)indexPath total:(NSInteger)total {
+	
+	if (indexPath.row == 0 || indexPath.row == 1) {
+		_firstLine = YES;
+	} else {
+		_firstLine = NO;
+	}
 	
 	if (total % 2 == 0 && (indexPath.row == total - 1 || indexPath.row == total - 2)) {
 		_lastLine = YES;
@@ -63,6 +71,16 @@
 - (void)drawRect:(CGRect)rect {
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
+	
+	if (_firstLine) {
+		CGContextMoveToPoint(context, 0, 0);
+		CGContextAddLineToPoint(context, rect.size.width, 0);
+	}
+	
+	if (_lastLine) {
+		CGContextMoveToPoint(context, 0, rect.size.height);
+		CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+	}
 	
 	if (_separatorType == 0) {
 		if (!_lastLine) {

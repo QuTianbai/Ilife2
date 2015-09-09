@@ -63,6 +63,8 @@ UICollectionViewDelegateFlowLayout>
 	self.submitButton.layer.cornerRadius = 5;
 	[self.collectionView registerClass:MSFBlankCell.class forCellWithReuseIdentifier:@"MSFBlankCell"];
 	[self.collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFHeaderReuseView"];
+	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 
 	@weakify(self)
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
@@ -112,6 +114,10 @@ UICollectionViewDelegateFlowLayout>
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self.collectionView reloadData];
+}
+
+- (void)back {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UICollectionViewFlowLayout

@@ -25,8 +25,6 @@
 
 - (void)awakeFromNib {
 	_displayImageView.layer.cornerRadius = 5;
-	//_displayImageView.layer.borderColor  = [UIColor borderColor].CGColor;
-	//_displayImageView.layer.borderWidth  = 1;
 }
 
 - (void)bindModel:(MSFElementViewModel *)viewModel {

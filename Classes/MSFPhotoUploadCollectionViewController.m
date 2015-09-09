@@ -15,6 +15,7 @@
 #import "MSFElementViewModel.h"
 #import "MSFElement.h"
 #import "MSFAttachmentViewModel.h"
+#import "MSFAttachment.h"
 #import "UIColor+Utils.h"
 
 @interface MSFPhotoUploadCollectionViewController ()
@@ -42,7 +43,7 @@ MWPhotoBrowserDelegate>
 	[super viewDidLoad];
 	_submitButton.layer.cornerRadius = 5;
 	
-	[self setUpBackButton];
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	CGFloat width = (screenWidth - 30) / 2;
@@ -58,13 +59,29 @@ MWPhotoBrowserDelegate>
 		[self.collectionView reloadData];
 	}];
 	
-	self.submitButton.rac_command = self.viewModel.uploadCommand;
+	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		__block BOOL hasUpload = NO;
+		[self.viewModel.viewModels enumerateObjectsUsingBlock:^(MSFAttachmentViewModel *obj, NSUInteger idx, BOOL *stop) {
+			if (!obj.isUploaded && !obj.attachment.isPlaceholder) {
+				hasUpload = YES;
+				*stop = YES;
+			}
+		}];
+		if (hasUpload) {
+			[self.viewModel.uploadCommand execute:nil];
+		} else {
+			[SVProgressHUD showErrorWithStatus:@"请拍摄当前类型照片"];
+		}
+	}];
 	[self.viewModel.uploadCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
-			[self.navigationController popViewControllerAnimated:YES];
+			[SVProgressHUD showSuccessWithStatus:@"上传图片成功"];
+			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+				[self.navigationController popViewControllerAnimated:YES];
+			});
 		}];
 	}];
 	[self.viewModel.uploadCommand.errors subscribeNext:^(NSError *error) {
@@ -72,47 +89,33 @@ MWPhotoBrowserDelegate>
 	}];
 }
 
-- (void)setUpBackButton {
-	NSInteger total = self.navigationController.viewControllers.count;
-	UIViewController *superVc = self.navigationController.viewControllers[total - 2];
-	UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-	backBtn.frame = CGRectMake(0, 0, 100, 44);
-	[backBtn setTitle:superVc.navigationItem.title forState:UIControlStateNormal];
-	[backBtn setTitleColor:[UIColor themeColorNew] forState:UIControlStateNormal];
-	backBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-	[backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-	[backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
-	[backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
-	[[backBtn rac_signalForControlEvents:UIControlEventTouchUpInside]
-	 subscribeNext:^(id x) {
-			if ([SVProgressHUD isVisible]) {
-				return;
+- (void)back {
+	if ([SVProgressHUD isVisible]) {
+		return;
+	}
+	if (!self.viewModel.isCompleted && self.viewModel.attachments.count > 0) {
+		UIAlertView *alert = [[UIAlertView alloc]
+													initWithTitle:nil
+													message:@"您有未提交的图片，需要提交吗？"
+													delegate:nil
+													cancelButtonTitle:@"放弃"
+													otherButtonTitles:@"提交", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *x) {
+			if (x.integerValue == 0) {
+				for (MSFAttachmentViewModel *viewModel in self.viewModel.viewModels) {
+					if (viewModel.removeEnabled) {
+						[viewModel.removeCommand execute:nil];
+					}
+				}
+				[self.navigationController popViewControllerAnimated:YES];
+			} else {
+				[self.viewModel.uploadCommand execute:nil];
 			}
-		 if (!self.viewModel.isCompleted && self.viewModel.attachments.count > 0) {
-			 UIAlertView *alert = [[UIAlertView alloc]
-														 initWithTitle:nil
-														 message:@"您有未提交的图片，需要提交吗？"
-														 delegate:nil
-														 cancelButtonTitle:@"放弃"
-														 otherButtonTitles:@"提交", nil];
-			 [alert show];
-			 [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *x) {
-				 if (x.integerValue == 0) {
-					 for (MSFAttachmentViewModel *viewModel in self.viewModel.viewModels) {
-						 if (viewModel.removeEnabled) {
-							 [viewModel.removeCommand execute:nil];
-						 }
-					 }
-					 [self.navigationController popViewControllerAnimated:YES];
-				 } else {
-					 [self.viewModel.uploadCommand execute:nil];
-				 }
-			 }];
-			 return;
-		 }
-		 [self.navigationController popViewControllerAnimated:YES];
-	}];
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
+		}];
+		return;
+	}
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UICollectionViewFlowLayout
@@ -123,9 +126,9 @@ MWPhotoBrowserDelegate>
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 		CGSize size = [self.viewModel.element.comment sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(collectionView.frame.size.width - 40, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
 #pragma clang diagnostic pop
-		return CGSizeMake(collectionView.frame.size.width, 150.f + size.height);
+		return CGSizeMake(collectionView.frame.size.width, 180.f + size.height);
 	}
-	return CGSizeMake(collectionView.frame.size.width, 150.f);
+	return CGSizeMake(collectionView.frame.size.width, 180.f);
 }
 
 #pragma mark - UICollectionViewDataSource
