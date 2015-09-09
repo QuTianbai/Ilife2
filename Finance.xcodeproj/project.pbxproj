@@ -123,6 +123,11 @@
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
 		491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */; };
+		4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */; };
+		492007501BA00CCD00C0722C /* EIOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007461BA00CCD00C0722C /* EIOperationManager.m */; };
+		492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007491BA00CCD00C0722C /* NSData+Storage.m */; };
+		492007521BA00CCD00C0722C /* StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 4920074C1BA00CCD00C0722C /* StandardPaths.m */; };
+		492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4920074E1BA00CCD00C0722C /* UIImage+Resize.m */; };
 		4925AD581B2A786900872A8A /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 4925AD571B2A786900872A8A /* products.json */; };
 		4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925ADBD1B2AB92500872A8A /* MSFBlurView.m */; };
 		4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925ADD31B2AC07300872A8A /* MSFBlurFieldView.m */; };
@@ -776,6 +781,17 @@
 		491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCodeButton.m; sourceTree = "<group>"; };
 		491C5FB71B0F21D500CADF8E /* MSFCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCheckButton.h; sourceTree = "<group>"; };
 		491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCheckButton.m; sourceTree = "<group>"; };
+		492007431BA00CCD00C0722C /* EIImagePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIImagePickerDelegate.h; sourceTree = "<group>"; };
+		492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIImagePickerDelegate.m; sourceTree = "<group>"; };
+		492007451BA00CCD00C0722C /* EIOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIOperationManager.h; sourceTree = "<group>"; };
+		492007461BA00CCD00C0722C /* EIOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIOperationManager.m; sourceTree = "<group>"; };
+		492007471BA00CCD00C0722C /* EssentialImager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EssentialImager.h; sourceTree = "<group>"; };
+		492007481BA00CCD00C0722C /* NSData+Storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Storage.h"; sourceTree = "<group>"; };
+		492007491BA00CCD00C0722C /* NSData+Storage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Storage.m"; sourceTree = "<group>"; };
+		4920074B1BA00CCD00C0722C /* StandardPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardPaths.h; sourceTree = "<group>"; };
+		4920074C1BA00CCD00C0722C /* StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardPaths.m; sourceTree = "<group>"; };
+		4920074D1BA00CCD00C0722C /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		4920074E1BA00CCD00C0722C /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		4925AD571B2A786900872A8A /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		4925ADBC1B2AB92500872A8A /* MSFBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBlurView.h; sourceTree = "<group>"; };
 		4925ADBD1B2AB92500872A8A /* MSFBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBlurView.m; sourceTree = "<group>"; };
@@ -1757,6 +1773,32 @@
 			name = Button;
 			sourceTree = "<group>";
 		};
+		492007421BA00CCD00C0722C /* EssentialImager */ = {
+			isa = PBXGroup;
+			children = (
+				492007431BA00CCD00C0722C /* EIImagePickerDelegate.h */,
+				492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */,
+				492007451BA00CCD00C0722C /* EIOperationManager.h */,
+				492007461BA00CCD00C0722C /* EIOperationManager.m */,
+				492007471BA00CCD00C0722C /* EssentialImager.h */,
+				492007481BA00CCD00C0722C /* NSData+Storage.h */,
+				492007491BA00CCD00C0722C /* NSData+Storage.m */,
+				4920074A1BA00CCD00C0722C /* StandardPaths */,
+				4920074D1BA00CCD00C0722C /* UIImage+Resize.h */,
+				4920074E1BA00CCD00C0722C /* UIImage+Resize.m */,
+			);
+			path = EssentialImager;
+			sourceTree = "<group>";
+		};
+		4920074A1BA00CCD00C0722C /* StandardPaths */ = {
+			isa = PBXGroup;
+			children = (
+				4920074B1BA00CCD00C0722C /* StandardPaths.h */,
+				4920074C1BA00CCD00C0722C /* StandardPaths.m */,
+			);
+			path = StandardPaths;
+			sourceTree = "<group>";
+		};
 		4925AD791B2A80A100872A8A /* Guide */ = {
 			isa = PBXGroup;
 			children = (
@@ -2276,6 +2318,7 @@
 		497CA1231B3128120099CE56 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				492007421BA00CCD00C0722C /* EssentialImager */,
 				10DE899A1B69B882009025C4 /* UMAnalytics_Sdk_3.5.10 */,
 				491B3E2E1B662CEC00D28455 /* UIDevice-Hardware */,
 				491B3E2A1B662CCE00D28455 /* RCLocationManager */,
@@ -3548,6 +3591,7 @@
 				C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */,
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */,
+				492007501BA00CCD00C0722C /* EIOperationManager.m in Sources */,
 				4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
@@ -3591,6 +3635,7 @@
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
+				492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */,
 				0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */,
 				4948E8AF1B95522F0048D125 /* MSFElementViewModel.m in Sources */,
 				0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */,
@@ -3601,6 +3646,7 @@
 				4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
 				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
+				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,
@@ -3616,6 +3662,7 @@
 				4948E8C01B959A5E0048D125 /* MSFAttachmentViewModel.m in Sources */,
 				C7B977FE1B08C568005F247C /* MSFRepaymentTableViewCell.m in Sources */,
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
+				492007521BA00CCD00C0722C /* StandardPaths.m in Sources */,
 				0750AAFF1B96A4C500AD67F3 /* MSFContactListModel.m in Sources */,
 				499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */,
 				105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */,
@@ -3656,6 +3703,7 @@
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
+				4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */,
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
 				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
