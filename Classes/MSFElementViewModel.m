@@ -142,7 +142,7 @@
 			catch:^RACSignal *(NSError *error) {
 				return [RACSignal empty];
 			}];
-	}] collect];
+		}] collect];
 }
 
 @end

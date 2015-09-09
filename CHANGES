@@ -1,0 +1,1050 @@
+Version 0.1.0
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - update version to 1.1.0
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 修复6、6+collectionViewCell背景线条错乱的bug
+ - update script
+ - Update provisioning profile
+ - Update uploaded file upload action
+ - Update upload attachments
+ - Merge branch 'next'
+ - Update script
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - 未提交图片时弹出提示框提示
+ - Fix appstore review issue
+ - Update script
+ - Update Project groups
+ - Format code style
+ - Fix completed
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Fix warnings
+ - Fix 附件上传验证
+ - 1、传图cell加边框； 2、去掉可选传图界面中的确认按钮； 3、示例图下方加描述文字； 4、点击示例图可放大
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 合同确认成功提示
+ - remove photoPickerController pop animation
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - CertificateController 每次进入刷新collectionView
+ - Merge branch 'next'
+ - Fix spec
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - update MSFHeaderView xib views' order
+ - update order icons
+ - add MWPhotoBrowser
+ - Use camera
+ - zhengshu
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Update element's attachments upload
+ - fix 点击空白cell崩溃
+ - commit
+ - Update provisioning profile
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Update 提交状态值
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 添加上传图片到第四步
+ - Add inventroyViewModel upload forms
+ - Remove deprecated property
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Fix upload attachment
+ - update MSFHeaderView xib
+ - 确认合同
+ - Update spec
+ - 合同确认
+ - Fix spec
+ - 合同确认
+ - Merge branch 'todo/photos' into next
+ - Remove product viewmodel spy code
+ - Fix can't commit inventory list
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 上传图片成功后pop页面
+ - Fix can't use camera photo
+ - Remove local timeout
+ - Update provisoning profile
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/photos
+ - Update inventory upload
+ - Update element create attachment
+ - Fix Client utf-8
+ - Update inventory upload
+ - Update attachment property for upload response json
+ - update 提交SVProgress提示
+ - 合同确认
+ - update separator
+ - 确认合同
+ - Fix Content-Type
+ - Update POST 文件流
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/photos
+ - bing viewModel
+ - Update code comments
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - Fix palceholder thumbURL update
+ - 合同确认
+ - 合同确认
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/photos
+ - Add remove attachment command
+ - Update element upload attachments
+ - 合同确认
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - add deleteButton
+ - Fix can't retake photo
+ - Update placeholder attachment
+ - Update attachment
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - Fix spec
+ - Update attachment 下载后更新fileURL thumbURL
+ - Add 模拟测试提交通过日志显示提交内容
+ - Fix 重复添加占为图片
+ - add take photo action
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - Update placeholder image
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/photos
+ - Update attachment
+ - 移动上传图片确认按钮到底部
+ - Update spec
+ - Remove test file
+ - bind view and viewModel
+ - Remove todo
+ - Update View
+ - Add test add inventory controller
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/photos
+ - Add InventoryViewController
+ - Update code format
+ - Update inventory
+ - Update element
+ - Update attachment
+ - Add viewModels
+ - Add categories
+ - Update element code style
+ - update separator
+ - update photoUpload
+ - finish photoUpload storyboard
+ - 银行卡bin
+ - 银行卡bin
+ - 银行卡bin
+ - Add element
+ - 银行卡bin
+ - Add attachment inventory
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 完善资料
+ - Update 环境配置自动更新接口属性
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Update configuration distribution
+ - Update README
+ - Update Utils
+ - Update 发布环境
+ - Remove unused resources
+ - 历史交易无数据不显示列表头
+ - 贷款额度处理
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 贷款金额
+ - Merge remote-tracking branch 'origin/master'
+ - Update provisioning profile
+ - Fix 8.0 keyboard back
+ - MSFClozeViewController tableheaderview 添加被色背景
+ - Bumping version to 1.0.0.14
+ - Fix warnings
+ - Update Specs
+ - 优化 申请记录cell添加导航箭头
+ - commit 申请记录cell添加导航箭头
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 定位转换
+ - 定位转换
+ - 定位转换
+ - Update 省市区显示方式
+ - Update 增加环境切换本地缓存
+ - Bumping version to 1.0.0.13
+ - 家庭信息获取通讯录
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - commit 通讯录传值
+ - Merge remote-tracking branch 'msfinance/master' into xbm
+ - 通讯录手机号获取
+ - Update 家庭成员关系手机号格式
+ - Update 更换版本更新测试地址
+ - 1454 IOS-1.0.0.9，家庭信息页面，增加家庭成员二并填写内容，删除再增加内容建议不保留,虽然姓名和电话清空但是与申请人关系依然存在，请继续修改
+ - Bumping version to 1.0.0.12
+ - Update Provisioning Profile
+ - Update 升级提示只弹出一次
+ - Fix 贷款协议无法显示
+ - Update Provisioning Profile
+ - Update UAT环境配置
+ - Merge remote-tracking branch 'msfinance/xbmDev' into next
+ - Update 关于协议地址
+ - 扣款和放款的符号不正确
+ - Bumping version to 1.0.0.10
+ - Fix ios 8.0 贷款确认银行卡号无法显示
+ - Improve alert
+ - Remove 部门的选择相关按钮代码
+ - Update 开发DEBUG条件下取消对更新内容的监测
+ - Update MSFProfessionalViewModel
+ - Add 升级提示
+ - Update Utils
+ - Bumping version to 1.0.0.10
+ - Merge remote-tracking branch 'msfinance/zhaoyong'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 1455 ios-1.0.0.9 注册 密码设置为 字符+特殊字符，提示密码不正确
+ - fix 1405、1454
+ - 放款金额前没有+号
+ - fix retain cycle
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - commit
+ - 修改密码也没有做限制输入，
+ - Bumping version to 1.0.0.9
+ - Fix 地址选择
+ - Update provisioning Profile
+ - Fix merge
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 修改日期选择为仅显示年份
+ - 1311 IOS -1.0.0.4，历史交易显示数据有误
+ - Fix 还款明细条目未显示完整
+ - change piker
+ - Add spec
+ - Fix 忘记密码显示密码失败
+ - Update 自动登录条件为用户名
+ - Update client response data log type
+ - Fix warnings
+ - 1449 IOS-1.0.0.8，忘记密码的密码的输入框没做限制输入  解决
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - fix bug1440、1443
+ - fix 1438 年月日的显示
+ - 1439 IOS-1.0.0.8，贷款金额的滚动条不支持点击
+ - Update README
+ - Bumping version to 1.0.0.8
+ - Merge remote-tracking branch 'origin/master' into zhaoyong
+ - Merge branch 'zhaoyong' of osgit.com:repo/finance into zhaoyong
+ - fix 贷款申请单页面bugs
+ - Fix #1437 二次贷款-单位地址没有自动带入
+ - Fix #1384 贷款确认页面没有显示银行卡号
+ - Fix #1379 基本信息住宅电话修改为可选项
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/master' into zhaoyong
+ - Fix 1433 已有审核中贷款再次进行贷款的提示语请修改
+ - fix 家庭信息验证
+ - Fix #1435 贷款成功的提示语
+ - Fix 1426 基本信息页面点击返回按钮没有退出本次贷款提示
+ - Fix 首页申请按钮进入贷款界面未判断实名认证
+ - Fix #1380 日期区域
+ - 调整验证提示语
+ - Fix 实名认证时间身份证有效时间
+ - Improve client
+ - Update Specs
+ - Bumping version to 1.0.0.7
+ - Fix 贷款金额重置0的时候寿险金额自动重置为0
+ - Improve 基本信息增加地址的未输入判断
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - fix 1400
+ - Fix #1429 贷款信息没有数据的情况下显示字体有问题 4s(8.0)
+ - Fix #1419 预计每期还款额显示不正确
+ - Fix #1410 HUD
+ - Merge branch 'zhaoyong' of osgit.com:repo/finance into zhaoyong
+ - Update develop provisioning Profile
+ - 修复bug 1400、1401、1406、1407、1408
+ - Add new test device
+ - Bumping version to 1.0.0.6
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/master' into zhaoyong
+ - Add relation viewController dealloc log
+ - Fix personal viewController memory leaks
+ - Add dealloc log
+ - commit
+ - Format code
+ - Fix ios8 代码的不兼容性
+ - Fix warnings
+ - Fix spec
+ - Merge branch 'xbm'
+ - Merge branch 'master' into xbm
+ - Merge branch 'master' into xt
+ - fix 1405 入学年份限制7年
+ - fix 1413 请输入当前就职单位全称
+ - fix 单位全称的输入限制
+ - fix 1390  入职日期 年 月 日GET与POST
+ - 1399 IOS-1.0.0.5，贷款首页标题请调整
+ - 1387 IOS-1.0.0.5，贷款申请金额变动，寿险金额没有没有实时变化
+ - 1389 IOS-1.0.0.5，贷款首页点击多次下一步，贷款协议覆盖显示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 1379 IOS-1.0.0.5，基本信息页面的住宅电话不是必填项，
+ - fix 1374，fix 1396 输入框汉字判断
+ - 1382 IOS-1.0.0.5，其他贷额为空的提示语请修改
+ - 1397 IOS-1.0.0.5，工作收入为空的提示语请调整，qq限制
+ - Update specs
+ - Update spec
+ - 贷款协议web交互按钮
+ - Update README
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - fix 1230 bug_1375and1376 职业信息
+ - 1371 贷款过程中填写详细地址，镇，街道，小区，单元的输入框没有做超出10位的长度限制
+ - 首页占位图片添加跳转到贷款申请页面的功能
+ - fix 家庭信息提交信息不全的提示信息
+ - fix 1230 bug1378 单位地址提示update
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - fix 1230
+ - fix #1230 bug1380 1358 datePickerView
+ - Format code style
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Fix #1298 延长实名认证用户提示时间
+ - Fix #1381 申请贷款成功后返回到首页
+ - fix 1263
+ - Fix #1289 注册界面不保留使用过的手机号
+ - fix #1230   bug1366      基本信息，收入的title调整
+ - 区号自动跳转
+ - 修复bug 1263、1352
+ - 提示喇叭图标
+ - 寿险开关
+ - Clean code
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 期数
+ - Update specs
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 键盘
+ - Improve MSFSelectionViewModelSpec
+ - Update Script/run.sh
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Add Webview viewModel spec
+ - Improve user spec
+ - Update specs 身份证有效时间长期选中
+ - Update MSFClozeViewModelSpec addressViewModel
+ - Improve 实名认证身份证有效时间
+ - 在没完善资料时不在请求首页数据
+ - Merge branch 'next' into todo/cloze
+ - Merge branch 'master' into next
+ - Merge branch 'master' into todo/cloze
+ - Update dateformatter
+ - Fix #1280 注册密码校验
+ - Fix Merge zhaoyong issues
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Improve comments
+ - Improve MSFAuthorizeViewModel
+ - Fix merge warnings
+ - Fix 切换网络环境错误，回到切换前的网络环境
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 代码规范
+ - 历史交易model属性更新
+ - 优化注册密码格式验证
+ - 类型
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 登陆页位数限制
+ - UI
+ - 贷款申请首页和基本信息页的小喇叭提示语
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - 申请记录 还款计划 历史交易 UI继续调整
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 调整日期换行显示
+ - fix 首页贷款日期显示
+ - fix 首页贷款 还款信息显示问题
+ - @冲突
+ - 贷款申请成功后，在不退出的情况下，申请后台取消，再点申请导致的系统错误修复
+ - 家庭信息，默认同意家庭联系人的居住地址
+ - 被踢出时提示
+ - 贷款首页button下调
+ - 历史交易显示数据调整
+ - 申请贷款首页
+ - 贷款首页
+ - 实名认证成功提示语
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 空行
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - 修复下拉刷新动画无法停止的bug
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - MSFBPTextField
+ - Improve 验证是否具备贷款申请条件以及提示
+ - Format Code style
+ - Improve 贷款申请提交数据接口
+ - Update 去掉提交错误进入贷款申请的代码
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Update 测试账号
+ - Remove MSFEntity
+ - 10004系统错误，已有贷款的提示位置
+ - Update Provisioning profile
+ - Bumping version to 1.0.0.4
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 手机号位数限制
+ - 身份证有效期提交update
+ - 密码框和验证码框bug修改
+ - 注册，验证码输入正确后，提示请输入6位验证码
+ - 家庭信息UI
+ - 密码框粘贴问题
+ - 键盘属性
+ - 键盘属性
+ - 家庭信息
+ - commit
+ - Fix Spec 日期格式
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 家庭信息约束的警告
+ - Fix #1279 贷款申请，用途选择界面上，每条数据记录上右向箭头建议去掉
+ - Fix #1282 对手机号的验证出现错误
+ - Fix #1283 请输入登录手机号
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Revert "判断是否有贷款"
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Fix 忘记密码界面验证码为安全码
+ - 修改贷款日期单位
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 家庭信息约束重置
+ - 判断是否有贷款
+ - 首页还款期数文字显示根据条件调整
+ - Fix 申请最后一页判断对象错误
+ - Update 申请成功后返回到申请界面
+ - Fix 家庭信息提交崩溃
+ - 家庭信息viewmodel绑定错误调整
+ - Improve 处理服务器无法连接的问题
+ - Fix Code style warnings
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Fix Code style warnings
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - 家庭信息绑定view model
+ - Update 寿险条约
+ - Update Podfile
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 代码规范
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 更新首页banner默认图片
+ - 日期格式不对导致系统错误
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 输入错误密码时候的提示语修改
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Fix Code style warnings
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 无网络图片时固定banner
+ - 完善资料，身份证有效期时间bug反馈修复
+ - 贷款期数默认不显示解决
+ - 家庭信息，待机通讯录返回自动缩进
+ - tabbar字体颜色更改
+ - 图片颜色调整
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 完善信息长期有限按钮
+ - 忘记密码 UI调整
+ - 忘记密码页 UI
+ - 注册，忘记密码 UI
+ - Bumping verison to 1.0.0.3
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 注册页和登陆页输入位数限制
+ - 失误
+ - 申请贷款，选择金额没有显示最小金额
+ - Update 更换服务器地址切换方式
+ - Update 服务器连接失败采用手动连接
+ - Reset version format 1.0.0(1.0.0.2)
+ - Improve 地址信息转换
+ - Fix 网路错误无法进入登录界面
+ - Merge branch 'pu/1.0.2'
+ - Fix Release warnings
+ - Fix Archive issue
+ - Update provisioning profile
+ - Bumping version to 1.0.0(1.0.2)
+ - Update UIWebView加载https内容
+ - Add NSURLRequest+RequestWithIgnoreSSL
+ - Fix 测试环境切换错误
+ - Fix repeat set server
+ - Merge tag '1.0.1' into next
+ - Update 网络繁忙
+ - Update 实名认证成功提示
+ - Update 重置密码成功提示
+ - Fix 忘记密码icon frame
+ - Update 切换到51环境
+ - Update 去掉登录信息测试缓存代码
+ - Fix Miss image
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Merge remote-tracking branch 'msfinance/xbmDev' into next
+ - Merge branch 'next'
+ - Fix 兼容服务器无法识别中文的API
+ - Merge branch 'todo/comments' into next
+ - 基本信息字号
+ - Merge remote-tracking branch 'msfinance/xbmDev' into next
+ - Fix 实名认证崩溃
+ - 删除bundle无效图片、修改贷款申请每月还款金额￥颜色
+ - Improve 申请记录
+ - 背景色
+ - 弹框透明度，和更换图片
+ - Remove deprecate method
+ - Update Delete miss image
+ - Merge remote-tracking branch 'origin/master'
+ - Fix warnings
+ - Merge remote-tracking branch 'msfinance/xutian_branch' into next
+ - 寿险金额，预计每期还款金额，连线丢失
+ - 整体颜色调整，疯了
+ - my account's pages color update
+ - apply's and repayment's color update
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 设置颜色
+ - 贷款申请，每月还款金额除添加￥符号
+ - Merge remote-tracking branch 'origin/master'
+ - Fix Merge Specs
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Update 验证码发送成功提示信息
+ - Merge remote-tracking branch 'msfinance/xbmDev' into next
+ - Update README
+ - 每期还款金额，白框闪动
+ - Merge branch 'next'
+ - fix 方法名调用错误 JSONTransfromer -> JSONTransformer
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge branch 'issue/auth' into next
+ - Merge branch 'issue/auth'
+ - Update 实名认证验证银行卡号
+ - Add log server time local time
+ - 每期还款金额
+ - 每期还款金额
+ - Update Tabbar icons
+ - 修改申请贷款界面，每月还款金额为0时显示-.--
+ - Update 密码相关功能
+ - Merge branch 'master' into next
+ - Merge branch 'master' into pu/1.0.1
+ - Merge branch 'issue/mouths' into next
+ - Merge branch 'issue/mouths'
+ - Fix 每月金额缓存错误
+ - Update 测试接口
+ - Update Documentations
+ - Update Provisioning Profile
+ - Merge branch 'issue/login-screen'
+ - Fix 登录界面滑动条在不同屏幕上的兼容性
+ - Merge branch 'todo/xbm' into next
+ - Merge remote-tracking branch 'msfinance/xbmDev' into todo/xbm
+ - Fix 重复修改修改密码界面标题
+ - Merge branch 'todo/xt' into next
+ - Merge remote-tracking branch 'msfinance/xutian_branch' into todo/xt
+ - 忘记密码title
+ - tabbar图标粗体问题
+ - Add 申请贷款的分期额增加临时缓存
+ - Fix 贷款寿险计划协议缺失按钮
+ - Merge branch 'next'
+ - Clean comments code
+ - Merge branch 'issue/aug3' into next
+ - Merge branch 'issue/aug3'
+ - Update 忘记密码界面增加显示密码的功能
+ - Update 注册界面增加查看输入密码的功能
+ - Fix 忘记密码页面没有title，加上“忘记密码”
+ - Update 发送验证码修改为获取验证码
+ - Merge branch 'next'
+ - Merge branch 'issue/crash-login' into next
+ - Merge branch 'issue/crash-login'
+ - Fix 被其他设备登录，然后在去滑动贷款金额slider崩溃
+ - Merge branch 'todo/xbm' into next
+ - Fix Not Remove notificaton's observe
+ - Update Specs
+ - Merge remote-tracking branch 'msfinance/xbmDev' into todo/xbm
+ - 清除注释
+ - lioading 提示
+ - commit
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - add frabic/crashlytics
+ - 收现金额更改
+ - Merge branch 'next'
+ - Merge branch 'todo/xt' into next
+ - Merge remote-tracking branch 'msfinance/xutian_branch' into todo/xt
+ - Merge remote-tracking branch 'msfinance/xbmDev' into todo/xbm
+ - Add TODO count
+ - Update 去掉首页引导图
+ - 每月还款金额动画显示，及加载位置调整，期数显示*个月
+ - last step alertview typeface update
+ - add frabic/crashlytics
+ - 期->月（因为用户不懂期的概念）
+ - my account's typeface is ok
+ - 居住地至少输入两项验证，在职人员部门不显示修正
+ - Merge branch 'issue/words'
+ - Fix OCTResponse to MSFResponse
+ - 解决重复绑定
+ - Update provisioning profile
+ - Add 测试环境地址选择
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - 修改，根据banner数据动态显示本地图片或者网络图片
+ - 刚改的UI小问题
+ - Update 家庭成员信息提供默认值
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Update 家庭信息地址与现居住地址信息关联
+ - 职业信息部门修改
+ - Update 定位地址信息获取流程
+ - Update 更新个人信息中获取经纬度的方式
+ - Update 当获取到定位信息则停止经纬度获取
+ - Update provisioning profile
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - 调整字体大小
+ - Fix iPhone 6 启动图片错误
+ - Merge branch 'xbm'
+ - Merge remote-tracking branch 'msfinance/xutian_branch' into xt
+ - Merge branch 'master' into xbm
+ - Merge remote-tracking branch 'msfinance/xbmDev' into xbm
+ - Merge branch 'master' into xt
+ - Update 贷款确认提交
+ - 申请贷款UI
+ - 修改错误
+ - Update 启动进入登录界面增加过渡动画
+ - next step alert view
+ - 选择金额会回0再增加
+ - 期数金额
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - alertview_finally_good.
+ - Fix Specs
+ - Fix miss @3x icon
+ - Merge branch 'master' into zy
+ - Merge branch 'todo/login' into next
+ - Fix 登录存在用户名密码，但是登录无效
+ - merge
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - 首页添加刷新动画
+ - Update 非第一次启动调整到登录界面
+ - Merge branch 'master' into xt
+ - Fix warnings
+ - Merge branch 'master' into xbm
+ - Fix warnings
+ - Merge remote-tracking branch 'msfinance/xbmDev' into xbm
+ - 申请贷款UI
+ - Merge branch 'master' into xt
+ - Update Icons
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 提示框修改+设置页面修改
+ - Merge branch 'master' into xbm
+ - Fix 贷款申请金额没有改动无法再次提交申请
+ - Update 程序启动图片
+ - 申请贷款UI
+ - 选择期数后的加载提示语
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - 贷款期数淡入淡出的动画显示效果
+ - Update icons
+ - Merge branch 'master' into zy
+ - Merge branch 'master' into xbm
+ - 首页banner添加测试图片
+ - 贷款首页信息不清空，进本信息会跳时进入贷款申请页，贷款首页的UI调整
+ - Merge branch 'master' into next
+ - Merge branch 'master' into xutian
+ - Merge branch 'master' into xbm
+ - Merge branch 'master' into zy
+ - Merge branch 'issue/submits' into next
+ - Merge branch 'issue/submits'
+ - ADd 调试模式下载错误的响应同样进入贷款界面
+ - Update fix project config warnings
+ - Fix Code style warnigns
+ - 优化地理位置本地库检索
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - alertview测试
+ - fix 贷款申请每月还款金额小数位数过长的bug
+ - 登陆注册界面调整间隔
+ - Merge remote-tracking branch 'origin/master'
+ - fix CounterLabel
+ - Merge branch 'master' into zhaoyong
+ - Merge branch 'master' into msfinance/xbmDev
+ - 优化，首页占位图标尺寸加大
+ - 优化，当滑杆滑动时，清零应还金额数据
+ - 定位信息转换
+ - Merge branch 'xutian_branch' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - submit - alert view
+ - Add Cell变化动画代码
+ - Merge branch 'todo/merge-zhaoyong' into next
+ - Fix Code style warnings
+ - Merge remote-tracking branch 'origin/master' into temp1
+ - 添加 MSFProductViewController 选择贷款金额时的动画
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - add CounterLabel
+ - Fix storyboard issue
+ - Merge branch 'todo/merge-xutian' into next
+ - Merge remote-tracking branch 'msfinance/xutian_branch' into todo/merge-xutian
+ - sort code
+ - 电话获取兼容iOS7
+ - Fix Specs
+ - sort code
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 贷款
+ - Fix Tests warnings
+ - 贷款首页
+ - Update LaunchImage
+ - Improve 程序启动获取时间戳的等待界面
+ - Fix 完善注册到实名认证的流程以及逻辑
+ - Fix 进入申请记录界面也自动跳转到关于界面
+ - Merge branch 'master' into next
+ - 贷款申请
+ - Update Provisoning Profile
+ - Merge branch 'master' into next
+ - Merge branch 'issue/cloze-issue' into next
+ - Merge branch 'issue/cloze-issue'
+ - Fix Merge issue 丢失实名认证的更新
+ - loan last step ->alert view
+ - add_Addressbook
+ - Update Cipher comments
+ - Update 增加个人中心关于界面跳转
+ - Merge branch 'todo/merge-zhaoyong' into next
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/merge-zhaoyong
+ - Merge branch 'todo/merge' into next
+ - Merge remote-tracking branch 'msfinance/xbmDev' into todo/merge
+ - Update 登录注册页面动画
+ - Add Umeng statistics
+ - Delete ProductViewController RACCommand
+ - Merge branch 'todo/password' into next
+ - Update 测试账号密码
+ - Update 修改密码
+ - 贷款首页
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - 合并代码时出现未成功合并的内容
+ - Merge branch 'master' into next
+ - Merge branch 'issue/login-crash' into next
+ - Merge branch 'issue/login-crash'
+ - Fix 进入贷款资料退出重新登录存在的内存泄漏
+ - Fix 贷款协议界面存在循环引用
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge branch 'todo/merge' into next
+ - Fix Merge warnings
+ - Merge branch 'master' into todo/merge
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 贷款首页
+ - Fix Merge issues
+ - Merge branch 'master' into zhaoyong
+ - finish homePage
+ - @image
+ - add MSFInfinityScroll
+ - Update 去掉申请记录列表多余的空白行
+ - Merge branch 'master' into xutian
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge branch 'master' into next
+ - Merge branch 'todo/authorize' into next
+ - Fix warnings
+ - Improve 登录注册到首页的流程
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 冲突解决
+ - 申请记录，历史交易UI调整
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - Update MSFHomePageContentCollectionViewCell
+ - @
+ - 贷款首页
+ - Merge branch 'issue/iPhone-plus' into next
+ - Merge branch 'issue/iPhone-plus'
+ - Fix ` SignIn/SignUp  iPhone 6 Plus indicatorView width
+ - add MSFApplyCollectionViewController
+ - Merge branch 'master' into next
+ - Fix Specs
+ - Update product.storyboard question icon imagename
+ - Fix Resources issue
+ - Merge remote-tracking branch 'origin/master'
+ - Merge branch 'msfinance/xutian_branch'
+ - Improve 实名认证界面图标显示效果
+ - 图片更换
+ - 图片
+ - 完善信息好了
+ - 贷款首页
+ - Merge branch 'master' of osgit.com:repo/finance into zhaoyong
+ - update UserInfo UI、homePage UI
+ - Merge branch 'xbmDev' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 贷款首页
+ - Merge remote-tracking branch 'msfinance/xbmDev' into issue/product
+ - 贷款首页
+ - Update 贷款产品信息自动更新
+ - commit Update UserInfoViewController UI
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 完善信息页面update
+ - Remove Project TODO
+ - Update 贷款协议的调用
+ - Fix objclean style warnings
+ - Improve 格式化，贷款产品的每期还款金额，保留小数点两位
+ - Update services push viewmodel
+ - Fix 注册完成进入实名认证界面崩溃
+ - Improve 登录注册确定按钮在iPhone Plus 的位置
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Disable RCLocationManager warning
+ - Merge branch 'next'
+ - Update 登录/注册动画
+ - Merge branch 'todo/services' into next
+ - Update ViewModel Services
+ - Fix click signup agreement link lead to crash
+ - Disable Userinfo header button touch
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Improve login viewModel
+ - Update 注册ViewModel
+ - Add TODO script
+ - Fix Client warning
+ - Format code style
+ - Update viewModel Services
+ - 恢复实名认证代码
+ - @wip services
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 少年情贷款第一步提交，绑定信息为空
+ - Add MSFViewModelServices
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 第一次登录运行，不显示贷款输入提示placeholder
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - switch
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Fix 家庭成员地址信息编辑Cell显示关闭，默认打开，并隐藏地址输入行
+ - Fix 第一次输密码时，提示错误
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - segment
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Update 贷款信息进度条
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - 基本信息
+ - 职业信息
+ - 职业信息，选择箭头
+ - 职业信息textfield去掉边框
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 不知道改了啥
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - 职业信息，字体
+ - 基本信息字体
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 基本信息UI
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 家庭信息UI。。。
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - 基本信息UI
+ - Update 贷款下一步按钮颜色
+ - Update 填满cell分割线
+ - Update 测试地址
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge branch 'next'
+ - Merge branch 'todo/sign' into next
+ - Update 注册/登录 UI
+ - 基本信息UI
+ - 家庭信息改好了
+ - 基本信息UI
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 基本信息UI
+ - 基本信息调整UI
+ - 基本信息
+ - 调整家庭信息UI
+ - @wip signin
+ - 家庭信息页面UI更新
+ - Update theme color
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 获取期数
+ - Clean comments
+ - Disable Textfield log
+ - Update 更换测试服务器到41
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge branch 'next'
+ - Update README 银行卡扫描备注
+ - 退出重新登陆，崩溃
+ - Fix Test logout, current can't call API to logout
+ - Merge branch 'issue/signin' into next
+ - Merge branch 'issue/signin'
+ - Fix 登录无效，取消获取产品信息失败对登录的无效性影响
+ - Update RCLocationManager log evvironment
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 基本信息详细地址栏至少输入两项验证
+ - 修改密码验证
+ - 隐藏不是现居地址的输入框
+ - 如果没有获取到贷款期数，每次进入贷款页时进行了贷款期数请求
+ - 贷款里的基本信息和家庭信息页面修改（storyboard）
+ - 职位信息匹配调整
+ - tabBarViewContoller注释:防止在加载完贷款信息和贷款期数产品后自动跳回第一个
+ - 自动回第一个tabBAr
+ - Update 通过注册界面注册－点击返回后退回到注册界面
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 家庭信息页面UI提示框细节优化and统一load加载框
+ - disable product.storyboard select textfield
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 当没有时间戳时获取时间戳
+ - Merge branch 'next'
+ - Fix signin username/password input
+ - Improve 完善资料storyboard
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Rename loginviewcontroller to signinviewcontroller
+ - Improve login storyboard
+ - Fix authviewmodel rebind
+ - 贷款首页，钱数框高度，以及提示
+ - Update 提交申请最后一个界面需要先弹出确认对话框
+ - 取消申请列表的点击选中状态
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Fix 首页刷新无法关闭
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Update 首页默认贷款进度图
+ - Add 注册登录界面
+ - 去掉nslog
+ - 未登录下闪退，原因：加载登陆界面时重复绑定rac
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 检测手机号
+ - Update 实名认证更新贷款资料
+ - Fix 职业信息重复编辑崩溃
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Fix 完善资料后没有更新贷款资料
+ - 贷款金额提示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Fix Code signing
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Improve 家庭信息关系选择
+ - 正在加载。。。
+ - Update 成员信息手机号验证
+ - 完善资料，银行卡处提示信息
+ - Update AppDelegate 控制器初始化位置
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge branch 'next'
+ - Merge branch 'next' into todo/tabbar
+ - Update MSFTabBarController
+ - 身份证验证日期穿残
+ - 完善资料银行卡验证
+ - 完善资料姓名验证
+ - 完善资料页 验证
+ - 修改无各种贷款信息时候的提示语
+ - 完善资料九宫格输入中文
+ - 家庭成员输入验证
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge branch 'issue/15v3' into next
+ - Merge branch 'issue/15v3'
+ - Fix homepage viewmodel crash when viewmodels count ==0
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Merge branch 'issue/15v2' into next
+ - Merge branch 'issue/15v2'
+ - Update 个人信息/职业信息，最后一个输入框回车按钮增加发送功能
+ - 职位信息输入验证
+ - Update 用户相关界面输入最后一步键盘完成发送
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xutian_branch
+ - 注册协议
+ - Merge branch 'issue/15' into next
+ - Merge branch 'issue/15'
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - 职业信息
+ - Remove homepage cell footer line
+ - Update 首页只展示最后一次申请贷款的信息，不要都排列出来
+ - Remove setting software version cell
+ - Fix Merge conflict
+ - Add MSFTabBarController
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - 职业验证
+ - Fix REFormattedNumberField iOS7 crash
+ - 基本信息界面
+ - 整理
+ - 申请记录布局调整，我就炸了。
+ - Fix 申请成功跳转到首页
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - Update 个人中心增加设置按钮
+ - @
+ - @
+ - Update 贷款列表文字大小
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 还是申请记录。
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Fix userinfo crash
+ - 贷款协议，默认隐藏同意按钮
+ - Fix 连续点击贷款按钮进入界面后崩溃
+ - Update 贷款进度button点击
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 继续修改申请记录
+ - iphone6 适配
+ - Covert space to tabs
+ - Clean code style
+ - Improve 个人中心列表
+ - Improve 登录没有输入密码的验证
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Update 设置
+ - 未输入密码时的提示
+ - Improve 下一步按钮
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - UI
+ - Clean code style
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - UI适配
+ - Add 申请列表查看申请协议
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 申请记录状态点击跳转网页参数
+ - Remove commit.storyboard
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - 贷款 调整UI
+ - Update Code signing identity
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - 优化申请记录页面
+ - Update 首页贷款记录ViewModel
+ - Merge remote-tracking branch 'msfinance/xbmDev'
+ - Improve 贷款产品选中提示效果
+ - Merge remote-tracking branch 'origin' into xbmDev
+ - @第二个页面调整
+ - Fix warnings
+ - Update 根据不同的编译版本号显示启动图
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - add 协议web view's progress and 申请状态修改
+ - Update 进入贷款界面，增加对是否存在贷款进度的验证
+ - Merge remote-tracking branch 'msfinance/xutian_branch'
+ - Add TODO: 实名认证通过条件
+ - Update 完善资料接口
+ - update wedView's progress
+ - Update 记录登录用户的手机号
+ - Remove homepage local defaults banners
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance
+ - 贷款首页 调整UI
+ - Update `关于我们`增加加载提示模版
+ - Update HUD 提示框架
+ - Disable build bump
+ - Update code signing
+ - Merge branch 'next'
+ - Merge branch 'todo/application-form' into next
+ - Bumping 492
+ - Remove unused files
+ - Update 提交家庭信息
+ - Update 职业信息
+ - Update 详细地址信
+ - Update 在职人员地址选择
+ - Update 职位信息
+ - Update 单位信息
+ - Update 职业－单位名称
+ - Update  职业－工作年限
+ - Update 学生－入学年份
+ - Update 学生-学制
+ - Update README
+ - @wip MSFProfessionalViewModel
+ - Update 基本信息提交完成
+ - Add SVProgressHUD
+ - Rename
+ - @wip personal information
+ - Update 贷款协议
+ - Fix 寿险计划书无法重复显示
+ - Update 显示贷款协议
+ - Update 贷款申请入口资料自动更新
+ - Rename load agreement
+ - Update 贷款协议展示
+ - Rename files
+ - Rename Groups
+ - Update MSFProductViewModel
+ - @wip application first page
+ - Add TODO tag for Client authorization
+ - Update Application form viewmodel
+ - Add xcode build version auto bump
+ - Enlarge User Center Avatar imageView Size
+ - Add New Page for Loan Agreement, Base on product
+ - Format MSFApplyStartTableViewController
+ - Improve Bank No. Input style
+ - Replace `Finance` setting icon
+ - Improve `Finance` update password textfield security `space`
+ - Update `Finance` agreement URLs
+ - Update apply first View server response data, replace local fixed data
+ - Improve 完善资料信息界面－地区选择精确到省市忽略区
+ - Update 首页默认广告，采用本地广告图片
+ - Remove log code
+ - Update 需求分析－完善资料银行卡?按钮功能
+ - Fix 实名认证验证错误
+ - Update provisioning profile
+ - Clean warings
+ - Remove MSFDatabaseUtils
+ - Fix 贷款申请白名单判断字段类型错误
+ - Improve User 实名认证的判定
+ - Initialize
+

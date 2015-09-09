@@ -406,6 +406,9 @@
 		49EF59551B9039AB00BDBD44 /* MSFRelationshipViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EF59541B9039AB00BDBD44 /* MSFRelationshipViewModelSpec.m */; };
 		49F21C591B8D635900CA96C1 /* MSFTestProfessionalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F21C581B8D635900CA96C1 /* MSFTestProfessionalViewModel.m */; };
 		49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */; };
+		49FAEE341B97E4BB00F0CAB6 /* btn-attachment-take-photo.png in Resources */ = {isa = PBXBuildFile; fileRef = 49FAEE311B97E4BB00F0CAB6 /* btn-attachment-take-photo.png */; };
+		49FAEE351B97E4BB00F0CAB6 /* btn-attachment-take-photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49FAEE321B97E4BB00F0CAB6 /* btn-attachment-take-photo@2x.png */; };
+		49FAEE361B97E4BB00F0CAB6 /* btn-attachment-take-photo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49FAEE331B97E4BB00F0CAB6 /* btn-attachment-take-photo@3x.png */; };
 		4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */; };
 		4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */; };
 		4EDB520E1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520B1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png */; };
@@ -1166,6 +1169,9 @@
 		49F21C581B8D635900CA96C1 /* MSFTestProfessionalViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTestProfessionalViewModel.m; sourceTree = "<group>"; };
 		49F3D4B71B2685FD0053A1F5 /* MSFProfessionalViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProfessionalViewModel.h; sourceTree = "<group>"; };
 		49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProfessionalViewModel.m; sourceTree = "<group>"; };
+		49FAEE311B97E4BB00F0CAB6 /* btn-attachment-take-photo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-attachment-take-photo.png"; sourceTree = "<group>"; };
+		49FAEE321B97E4BB00F0CAB6 /* btn-attachment-take-photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-attachment-take-photo@2x.png"; sourceTree = "<group>"; };
+		49FAEE331B97E4BB00F0CAB6 /* btn-attachment-take-photo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-attachment-take-photo@3x.png"; sourceTree = "<group>"; };
 		4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBPTextField.h; sourceTree = "<group>"; };
 		4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBPTextField.m; sourceTree = "<group>"; };
 		4EDB520A1B69C7E600388306 /* btn-FamilyInformation-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone.png"; sourceTree = "<group>"; };
@@ -1831,6 +1837,21 @@
 			name = button;
 			sourceTree = "<group>";
 		};
+		4928CA881B9DB0A4000B1843 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
+				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
+				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
+				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
+				4975C9811B46D6D400AA79EB /* Images.xcassets */,
+				4975C9821B46D6D400AA79EB /* Info.plist */,
+				4975C9831B46D6D400AA79EB /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		492BB41D1B1BFE870024897C /* Authorize */ = {
 			isa = PBXGroup;
 			children = (
@@ -2258,14 +2279,7 @@
 			children = (
 				4975C97B1B46D6D400AA79EB /* AppDelegate.h */,
 				4975C97C1B46D6D400AA79EB /* AppDelegate.m */,
-				4975C97D1B46D6D400AA79EB /* LaunchScreen.xib */,
-				4975C97F1B46D6D400AA79EB /* Localizable.strings */,
-				4975C9811B46D6D400AA79EB /* Images.xcassets */,
-				4975C9821B46D6D400AA79EB /* Info.plist */,
-				4975C9831B46D6D400AA79EB /* main.m */,
-				4975C9841B46D6D400AA79EB /* StyleSettings.plist */,
-				4975C9851B46D6D400AA79EB /* TestAppDelegate.h */,
-				4975C9861B46D6D400AA79EB /* TestAppDelegate.m */,
+				4928CA881B9DB0A4000B1843 /* Supporting Files */,
 			);
 			path = Finance;
 			sourceTree = "<group>";
@@ -3261,6 +3275,7 @@
 				49CBDDB41B0DF03E009EF662 /* banners.json in Resources */,
 				4944C02B1B68A5A100805C0A /* icon-account-apply.png in Resources */,
 				C7A351811B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@2x.png in Resources */,
+				49FAEE351B97E4BB00F0CAB6 /* btn-attachment-take-photo@2x.png in Resources */,
 				4944C0321B68A5A100805C0A /* icon-account-info@2x.png in Resources */,
 				4944C02D1B68A5A100805C0A /* icon-account-apply@3x.png in Resources */,
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
@@ -3278,6 +3293,7 @@
 				07B368831B7ED86400574A81 /* basic-information-prompt-1242@2x.png in Resources */,
 				4944C02C1B68A5A100805C0A /* icon-account-apply@2x.png in Resources */,
 				49B37B571B608F39004EED47 /* bar-highlighted.png in Resources */,
+				49FAEE361B97E4BB00F0CAB6 /* btn-attachment-take-photo@3x.png in Resources */,
 				49C0F1A01B2C315100E92572 /* icon-check-normal.png in Resources */,
 				C7D2D1241B67938C000F51ED /* icon-cloze-bankNO@3x.png in Resources */,
 				4944C0331B68A5A100805C0A /* icon-account-info@3x.png in Resources */,
@@ -3288,6 +3304,7 @@
 				C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */,
 				07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */,
 				C7D2D12F1B67938C000F51ED /* icon-cloze-normal@2x.png in Resources */,
+				49FAEE341B97E4BB00F0CAB6 /* btn-attachment-take-photo.png in Resources */,
 				10DC2DA41B99C17F00A2AF9C /* icon_order2_h.png in Resources */,
 				10DC2E261BA00D7D00A2AF9C /* btn-attachment-take-photo.png in Resources */,
 				49C0F1CB1B2C341400E92572 /* tabbar-apply-normal@2x.png in Resources */,
@@ -3866,7 +3883,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "60d8e36e-d9b2-4b35-bae5-3c529434252d";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3894,7 +3911,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b55af423-ada2-4a33-b400-0d09ec00a82f";
+				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
 			};
 			name = Debug;
 		};
@@ -3918,7 +3935,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 			};
 			name = Release;
 		};
@@ -4037,7 +4054,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "2749116e-9d0c-4374-a91a-18d213b57565";
+				PROVISIONING_PROFILE = "9a2024a7-4714-4479-a1d1-a80bc673f5ad";
 			};
 			name = Distribution;
 		};

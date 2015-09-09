@@ -71,22 +71,25 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-	
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
-		MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
-		
-		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
-		[[KGModal sharedInstance] setShowCloseButton:NO];
-		[[KGModal sharedInstance] showWithContentViewController:alertViewController];
-		
-		[viewModel.buttonClickedSignal subscribeNext:^(id x) {
-			[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-				[self.viewModel.executeUpdateCommand execute:nil];
+		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
+			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
+			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+			
+			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+			[[KGModal sharedInstance] setShowCloseButton:NO];
+			[[KGModal sharedInstance] showWithContentViewController:alertViewController];
+			
+			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+					[self.viewModel.executeUpdateCommand execute:nil];
+				}];
+			} completed:^{
+				[[KGModal sharedInstance] hideAnimated:YES];
 			}];
-		} completed:^{
-			[[KGModal sharedInstance] hideAnimated:YES];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 	}];
 	

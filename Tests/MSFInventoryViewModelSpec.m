@@ -108,4 +108,80 @@ it(@"should update inventory to server", ^{
 	expect(result.parsedResult[@"message"]).to(equal(@"success"));
 });
 
+it(@"should get error when required element doese not have attachment", ^{
+	// given
+	MSFResponse *resposne = mock([MSFResponse class]);
+	stubProperty(resposne, parsedResult, @{@"message": @"success"});
+	[given([client updateInventory:viewModel.model]) willReturn:[RACSignal return:resposne]];
+	
+	MSFApplicationResponse *credit = mock([MSFApplicationResponse class]);
+	[given([formsViewModel submitSignalWithPage:5]) willReturn:[RACSignal return:credit]];
+	
+	MSFElement *mockElement = mock([MSFElement class]);
+	stubProperty(mockElement, required, @YES);
+	stubProperty(mockElement, type, @"foo");
+	stubProperty(mockElement, plain, @"bar");
+	
+	MSFElement *mockElement2 = mock([MSFElement class]);
+	stubProperty(mockElement2, required, @NO);
+	stubProperty(mockElement2, type, @"foo");
+	
+	NSArray *elements = @[mockElement, mockElement2];
+	[given([client fetchElementsWithProduct:viewModel.product]) willReturn:elements.rac_sequence.signal.replay];
+	
+	// when
+	viewModel.active = YES;
+	
+	MSFElementViewModel *optionalViewModel = viewModel.optionalViewModels.firstObject;
+	MSFAttachment *mockAttachment = mock([MSFAttachment class]);
+	stubProperty(mockAttachment, type, @"foo");
+	stubProperty(mockAttachment, objectID, @"123");
+	[optionalViewModel addAttachment:mockAttachment];
+	
+	NSError *error;
+	[[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
+	
+	// then
+	expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"请添加bar照片"));
+	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
+});
+
+it(@"should update inventory when required elements have attachment", ^{
+	// given
+	MSFResponse *resposne = mock([MSFResponse class]);
+	stubProperty(resposne, parsedResult, @{@"message": @"success"});
+	[given([client updateInventory:viewModel.model]) willReturn:[RACSignal return:resposne]];
+	
+	MSFApplicationResponse *credit = mock([MSFApplicationResponse class]);
+	[given([formsViewModel submitSignalWithPage:5]) willReturn:[RACSignal return:credit]];
+	
+	MSFElement *mockElement = mock([MSFElement class]);
+	stubProperty(mockElement, required, @YES);
+	stubProperty(mockElement, type, @"foo");
+	stubProperty(mockElement, plain, @"bar");
+	
+	MSFElement *mockElement2 = mock([MSFElement class]);
+	stubProperty(mockElement2, required, @NO);
+	stubProperty(mockElement2, type, @"foo");
+	
+	NSArray *elements = @[mockElement, mockElement2];
+	[given([client fetchElementsWithProduct:viewModel.product]) willReturn:elements.rac_sequence.signal.replay];
+	
+	// when
+	viewModel.active = YES;
+	
+	MSFElementViewModel *requiredViewModel = viewModel.requiredViewModels.firstObject;
+	MSFAttachment *mockAttachment = mock([MSFAttachment class]);
+	stubProperty(mockAttachment, type, @"foo");
+	stubProperty(mockAttachment, objectID, @"123");
+	[requiredViewModel addAttachment:mockAttachment];
+	
+	NSError *error;
+	[[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
+	
+	// then
+	expect(error).to(beNil());
+	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
+});
+
 QuickSpecEnd
