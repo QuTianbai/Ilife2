@@ -40,6 +40,7 @@
 	_confirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 		//[self executeLaterConfirmContract];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil];
 		return [self executeConfirmContract];
 	}];
 	

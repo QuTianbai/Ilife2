@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *laterConfirmBT;
 @property (weak, nonatomic) IBOutlet UIButton *nowConfirmBT;
+@property (weak, nonatomic) IBOutlet UILabel *messageLB;
 
 @end
 
@@ -22,10 +23,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-//	[[self.laterConfirmBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFCONFIRMCONTACTIONLATERNOTIFICATION" object:nil];
-//	}];
-	
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	self.messageLB.numberOfLines = 0;
 }
 
 - (void)bindBTRACCommand {

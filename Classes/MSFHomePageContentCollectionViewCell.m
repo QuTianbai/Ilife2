@@ -76,8 +76,8 @@
 	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
 		 //[SVProgressHUD showWithStatus:@"正在加载..."];
-		 self.ConFirmContractBT.hidden = YES;
-		 self.statusLabel.hidden = NO;
+//		 self.ConFirmContractBT.hidden = YES;
+//		 self.statusLabel.hidden = NO;
 		 //NSLog(@"我是发通知");
 		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 		 

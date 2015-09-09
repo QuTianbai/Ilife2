@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSFCustomAlertViewController">
             <connections>
                 <outlet property="laterConfirmBT" destination="eps-X4-CJS" id="Egs-b0-hmy"/>
+                <outlet property="messageLB" destination="3Ko-4a-EEW" id="azg-0y-Xq1"/>
                 <outlet property="nowConfirmBT" destination="8Xg-YG-WM4" id="6QO-ao-LuN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -79,21 +80,21 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eps-X4-CJS">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <state key="normal" title="稍后确认">
-                                        <color key="titleColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Xg-YG-WM4">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                     <state key="normal" title="立即确认">
-                                        <color key="titleColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合同已通过我们的审核，赶紧去确认合同吧！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ko-4a-EEW">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合同已通过我们的审核，赶紧去确认合同吧！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ko-4a-EEW">
                                     <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="80" id="ynO-hN-cka"/>
+                                        <constraint firstAttribute="height" constant="70" id="ynO-hN-cka"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -129,7 +130,7 @@
                                 <constraint firstAttribute="trailing" secondItem="3Ko-4a-EEW" secondAttribute="trailing" constant="10" id="YTm-iR-BhS"/>
                                 <constraint firstAttribute="trailing" secondItem="C0G-aX-gf3" secondAttribute="trailing" id="fY0-1d-OsA"/>
                                 <constraint firstAttribute="bottom" secondItem="8Xg-YG-WM4" secondAttribute="bottom" id="kA8-rc-mKQ"/>
-                                <constraint firstItem="BpT-Rc-c4A" firstAttribute="top" secondItem="6E9-ck-MrA" secondAttribute="top" constant="30" id="ke2-DC-hVk"/>
+                                <constraint firstItem="BpT-Rc-c4A" firstAttribute="top" secondItem="6E9-ck-MrA" secondAttribute="top" constant="60" id="ke2-DC-hVk"/>
                                 <constraint firstItem="eps-X4-CJS" firstAttribute="top" secondItem="C0G-aX-gf3" secondAttribute="bottom" id="s7G-GE-r2v"/>
                                 <constraint firstItem="eps-X4-CJS" firstAttribute="leading" secondItem="6E9-ck-MrA" secondAttribute="leading" id="ss0-Sa-kd6"/>
                             </constraints>
@@ -201,8 +202,8 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-confirm.png" translatesAutoresizingMaskIntoConstraints="NO" id="DJB-1z-08y">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="44" id="HqD-Yk-Q8n"/>
-                                <constraint firstAttribute="height" constant="44" id="ZS0-Oi-Tjb"/>
+                                <constraint firstAttribute="width" constant="88" id="HqD-Yk-Q8n"/>
+                                <constraint firstAttribute="height" constant="88" id="ZS0-Oi-Tjb"/>
                             </constraints>
                             <variation key="default">
                                 <mask key="constraints">
@@ -221,10 +222,10 @@
                     <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="6E9-ck-MrA" secondAttribute="bottom" id="EWj-TE-Py2"/>
-                        <constraint firstItem="6E9-ck-MrA" firstAttribute="top" secondItem="dXl-4X-9aC" secondAttribute="top" constant="22" id="O3e-Ff-Cqo"/>
+                        <constraint firstItem="6E9-ck-MrA" firstAttribute="top" secondItem="dXl-4X-9aC" secondAttribute="top" constant="44" id="O3e-Ff-Cqo"/>
                         <constraint firstAttribute="trailing" secondItem="6E9-ck-MrA" secondAttribute="trailing" id="TFv-l4-mYm"/>
                         <constraint firstAttribute="centerX" secondItem="DJB-1z-08y" secondAttribute="centerX" id="Tgv-Lk-8Zx"/>
-                        <constraint firstAttribute="height" constant="200" id="UPN-K0-e78"/>
+                        <constraint firstAttribute="height" constant="250" id="UPN-K0-e78"/>
                         <constraint firstItem="DJB-1z-08y" firstAttribute="top" secondItem="dXl-4X-9aC" secondAttribute="top" id="gd2-9c-Aur"/>
                         <constraint firstItem="6E9-ck-MrA" firstAttribute="leading" secondItem="dXl-4X-9aC" secondAttribute="leading" id="pqr-1H-b0X"/>
                     </constraints>
@@ -292,6 +293,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-confirm.png" width="176" height="176"/>
+        <image name="icon-confirm.png" width="88" height="88"/>
     </resources>
 </document>
