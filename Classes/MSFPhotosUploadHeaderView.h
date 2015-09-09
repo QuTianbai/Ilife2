@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *browserButton;
 
-- (void)bindModel:(id)viewModel;
+- (void)bindModel:(id)viewModel summaryBlock:(void(^)())summaryBlock;
 
 @end

@@ -29,6 +29,9 @@
 
 @property (nonatomic, strong, readonly) RACCommand *uploadCommand;
 
+//表示是否展开，YES表示展开
+@property (nonatomic, assign, readonly) BOOL folded;
+
 - (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services;
 
 - (void)addAttachment:(MSFAttachment *)attachment;
