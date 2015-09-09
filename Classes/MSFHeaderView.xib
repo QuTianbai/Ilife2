@@ -134,23 +134,13 @@
                         <constraint firstItem="N8L-n6-7L0" firstAttribute="centerX" secondItem="8Gu-CP-pup" secondAttribute="centerX" id="vro-6c-815"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kb-Yh-q0L">
-                    <rect key="frame" x="0.0" y="99" width="320" height="1"/>
-                    <color key="backgroundColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="0.82000000000000006" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="9a8-Py-cgj"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="V0w-yI-34D" secondAttribute="leading" id="ASd-H2-gs2"/>
                 <constraint firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Kxo-AX-azJ"/>
                 <constraint firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" constant="10" id="TDR-ou-Iwj"/>
-                <constraint firstAttribute="trailing" secondItem="7kb-Yh-q0L" secondAttribute="trailing" id="dLx-Vz-VUx"/>
-                <constraint firstItem="7kb-Yh-q0L" firstAttribute="leading" secondItem="V0w-yI-34D" secondAttribute="leading" id="mo3-WO-BmT"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="V0w-yI-34D" secondAttribute="top" id="ocx-Jr-yCi"/>
-                <constraint firstAttribute="bottom" secondItem="7kb-Yh-q0L" secondAttribute="bottom" id="x9a-PK-2oH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

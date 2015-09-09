@@ -12,6 +12,7 @@
 #import <libextobjc/extobjc.h>
 #import <KGModal/KGModal.h>
 #import "MSFCertificateCell.h"
+#import "MSFBlankCell.h"
 #import "MSFExtraOptionCell.h"
 #import "MSFInventoryViewModel.h"
 #import "MSFElementViewModel.h"
@@ -60,7 +61,7 @@ UICollectionViewDelegateFlowLayout>
 	[super viewDidLoad];
 	
 	self.submitButton.layer.cornerRadius = 5;
-	[self.collectionView registerClass:UICollectionViewCell.class forCellWithReuseIdentifier:@"MSFBlankSpaceCell"];
+	[self.collectionView registerClass:MSFBlankCell.class forCellWithReuseIdentifier:@"MSFBlankCell"];
 	[self.collectionView registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFHeaderReuseView"];
 
 	@weakify(self)
@@ -134,9 +135,9 @@ UICollectionViewDelegateFlowLayout>
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 	if (section == 0) {
-		return UIEdgeInsetsZero;
-	} else {
 		return UIEdgeInsetsMake(10, 0, 10, 0);
+	} else {
+		return UIEdgeInsetsZero;
 	}
 }
 
@@ -198,8 +199,7 @@ UICollectionViewDelegateFlowLayout>
 		}
 		
 		if (totalCount % 2 != 0 && indexPath.row == totalCount) {
-			UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFBlankSpaceCell" forIndexPath:indexPath];
-			cell.backgroundColor = [UIColor whiteColor];
+			MSFBlankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFBlankCell" forIndexPath:indexPath];
 			return cell;
 		} else {
 			MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
