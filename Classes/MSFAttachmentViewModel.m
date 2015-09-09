@@ -10,6 +10,7 @@
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
 #import <NSString-Hashes/NSString+Hashes.h>
+#import "UIImage+Resize.h"
 
 @interface MSFAttachmentViewModel ()
 
@@ -101,9 +102,15 @@
 #pragma mark - Private
 
 - (RACSignal *)takePhotoSignal {
-	return [[self.services takePicture] doNext:^(id x) {
+	return [[self.services takePicture] doNext:^(UIImage *image) {
 		NSString *name = [@([[NSDate date] timeIntervalSince1970]) stringValue].md5;
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
+		CGSize size = image.size;
+		if (size.width > 800 || size.height > 800) {
+			CGFloat scale = size.width > size.height ? 800.0 / size.width : 800.0 / size.height;
+			size = size.width > size.height ? CGSizeMake(800, size.height * scale) : CGSizeMake(size.width * scale, 800);
+		}
+		UIImage *x = [image resizedImage:size interpolationQuality:kCGInterpolationDefault];
 		[[NSFileManager defaultManager] createFileAtPath:path contents:UIImageJPEGRepresentation(x, .7) attributes:nil];
 		self.fileURL = [NSURL fileURLWithPath:path];
 		if (!self.attachment.isPlaceholder)
