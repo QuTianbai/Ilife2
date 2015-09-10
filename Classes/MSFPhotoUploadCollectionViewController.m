@@ -85,7 +85,7 @@ MWPhotoBrowserDelegate>
 		}
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"上传图片成功"];
+			[SVProgressHUD showSuccessWithStatus:@"上传成功"];
 			dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 				[self.navigationController popViewControllerAnimated:YES];
 			});
@@ -138,15 +138,15 @@ MWPhotoBrowserDelegate>
 		
 		if (_folded) {
 			if (size.height > 29.f) {
-				return CGSizeMake(collectionView.frame.size.width, 209.f);
+				return CGSizeMake(collectionView.frame.size.width, 239.f);
 			} else {
-				return CGSizeMake(collectionView.frame.size.width, 180.f + size.height);
+				return CGSizeMake(collectionView.frame.size.width, 210.f + size.height);
 			}
 		} else {
-			return CGSizeMake(collectionView.frame.size.width, 180.f + size.height);
+			return CGSizeMake(collectionView.frame.size.width, 210.f + size.height);
 		}
 	}
-	return CGSizeMake(collectionView.frame.size.width, 180.f);
+	return CGSizeMake(collectionView.frame.size.width, 210.f);
 }
 
 #pragma mark - UICollectionViewDataSource
