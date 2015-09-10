@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
 @property (copy, nonatomic) void (^summaryBlock) ();
 
 @end
@@ -27,45 +26,24 @@
 
 - (void)awakeFromNib {
 	_displayImageView.layer.cornerRadius = 5;
-	
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
-	_summaryLabel.userInteractionEnabled = YES;
-	[_summaryLabel addGestureRecognizer:tap];
 }
 
-- (void)tap {
-	if (_summaryBlock) {
-		_summaryBlock();
-	}
-}
-
-- (void)bindModel:(MSFElementViewModel *)viewModel summaryBlock:(void (^)())summaryBlock{
-	_summaryBlock = summaryBlock;
+- (void)bindModel:(MSFElementViewModel *)viewModel shouldFold:(BOOL)sFold folded:(BOOL)folded {
 	_viewModel = viewModel;
-	
-	[_displayImageView setImageWithURL:viewModel.element.sampleURL  placeholderImage:[UIImage imageNamed:@"photoUpload_placeholder.png"]];
-	NSString *content = viewModel.element.comment;
-	if (content.length > 0) {
-		if (viewModel.folded) {
-			_summaryLabel.hidden = YES;
-			_contentLabel.hidden = NO;
-			_contentLabel.text = content;
-		} else {
-			_summaryLabel.hidden = NO;
-			_contentLabel.hidden = YES;
-			
-			int length = floor(([UIScreen mainScreen].bounds.size.width - 40) / 12.f * 2) ;
-			NSString *text = nil;
-			if (content.length > length) {
-    text = [NSString stringWithFormat:@"%@...展开", [content substringToIndex:length - 6]];
-			}
-			
-			_summaryLabel setText:[] highLightText:<#(NSString *)#> highLightColor:[UIColor ]
-		}
+	[_displayImageView
+	 setImageWithURL:viewModel.element.sampleURL
+	 placeholderImage:[UIImage imageNamed:@"photoUpload_placeholder.png"]];
+	if (folded) {
+		_contentLabel.numberOfLines = 2;
+		[_foldButton setTitle:@"展开" forState:UIControlStateNormal];
 	} else {
-		_summaryLabel.text = nil;
-		_contentLabel.text = nil;
+		_contentLabel.numberOfLines = 0;
+		[_foldButton setTitle:@"收起" forState:UIControlStateNormal];
 	}
+	
+	_foldButton.hidden = !sFold;
+	
+	_contentLabel.text = viewModel.element.comment;
 	
 	[self setNeedsDisplay];
 }

@@ -28,6 +28,8 @@ MWPhotoBrowserDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
 @property (nonatomic, assign) BOOL showExample;
+@property (nonatomic, assign) BOOL folded;
+@property (nonatomic, assign) BOOL shouldFold;
 
 @end
 
@@ -42,6 +44,7 @@ MWPhotoBrowserDelegate>
 	
 	[super viewDidLoad];
 	_submitButton.layer.cornerRadius = 5;
+	_folded = YES;
 	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
@@ -128,9 +131,20 @@ MWPhotoBrowserDelegate>
 	if (self.viewModel.element.comment.length > 0) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-		CGSize size = [self.viewModel.element.comment sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(collectionView.frame.size.width - 40, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
+		CGSize size = [self.viewModel.element.comment sizeWithFont:[UIFont systemFontOfSize:12] constrainedToSize:CGSizeMake(collectionView.frame.size.width - 100, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping];
 #pragma clang diagnostic pop
-		return CGSizeMake(collectionView.frame.size.width, 180.f + size.height);
+		
+		self.shouldFold = size.height > 29.f;
+		
+		if (_folded) {
+			if (size.height > 29.f) {
+				return CGSizeMake(collectionView.frame.size.width, 209.f);
+			} else {
+				return CGSizeMake(collectionView.frame.size.width, 180.f + size.height);
+			}
+		} else {
+			return CGSizeMake(collectionView.frame.size.width, 180.f + size.height);
+		}
 	}
 	return CGSizeMake(collectionView.frame.size.width, 180.f);
 }
@@ -150,7 +164,13 @@ MWPhotoBrowserDelegate>
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 	if (kind == UICollectionElementKindSectionHeader) {
 		MSFPhotosUploadHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFPhotosUploadHeaderView" forIndexPath:indexPath];
-		[view bindModel:self.viewModel];
+		[view bindModel:self.viewModel shouldFold:self.shouldFold folded:self.folded];
+		@weakify(self)
+		[[[view.foldButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:view.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+			@strongify(self)
+			self.folded = !self.folded;
+			[collectionView reloadData];
+		}];
 		[[[view.browserButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		 takeUntil:view.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 			[self showPhotoBrowser:0 example:YES];

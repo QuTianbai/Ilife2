@@ -11,7 +11,8 @@
 @interface MSFPhotosUploadHeaderView : UICollectionReusableView
 
 @property (weak, nonatomic) IBOutlet UIButton *browserButton;
+@property (weak, nonatomic) IBOutlet UIButton *foldButton;
 
-- (void)bindModel:(id)viewModel summaryBlock:(void(^)())summaryBlock;
+- (void)bindModel:(id)viewModel shouldFold:(BOOL)sFold folded:(BOOL)folded;
 
 @end
