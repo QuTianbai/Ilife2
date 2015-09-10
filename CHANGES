@@ -1,3 +1,24 @@
+Version 1.1.0.2:
+ - add 	btn-attachment-take-photo
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Merge branch 'next'
+ - Merge remote-tracking branch 'origin/master' into origin/zhaoyong
+ - 修复 1592、1568、1565、1564
+ - UI
+ - 确认图片UI
+ - Update 处理图片压缩
+ - 首页确认合同按钮显示
+ - 资料上传页面UI调整
+ - 确认合同
+ - Update Fabric
+ - 确认合同，失败信息提示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 去除警告
+ - Fix spec
+ - Fix 图片提交提示语
+ - Update server reconnect
+ - 代码规范
+
 Version 0.1.0
  - Merge remote-tracking branch 'origin/zhaoyong'
  - update version to 1.1.0
