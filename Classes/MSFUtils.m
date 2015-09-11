@@ -30,12 +30,10 @@ static MSFServer *server;
 + (void)initialize {
 #if DEBUG
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+#elif DISTRIBUTION
+	server = [MSFServer dotComServer];
 #else
-	#if DISTRIBUTION
-		server = [MSFServer dotComServer];
-	#else
-		server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://www.msxf.uat"]];
-	#endif
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://www.msxf.uat"]];
 #endif
 
 }
