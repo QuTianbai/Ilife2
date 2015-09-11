@@ -82,6 +82,10 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 }
 
 - (NSURL *)baseWebURL {
+	NSString *endpoint = NSProcessInfo.processInfo.environment[@"BASE_WEBURL"];
+	if (endpoint != nil) {
+	 return [NSURL URLWithString:endpoint];
+	}
 #if  DISTRIBUTION || UAT
 	return [NSURL URLWithString:MSFServerDotComBaseWebURL];
 #else
