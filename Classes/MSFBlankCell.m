@@ -19,7 +19,7 @@
 	return self;
 }
 
-- (void) drawRect:(CGRect)rect {
+- (void)drawRect:(CGRect)rect {
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextMoveToPoint(context, 0, rect.size.height);
 	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
