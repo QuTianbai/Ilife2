@@ -30,8 +30,6 @@ static MSFServer *server;
 + (void)initialize {
 #if DEBUG
 	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
-	//server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://192.168.2.194:8080"]];
-
 #else
 	#if DISTRIBUTION
 		server = [MSFServer dotComServer];

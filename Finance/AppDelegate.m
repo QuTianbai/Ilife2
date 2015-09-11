@@ -267,8 +267,10 @@ static BOOL poped;
 }
 
 - (void)statusBarTouchedAction {
+#if DISTRIBUTION
+	return;
+#endif
 #if UAT
-#else
 	MSFUtilsViewController *vc = [[MSFUtilsViewController alloc] initWithStyle:UITableViewStylePlain];
 	[self.window.rootViewController presentViewController:vc animated:YES completion:nil];
 #endif
