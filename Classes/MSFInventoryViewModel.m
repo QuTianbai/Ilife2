@@ -114,7 +114,7 @@
 		[self.requiredViewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
 			if (!obj.isCompleted) {
 				error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"请添加%@照片", obj.title]
+					NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"请添加“%@”", obj.title]
 				}];
 				*stop = YES;
 			}
