@@ -1,3 +1,12 @@
+Version 1.1.0.3:
+ - Update environments
+ - Add Preprocessor Macros
+ - Fix 环境错误
+ - 修复bug #1568、#1594
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 上传图片示例图描述展开收起功能
+ - commit
+
 Version 1.1.0.2:
  - add 	btn-attachment-take-photo
  - Merge remote-tracking branch 'origin/xbmDev' into next
