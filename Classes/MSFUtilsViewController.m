@@ -23,6 +23,7 @@ NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotific
 		@"https://i.msxf.test",
 		@"https://i.msxf.tp",
 		@"https://www.msxf.com",
+		@"https://192.168.2.61",
 	];
 	
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
