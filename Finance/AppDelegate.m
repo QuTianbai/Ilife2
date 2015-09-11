@@ -37,10 +37,6 @@
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 
-#if !DEBUG
-static BOOL poped;
-#endif
-
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
@@ -142,8 +138,6 @@ static BOOL poped;
 				[[UIApplication sharedApplication] openURL:releasenote.version.updateURL];
 			}];
 		} else if (releasenote.status == 2) {
-			if (poped) return ;
-			poped = YES;
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
 				message:releasenote.version.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 			[alert show];
