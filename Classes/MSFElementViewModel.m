@@ -140,7 +140,7 @@
 		return [[attachmentViewModel.uploadAttachmentCommand
 			execute:nil]
 			catch:^RACSignal *(NSError *error) {
-				return [RACSignal empty];
+				return [RACSignal error:error];
 			}];
 		}] collect];
 }

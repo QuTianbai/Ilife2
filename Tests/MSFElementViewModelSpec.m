@@ -128,6 +128,35 @@ it(@"should upload attachments's file", ^{
 	expect(expected.attachment.objectID).to(equal(@"foo"));
 });
 
+it(@"should return a error when upload max number of attachments", ^{
+	// given
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL, @"type": element.type} error:nil];
+	[viewModel addAttachment:attachment];
+	
+	NSURL *URL2 = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
+	MSFAttachment *attachment2 = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL2, @"type": element.type} error:nil];
+	[viewModel addAttachment:attachment2];
+	
+	[given([client uploadAttachment:attachment2]) willDo:^id(NSInvocation *invocation) {
+		NSError *error = [NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"max number image"}];
+		return [RACSignal error:error];
+	}];
+	
+	[given([client uploadAttachment:attachment]) willDo:^id(NSInvocation *invocation) {
+		NSError *error = [NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"max number image"}];
+		return [RACSignal error:error];
+	}];
+	
+	// when
+	NSError *error;
+	[[viewModel.uploadCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
+	
+	// then
+	expect(error).notTo(beNil());
+	expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"max number image"));
+});
+
 it(@"should remove attachment in attachmentViewModel", ^{
 	// given
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
