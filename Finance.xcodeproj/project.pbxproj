@@ -1195,6 +1195,7 @@
 		4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSubmitAlertView.m; sourceTree = "<group>"; };
 		4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFSubmitAlertView.xib; sourceTree = "<group>"; };
 		51C6EF7905007621DE33981F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		58FB4AA0967D05B5B6F757C0 /* Pods.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.uat.xcconfig; path = "Pods/Target Support Files/Pods/Pods.uat.xcconfig"; sourceTree = "<group>"; };
 		6F25E8C7FECB410F2550681F /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C71884341B06F16200C25955 /* MSFAccordToNperLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAccordToNperLists.h; sourceTree = "<group>"; };
@@ -1297,6 +1298,7 @@
 		C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@2x.png"; sourceTree = "<group>"; };
 		C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@3x.png"; sourceTree = "<group>"; };
 		C85C468932002FC66C8F9BB2 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0CB88F5CEFA9C0F7D2D58FB /* Pods-Tests.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.uat.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.uat.xcconfig"; sourceTree = "<group>"; };
 		F8D1696951F05B5F319C3708 /* Pods-Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.distribution.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2974,6 +2976,8 @@
 				AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */,
 				6F25E8C7FECB410F2550681F /* Pods.distribution.xcconfig */,
 				F8D1696951F05B5F319C3708 /* Pods-Tests.distribution.xcconfig */,
+				58FB4AA0967D05B5B6F757C0 /* Pods.uat.xcconfig */,
+				F0CB88F5CEFA9C0F7D2D58FB /* Pods-Tests.uat.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -3894,7 +3898,7 @@
 		};
 		492CD5BD1BA26F3A008F5CAC /* UAT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51C6EF7905007621DE33981F /* Pods.release.xcconfig */;
+			baseConfigurationReference = 58FB4AA0967D05B5B6F757C0 /* Pods.uat.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3918,7 +3922,7 @@
 		};
 		492CD5BE1BA26F3A008F5CAC /* UAT */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */;
+			baseConfigurationReference = F0CB88F5CEFA9C0F7D2D58FB /* Pods-Tests.uat.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;

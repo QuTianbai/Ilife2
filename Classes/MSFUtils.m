@@ -28,16 +28,11 @@ static MSFServer *server;
 @implementation MSFUtils
 
 + (void)initialize {
-#if DEBUG
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://192.168.2.51:8443"]];
+#if DISTRIBUTION || UAT
+	server = [MSFServer dotComServer];
 #else
-	#if DISTRIBUTION
-		server = [MSFServer dotComServer];
-	#else
-		server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"https://www.msxf.uat"]];
-	#endif
+	server = MSFUtils.baseURLString.length > 0 ? [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]] : [MSFServer dotComServer];
 #endif
-
 }
 
 + (RACSignal *)setupSignal {

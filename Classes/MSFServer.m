@@ -9,19 +9,28 @@
 
 #if DEBUG
 
-NSString *const MSFServerDotComAPIEndpoint = @"https://api.msfinance.cn";
-NSString *const MSFServerAPIEndpointPathComponent = @"msfinanceapi/v1";
-NSString *const MSFServerDotComBaseWebURL = @"https://msfinance.cn";
-NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
+NSString *const MSFServerDotComAPIEndpoint = @"https://192.168.2.51:8443";
+NSString *const MSFServerDotComBaseWebURL = @"http://192.168.2.51:8088";
+
+#elif UAT
+
+NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.uat";
+NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
+
+#elif DISTRIBUTION
+
+NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.com";
+NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #else
 
-NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.com/msfinanceapi/v1";
-NSString *const MSFServerAPIEndpointPathComponent = @"msfinanceapi/v1";
-NSString *const MSFServerDotComBaseWebURL = @"https://www.msxf.com";
-NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
+NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.tp";
+NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.tp";
 
 #endif
+
+NSString *const MSFServerAPIEndpointPathComponent = @"msfinanceapi/v1";
+NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 
 @implementation MSFServer
 
@@ -66,18 +75,18 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 		 return [NSURL URLWithString:endpoint];
 		}
 		
-		return [NSURL URLWithString:MSFServerDotComAPIEndpoint];
+		return [[NSURL URLWithString:MSFServerDotComAPIEndpoint] URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
 	} else {
 		return [self.baseURL URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
 	}
 }
 
 - (NSURL *)baseWebURL {
-	if (self.baseURL == nil) {
-		return [NSURL URLWithString:MSFServerDotComBaseWebURL];
-	} else {
-		return self.baseURL;
-	}
+#if  DISTRIBUTION || UAT
+	return [NSURL URLWithString:MSFServerDotComBaseWebURL];
+#else
+	return [[NSURL URLWithString:MSFServerDotComBaseWebURL] URLByAppendingPathComponent:MSFServerAPIBaseWebPathComponent isDirectory:YES];
+#endif
 }
 
 @end
