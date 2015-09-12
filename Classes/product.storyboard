@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -116,36 +116,6 @@
                         <sections>
                             <tableViewSection id="mNA-YV-i0A">
                                 <cells>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sbg-hb-GXL">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sbg-hb-GXL" id="cM3-qQ-NhD">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic-information-prompt-1242.png" translatesAutoresizingMaskIntoConstraints="NO" id="TNg-Mo-MJt">
-                                                    <rect key="frame" x="15" y="12" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="HYu-8b-ogs"/>
-                                                        <constraint firstAttribute="width" constant="20" id="SLi-uf-GEl"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="系统目前仅对重庆地区的用户发放贷款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn9-qx-hg2">
-                                                    <rect key="frame" x="45" y="14" width="260" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="TNg-Mo-MJt" secondAttribute="centerY" id="BiT-0r-o8f"/>
-                                                <constraint firstItem="tn9-qx-hg2" firstAttribute="leading" secondItem="TNg-Mo-MJt" secondAttribute="trailing" constant="10" id="FMA-5t-F3z"/>
-                                                <constraint firstItem="TNg-Mo-MJt" firstAttribute="leading" secondItem="cM3-qQ-NhD" secondAttribute="leading" constant="15" id="UsM-0A-RlA"/>
-                                                <constraint firstAttribute="centerY" secondItem="tn9-qx-hg2" secondAttribute="centerY" id="Y6u-qk-Gi1"/>
-                                                <constraint firstAttribute="trailing" secondItem="tn9-qx-hg2" secondAttribute="trailing" constant="15" id="j1B-sJ-bfj"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="1" green="0.99607843137254903" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
-                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="171" id="T3d-Nm-rQd">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T3d-Nm-rQd" id="ewd-85-E2l">
@@ -319,7 +289,6 @@
                         <outlet property="repayConstraint" destination="Eaf-5F-6pq" id="D30-hf-Y7r"/>
                         <outlet property="repayMoneyBackgroundView" destination="rAM-Hj-ofJ" id="aWr-xC-1Ra"/>
                         <outlet property="repayMoneyMonth" destination="v6U-t7-RUX" id="kNG-N6-ouA"/>
-                        <outlet property="warningLabel" destination="tn9-qx-hg2" id="wvV-T5-scQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vdc-OI-M3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -363,7 +332,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="basic-information-prompt-1242.png" width="20" height="20"/>
         <image name="icon-cloze-question.png" width="20" height="20"/>
     </resources>
 </document>
