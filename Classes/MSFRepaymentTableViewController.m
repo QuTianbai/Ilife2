@@ -52,7 +52,7 @@
 	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchRepaymentSchedules].collect replayLazily];
-	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有还款计划哦......"];
+	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
 		[self setExtraCellLineHidden:self.tableView];
 		self.objects = x;

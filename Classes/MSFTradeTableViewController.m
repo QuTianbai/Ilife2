@@ -40,7 +40,7 @@
 	[self.tableView setEditing:NO];
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchTrades].collect replayLazily];
-	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有历史交易哦......"];
+	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有历史交易哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
 		[self setExtraCellLineHidden:self.tableView];
 		self.objects = x;

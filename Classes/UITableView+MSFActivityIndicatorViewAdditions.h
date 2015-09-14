@@ -10,6 +10,6 @@
 
 @interface UITableView (MSFActivityIndicatorViewAdditions)
 
-- (UIView *)viewWithSignal:(RACSignal *)signal message:(NSString *)message;
+- (UIView *)viewWithSignal:(RACSignal *)signal message:(NSString *)message AndImage:(UIImage *)image;
 
 @end
