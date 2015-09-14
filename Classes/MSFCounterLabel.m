@@ -46,8 +46,10 @@
 			value = 0.f;
 		}
 		self.text = [NSString stringWithFormat:@"%.2f", value];
+		[self layoutIfNeeded];
 	} else {
 		self.text = _valueText;
+		[self layoutIfNeeded];
 		return;
 	}
 	[self performSelector:@selector(change)
