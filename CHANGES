@@ -1,3 +1,13 @@
+Version 1.1.0.5:
+ - 1636 IOS-1.2.0.4，提交非必上传照片，点击提交失败，页面报错
+ - 申请贷款首页，重庆提示
+ - Fix 图片上传错误提示
+ - Fix spec
+ - Add test server ip
+ - Update code style
+ - Remove test code
+ - Improve 上传图片提示语修改，去掉`照片`后缀
+
 Version 1.1.0.3:
  - Update environments
  - Add Preprocessor Macros
