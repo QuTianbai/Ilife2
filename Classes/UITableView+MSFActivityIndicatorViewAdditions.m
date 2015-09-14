@@ -15,7 +15,7 @@ static UIColor *backupColor;
 
 @implementation UITableView (MSFActivityIndicatorViewAdditions)
 
-- (UIView *)viewWithSignal:(RACSignal *)signal message:(NSString *)message {
+- (UIView *)viewWithSignal:(RACSignal *)signal message:(NSString *)message AndImage:(UIImage *)image {
 	UIView *view = UIView.new;
 	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 	[view addSubview:activityIndicatorView];
@@ -23,6 +23,13 @@ static UIColor *backupColor;
 	[activityIndicatorView startAnimating];
 	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.center.equalTo(view);
+	}];
+	
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+	[view addSubview:imgView];
+	[imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.center.equalTo(view);
+		make.size.mas_equalTo(CGSizeMake(69, 69));
 	}];
 	
 	UILabel *label = UILabel.new;
@@ -33,7 +40,8 @@ static UIColor *backupColor;
 	label.hidden = NO;
 	[view addSubview:label];
 	[label mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.equalTo(view);
+		//make.center.equalTo(view);
+		make.top.equalTo(imgView.mas_bottom).with.offset(10);
 		make.height.equalTo(@40);
 		make.left.equalTo(view).offset(30);
 		make.right.equalTo(view).offset(-30);
