@@ -569,9 +569,16 @@ static BOOL isRunningTests(void) {
 				self.session = authorization.session;
 			}
 			
-			if (error.code == -1004 || cipher == nil || (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
+			if (operation.response.statusCode == 403) {
+				NSString *timestamp = operation.response.allHeaderFields[@"timestamp"];
+				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:timestamp.longLongValue];
+				[MSFClient setCipher:cipher];
+			}
+			
+			if (!cipher && (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
 			}
+			
 			if (operation.response.statusCode == 401) {
 				[MSFUtils setHttpClient:nil];
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidErrorNotification object:[self.class errorFromRequestOperation:operation]];
