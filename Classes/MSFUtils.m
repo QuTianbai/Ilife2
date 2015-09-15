@@ -28,9 +28,8 @@ static MSFServer *server;
 @implementation MSFUtils
 
 + (void)initialize {
-#if DISTRIBUTION || UAT
 	server = [MSFServer dotComServer];
-#else
+#if !DISTRIBUTION && !UAT
 	server = MSFUtils.baseURLString.length > 0 ? [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]] : [MSFServer dotComServer];
 #endif
 }

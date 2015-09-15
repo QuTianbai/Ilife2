@@ -246,7 +246,7 @@
 	self.window.rootViewController = tabBarController;
 }
 
-#pragma mark - Status bar touch tracking
+#if !DISTRIBUTION && !UAT
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	[super touchesBegan:touches withEvent:event];
@@ -258,12 +258,11 @@
 }
 
 - (void)statusBarTouchedAction {
-#if DISTRIBUTION || UAT
-#else
 	MSFUtilsViewController *vc = [[MSFUtilsViewController alloc] initWithStyle:UITableViewStylePlain];
 	[self.window.rootViewController presentViewController:vc animated:YES completion:nil];
-#endif
 }
+
+#endif
 
 - (void)updateContract {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
