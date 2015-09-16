@@ -10,12 +10,14 @@
 #import "MSFCommandView.h"
 #import <Masonry/Masonry.h>
 #define BLUETCOLOR @"0babed"
+#import "MSFRepaymentSchedulesViewModel.h"
 
 @implementation MSFRepaymentTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	if (self) {
+		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		_contractNum = [[UILabel alloc]init];
 		_contractStatus = [[UILabel alloc]init];
 		_shouldAmount = [[UILabel alloc]init];
@@ -110,6 +112,13 @@
 	}
 	
 	return self;
+}
+
+- (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
+	self.contractNumLabel.text = viewModel.repaymentNumber;
+	self.contractStatusLabel.text = viewModel.status;
+	self.shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.amount];
+	self.asOfDateLabel.text = viewModel.date;
 }
 
 @end

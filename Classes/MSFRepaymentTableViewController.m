@@ -9,28 +9,25 @@
 #import "MSFRepaymentTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
-
 #import "MSFRepaymentSchedules.h"
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFUtils.h"
-
 #import "MSFRepaymentTableViewCell.h"
-
 #import "MSFContractDetailsTableViewController.h"
-
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-
 #import "MSFCommandView.h"
 
 #define CELLBACKGROUNDCOLOR @"dce6f2"
 #define BLUETCOLOR @"0babed"
+#import "MSFTableViewBindingHelper.h"
+#import "MSFRepaymentSchedulesViewModel.h"
 
 @interface MSFRepaymentTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
 @property (nonatomic, strong) MSFRepaymentSchedules *rs;
+@property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
 
 @end
 
@@ -38,76 +35,47 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
 	self.title = @"还款计划";
-	
-	self.tableView.estimatedRowHeight = 44.0f;
-	self.tableView.rowHeight = UITableViewAutomaticDimension;
-	
-	UIEdgeInsets edgeInset = self.tableView.separatorInset;
-	self.tableView.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, edgeInset.right);
-	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	RACSignal *signal = [[[[MSFUtils.httpClient fetchRepaymentSchedules] map:^id(id value) {
+		return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value];
+	}]
+	collect]
+	replayLazily];
 	self.tableView.separatorColor = [MSFCommandView getColorWithString:BLUETCOLOR];
-	self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0.6)];
-	[self.tableView.tableHeaderView setBackgroundColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-	
-	RACSignal *signal = [[MSFUtils.httpClient fetchRepaymentSchedules].collect replayLazily];
 	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
-	[signal subscribeNext:^(id x) {
-		[self setExtraCellLineHidden:self.tableView];
-		self.objects = x;
-		[self.tableView reloadData];
+	RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFRepaymentSchedulesViewModel *input) {
+		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+			MSFContractDetailsTableViewController *cdTableViewController = [[MSFContractDetailsTableViewController alloc]initWithStyle:UITableViewStylePlain];
+			cdTableViewController.repayMentSchdues = input.model;
+			[self.navigationController pushViewController:cdTableViewController animated:YES];
+			[subscriber sendCompleted];
+			return nil;
+		}];
 	}];
+	self.tableView.tableFooterView = UIView.new;
+	self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.tableView sourceSignal:signal selectionCommand:command registerClass:MSFRepaymentTableViewCell.class];
+	self.bindingHelper.delegate = self;
 }
 
-#pragma mark - 去掉多余分割线
+#pragma mark - UITableViewDelegate
 
-- (void)setExtraCellLineHidden:(UITableView *)tableView {
-	
-	UIView *view = [UIView new];
-	
-	view.backgroundColor = [UIColor clearColor];
-	
-	[tableView setTableFooterView:view];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	
-	return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.objects.count;
-}
-
-- (MSFRepaymentTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:
-(NSIndexPath *)indexPath {
-	
-	static NSString *cellID = @"MSFRepaymentTableViewCell";
-	
-	MSFRepaymentTableViewCell *cell = (MSFRepaymentTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellID];
-	
-	if (cell == nil) {
-		cell = [[MSFRepaymentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-																						reuseIdentifier:cellID];
-		
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+		[cell setSeparatorInset:UIEdgeInsetsZero];
 	}
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
 
-	_rs = self.objects[indexPath.row];
-	
-	NSDate *time = [NSDateFormatter msf_dateFromString:_rs.repaymentTime];
-	NSDateFormatter *df = [[NSDateFormatter alloc]init];
-	df.dateFormat = @"yyyy/MM/dd";
-	
-	cell.contractNumLabel.text = _rs.contractNum;
-	cell.contractStatusLabel.text = _rs.contractStatus;
-	cell.shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", _rs.repaymentTotalAmount];
-	cell.asOfDateLabel.text = [df stringFromDate:time];
-	
-	return cell;
+- (void)viewDidLayoutSubviews {
+	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,12 +83,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	MSFContractDetailsTableViewController *cdTableViewController = [[MSFContractDetailsTableViewController alloc]initWithStyle:UITableViewStylePlain];
-	
-	cdTableViewController.repayMentSchdues = self.objects[indexPath.row];
-	
-	[self.navigationController pushViewController:cdTableViewController animated:YES];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
