@@ -17,6 +17,7 @@
 
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
+static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
 
 @interface MSFSignInViewController ()
 
@@ -47,7 +48,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.username.text = MSFUtils.phone;
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey];
-		self.password.text = @"123456qw";
+		self.password.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingPasswordEnvironmentKey];
 	}
 	@weakify(self)
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
