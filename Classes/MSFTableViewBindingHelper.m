@@ -53,6 +53,36 @@
   return self;
 }
 
+- (instancetype)initWithTableView:(UITableView *)tableView
+										 sourceSignal:(RACSignal *)source
+								 selectionCommand:(RACCommand *)selection
+										registerClass:(Class)templateCellClass {
+  if (self = [super init]) {
+    _tableView = tableView;
+    _data = [NSArray array];
+    _selection = selection;
+    
+    // each time the view model updates the array property, store the latest
+    // value and reload the table view
+    [source subscribeNext:^(id x) {
+      self->_data = x;
+      [self->_tableView reloadData];
+    }];
+    
+    // create an instance of the template cell and register with the table view
+    _templateCell = [[templateCellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+		[_tableView registerClass:templateCellClass forCellReuseIdentifier:_templateCell.reuseIdentifier];
+    
+    // use the template cell to set the row height
+    _tableView.rowHeight = _templateCell.bounds.size.height;
+    
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+  }
+	
+	return self;
+}
+
 + (instancetype)bindingHelperForTableView:(UITableView *)tableView
                              sourceSignal:(RACSignal *)source
                          selectionCommand:(RACCommand *)selection
@@ -93,6 +123,14 @@
   if ([self.delegate respondsToSelector:@selector(tableView:willDisplayCell:forRowAtIndexPath:)]) {
     [self.delegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
   }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	// init with custom cell class without nib
+	if ([self.delegate respondsToSelector:@selector(tableView:heightForRowAtIndexPath:)]) {
+		return [self.delegate tableView:tableView heightForRowAtIndexPath:indexPath];
+	}
+	return 44;
 }
 
 #pragma mark = UITableViewDelegate forwarding

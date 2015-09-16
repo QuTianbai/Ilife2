@@ -16,13 +16,18 @@
 @property (weak, nonatomic) id<UITableViewDelegate> delegate;
 
 - (instancetype)initWithTableView:(UITableView *)tableView
-                      sourceSignal:(RACSignal *)source
-                  selectionCommand:(RACCommand *)selection
-                      templateCell:(UINib *)templateCellNib;
+										 sourceSignal:(RACSignal *)source
+								 selectionCommand:(RACCommand *)selection
+										 templateCell:(UINib *)templateCellNib;
+
+- (instancetype)initWithTableView:(UITableView *)tableView
+										 sourceSignal:(RACSignal *)source
+								 selectionCommand:(RACCommand *)selection
+										registerClass:(Class)templateCellClass;
 
 + (instancetype)bindingHelperForTableView:(UITableView *)tableView
-                              sourceSignal:(RACSignal *)source
-                          selectionCommand:(RACCommand *)selection
-                              templateCell:(UINib *)templateCellNib;
+														 sourceSignal:(RACSignal *)source
+												 selectionCommand:(RACCommand *)selection
+														 templateCell:(UINib *)templateCellNib;
 
 @end
