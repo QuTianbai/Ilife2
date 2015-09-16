@@ -12,19 +12,19 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFTrade.h"
 #import "MSFClient+Trades.h"
-
 #import "MSFCommandView.h"
-
 #import "MSFUtils.h"
-
 #import "MSFTradeTableViewCell.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #define BLUETCOLOR @"0babed"
 #define BLACKCOLOR @"#585858"
+#import "MSFTableViewBindingHelper.h"
+#import "MSFTradeViewModel.h"
 
 @interface MSFTradeTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
+@property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
 
 @end
 
@@ -33,92 +33,61 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"历史交易";
-	UIEdgeInsets edgeInset = self.tableView.separatorInset;
-	self.tableView.separatorInset = UIEdgeInsetsMake(edgeInset.top, 0, edgeInset.bottom, edgeInset.right);
-	self.tableView.separatorColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.04];
-	self.tableView.allowsSelection = NO;
-	[self.tableView setEditing:NO];
 	
-	RACSignal *signal = [[MSFUtils.httpClient fetchTrades].collect replayLazily];
+	RACSignal *signal = [[[[MSFUtils.httpClient fetchTrades] map:^id(id value) {
+		return [[MSFTradeViewModel alloc] initWithModel:value];
+	}]
+	collect]
+	replayLazily];
+	
+	self.tableView.allowsSelection = NO;
+	self.tableView.tableFooterView = [UIView new];
 	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有历史交易哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
+	self.bindingHelper = [MSFTableViewBindingHelper bindingHelperForTableView:self.tableView sourceSignal:signal selectionCommand:nil templateCell:[UINib nibWithNibName:@"MSFTradeTableViewCell" bundle:nil]];
+	self.bindingHelper.delegate = self;
+	
 	[signal subscribeNext:^(id x) {
-		[self setExtraCellLineHidden:self.tableView];
-		self.objects = x;
-		[self.tableView reloadData];
+		if ([x count] == 0) self.tableView.tableHeaderView = nil;
+		self.tableView.tableHeaderView = self.tableHeaderView;
 	}];
 }
 
-#pragma mark - 去掉多余分割线
-
-- (void)setExtraCellLineHidden:(UITableView *)tableView {
-	
-	UIView *view = [UIView new];
-	
-	view.backgroundColor = [UIColor clearColor];
-	
-	[tableView setTableFooterView:view];
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	
-	return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.objects.count == 0) {
-		return 0;
-	} else {
-		return self.objects.count + 1;
-	}
-}
-
-- (MSFTradeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	static NSString *cellID = @"MSFTradeTableViewCell";
-	
-	MSFTradeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-	
-	if (cell == nil) {
-		cell = [[[NSBundle mainBundle] loadNibNamed:@"MSFTradeTableViewCell" owner:self options:nil] lastObject];
-	}
-	
-	
-	
-	if (indexPath.row == 0) {
-		[cell.date setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		[cell.amount setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		[cell.date setFont:[UIFont systemFontOfSize:15]];
-		[cell.amount setFont:[UIFont systemFontOfSize:15]];
-		[cell.tradeDescription setFont:[UIFont systemFontOfSize:15]];
-		cell.date.text = @"日期";
-		cell.tradeDescription.text = @"交易描述";
-		cell.amount.text = @"金额";
-		[cell setBackgroundColor:[UIColor whiteColor]];
-		
-	} else {
-		MSFTrade *trade = [self.objects objectAtIndex:indexPath.row - 1];
-		[cell.date setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
-		[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
-		[cell.amount setTextColor:[MSFCommandView getColorWithString:BLACKCOLOR]];
-		
-		[cell.date setFont:[UIFont systemFontOfSize:14]];
-		[cell.amount setFont:[UIFont systemFontOfSize:14]];
-		[cell.tradeDescription setFont:[UIFont systemFontOfSize:14]];
-		cell.date.text = [NSDateFormatter msf_stringFromDateForDash:trade.tradeDate];
-		
-		cell.tradeDescription.text = [NSString stringWithFormat:@"%@", trade.tradeDescription];
-		cell.amount.text = trade.tradeAmount;
-		[cell setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.03]];
-	}
-
+- (UIView *)tableHeaderView {
+	static MSFTradeTableViewCell *cell;
+	if (cell) return cell;
+	cell = [[[NSBundle mainBundle] loadNibNamed:@"MSFTradeTableViewCell" owner:self options:nil] lastObject];
+	[cell.date setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+	[cell.tradeDescription setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+	[cell.amount setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+	[cell.date setFont:[UIFont systemFontOfSize:15]];
+	[cell.amount setFont:[UIFont systemFontOfSize:15]];
+	[cell.tradeDescription setFont:[UIFont systemFontOfSize:15]];
+	cell.date.text = @"日期";
+	cell.tradeDescription.text = @"交易描述";
+	cell.amount.text = @"金额";
+	[cell setBackgroundColor:[UIColor whiteColor]];
 	return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 44;
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+		[cell setSeparatorInset:UIEdgeInsetsZero];
+	}
+	
+	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+		[cell setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+- (void)viewDidLayoutSubviews {
+	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
 }
 
 @end
