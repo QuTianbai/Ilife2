@@ -29,7 +29,7 @@
 
 + (NSValueTransformer *)incomeJSONTransformer {
   return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-				return num.intValue>0?num:@"";
+				return num.intValue>=0?num:@"";
 		} reverseBlock:^id(NSString *str) {
       if (str==nil) {
         return [NSDecimalNumber decimalNumberWithString:str];
@@ -41,7 +41,7 @@
 
 + (NSValueTransformer *)otherIncomeJSONTransformer {
   return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-				return num.intValue>0?num:@"";
+				return num.intValue>=0?num:@"";
 		} reverseBlock:^id(NSString *str) {
       if (str==nil) {
         return [NSDecimalNumber decimalNumberWithString:str];
@@ -53,7 +53,7 @@
 
 + (NSValueTransformer *)familyExpenseJSONTransformer {
   return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-				return num.intValue>0?num:@"";
+				return num.intValue>=0?num:@"";
 		} reverseBlock:^id(NSString *str) {
       if (str==nil) {
         return [NSDecimalNumber decimalNumberWithString:str];
@@ -65,7 +65,7 @@
 
 + (NSValueTransformer *)repayMoneyJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-		return num.intValue>0?num:@"";
+		return num.intValue>=0?num:@"";
 	} reverseBlock:^id(NSString *str) {
 		if (str==nil) {
 			return [NSDecimalNumber decimalNumberWithString:str];
@@ -77,7 +77,7 @@
 
 + (NSValueTransformer *)principalJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-		return num.intValue>0?num:@"";
+		return num.intValue>=0?num:@"";
 	} reverseBlock:^id(NSString *str) {
 		if (str==nil) {
 			return [NSDecimalNumber decimalNumberWithString:str];
