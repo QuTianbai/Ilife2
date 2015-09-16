@@ -162,6 +162,9 @@
 	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
 		return @"请输入正确的QQ号";
 	}
+	
+	self.model.taobaoPassword = self.model.taobaoPassword.length > 0 ? @"Y" : @"N";
+	self.model.jdAccountPwd = self.model.jdAccountPwd.length > 0 ? @"Y" : @"N";
 	return nil;
 }
 
