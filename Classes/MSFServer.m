@@ -10,7 +10,7 @@
 #if DEBUG
 
 NSString *const MSFServerDotComAPIEndpoint = @"https://192.168.2.51:8443";
-NSString *const MSFServerDotComBaseWebURL = @"http://192.168.2.51:8088";
+NSString *const MSFServerDotComBaseWebURL = @"http://192.168.2.51:8088/msfinanceweb";
 
 #elif UAT
 
@@ -83,14 +83,8 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 
 - (NSURL *)baseWebURL {
 	NSString *endpoint = NSProcessInfo.processInfo.environment[@"BASE_WEBURL"];
-	if (endpoint != nil) {
-	 return [NSURL URLWithString:endpoint];
-	}
-#if  DISTRIBUTION || UAT
+	if (endpoint.length > 0) return [NSURL URLWithString:endpoint];
 	return [NSURL URLWithString:MSFServerDotComBaseWebURL];
-#else
-	return [[NSURL URLWithString:MSFServerDotComBaseWebURL] URLByAppendingPathComponent:MSFServerAPIBaseWebPathComponent isDirectory:YES];
-#endif
 }
 
 @end

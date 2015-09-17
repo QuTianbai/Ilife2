@@ -70,7 +70,7 @@ static MSFServer *server;
 }
 
 + (MSFAgreementViewModel *)agreementViewModel {
-	MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:server];
+	MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:MSFServer.dotComServer];
 	MSFAgreementViewModel *viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
 	
 	return viewModel;
