@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
-@interface MSFTradeTableViewCell : UITableViewCell
+@interface MSFTradeTableViewCell : UITableViewCell <MSFReactiveView>
 
 @property (strong, nonatomic) UILabel *date;
 @property (strong, nonatomic) UILabel *tradeDescription;

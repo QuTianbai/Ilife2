@@ -1,3 +1,17 @@
+Version 1.1.0.9:
+ - Fix ios9 https 模拟器无法连接网络问题处理
+ - Update server address
+
+Version 1.1.0.8:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Refactor repayment
+ - Update binding for registerClass
+ - Refactor trades
+ - Add binding Helper
+ - iosv1.0.7，基本信息页面淘宝京东密码都以明文显示
+ - Update environments password
+ - 基本信息的金额可以为0，获取服务器的数据更新到界面中显示也可以为0
+
 Version 1.1.0.7:
  - Merge remote-tracking branch 'origin/xbmDev'
  - 中山、三沙、东莞为地级市，但没有区县，因此做如下调整 1、三沙市下增加 市辖区 460301 2、中山市下增加 市辖区442001 3、东莞市增加 市辖区441901

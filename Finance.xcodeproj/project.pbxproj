@@ -117,6 +117,9 @@
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */; };
+		49075CA71BA91326006F63FF /* MSFTableViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */; };
+		49075CCB1BA91CE3006F63FF /* MSFTradeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49075CCA1BA91CE3006F63FF /* MSFTradeViewModel.m */; };
+		49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49075CE11BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m */; };
 		490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */ = {isa = PBXBuildFile; fileRef = 490BDE7E1B08265700D53391 /* NSString+Matches.m */; };
 		490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */; };
 		4917A42A1B943EAC00ADA6FC /* MSFAttachmentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */; };
@@ -769,6 +772,12 @@
 		4902EE111B195A2F00EC836C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Externals/Fabric.framework; sourceTree = "<group>"; };
 		490312A91B0C8AB000DC33B4 /* MSFClozeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFClozeViewModel.h; sourceTree = "<group>"; };
 		490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClozeViewModel.m; sourceTree = "<group>"; };
+		49075CA51BA91326006F63FF /* MSFTableViewBindingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTableViewBindingHelper.h; sourceTree = "<group>"; };
+		49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTableViewBindingHelper.m; sourceTree = "<group>"; };
+		49075CC91BA91CE3006F63FF /* MSFTradeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTradeViewModel.h; sourceTree = "<group>"; };
+		49075CCA1BA91CE3006F63FF /* MSFTradeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTradeViewModel.m; sourceTree = "<group>"; };
+		49075CE01BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentSchedulesViewModel.h; sourceTree = "<group>"; };
+		49075CE11BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedulesViewModel.m; sourceTree = "<group>"; };
 		490BDE7D1B08265700D53391 /* NSString+Matches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Matches.h"; sourceTree = "<group>"; };
 		490BDE7E1B08265700D53391 /* NSString+Matches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Matches.m"; sourceTree = "<group>"; };
 		490DB83A1B1FF10100EEA5C9 /* MSFSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignature.h; sourceTree = "<group>"; };
@@ -1695,6 +1704,24 @@
 			path = UMAnalytics_Sdk_3.5.10;
 			sourceTree = "<group>";
 		};
+		49075CBB1BA91CCC006F63FF /* Trade */ = {
+			isa = PBXGroup;
+			children = (
+				49075CC91BA91CE3006F63FF /* MSFTradeViewModel.h */,
+				49075CCA1BA91CE3006F63FF /* MSFTradeViewModel.m */,
+			);
+			name = Trade;
+			sourceTree = "<group>";
+		};
+		49075CD21BA95B12006F63FF /* RepaymentSchedules */ = {
+			isa = PBXGroup;
+			children = (
+				49075CE01BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.h */,
+				49075CE11BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m */,
+			);
+			name = RepaymentSchedules;
+			sourceTree = "<group>";
+		};
 		4912D79D1B6213E20014059D /* Loan */ = {
 			isa = PBXGroup;
 			children = (
@@ -2041,6 +2068,8 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49075CD21BA95B12006F63FF /* RepaymentSchedules */,
+				49075CBB1BA91CCC006F63FF /* Trade */,
 				4948E87A1B953FED0048D125 /* Element */,
 				4917A43E1B9440A100ADA6FC /* Inventory */,
 				4917A4381B943EB400ADA6FC /* Attachment */,
@@ -2690,6 +2719,8 @@
 		49DA226A1B062AF700DD4483 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				49075CA51BA91326006F63FF /* MSFTableViewBindingHelper.h */,
+				49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */,
 				49DA22621B062AF200DD4483 /* MSFUtils.h */,
 				49DA22631B062AF200DD4483 /* MSFUtils.m */,
 				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
@@ -3045,6 +3076,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MSF;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = MSFINANCE;
 				TargetAttributes = {
@@ -3615,6 +3647,7 @@
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
+				49075CCB1BA91CE3006F63FF /* MSFTradeViewModel.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */,
 				C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */,
@@ -3626,6 +3659,7 @@
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
 				C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
+				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
@@ -3689,6 +3723,7 @@
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,
 				C7B978141B099CD9005F247C /* MSFUserHelpCell.m in Sources */,
 				4948E8C01B959A5E0048D125 /* MSFAttachmentViewModel.m in Sources */,
+				49075CA71BA91326006F63FF /* MSFTableViewBindingHelper.m in Sources */,
 				C7B977FE1B08C568005F247C /* MSFRepaymentTableViewCell.m in Sources */,
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
 				492007521BA00CCD00C0722C /* StandardPaths.m in Sources */,

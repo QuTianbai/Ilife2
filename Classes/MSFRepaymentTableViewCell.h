@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
-@interface MSFRepaymentTableViewCell : UITableViewCell
+@interface MSFRepaymentTableViewCell : UITableViewCell <MSFReactiveView>
 /**
  *	合同编号
  */
