@@ -3076,6 +3076,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MSF;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = MSFINANCE;
 				TargetAttributes = {
