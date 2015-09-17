@@ -1,3 +1,7 @@
+Version 1.1.0.9:
+ - Fix ios9 https 模拟器无法连接网络问题处理
+ - Update server address
+
 Version 1.1.0.8:
  - Merge remote-tracking branch 'origin/xbmDev'
  - Refactor repayment
