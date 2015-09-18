@@ -147,3 +147,6 @@ Podfile.lock
 
 # AppCode
 .idea
+
+# Xcode 7
+ObjectiveC.gcno
