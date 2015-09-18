@@ -1,3 +1,14 @@
+Version 1.1.0.10:
+ - Update release update
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Add ObjectiveC.gcno to gitignore
+ - Remove timeout error
+ - 升级Crashlytics
+ - 关闭xcode7 的enable bitcode
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Update latest sdk 9.0
+ - 淘宝 京东密码，传送
+
 Version 1.1.0.9:
  - Fix ios9 https 模拟器无法连接网络问题处理
  - Update server address
