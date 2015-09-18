@@ -47,7 +47,10 @@
 	self.bindingHelper.delegate = self;
 	
 	[signal subscribeNext:^(id x) {
-		if ([x count] == 0) self.tableView.tableHeaderView = nil;
+		if ([x count] == 0) {
+			self.tableView.tableHeaderView = nil;
+			return;
+		}
 		self.tableView.tableHeaderView = self.tableHeaderView;
 	}];
 }
