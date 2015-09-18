@@ -3963,7 +3963,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
@@ -4125,6 +4125,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
