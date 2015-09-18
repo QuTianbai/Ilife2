@@ -26,11 +26,11 @@ pod 'SVPullToRefresh', '0.4.1'
 pod 'REFormattedNumberField', '1.1.5'
 pod 'SVProgressHUD', '1.1.3'
 pod 'Fabric', '1.2.8'
-pod 'Crashlytics', '3.1.0'
+pod 'Crashlytics', ‘3.1.1’
 pod 'KGModal', '1.1.0'
 pod 'ZSWTappableLabel', '1.1'
 pod 'ZSWTaggedString', '1.1'
-pod 'MWPhotoBrowser', '~> 2.1.1'
+pod 'MWPhotoBrowser', '2.1.1'
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', :git => 'https://github.com/jonreid/OCMockito', :commit=>'f20ee6d'
