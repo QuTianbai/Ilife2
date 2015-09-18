@@ -116,6 +116,7 @@
 		return [RACSignal empty];
 	}] subscribeNext:^(id x) {
 		[self setup];
+		[self updateCheck];
 	}];
 	
 	return YES;
@@ -128,7 +129,19 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	NSLog(@"applicationDidBecomeActive:");
-	if (!MSFClient.cipher) return;
+	if (MSFClient.cipher) [self updateCheck];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
+	NSLog(@"applicationDidEnterBackground:");
+}
+
+#pragma mark - Private
+
+- (void)updateCheck {
 	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 		if (releasenote.status == 1) {
@@ -148,15 +161,6 @@
 		}
 	}];
 }
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-	if (self.timer != nil) {
-		[self.timer setFireDate:[NSDate distantFuture]];
-	}
-	NSLog(@"applicationDidEnterBackground:");
-}
-
-#pragma mark - Private
 
 - (void)setup {
 	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
