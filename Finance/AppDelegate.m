@@ -213,23 +213,6 @@
 				}
 			}
 		}];
-	UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"无法连接到服务器" message:nil delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"重新连接", nil];
-	[alertView2.rac_buttonClickedSignal subscribeNext:^(id x) {
-		if ([x integerValue] == 0) {
-			[self unAuthenticatedControllers];
-			return;
-		}
-		[MSFUtils.setupSignal subscribeNext:^(id x) {
-			[self unAuthenticatedControllers];
-		}];
-	}];
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidLoseConnectNotification object:nil]
-		subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
-			if (!alertView2.isVisible) {
-				[alertView2 show];
-			}
-		}];
 }
 
 - (void)unAuthenticatedControllers {
