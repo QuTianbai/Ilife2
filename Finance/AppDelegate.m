@@ -202,20 +202,16 @@
 	}];
 	
 	// Error Handle
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"已在另一设备上登录，如非本人操作请立即修改密码" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-	[[[[NSNotificationCenter defaultCenter]
-		 rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
+	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(NSNotification *notification) {
 			@strongify(self)
-			[self unAuthenticatedControllers];
 			NSError *error = notification.object;
-			if ([error.userInfo[NSLocalizedFailureReasonErrorKey] isEqualToString:@"已在另一设备上登录，如非本人操作请立即修改密码"]) {
-				[MSFUtils setHttpClient:nil];
-				if (!alertView.isVisible) {
-					[alertView show];
-				}
-			}
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message: error.userInfo[NSLocalizedFailureReasonErrorKey] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+			[self unAuthenticatedControllers];
+			[MSFUtils setHttpClient:nil];
+			if (alertView.isVisible) return;
+			[alertView show];
 		}];
 }
 
