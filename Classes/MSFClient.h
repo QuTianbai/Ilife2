@@ -19,6 +19,7 @@ extern const NSInteger MSFClientErrorJSONParsingFailed;
 
 // 认证错误
 extern const NSInteger MSFClientErrorAuthenticationFailed;
+extern NSString *const MSFClientErrorAuthenticationFailedNotification;
 
 @interface MSFClient : AFHTTPRequestOperationManager
 

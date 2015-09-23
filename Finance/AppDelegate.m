@@ -202,7 +202,7 @@
 	}];
 	
 	// Error Handle
-	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFAuthorizationDidErrorNotification object:nil]
+	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil]
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(NSNotification *notification) {
 			@strongify(self)

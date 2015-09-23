@@ -26,7 +26,8 @@
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
 const NSInteger MSFClientErrorJSONParsingFailed = 669;
-const NSInteger MSFClientErrorAuthenticationFailed = 666;
+const NSInteger MSFClientErrorAuthenticationFailed = 401;
+NSString *const MSFClientErrorAuthenticationFailedNotification = @"MSFAuthorizationDidLoseConnectNotification";
 
 static const NSInteger MSFClientNotModifiedStatusCode = 304;
 
@@ -579,9 +580,9 @@ static BOOL isRunningTests(void) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
 			}
 			
-			if (operation.response.statusCode == 401) {
+			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
 				[MSFUtils setHttpClient:nil];
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidErrorNotification object:[self.class errorFromRequestOperation:operation]];
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
 			}
 			
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
