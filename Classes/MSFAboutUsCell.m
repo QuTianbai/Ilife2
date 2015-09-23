@@ -15,8 +15,8 @@
 @implementation MSFAboutUsCell
 
 - (void)viewDidLoad {
+	[super viewDidLoad];
 	self.title = @"关于我们";
-
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_aboutWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)

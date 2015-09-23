@@ -10,17 +10,11 @@
 #import "MSFUtils.h"
 #import "MSFClient.h"
 #import "MSFCommandView.h"
-
 #import "MSFAboutUsCell.h"
 #import "MSFProductIntroductionCell.h"
 #import "MSFUserHelpCell.h"
 #import "MSFBranchesCell.h"
-
 #import "MSFSettingTableViewCell.h"
-
-#define SEPARATORCOLOR @"5787c0"
-#define CELLBACKGROUNDCOLOR @"dce6f2"
-#define TYPEFACECOLOR @"5787c0"
 
 @implementation MSFSettingsViewController {
 	NSArray *_imageArray;
@@ -50,17 +44,13 @@
 		@"用户帮助",
 		@"网点分布",
 	];
-	
 }
 
 #pragma mark - 去掉多余分割线
 
 - (void)setExtraCellLineHidden:(UITableView *)tableView {
-	
 	UIView *view = [UIView new];
-	
 	view.backgroundColor = [UIColor clearColor];
-	
 	[tableView setTableFooterView:view];
 }
 

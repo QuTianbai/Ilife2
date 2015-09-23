@@ -15,24 +15,22 @@
 @implementation MSFBranchesCell
 
 - (void)viewDidLoad {
-	
+	[super viewDidLoad];
 	self.title = @"网点分布";
-	
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_branchWebView
-		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.branchAgreementSignal, [RACSignal return:nil]]]]
+		rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.branchAgreementSignal, [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
-	 subscribeNext:^(id x) {
-		 [SVProgressHUD dismiss];
-	 }
-	 error:^(NSError *error) {
-		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	 }];
+		subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}
+		error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];
-
 }
 
 @end
