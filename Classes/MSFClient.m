@@ -27,7 +27,7 @@ NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
 const NSInteger MSFClientErrorJSONParsingFailed = 669;
 const NSInteger MSFClientErrorAuthenticationFailed = 401;
-NSString *const MSFClientErrorAuthenticationFailedNotification = @"MSFAuthorizationDidLoseConnectNotification";
+NSString *const MSFClientErrorAuthenticationFailedNotification = @"MSFClientErrorAuthenticationFailedNotification";
 
 static const NSInteger MSFClientNotModifiedStatusCode = 304;
 
@@ -574,10 +574,6 @@ static BOOL isRunningTests(void) {
 				NSString *timestamp = operation.response.allHeaderFields[@"timestamp"];
 				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:timestamp.longLongValue];
 				[MSFClient setCipher:cipher];
-			}
-			
-			if (!cipher && (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
 			}
 			
 			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
