@@ -3033,7 +3033,7 @@
 				49ACBC201B3004ED007E1F6B /* Exportenv */,
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
-				109A8F621B6F142100C60B05 /* Fabric */,
+				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3481,20 +3481,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		109A8F621B6F142100C60B05 /* Fabric */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Fabric;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 670b3cf4e9582aba989e7aad7e964a4a41c0e20e";
-		};
 		1298C3C993B0F2579464D2A7 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3567,6 +3553,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Script/brsp/xcode-objclean-warnings.sh\"";
+		};
+		4975EDFD1BB3C71C00F63F1F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 0e8ba18d6893cbab6bb3aefa45979aa787768441 1ed9df5d5ca654f4f941804845f1d6884c1294e7e2a11f7f2337c3132fb7f448";
 		};
 		49ACBC201B3004ED007E1F6B /* Exportenv */ = {
 			isa = PBXShellScriptBuildPhase;
