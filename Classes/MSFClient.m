@@ -22,6 +22,7 @@
 #import "MSFUtils.h"
 #import "MSFSignature.h"
 #import "RCLocationManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
@@ -560,6 +561,10 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+			NSString *errorString = [NSString stringWithFormat:@"ResponseString:%@\nErrorDescription:%@\n", operation.responseString, error.localizedDescription];
+			[[Crashlytics sharedInstance] recordCustomExceptionName:@"MSFClientError" reason:errorString frameArray:@[[CLSStackFrame stackFrame]]];
+			
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			}
