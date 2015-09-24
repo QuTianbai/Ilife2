@@ -32,8 +32,8 @@ core20150818
 
     ./Externals/Fabric.framework/run 670b3cf4e9582aba989e7aad7e964a4a41c0e20e 9d02fc1cf0f14796fdac44289d833b82895cfca0be3139f7a66a9f2f7d22fe28
 
-账号：app@msfinance.cn
-密码：@2015msfinance
+账号：apps@msxf.com
+密码：@msxf2015
 
 统计分析：umeng
 崩溃收集：fabric
