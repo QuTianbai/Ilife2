@@ -22,11 +22,13 @@
 #import "MSFUtils.h"
 #import "MSFSignature.h"
 #import "RCLocationManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
 const NSInteger MSFClientErrorJSONParsingFailed = 669;
-const NSInteger MSFClientErrorAuthenticationFailed = 666;
+const NSInteger MSFClientErrorAuthenticationFailed = 401;
+NSString *const MSFClientErrorAuthenticationFailedNotification = @"MSFClientErrorAuthenticationFailedNotification";
 
 static const NSInteger MSFClientNotModifiedStatusCode = 304;
 
@@ -559,6 +561,10 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+			NSString *errorString = [NSString stringWithFormat:@"ResponseString:%@\nErrorDescription:%@\n", operation.responseString, error.localizedDescription];
+			[[Crashlytics sharedInstance] recordCustomExceptionName:@"MSFClientError" reason:errorString frameArray:@[[CLSStackFrame stackFrame]]];
+			
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			}
@@ -575,13 +581,9 @@ static BOOL isRunningTests(void) {
 				[MSFClient setCipher:cipher];
 			}
 			
-			if (!cipher && (!operation.responseString && !operation.response.allHeaderFields && operation.response.statusCode == 0)) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidLoseConnectNotification object:nil];
-			}
-			
-			if (operation.response.statusCode == 401) {
+			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
 				[MSFUtils setHttpClient:nil];
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFAuthorizationDidErrorNotification object:[self.class errorFromRequestOperation:operation]];
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
 			}
 			
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];

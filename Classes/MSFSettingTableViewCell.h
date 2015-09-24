@@ -11,7 +11,6 @@
 @interface MSFSettingTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *picImageView;
-
 @property (nonatomic, strong) UILabel *text_label;
 
 @end

@@ -19,9 +19,6 @@
 #import "MSFAgreementViewModel.h"
 #import "MSFUtilsViewController.h"
 
-NSString *const MSFAuthorizationDidErrorNotification = @"MSFAuthorizationDidErrorNotification";
-NSString *const MSFAuthorizationDidLoseConnectNotification = @"MSFAuthorizationDidLoseConnectNotification";
-
 static MSFClient *client;
 static MSFServer *server;
 

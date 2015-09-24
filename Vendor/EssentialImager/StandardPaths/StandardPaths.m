@@ -161,7 +161,7 @@
             [self createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:NULL];
         }
         
-        if (&NSURLIsExcludedFromBackupKey && [NSURL instancesRespondToSelector:@selector(setResourceValue:forKey:error:)])
+        if (NSURLIsExcludedFromBackupKey && [NSURL instancesRespondToSelector:@selector(setResourceValue:forKey:error:)])
         {
             //use iOS 5.1 method to exclude file from backp
             NSURL *URL = [NSURL fileURLWithPath:path isDirectory:YES];

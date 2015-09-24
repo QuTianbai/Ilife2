@@ -6,15 +6,6 @@
 
 #import <Foundation/Foundation.h>
 
-// 登录认证更新通知
-extern NSString *const MSFAuthorizationDidUpdateNotification;
-
-// 授权错误通知
-extern NSString *const MSFAuthorizationDidErrorNotification;
-
-// 服务器连接丢失通知,告知本地缓存的服务区时间戳失效
-extern NSString *const MSFAuthorizationDidLoseConnectNotification;
-
 @class MSFClient;
 @class MSFServer;
 @class RACSignal;
