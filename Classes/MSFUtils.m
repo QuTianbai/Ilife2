@@ -82,6 +82,15 @@ static MSFServer *server;
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-phone"];
 }
 
++ (void)setRegisterPhone:(NSString *)phone {
+	[[NSUserDefaults standardUserDefaults] setObject:phone?:@"" forKey:@"user-registerPhone"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString *)registerPhone {
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-registerPhone"];
+}
+
 + (void)setBaseURLString:(NSString *)url {
 	[[NSUserDefaults standardUserDefaults] setObject:url?:@"" forKey:@"user-base-url"];
 	[[NSUserDefaults standardUserDefaults] synchronize];

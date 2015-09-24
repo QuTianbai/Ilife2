@@ -51,6 +51,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.backgroundView.layer.cornerRadius = 5;
 	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
 	self.backgroundView.layer.borderWidth = 1;
+	
+	self.username.text = MSFUtils.registerPhone;
+	
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = @"18223959242";
 	}
@@ -118,6 +121,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
+			[MSFUtils setRegisterPhone:@""];
 			MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.viewModel.services];
 			MSFClozeViewController *clozeViewController = [[MSFClozeViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:clozeViewController animated:YES];

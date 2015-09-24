@@ -51,7 +51,14 @@
 + (void)setPhone:(NSString *)phone;
 + (NSString *)phone;
 
+/**
+ * 用户注册手机号
+ */
++ (void)setRegisterPhone:(NSString *)phone;
++ (NSString *)registerPhone;
+
 + (void)setBaseURLString:(NSString *)url;
 + (NSString *)baseURLString;
+
 
 @end
