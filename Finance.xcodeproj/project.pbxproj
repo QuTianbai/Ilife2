@@ -157,7 +157,6 @@
 		492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
-		492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */; };
 		49386C151B8178D100B1282B /* check-user-credit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49386C141B8178D100B1282B /* check-user-credit.json */; };
 		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
@@ -839,8 +838,6 @@
 		492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAlertContentViewController.m; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
-		492E62B41B0ECCCB00D34069 /* UIButton+BottomTitles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BottomTitles.h"; sourceTree = "<group>"; };
-		492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BottomTitles.m"; sourceTree = "<group>"; };
 		49386C141B8178D100B1282B /* check-user-credit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-user-credit.json"; sourceTree = "<group>"; };
 		4943C32B1B047403000BBF5E /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3521B047437000BBF5E /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2068,8 +2065,6 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				49075CD21BA95B12006F63FF /* RepaymentSchedules */,
-				49075CBB1BA91CCC006F63FF /* Trade */,
 				4948E87A1B953FED0048D125 /* Element */,
 				4917A43E1B9440A100ADA6FC /* Inventory */,
 				4917A4381B943EB400ADA6FC /* Attachment */,
@@ -2108,6 +2103,8 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				49075CD21BA95B12006F63FF /* RepaymentSchedules */,
+				49075CBB1BA91CCC006F63FF /* Trade */,
 				4948E8BB1B9599FB0048D125 /* Attachment */,
 				4948E8B31B9577C30048D125 /* Inventory */,
 				4948E8AC1B95521C0048D125 /* Element */,
@@ -2558,8 +2555,6 @@
 				49C7CBA81B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m */,
 				498F3D481B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.h */,
 				498F3D491B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m */,
-				492E62B41B0ECCCB00D34069 /* UIButton+BottomTitles.h */,
-				492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */,
 				4977BFEC1B16E9C200A259F6 /* NSURL+QueryDictionary.h */,
 				4977BFED1B16E9C200A259F6 /* NSURL+QueryDictionary.m */,
 				4955B1C51B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.h */,
@@ -3801,7 +3796,6 @@
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
 				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
-				492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
 				490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */,

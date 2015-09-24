@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
+// 提交贷款申请，最后的确认界面
 @interface MSFAlertViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;

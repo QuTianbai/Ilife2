@@ -18,7 +18,6 @@
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
 #import "MSFLoanListViewController.h"
-#import "UIButton+BottomTitles.h"
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
 

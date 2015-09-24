@@ -11,9 +11,17 @@
 @interface MSFRepaymentSchedulesViewModel : RVMViewModel
 
 @property (nonatomic, readonly) MSFRepaymentSchedules *model;
+
+// 还款编码
 @property (nonatomic, readonly) NSString *repaymentNumber;
+
+// 还款状态 eg. `逾期`
 @property (nonatomic, readonly) NSString *status;
+
+// 还款金额
 @property (nonatomic, readonly) double amount;
+
+// 应还款日期
 @property (nonatomic, readonly) NSString *date;
 
 - (instancetype)initWithModel:(id)model;
