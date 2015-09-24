@@ -12,6 +12,7 @@
 #import "UIColor+Utils.h"
 #import "MSFReactiveView.h"
 #import "MSFLoginPageViewController.h"
+#import "MSFUtils.h"
 
 @interface MSFLoginViewController ()
 
@@ -54,6 +55,7 @@
 		@strongify(self)
 		self.loginPageController.dragging = NO;
 		id currentViewController = (id <MSFReactiveView>)[self.loginPageController viewControllerAtIndex:1];
+		[MSFUtils setRegisterPhone:self.viewModel.username];
 		[currentViewController bindViewModel:self.viewModel];
 		[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 		[self updateButtons:MSFLoginSignIn];
