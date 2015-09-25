@@ -561,10 +561,12 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-
-			NSString *errorString = [NSString stringWithFormat:@"ResponseString:%@\nErrorDescription:%@\n", operation.responseString, error.localizedDescription];
-			[[Crashlytics sharedInstance] recordCustomExceptionName:@"MSFClientError" reason:errorString frameArray:@[[CLSStackFrame stackFrame]]];
-			
+			NSString *responseString = operation.responseString ?: @"";
+			NSString *errorInfo = error.localizedDescription ?: @"";
+			[Answers logCustomEventWithName:@"RequestError"
+										 customAttributes:@{@"responseString" : responseString,
+																				@"errorInfo" : errorInfo}];
+		
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			}
@@ -597,6 +599,10 @@ static BOOL isRunningTests(void) {
 	}];
 	
 	return [[signal replayLazily] setNameWithFormat:@"`enqueueRequest: %@`", request];
+}
+
+- (void)crashlyticsDidDetectReportForLastExecution:(CLSReport *)report completionHandler:(void (^)(BOOL submit))completionHandler {
+	NSLog(@"crashlyticsReport:%@", report.identifier);
 }
 
 - (void)enqueueHTTPRequestOperation:(AFHTTPRequestOperation *)operation {
