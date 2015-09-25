@@ -19,7 +19,7 @@ if [[ ! -d $QUICK_PATH ]]; then
   git clone https://github.com/Quick/Quick.git $EXTERNAL_DIR/Quick
 fi
 cd $QUICK_PATH
-git checkout v0.3.1
+git checkout v0.6.0
 rm -rf $QUICK_PATH/Externals/Nimble/.git
 rm -rf $QUICK_PATH/.git
 
@@ -29,7 +29,7 @@ if [[ ! -d $NIMBLE_PATH ]]; then
   git clone https://github.com/Quick/Nimble.git $EXTERNAL_DIR/Nimble
 fi
 cd $NIMBLE_PATH
-git checkout v0.4.2
+git checkout vv2.0.0-rc.3
 rm -rf $NIMBLE_PATH/.git
 
 # OHHTTPStubs
