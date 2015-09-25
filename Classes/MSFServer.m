@@ -27,7 +27,7 @@ NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.test";
 NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.test";
 
-#else
+#elif TP
 
 NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.tp";
 NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.tp";
