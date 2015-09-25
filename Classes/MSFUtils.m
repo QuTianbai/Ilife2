@@ -26,9 +26,6 @@ static MSFServer *server;
 
 + (void)initialize {
 	server = [MSFServer dotComServer];
-#if !DISTRIBUTION && !UAT
-	server = MSFUtils.baseURLString.length > 0 ? [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]] : [MSFServer dotComServer];
-#endif
 }
 
 + (RACSignal *)setupSignal {
