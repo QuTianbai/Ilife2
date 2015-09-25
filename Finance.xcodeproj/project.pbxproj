@@ -4187,7 +4187,7 @@
 			};
 			name = Release;
 		};
-		497934751BB55FE200EC7F3A /* Test */ = {
+		497934751BB55FE200EC7F3A /* TEST */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -4224,9 +4224,9 @@
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Test;
+			name = TEST;
 		};
-		497934761BB55FE200EC7F3A /* Test */ = {
+		497934761BB55FE200EC7F3A /* TEST */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 41B95997B3C939CDBCD59AA1 /* Pods.test.xcconfig */;
 			buildSettings = {
@@ -4254,9 +4254,9 @@
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
-			name = Test;
+			name = TEST;
 		};
-		497934771BB55FE200EC7F3A /* Test */ = {
+		497934771BB55FE200EC7F3A /* TEST */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 872B519157B1C71C603BEA97 /* Pods-Tests.test.xcconfig */;
 			buildSettings = {
@@ -4279,7 +4279,7 @@
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Finance.app/Finance";
 			};
-			name = Test;
+			name = TEST;
 		};
 		497934881BB5648400EC7F3A /* TP */ = {
 			isa = XCBuildConfiguration;
@@ -4384,7 +4384,7 @@
 				4943C3461B047404000BBF5E /* Debug */,
 				4943C3471B047404000BBF5E /* Release */,
 				497934881BB5648400EC7F3A /* TP */,
-				497934751BB55FE200EC7F3A /* Test */,
+				497934751BB55FE200EC7F3A /* TEST */,
 				492CD5BC1BA26F3A008F5CAC /* UAT */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4396,7 +4396,7 @@
 				4943C3491B047404000BBF5E /* Debug */,
 				4943C34A1B047404000BBF5E /* Release */,
 				497934891BB5648400EC7F3A /* TP */,
-				497934761BB55FE200EC7F3A /* Test */,
+				497934761BB55FE200EC7F3A /* TEST */,
 				492CD5BD1BA26F3A008F5CAC /* UAT */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -4408,7 +4408,7 @@
 				4943C35B1B047437000BBF5E /* Debug */,
 				4943C35C1B047437000BBF5E /* Release */,
 				4979348A1BB5648400EC7F3A /* TP */,
-				497934771BB55FE200EC7F3A /* Test */,
+				497934771BB55FE200EC7F3A /* TEST */,
 				492CD5BE1BA26F3A008F5CAC /* UAT */,
 			);
 			defaultConfigurationIsVisible = 0;
