@@ -17,20 +17,20 @@ NSString *const MSFServerDotComBaseWebURL = @"http://192.168.2.51:8088/msfinance
 NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.uat";
 NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
-#elif DISTRIBUTION
-
-NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.com";
-NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
-
 #elif TEST
 
-NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.test";
-NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.test";
+NSString *const MSFServerDotComAPIEndpoint = @"https://192.168.2.61";
+NSString *const MSFServerDotComBaseWebURL = @"https://192.168.2.61";
 
 #elif TP
 
 NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.tp";
 NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.tp";
+
+#else
+
+NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.com";
+NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #endif
 
