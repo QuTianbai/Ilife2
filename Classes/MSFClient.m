@@ -522,9 +522,13 @@ static BOOL isRunningTests(void) {
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request {
 	RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+			#if DEBUG
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			}
+			#elif !DISTRIBUTION && !UAT
+				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
+			#endif
 			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
 				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];
 				self.token = authorization.token;
@@ -565,9 +569,13 @@ static BOOL isRunningTests(void) {
 			NSString *errorString = [NSString stringWithFormat:@"ResponseString:%@\nErrorDescription:%@\n", operation.responseString, error.localizedDescription];
 			[[Crashlytics sharedInstance] recordCustomExceptionName:@"MSFClientError" reason:errorString frameArray:@[[CLSStackFrame stackFrame]]];
 			
-			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
+			#if DEBUG
+				if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
+					NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
+				}
+			#elif !DISTRIBUTION && !UAT
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
-			}
+			#endif
 			
 			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
 				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];

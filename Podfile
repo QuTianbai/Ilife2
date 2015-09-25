@@ -31,6 +31,7 @@ pod 'KGModal', '1.1.0'
 pod 'ZSWTappableLabel', '1.1'
 pod 'ZSWTaggedString', '1.1'
 pod 'MWPhotoBrowser', '2.1.1'
+pod 'BugshotKit', :head
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', :git => 'https://github.com/jonreid/OCMockito', :commit=>'f20ee6d'

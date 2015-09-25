@@ -36,6 +36,7 @@
 #import "MSFUtilsViewController.h"
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
+#import <BugshotKit/BugshotKit.h>
 
 @interface AppDelegate ()
 
@@ -53,9 +54,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[Fabric with:@[CrashlyticsKit]];
-  
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
-  
+	
+#if !DISTRIBUTION && !UAT
+	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
+#endif
+	
 	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 		[manager startUpdatingLocation];
