@@ -2,6 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 inhibit_all_warnings!
+# use_frameworks!
 
 pod 'AFNetworking', '2.5.0'
 pod 'MTLFMDBAdapter', '0.1.8'
@@ -21,7 +22,6 @@ pod 'MSPageViewController', '1.0.1'
 pod 'RMPickerViewController', '1.3.2'
 pod 'UIColor-Hex', '0.1.1'
 pod 'CZPhotoPickerController', '1.2.4'
-pod 'XcodeCoverage', '1.2.2'
 pod 'SVPullToRefresh', '0.4.1'
 pod 'REFormattedNumberField', '1.1.5'
 pod 'SVProgressHUD', '1.1.3'

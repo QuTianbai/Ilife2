@@ -114,6 +114,7 @@
 		10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */; };
 		10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */; };
 		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
+		2058B440DD03E6FBC6158AB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C7E4D250D094AB88DCA842 /* libPods.a */; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		490312AB1B0C8AB000DC33B4 /* MSFClozeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 490312AA1B0C8AB000DC33B4 /* MSFClozeViewModel.m */; };
@@ -424,7 +425,6 @@
 		4EDB520F1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB520C1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png */; };
 		4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */; };
 		4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */; };
-		6BC3A55CCC9A340BB762528E /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C85C468932002FC66C8F9BB2 /* libPods-Tests.a */; };
 		C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884351B06F16200C25955 /* MSFAccordToNperLists.m */; };
 		C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884381B06F65D00C25955 /* MSFClient+AccordToNperLists.m */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
@@ -442,7 +442,6 @@
 		C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C75976BB1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m */; };
 		C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C767BDD01B0830DD007E71A5 /* MSFRepaymentTableViewController.m */; };
 		C767BDD31B0830DD007E71A5 /* MSFRepaymentTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C767BDD11B0830DD007E71A5 /* MSFRepaymentTableViewController.xib */; };
-		C7886771DDAD4ABCF2398DFC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F02B5C08373E00BAD678B72 /* libPods.a */; };
 		C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C79402401B1EFCB700898535 /* MSFCellButton.m */; };
 		C7A351471B2173020001DF6A /* MSFSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A351461B2173020001DF6A /* MSFSettingTableViewCell.m */; };
 		C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A351621B217CB10001DF6A /* iconfont-bangzhu.png */; };
@@ -498,6 +497,7 @@
 		C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */; };
 		C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149ED1B05C0620045F919 /* MSFClient+PlanPerodicTables.m */; };
 		C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149EA1B05C0490045F919 /* MSFPlanPerodicTables.m */; };
+		DAA51DE98E247EB6780DD44E /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF00CABE6E7013C6FAD9BA9 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -765,7 +765,6 @@
 		10DE899C1B69B882009025C4 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		10DE899D1B69B882009025C4 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		10DE89AC1B69C17F009025C4 /* MSFUmengMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFUmengMacro.h; sourceTree = "<group>"; };
-		1F02B5C08373E00BAD678B72 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5A55417088280C9EEC234F /* Pods.tp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.tp.xcconfig; path = "Pods/Target Support Files/Pods/Pods.tp.xcconfig"; sourceTree = "<group>"; };
 		41B95997B3C939CDBCD59AA1 /* Pods.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test.xcconfig"; sourceTree = "<group>"; };
@@ -1213,6 +1212,7 @@
 		6F25E8C7FECB410F2550681F /* Pods.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.distribution.xcconfig; path = "Pods/Target Support Files/Pods/Pods.distribution.xcconfig"; sourceTree = "<group>"; };
 		872B519157B1C71C603BEA97 /* Pods-Tests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.test.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.test.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B1C7E4D250D094AB88DCA842 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4ACFA9C403A49BA96E4F7C4 /* Pods-Tests.tp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.tp.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.tp.xcconfig"; sourceTree = "<group>"; };
 		C71884341B06F16200C25955 /* MSFAccordToNperLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAccordToNperLists.h; sourceTree = "<group>"; };
 		C71884351B06F16200C25955 /* MSFAccordToNperLists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAccordToNperLists.m; sourceTree = "<group>"; };
@@ -1313,7 +1313,7 @@
 		C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-question@3x.png"; sourceTree = "<group>"; };
 		C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@2x.png"; sourceTree = "<group>"; };
 		C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-cloze-selected@3x.png"; sourceTree = "<group>"; };
-		C85C468932002FC66C8F9BB2 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAF00CABE6E7013C6FAD9BA9 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0CB88F5CEFA9C0F7D2D58FB /* Pods-Tests.uat.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.uat.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.uat.xcconfig"; sourceTree = "<group>"; };
 		F8D1696951F05B5F319C3708 /* Pods-Tests.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.distribution.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1324,9 +1324,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */,
-				C7886771DDAD4ABCF2398DFC /* libPods.a in Frameworks */,
 				4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */,
 				10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */,
+				2058B440DD03E6FBC6158AB3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,7 +1337,7 @@
 				493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */,
 				493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */,
 				4943C3681B04796B000BBF5E /* libOHHTTPStubs-iOS.a in Frameworks */,
-				6BC3A55CCC9A340BB762528E /* libPods-Tests.a in Frameworks */,
+				DAA51DE98E247EB6780DD44E /* libPods-Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3000,8 +3000,8 @@
 				4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */,
 				4943C3631B047966000BBF5E /* Nimble.framework */,
 				4943C3641B047966000BBF5E /* Quick.framework */,
-				1F02B5C08373E00BAD678B72 /* libPods.a */,
-				C85C468932002FC66C8F9BB2 /* libPods-Tests.a */,
+				B1C7E4D250D094AB88DCA842 /* libPods.a */,
+				EAF00CABE6E7013C6FAD9BA9 /* libPods-Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3038,7 +3038,6 @@
 				4943C3291B047403000BBF5E /* Resources */,
 				1298C3C993B0F2579464D2A7 /* Copy Pods Resources */,
 				493AC3671B12F7D500DE58B4 /* objcclean */,
-				49ACBC201B3004ED007E1F6B /* Exportenv */,
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
@@ -3080,7 +3079,7 @@
 			attributes = {
 				CLASSPREFIX = MSF;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = MSFINANCE;
 				TargetAttributes = {
 					4943C32A1B047403000BBF5E = {
@@ -3575,20 +3574,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 0e8ba18d6893cbab6bb3aefa45979aa787768441 1ed9df5d5ca654f4f941804845f1d6884c1294e7e2a11f7f2337c3132fb7f448";
 		};
-		49ACBC201B3004ED007E1F6B /* Exportenv */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Exportenv;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = Pods/XcodeCoverage/exportenv.sh;
-		};
 		49E4186F1B4CCF7600422C20 /* buildbump */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3965,6 +3950,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
@@ -3977,10 +3963,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3989,6 +3972,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.msfinance.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Finance.app/Finance";
@@ -4017,6 +4001,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -4092,8 +4077,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals\"",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				INFOPLIST_FILE = Finance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -4101,6 +4086,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
 			};
@@ -4127,6 +4113,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "9a2024a7-4714-4479-a1d1-a80bc673f5ad";
 			};
@@ -4139,10 +4126,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -4155,6 +4139,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.msfinance.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4169,10 +4154,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4181,6 +4163,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.msfinance.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Finance.app/Finance";
@@ -4251,6 +4234,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
@@ -4263,10 +4247,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4275,6 +4256,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.msfinance.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Finance.app/Finance";
@@ -4345,6 +4327,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
@@ -4357,10 +4340,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4369,6 +4349,7 @@
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.msfinance.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Finance.app/Finance";
