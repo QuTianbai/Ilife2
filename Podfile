@@ -2,6 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '7.0'
 
 inhibit_all_warnings!
+# use_frameworks!
 
 pod 'AFNetworking', '2.5.0'
 pod 'MTLFMDBAdapter', '0.1.8'
