@@ -3038,7 +3038,6 @@
 				4943C3291B047403000BBF5E /* Resources */,
 				1298C3C993B0F2579464D2A7 /* Copy Pods Resources */,
 				493AC3671B12F7D500DE58B4 /* objcclean */,
-				49ACBC201B3004ED007E1F6B /* Exportenv */,
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
@@ -3574,20 +3573,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/Fabric.framework/run\" 0e8ba18d6893cbab6bb3aefa45979aa787768441 1ed9df5d5ca654f4f941804845f1d6884c1294e7e2a11f7f2337c3132fb7f448";
-		};
-		49ACBC201B3004ED007E1F6B /* Exportenv */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Exportenv;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = Pods/XcodeCoverage/exportenv.sh;
 		};
 		49E4186F1B4CCF7600422C20 /* buildbump */ = {
 			isa = PBXShellScriptBuildPhase;
