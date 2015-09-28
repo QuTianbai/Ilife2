@@ -102,7 +102,7 @@
 }
 
 - (CGFloat)endAngle {
-	
+	return 0;
 }
 
 - (void)drawRect:(CGRect)rect {
