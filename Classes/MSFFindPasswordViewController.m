@@ -48,15 +48,15 @@
 			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
-	RAC(self.viewModel, username) = self.username.rac_textSignal;
-	RAC(self.viewModel, captcha) = self.captcha.rac_textSignal;
-	[[self.captcha rac_signalForControlEvents:UIControlEventEditingChanged]
+	RAC(self.viewModel, username) = RACObserve(self.username, text);
+	RAC(self.viewModel, captcha) = RACObserve(self.captcha, text);
+	[[self.captcha rac_signalForControlEvents:UIControlEventEditingChanged].rac_willDeallocSignal
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 6) {
 			 textField.text = [textField.text substringToIndex:6];
 		 }
 	 }];
-	RAC(self.viewModel, password) = [self.password.rac_textSignal map:^id(NSString *value) {
+	RAC(self.viewModel, password) = [self.password.rac_textSignal.rac_willDeallocSignal map:^id(NSString *value) {
 		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
 		self.password.text = tempStr;
 		return tempStr;
@@ -126,6 +126,10 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+}
+
+- (void)dealloc {
+	NSLog(@"haha");
 }
 
 @end
