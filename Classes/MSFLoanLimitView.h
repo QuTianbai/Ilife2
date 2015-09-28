@@ -1,5 +1,5 @@
 //
-//  MSFloanLimitView.h
+//  MSFLoanLimitView.h
 //  Finance
 //
 //  Created by 赵勇 on 9/28/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFloanLimitView : UIView
+@interface MSFLoanLimitView : UIView
+
+- (void)setAvailableCredit:(NSString *)ac usedCredit:(NSString *)uc;
 
 @end
