@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--登录-->
@@ -20,7 +19,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="JxN-2M-z7W">
-                            <rect key="frame" x="0.0" y="169" width="320" height="227"/>
+                            <rect key="frame" x="0.0" y="169" width="320" height="330"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qp-Gb-kxz" customClass="MSFBlurButton">
@@ -50,25 +49,15 @@
                                         <segue destination="8P2-Mp-wfs" kind="show" id="GG4-ef-aId"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eN0-Cl-sIj" customClass="MSFLoanLimitView">
-                                    <rect key="frame" x="30" y="44" width="260" height="146"/>
-                                    <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="eN0-Cl-sIj" secondAttribute="height" multiplier="16:9" id="aWd-Ax-BAE"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="7qp-Gb-kxz" firstAttribute="leading" secondItem="JxN-2M-z7W" secondAttribute="leading" constant="20" id="0Ln-nw-qWD"/>
                                 <constraint firstAttribute="trailing" secondItem="7qp-Gb-kxz" secondAttribute="trailing" constant="20" id="G2v-Up-I3x"/>
-                                <constraint firstItem="eN0-Cl-sIj" firstAttribute="leading" secondItem="JxN-2M-z7W" secondAttribute="leading" constant="30" id="GIX-GA-Yed"/>
                                 <constraint firstAttribute="centerX" secondItem="7qp-Gb-kxz" secondAttribute="centerX" id="Hkm-Xp-8nd"/>
                                 <constraint firstItem="bye-Cc-vjR" firstAttribute="top" secondItem="JxN-2M-z7W" secondAttribute="top" constant="8" id="JOq-1g-M2D"/>
-                                <constraint firstItem="eN0-Cl-sIj" firstAttribute="top" secondItem="bye-Cc-vjR" secondAttribute="bottom" constant="8" id="LR6-1e-6qv"/>
                                 <constraint firstAttribute="trailing" secondItem="bye-Cc-vjR" secondAttribute="trailing" constant="20" id="cTA-Pe-Rak"/>
                                 <constraint firstAttribute="bottom" secondItem="7qp-Gb-kxz" secondAttribute="bottom" constant="30" id="doS-7u-Lg1"/>
-                                <constraint firstAttribute="trailing" secondItem="eN0-Cl-sIj" secondAttribute="trailing" constant="30" id="nnG-AE-h1m"/>
                             </constraints>
                         </view>
                         <sections>

@@ -63,12 +63,36 @@
 	return [UIColor colorWithHex:0x0BABED];
 }
 
-+ (UIColor *)lightThemeColor {
-	return [UIColor colorWithHex:0xA0AEFE];
-}
-
 + (UIColor *)separatorColor {
 	return [UIColor colorWithHex:0xE1E1E1];
+}
+
++ (UIColor *)darkCircleColor {
+	return [UIColor colorWithHex:0x50CDEC];
+}
+
++ (UIColor *)lightCircleColor {
+	return [UIColor colorWithHex:0x99dfff];
+}
+
++ (UIColor *)color666666 {
+	return [UIColor colorWithHex:0x666666];
+}
+
++ (UIColor *)color999999 {
+	return [UIColor colorWithHex:0x999999];
+}
+
++ (UIColor *)uncompletedColor {
+	return [UIColor colorWithHex:0xe8e8e8];
+}
+
++ (UIColor *)completedColor {
+	return [UIColor colorWithHex:0x0babed];
+}
+
++ (UIColor *)percentColor {
+	return [UIColor colorWithHex:0xff6600];
 }
 
 @end
