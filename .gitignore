@@ -150,3 +150,4 @@ Podfile.lock
 
 # Xcode 7
 ObjectiveC.gcno
+ObjectiveC.gcda
