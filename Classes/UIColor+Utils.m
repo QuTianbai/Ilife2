@@ -63,6 +63,10 @@
 	return [UIColor colorWithHex:0x0BABED];
 }
 
++ (UIColor *)lightThemeColor {
+	return [UIColor colorWithHex:0xA0AEFE];
+}
+
 + (UIColor *)separatorColor {
 	return [UIColor colorWithHex:0xE1E1E1];
 }
