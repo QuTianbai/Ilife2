@@ -561,11 +561,7 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			NSString *responseString = operation.responseString ?: @"";
-			NSString *errorInfo = error.localizedDescription ?: @"";
-			[Answers logCustomEventWithName:@"RequestError"
-										 customAttributes:@{@"responseString" : responseString,
-																				@"errorInfo" : errorInfo}];
+			[self reportFabric:operation error:error];
 		
 			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
@@ -601,8 +597,12 @@ static BOOL isRunningTests(void) {
 	return [[signal replayLazily] setNameWithFormat:@"`enqueueRequest: %@`", request];
 }
 
-- (void)crashlyticsDidDetectReportForLastExecution:(CLSReport *)report completionHandler:(void (^)(BOOL submit))completionHandler {
-	NSLog(@"crashlyticsReport:%@", report.identifier);
+- (void)reportFabric:(AFHTTPRequestOperation *)operation error:(NSError *)error {
+	NSString *responseString = operation.responseString ?: @"";
+	NSString *errorInfo = error.localizedDescription ?: @"";
+	[Answers logCustomEventWithName:@"RequestError"
+								 customAttributes:@{@"responseString" : responseString,
+																		@"errorInfo" : errorInfo}];
 }
 
 - (void)enqueueHTTPRequestOperation:(AFHTTPRequestOperation *)operation {
