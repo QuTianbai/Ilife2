@@ -12,22 +12,32 @@
 #import <libextobjc/extobjc.h>
 
 #import "MSFPersonalViewController.h"
-
 #import "MSFUserInfoCircleView.h"
-
-#import "MSFUserInfoViewModel.h"
-#import "MSFClient+MSFUserInfo.h"
+#import "MSFClient+MSFApplyInfo.h"
+#import "MSFApplicationForms.h"
+#import "MSFPersonalViewModel.h"
+#import "MSFTabBarController.h"
+#import "MSFTabBarViewModel.h"
+#import "MSFFormsViewModel.h"
+#import "MSFAddressViewModel.h"
 
 @interface MSFUserInfomationViewController ()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) MSFUserInfoCircleView *circleView;
-
-@property (nonatomic, strong) MSFUserInfoViewModel *viewModel;
+@property (nonatomic, weak) id<MSFViewModelServices>services;
 
 @end
 
 @implementation MSFUserInfomationViewController
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services {
+	self = [super init];
+	if (self) {
+		_services = services;
+	}
+	return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -84,8 +94,6 @@
 	}];
 	
 	
-	self.viewModel.
-	
 }
 
 - (void)testCircle {
@@ -103,16 +111,20 @@
 - (void)onClickCircle:(NSInteger)index {
 	switch (index) {
 		case 0: {
+			MSFTabBarController *tabbarController = (MSFTabBarController *)self.tabBarController;
+			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:self.services];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
 			MSFPersonalViewController *vc = [[MSFPersonalViewController alloc] init];
+			[vc bindViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 			break;
 		}
 		case 1: {
-			
+			//
 			break;
 		}
 		case 2: {
-			
+			//
 			break;
 		}
 	}

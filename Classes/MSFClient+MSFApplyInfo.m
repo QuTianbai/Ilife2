@@ -14,18 +14,17 @@
 @implementation MSFClient (MSFApplyInfo)
 
 - (RACSignal *)fetchApplyInfo {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loans/spec" parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"cust/getInfo" parameters:nil];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
-		NSDictionary *temp = value.parsedResult;
-		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:temp error:nil];
+		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:[self convert:value.parsedResult] error:nil];
 		return forms;
 	}];
 }
 
 - (NSDictionary *)convert:(NSDictionary *)dic {
 	NSDictionary *basicInfo = dic[@"baseInfo"];
-	NSDictionary *occupation= dic[@"occupationInfo"];
+	NSDictionary *occupation = dic[@"occupationInfo"];
 	return @{
 					 @"homeLine" : basicInfo[@"homePhone"],
 					 @"email" : basicInfo[@"email"],

@@ -18,6 +18,8 @@
 #import "MSFAddressInfo.h"
 #import <FMDB/FMDB.h>
 #import "RCLocationManager.h"
+#import "MSFSelectionViewModel.h"
+#import "MSFSelectKeyValues.h"
 
 @implementation MSFPersonalViewModel
 
@@ -197,6 +199,34 @@
 	NSInteger length4 = self.model.currentStreet.length > 0 ? 1: 0;
 	
 	return (length1 + length2 + length3 + length4) >= 2;
+}
+
+- (RACSignal *)houseValuesSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"housing_conditions"]];
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.houseTypeTitle = x.text;
+			[self.services popViewModel];
+		}];
+		return nil;
+	}];
+}
+
+- (RACSignal *)marryValuesSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"marital_status"]];
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.marriageTitle = x.text;
+			[self.services popViewModel];
+		}];
+		return nil;
+	}];
 }
 
 - (void)setProvinceEmpty {

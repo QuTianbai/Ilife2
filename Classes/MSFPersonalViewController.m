@@ -68,6 +68,10 @@
 	NSLog(@"MSFPersonalViewController `-dealloc`");
 }
 
+- (instancetype)init {
+	return [UIStoryboard storyboardWithName:@"personal" bundle:nil].instantiateInitialViewController;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -110,17 +114,42 @@
 	*/
 	
 	@weakify(self)
-	/*
+	
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
 	RAC(self.emailTF, text) = emailChannel;
-	[self.emailTF.rac_textSignal subscribe:emailChannel];*/
-	
-	RAC(self.viewModel.model, email) = RACObserve(self.emailTF, text);
+	[self.emailTF.rac_textSignal subscribe:emailChannel];
 	
 	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
+	[[self.selectAreasBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeAlterAddressCommand execute:nil];
+		NSLog(@"%@", x);
+	}];
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
 
-	RAC(self.viewModel, )
+	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, empAdd);
+	RAC(self.detailAddressTF, text) = detailAddrChannel;
+	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
+	
+	RAC(self.housingTF, text) = RACObserve(self.viewModel, houseTypeTitle);
+	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
+	
+	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
+	RAC(self.homeTelTF, text) = homeLineChannel;
+	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
+	
+	RAC(self.marriageTF, text) = RACObserve(self.viewModel, marriageTitle);
+	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
+	/*
+	[[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 5) {
+			 textField.text = [textField.text substringToIndex:5];
+		 }
+	 }];
+	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
+	RAC(self.repayMonthTF, text) = familyExpenseChannel;
+	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
 	
 	[[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
@@ -154,7 +183,7 @@
 	RACChannelTerminal *hometelephoneChannel = RACChannelTo(self.viewModel.model, homeLine);
 	RAC(self.homeTelTF, text) = hometelephoneChannel;
 	[self.homeTelTF.rac_textSignal subscribe:hometelephoneChannel];
-	
+	*/
 
 	
 	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.model, qq);
@@ -164,15 +193,7 @@
 	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.model, taobao);
 	RAC(self.taobaoUsername, text) = taobaoUsernameChannel;
 	[self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
-	
-	RACChannelTerminal *taobaoPasscodeChannel = RACChannelTo(self.viewModel.model, taobaoPassword);
-	RAC(self.taobaoPasscode, text) = taobaoPasscodeChannel;
-	[self.taobaoPasscode.rac_textSignal subscribe:taobaoPasscodeChannel];
-	
-	RACChannelTerminal *jdPasscodeChannel = RACChannelTo(self.viewModel.model, jdAccountPwd);
-	RAC(self.jdPasscode, text) = jdPasscodeChannel;
-	[self.jdPasscode.rac_textSignal subscribe:jdPasscodeChannel];
-	
+
 	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
@@ -183,6 +204,7 @@
 		[self.selectQQorJDSegment setLineColors];
 		[self.tableView reloadData];
 	}];
+	
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -196,17 +218,14 @@
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
-			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-			[vc bindViewModel:viewModel];
-			[self.navigationController pushViewController:vc animated:YES];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
+	
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
+	/*
 	[self.tencentUsername.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeCommitCommand execute:nil];
@@ -218,7 +237,7 @@
 	[self.taobaoPasscode.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeCommitCommand execute:nil];
-	}];
+	}];*/
 }
 
 - (void)back {
@@ -228,6 +247,7 @@
 			[self.navigationController popViewControllerAnimated:YES];
 		}
 	}];
+	[alert show];
 }
 
 #pragma mark - UITableViewDataSource

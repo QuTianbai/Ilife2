@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFViewModelServices.h"
 
 @interface MSFUserInfomationViewController : UIViewController
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
 @end
