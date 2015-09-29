@@ -34,7 +34,11 @@
 		self.backgroundColor = [UIColor clearColor];
 		
 		UILabel *label = [[UILabel alloc] init];
-		label.font = [UIFont boldSystemFontOfSize:15];
+		if ([UIScreen mainScreen].bounds.size.width > 320) {
+			label.font = [UIFont boldSystemFontOfSize:15];
+		} else {
+			label.font = [UIFont boldSystemFontOfSize:13];
+		}
 		label.textAlignment = NSTextAlignmentCenter;
 		label.textColor = [UIColor color999999];
 		label.highlightedTextColor = [UIColor whiteColor];
@@ -238,7 +242,7 @@
 		make.centerX.equalTo(self).multipliedBy(1 + _degree * sqrt(3));
 		make.centerY.equalTo(self).multipliedBy(1 - _degree);
 		make.width.equalTo(@80);
-		make.height.equalTo(@55);
+		make.height.equalTo(@50);
 	}];
 	
 	[_homeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -246,7 +250,7 @@
 		make.centerX.equalTo(self);
 		make.centerY.equalTo(self).multipliedBy(1 + _degree * 2);
 		make.width.equalTo(@80);
-		make.height.equalTo(@55);
+		make.height.equalTo(@50);
 	}];
 	
 	[_jobTitle mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -254,7 +258,7 @@
 		make.centerX.equalTo(self).multipliedBy(1 - _degree * sqrt(3));
 		make.centerY.equalTo(self).multipliedBy(1 - _degree);
 		make.width.equalTo(@80);
-		make.height.equalTo(@55);
+		make.height.equalTo(@50);
 	}];
 	
 	
