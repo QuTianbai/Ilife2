@@ -13,6 +13,7 @@
 #import "MSFTradeTableViewController.h"
 #import "MSFEditPasswordViewController.h"
 #import "MSFUserInfoViewController.h"
+#import "MSFUserInfomationViewController.h"
 #import "MSFUtils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
@@ -137,9 +138,13 @@
 #pragma mark - IBActions
 
 - (void)userInfo {
+	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] init];
+	[self.navigationController pushViewController:vc animated:YES];
+	/*
 	MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];
 	userinfoViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:userinfoViewController animated:YES];
+	 */
 }
 
 - (IBAction)repayMentPlan:(id)sender {
