@@ -18,10 +18,11 @@
  *	0：不需要升级，1:强制，2：非强制
  */
 @property (nonatomic, assign, readonly) NSInteger status;
-
-/**
- *	版本信息
- */
-@property (nonatomic, strong, readonly) MSFVersion *version;
+@property (nonatomic, strong, readonly) NSString *versionCode;
+@property (nonatomic, strong, readonly) NSString *versionName;
+@property (nonatomic, strong, readonly) NSURL *updatedURL;
+@property (nonatomic, strong, readonly) NSString *summary;
+@property (nonatomic, strong, readonly) NSDate *updatedDate;
+@property (nonatomic, strong, readonly) NSString *timestamp;
 
 @end

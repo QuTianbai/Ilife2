@@ -11,10 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
 #import "MSFUtils.h"
-#import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
-#import "MSFCustomAlertView.h"
-
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -22,6 +19,13 @@ static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUT
 @interface MSFSignInViewController ()
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UITextField *username;
+@property (nonatomic, weak) IBOutlet UITextField *password;
+@property (nonatomic, weak) IBOutlet UIButton *signInButton;
+@property (nonatomic, weak) IBOutlet UITextField *captcha;
+@property (nonatomic, weak) IBOutlet UIButton *sendCaptchaButton;
+@property (nonatomic, weak) IBOutlet UILabel *counterLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
 
 @end
 
@@ -40,36 +44,43 @@ static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUT
 	self.title = @"登录";
 	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.backgroundView.layer.masksToBounds = YES;
-	self.backgroundView.layer.cornerRadius = 5;
-	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
-	self.backgroundView.layer.borderWidth = 1;
 	
-	self.username.text = MSFUtils.phone;
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey];
 		self.password.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingPasswordEnvironmentKey];
 	}
+	
+	// 登录用户名/密码
+	self.username.text = MSFUtils.phone;
+	self.viewModel.username = MSFUtils.phone;
+	
 	@weakify(self)
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
-	}];
-	[self.username.rac_textSignal subscribeNext:^(NSString *value) {
-		@strongify(self)
-		if (value.length > 11) {
-			value = [value substringToIndex:11];
-			self.username.text = value;
-		}
-		
-		self.viewModel.username = value;
-	}];
-	[self.password.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		self.viewModel.password = x;
+		self.viewModel.loginType = MSFLoginSignIn;
 	}];
 	
+	[self.username.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizeUsernameMaxLength) self.username.text = [x substringToIndex:MSFAuthorizeUsernameMaxLength];
+		self.viewModel.username = self.username.text;
+	}];
+	
+	[self.password.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizePasswordMaxLength) self.password.text = [x substringToIndex:MSFAuthorizePasswordMaxLength];
+		self.viewModel.password = self.password.text;
+	}];
+	
+	[self.captcha.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizeCaptchaMaxLength) self.captcha.text = [x substringToIndex:MSFAuthorizeCaptchaMaxLength];
+		self.viewModel.captcha = self.captcha.text;
+	}];
+	
+	// 登录按钮
 	self.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
 		@strongify(self)
@@ -77,12 +88,15 @@ static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUT
 		[MSFUtils setPhone:self.username.text];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:MSFREQUESTCONTRACTSNOTIFACATION object:nil];
 			[SVProgressHUD dismiss];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
 			[self dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}];
 	[self.viewModel.executeSignIn.errors subscribeNext:^(NSError *error) {
+		@strongify(self)
+		self.password.text = @"";
+		self.viewModel.password = @"";
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
@@ -90,10 +104,53 @@ static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUT
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
 	}];
+	[self.captcha.rac_keyboardReturnSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[self.viewModel.executeSignIn execute:nil];
+	}];
+	
+	// 验证码
+	[RACObserve(self.viewModel, counter) subscribeNext:^(id x) {
+		@strongify(self)
+		self.counterLabel.text = x;
+	}];
+	
+	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
+		@strongify(self)
+		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
+		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+	}];
+	
+	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
+	[self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
+		@strongify(self)
+		[self.view endEditing:YES];
+		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
+		[captchaSignal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}];
+	}];
+	
+	[self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	// 需要验证码的时候界面更新
+	[self.viewModel.signInInvalidSignal subscribeNext:^(id x) {
+		@strongify(self)
+		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
+		[self.tableView reloadData];
+	}];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	[segue.destinationViewController bindViewModel:self.viewModel];
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return self.viewModel.signInValid ? 2 : 3;
 }
 
 #pragma mark - MSFReactiveView

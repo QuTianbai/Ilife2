@@ -30,6 +30,17 @@ const NSInteger MSFClientErrorJSONParsingFailed = 669;
 const NSInteger MSFClientErrorAuthenticationFailed = 401;
 NSString *const MSFClientErrorAuthenticationFailedNotification = @"MSFClientErrorAuthenticationFailedNotification";
 
+const NSInteger MSFClientErrorForbidden = 403;
+const NSInteger MSFClientErrorNotFound = 404;
+const NSInteger MSFClientErrorUnsupportedMediaType = 415;
+const NSInteger MSFClientErrorUnprocessableEntry = 422;
+const NSInteger MSFClientErrorTooManyRequests = 429;
+const NSInteger MSFClientErrorBadRequest = 400;
+
+NSString *const MSFClientErrorFieldKey = @"fields";
+NSString *const MSFClientErrorMessageCodeKey = @"code";
+NSString *const MSFClientErrorMessageKey = @"message";
+
 static const NSInteger MSFClientNotModifiedStatusCode = 304;
 
 static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPONSES";
@@ -447,11 +458,18 @@ static BOOL isRunningTests(void) {
 
 + (NSError *)errorFromRequestOperation:(AFHTTPRequestOperation *)operation {
 	NSDictionary *userinfo = @{};
-	if ([operation.responseObject isKindOfClass:NSDictionary.class]) {
-		userinfo = @{NSLocalizedFailureReasonErrorKey: operation.responseObject[@"message"]?:@""};
-	} else {
-		userinfo = @{NSLocalizedFailureReasonErrorKey: @"系统繁忙，请稍后再试"};
-	}
+	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
+		MSFClientErrorFieldKey: operation.responseObject[MSFClientErrorFieldKey] ?: @{}
+	}];
+
+	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
+		NSLocalizedFailureReasonErrorKey: operation.responseObject[MSFClientErrorMessageKey] ?: @"",
+		MSFClientErrorMessageKey: operation.responseObject[MSFClientErrorMessageKey] ?: @"",
+	}];
+	
+	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
+		MSFClientErrorMessageCodeKey: operation.responseObject[MSFClientErrorMessageCodeKey] ?: @"",
+	}];
 	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
 }

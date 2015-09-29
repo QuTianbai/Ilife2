@@ -34,7 +34,7 @@ NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #endif
 
-NSString *const MSFServerAPIEndpointPathComponent = @"msfinanceapi/v1";
+NSString *const MSFServerAPIEndpointPathComponent = @"api/app/v1";
 NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 
 @implementation MSFServer

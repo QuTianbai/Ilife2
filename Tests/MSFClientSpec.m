@@ -153,7 +153,7 @@ describe(@"without a user", ^{
   
   it(@"should fetch releasenote", ^{
     // given
-    stubResponse(@"/app/check_version_ios",@"releasenote.json");
+    stubResponse(@"/checkVersion",@"releasenote.json");
     
     // when
     RACSignal *request = [client fetchReleaseNote];
@@ -166,7 +166,7 @@ describe(@"without a user", ^{
   
   it(@"should fetch empty releasenote", ^{
     // given
-    stubResponse(@"/app/check_version_ios",@{});
+    stubResponse(@"/checkVersion",@{});
     
     // when
     RACSignal *request = [client fetchReleaseNote];
@@ -201,6 +201,60 @@ describe(@"without a user", ^{
     // then
     expect(response.parsedResult[@"time"]).to(equal(@"1432733616221"));
   });
+	
+	it(@"should get parameters authenticated error", ^{
+		// given
+		NSDictionary *myDictionary = @{
+			@"message" : @"Request entity validate faild.",
+			@"fields" : @{
+				@"password" : @"000",
+				@"logType" : @"000"
+			}
+		};
+		[OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+			NSData *data = [NSJSONSerialization dataWithJSONObject:myDictionary options:NSJSONWritingPrettyPrinted error:nil];
+			return [OHHTTPStubsResponse responseWithData:data statusCode:422 responseTime:0 headers:@{
+				@"Content-Type": @"application/json"
+			}];
+		}];
+		
+		// when
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"post" parameters:nil];
+		RACSignal *signal = [client enqueueRequest:request resultClass:nil];
+		[signal asynchronousFirstOrDefault:nil success:&success error:&error];
+		
+		// then
+		expect(@(success)).to(beFalsy());
+		expect(@(error.code)).to(equal(@(MSFClientErrorUnprocessableEntry)));
+		expect(error.userInfo[MSFClientErrorFieldKey]).to(equal(myDictionary[@"fields"]));
+		expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"Request entity validate faild."));
+		expect(error.userInfo[MSFClientErrorMessageKey]).to(equal(@"Request entity validate faild."));
+	});
+	
+	it(@"should get operation error", ^{
+		// given
+		[OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+			NSData *data = [NSJSONSerialization dataWithJSONObject:@{
+				@"message": @"foo",
+				@"code": @4000
+			} options:NSJSONWritingPrettyPrinted error:nil];
+			return [OHHTTPStubsResponse responseWithData:data statusCode:400 responseTime:0 headers:@{
+				@"Content-Type": @"application/json",
+			}];
+		}];
+		
+		// when
+		// when
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"post" parameters:nil];
+		RACSignal *signal = [client enqueueRequest:request resultClass:nil];
+		[signal asynchronousFirstOrDefault:nil success:&success error:&error];
+		
+		// then
+		expect(@(success)).to(beFalsy());
+		expect(@(error.code)).to(equal(@(MSFClientErrorBadRequest)));
+		expect(error.userInfo[MSFClientErrorMessageCodeKey]).to(equal(@4000));
+		expect(error.userInfo[MSFClientErrorMessageKey]).to(equal(@"foo"));
+	});
 });
 
 describe(@"authenticated", ^{

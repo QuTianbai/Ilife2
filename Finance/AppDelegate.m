@@ -150,17 +150,17 @@
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 		if (releasenote.status == 1) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-				message:releasenote.version.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+				message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
 			[alert show];
 			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[[UIApplication sharedApplication] openURL:releasenote.version.updateURL];
+				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
 			}];
 		} else if (releasenote.status == 2) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-				message:releasenote.version.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+				message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 			[alert show];
 			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.version.updateURL];
+				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
 			}];
 		}
 	}];

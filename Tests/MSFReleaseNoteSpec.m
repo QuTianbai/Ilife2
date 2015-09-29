@@ -6,6 +6,7 @@
 
 #import "MSFReleaseNote.h"
 #import "MSFVersion.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 QuickSpecBegin(MSFReleaseNoteSpec)
 
@@ -28,17 +29,16 @@ it(@"should has status", ^{
 
 it(@"should has version code", ^{
   // given
+	NSDate *date = [NSDateFormatter msf_dateFromString:@"2015-05-03T15:38:45Z"];
   
   // when
   
   // then
-  expect(releasenote.version.code).to(equal(@"10001"));
-  expect(releasenote.version.name).to(equal(@"1.0.0"));
-  expect(releasenote.version.channel).to(equal(@""));
-  expect(releasenote.version.iconURL).to(equal([NSURL URLWithString:@"http://icon.com"]));
-  expect(releasenote.version.updateURL).to(equal([NSURL URLWithString:@"http://update.com"]));
-  expect(releasenote.version.summary).to(equal(@"test"));
-  expect(releasenote.version.date).to(equal(@"2015-05-03T15:38:45Z"));
+  expect(releasenote.versionCode).to(equal(@"200"));
+  expect(releasenote.versionName).to(equal(@"2.0.0"));
+  expect(releasenote.updatedURL).to(equal([NSURL URLWithString:@"http://objczl.com"]));
+  expect(releasenote.summary).to(equal(@"foo"));
+  expect(releasenote.updatedDate).to(equal(date));
 });
 
 QuickSpecEnd

@@ -14,12 +14,49 @@
 // 错误域
 extern NSString *const MSFClientErrorDomain;
 
+// HTTP状态码
 // json解析错误
 extern const NSInteger MSFClientErrorJSONParsingFailed;
 
+// HTTP状态码
 // 认证错误
 extern const NSInteger MSFClientErrorAuthenticationFailed;
+
 extern NSString *const MSFClientErrorAuthenticationFailedNotification;
+
+// HTTP状态码
+// 验证通过用户没有访问权限
+extern const NSInteger MSFClientErrorForbidden;
+
+// HTTP状态码
+// 资源未找到
+extern const NSInteger MSFClientErrorNotFound;
+
+// HTTP状态码
+// POST/PUT/PATCH请求没有带上application/json类型
+extern const NSInteger MSFClientErrorUnsupportedMediaType;
+
+// 验证错误
+// 如果在POST/PUT/PATCH请求时发生入参验证错误, 会返回验证错误422 Unprocessable Entry状态码。json返回的body中会包含一个错误信息数组。
+extern NSString *const MSFClientErrorFieldKey;
+
+// 当发生错误的时候，返回的json字典中的`code`
+extern NSString *const MSFClientErrorMessageCodeKey;
+
+// 当发生错误的时候，返回的json字典中的`message`
+extern NSString *const MSFClientErrorMessageKey;
+
+// HTTP状态码
+// 由于一个验证错误导致请求修改或创建资源失败
+extern const NSInteger MSFClientErrorUnprocessableEntry;
+
+// HTTP状态码
+// 请求无法解析
+extern const NSInteger MSFClientErrorBadRequest;
+
+// HTTP状态码
+// 由于速度限制请求被拒绝
+extern const NSInteger MSFClientErrorTooManyRequests;
 
 @interface MSFClient : AFHTTPRequestOperationManager
 
