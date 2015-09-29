@@ -12,6 +12,8 @@
 
 @interface MSFUserViewModel : RVMViewModel
 
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> servcies;
+
 @property (nonatomic, strong) NSString *usedPassword;
 @property (nonatomic, strong) NSString *updatePassword;
 

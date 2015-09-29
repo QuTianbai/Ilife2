@@ -54,6 +54,15 @@
     return [self commitSignal];
   }];
 	
+	_executeHouseValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self);
+		return [self houseValuesSignal];
+	}];
+	
+	_executeMarryValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self);
+		return [self marryValuesSignal];
+	}];
 	return self;
 }
 
@@ -126,6 +135,30 @@
 }
 
 - (NSString *)checkForm {
+	if (![self.model.email containsString:@"@"] || ![self.model.email containsString:@"."]) {
+		return @"请填写正确的邮箱";
+	}
+	if (self.model.currentProvinceCode.length == 0) {
+		return @"请选择完整的现居地址";
+	}
+	if (self.model.currentCityCode.length == 0) {
+		return @"请选择完整的现居地址";
+	}
+	if (self.model.currentCountryCode.length == 0) {
+		return @"请选择完整的现居地址";
+	}
+	if (self.address.length == 0) {
+		return @"请填写完整的详细地址";
+	}
+	if (self.model.houseType.length == 0) {
+		return @"请选择住房状况";
+	}
+	
+	
+	
+	
+	
+
 	if ([self.model.income isEqualToString:@""]) {
 		return @"请输入每月税前收入";
 	}
@@ -151,15 +184,6 @@
 	}
 	if (![self validAddress]) {
 		return @"详细地址至少输入两项";
-	}
-	if ([self.address length] < 1) {
-		return @"请选择现居地区";
-	}
-	if ([self.model.currentCityCode isEqualToString:@""]) {
-		return @"请选择现居地区所在城市";
-	}
-	if ([self.model.currentCountryCode isEqualToString:@""]) {
-		return @"请选择现居地区所在县";
 	}
 	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
 		return @"请输入正确的QQ号";

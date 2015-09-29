@@ -38,7 +38,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *housingBT;
 
 @property (weak, nonatomic) IBOutlet UITextField *homeTelTF;
-@property (weak, nonatomic) IBOutlet UITextField *homeLineCodeTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *marriageTF;
 @property (weak, nonatomic) IBOutlet UIButton *marriageBT;
@@ -115,18 +114,25 @@
 	
 	@weakify(self)
 	
+	[[self.emailTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 40) {
+			 textField.text = [textField.text substringToIndex:40];
+		 }
+	 }];
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
 	
 	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
-	[[self.selectAreasBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		@strongify(self)
-		[self.viewModel.executeAlterAddressCommand execute:nil];
-		NSLog(@"%@", x);
-	}];
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
 
+	[[self.detailAddressTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 80) {
+			 textField.text = [textField.text substringToIndex:80];
+		 }
+	 }];
 	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, empAdd);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
@@ -134,6 +140,12 @@
 	RAC(self.housingTF, text) = RACObserve(self.viewModel, houseTypeTitle);
 	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
 	
+	[[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 12) {
+			 textField.text = [textField.text substringToIndex:12];
+		 }
+	 }];
 	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
 	RAC(self.homeTelTF, text) = homeLineChannel;
 	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
@@ -185,15 +197,32 @@
 	[self.homeTelTF.rac_textSignal subscribe:hometelephoneChannel];
 	*/
 
-	
+	[[self.tencentUsername rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 15) {
+			 textField.text = [textField.text substringToIndex:15];
+		 }
+	 }];
 	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.model, qq);
 	RAC(self.tencentUsername, text) = tencentUsernameChannel;
 	[self.tencentUsername.rac_textSignal subscribe:tencentUsernameChannel];
 	
+	[[self.taobaoUsername rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 40) {
+			 textField.text = [textField.text substringToIndex:40];
+		 }
+	 }];
 	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.model, taobao);
 	RAC(self.taobaoUsername, text) = taobaoUsernameChannel;
 	[self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
 
+	[[self.jdUsername rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 40) {
+			 textField.text = [textField.text substringToIndex:40];
+		 }
+	 }];
 	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];

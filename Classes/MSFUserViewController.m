@@ -21,6 +21,7 @@
 #import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
+#import "MSFUserViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -139,7 +140,7 @@
 
 - (void)userInfo {
 	
-	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] init];
+	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithServices:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
 	/*
 	MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];

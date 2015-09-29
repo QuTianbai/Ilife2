@@ -34,6 +34,7 @@
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (self) {
+		self.hidesBottomBarWhenPushed = YES;
 		_services = services;
 	}
 	return self;
