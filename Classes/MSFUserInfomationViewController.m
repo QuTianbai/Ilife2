@@ -11,6 +11,8 @@
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
 
+#import "MSFPersonalViewController.h"
+
 #import "MSFUserInfoCircleView.h"
 
 @interface MSFUserInfomationViewController ()
@@ -33,10 +35,12 @@
 	_headerImageView.image = [UIImage imageNamed:@"userInfo_header.png"];
 	[self.view addSubview:_headerImageView];
 	
+	@weakify(self)
 	_circleView = [[MSFUserInfoCircleView alloc] init];
 	[self.view addSubview:_circleView];
 	_circleView.onClickBlock = ^(NSInteger index) {
-		
+		@strongify(self)
+		[self onClickCircle:index];
 	};
 	
 	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -44,7 +48,6 @@
 	[button setTitle:@"点我" forState:UIControlStateNormal];
 	[self.view addSubview:button];
 	
-	@weakify(self)
 	[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
 		 @strongify(self)
@@ -87,6 +90,24 @@
 
 - (void)back {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)onClickCircle:(NSInteger)index {
+	switch (index) {
+		case 0: {
+			MSFPersonalViewController *vc = [[MSFPersonalViewController alloc] init];
+			[self.navigationController pushViewController:vc animated:YES];
+			break;
+		}
+		case 1: {
+			
+			break;
+		}
+		case 2: {
+			
+			break;
+		}
+	}
 }
 
 @end
