@@ -138,6 +138,7 @@
 #pragma mark - IBActions
 
 - (void)userInfo {
+	
 	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] init];
 	[self.navigationController pushViewController:vc animated:YES];
 	/*

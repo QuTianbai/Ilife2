@@ -11,6 +11,7 @@
 
 @interface MSFUserInfoViewModel : RVMViewModel
 
+@property (nonatomic, weak, readonly) id<MSFViewModelServices>services;
 @property (nonatomic, strong, readonly) RACSignal *contentUpdateSignal;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;

@@ -117,6 +117,11 @@
 	
 	RAC(self.viewModel.model, email) = RACObserve(self.emailTF, text);
 	
+	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
+	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+
+	RAC(self.viewModel, )
+	
 	[[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
 		@strongify(self)
@@ -171,10 +176,7 @@
 	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
-	
-	
-	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
-	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+
 	self.selectQQorJDSegment.delegate = self;
 	[[self.selectQQorJDSegment rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
 		@strongify(self)

@@ -15,10 +15,15 @@
 
 #import "MSFUserInfoCircleView.h"
 
+#import "MSFUserInfoViewModel.h"
+#import "MSFClient+MSFUserInfo.h"
+
 @interface MSFUserInfomationViewController ()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) MSFUserInfoCircleView *circleView;
+
+@property (nonatomic, strong) MSFUserInfoViewModel *viewModel;
 
 @end
 
@@ -77,6 +82,9 @@
 		make.width.equalTo(@80);
 		make.height.equalTo(@20);
 	}];
+	
+	
+	self.viewModel.
 	
 }
 

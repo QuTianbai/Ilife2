@@ -11,7 +11,7 @@
 
 @interface MSFUserInfoViewModel ()
 
-@property (nonatomic, weak) id<MSFViewModelServices>services;
+@property (nonatomic, weak, readwrite) id<MSFViewModelServices>services;
 
 @end
 
