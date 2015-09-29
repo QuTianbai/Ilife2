@@ -10,6 +10,8 @@
 
 @interface MSFUserInfoCircleView : UIView
 
-- (void) setCompeltionStatus:(NSArray *)status;
+@property (nonatomic, copy) void (^onClickBlock) (NSInteger index);
+
+- (void)setCompeltionStatus:(NSArray *)status;
 
 @end
