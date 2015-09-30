@@ -8,18 +8,6 @@
 
 #import "MSFRelationTFCell.h"
 
-@interface MSFRelationTFCell ()
-
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UITextField *tfInput;
-
-@end
-
 @implementation MSFRelationTFCell
-
-- (void)setTitle:(NSString *)title placeholder:(NSString *)ph {
-	_titleLabel.text = title;
-	_tfInput.placeholder = ph;
-}
 
 @end

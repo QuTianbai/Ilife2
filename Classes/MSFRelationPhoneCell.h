@@ -10,4 +10,7 @@
 
 @interface MSFRelationPhoneCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UITextField *tfInput;
+@property (weak, nonatomic) IBOutlet UIButton *onContactBook;
+
 @end

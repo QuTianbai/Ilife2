@@ -9,7 +9,7 @@
         <scene sceneID="en9-eF-MWA">
             <objects>
                 <tableViewController storyboardIdentifier="page4" id="Azx-1y-zfJ" customClass="MSFRelationshipViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DqE-oL-o7n">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DqE-oL-o7n">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,6 +158,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="selectionButton" destination="b2s-e1-pDB" id="ibe-LW-i7j"/>
+                                    <outlet property="tfInput" destination="hzi-wO-TyH" id="FpM-Yx-Jzl"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationPhoneCell" rowHeight="44" id="2mi-f0-urQ" customClass="MSFRelationPhoneCell">
@@ -189,9 +190,6 @@
                                             <state key="normal" image="btn-FamilyInformation-phone.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <action selector="onClickPhone:" destination="2mi-f0-urQ" eventType="touchUpInside" id="YYN-D3-jWA"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -208,6 +206,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="onContactBook" destination="8X7-TH-oac" id="eTr-C7-2Zv"/>
                                     <outlet property="tfInput" destination="ch7-4n-Jni" id="wAI-TY-wmM"/>
                                 </connections>
                             </tableViewCell>
@@ -247,7 +246,7 @@
                                     <outlet property="switchButton" destination="ebU-wU-jdH" id="UeG-v1-f9m"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MSFRelationAddCell" rowHeight="44" id="2eU-n7-Eb0" customClass="MSFRelationAddCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationAddCell" rowHeight="44" id="2eU-n7-Eb0" customClass="MSFRelationAddCell">
                                 <rect key="frame" x="0.0" y="269.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2eU-n7-Eb0" id="cBI-Zz-NSN">

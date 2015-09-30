@@ -10,4 +10,6 @@
 
 @interface MSFRelationSwitchCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UISwitch *switchButton;
+
 @end

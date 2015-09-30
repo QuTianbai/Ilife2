@@ -11,5 +11,6 @@
 @interface MSFRelationSelectionCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *selectionButton;
+@property (weak, nonatomic) IBOutlet UITextField *tfInput;
 
 @end

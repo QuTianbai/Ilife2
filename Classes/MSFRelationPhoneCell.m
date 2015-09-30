@@ -8,24 +8,6 @@
 
 #import "MSFRelationPhoneCell.h"
 
-@interface MSFRelationPhoneCell ()
-@property (weak, nonatomic) IBOutlet UITextField *tfInput;
-
-
-@end
-
 @implementation MSFRelationPhoneCell
-
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-- (IBAction)onClickPhone:(UIButton *)sender {
-}
 
 @end

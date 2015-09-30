@@ -10,6 +10,7 @@
 
 @interface MSFRelationTFCell : UITableViewCell
 
-- (void)setTitle:(NSString *)title placeholder:(NSString *)ph;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UITextField *tfInput;
 
 @end

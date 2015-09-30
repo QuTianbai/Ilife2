@@ -68,7 +68,7 @@
 		self.model.relation2 = object.code;
 		self.otherTwoValuesTitle = object.text;
 	}];
-
+/*
 	_executeMarryValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self marryValuesSignal];
@@ -78,12 +78,13 @@
 		@strongify(self)
 		return [self houseValuesSignal];
 	}];
-	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
-	_executeFamilyOneValuesCommand = [[RACCommand alloc] initWithEnabled:[self familyOneValidSignal] signalBlock:^RACSignal *(id input) {
+	_executeHouseValuesCommand.allowsConcurrentExecution = YES;*/
+	_executeFamilyValuesCommand = [[RACCommand alloc] initWithEnabled:[self familyOneValidSignal] signalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [self familyOneValuesSignal];
+		return [self familyValuesSignal];
 	}];
-	_executeFamilyOneValuesCommand.allowsConcurrentExecution = YES;
+	_executeFamilyValuesCommand.allowsConcurrentExecution = YES;
+	/*
 	_executeFamilyTwoValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self familyTwoValuesSignal];
@@ -99,6 +100,7 @@
 		return [self otherTwoValuesSignal];
 	}];
 	_executeOtherTwoValuesCommand.allowsConcurrentExecution = YES;
+	 */
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		//return [RACSignal empty];
 		
@@ -186,12 +188,12 @@
 	}];
 }
 
-- (RACSignal *)familyOneValuesSignal {
+- (RACSignal *)familyValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type"]];
-		if ([self.model.maritalStatus isEqualToString:@"MG01"]) {
-			viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type2"]];
-		}
+//		if ([self.model.maritalStatus isEqualToString:@"MG01"]) {
+//			viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"familyMember_type2"]];
+//		}
 		[self.services pushViewModel:viewModel];
 		[viewModel.selectedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:nil];
