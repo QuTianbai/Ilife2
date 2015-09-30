@@ -38,7 +38,8 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionContact2,
 };
 
-@interface MSFRelationshipViewController ()<ABPeoplePickerNavigationControllerDelegate,
+@interface MSFRelationshipViewController ()
+<ABPeoplePickerNavigationControllerDelegate,
 ABPersonViewControllerDelegate>
 
 @property (nonatomic, copy) NSString *currendAddress;
@@ -125,9 +126,15 @@ ABPersonViewControllerDelegate>
 	NSLog(@"MSFRelationshipViewController dealloc");
 }
 
+- (instancetype)init {
+	return [UIStoryboard storyboardWithName:@"relationship" bundle:nil].instantiateInitialViewController;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"家庭信息";
+	
+	self.navigationItem.title = @"联系人信息";
+	/*
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
 	self.viewModel.model.memberAddress = self.viewModel.model.currentAddress;
 	self.viewModel.model.memberAddress2 = self.viewModel.model.currentAddress;
@@ -328,6 +335,7 @@ ABPersonViewControllerDelegate>
 		[self.viewModel.executeCommitCommand execute:nil];
 
 	}];
+	*/
 	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
