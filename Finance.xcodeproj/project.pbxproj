@@ -101,6 +101,7 @@
 		10DAE1C01BBBC989001BD017 /* MSFRelationPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */; settings = {ASSET_TAGS = (); }; };
 		10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */; settings = {ASSET_TAGS = (); }; };
 		10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */; settings = {ASSET_TAGS = (); }; };
 		10DBCD341BB8E08A000A23B7 /* MSFLoanLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */; settings = {ASSET_TAGS = (); }; };
 		10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */; };
 		10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */; };
@@ -765,6 +766,8 @@
 		10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationSwitchCell.m; sourceTree = "<group>"; };
 		10DAE1C41BBBC9B3001BD017 /* MSFRelationAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationAddCell.h; sourceTree = "<group>"; };
 		10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationAddCell.m; sourceTree = "<group>"; };
+		10DAE1C71BBBDB1B001BD017 /* MSFRelationHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationHeadCell.h; sourceTree = "<group>"; };
+		10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationHeadCell.m; sourceTree = "<group>"; };
 		10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanLimitView.h; sourceTree = "<group>"; };
 		10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanLimitView.m; sourceTree = "<group>"; };
 		10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photosUpload.storyboard; sourceTree = "<group>"; };
@@ -1741,6 +1744,8 @@
 		10DAE1AA1BBBC8F9001BD017 /* RelationCells */ = {
 			isa = PBXGroup;
 			children = (
+				10DAE1C71BBBDB1B001BD017 /* MSFRelationHeadCell.h */,
+				10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */,
 				10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */,
 				10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */,
 				10DAE1BB1BBBC971001BD017 /* MSFRelationSelectionCell.h */,
@@ -3887,6 +3892,7 @@
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
+				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
 				49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,

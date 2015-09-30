@@ -1,13 +1,13 @@
 //
-//  MSFRelationSelectionCell.m
+//  MSFRelationHeadCell.m
 //  Finance
 //
 //  Created by 赵勇 on 9/30/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFRelationSelectionCell.h"
+#import "MSFRelationHeadCell.h"
 
-@implementation MSFRelationSelectionCell
+@implementation MSFRelationHeadCell
 
 @end

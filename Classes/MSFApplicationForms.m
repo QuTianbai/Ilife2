@@ -31,10 +31,6 @@
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFUserContact.class];
 }
 
-+ (NSValueTransformer *)additionalListJSONTransformer {
-	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFUserAdditional.class];
-}
-
 /*
 + (NSValueTransformer *)incomeJSONTransformer {
   return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {

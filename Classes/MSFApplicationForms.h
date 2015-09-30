@@ -16,7 +16,6 @@
 
 #import "MSFObject.h"
 #import "MSFUserContact.h"
-#import "MSFUserAdditional.h"
 
 
 @class MSFPhotoStatus;

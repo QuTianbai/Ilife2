@@ -14,5 +14,6 @@
 @property (nonatomic, copy) NSString *contactName;
 @property (nonatomic, copy) NSString *contactMobile;
 @property (nonatomic, copy) NSString *contactAddress;
+@property (nonatomic, assign) BOOL openDetailAddress;
 
 @end

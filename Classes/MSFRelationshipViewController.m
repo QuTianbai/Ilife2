@@ -30,6 +30,14 @@
 #import "MSFXBMCustomHeader.h"
 #import "MSFInventoryViewModel.h"
 
+#import "MSFUserContact.h"
+#import "MSFRelationHeadCell.h"
+#import "MSFRelationTFCell.h"
+#import "MSFRelationSwitchCell.h"
+#import "MSFRelationSelectionCell.h"
+#import "MSFRelationPhoneCell.h"
+#import "MSFRelationAddCell.h"
+
 typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 	MSFRelationshipViewSectionTitle,
 	MSFRelationshipViewSectionMember1,
@@ -45,70 +53,8 @@ ABPersonViewControllerDelegate>
 @property (nonatomic, copy) NSString *currendAddress;
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) MSFSelectKeyValues *selectKeyValues;
-/**
- *	婚姻状况，住房状况
- */
-@property (weak, nonatomic) IBOutlet UITextField *marriageTF;
-@property (weak, nonatomic) IBOutlet UIButton *marriageBT;
-@property (weak, nonatomic) IBOutlet UITextField *houseTF;
-@property (weak, nonatomic) IBOutlet UIButton *housesBT;
 
-/**
- *	家庭联系人一
- */
-@property (weak, nonatomic) IBOutlet UITextField *familyNameTF;
-@property (weak, nonatomic) IBOutlet UIButton *relationBT;
-@property (weak, nonatomic) IBOutlet UITextField *relationTF;
-@property (weak, nonatomic) IBOutlet UITextField *telTF;
-@property (weak, nonatomic) IBOutlet UISwitch *isSameCurrentSW;
-@property (weak, nonatomic) IBOutlet UITextField *diffCurrentTF;
-@property (weak, nonatomic) IBOutlet UIButton *addFamilyBT;
-@property (weak, nonatomic) IBOutlet UILabel *relationAddressLabel;
-
-
-/**
- *	家庭联系人二
- */
-@property (weak, nonatomic) IBOutlet UITextField *num2FamilyNameTF;
-@property (weak, nonatomic) IBOutlet UIButton *num2RelationBT;
-@property (weak, nonatomic) IBOutlet UITextField *num2RelationTF;
-@property (weak, nonatomic) IBOutlet UITextField *num2TelTF;
-@property (weak, nonatomic) IBOutlet UISwitch *num2IsSameCurrentSW;
-@property (weak, nonatomic) IBOutlet UITextField *num2DiffCurrentTF;
-@property (weak, nonatomic) IBOutlet UILabel *num2RelationAddressLabel;
-
-/**
- *	其他联系人一
- */
-@property (weak, nonatomic) IBOutlet UITextField *otherNameTF;
-@property (weak, nonatomic) IBOutlet UIButton *otherRelationBT;
-@property (weak, nonatomic) IBOutlet UITextField *otherRelationTF;
-@property (weak, nonatomic) IBOutlet UITextField *otherTelTF;
-
-/**
- *	其他联系人二
- */
-@property (weak, nonatomic) IBOutlet UITextField *num2_otherNameTF;
-@property (weak, nonatomic) IBOutlet UIButton *num2_otherRelationBT;
-@property (weak, nonatomic) IBOutlet UITextField *num2_otherRelationTF;
-@property (weak, nonatomic) IBOutlet UITextField *num2_otherTelTF;
-@property (weak, nonatomic) IBOutlet UIButton *addOtherBT;
-
-/**
- *	下一步
- */
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
-
-@property (nonatomic, assign) BOOL sameMember1Address;
-@property (nonatomic, assign) BOOL sameMember2Address;
-
-/**
- *	通讯录按钮
- */
-- (IBAction)firstFamilyPhoneBtn:(id)sender;
-- (IBAction)secondFamilyPhoneBtn:(id)sender;
-- (IBAction)firstOtherContactBtn:(id)sender;
-- (IBAction)secondOtherContactBtn:(id)sender;
 
 @end
 
@@ -359,104 +305,92 @@ ABPersonViewControllerDelegate>
 
 #pragma mark - UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == MSFRelationshipViewSectionMember2) {
-		if (!self.viewModel.hasMember2) {
-			return nil;
-		}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if (self.viewModel.model.contrastList.count == 5) {
+		return 5;
+	} else {
+		return self.viewModel.model.contrastList.count + 2;
 	}
-	if (section == MSFRelationshipViewSectionContact2) {
-		if (!self.viewModel.hasContact2) {
-			return nil;
-		}
-	}
-	return [super tableView:tableView titleForHeaderInSection:section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == MSFRelationshipViewSectionMember2) {
-		if (!self.viewModel.hasMember2) {
-			return 0;
+	if (self.viewModel.model.contrastList.count != 5 && section == self.viewModel.model.contrastList.count + 1) {
+		return 1;
+	} else {
+		MSFUserContact *contact = self.viewModel.model.contrastList[section];
+		if (contact.openDetailAddress) {
+			return 6;
+		} else {
+			return 5;
 		}
 	}
-	if (section == MSFRelationshipViewSectionContact2) {
-		if (!self.viewModel.hasContact2) {
-			return 0;
-		}
-	}
-	return [super tableView:tableView numberOfRowsInSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 0.1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	return 13;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == MSFRelationshipViewSectionMember1 && indexPath.row == 4 ) {
-		if (self.isSameCurrentSW.isOn) {
-			[_relationAddressLabel setHidden:YES];
-			[_diffCurrentTF setHidden:YES];
-		} else {
-			[_relationAddressLabel setHidden:NO];
-			[_diffCurrentTF setHidden:NO];
-			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+	return 44;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (self.viewModel.model.contrastList.count != 5 && indexPath.section == self.viewModel.model.contrastList.count + 1) {
+		MSFRelationAddCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationAddCell"];
+		return cell;
+	}
+	switch (indexPath.row) {
+		case 0: {
+			MSFRelationHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationHeadCell"];
+			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld信息", indexPath.section + 1];
+			return cell;
 		}
-		return 0;
-	}
-	if (indexPath.section == MSFRelationshipViewSectionMember2 && indexPath.row == 4 ) {
-		if (self.num2IsSameCurrentSW.isOn) {
-			[_num2RelationAddressLabel setHidden:YES];
-			[_num2DiffCurrentTF setHidden:YES];
-		} else {
-			[_num2RelationAddressLabel setHidden:NO];
-			[_num2DiffCurrentTF setHidden:NO];
-			return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+		case 1: {
+			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
+		
+			return cell;
 		}
-		return 0;
-	}
-	return [super tableView:tableView heightForRowAtIndexPath:indexPath];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	
-	NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
-	if (sectionTitle == nil) {
-		return  nil;
-	}
-	
-	UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
-	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
-	
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
-	
-	titleLabel.text = sectionTitle;
-	titleLabel.textColor = [MSFCommandView getColorWithString:POINTCOLOR];
-	[titleLabel setFont:[UIFont systemFontOfSize:14]];
-	titleLabel.backgroundColor = [UIColor clearColor];
-	
-	[sectionView addSubview:titleLabel];
-	
-	return sectionView;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-		[cell setSeparatorInset:UIEdgeInsetsZero];
-	}
-	
-	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-		[cell setLayoutMargins:UIEdgeInsetsZero];
+		case 2: {
+			MSFRelationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSelectionCell"];
+			
+			return cell;
+		}
+		case 3: {
+			MSFRelationPhoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationPhoneCell"];
+			
+			return cell;
+		}
+		case 4: {
+			MSFRelationSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSwitchCell"];
+			
+			return cell;
+		}
+		case 5: {
+			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
+			
+			return cell;
+		}
+		default: return nil;
 	}
 }
 
-- (void)viewDidLayoutSubviews {
-	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
-	}
-	
-	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (self.viewModel.model.contrastList.count != 5 && indexPath.section == self.viewModel.model.contrastList.count + 1) {
+		NSMutableArray *mArr = [NSMutableArray arrayWithArray:self.viewModel.model.contrastList];
+		[mArr addObject:[[MSFUserContact alloc] init]];
+		self.viewModel.model.contrastList = mArr;
+		[UIView animateWithDuration:.3 animations:^{
+			[self.tableView reloadData];
+		}];
 	}
 }
 
 #pragma mark - phone_button
-
+/*
 - (IBAction)firstFamilyPhoneBtn:(id)sender {
 	[self fetchAddressBook:_telTF];
 }
@@ -471,7 +405,7 @@ ABPersonViewControllerDelegate>
 
 - (IBAction)secondOtherContactBtn:(id)sender {
 	[self fetchAddressBook:_num2_otherTelTF];
-}
+}*/
 
 - (void)fetchAddressBook:(UITextField *)textField {
 	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
@@ -502,7 +436,7 @@ ABPersonViewControllerDelegate>
 		phone = [phones objectAtIndex:identifier];
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
-	
+	/*
 	switch (peoplePicker.view.tag) {
   case 10000:
 			self.viewModel.model.memberCellNum = phone;
@@ -523,7 +457,7 @@ ABPersonViewControllerDelegate>
 			
   default:
 			break;
-	}
+	}*/
 	
 }
 
@@ -553,7 +487,7 @@ ABPersonViewControllerDelegate>
 		phone = [phones objectAtIndex:identifier];
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
-	
+	/*
 	switch (peoplePicker.view.tag) {
 	case 10000:
 			self.viewModel.model.memberCellNum = phone;
@@ -574,7 +508,7 @@ ABPersonViewControllerDelegate>
 			
   default:
 			break;
-	}
+	}*/
  [peoplePicker dismissViewControllerAnimated:YES completion:nil];
 	
 	return NO;

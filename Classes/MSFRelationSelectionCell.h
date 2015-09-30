@@ -10,4 +10,6 @@
 
 @interface MSFRelationSelectionCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *selectionButton;
+
 @end

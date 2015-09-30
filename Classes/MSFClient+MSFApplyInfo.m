@@ -75,8 +75,7 @@
 					 @"empAdd" : occupation[@"empAdd"],
 					 @"empPhone" : occupation[@"empPhone"],
 					 @"infoType" : dic[@"infoType"],
-					 @"contrastList" : dic[@"contrastList"],
-					 @"additionalList" : dic[@"additionalList"]
+					 @"contrastList" : dic[@"contrastList"]
 					 };
 }
 
