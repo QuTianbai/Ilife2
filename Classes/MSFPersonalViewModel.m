@@ -147,17 +147,23 @@
 	if (self.model.currentCountryCode.length == 0) {
 		return @"请选择完整的现居地址";
 	}
-	if (self.address.length == 0) {
+	if (self.model.empAdd.length < 3) {
 		return @"请填写完整的详细地址";
 	}
 	if (self.model.houseType.length == 0) {
 		return @"请选择住房状况";
 	}
+	if (self.model.homeLine.length == 0) {
+		return @"请填写正确座机号";
+	}
+	if (self.model.maritalStatus.length == 0) {
+		return @"请选择婚姻状况";
+	}
 	
 	
 	
 	
-	
+	/*
 
 	if ([self.model.income isEqualToString:@""]) {
 		return @"请输入每月税前收入";
@@ -184,13 +190,13 @@
 	}
 	if (![self validAddress]) {
 		return @"详细地址至少输入两项";
-	}
+	}*/
 	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
 		return @"请输入正确的QQ号";
 	}
 	
-	self.model.taobaoPassword = self.model.taobaoPassword.length > 0 ? @"Y" : @"N";
-	self.model.jdAccountPwd = self.model.jdAccountPwd.length > 0 ? @"Y" : @"N";
+	//self.model.taobaoPassword = self.model.taobaoPassword.length > 0 ? @"Y" : @"N";
+	//self.model.jdAccountPwd = self.model.jdAccountPwd.length > 0 ? @"Y" : @"N";
 	return nil;
 }
 

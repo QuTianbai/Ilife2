@@ -246,7 +246,7 @@
 		
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
+			[SVProgressHUD showSuccessWithStatus:<#(NSString *)#>];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
