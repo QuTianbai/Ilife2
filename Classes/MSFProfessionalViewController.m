@@ -109,7 +109,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"职业信息";
+	self.navigationItem.title = @"职业信息";
 	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:1];
 	
 	[[self.universityName rac_signalForControlEvents:UIControlEventEditingChanged]

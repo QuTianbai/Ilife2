@@ -326,9 +326,9 @@ ABPersonViewControllerDelegate>
 	} else {
 		MSFUserContact *contact = _tempContactList[section];
 		if (contact.openDetailAddress) {
-			return 5;
-		} else {
 			return 6;
+		} else {
+			return 5;
 		}
 	}
 }
@@ -377,6 +377,7 @@ ABPersonViewControllerDelegate>
 		case 1: {
 			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
 			cell.titleLabel.text = @"家庭成员姓名";
+			cell.tfInput.placeholder = @"请输入家庭成员姓名";
 			[[cell.tfInput.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
 				contact.contactName = x;
 			}];
@@ -417,10 +418,10 @@ ABPersonViewControllerDelegate>
 			[[cell.switchButton.rac_newOnChannel takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *x) {
 				@strongify(self)
 				if (x.boolValue) {
-					contact.openDetailAddress = YES;
+					contact.openDetailAddress = NO;
 					contact.contactAddress = self.viewModel.model.currentAddress;
 				} else {
-					contact.openDetailAddress = NO;
+					contact.openDetailAddress = YES;
 					contact.contactAddress = nil;
 				}
 				[UIView animateWithDuration:.3 animations:^{
@@ -432,6 +433,7 @@ ABPersonViewControllerDelegate>
 		case 5: {
 			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
 			cell.titleLabel.text = @"联系地址";
+			cell.tfInput.placeholder = @"请输入联系人姓名";
 			[[cell.tfInput.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
 				contact.contactAddress = x;
 			}];
