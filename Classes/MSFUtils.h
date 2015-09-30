@@ -60,5 +60,4 @@
 + (void)setBaseURLString:(NSString *)url;
 + (NSString *)baseURLString;
 
-
 @end

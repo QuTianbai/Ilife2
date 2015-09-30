@@ -12,11 +12,18 @@
 #import <libextobjc/extobjc.h>
 
 #import "MSFPersonalViewController.h"
+#import "MSFProfessionalViewController.h"
+#import "MSFRelationshipViewController.h"
+
 #import "MSFUserInfoCircleView.h"
-#import "MSFClient+MSFApplyInfo.h"
-#import "MSFApplicationForms.h"
+
 #import "MSFPersonalViewModel.h"
+#import "MSFProfessionalViewModel.h"
+#import "MSFRelationshipViewModel.h"
+
+#import "MSFClient+MSFApplyInfo.h"
 #import "MSFTabBarController.h"
+#import "MSFApplicationForms.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFAddressViewModel.h"
@@ -110,9 +117,9 @@
 }
 
 - (void)onClickCircle:(NSInteger)index {
+	MSFTabBarController *tabbarController = (MSFTabBarController *)self.tabBarController;
 	switch (index) {
 		case 0: {
-			MSFTabBarController *tabbarController = (MSFTabBarController *)self.tabBarController;
 			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:self.services];
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
 			MSFPersonalViewController *vc = [[MSFPersonalViewController alloc] init];
@@ -121,11 +128,18 @@
 			break;
 		}
 		case 1: {
-			//
+			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
+			MSFRelationshipViewController *vc = [[MSFRelationshipViewController alloc] init];
+			[vc bindViewModel:viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
 			break;
 		}
 		case 2: {
-			//
+			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:self.services];
+			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			MSFProfessionalViewController *vc = [[MSFProfessionalViewController alloc] init];
+			[vc bindViewModel:viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
 			break;
 		}
 	}

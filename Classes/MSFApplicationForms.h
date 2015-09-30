@@ -103,14 +103,14 @@
 @property (nonatomic, copy) NSString *principal;//贷款本金 申请金额
 @property (nonatomic, copy) NSString *applyStatus1;//申请状态1 (1:不显示 0:申请中)// 最后一个页面是1
 
-@property (nonatomic, copy) NSString *qq;//QQ号
+//@property (nonatomic, copy) NSString *qq;//QQ号
 @property (nonatomic, copy) NSString *weixin;//微信号 微信号
 @property (nonatomic, copy) NSString *renren;//人人账号
 @property (nonatomic, copy) NSString *sinaWeibo;//新浪微博
 @property (nonatomic, copy) NSString *tencentWeibo;//腾讯微博
-@property (nonatomic, copy) NSString *taobao;//淘宝账号
+//@property (nonatomic, copy) NSString *taobao;//淘宝账号
 @property (nonatomic, copy) NSString *taobaoPassword;//淘宝密码
-@property (nonatomic, copy) NSString *jdAccount;//京东账号
+//@property (nonatomic, copy) NSString *jdAccount;//京东账号
 @property (nonatomic, copy) NSString *jdAccountPwd;//京东密码
 
 @property (nonatomic, copy) NSString *isSafePlan;//是否寿险计划(1:是，0:否)
@@ -131,8 +131,7 @@
 
 #pragma mark - 2.0参数
 @property (nonatomic, assign) int infoType;//信息类型：1：基本信息，2：职业信息，3：联系人信息
-@property (nonatomic, strong) NSArray *contrastList;
-@property (nonatomic, strong) NSArray *additionalList;
+@property (nonatomic, strong) NSArray *contrastList;//联系人信息
 
 //baseInfo
 @property (nonatomic, copy) NSString *homeLine;//住宅电话，包含区号
@@ -141,9 +140,12 @@
 @property (nonatomic, copy) NSString *currentProvinceCode;//居住地址省code
 @property (nonatomic, copy) NSString *currentCityCode;//居住地址市code
 @property (nonatomic, copy) NSString *currentCountryCode;//居住地址县code
-	@property (nonatomic, copy) NSString *abodeDetail;
+	@property (nonatomic, copy) NSString *abodeDetail;//详细住址
 @property (nonatomic, copy) NSString *houseType;//住房状况 住房情况
 @property (nonatomic, copy) NSString *maritalStatus;//婚姻状况 是否婚姻code (1.未婚 2.已婚 3.其他)
+@property (nonatomic, copy) NSString *qq;//QQ号
+@property (nonatomic, copy) NSString *taobao;//淘宝账号
+@property (nonatomic, copy) NSString *jdAccount;//京东账号
 
 //occupationInfo
 @property (nonatomic, copy) NSString *socialStatus;//社会身份

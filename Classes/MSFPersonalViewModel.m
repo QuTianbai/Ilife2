@@ -131,7 +131,8 @@
 		}]];
 	}
 	
-	return [self.formsViewModel submitSignalWithPage:2];
+	return [self.formsViewModel submitUserInfo];
+	//return [self.formsViewModel submitSignalWithPage:2];
 }
 
 - (NSString *)checkForm {
@@ -147,14 +148,15 @@
 	if (self.model.currentCountryCode.length == 0) {
 		return @"请选择完整的现居地址";
 	}
-	if (self.model.empAdd.length < 3) {
+	if (self.model.abodeDetail.length < 3) {
 		return @"请填写完整的详细地址";
 	}
 	if (self.model.houseType.length == 0) {
 		return @"请选择住房状况";
 	}
-	if (self.model.homeLine.length == 0) {
-		return @"请填写正确座机号";
+	NSString *homelineInfo = [self checkHomeline:self.model.homeLine];
+	if (homelineInfo) {
+		return homelineInfo;
 	}
 	if (self.model.maritalStatus.length == 0) {
 		return @"请选择婚姻状况";
@@ -200,6 +202,19 @@
 	return nil;
 }
 
+- (NSString *)checkHomeline:(NSString *)homeLine {
+	NSArray *components = [homeLine componentsSeparatedByString:@"-"];
+	if (components.count != 2) {
+		return @"请输入正确的座机号";
+	} else {
+		if ([components[0] length] < 3 || [components[1] length] < 7) {
+			return @"请输入正确的座机号";
+		}
+	}
+	return nil;
+}
+
+/*
 - (RACSignal *)commitValidSignal {
 	return [RACSignal
 		combineLatest:@[
@@ -227,9 +242,8 @@
 	NSInteger length2 = self.model.currentCommunity.length > 0 ? 1: 0;
 	NSInteger length3 = self.model.currentApartment.length > 0 ? 1: 0;
 	NSInteger length4 = self.model.currentStreet.length > 0 ? 1: 0;
-	
 	return (length1 + length2 + length3 + length4) >= 2;
-}
+}*/
 
 - (RACSignal *)houseValuesSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -239,6 +253,7 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.houseTypeTitle = x.text;
+			self.model.houseType = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;
@@ -253,6 +268,7 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.marriageTitle = x.text;
+			self.model.maritalStatus = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;

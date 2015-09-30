@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *housingTF;
 @property (weak, nonatomic) IBOutlet UIButton *housingBT;
 
+@property (weak, nonatomic) IBOutlet UITextField *homeTelCodeTF;
 @property (weak, nonatomic) IBOutlet UITextField *homeTelTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *marriageTF;
@@ -133,22 +134,41 @@
 			 textField.text = [textField.text substringToIndex:80];
 		 }
 	 }];
-	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, empAdd);
+	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, abodeDetail);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
 	
 	RAC(self.housingTF, text) = RACObserve(self.viewModel, houseTypeTitle);
 	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
 	
+	
+	[[self.homeTelCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+		@strongify(self)
+		if (textField.text.length == 3) {
+			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+			if ([validArea containsObject:textField.text]) {
+				[self.homeTelTF becomeFirstResponder];
+			}
+		} else if (textField.text.length == 4) {
+			[self.homeTelTF becomeFirstResponder];
+		}
+	}];
 	[[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 12) {
-			 textField.text = [textField.text substringToIndex:12];
+		 if (textField.text.length > 8) {
+			 textField.text = [textField.text substringToIndex:8];
 		 }
 	 }];
-	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
-	RAC(self.homeTelTF, text) = homeLineChannel;
-	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
+	RACSignal *homeTlelSignal = [RACSignal
+	 combineLatest:@[self.homeTelCodeTF.rac_textSignal, self.homeTelTF.rac_textSignal]
+	 reduce:^id(NSString *code, NSString *tel) {
+		 return [NSString stringWithFormat:@"%@-%@", code, tel];
+	}];
+	RAC(self.viewModel.model, homeLine) = homeTlelSignal;
+//	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
+//	RAC(self.homeTelTF, text) = homeLineChannel;
+//	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
 	
 	RAC(self.marriageTF, text) = RACObserve(self.viewModel, marriageTitle);
 	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
@@ -246,7 +266,7 @@
 		
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:<#(NSString *)#>];
+			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
