@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Professional View Controller-->
@@ -23,7 +22,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="Rsa-9k-uXK"/>
                                     </constraints>
-                                    <state key="normal" title="下一步">
+                                    <state key="normal" title="确定">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -104,7 +103,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rq-28-qQO">
-                                                    <rect key="frame" x="120" y="15" width="149" height="13.5"/>
+                                                    <rect key="frame" x="120" y="7" width="149" height="29.5"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -112,16 +111,16 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="5xr-wt-Pes" secondAttribute="bottom" constant="7" id="2me-Nr-pRt"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="3rq-28-qQO" secondAttribute="trailing" constant="10" id="9PC-Hv-00m"/>
                                                 <constraint firstAttribute="bottom" secondItem="VSA-2B-ifZ" secondAttribute="bottom" constant="11.5" id="E97-NB-XxN"/>
-                                                <constraint firstItem="3rq-28-qQO" firstAttribute="leading" secondItem="VSA-2B-ifZ" secondAttribute="trailing" constant="20" id="FKu-zY-Sox"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="3rq-28-qQO" secondAttribute="bottom" constant="7" id="Hv9-v2-GA0"/>
                                                 <constraint firstItem="VSA-2B-ifZ" firstAttribute="leading" secondItem="kNy-e9-vsK" secondAttribute="leading" constant="15" id="QA2-W7-esK"/>
                                                 <constraint firstAttribute="trailing" secondItem="5xr-wt-Pes" secondAttribute="trailing" constant="10" id="UKW-Uv-Dzr"/>
+                                                <constraint firstAttribute="trailing" secondItem="3rq-28-qQO" secondAttribute="trailing" constant="18" id="VwM-Jl-fTd"/>
                                                 <constraint firstItem="5xr-wt-Pes" firstAttribute="top" secondItem="kNy-e9-vsK" secondAttribute="top" constant="7" id="Wxv-f0-45w"/>
                                                 <constraint firstItem="5xr-wt-Pes" firstAttribute="leading" secondItem="VSA-2B-ifZ" secondAttribute="trailing" constant="20" id="cuY-43-sDH"/>
                                                 <constraint firstItem="VSA-2B-ifZ" firstAttribute="top" secondItem="kNy-e9-vsK" secondAttribute="top" constant="11" id="np7-xD-UU2"/>
-                                                <constraint firstItem="3rq-28-qQO" firstAttribute="top" secondItem="kNy-e9-vsK" secondAttribute="topMargin" constant="7" id="zcP-Sx-Iau"/>
+                                                <constraint firstItem="3rq-28-qQO" firstAttribute="top" secondItem="kNy-e9-vsK" secondAttribute="top" constant="7" id="oJb-yo-nUG"/>
+                                                <constraint firstItem="3rq-28-qQO" firstAttribute="leading" secondItem="VSA-2B-ifZ" secondAttribute="trailing" constant="20" id="qIQ-6Z-V4H"/>
+                                                <constraint firstAttribute="bottom" secondItem="3rq-28-qQO" secondAttribute="bottom" constant="7" id="qal-vp-s5r"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -132,16 +131,16 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工作年限" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z0-bO-ccU">
-                                                    <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参加工作日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z0-bO-ccU">
+                                                    <rect key="frame" x="15" y="11" width="90" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="85" id="IK9-Je-T4w"/>
+                                                        <constraint firstAttribute="width" constant="90" id="IK9-Je-T4w"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入工作年限" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-Vi-cSj">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择参加工作日期" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-Vi-cSj">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -159,11 +158,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="T9Z-38-4Pz" secondAttribute="bottom" constant="7" id="JJ7-68-N59"/>
                                                 <constraint firstAttribute="bottom" secondItem="wNX-Vi-cSj" secondAttribute="bottom" constant="7" id="K7z-Tw-5hE"/>
                                                 <constraint firstItem="1Z0-bO-ccU" firstAttribute="leading" secondItem="let-bq-rBi" secondAttribute="leading" constant="15" id="PJr-dx-5op"/>
-                                                <constraint firstItem="T9Z-38-4Pz" firstAttribute="leading" secondItem="1Z0-bO-ccU" secondAttribute="trailing" constant="20" id="Uv5-cV-e0v"/>
+                                                <constraint firstItem="T9Z-38-4Pz" firstAttribute="leading" secondItem="1Z0-bO-ccU" secondAttribute="trailing" constant="15" id="Uv5-cV-e0v"/>
                                                 <constraint firstAttribute="trailing" secondItem="wNX-Vi-cSj" secondAttribute="trailing" constant="10" id="VSQ-v7-dSj"/>
                                                 <constraint firstItem="wNX-Vi-cSj" firstAttribute="top" secondItem="let-bq-rBi" secondAttribute="top" constant="7" id="YJp-Ee-zUl"/>
                                                 <constraint firstItem="1Z0-bO-ccU" firstAttribute="top" secondItem="let-bq-rBi" secondAttribute="top" constant="11" id="io8-LJ-l9C"/>
-                                                <constraint firstItem="wNX-Vi-cSj" firstAttribute="leading" secondItem="1Z0-bO-ccU" secondAttribute="trailing" constant="20" id="ldg-hb-y86"/>
+                                                <constraint firstItem="wNX-Vi-cSj" firstAttribute="leading" secondItem="1Z0-bO-ccU" secondAttribute="trailing" constant="15" id="ldg-hb-y86"/>
                                                 <constraint firstAttribute="trailing" secondItem="T9Z-38-4Pz" secondAttribute="trailing" constant="10" id="pSZ-eq-EIL"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -188,7 +187,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入学校全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksj-B7-xO8">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学校" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksj-B7-xO8">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -221,7 +220,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入学年份" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-OE-eun">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入学年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-OE-eun">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -255,7 +254,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入学制" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDS-Y0-6x7">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学制" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDS-Y0-6x7">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -302,7 +301,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入当前就职单位全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XqC-hX-BRY">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写工作单位全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XqC-hX-BRY">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -344,7 +343,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择单位性质" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jxe-L5-xwx">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择行业" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jxe-L5-xwx">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -434,7 +433,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入当前就职部门全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-ZD-cBb">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写当前就职部门全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-ZD-cBb">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -566,7 +565,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入每月税前收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-gw-tZn">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写每月税前收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-gw-tZn">
                                                     <rect key="frame" x="120" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -593,7 +592,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="家庭、投资等收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJJ-GX-XVv">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写其他收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJJ-GX-XVv">
                                                     <rect key="frame" x="120" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -653,7 +652,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他贷额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6es-6J-ChK">
-                                                    <rect key="frame" x="15" y="15" width="85" height="22"/>
+                                                    <rect key="frame" x="15" y="12" width="85" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="GdI-oa-zWg"/>
                                                     </constraints>
@@ -663,9 +662,9 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="6es-6J-ChK" firstAttribute="top" secondItem="7VC-xB-VmT" secondAttribute="top" constant="15" id="1AG-sh-MHu"/>
+                                                <constraint firstItem="6es-6J-ChK" firstAttribute="top" secondItem="7VC-xB-VmT" secondAttribute="top" constant="12" id="1AG-sh-MHu"/>
                                                 <constraint firstItem="R76-fM-cxH" firstAttribute="leading" secondItem="6es-6J-ChK" secondAttribute="trailing" constant="20" id="2rj-ac-QxA"/>
-                                                <constraint firstAttribute="bottom" secondItem="6es-6J-ChK" secondAttribute="bottom" constant="6.5" id="CdU-yh-Btx"/>
+                                                <constraint firstAttribute="bottom" secondItem="6es-6J-ChK" secondAttribute="bottom" constant="10" id="CdU-yh-Btx"/>
                                                 <constraint firstAttribute="bottom" secondItem="R76-fM-cxH" secondAttribute="bottom" constant="7" id="EAi-Ds-PLe"/>
                                                 <constraint firstAttribute="trailing" secondItem="5ku-rc-dFP" secondAttribute="trailing" constant="10" id="amB-e6-s8c"/>
                                                 <constraint firstItem="5ku-rc-dFP" firstAttribute="leading" secondItem="R76-fM-cxH" secondAttribute="trailing" constant="10" id="eIf-rx-Dji"/>
@@ -748,7 +747,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入单位地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aai-MT-gaM">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择单位地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aai-MT-gaM">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -791,7 +790,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入详细地址信息" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGL-lh-hSR">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写详细地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGL-lh-hSR">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="send"/>

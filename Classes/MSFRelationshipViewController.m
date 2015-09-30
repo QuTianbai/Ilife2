@@ -87,6 +87,8 @@ ABPersonViewControllerDelegate>
 	[super viewDidLoad];
 	
 	self.navigationItem.title = @"联系人信息";
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	
 	/*
 	 self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:2];
 	 self.viewModel.model.memberAddress = self.viewModel.model.currentAddress;
@@ -308,6 +310,16 @@ ABPersonViewControllerDelegate>
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
+}
+
+- (void)back {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃基本信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+		if ([x integerValue] == 1) {
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	}];
+	[alert show];
 }
 
 #pragma mark - UITableViewDataSource

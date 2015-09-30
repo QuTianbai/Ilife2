@@ -109,9 +109,10 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.navigationItem.title = @"职业信息";
-	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:1];
 	
+	self.navigationItem.title = @"职业信息";
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+
 	[[self.universityName rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
 			if (textField.text.length > 14) {
@@ -254,6 +255,16 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	}];
 }
 
+- (void)back {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃基本信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+		if ([x integerValue] == 1) {
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	}];
+	[alert show];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -343,6 +354,40 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 }
 
 #pragma mark - Private
+
+- (RACSignal *)startedWorkDateSignal {
+	@weakify(self)
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate msf_date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-50];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		
+		[ActionSheetDatePicker
+		 showPickerWithTitle:@""
+		 datePickerMode:UIDatePickerModeDate
+		 selectedDate:currentDate
+		 minimumDate:minDate
+		 maximumDate:maxDate
+		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 cancelBlock:^(ActionSheetDatePicker *picker) {
+			 self.viewModel.startedDate = nil;
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 origin:self.view];
+		return nil;
+	}] replay];
+}
 
 - (RACSignal *)startedDateSignal {
 	@weakify(self)

@@ -1,47 +1,37 @@
  [
-  {
-  "text": "小学",
-  "code": "LE01",
-  "typeId": "006"
-  },
-  {
-  "text": "初中",
-  "code": "LE02",
-  "typeId": "006"
-  },
-  {
-  "text": "高中",
-  "code": "LE03",
-  "typeId": "006"
-  },
-  {
-  "text": "中专",
-  "code": "LE04",
-  "typeId": "006"
-  },
-  {
-  "text": "专科",
-  "code": "LE05",
-  "typeId": "006"
-  },
-  {
-  "text": "本科",
-  "code": "LE06",
-  "typeId": "006"
-  },
-  {
-  "text": "硕士研究生",
-  "code": "LE07",
-  "typeId": "006"
-  },
-  {
-  "text": "博士研究生",
-  "code": "LE08",
-  "typeId": "006"
-  },
-  {
-  "text": "其他",
-  "code": "LE99",
-  "typeId": "006"
-  }
-  ]
+	{
+	"text": "博士及以上",
+	"code": "LE08",
+	"typeId": "006"
+	},
+	{
+	"text": "硕士",
+	"code": "LE07",
+	"typeId": "006"
+	},
+	{
+	"text": "大学本科",
+	"code": "LE06",
+	"typeId": "006"
+	},
+	{
+	"text": "大学专科/专科学校",
+	"code": "LE05",
+	"typeId": "006"
+	},
+	{
+	"text": "高中/中专/技校",
+	"code": "LE09",
+	"typeId": "006"
+	},
+	{
+	"text": "初中",
+	"code": "LE10",
+	"typeId": "006"
+	},
+	{
+	"text": "初中以下",
+	"code": "LE11",
+	"typeId": "006"
+	}
+	]
