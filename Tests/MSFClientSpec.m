@@ -174,8 +174,8 @@ describe(@"without a user", ^{
     
     // then
     expect(@(success)).to(beTruthy());
-    expect(releasenote).to(beNil());
     expect(error).to(beNil());
+		expect(releasenote).notTo(beNil());
   });
   
   it(@"should user forget password", ^{

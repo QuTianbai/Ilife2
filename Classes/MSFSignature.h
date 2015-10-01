@@ -9,6 +9,9 @@
 // 代码签名
 @interface MSFSignature : MTLModel
 
+// App key
+@property (nonatomic, copy, readonly) NSString *appKey;
+
 // 加密签名
 @property (nonatomic, copy, readonly) NSString *sign;
 

@@ -12,7 +12,7 @@
   return 1432733600610;
 }
 
-- (long long)serialization {
+- (long long)client {
   return 1432733599564;
 }
 

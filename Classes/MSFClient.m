@@ -41,7 +41,7 @@ NSString *const MSFClientErrorFieldKey = @"fields";
 NSString *const MSFClientErrorMessageCodeKey = @"code";
 NSString *const MSFClientErrorMessageKey = @"message";
 
-static const NSInteger MSFClientNotModifiedStatusCode = 304;
+static const NSInteger MSFClientNotModifiedStatusCode = 204;
 
 static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPONSES";
 
@@ -57,6 +57,8 @@ static BOOL isRunningTests(void) {
 
 	return isTestsRunning;
 }
+
+static NSDictionary *messages;
 
 @interface MSFClient ()
 
@@ -114,6 +116,10 @@ static BOOL isRunningTests(void) {
 			[[RCLocationManager sharedManager] stopUpdatingLocation];
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
+	
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"code-message" withExtension:@"json"];
+	NSData *data = [NSData dataWithContentsOfURL:URL];
+	messages = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
 	
 	return self;
 }
@@ -447,17 +453,24 @@ static BOOL isRunningTests(void) {
 
 + (NSError *)errorFromRequestOperation:(AFHTTPRequestOperation *)operation {
 	NSDictionary *userinfo = @{};
+	
+	// Fields error
 	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
 		MSFClientErrorFieldKey: operation.responseObject[MSFClientErrorFieldKey] ?: @{}
 	}];
 
+	NSString *code = operation.responseObject[MSFClientErrorMessageCodeKey];
+	NSString *message = messages[MSFClientErrorMessageCodeKey] ?: operation.responseObject[MSFClientErrorMessageKey];
+	
+	// Message
 	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
-		NSLocalizedFailureReasonErrorKey: operation.responseObject[MSFClientErrorMessageKey] ?: @"",
-		MSFClientErrorMessageKey: operation.responseObject[MSFClientErrorMessageKey] ?: @"",
+		NSLocalizedFailureReasonErrorKey: message ?: @"",
+		MSFClientErrorMessageKey: message ?: @"",
 	}];
 	
+	// Code
 	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
-		MSFClientErrorMessageCodeKey: operation.responseObject[MSFClientErrorMessageCodeKey] ?: @"",
+		MSFClientErrorMessageCodeKey: code ?: @"",
 	}];
 	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
@@ -536,39 +549,17 @@ static BOOL isRunningTests(void) {
 			#elif TEST
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			#endif
-			if (!responseObject) {
-				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
-					responseObject = @{@"message": @"短信已下发,请注意查收"};
-				}
-				if ([request.URL.absoluteString rangeOfString:@"users/forget_password"].length > 0) {
-					responseObject = @{@"message": @"更新成功"};
-				}
-				if ([request.URL.absoluteString rangeOfString:@"update_password"].length > 0) {
-					responseObject = @{@"message": @"修改成功"};
-				}
-				if ([request.URL.absoluteString rangeOfString:@"authenticate"].length > 0 && [request.HTTPMethod isEqualToString:@"DELETE"]) {
-					responseObject = @{@"message": @"登录退出"};
-				}
-			}
 			
-			if ([responseObject isKindOfClass:NSDictionary.class] && responseObject[@"code"] != 0) {
-				[subscriber sendError:[self parsingErrorWithFailureReason:responseObject[@"message"]]];
-				return;
-			}
-			
-			if (operation.response.statusCode == MSFClientNotModifiedStatusCode || [responseObject count] == 0) {
+			if (operation.response.statusCode == MSFClientNotModifiedStatusCode) {
 				// No change in the data.
+				[subscriber sendNext:nil];
 				[subscriber sendCompleted];
 				return;
 			}
 			
-			[[RACSignal
-				 return:RACTuplePack(operation.response, responseObject)]
-				 subscribe:subscriber];
+			[[RACSignal return:RACTuplePack(operation.response, responseObject)] subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			[self reportFabric:operation error:error];
-		
 			#if DEBUG
 				if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 					NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
@@ -577,17 +568,7 @@ static BOOL isRunningTests(void) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			#endif
 			
-			if (operation.response.statusCode == 403) {
-				NSString *timestamp = operation.response.allHeaderFields[@"timestamp"];
-				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:timestamp.longLongValue];
-				[MSFClient setCipher:cipher];
-			}
-			
-			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
-				[MSFUtils setHttpClient:nil];
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
-			}
-			
+			[self reportFabric:operation error:error];
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
 		}];
 		

@@ -13,26 +13,25 @@
 #import "NSURL+QueryDictionary.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 
-static NSString *const kAppKey = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
-static NSString *const kAppSecret = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
-static NSString *const kParametersTimestamp = @"timestamp";
-static NSString *const kParametersSign = @"sign";
-static NSString *const kParametersKey = @"appKey";
+NSString *const MSFCipherAppKey = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
+NSString *const MSFCipherAppSecret = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
+
+static NSString *const kTimestamp = @"timestamp";
+static NSString *const kSign = @"sign";
+static NSString *const kAppKey = @"appKey";
 
 @implementation MSFCipher {
 	// 服务器本地时间差
-	long long disparityInterval;
+	long long transport;
 }
 
-- (instancetype)initWithSession:(long long)contestant {
+- (instancetype)initWithTimestamp:(long long)contestant {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_sessionId = contestant;
-	_serialization = [self bumpstamp];
-	_signKey = kAppKey;
-	_signSecret = kAppSecret;
+	_internet = contestant;
+	_client = [self bumpstamp];
 	
 	return self;
 }
@@ -48,16 +47,16 @@ static NSString *const kParametersKey = @"appKey";
 	NSParameterAssert([params isKindOfClass:NSDictionary.class]);
 	NSMutableDictionary *parameters = params.mutableCopy;
 	
-	disparityInterval = self.sessionId - self.serialization + self.bumpstamp;
-	[parameters setObject:@(disparityInterval) forKey:kParametersTimestamp];
+	transport = self.internet - self.client + self.bumpstamp;
+	[parameters setObject:@(transport) forKey:kTimestamp];
 	
 	NSString *sign = [self signWithPath:path query:params];
-	[parameters setObject:sign forKey:kParametersSign];
+	[parameters setObject:sign forKey:kSign];
 	
 	return [[MSFSignature alloc] initWithDictionary:@{
-		kParametersSign: sign,
-		kParametersKey: self.signKey,
-		kParametersTimestamp: @(disparityInterval)
+		kSign: sign,
+		kAppKey: MSFCipherAppKey,
+		kTimestamp: @(transport)
 	} error:nil];
 }
 
@@ -74,8 +73,8 @@ static NSString *const kParametersKey = @"appKey";
 
 - (NSString *)signWithPath:(NSString *)path query:(NSDictionary *)query {
 	NSMutableDictionary *parameters = query.mutableCopy;
-	[parameters addEntriesFromDictionary:@{kParametersTimestamp: @(disparityInterval)}];
-	[parameters addEntriesFromDictionary:@{kParametersKey: self.signKey}];
+	[parameters addEntriesFromDictionary:@{kTimestamp: @(transport)}];
+	[parameters addEntriesFromDictionary:@{kAppKey: MSFCipherAppKey}];
 	
 	NSArray *sortedKeys = [parameters.allKeys sortedArrayUsingSelector:@selector(compare:)];
 	NSMutableArray *sorted = NSMutableArray.new;
@@ -85,7 +84,7 @@ static NSString *const kParametersKey = @"appKey";
 		[sorted addObject:keyAndValue];
 	}
 	
-	[sorted addObject:self.signSecret];
+	[sorted addObject:MSFCipherAppSecret];
 	NSString *string = [sorted componentsJoinedByString:@""];
 	
 	return [string.md5 uppercaseString];

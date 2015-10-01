@@ -36,13 +36,13 @@ static MSFServer *server;
 			server = [MSFServer serverWithBaseURL:URL];
 			[self setHttpClient:nil];
 			[[self.httpClient fetchServerInterval] subscribeNext:^(MSFResponse *response) {
-				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[response.parsedResult[@"time"] longLongValue]];
+				MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[response.parsedResult[@"time"] longLongValue]];
 				[MSFClient setCipher:cipher];
 			}];
 		}];
 	
 	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
-		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
+		MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[resposne.parsedResult[@"time"] longLongValue]];
 		[MSFClient setCipher:cipher];
 	}];
 }

@@ -420,6 +420,7 @@
 		49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7F1B2E83F9009433C5 /* professional.storyboard */; };
 		49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE811B2E840A009433C5 /* relationship.storyboard */; };
 		49E07D3A1BBCF138001F9E1A /* bg-date-disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */; settings = {ASSET_TAGS = (); }; };
+		49E07D491BBD25F0001F9E1A /* code-message.json in Resources */ = {isa = PBXBuildFile; fileRef = 49E07D481BBD25F0001F9E1A /* code-message.json */; settings = {ASSET_TAGS = (); }; };
 		49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF71B37ED9E00749717 /* btn-family-add.png */; };
 		49E22AFE1B37ED9E00749717 /* btn-family-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */; };
 		49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */; };
@@ -1222,6 +1223,7 @@
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
 		49DAEE811B2E840A009433C5 /* relationship.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = relationship.storyboard; sourceTree = "<group>"; };
 		49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-date-disable@2x.png"; sourceTree = "<group>"; };
+		49E07D481BBD25F0001F9E1A /* code-message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "code-message.json"; sourceTree = "<group>"; };
 		49E22AF71B37ED9E00749717 /* btn-family-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add.png"; sourceTree = "<group>"; };
 		49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add@2x.png"; sourceTree = "<group>"; };
 		49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add@3x.png"; sourceTree = "<group>"; };
@@ -1532,6 +1534,7 @@
 		07C06C411B13431300F2DFCC /* json */ = {
 			isa = PBXGroup;
 			children = (
+				49E07D481BBD25F0001F9E1A /* code-message.json */,
 				49CBDDB31B0DF03E009EF662 /* banners.json */,
 				07AFE59F1B26D202009E0124 /* position.json */,
 				499EA2B51B5679E50051AF66 /* familyMember_type2.json */,
@@ -1904,6 +1907,9 @@
 		4925AD951B2A8F1500872A8A /* login */ = {
 			isa = PBXGroup;
 			children = (
+				49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */,
+				49F6F7E21BBB75670052AB77 /* bg-send-captcha-highlighted@2x.png */,
+				49F6F7D31BBB72910052AB77 /* bg-send-captcha@2x.png */,
 				49CA93791BBA3F7E0032F5C2 /* icon-id.png */,
 				49CA937A1BBA3F7E0032F5C2 /* icon-id@2x.png */,
 				49CA937B1BBA3F7E0032F5C2 /* icon-id@3x.png */,
@@ -2886,9 +2892,6 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */,
-				49F6F7E21BBB75670052AB77 /* bg-send-captcha-highlighted@2x.png */,
-				49F6F7D31BBB72910052AB77 /* bg-send-captcha@2x.png */,
 				0707249C1B671A080089916B /* ApplyProduct */,
 				C7D2D1001B679346000F51ED /* perfectMeans */,
 				491B3DF11B65D68C00D28455 /* stubs */,
@@ -3369,6 +3372,7 @@
 				C7A3517A1B217CB10001DF6A /* iconfont-guanyuwomen.png in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
+				49E07D491BBD25F0001F9E1A /* code-message.json in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
 				4944C0131B68A44A00805C0A /* icon-cloze-name@3x.png in Resources */,
 				07B368841B7ED86400574A81 /* basic-information-prompt-1242@3x.png in Resources */,
