@@ -365,7 +365,7 @@
 	if ([self.model.socialStatus isEqualToString:@"SI01"]) {
 		if (self.model.unitName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写学校名称",
+				NSLocalizedFailureReasonErrorKey: @"请填写正确的学校名称",
 			}]];
 		}
 		if (self.model.empStandFrom.length == 0) {
@@ -384,9 +384,9 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择参加工作日期",
 			}]];
 		}
-		if (self.model.unitName.length == 0) {
+		if (self.model.unitName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写工作单位名称",
+				NSLocalizedFailureReasonErrorKey: @"请填写正确的工作单位名称",
 			}]];
 		}
 		if (self.model.industry.length == 0) {
@@ -405,19 +405,19 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择职位",
 			}]];
 		}
-		if (self.model.currentJobDate.length == 0) {
+		if (self.model.empStandFrom.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择入职年月",
 			}]];
 		}
 		if (self.model.income.length == 0) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写每月税前工作收入"}]];
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月税前工作收入"}]];
 		}
 		if (self.model.otherIncome.length == 0) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写其他收入"}]];
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月其它收入"}]];
 		}
 		if (self.model.familyExpense.length == 0) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写其他贷款每月应还金额"}]];
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月其它贷款应还金额"}]];
 		}
 		if (self.model.unitAreaCode.length < 3) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
@@ -451,9 +451,9 @@
 			  NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
 			}]];
 		}
-		if (self.model.empAdd.length < 3 && self.model.empAdd.length > 40) {
+		if (self.model.empAdd.length < 3 || self.model.empAdd.length > 40) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写正确的单位详细地址",
+				NSLocalizedFailureReasonErrorKey: @"请填写正确的单位详细地址"
 			}]];
 		}
 	}

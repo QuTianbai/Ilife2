@@ -6,9 +6,9 @@
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFObject.h"
+#import <Mantle/Mantle.h>
 
-@interface MSFUserContact : MSFObject
+@interface MSFUserContact : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, copy) NSString *contactRelation;
 @property (nonatomic, copy) NSString *contactName;

@@ -510,7 +510,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="现工作开始年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-1W-w0M">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入职年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-1W-w0M">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
