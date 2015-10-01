@@ -8,6 +8,5 @@
 
 @interface MSFGroupTableViewController : UITableViewController
 
-
 @end
 
