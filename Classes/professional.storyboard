@@ -254,16 +254,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学制" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDS-Y0-6x7">
-                                                    <rect key="frame" x="120" y="7" width="80" height="29.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="80" id="VEF-Jm-oeX"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学制" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2r-ed-Yk1">
-                                                    <rect key="frame" x="15" y="11" width="85" height="17"/>
+                                                    <rect key="frame" x="15" y="13" width="85" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="dWt-5Z-cBO"/>
                                                     </constraints>
@@ -271,6 +263,15 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学制" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ef-ak-9QF">
+                                                    <rect key="frame" x="120" y="7" width="80" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="0Y4-mh-fWF"/>
+                                                        <constraint firstAttribute="width" constant="80" id="LuU-76-2Hb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-tg-ENi">
                                                     <rect key="frame" x="208" y="14" width="26" height="16"/>
                                                     <constraints>
@@ -282,15 +283,21 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Vlc-tg-ENi" firstAttribute="leading" secondItem="bDS-Y0-6x7" secondAttribute="trailing" constant="8" id="7s6-iH-Qfg"/>
+                                                <constraint firstItem="Vlc-tg-ENi" firstAttribute="leading" secondItem="5ef-ak-9QF" secondAttribute="trailing" constant="8" id="DJj-e3-HPk"/>
+                                                <constraint firstItem="W2r-ed-Yk1" firstAttribute="centerY" secondItem="GKe-Hx-xSP" secondAttribute="centerY" id="KfM-Tz-tso"/>
                                                 <constraint firstItem="Vlc-tg-ENi" firstAttribute="centerY" secondItem="GKe-Hx-xSP" secondAttribute="centerY" id="TEG-Tj-oAO"/>
+                                                <constraint firstItem="5ef-ak-9QF" firstAttribute="leading" secondItem="W2r-ed-Yk1" secondAttribute="trailing" constant="20" id="c9l-I9-jMo"/>
                                                 <constraint firstAttribute="bottom" secondItem="W2r-ed-Yk1" secondAttribute="bottom" constant="15" id="hnw-v2-ZBF"/>
-                                                <constraint firstAttribute="bottom" secondItem="bDS-Y0-6x7" secondAttribute="bottom" constant="7" id="lPB-ta-46d"/>
+                                                <constraint firstItem="5ef-ak-9QF" firstAttribute="centerY" secondItem="GKe-Hx-xSP" secondAttribute="centerY" id="l29-br-xTK"/>
                                                 <constraint firstItem="W2r-ed-Yk1" firstAttribute="leading" secondItem="GKe-Hx-xSP" secondAttribute="leading" constant="15" id="tAC-T9-4VA"/>
-                                                <constraint firstItem="bDS-Y0-6x7" firstAttribute="top" secondItem="GKe-Hx-xSP" secondAttribute="top" constant="7" id="txl-Q1-gos"/>
                                                 <constraint firstItem="W2r-ed-Yk1" firstAttribute="top" secondItem="GKe-Hx-xSP" secondAttribute="top" constant="11.5" id="uqR-ax-QP0"/>
-                                                <constraint firstItem="bDS-Y0-6x7" firstAttribute="leading" secondItem="W2r-ed-Yk1" secondAttribute="trailing" constant="20" id="xcc-dw-vWo"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="hnw-v2-ZBF"/>
+                                                    <exclude reference="uqR-ax-QP0"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -541,7 +548,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="单位联系方式" id="O3Q-vt-AYY" userLabel="收支情况">
+                            <tableViewSection headerTitle="收入信息" id="O3Q-vt-AYY" userLabel="收支情况">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="ShI-nc-kkR">
                                         <rect key="frame" x="0.0" y="678" width="320" height="44"/>
@@ -654,7 +661,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他贷额" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6es-6J-ChK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他贷款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6es-6J-ChK">
                                                     <rect key="frame" x="15" y="12" width="85" height="21.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="GdI-oa-zWg"/>
@@ -834,12 +841,15 @@
                         <outlet property="educationButton" destination="Prp-U1-uaa" id="r43-le-qHu"/>
                         <outlet property="enrollmentYear" destination="cf8-OE-eun" id="tLh-yd-wTa"/>
                         <outlet property="enrollmentYearButton" destination="nM8-o5-a5w" id="geT-qS-alI"/>
+                        <outlet property="extraIncomeTF" destination="QJJ-GX-XVv" id="utE-gh-kw8"/>
+                        <outlet property="incomeTF" destination="v1S-gw-tZn" id="8us-op-11y"/>
                         <outlet property="industry" destination="Jxe-L5-xwx" id="qhS-cf-kse"/>
                         <outlet property="industryButton" destination="j3r-cW-lzz" id="fOa-3I-Xth"/>
+                        <outlet property="loanTF" destination="R76-fM-cxH" id="3Dk-25-Fkj"/>
                         <outlet property="nextButton" destination="8Wz-kg-ezK" id="2Cy-yW-bwq"/>
                         <outlet property="position" destination="Qeo-TP-XAm" id="NPp-X8-YDf"/>
                         <outlet property="positionButton" destination="C28-sT-cUl" id="HCL-oh-HI1"/>
-                        <outlet property="programLength" destination="bDS-Y0-6x7" id="Vkq-72-VDg"/>
+                        <outlet property="programLength" destination="5ef-ak-9QF" id="2y8-iK-7Qu"/>
                         <outlet property="socialStatus" destination="5xr-wt-Pes" id="R7E-4P-PTu"/>
                         <outlet property="socialStatusButton" destination="3rq-28-qQO" id="Ehd-4z-b4I"/>
                         <outlet property="unitAreaCode" destination="3kQ-MM-jC6" id="7aT-qw-iOj"/>
