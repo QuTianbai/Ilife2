@@ -13,9 +13,11 @@
 #import "NSURL+QueryDictionary.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 
-static NSString *const kEncrpytinoKey = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
-static NSString *const kDisparityIntervalKey = @"timestamp";
-static NSString *const kParametersSignKey = @"sign";
+static NSString *const kAppKey = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
+static NSString *const kAppSecret = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
+static NSString *const kParametersTimestamp = @"timestamp";
+static NSString *const kParametersSign = @"sign";
+static NSString *const kParametersKey = @"appKey";
 
 @implementation MSFCipher {
 	// 服务器本地时间差
@@ -29,8 +31,8 @@ static NSString *const kParametersSignKey = @"sign";
 	}
 	_sessionId = contestant;
 	_serialization = [self bumpstamp];
-	_signKey = kEncrpytinoKey;
-	NSLog(@"<\nserver %@ \n local %@\n \n diff %@\n>", @(contestant), @(_serialization), @(contestant - _serialization));
+	_signKey = kAppKey;
+	_signSecret = kAppSecret;
 	
 	return self;
 }
@@ -45,41 +47,46 @@ static NSString *const kParametersSignKey = @"sign";
 	}
 	NSParameterAssert([params isKindOfClass:NSDictionary.class]);
 	NSMutableDictionary *parameters = params.mutableCopy;
-	disparityInterval = self.sessionId - self.serialization + [self bumpstamp];
+	
+	disparityInterval = self.sessionId - self.serialization + self.bumpstamp;
+	[parameters setObject:@(disparityInterval) forKey:kParametersTimestamp];
+	
 	NSString *sign = [self signWithPath:path query:params];
-	[parameters setObject:sign forKey:kParametersSignKey];
-	[parameters setObject:@(disparityInterval) forKey:kDisparityIntervalKey];
+	[parameters setObject:sign forKey:kParametersSign];
 	
 	return [[MSFSignature alloc] initWithDictionary:@{
-		kParametersSignKey: sign,
-		kDisparityIntervalKey: @(disparityInterval)}
-	 error:nil];
+		kParametersSign: sign,
+		kParametersKey: self.signKey,
+		kParametersTimestamp: @(disparityInterval)
+	} error:nil];
 }
 
 #pragma mark - Private
 
 - (NSString *)encodeFromPercentEscapeString:(NSString *)string {
 	return (__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
-	 NULL,
-	 (__bridge CFStringRef) string,
-	 CFSTR(""),
-	 kCFStringEncodingUTF8);
+		NULL,
+		(__bridge CFStringRef) string,
+		CFSTR(""),
+		kCFStringEncodingUTF8
+	);
 }
 
 - (NSString *)signWithPath:(NSString *)path query:(NSDictionary *)query {
 	NSMutableDictionary *parameters = query.mutableCopy;
-	[parameters addEntriesFromDictionary:@{kDisparityIntervalKey: @(disparityInterval)}];
+	[parameters addEntriesFromDictionary:@{kParametersTimestamp: @(disparityInterval)}];
+	[parameters addEntriesFromDictionary:@{kParametersKey: self.signKey}];
+	
 	NSArray *sortedKeys = [parameters.allKeys sortedArrayUsingSelector:@selector(compare:)];
 	NSMutableArray *sorted = NSMutableArray.new;
 	for (NSString *key in sortedKeys) {
-		NSString *keyAndValue = [NSString stringWithFormat:@"%@=%@", key,
+		NSString *keyAndValue = [NSString stringWithFormat:@"%@%@", key,
 		 [parameters[key] isKindOfClass:NSString.class] ? [self encodeFromPercentEscapeString:parameters[key]] : parameters[key]];
 		[sorted addObject:keyAndValue];
 	}
-	[sorted addObject:[@"key=" stringByAppendingString:self.signKey]];
 	
-	[sorted insertObject:path atIndex:0];
-	NSString *string = [sorted componentsJoinedByString:@"&"];
+	[sorted addObject:self.signSecret];
+	NSString *string = [sorted componentsJoinedByString:@""];
 	
 	return [string.md5 uppercaseString];
 }

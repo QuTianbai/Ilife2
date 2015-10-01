@@ -21,6 +21,7 @@
 
 // 加密密钥,程序固定值
 @property (nonatomic, copy, readonly) NSString *signKey;
+@property (nonatomic, copy, readonly) NSString *signSecret;
 
 // Create MSFCipher instance
 //
