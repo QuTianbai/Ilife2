@@ -41,7 +41,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (nonatomic, weak) IBOutlet UITextField *name;
 @property (nonatomic, weak) IBOutlet UITextField *card;
 @property (nonatomic, weak) IBOutlet UITextField *expired;
-@property (nonatomic, weak) IBOutlet UIView *expiredView;
+@property (nonatomic, weak) IBOutlet UIImageView *expiredView;
 @property (nonatomic, weak) IBOutlet UIButton *permanentButton;
 @property (nonatomic, weak) IBOutlet UIButton *datePickerButton;
 
@@ -162,18 +162,17 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[self.password becomeFirstResponder];
 	}];
 	
-	//TODO: 颜色存在错误，第一次加载的时候
 	[[self.permanentButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.permanent = !self.viewModel.permanent;
 		self.datePickerButton.enabled = !self.viewModel.permanent;
 		if (self.viewModel.permanent) {
+			self.expiredView.image = [UIImage imageNamed:@"bg-date-disable"];
 			self.permanentButton.selected = YES;
 			self.expired.text = @"";
-			self.expiredView.backgroundColor = [UIColor colorWithWhite:0.902 alpha:1.000];
 		} else {
+			self.expiredView.image = nil;
 			self.permanentButton.selected = NO;
-			self.expiredView.backgroundColor = [UIColor whiteColor];
 		}
 	}];
 	

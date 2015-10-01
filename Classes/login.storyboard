@@ -892,7 +892,18 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XeV-LC-69m">
                                                     <rect key="frame" x="51" y="8" width="161" height="27.5"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KPd-8B-qWc">
+                                                            <rect key="frame" x="0.0" y="0.0" width="161" height="27.5"/>
+                                                        </imageView>
+                                                    </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="KPd-8B-qWc" firstAttribute="leading" secondItem="XeV-LC-69m" secondAttribute="leading" id="AsH-sl-cFH"/>
+                                                        <constraint firstItem="KPd-8B-qWc" firstAttribute="top" secondItem="XeV-LC-69m" secondAttribute="top" id="HRI-yV-4Kt"/>
+                                                        <constraint firstAttribute="bottom" secondItem="KPd-8B-qWc" secondAttribute="bottom" id="JAc-89-SWK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="KPd-8B-qWc" secondAttribute="trailing" id="La8-uP-Z0K"/>
+                                                    </constraints>
                                                 </view>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写身份证有效期" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zrY-cN-n1a">
                                                     <rect key="frame" x="51" y="8" width="161" height="27.5"/>
@@ -902,6 +913,9 @@
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-idcarddate.png" translatesAutoresizingMaskIntoConstraints="NO" id="y6x-Ij-NeR">
                                                     <rect key="frame" x="20" y="12" width="21" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="21" id="VCj-2P-Szl"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yBv-Rn-gYY">
                                                     <rect key="frame" x="215" y="0.0" width="90" height="44.5"/>
@@ -1096,7 +1110,7 @@
                         <outlet property="counterLabel" destination="Jtw-Jt-bYM" id="wyW-Sd-38K"/>
                         <outlet property="datePickerButton" destination="zqf-nb-AKe" id="JmP-FR-jmx"/>
                         <outlet property="expired" destination="zrY-cN-n1a" id="ae7-OR-cJd"/>
-                        <outlet property="expiredView" destination="XeV-LC-69m" id="G61-BA-Mgn"/>
+                        <outlet property="expiredView" destination="KPd-8B-qWc" id="JzI-If-5ZU"/>
                         <outlet property="iAgreeButton" destination="bXH-2a-bUJ" id="tw8-HC-jyH"/>
                         <outlet property="name" destination="Xsn-yl-XKk" id="ag3-6V-BwO"/>
                         <outlet property="password" destination="PPX-d8-iBj" id="mZi-Kg-blP"/>
