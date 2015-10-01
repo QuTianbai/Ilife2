@@ -143,8 +143,7 @@ it(@"should sign up server", ^{
     NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
     return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
        @"Content-Type": @"application/json",
-       @"finance": @"token",
-       @"msfinance": @"objectid",
+       @"token": @"token",
        }];
   }];
   
@@ -186,8 +185,7 @@ it(@"should signin server", ^{
     NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
     return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
        @"Content-Type": @"application/json",
-       @"finance": @"token",
-       @"msfinance": @"objectid",
+       @"token": @"token",
        }];
   }];
   

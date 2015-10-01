@@ -351,6 +351,7 @@ describe(@"sign in", ^{
          @"Content-Type": @"application/json",
          @"finance": @"token",
          @"msfinance": @"objectid",
+				 @"token": @"foo",
          }];
     }];
     
@@ -362,7 +363,7 @@ describe(@"sign in", ^{
     expect(error).to(beNil());
     expect(client).to(beAKindOf(MSFClient.class));
     expect(@(client.authenticated)).to(beTruthy());
-    expect(client.token).to(equal(@"token"));
+    expect(client.token).to(equal(@"foo"));
   });
   
   it(@"should sign up a user", ^{
@@ -373,6 +374,7 @@ describe(@"sign in", ^{
          @"Content-Type": @"application/json",
          @"finance": @"token",
          @"msfinance": @"objectid",
+				 @"token": @"foo"
          }];
     }];
     
@@ -384,7 +386,7 @@ describe(@"sign in", ^{
     expect(error).to(beNil());
     expect(client).to(beAKindOf(MSFClient.class));
     expect(@(client.authenticated)).to(beTruthy());
-    expect(client.token).to(equal(@"token"));
+    expect(client.token).to(equal(@"foo"));
   });
 });
 

@@ -136,15 +136,6 @@ static BOOL isRunningTests(void) {
 	}
 }
 
-- (void)setSession:(NSString *)session {
-	_session = [session copy];
-	if (session == nil) {
-		[self clearAuthorizationHeader];
-	} else {
-		[self setAuthorizationHeaderWithSession:session];
-	}
-}
-
 #pragma mark - Cipher
 
 + (MSFCipher *)cipher {
@@ -246,7 +237,6 @@ static BOOL isRunningTests(void) {
 		reduceEach:^id(MSFClient *client, MSFResponse *response){
 			MSFAuthorization *authorization = response.parsedResult;
 			client.token = authorization.token;
-			client.session = authorization.session;
 			
 			return client;
 		}]
@@ -293,7 +283,6 @@ static BOOL isRunningTests(void) {
 		reduceEach:^id(MSFClient *client, MSFResponse *response){
 			MSFAuthorization *authorization = response.parsedResult;
 			client.token = authorization.token;
-			client.session = authorization.session;
 		 
 			return client;
 		}]
@@ -547,11 +536,6 @@ static BOOL isRunningTests(void) {
 			#elif TEST
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			#endif
-			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
-				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];
-				self.token = authorization.token;
-				self.session = authorization.session;
-			}
 			if (!responseObject) {
 				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
 					responseObject = @{@"message": @"短信已下发,请注意查收"};
@@ -592,12 +576,6 @@ static BOOL isRunningTests(void) {
 			#elif TEST
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			#endif
-			
-			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
-				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];
-				self.token = authorization.token;
-				self.session = authorization.session;
-			}
 			
 			if (operation.response.statusCode == 403) {
 				NSString *timestamp = operation.response.allHeaderFields[@"timestamp"];
@@ -646,16 +624,11 @@ static BOOL isRunningTests(void) {
 }
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {
-		[self setDefaultHeader:@"finance" value:token];
-}
-
-- (void)setAuthorizationHeaderWithSession:(NSString *)session {
-	[self setDefaultHeader:@"msfinance" value:session];
+		[self setDefaultHeader:@"token" value:token];
 }
 
 - (void)clearAuthorizationHeader {
-	[self.defaultHeaders removeObjectForKey:@"msfinance"];
-	[self.defaultHeaders removeObjectForKey:@"finance"];
+	[self.defaultHeaders removeObjectForKey:@"token"];
 }
 
 @end

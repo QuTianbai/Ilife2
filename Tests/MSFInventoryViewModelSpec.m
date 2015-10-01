@@ -188,6 +188,7 @@ it(@"should update inventory when required elements have attachment", ^{
 	
 	// then
 	expect(error).to(beNil());
+	expect(@(viewModel.viewModels.count)).notTo(equal(@0));
 	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
 });
 
