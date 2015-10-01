@@ -136,4 +136,6 @@ extern NSString *const MSFClientErrorAuthenticationFailedNotification;
 
 - (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd;
 
+- (RACSignal *)drawCashWithDrawCount:(NSString *)count AndContraceNO:(NSString *)contractNO AndType:(int)type;
+
 @end

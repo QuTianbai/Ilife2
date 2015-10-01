@@ -152,6 +152,10 @@
 		07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088FC1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m */; settings = {ASSET_TAGS = (); }; };
 		07F089011BBD023E0067C5BC /* MSFCirculateCashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F089001BBD023E0067C5BC /* MSFCirculateCashViewModel.m */; settings = {ASSET_TAGS = (); }; };
 		07F089031BBD05DE0067C5BC /* cirCulate.json in Resources */ = {isa = PBXBuildFile; fileRef = 07F089021BBD05DE0067C5BC /* cirCulate.json */; settings = {ASSET_TAGS = (); }; };
+		07F089121BBD31CD0067C5BC /* MSFDrawCashTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */; settings = {ASSET_TAGS = (); }; };
+		07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07F089201BBD31E30067C5BC /* DrawCash.storyboard */; settings = {ASSET_TAGS = (); }; };
+		07F089241BBD37000067C5BC /* MSFDrawCashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */; settings = {ASSET_TAGS = (); }; };
+		07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F089261BBD39250067C5BC /* MSFGetBankIcon.m */; settings = {ASSET_TAGS = (); }; };
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
@@ -896,6 +900,13 @@
 		07F088FF1BBD023E0067C5BC /* MSFCirculateCashViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashViewModel.h; sourceTree = "<group>"; };
 		07F089001BBD023E0067C5BC /* MSFCirculateCashViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCirculateCashViewModel.m; sourceTree = "<group>"; };
 		07F089021BBD05DE0067C5BC /* cirCulate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cirCulate.json; sourceTree = "<group>"; };
+		07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDrawCashTableViewController.h; sourceTree = "<group>"; };
+		07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDrawCashTableViewController.m; sourceTree = "<group>"; };
+		07F089201BBD31E30067C5BC /* DrawCash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DrawCash.storyboard; sourceTree = "<group>"; };
+		07F089221BBD37000067C5BC /* MSFDrawCashViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDrawCashViewModel.h; sourceTree = "<group>"; };
+		07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDrawCashViewModel.m; sourceTree = "<group>"; };
+		07F089251BBD39250067C5BC /* MSFGetBankIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGetBankIcon.h; sourceTree = "<group>"; };
+		07F089261BBD39250067C5BC /* MSFGetBankIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGetBankIcon.m; sourceTree = "<group>"; };
 		07FE072C1B07278800484069 /* MSFApplicationForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplicationForms.h; sourceTree = "<group>"; };
 		07FE072D1B07278800484069 /* MSFApplicationForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplicationForms.m; sourceTree = "<group>"; };
 		07FE072F1B07341500484069 /* MSFClient+MSFApplyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFApplyInfo.h"; sourceTree = "<group>"; };
@@ -1740,6 +1751,8 @@
 		077347EE1BBA379200D7A130 /* BankCard */ = {
 			isa = PBXGroup;
 			children = (
+				07F089251BBD39250067C5BC /* MSFGetBankIcon.h */,
+				07F089261BBD39250067C5BC /* MSFGetBankIcon.m */,
 				077347F21BBA380800D7A130 /* MSFBankCardListTableViewController.h */,
 				077347F31BBA380800D7A130 /* MSFBankCardListTableViewController.m */,
 				077347F71BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.h */,
@@ -1986,6 +1999,9 @@
 				07E3ED971BBCDE120010AAD2 /* MSFCirculateCashTableViewController.h */,
 				07E3ED981BBCDE120010AAD2 /* MSFCirculateCashTableViewController.m */,
 				07E3ED951BBCDD830010AAD2 /* CirculateCash.storyboard */,
+				07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */,
+				07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */,
+				07F089201BBD31E30067C5BC /* DrawCash.storyboard */,
 			);
 			name = CirculateCash;
 			sourceTree = "<group>";
@@ -2009,6 +2025,8 @@
 			children = (
 				07F088FF1BBD023E0067C5BC /* MSFCirculateCashViewModel.h */,
 				07F089001BBD023E0067C5BC /* MSFCirculateCashViewModel.m */,
+				07F089221BBD37000067C5BC /* MSFDrawCashViewModel.h */,
+				07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */,
 			);
 			name = CirculateCash;
 			sourceTree = "<group>";
@@ -3692,6 +3710,7 @@
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
+				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
 				07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */,
 				4944C0111B68A44A00805C0A /* icon-cloze-name.png in Resources */,
 				10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */,
@@ -4163,6 +4182,7 @@
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */,
+				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
 				10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */,
 				C7AF470B1B04E154001B39F2 /* MSFClient+Installment.m in Sources */,
@@ -4199,6 +4219,7 @@
 				07C924DB1B0C603B00FA73BD /* MSLoanListTableViewCell.m in Sources */,
 				4943C3841B047FA8000BBF5E /* MSFClient.m in Sources */,
 				0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */,
+				07F089121BBD31CD0067C5BC /* MSFDrawCashTableViewController.m in Sources */,
 				07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */,
 				077347FA1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
@@ -4231,6 +4252,7 @@
 				499147231B256D0D00260E97 /* MSFClient+Months.m in Sources */,
 				49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */,
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
+				07F089241BBD37000067C5BC /* MSFDrawCashViewModel.m in Sources */,
 				074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */,
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,
 				C7B978141B099CD9005F247C /* MSFUserHelpCell.m in Sources */,

@@ -7,16 +7,7 @@
 //
 
 #import "MSFCirculateCashModel.h"
-#import "MSFCirculateCashInfoModel.h"
 
 @implementation MSFCirculateCashModel
-
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-	return @{@"mydata":@"data"};
-}
-
-+ (NSValueTransformer *)mydataJSONTransformer {
-	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFCirculateCashInfoModel.class];
-}
 
 @end

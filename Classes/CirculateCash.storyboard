@@ -67,7 +67,7 @@
                         <sections>
                             <tableViewSection id="JjX-1Z-Z8S">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="234" id="RV1-Jf-Cfm">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="234" id="RV1-Jf-Cfm">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="234"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RV1-Jf-Cfm" id="AdG-5u-Zcc">
@@ -199,7 +199,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="30" id="xWf-mC-PET">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="30" id="xWf-mC-PET">
                                         <rect key="frame" x="0.0" y="234" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xWf-mC-PET" id="ekp-tC-GSD">
@@ -253,7 +253,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="6AV-tS-1Iv">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="73" id="6AV-tS-1Iv">
                                         <rect key="frame" x="0.0" y="278" width="600" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6AV-tS-1Iv" id="WVM-gW-6NR">
@@ -497,7 +497,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="73" id="wK9-z7-ax2">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="73" id="wK9-z7-ax2">
                                         <rect key="frame" x="0.0" y="351" width="600" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wK9-z7-ax2" id="Gpw-bk-gWC">
@@ -751,7 +751,7 @@
                         <outlet property="deadLineLB" destination="Gzo-Fe-6iK" id="i5k-pI-saj"/>
                         <outlet property="inputMoneyBT" destination="QzY-Wy-DXU" id="4oq-pS-DHh"/>
                         <outlet property="lastInputMoneyLB" destination="500-5s-Vwj" id="fqM-nk-sHg"/>
-                        <outlet property="lastInputMoneyTimeLB" destination="dVo-MR-gOJ" id="dyA-b8-mSE"/>
+                        <outlet property="lastInputMoneyTimeLB" destination="diT-ML-1iS" id="5gt-CF-xZt"/>
                         <outlet property="loanlimiteView" destination="6mo-oH-BMb" id="iWR-Di-AT4"/>
                         <outlet property="outMoneyBT" destination="o4w-Au-Gx1" id="o4B-7v-h6i"/>
                         <outlet property="outTimeMoneyLB" destination="7ex-24-iu4" id="4MI-HY-Kbe"/>

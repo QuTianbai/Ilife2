@@ -685,4 +685,20 @@ static BOOL isRunningTests(void) {
 	return [self enqueueRequest:request];
 }
 
+- (RACSignal *)drawCashWithDrawCount:(NSString *)count AndContraceNO :(NSString *)contractNO AndType:(int)type {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"drawingAmount"] = count;
+	parameters[@"contractNo"] = contractNO;
+	
+	NSString *path = @"loan/drawings";
+	if (type == 1) {
+		path = @"loan/repay";
+	}
+	
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
+	
+	return [self enqueueRequest:request];
+	
+}
+
 @end

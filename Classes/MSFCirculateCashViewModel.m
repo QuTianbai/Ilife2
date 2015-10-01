@@ -10,13 +10,12 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
-#import "MSFCirculateCashInfoModel.h"
 
 @interface MSFCirculateCashViewModel ()
 
-@property (nonatomic,assign)id<MSFViewModelServices>services;
+@property (nonatomic, assign) id<MSFViewModelServices>services;
 
-@property (nonatomic, strong)MSFCirculateCashModel *circulateModel;
+@property (nonatomic, strong) MSFCirculateCashModel *infoModel;
 
 @end
 
@@ -27,7 +26,7 @@
 	if (!self) {
 		return nil;
 	}
-	_services =services;
+	_services = services;
 	_totalLimit = @"";
 	_usedLimit = @"";
 	_usableLimit = @"";
@@ -38,14 +37,37 @@
 	_totalOverdueMoney = @"";
 	_contractNo = @"";
 	
-	RAC(self, totalLimit) = RACObserve(self.circulateModel.mydata, totalLimit);
+	_infoModel = [[MSFCirculateCashModel alloc] init];
+	
+	RAC(self, totalLimit) = [RACObserve(self, infoModel.totalLimit) map:^id(id value) {
+		return value;
+	}];
+	RAC(self, usedLimit) = [RACObserve(self, infoModel.usedLimit) map:^id(id value) {
+		return value;
+	}];
+	RAC(self, usableLimit) = [RACObserve(self, infoModel.usableLimit) map:^id(id value) {
+		return value;
+	}];
+	
+	RAC(self, contractExpireDate) = RACObserve(self,infoModel.contractExpireDate);
+	RAC(self, latestDueMoney) = RACObserve(self, infoModel.latestDueMoney);
+	RAC(self, latestDueDate) = RACObserve(self, infoModel.latestDueDate);
+	RAC(self, totalOverdueMoney) = RACObserve(self, infoModel.totalOverdueMoney);
+	RAC(self, contractNo) = RACObserve(self, infoModel.contractNo);
+	RAC(self, overdueMoney) = [RACObserve(self, infoModel.overdueMoney) map:^id(id value) {
+		return [NSString stringWithFormat:@"已逾期：￥%@", value];
+	}];
+
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(id x) {
-			self.circulateModel = x;
+		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
+			//self.circulateModel = x;
+			self.infoModel = x;
 		}];
 	}];
+	
+
 	
 	return self;
 }
