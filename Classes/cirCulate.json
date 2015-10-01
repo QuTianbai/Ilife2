@@ -1,0 +1,20 @@
+{
+	"data": {
+		"type": "1",
+		"money": "",
+		"applyDate": "",
+		"period": "",
+		"currentPeriodDate": "",
+		"status": "",
+		"produceType": "",
+		"totalLimit": "10000",
+		"usedLimit": "3000",
+		"usableLimit": "7000",
+		"overdueMoney": "500",
+		"contractExpireDate": "2019-07-23",
+		"latestDueMoney": "400",
+		"latestDueDate": "2015-09-25",
+		"totalOverdueMoney": "4000",
+		"contractNo": "424245432"
+	}
+}

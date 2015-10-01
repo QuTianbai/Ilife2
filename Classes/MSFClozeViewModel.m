@@ -40,7 +40,6 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 	[self initialize];
 	_name = @"";
 	_card = @"";
-	
 	_bankNO = @"";
 	_bankAddress = @"";
 	_bankName = @"";

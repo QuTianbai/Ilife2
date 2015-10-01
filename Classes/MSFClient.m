@@ -640,4 +640,49 @@ static BOOL isRunningTests(void) {
 	[self.defaultHeaders removeObjectForKey:@"finance"];
 }
 
+#pragma mark - addBankCard
+- (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"transPassword"] = transPassword;
+	parameters[@"bankCardNo"] = bankCardNo;
+	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
+	parameters[@"bankBranchCityCode"] = bankBranchCityCode;
+	
+	//NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/bind" parameters:parameters];
+	[request setHTTPMethod:@"POST"];
+	
+	return [[[self enqueueRequest:request resultClass:MSFUser.class]
+					 flattenMap:^RACStream *(id value) {
+						 return [self fetchUserInfo];
+					 }]
+					map:^id(id value) {
+						self.user = value;
+						return self;
+					}];
+}
+
+- (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"transPassword"] = pwd;
+	parameters[@"bankCardId"] = bankCardID;
+	
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/mainbind" parameters:parameters];
+	
+	return [self enqueueRequest:request];
+}
+
+- (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"transPassword"] = pwd;
+	parameters[@"bankCardId"] = bankCardID;
+	
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/unbind" parameters:parameters];
+	
+	return [self enqueueRequest:request];
+}
+
 @end
