@@ -381,7 +381,7 @@ describe(@"sign in", ^{
     }];
     
     // when
-    RACSignal *request = [MSFClient signUpAsUser:user password:@"123456" phone:@"" captcha:@""];
+    RACSignal *request = [MSFClient signUpAsUser:user password:@"foo" phone:@"159" captcha:@"1234" realname:@"name" citizenID:@"500" citizenIDExpiredDate:[NSDate distantFuture]];
     MSFClient *client = [request asynchronousFirstOrDefault:nil success:&success error:nil];
     
     // then

@@ -149,7 +149,22 @@ extern const NSInteger MSFClientErrorTooManyRequests;
  *
  *	@return authenticated client, Has token and user
  */
-+ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha;
++ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha __deprecated_msg("Use `signUpAsUser: password:phone:captcha:realname:citizenID:citizenIDExpiredDate:");
+
+/**
+ *  2.0 版本注册
+ *
+ *  @param user        user witch contain api server
+ *  @param password    The password
+ *  @param phone       The phone number
+ *  @param captcha     The captcha number
+ *  @param realname    The user Chinese name
+ *  @param citizenID   The User citizen ID Number
+ *  @param expiredDate The User citizen ID number expired date, The Max value is 2099-12-31
+ *
+ *  @return authenticated client with user and token
+ */
++ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha realname:(NSString *)realname citizenID:(NSString *)citizenID citizenIDExpiredDate:(NSDate *)expiredDate;
 
 /**
  *	退出登录
@@ -158,8 +173,9 @@ extern const NSInteger MSFClientErrorTooManyRequests;
  */
 - (RACSignal *)signOut;
 
-- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session	province:(NSString *)provinceCode city:(NSString *)cityCode bank:(NSString *)bankCode card:(NSString *)card;
+- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session	province:(NSString *)provinceCode city:(NSString *)cityCode bank:(NSString *)bankCode card:(NSString *)card __deprecated_msg("Unused");
 
+// 用户加密
 + (void)setCipher:(MSFCipher *)cipher;
 + (MSFCipher *)cipher;
 

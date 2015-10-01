@@ -351,6 +351,54 @@ static NSDictionary *messages;
 		replayLazily] setNameWithFormat:@"`signUpAsUser:%@ password: phone: captcha`", user];
 }
 
++ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha realname:(NSString *)realname citizenID:(NSString *)citizenID citizenIDExpiredDate:(NSDate *)expiredDate {
+	RACSignal *(^registeringSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
+		MSFClient *client = [self unauthenticatedClientWithUser:user];
+		NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+		parameters[@"mobile"] = phone;
+		parameters[@"password"] = password.sha256;
+		parameters[@"smsCode"] = captcha;
+		parameters[@"name"] = realname;
+		parameters[@"ident"] = citizenID;
+		parameters[@"idLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
+		
+		return [[client enqueueRequest:request]
+			flattenMap:^RACStream *(RACTuple *responseAndResponseObject) {
+				RACTupleUnpack(NSHTTPURLResponse *HTTPURLResponse, id responseObject) = responseAndResponseObject;
+				if (HTTPURLResponse.statusCode != 200) {
+					NSError *error = [NSError errorWithDomain:MSFClientErrorDomain code:0 userInfo:@{}];
+					return [RACSignal error:error];
+				}
+				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:HTTPURLResponse.allHeaderFields error:nil];
+				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:HTTPURLResponse parsedResult:authorization];
+				MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:responseObject error:nil];
+				[user mergeValueForKey:@keypath(user.server) fromModel:client.user];
+				client.user = user;
+			 
+				return [RACSignal combineLatest:@[
+					[RACSignal return:client],
+					[RACSignal return:response],
+				]];
+		}];
+	};
+	
+	return [[[[[registeringSignalWithUser(user)
+		flattenMap:^RACStream *(RACTuple *clientAndResponse) {
+			return [RACSignal return:clientAndResponse];
+		}]
+		catch:^RACSignal *(NSError *error) {
+		 return [RACSignal error:error];
+		}]
+		reduceEach:^id(MSFClient *client, MSFResponse *response){
+			MSFAuthorization *authorization = response.parsedResult;
+			client.token = authorization.token;
+		 
+			return client;
+		}]
+		replayLazily] setNameWithFormat:@"`signUpAsUser:%@ password: phone: captcha`", user];
+}
+
 - (RACSignal *)signOut {
 	self.user = nil;
 	self.token = nil;
