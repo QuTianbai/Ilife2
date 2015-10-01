@@ -13,50 +13,37 @@
 
 @interface MSFUtils : NSObject
 
-/**
- *	设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
- *
- *	@return MSFResponse instantce
- */
+//	设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
+//
+// Returns an signal after fetch server timestamp
 + (RACSignal *)setupSignal;
 
-/**
- *	全局通用Client
- *
- *	@return MSFClient instance
- */
+// The global use client
+//
+// Returns MSFClient instance
 + (MSFClient *)httpClient;
 
-/**
- *	The Server
- */
+// The global Server
 + (MSFServer *)server;
 
-/**
- *	程序相关协议
- */
+// The global agreement viewModel
 + (MSFAgreementViewModel *)agreementViewModel;
 
-/**
- *	登录 需要更新这里的client以保证client是授权的
- *	退出登录 需要设置为nil,检测到其他设备登录的时候都应该设置为nil
- *
- *	@param httpClient
- */
+//	登录 需要更新这里的client以保证client是授权的
+//	退出登录 需要设置为nil,检测到其他设备登录的时候都应该设置为nil
+//
+//	httpClient -  Update global http request client
 + (void)setHttpClient:(MSFClient *)httpClient;
 
-/**
- *	用户登录手机号
- */
+// 存储用户登录手机号
 + (void)setPhone:(NSString *)phone;
 + (NSString *)phone;
 
-/**
- * 用户注册手机号
- */
+// 存储用户注册手机号
 + (void)setRegisterPhone:(NSString *)phone;
 + (NSString *)registerPhone;
 
+// Save test user update baseURL `Unused`
 + (void)setBaseURLString:(NSString *)url;
 + (NSString *)baseURLString;
 

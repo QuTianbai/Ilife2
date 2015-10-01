@@ -17,32 +17,26 @@
 #import "MSFAuthorization.h"
 #import "MSFAgreement.h"
 #import "MSFAgreementViewModel.h"
-#import "MSFUtilsViewController.h"
+#import "MSFClient+ReleaseNote.h"
+#import "MSFReleaseNote.h"
 
 static MSFClient *client;
 static MSFServer *server;
 
 @implementation MSFUtils
 
+#pragma mark - Lifecycle
+
 + (void)initialize {
-	server = [MSFServer dotComServer];
+	server = MSFServer.dotComServer;
 }
 
+#pragma mark - Custom Accessors
+
 + (RACSignal *)setupSignal {
-	[self setHttpClient:nil];
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil]
-		subscribeNext:^(NSNotification *notificaiton) {
-			NSURL *URL = [NSURL URLWithString:notificaiton.object];
-			server = [MSFServer serverWithBaseURL:URL];
-			[self setHttpClient:nil];
-			[[self.httpClient fetchServerInterval] subscribeNext:^(MSFResponse *response) {
-				MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[response.parsedResult[@"time"] longLongValue]];
-				[MSFClient setCipher:cipher];
-			}];
-		}];
-	
-	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
-		MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[resposne.parsedResult[@"time"] longLongValue]];
+	client = [[MSFClient alloc] initWithServer:server];
+	return [[self.httpClient fetchReleaseNote] doNext:^(MSFReleaseNote *releasenote) {
+		MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[releasenote.timestamp longLongValue]];
 		[MSFClient setCipher:cipher];
 	}];
 }
@@ -69,6 +63,8 @@ static MSFServer *server;
 	
 	return viewModel;
 }
+
+#pragma mark - Persistent values
 
 + (void)setPhone:(NSString *)_phone {
 	[[NSUserDefaults standardUserDefaults] setObject:_phone?:@"" forKey:@"user-phone"];
