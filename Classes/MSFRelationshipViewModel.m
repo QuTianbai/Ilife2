@@ -102,10 +102,8 @@
 	_executeOtherTwoValuesCommand.allowsConcurrentExecution = YES;
 	 */
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		//return [RACSignal empty];
-		
     @strongify(self)
-    self.model.applyStatus1 = @"1";
+    //self.model.applyStatus1 = @"1";
     return [self commitSignal];
   }];
 	
@@ -293,7 +291,12 @@
 }
 
 - (RACSignal *)commitSignal {
-	return [self.formsViewModel submitSignalWithPage:4];
+	NSString *error = [self checkForm];
+	if (error) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFRelationShipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: error}]];
+	}
+	return [self.formsViewModel submitUserInfo];
+	//return [self.formsViewModel submitSignalWithPage:4];
 }
 
 - (RACSignal *)familyOneValidSignal {
@@ -324,101 +327,25 @@
 #pragma mark - private
 
 - (NSString *)checkForm {
-	
-	if (self.model.maritalStatus.length == 0) {
-		return @"请选择婚姻状况";
-	}
-	if (self.model.houseType.length == 0) {
-		return @"请选择住房状况";
-	}
-	
-	if (self.model.memberName.length == 0 && self.model.memberName2.length == 0) {
-		return @"请输入至少一位家庭成员姓名";
-	}
-	
-	if (self.model.memberRelation.length > 0 || self.model.memberName.length > 0 || self.model.memberCellNum.length > 0 || self.model.memberAddress.length > 0) {
-		if (![self.model.memberName isChineseName]) {
-			return @"请输入正确的家庭成员姓名";
+	NSArray *contactList = self.model.contrastList;
+	for (int i = 0; i < contactList.count; i ++) {
+		MSFUserContact *contact = contactList[i];
+		if (contact.contactRelation.length == 0) {
+			return [NSString stringWithFormat:@"请选择联系人%d和你的关系", i + 1];
 		}
-		if (self.model.memberRelation.length == 0) {
-			return @"请选择家庭成员与申请人关系";
+		if (contact.contactName.length == 0) {
+			return [NSString stringWithFormat:@"请填写联系人%d姓名", i + 1];
 		}
-		if (![self.model.memberCellNum isMobile]) {
-			return @"请输入正确的家庭成员电话";
+		if (![contact.contactName isChineseName]) {
+			return [NSString stringWithFormat:@"请填写正确的联系人%d姓名", i + 1];
 		}
-		if (self.model.memberAddress.length > 0 && (self.model.memberAddress.length < 8 || self.model.memberAddress.length > 60)) {
-			return @"请输入家庭成员现住所详细地址";
+		if (![contact.contactMobile isMobile]) {
+			return [NSString stringWithFormat:@"请填写正确的联系人%d手机号码", i + 1];
+		}
+		if (contact.contactAddress.length < 8 || contact.contactAddress.length > 60) {
+			return [NSString stringWithFormat:@"请填写长度8~60的联系人%d联系地址", i + 1];
 		}
 	}
-	
-	if (self.hasMember2 && (self.model.memberRelation2.length > 0 || self.model.memberName2.length > 0 || self.model.memberCellNum2.length > 0 || self.model.memberAddress2.length > 0)) {
-		if (![self.model.memberName2 isChineseName]) {
-			return @"请输入正确的家庭成员二的姓名";
-		}
-		if (self.model.memberRelation2.length == 0) {
-			return @"请选择家庭成员二与申请人关系";
-		}
-		if (![self.model.memberCellNum2 isMobile]) {
-			return @"请输入正确的家庭成员二的电话";
-		}
-		if (self.model.memberAddress2.length > 0 && (self.model.memberAddress2.length < 8 || self.model.memberAddress2.length > 60)) {
-			return @"请输入家庭成员二现住所详细地址";
-		}
-	}
-	
-	if (self.model.name1.length == 0 && self.model.name2.length == 0) {
-		return @"请输入至少一位联系人姓名";
-	}
-	
-	if (self.model.name1.length > 0 || self.model.relation1.length > 0 || self.model.phone1.length > 0) {
-		if (self.model.name1.length == 0) {
-			return @"请输入正确的其他联系人姓名";
-		}
-		if (self.model.relation1.length == 0) {
-			return @"请选择联系人与申请人关系";
-		}
-		if (![self.model.phone1 isMobile]) {
-			return @"请输入正确的其他联系人电话";
-		}
-	}
-	
-	if (self.hasContact2 && (self.model.name2.length > 0 || self.model.relation2.length > 0 || self.model.phone2.length > 0) && (self.model.name2.length == 0 || self.model.relation2.length == 0 || self.model.phone2.length == 0)) {
-		return @"请填写完第二位联系人信息";
-	}
-	
-	NSMutableArray *phoneArray = [NSMutableArray arrayWithArray:@[self.model.memberCellNum, self.model.phone1]];
-	NSMutableArray *nameArray  = [NSMutableArray arrayWithArray:@[self.model.memberName, self.model.name1]];
-	if (self.hasMember2) {
-		[phoneArray addObject:self.model.memberCellNum2];
-		[nameArray addObject:self.model.memberName2];
-	}
-	if (self.hasContact2) {
-		[phoneArray addObject:self.model.phone2];
-		[nameArray addObject:self.model.name2];
-	}
-	
-	for (int i = 0 ; i < nameArray.count ; i ++) {
-		for (int j = i + 1; j < nameArray.count; j++) {
-			if ([nameArray[i] length] == 0) {
-				continue;
-			}
-			if ([nameArray[i] isEqualToString:nameArray[j]]) {
-				return @"家庭成员（或者其他联系人）之间姓名不能相同";
-			}
-		}
-	}
-
-	for (int i = 0 ; i < phoneArray.count ; i ++) {
-		for (int j = i + 1; j < phoneArray.count; j++) {
-			if ([phoneArray[i] length] == 0) {
-				continue;
-			}
-			if ([phoneArray[i] isEqualToString:phoneArray[j]]) {
-				return @"家庭成员（或者其他联系人）之间手机号不能相同";
-			}
-		}
-	}
-	
 	return nil;
 }
 

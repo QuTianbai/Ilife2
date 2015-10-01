@@ -65,14 +65,10 @@
 @property (nonatomic, copy) NSString *workCountry;//单位所在区/县
 @property (nonatomic, copy) NSString *workTown;// 单位所在镇 单位地址镇
 
-@property (nonatomic, copy) NSString *homeCode;//住宅电话区号
 //@property (nonatomic, copy) NSString *homeLine;//住宅电话 户籍小区
 @property (nonatomic, copy) NSString *homeLineOwner;//住宅电话登记人
 @property (nonatomic, copy) NSString *mailAddress;//邮寄地址(1.与工作地址相同		2.与现居地址相同 )
 
-@property (nonatomic, copy) NSString *unitAreaCode;//办公/个体电话区号
-@property (nonatomic, copy) NSString *unitTelephone;//办公/个体电话
-@property (nonatomic, copy) NSString *unitExtensionTelephone;//办公/个体电话分机号
 //@property (nonatomic, copy) NSString *email;//个人电子邮箱 常用邮箱
 //@property (nonatomic, copy) NSString *maritalStatus;//婚姻状况 是否婚姻code (1.未婚 2.已婚 3.其他)
 //@property (nonatomic, copy) NSString *houseType;//住房状况 住房情况
@@ -134,6 +130,7 @@
 
 //baseInfo
 @property (nonatomic, copy) NSString *homeLine;//住宅电话，包含区号
+@property (nonatomic, copy) NSString *homeCode;//住宅电话区号
 @property (nonatomic, copy) NSString *email;//个人电子邮箱 常用邮箱
 
 @property (nonatomic, copy) NSString *currentProvinceCode;//居住地址省code
@@ -142,6 +139,9 @@
 	@property (nonatomic, copy) NSString *abodeDetail;//详细住址
 @property (nonatomic, copy) NSString *houseType;//住房状况 住房情况
 @property (nonatomic, copy) NSString *maritalStatus;//婚姻状况 是否婚姻code (1.未婚 2.已婚 3.其他)
+@property (nonatomic, strong) NSString *houseTypeTitle;//住房类型：不上传，用于显示
+@property (nonatomic, strong) NSString *marriageTitle;//婚姻状况：不上传，用于显示
+
 @property (nonatomic, copy) NSString *qq;//QQ号
 @property (nonatomic, copy) NSString *taobao;//淘宝账号
 @property (nonatomic, copy) NSString *jdAccount;//京东账号
@@ -164,6 +164,8 @@
 @property (nonatomic, copy) NSString *workCityCode;//单位地址市code
 @property (nonatomic, copy) NSString *workCountryCode;//单位地址县code
 	@property (nonatomic, copy) NSString *empAdd;//单位详细地址
-	@property (nonatomic, copy) NSString *empPhone;//单位电话，含区号
+@property (nonatomic, copy) NSString *unitAreaCode;//办公/个体电话区号
+@property (nonatomic, copy) NSString *unitTelephone;//办公/个体电话
+@property (nonatomic, copy) NSString *unitExtensionTelephone;//办公/个体电话分机号
 
 @end

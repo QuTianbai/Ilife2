@@ -17,10 +17,6 @@
 */
 @interface MSFPersonalViewModel : RVMViewModel
 
-
-@property (nonatomic, strong) NSString *houseTypeTitle;
-@property (nonatomic, strong) NSString *marriageTitle;
-
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) NSString *address;

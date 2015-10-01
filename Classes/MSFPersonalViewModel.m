@@ -252,7 +252,7 @@
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
-			self.houseTypeTitle = x.text;
+			self.model.houseTypeTitle = x.text;
 			self.model.houseType = x.code;
 			[self.services popViewModel];
 		}];
@@ -267,7 +267,7 @@
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
-			self.marriageTitle = x.text;
+			self.model.marriageTitle = x.text;
 			self.model.maritalStatus = x.code;
 			[self.services popViewModel];
 		}];

@@ -114,7 +114,13 @@
 	*/
 	
 	@weakify(self)
-	
+	//住房情况
+	RAC(self.housingTF, text) = RACObserve(self.viewModel.model, houseTypeTitle);
+	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
+	//婚姻状况
+	RAC(self.marriageTF, text) = RACObserve(self.viewModel.model, marriageTitle);
+	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
+	//电子邮件
 	[[self.emailTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 40) {
@@ -124,24 +130,7 @@
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
-	
-	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
-	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
-
-	[[self.detailAddressTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 80) {
-			 textField.text = [textField.text substringToIndex:80];
-		 }
-	 }];
-	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, abodeDetail);
-	RAC(self.detailAddressTF, text) = detailAddrChannel;
-	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
-	
-	RAC(self.housingTF, text) = RACObserve(self.viewModel, houseTypeTitle);
-	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
-	
-	
+	//住宅电话
 	[[self.homeTelCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
 		@strongify(self)
@@ -160,18 +149,36 @@
 			 textField.text = [textField.text substringToIndex:8];
 		 }
 	 }];
-	RACSignal *homeTlelSignal = [RACSignal
-	 combineLatest:@[self.homeTelCodeTF.rac_textSignal, self.homeTelTF.rac_textSignal]
-	 reduce:^id(NSString *code, NSString *tel) {
-		 return [NSString stringWithFormat:@"%@-%@", code, tel];
-	}];
-	RAC(self.viewModel.model, homeLine) = homeTlelSignal;
+	
+	RACChannelTerminal *homeTelCodeChannel = RACChannelTo(self.viewModel.model, homeCode);
+	RAC(self.homeTelCodeTF, text) = homeTelCodeChannel;
+	[self.homeTelCodeTF.rac_textSignal subscribe:homeTelCodeChannel];
+	
+	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel.model, homeLine);
+	RAC(self.homeTelTF, text) = homeTelChannel;
+	[self.homeTelTF.rac_textSignal subscribe:homeTelChannel];
+	
+	//现居地址
+	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
+	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+	//详细地址
+	[[self.detailAddressTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 80) {
+			 textField.text = [textField.text substringToIndex:80];
+		 }
+	 }];
+	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, abodeDetail);
+	RAC(self.detailAddressTF, text) = detailAddrChannel;
+	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
+	
+
+
 //	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
 //	RAC(self.homeTelTF, text) = homeLineChannel;
 //	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
 	
-	RAC(self.marriageTF, text) = RACObserve(self.viewModel, marriageTitle);
-	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
+
 	/*
 	[[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
@@ -257,13 +264,6 @@
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		
-		NSString *checkForm = [self.viewModel checkForm];
-		if (checkForm) {
-			[SVProgressHUD showErrorWithStatus:checkForm];
-			return;
-		}
-		
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"提交成功"];

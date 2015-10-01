@@ -84,7 +84,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家庭成员姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwt-W1-XKc">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwt-W1-XKc">
                                             <rect key="frame" x="13" y="7" width="119" height="29.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="119" id="Lho-Pd-Mjr"/>
@@ -93,8 +93,8 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入家庭成员姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="grq-KF-oED">
-                                            <rect key="frame" x="142" y="7" width="168" height="29.5"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="grq-KF-oED">
+                                            <rect key="frame" x="132" y="7" width="178" height="29.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                         </textField>
@@ -102,7 +102,7 @@
                                     <constraints>
                                         <constraint firstItem="grq-KF-oED" firstAttribute="top" secondItem="wqL-58-7t3" secondAttribute="top" constant="7" id="44F-4N-f8M"/>
                                         <constraint firstAttribute="bottom" secondItem="Lwt-W1-XKc" secondAttribute="bottom" constant="7" id="4B2-wn-urs"/>
-                                        <constraint firstItem="grq-KF-oED" firstAttribute="leading" secondItem="Lwt-W1-XKc" secondAttribute="trailing" constant="10" id="QQB-8p-EtE"/>
+                                        <constraint firstItem="grq-KF-oED" firstAttribute="leading" secondItem="Lwt-W1-XKc" secondAttribute="trailing" id="QQB-8p-EtE"/>
                                         <constraint firstItem="Lwt-W1-XKc" firstAttribute="leading" secondItem="wqL-58-7t3" secondAttribute="leading" constant="13" id="TMq-6Y-VSD"/>
                                         <constraint firstAttribute="trailing" secondItem="grq-KF-oED" secondAttribute="trailing" constant="10" id="WDW-2t-32T"/>
                                         <constraint firstItem="Lwt-W1-XKc" firstAttribute="top" secondItem="wqL-58-7t3" secondAttribute="top" constant="7" id="agP-ce-Df0"/>
@@ -130,13 +130,13 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择关系" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-wO-TyH">
-                                            <rect key="frame" x="142" y="7" width="137" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择联系人和你的关系" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hzi-wO-TyH">
+                                            <rect key="frame" x="132" y="7" width="147" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2s-e1-pDB">
-                                            <rect key="frame" x="142" y="7" width="137" height="29.5"/>
+                                            <rect key="frame" x="132" y="7" width="147" height="29.5"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -145,9 +145,9 @@
                                     <constraints>
                                         <constraint firstItem="hzi-wO-TyH" firstAttribute="top" secondItem="Nva-WH-JA6" secondAttribute="top" constant="7" id="FzY-ec-v2B"/>
                                         <constraint firstItem="b2s-e1-pDB" firstAttribute="top" secondItem="Nva-WH-JA6" secondAttribute="top" constant="7" id="SwJ-Xi-4zC"/>
-                                        <constraint firstItem="b2s-e1-pDB" firstAttribute="leading" secondItem="k6E-Ul-40y" secondAttribute="trailing" constant="10" id="bmR-vq-dtE"/>
+                                        <constraint firstItem="b2s-e1-pDB" firstAttribute="leading" secondItem="k6E-Ul-40y" secondAttribute="trailing" id="bmR-vq-dtE"/>
                                         <constraint firstAttribute="bottom" secondItem="b2s-e1-pDB" secondAttribute="bottom" constant="7" id="egm-E1-dxK"/>
-                                        <constraint firstItem="hzi-wO-TyH" firstAttribute="leading" secondItem="k6E-Ul-40y" secondAttribute="trailing" constant="10" id="jcy-SN-Hui"/>
+                                        <constraint firstItem="hzi-wO-TyH" firstAttribute="leading" secondItem="k6E-Ul-40y" secondAttribute="trailing" id="jcy-SN-Hui"/>
                                         <constraint firstAttribute="trailing" secondItem="hzi-wO-TyH" secondAttribute="trailing" constant="8" id="lTL-hv-8Ox"/>
                                         <constraint firstAttribute="bottom" secondItem="k6E-Ul-40y" secondAttribute="bottom" constant="7" id="lUw-5r-9xb"/>
                                         <constraint firstAttribute="trailing" secondItem="b2s-e1-pDB" secondAttribute="trailing" constant="8" id="nn1-Hc-7Sa"/>
@@ -168,7 +168,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家庭成员手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJJ-uN-2p1">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UJJ-uN-2p1">
                                             <rect key="frame" x="13" y="7" width="119" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="119" id="2EF-Kf-Qm6"/>
@@ -177,11 +177,6 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入11位手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-4n-Jni">
-                                            <rect key="frame" x="142" y="7" width="120" height="30"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8X7-TH-oac">
                                             <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                             <constraints>
@@ -191,6 +186,11 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
+                                        <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ch7-4n-Jni">
+                                            <rect key="frame" x="132" y="7" width="130" height="29.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="8X7-TH-oac" firstAttribute="top" secondItem="kae-6h-Vb3" secondAttribute="top" id="32d-LV-hg1"/>
@@ -198,7 +198,7 @@
                                         <constraint firstAttribute="bottom" secondItem="UJJ-uN-2p1" secondAttribute="bottom" constant="7" id="Hgc-o2-1Cr"/>
                                         <constraint firstAttribute="trailing" secondItem="8X7-TH-oac" secondAttribute="trailing" constant="6" id="Iid-zp-dqX"/>
                                         <constraint firstItem="UJJ-uN-2p1" firstAttribute="leading" secondItem="kae-6h-Vb3" secondAttribute="leading" constant="13" id="K3V-cB-nTL"/>
-                                        <constraint firstItem="ch7-4n-Jni" firstAttribute="leading" secondItem="UJJ-uN-2p1" secondAttribute="trailing" constant="10" id="Kvr-dC-qmD"/>
+                                        <constraint firstItem="ch7-4n-Jni" firstAttribute="leading" secondItem="UJJ-uN-2p1" secondAttribute="trailing" id="Kvr-dC-qmD"/>
                                         <constraint firstItem="8X7-TH-oac" firstAttribute="leading" secondItem="ch7-4n-Jni" secondAttribute="trailing" constant="8" id="LSQ-r3-06r"/>
                                         <constraint firstItem="UJJ-uN-2p1" firstAttribute="top" secondItem="kae-6h-Vb3" secondAttribute="top" constant="7" id="UaC-OO-qkl"/>
                                         <constraint firstAttribute="bottom" secondItem="8X7-TH-oac" secondAttribute="bottom" id="WqV-2z-UGd"/>
@@ -217,7 +217,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同现居地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvS-sl-ccX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同现居地" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvS-sl-ccX">
                                             <rect key="frame" x="13" y="7" width="85" height="29.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="85" id="RaZ-0Z-dfX"/>

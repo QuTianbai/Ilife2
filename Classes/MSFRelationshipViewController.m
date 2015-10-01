@@ -66,10 +66,15 @@ ABPersonViewControllerDelegate>
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
 	_tempContactList = [NSMutableArray arrayWithArray:self.viewModel.model.contrastList];
-	if (_tempContactList.count < 5) {
+	if (_tempContactList.count == 0) {
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
 		contact.contactAddress = self.viewModel.model.currentAddress;
 		[_tempContactList addObject:contact];
+	}
+	for (MSFUserContact *contact in _tempContactList) {
+		if (!contact.openDetailAddress) {
+			contact.contactAddress = self.viewModel.model.currentAddress;
+		}
 	}
 }
 
@@ -279,32 +284,25 @@ ABPersonViewControllerDelegate>
 	 RACChannelTerminal *phone2Channel = RACChannelTo(self.viewModel.model, phone2);
 	 RAC(self.num2_otherTelTF, text) = phone2Channel;
 	 [self.num2_otherTelTF.rac_textSignal subscribe:phone2Channel];
-	 
-	 [[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		@strongify(self)
-		if ([self.viewModel checkForm]) {
-	 [SVProgressHUD showErrorWithStatus:[self.viewModel checkForm]];
-	 return;
-		}
-		
-		[self.viewModel.executeCommitCommand execute:nil];
-	 
-	 }];
 	 */
 	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	
+	@weakify(self)
+	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		self.viewModel.model.contrastList = [NSArray arrayWithArray:_tempContactList];
+		[self.viewModel.executeCommitCommand execute:nil];
+	}];
+	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"申请提交中..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
-			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-			MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
-			vc.navigationItem.title = @"资料上传";
-			[self.navigationController pushViewController:vc animated:YES];
+			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
-		
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -313,9 +311,10 @@ ABPersonViewControllerDelegate>
 }
 
 - (void)back {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃基本信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃联系人信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
 		if ([x integerValue] == 1) {
+			self.viewModel.model.contrastList = [NSArray arrayWithArray:_tempContactList];
 			[self.navigationController popViewControllerAnimated:YES];
 		}
 	}];
@@ -366,7 +365,8 @@ ABPersonViewControllerDelegate>
 	switch (indexPath.row) {
 		case 0: {
 			MSFRelationHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationHeadCell"];
-			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld信息", indexPath.section + 1];
+			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld", indexPath.section + 1];
+			cell.deleteButton.hidden = _tempContactList.count == 1 && indexPath.section == 0;
 			@weakify(self)
 			[[[cell.deleteButton
 				 rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -387,17 +387,14 @@ ABPersonViewControllerDelegate>
 			return cell;
 		}
 		case 1: {
-			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
-			cell.titleLabel.text = @"家庭成员姓名";
-			cell.tfInput.placeholder = @"请输入家庭成员姓名";
-			[[cell.tfInput.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
-				contact.contactName = x;
-			}];
-			return cell;
-		}
-		case 2: {
 			MSFRelationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSelectionCell"];
-			cell.tfInput.text = contact.contactRelation;
+			NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
+			[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+				if ([obj.code isEqualToString:contact.contactRelation]) {
+					cell.tfInput.text = obj.text;
+					*stop = YES;
+				}
+			}];
 			@weakify(self)
 			[[[cell.selectionButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 				@strongify(self)
@@ -405,8 +402,22 @@ ABPersonViewControllerDelegate>
 				[self.viewModel.services pushViewModel:viewModel];
 				[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 					cell.tfInput.text = x.text;
+					contact.contactRelation = x.code;
 					[self.viewModel.services popViewModel];
 				}];
+			}];
+			return cell;
+		}
+		case 2: {
+			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
+			cell.titleLabel.text = @"姓名";
+			cell.tfInput.placeholder = @"请填写联系人姓名";
+			cell.tfInput.text = contact.contactName;
+			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+				if (textField.text.length > 40) {
+					textField.text = [textField.text substringToIndex:40];
+				}
+				contact.contactName = textField.text;
 			}];
 			return cell;
 		}
@@ -414,9 +425,14 @@ ABPersonViewControllerDelegate>
 			MSFRelationPhoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationPhoneCell"];
 			cell.tfInput.text = contact.contactMobile;
 			cell.tfInput.tag = indexPath.section;
-			[[cell.tfInput.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
-				contact.contactMobile = x;
+			
+			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+				if (textField.text.length > 11) {
+					textField.text = [textField.text substringToIndex:11];
+				}
+				contact.contactMobile = textField.text;
 			}];
+			
 			@weakify(self)
 			[[[cell.onContactBook rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 				@strongify(self)
@@ -445,9 +461,13 @@ ABPersonViewControllerDelegate>
 		case 5: {
 			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
 			cell.titleLabel.text = @"联系地址";
-			cell.tfInput.placeholder = @"请输入联系人姓名";
-			[[cell.tfInput.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
-				contact.contactAddress = x;
+			cell.tfInput.placeholder = @"请填写联系地址";
+			cell.tfInput.text = contact.contactAddress;
+			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+				if (textField.text.length > 60) {
+					textField.text = [textField.text substringToIndex:60];
+				}
+				contact.contactAddress = textField.text;
 			}];
 			return cell;
 		}
@@ -465,22 +485,6 @@ ABPersonViewControllerDelegate>
 }
 
 #pragma mark - phone_button
-/*
- - (IBAction)firstFamilyPhoneBtn:(id)sender {
-	[self fetchAddressBook:_telTF];
- }
- 
- - (IBAction)secondFamilyPhoneBtn:(id)sender {
-	[self fetchAddressBook:_num2TelTF];
- }
- 
- - (IBAction)firstOtherContactBtn:(id)sender {
-	[self fetchAddressBook:_otherTelTF];
- }
- 
- - (IBAction)secondOtherContactBtn:(id)sender {
-	[self fetchAddressBook:_num2_otherTelTF];
- }*/
 
 - (void)fetchAddressBook:(UITextField *)textField {
 	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];

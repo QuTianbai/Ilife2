@@ -44,8 +44,29 @@
 	
 	NSDictionary *basicInfo = dic[@"baseInfo"];
 	NSDictionary *occupation = dic[@"occupationInfo"];
+	
+	NSString *homeTelFull = basicInfo[@"homePhone"];
+	NSString *empTelFull  = occupation[@"empPhone"];
+	NSArray *homeTelComponents = [homeTelFull componentsSeparatedByString:@"-"];
+	NSArray *empTelComponents = [empTelFull componentsSeparatedByString:@"-"];
+	NSString *homeTelCode = @"";
+	NSString *homeTel = @"";
+	NSString *empTelCode = @"";
+	NSString *empTel = @"";
+	NSString *empTelExtension = @"";
+	if (homeTelComponents.count == 2) {
+		homeTelCode = homeTelComponents[0];
+		homeTel = homeTelComponents[1];
+	}
+	if (empTelComponents.count == 3) {
+		empTelCode = empTelComponents[0];
+		empTel = empTelComponents[1];
+		empTelExtension = empTelComponents[2];
+	}
+	
 	return @{
-					 @"homeLine" : basicInfo[@"homePhone"],
+					 @"homeCode" : homeTelCode,
+					 @"homeLine" : homeTel,
 					 @"email" : basicInfo[@"email"],
 					 @"currentProvinceCode" : basicInfo[@"abodeStateCode"],
 					 @"currentCityCode" : basicInfo[@"abodeCityCode"],
@@ -73,7 +94,9 @@
 					 @"workCityCode" : occupation[@"empCityCode"],
 					 @"workCountryCode" : occupation[@"empZoneCode"],
 					 @"empAdd" : occupation[@"empAdd"],
-					 @"empPhone" : occupation[@"empPhone"],
+					 @"unitAreaCode" : empTelCode,
+					 @"unitTelephone" : empTel,
+					 @"unitExtensionTelephone" : empTelExtension,
 					 @"infoType" : dic[@"infoType"],
 					 @"contrastList" : dic[@"contrastList"]
 					 };
@@ -81,8 +104,18 @@
 
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
 	int infoType = forms.infoType;
+	
+	NSString *homePhone = @"";
+	NSString *empPhone = @"";
+	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
+		homePhone = [NSString stringWithFormat:@"%@-%@", forms.homeCode, forms.homeLine];
+	}
+	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0 && forms.unitExtensionTelephone.length > 0) {
+		empPhone = [NSString stringWithFormat:@"%@-%@-%@", forms.unitAreaCode, forms.unitTelephone, forms.unitExtensionTelephone];
+	}
+	
 	NSDictionary *basicInfo = @{
-															@"homePhone" : forms.homeLine ?: @"",
+															@"homePhone" : homePhone,
 															@"email" : forms.email ?: @"",
 															@"abodeStateCode" : forms.currentProvinceCode ?: @"",
 															@"abodeCityCode" : forms.currentCityCode ?: @"",
@@ -109,7 +142,7 @@
 															 @"empCityCode" : forms.workCityCode ?: @"",
 															 @"empZoneCode" : forms.workCountryCode ?: @"",
 															 @"empAdd" : forms.empAdd ?: @"",
-															 @"empPhone" : forms.empPhone ?: @""
+															 @"empPhone" : empPhone
 															 };
 	
 	NSMutableArray *additionalList = [NSMutableArray array];

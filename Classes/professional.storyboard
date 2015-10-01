@@ -211,8 +211,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入学年份" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdE-DY-VZY">
-                                                    <rect key="frame" x="15" y="11" width="85" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入学时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdE-DY-VZY">
+                                                    <rect key="frame" x="15" y="11" width="85" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="lPC-YH-x6t"/>
                                                     </constraints>
@@ -247,24 +247,21 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="Mwn-N0-Xt8">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Mwn-N0-Xt8">
                                         <rect key="frame" x="0.0" y="280" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mwn-N0-Xt8" id="GKe-Hx-xSP">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学制" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDS-Y0-6x7">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="80" height="29.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="VEF-Jm-oeX"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ed4-W2-kJO">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
-                                                    <state key="normal">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学制" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2r-ed-Yk1">
                                                     <rect key="frame" x="15" y="11" width="85" height="17"/>
                                                     <constraints>
@@ -274,15 +271,21 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-tg-ENi">
+                                                    <rect key="frame" x="208" y="14" width="26" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="26" id="jCA-Rm-03G"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="bDS-Y0-6x7" secondAttribute="trailing" constant="10" id="bY3-ln-F7t"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ed4-W2-kJO" secondAttribute="bottom" constant="7" id="eXQ-QQ-cBz"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ed4-W2-kJO" secondAttribute="trailing" constant="10" id="ejh-3r-A9C"/>
+                                                <constraint firstItem="Vlc-tg-ENi" firstAttribute="leading" secondItem="bDS-Y0-6x7" secondAttribute="trailing" constant="8" id="7s6-iH-Qfg"/>
+                                                <constraint firstItem="Vlc-tg-ENi" firstAttribute="centerY" secondItem="GKe-Hx-xSP" secondAttribute="centerY" id="TEG-Tj-oAO"/>
                                                 <constraint firstAttribute="bottom" secondItem="W2r-ed-Yk1" secondAttribute="bottom" constant="15" id="hnw-v2-ZBF"/>
                                                 <constraint firstAttribute="bottom" secondItem="bDS-Y0-6x7" secondAttribute="bottom" constant="7" id="lPB-ta-46d"/>
-                                                <constraint firstItem="Ed4-W2-kJO" firstAttribute="leading" secondItem="W2r-ed-Yk1" secondAttribute="trailing" constant="20" id="n06-Q6-zMW"/>
-                                                <constraint firstItem="Ed4-W2-kJO" firstAttribute="top" secondItem="GKe-Hx-xSP" secondAttribute="top" constant="7" id="oqe-6j-5u8"/>
                                                 <constraint firstItem="W2r-ed-Yk1" firstAttribute="leading" secondItem="GKe-Hx-xSP" secondAttribute="leading" constant="15" id="tAC-T9-4VA"/>
                                                 <constraint firstItem="bDS-Y0-6x7" firstAttribute="top" secondItem="GKe-Hx-xSP" secondAttribute="top" constant="7" id="txl-Q1-gos"/>
                                                 <constraint firstItem="W2r-ed-Yk1" firstAttribute="top" secondItem="GKe-Hx-xSP" secondAttribute="top" constant="11.5" id="uqR-ax-QP0"/>
@@ -837,7 +840,6 @@
                         <outlet property="position" destination="Qeo-TP-XAm" id="NPp-X8-YDf"/>
                         <outlet property="positionButton" destination="C28-sT-cUl" id="HCL-oh-HI1"/>
                         <outlet property="programLength" destination="bDS-Y0-6x7" id="Vkq-72-VDg"/>
-                        <outlet property="programLengthButton" destination="Ed4-W2-kJO" id="Yp2-my-CFV"/>
                         <outlet property="socialStatus" destination="5xr-wt-Pes" id="R7E-4P-PTu"/>
                         <outlet property="socialStatusButton" destination="3rq-28-qQO" id="Ehd-4z-b4I"/>
                         <outlet property="unitAreaCode" destination="3kQ-MM-jC6" id="7aT-qw-iOj"/>
