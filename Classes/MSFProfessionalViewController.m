@@ -39,6 +39,52 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 @interface MSFProfessionalViewController ()
 
+// 社会身份
+@property (nonatomic, weak) IBOutlet UITextField *education;//教育程度code
+@property (nonatomic, weak) IBOutlet UITextField *socialStatus;//社会身份
+@property (nonatomic, weak) IBOutlet UITextField *workingLength;//工作年限 工作年限
+
+@property (nonatomic, weak) IBOutlet UIButton *educationButton;
+@property (nonatomic, weak) IBOutlet UIButton *socialStatusButton;
+@property (nonatomic, weak) IBOutlet UIButton *workingLengthButton;
+
+// 学校信息
+@property (nonatomic, weak) IBOutlet UITextField *universityName;//学校名称 学校名称
+@property (nonatomic, weak) IBOutlet UITextField *enrollmentYear;//入学年份 入学年份
+@property (nonatomic, weak) IBOutlet UITextField *programLength;//学制 学制
+
+@property (nonatomic, weak) IBOutlet UIButton *enrollmentYearButton;//入学年份 入学年份
+@property (nonatomic, weak) IBOutlet UIButton *programLengthButton;//学制 学制
+
+// 单位信息
+@property (nonatomic, weak) IBOutlet UITextField *company;//单位/个体全称 单位/个体名称
+@property (nonatomic, weak) IBOutlet UITextField *companyType;//单位性质code
+@property (nonatomic, weak) IBOutlet UITextField *industry;//行业类别code
+
+@property (nonatomic, weak) IBOutlet UIButton *companyTypeButton;//单位性质code
+@property (nonatomic, weak) IBOutlet UIButton *industryButton;//行业类别code
+
+// 职位信息
+@property (nonatomic, weak) IBOutlet UITextField *department;//任职部门 任职部门
+@property (nonatomic, weak) IBOutlet UITextField *position;//职位 title
+@property (nonatomic, weak) IBOutlet UITextField *currentJobDate;//现工作开始时间 工作开始时间
+
+@property (nonatomic, weak) IBOutlet UIButton *departmentButton;//任职部门 任职部门
+@property (nonatomic, weak) IBOutlet UIButton *positionButton;//职位 title
+@property (nonatomic, weak) IBOutlet UIButton *currentJobDateButton;//现工作开始时间 工作开始时间
+
+// 单位联系方式
+@property (nonatomic, weak) IBOutlet UITextField *unitAreaCode;//办公/个体电话区号
+@property (nonatomic, weak) IBOutlet UITextField *unitTelephone;//办公/个体电话
+@property (nonatomic, weak) IBOutlet UITextField *unitExtensionTelephone;//办公/个体电话分机号
+
+@property (nonatomic, weak) IBOutlet UITextField *address;
+@property (nonatomic, weak) IBOutlet UIButton *addressButton;
+
+@property (nonatomic, weak) IBOutlet UITextField *workTown;// 单位所在镇 单位地址镇
+
+@property (nonatomic, weak) IBOutlet UIButton *nextButton;
+
 @property (nonatomic, strong) MSFProfessionalViewModel *viewModel;
 
 @end
@@ -57,11 +103,16 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	NSLog(@"MSFProfessionalViewController `-dealloc`");
 }
 
+- (instancetype)init {
+	return [UIStoryboard storyboardWithName:@"professional" bundle:nil].instantiateInitialViewController;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"职业信息";
-	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:1];
 	
+	self.navigationItem.title = @"职业信息";
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+
 	[[self.universityName rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
 			if (textField.text.length > 14) {
@@ -204,6 +255,16 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	}];
 }
 
+- (void)back {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃职业信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+		if ([x integerValue] == 1) {
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	}];
+	[alert show];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -293,6 +354,40 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 }
 
 #pragma mark - Private
+
+- (RACSignal *)startedWorkDateSignal {
+	@weakify(self)
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate msf_date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-50];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		
+		[ActionSheetDatePicker
+		 showPickerWithTitle:@""
+		 datePickerMode:UIDatePickerModeDate
+		 selectedDate:currentDate
+		 minimumDate:minDate
+		 maximumDate:maxDate
+		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 cancelBlock:^(ActionSheetDatePicker *picker) {
+			 self.viewModel.startedDate = nil;
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 origin:self.view];
+		return nil;
+	}] replay];
+}
 
 - (RACSignal *)startedDateSignal {
 	@weakify(self)

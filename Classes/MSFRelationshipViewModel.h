@@ -91,18 +91,19 @@
  */
 @property (nonatomic, copy) NSString *otherPhoneTwoValues;
 
+
 @property (nonatomic, strong) RACCommand *executeRequest;
 
 @property (nonatomic, assign) BOOL hasMember2;
 @property (nonatomic, assign) BOOL hasContact2;
 @property (nonatomic, strong, readonly) NSString *confirmMessage;
 
-@property (nonatomic, strong, readonly) RACCommand *executeMarryValuesCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeHouseValuesCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeFamilyOneValuesCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeFamilyTwoValuesCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeOtherOneValuesCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeOtherTwoValuesCommand;
+//@property (nonatomic, strong, readonly) RACCommand *executeMarryValuesCommand;
+//@property (nonatomic, strong, readonly) RACCommand *executeHouseValuesCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeFamilyValuesCommand;
+//@property (nonatomic, strong, readonly) RACCommand *executeFamilyTwoValuesCommand;
+//@property (nonatomic, strong, readonly) RACCommand *executeOtherOneValuesCommand;
+//@property (nonatomic, strong, readonly) RACCommand *executeOtherTwoValuesCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;

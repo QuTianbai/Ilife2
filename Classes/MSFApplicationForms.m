@@ -27,6 +27,11 @@
 	}];
 }
 
++ (NSValueTransformer *)contrastListJSONTransformer {
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFUserContact.class];
+}
+
+/*
 + (NSValueTransformer *)incomeJSONTransformer {
   return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
 				return num.intValue>=0?num:@"";
@@ -61,7 +66,7 @@
       
       return nil;
     }];
-}
+}*/
 
 + (NSValueTransformer *)repayMoneyJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {

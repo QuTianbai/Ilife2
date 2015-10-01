@@ -34,6 +34,16 @@
 
 //新主题色a0defe
 + (UIColor *)themeColorNew;
-+ (UIColor *)lightThemeColor;
++ (UIColor *)color666666;
++ (UIColor *)color999999;
+
+//MSFLoanLimitView
++ (UIColor *)darkCircleColor;
++ (UIColor *)lightCircleColor;
+
+//MSFUserInfoCircleView
++ (UIColor *)uncompletedColor;
++ (UIColor *)completedColor;
++ (UIColor *)percentColor;
 
 @end

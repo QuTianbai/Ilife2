@@ -155,9 +155,26 @@
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07311B07341500484069 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
+		1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */; settings = {ASSET_TAGS = (); }; };
+		1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */; settings = {ASSET_TAGS = (); }; };
+		1011A3A61BB9702600CCADB5 /* icon_circle_home_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A01BB9702600CCADB5 /* icon_circle_home_n.png */; settings = {ASSET_TAGS = (); }; };
+		1011A3A71BB9702600CCADB5 /* icon_circle_home_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A11BB9702600CCADB5 /* icon_circle_home_h.png */; settings = {ASSET_TAGS = (); }; };
+		1011A3A81BB9702600CCADB5 /* icon_circle_basic_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */; settings = {ASSET_TAGS = (); }; };
+		1011A3A91BB9702600CCADB5 /* icon_circle_job_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */; settings = {ASSET_TAGS = (); }; };
+		1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */; settings = {ASSET_TAGS = (); }; };
+		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; settings = {ASSET_TAGS = (); }; };
+		105A0CB91BBA42C70046F927 /* userInfo_header.png in Resources */ = {isa = PBXBuildFile; fileRef = 105A0CB81BBA42C70046F927 /* userInfo_header.png */; settings = {ASSET_TAGS = (); }; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
 		1077330E1B79944500F3BAA6 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 1077330D1B79944500F3BAA6 /* home-banner-pl.png */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
+		10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C240791BBA8F5E006C23DC /* MSFUserContact.m */; settings = {ASSET_TAGS = (); }; };
+		10C2407D1BBA8F6F006C23DC /* MSFUserAdditional.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1BD1BBBC971001BD017 /* MSFRelationSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1C01BBBC989001BD017 /* MSFRelationPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */; settings = {ASSET_TAGS = (); }; };
+		10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */; settings = {ASSET_TAGS = (); }; };
 		10DBCD341BB8E08A000A23B7 /* MSFLoanLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */; settings = {ASSET_TAGS = (); }; };
 		10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */; };
 		10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */; };
@@ -885,11 +902,38 @@
 		07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyInfo.m"; sourceTree = "<group>"; };
 		07FE07321B0740ED00484069 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0C902AAFF4566E5C3F86DCD0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoCircleView.h; sourceTree = "<group>"; };
+		1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoCircleView.m; sourceTree = "<group>"; };
+		1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_h.png; sourceTree = "<group>"; };
+		1011A3A01BB9702600CCADB5 /* icon_circle_home_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_home_n.png; sourceTree = "<group>"; };
+		1011A3A11BB9702600CCADB5 /* icon_circle_home_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_home_h.png; sourceTree = "<group>"; };
+		1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_basic_h.png; sourceTree = "<group>"; };
+		1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_n.png; sourceTree = "<group>"; };
+		1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_basic_n.png; sourceTree = "<group>"; };
+		105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfomationViewController.h; sourceTree = "<group>"; };
+		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
+		105A0CB81BBA42C70046F927 /* userInfo_header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userInfo_header.png; sourceTree = "<group>"; };
 		105E839A1B7E074500E821CB /* MSFRepaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentViewModel.h; sourceTree = "<group>"; };
 		105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentViewModel.m; sourceTree = "<group>"; };
 		1077330D1B79944500F3BAA6 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
+		10C240781BBA8F5E006C23DC /* MSFUserContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserContact.h; sourceTree = "<group>"; };
+		10C240791BBA8F5E006C23DC /* MSFUserContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserContact.m; sourceTree = "<group>"; };
+		10C2407B1BBA8F6F006C23DC /* MSFUserAdditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserAdditional.h; sourceTree = "<group>"; };
+		10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserAdditional.m; sourceTree = "<group>"; };
+		10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationTFCell.h; sourceTree = "<group>"; };
+		10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationTFCell.m; sourceTree = "<group>"; };
+		10DAE1BB1BBBC971001BD017 /* MSFRelationSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationSelectionCell.h; sourceTree = "<group>"; };
+		10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationSelectionCell.m; sourceTree = "<group>"; };
+		10DAE1BE1BBBC989001BD017 /* MSFRelationPhoneCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationPhoneCell.h; sourceTree = "<group>"; };
+		10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationPhoneCell.m; sourceTree = "<group>"; };
+		10DAE1C11BBBC99F001BD017 /* MSFRelationSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationSwitchCell.h; sourceTree = "<group>"; };
+		10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationSwitchCell.m; sourceTree = "<group>"; };
+		10DAE1C41BBBC9B3001BD017 /* MSFRelationAddCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationAddCell.h; sourceTree = "<group>"; };
+		10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationAddCell.m; sourceTree = "<group>"; };
+		10DAE1C71BBBDB1B001BD017 /* MSFRelationHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationHeadCell.h; sourceTree = "<group>"; };
+		10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationHeadCell.m; sourceTree = "<group>"; };
 		10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanLimitView.h; sourceTree = "<group>"; };
 		10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanLimitView.m; sourceTree = "<group>"; };
 		10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photosUpload.storyboard; sourceTree = "<group>"; };
@@ -1814,10 +1858,11 @@
 			children = (
 				07CB4C7A1B104572006C220E /* MSFPersonalViewController.h */,
 				07CB4C7B1B104572006C220E /* MSFPersonalViewController.m */,
-				07CB4C7D1B104944006C220E /* MSFProfessionalViewController.h */,
-				07CB4C7E1B104944006C220E /* MSFProfessionalViewController.m */,
 				07CB4C801B104AE8006C220E /* MSFRelationshipViewController.h */,
 				07CB4C811B104AE8006C220E /* MSFRelationshipViewController.m */,
+				07CB4C7D1B104944006C220E /* MSFProfessionalViewController.h */,
+				07CB4C7E1B104944006C220E /* MSFProfessionalViewController.m */,
+				10DAE1AA1BBBC8F9001BD017 /* RelationCells */,
 				10DC2CF31B96919D00A2AF9C /* PhotosUpload */,
 				4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */,
 				4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */,
@@ -1971,6 +2016,7 @@
 		07FE072B1B07245200484069 /* AppliInfo */ = {
 			isa = PBXGroup;
 			children = (
+				10C240711BBA8D50006C23DC /* 2.0 UserInfo */,
 				07FE072C1B07278800484069 /* MSFApplicationForms.h */,
 				07FE072D1B07278800484069 /* MSFApplicationForms.m */,
 				07FE072F1B07341500484069 /* MSFClient+MSFApplyInfo.h */,
@@ -1985,6 +2031,23 @@
 			name = AppliInfo;
 			sourceTree = "<group>";
 		};
+		105A0CA31BBA3E8F0046F927 /* 2.0 */ = {
+			isa = PBXGroup;
+			children = (
+				105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */,
+				105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */,
+			);
+			name = 2.0;
+			sourceTree = "<group>";
+		};
+		105A0CB71BBA42A20046F927 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				105A0CB81BBA42C70046F927 /* userInfo_header.png */,
+			);
+			name = user;
+			sourceTree = "<group>";
+		};
 		1092C8C31B6B237C00794EE9 /* CounterLabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1992,6 +2055,36 @@
 				1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */,
 			);
 			name = CounterLabel;
+			sourceTree = "<group>";
+		};
+		10C240711BBA8D50006C23DC /* 2.0 UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				10C240781BBA8F5E006C23DC /* MSFUserContact.h */,
+				10C240791BBA8F5E006C23DC /* MSFUserContact.m */,
+				10C2407B1BBA8F6F006C23DC /* MSFUserAdditional.h */,
+				10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */,
+			);
+			name = "2.0 UserInfo";
+			sourceTree = "<group>";
+		};
+		10DAE1AA1BBBC8F9001BD017 /* RelationCells */ = {
+			isa = PBXGroup;
+			children = (
+				10DAE1C71BBBDB1B001BD017 /* MSFRelationHeadCell.h */,
+				10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */,
+				10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */,
+				10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */,
+				10DAE1BB1BBBC971001BD017 /* MSFRelationSelectionCell.h */,
+				10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */,
+				10DAE1BE1BBBC989001BD017 /* MSFRelationPhoneCell.h */,
+				10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */,
+				10DAE1C11BBBC99F001BD017 /* MSFRelationSwitchCell.h */,
+				10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */,
+				10DAE1C41BBBC9B3001BD017 /* MSFRelationAddCell.h */,
+				10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */,
+			);
+			name = RelationCells;
 			sourceTree = "<group>";
 		};
 		10DC2CF31B96919D00A2AF9C /* PhotosUpload */ = {
@@ -2795,6 +2888,12 @@
 		49A954FB1B574B09000852E3 /* homepage */ = {
 			isa = PBXGroup;
 			children = (
+				1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */,
+				1011A3A01BB9702600CCADB5 /* icon_circle_home_n.png */,
+				1011A3A11BB9702600CCADB5 /* icon_circle_home_h.png */,
+				1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */,
+				1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */,
+				1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */,
 				10DE89291B677690009025C4 /* home-fourStatus.png */,
 				1077330D1B79944500F3BAA6 /* home-banner-pl.png */,
 			);
@@ -2966,6 +3065,8 @@
 			isa = PBXGroup;
 			children = (
 				07E3ED911BBCDBC50010AAD2 /* CirculateCash */,
+				1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */,
+				1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */,
 				49DAEE6D1B2E8370009433C5 /* Storyboard */,
 				07C924D11B0C2CB700FA73BD /* LoanList */,
 				07C924CF1B0C22FD00FA73BD /* AppliesInfo */,
@@ -2977,6 +3078,7 @@
 		49CCFBE51B072501008A9CD1 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				105A0CA31BBA3E8F0046F927 /* 2.0 */,
 				49CCFBDF1B072397008A9CD1 /* MSFUserViewController.h */,
 				49CCFBE01B072397008A9CD1 /* MSFUserViewController.m */,
 				4983EDA41B09D8CD00ADE3E5 /* MSFUserInfoViewController.h */,
@@ -3164,6 +3266,7 @@
 				07C497FF1B1420BE00069F74 /* loan */,
 				07C06C411B13431300F2DFCC /* json */,
 				49EAABA51B0DC66E00E5FF32 /* launch */,
+				105A0CB71BBA42A20046F927 /* user */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3595,6 +3698,7 @@
 				077347EB1BBA338900D7A130 /* zhongxin.png in Resources */,
 				07C06C791B1347C200F2DFCC /* marital_status.json in Resources */,
 				49C0F1AB1B2C315100E92572 /* icon-phone@3x.png in Resources */,
+				1011A3A61BB9702600CCADB5 /* icon_circle_home_n.png in Resources */,
 				C7A351781B217CB10001DF6A /* iconfont-chanpinjieshao@2x.png in Resources */,
 				C7B9780B1B099150005F247C /* MSFSettingsViewController.storyboard in Resources */,
 				070724A21B671A240089916B /* btnSlider.png in Resources */,
@@ -3715,6 +3819,7 @@
 				C7A351851B217CB10001DF6A /* iconfont-wangdian@3x.png in Resources */,
 				C7A351771B217CB10001DF6A /* iconfont-chanpinjieshao.png in Resources */,
 				C7D2D1351B67938C000F51ED /* icon-cloze-selected@2x.png in Resources */,
+				105A0CB91BBA42C70046F927 /* userInfo_header.png in Resources */,
 				49C0F1CC1B2C341400E92572 /* tabbar-apply-normal@3x.png in Resources */,
 				49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */,
 				10DC2D381B9841F900A2AF9C /* ic_attachment_delete.png in Resources */,
@@ -3783,6 +3888,7 @@
 				C7D2D12F1B67938C000F51ED /* icon-cloze-normal@2x.png in Resources */,
 				077347D71BBA338900D7A130 /* CMBC@2x.png in Resources */,
 				10DC2DA41B99C17F00A2AF9C /* icon_order2_h.png in Resources */,
+				1011A3A91BB9702600CCADB5 /* icon_circle_job_n.png in Resources */,
 				10DC2E501BA0209400A2AF9C /* btn-attachment-take-photo.png in Resources */,
 				07F089031BBD05DE0067C5BC /* cirCulate.json in Resources */,
 				49C0F1CB1B2C341400E92572 /* tabbar-apply-normal@2x.png in Resources */,
@@ -3793,6 +3899,7 @@
 				4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */,
 				07E3ED7B1BBBF6C00010AAD2 /* blackpoint@3x.png in Resources */,
 				4944C04C1B68A5DA00805C0A /* nav-back@3x.png in Resources */,
+				1011A3A81BB9702600CCADB5 /* icon_circle_basic_h.png in Resources */,
 				49C0F1AA1B2C315100E92572 /* icon-phone@2x.png in Resources */,
 				49E22B021B37ED9E00749717 /* btn-family-reduce@3x.png in Resources */,
 				07AFE5A01B26D202009E0124 /* position.json in Resources */,
@@ -3807,7 +3914,9 @@
 				4EDB520F1B69C7E600388306 /* btn-FamilyInformation-phone@3x.png in Resources */,
 				07C06C771B1347C200F2DFCC /* housing_conditions.json in Resources */,
 				4925ADF21B2AFD8800872A8A /* btn_checked.png in Resources */,
+				1011A3A71BB9702600CCADB5 /* icon_circle_home_h.png in Resources */,
 				49C0F1CD1B2C341400E92572 /* tabbar-apply-selected.png in Resources */,
+				1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */,
 				4993E0DB1B2DA65B00090F26 /* bg-loan-installment@3x.png in Resources */,
 				10DC2DA61B99C17F00A2AF9C /* icon_order3_h.png in Resources */,
 				078010501BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib in Resources */,
@@ -3837,6 +3946,7 @@
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
 				C7D2D11C1B67938C000F51ED /* icon-cloze-bankAddress.png in Resources */,
+				1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
 				10DC2D5C1B997D4A00A2AF9C /* icon-arrow-right.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
@@ -4035,12 +4145,14 @@
 				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
 				49075CCB1BA91CE3006F63FF /* MSFTradeViewModel.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
+				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
 				0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */,
 				C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */,
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */,
 				492007501BA00CCD00C0722C /* EIOperationManager.m in Sources */,
 				4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */,
+				10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
 				074AC24C1BBB87740056BA22 /* MSFCheckHasTradePassword.m in Sources */,
@@ -4071,9 +4183,11 @@
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
+				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
 				10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
+				10DAE1C01BBBC989001BD017 /* MSFRelationPhoneCell.m in Sources */,
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
 				07CB4C7C1B104572006C220E /* MSFPersonalViewController.m in Sources */,
 				07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */,
@@ -4103,10 +4217,12 @@
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
 				4967EE811B1A9EA3001A8F27 /* MSFAgreementViewModel.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
+				10C2407D1BBA8F6F006C23DC /* MSFUserAdditional.m in Sources */,
 				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
 				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
+				105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,
 				C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */,
@@ -4137,6 +4253,7 @@
 				491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
 				07F089011BBD023E0067C5BC /* MSFCirculateCashViewModel.m in Sources */,
+				1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
 				C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */,
 				49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */,
@@ -4164,6 +4281,7 @@
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
 				10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */,
+				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
@@ -4184,6 +4302,7 @@
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
+				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
 				49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
@@ -4213,6 +4332,7 @@
 				0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */,
 				4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */,
 				49C7CBA61B04A34200EF5A68 /* MSFClient+ReleaseNote.m in Sources */,
+				10DAE1BD1BBBC971001BD017 /* MSFRelationSelectionCell.m in Sources */,
 				10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */,
 				0750AB021B96A9B700AD67F3 /* MSFClient+Contacts.m in Sources */,
 				C7A351471B2173020001DF6A /* MSFSettingTableViewCell.m in Sources */,

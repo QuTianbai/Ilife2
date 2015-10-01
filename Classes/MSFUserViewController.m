@@ -13,6 +13,7 @@
 #import "MSFTradeTableViewController.h"
 #import "MSFEditPasswordViewController.h"
 #import "MSFUserInfoViewController.h"
+#import "MSFUserInfomationViewController.h"
 #import "MSFUtils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
@@ -20,6 +21,7 @@
 #import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
+#import "MSFUserViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -137,9 +139,14 @@
 #pragma mark - IBActions
 
 - (void)userInfo {
+	
+	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithServices:self.viewModel.servcies];
+	[self.navigationController pushViewController:vc animated:YES];
+	/*
 	MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];
 	userinfoViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:userinfoViewController animated:YES];
+	 */
 }
 
 - (IBAction)repayMentPlan:(id)sender {
