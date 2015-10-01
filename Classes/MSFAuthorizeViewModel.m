@@ -25,6 +25,15 @@ const NSInteger MSFAuthorizeIdentifierMaxLength = 18;
 const NSInteger MSFAuthorizeCaptchaMaxLength = 4;
 const NSInteger MSFAuthorizeNameMaxLength = 20;
 
+NSString *const MSFAuthorizeCaptchaSignUp = @"REG";
+NSString *const MSFAuthorizeCaptchaSignIn = @"LOGIN";
+NSString *const MSFAuthorizeCaptchaLoan = @"LOAN";
+NSString *const MSFAuthorizeCaptchaInitTransPassword = @"INIT_TRANS_PASSWORD";
+NSString *const MSFAuthorizeCaptchaModifyTransPassword = @"MODIFY_TRANS_PASSWORD";
+NSString *const MSFAuthorizeCaptchaForgetTransPassword = @"FORGET_TRANS_PASSWORD";
+NSString *const MSFAuthorizeCaptchaForgetPassword = @"FORGET_PASSWORD";
+NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
+
 @interface MSFAuthorizeViewModel ()
 
 @property (nonatomic, assign) BOOL counting;

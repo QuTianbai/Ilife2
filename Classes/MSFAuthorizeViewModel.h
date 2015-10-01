@@ -14,6 +14,15 @@ typedef NS_ENUM(NSUInteger, MSFLoginType) {
 	MSFLoginIDSignIn,
 };
 
+extern NSString *const MSFAuthorizeCaptchaSignUp;
+extern NSString *const MSFAuthorizeCaptchaSignIn;
+extern NSString *const MSFAuthorizeCaptchaLoan;
+extern NSString *const MSFAuthorizeCaptchaInitTransPassword;
+extern NSString *const MSFAuthorizeCaptchaModifyTransPassword;
+extern NSString *const MSFAuthorizeCaptchaForgetTransPassword;
+extern NSString *const MSFAuthorizeCaptchaForgetPassword;
+extern NSString *const MSFAuthorizeCaptchaModifyMobile;
+
 @class MSFServer;
 @class RACCommand;
 
