@@ -117,7 +117,7 @@ extern const NSInteger MSFClientErrorTooManyRequests;
 + (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session;
 
 /**
- *	登录
+ *	用户手机号登录
  *
  *	@param user			Use `userWithName:phone:` to create
  *	@param password
@@ -126,6 +126,18 @@ extern const NSInteger MSFClientErrorTooManyRequests;
  *	@return authenticated client, Has token and user
  */
 + (RACSignal *)signInAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha;
+
+/**
+ *  用户身份证登录
+ *
+ *  @param user     user contain server
+ *  @param username user realname
+ *  @param password user password
+ *  @param idcard   user id card number
+ *
+ *  @return client with authenticated user, token
+ */
++ (RACSignal *)signInAsUser:(MSFUser *)user username:(NSString *)username password:(NSString *)password citizenID:(NSString *)idcard;
 
 /**
  *	注册

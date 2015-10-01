@@ -10,30 +10,10 @@
 
 @interface MSFUser : MSFObject
 
-/**
- *	用户手机号
- */
-@property (nonatomic, copy, readonly) NSString *phone;
-
-/**
- *	用户名，对应用户真实名字
- */
-@property (nonatomic, copy, readonly) NSString *name;
-
-/**
- *	身份证号
- */
-@property (nonatomic, copy, readonly) NSString *idcard;
-
-/**
- *	用户银行卡号
- */
-@property (nonatomic, copy, readonly) NSString *passcard;
-
-/**
- *	头像URL
- */
-@property (nonatomic, copy, readonly) NSURL *avatarURL;
+// 客户类型
+//
+// (0为马上贷客户，1为白名单客户）
+@property (nonatomic, copy, readonly) NSString *type;
 
 /**
  *	Create The user instance

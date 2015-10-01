@@ -59,6 +59,7 @@
  */
 #import "MSFDeviceGet.h"
 #import <sys/utsname.h>
+#import <OpenUDID/OpenUDID.h>
 
 @implementation MSFDeviceGet
 
@@ -85,6 +86,10 @@
 	return 0;
 	
 	
+}
+
++ (NSString *)imei {
+	return OpenUDID.value;
 }
 
 @end

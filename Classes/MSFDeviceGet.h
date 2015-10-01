@@ -25,5 +25,6 @@ static const DeviceTypeNum bigger6 = IPHONE6 | IPHONE6P;
 @interface MSFDeviceGet : NSObject
 
 + (DeviceTypeNum)deviceNum;
++ (NSString *)imei;
 
 @end

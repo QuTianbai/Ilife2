@@ -1,13 +1,4 @@
 {
-  "user_id": "ds13dsaf21d",
-  "phone_number": "15222222222",
-  "username": "xxx",
-  "id_card": "123",
-  "bank_card_number": "563",
-  "avatar": {
-    "width": 100,
-    "height": 100,
-    "url": "",
-    "type": ""
-  }
+  "uniqueId": "foo",
+  "custType": "bar"
 }
