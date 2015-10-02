@@ -410,6 +410,10 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择入职年月",
 			}]];
 		}
+		NSString *compareResult = [self compareDay:self.model.empStandFrom earlierThanDay:self.model.workStartDate];
+		if (compareResult) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: compareResult}]];
+		}
 		if (self.model.income.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月税前工作收入"}]];
 		}
@@ -460,6 +464,24 @@
 	
 	return [self.formsViewModel submitUserInfo];
 	//return [self.formsViewModel submitSignalWithPage:3];
+}
+
+- (NSString *)compareDay:(NSString *)day1 earlierThanDay:(NSString *)day2 {
+	NSArray *components1 = [day1 componentsSeparatedByString:@"-"];
+	NSArray *components2 = [day2 componentsSeparatedByString:@"-"];
+	if (components1.count != 2) {
+		return @"请选择入职日期";
+	}
+	if (components2.count != 2) {
+		return @"请选择参加工作日期";
+	}
+	if ([components1[0] integerValue] < [components2[0] integerValue]) {
+		return @"入职日期不能早于参加工作日期";
+	}
+	if ([components1[0] integerValue] == [components2[0] integerValue] && [components1[1] integerValue] < [components2[1] integerValue]) {
+		return @"入职日期不能早于参加工作日期";
+	}
+	return nil;
 }
 
 - (RACSignal *)commitValidSignal {

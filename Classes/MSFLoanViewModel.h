@@ -5,6 +5,7 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 // 1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
 typedef NS_ENUM(NSUInteger, MSFLoanStatus) {
@@ -46,6 +47,8 @@ typedef NS_ENUM(NSUInteger, MSFLoanStatus) {
 // 当前进行到的期数
 @property (nonatomic, strong, readonly) NSString *currentInstallment;
 
-- (instancetype)initWithModel:(id)model;
+- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
+
+- (void)pushHistoryDetails;
 
 @end

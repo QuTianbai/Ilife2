@@ -203,6 +203,11 @@ static NSDictionary *messages;
 	NSParameterAssert(password);
 	NSParameterAssert(phone);
 	
+	//TODO: 测试登录
+	MSFUser *mockUser = [[MSFUser alloc] initWithDictionary:@{@"objectID": @"111", @"type": @"0"} error:nil];
+	MSFClient *client = [MSFClient authenticatedClientWithUser:mockUser token:@"" session:@""];
+	return [RACSignal return:client];
+	
 	RACSignal *(^authorizationSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
 		return [RACSignal defer:^RACSignal *{
 			MSFClient *client = [self unauthenticatedClientWithUser:user];
