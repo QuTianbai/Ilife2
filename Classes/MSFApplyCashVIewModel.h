@@ -13,6 +13,8 @@
 @class MSFFormsViewModel;
 @class RACCommand;
 @class MSFApplyCashModel;
+@class MSFMarkets;
+@class MSFTeam;
 @interface MSFApplyCashVIewModel : RVMViewModel
 
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
@@ -33,20 +35,20 @@
 @property (nonatomic, strong) MSFSelectKeyValues *purpose;
 @property (nonatomic, strong, readonly) NSString *purposeText;
 
-/**
- *	是否加入寿险计划
- */
-@property (nonatomic, assign) BOOL insurance;
 
 /**
- *	总金额
+ *	金额
  */
-@property (nonatomic, strong) NSString *totalAmount;
+//@property (nonatomic, strong) NSString *totalAmount;
 @property (nonatomic, copy) NSString *minMoney;
 @property (nonatomic, copy) NSString *maxMoney;
 
+// 贷款期数对应的产品
+@property (nonatomic, strong) MSFTeam *product;
+
 @property (nonatomic, copy) MSFApplyCashModel *model;
 
+@property (nonatomic, strong) MSFMarkets *markets;
 
 @property (nonatomic, assign) id<MSFViewModelServices>services;
 

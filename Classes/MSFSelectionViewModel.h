@@ -25,6 +25,6 @@
 - (NSString *)subtitleForIndexPath:(NSIndexPath *)indexPath;
 - (id)modelForIndexPath:(NSIndexPath *)indexPath;
 
-- (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFMarkets *)markts total:(NSInteger)amount;
++ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFMarkets *)markts total:(NSInteger)amount;
 
 @end

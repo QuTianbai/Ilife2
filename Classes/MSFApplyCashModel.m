@@ -10,4 +10,21 @@
 
 @implementation MSFApplyCashModel
 
+- (id)init {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_appNO = @"";
+	_appLmt = @"";
+	_applyStatus = @"";
+	_loanTerm = @"";
+	_loanPurpose = @"";
+	_lifeInsuranceAmt = @"";
+	_jionLifeInsurance = @"";
+	_loanFixedAmt = @"";
+	_productCd = @"";
+	return self;
+}
+
 @end

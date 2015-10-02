@@ -18,7 +18,6 @@
 #import "MSFHomepageViewModel.h"
 #import "MSFUserViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFProductViewModel.h"
 
 #import "MSFClient.h"
 #import "MSFUser.h"
