@@ -41,10 +41,19 @@
 
 @implementation MSFCirculateCashTableViewController
 
+- (instancetype)initWithViewModel:(MSFCirculateCashViewModel *)viewModel {
+	self = [UIStoryboard storyboardWithName:@"CirculateCash" bundle:nil].instantiateInitialViewController;
+	if (!self) {
+		return nil;
+	}
+	_viewModel = viewModel;
+	
+	return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	_viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.services];
+	//_viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.services];
 	
 	RAC(self.lastInputMoneyLB, text) = RACObserve(self.viewModel, latestDueMoney);
 	RAC(self.lastInputMoneyTimeLB, text) = RACObserve(self.viewModel, latestDueDate);
@@ -65,7 +74,7 @@
 			self.dataArray = x;
 			for (MSFBankCardListModel *model in self.dataArray) {
 				if ([model.isMaster isEqualToString:@"YES"]) {
-					MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.services AndType:0];
+					MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:0];
 					MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
 					drawCashVC.viewModel = viewModel;
 					drawCashVC.type = 0;
@@ -83,7 +92,7 @@
 			 self.dataArray = x;
 			 for (MSFBankCardListModel *model in self.dataArray) {
 				 if ([model.isMaster isEqualToString:@"YES"]) {
-					 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.services AndType:1];
+					 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
 					 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
 					 drawCashVC.viewModel = viewModel;
 					 drawCashVC.type = 1;

@@ -19,6 +19,8 @@
 		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
+		07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07330B431BBE2481000EB8FD /* CashHomePage.storyboard */; settings = {ASSET_TAGS = (); }; };
 		0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0738C48C1B943C98006D7177 /* MSFBankInfoModel.m */; };
 		0738C48F1B944B54006D7177 /* bank.db in Resources */ = {isa = PBXBuildFile; fileRef = 0738C48E1B944B54006D7177 /* bank.db */; };
 		074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0746968F1B98200C0074E180 /* MSFConfirmContractModel.m */; };
@@ -714,6 +716,9 @@
 		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
 		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
+		07330B331BBE2467000EB8FD /* MSFCashHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCashHomePageViewController.h; sourceTree = "<group>"; };
+		07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCashHomePageViewController.m; sourceTree = "<group>"; };
+		07330B431BBE2481000EB8FD /* CashHomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CashHomePage.storyboard; sourceTree = "<group>"; };
 		0738C48B1B943C98006D7177 /* MSFBankInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBankInfoModel.h; sourceTree = "<group>"; };
 		0738C48C1B943C98006D7177 /* MSFBankInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBankInfoModel.m; sourceTree = "<group>"; };
 		0738C48E1B944B54006D7177 /* bank.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = bank.db; sourceTree = "<group>"; };
@@ -1884,6 +1889,8 @@
 				07CBA7F61B203AC00020116E /* MSFProductViewController.m */,
 				07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementController.h */,
 				07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */,
+				07330B331BBE2467000EB8FD /* MSFCashHomePageViewController.h */,
+				07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */,
 			);
 			name = AppliesInfo;
 			sourceTree = "<group>";
@@ -3241,6 +3248,7 @@
 				49DAEE7D1B2E83E4009433C5 /* personal.storyboard */,
 				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
 				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
+				07330B431BBE2481000EB8FD /* CashHomePage.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -3900,6 +3908,7 @@
 				4944C0151B68A44A00805C0A /* icon-cloze-selected.png in Resources */,
 				4944C0351B68A5A100805C0A /* icon-account-repay@2x.png in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-about@2x.png in Resources */,
+				07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */,
 				07E3ED751BBBC3020010AAD2 /* tradepasswordimg@3x.png in Resources */,
 				077347DC1BBA338900D7A130 /* guangda.png in Resources */,
 				C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */,
@@ -4243,6 +4252,7 @@
 				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
+				07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */,
 				105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,

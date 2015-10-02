@@ -65,4 +65,6 @@
 + (void)setTradePassword:(NSString *)isSetTradePassword;
 + (NSString *)isSetTradePassword;
 
++(NSString *)isCircuteCash;
+
 @end

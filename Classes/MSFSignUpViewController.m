@@ -154,11 +154,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
 		
-		MSFCirculateCashTableViewController *circulateCashVC = [UIStoryboard storyboardWithName:@"CirculateCash" bundle:nil].instantiateInitialViewController;
-		
-		circulateCashVC.services = self.viewModel.services;
-		
-		[self.navigationController pushViewController:circulateCashVC animated:YES];
+//		MSFCirculateCashTableViewController *circulateCashVC = [UIStoryboard storyboardWithName:@"CirculateCash" bundle:nil].instantiateInitialViewController;
+//		
+//		circulateCashVC.services = self.viewModel.services;
+//		
+//		[self.navigationController pushViewController:circulateCashVC animated:YES];
 		
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
