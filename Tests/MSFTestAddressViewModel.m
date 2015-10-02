@@ -13,6 +13,7 @@
 - (RACSignal *)fetchProvince {
 	MSFAreas *area = [[MSFAreas alloc] initWithDictionary:@{
 		@"name": @"重庆市",
+		@"codeID": @"bar",
 	} error:nil];
 	self.province = area;
 	return [RACSignal return:area];
@@ -21,6 +22,7 @@
 - (RACSignal *)fetchCity {
 	MSFAreas *area = [[MSFAreas alloc] initWithDictionary:@{
 		@"name": @"直辖市",
+		@"codeID": @"foo",
 	} error:nil];
 	self.city = area;
 	return [RACSignal return:area];
@@ -29,6 +31,7 @@
 - (RACSignal *)fetchArea {
 	MSFAreas *area = [[MSFAreas alloc] initWithDictionary:@{
 		@"name": @"沙坪坝区",
+		@"codeID": @"abc",
 	} error:nil];
 	self.area = area;
 	return [RACSignal return:area];

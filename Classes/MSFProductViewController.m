@@ -18,7 +18,6 @@
 #import "MSFApplicationResponse.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
-#import "MSFProductViewModel.h"
 #import "MSFWebViewController.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFAgreement.h"
@@ -37,6 +36,8 @@
 #import <ZSWTappableLabel/ZSWTappableLabel.h>
 #import <ZSWTaggedString/ZSWTaggedString.h>
 #import "MSFDeviceGet.h"
+
+#import "MSFApplyCashVIewModel.h"
 
 static const CGFloat heightOfAboveCell = 303;//上面cell总高度
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
@@ -71,7 +72,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
-@property (nonatomic, strong, readwrite) MSFProductViewModel *viewModel;
+@property (nonatomic, strong, readwrite) MSFApplyCashVIewModel *viewModel;
 
 @end
 
@@ -83,7 +84,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	NSLog(@"MSFProductViewController `-dealloc`");
 }
 
-- (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
 	self = [UIStoryboard storyboardWithName:@"product" bundle:nil].instantiateInitialViewController;
   if (!self) {
     return nil;
@@ -133,21 +134,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.navigationItem.titleView = label;
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
-	self.viewModel.insurance = self.isInLifeInsurancePlaneSW.on;
-	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
-  RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, moneyInsurance) map:^id(NSString *value) {
+	self.viewModel.jionLifeInsurance = @"1";
+	RAC(self.viewModel, jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(id value) {
+		return value;
+	}];
+  RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
 	
-	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
+	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.loanFixedAmt);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
-	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
+	//RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.loanTerm);
 	self.moneySlider.delegate = self;
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
       return @0;
     }
-		self.viewModel.totalAmount = value;
+		self.viewModel.appLmt = value;
     return value;
   }];
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
@@ -157,7 +160,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return value;
   }];
 	
-	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
+	RAC(self.viewModel, appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
@@ -289,7 +292,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   } else {
     [self setRepayMoneyBackgroundViewAniMation:YES];
   }
-  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
+  //self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
+	
+	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.markets total:stringvalue.integerValue];
   [self.monthCollectionView reloadData];
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {

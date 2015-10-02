@@ -12,6 +12,10 @@
 #import "MSFMarket.h"
 #import "MSFSelectKeyValues.h"
 
+#import "MSFMarkets.h"
+#import "MSFTeams2.h"
+#import "MSFTeam.h"
+
 @interface MSFSelectionViewModel ()
 
 @property (nonatomic, strong) NSArray *models;
@@ -64,6 +68,26 @@
 		 
 		 return NSOrderedSame;
 	 }];
+	
+	return viewModel;
+}
+
++ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFMarkets *)markts total:(NSInteger)amount {
+	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
+	viewModel.models = [[[markts.teams.rac_sequence filter:^BOOL(MSFTeams2 *terms) {
+		return (terms.minAmount.integerValue <= amount) && (terms.maxAmount.integerValue >=	 amount);
+	}]
+	flattenMap:^RACStream *(MSFTeams2 *value) {
+			return value.team.rac_sequence;
+											 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
+												 if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
+													 return NSOrderedAscending;
+												 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
+													 return NSOrderedDescending;
+												 }
+												 
+												 return NSOrderedSame;
+											 }];
 	
 	return viewModel;
 }

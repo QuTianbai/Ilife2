@@ -47,9 +47,18 @@
 + (void)setBaseURLString:(NSString *)url;
 + (NSString *)baseURLString;
 
+//用户id
 + (NSString *)uniqueId;
 
+//交易密码
 + (void)setTradePassword:(NSString *)isSetTradePassword;
 + (NSString *)isSetTradePassword;
 
+//是否支持循环现金贷
++ (NSString *)isCircuteCash;
+
+//产品群编码
++ (NSString *)productCode;
+
 @end
+

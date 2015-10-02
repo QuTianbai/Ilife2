@@ -12,6 +12,7 @@
  */
 
 @class MSFMarket;
+@class MSFMarkets;
 @class MSFApplicationForms;
 @class MSFAddress;
 
@@ -20,6 +21,7 @@
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) MSFApplicationForms *model;
 @property (nonatomic, strong, readonly) MSFMarket *market;
+@property (nonatomic, strong, readonly) MSFMarkets *markets;
 @property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
 @property (nonatomic, strong, readonly) MSFAddress *currentAddress;
 @property (nonatomic, strong, readonly) MSFAddress *workAddress;

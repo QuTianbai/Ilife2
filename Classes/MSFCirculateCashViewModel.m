@@ -13,8 +13,6 @@
 
 @interface MSFCirculateCashViewModel ()
 
-@property (nonatomic, assign) id<MSFViewModelServices>services;
-
 @property (nonatomic, strong) MSFCirculateCashModel *infoModel;
 
 @end

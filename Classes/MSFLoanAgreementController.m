@@ -12,7 +12,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
 #import "MSFAgreementViewModel.h"
-#import "MSFProductViewModel.h"
 #import "MSFApplicationResponse.h"
 #import "MSFApplicationForms.h"
 #import "MSFLoanAgreementViewModel.h"
