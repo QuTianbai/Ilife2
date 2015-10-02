@@ -106,4 +106,12 @@ static MSFServer *server;
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"isSetTradePassword"];
 }
 
++ (NSString *)isCircuteCash {
+	return @"0";
+}
+
++ (NSString *)productCode {
+	return @"";
+}
+
 @end

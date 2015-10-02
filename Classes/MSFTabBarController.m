@@ -30,6 +30,11 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 
+#import "MSFCirculateCashTableViewController.h"
+#import "MSFCirculateCashViewModel.h"
+
+#import "MSFApplyCashVIewModel.h"
+
 @interface MSFTabBarController () 
 
 @property (nonatomic, weak, readwrite) MSFTabBarViewModel *viewModel;
@@ -74,10 +79,21 @@
 	
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:nil];
   UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
+	
+	if ([MSFUtils.isCircuteCash isEqualToString:@"1"]) {
+		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
+		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
+		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
+		
+	}
+	
   productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	
 	
   MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:nil];
   UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
+	
+	
   userpage.tabBarItem =  [self itemWithNormal:@"我的账户" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 	
 	self.viewControllers = @[homepage, productpage, userpage];
@@ -91,9 +107,20 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
-	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+	//MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+	
+	MSFApplyCashVIewModel *productViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
+	
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
+	
+	if ([MSFUtils.isCircuteCash isEqualToString:@"1"]) {
+		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
+		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
+		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
+		
+	}
+	
 	productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];

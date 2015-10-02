@@ -6,12 +6,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class MSFProductViewModel;
+@class MSFApplyCashVIewModel;
 
 @interface MSFProductViewController : UITableViewController
 
-@property (nonatomic, strong, readonly) MSFProductViewModel *viewModel;
+@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
 
-- (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel;
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel;
 
 @end

@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFViewModelServices.h"
+//#import "MSFViewModelServices.h"
+
+@class MSFCirculateCashViewModel;
 
 @interface MSFCirculateCashTableViewController : UITableViewController
 
-@property (nonatomic, assign) id<MSFViewModelServices> services;
+- (instancetype)initWithViewModel:(MSFCirculateCashViewModel *)viewModel;
+
+//@property (nonatomic, assign) id<MSFViewModelServices> services;
 
 @end

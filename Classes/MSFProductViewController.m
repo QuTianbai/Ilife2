@@ -38,6 +38,8 @@
 #import <ZSWTaggedString/ZSWTaggedString.h>
 #import "MSFDeviceGet.h"
 
+#import "MSFApplyCashVIewModel.h"
+
 static const CGFloat heightOfAboveCell = 303;//上面cell总高度
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
 static const CGFloat heightOfRepayView = 90;//预计每期还款金额的高度
@@ -71,7 +73,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 
-@property (nonatomic, strong, readwrite) MSFProductViewModel *viewModel;
+@property (nonatomic, strong, readwrite) MSFApplyCashVIewModel *viewModel;
 
 @end
 
@@ -83,7 +85,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	NSLog(@"MSFProductViewController `-dealloc`");
 }
 
-- (instancetype)initWithViewModel:(MSFProductViewModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
 	self = [UIStoryboard storyboardWithName:@"product" bundle:nil].instantiateInitialViewController;
   if (!self) {
     return nil;
@@ -135,13 +137,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	self.viewModel.insurance = self.isInLifeInsurancePlaneSW.on;
 	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
-  RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, moneyInsurance) map:^id(NSString *value) {
+  RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
 	
-	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.termAmountText);
+	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.loanFixedAmt);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
-	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.productTitle);
+	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.loanTerm);
 	self.moneySlider.delegate = self;
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
@@ -270,7 +272,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [self setRepayMoneyBackgroundViewAniMation:YES];
-	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+	//self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 
 #pragma mark - MSFSlider Delegate
@@ -285,19 +287,19 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)getStringValue:(NSString *)stringvalue {
   if (stringvalue.integerValue == 0) {
-    self.viewModel.product = nil;
+    //self.viewModel.product = nil;
   } else {
     [self setRepayMoneyBackgroundViewAniMation:YES];
   }
-  self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
+  //self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
   [self.monthCollectionView reloadData];
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
       [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+      //self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+		//self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
 }
 
