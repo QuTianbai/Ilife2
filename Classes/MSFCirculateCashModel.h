@@ -9,6 +9,28 @@
 #import "MSFObject.h"
 
 @interface MSFCirculateCashModel : MSFObject
+/*
+ *
+ *马上贷字段
+ */
+@property (nonatomic, copy) NSString *type;
+
+@property (nonatomic, copy) NSString *money;
+
+@property (nonatomic, copy) NSString *applyDate;
+
+@property (nonatomic, copy) NSString *period;
+
+@property (nonatomic, copy) NSString *currentPeriodDate;
+
+@property (nonatomic, copy) NSString *status;
+
+@property (nonatomic, copy) NSString *produceType;
+
+/*
+ *
+ *循环贷字段
+*/
 
 @property (nonatomic, copy) NSString *totalLimit;
 
