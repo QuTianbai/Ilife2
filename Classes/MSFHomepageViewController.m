@@ -16,7 +16,9 @@
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
 
-@interface MSFHomepageViewController () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface MSFHomepageViewController ()
+<UICollectionViewDataSource,
+UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) UIView *separatorView;
 @property (nonatomic, strong, readwrite) MSFHomepageViewModel *viewModel;
@@ -85,7 +87,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = width / 2.162;
+	CGFloat height = width / 2.16;
 	return CGSizeMake(width, height);
 }
 
@@ -106,7 +108,7 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat width = CGRectGetWidth(UIScreen.mainScreen.bounds);
-	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.162 - 112.5;
+	CGFloat height = CGRectGetHeight(UIScreen.mainScreen.bounds) - width / 2.16 - 112.5;
 	return CGSizeMake(width, height);
 }
 

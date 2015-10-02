@@ -54,7 +54,8 @@
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-	return self.banners.count;
+	return 0;
+	//return self.banners.count;
 }
 
 - (NSURL *)imageURLAtIndexPath:(NSIndexPath *)indexPath {
