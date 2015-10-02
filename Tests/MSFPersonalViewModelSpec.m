@@ -10,6 +10,7 @@
 #import "MSFApplicationForms.h"
 #import "MSFTestAddressViewModel.h"
 #import "MSFApplicationResponse.h"
+#import "MSFResponse.h"
 
 QuickSpecBegin(MSFPersonalViewModelSpec)
 
@@ -50,13 +51,11 @@ it(@"should update address", ^{
 
 it(@"should submit personal information", ^{
 	// given
-	[given([viewModel.formsViewModel submitSignalWithPage:2]) willDo:^id(NSInvocation *invocation) {
-		MSFApplicationResponse *model = [MTLJSONAdapter modelOfClass:[MSFApplicationResponse class] fromJSONDictionary:@{
-			@"applyNo": @"20150821000368",
-			@"id": @368,
-			@"personId": @388
-		} error:nil];
-		return [RACSignal return:model];
+	[given([viewModel.formsViewModel submitUserInfo]) willDo:^id(NSInvocation *invocation) {
+		MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{
+			@"complateCustInfo": @"100"
+		}];
+		return [RACSignal return:response];
 	}];
 	
 	model.income = @"1000";
@@ -67,6 +66,9 @@ it(@"should submit personal information", ^{
 	model.email = @"gitmac@qq.com";
 	model.currentTown = @"foo";
 	model.currentStreet = @"bar";
+	model.houseType = @"foo";
+	model.maritalStatus = @"bar";
+	model.abodeDetail = @"detal";
 	
 	[[viewModel.executeAlterAddressCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
 	
@@ -74,14 +76,12 @@ it(@"should submit personal information", ^{
 	NSError *error = nil;
 	
 	// when
-	MSFApplicationResponse *response = [[viewModel.executeCommitCommand execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
+	MSFResponse *response = [[viewModel.executeCommitCommand execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
 	
 	// then
 	expect(@(success)).to(beTruthy());
 	expect(error).to(beNil());
-	expect(response.applyNo).to(equal(@"20150821000368"));
-	expect(response.applyID).to(equal(@"368"));
-	expect(response.personId).to(equal(@"388"));
+	expect(response.parsedResult[@"complateCustInfo"]).to(equal(@"100"));
 });
 
 it(@"should not accept with error QQ", ^{
@@ -96,6 +96,9 @@ it(@"should not accept with error QQ", ^{
 	model.email = @"gitmac@qq.com";
 	model.currentTown = @"foo";
 	model.currentStreet = @"bar";
+	model.houseType = @"foo";
+	model.maritalStatus = @"bar";
+	model.abodeDetail = @"detal";
 	
 	// when
 	model.qq = @"123";
@@ -126,6 +129,9 @@ it(@"should accept none home telephone", ^{
 	model.currentTown = @"foo";
 	model.currentStreet = @"bar";
 	model.qq = @"12345";
+	model.houseType = @"foo";
+	model.maritalStatus = @"bar";
+	model.abodeDetail = @"detal";
 	
 	// when
 	model.homeCode = @"";

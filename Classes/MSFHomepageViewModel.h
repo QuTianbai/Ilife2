@@ -13,12 +13,15 @@
 
 @class RACCommand;
 @class MSFBannersViewModel;
+@class MSFCirculateCashViewModel;
 
 @interface MSFHomepageViewModel : RVMViewModel
 
 @property (nonatomic, readonly) NSArray *viewModels;
 @property (nonatomic, readonly) RACCommand *refreshCommand;
 @property (nonatomic, readonly) MSFBannersViewModel *bannersViewModel;
+@property (nonatomic, readonly) MSFCirculateCashViewModel *circulateCashViewModel;
+
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath;

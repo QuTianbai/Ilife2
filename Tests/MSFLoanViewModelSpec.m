@@ -16,7 +16,7 @@ beforeEach(^{
   NSData *data = [NSData dataWithContentsOfURL:URL];
   NSDictionary *representation = [[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil] firstObject];
   MSFApplyList *model = [MTLJSONAdapter modelOfClass:MSFApplyList.class fromJSONDictionary:representation error:nil];
-  viewModel = [[MSFLoanViewModel alloc] initWithModel:model];
+  viewModel = [[MSFLoanViewModel alloc] initWithModel:model services:nil];
 });
 
 it(@"should initialize", ^{

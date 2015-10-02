@@ -15,6 +15,8 @@
 #import "MSFUtils.h"
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
+#import "MSFClient.h"
+#import "MSFUser.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -50,6 +52,7 @@ UICollectionViewDelegateFlowLayout>
 	self.navigationItem.titleView = label;
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.collectionView.allowsSelection = NO;
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
@@ -113,7 +116,7 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	MSFLoanViewModel *viewModel = [self.viewModel viewModelForIndexPath:indexPath];
+	id viewModel = [self.viewModel viewModelForIndexPath:indexPath];
 	NSString *reusableIdentifier = [self.viewModel reusableIdentifierForIndexPath:indexPath];
 	UICollectionViewCell <MSFReactiveView> *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reusableIdentifier forIndexPath:indexPath];
 	[cell bindViewModel:viewModel];

@@ -8,7 +8,7 @@
         <!--Personal View Controller-->
         <scene sceneID="2HT-0L-DgC">
             <objects>
-                <tableViewController storyboardIdentifier="page2" id="Xxh-8g-Ago" customClass="MSFPersonalViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="page2" hidesBottomBarWhenPushed="YES" id="Xxh-8g-Ago" customClass="MSFPersonalViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qs5-k5-Qk7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

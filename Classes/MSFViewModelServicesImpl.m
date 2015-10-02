@@ -30,6 +30,8 @@
 #import "MSFCertificatesCollectionViewController.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFConfirmContractViewController.h"
+#import "MSFTradeTableViewController.h"
+#import "MSFRepaymentTableViewController.h"
 
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
@@ -63,6 +65,12 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFTradeTableViewController class]]) {
+		viewController = [[MSFTradeTableViewController alloc]initWithStyle:UITableViewStylePlain];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFRepaymentTableViewController class]]) {
+		viewController = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
