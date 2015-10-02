@@ -93,7 +93,8 @@ static NSDictionary *messages;
 		[devices addObject:[UIDevice currentDevice].systemName];
 		[devices addObject:info[@"CFBundleVersion"]];
 		[devices addObject:OpenUDID.value];
-		[devices addObject:@"00"];
+		[devices addObject:@"0,0"];
+		[devices addObject:@""];
 		NSString *cookie = [NSString stringWithFormat:@"uid=\"%@\";Domain=i.msxf.com;isHttpOnly=true", OpenUDID.value];
 		
 		return [@{
@@ -117,6 +118,33 @@ static NSDictionary *messages;
 			[[RCLocationManager sharedManager] stopUpdatingLocation];
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
+	[self.reachabilityManager startMonitoring];
+	[self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+		NSString *network;
+		switch (status) {
+			case AFNetworkReachabilityStatusUnknown: {
+				network = @"9";
+				break;
+			}
+			case AFNetworkReachabilityStatusNotReachable: {
+				network = @"0";
+				break;
+			}
+			case AFNetworkReachabilityStatusReachableViaWWAN: {
+				network = @"4";
+				break;
+			}
+			case AFNetworkReachabilityStatusReachableViaWiFi: {
+				network = @"1";
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
+		[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:coordinate network:network]];
+	}];
 	
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"code-message" withExtension:@"json"];
 	NSData *data = [NSData dataWithContentsOfURL:URL];
@@ -532,7 +560,7 @@ static NSDictionary *messages;
 
 #pragma mark - Private
 
-+ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate {
++ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate network:(NSString *)network {
 	// Device:平台 +系统版本; + 渠道; + App内部版本号; + 制造商; + 牌子; + 型号; + 编译ID; + 设备ID; + GPS(lat,lng)
 	// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
 	NSDictionary *info = [NSBundle mainBundle].infoDictionary;
@@ -546,8 +574,13 @@ static NSDictionary *messages;
 	[devices addObject:info[@"CFBundleVersion"]];
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
+	[devices addObject:network];
 	
 	return [devices componentsJoinedByString:@";"];
+}
+
++ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate {
+	return [self deviceWithCoordinate:coordinate network:@""];
 }
 
 + (NSError *)userRequiredError {
