@@ -19,9 +19,25 @@ NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
 static const int kCounterLength = 60;
 
+const NSInteger MSFAuthorizeUsernameMaxLength = 11;
+const NSInteger MSFAuthorizePasswordMaxLength = 16;
+const NSInteger MSFAuthorizeIdentifierMaxLength = 18;
+const NSInteger MSFAuthorizeCaptchaMaxLength = 4;
+const NSInteger MSFAuthorizeNameMaxLength = 20;
+
+NSString *const MSFAuthorizeCaptchaSignUp = @"REG";
+NSString *const MSFAuthorizeCaptchaSignIn = @"LOGIN";
+NSString *const MSFAuthorizeCaptchaLoan = @"LOAN";
+NSString *const MSFAuthorizeCaptchaInitTransPassword = @"INIT_TRANS_PASSWORD";
+NSString *const MSFAuthorizeCaptchaModifyTransPassword = @"MODIFY_TRANS_PASSWORD";
+NSString *const MSFAuthorizeCaptchaForgetTransPassword = @"FORGET_TRANS_PASSWORD";
+NSString *const MSFAuthorizeCaptchaForgetPassword = @"FORGET_PASSWORD";
+NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
+
 @interface MSFAuthorizeViewModel ()
 
 @property (nonatomic, assign) BOOL counting;
+@property (nonatomic, strong, readwrite) RACSubject *signInInvalidSignal;
 
 @end
 
@@ -41,34 +57,23 @@ static const int kCounterLength = 60;
 	_counter = @"获取验证码";
 	_agreeOnLicense = NO;
 	_counting = NO;
+	_signInValid = YES;
+	_permanent = NO;
 	_loginType = [[NSUserDefaults standardUserDefaults] boolForKey:@"install-boot"] ? MSFLoginSignIn :MSFLoginSignUp;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"install-boot"];
+	_captchaHighlightedImage = [[UIImage imageNamed:@"bg-send-captcha-highlighted"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
+	_captchaNomalImage = [[UIImage imageNamed:@"bg-send-captcha"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
 	
 	@weakify(self)
 	_executeSignIn = [[RACCommand alloc] initWithEnabled:self.signInValidSignal
 		signalBlock:^RACSignal *(id input) {
 			@strongify(self)
-			if (![self.username isMobile]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
-			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"密码错误"]];
-			}
-		 
 			return [self executeSignInSignal];
 		}];
 	
 	_executeSignUp = [[RACCommand alloc] initWithEnabled:self.signUpValidSignal
 		signalBlock:^RACSignal *(id input) {
 			@strongify(self)
-			if (![self.username isMobile]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
-			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8~16位字母和数字组合的密码"]];
-			} else if (![self.captcha isCaptcha]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入6位验证码"]];
-			} else if (!self.agreeOnLicense) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请仔细阅读贷款协议"]];
-			}
 		 
 			return [self executeSignUpSignal];
 		}];
@@ -83,7 +88,7 @@ static const int kCounterLength = 60;
 	_executeCaptcha = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		if (![self.username isMobile]) {
-			return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
+			return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
 		}
 		return [[self executeCaptchaSignal]
 			doNext:^(id x) {
@@ -103,13 +108,6 @@ static const int kCounterLength = 60;
 	_executeFindPassword = [[RACCommand alloc] initWithEnabled:self.findPasswordValidSignal
 		signalBlock:^RACSignal *(id input) {
 			@strongify(self)
-			if (![self.username isMobile]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
-			} else if (![self.captcha isCaptcha]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入6位验证码"]];
-			} else if (![self.password isPassword]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入8~16位字母和数字组合的新密码"]];
-			}
 		 
 			return [self executeFindPasswordSignal];
 		}];
@@ -118,7 +116,7 @@ static const int kCounterLength = 60;
 		signalBlock:^RACSignal *(id input) {
 			@strongify(self)
 			if (![self.username isMobile]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请输入正确的手机号"]];
+				return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
 			}
 			return [[self executeFindPasswordCaptchaSignal] doNext:^(id x) {
 				self.counting = YES;
@@ -138,6 +136,8 @@ static const int kCounterLength = 60;
 			[MSFUtils setHttpClient:nil];
 		}];
 	}];
+	
+	self.signInInvalidSignal = [[RACSubject subject] setNameWithFormat:@"`MSFAuthorizeViewModel signIn captcha required signal`"];
 	
 	return self;
 }
@@ -193,18 +193,101 @@ static const int kCounterLength = 60;
 #pragma mark - Private
 
 - (RACSignal *)executeSignInSignal {
+	NSError *error;
+	if (self.loginType == MSFLoginIDSignIn) {
+	  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+			NSString *str = @"请填写真实的姓名";
+			if (self.name.length == 0) {
+				str = @"请填写真实的姓名";
+			}
+			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: str,
+			}];
+			return [RACSignal error:error];
+		}
+		if (self.card.length != 18) {
+			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
+			}];
+			return [RACSignal error:error];
+		}
+	} else {
+		if (![self.username isMobile] || ![self.password isPassword]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"手机号或密码错误，请重新填写"]];
+		}
+	}
+	if (![self.password isPassword]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"密码错误，请重新填写"]];
+	}
 	MSFUser *user = [MSFUser userWithServer:self.services.server];
-	return [[MSFClient
+	
+	if (self.loginType == MSFLoginIDSignIn) {
+	return [[[MSFClient
+		signInAsUser:user username:self.name password:self.password citizenID:self.card]
+		catch:^RACSignal *(NSError *error) {
+			if ([error.userInfo[MSFClientErrorMessageCodeKey] isEqualToString:@"40012101"]) {
+				_signInValid = NO;
+				[(RACSubject *)self.signInInvalidSignal sendNext:nil];
+			}
+			return [RACSignal error:error];
+		}]
+		doNext:^(id x) {
+			[MSFUtils setHttpClient:x];
+		}];
+	}
+	return [[[MSFClient
 		signInAsUser:user password:self.password phone:self.username captcha:self.captcha]
+		catch:^RACSignal *(NSError *error) {
+			if ([error.userInfo[MSFClientErrorMessageCodeKey] isEqualToString:@"40012101"]) {
+				_signInValid = NO;
+				[(RACSubject *)self.signInInvalidSignal sendNext:nil];
+			}
+			return [RACSignal error:error];
+		}]
 		doNext:^(id x) {
 			[MSFUtils setHttpClient:x];
 		}];
 }
 
 - (RACSignal *)executeSignUpSignal {
+	NSError *error = nil;
+	// 另外支持输入"."、"。"、"·"和"▪"。但是第一位和最后一位必须是汉字。
+  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+    NSString *str = @"请填写真实的姓名";
+    if (self.name.length == 0) {
+      str = @"请填写真实的姓名";
+    }
+    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: str,
+      }];
+    return [RACSignal error:error];
+  }
+	if (self.card.length != 18) {
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
+		}];
+    return [RACSignal error:error];
+	}
+  if (!self.expired && !self.permanent ) {
+    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证有效期",
+                                                                                    }];
+    return [RACSignal error:error];
+  }
+	
+	if (![self.username isMobile]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
+	} else if (![self.password isPassword]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写8到16位数字和字母组合的密码"]];
+	} else if (![self.captcha isCaptcha]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
+	} else if (!self.agreeOnLicense) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请阅读注册协议"]];
+	}
+	
 	MSFUser *user = [MSFUser userWithServer:self.services.server];
 	return [[MSFClient
-		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
+		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:self.expired]
 		doNext:^(id x) {
 			[MSFUtils setHttpClient:x];
 		}];
@@ -216,8 +299,32 @@ static const int kCounterLength = 60;
 }
 
 - (RACSignal *)executeFindPasswordSignal {
+	NSError *error;
+	if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+		NSString *str = @"请填写真实的姓名";
+		if (self.name.length == 0) {
+			str = @"请填写真实的姓名";
+		}
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
+		return [RACSignal error:error];
+	}
+	if (self.card.length != 18) {
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
+		}];
+		return [RACSignal error:error];
+	}
+	if (![self.username isMobile]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
+	} else if (![self.password isPassword]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写8到16位数字和字母组合的密码"]];
+	} else if (![self.captcha isCaptcha]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
+	}
 	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client resetPassword:self.password phone:self.username captcha:self.captcha];
+	return [client resetSignInPassword:self.password phone:self.username captcha:self.captcha name:self.name citizenID:self.card];
 }
 
 - (RACSignal *)executeFindPasswordCaptchaSignal {

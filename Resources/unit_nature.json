@@ -1,27 +1,97 @@
  [
+	{
+	"text": "党政机关",
+	"code": "A",
+	"typeId": "003"
+	},
+	{
+	"text": "事业单位",
+	"code": "B",
+	"typeId": "003"
+	},
+	{
+	"text": "军队",
+	"code": "C",
+	"typeId": "003"
+	},
+	{
+	"text": "社会团体",
+	"code": "D",
+	"typeId": "003"
+	},
+	{
+	"text": "内资企业",
+	"code": "E",
+	"typeId": "003"
+	},
+	{
+	"text": "国有企业",
+	"code": "F",
+	"typeId": "003"
+	},
+	{
+	"text": "集体企业",
+	"code": "G",
+	"typeId": "003"
+	},
+	{
+	"text": "股份合作企业",
+	"code": "H",
+	"typeId": "003"
+	},
+	{
+	"text": "联营企业",
+	"code": "I",
+	"typeId": "003"
+	},
   {
-  "text": "国有企业",
-  "code": "ET01",
+  "text": "有限责任公司",
+  "code": "J",
   "typeId": "003"
   },
   {
-  "text": "机关、事业单位",
-  "code": "ET02",
-  "typeId": "003"
-  },
-  {
-  "text": "三资企业",
-  "code": "ET03",
+  "text": "股份有限公司",
+  "code": "K",
   "typeId": "003"
   },
   {
   "text": "私营企业",
-  "code": "ET04",
+  "code": "L",
   "typeId": "003"
   },
   {
-  "text": "其他企业",
-  "code": "ET05",
+  "text": "外商投资企业(含港、澳、台)",
+  "code": "M",
   "typeId": "003"
-  }
+  },
+  {
+  "text": "中外合资经营企业(含港、澳、台)",
+  "code": "N",
+  "typeId": "003"
+	},
+	{
+	"text": "中外合作经营企业(含港、澳、台)",
+	"code": "O",
+	"typeId": "003"
+	},
+	{
+	"text": "外资企业(含港、澳、台)",
+	"code": "P",
+	"typeId": "003"
+	},
+	{
+	"text": "外商投资股份有限公司(含港、澳、台)",
+	"code": "Q",
+	"typeId": "003"
+	},
+	{
+	"text": "个体经营",
+	"code": "R",
+	"typeId": "003"
+	},
+	{
+	"text": "其他企业",
+	"code": "Z",
+	"typeId": "003"
+	}
 ]

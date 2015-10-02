@@ -20,7 +20,7 @@ QuickSpecBegin(MSFCipherSpec)
 __block MSFTestCipher *encrpytion;
 
 beforeEach(^{
-  encrpytion = [[MSFTestCipher alloc] initWithSession:1432733616221];
+  encrpytion = [[MSFTestCipher alloc] initWithTimestamp:1432733616221];
 });
 
 it(@"should initialize", ^{
@@ -30,12 +30,12 @@ it(@"should initialize", ^{
 
 it(@"should has response local timestamp", ^{
   // then
-  expect(@(encrpytion.serialization)).to(equal(@1432733599564));
+  expect(@(encrpytion.client)).to(equal(@1432733599564));
 });
 
 it(@"should has server timestamp", ^{
   // then
-  expect(@(encrpytion.sessionId)).to(equal(@1432733616221));
+  expect(@(encrpytion.internet)).to(equal(@1432733616221));
 });
 
 it(@"should has timestamp", ^{
@@ -45,11 +45,20 @@ it(@"should has timestamp", ^{
 
 it(@"should encrypt with request parameters", ^{
   // given
-  NSDictionary *params = @{@"versionCode": @"10004",@"channel": @"msfinance"};
+  NSDictionary *params = @{
+		@"versionCode": @"10004",
+		@"channel": @"msfinance"
+	};
+	
   MSFSignature *signature = [encrpytion signatureWithPath:@"/msfinanceapi/v1/app/check_version" parameters:params];
-  NSDictionary *parameters = [@{@"sign": signature.sign,@"timestamp": signature.timestamp}
-   mtl_dictionaryByAddingEntriesFromDictionary:params];
+	
+  NSDictionary *parameters = [@{
+		@"sign": signature.sign,
+		@"timestamp": signature.timestamp
+	} mtl_dictionaryByAddingEntriesFromDictionary:params];
+	
   MSFClient *client = mock(MSFClient.class);
+	
   [given([client requestWithMethod:@"GET" path:@"msfinanceapi/v1/app/check_version" parameters:parameters])
    willDo:^id(NSInvocation *invocation) {
     AFHTTPRequestSerializer *serializer = [AFHTTPRequestSerializer serializer];
@@ -62,7 +71,7 @@ it(@"should encrypt with request parameters", ^{
   NSURLRequest *request = [client requestWithMethod:@"GET" path:@"msfinanceapi/v1/app/check_version" parameters:parameters];
 
   // then
-  NSURL *expectURL = [NSURL URLWithString:@"http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10004&channel=msfinance&sign=313161B12FD90BABDD268A91C1855841&timestamp=1432733617267"];
+  NSURL *expectURL = [NSURL URLWithString:@"http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10004&channel=msfinance&sign=A4E744750809ECAA7503BFA66F77E822&timestamp=1432733617267"];
   
   expect(request.URL.uq_queryDictionary).to(equal(expectURL.uq_queryDictionary));
 });

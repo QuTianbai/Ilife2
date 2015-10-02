@@ -10,4 +10,8 @@
 
 @implementation MSFUserContact
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{};
+}
+
 @end

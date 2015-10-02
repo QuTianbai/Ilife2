@@ -51,4 +51,7 @@
 
 - (BOOL)isNum;
 
+- (BOOL)isValidName;
+- (BOOL)isValidIDCardRange:(NSRange)range;
+
 @end

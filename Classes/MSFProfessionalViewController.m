@@ -34,7 +34,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionSchool = 1,
 	MSFProfessionalViewSectionCompany = 2,
 	MSFProfessionalViewSectionDepartment = 3,
-	MSFProfessionalViewSectionContact = 4,
+	MSFProfessionalViewSectionIncome = 4,
+	MSFProfessionalViewSectionContact = 5,
 };
 
 @interface MSFProfessionalViewController ()
@@ -54,7 +55,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 @property (nonatomic, weak) IBOutlet UITextField *programLength;//学制 学制
 
 @property (nonatomic, weak) IBOutlet UIButton *enrollmentYearButton;//入学年份 入学年份
-@property (nonatomic, weak) IBOutlet UIButton *programLengthButton;//学制 学制
+
+//收入信息
+@property (weak, nonatomic) IBOutlet UITextField *incomeTF;//工作月收入
+@property (weak, nonatomic) IBOutlet UITextField *extraIncomeTF;//其他收入
+@property (weak, nonatomic) IBOutlet UITextField *loanTF;//其他贷款每月偿还额
 
 // 单位信息
 @property (nonatomic, weak) IBOutlet UITextField *company;//单位/个体全称 单位/个体名称
@@ -69,7 +74,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 @property (nonatomic, weak) IBOutlet UITextField *position;//职位 title
 @property (nonatomic, weak) IBOutlet UITextField *currentJobDate;//现工作开始时间 工作开始时间
 
-@property (nonatomic, weak) IBOutlet UIButton *departmentButton;//任职部门 任职部门
 @property (nonatomic, weak) IBOutlet UIButton *positionButton;//职位 title
 @property (nonatomic, weak) IBOutlet UIButton *currentJobDateButton;//现工作开始时间 工作开始时间
 
@@ -112,41 +116,89 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	self.navigationItem.title = @"职业信息";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	
+	@weakify(self)
+	//教育程度
+	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
+	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
+	
+	//社会身份
+	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
+	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
+	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.tableView reloadData];
+	}];
 
+	//学校名称
 	[[self.universityName rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
-			if (textField.text.length > 14) {
-				textField.text = [textField.text substringToIndex:14];
+			if (textField.text.length > 80) {
+				textField.text = [textField.text substringToIndex:80];
 			}
 		}];
-	
-	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, universityName);
+	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.model, unitName);
 	RAC(self.universityName, text) = universityNameChannel;
 	[self.universityName.rac_textSignal subscribe:universityNameChannel];
 	
-	[[self.company rac_signalForControlEvents:UIControlEventEditingChanged]
+	//入学时间
+	[RACObserve(self.viewModel.model, empStandFrom) subscribeNext:^(NSString *x) {
+		@strongify(self)
+		if (x.length > 0) {
+			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
+		}
+	}];
+	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		[self enrollmentYearSignal];
+	}];
+	
+	//学制
+	[[self.programLength rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
-			if (textField.text.length > 20) {
-				textField.text = [textField.text substringToIndex:20];
+			if (textField.text.length > 2) {
+				textField.text = [textField.text substringToIndex:2];
 			}
 		}];
+	RACChannelTerminal *eductionalLengthChannel = RACChannelTo(self.viewModel.model, programLength);
+	RAC(self.programLength, text) = eductionalLengthChannel;
+	[self.programLength.rac_textSignal subscribe:eductionalLengthChannel];
 	
-	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel, company);
+	//参加工作日期
+	RAC(self.workingLength, text) = RACObserve(self.viewModel.model, workStartDate);
+	[[self.workingLengthButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		[self startedWorkDateSignal];
+	}];
+	
+	//单位全称
+	[[self.company rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 80) {
+				textField.text = [textField.text substringToIndex:80];
+			}
+		}];
+	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.model, unitName);
 	RAC(self.company, text) = companyChannel;
 	[self.company.rac_textSignal subscribe:companyChannel];
 	
-	[[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
-		subscribeNext:^(UITextField *textField) {
-			if (textField.text.length > 4) {
-				textField.text = [textField.text substringToIndex:4];
-			}
-		}];
+	//行业类别
+	RAC(self.industry, text) = RACObserve(self.viewModel, industryTitle);
+	self.industryButton.rac_command = self.viewModel.executeIndustryCommand;
 	
-	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel, unitExtensionTelephone);
-	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
-	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
+	//单位性质
+	RAC(self.companyType, text) = RACObserve(self.viewModel, natureTitle);
+	self.companyTypeButton.rac_command = self.viewModel.executeNatureCommand;
 	
-	@weakify(self)
+	//单位地址
+	RAC(self.address, text) = RACObserve(self.viewModel, address);
+	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
+	
+	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.model, empAdd);
+	RAC(self.workTown, text) = workTownChannel;
+	[self.workTown.rac_textSignal subscribe:workTownChannel];
+	
+	//单位电话
 	[[self.unitAreaCode rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
 			@strongify(self)
@@ -161,8 +213,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
-	
-	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel, unitAreaCode);
+	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.model, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
 	
@@ -172,67 +223,76 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:8];
 			}
 		}];
-	
-	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel, unitTelephone);
+	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.model, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
 	
-	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.model, workTown);
-	RAC(self.workTown, text) = workTownChannel;
-	[self.workTown.rac_textSignal subscribe:workTownChannel];
+	[[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 4) {
+				textField.text = [textField.text substringToIndex:4];
+			}
+		}];
+	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.model, unitExtensionTelephone);
+	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
+	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
-	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
-	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
-	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
-	RAC(self, title) = RACObserve(self.viewModel, socialstatusTitle);
-	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
-	RAC(self.programLength, text) = RACObserve(self.viewModel, eductionalSystmeTitle);
-	self.programLengthButton.rac_command = self.viewModel.executeEductionalSystmeCommand;
-	RAC(self.workingLength, text) = RACObserve(self.viewModel, seniorityTitle);
-	self.workingLengthButton.rac_command = self.viewModel.executeWorkingLengthCommand;
-	RAC(self.industry, text) = RACObserve(self.viewModel, industryTitle);
-	self.industryButton.rac_command = self.viewModel.executeIndustryCommand;
-	RAC(self.companyType, text) = RACObserve(self.viewModel, natureTitle);
-	self.companyTypeButton.rac_command = self.viewModel.executeNatureCommand;
-	
+	//部门
 	[[self.department rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
 			if (textField.text.length > 20) {
 				textField.text = [textField.text substringToIndex:20];
 			}
 		}];
-	
 	RACChannelTerminal *departmentChannel = RACChannelTo(self.viewModel.model, department);
 	RAC(self.department, text) = departmentChannel;
 	[self.department.rac_textSignal subscribe:departmentChannel];
-
+	
+	//职位
 	RAC(self.position, text) = RACObserve(self.viewModel, positionTitle);
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
-	RAC(self.address, text) = RACObserve(self.viewModel, address);
-	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
-	[RACObserve(self.viewModel, enrollmentYear) subscribeNext:^(NSString *x) {
-		@strongify(self)
-		if (x.length > 0) {
-			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
-		}
-	}];
-	
-	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		@strongify(self)
-		[self enrollmentYearSignal];
-	}];
-	RAC(self.currentJobDate, text) = RACObserve(self.viewModel, startedDate);
+	//入职日期
+	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.model, empStandFrom);
 	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self startedDateSignal];
 	}];
 	
-	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.tableView reloadData];
-	}];
+	//工作收入
+	[[self.incomeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 5) {
+				textField.text = [textField.text substringToIndex:5];
+			}
+		}];
+	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.model, income);
+	RAC(self.incomeTF, text) = incomeChannel;
+	[self.incomeTF.rac_textSignal subscribe:incomeChannel];
 	
+	//其他收入
+	[[self.extraIncomeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 5) {
+				textField.text = [textField.text substringToIndex:5];
+			}
+		}];
+	RACChannelTerminal *extraIncomeChannel = RACChannelTo(self.viewModel.model, otherIncome);
+	RAC(self.extraIncomeTF, text) = extraIncomeChannel;
+	[self.extraIncomeTF.rac_textSignal subscribe:extraIncomeChannel];
+	
+	//其他贷额
+	[[self.loanTF rac_signalForControlEvents:UIControlEventEditingChanged]
+		subscribeNext:^(UITextField *textField) {
+			if (textField.text.length > 6) {
+				textField.text = [textField.text substringToIndex:6];
+			}
+		}];
+	RACChannelTerminal *loanChannel = RACChannelTo(self.viewModel.model, familyExpense);
+	RAC(self.loanTF, text) = loanChannel;
+	[self.loanTF.rac_textSignal subscribe:loanChannel];
+	
+	//提交
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -249,10 +309,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	/*
 	[self.workTown.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeCommitCommand execute:nil];
-	}];
+	}];*/
 }
 
 - (void)back {
@@ -276,12 +337,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			return [super tableView:tableView titleForHeaderInSection:section];
 		}
 	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"]) {
-		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionDepartment) {
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"] || [self.viewModel.socialstatus.code isEqualToString:@"SI04"]) {
+		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionIncome || section == MSFProfessionalViewSectionDepartment) {
 			return [super tableView:tableView titleForHeaderInSection:section];
 		}
 	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI03"] && section == 0) {
+	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && section == 0) {
 		return [super tableView:tableView titleForHeaderInSection:section];
 	}
 	
@@ -300,12 +361,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			return [super tableView:tableView numberOfRowsInSection:section];
 		}
 	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"]) {
-		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionDepartment) {
+	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"] || [self.viewModel.socialstatus.code isEqualToString:@"SI04"]) {
+		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionIncome || section == MSFProfessionalViewSectionDepartment) {
 			return [super tableView:tableView numberOfRowsInSection:section];
 		}
 	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI03"] && section == 0) {
+	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && section == 0) {
 		return 2;
 	}
 	return 0;
@@ -375,12 +436,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
+			 self.viewModel.model.workStartDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.startedDate = nil;
+			 self.viewModel.model.empStandFrom = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -409,12 +470,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.viewModel.startedDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
+			 self.viewModel.model.empStandFrom = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.viewModel.startedDate = nil;
+			 self.viewModel.model.empStandFrom = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -432,7 +493,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
 		NSInteger year = [components year];
 		NSMutableArray *dataSource = [NSMutableArray array];
-		for (int i = 0; i < 7; i ++) {
+		for (int i = 0; i < 5; i ++) {
 			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 6)]];
 		}
 		
@@ -441,7 +502,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		 rows:dataSource
 		 initialSelection:dataSource.count-1
 		 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
-			self.viewModel.enrollmentYear = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
+			self.viewModel.model.empStandFrom = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 		} cancelBlock:^(ActionSheetStringPicker *picker) {

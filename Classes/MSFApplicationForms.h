@@ -129,7 +129,7 @@
 @property (nonatomic, strong) NSArray *contrastList;//联系人信息
 
 //baseInfo
-@property (nonatomic, copy) NSString *homeLine;//住宅电话，包含区号
+@property (nonatomic, copy) NSString *homeLine;//住宅电话
 @property (nonatomic, copy) NSString *homeCode;//住宅电话区号
 @property (nonatomic, copy) NSString *email;//个人电子邮箱 常用邮箱
 

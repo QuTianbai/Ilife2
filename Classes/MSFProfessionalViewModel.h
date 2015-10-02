@@ -31,8 +31,8 @@
 
 // 学生
 @property (nonatomic, strong) NSString *school;
-@property (nonatomic, strong) MSFSelectKeyValues *eductionalSystme;
-@property (nonatomic, strong) NSString *eductionalSystmeTitle;
+//@property (nonatomic, strong) MSFSelectKeyValues *eductionalSystme;
+//@property (nonatomic, strong) NSString *eductionalSystmeTitle;
 @property (nonatomic, strong) NSString *enrollmentYear;
 
 #pragma mark - 职业信息
@@ -69,7 +69,7 @@
 @property (nonatomic, readonly) MSFApplicationForms *model;
 @property (nonatomic, readonly) RACCommand *executeEducationCommand;
 @property (nonatomic, readonly) RACCommand *executeSocialStatusCommand;
-@property (nonatomic, readonly) RACCommand *executeEductionalSystmeCommand;
+//@property (nonatomic, readonly) RACCommand *executeEductionalSystmeCommand;
 @property (nonatomic, readonly) RACCommand *executeWorkingLengthCommand;
 
 // 单位信息

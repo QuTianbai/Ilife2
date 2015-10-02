@@ -107,7 +107,7 @@
 }
 
 - (BOOL)isCaptcha {
-	return self.length == 6;
+	return self.length == 4;
 }
 
 - (BOOL)isChineseName {
@@ -120,6 +120,53 @@
  NSScanner *scan = [NSScanner scannerWithString:self];
 	int val;
 	return[scan scanInt:&val] && [scan isAtEnd];
+}
+
+#pragma mark - Custom Accessors
+
+- (BOOL)isValidName {
+	NSCharacterSet *blockedCharacters = [[NSCharacterSet letterCharacterSet] invertedSet];
+	NSCharacterSet *blockedCharatersSquared = [NSCharacterSet characterSetWithCharactersInString:@"➋➌➍➎➏➐➑➒"];
+	return ([self rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound) || ([self rangeOfCharacterFromSet:blockedCharatersSquared].location != NSNotFound);
+}
+
+- (BOOL)isValidIDCardRange:(NSRange)range {
+	if (range.location > 17) return NO;
+	if (range.location == 17) {
+		NSCharacterSet *blockedCharacters = [[NSCharacterSet identifyCardCharacterSet] invertedSet];
+		return ([self rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+	}
+	NSCharacterSet *blockedCharacters = [[NSCharacterSet numberCharacterSet] invertedSet];
+	return ([self rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+}
+
+- (BOOL)isValidUsername {
+	if (self.length == 0) return NO;
+	if (self.length != 11) return NO;
+	if (![[self substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"1"]) {
+		return NO;
+	}
+	return YES;
+}
+
+- (BOOL)isValidPassword {
+	BOOL lengValid = self.length > 7 && self.length < 17;
+	BOOL formValid = NO;
+	NSString *digitTrimming  = [self stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+	NSString *letter = [self stringByTrimmingCharactersInSet:[NSCharacterSet letterCharacterSet]];
+	NSString *upper = [letter stringByTrimmingCharactersInSet:[NSCharacterSet uppercaseLetterCharacterSet]];
+	if (digitTrimming.length > 0 && digitTrimming.length < self.length) {
+		formValid = YES;
+	} else if (upper.length > 0 && upper.length < self.length) {
+		formValid = YES;
+	} else if (digitTrimming.length == self.length && upper.length == self.length) {
+		formValid = YES;
+	}
+	return lengValid && formValid;
+}
+
+- (BOOL)isValidCaptcha {
+	return self.length == 4;
 }
 
 @end

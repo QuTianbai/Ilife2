@@ -136,8 +136,20 @@
 }
 
 - (NSString *)checkForm {
+	if (self.model.houseType.length == 0) {
+		return @"请选择住房状况";
+	}
+	if (self.model.maritalStatus.length == 0) {
+		return @"请选择婚姻状况";
+	}
 	if (![self.model.email containsString:@"@"] || ![self.model.email containsString:@"."]) {
 		return @"请填写正确的邮箱";
+	}
+	if (self.model.homeCode.length < 3 || ![self.model.homeCode isScalar]) {
+		return @"请填写正确的住宅座机号";
+	}
+	if (self.model.homeLine.length < 7 || ![self.model.homeCode isScalar]) {
+		return @"请填写正确的住宅座机号";
 	}
 	if (self.model.currentProvinceCode.length == 0) {
 		return @"请选择完整的现居地址";
@@ -151,22 +163,11 @@
 	if (self.model.abodeDetail.length < 3) {
 		return @"请填写完整的详细地址";
 	}
-	if (self.model.houseType.length == 0) {
-		return @"请选择住房状况";
+	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
+		return @"请输入正确的QQ号";
 	}
-	NSString *homelineInfo = [self checkHomeline:self.model.homeLine];
-	if (homelineInfo) {
-		return homelineInfo;
-	}
-	if (self.model.maritalStatus.length == 0) {
-		return @"请选择婚姻状况";
-	}
-	
-	
-	
-	
-	/*
 
+	/*
 	if ([self.model.income isEqualToString:@""]) {
 		return @"请输入每月税前收入";
 	}
@@ -193,15 +194,13 @@
 	if (![self validAddress]) {
 		return @"详细地址至少输入两项";
 	}*/
-	if (self.model.qq.length > 0 && (self.model.qq.length < 5 || self.model.qq.length > 10)) {
-		return @"请输入正确的QQ号";
-	}
+
 	
 	//self.model.taobaoPassword = self.model.taobaoPassword.length > 0 ? @"Y" : @"N";
 	//self.model.jdAccountPwd = self.model.jdAccountPwd.length > 0 ? @"Y" : @"N";
 	return nil;
 }
-
+/*
 - (NSString *)checkHomeline:(NSString *)homeLine {
 	NSArray *components = [homeLine componentsSeparatedByString:@"-"];
 	if (components.count != 2) {
@@ -212,7 +211,7 @@
 		}
 	}
 	return nil;
-}
+}*/
 
 /*
 - (RACSignal *)commitValidSignal {
