@@ -10,4 +10,14 @@
 
 @implementation MSFTeam
 
+#pragma mark - MSFSelectionItem
+
+- (NSString *)title {
+	return [self.loanTeam stringByAppendingString:@"个月"];
+}
+
+- (NSString *)subtitle {
+	return @"";
+}
+
 @end

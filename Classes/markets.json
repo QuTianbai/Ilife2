@@ -4,8 +4,8 @@
 "allMaxAmount": "6000",
 "teams": [
 					{
-					"minAmount": "1000",
-					"maxAmount": "6000",
+					"minAmount": "50",
+					"maxAmount": "5000",
 					"team": [
 									 {
 									 "loanTeam": "9"

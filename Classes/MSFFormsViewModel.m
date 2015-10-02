@@ -10,7 +10,6 @@
 #import "MSFUtils.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFProfessionalViewModel.h"
-#import "MSFProductViewModel.h"
 #import "MSFRelationshipViewModel.h"
 
 #import "MSFApplicationForms.h"

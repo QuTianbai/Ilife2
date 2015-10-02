@@ -18,7 +18,6 @@
 #import "MSFApplicationResponse.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
-#import "MSFProductViewModel.h"
 #import "MSFWebViewController.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFAgreement.h"
@@ -135,21 +134,23 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.navigationItem.titleView = label;
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
-	self.viewModel.insurance = self.isInLifeInsurancePlaneSW.on;
-	RAC(self.viewModel, insurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+	self.viewModel.jionLifeInsurance = @"1";
+	RAC(self.viewModel, jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(id value) {
+		return value;
+	}];
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
 	
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.loanFixedAmt);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
-	RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.loanTerm);
+	//RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.loanTerm);
 	self.moneySlider.delegate = self;
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
       return @0;
     }
-		self.viewModel.totalAmount = value;
+		self.viewModel.appLmt = value;
     return value;
   }];
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
@@ -159,7 +160,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return value;
   }];
 	
-	RAC(self.viewModel, totalAmount) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
+	RAC(self.viewModel, appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
@@ -272,7 +273,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
   [self setRepayMoneyBackgroundViewAniMation:YES];
-	//self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 }
 
 #pragma mark - MSFSlider Delegate
@@ -287,19 +288,21 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)getStringValue:(NSString *)stringvalue {
   if (stringvalue.integerValue == 0) {
-    //self.viewModel.product = nil;
+    self.viewModel.product = nil;
   } else {
     [self setRepayMoneyBackgroundViewAniMation:YES];
   }
   //self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
+	
+	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.markets total:stringvalue.integerValue];
   [self.monthCollectionView reloadData];
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
       [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-      //self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
 		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-		//self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
 }
 

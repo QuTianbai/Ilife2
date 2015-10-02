@@ -53,6 +53,7 @@
 		0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB051B96D39E00AD67F3 /* MSFConfirmContactViewModel.m */; };
 		0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */; };
 		0750AB121B96F77C00AD67F3 /* ConfirmContract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */; };
+		07667BE01BBEA5D4002DFF62 /* repay.json in Resources */ = {isa = PBXBuildFile; fileRef = 07667BDF1BBEA5D4002DFF62 /* repay.json */; settings = {ASSET_TAGS = (); }; };
 		077347CA1BBA338900D7A130 /* ABC.png in Resources */ = {isa = PBXBuildFile; fileRef = 077347A61BBA338900D7A130 /* ABC.png */; settings = {ASSET_TAGS = (); }; };
 		077347CB1BBA338900D7A130 /* ABC@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077347A71BBA338900D7A130 /* ABC@2x.png */; settings = {ASSET_TAGS = (); }; };
 		077347CC1BBA338900D7A130 /* ABC@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077347A81BBA338900D7A130 /* ABC@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -408,7 +409,6 @@
 		499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991471E1B247A6500260E97 /* MSFSelectionTableViewCell.m */; };
 		499147231B256D0D00260E97 /* MSFClient+Months.m in Sources */ = {isa = PBXBuildFile; fileRef = 499147221B256D0D00260E97 /* MSFClient+Months.m */; };
 		499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 499147281B25C2F700260E97 /* MSFFormsViewModel.m */; };
-		4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991472B1B25C4E900260E97 /* MSFProductViewModel.m */; };
 		4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4993E0C71B2DA20700090F26 /* MSFBlurButton.m */; };
 		4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */ = {isa = PBXBuildFile; fileRef = 4993E0D61B2DA65B00090F26 /* bg-loan-installment.png */; };
 		4993E0DA1B2DA65B00090F26 /* bg-loan-installment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4993E0D71B2DA65B00090F26 /* bg-loan-installment@2x.png */; };
@@ -807,6 +807,7 @@
 		0750AB0A1B96F73700AD67F3 /* MSFConfirmContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFConfirmContractViewController.h; sourceTree = "<group>"; };
 		0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContractViewController.m; sourceTree = "<group>"; };
 		0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmContract.storyboard; sourceTree = "<group>"; };
+		07667BDF1BBEA5D4002DFF62 /* repay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repay.json; sourceTree = "<group>"; };
 		077347A61BBA338900D7A130 /* ABC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ABC.png; sourceTree = "<group>"; };
 		077347A71BBA338900D7A130 /* ABC@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ABC@2x.png"; sourceTree = "<group>"; };
 		077347A81BBA338900D7A130 /* ABC@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ABC@3x.png"; sourceTree = "<group>"; };
@@ -1316,8 +1317,6 @@
 		499147221B256D0D00260E97 /* MSFClient+Months.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Months.m"; sourceTree = "<group>"; };
 		499147271B25C2F700260E97 /* MSFFormsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFFormsViewModel.h; sourceTree = "<group>"; };
 		499147281B25C2F700260E97 /* MSFFormsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFFormsViewModel.m; sourceTree = "<group>"; };
-		4991472A1B25C4E900260E97 /* MSFProductViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFProductViewModel.h; sourceTree = "<group>"; };
-		4991472B1B25C4E900260E97 /* MSFProductViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProductViewModel.m; sourceTree = "<group>"; };
 		4993E0C61B2DA20700090F26 /* MSFBlurButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBlurButton.h; sourceTree = "<group>"; };
 		4993E0C71B2DA20700090F26 /* MSFBlurButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBlurButton.m; sourceTree = "<group>"; };
 		4993E0D61B2DA65B00090F26 /* bg-loan-installment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-loan-installment.png"; sourceTree = "<group>"; };
@@ -1716,6 +1715,7 @@
 				07330B6B1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.m */,
 				07330B6D1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.h */,
 				07330B6E1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m */,
+				07667BDF1BBEA5D4002DFF62 /* repay.json */,
 			);
 			name = ApplyCash;
 			sourceTree = "<group>";
@@ -1900,8 +1900,6 @@
 				07330B661BBE5AE6000EB8FD /* ApplyCash */,
 				499147271B25C2F700260E97 /* MSFFormsViewModel.h */,
 				499147281B25C2F700260E97 /* MSFFormsViewModel.m */,
-				4991472A1B25C4E900260E97 /* MSFProductViewModel.h */,
-				4991472B1B25C4E900260E97 /* MSFProductViewModel.m */,
 				49F3D4B71B2685FD0053A1F5 /* MSFProfessionalViewModel.h */,
 				49F3D4B81B2685FD0053A1F5 /* MSFProfessionalViewModel.m */,
 				C7B9FF611B2C1BD100FEF72F /* MSFRelationshipViewModel.h */,
@@ -3894,6 +3892,7 @@
 				49C0F1A61B2C315100E92572 /* icon-password.png in Resources */,
 				07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */,
 				4925ADF41B2AFD8800872A8A /* btn_checked@3x.png in Resources */,
+				07667BE01BBEA5D4002DFF62 /* repay.json in Resources */,
 				49F6F7E31BBB75670052AB77 /* bg-send-captcha-highlighted@2x.png in Resources */,
 				49CA937F1BBA3F7E0032F5C2 /* icon-id.png in Resources */,
 				10DC2DA71B99C17F00A2AF9C /* icon_order3_n.png in Resources */,
@@ -4347,7 +4346,6 @@
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */,
 				492007501BA00CCD00C0722C /* EIOperationManager.m in Sources */,
-				4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */,
 				10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,

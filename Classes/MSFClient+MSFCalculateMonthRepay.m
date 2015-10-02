@@ -9,11 +9,20 @@
 #import "MSFClient+MSFCalculateMonthRepay.h"
 #import "MSFCalculatemMonthRepayModel.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFCommandView.h"
+#import "MSFXBMCustomHeader.h"
 
 @implementation MSFClient (MSFCalculateMonthRepay)
 
 - (RACSignal *)fetchCalculateMonthRepayWithAppLmt:(NSString *)appLmt AndLoanTerm:(NSString *)loanTerm AndProductCode:(NSString *)productCode AndJionLifeInsurance:(NSString *)jionLifeInsurance {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt, @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": jionLifeInsurance}];
+	[SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+	[SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 130)];
+	[SVProgressHUD setForegroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
+	[SVProgressHUD showWithStatus:@""];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"repay" ofType:@"json"]]];
+	
+	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt?:@"", @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": jionLifeInsurance?:@""}];
 	
 	return [[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class] msf_parsedResults];
 }
