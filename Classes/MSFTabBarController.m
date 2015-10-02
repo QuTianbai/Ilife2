@@ -33,6 +33,8 @@
 #import "MSFCirculateCashTableViewController.h"
 #import "MSFCirculateCashViewModel.h"
 
+#import "MSFApplyCashVIewModel.h"
+
 @interface MSFTabBarController () 
 
 @property (nonatomic, weak, readwrite) MSFTabBarViewModel *viewModel;
@@ -105,7 +107,10 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
-	MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+	//MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
+	
+	MSFApplyCashVIewModel *productViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
+	
 	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	

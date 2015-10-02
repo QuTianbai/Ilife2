@@ -68,6 +68,8 @@
 	return viewModel;
 }
 
+//- (MSFSelectionViewModel *)mon
+
 + (MSFSelectionViewModel *)selectViewModelWithFilename:(NSString *)filename {
 	return [self.class selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:filename]];
 }

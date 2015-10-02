@@ -22,11 +22,15 @@
 #import "MSFResponse.h"
 #import "MSFAddress.h"
 
+#import "MSFMarkets.h"
+#import "MSFClient+MSFCheckEmploee2.h"
+
 @interface MSFFormsViewModel ()
 
 @property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
 @property (nonatomic, strong, readwrite) MSFApplicationForms *model;
 @property (nonatomic, strong, readwrite) MSFMarket *market;
+@property (nonatomic, strong, readwrite) MSFMarkets *markets;
 @property (nonatomic, strong, readwrite) MSFAddress *currentAddress;
 @property (nonatomic, strong, readwrite) MSFAddress *workAddress;
 @property (nonatomic, assign, readwrite) BOOL pending;
@@ -46,7 +50,8 @@
 	_pending = NO;
 	_services = services;
 	_model = [[MSFApplicationForms alloc] init];
-	_market = [[MSFMarket alloc] init];
+	//_market = [[MSFMarket alloc] init];
+	_markets = [[MSFMarkets alloc] init];
 	_currentAddress = [[MSFAddress alloc] init];
 	_workAddress = [[MSFAddress alloc] init];
 
@@ -55,32 +60,38 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[[[self.services.httpClient fetchApplyInfo]
-			zipWith:[self.services.httpClient fetchCheckEmployee]]
-			flattenMap:^RACStream *(RACTuple *modelAndMarket) {
-				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
-				[self.model mergeValuesForKeysFromModel:model];
-				[self.market mergeValuesForKeysFromModel:market];
-        self.isHaveProduct = YES;
-				return [self.services.httpClient checkUserHasCredit];
-			}]
-			subscribeNext:^(MSFResponse *response) {
-				self.pending = [response.parsedResult[@"processing"] boolValue];
-				[(RACSubject *)self.updatedContentSignal sendNext:nil];
-				[(RACSubject *)self.updatedContentSignal sendCompleted];
-			} error:^(NSError *error) {
-        self.isHaveProduct = NO;
-				self.active = NO;
-				[(RACSubject *)self.updatedContentSignal sendError:error];
-			}];
+		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(id x) {
+			self.markets = x;
+		}];
 	}];
+//	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+//		@strongify(self)
+//		[[[[self.services.httpClient fetchApplyInfo]
+//			zipWith:[self.services.httpClient fetchCheckEmployee]]
+//			flattenMap:^RACStream *(RACTuple *modelAndMarket) {
+//				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
+//				[self.model mergeValuesForKeysFromModel:model];
+//				[self.market mergeValuesForKeysFromModel:market];
+//        self.isHaveProduct = YES;
+//				return [self.services.httpClient checkUserHasCredit];
+//			}]
+//			subscribeNext:^(MSFResponse *response) {
+//				self.pending = [response.parsedResult[@"processing"] boolValue];
+//				[(RACSubject *)self.updatedContentSignal sendNext:nil];
+//				[(RACSubject *)self.updatedContentSignal sendCompleted];
+//			} error:^(NSError *error) {
+//        self.isHaveProduct = NO;
+//				self.active = NO;
+//				[(RACSubject *)self.updatedContentSignal sendError:error];
+//			}];
+//	}];
 	
-	RAC(self.currentAddress, province) = RACObserve(self.model, currentProvinceCode);
-	RAC(self.currentAddress, city) = RACObserve(self.model, currentCityCode);
-	RAC(self.currentAddress, area) = RACObserve(self.model, currentCountryCode);
-	RAC(self.workAddress, province) = RACObserve(self.model, workProvinceCode);
-	RAC(self.workAddress, city) = RACObserve(self.model, workCityCode);
-	RAC(self.workAddress, area) = RACObserve(self.model, workCountryCode);
+//	RAC(self.currentAddress, province) = RACObserve(self.model, currentProvinceCode);
+//	RAC(self.currentAddress, city) = RACObserve(self.model, currentCityCode);
+//	RAC(self.currentAddress, area) = RACObserve(self.model, currentCountryCode);
+//	RAC(self.workAddress, province) = RACObserve(self.model, workProvinceCode);
+//	RAC(self.workAddress, city) = RACObserve(self.model, workCityCode);
+//	RAC(self.workAddress, area) = RACObserve(self.model, workCountryCode);
 	
 	return self;
 }
