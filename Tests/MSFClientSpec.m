@@ -51,6 +51,12 @@ void (^stubResponse)(NSString *, id) = ^(NSString *path, id response) {
     }];
     return;
   }
+	if (!response) {
+    [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+      return [OHHTTPStubsResponse responseWithData:nil statusCode:200 responseTime:0 headers:@{@"Content-Type": @"application/json"}];
+		}];
+    return;
+	}
   stubResponseWithHeaders(path, response, 200, @{});
 };
 
@@ -179,14 +185,16 @@ describe(@"without a user", ^{
   
   it(@"should user forget password", ^{
     // given
-    stubResponse(@"/users/forget_password",@{@"message":@"success"});
+    stubResponse(@"/users/forget_password", nil);
     
     // when
-    RACSignal *request = [client resetPassword:@"" phone:@"" captcha:@""];
-    MSFResponse *response = [request asynchronousFirstOrDefault:nil success:nil error:nil];
+    RACSignal *request = [client resetSignInPassword:@"" phone:@"" captcha:@"" name:@"" citizenID:@""];
+    MSFResponse *response = [request asynchronousFirstOrDefault:nil success:&success error:&error];
     
     // then
-    expect(response.parsedResult[@"message"]).to(equal(@"success"));
+		expect(@(success)).to(beTruthy());
+		expect(error).to(beNil());
+		expect(response).notTo(beNil());
   });
   
   it(@"should fetch timestamp", ^{
@@ -280,14 +288,16 @@ describe(@"authenticated", ^{
   });
   
   it(@"should update user password", ^{
-    stubResponse(@"/users/1/update_password",@{@"message": @"foo"});
-    
+    stubResponse(@"/password/updatePassword", nil);
+		
     // when
-    RACSignal *request = [client updateUserPassword:@"" password:@""];
+    RACSignal *request = [client updateSignInPassword:@"" password:@""];
     MSFResponse *response = [request asynchronousFirstOrDefault:nil success:&success error:&error];
     
     // then
-    expect(response.parsedResult[@"message"]).to(equal(@"foo"));
+		expect(@(success)).to(beTruthy());
+		expect(error).to(beNil());
+		expect(@(response.statusCode)).to(equal(@200));
   });
   
   it(@"should checking user has credit", ^{

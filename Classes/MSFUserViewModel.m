@@ -80,7 +80,7 @@ static const int kPasswordMinLength = 8;
 #pragma mark - Private
 
 - (RACSignal *)executeUpdatePasswordSignal {
-	return [self.servcies.httpClient updateUserPassword:self.usedPassword password:self.updatePassword];
+	return [self.servcies.httpClient updateSignInPassword:self.usedPassword password:self.updatePassword];
 }
 
 @end

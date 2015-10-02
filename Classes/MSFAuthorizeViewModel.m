@@ -272,7 +272,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	MSFUser *user = [MSFUser userWithServer:self.services.server];
 	return [[MSFClient
-		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
+		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:self.expired]
 		doNext:^(id x) {
 			[MSFUtils setHttpClient:x];
 		}];
@@ -309,7 +309,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
 	}
 	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client resetPassword:self.password phone:self.username captcha:self.captcha];
+	return [client resetSignInPassword:self.password phone:self.username captcha:self.captcha name:self.name citizenID:self.card];
 }
 
 - (RACSignal *)executeFindPasswordCaptchaSignal {
