@@ -14,19 +14,22 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "UIColor+Utils.h"
+#import "NSCharacterSet+MSFCharacterSetAdditions.h"
 
-@interface MSFFindPasswordViewController ()
+@interface MSFFindPasswordViewController () <UITextFieldDelegate>
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *captcha;
 @property (nonatomic, weak) IBOutlet UITextField *password;
+@property (nonatomic, weak) IBOutlet UITextField *name;
+@property (nonatomic, weak) IBOutlet UITextField *card;
 @property (nonatomic, weak) IBOutlet UIButton *captchaButton;
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
-@property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
-@property (weak, nonatomic) IBOutlet UIView *backgroundView;
+@property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
+@property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 
 @end
 
@@ -36,44 +39,51 @@
 	[super viewDidLoad];
 	self.title = @"忘记密码";
 	
-	self.backgroundView.layer.masksToBounds = YES;
-	self.backgroundView.layer.cornerRadius = 5;
-	self.backgroundView.layer.borderColor = [UIColor borderColor].CGColor;
-	self.backgroundView.layer.borderWidth = 1;
-	
 	self.username.text = MSFUtils.phone;
-	[[self.username rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
-		 }
-	 }];
-	RAC(self.viewModel, username) = RACObserve(self.username, text);
-	RAC(self.viewModel, captcha) = RACObserve(self.captcha, text);
-	[[self.captcha rac_signalForControlEvents:UIControlEventEditingChanged].rac_willDeallocSignal
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 6) {
-			 textField.text = [textField.text substringToIndex:6];
-		 }
-	 }];
-	RAC(self.viewModel, password) = [self.password.rac_textSignal.rac_willDeallocSignal map:^id(NSString *value) {
-		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
-		self.password.text = tempStr;
-		return tempStr;
-	}];
-	RAC(self.counterLabel, text) = RACObserve(self.viewModel, counter);
-	self.counterLabel.layer.cornerRadius = 5.0;
-	self.counterLabel.layer.borderWidth = 1;
-	self.counterLabel.layer.borderColor = [UIColor clearColor].CGColor;
-	RAC(self.counterLabel, textColor) =
-	[self.viewModel.captchaRequestValidSignal
-		map:^id(NSNumber *valid) {
-			return valid.boolValue ? UIColor.whiteColor : [MSFCommandView getColorWithString:@"999999"];
-	}];
-	RAC(self.counterLabel, backgroundColor) = [self.viewModel.captchaRequestValidSignal map:^id(NSNumber *value) {
-		return value.boolValue ? [MSFCommandView getColorWithString:POINTCOLOR] : [MSFCommandView getColorWithString:@"cccccc"];
-	}];
+	self.viewModel.username = MSFUtils.phone;
+	
+	self.name.delegate = self;
+	self.card.delegate = self;
+	
 	@weakify(self)
+	[self.name.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizeNameMaxLength) self.name.text = [x substringToIndex:MSFAuthorizeNameMaxLength];
+		self.viewModel.name = self.name.text;
+	}];
+	
+	[self.card.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizeIdentifierMaxLength) self.card.text = [x substringToIndex:MSFAuthorizeIdentifierMaxLength];
+		self.viewModel.card = self.card.text;
+	}];
+	
+	[self.username.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizeUsernameMaxLength) self.username.text = [x substringToIndex:MSFAuthorizeUsernameMaxLength];
+		self.viewModel.username = self.username.text;
+	}];
+	
+	[self.password.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizePasswordMaxLength) self.password.text = [x substringToIndex:MSFAuthorizePasswordMaxLength];
+		self.viewModel.password = self.password.text;
+	}];
+	
+	[self.captcha.rac_textSignal subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x length] > MSFAuthorizeCaptchaMaxLength) self.captcha.text = [x substringToIndex:MSFAuthorizeCaptchaMaxLength];
+		self.viewModel.captcha = self.captcha.text;
+	}];
+	
+	RAC(self.counterLabel, text) = RACObserve(self.viewModel, counter);
+	
+	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
+		@strongify(self)
+		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
+		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+	}];
+	
 	self.captchaButton.rac_command = self.viewModel.executeFindPasswordCaptcha;
 	[self.captchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
@@ -86,6 +96,7 @@
 	[self.captchaButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	
 	self.commitButton.rac_command = self.viewModel.executeFindPassword;
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
@@ -97,19 +108,15 @@
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
-	
 	[self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-//	[[self.password rac_signalForControlEvents:UIControlEventEditingChanged]
-//	subscribeNext:^(UITextField *textField) {
-//		
-//	}];
+	
 	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeFindPassword execute:nil];
 	}];
-	self.password.clearButtonMode = UITextFieldViewModeNever;
+	
 	[[self.showPasswordButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.showPasswordButton.selected = !self.showPasswordButton.selected;
@@ -128,8 +135,31 @@
 	self.viewModel = viewModel;
 }
 
-- (void)dealloc {
-	NSLog(@"haha");
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+	if ([textField isEqual:self.card]) {
+		textField.text = [textField.text uppercaseString];
+	}
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+	if ([textField isEqual:self.name]) {
+		NSCharacterSet *blockedCharacters = [[NSCharacterSet letterCharacterSet] invertedSet];
+    NSCharacterSet *blockedCharatersSquared = [NSCharacterSet characterSetWithCharactersInString:@"➋➌➍➎➏➐➑➒"];
+		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound) ||
+			([string rangeOfCharacterFromSet:blockedCharatersSquared].location != NSNotFound);
+	} else if ([textField isEqual:self.card]) {
+		if (range.location > 17) return NO;
+		if (range.location == 17) {
+			NSCharacterSet *blockedCharacters = [[NSCharacterSet identifyCardCharacterSet] invertedSet];
+			return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+		}
+		NSCharacterSet *blockedCharacters = [[NSCharacterSet numberCharacterSet] invertedSet];
+		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
+	}
+	
+	return YES;
 }
 
 @end

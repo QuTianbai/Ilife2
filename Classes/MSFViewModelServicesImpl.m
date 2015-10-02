@@ -18,9 +18,6 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFLoginViewController.h"
 
-#import "MSFClozeViewModel.h"
-#import "MSFClozeViewController.h"
-
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 
@@ -93,9 +90,6 @@
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
 		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-	} else if ([viewModel isKindOfClass:MSFClozeViewModel.class]) {
-    MSFClozeViewController *clozeViewController = [[MSFClozeViewController alloc] initWithViewModel:viewModel];
-		viewController = [[UINavigationController alloc] initWithRootViewController:clozeViewController];
 	} else {
     NSLog(@"an unknown ViewModel was present!");
   }

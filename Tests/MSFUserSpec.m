@@ -9,23 +9,10 @@
 
 QuickSpecBegin(MSFUserSpec)
 
-__block NSDictionary *representation;
-
-beforeEach(^{
-  representation = @{
-    @"user_id" : @"ds13dsaf21d",
-    @"phone_number" : @"15222222222",
-    @"username" : @"xxx",
-    @"id_card" : @"500111198702230022",
-    @"bank_card_number" : @"888",
-    @"avatar" : @{
-        @"width" : @100,
-        @"height" : @100,
-        @"url" : @"http://avatar.com",
-        @"type" : @""
-        }
-    };
-});
+NSDictionary *representation = @{
+    @"uniqueId" : @"ds13dsaf21d",
+		@"custType" : @"0",
+	};
 
 it(@"msfinance user", ^{
   // when
@@ -33,12 +20,7 @@ it(@"msfinance user", ^{
   
   // then
   expect(user.objectID).to(equal(@"ds13dsaf21d"));
-  expect(user.phone).to(equal(@"15222222222"));
-  expect(user.name).to(equal(@"xxx"));
-  expect(user.idcard).to(equal(@"500111198702230022"));
-  expect(user.passcard).to(equal(@"888"));
-  expect(user.avatarURL).to(equal([NSURL URLWithString:@"http://avatar.com"]));
-  expect(user.server).to(equal(MSFServer.dotComServer));
+	expect(user.type).to(equal(@"0"));
 	expect(@(user.isAuthenticated)).to(beTruthy());
 });
 

@@ -26,8 +26,26 @@
 	return [self enqueueRequest:request resultClass:nil];
 }
 
-- (RACSignal *)updateUserPassword:(NSString *)oldpassword password:(NSString *)newpassword {
-	return [self enqueueUserRequestWithMethod:@"PUT" relativePath:@"/update_password" parameters:@{@"password": oldpassword.sha256, @"new_password": newpassword.sha256} resultClass:nil];
+- (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"mobile"] = phone;
+	parameters[@"password"] = password.sha256;
+	parameters[@"smsCode"] = captcha;
+	parameters[@"name"] = name;
+	parameters[@"ident"] = citizenID;
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"password/forgetPassword" parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)updateSignInPassword:(NSString *)oldpassword password:(NSString *)newpassword {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"password/updateUserPassword" parameters: @{
+		@"password": oldpassword.sha256,
+		@"new_password": newpassword.sha256,
+		@"uniqueId": self.user.objectID
+	}];
+	
+	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)updateUserAvatarWithFileURL:(NSURL *)URL {

@@ -52,9 +52,6 @@ static const int kPasswordMinLength = 8;
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[[self.servcies.httpClient fetchUserInfo] subscribeNext:^(MSFUser *user) {
-			self.username = user.name;
-			self.mobile = user.phone;
-			self.identifyCard = user.idcard;
 			[(RACSubject *)self.contentUpdateSignal sendNext:nil];
 		}];
 	}];
@@ -83,7 +80,7 @@ static const int kPasswordMinLength = 8;
 #pragma mark - Private
 
 - (RACSignal *)executeUpdatePasswordSignal {
-	return [self.servcies.httpClient updateUserPassword:self.usedPassword password:self.updatePassword];
+	return [self.servcies.httpClient updateSignInPassword:self.usedPassword password:self.updatePassword];
 }
 
 @end

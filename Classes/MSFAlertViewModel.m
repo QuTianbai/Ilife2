@@ -37,7 +37,6 @@
 	
 	_amount = [NSString stringWithFormat:@"%@元", formsViewModel.model.principal];
 	_repayment = [NSString stringWithFormat:@"%@元", formsViewModel.model.repayMoneyMonth];
-	_bankNumber = user.passcard;
 	
   return self;
 }

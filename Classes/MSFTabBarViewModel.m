@@ -10,10 +10,8 @@
 #import <libextobjc/EXTScope.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFClozeViewModel.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
-#import "MSFClozeViewController.h"
 
 @interface MSFTabBarViewModel ()
 
@@ -109,12 +107,7 @@
 }
 
 - (RACSignal *)verifySignal {
-  return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.services];
-		[self.services presentViewModel:viewModel];
-    [subscriber sendCompleted];
-		return nil;
-  }] replay] setNameWithFormat:@"%@ `-verify`", self.class];
+	return [RACSignal empty];
 }
 
 #pragma mark - Custom Accessors

@@ -133,15 +133,17 @@ it(@"should sign up server", ^{
   // given
   viewModel.username = @"18696995689";
   viewModel.password = @"123456qw";
-  viewModel.captcha = @"123456";
+  viewModel.captcha = @"1234";
+	viewModel.name = @"张三";
+	viewModel.card = @"500111100000111001";
+	viewModel.expired = [NSDate distantFuture];
   viewModel.agreeOnLicense = YES;
   
   [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
     NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
     return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
        @"Content-Type": @"application/json",
-       @"finance": @"token",
-       @"msfinance": @"objectid",
+       @"token": @"token",
        }];
   }];
   
@@ -183,8 +185,7 @@ it(@"should signin server", ^{
     NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
     return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers: @{
        @"Content-Type": @"application/json",
-       @"finance": @"token",
-       @"msfinance": @"objectid",
+       @"token": @"token",
        }];
   }];
   
@@ -274,8 +275,10 @@ it(@"should send request for find password captcha", ^{
 it(@"should execute find password", ^{
   // given
   viewModel.username = @"18696995689";
-  viewModel.captcha = @"123456";
+  viewModel.captcha = @"1234";
   viewModel.password = @"123456qw";
+	viewModel.name = @"张三";
+	viewModel.card = @"500111111111111111";
   [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
     NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"message" withExtension:@"json"];
     return [OHHTTPStubsResponse responseWithFileURL:URL statusCode:200 responseTime:0 headers:@{@"Content-Type": @"application/json"}];

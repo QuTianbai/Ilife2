@@ -8,10 +8,6 @@
 
 @interface MSFAuthorization : MSFObject
 
-// finance
 @property (nonatomic, copy, readonly) NSString *token;
-
-// msfinance
-@property (nonatomic, copy, readonly) NSString *session;
 
 @end

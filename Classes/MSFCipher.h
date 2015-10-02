@@ -6,6 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const MSFCipherAppKey;
+extern NSString *const MSFCipherAppSecret;
+
 @class MSFSignature;
 
 // 请求加密
@@ -14,20 +17,17 @@
 @interface MSFCipher : NSObject
 
 // 服务器返回的时间戳
-@property (nonatomic, assign, readonly) long long sessionId;
+@property (nonatomic, assign, readonly) long long internet;
 
 // 请求服务器后对应的本地接收的时间戳, 创建对象的时候自动生成时间戳
-@property (nonatomic, assign, readonly) long long serialization;
-
-// 加密密钥,程序固定值
-@property (nonatomic, copy, readonly) NSString *signKey;
+@property (nonatomic, assign, readonly) long long client;
 
 // Create MSFCipher instance
 //
 // contestant - 通过MSFClient+Cipher `-fetchServerInterval`,获取的服务器时间戳
 //
 // Return cipher Use to create signature
-- (instancetype)initWithSession:(long long)contestant;
+- (instancetype)initWithTimestamp:(long long)contestant;
 
 // Create MSFSignature instance
 //

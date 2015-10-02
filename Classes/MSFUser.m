@@ -13,34 +13,12 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"objectID": @"user_id",
-		@"phone": @"phone_number",
-		@"name": @"username",
-		@"idcard": @"id_card",
-		@"passcard": @"bank_card_number",
-		@"avatarURL": @"avatar",
+		@"objectID": @"uniqueId",
+		@"type": @"custType",
 	};
 }
 
-+ (NSValueTransformer *)avatarURLJSONTransformer {
-	return [MTLValueTransformer transformerWithBlock:^id(id avatar) {
-		return [NSURL URLWithString:avatar[@"url"]];
-	}];
-}
-
 #pragma mark - Lifecycle
-
-+ (instancetype)userWithName:(NSString *)name phone:(NSString *)phone {
-	NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
-	if (name != nil) {
-		userDict[@keypath(MSFUser.new, name)] = name;
-	}
-	if (phone != nil) {
-	 userDict[@keypath(MSFUser.new, phone)] = phone;
-	}
-	
-	return [self modelWithDictionary:userDict error:NULL];
-}
 
 + (instancetype)userWithServer:(MSFServer *)server {
 	NSMutableDictionary *userDict = [NSMutableDictionary dictionary];
@@ -54,7 +32,7 @@
 #pragma mark - Custom Accessors
 
 - (BOOL)isAuthenticated {
-	return [self.idcard isKindOfClass:NSString.class] && self.idcard.length == 18 && self.passcard.length > 0;
+	return self.objectID != nil;
 }
 
 @end

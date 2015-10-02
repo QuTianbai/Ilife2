@@ -51,6 +51,12 @@ void (^stubResponse)(NSString *, id) = ^(NSString *path, id response) {
     }];
     return;
   }
+	if (!response) {
+    [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+      return [OHHTTPStubsResponse responseWithData:nil statusCode:200 responseTime:0 headers:@{@"Content-Type": @"application/json"}];
+		}];
+    return;
+	}
   stubResponseWithHeaders(path, response, 200, @{});
 };
 
@@ -85,7 +91,6 @@ beforeEach(^{
   error = nil;
   NSDictionary *userDictionary = @{
     @keypath(MSFUser.new, objectID): @"1",
-    @keypath(MSFUser.new, phone): @"18696995689",
     @keypath(MSFUser.new, server): MSFServer.dotComServer,
 	};
   user = [MSFUser modelWithDictionary:userDictionary error:nil];
@@ -153,7 +158,7 @@ describe(@"without a user", ^{
   
   it(@"should fetch releasenote", ^{
     // given
-    stubResponse(@"/app/check_version_ios",@"releasenote.json");
+    stubResponse(@"/checkVersion",@"releasenote.json");
     
     // when
     RACSignal *request = [client fetchReleaseNote];
@@ -166,7 +171,7 @@ describe(@"without a user", ^{
   
   it(@"should fetch empty releasenote", ^{
     // given
-    stubResponse(@"/app/check_version_ios",@{});
+    stubResponse(@"/checkVersion",@{});
     
     // when
     RACSignal *request = [client fetchReleaseNote];
@@ -174,20 +179,22 @@ describe(@"without a user", ^{
     
     // then
     expect(@(success)).to(beTruthy());
-    expect(releasenote).to(beNil());
     expect(error).to(beNil());
+		expect(releasenote).notTo(beNil());
   });
   
   it(@"should user forget password", ^{
     // given
-    stubResponse(@"/users/forget_password",@{@"message":@"success"});
+    stubResponse(@"/users/forget_password", nil);
     
     // when
-    RACSignal *request = [client resetPassword:@"" phone:@"" captcha:@""];
-    MSFResponse *response = [request asynchronousFirstOrDefault:nil success:nil error:nil];
+    RACSignal *request = [client resetSignInPassword:@"" phone:@"" captcha:@"" name:@"" citizenID:@""];
+    MSFResponse *response = [request asynchronousFirstOrDefault:nil success:&success error:&error];
     
     // then
-    expect(response.parsedResult[@"message"]).to(equal(@"success"));
+		expect(@(success)).to(beTruthy());
+		expect(error).to(beNil());
+		expect(response).notTo(beNil());
   });
   
   it(@"should fetch timestamp", ^{
@@ -201,6 +208,60 @@ describe(@"without a user", ^{
     // then
     expect(response.parsedResult[@"time"]).to(equal(@"1432733616221"));
   });
+	
+	it(@"should get parameters authenticated error", ^{
+		// given
+		NSDictionary *myDictionary = @{
+			@"message" : @"Request entity validate faild.",
+			@"fields" : @{
+				@"password" : @"000",
+				@"logType" : @"000"
+			}
+		};
+		[OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+			NSData *data = [NSJSONSerialization dataWithJSONObject:myDictionary options:NSJSONWritingPrettyPrinted error:nil];
+			return [OHHTTPStubsResponse responseWithData:data statusCode:422 responseTime:0 headers:@{
+				@"Content-Type": @"application/json"
+			}];
+		}];
+		
+		// when
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"post" parameters:nil];
+		RACSignal *signal = [client enqueueRequest:request resultClass:nil];
+		[signal asynchronousFirstOrDefault:nil success:&success error:&error];
+		
+		// then
+		expect(@(success)).to(beFalsy());
+		expect(@(error.code)).to(equal(@(MSFClientErrorUnprocessableEntry)));
+		expect(error.userInfo[MSFClientErrorFieldKey]).to(equal(myDictionary[@"fields"]));
+		expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"Request entity validate faild."));
+		expect(error.userInfo[MSFClientErrorMessageKey]).to(equal(@"Request entity validate faild."));
+	});
+	
+	it(@"should get operation error", ^{
+		// given
+		[OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+			NSData *data = [NSJSONSerialization dataWithJSONObject:@{
+				@"message": @"foo",
+				@"code": @4000
+			} options:NSJSONWritingPrettyPrinted error:nil];
+			return [OHHTTPStubsResponse responseWithData:data statusCode:400 responseTime:0 headers:@{
+				@"Content-Type": @"application/json",
+			}];
+		}];
+		
+		// when
+		// when
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"post" parameters:nil];
+		RACSignal *signal = [client enqueueRequest:request resultClass:nil];
+		[signal asynchronousFirstOrDefault:nil success:&success error:&error];
+		
+		// then
+		expect(@(success)).to(beFalsy());
+		expect(@(error.code)).to(equal(@(MSFClientErrorBadRequest)));
+		expect(error.userInfo[MSFClientErrorMessageCodeKey]).to(equal(@4000));
+		expect(error.userInfo[MSFClientErrorMessageKey]).to(equal(@"foo"));
+	});
 });
 
 describe(@"authenticated", ^{
@@ -224,43 +285,19 @@ describe(@"authenticated", ^{
     
     // then
     expect(user).to(beAKindOf(MSFUser.class));
-    expect(user.phone).to(equal(@"15222222222"));
   });
   
   it(@"should update user password", ^{
-    stubResponse(@"/users/1/update_password",@{@"message": @"foo"});
-    
+    stubResponse(@"/password/updatePassword", nil);
+		
     // when
-    RACSignal *request = [client updateUserPassword:@"" password:@""];
+    RACSignal *request = [client updateSignInPassword:@"" password:@""];
     MSFResponse *response = [request asynchronousFirstOrDefault:nil success:&success error:&error];
     
     // then
-    expect(response.parsedResult[@"message"]).to(equal(@"foo"));
-  });
-  
-  it(@"should update user avatar", ^{
-    // given
-    stubResponse(@"/users/1/update_avatar",@{@"avatar": @{@"url": @"http://msf.com/new_avatar.jpg"}});
-    
-    // when
-    NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"avatar" withExtension:@"jpg"];
-    RACSignal *request = [client updateUserAvatarWithFileURL:URL];
-    MSFUser *user = [request asynchronousFirstOrDefault:nil success:nil error:nil];
-    
-    // then
-    expect(user.avatarURL).to(equal([NSURL URLWithString:@"http://msf.com/new_avatar.jpg"]));
-  });
-  
-  it(@"should bind bank card", ^{
-    // given
-    stubResponse(@"/users/1/bind_bank_card",@"authorizations.json");
-    
-    // when
-    RACSignal *request = [client associateUserPasscard:@"" bank:@"" country:@"" province:@"" city:@"" address:@""];
-    MSFUser *user = [request asynchronousFirstOrDefault:nil success:nil error:nil];
-    
-    // then
-    expect(user.passcard).to(equal(@"563"));
+		expect(@(success)).to(beTruthy());
+		expect(error).to(beNil());
+		expect(@(response.statusCode)).to(equal(@200));
   });
   
   it(@"should checking user has credit", ^{
@@ -289,7 +326,7 @@ describe(@"authenticated", ^{
 });
 
 describe(@"sign in", ^{
-  it(@"should request authenticated", ^{
+  it(@"should sigin with user mobile", ^{
     // given
     [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
       NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
@@ -297,6 +334,7 @@ describe(@"sign in", ^{
          @"Content-Type": @"application/json",
          @"finance": @"token",
          @"msfinance": @"objectid",
+				 @"token": @"foo",
          }];
     }];
     
@@ -308,8 +346,37 @@ describe(@"sign in", ^{
     expect(error).to(beNil());
     expect(client).to(beAKindOf(MSFClient.class));
     expect(@(client.authenticated)).to(beTruthy());
-    expect(client.token).to(equal(@"token"));
+    expect(client.token).to(equal(@"foo"));
+		expect(client.user).notTo(beNil());
+		expect(client.user.objectID).to(equal(@"foo"));
+		expect(client.user.type).to(equal(@"bar"));
   });
+	
+	it(@"should sigin with user citizen id number", ^{
+    // given
+    [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
+      NSURL *fileURL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
+      return [OHHTTPStubsResponse responseWithFileURL:fileURL statusCode:200 responseTime:0 headers:@{
+         @"Content-Type": @"application/json",
+         @"finance": @"token",
+         @"msfinance": @"objectid",
+				 @"token": @"foo",
+         }];
+    }];
+    
+    // when
+    RACSignal *request = [MSFClient signInAsUser:user username:@"foo" password:@"bar" citizenID:@"500"];
+    MSFClient *client = [request asynchronousFirstOrDefault:nil success:&success error:nil];
+    
+    // then
+    expect(error).to(beNil());
+    expect(client).to(beAKindOf(MSFClient.class));
+    expect(@(client.authenticated)).to(beTruthy());
+    expect(client.token).to(equal(@"foo"));
+		expect(client.user).notTo(beNil());
+		expect(client.user.objectID).to(equal(@"foo"));
+		expect(client.user.type).to(equal(@"bar"));
+	});
   
   it(@"should sign up a user", ^{
     // given
@@ -319,18 +386,19 @@ describe(@"sign in", ^{
          @"Content-Type": @"application/json",
          @"finance": @"token",
          @"msfinance": @"objectid",
+				 @"token": @"foo"
          }];
     }];
     
     // when
-    RACSignal *request = [MSFClient signUpAsUser:user password:@"123456" phone:@"" captcha:@""];
+    RACSignal *request = [MSFClient signUpAsUser:user password:@"foo" phone:@"159" captcha:@"1234" realname:@"name" citizenID:@"500" citizenIDExpiredDate:[NSDate distantFuture]];
     MSFClient *client = [request asynchronousFirstOrDefault:nil success:&success error:nil];
     
     // then
     expect(error).to(beNil());
     expect(client).to(beAKindOf(MSFClient.class));
     expect(@(client.authenticated)).to(beTruthy());
-    expect(client.token).to(equal(@"token"));
+    expect(client.token).to(equal(@"foo"));
   });
 });
 

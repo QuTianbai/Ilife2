@@ -21,7 +21,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
 @property (nonatomic, weak) IBOutlet UIButton *signUpButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *leading;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *width;
+@property (nonatomic, weak) IBOutlet UIView *segmentedView;
 
 @property (nonatomic, strong, readwrite) MSFLoginPageViewController *loginPageController;
 
@@ -60,6 +61,7 @@
 		[self.loginPageController setViewControllers:@[currentViewController] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
 		[self updateButtons:MSFLoginSignIn];
 	}];
+	
 	[[self.signUpButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.loginPageController.dragging = NO;
@@ -83,7 +85,7 @@
 			NSInteger index = [self.loginPageController.pageIdentifiers indexOfObject:NSStringFromClass([currentViewController class])];
 			[currentViewController bindViewModel:self.viewModel];
 			[self updateButtons:index];
-	}];
+		}];
 	
 	[[self.loginPageController rac_signalForSelector:@selector(setUpViewController:atIndex:)] subscribeNext:^(RACTuple *x) {
 		@strongify(self)
@@ -105,16 +107,6 @@
 	if ([segue.identifier isEqualToString:@"page"]) {
 		self.loginPageController = segue.destinationViewController;
 	}
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	self.navigationController.navigationBarHidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	self.navigationController.navigationBarHidden = NO;
 }
 
 #pragma mark - Private
@@ -142,6 +134,7 @@
 			self.leading.constant =  0;
 			break;
 		}
+		default: break;
 	}
 }
 
@@ -165,7 +158,7 @@
 - (void)updateIndicatorViewWithButton:(UIButton *)button {
 	self.leading.constant = [button isEqual:self.signUpButton] ? 0 : CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
 	[UIView animateWithDuration:.3 animations:^{
-		[self.view layoutIfNeeded];
+		[self.segmentedView layoutIfNeeded];
 	}];
 }
 
