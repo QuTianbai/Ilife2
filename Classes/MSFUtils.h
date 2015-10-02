@@ -60,4 +60,9 @@
 + (void)setBaseURLString:(NSString *)url;
 + (NSString *)baseURLString;
 
++ (NSString *)uniqueId;
+
++ (void)setTradePassword:(NSString *)isSetTradePassword;
++ (NSString *)isSetTradePassword;
+
 @end
