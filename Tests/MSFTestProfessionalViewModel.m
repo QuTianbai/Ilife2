@@ -33,7 +33,7 @@
 		@"code": @"1",
 		@"text": @"bar",
 	} error:nil];
-	self.eductionalSystme = model;
+	//self.eductionalSystme = model;
 	return [RACSignal return:nil];
 }
 

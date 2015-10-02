@@ -349,7 +349,6 @@
 		496A446A1B6A57BE00104215 /* MSFcheckEmploySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44481B6A57BE00104215 /* MSFcheckEmploySpec.m */; };
 		496A446B1B6A57BE00104215 /* MSFCipherSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44491B6A57BE00104215 /* MSFCipherSpec.m */; };
 		496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444A1B6A57BE00104215 /* MSFClientSpec.m */; };
-		496A446D1B6A57BE00104215 /* MSFClientXBMSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444B1B6A57BE00104215 /* MSFClientXBMSpec.m */; };
 		496A446F1B6A57BE00104215 /* MSFHomePageViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444D1B6A57BE00104215 /* MSFHomePageViewModelSpec.m */; };
 		496A44701B6A57BE00104215 /* MSFInstallmentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444E1B6A57BE00104215 /* MSFInstallmentSpec.m */; };
 		496A44711B6A57BE00104215 /* MSFLoanViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444F1B6A57BE00104215 /* MSFLoanViewModelSpec.m */; };
@@ -1216,7 +1215,6 @@
 		496A44481B6A57BE00104215 /* MSFcheckEmploySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFcheckEmploySpec.m; sourceTree = "<group>"; };
 		496A44491B6A57BE00104215 /* MSFCipherSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCipherSpec.m; sourceTree = "<group>"; };
 		496A444A1B6A57BE00104215 /* MSFClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClientSpec.m; sourceTree = "<group>"; };
-		496A444B1B6A57BE00104215 /* MSFClientXBMSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClientXBMSpec.m; sourceTree = "<group>"; };
 		496A444D1B6A57BE00104215 /* MSFHomePageViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageViewModelSpec.m; sourceTree = "<group>"; };
 		496A444E1B6A57BE00104215 /* MSFInstallmentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInstallmentSpec.m; sourceTree = "<group>"; };
 		496A444F1B6A57BE00104215 /* MSFLoanViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanViewModelSpec.m; sourceTree = "<group>"; };
@@ -2668,7 +2666,6 @@
 				496A44481B6A57BE00104215 /* MSFcheckEmploySpec.m */,
 				496A44491B6A57BE00104215 /* MSFCipherSpec.m */,
 				496A444A1B6A57BE00104215 /* MSFClientSpec.m */,
-				496A444B1B6A57BE00104215 /* MSFClientXBMSpec.m */,
 				496A444D1B6A57BE00104215 /* MSFHomePageViewModelSpec.m */,
 				496A444E1B6A57BE00104215 /* MSFInstallmentSpec.m */,
 				496A444F1B6A57BE00104215 /* MSFLoanViewModelSpec.m */,
@@ -4511,7 +4508,6 @@
 				4917A43D1B94409700ADA6FC /* MSFInventorySpec.m in Sources */,
 				496A447B1B6A57BE00104215 /* MSFSelectionViewModelSpec.m in Sources */,
 				496A44631B6A57BE00104215 /* MSFAgreementSpec.m in Sources */,
-				496A446D1B6A57BE00104215 /* MSFClientXBMSpec.m in Sources */,
 				4948E8AB1B9552040048D125 /* MSFElementViewModelSpec.m in Sources */,
 				496A44621B6A57BE00104215 /* MSFAdverSpec.m in Sources */,
 				496A44691B6A57BE00104215 /* MSFBannersViewModelSpec.m in Sources */,

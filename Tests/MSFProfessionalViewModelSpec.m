@@ -72,11 +72,9 @@ describe(@"education", ^{
 
 	it(@"should execute education system command", ^{
 		// when
-		[viewModel.executeEductionalSystmeCommand execute:nil];
+		[viewModel.executeEducationCommand execute:nil];
 		
 		// then
-		expect(viewModel.eductionalSystme).notTo(beNil());
-		expect(viewModel.eductionalSystmeTitle).to(equal(@"bar"));
 		expect(viewModel.model.programLength).to(equal(@"1"));
 	});
 });
