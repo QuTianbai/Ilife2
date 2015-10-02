@@ -675,22 +675,22 @@
                     </view>
                     <navigationItem key="navigationItem" id="Eoy-hp-Eiw">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="FAI-Q6-jtJ">
+                        <view key="titleView" contentMode="scaleToFill" id="FAI-Q6-jtJ" customClass="MSFSignInSegmentedView">
                             <rect key="frame" x="9" y="0.0" width="302" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qs4-YI-vd9">
-                                    <rect key="frame" x="-9" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="302" height="44"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYY-mG-gh7">
-                                            <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="151" height="44"/>
                                             <state key="normal" title="注册">
                                                 <color key="titleColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Gw-h1-8id">
-                                            <rect key="frame" x="160" y="0.0" width="160" height="44"/>
+                                            <rect key="frame" x="151" y="0.0" width="151" height="44"/>
                                             <color key="tintColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="登录">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -722,11 +722,17 @@
                                         <constraint firstAttribute="bottom" secondItem="4Gw-h1-8id" secondAttribute="bottom" id="fy3-fo-ny8"/>
                                         <constraint firstItem="aYY-mG-gh7" firstAttribute="top" secondItem="Qs4-YI-vd9" secondAttribute="top" id="qTf-AS-fyQ"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="FTg-PG-eqe"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="Qs4-YI-vd9" firstAttribute="leading" secondItem="FAI-Q6-jtJ" secondAttribute="leading" constant="-9" id="4If-A2-ZEm"/>
+                                <constraint firstItem="Qs4-YI-vd9" firstAttribute="leading" secondItem="FAI-Q6-jtJ" secondAttribute="leading" id="4If-A2-ZEm"/>
+                                <constraint firstAttribute="trailing" secondItem="Qs4-YI-vd9" secondAttribute="trailing" id="HhR-cZ-hti"/>
                                 <constraint firstAttribute="bottom" secondItem="Qs4-YI-vd9" secondAttribute="bottom" id="V7A-EG-cOM"/>
                                 <constraint firstItem="Qs4-YI-vd9" firstAttribute="top" secondItem="FAI-Q6-jtJ" secondAttribute="top" id="nFG-UA-YJ3"/>
                             </constraints>
