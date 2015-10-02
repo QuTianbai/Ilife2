@@ -104,6 +104,9 @@ static NSDictionary *messages;
 	};
 	self.defaultHeaders = MFSClientDefaultHeaders();
 	self.requestSerializer.timeoutInterval = 15;
+	#if DEBUG
+	self.requestSerializer.timeoutInterval = 3;
+	#endif
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
 	if (isRunningTests()) {
