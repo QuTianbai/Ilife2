@@ -220,6 +220,21 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:[self.class errorWithFailureReason:@"密码错误，请重新填写"]];
 	}
 	MSFUser *user = [MSFUser userWithServer:self.services.server];
+	
+	if (self.loginType == MSFLoginIDSignIn) {
+	return [[[MSFClient
+		signInAsUser:user username:self.name password:self.password citizenID:self.card]
+		catch:^RACSignal *(NSError *error) {
+			if ([error.userInfo[MSFClientErrorMessageCodeKey] isEqualToString:@"40012101"]) {
+				_signInValid = NO;
+				[(RACSubject *)self.signInInvalidSignal sendNext:nil];
+			}
+			return [RACSignal error:error];
+		}]
+		doNext:^(id x) {
+			[MSFUtils setHttpClient:x];
+		}];
+	}
 	return [[[MSFClient
 		signInAsUser:user password:self.password phone:self.username captcha:self.captcha]
 		catch:^RACSignal *(NSError *error) {
