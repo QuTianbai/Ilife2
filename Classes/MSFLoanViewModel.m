@@ -12,6 +12,7 @@
 @interface MSFLoanViewModel ()
 
 @property (nonatomic, strong) MSFApplyList *loan;
+@property (nonatomic, weak) id<MSFViewModelServices>services;
 
 @end
 
@@ -19,11 +20,12 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithModel:(MSFApplyList *)model {
+- (instancetype)initWithModel:(MSFApplyList *)model services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_services = services;
 	
 	RAC(self, status) = [RACObserve(model, status) map:^id(id status) {
 		NSDictionary *statusValues = @{
@@ -67,6 +69,10 @@
 	_currentInstallment = model.current_installment;
 	
 	return self;
+}
+
+- (void)pushHistoryDetails {
+	[self.services pushViewModel:self];
 }
 
 @end

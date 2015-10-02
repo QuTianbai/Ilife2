@@ -24,11 +24,11 @@
 
 @property (weak, nonatomic) IBOutlet UIView *content;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
+@property (weak, nonatomic) IBOutlet UIButton *statusButton;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
-@property (assign, nonatomic) BOOL placeholderShow;
+@property (assign, nonatomic) BOOL circleShow;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
 
 @end
@@ -36,14 +36,12 @@
 @implementation MSFHomePageContentCollectionViewCell
 
 - (void)awakeFromNib {
-	_statusLabel.layer.cornerRadius = 5;
-	_statusLabel.layer.borderColor = UIColor.tintColor.CGColor;
-	_statusLabel.layer.borderWidth = 1;
-	
-//	self.placeholder.alpha = 1;
-//	self.applyButton.hidden = NO;
-	self.content.alpha = 0;
-	self.placeholderShow = YES;
+	_statusButton.layer.cornerRadius = 5;
+	_statusButton.layer.borderColor = UIColor.tintColor.CGColor;
+	_statusButton.layer.borderWidth = 1;
+	_circleView.alpha = 1;
+	_content.alpha = 0;
+	_circleShow = YES;
 }
 
 - (void)bindViewModel:(id)viewModel {
@@ -51,16 +49,24 @@
 		if ([viewModel isKindOfClass:MSFLoanViewModel.class]) {
 			MSFLoanViewModel *model = viewModel;
 			_titleLabel.text  = model.title;
-			_statusLabel.text = model.status;
+			[_statusButton setTitle:model.status forState:UIControlStateNormal];
 			_amountLabel.text = model.totalAmount;
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
 			[self placeholderShow:NO];
+			[[[_statusButton
+				 rac_signalForControlEvents:UIControlEventTouchUpInside]
+				takeUntil:self.rac_prepareForReuseSignal]
+			 subscribeNext:^(NSString *x) {
+				 if ([x isEqualToString:@"申请中"]) {
+					 [model pushHistoryDetails];
+				 }
+			}];
 			return;
 		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
 			MSFRepaymentViewModel *model = viewModel;
 			if (model.repaymentStatus) {
 				_titleLabel.text  = model.title;
-				_statusLabel.text = model.status;
+				[_statusButton setTitle:model.status forState:UIControlStateNormal];
 				_amountLabel.text = model.repaidAmount;
 				if ([model.status isEqualToString:@"还款中"]) {
 					_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", model.expireDate];
@@ -70,12 +76,20 @@
 					_infoLabel.text = nil;
 				}
 				[self placeholderShow:NO];
+				[[[_statusButton
+					 rac_signalForControlEvents:UIControlEventTouchUpInside]
+					takeUntil:self.rac_prepareForReuseSignal]
+				 subscribeNext:^(NSString *x) {
+					 if ([x isEqualToString:@"还款中"] || [x isEqualToString:@"已逾期"]) {
+						 [model pushRepaymentPlan];
+					 }
+				 }];
 				return;
 			}
 		}
 	}
 	self.ConFirmContractBT.hidden = YES;
-	 self.statusLabel.hidden = NO;
+	self.statusButton.hidden = NO;
 	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
 		 //[SVProgressHUD showWithStatus:@"正在加载..."];
@@ -88,57 +102,53 @@
 	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil] subscribeNext:^(id x) {
 		self.ConFirmContractBT.hidden = NO;
-		self.statusLabel.hidden = YES;
+		self.statusButton.hidden = YES;
 	}];
 	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil] subscribeNext:^(id x) {
 		self.ConFirmContractBT.hidden = YES;
-		self.statusLabel.hidden = NO;
+		self.statusButton.hidden = NO;
 	}];
 	
 	[self placeholderShow:YES];
 }
-
+/*
 - (IBAction)onApply:(UIButton *)sender {
 	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
 	if ([tab isKindOfClass:MSFTabBarController.class]) {
 		if ([tab.delegate tabBarController:tab shouldSelectViewController:tab.viewControllers[1]])
 			tab.selectedIndex = 1;
 	}
-}
+}*/
 
 - (void)placeholderShow:(BOOL)b {
-	/*
-	[self bringSubviewToFront:self.placeholder];
-	[self bringSubviewToFront:self.applyButton];
+	[self bringSubviewToFront:self.circleView];
 	if (b) {
-		if (!self.placeholderShow) {
-			self.applyButton.hidden = NO;
-			self.placeholderShow = YES;
-			self.placeholder.transform = CGAffineTransformMakeScale(0.6, 0.6);
+		if (!_circleShow) {
+			_circleShow = YES;
+			self.circleView.transform = CGAffineTransformMakeScale(0.6, 0.6);
 			[UIView animateWithDuration:0.25 animations:^{
 				self.content.alpha = 0;
 			} completion:^(BOOL finished) {
 				[UIView animateWithDuration:0.5 delay:0 usingSpringWithDamping:0.6 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-					self.placeholder.alpha = 1;
-					self.placeholder.transform = CGAffineTransformIdentity;
+					self.circleView.alpha = 1;
+					self.circleView.transform = CGAffineTransformIdentity;
 				} completion:nil];
 			}];
 		}
 	} else {
-		if (self.placeholderShow) {
-			self.applyButton.hidden = YES;
-			self.placeholderShow = NO;
+		if (_circleShow) {
+			_circleShow = NO;
 			[UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-				self.placeholder.alpha = 0.5;
+				self.circleView.alpha = 0.5;
 			} completion:^(BOOL finished) {
 				[UIView animateWithDuration:0.2 animations:^{
-					self.placeholder.alpha = 0;
+					self.circleView.alpha = 0;
 					self.content.alpha = 1;
 				} completion:nil];
 			}];
 		}
-	}*/
+	}
 }
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @interface MSFRepaymentViewModel : RVMViewModel
 
@@ -26,6 +27,8 @@
 @property (nonatomic, strong, readonly) NSString *repaidAmount;
 
 
-- (instancetype)initWithModel:(id)model;
+- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
+
+- (void)pushRepaymentPlan;
 
 @end

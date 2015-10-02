@@ -14,6 +14,7 @@
 #import "MSFLoanViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFBannersViewModel.h"
+#import "MSFCirculateCashViewModel.h"
 #import "MSFApplyList.h"
 
 @interface MSFHomepageViewModel ()
@@ -36,6 +37,7 @@
 	}
 	_services = services;
 	_bannersViewModel = [[MSFBannersViewModel alloc] initWithServices:self.services];
+	_circulateCashViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:services];
 	
 	@weakify(self)
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -48,11 +50,11 @@
 		return [[self.services.httpClient checkUserHasCredit] flattenMap:^RACStream *(MSFResponse *value) {
 			if ([value.parsedResult[@"processing"] boolValue]) {
 				MSFApplyList *applyList = [MTLJSONAdapter modelOfClass:MSFApplyList.class fromJSONDictionary:value.parsedResult[@"data"] error:nil];
-				MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:applyList];
+				MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:applyList services:services];
 				return [RACSignal return:@[viewModel]];
 			} else {
 				return [[self.services.httpClient fetchRepayment] map:^id(id value) {
-					MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithModel:value];
+					MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithModel:value services:services];
 					return @[viewModel];
 				}];
 			}
@@ -62,7 +64,12 @@
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if (self.services.httpClient.user.isAuthenticated) {
-			[self.refreshCommand execute:nil];
+			if (self.services.httpClient.user.type.integerValue == 0) {
+				[self.refreshCommand execute:nil];
+			} else {
+				self.circulateCashViewModel.active = NO;
+				self.circulateCashViewModel.active = YES;
+			}
 		}
 	}];
 	
@@ -76,18 +83,26 @@
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-	return self.viewModels.count == 0 ? 1 : self.viewModels.count;
+	//return self.viewModels.count == 0 ? 1 : self.viewModels.count;
+	return 1;
 }
 
-- (MSFLoanViewModel *)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if (self.viewModels.count > indexPath.item) {
-		return self.viewModels[indexPath.item];
+- (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
+	if (self.services.httpClient.user.type.integerValue == 0) {
+		if (self.viewModels.count > indexPath.item) {
+			return self.viewModels[indexPath.item];
+		}
+	} else {
+		return self.circulateCashViewModel;
 	}
-	
+
 	return nil;
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
+	if (self.services.httpClient.user.type.integerValue == 0) {
+		return @"MSFHomePageContentCollectionViewCell";
+	}
 	return @"MSFHomePageContentCollectionViewCell";
 }
 

@@ -14,16 +14,18 @@
 @interface MSFRepaymentViewModel ()
 
 @property (nonatomic, strong) MSFRepayMent *repayment;
+@property (nonatomic, weak) id<MSFViewModelServices>services;
 
 @end
 
 @implementation MSFRepaymentViewModel
 
-- (instancetype)initWithModel:(MSFRepayMent *)model {
+- (instancetype)initWithModel:(MSFRepayMent *)model services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_services = services;
 	
 	RAC(self, repaymentStatus) = RACObserve(model, repaymentStatus);
 	
@@ -54,6 +56,10 @@
 
 	return self;
 	
+}
+
+- (void)pushRepaymentPlan {
+	[_services pushViewModel:self];
 }
 
 @end
