@@ -46,6 +46,10 @@ beforeEach(^{
 	expect(viewModel).notTo(beNil());
 });
 
+afterEach(^{
+	[NSFileManager.defaultManager removeItemAtPath:NSTemporaryDirectory() error:nil];
+});
+
 it(@"should initialize", ^{
 	// then
 	expect(viewModel).notTo(beNil());
@@ -139,9 +143,12 @@ it(@"should get error when required element doese not have attachment", ^{
 	[optionalViewModel addAttachment:mockAttachment];
 	
 	NSError *error;
-	[[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
+	BOOL success = NO;
+	[[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
 	
 	// then
+	expect(@(viewModel.viewModels.count)).notTo(equal(@0));
+	expect(@(success)).to(beFalsy());
 	expect(error.userInfo[NSLocalizedFailureReasonErrorKey]).to(equal(@"请添加“bar”"));
 	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
 });
@@ -181,6 +188,7 @@ it(@"should update inventory when required elements have attachment", ^{
 	
 	// then
 	expect(error).to(beNil());
+	expect(@(viewModel.viewModels.count)).notTo(equal(@0));
 	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
 });
 

@@ -5,12 +5,36 @@
 //
 
 #import "MSFReleaseNote.h"
-#import "MSFVersion.h"
+#import "NSValueTransformer+MSFPredefinedTransformerAdditions.h"
 
 @implementation MSFReleaseNote
 
-+ (NSValueTransformer *)versionJSONTransformer {
-	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFVersion.class];
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+		@"status": @"status",
+		@"versionCode": @"versionCode",
+		@"versionName": @"versionName",
+		@"updatedURL": @"updateUrl",
+		@"summary": @"description",
+		@"updatedDate": @"published",
+		@"timestamp": @"timestamp",
+	};
+}
+
++ (NSValueTransformer *)updatedURLJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)updatedDateJSONTransformer {
+	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
+}
+
++ (NSValueTransformer *)timestampJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
 }
 
 @end

@@ -7,12 +7,8 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 #import <MSPageViewController/MSPageViewControllerPage.h>
+#import "MSFGroupTableViewController.h"
 
-@interface MSFSignInViewController : UITableViewController <MSFReactiveView, MSPageViewControllerChild>
-
-@property (nonatomic, weak) IBOutlet UITextField *username;
-@property (nonatomic, weak) IBOutlet UITextField *password;
-@property (nonatomic, weak) IBOutlet UIButton *signInButton;
-@property (nonatomic, weak) IBOutlet UIView *backgroundView;
+@interface MSFSignInViewController : MSFGroupTableViewController <MSFReactiveView, MSPageViewControllerChild>
 
 @end

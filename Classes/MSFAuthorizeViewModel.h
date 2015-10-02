@@ -6,14 +6,31 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSUInteger, MSFLoginType) {
 	MSFLoginSignUp,
 	MSFLoginSignIn,
+	MSFLoginIDSignIn,
 };
+
+extern NSString *const MSFAuthorizeCaptchaSignUp;
+extern NSString *const MSFAuthorizeCaptchaSignIn;
+extern NSString *const MSFAuthorizeCaptchaLoan;
+extern NSString *const MSFAuthorizeCaptchaInitTransPassword;
+extern NSString *const MSFAuthorizeCaptchaModifyTransPassword;
+extern NSString *const MSFAuthorizeCaptchaForgetTransPassword;
+extern NSString *const MSFAuthorizeCaptchaForgetPassword;
+extern NSString *const MSFAuthorizeCaptchaModifyMobile;
 
 @class MSFServer;
 @class RACCommand;
+
+extern const NSInteger MSFAuthorizeUsernameMaxLength;
+extern const NSInteger MSFAuthorizePasswordMaxLength;
+extern const NSInteger MSFAuthorizeIdentifierMaxLength;
+extern const NSInteger MSFAuthorizeCaptchaMaxLength;
+extern const NSInteger MSFAuthorizeNameMaxLength;
 
 // 授权接口调用错误域
 extern NSString *const MSFAuthorizeErrorDomain;
@@ -78,5 +95,23 @@ extern NSString *const MSFAuthorizeErrorDomain;
 //
 // Return a new MSFAuthorizeViewModel instance
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+
+@property (nonatomic, assign, readonly) BOOL signInValid;
+@property (nonatomic, strong, readonly) RACSignal *signInInvalidSignal;
+
+@property (nonatomic, strong) UIImage *captchaNomalImage;
+@property (nonatomic, strong) UIImage *captchaHighlightedImage;
+
+// The User realname, Identifier Card name
+@property (nonatomic, strong) NSString *name;
+
+// identfier Card no
+@property (nonatomic, strong) NSString *card;
+
+// The identifer Card invalid time
+@property (nonatomic, strong) NSDate *expired;
+
+// User Identifier card is or not life time valid
+@property (nonatomic, assign) BOOL permanent;
 
 @end

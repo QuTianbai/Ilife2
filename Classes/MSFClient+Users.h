@@ -24,7 +24,8 @@
  *
  *	@return response
  */
-- (RACSignal *)resetPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha;
+- (RACSignal *)resetPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha __deprecated_msg("Use `resetSignInPassword:password:phone:captcha:name: citizenID:`");
+- (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID;
 
 /**
  *	更新用户密码
@@ -34,7 +35,7 @@
  *
  *	@return response
  */
-- (RACSignal *)updateUserPassword:(NSString *)oldpassword password:(NSString *)newpassword;
+- (RACSignal *)updateSignInPassword:(NSString *)oldpassword password:(NSString *)newpassword;
 
 /**
  *	更新用户头像

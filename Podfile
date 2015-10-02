@@ -34,5 +34,5 @@ pod 'MWPhotoBrowser', '2.1.1'
 pod 'BugshotKit', :head
 
 target 'Tests', :exclusive => true do
-    pod 'OCMockito', :git => 'https://github.com/jonreid/OCMockito', :commit=>'f20ee6d'
+    pod 'OCMockito', :head
 end

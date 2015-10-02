@@ -23,6 +23,7 @@
 #import "MSFSignature.h"
 #import "RCLocationManager.h"
 #import <Crashlytics/Crashlytics.h>
+#import "MSFDeviceGet.h"
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
@@ -30,7 +31,18 @@ const NSInteger MSFClientErrorJSONParsingFailed = 669;
 const NSInteger MSFClientErrorAuthenticationFailed = 401;
 NSString *const MSFClientErrorAuthenticationFailedNotification = @"MSFClientErrorAuthenticationFailedNotification";
 
-static const NSInteger MSFClientNotModifiedStatusCode = 304;
+const NSInteger MSFClientErrorForbidden = 403;
+const NSInteger MSFClientErrorNotFound = 404;
+const NSInteger MSFClientErrorUnsupportedMediaType = 415;
+const NSInteger MSFClientErrorUnprocessableEntry = 422;
+const NSInteger MSFClientErrorTooManyRequests = 429;
+const NSInteger MSFClientErrorBadRequest = 400;
+
+NSString *const MSFClientErrorFieldKey = @"fields";
+NSString *const MSFClientErrorMessageCodeKey = @"code";
+NSString *const MSFClientErrorMessageKey = @"message";
+
+static const NSInteger MSFClientNotModifiedStatusCode = 204;
 
 static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPONSES";
 
@@ -46,6 +58,8 @@ static BOOL isRunningTests(void) {
 
 	return isTestsRunning;
 }
+
+static NSDictionary *messages;
 
 @interface MSFClient ()
 
@@ -104,6 +118,10 @@ static BOOL isRunningTests(void) {
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
 	
+	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"code-message" withExtension:@"json"];
+	NSData *data = [NSData dataWithContentsOfURL:URL];
+	messages = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+	
 	return self;
 }
 
@@ -122,15 +140,6 @@ static BOOL isRunningTests(void) {
 		[self clearAuthorizationHeader];
 	} else {
 		[self setAuthorizationHeaderWithToken:token];
-	}
-}
-
-- (void)setSession:(NSString *)session {
-	_session = [session copy];
-	if (session == nil) {
-		[self clearAuthorizationHeader];
-	} else {
-		[self setAuthorizationHeaderWithSession:session];
 	}
 }
 
@@ -198,11 +207,12 @@ static BOOL isRunningTests(void) {
 		return [RACSignal defer:^RACSignal *{
 			MSFClient *client = [self unauthenticatedClientWithUser:user];
 			NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-			parameters[@"action"] = @"login";
-			parameters[@"phoneNumber"] = phone;
+			parameters[@"logType"] = @"1";
+			parameters[@"mobile"] = phone;
 			parameters[@"password"] = password.sha256;
-			parameters[@"captcha"] = captcha;
-			NSURLRequest *request = [client requestWithMethod:@"POST" path:@"authenticate" parameters:parameters];
+			parameters[@"imei"] = MSFDeviceGet.imei;
+			parameters[@"smsCode"] = captcha ?: @"";
+			NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/login" parameters:parameters];
 			
 			return [[client enqueueRequest:request]
 				flattenMap:^RACStream *(RACTuple *responseAndResponseObject) {
@@ -235,7 +245,60 @@ static BOOL isRunningTests(void) {
 		reduceEach:^id(MSFClient *client, MSFResponse *response){
 			MSFAuthorization *authorization = response.parsedResult;
 			client.token = authorization.token;
-			client.session = authorization.session;
+			
+			return client;
+		}]
+		replayLazily] setNameWithFormat:@"`signInAsUser:%@ password:`", user];
+}
+
++ (RACSignal *)signInAsUser:(MSFUser *)user username:(NSString *)username password:(NSString *)password citizenID:(NSString *)idcard {
+	NSParameterAssert(user);
+	NSParameterAssert(password);
+	NSParameterAssert(idcard);
+	NSParameterAssert(username);
+	
+	RACSignal *(^authorizationSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
+		return [RACSignal defer:^RACSignal *{
+			MSFClient *client = [self unauthenticatedClientWithUser:user];
+			NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+			parameters[@"logType"] = @"2";
+			parameters[@"ident"] = idcard;
+			parameters[@"password"] = password.sha256;
+			parameters[@"imei"] = MSFDeviceGet.imei;
+			parameters[@"name"] = username;
+			NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/login" parameters:parameters];
+			
+			return [[client enqueueRequest:request]
+				flattenMap:^RACStream *(RACTuple *responseAndResponseObject) {
+					RACTupleUnpack(NSHTTPURLResponse *HTTPURLResponse, id responseObject) = responseAndResponseObject;
+					if (HTTPURLResponse.statusCode != 200) {
+						NSError *error = [NSError errorWithDomain:MSFClientErrorDomain code:0 userInfo:@{}];
+						return [RACSignal error:error];
+					}
+					MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:HTTPURLResponse.allHeaderFields error:nil];
+					MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:HTTPURLResponse parsedResult:authorization];
+					MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:responseObject error:nil];
+					[user mergeValueForKey:@keypath(user.server) fromModel:client.user];
+					client.user = user;
+				
+					return [RACSignal combineLatest:@[
+						[RACSignal return:client],
+						[RACSignal return:response],
+					]];
+				}];
+			}];
+		};
+	
+	return [[[[[authorizationSignalWithUser(user)
+		flattenMap:^RACStream *(RACTuple *clientAndResponse) {
+			return [RACSignal return:clientAndResponse];
+		}]
+		catch:^RACSignal *(NSError *error) {
+		 return [RACSignal error:error];
+		}]
+		reduceEach:^id(MSFClient *client, MSFResponse *response){
+			MSFAuthorization *authorization = response.parsedResult;
+			client.token = authorization.token;
 			
 			return client;
 		}]
@@ -282,7 +345,54 @@ static BOOL isRunningTests(void) {
 		reduceEach:^id(MSFClient *client, MSFResponse *response){
 			MSFAuthorization *authorization = response.parsedResult;
 			client.token = authorization.token;
-			client.session = authorization.session;
+		 
+			return client;
+		}]
+		replayLazily] setNameWithFormat:@"`signUpAsUser:%@ password: phone: captcha`", user];
+}
+
++ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha realname:(NSString *)realname citizenID:(NSString *)citizenID citizenIDExpiredDate:(NSDate *)expiredDate {
+	RACSignal *(^registeringSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
+		MSFClient *client = [self unauthenticatedClientWithUser:user];
+		NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+		parameters[@"mobile"] = phone;
+		parameters[@"password"] = password.sha256;
+		parameters[@"smsCode"] = captcha;
+		parameters[@"name"] = realname;
+		parameters[@"ident"] = citizenID;
+		parameters[@"idLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
+		
+		return [[client enqueueRequest:request]
+			flattenMap:^RACStream *(RACTuple *responseAndResponseObject) {
+				RACTupleUnpack(NSHTTPURLResponse *HTTPURLResponse, id responseObject) = responseAndResponseObject;
+				if (HTTPURLResponse.statusCode != 200) {
+					NSError *error = [NSError errorWithDomain:MSFClientErrorDomain code:0 userInfo:@{}];
+					return [RACSignal error:error];
+				}
+				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:HTTPURLResponse.allHeaderFields error:nil];
+				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:HTTPURLResponse parsedResult:authorization];
+				MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:responseObject error:nil];
+				[user mergeValueForKey:@keypath(user.server) fromModel:client.user];
+				client.user = user;
+			 
+				return [RACSignal combineLatest:@[
+					[RACSignal return:client],
+					[RACSignal return:response],
+				]];
+		}];
+	};
+	
+	return [[[[[registeringSignalWithUser(user)
+		flattenMap:^RACStream *(RACTuple *clientAndResponse) {
+			return [RACSignal return:clientAndResponse];
+		}]
+		catch:^RACSignal *(NSError *error) {
+		 return [RACSignal error:error];
+		}]
+		reduceEach:^id(MSFClient *client, MSFResponse *response){
+			MSFAuthorization *authorization = response.parsedResult;
+			client.token = authorization.token;
 		 
 			return client;
 		}]
@@ -447,11 +557,25 @@ static BOOL isRunningTests(void) {
 
 + (NSError *)errorFromRequestOperation:(AFHTTPRequestOperation *)operation {
 	NSDictionary *userinfo = @{};
-	if ([operation.responseObject isKindOfClass:NSDictionary.class]) {
-		userinfo = @{NSLocalizedFailureReasonErrorKey: operation.responseObject[@"message"]?:@""};
-	} else {
-		userinfo = @{NSLocalizedFailureReasonErrorKey: @"系统繁忙，请稍后再试"};
-	}
+	
+	// Fields error
+	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
+		MSFClientErrorFieldKey: operation.responseObject[MSFClientErrorFieldKey] ?: @{}
+	}];
+
+	NSString *code = operation.responseObject[MSFClientErrorMessageCodeKey];
+	NSString *message = messages[MSFClientErrorMessageCodeKey] ?: operation.responseObject[MSFClientErrorMessageKey];
+	
+	// Message
+	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
+		NSLocalizedFailureReasonErrorKey: message ?: @"",
+		MSFClientErrorMessageKey: message ?: @"",
+	}];
+	
+	// Code
+	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
+		MSFClientErrorMessageCodeKey: code ?: @"",
+	}];
 	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
 }
@@ -529,44 +653,17 @@ static BOOL isRunningTests(void) {
 			#elif TEST
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			#endif
-			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
-				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];
-				self.token = authorization.token;
-				self.session = authorization.session;
-			}
-			if (!responseObject) {
-				if ([request.URL.absoluteString rangeOfString:@"captcha"].length > 0) {
-					responseObject = @{@"message": @"短信已下发,请注意查收"};
-				}
-				if ([request.URL.absoluteString rangeOfString:@"users/forget_password"].length > 0) {
-					responseObject = @{@"message": @"更新成功"};
-				}
-				if ([request.URL.absoluteString rangeOfString:@"update_password"].length > 0) {
-					responseObject = @{@"message": @"修改成功"};
-				}
-				if ([request.URL.absoluteString rangeOfString:@"authenticate"].length > 0 && [request.HTTPMethod isEqualToString:@"DELETE"]) {
-					responseObject = @{@"message": @"登录退出"};
-				}
-			}
 			
-			if ([responseObject isKindOfClass:NSDictionary.class] && responseObject[@"code"] != 0) {
-				[subscriber sendError:[self parsingErrorWithFailureReason:responseObject[@"message"]]];
-				return;
-			}
-			
-			if (operation.response.statusCode == MSFClientNotModifiedStatusCode || [responseObject count] == 0) {
+			if (operation.response.statusCode == MSFClientNotModifiedStatusCode) {
 				// No change in the data.
+				[subscriber sendNext:nil];
 				[subscriber sendCompleted];
 				return;
 			}
 			
-			[[RACSignal
-				 return:RACTuplePack(operation.response, responseObject)]
-				 subscribe:subscriber];
+			[[RACSignal return:RACTuplePack(operation.response, responseObject)] subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			[self reportFabric:operation error:error];
-		
 			#if DEBUG
 				if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
 					NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
@@ -575,23 +672,7 @@ static BOOL isRunningTests(void) {
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			#endif
 			
-			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
-				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];
-				self.token = authorization.token;
-				self.session = authorization.session;
-			}
-			
-			if (operation.response.statusCode == 403) {
-				NSString *timestamp = operation.response.allHeaderFields[@"timestamp"];
-				MSFCipher *cipher = [[MSFCipher alloc] initWithSession:timestamp.longLongValue];
-				[MSFClient setCipher:cipher];
-			}
-			
-			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
-				[MSFUtils setHttpClient:nil];
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
-			}
-			
+			[self reportFabric:operation error:error];
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
 		}];
 		
@@ -628,16 +709,11 @@ static BOOL isRunningTests(void) {
 }
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {
-		[self setDefaultHeader:@"finance" value:token];
-}
-
-- (void)setAuthorizationHeaderWithSession:(NSString *)session {
-	[self setDefaultHeader:@"msfinance" value:session];
+		[self setDefaultHeader:@"token" value:token];
 }
 
 - (void)clearAuthorizationHeader {
-	[self.defaultHeaders removeObjectForKey:@"msfinance"];
-	[self.defaultHeaders removeObjectForKey:@"finance"];
+	[self.defaultHeaders removeObjectForKey:@"token"];
 }
 
 #pragma mark - addBankCard

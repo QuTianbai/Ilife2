@@ -13,7 +13,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFClozeViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFClient+Users.h"
 #import "MSFUser.h"
@@ -67,14 +66,6 @@
 			self.viewModel.mobile?:@"",
 			];
 		[self.tableView reloadData];
-		if (self.viewModel.identifyCard.length == 0) {
-			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-			MSFClozeViewController *clozeViewController =
-			[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
-			UINavigationController *navigationController =
-			[[UINavigationController alloc] initWithRootViewController:clozeViewController];
-			[self presentViewController:navigationController animated:YES completion:nil];
-		}
 	}];
 }
 

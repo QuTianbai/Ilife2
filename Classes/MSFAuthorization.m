@@ -10,9 +10,8 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"session": @"msfinance",
-		@"token": @"finance"
-		};
+		@"token": @"token"
+	};
 }
 
 @end

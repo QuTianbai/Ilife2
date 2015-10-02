@@ -7,7 +7,8 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 #import <MSPageViewController/MSPageViewControllerPage.h>
+#import "MSFGroupTableViewController.h"
 
-@interface MSFSignUpViewController : UITableViewController <MSFReactiveView, MSPageViewControllerChild>
+@interface MSFSignUpViewController : MSFGroupTableViewController <MSFReactiveView, MSPageViewControllerChild>
 
 @end
