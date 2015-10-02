@@ -21,6 +21,9 @@
 #import "MSFAgreementViewModel.h"
 #import "MSFTeam.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFClient+MSFCheckAllowApply.h"
+#import "MSFCheckAllowApply.h"
+#import "MSFApplyCashInfo.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -111,6 +114,11 @@
 		return [self executePurposeSignal];
 	}];
 	
+	_executeNextCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeNextSignal];
+	}];
+	
 	
 	return self;
 }
@@ -133,6 +141,52 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFWebViewModel *viewModel = [[MSFWebViewModel alloc] initWithURL:[MSFUtils.agreementViewModel.agreement lifeInsuranceURL]];
 		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)executeNextSignal {
+	@weakify(self)
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		if (!self.product || self.appLmt.intValue == 0) {
+			if (self.appLmt.intValue == 0) {
+				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数",}]];
+				return nil;
+
+			}
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数",
+																																																	 }]];
+			return nil;
+		}
+		if (!self.purpose) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
+																																																	 NSLocalizedFailureReasonErrorKey: @"请选择贷款用途",
+																																																	 }]];
+			return nil;
+		}
+		[[self.services.httpClient fetchCheckAllowApply] subscribeNext:^(MSFCheckAllowApply *model) {
+			[SVProgressHUD dismiss];
+			if ([model.processing isEqualToString:@"0"]) {
+				[[[UIAlertView alloc] initWithTitle:@"提示"
+																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
+																	 delegate:nil
+													cancelButtonTitle:@"确认"
+													otherButtonTitles:nil] show];
+			} else {
+				
+//				[self setModelData:applyInfo with:self.formsViewModel.model];
+//				[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
+//				
+//				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
+//				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
+//				[self.services pushViewModel:viewModel];
+				
+			}
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 		[subscriber sendCompleted];
 		return nil;
 	}];
