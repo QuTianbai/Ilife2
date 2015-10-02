@@ -24,6 +24,7 @@
 #import "MSFClient+MSFCheckAllowApply.h"
 #import "MSFCheckAllowApply.h"
 #import "MSFApplyCashInfo.h"
+#import "MSFLoanAgreementViewModel.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -176,12 +177,13 @@
 													otherButtonTitles:nil] show];
 			} else {
 				
-//				[self setModelData:applyInfo with:self.formsViewModel.model];
-//				[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
-//				
-//				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
-//				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self.formsViewModel product:self.product];
-//				[self.services pushViewModel:viewModel];
+				self.model.applyStatus = model.data.status;
+				self.appNO = model.data.appNo;
+				//[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
+				
+				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
+				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self];
+				[self.services pushViewModel:viewModel];
 				
 			}
 		} error:^(NSError *error) {

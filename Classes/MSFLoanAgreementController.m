@@ -50,7 +50,7 @@
 	self.title = @"贷款协议";
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RACSignal *signal = [self.viewModel.agreementViewModel loanAgreementSignalWithProduct:self.viewModel.product];
+	RACSignal *signal = [self.viewModel.agreementViewModel loanAgreementSignalWithViewModel:self.viewModel.formsViewModel];
 	[self.LoanAgreenmentWV stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
 	 "script.type = 'text/javascript';"
 	 "script.text = \"function confirm() { "
@@ -81,13 +81,13 @@
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
 			vc.hidesBottomBarWhenPushed = YES;
-			self.viewModel.formsViewModel.model.applyNo = applyCash.applyNo;
-			self.viewModel.formsViewModel.model.loanId = applyCash.applyID;
-			self.viewModel.formsViewModel.model.personId = applyCash.personId;
-			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
-			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
-			[vc bindViewModel:viewModel];
-			[self.navigationController pushViewController:vc animated:YES];
+//			self.viewModel.formsViewModel.model.applyNo = applyCash.applyNo;
+//			self.viewModel.formsViewModel.model.loanId = applyCash.applyID;
+//			self.viewModel.formsViewModel.model.personId = applyCash.personId;
+//			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
+//			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
+//			[vc bindViewModel:viewModel];
+//			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {

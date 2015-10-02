@@ -6,14 +6,13 @@
 
 #import "MSFClient+Agreements.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFProduct.h"
+#import "MSFApplyCashVIewModel.h"
 
 @implementation MSFClient (Agreements)
 
-- (RACSignal *)fetchAgreementURLWithProduct:(MSFProduct *)product {
+- (RACSignal *)fetchAgreementURLWithProduct:(MSFApplyCashVIewModel *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"coresys/cont/contract/fineinfo" parameters:@{
-			@"productId": product.productId ?: @"",
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{@"productCode": product.productCd ?: @"", @"appLmt" :product.appLmt?:@"", @"loanTerm" : product.loanTerm
 		}];
 		[subscriber sendNext:request];
 		[subscriber sendCompleted];

@@ -12,23 +12,23 @@
 #import "MSFApplicationForms.h"
 #import "MSFAddress.h"
 #import "MSFAgreementViewModel.h"
+#import "MSFApplyCashVIewModel.h"
 
 @implementation MSFLoanAgreementViewModel
 
-- (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFProduct *)product {
+- (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_agreementViewModel = [[MSFAgreementViewModel alloc] initWithServices:formsViewModel.services];
 	_formsViewModel = formsViewModel;
-	_product = product;
 	_services = formsViewModel.services;
 	@weakify(self)
-	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self.formsViewModel submitSignalWithPage:1];
-	}];
+//	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+//		@strongify(self)
+//		return [self.formsViewModel submitSignalWithPage:1];
+//	}];
 	
 	return self;
 }
