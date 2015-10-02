@@ -93,4 +93,17 @@ static MSFServer *server;
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-base-url"];
 }
 
++ (NSString *)uniqueId {
+	return @"";
+}
+
++ (void)setTradePassword:(NSString *)isSetTradePassword {
+	[[NSUserDefaults standardUserDefaults] setObject:isSetTradePassword?:@"" forKey:@"isSetTradePassword"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSString *)isSetTradePassword {
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"isSetTradePassword"];
+}
+
 @end

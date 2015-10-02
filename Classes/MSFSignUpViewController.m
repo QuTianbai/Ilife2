@@ -19,6 +19,11 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 
+
+#import "MSFBankCardListTableViewController.h"
+#import "MSFCirculateCashTableViewController.h"
+
+
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFSignUpViewController () <UITextFieldDelegate>
@@ -120,6 +125,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
+		
+		
+		MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] init];
+		vc.services = self.viewModel.services;
+		[self.navigationController pushViewController:vc animated:YES];
+		
+		
+		
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
@@ -140,6 +153,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
+		
+		MSFCirculateCashTableViewController *circulateCashVC = [UIStoryboard storyboardWithName:@"CirculateCash" bundle:nil].instantiateInitialViewController;
+		
+		circulateCashVC.services = self.viewModel.services;
+		
+		[self.navigationController pushViewController:circulateCashVC animated:YES];
+		
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
 		[captchaSignal subscribeNext:^(id x) {

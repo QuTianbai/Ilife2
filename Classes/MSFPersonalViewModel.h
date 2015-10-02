@@ -24,6 +24,8 @@
 @property (nonatomic, strong, readonly) MSFApplicationForms *model;
 @property (nonatomic, strong, readonly) RACCommand *executeAlterAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeHouseValuesCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeMarryValuesCommand;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel addressViewModel:(MSFAddressViewModel *)addressViewModel;
 

@@ -87,6 +87,10 @@
 
 #pragma mark - Public
 
+- (RACSignal *)submitUserInfo {
+	return [self.services.httpClient submitUserInfo:self.model];
+}
+
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
 	self.model.page = [@(page) stringValue];
 	if (page == 5) {

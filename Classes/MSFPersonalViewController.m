@@ -9,7 +9,6 @@
 #import "MSFPersonalViewController.h"
 #import <FMDB/FMDatabase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAreas.h"
 #import "MSFApplicationForms.h"
@@ -19,8 +18,7 @@
 #import "NSString+Matches.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFAddressViewModel.h"
-#import "MSFProfessionalViewModel.h"
-#import "MSFProfessionalViewController.h"
+
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
 #import "MSFHeaderView.h"
@@ -28,6 +26,29 @@
 #import "MSFXBMCustomHeader.h"
 
 @interface MSFPersonalViewController ()<MSFSegmentDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *emailTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *provinceTF;
+@property (weak, nonatomic) IBOutlet UIButton *selectAreasBT;
+
+@property (weak, nonatomic) IBOutlet UITextField *detailAddressTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *housingTF;
+@property (weak, nonatomic) IBOutlet UIButton *housingBT;
+
+@property (weak, nonatomic) IBOutlet UITextField *homeTelCodeTF;
+@property (weak, nonatomic) IBOutlet UITextField *homeTelTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *marriageTF;
+@property (weak, nonatomic) IBOutlet UIButton *marriageBT;
+
+@property (weak, nonatomic) IBOutlet MSFSegment *selectQQorJDSegment;
+@property (nonatomic, weak) IBOutlet UITextField *tencentUsername;
+@property (nonatomic, weak) IBOutlet UITextField *taobaoUsername;
+@property (nonatomic, weak) IBOutlet UITextField *jdUsername;
+
+@property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
 @property (nonatomic, strong) MSFPersonalViewModel *viewModel;
 
@@ -47,38 +68,24 @@
 	NSLog(@"MSFPersonalViewController `-dealloc`");
 }
 
+- (instancetype)init {
+	return [UIStoryboard storyboardWithName:@"personal" bundle:nil].instantiateInitialViewController;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-  // Left Bar button
-  UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-  backBtn.frame = CGRectMake(0, 0, 100, 44);
-  [backBtn setTitle:@"申请贷款" forState:UIControlStateNormal];
-  [backBtn setTitleColor:[MSFCommandView getColorWithString:POINTCOLOR] forState:UIControlStateNormal];
-  backBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-  [backBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 15)];
-  [backBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 10)];
-  [backBtn setImage:[UIImage imageNamed:@"left_arrow"] forState:UIControlStateNormal];
-  UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-  @weakify(self)
-  backBtn.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self)
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出" message:@"您确定放弃贷款申请?" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-			if ([x integerValue] == 1) [self.navigationController popToRootViewControllerAnimated:YES];
-		}];
-		[alert show];
-    return [RACSignal empty];
-  }];
-  self.navigationItem.leftBarButtonItem = item;
-	self.title = @"基本信息";
-	self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:0];
+	self.navigationItem.title = @"基本信息";
+	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	/*
 	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 5) {
 			 textField.text = [textField.text substringToIndex:5];
 		 }
 	 }];
+	
 	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.model, income);
 	RAC(self.monthInComeTF, text) = incomeChannel;
 	[self.monthInComeTF.rac_textSignal subscribe:incomeChannel];
@@ -104,6 +111,84 @@
 	RACChannelTerminal *otherIncomeChannel = RACChannelTo(self.viewModel.model, otherIncome);
 	RAC(self.familyOtherIncomeYF, text) = otherIncomeChannel;
 	[self.familyOtherIncomeYF.rac_textSignal subscribe:otherIncomeChannel];
+	*/
+	
+	@weakify(self)
+	//住房情况
+	RAC(self.housingTF, text) = RACObserve(self.viewModel.model, houseTypeTitle);
+	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
+	//婚姻状况
+	RAC(self.marriageTF, text) = RACObserve(self.viewModel.model, marriageTitle);
+	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
+	//电子邮件
+	[[self.emailTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 40) {
+			 textField.text = [textField.text substringToIndex:40];
+		 }
+	 }];
+	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
+	RAC(self.emailTF, text) = emailChannel;
+	[self.emailTF.rac_textSignal subscribe:emailChannel];
+	//住宅电话
+	[[self.homeTelCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+  subscribeNext:^(UITextField *textField) {
+		@strongify(self)
+		if (textField.text.length == 3) {
+			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+			if ([validArea containsObject:textField.text]) {
+				[self.homeTelTF becomeFirstResponder];
+			}
+		} else if (textField.text.length == 4) {
+			[self.homeTelTF becomeFirstResponder];
+		}
+	}];
+	[[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 8) {
+			 textField.text = [textField.text substringToIndex:8];
+		 }
+	 }];
+	
+	RACChannelTerminal *homeTelCodeChannel = RACChannelTo(self.viewModel.model, homeCode);
+	RAC(self.homeTelCodeTF, text) = homeTelCodeChannel;
+	[self.homeTelCodeTF.rac_textSignal subscribe:homeTelCodeChannel];
+	
+	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel.model, homeLine);
+	RAC(self.homeTelTF, text) = homeTelChannel;
+	[self.homeTelTF.rac_textSignal subscribe:homeTelChannel];
+	
+	//现居地址
+	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
+	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+	//详细地址
+	[[self.detailAddressTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 80) {
+			 textField.text = [textField.text substringToIndex:80];
+		 }
+	 }];
+	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, abodeDetail);
+	RAC(self.detailAddressTF, text) = detailAddrChannel;
+	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
+	
+
+
+//	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
+//	RAC(self.homeTelTF, text) = homeLineChannel;
+//	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
+	
+
+	/*
+	[[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 5) {
+			 textField.text = [textField.text substringToIndex:5];
+		 }
+	 }];
+	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
+	RAC(self.repayMonthTF, text) = familyExpenseChannel;
+	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
 	
 	[[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
@@ -137,100 +222,59 @@
 	RACChannelTerminal *hometelephoneChannel = RACChannelTo(self.viewModel.model, homeLine);
 	RAC(self.homeTelTF, text) = hometelephoneChannel;
 	[self.homeTelTF.rac_textSignal subscribe:hometelephoneChannel];
-	
-	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
-	RAC(self.emailTF, text) = emailChannel;
-	[self.emailTF.rac_textSignal subscribe:emailChannel];
-	
-	[[self.townTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
-		if (textField.text.length > 10) {
-			textField.text = [textField.text substringToIndex:10];
-		}
-	}];
-	RACChannelTerminal *townChannel = RACChannelTo(self.viewModel.model, currentTown);
-	RAC(self.townTF, text) = townChannel;
-	[self.townTF.rac_textSignal subscribe:townChannel];
-	
-	[[self.currentStreetTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
-		if (textField.text.length > 10) {
-			textField.text = [textField.text substringToIndex:10];
-		}
-	}];
-	RACChannelTerminal *streetChannel = RACChannelTo(self.viewModel.model, currentStreet);
-	RAC(self.currentStreetTF, text) = streetChannel;
-	[self.currentStreetTF.rac_textSignal subscribe:streetChannel];
-	
-	[[self.currentCommunityTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
-		if (textField.text.length > 10) {
-			textField.text = [textField.text substringToIndex:10];
-		}
-	}];
-	RACChannelTerminal *communityChannel = RACChannelTo(self.viewModel.model, currentCommunity);
-	RAC(self.currentCommunityTF, text) = communityChannel;
-	[self.currentCommunityTF.rac_textSignal subscribe:communityChannel];
-	
-	[[self.currentApartmentTF rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
-		if (textField.text.length > 10) {
-			textField.text = [textField.text substringToIndex:10];
-		}
-	}];
-	RACChannelTerminal *apartmentChannel = RACChannelTo(self.viewModel.model, currentApartment);
-	RAC(self.currentApartmentTF, text) = apartmentChannel;
-	[self.currentApartmentTF.rac_textSignal subscribe:apartmentChannel];
-	
+	*/
+
+	[[self.tencentUsername rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 15) {
+			 textField.text = [textField.text substringToIndex:15];
+		 }
+	 }];
 	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.model, qq);
 	RAC(self.tencentUsername, text) = tencentUsernameChannel;
 	[self.tencentUsername.rac_textSignal subscribe:tencentUsernameChannel];
 	
+	[[self.taobaoUsername rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 40) {
+			 textField.text = [textField.text substringToIndex:40];
+		 }
+	 }];
 	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.model, taobao);
 	RAC(self.taobaoUsername, text) = taobaoUsernameChannel;
 	[self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
-	
-	RACChannelTerminal *taobaoPasscodeChannel = RACChannelTo(self.viewModel.model, taobaoPassword);
-	RAC(self.taobaoPasscode, text) = taobaoPasscodeChannel;
-	[self.taobaoPasscode.rac_textSignal subscribe:taobaoPasscodeChannel];
-	
-	RACChannelTerminal *jdPasscodeChannel = RACChannelTo(self.viewModel.model, jdAccountPwd);
-	RAC(self.jdPasscode, text) = jdPasscodeChannel;
-	[self.jdPasscode.rac_textSignal subscribe:jdPasscodeChannel];
-	
+
+	[[self.jdUsername rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 40) {
+			 textField.text = [textField.text substringToIndex:40];
+		 }
+	 }];
 	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
-	
-	
-	RAC(self.provinceTF, text) = RACObserve(self.viewModel, address);
-	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
+
 	self.selectQQorJDSegment.delegate = self;
 	[[self.selectQQorJDSegment rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.selectQQorJDSegment setLineColors];
 		[self.tableView reloadData];
 	}];
+	
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		
-		NSString *checkForm = [self.viewModel checkForm];
-		if (checkForm) {
-			[SVProgressHUD showErrorWithStatus:checkForm];
-			return;
-		}
-		
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
-			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"professional" bundle:nil];
-			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-			[vc bindViewModel:viewModel];
-			[self.navigationController pushViewController:vc animated:YES];
+			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
+	
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
+	/*
 	[self.tencentUsername.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeCommitCommand execute:nil];
@@ -242,7 +286,17 @@
 	[self.taobaoPasscode.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeCommitCommand execute:nil];
+	}];*/
+}
+
+- (void)back {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃基本信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+		if ([x integerValue] == 1) {
+			[self.navigationController popViewControllerAnimated:YES];
+		}
 	}];
+	[alert show];
 }
 
 #pragma mark - UITableViewDataSource

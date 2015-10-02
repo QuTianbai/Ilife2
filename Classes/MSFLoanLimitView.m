@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
 #import "UIColor+Utils.h"
+#import "MSFDeviceGet.h"
 
 @interface MSFLoanLimitView ()
 
@@ -42,26 +43,27 @@
 
 - (void)commonInit {
 	_lineWidth = 11.0f;
-	_endAngle = 0;
-	
+	_endAngle = - M_PI * 7 / 6;
+	_angle = - M_PI * 7 / 6;
 	
 	UILabel *titleLabel = [[UILabel alloc] init];
 	titleLabel.font = [UIFont boldSystemFontOfSize:14];
-	titleLabel.textColor = [UIColor themeColorNew];
+	titleLabel.textColor = [UIColor darkCircleColor];
 	titleLabel.textAlignment = NSTextAlignmentCenter;
 	titleLabel.text = @"可用额度（元）";
 	[self addSubview:titleLabel];
 
 	_usableLabel = [[UILabel alloc] init];
-	_usableLabel.font = [UIFont systemFontOfSize:60];
-	_usableLabel.textColor = [UIColor themeColorNew];
+	BOOL iphone6 = [UIScreen mainScreen].bounds.size.width > 320;
+	_usableLabel.font = [UIFont systemFontOfSize:iphone6 ? 60 : 45];
+	_usableLabel.textColor = [UIColor darkCircleColor];
 	_usableLabel.textAlignment = NSTextAlignmentCenter;
 	_usableLabel.text = @"8000";
 	[self addSubview:_usableLabel];
 	
 	_usedLabel = [[UILabel alloc] init];
 	_usedLabel.font = [UIFont boldSystemFontOfSize:12];
-	_usedLabel.textColor = [UIColor lightGrayColor];
+	_usedLabel.textColor = [UIColor color999999];
 	_usedLabel.textAlignment = NSTextAlignmentCenter;
 	_usedLabel.text = @"已用额度￥2000";
 	[self addSubview:_usedLabel];
@@ -88,20 +90,35 @@
 		make.right.equalTo(self.mas_right).offset(-8);
 		make.bottom.equalTo(self.mas_bottom).offset(-5);
 	}];
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+	[self addGestureRecognizer:tap];
+}
+
+- (void)tap {
+	[self setAvailableCredit:@"10000" usedCredit:@"3000"];
 }
 
 - (void)setAvailableCredit:(NSString *)ac usedCredit:(NSString *)uc {
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
-	
+	_endAngle = - M_PI * 7 / 6 + ac.floatValue / (ac.floatValue + uc.floatValue) * M_PI * 4 / 3;
+	_angle = - M_PI * 7 / 6;
+	[self circleAnimation];
 }
 
 - (void)circleAnimation {
-	
+	_angle += M_PI / 30;
+	if (_angle > _endAngle) {
+		_angle = _endAngle;
+		[self setNeedsDisplay];
+		return;
+	}
+	[self setNeedsDisplay];
 	[self performSelector:@selector(circleAnimation) withObject:nil afterDelay:0.02 inModes:@[NSRunLoopCommonModes]];
 }
 
-- (CGFloat)endAngle {
+- (CGFloat)setAngle {
 	return 0;
 }
 
@@ -111,23 +128,23 @@
 	UIBezierPath *path1 = [UIBezierPath
 												bezierPathWithArcCenter:CGPointMake(rect.size.width / 2, radius + _lineWidth)
 												radius:radius
-												startAngle:M_PI * 5 / 6
+												startAngle:- M_PI * 7 / 6
 												endAngle:M_PI / 6
 												clockwise:YES];
 	[path1 setLineCapStyle:kCGLineCapRound];
 	[path1 setLineWidth:_lineWidth];
-	[[UIColor lightThemeColor] set];
+	[[UIColor lightCircleColor] set];
 	[path1 stroke];
 	
 	UIBezierPath *path2 = [UIBezierPath
 												bezierPathWithArcCenter:CGPointMake(rect.size.width / 2, radius + _lineWidth)
 												radius:radius
-												startAngle:M_PI * 5 / 6
-												endAngle:M_PI * 9 / 6
+												startAngle:- M_PI * 7 / 6
+												endAngle:_angle
 												clockwise:YES];
 	[path2 setLineCapStyle:kCGLineCapRound];
 	[path2 setLineWidth:_lineWidth];
-	[[UIColor themeColorNew] set];
+	[[UIColor darkCircleColor] set];
 	[path2 stroke];
 }
 
