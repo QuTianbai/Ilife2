@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFCirculateViewCell : UITableViewCell
+@interface MSFCirculateViewCell : UICollectionViewCell
+
+- (void)bindViewModel:(id)viewModel;
 
 @end

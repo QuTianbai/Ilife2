@@ -75,6 +75,18 @@
 	return [UIColor colorWithHex:0x99dfff];
 }
 
++ (UIColor *)lineColor {
+	return [UIColor colorWithHex:0xe1e1e1];
+}
+
++ (UIColor *)repaymentTextColor {
+	return [UIColor colorWithHex:0x999999];
+}
+
++ (UIColor *)overDueTextColor {
+	return [UIColor colorWithHex:0xfda609];
+}
+
 + (UIColor *)color666666 {
 	return [UIColor colorWithHex:0x666666];
 }

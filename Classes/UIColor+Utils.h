@@ -40,6 +40,9 @@
 //MSFLoanLimitView
 + (UIColor *)darkCircleColor;
 + (UIColor *)lightCircleColor;
++ (UIColor *)lineColor;
++ (UIColor *)repaymentTextColor;
++ (UIColor *)overDueTextColor;
 
 //MSFUserInfoCircleView
 + (UIColor *)uncompletedColor;

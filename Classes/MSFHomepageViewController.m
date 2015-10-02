@@ -9,6 +9,7 @@
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFHomepageCollectionViewHeader.h"
 #import "MSFHomePageContentCollectionViewCell.h"
+#import "MSFCirculateViewCell.h"
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFReactiveView.h"
@@ -56,6 +57,7 @@ UICollectionViewDelegateFlowLayout>
 	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
+	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFCirculateViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFCirculateViewCell"];
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
