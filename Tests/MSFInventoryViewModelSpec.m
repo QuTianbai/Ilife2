@@ -125,13 +125,7 @@ it(@"should get error when required element doese not have attachment", ^{
 	stubProperty(mockElement, required, @YES);
 	stubProperty(mockElement, type, @"foo");
 	stubProperty(mockElement, plain, @"bar");
-	
-	MSFElement *mockElement2 = mock([MSFElement class]);
-	stubProperty(mockElement2, required, @NO);
-	stubProperty(mockElement2, type, @"foo");
-	
-	NSArray *elements = @[mockElement, mockElement2];
-	[given([client fetchElementsWithProduct:viewModel.product]) willReturn:elements.rac_sequence.signal.replay];
+	[given([client fetchElementsWithProduct:viewModel.product]) willReturn:[RACSignal return:mockElement]];
 	
 	// when
 	viewModel.active = YES;
@@ -155,28 +149,26 @@ it(@"should get error when required element doese not have attachment", ^{
 
 it(@"should update inventory when required elements have attachment", ^{
 	// given
+	// submit inventory to server
 	MSFResponse *resposne = mock([MSFResponse class]);
 	stubProperty(resposne, parsedResult, @{@"message": @"success"});
 	[given([client updateInventory:viewModel.model]) willReturn:[RACSignal return:resposne]];
 	
+	// submit forms
 	MSFApplicationResponse *credit = mock([MSFApplicationResponse class]);
 	[given([formsViewModel submitSignalWithPage:5]) willReturn:[RACSignal return:credit]];
 	
+	// fetch server elments
 	MSFElement *mockElement = mock([MSFElement class]);
 	stubProperty(mockElement, required, @YES);
 	stubProperty(mockElement, type, @"foo");
 	stubProperty(mockElement, plain, @"bar");
-	
-	MSFElement *mockElement2 = mock([MSFElement class]);
-	stubProperty(mockElement2, required, @NO);
-	stubProperty(mockElement2, type, @"foo");
-	
-	NSArray *elements = @[mockElement, mockElement2];
-	[given([client fetchElementsWithProduct:viewModel.product]) willReturn:elements.rac_sequence.signal.replay];
+	[given([client fetchElementsWithProduct:viewModel.product]) willReturn:[RACSignal return:mockElement]];
 	
 	// when
 	viewModel.active = YES;
 	
+	// add a new required element
 	MSFElementViewModel *requiredViewModel = viewModel.requiredViewModels.firstObject;
 	MSFAttachment *mockAttachment = mock([MSFAttachment class]);
 	stubProperty(mockAttachment, type, @"foo");
@@ -188,7 +180,6 @@ it(@"should update inventory when required elements have attachment", ^{
 	
 	// then
 	expect(error).to(beNil());
-	expect(@(viewModel.viewModels.count)).notTo(equal(@0));
 	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
 });
 
