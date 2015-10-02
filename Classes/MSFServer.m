@@ -9,11 +9,8 @@
 
 #if DEBUG
 
-//NSString *const MSFServerDotComAPIEndpoint = @"https://192.168.2.51:8443";
-//NSString *const MSFServerDotComBaseWebURL = @"http://192.168.2.51:8088/msfinanceweb";
-
-NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.com";
-NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
+NSString *const MSFServerDotComAPIEndpoint = @"https://192.168.2.51:8443";
+NSString *const MSFServerDotComBaseWebURL = @"http://192.168.2.51:8088/msfinanceweb";
 
 #elif UAT
 
