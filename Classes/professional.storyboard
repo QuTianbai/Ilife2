@@ -8,7 +8,7 @@
         <!--Professional View Controller-->
         <scene sceneID="49t-0i-XCq">
             <objects>
-                <tableViewController id="fm7-dX-UjU" customClass="MSFProfessionalViewController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="fm7-dX-UjU" customClass="MSFProfessionalViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="30" sectionFooterHeight="22" id="BDJ-Po-BBQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -8,13 +8,17 @@
 
 #import "MSFHomePageContentCollectionViewCell.h"
 #import <Masonry/Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+
+#import "MSFTabBarController.h"
+
+#import "MSFUserInfoCircleView.h"
+
 #import "MSFLoanViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
-#import "MSFTabBarController.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -23,8 +27,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *placeholder;
-@property (weak, nonatomic) IBOutlet UIButton *applyButton;
+@property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
 @property (assign, nonatomic) BOOL placeholderShow;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
 
@@ -37,8 +40,8 @@
 	_statusLabel.layer.borderColor = UIColor.tintColor.CGColor;
 	_statusLabel.layer.borderWidth = 1;
 	
-	self.placeholder.alpha = 1;
-	self.applyButton.hidden = NO;
+//	self.placeholder.alpha = 1;
+//	self.applyButton.hidden = NO;
 	self.content.alpha = 0;
 	self.placeholderShow = YES;
 }
@@ -105,6 +108,7 @@
 }
 
 - (void)placeholderShow:(BOOL)b {
+	/*
 	[self bringSubviewToFront:self.placeholder];
 	[self bringSubviewToFront:self.applyButton];
 	if (b) {
@@ -134,7 +138,7 @@
 				} completion:nil];
 			}];
 		}
-	}
+	}*/
 }
 
 @end
