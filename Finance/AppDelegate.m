@@ -56,7 +56,7 @@
 	[Fabric with:@[CrashlyticsKit]];
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
-#if TEST
+#if TEST || DEBUG
 	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
 #endif
 	
