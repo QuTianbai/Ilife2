@@ -19,7 +19,7 @@
 	NSURL *url = [NSURL fileURLWithPath:path];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	
-	//NSMutableURLRequest *request = [self requestWithMethod:@"POST " path:@"loan/checkBalance" parameters:nil];
+	//NSMutableURLRequest *request = [self requestWithMethod:@"POST " path:@"loan/currentloaninfo" parameters:nil];
 	
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
 	

@@ -12,7 +12,7 @@
 
 @interface MSFCheckAllowApply : MSFObject
 
-@property (nonatomic, copy) NSString *processing;
+@property (nonatomic, assign) NSInteger processing;
 
 @property (nonatomic, strong) MSFApplyCashInfo *data;
 

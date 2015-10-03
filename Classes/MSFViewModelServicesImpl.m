@@ -34,7 +34,7 @@
 #import "MSFLoanViewModel.h"
 #import "MSFTradeTableViewController.h"
 
-#import "MSFRepaymentViewModel.h"
+//#import "MSFRepaymentViewModel.h"
 #import "MSFRepaymentTableViewController.h"
 
 #import "MSFRelationshipViewModel.h"
@@ -80,10 +80,11 @@
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFLoanViewModel class]]) {
-		viewController = [[MSFTradeTableViewController alloc]initWithStyle:UITableViewStylePlain];
-		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFRepaymentViewModel class]]) {
-		viewController = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+		if (((MSFLoanViewModel *)viewModel).isApply) {
+			viewController = [[MSFTradeTableViewController alloc]initWithStyle:UITableViewStylePlain];
+		} else {
+			viewController = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+		}
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
 		viewController = [[MSFPersonalViewController alloc] init];

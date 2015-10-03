@@ -16,10 +16,14 @@
 #import "MSFBannersViewModel.h"
 #import "MSFCirculateCashViewModel.h"
 #import "MSFFormsViewModel.h"
+#import "MSFCheckAllowApply.h"
+#import "MSFApplyCashInfo.h"
 
 #import "MSFClient+Users.h"
 #import "MSFClient+Repayment.h"
 #import "MSFClient+MSFApplyInfo.h"
+#import "MSFClient+MSFCheckAllowApply.h"
+#import "MSFClient+MSFCirculateCash.h"
 
 @interface MSFHomepageViewModel ()
 
@@ -52,14 +56,13 @@
 		if (!self.services.httpClient.isAuthenticated) {
 			return [RACSignal return:nil];
 		}
-		return [[self.services.httpClient checkUserHasCredit] flattenMap:^RACStream *(MSFResponse *value) {
-			if ([value.parsedResult[@"processing"] boolValue]) {
-				MSFApplyList *applyList = [MTLJSONAdapter modelOfClass:MSFApplyList.class fromJSONDictionary:value.parsedResult[@"data"] error:nil];
-				MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:applyList services:services];
+		return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
+			if (value.processing) {
+				MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
 				return [RACSignal return:@[viewModel]];
 			} else {
-				return [[self.services.httpClient fetchRepayment] map:^id(id value) {
-					MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithModel:value services:services];
+				return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
+					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
 					return @[viewModel];
 				}];
 			}
@@ -78,12 +81,12 @@
 		}
 	}];
 	
-	RAC(self, viewModels) = [[self.refreshCommand.executionSignals switchToLatest] ignore:nil];
+	//RAC(self, allowApply) = [[self.refreshCommand.executionSignals switchToLatest] ignore:nil];
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
-		self.viewModel.active = NO;
-		self.viewModel.active = YES;
+		//self.viewModel.active = NO;
+		//self.viewModel.active = YES;
 	}];
 	
 	return self;

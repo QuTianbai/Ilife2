@@ -16,7 +16,7 @@
 #import "MSFUserInfoCircleView.h"
 
 #import "MSFLoanViewModel.h"
-#import "MSFRepaymentViewModel.h"
+//#import "MSFRepaymentViewModel.h"
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
 
@@ -81,33 +81,31 @@
 	}
 }
 
-- (void)bindViewModel:(id)viewModel {
+- (void)bindViewModel:(MSFLoanViewModel *)viewModel {
 	if (viewModel) {
-		if ([viewModel isKindOfClass:MSFLoanViewModel.class]) {
+		if (viewModel.isApply) {
 			[self placeholderShow:NO];
-			MSFLoanViewModel *model = viewModel;
-			_titleLabel.text  = model.title;
-			[_statusButton setTitle:model.status forState:UIControlStateNormal];
-			_amountLabel.text = model.totalAmount;
-			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
+			_titleLabel.text  = viewModel.title;
+			[_statusButton setTitle:viewModel.status forState:UIControlStateNormal];
+			_amountLabel.text = viewModel.applyLmt;
+			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
 			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
 			 subscribeNext:^(NSString *x) {
 				 if ([x isEqualToString:@"申请中"]) {
-					 [model pushHistoryDetails];
+					 [viewModel pushDetailViewController];
 				 }
 			 }];
 			return;
-		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
-			MSFRepaymentViewModel *model = viewModel;
-			if (model.repaymentStatus) {
+		} else {
+			if ([viewModel.produceType isEqualToString:@""]) {
 				[self placeholderShow:NO];
-				_titleLabel.text  = model.title;
-				[_statusButton setTitle:model.status forState:UIControlStateNormal];
-				_amountLabel.text = model.repaidAmount;
-				if ([model.status isEqualToString:@"还款中"]) {
-					_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", model.expireDate];
-				} else if ([model.status isEqualToString:@"已逾期"]) {
+				_titleLabel.text  = viewModel.title;
+				[_statusButton setTitle:viewModel.status forState:UIControlStateNormal];
+				_amountLabel.text = viewModel.money;
+				if ([viewModel.status isEqualToString:@"还款中"]) {
+					_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
+				} else if ([viewModel.status isEqualToString:@"已逾期"]) {
 					[_infoLabel setText:@"您的合同已逾期\n请及时联系客服还款：400-036-8876" highLightText:@"已逾期" highLightColor:[UIColor themeColorNew]];
 				} else {
 					_infoLabel.text = nil;
@@ -117,7 +115,7 @@
 					takeUntil:self.rac_prepareForReuseSignal]
 				 subscribeNext:^(NSString *x) {
 					 if ([x isEqualToString:@"还款中"] || [x isEqualToString:@"已逾期"]) {
-						 [model pushRepaymentPlan];
+						 [viewModel pushDetailViewController];
 					 }
 				 }];
 				return;

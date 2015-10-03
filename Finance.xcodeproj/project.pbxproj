@@ -194,6 +194,7 @@
 		108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		108B0A981BBE7F01000EAEF8 /* MSFCirculateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
+		10A295CB1BBFCE88001847A8 /* userInfoApply.json in Resources */ = {isa = PBXBuildFile; fileRef = 10A295BD1BBFC9FE001847A8 /* userInfoApply.json */; };
 		10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C240791BBA8F5E006C23DC /* MSFUserContact.m */; settings = {ASSET_TAGS = (); }; };
 		10C2407D1BBA8F6F006C23DC /* MSFUserAdditional.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */; settings = {ASSET_TAGS = (); }; };
 		10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C83F811BBE19EA0086BF31 /* home-banner-pl.png */; settings = {ASSET_TAGS = (); }; };
@@ -1015,6 +1016,7 @@
 		108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFCirculateViewCell.xib; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
+		10A295BD1BBFC9FE001847A8 /* userInfoApply.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userInfoApply.json; sourceTree = "<group>"; };
 		10C240781BBA8F5E006C23DC /* MSFUserContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserContact.h; sourceTree = "<group>"; };
 		10C240791BBA8F5E006C23DC /* MSFUserContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserContact.m; sourceTree = "<group>"; };
 		10C2407B1BBA8F6F006C23DC /* MSFUserAdditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserAdditional.h; sourceTree = "<group>"; };
@@ -2224,6 +2226,7 @@
 				07BDE4CB1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m */,
 				0788FF6C1B1F05D200880617 /* MSFPhoto.h */,
 				0788FF6D1B1F05D200880617 /* MSFPhoto.m */,
+				10A295BD1BBFC9FE001847A8 /* userInfoApply.json */,
 			);
 			name = AppliInfo;
 			sourceTree = "<group>";
@@ -3917,6 +3920,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10A295CB1BBFCE88001847A8 /* userInfoApply.json in Resources */,
 				49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */,
 				49C0F1C51B2C341400E92572 /* tabbar-account-normal@2x.png in Resources */,
 				4944C02A1B68A5A100805C0A /* icon-account-about@3x.png in Resources */,
