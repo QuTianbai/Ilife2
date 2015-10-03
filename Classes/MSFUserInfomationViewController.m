@@ -16,29 +16,33 @@
 #import "MSFPersonalViewModel.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFRelationshipViewModel.h"
+#import "MSFApplyCashVIewModel.h"
 
 #import "MSFClient+MSFApplyInfo.h"
-#import "MSFTabBarController.h"
 #import "MSFApplicationForms.h"
-#import "MSFTabBarViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFAddressViewModel.h"
+
+#import "UIColor+Utils.h"
 
 @interface MSFUserInfomationViewController ()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UIButton *nextStepButton;
 @property (nonatomic, strong) MSFUserInfoCircleView *circleView;
 @property (nonatomic, weak) id<MSFViewModelServices>services;
+@property (nonatomic, strong) MSFApplyCashVIewModel *viewModel;
 
 @end
 
 @implementation MSFUserInfomationViewController
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services {
+- (instancetype)initWithViewModel:(id)viewModel services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (self) {
 		self.hidesBottomBarWhenPushed = YES;
 		_services = services;
+		_viewModel = viewModel;
 	}
 	return self;
 }
@@ -62,16 +66,14 @@
 		[self onClickCircle:index];
 	};
 	
-	UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-	button.titleLabel.textColor = [UIColor blueColor];
-	[button setTitle:@"点我" forState:UIControlStateNormal];
-	[self.view addSubview:button];
-	
-	[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
-	 subscribeNext:^(id x) {
-		 @strongify(self)
-		[self testCircle];
-	}];
+	_nextStepButton = [UIButton buttonWithType:UIButtonTypeSystem];
+	_nextStepButton.backgroundColor = [UIColor themeColorNew];
+	[_nextStepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
+	_nextStepButton.hidden = _showNextStep;
+	_nextStepButton.layer.cornerRadius = 5;
+	[self.view addSubview:_nextStepButton];
+	_nextStepButton.rac_command = self.viewModel.executeNextCommand;
 	
 	[_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
@@ -89,15 +91,13 @@
 		make.height.equalTo(self.circleView.mas_width);
 	}];
 	
-	[button mas_makeConstraints:^(MASConstraintMaker *make) {
+	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.top.equalTo(self.circleView.mas_bottom).offset(20);
-		make.centerX.equalTo(self.view);
-		make.width.equalTo(@80);
-		make.height.equalTo(@20);
+		make.bottom.equalTo(self.view).offset(-20);
+		make.left.equalTo(self.view).offset(20);
+		make.right.equalTo(self.view).offset(-20);
+		make.height.equalTo(@40);
 	}];
-	
-	
 }
 
 - (void)testCircle {
@@ -113,26 +113,32 @@
 }
 
 - (void)onClickCircle:(NSInteger)index {
-	MSFTabBarController *tabbarController = (MSFTabBarController *)self.tabBarController;
 	switch (index) {
 		case 0: {
-			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:self.services];
-			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formViewModel.currentAddress services:self.services];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel addressViewModel:addrViewModel];
 			[self.services pushViewModel:viewModel];
 			break;
 		}
 		case 1: {
-			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
+			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
 			[self.services pushViewModel:viewModel];
 			break;
 		}
 		case 2: {
-			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:self.services];
-			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formViewModel.currentAddress services:self.services];
+			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel addressViewModel:addrViewModel];
 			[self.services pushViewModel:viewModel];
 			break;
 		}
 	}
+}
+
+#pragma mark - Setter
+
+- (void)setShowNextStep:(BOOL)showNextStep {
+	_showNextStep = showNextStep;
+	_nextStepButton.hidden = !showNextStep;
 }
 
 @end
