@@ -13,6 +13,7 @@
 
 @interface MSFElementViewModel : RVMViewModel
 
+@property (nonatomic, strong, readonly) NSString *name;
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSURL *thumbURL;
 @property (nonatomic, strong, readonly) NSURL *sampleURL;

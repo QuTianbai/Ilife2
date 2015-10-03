@@ -32,8 +32,8 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
-                                            <rect key="frame" x="133" y="36" width="53.5" height="33.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6U-t7-RUX" customClass="MSFCounterLabel">
+                                            <rect key="frame" x="130.5" y="36" width="59" height="33.5"/>
                                             <accessibility key="accessibilityConfiguration" label=""/>
                                             <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                             <color key="textColor" red="0.043137254901960784" green="0.6705882352941176" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
@@ -317,11 +317,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d49-NZ-BQ1" customClass="MSFEdgeButton">
+                                <rect key="frame" x="0.0" y="538" width="320" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hBF-yK-G3Y"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="d49-NZ-BQ1" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="0nj-9u-Awu"/>
+                            <constraint firstAttribute="trailing" secondItem="d49-NZ-BQ1" secondAttribute="trailing" id="8uR-Hw-iev"/>
                             <constraint firstItem="usZ-6N-x5o" firstAttribute="top" secondItem="HL6-Of-Dkt" secondAttribute="top" id="La7-lv-yxI"/>
                             <constraint firstAttribute="bottom" secondItem="usZ-6N-x5o" secondAttribute="bottom" id="Noa-qb-bGH"/>
+                            <constraint firstItem="wuu-iM-R3L" firstAttribute="top" secondItem="d49-NZ-BQ1" secondAttribute="bottom" id="aQz-UV-c7p"/>
                             <constraint firstItem="usZ-6N-x5o" firstAttribute="leading" secondItem="HL6-Of-Dkt" secondAttribute="leading" id="ngr-s4-Fy4"/>
                             <constraint firstAttribute="trailing" secondItem="usZ-6N-x5o" secondAttribute="trailing" id="zbi-h7-Ayb"/>
                         </constraints>
@@ -330,6 +340,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="LoanAgreenmentWV" destination="usZ-6N-x5o" id="xrK-vX-ZVX"/>
+                        <outlet property="submitButton" destination="d49-NZ-BQ1" id="Kni-e2-yHq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="99z-ai-wgI" userLabel="First Responder" sceneMemberID="firstResponder"/>

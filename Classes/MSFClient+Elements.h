@@ -10,6 +10,7 @@
 
 @interface MSFClient (Elements)
 
-- (RACSignal *)fetchElementsWithProduct:(MSFProduct *)product;
+- (RACSignal *)fetchElementsWithProduct:(MSFProduct *)product __deprecated_msg("Use fetchElementsWithProduct:product:amount:term");
+- (RACSignal *)fetchElementsWithProduct:(MSFProduct *)product amount:(NSString *)amount term:(NSString *)term;
 
 @end

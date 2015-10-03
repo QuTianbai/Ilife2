@@ -18,7 +18,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"objectID": @"id",
+		@"objectID": @"fileId",
 		@"applyID": @"applyId",
 		@"applyNo": @"applyNo",
 		@"name": @"attachmentName",
@@ -26,6 +26,7 @@
 		@"plain": @"attachmentTypePlain",
 		@"commentURL": @"comment",
 		@"fileID": @"fileId",
+		@"fileName": @"fileName",
 		@"additionDate": @"rawAddTime",
 		@"updatedDate": @"rawUpdateTime",
 		@"status": @"status",

@@ -58,7 +58,7 @@ it(@"should fetch uploaded attachment information", ^{
 	expect(attachment.type).to(equal(@"IDCARD"));
 	expect(attachment.plain).to(equal(@"身份证"));
 	expect(attachment.commentURL).to(equal([NSURL URLWithString:@"http://192.168.2.41:8160/file/download?sysCode=105&bizCode=105005&fileId=3230"]));
-	expect(attachment.objectID).to(equal(@"1289"));
+	expect(attachment.objectID).to(equal(@"100001"));
 	expect(attachment.additionDate).to(equal([NSDateFormatter msf_dateFromString:@"2015-07-27 20:00:26"]));
 	expect(attachment.updatedDate).to(equal([NSDateFormatter msf_dateFromString:@"2015-07-27 20:00:03"]));
 	expect(attachment.status).to(equal(@"I"));

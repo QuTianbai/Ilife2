@@ -44,6 +44,7 @@
 	_viewModels = @[self.placeholderViewModel];
 	
 	RAC(self, title) = RACObserve(self, element.plain);
+	RAC(self, name) = RACObserve(self, element.name);
 	RAC(self, thumbURL) = RACObserve(self, element.thumbURL);
 	RAC(self, sampleURL) = RACObserve(self, element.sampleURL);
 	RAC(self, isRequired) = RACObserve(self, element.required);

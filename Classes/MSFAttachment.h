@@ -12,6 +12,7 @@
 
 // 文件id
 @property (nonatomic, copy, readonly) NSString *fileID;
+@property (nonatomic, copy, readonly) NSString *fileName;
 
 // 文件名
 @property (nonatomic, copy, readonly) NSString *name;
