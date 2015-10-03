@@ -21,6 +21,7 @@
 #import "MSFAddress.h"
 
 #import "MSFSubmitApplyModel.h"
+#import "MSFUserInfomationViewController.h"
 
 #import "MSFEdgeButton.h"
 
@@ -83,9 +84,12 @@
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
 			[SVProgressHUD dismiss];
-			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
-			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-			vc.hidesBottomBarWhenPushed = YES;
+			MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
+			userInfoVC.showNextStep = NO;
+			[self.navigationController pushViewController:userInfoVC animated:YES];
+//			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
+//			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
+//			vc.hidesBottomBarWhenPushed = YES;
 //			self.viewModel.formsViewModel.model.applyNo = applyCash.applyNo;
 //			self.viewModel.formsViewModel.model.loanId = applyCash.applyID;
 //			self.viewModel.formsViewModel.model.personId = applyCash.personId;

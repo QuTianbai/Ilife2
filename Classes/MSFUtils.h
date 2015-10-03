@@ -60,5 +60,8 @@
 //产品群编码
 + (NSString *)productCode;
 
+//用户基本信息完成情况
++ (NSString *)complateCustInfo;
+
 @end
 
