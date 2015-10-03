@@ -61,10 +61,12 @@
 	@weakify(self)
 	_circleView = [[MSFUserInfoCircleView alloc] init];
 	[self.view addSubview:_circleView];
-	_circleView.onClickBlock = ^(NSInteger index) {
-		@strongify(self)
-		[self onClickCircle:index];
-	};
+	[[_circleView.clickCommand.executionSignals
+		switchToLatest]
+	 subscribeNext:^(NSNumber *x) {
+		 @strongify(self)
+		 [self onClickCircle:x.integerValue];
+	}];
 	
 	_nextStepButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	_nextStepButton.backgroundColor = [UIColor themeColorNew];
@@ -101,11 +103,10 @@
 }
 
 - (void)testCircle {
-	BOOL b1 = arc4random() % 2 == 1;
-	BOOL b2 = arc4random() % 2 == 1;
-	BOOL b3 = arc4random() % 2 == 1;
-	NSArray *testArray = @[@(b1), @(b2), @(b3)];
-	[_circleView setCompeltionStatus:testArray];
+	NSInteger a1 = arc4random() % 2 == 1;
+	NSInteger a2 = arc4random() % 2 == 1;
+	NSInteger a3 = arc4random() % 2 == 1;
+	[_circleView setCompeltionStatus:[NSString stringWithFormat:@"%ld%ld%ld", (long)a1, (long)a2, (long)a3]];
 }
 
 - (void)back {
