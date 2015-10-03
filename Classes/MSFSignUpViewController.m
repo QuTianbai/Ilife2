@@ -20,10 +20,6 @@
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 
 
-#import "MSFBankCardListTableViewController.h"
-#import "MSFCirculateCashTableViewController.h"
-
-
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFSignUpViewController () <UITextFieldDelegate>
@@ -125,9 +121,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] init];
-		vc.services = self.viewModel.services;
-		[self.navigationController pushViewController:vc animated:YES];
+		
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
