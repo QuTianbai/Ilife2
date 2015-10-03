@@ -203,7 +203,7 @@
 }
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {
-	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:nil Andstatus:status];
+	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
 }
 
 @end

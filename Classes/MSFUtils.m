@@ -114,4 +114,8 @@ static MSFServer *server;
 	return @"";
 }
 
++ (NSString *)complateCustInfo {
+	return @"111";
+}
+
 @end

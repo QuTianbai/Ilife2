@@ -29,6 +29,7 @@
 @property (nonatomic, copy) NSString *lifeInsuranceAmt;
 @property (nonatomic, copy) NSString *loanFixedAmt;
 @property (nonatomic, copy) NSString *productCd;
+@property (nonatomic, strong) NSArray *array;
 
 /**
  *	贷款目的
