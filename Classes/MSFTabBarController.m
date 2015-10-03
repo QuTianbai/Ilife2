@@ -68,7 +68,7 @@
 #pragma mark - Private
 
 - (void)unAuthenticatedControllers {
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
+	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
   MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
   homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
@@ -101,7 +101,7 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithServices:self.viewModel.services];
+	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];

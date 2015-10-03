@@ -9,20 +9,17 @@
 #import "MSFUserInfomationViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import <libextobjc/extobjc.h>
 
 #import "MSFUserInfoCircleView.h"
 
 #import "MSFPersonalViewModel.h"
-#import "MSFProfessionalViewModel.h"
 #import "MSFRelationshipViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import "MSFApplyCashVIewModel.h"
-
-#import "MSFClient+MSFApplyInfo.h"
-#import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
 #import "MSFAddressViewModel.h"
 
+#import "MSFClient+MSFApplyInfo.h"
 #import "UIColor+Utils.h"
 
 @interface MSFUserInfomationViewController ()
@@ -102,11 +99,10 @@
 	}];
 }
 
-- (void)testCircle {
-	NSInteger a1 = arc4random() % 2 == 1;
-	NSInteger a2 = arc4random() % 2 == 1;
-	NSInteger a3 = arc4random() % 2 == 1;
-	[_circleView setCompeltionStatus:[NSString stringWithFormat:@"%ld%ld%ld", (long)a1, (long)a2, (long)a3]];
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.viewModel.formViewModel.active = NO;
+	self.viewModel.formViewModel.active = YES;
 }
 
 - (void)back {

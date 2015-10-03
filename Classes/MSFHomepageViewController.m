@@ -12,6 +12,7 @@
 #import "MSFCirculateViewCell.h"
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
+#import "MSFFormsViewModel.h"
 #import "MSFReactiveView.h"
 #import "MSFUtils.h"
 #import "UIColor+Utils.h"
@@ -61,6 +62,10 @@ UICollectionViewDelegateFlowLayout>
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.collectionView reloadData];
+	}];
+	[RACObserve(self.viewModel.viewModel, model) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
