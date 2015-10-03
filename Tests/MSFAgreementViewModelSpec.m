@@ -12,6 +12,7 @@
 #import "MSFProduct.h"
 #import "MSFClient.h"
 #import "MSFClient+Agreements.h"
+#import "MSFApplyCashVIewModel.h"
 
 QuickSpecBegin(MSFAgreementViewModelSpec)
 
@@ -97,7 +98,7 @@ it(@"should fetch branch agreement html", ^{
 it(@"should fetch loan agreement html with product", ^{
 	// given
 	NSURL *URL = [NSURL URLWithString:@"http://sample.com"];
-	MSFProduct *product = mock([MSFProduct class]);
+	MSFApplyCashVIewModel *product = mock([MSFApplyCashVIewModel class]);
 	
 	MSFClient *client = mock([MSFClient class]);
 	[given([client fetchAgreementURLWithProduct:product]) willDo:^id(NSInvocation *invocation) {
@@ -114,7 +115,7 @@ it(@"should fetch loan agreement html with product", ^{
 	}];
 	
 	// then
-	NSString *HTML = [[viewModel loanAgreementSignalWithProduct:product] asynchronousFirstOrDefault:nil success:nil error:nil];
+	NSString *HTML = [[viewModel loanAgreementSignalWithViewModel:product] asynchronousFirstOrDefault:nil success:nil error:nil];
 	expect(HTML).to(equal(@"product"));
 });
 

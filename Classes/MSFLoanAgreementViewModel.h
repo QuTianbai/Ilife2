@@ -13,9 +13,6 @@
 @class RACCommand;
 @class MSFAddress;
 @class MSFAgreementViewModel;
-
-@class MSFApplyCashVIewModel;
-
 @class MSFApplyCashVIewModel;
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
