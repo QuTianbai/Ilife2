@@ -8,7 +8,8 @@
 #import "MSFViewModelServices.h"
 
 @class MSFAgreement;
-@class MSFProduct;
+//@class MSFProduct;
+@class MSFApplyCashVIewModel;
 
 @interface MSFAgreementViewModel : RVMViewModel
 
@@ -22,6 +23,6 @@
 - (RACSignal *)productAgreementSignal;
 - (RACSignal *)usersAgreementSignal;
 - (RACSignal *)branchAgreementSignal;
-- (RACSignal *)loanAgreementSignalWithProduct:(MSFProduct *)product;
+- (RACSignal *)loanAgreementSignalWithViewModel:(MSFApplyCashVIewModel *)product;
 
 @end

@@ -67,12 +67,12 @@
                                     <exclude reference="T6w-bh-HZW"/>
                                 </mask>
                                 <mask key="constraints">
-                                    <exclude reference="E1Z-hT-6DK"/>
-                                    <exclude reference="aO0-gi-vHe"/>
-                                    <exclude reference="rzd-CZ-AOr"/>
                                     <exclude reference="COl-a8-EyZ"/>
                                     <exclude reference="LCn-FK-qcx"/>
                                     <exclude reference="sqC-FM-dhM"/>
+                                    <exclude reference="E1Z-hT-6DK"/>
+                                    <exclude reference="aO0-gi-vHe"/>
+                                    <exclude reference="rzd-CZ-AOr"/>
                                 </mask>
                             </variation>
                             <variation key="widthClass=compact">
@@ -81,12 +81,12 @@
                                     <include reference="T6w-bh-HZW"/>
                                 </mask>
                                 <mask key="constraints">
-                                    <include reference="E1Z-hT-6DK"/>
-                                    <include reference="aO0-gi-vHe"/>
-                                    <include reference="rzd-CZ-AOr"/>
                                     <include reference="COl-a8-EyZ"/>
                                     <include reference="LCn-FK-qcx"/>
                                     <include reference="sqC-FM-dhM"/>
+                                    <include reference="E1Z-hT-6DK"/>
+                                    <include reference="aO0-gi-vHe"/>
+                                    <include reference="rzd-CZ-AOr"/>
                                 </mask>
                             </variation>
                         </view>

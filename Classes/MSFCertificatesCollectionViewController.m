@@ -39,6 +39,8 @@ UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
 
+@property (nonatomic, strong) NSArray *array;
+
 @end
 
 @implementation MSFCertificatesCollectionViewController
@@ -98,6 +100,7 @@ UICollectionViewDelegateFlowLayout>
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+			self.array = x;
 			[self.tabBarController setSelectedIndex:0];
 			[self.navigationController popToRootViewControllerAnimated:NO];
 		}];

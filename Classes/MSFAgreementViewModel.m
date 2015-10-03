@@ -10,6 +10,7 @@
 #import "MSFClient+Agreements.h"
 #import "NSURLRequest+RequestWithIgnoreSSL.h"
 
+
 @interface MSFAgreementViewModel ()
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
@@ -92,7 +93,7 @@
 		}];
 }
 
-- (RACSignal *)loanAgreementSignalWithProduct:(MSFProduct *)product {
+- (RACSignal *)loanAgreementSignalWithViewModel:(MSFApplyCashVIewModel *)product {
 	return [[self.services.httpClient
 		fetchAgreementURLWithProduct:product]
 		flattenMap:^RACStream *(id value) {

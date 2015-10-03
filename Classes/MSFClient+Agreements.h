@@ -7,9 +7,10 @@
 #import "MSFClient.h"
 
 @class MSFProduct;
+@class MSFApplyCashVIewModel;
 
 @interface MSFClient (Agreements)
 
-- (RACSignal *)fetchAgreementURLWithProduct:(MSFProduct *)product;
+- (RACSignal *)fetchAgreementURLWithProduct:(MSFApplyCashVIewModel *)product;
 
 @end

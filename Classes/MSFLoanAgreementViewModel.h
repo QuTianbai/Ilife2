@@ -14,14 +14,18 @@
 @class MSFAddress;
 @class MSFAgreementViewModel;
 
+@class MSFApplyCashVIewModel;
+
+@class MSFApplyCashVIewModel;
+
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFAgreementViewModel *agreementViewModel;
-@property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
-@property (nonatomic, strong, readonly) MSFProduct *product;
+@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *formsViewModel;
+@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *product;
 @property (nonatomic, strong, readonly) RACCommand *executeRequest;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
-- (instancetype)initWithFromsViewModel:(MSFFormsViewModel *)formsViewModel product:(MSFProduct *)product;
+- (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel;
 
 @end
