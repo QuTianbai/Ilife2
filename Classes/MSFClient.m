@@ -122,6 +122,7 @@ static NSDictionary *messages;
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
 	[self.reachabilityManager startMonitoring];
+	@weakify(self)
 	[self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 		NSString *network;
 		switch (status) {
@@ -146,6 +147,7 @@ static NSDictionary *messages;
 			}
 		}
 		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
+		@strongify(self)
 		[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:coordinate network:network]];
 	}];
 	

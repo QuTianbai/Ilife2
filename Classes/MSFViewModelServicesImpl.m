@@ -30,8 +30,21 @@
 #import "MSFCertificatesCollectionViewController.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFConfirmContractViewController.h"
+
+#import "MSFLoanViewModel.h"
 #import "MSFTradeTableViewController.h"
+
+#import "MSFRepaymentViewModel.h"
 #import "MSFRepaymentTableViewController.h"
+
+#import "MSFRelationshipViewModel.h"
+#import "MSFRelationshipViewController.h"
+
+#import "MSFPersonalViewModel.h"
+#import "MSFPersonalViewController.h"
+
+#import "MSFProfessionalViewModel.h"
+#import "MSFProfessionalViewController.h"
 
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
@@ -66,11 +79,23 @@
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFTradeTableViewController class]]) {
+	} else if ([viewModel isKindOfClass:[MSFLoanViewModel class]]) {
 		viewController = [[MSFTradeTableViewController alloc]initWithStyle:UITableViewStylePlain];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFRepaymentTableViewController class]]) {
+	} else if ([viewModel isKindOfClass:[MSFRepaymentViewModel class]]) {
 		viewController = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
+		viewController = [[MSFPersonalViewController alloc] init];
+		[viewController bindViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFRelationshipViewModel class]]) {
+		viewController = [[MSFRelationshipViewController alloc] init];
+		[viewController bindViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFProfessionalViewModel class]]) {
+		viewController = [[MSFProfessionalViewController alloc] init];
+		[viewController bindViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");

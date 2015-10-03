@@ -102,8 +102,9 @@
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
 	if (self.services.httpClient.user.type.integerValue == 0) {
 		return @"MSFHomePageContentCollectionViewCell";
+	} else {
+		return @"MSFCirculateViewCell";
 	}
-	return @"MSFHomePageContentCollectionViewCell";
 }
 
 @end

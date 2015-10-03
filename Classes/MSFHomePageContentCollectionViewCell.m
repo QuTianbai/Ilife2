@@ -20,6 +20,13 @@
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
 
+#import "MSFAddressViewModel.h"
+#import "MSFPersonalViewModel.h"
+#import "MSFProfessionalViewModel.h"
+#import "MSFRelationshipViewModel.h"
+#import "MSFTabBarViewModel.h"
+#import "MSFFormsViewModel.h"
+
 @interface MSFHomePageContentCollectionViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *content;
@@ -42,6 +49,35 @@
 	_circleView.alpha = 1;
 	_content.alpha = 0;
 	_circleShow = YES;
+	@weakify(self)
+	_circleView.onClickBlock = ^(NSInteger index) {
+		@strongify(self)
+		[self onClickCircle:index];
+	};
+}
+
+- (void)onClickCircle:(NSInteger)index {
+	MSFTabBarController *tabbarController = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
+	id<MSFViewModelServices>services = tabbarController.viewModel.services;
+	switch (index) {
+		case 0: {
+			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:services];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			[services pushViewModel:viewModel];
+			break;
+		}
+		case 1: {
+			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
+			[services pushViewModel:viewModel];
+			break;
+		}
+		case 2: {
+			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:services];
+			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			[services pushViewModel:viewModel];
+			break;
+		}
+	}
 }
 
 - (void)bindViewModel:(id)viewModel {

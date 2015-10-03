@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
+#import "MSFViewModelServices.h"
 
 /**
  *	申请状态下的Cell
  */
-@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell <MSFReactiveView>
-
-- (void)bindViewModel:(id)viewModel;
+@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell<MSFReactiveView>
 
 @end
