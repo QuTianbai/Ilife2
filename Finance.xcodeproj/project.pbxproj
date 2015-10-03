@@ -58,6 +58,8 @@
 		07667BF41BBEAB83002DFF62 /* MSFApplyCashInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF31BBEAB83002DFF62 /* MSFApplyCashInfo.m */; settings = {ASSET_TAGS = (); }; };
 		07667BF71BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF61BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m */; settings = {ASSET_TAGS = (); }; };
 		07667BF91BBEAD9B002DFF62 /* allow.json in Resources */ = {isa = PBXBuildFile; fileRef = 07667BF81BBEAD9B002DFF62 /* allow.json */; settings = {ASSET_TAGS = (); }; };
+		07667C021BBF6774002DFF62 /* MSFSubmitApplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667C011BBF6774002DFF62 /* MSFSubmitApplyModel.m */; settings = {ASSET_TAGS = (); }; };
+		07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667C111BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m */; settings = {ASSET_TAGS = (); }; };
 		077347CA1BBA338900D7A130 /* ABC.png in Resources */ = {isa = PBXBuildFile; fileRef = 077347A61BBA338900D7A130 /* ABC.png */; settings = {ASSET_TAGS = (); }; };
 		077347CB1BBA338900D7A130 /* ABC@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077347A71BBA338900D7A130 /* ABC@2x.png */; settings = {ASSET_TAGS = (); }; };
 		077347CC1BBA338900D7A130 /* ABC@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077347A81BBA338900D7A130 /* ABC@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -101,6 +103,7 @@
 		078010501BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0780104E1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
 		0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */; };
 		0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF6D1B1F05D200880617 /* MSFPhoto.m */; };
+		078EEB831BBF719C00E7AB42 /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 078EEB821BBF719C00E7AB42 /* submit.json */; settings = {ASSET_TAGS = (); }; };
 		07997AAC1BA01C2000E3E4DD /* icon-confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07997AAA1BA01C2000E3E4DD /* icon-confirm@2x.png */; };
 		07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07997AAB1BA01C2000E3E4DD /* icon-confirm@3x.png */; };
 		07AFE5A01B26D202009E0124 /* position.json in Resources */ = {isa = PBXBuildFile; fileRef = 07AFE59F1B26D202009E0124 /* position.json */; };
@@ -821,6 +824,10 @@
 		07667BF51BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFCheckAllowApply.h"; sourceTree = "<group>"; };
 		07667BF61BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFCheckAllowApply.m"; sourceTree = "<group>"; };
 		07667BF81BBEAD9B002DFF62 /* allow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allow.json; sourceTree = "<group>"; };
+		07667C001BBF6774002DFF62 /* MSFSubmitApplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSubmitApplyModel.h; sourceTree = "<group>"; };
+		07667C011BBF6774002DFF62 /* MSFSubmitApplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSubmitApplyModel.m; sourceTree = "<group>"; };
+		07667C101BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFSubmitAppyCash.h"; sourceTree = "<group>"; };
+		07667C111BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFSubmitAppyCash.m"; sourceTree = "<group>"; };
 		077347A61BBA338900D7A130 /* ABC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ABC.png; sourceTree = "<group>"; };
 		077347A71BBA338900D7A130 /* ABC@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ABC@2x.png"; sourceTree = "<group>"; };
 		077347A81BBA338900D7A130 /* ABC@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ABC@3x.png"; sourceTree = "<group>"; };
@@ -869,6 +876,7 @@
 		0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoStatus.m; sourceTree = "<group>"; };
 		0788FF6C1B1F05D200880617 /* MSFPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhoto.h; sourceTree = "<group>"; };
 		0788FF6D1B1F05D200880617 /* MSFPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhoto.m; sourceTree = "<group>"; };
+		078EEB821BBF719C00E7AB42 /* submit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submit.json; sourceTree = "<group>"; };
 		07997AAA1BA01C2000E3E4DD /* icon-confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-confirm@2x.png"; sourceTree = "<group>"; };
 		07997AAB1BA01C2000E3E4DD /* icon-confirm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-confirm@3x.png"; sourceTree = "<group>"; };
 		07AFE59F1B26D202009E0124 /* position.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = position.json; sourceTree = "<group>"; };
@@ -1733,6 +1741,11 @@
 				07330B6D1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.h */,
 				07330B6E1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m */,
 				07667BDF1BBEA5D4002DFF62 /* repay.json */,
+				07667C001BBF6774002DFF62 /* MSFSubmitApplyModel.h */,
+				07667C011BBF6774002DFF62 /* MSFSubmitApplyModel.m */,
+				07667C101BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.h */,
+				07667C111BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m */,
+				078EEB821BBF719C00E7AB42 /* submit.json */,
 			);
 			name = ApplyCash;
 			sourceTree = "<group>";
@@ -3924,6 +3937,7 @@
 				4925ADF51B2AFD8800872A8A /* btn_uncheck.png in Resources */,
 				07C06C7C1B1347C200F2DFCC /* sex.json in Resources */,
 				4944C0281B68A5A100805C0A /* icon-account-about.png in Resources */,
+				078EEB831BBF719C00E7AB42 /* submit.json in Resources */,
 				49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */,
 				49C0F1A61B2C315100E92572 /* icon-password.png in Resources */,
 				07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */,
@@ -4463,6 +4477,7 @@
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
 				07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */,
 				105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */,
+				07667C021BBF6774002DFF62 /* MSFSubmitApplyModel.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
 				C72149E51B05A5AA0045F919 /* MSFClient+PlanDetails.m in Sources */,
 				C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */,
@@ -4525,6 +4540,7 @@
 				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
 				07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */,
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
+				07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */,
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
 				10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */,
 				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,

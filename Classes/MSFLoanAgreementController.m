@@ -20,10 +20,15 @@
 #import "MSFFormsViewModel.h"
 #import "MSFAddress.h"
 
+#import "MSFSubmitApplyModel.h"
+
+#import "MSFEdgeButton.h"
+
 @interface MSFLoanAgreementController ()<UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
 @property (nonatomic, strong) MSFLoanAgreementViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet MSFEdgeButton *submitButton;
 
 @end
 
@@ -71,12 +76,12 @@
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];
-	
+	self.submitButton.rac_command = self.viewModel.executeRequest;
 	@weakify(self)
 	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-		[signal subscribeNext:^(MSFApplicationResponse *applyCash) {
+		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
 			[SVProgressHUD dismiss];
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
@@ -93,6 +98,8 @@
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	
+	
 	
 }
 

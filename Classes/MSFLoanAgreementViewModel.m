@@ -25,10 +25,10 @@
 	_formsViewModel = formsViewModel;
 	_services = formsViewModel.services;
 	@weakify(self)
-//	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//		@strongify(self)
-//		return [self.formsViewModel submitSignalWithPage:1];
-//	}];
+	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self.formsViewModel submitSignalWithStatus:@"0"];
+	}];
 	
 	return self;
 }

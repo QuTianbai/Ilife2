@@ -25,6 +25,7 @@
 #import "MSFCheckAllowApply.h"
 #import "MSFApplyCashInfo.h"
 #import "MSFLoanAgreementViewModel.h"
+#import "MSFClient+MSFSubmitAppyCash.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -199,6 +200,10 @@
 	[SVProgressHUD setForegroundColor:[UIColor blackColor]];
 	[SVProgressHUD resetOffsetFromCenter];
 	
+}
+
+- (RACSignal *)submitSignalWithStatus:(NSString *)status {
+	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:nil Andstatus:status];
 }
 
 @end

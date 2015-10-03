@@ -61,6 +61,8 @@
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
 
+- (RACSignal *)submitSignalWithStatus:(NSString *)status;
+
 
 
 @end
