@@ -137,6 +137,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		}];
 	}];
 	
+	_executeSetTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeSetTradepwdexecute];
+	}];
+	
+	_executeUpdateTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self updateTradeExecute];
+	}];
+
+	
 	self.signInInvalidSignal = [[RACSubject subject] setNameWithFormat:@"`MSFAuthorizeViewModel signIn captcha required signal`"];
 	
 	return self;
@@ -340,4 +349,76 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	return [NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:string}];
 }
 
+- (RACSignal *)executeSetTradepwdexecute {
+	
+	NSError *error;
+		if (self.TradePassword.length == 0) {
+			NSString *str = @"请填写交易密码";
+			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																									NSLocalizedFailureReasonErrorKey: str,
+																																									}];
+			return [RACSignal error:error];
+		}
+	if (self.smsCode.length == 0) {
+		NSString *str = @"请填写验证码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	
+	if (self.againTradePWD.length == 0) {
+		NSString *str = @"请填写确认交易密码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
+		NSString *str = @"交易密码和确认交易密码不一致";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+
+
+	return [self.services.httpClient setTradePwdWithPWD:self.TradePassword AndCaptch:self.smsCode];
+}
+
+- (RACSignal *)updateTradeExecute {
+	
+	NSError *error;
+	if (self.oldTradePWD.length == 0) {
+		NSString *str = @"请填写旧交易密码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	if (self.TradePassword.length == 0) {
+		NSString *str = @"请填写新交易密码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	if (self.againTradePWD.length == 0) {
+		NSString *str = @"请填写确认新交易密码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	
+	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
+		NSString *str = @"新交易密码和确认新交易密码不一致";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	
+	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD AndNewPwd:self.TradePassword AndCaptch:self.smsCode];
+}
 @end

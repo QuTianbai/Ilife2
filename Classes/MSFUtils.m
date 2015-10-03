@@ -107,7 +107,7 @@ static MSFServer *server;
 }
 
 + (NSString *)isCircuteCash {
-	return @"0";
+	return @"1";
 }
 
 + (NSString *)productCode {

@@ -91,6 +91,10 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 		
 		return @"";
 	}];
+	
+	_executeReSetTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeResetTrade];
+	}];
 
 	
 	return self;
@@ -181,7 +185,9 @@ NSLocalizedFailureReasonErrorKey: str,
 	return [self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:self.bankNO AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode];
 }
 
-
+- (RACSignal *)executeResetTrade {
+	return [self.services.httpClient resetTradepwdWithBankCardNo:self.bankNO AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword];
+}
 
 
 @end

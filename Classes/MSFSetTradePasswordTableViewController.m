@@ -47,6 +47,7 @@
     [super viewDidLoad];
 	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
+	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
 	
 	self.checkCodeBT.rac_command = self.viewModel.executeCaptcha;
 	
@@ -73,6 +74,18 @@
 		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
 	}];
 
+	self.sureBT.rac_command = self.viewModel.executeSetTradePwd;
+	
+	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+			[self.navigationController popViewControllerAnimated:YES];
+		}];
+	}];
+	
+	[self.viewModel.executeSetTradePwd.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 	
 }
 
