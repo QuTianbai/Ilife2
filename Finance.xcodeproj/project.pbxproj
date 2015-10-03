@@ -276,6 +276,9 @@
 		492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */; };
 		492E62731B0EC18D00D34069 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62711B0EC18D00D34069 /* left_arrow@2x.png */; };
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
+		493224DD1BBFB3640087830E /* icon-account-intro.png in Resources */ = {isa = PBXBuildFile; fileRef = 493224DA1BBFB3640087830E /* icon-account-intro.png */; settings = {ASSET_TAGS = (); }; };
+		493224DE1BBFB3640087830E /* icon-account-intro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 493224DB1BBFB3640087830E /* icon-account-intro@2x.png */; settings = {ASSET_TAGS = (); }; };
+		493224DF1BBFB3640087830E /* icon-account-intro@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 493224DC1BBFB3640087830E /* icon-account-intro@3x.png */; settings = {ASSET_TAGS = (); }; };
 		49386C151B8178D100B1282B /* check-user-credit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49386C141B8178D100B1282B /* check-user-credit.json */; };
 		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
@@ -1145,6 +1148,9 @@
 		492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAlertContentViewController.m; sourceTree = "<group>"; };
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
+		493224DA1BBFB3640087830E /* icon-account-intro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-intro.png"; sourceTree = "<group>"; };
+		493224DB1BBFB3640087830E /* icon-account-intro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-intro@2x.png"; sourceTree = "<group>"; };
+		493224DC1BBFB3640087830E /* icon-account-intro@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-intro@3x.png"; sourceTree = "<group>"; };
 		49386C141B8178D100B1282B /* check-user-credit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-user-credit.json"; sourceTree = "<group>"; };
 		4943C32B1B047403000BBF5E /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3521B047437000BBF5E /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3615,6 +3621,9 @@
 		C7D2D1001B679346000F51ED /* perfectMeans */ = {
 			isa = PBXGroup;
 			children = (
+				493224DA1BBFB3640087830E /* icon-account-intro.png */,
+				493224DB1BBFB3640087830E /* icon-account-intro@2x.png */,
+				493224DC1BBFB3640087830E /* icon-account-intro@3x.png */,
 				4944C0501B68A60200805C0A /* icon-avatar-placeholder.png */,
 				4944C0511B68A60200805C0A /* icon-avatar-placeholder@2x.png */,
 				4944C0521B68A60200805C0A /* icon-avatar-placeholder@3x.png */,
@@ -3925,6 +3934,7 @@
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
 				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
 				07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */,
+				493224DD1BBFB3640087830E /* icon-account-intro.png in Resources */,
 				4944C0111B68A44A00805C0A /* icon-cloze-name.png in Resources */,
 				10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */,
 				077347EB1BBA338900D7A130 /* zhongxin.png in Resources */,
@@ -4054,6 +4064,7 @@
 				C7AD13871B0CA6B1004D112D /* MSFTradeTableViewCell.xib in Resources */,
 				07C06C7D1B1347C200F2DFCC /* social_status.json in Resources */,
 				4975C98A1B46D6D400AA79EB /* Localizable.strings in Resources */,
+				493224DF1BBFB3640087830E /* icon-account-intro@3x.png in Resources */,
 				072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */,
 				C7D2D11E1B67938C000F51ED /* icon-cloze-bankAddress@3x.png in Resources */,
 				49C0F1CA1B2C341400E92572 /* tabbar-apply-normal.png in Resources */,
@@ -4119,6 +4130,7 @@
 				07B368831B7ED86400574A81 /* basic-information-prompt-1242@2x.png in Resources */,
 				07E3ED711BBBC3020010AAD2 /* tradePassWordBG@2x.png in Resources */,
 				4944C02C1B68A5A100805C0A /* icon-account-apply@2x.png in Resources */,
+				493224DE1BBFB3640087830E /* icon-account-intro@2x.png in Resources */,
 				49B37B571B608F39004EED47 /* bar-highlighted.png in Resources */,
 				49C0F1A01B2C315100E92572 /* icon-check-normal.png in Resources */,
 				10DC2E521BA0209400A2AF9C /* btn-attachment-take-photo@3x.png in Resources */,
