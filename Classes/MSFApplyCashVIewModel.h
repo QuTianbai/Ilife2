@@ -15,6 +15,7 @@
 @class MSFApplyCashModel;
 @class MSFMarkets;
 @class MSFTeam;
+
 @interface MSFApplyCashVIewModel : RVMViewModel
 
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
@@ -34,7 +35,6 @@
  */
 @property (nonatomic, strong) MSFSelectKeyValues *purpose;
 @property (nonatomic, strong, readonly) NSString *purposeText;
-
 
 /**
  *	金额
@@ -60,7 +60,5 @@
 @property (nonatomic, strong) RACCommand *executeNextCommand;
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
-
-
 
 @end

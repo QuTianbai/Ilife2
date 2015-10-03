@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class RACCommand;
+
 @interface MSFUserInfoCircleView : UIView
 
+//点击事件Block
 @property (nonatomic, copy) void (^onClickBlock) (NSInteger index);
+//点击事件RACCommand
+@property (nonatomic, strong) RACCommand *clickCommand;
 
 - (void)setCompeltionStatus:(NSArray *)status;
 

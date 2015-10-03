@@ -22,6 +22,9 @@
 #import "UIColor+Utils.h"
 #import "MSFSettingsViewController.h"
 #import "MSFUserViewModel.h"
+#import "MSFApplyCashVIewModel.h"
+#import "MSFTabBarController.h"
+#import "MSFTabBarViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -139,14 +142,10 @@
 #pragma mark - IBActions
 
 - (void)userInfo {
-	
-	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithServices:self.viewModel.servcies];
+	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
+	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel];
+	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
-	/*
-	MSFUserInfoViewController *userinfoViewController = [[MSFUserInfoViewController alloc] initWithViewModel:self.viewModel];
-	userinfoViewController.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:userinfoViewController animated:YES];
-	 */
 }
 
 - (IBAction)repayMentPlan:(id)sender {

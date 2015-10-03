@@ -11,6 +11,9 @@
 
 @interface MSFUserInfomationViewController : UIViewController
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+@property (nonatomic, assign) BOOL showNextStep;
+
+- (instancetype)initWithViewModel:(id)viewModel
+												 services:(id<MSFViewModelServices>)services;
 
 @end
