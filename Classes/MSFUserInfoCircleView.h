@@ -17,6 +17,6 @@
 //点击事件RACCommand
 @property (nonatomic, strong) RACCommand *clickCommand;
 
-- (void)setCompeltionStatus:(NSArray *)status;
+- (void)setCompeltionStatus:(NSString *)status;
 
 @end
