@@ -10,7 +10,8 @@
 
 @interface MSFClient (Attachment)
 
-- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment;
+- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment __deprecated_msg("Use uploadAttachment:applicationNumber:");
+- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment applicationNumber:(NSString *)applicationNumber;
 - (RACSignal *)downloadAttachment:(MSFAttachment *)attachment;
 
 @end

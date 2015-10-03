@@ -26,6 +26,7 @@
 		@"plain": @"attachmentTypePlain",
 		@"commentURL": @"comment",
 		@"fileID": @"fileId",
+		@"fileName": @"fileName",
 		@"additionDate": @"rawAddTime",
 		@"updatedDate": @"rawUpdateTime",
 		@"status": @"status",
