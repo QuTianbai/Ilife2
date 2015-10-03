@@ -27,6 +27,7 @@
 #import "MSFTabBarViewModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFSetTradePasswordViewModel.h"
+#import "MSFSettingsViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -118,7 +119,7 @@
 		case 0:[self userInfo]; break;
 		case 1: {
 			switch (indexPath.row) {
-				case 0:[self appliyStatusList:nil]; break;
+				case 0:[self settings:nil]; break;
 				case 1:
 				{
 					MSFSetTradePasswordViewModel *viewModel = [[MSFSetTradePasswordViewModel alloc] initWithServices:self.viewModel.servcies];
@@ -171,6 +172,11 @@
 	MSFAboutsViewController *settingsViewController = [[MSFAboutsViewController alloc] init];
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:settingsViewController animated:YES];
+}
+
+- (IBAction)settings:(id)sender {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:NSStringFromClass(MSFSettingsViewController.class) bundle:nil];
+	[self.navigationController pushViewController:storyboard.instantiateInitialViewController animated:YES];
 }
 
 @end

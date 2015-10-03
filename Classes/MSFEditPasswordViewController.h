@@ -5,8 +5,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFGroupTableViewController.h"
 
-@interface MSFEditPasswordViewController : UITableViewController
+@interface MSFEditPasswordViewController : MSFGroupTableViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
 
