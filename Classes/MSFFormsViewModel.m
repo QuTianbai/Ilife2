@@ -62,6 +62,10 @@
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(id x) {
 			self.markets = x;
 		}];
+		[[self.services.httpClient fetchApplyInfo]
+		 subscribeNext:^(id x) {
+			self.model = x;
+		}];
 	}];
 //	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 //		@strongify(self)

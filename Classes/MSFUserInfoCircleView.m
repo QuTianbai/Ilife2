@@ -293,7 +293,7 @@
 	}];
 	
 	
-	[self setCompeltionStatus:@[@NO, @NO, @NO]];
+	[self setCompeltionStatus:@"000"];
 }
 
 #pragma mark - TapGesture
@@ -344,14 +344,15 @@
 
 #pragma mark - Layout
 
-- (void)setCompeltionStatus:(NSArray *)status {
-	if (status.count != 3) {
+- (void)setCompeltionStatus:(NSString *)status {
+	if (status.length != 3) {
 		return;
 	}
-	_statusArray = status;
-	BOOL b0 = [status[0] boolValue];
-	BOOL b1 = [status[1] boolValue];
-	BOOL b2 = [status[2] boolValue];
+	
+	BOOL b0 = [status substringWithRange:NSMakeRange(0, 1)].integerValue == 1;
+	BOOL b1 = [status substringWithRange:NSMakeRange(1, 1)].integerValue == 1;
+	BOOL b2 = [status substringWithRange:NSMakeRange(2, 1)].integerValue == 1;
+	_statusArray = @[@(b0), @(b1), @(b2)];
 	
 	NSInteger completion = 0;
 	if (b0) {

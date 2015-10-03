@@ -6,16 +6,20 @@
 
 #import "MSFHomepageViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
-#import "MSFClient+Users.h"
-#import "MSFClient+Repayment.h"
+
 #import "MSFUser.h"
 #import "MSFResponse.h"
+#import "MSFApplyList.h"
+
 #import "MSFLoanViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFBannersViewModel.h"
 #import "MSFCirculateCashViewModel.h"
-#import "MSFApplyList.h"
+#import "MSFFormsViewModel.h"
+
+#import "MSFClient+Users.h"
+#import "MSFClient+Repayment.h"
+#import "MSFClient+MSFApplyInfo.h"
 
 @interface MSFHomepageViewModel ()
 
@@ -30,11 +34,12 @@
 	NSLog(@"MSFHomepageViewModel `-dealloc`");
 }
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
+- (instancetype)initWithModel:(MSFFormsViewModel *)viewModel services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_viewModel = viewModel;
 	_services = services;
 	_bannersViewModel = [[MSFBannersViewModel alloc] initWithServices:self.services];
 	_circulateCashViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:services];
@@ -77,6 +82,8 @@
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
 	}];
 	
 	return self;

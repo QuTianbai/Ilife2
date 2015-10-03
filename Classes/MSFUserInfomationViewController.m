@@ -9,20 +9,17 @@
 #import "MSFUserInfomationViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import <libextobjc/extobjc.h>
 
 #import "MSFUserInfoCircleView.h"
 
 #import "MSFPersonalViewModel.h"
-#import "MSFProfessionalViewModel.h"
 #import "MSFRelationshipViewModel.h"
+#import "MSFProfessionalViewModel.h"
 #import "MSFApplyCashVIewModel.h"
-
-#import "MSFClient+MSFApplyInfo.h"
-#import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
 #import "MSFAddressViewModel.h"
 
+#import "MSFClient+MSFApplyInfo.h"
 #import "UIColor+Utils.h"
 
 #import "MSFUtils.h"
@@ -65,10 +62,12 @@
 	@weakify(self)
 	_circleView = [[MSFUserInfoCircleView alloc] init];
 	[self.view addSubview:_circleView];
-	_circleView.onClickBlock = ^(NSInteger index) {
-		@strongify(self)
-		[self onClickCircle:index];
-	};
+	[[_circleView.clickCommand.executionSignals
+		switchToLatest]
+	 subscribeNext:^(NSNumber *x) {
+		 @strongify(self)
+		 [self onClickCircle:x.integerValue];
+	}];
 	
 	_nextStepButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	_nextStepButton.backgroundColor = [UIColor themeColorNew];
@@ -112,12 +111,10 @@
 	}];
 }
 
-- (void)testCircle {
-	BOOL b1 = arc4random() % 2 == 1;
-	BOOL b2 = arc4random() % 2 == 1;
-	BOOL b3 = arc4random() % 2 == 1;
-	NSArray *testArray = @[@(b1), @(b2), @(b3)];
-	[_circleView setCompeltionStatus:testArray];
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.viewModel.formViewModel.active = NO;
+	self.viewModel.formViewModel.active = YES;
 }
 
 - (void)back {

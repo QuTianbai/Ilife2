@@ -14,9 +14,11 @@
 @class RACCommand;
 @class MSFBannersViewModel;
 @class MSFCirculateCashViewModel;
+@class MSFFormsViewModel;
 
 @interface MSFHomepageViewModel : RVMViewModel
 
+@property (nonatomic, strong, readonly) MSFFormsViewModel *viewModel;
 @property (nonatomic, readonly) NSArray *viewModels;
 @property (nonatomic, readonly) RACCommand *refreshCommand;
 @property (nonatomic, readonly) MSFBannersViewModel *bannersViewModel;
@@ -27,6 +29,6 @@
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath;
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+- (instancetype)initWithModel:(MSFFormsViewModel *)viewModel services:(id <MSFViewModelServices>)services;
 
 @end

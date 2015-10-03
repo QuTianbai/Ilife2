@@ -53,8 +53,8 @@
 	[[_circleView.clickCommand.executionSignals switchToLatest]
 	 subscribeNext:^(NSNumber *x) {
 		 @strongify(self)
-		[self onClickCircle:x.integerValue];
-	}];
+		 [self onClickCircle:x.integerValue];
+	 }];
 }
 
 - (void)onClickCircle:(NSInteger)index {
@@ -90,14 +90,13 @@
 			[_statusButton setTitle:model.status forState:UIControlStateNormal];
 			_amountLabel.text = model.totalAmount;
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
-			[[[_statusButton
-				 rac_signalForControlEvents:UIControlEventTouchUpInside]
+			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
 			 subscribeNext:^(NSString *x) {
 				 if ([x isEqualToString:@"申请中"]) {
 					 [model pushHistoryDetails];
 				 }
-			}];
+			 }];
 			return;
 		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
 			MSFRepaymentViewModel *model = viewModel;
@@ -130,8 +129,8 @@
 	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
 		 //[SVProgressHUD showWithStatus:@"正在加载..."];
-//		 self.ConFirmContractBT.hidden = YES;
-//		 self.statusLabel.hidden = NO;
+		 //		 self.ConFirmContractBT.hidden = YES;
+		 //		 self.statusLabel.hidden = NO;
 		 //NSLog(@"我是发通知");
 		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 		 
@@ -150,13 +149,13 @@
 	[self placeholderShow:YES];
 }
 /*
-- (IBAction)onApply:(UIButton *)sender {
+ - (IBAction)onApply:(UIButton *)sender {
 	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
 	if ([tab isKindOfClass:MSFTabBarController.class]) {
-		if ([tab.delegate tabBarController:tab shouldSelectViewController:tab.viewControllers[1]])
-			tab.selectedIndex = 1;
+ if ([tab.delegate tabBarController:tab shouldSelectViewController:tab.viewControllers[1]])
+ tab.selectedIndex = 1;
 	}
-}*/
+ }*/
 
 - (void)placeholderShow:(BOOL)b {
 	[self bringSubviewToFront:self.circleView];
