@@ -761,6 +761,7 @@ static NSDictionary *messages;
 }
 
 #pragma mark - addBankCard
+
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"uniqueId"] = MSFUtils.uniqueId;

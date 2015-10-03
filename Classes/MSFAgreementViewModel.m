@@ -10,7 +10,6 @@
 #import "MSFClient+Agreements.h"
 #import "NSURLRequest+RequestWithIgnoreSSL.h"
 
-
 @interface MSFAgreementViewModel ()
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;

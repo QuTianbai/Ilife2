@@ -421,4 +421,5 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD AndNewPwd:self.TradePassword AndCaptch:self.smsCode];
 }
+
 @end

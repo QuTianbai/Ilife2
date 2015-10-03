@@ -15,7 +15,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 @interface MSFDrawCashViewModel ()
 
-@property (nonatomic, assign)id<MSFViewModelServices>services;
+@property (nonatomic, assign) id<MSFViewModelServices>services;
 
 @property (nonatomic, copy) NSString *contractNO;
 

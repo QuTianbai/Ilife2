@@ -61,7 +61,7 @@
 	}
 	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 	paragraph.alignment = NSTextAlignmentCenter;
-	NSDictionary *attri =@{NSForegroundColorAttributeName : textColor,
+	NSDictionary *attri = @{NSForegroundColorAttributeName : textColor,
 												 NSFontAttributeName :[UIFont systemFontOfSize: 17],
 												 NSParagraphStyleAttributeName : paragraph};
 	if (_overDue.length > 0) {

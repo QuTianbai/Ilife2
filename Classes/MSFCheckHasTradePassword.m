@@ -12,7 +12,7 @@
 
 @interface MSFCheckHasTradePassword ()
 
-@property (nonatomic, strong)id<MSFViewModelServices>services;
+@property (nonatomic, strong) id<MSFViewModelServices>services;
 
 @end
 
@@ -35,6 +35,5 @@
 - (RACSignal *)checkTradePassword {
 	return [self.services.httpClient fetchCheckTradePassword];
 }
-
 
 @end

@@ -22,9 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputMoneyTF;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 
-
-
-
 @end
 
 @implementation MSFDrawCashTableViewController
@@ -66,11 +63,9 @@
 	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-    
-	
 }
 
-- (void) setviewTitle {
+- (void)setviewTitle {
 	if (self.type == 1) {
 		self.title = @"还款";
 		self.showInfoLB.text = @"还款金额从此银行账户代扣";

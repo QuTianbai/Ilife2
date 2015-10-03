@@ -10,5 +10,4 @@
 
 @interface MSFCirculateCashInfoModel : MSFObject
 
-
 @end
