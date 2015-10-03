@@ -23,6 +23,8 @@
 #import "MSFSettingsViewController.h"
 #import "MSFUserViewModel.h"
 
+#import "MSFSetTradePasswordTableViewController.h"
+
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *rowTitles;
@@ -132,7 +134,10 @@
 			}
 			break;
 		}
-		case 2: [self pushAbout:nil]; break;
+		case 2:
+			
+			//[self pushAbout:nil];
+			break;
 	}
 }
 
