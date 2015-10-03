@@ -25,7 +25,6 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFTabBarController.h"
 #import "MSFTabBarViewModel.h"
-
 #import "MSFSetTradePasswordTableViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -51,31 +50,30 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-	label.text = @"我的账户";
-	label.textColor = [UIColor tintColor];
+	label.text = @"个人中心";
+	label.textColor = UIColor.tintColor;
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
 	
 	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
-	[self.tableView registerClass:UITableViewHeaderFooterView.class forHeaderFooterViewReuseIdentifier:@"sectionHeader"];
-	self.tableView.delegate = self;
-	self.tableView.dataSource = self;
-	//self.tableView.tableHeaderView = self.tableViewHeader;
-	self.tableView.backgroundColor = [UIColor darkBackgroundColor];
+	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
 	
-	self.rowTitles = @[@[@"个人信息"],
-										 @[@"申请记录",
-											 @"还款计划",
-											 @"历史交易"],
-										 @[@"关于"]];
-	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"]],
-								 @[[UIImage imageNamed:@"icon-account-apply"],
-									 [UIImage imageNamed:@"icon-account-repay"],
-									 [UIImage imageNamed:@"icon-account-history"]],
-								 @[[UIImage imageNamed:@"icon-account-about"]]];
+	self.rowTitles = @[@[
+			@"个人信息",
+			@"银行卡"
+		], @[
+			@"设置",
+			@"关于"
+		]];
+	self.icons = @[@[
+			[UIImage imageNamed:@"icon-account-info"],
+			[UIImage imageNamed:@"icon-account-repay"]
+		], @[
+			[UIImage imageNamed:@"icon-account-about"],
+			[UIImage imageNamed:@"icon-account-intro"]
+		]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -101,18 +99,6 @@
 	return 0.1;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"sectionHeader"];
-	if (section == 1) {
-		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 6, 100, 20)];
-		label.text = @"贷款信息";
-		label.textColor = [UIColor tintColor];
-		label.font = [UIFont systemFontOfSize:13];
-		[view.contentView addSubview:label];
-	}
-	return view;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 	cell.textLabel.font = [UIFont systemFontOfSize:16];
@@ -128,19 +114,14 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	switch (indexPath.section) {
-		case 0:[self userInfo];break;
+		case 0:[self userInfo]; break;
 		case 1: {
 			switch (indexPath.row) {
-				case 0:[self appliyStatusList:nil];break;
-				case 1:[self repayMentPlan:nil];break;
-				case 2:[self historyDetails:nil];break;
+				case 0:[self appliyStatusList:nil]; break;
+				case 1:[self pushAbout:nil]; break;
 			}
 			break;
 		}
-		case 2:
-			
-			//[self pushAbout:nil];
-			break;
 	}
 }
 

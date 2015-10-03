@@ -21,6 +21,7 @@
 	if (!self) {
 		return nil;
 	}
+	_product = formsViewModel;
 	_agreementViewModel = [[MSFAgreementViewModel alloc] initWithServices:formsViewModel.services];
 	_formsViewModel = formsViewModel;
 	_services = formsViewModel.services;
