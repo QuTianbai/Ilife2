@@ -83,9 +83,13 @@ UICollectionViewDelegateFlowLayout>
 			[[KGModal sharedInstance] setShowCloseButton:NO];
 			[[KGModal sharedInstance] showWithContentViewController:alertViewController];
 			
+			//[[KGModal sharedInstance] hideAnimated:NO withCompletionBlock:^{
+				[self.viewModel.executeUpdateCommand execute:nil];
+			//}];
+			
 			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
 				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-					[self.viewModel.executeUpdateCommand execute:nil];
+					[self.viewModel.executeSubmit execute:nil];
 				}];
 			} completed:^{
 				[[KGModal sharedInstance] hideAnimated:YES];
@@ -97,15 +101,30 @@ UICollectionViewDelegateFlowLayout>
 	
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		//[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
+		[signal subscribeNext:^(id x) {
+			self.array = x;
+			
+//			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+//			[self.tabBarController setSelectedIndex:0];
+//			[self.navigationController popToRootViewControllerAnimated:NO];
+		}];
+	}];
+	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+
+	
+	[self.viewModel.executeSubmit.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
-			[self.tabBarController setSelectedIndex:0];
-			[self.navigationController popToRootViewControllerAnimated:NO];
+				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+				[self.tabBarController setSelectedIndex:0];
+				[self.navigationController popToRootViewControllerAnimated:NO];
 		}];
 	}];
 	
-	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeSubmit.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	

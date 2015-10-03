@@ -12,10 +12,12 @@
 @class MSFInventory;
 @class MSFProduct;
 @class MSFApplicationResponse;
+@class MSFApplyCashVIewModel;
 
 @interface MSFInventoryViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFInventory *model;
+@property (nonatomic, strong) MSFApplyCashVIewModel *cashViewModel;
 @property (nonatomic, weak,   readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) MSFProduct *product;
 @property (nonatomic, strong, readonly) MSFApplicationResponse *credit;
@@ -29,8 +31,11 @@
 @property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
 @property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
 
+@property (nonatomic, strong, readonly) RACCommand *executeSubmit;
+
 - (RACSignal *)updateValidSignal;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel;
+
 
 @end

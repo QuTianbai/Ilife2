@@ -20,6 +20,8 @@
 #import "MSFAttachment.h"
 #import "MSFApplicationForms.h"
 
+#import "MSFApplyCashVIewModel.h"
+
 @interface MSFInventoryViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
@@ -30,32 +32,32 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel {
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_formsViewModel = formsViewModel;
-	
+	_formsViewModel = formsViewModel.formViewModel;
+	_cashViewModel = formsViewModel;
 	RAC(self, model) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
 		return [[MSFInventory alloc] initWithDictionary:@{
-			@"objectID": formsViewModel.model.loanId ?: @"",
-			@"applyNo": formsViewModel.model.applyNo ?: @"",
+			@"objectID": formsViewModel.formViewModel.model.loanId ?: @"",
+			@"applyNo": formsViewModel.formViewModel.model.applyNo ?: @"",
 			@"attachments": @[],
 		} error:nil];
 	}];
 	
 	RAC(self, product) = [RACObserve(self, formsViewModel.model.productId) map:^id(id value) {
 		return [[MSFProduct alloc] initWithDictionary:@{
-			@"productId": formsViewModel.model.productId ?: @"",
+			@"productId": formsViewModel.formViewModel.model.productId ?: @"",
 		} error:nil];
 	}];
 	
 	RAC(self, credit) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
 		return [[MSFApplicationResponse alloc] initWithDictionary:@{
-			@"applyID": formsViewModel.model.applyNo ?: @"",
-			@"applyNo": formsViewModel.model.loanId ?: @"",
-			@"personId": formsViewModel.model.personId ?: @"",
+			@"applyID": formsViewModel.formViewModel.model.applyNo ?: @"",
+			@"applyNo": formsViewModel.formViewModel.model.loanId ?: @"",
+			@"personId": formsViewModel.formViewModel.model.personId ?: @"",
 		} error:nil];
 	}];
 	
@@ -87,6 +89,10 @@
 		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
 			return !value.isRequired;
 		}] array];
+	}];
+	
+	_executeSubmit = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self.cashViewModel submitSignalWithStatus:@"1"];
 	}];
 	
   return self;
@@ -121,6 +127,7 @@
 		return [RACSignal return:attachments];
 	}];
 }
+
 
 #pragma mark - Private
 
