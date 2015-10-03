@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class MSFCustomAlertView;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

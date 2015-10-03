@@ -40,6 +40,13 @@ extern NSString *const MSFAuthorizeErrorDomain;
 // 登录/注册/找回密码 ViewModel
 @interface MSFAuthorizeViewModel : RVMViewModel
 
+//交易密码
+@property (nonatomic, copy) NSString *TradePassword;
+@property (nonatomic, copy) NSString *againTradePWD;
+@property (nonatomic, copy) NSString *smsCode;
+
+@property (nonatomic, copy) NSString *oldTradePWD;
+
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 // 动态改变授权ViewModel的状态，根据不同的状态来影响登录/注册控制界面的显示
@@ -84,6 +91,10 @@ extern NSString *const MSFAuthorizeErrorDomain;
 // Request server send find password capcha command
 @property (nonatomic, strong) RACCommand *executeFindPasswordCaptcha;
 
+@property (nonatomic, strong) RACCommand *executeSetTradePwd;
+@property (nonatomic, strong) RACCommand *executeUpdateTradePwd;
+
+
 - (RACSignal *)signInValidSignal;
 - (RACSignal *)signUpValidSignal;
 - (RACSignal *)findPasswordValidSignal;
@@ -105,7 +116,7 @@ extern NSString *const MSFAuthorizeErrorDomain;
 // The User realname, Identifier Card name
 @property (nonatomic, strong) NSString *name;
 
-// identfier Card no
+// identfier Card no∑
 @property (nonatomic, strong) NSString *card;
 
 // The identifer Card invalid time

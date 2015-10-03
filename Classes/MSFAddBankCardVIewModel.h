@@ -14,7 +14,14 @@
 @class RACCommand;
 
 @interface MSFAddBankCardVIewModel : RVMViewModel
+//忘记交易密码
+@property (nonatomic, copy) NSString *TradePassword;
+@property (nonatomic, copy) NSString *againTradePWD;
+@property (nonatomic, copy) NSString *smsCode;
 
+@property (nonatomic, strong) RACCommand *executeReSetTradePwd;
+
+//添加银行卡
 @property (nonatomic, copy) NSString *bankNO;
 @property (nonatomic, copy) NSString *transPassword;
 @property (nonatomic, copy) NSString *bankBranchProvinceCode;

@@ -7,92 +7,91 @@
 //
 
 #import "MSFSetTradePasswordTableViewController.h"
+#import "MSFSetTradePasswordViewModel.h"
+#import "MSFCodeButton.h"
+#import "MSFEdgeButton.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFAuthorizeViewModel.h"
 
 @interface MSFSetTradePasswordTableViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *tradePasswordTF;
+@property (weak, nonatomic) IBOutlet UITextField *sureTradePasswordTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *checkCodeTF;
+@property (weak, nonatomic) IBOutlet UIButton *checkCodeBT;
+@property (weak, nonatomic) IBOutlet UILabel *countLB;
+@property (weak, nonatomic) IBOutlet MSFEdgeButton *sureBT;
+
+//@property (nonatomic, strong) MSFSetTradePasswordViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet UIImageView *sendCaptchaView;
+
+@property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
 
 @end
 
 @implementation MSFSetTradePasswordTableViewController
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SetTradePassword" bundle:nil];
+	self = storyboard.instantiateInitialViewController;
+	if (!self) {
+		return nil;
+	}
+	_viewModel = viewModel;
+	
+	return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
+	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
+	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
+	
+	self.checkCodeBT.rac_command = self.viewModel.executeCaptcha;
+	
+	RAC(self, countLB.text) = RACObserve(self, viewModel.counter);
+	
+	@weakify(self)
+	[self.checkCodeBT.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
+		@strongify(self)
+		[self.view endEditing:YES];
+		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
+		[captchaSignal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}];
+	}];
+	
+	[self.checkCodeBT.rac_command.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	
+	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
+		@strongify(self)
+		self.countLB.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
+		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+	}];
+
+	self.sureBT.rac_command = self.viewModel.executeSetTradePwd;
+	
+	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+			[self.navigationController popViewControllerAnimated:YES];
+		}];
+	}];
+	
+	[self.viewModel.executeSetTradePwd.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

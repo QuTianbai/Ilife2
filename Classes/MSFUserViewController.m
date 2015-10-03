@@ -20,12 +20,13 @@
 #import "MSFClient+Users.h"
 #import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
-#import "MSFSettingsViewController.h"
+#import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"
 #import "MSFApplyCashVIewModel.h"
 #import "MSFTabBarController.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
+#import "MSFSetTradePasswordViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -118,7 +119,15 @@
 		case 1: {
 			switch (indexPath.row) {
 				case 0:[self appliyStatusList:nil]; break;
-				case 1:[self pushAbout:nil]; break;
+				case 1:
+				{
+					MSFSetTradePasswordViewModel *viewModel = [[MSFSetTradePasswordViewModel alloc] initWithServices:self.viewModel.servcies];
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+					//[self pushAbout:nil];
+					break;
+				}
 			}
 			break;
 		}
@@ -159,7 +168,7 @@
 }
 
 - (IBAction)pushAbout:(id)sender {
-	MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
+	MSFAboutsViewController *settingsViewController = [[MSFAboutsViewController alloc] init];
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:settingsViewController animated:YES];
 }

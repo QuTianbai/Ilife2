@@ -1,5 +1,5 @@
 //
-//  MSFSetTradePasswordTableViewController.h
+//  MSFUpdateTradePWDTableViewController.h
 //  Finance
 //
 //  Created by xbm on 15/10/3.
@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFGroupTableViewController.h"
 
-@interface MSFSetTradePasswordTableViewController : MSFGroupTableViewController
+@interface MSFUpdateTradePWDTableViewController : UITableViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
 
