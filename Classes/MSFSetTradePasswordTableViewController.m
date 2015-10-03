@@ -45,6 +45,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.automaticallyAdjustsScrollViewInsets = NO;
 	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
 	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
@@ -89,9 +91,9 @@
 	
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 15;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//	return 15;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

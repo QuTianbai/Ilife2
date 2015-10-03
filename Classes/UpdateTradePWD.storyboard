@@ -36,7 +36,7 @@
                                     </variation>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="jbk-eF-Rwb" firstAttribute="leading" secondItem="XzW-ud-ptZ" secondAttribute="leading" constant="15" id="cff-YR-dul"/>
                                 <constraint firstAttribute="trailing" secondItem="jbk-eF-Rwb" secondAttribute="trailing" constant="15" id="hkc-Xg-oYL"/>
