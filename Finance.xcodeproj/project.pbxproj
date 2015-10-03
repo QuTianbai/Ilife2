@@ -373,7 +373,6 @@
 		496A44721B6A57BE00104215 /* MSFObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44501B6A57BE00104215 /* MSFObjectSpec.m */; };
 		496A44731B6A57BE00104215 /* MSFPlanDetailsSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44511B6A57BE00104215 /* MSFPlanDetailsSpec.m */; };
 		496A44741B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44521B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m */; };
-		496A44751B6A57BE00104215 /* MSFProductViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44531B6A57BE00104215 /* MSFProductViewModelSpec.m */; };
 		496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */; };
 		496A44771B6A57BE00104215 /* MSFReleaseNoteSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */; };
 		496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */; };
@@ -1270,7 +1269,6 @@
 		496A44501B6A57BE00104215 /* MSFObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFObjectSpec.m; sourceTree = "<group>"; };
 		496A44511B6A57BE00104215 /* MSFPlanDetailsSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanDetailsSpec.m; sourceTree = "<group>"; };
 		496A44521B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanPerodicTablesSpec.m; sourceTree = "<group>"; };
-		496A44531B6A57BE00104215 /* MSFProductViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFProductViewModelSpec.m; sourceTree = "<group>"; };
 		496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationViewModelSpec.m; sourceTree = "<group>"; };
 		496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFReleaseNoteSpec.m; sourceTree = "<group>"; };
 		496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedulesSpec.m; sourceTree = "<group>"; };
@@ -2778,7 +2776,6 @@
 				496A44501B6A57BE00104215 /* MSFObjectSpec.m */,
 				496A44511B6A57BE00104215 /* MSFPlanDetailsSpec.m */,
 				496A44521B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m */,
-				496A44531B6A57BE00104215 /* MSFProductViewModelSpec.m */,
 				496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */,
 				496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */,
 				496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */,
@@ -4641,7 +4638,6 @@
 				4948E8AB1B9552040048D125 /* MSFElementViewModelSpec.m in Sources */,
 				496A44621B6A57BE00104215 /* MSFAdverSpec.m in Sources */,
 				496A44691B6A57BE00104215 /* MSFBannersViewModelSpec.m in Sources */,
-				496A44751B6A57BE00104215 /* MSFProductViewModelSpec.m in Sources */,
 				496A44651B6A57BE00104215 /* MSFApplyCashSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
