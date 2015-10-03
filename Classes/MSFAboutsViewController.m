@@ -4,7 +4,7 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFSettingsViewController.h"
+#import "MSFAboutsViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import "MSFUtils.h"
@@ -14,9 +14,9 @@
 #import "MSFProductIntroductionCell.h"
 #import "MSFUserHelpCell.h"
 #import "MSFBranchesCell.h"
-#import "MSFSettingTableViewCell.h"
+#import "MSFAboutTableViewCell.h"
 
-@implementation MSFSettingsViewController {
+@implementation MSFAboutsViewController {
 	NSArray *_imageArray;
 	NSArray *_textArray;
 }
@@ -24,7 +24,7 @@
 #pragma mark - Lifecycle
 
 - (instancetype)init {
-	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MSFSettingsViewController" bundle:nil];
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MSFAboutsViewController" bundle:nil];
 	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
 	if (!self) {
 		

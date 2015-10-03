@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFSettingTableViewCell : UITableViewCell
+@interface MSFAboutTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIImageView *picImageView;
 @property (nonatomic, strong) UILabel *text_label;

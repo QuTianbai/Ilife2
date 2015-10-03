@@ -16,7 +16,7 @@
 #import "MSFReactiveView.h"
 #import "MSFUtils.h"
 #import "UIColor+Utils.h"
-#import "MSFSettingsViewController.h"
+#import "MSFAboutsViewController.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
 
