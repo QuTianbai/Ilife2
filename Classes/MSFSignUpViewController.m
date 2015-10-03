@@ -125,14 +125,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		
-		
 		MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] init];
 		vc.services = self.viewModel.services;
 		[self.navigationController pushViewController:vc animated:YES];
-		
-		
-		
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
@@ -153,13 +148,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	[self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
-		
-//		MSFCirculateCashTableViewController *circulateCashVC = [UIStoryboard storyboardWithName:@"CirculateCash" bundle:nil].instantiateInitialViewController;
-//		
-//		circulateCashVC.services = self.viewModel.services;
-//		
-//		[self.navigationController pushViewController:circulateCashVC animated:YES];
-		
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
 		[captchaSignal subscribeNext:^(id x) {
@@ -199,14 +187,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[[self.datePickerButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate msf_date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:100];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:0];
-		NSDate *minDate = [NSDate msf_date];
-		NSDate *date = self.viewModel.expired ?: [NSDate msf_date];
+		NSDate *maxDate = NSDate.max_date;
+		NSDate *minDate = NSDate.msf_date;
+		NSDate *date = self.viewModel.expired ?: NSDate.msf_date;
 		[ActionSheetDatePicker showPickerWithTitle:@""
 			datePickerMode:UIDatePickerModeDate
 			selectedDate:date

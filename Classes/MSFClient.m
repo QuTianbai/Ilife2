@@ -98,7 +98,7 @@ static NSDictionary *messages;
 		NSString *cookie = [NSString stringWithFormat:@"uid=\"%@\";Domain=i.msxf.com;isHttpOnly=true", OpenUDID.value];
 		
 		return [@{
-			@"Device": [devices componentsJoinedByString:@";"],
+			@"Device": [devices componentsJoinedByString:@"; "],
 			@"Set-Cookie": cookie,
 		} mutableCopy];
 	};
@@ -583,7 +583,7 @@ static NSDictionary *messages;
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	[devices addObject:network];
 	
-	return [devices componentsJoinedByString:@";"];
+	return [devices componentsJoinedByString:@"; "];
 }
 
 + (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate {

@@ -285,9 +285,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:[self.class errorWithFailureReason:@"请阅读注册协议"]];
 	}
 	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	dateFormatter.dateFormat = @"yyyy-MM-dd";
+	NSDate *expiredDate = self.permanent ? [dateFormatter dateFromString:@"2099-12-31"]: self.expired;
+	
 	MSFUser *user = [MSFUser userWithServer:self.services.server];
 	return [[MSFClient
-		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:self.expired]
+		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:expiredDate]
 		doNext:^(id x) {
 			[MSFUtils setHttpClient:x];
 		}];
