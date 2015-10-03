@@ -176,7 +176,9 @@
 
 - (IBAction)settings:(id)sender {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:NSStringFromClass(MSFSettingsViewController.class) bundle:nil];
-	[self.navigationController pushViewController:storyboard.instantiateInitialViewController animated:YES];
+	UIViewController *settingsViewController = storyboard.instantiateInitialViewController;
+	[(id <MSFReactiveView>)settingsViewController bindViewModel:self.viewModel.authorizeViewModel];
+	[self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
 @end

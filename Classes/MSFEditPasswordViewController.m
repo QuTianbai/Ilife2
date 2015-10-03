@@ -103,4 +103,10 @@
 	}];
 }
 
+#pragma mark - MSFReactiveView
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
+}
+
 @end

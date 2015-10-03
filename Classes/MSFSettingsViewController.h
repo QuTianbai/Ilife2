@@ -5,8 +5,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
-@interface MSFSettingsViewController : UITableViewController
-
+@interface MSFSettingsViewController : UITableViewController <MSFReactiveView>
 
 @end
