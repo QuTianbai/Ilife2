@@ -21,7 +21,7 @@
 }
 
 - (RACSignal *)fetchElementsWithProduct:(MSFProduct *)product amount:(NSString *)amount term:(NSString *)term {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"attachment/product" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
 		@"productCode": product.productGroupCode ?: @"",
 		@"amount": amount ?: @"",
 		@"loanTerm": term ?: @"",

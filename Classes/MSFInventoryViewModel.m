@@ -17,6 +17,8 @@
 #import "MSFInventory.h"
 #import "MSFApplicationResponse.h"
 #import "MSFAttachmentViewModel.h"
+#import "MSFAttachment.h"
+#import "MSFApplicationForms.h"
 
 @interface MSFInventoryViewModel ()
 
@@ -60,19 +62,15 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
+		MSFApplicationForms *forms = self.formsViewModel.model;
 		[[[[[self.formsViewModel.services httpClient]
-			fetchElementsWithProduct:self.product]
+			fetchElementsWithProduct:self.product amount:forms.principal term:forms.tenor]
 			map:^id(MSFElement *element) {
 				return [[MSFElementViewModel alloc] initWithElement:element services:self.formsViewModel.services];
 			}]
 			collect]
 			subscribeNext:^(id x) {
 				self.viewModels = x;
-				[[[self.formsViewModel.services httpClient] fetchAttachmentsWithCredit:self.credit] subscribeNext:^(id x) {
-					[self.viewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
-						[obj addAttachment:x];
-					}];
-				}];
 			}];
 	}];
 	
@@ -114,7 +112,7 @@
 		[self.requiredViewModels enumerateObjectsUsingBlock:^(MSFElementViewModel *obj, NSUInteger idx, BOOL *stop) {
 			if (!obj.isCompleted) {
 				error = [NSError errorWithDomain:@"MSFInventoryViewModel" code:1 userInfo:@{
-					NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"请添加“%@”", obj.title]
+					NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"请添加“%@”", obj.name]
 				}];
 				*stop = YES;
 			}
@@ -127,11 +125,18 @@
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
+	@weakify(self)
 	return [self.updateValidSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
 		self.model.attachments = value;
-		return [[self.formsViewModel.services.httpClient
-			updateInventory:self.model]
-			zipWith:[self.formsViewModel submitSignalWithPage:5]];
+		NSMutableArray *attachments = [[NSMutableArray alloc] init];
+		[self.model.attachments enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *_Nonnull stop) {
+			[attachments addObject:@{
+				@"accessoryType": obj.type,
+				@"fileId": obj.fileID
+			}];
+		}];
+		return [RACSignal return:attachments];
 	}];
 }
 
