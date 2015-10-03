@@ -23,7 +23,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="TWG-cj-vFa"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" title="提交"/>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="TWG-cj-vFa"/>
