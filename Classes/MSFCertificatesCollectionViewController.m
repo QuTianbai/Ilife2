@@ -24,7 +24,7 @@
 #import "MSFViewModelServices.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
-
+#import "MSFApplyCashVIewModel.h"
 
 
 #import "MSFPhotoUploadCollectionViewController.h"
@@ -38,8 +38,6 @@ UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
-
-@property (nonatomic, strong) NSArray *array;
 
 @end
 
@@ -101,13 +99,8 @@ UICollectionViewDelegateFlowLayout>
 	
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		//[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
-			self.array = x;
-			
-//			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
-//			[self.tabBarController setSelectedIndex:0];
-//			[self.navigationController popToRootViewControllerAnimated:NO];
+			self.viewModel.cashViewModel.array = x;
 		}];
 	}];
 	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
