@@ -50,10 +50,11 @@
 	_content.alpha = 0;
 	_circleShow = YES;
 	@weakify(self)
-	_circleView.onClickBlock = ^(NSInteger index) {
-		@strongify(self)
-		[self onClickCircle:index];
-	};
+	[[_circleView.clickCommand.executionSignals switchToLatest]
+	 subscribeNext:^(NSNumber *x) {
+		 @strongify(self)
+		[self onClickCircle:x.integerValue];
+	}];
 }
 
 - (void)onClickCircle:(NSInteger)index {
@@ -83,12 +84,12 @@
 - (void)bindViewModel:(id)viewModel {
 	if (viewModel) {
 		if ([viewModel isKindOfClass:MSFLoanViewModel.class]) {
+			[self placeholderShow:NO];
 			MSFLoanViewModel *model = viewModel;
 			_titleLabel.text  = model.title;
 			[_statusButton setTitle:model.status forState:UIControlStateNormal];
 			_amountLabel.text = model.totalAmount;
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyDate, model.totalInstallments];
-			[self placeholderShow:NO];
 			[[[_statusButton
 				 rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
@@ -101,6 +102,7 @@
 		} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
 			MSFRepaymentViewModel *model = viewModel;
 			if (model.repaymentStatus) {
+				[self placeholderShow:NO];
 				_titleLabel.text  = model.title;
 				[_statusButton setTitle:model.status forState:UIControlStateNormal];
 				_amountLabel.text = model.repaidAmount;
@@ -111,7 +113,6 @@
 				} else {
 					_infoLabel.text = nil;
 				}
-				[self placeholderShow:NO];
 				[[[_statusButton
 					 rac_signalForControlEvents:UIControlEventTouchUpInside]
 					takeUntil:self.rac_prepareForReuseSignal]

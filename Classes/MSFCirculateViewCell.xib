@@ -30,6 +30,9 @@
                 <constraint firstItem="OBt-ib-4Yc" firstAttribute="top" secondItem="sOy-Dg-aJ7" secondAttribute="top" constant="20" id="gFt-a3-Jrc"/>
             </constraints>
             <size key="customSize" width="322" height="242"/>
+            <connections>
+                <outlet property="loanLimitView" destination="OBt-ib-4Yc" id="r0U-3C-zew"/>
+            </connections>
             <point key="canvasLocation" x="203" y="153"/>
         </collectionViewCell>
     </objects>

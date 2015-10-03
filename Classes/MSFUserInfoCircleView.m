@@ -9,6 +9,7 @@
 #import "MSFUserInfoCircleView.h"
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+Utils.h"
 
 @interface MSFUserInfoTitleView : UIView
@@ -190,6 +191,10 @@
 
 @implementation MSFUserInfoCircleView
 
+- (void)dealloc {
+	NSLog(@"MSFUserInfoCircleView `-dealloc`");
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
@@ -220,10 +225,29 @@
 	_centralRate = 0.4f;
 	_degree = 0.33f;
 	
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+	@weakify(self)
+	_clickCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+			[subscriber sendNext:@(self.clickIndex)];
+			[subscriber sendCompleted];
+			return nil;
+		}];
+	}];
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
 	tap.delegate = self;
 	tap.delaysTouchesBegan = YES;
 	[self addGestureRecognizer:tap];
+	[tap.rac_gestureSignal subscribeNext:^(id x) {
+		@strongify(self)
+#if DEBUG
+		NSLog(@"点击了区域：%ld", (long)self.clickIndex);
+#endif
+		if (self.onClickBlock) {
+			self.onClickBlock(self.clickIndex);
+		}
+		[self.clickCommand execute:nil];
+	}];
 	
 	_infoView = [[MSFUserInfoCircleInfoView alloc] initWithFrame:CGRectZero];
 	[self addSubview:_infoView];
@@ -237,7 +261,6 @@
 	_jobTitle = [[MSFUserInfoTitleView alloc] initWithType:2];
 	[self addSubview:_jobTitle];
 	
-	@weakify(self)
 	[_infoView mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
 		make.width.equalTo(self.mas_width).multipliedBy(0.4);
@@ -316,15 +339,6 @@
 		} else {
 			return 2;
 		}
-	}
-}
-
-- (void)tap:(UITapGestureRecognizer *)sender {
-#if DEBUG
-	NSLog(@"点击了区域：%ld", (long)_clickIndex);
-#endif
-	if (_onClickBlock) {
-		_onClickBlock(_clickIndex);
 	}
 }
 

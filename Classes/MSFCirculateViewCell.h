@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
 @interface MSFCirculateViewCell : UICollectionViewCell
-
-- (void)bindViewModel:(id)viewModel;
+<MSFReactiveView>
 
 @end
