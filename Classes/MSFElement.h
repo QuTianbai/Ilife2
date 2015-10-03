@@ -12,7 +12,11 @@
 @property (nonatomic, copy, readonly) NSString *type;
 
 // plain description name `身份证`
-@property (nonatomic, copy, readonly) NSString *plain;
+@property (nonatomic, copy, readonly) NSString *plain __deprecated_msg("Use title");
+
+@property (nonatomic, copy, readonly) NSString *title;
+
+@property (nonatomic, copy, readonly) NSString *name;
 
 @property (nonatomic, copy, readonly) NSString *comment;
 

@@ -11,7 +11,7 @@
 
 @interface MSFClient (Inventory)
 
-- (RACSignal *)fetchAttachmentsWithCredit:(MSFApplicationResponse *)credit;
-- (RACSignal *)updateInventory:(MSFInventory *)inventory;
+- (RACSignal *)fetchAttachmentsWithCredit:(MSFApplicationResponse *)credit __deprecated_msg("Unused");
+- (RACSignal *)updateInventory:(MSFInventory *)inventory __deprecated_msg("Unused 2.0");
 
 @end
