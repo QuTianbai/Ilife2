@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class MSFCustomAlertView;
-@class MSFTabBarViewModel;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, strong, readonly) MSFTabBarViewModel *viewModel;
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) MSFCustomAlertView *confirmContactWindow;
 
