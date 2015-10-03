@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFGroupTableViewController.h"
 
-@interface MSFSetTradePasswordTableViewController : UITableViewController
+@interface MSFSetTradePasswordTableViewController : MSFGroupTableViewController
+
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

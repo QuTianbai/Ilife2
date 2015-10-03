@@ -39,6 +39,9 @@ extern NSString *const MSFAuthorizeErrorDomain;
 //
 // 登录/注册/找回密码 ViewModel
 @interface MSFAuthorizeViewModel : RVMViewModel
+//交易密码
+@property (nonatomic, copy) NSString *TradePassword;
+@property (nonatomic, copy) NSString *smsCode;
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 

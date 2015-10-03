@@ -26,6 +26,7 @@
 #import "MSFTabBarController.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
+#import "MSFSetTradePasswordViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -118,7 +119,15 @@
 		case 1: {
 			switch (indexPath.row) {
 				case 0:[self appliyStatusList:nil]; break;
-				case 1:[self pushAbout:nil]; break;
+				case 1:
+				{
+					MSFSetTradePasswordViewModel *viewModel = [[MSFSetTradePasswordViewModel alloc] initWithServices:self.viewModel.servcies];
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+					//[self pushAbout:nil];
+					break;
+				}
 			}
 			break;
 		}
