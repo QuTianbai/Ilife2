@@ -40,7 +40,7 @@
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) MSFTabBarViewModel *viewModel;
+@property (nonatomic, strong, readwrite) MSFTabBarViewModel *viewModel;
 @property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
 @property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
 

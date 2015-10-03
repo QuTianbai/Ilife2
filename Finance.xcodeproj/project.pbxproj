@@ -254,6 +254,7 @@
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
 		491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */; };
+		491DDB001BBFC5EB00D62DEA /* UITabBarController+ViewModels.m in Sources */ = {isa = PBXBuildFile; fileRef = 491DDAFF1BBFC5EB00D62DEA /* UITabBarController+ViewModels.m */; settings = {ASSET_TAGS = (); }; };
 		4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */; };
 		492007501BA00CCD00C0722C /* EIOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007461BA00CCD00C0722C /* EIOperationManager.m */; };
 		492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007491BA00CCD00C0722C /* NSData+Storage.m */; };
@@ -1115,6 +1116,8 @@
 		491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCodeButton.m; sourceTree = "<group>"; };
 		491C5FB71B0F21D500CADF8E /* MSFCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCheckButton.h; sourceTree = "<group>"; };
 		491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCheckButton.m; sourceTree = "<group>"; };
+		491DDAFE1BBFC5EB00D62DEA /* UITabBarController+ViewModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+ViewModels.h"; sourceTree = "<group>"; };
+		491DDAFF1BBFC5EB00D62DEA /* UITabBarController+ViewModels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+ViewModels.m"; sourceTree = "<group>"; };
 		492007431BA00CCD00C0722C /* EIImagePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIImagePickerDelegate.h; sourceTree = "<group>"; };
 		492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIImagePickerDelegate.m; sourceTree = "<group>"; };
 		492007451BA00CCD00C0722C /* EIOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIOperationManager.h; sourceTree = "<group>"; };
@@ -3222,6 +3225,8 @@
 				07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */,
 				49588E0F1B872BC700FCF171 /* NSDate+UTC0800.h */,
 				49588E101B872BC700FCF171 /* NSDate+UTC0800.m */,
+				491DDAFE1BBFC5EB00D62DEA /* UITabBarController+ViewModels.h */,
+				491DDAFF1BBFC5EB00D62DEA /* UITabBarController+ViewModels.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4522,6 +4527,7 @@
 				49075CA71BA91326006F63FF /* MSFTableViewBindingHelper.m in Sources */,
 				49CA93621BBA212A0032F5C2 /* MSFGroupTableViewCell.m in Sources */,
 				C7B977FE1B08C568005F247C /* MSFRepaymentTableViewCell.m in Sources */,
+				491DDB001BBFC5EB00D62DEA /* UITabBarController+ViewModels.m in Sources */,
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
 				492007521BA00CCD00C0722C /* StandardPaths.m in Sources */,
 				0750AAFF1B96A4C500AD67F3 /* MSFContactListModel.m in Sources */,
