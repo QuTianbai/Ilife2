@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class MSFCustomAlertView;
+@class MSFTabBarViewModel;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
