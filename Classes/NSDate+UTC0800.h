@@ -10,5 +10,6 @@
 
 + (NSDate *)msf_date;
 + (NSDate *)msf_date:(NSDate *)date;
++ (NSDate *)max_date;
 
 @end

@@ -187,14 +187,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[[self.datePickerButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate msf_date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:100];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:0];
-		NSDate *minDate = [NSDate msf_date];
-		NSDate *date = self.viewModel.expired ?: [NSDate msf_date];
+		NSDate *maxDate = NSDate.max_date;
+		NSDate *minDate = NSDate.msf_date;
+		NSDate *date = self.viewModel.expired ?: NSDate.msf_date;
 		[ActionSheetDatePicker showPickerWithTitle:@""
 			datePickerMode:UIDatePickerModeDate
 			selectedDate:date

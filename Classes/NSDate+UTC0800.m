@@ -30,4 +30,11 @@
 	return destinationDateNow;
 }
 
++ (NSDate *)max_date {
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	dateFormatter.dateFormat = @"yyyy-MM-dd";
+	NSDate *expiredDate = [dateFormatter dateFromString:@"2099-12-31"];
+	return expiredDate;
+}
+
 @end
