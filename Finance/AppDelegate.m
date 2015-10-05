@@ -45,6 +45,7 @@
 @property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) MSFReleaseNote *releaseNote;
 
 @end
 
@@ -120,6 +121,7 @@
 		return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
 		[self setup];
+		self.releaseNote = releasenote;
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 		if (releasenote.status == 1) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
@@ -148,7 +150,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
 	NSLog(@"applicationDidBecomeActive:");
-	if (MSFClient.cipher) [self updateCheck];
+	if (self.releaseNote) [self updateCheck];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -161,24 +163,22 @@
 #pragma mark - Private
 
 - (void)updateCheck {
-	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
-		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
-		if (releasenote.status == 1) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-				message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		} else if (releasenote.status == 2) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-				message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		}
-	}];
+	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.status == 1) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			[[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
+		}];
+	} else if (self.releaseNote.status == 2) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+			message:self.releaseNote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
+		}];
+	}
 }
 
 - (void)setup {
