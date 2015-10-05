@@ -468,7 +468,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-bn-SU4">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-bn-SU4">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                 </imageView>
                                             </subviews>
@@ -495,7 +495,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="u4x-xL-oXx">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="u4x-xL-oXx">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                 </imageView>
                                             </subviews>
@@ -594,8 +594,8 @@
                         <outlet property="countLB" destination="IrD-T4-Hl7" id="OFv-Ft-2MS"/>
                         <outlet property="sendCaptchaView" destination="Ugr-LE-ukp" id="3wz-Ud-npK"/>
                         <outlet property="submitBT" destination="mpk-Oa-uuO" id="N1Q-Ez-Azf"/>
-                        <outlet property="sureTradePasswordTF" destination="v3E-th-vVS" id="7e0-SJ-Qw2"/>
-                        <outlet property="tradePasswordTF" destination="hZs-B9-PGs" id="FJc-GL-akR"/>
+                        <outlet property="sureTradePasswordTF" destination="v3E-th-vVS" id="hom-jo-okz"/>
+                        <outlet property="tradePasswordTF" destination="hZs-B9-PGs" id="0fC-OR-4oB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaB-nT-9Jq" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -604,7 +604,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg-send-captcha.png" width="15" height="10"/>
+        <image name="bg-send-captcha.png" width="33" height="14"/>
         <image name="icon-password.png" width="22" height="17"/>
         <image name="icon-verify-code.png" width="22" height="17"/>
     </resources>

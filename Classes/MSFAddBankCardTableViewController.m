@@ -13,12 +13,16 @@
 #import "MSFEdgeButton.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
+#import "MSFInputTradePasswordViewController.h"
+#import "MSFInputTradePasswordView.h"
+#import "MSFUtils.h"
+
 
 static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
 static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
-@interface MSFAddBankCardTableViewController ()
+@interface MSFAddBankCardTableViewController ()<MSFInputTradePasswordDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *bankAddressTF;
 @property (weak, nonatomic) IBOutlet UITextField *bankNOTF;
 
@@ -30,6 +34,8 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 @property (weak, nonatomic) IBOutlet UILabel *bankCarTypeLB;
 
+@property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
+
 @end
 
 @implementation MSFAddBankCardTableViewController
@@ -37,6 +43,9 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"添加银行卡";
+	
+	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+	_inputTradePassword.delegate = self;
 	RAC(self.bankAddressTF, text) = RACObserve(self.viewModel, bankAddress);
 //	 self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.bankWarningLB.numberOfLines = 0;
@@ -106,20 +115,31 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		
 	}];
 	
-	self.submitBT.rac_command = self.viewModel.executeAddBankCard;
-	@weakify(self)
-	[self.submitBT.rac_command.executionSignals subscribeNext:^(RACSignal *authSignal) {
-		@strongify(self)
-		[self.view endEditing:YES];
-		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-		[authSignal subscribeNext:^(id x) {
-			
-			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
-		}];
+	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+	subscribeNext:^(id x) {
+		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			MSFInputTradePasswordViewController * inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+			[[UIApplication sharedApplication].keyWindow addSubview:inputTradePassword.view];
+		} else {
+			self.inputTradePassword.type = 2;
+			[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
+		}
 	}];
-	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
+	
+//	self.submitBT.rac_command = self.viewModel.executeAddBankCard;
+//	@weakify(self)
+//	[self.submitBT.rac_command.executionSignals subscribeNext:^(RACSignal *authSignal) {
+//		@strongify(self)
+//		[self.view endEditing:YES];
+//		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+//		[authSignal subscribeNext:^(id x) {
+//			
+//			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
+//		}];
+//	}];
+//	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
+//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+//	}];
 	
 	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
 	
@@ -144,5 +164,25 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[cell setLayoutMargins:UIEdgeInsetsZero];
 	}
 }
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type {
+	//self.tradePwd = pwd;
+	if (type == 2) {
+		@weakify(self)
+		[[self.viewModel.executeAddBankCard execute:nil]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			[self.view endEditing:YES];
+			[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+//			[authSignal subscribeNext:^(id x) {
+//				
+//				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+	}
+	
+}
+
 
 @end

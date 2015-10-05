@@ -48,10 +48,11 @@
 + (NSString *)baseURLString;
 
 //用户id
++ (void)setUniqueId:(NSString *)uniqueId;
 + (NSString *)uniqueId;
 
 //交易密码
-+ (void)setTradePassword:(NSString *)isSetTradePassword;
++ (void)setisTradePassword:(NSString *)isSetTradePassword;
 + (NSString *)isSetTradePassword;
 
 //是否支持循环现金贷

@@ -38,6 +38,7 @@
 #import "MSFConfirmContactViewModel.h"
 #import <BugshotKit/BugshotKit.h>
 
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
@@ -188,6 +189,7 @@
 	
 	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	self.authorizeVewModel = self.viewModel.authorizeViewModel;
 	CATransition *transition = [CATransition animation];
 	transition.duration = 0.7;
 	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

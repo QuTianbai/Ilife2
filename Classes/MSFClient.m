@@ -259,6 +259,7 @@ static NSDictionary *messages;
 					MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:responseObject error:nil];
 					[user mergeValueForKey:@keypath(user.server) fromModel:client.user];
 					client.user = user;
+					[MSFUtils setUniqueId:user.uniqueId];
 				
 					return [RACSignal combineLatest:@[
 						[RACSignal return:client],

@@ -10,11 +10,12 @@
 #import "MSFUtils.h"
 #import "MSFCheckHasTradePasswordModel.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (MSFCheckTradePassword)
 
 - (RACSignal *)fetchCheckTradePassword {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"transPassword/checkset" parameters:@{@"uniqueId":MSFUtils.uniqueId}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"transPassword/checkset" parameters:@{@"uniqueId":self.user.uniqueId}];
 	return [[self enqueueRequest:request resultClass:MSFCheckHasTradePasswordModel.class] msf_parsedResults];
 }
 

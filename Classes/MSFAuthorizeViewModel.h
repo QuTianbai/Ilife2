@@ -40,6 +40,9 @@ extern NSString *const MSFAuthorizeErrorDomain;
 // 登录/注册/找回密码 ViewModel
 @interface MSFAuthorizeViewModel : RVMViewModel
 
+//发送验证码类型
+@property (nonatomic, copy) NSString *captchType;
+
 //交易密码
 @property (nonatomic, copy) NSString *TradePassword;
 @property (nonatomic, copy) NSString *againTradePWD;
@@ -84,6 +87,8 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 // Request server send signup captcha command
 @property (nonatomic, strong) RACCommand *executeCaptcha;
+
+@property (nonatomic, strong) RACCommand *executeCapthaTradePwd;
 
 // Request server find password
 @property (nonatomic, strong) RACCommand *executeFindPassword;

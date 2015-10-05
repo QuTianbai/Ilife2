@@ -14,6 +14,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <REFormattedNumberField/REFormattedNumberField.h>
 #import "MSFAuthorizeViewModel.h"
+#import "AppDelegate.h"
 
 static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
 static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
@@ -51,14 +52,19 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	if (!self) {
 		return nil;
 	}
-	_viewModel = viewModel;
-	_authviewModel = authViewModel;
+//	_viewModel = viewModel;
+//	_authviewModel = authViewModel;
 	
 	return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	//_viewModel = viewModel;
+	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+	_authviewModel = appdelegate.authorizeVewModel;
+	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithServices:self.authviewModel.services andIsFirstBankCard:NO];
 	
 	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
 	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
@@ -133,6 +139,11 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		
 	}];
 	
+	[[self.checkCodeBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+	subscribeNext:^(id x) {
+		NSLog(@"jfds");
+	}];
+	
 	self.checkCodeBT.rac_command = self.authviewModel.executeCaptcha;
 	
 	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);
@@ -174,6 +185,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
 	
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == 1) {
+		[_viewModel.executeSelected execute:nil];
+	}
 }
 
 - (void)didReceiveMemoryWarning {
