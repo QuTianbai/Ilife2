@@ -15,6 +15,7 @@
 @class MSFBannersViewModel;
 @class MSFCirculateCashViewModel;
 @class MSFFormsViewModel;
+@class MSFCheckAllowApply;
 
 @interface MSFHomepageViewModel : RVMViewModel
 

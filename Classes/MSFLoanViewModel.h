@@ -7,48 +7,29 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 
-// 1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
-typedef NS_ENUM(NSUInteger, MSFLoanStatus) {
-	MSFLoanStatusNone,
-	MSFLoanStatusAppling,
-	MSFLoanStatusSuccess,
-	MSFLoanStatusFailed,
-	MSFLoanStatusRepayment,
-	MSFLoanStatusCancel,
-	MSFLoanStatusFinished,
-	MSFLoanStatusExpired,
-	MSFLoanStatusExpectedSuccess,
-	MSFLoanStatusLoan,
-};
-
 @interface MSFLoanViewModel : RVMViewModel
 
-// 标题
-@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, assign, readonly) BOOL isApply;//表明是申请还是偿还
+@property (nonatomic, strong, readonly) NSString *title;// 标题
+@property (nonatomic, strong, readonly) NSString *status;//状态：申请中，还款中，已逾期
 
-// 状态,字符串描述	例 `审核通过`
-@property (nonatomic, strong, readonly) NSString *status;
+/*** 申请状态 ***/
+@property (nonatomic, strong, readonly) NSString *applyTime;// 申请时间 `2015-07-14`
+@property (nonatomic, strong, readonly) NSString *applyLmt;// 申请金额
+@property (nonatomic, strong, readonly) NSString *loanTerm;// 期数
+@property (nonatomic, strong, readonly) NSString *applyNo;// 申请单号
 
-// 申请是时间 `2015-07-14`
-@property (nonatomic, strong, readonly) NSString *applyDate;
-
-// 还款总额 `¥1000.00`
-@property (nonatomic, strong, readonly) NSString *repaidAmount;
-
-// 申请总额 `¥1000.00`
-@property (nonatomic, strong, readonly) NSString *totalAmount;
-
-// 每月还款总额 `¥1000.00`
-@property (nonatomic, strong, readonly) NSString *mothlyRepaymentAmount;
-
-// 总期数
-@property (nonatomic, strong, readonly) NSString *totalInstallments;
-
-// 当前进行到的期数
-@property (nonatomic, strong, readonly) NSString *currentInstallment;
+/*** 还款状态 ***/
+@property (nonatomic, strong, readonly) NSString *type;//合同/申请单
+//申请单：申请金额。合同还款中为：每月应还款额；逾期状态：所有未还金额
+@property (nonatomic, strong, readonly) NSString *money;
+@property (nonatomic, strong, readonly) NSString *applyDate;//申请日期
+@property (nonatomic, strong, readonly) NSString *period;//申请期数
+@property (nonatomic, strong, readonly) NSString *currentPeriodDate;//当前期截止日期
+@property (nonatomic, strong, readonly) NSString *produceType;//产品类型   循环贷/马上贷
 
 - (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
 
-- (void)pushHistoryDetails;
+- (void)pushDetailViewController;
 
 @end

@@ -170,7 +170,7 @@
 		}
 		[[self.services.httpClient fetchCheckAllowApply] subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
-			if ([model.processing isEqualToString:@"0"]) {
+			if (model.processing == 0) {
 				[[[UIAlertView alloc] initWithTitle:@"提示"
 																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
 																	 delegate:nil

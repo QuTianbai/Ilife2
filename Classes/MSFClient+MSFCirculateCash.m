@@ -20,6 +20,7 @@
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	
 	//NSMutableURLRequest *request = [self requestWithMethod:@"POST " path:@"loan/currentloaninfo" parameters:nil];
+
 	//currentloaninfo
 	
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];

@@ -1,0 +1,72 @@
+{
+	"infoType" : "0",
+	"occupationInfo":{
+		"empStructure": "",
+		"lengthOfSchooling": "0",
+		"otherIncome": "0",
+		"empStandFrom": "",
+		"socialIdentity": "",
+		"empProvinceCode": "",
+		"empCity": "",
+		"empAdd": "",
+		"qualification": "",
+		"empZone": "",
+		"empType": "",
+		"empPost": "",
+		"otherLoan": "0",
+		"empProvince": "",
+		"monthIncome": "0",
+		"unitName": "",
+		"empCityCode": "",
+		"empPhoneExtNum": "",
+		"workStartDate": "",
+		"empZoneCode": "",
+		"empPhone": "",
+		"empDepapment": ""
+	},
+	"baseInfo":{
+		"idNo": "",
+		"idType": "",
+		"birth": "",
+		"abodeState": "",
+		"custSource": "",
+		"idLastDate": "",
+		"abodeCityCode": "",
+		"maritalStatus": "",
+		"homePhone": "",
+		"abodeDetail": "",
+		"houseCondition": "",
+		"abodeStateCode": "",
+		"abodeZoneCode": "",
+		"email": "",
+		"cellphone": "",
+		"name": "",
+		"gender": "",
+		"abodeZone": "",
+		"abodeCity": ""
+	},
+	"additionalList":[
+										{
+										"id": "0",
+										"custId": "0",
+										"timeInst": "",
+										"timeUpd": "",
+										"additionalValue": "",
+										"additionalType": "",
+										"uniqueId": ""
+										}
+										],
+	"contrastList":[
+									{
+									"id": "0",
+									"custId": "0",
+									"timeInst": "",
+									"contactRelation": "",
+									"timeUpd": "",
+									"contactName": "",
+									"contactMobile": "",
+									"uniqueId": "",
+									"contactAddress": ""
+									}
+									]
+}
