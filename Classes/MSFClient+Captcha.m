@@ -11,22 +11,28 @@
 @implementation MSFClient (Captcha)
 
 - (RACSignal *)fetchSignUpCaptchaWithPhone:(NSString *)phone {
-	NSString *path = [NSString stringWithFormat:@"captcha/%@/register", phone];
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+		@"codeType": @"REG",
+		@"mobile": phone
+	}];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)fetchResetPasswordCaptchaWithPhone:(NSString *)phone {
-	NSString *path = [NSString stringWithFormat:@"captcha/%@/forget_password", phone];
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+		@"codeType": @"FORGET_TRANS_PASSWORD",
+		@"mobile": phone
+	}];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)fetchLoginCaptchaWithPhone:(NSString *)phone {
-	NSString *path = [NSString stringWithFormat:@"captcha/%@/login", phone];
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+		@"codeType": @"LOGIN",
+		@"mobile": phone
+	}];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
