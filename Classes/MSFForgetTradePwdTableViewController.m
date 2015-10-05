@@ -34,20 +34,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 @property (weak, nonatomic) IBOutlet UITextField *tradePasswordTF;
 @property (weak, nonatomic) IBOutlet UITextField *sureTradePasswordTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *checkCodeTF;
 @property (weak, nonatomic) IBOutlet UIButton *checkCodeBT;
 @property (weak, nonatomic) IBOutlet UILabel *countLB;
-@property (weak, nonatomic) IBOutlet MSFEdgeButton *sureBT;
-
-//@property (nonatomic, strong) MSFSetTradePasswordViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIImageView *sendCaptchaView;
-
 @property (nonatomic, strong) MSFAuthorizeViewModel *authviewModel;
-
-
 @property (nonatomic, strong) MSFAddBankCardVIewModel *viewModel;
-
 
 @end
 
@@ -188,6 +180,5 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end

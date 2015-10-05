@@ -50,10 +50,9 @@
 	
 	return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
-	//_viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.services];
 	
 	RAC(self.lastInputMoneyLB, text) = RACObserve(self.viewModel, latestDueMoney);
 	RAC(self.lastInputMoneyTimeLB, text) = RACObserve(self.viewModel, latestDueDate);

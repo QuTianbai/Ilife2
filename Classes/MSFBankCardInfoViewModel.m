@@ -10,7 +10,7 @@
 
 @implementation MSFBankCardInfoViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)servers{
+- (instancetype)initWithServices:(id<MSFViewModelServices>)servers {
 	self = [super init];
 	if (!self) {
 		return nil;

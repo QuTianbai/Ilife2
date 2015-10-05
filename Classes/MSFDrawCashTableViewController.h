@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class MSFDrawCashViewModel;
+
 @interface MSFDrawCashTableViewController : UITableViewController
 
 @property (nonatomic, strong) MSFDrawCashViewModel *viewModel;

@@ -23,7 +23,6 @@
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFBankCardListViewModel.h"
 
-
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
@@ -61,7 +60,7 @@
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
 	
-	RACSignal *signal =[[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 	[signal subscribeNext:^(id x) {
 		self.dataArray = x;
 		[self.tableView reloadData];

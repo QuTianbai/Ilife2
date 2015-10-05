@@ -68,5 +68,4 @@ static const int kCounterLength = 60;
 					}];
 }
 
-
 @end

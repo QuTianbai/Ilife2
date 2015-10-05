@@ -29,6 +29,8 @@
 #import "MSFSetTradePasswordViewModel.h"
 #import "MSFSettingsViewController.h"
 
+#import "MSFBankCardListTableViewController.h"
+
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *rowTitles;
@@ -116,13 +118,29 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	
 	switch (indexPath.section) {
-		case 0:[self userInfo]; break;
+		case 0:{
+			switch (indexPath.row) {
+				case 0:
+					[self userInfo];
+					break;
+				case 1:{
+					MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] init];
+					vc.services = self.viewModel.servcies;
+					[self.navigationController pushViewController:vc animated:YES];
+				}
+					break;
+					
+				default:
+					break;
+			}
+		}
+			break;
 		case 1: {
 			switch (indexPath.row) {
 				case 0:[self settings:nil]; break;
 				case 1:
 				{
-					MSFSetTradePasswordViewModel *viewModel = [[MSFSetTradePasswordViewModel alloc] initWithServices:self.viewModel.servcies];
+					//MSFSetTradePasswordViewModel *viewModel = [[MSFSetTradePasswordViewModel alloc] initWithServices:self.viewModel.servcies];
 					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 					
 					[self.navigationController pushViewController:setTradePasswordVC animated:YES];

@@ -15,6 +15,4 @@
 
 - (instancetype)initWithViewModel:(MSFCirculateCashViewModel *)viewModel;
 
-//@property (nonatomic, assign) id<MSFViewModelServices> services;
-
 @end

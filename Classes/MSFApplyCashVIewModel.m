@@ -154,7 +154,7 @@
 		@strongify(self)
 		if (!self.product || self.appLmt.intValue == 0) {
 			if (self.appLmt.intValue == 0) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数",}]];
+				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数", }]];
 				return nil;
 
 			}

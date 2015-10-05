@@ -13,5 +13,4 @@
 @property (nonatomic, copy, readonly) NSString *minAmount;
 @property (nonatomic, strong, readonly) NSArray *team;
 
-
 @end
