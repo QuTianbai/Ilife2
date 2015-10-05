@@ -20,7 +20,7 @@
 #import "MSFClient+Users.h"
 #import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
-#import "MSFSettingsViewController.h"
+#import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"
 #import "MSFApplyCashVIewModel.h"
 #import "MSFTabBarController.h"
@@ -186,7 +186,7 @@
 }
 
 - (IBAction)pushAbout:(id)sender {
-	MSFSettingsViewController *settingsViewController = [[MSFSettingsViewController alloc] init];
+	MSFAboutsViewController *settingsViewController = [[MSFAboutsViewController alloc] init];
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:settingsViewController animated:YES];
 }

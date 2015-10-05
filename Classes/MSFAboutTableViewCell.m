@@ -6,11 +6,11 @@
 //	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFSettingTableViewCell.h"
+#import "MSFAboutTableViewCell.h"
 #import "MSFCommandView.h"
 #import <Masonry/Masonry.h>
 
-@implementation MSFSettingTableViewCell
+@implementation MSFAboutTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
