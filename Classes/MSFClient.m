@@ -393,7 +393,7 @@ static NSDictionary *messages;
 		parameters[@"smsCode"] = captcha;
 		parameters[@"name"] = realname;
 		parameters[@"ident"] = citizenID;
-		parameters[@"idLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
+		parameters[@"identLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]

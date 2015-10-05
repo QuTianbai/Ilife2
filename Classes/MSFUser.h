@@ -10,6 +10,10 @@
 
 @interface MSFUser : MSFObject
 
+@property (nonatomic, copy, readonly) NSString *userID;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *mobile;
+
 // 客户类型
 //
 // (0为马上贷客户，1为白名单客户）
