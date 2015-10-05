@@ -64,13 +64,16 @@ ABPersonViewControllerDelegate>
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
+	
 	self.viewModel = viewModel;
+	
 	_tempContactList = [NSMutableArray arrayWithArray:self.viewModel.model.contrastList];
+	
 	if (_tempContactList.count == 0) {
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
-		contact.contactAddress = self.viewModel.model.currentAddress;
 		[_tempContactList addObject:contact];
 	}
+#warning TODO
 	for (MSFUserContact *contact in _tempContactList) {
 		if (!contact.openDetailAddress) {
 			contact.contactAddress = self.viewModel.model.currentAddress;
@@ -310,6 +313,8 @@ ABPersonViewControllerDelegate>
 	
 }
 
+#pragma mark - Private Method
+
 - (void)back {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃联系人信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
@@ -365,7 +370,7 @@ ABPersonViewControllerDelegate>
 	switch (indexPath.row) {
 		case 0: {
 			MSFRelationHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationHeadCell"];
-			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld", indexPath.section + 1];
+			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld", (long)indexPath.section + 1];
 			cell.deleteButton.hidden = _tempContactList.count == 1 && indexPath.section == 0;
 			@weakify(self)
 			[[[cell.deleteButton

@@ -146,14 +146,6 @@
 	
 	[self placeholderShow:YES];
 }
-/*
- - (IBAction)onApply:(UIButton *)sender {
-	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-	if ([tab isKindOfClass:MSFTabBarController.class]) {
- if ([tab.delegate tabBarController:tab shouldSelectViewController:tab.viewControllers[1]])
- tab.selectedIndex = 1;
-	}
- }*/
 
 - (void)placeholderShow:(BOOL)b {
 	[self bringSubviewToFront:self.circleView];
