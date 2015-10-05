@@ -45,6 +45,7 @@
 @property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
 
 @property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) MSFReleaseNote *releaseNote;
 
 @end
 
@@ -118,35 +119,9 @@
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
 		[self setup];
 		return [RACSignal empty];
-	}] subscribeNext:^(id x) {
+	}] subscribeNext:^(MSFReleaseNote *releasenote) {
 		[self setup];
-		[self updateCheck];
-	}];
-	
-	return YES;
-}
-
-- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
-	NSLog(@"application: handleEventsForBackgroundURLSession: completionHandler:");
-	
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-	NSLog(@"applicationDidBecomeActive:");
-	if (MSFClient.cipher) [self updateCheck];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-	if (self.timer != nil) {
-		[self.timer setFireDate:[NSDate distantFuture]];
-	}
-	NSLog(@"applicationDidEnterBackground:");
-}
-
-#pragma mark - Private
-
-- (void)updateCheck {
-	[[MSFUtils.httpClient fetchReleaseNote] subscribeNext:^(MSFReleaseNote *releasenote) {
+		self.releaseNote = releasenote;
 		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
 		if (releasenote.status == 1) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
@@ -164,6 +139,46 @@
 			}];
 		}
 	}];
+	
+	return YES;
+}
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
+	NSLog(@"application: handleEventsForBackgroundURLSession: completionHandler:");
+	
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+	NSLog(@"applicationDidBecomeActive:");
+	if (self.releaseNote) [self updateCheck];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
+	NSLog(@"applicationDidEnterBackground:");
+}
+
+#pragma mark - Private
+
+- (void)updateCheck {
+	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.status == 1) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			[[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
+		}];
+	} else if (self.releaseNote.status == 2) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+			message:self.releaseNote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
+		}];
+	}
 }
 
 - (void)setup {

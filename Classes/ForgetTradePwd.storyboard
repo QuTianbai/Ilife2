@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="qXt-xn-hoF">
-                            <rect key="frame" x="0.0" y="176" width="600" height="128"/>
+                            <rect key="frame" x="0.0" y="308" width="600" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpk-Oa-uuO" customClass="MSFEdgeButton">
@@ -72,7 +73,7 @@
                                     </variation>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="vmS-RE-LOi" firstAttribute="top" secondItem="uaN-y4-Nje" secondAttribute="bottom" constant="10" id="DFb-Ha-wZB"/>
                                 <constraint firstItem="uaN-y4-Nje" firstAttribute="leading" secondItem="qXt-xn-hoF" secondAttribute="leading" id="FPk-Ko-07f"/>
@@ -91,15 +92,15 @@
                                     <exclude reference="vmS-RE-LOi"/>
                                 </mask>
                                 <mask key="constraints">
+                                    <exclude reference="kjV-xu-ZDu"/>
                                     <exclude reference="sjt-VK-gGU"/>
                                     <exclude reference="wDC-5W-y5o"/>
-                                    <exclude reference="kjV-xu-ZDu"/>
-                                    <exclude reference="tVS-jz-NEp"/>
-                                    <exclude reference="XTf-Jh-BfT"/>
                                     <exclude reference="DFb-Ha-wZB"/>
+                                    <exclude reference="XTf-Jh-BfT"/>
+                                    <exclude reference="tVS-jz-NEp"/>
+                                    <exclude reference="FPk-Ko-07f"/>
                                     <exclude reference="IJa-sa-Cyd"/>
                                     <exclude reference="NXx-8v-ByV"/>
-                                    <exclude reference="FPk-Ko-07f"/>
                                 </mask>
                             </variation>
                             <variation key="widthClass=compact">
@@ -109,23 +110,23 @@
                                     <include reference="vmS-RE-LOi"/>
                                 </mask>
                                 <mask key="constraints">
+                                    <include reference="kjV-xu-ZDu"/>
                                     <include reference="sjt-VK-gGU"/>
                                     <include reference="wDC-5W-y5o"/>
-                                    <include reference="kjV-xu-ZDu"/>
-                                    <include reference="tVS-jz-NEp"/>
-                                    <include reference="XTf-Jh-BfT"/>
                                     <include reference="DFb-Ha-wZB"/>
+                                    <include reference="XTf-Jh-BfT"/>
+                                    <include reference="tVS-jz-NEp"/>
+                                    <include reference="FPk-Ko-07f"/>
                                     <include reference="IJa-sa-Cyd"/>
                                     <include reference="NXx-8v-ByV"/>
-                                    <include reference="FPk-Ko-07f"/>
                                 </mask>
                             </variation>
                         </view>
                         <sections>
                             <tableViewSection id="emm-lO-0nl">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="M8n-BZ-Cqb">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="M8n-BZ-Cqb" customClass="MSFGroupTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M8n-BZ-Cqb" id="8jK-Me-Mpm">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -178,7 +179,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="dWd-vm-xFf">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="dWd-vm-xFf" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="44" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dWd-vm-xFf" id="eaN-NB-JzL">
@@ -239,11 +240,11 @@
                                                     <exclude reference="5P9-Ph-Z2O"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="ai9-IY-Nbn"/>
-                                                    <exclude reference="72M-pb-PxJ"/>
                                                     <exclude reference="4gn-PK-gOP"/>
-                                                    <exclude reference="SeL-f2-7jA"/>
+                                                    <exclude reference="72M-pb-PxJ"/>
+                                                    <exclude reference="ai9-IY-Nbn"/>
                                                     <exclude reference="6bG-K2-fdE"/>
+                                                    <exclude reference="SeL-f2-7jA"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -252,16 +253,16 @@
                                                     <include reference="5P9-Ph-Z2O"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="ai9-IY-Nbn"/>
-                                                    <include reference="72M-pb-PxJ"/>
                                                     <include reference="4gn-PK-gOP"/>
-                                                    <include reference="SeL-f2-7jA"/>
+                                                    <include reference="72M-pb-PxJ"/>
+                                                    <include reference="ai9-IY-Nbn"/>
                                                     <include reference="6bG-K2-fdE"/>
+                                                    <include reference="SeL-f2-7jA"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dfs-mq-niS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dfs-mq-niS" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="88" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dfs-mq-niS" id="ZPA-8C-1hx">
@@ -279,14 +280,14 @@
                                                     <nil key="highlightedColor"/>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="wYh-9w-8qr"/>
                                                             <exclude reference="ee0-bU-AWf"/>
+                                                            <exclude reference="wYh-9w-8qr"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="wYh-9w-8qr"/>
                                                             <include reference="ee0-bU-AWf"/>
+                                                            <include reference="wYh-9w-8qr"/>
                                                         </mask>
                                                     </variation>
                                                 </label>
@@ -322,11 +323,11 @@
                                                     <exclude reference="Ss9-cJ-F8k"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <exclude reference="Kqy-kk-guT"/>
                                                     <exclude reference="ZaJ-JK-X1h"/>
                                                     <exclude reference="loX-E9-pVf"/>
-                                                    <exclude reference="Kqy-kk-guT"/>
-                                                    <exclude reference="zCu-y5-MMi"/>
                                                     <exclude reference="YwI-Q0-WEy"/>
+                                                    <exclude reference="zCu-y5-MMi"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -335,16 +336,16 @@
                                                     <include reference="Ss9-cJ-F8k"/>
                                                 </mask>
                                                 <mask key="constraints">
+                                                    <include reference="Kqy-kk-guT"/>
                                                     <include reference="ZaJ-JK-X1h"/>
                                                     <include reference="loX-E9-pVf"/>
-                                                    <include reference="Kqy-kk-guT"/>
-                                                    <include reference="zCu-y5-MMi"/>
                                                     <include reference="YwI-Q0-WEy"/>
+                                                    <include reference="zCu-y5-MMi"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="fzw-M5-GkI">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="fzw-M5-GkI" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="132" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fzw-M5-GkI" id="b7m-4F-ahQ">
@@ -359,14 +360,14 @@
                                                     </constraints>
                                                     <variation key="default">
                                                         <mask key="constraints">
-                                                            <exclude reference="cCx-U3-86M"/>
                                                             <exclude reference="4de-G7-kl5"/>
+                                                            <exclude reference="cCx-U3-86M"/>
                                                         </mask>
                                                     </variation>
                                                     <variation key="widthClass=compact">
                                                         <mask key="constraints">
-                                                            <include reference="cCx-U3-86M"/>
                                                             <include reference="4de-G7-kl5"/>
+                                                            <include reference="cCx-U3-86M"/>
                                                         </mask>
                                                     </variation>
                                                 </imageView>
@@ -428,11 +429,11 @@
                                                     <exclude reference="H8c-Cy-N5Z"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="z1R-vg-8gB"/>
-                                                    <exclude reference="PF2-2t-x5b"/>
-                                                    <exclude reference="cBi-fR-QiV"/>
                                                     <exclude reference="DPQ-Rm-mXy"/>
+                                                    <exclude reference="cBi-fR-QiV"/>
                                                     <exclude reference="cxy-qS-W6L"/>
+                                                    <exclude reference="PF2-2t-x5b"/>
+                                                    <exclude reference="z1R-vg-8gB"/>
                                                     <exclude reference="Nbb-1i-bha"/>
                                                     <exclude reference="bVv-tx-Bjg"/>
                                                 </mask>
@@ -444,11 +445,11 @@
                                                     <include reference="H8c-Cy-N5Z"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="z1R-vg-8gB"/>
-                                                    <include reference="PF2-2t-x5b"/>
-                                                    <include reference="cBi-fR-QiV"/>
                                                     <include reference="DPQ-Rm-mXy"/>
+                                                    <include reference="cBi-fR-QiV"/>
                                                     <include reference="cxy-qS-W6L"/>
+                                                    <include reference="PF2-2t-x5b"/>
+                                                    <include reference="z1R-vg-8gB"/>
                                                     <include reference="Nbb-1i-bha"/>
                                                     <include reference="bVv-tx-Bjg"/>
                                                 </mask>
@@ -456,18 +457,18 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EoY-gy-gZi" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="123" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="176" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EoY-gy-gZi" id="M4C-fK-EAo">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写交易密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-B9-PGs">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写交易密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-B9-PGs">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-bn-SU4">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-bn-SU4">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                 </imageView>
                                             </subviews>
@@ -483,18 +484,18 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2A7-ch-n6N" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="123" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="220" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2A7-ch-n6N" id="AcG-a9-xLH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填再次填写密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v3E-th-vVS">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次填写交易密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v3E-th-vVS">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="u4x-xL-oXx">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="u4x-xL-oXx">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                 </imageView>
                                             </subviews>
@@ -510,13 +511,13 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qmZ-hS-f5L" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="167" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="264" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qmZ-hS-f5L" id="HI1-f2-XYx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="viO-yf-N9w">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="viO-yf-N9w">
                                                     <rect key="frame" x="52" y="8" width="145" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join"/>
@@ -524,7 +525,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-verify-code.png" translatesAutoresizingMaskIntoConstraints="NO" id="wcc-ev-V42">
                                                     <rect key="frame" x="20" y="13" width="22" height="17"/>
                                                 </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Liv-yE-pyU">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Liv-yE-pyU">
                                                     <rect key="frame" x="207" y="0.0" width="99" height="43"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-send-captcha.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ugr-LE-ukp">
@@ -588,7 +589,13 @@
                         <outlet property="bankNOTF" destination="Ss9-cJ-F8k" id="I7z-Nc-NCF"/>
                         <outlet property="bankNameTF" destination="YMV-c5-0ds" id="ziO-ac-Ken"/>
                         <outlet property="bankWarningLB" destination="vmS-RE-LOi" id="ijO-ri-6z1"/>
+                        <outlet property="checkCodeBT" destination="KuA-Y6-P9E" id="9fN-BU-F9u"/>
+                        <outlet property="checkCodeTF" destination="viO-yf-N9w" id="ifx-GC-glc"/>
+                        <outlet property="countLB" destination="IrD-T4-Hl7" id="OFv-Ft-2MS"/>
+                        <outlet property="sendCaptchaView" destination="Ugr-LE-ukp" id="3wz-Ud-npK"/>
                         <outlet property="submitBT" destination="mpk-Oa-uuO" id="N1Q-Ez-Azf"/>
+                        <outlet property="sureTradePasswordTF" destination="v3E-th-vVS" id="7e0-SJ-Qw2"/>
+                        <outlet property="tradePasswordTF" destination="hZs-B9-PGs" id="FJc-GL-akR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gaB-nT-9Jq" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -189,5 +189,4 @@ NSLocalizedFailureReasonErrorKey: str,
 	return [self.services.httpClient resetTradepwdWithBankCardNo:self.bankNO AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword];
 }
 
-
 @end

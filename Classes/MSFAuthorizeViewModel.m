@@ -14,6 +14,7 @@
 #import "MSFClient+Captcha.h"
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
+#import "NSDate+UTC0800.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -296,7 +297,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	dateFormatter.dateFormat = @"yyyy-MM-dd";
-	NSDate *expiredDate = self.permanent ? [dateFormatter dateFromString:@"2099-12-31"]: self.expired;
+	NSDate *expiredDate = self.permanent ? [NSDate msf_date:[dateFormatter dateFromString:@"2099-12-31"]]: self.expired;
 	
 	MSFUser *user = [MSFUser userWithServer:self.services.server];
 	return [[MSFClient
@@ -421,4 +422,5 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD AndNewPwd:self.TradePassword AndCaptch:self.smsCode];
 }
+
 @end

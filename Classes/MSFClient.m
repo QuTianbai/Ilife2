@@ -81,24 +81,24 @@ static NSDictionary *messages;
 	}
 	
 	NSMutableDictionary *(^MFSClientDefaultHeaders)(void) = ^{
-		// Device:平台 +系统版本; + 渠道; + App内部版本号; + 制造商; + 牌子; + 型号; + 编译ID; + 设备ID; + GPS(lat,lng)
-		// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
+		// 0平台; 1系统版本; 2渠道; 3App内部版本号; 4制造商; 5牌子; 6型号; 7编译ID; 8设备ID; 9GPS(lat,lng); 10网络情况
 		NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 		NSMutableArray *devices = NSMutableArray.new;
-		[devices addObject:[NSString stringWithFormat:@"iOS %@", [UIDevice currentDevice].systemVersion]];
+		[devices addObject:@"IOS"];
+		[devices addObject:[UIDevice currentDevice].systemVersion];
 		[devices addObject:@"appstore"];
-		[devices addObject:info[@"CFBundleShortVersionString"]];
+		[devices addObject:[info[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""]];
 		[devices addObject:@"Apple"];
 		[devices addObject:@"iPhone"];
-		[devices addObject:[UIDevice currentDevice].systemName];
+		[devices addObject:[UIDevice currentDevice].name];
 		[devices addObject:info[@"CFBundleVersion"]];
 		[devices addObject:OpenUDID.value];
 		[devices addObject:@"0,0"];
-		[devices addObject:@""];
+		[devices addObject:@"1"];
 		NSString *cookie = [NSString stringWithFormat:@"uid=\"%@\";Domain=i.msxf.com;isHttpOnly=true", OpenUDID.value];
 		
 		return [@{
-			@"Device": [devices componentsJoinedByString:@"; "],
+			@"deviceInfo": [devices componentsJoinedByString:@"; "],
 			@"Set-Cookie": cookie,
 		} mutableCopy];
 	};
@@ -235,12 +235,6 @@ static NSDictionary *messages;
 	NSParameterAssert(user);
 	NSParameterAssert(password);
 	NSParameterAssert(phone);
-	//TODO: 测试登录
-	if (!isRunningTests()) {
-		MSFUser *mockUser = [[MSFUser alloc] initWithDictionary:@{@"objectID": @"111", @"type": @"0"} error:nil];
-		MSFClient *client = [MSFClient authenticatedClientWithUser:mockUser token:@"" session:@""];
-		return [RACSignal return:client];
-	}
 	
 	RACSignal *(^authorizationSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
 		return [RACSignal defer:^RACSignal *{
@@ -250,7 +244,7 @@ static NSDictionary *messages;
 			parameters[@"mobile"] = phone;
 			parameters[@"password"] = password.sha256;
 			parameters[@"imei"] = MSFDeviceGet.imei;
-			parameters[@"smsCode"] = captcha ?: @"";
+			if (captcha.length > 0) parameters[@"smsCode"] = captcha ?: @"";
 			NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/login" parameters:parameters];
 			
 			return [[client enqueueRequest:request]
@@ -399,7 +393,7 @@ static NSDictionary *messages;
 		parameters[@"smsCode"] = captcha;
 		parameters[@"name"] = realname;
 		parameters[@"ident"] = citizenID;
-		parameters[@"idLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
+		parameters[@"identLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
@@ -572,12 +566,13 @@ static NSDictionary *messages;
 	// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
 	NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 	NSMutableArray *devices = NSMutableArray.new;
-	[devices addObject:[NSString stringWithFormat:@"iOS %@", [UIDevice currentDevice].systemVersion]];
+	[devices addObject:@"IOS"];
+	[devices addObject:[UIDevice currentDevice].systemVersion];
 	[devices addObject:@"appstore"];
-	[devices addObject:info[@"CFBundleShortVersionString"]];
+	[devices addObject:[info[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""]];
 	[devices addObject:@"Apple"];
 	[devices addObject:@"iPhone"];
-	[devices addObject:[UIDevice currentDevice].systemName];
+	[devices addObject:[UIDevice currentDevice].name];
 	[devices addObject:info[@"CFBundleVersion"]];
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
@@ -761,6 +756,7 @@ static NSDictionary *messages;
 }
 
 #pragma mark - addBankCard
+
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"uniqueId"] = MSFUtils.uniqueId;

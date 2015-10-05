@@ -125,4 +125,7 @@ extern NSString *const MSFAuthorizeErrorDomain;
 // User Identifier card is or not life time valid
 @property (nonatomic, assign) BOOL permanent;
 
+@property (nonatomic, strong) NSString *usingMobile;
+@property (nonatomic, strong) NSString *updatingMobile;
+
 @end

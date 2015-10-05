@@ -259,6 +259,9 @@
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
 		491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */; };
+		491DDB3E1BBFEE1D00D62DEA /* MSFSettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 491DDB3D1BBFEE1D00D62DEA /* MSFSettingsViewController.storyboard */; settings = {ASSET_TAGS = (); }; };
+		491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491DDB401BBFEE2F00D62DEA /* MSFSettingsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		491DDB441BBFF90000D62DEA /* MSFSignInPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491DDB431BBFF90000D62DEA /* MSFSignInPasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */; };
 		492007501BA00CCD00C0722C /* EIOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007461BA00CCD00C0722C /* EIOperationManager.m */; };
 		492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007491BA00CCD00C0722C /* NSData+Storage.m */; };
@@ -1127,6 +1130,11 @@
 		491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCodeButton.m; sourceTree = "<group>"; };
 		491C5FB71B0F21D500CADF8E /* MSFCheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCheckButton.h; sourceTree = "<group>"; };
 		491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCheckButton.m; sourceTree = "<group>"; };
+		491DDB3D1BBFEE1D00D62DEA /* MSFSettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFSettingsViewController.storyboard; sourceTree = "<group>"; };
+		491DDB3F1BBFEE2F00D62DEA /* MSFSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSettingsViewController.h; sourceTree = "<group>"; };
+		491DDB401BBFEE2F00D62DEA /* MSFSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSettingsViewController.m; sourceTree = "<group>"; };
+		491DDB421BBFF90000D62DEA /* MSFSignInPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInPasswordViewController.h; sourceTree = "<group>"; };
+		491DDB431BBFF90000D62DEA /* MSFSignInPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInPasswordViewController.m; sourceTree = "<group>"; };
 		492007431BA00CCD00C0722C /* EIImagePickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIImagePickerDelegate.h; sourceTree = "<group>"; };
 		492007441BA00CCD00C0722C /* EIImagePickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EIImagePickerDelegate.m; sourceTree = "<group>"; };
 		492007451BA00CCD00C0722C /* EIOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EIOperationManager.h; sourceTree = "<group>"; };
@@ -3309,6 +3317,11 @@
 				C7B978131B099CD9005F247C /* MSFUserHelpCell.m */,
 				C7B978151B099D02005F247C /* MSFBranchesCell.h */,
 				C7B978161B099D02005F247C /* MSFBranchesCell.m */,
+				491DDB3F1BBFEE2F00D62DEA /* MSFSettingsViewController.h */,
+				491DDB401BBFEE2F00D62DEA /* MSFSettingsViewController.m */,
+				491DDB3D1BBFEE1D00D62DEA /* MSFSettingsViewController.storyboard */,
+				491DDB421BBFF90000D62DEA /* MSFSignInPasswordViewController.h */,
+				491DDB431BBFF90000D62DEA /* MSFSignInPasswordViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -4241,6 +4254,7 @@
 				077347D21BBA338900D7A130 /* CBC@3x.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
 				C7D2D1201B67938C000F51ED /* icon-cloze-bankName@2x.png in Resources */,
+				491DDB3E1BBFEE1D00D62DEA /* MSFSettingsViewController.storyboard in Resources */,
 				C7A351821B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@3x.png in Resources */,
 				07667BF91BBEAD9B002DFF62 /* allow.json in Resources */,
 			);
@@ -4480,6 +4494,7 @@
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
+				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
@@ -4591,6 +4606,7 @@
 				07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */,
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
 				10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */,
+				491DDB441BBFF90000D62DEA /* MSFSignInPasswordViewController.m in Sources */,
 				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,

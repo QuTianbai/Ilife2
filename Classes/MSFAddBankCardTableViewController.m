@@ -30,7 +30,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 @property (weak, nonatomic) IBOutlet UILabel *bankCarTypeLB;
 
-
 @end
 
 @implementation MSFAddBankCardTableViewController

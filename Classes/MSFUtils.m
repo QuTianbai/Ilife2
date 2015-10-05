@@ -34,6 +34,10 @@ static MSFServer *server;
 #pragma mark - Custom Accessors
 
 + (RACSignal *)setupSignal {
+	// 设置默认时间戳
+	MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[[NSDate date] timeIntervalSince1970] * 1000];
+	[MSFClient setCipher:cipher];
+	
 	client = [[MSFClient alloc] initWithServer:server];
 	return [[self.httpClient fetchReleaseNote] doNext:^(MSFReleaseNote *releasenote) {
 		MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[releasenote.timestamp longLongValue]];

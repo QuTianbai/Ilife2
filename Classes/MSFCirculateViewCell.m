@@ -66,7 +66,6 @@
 	}
 	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 	paragraph.alignment = NSTextAlignmentCenter;
-	
 	NSDictionary *attri = @{NSForegroundColorAttributeName : textColor,
 												  NSFontAttributeName : _textFont,
 												  NSParagraphStyleAttributeName : paragraph};
