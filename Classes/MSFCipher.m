@@ -13,12 +13,18 @@
 #import "NSURL+QueryDictionary.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 
-NSString *const MSFCipherAppKey = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
-NSString *const MSFCipherAppSecret = @"34569E09FE7A0AF8E01FB1258B9BCAF2";
+NSString *const MSFCipherAppKey = @"123456";
+NSString *const MSFCipherAppSecret = @"e10adc3949ba59abbe56e057f20f883e";
 
 static NSString *const kTimestamp = @"timestamp";
 static NSString *const kSign = @"sign";
 static NSString *const kAppKey = @"appKey";
+
+@interface MSFCipher ()
+
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
+
+@end
 
 @implementation MSFCipher {
 	// 服务器本地时间差
@@ -32,6 +38,8 @@ static NSString *const kAppKey = @"appKey";
 	}
 	_internet = contestant;
 	_client = [self bumpstamp];
+	_dateFormatter = [[NSDateFormatter alloc] init];
+	_dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
 	
 	return self;
 }
@@ -56,11 +64,15 @@ static NSString *const kAppKey = @"appKey";
 	return [[MSFSignature alloc] initWithDictionary:@{
 		kSign: sign,
 		kAppKey: MSFCipherAppKey,
-		kTimestamp: @(transport)
+		kTimestamp: self.transportStringValue
 	} error:nil];
 }
 
 #pragma mark - Private
+
+- (NSString *)transportStringValue {
+	return [self.dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:transport / 1000.0]];
+}
 
 - (NSString *)encodeFromPercentEscapeString:(NSString *)string {
 	return (__bridge NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
@@ -73,7 +85,7 @@ static NSString *const kAppKey = @"appKey";
 
 - (NSString *)signWithPath:(NSString *)path query:(NSDictionary *)query {
 	NSMutableDictionary *parameters = query.mutableCopy;
-	[parameters addEntriesFromDictionary:@{kTimestamp: @(transport)}];
+	[parameters addEntriesFromDictionary:@{kTimestamp: self.transportStringValue}];
 	[parameters addEntriesFromDictionary:@{kAppKey: MSFCipherAppKey}];
 	
 	NSArray *sortedKeys = [parameters.allKeys sortedArrayUsingSelector:@selector(compare:)];
