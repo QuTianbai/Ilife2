@@ -244,7 +244,7 @@ static NSDictionary *messages;
 			parameters[@"mobile"] = phone;
 			parameters[@"password"] = password.sha256;
 			parameters[@"imei"] = MSFDeviceGet.imei;
-			parameters[@"smsCode"] = captcha ?: @"";
+			if (captcha.length > 0) parameters[@"smsCode"] = captcha ?: @"";
 			NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/login" parameters:parameters];
 			
 			return [[client enqueueRequest:request]
