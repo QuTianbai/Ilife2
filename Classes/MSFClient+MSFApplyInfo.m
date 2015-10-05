@@ -14,8 +14,8 @@
 @implementation MSFClient (MSFApplyInfo)
 
 - (RACSignal *)fetchApplyInfo {
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"userInfoApply" ofType:@"json"]]];
-	//NSURLRequest *request = [self requestWithMethod:@"GET" path:@"cust/getInfo" parameters:nil];
+	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"userInfoApply" ofType:@"json"]]];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"cust/getInfo" parameters:nil];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
 		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:[self convert:value.parsedResult] error:nil];

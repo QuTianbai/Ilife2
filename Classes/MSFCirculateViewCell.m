@@ -17,6 +17,8 @@
 
 @property (nonatomic, assign) CGFloat separatorLoc;
 @property (nonatomic, assign) CGFloat unitWidth;
+@property (nonatomic, assign) CGFloat textMargin;
+@property (nonatomic, strong) UIFont *textFont;
 
 @property (nonatomic, strong) NSString *usableLimit;
 @property (nonatomic, strong) NSString *usedLimit;
@@ -28,16 +30,19 @@
 @implementation MSFCirculateViewCell
 
 - (void)awakeFromNib {
-	_separatorLoc = 178.f;
+	_separatorLoc = ([UIScreen mainScreen].bounds.size.width - 80) * 2 / 3 + 50;
 	_unitWidth = 60.f;
+	_textFont = [UIFont systemFontOfSize:17];
+	_textMargin = (_unitWidth - _textFont.lineHeight * 2) / 3;
 }
 
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
 	_usableLimit = viewModel.usableLimit;
 	_usedLimit = viewModel.usedLimit;
-	_repayment = viewModel.latestDueMoney;
-	_overDue = viewModel.overdueMoney;
-	[_loanLimitView setAvailableCredit:_usableLimit usedCredit:_usedLimit];
+	_repayment = [NSString stringWithFormat:@"￥680"];//viewModel.latestDueMoney;
+	_overDue = [NSString stringWithFormat:@"￥680"];//viewModel.overdueMoney;
+	//[_loanLimitView setAvailableCredit:_usableLimit usedCredit:_usedLimit];
+	[_loanLimitView setAvailableCredit:@"9002" usedCredit:@"1889"];
 	[self setNeedsDisplay];
 }
 
@@ -46,9 +51,9 @@
 	CGContextMoveToPoint(context, 0, _separatorLoc);
 	CGContextAddLineToPoint(context, rect.size.width, _separatorLoc);
 	CGContextMoveToPoint(context, rect.size.width / 2 - _unitWidth, _separatorLoc);
-	CGContextMoveToPoint(context, rect.size.width / 2 - _unitWidth, _separatorLoc + _unitWidth);
-	CGContextMoveToPoint(context, rect.size.width / 2 + _unitWidth, _separatorLoc + _unitWidth);
-	CGContextMoveToPoint(context, rect.size.width / 2 + _unitWidth, _separatorLoc);
+	CGContextAddLineToPoint(context, rect.size.width / 2 - _unitWidth, _separatorLoc + _unitWidth);
+	CGContextAddLineToPoint(context, rect.size.width / 2 + _unitWidth, _separatorLoc + _unitWidth);
+	CGContextAddLineToPoint(context, rect.size.width / 2 + _unitWidth, _separatorLoc);
 	CGContextSetLineWidth(context, 0.5);
 	[[UIColor lineColor] setStroke];
 	CGContextStrokePath(context);
@@ -61,14 +66,18 @@
 	}
 	NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
 	paragraph.alignment = NSTextAlignmentCenter;
-	NSDictionary *attri =@{NSForegroundColorAttributeName : textColor,
-												 NSFontAttributeName :[UIFont systemFontOfSize: 17],
-												 NSParagraphStyleAttributeName : paragraph};
+	
+	NSDictionary *attri = @{NSForegroundColorAttributeName : textColor,
+												  NSFontAttributeName : _textFont,
+												  NSParagraphStyleAttributeName : paragraph};
 	if (_overDue.length > 0) {
-		[_overDue drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
+		[@"已逾期" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
+		[_overDue drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	} else {
-		[_repayment drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _unitWidth / 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
+		[@"下期还款" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
+		[_repayment drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	}
+	
 }
 
 @end

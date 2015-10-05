@@ -25,23 +25,25 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 
-@interface MSFPersonalViewController ()<MSFSegmentDelegate>
+#import "MSFSegment.h"
 
-@property (weak, nonatomic) IBOutlet UITextField *emailTF;
+@interface MSFPersonalViewController ()
+<MSFSegmentDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *provinceTF;
-@property (weak, nonatomic) IBOutlet UIButton *selectAreasBT;
-
-@property (weak, nonatomic) IBOutlet UITextField *detailAddressTF;
+@property (weak, nonatomic) IBOutlet UITextField *marriageTF;
+@property (weak, nonatomic) IBOutlet UIButton *marriageBT;
 
 @property (weak, nonatomic) IBOutlet UITextField *housingTF;
 @property (weak, nonatomic) IBOutlet UIButton *housingBT;
 
+@property (weak, nonatomic) IBOutlet UITextField *emailTF;
+
 @property (weak, nonatomic) IBOutlet UITextField *homeTelCodeTF;
 @property (weak, nonatomic) IBOutlet UITextField *homeTelTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *marriageTF;
-@property (weak, nonatomic) IBOutlet UIButton *marriageBT;
+@property (weak, nonatomic) IBOutlet UITextField *provinceTF;
+@property (weak, nonatomic) IBOutlet UIButton *selectAreasBT;
+@property (weak, nonatomic) IBOutlet UITextField *detailAddressTF;
 
 @property (weak, nonatomic) IBOutlet MSFSegment *selectQQorJDSegment;
 @property (nonatomic, weak) IBOutlet UITextField *tencentUsername;
@@ -134,14 +136,7 @@
 	[[self.homeTelCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
   subscribeNext:^(UITextField *textField) {
 		@strongify(self)
-		if (textField.text.length == 3) {
-			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-			if ([validArea containsObject:textField.text]) {
-				[self.homeTelTF becomeFirstResponder];
-			}
-		} else if (textField.text.length == 4) {
-			[self.homeTelTF becomeFirstResponder];
-		}
+		[self checkTelCode:textField];
 	}];
 	[[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
@@ -274,20 +269,19 @@
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	/*
-	[self.tencentUsername.rac_keyboardReturnSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[self.viewModel.executeCommitCommand execute:nil];
-	}];
-	[self.jdPasscode.rac_keyboardReturnSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[self.viewModel.executeCommitCommand execute:nil];
-	}];
-	[self.taobaoPasscode.rac_keyboardReturnSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[self.viewModel.executeCommitCommand execute:nil];
-	}];*/
 }
+
+- (void)viewDidLayoutSubviews {
+	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
+	}
+	
+	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
+	}
+}
+
+#pragma mark - Private Method
 
 - (void)back {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃基本信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -299,15 +293,25 @@
 	[alert show];
 }
 
+- (void)checkTelCode:(UITextField *)textField {
+	if (textField.text.length == 3) {
+		NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+		if ([validArea containsObject:textField.text]) {
+			[self.homeTelTF becomeFirstResponder];
+		}
+	} else if (textField.text.length == 4) {
+		[self.homeTelTF becomeFirstResponder];
+	}
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	
 	NSLog(@"%ld", (long)self.selectQQorJDSegment.selectedSegmentIndex);
 	if (section == 0 || section == self.selectQQorJDSegment.selectedSegmentIndex + 1) {
 		return [super tableView:tableView numberOfRowsInSection:section];
 	}
-	if (section ==1 && self.selectQQorJDSegment.selectedSegmentIndex == -1) {
+	if (section == 1 && self.selectQQorJDSegment.selectedSegmentIndex == -1) {
 		return [super tableView:tableView numberOfRowsInSection:1];
 	}
 	return 0;
@@ -323,16 +327,6 @@
 	}
 }
 
-- (void)viewDidLayoutSubviews {
-	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
-	}
-	
-	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
-	}
-}
-
 #pragma mark - MSFSegmenDelegate
 
 - (void)setLineColor:(NSMutableArray *)array {
@@ -343,20 +337,6 @@
 			label.hidden = YES;
 		}
 	}
-}
-
-- (BOOL)validaCode:(NSString *)code {
-	NSMutableArray *codeArray = [[NSMutableArray alloc] init];
-	[codeArray addObject:@"010"];
-	for ( int i = 0; i < 10; i++) {
-		if (i != 6) {
-			[codeArray addObject:[NSString stringWithFormat:@"02%d", i]];
-		}
-	}
-	
-	
-	
-	return [codeArray containsObject:code] ? YES : NO;
 }
 
 @end

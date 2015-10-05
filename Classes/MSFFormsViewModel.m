@@ -5,8 +5,9 @@
 //
 
 #import "MSFFormsViewModel.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/EXTScope.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import "MSFUtils.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFProfessionalViewModel.h"
