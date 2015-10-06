@@ -29,7 +29,7 @@
 @property (nonatomic, assign, readonly) BOOL pending;
 @property (nonatomic, assign) BOOL isHaveProduct;//是否请求到贷款信息和贷款期数
 
-- (RACSignal *)submitUserInfo;//2.0上传用户信息
+- (RACSignal *)submitUserInfoType:(int)infoType;//2.0上传用户信息
 - (RACSignal *)submitSignalWithPage:(NSInteger)page;
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 

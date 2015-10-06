@@ -131,7 +131,7 @@
 		}]];
 	}
 	
-	return [self.formsViewModel submitUserInfo];
+	return [self.formsViewModel submitUserInfoType:1];
 	//return [self.formsViewModel submitSignalWithPage:2];
 }
 

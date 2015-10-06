@@ -102,8 +102,9 @@
 
 #pragma mark - Public
 
-- (RACSignal *)submitUserInfo {
-	return [self.services.httpClient submitUserInfo:self.model];
+- (RACSignal *)submitUserInfoType:(int)infoType {
+	return [self.services.httpClient submitUserInfo:self.model
+																				 infoType:infoType];
 }
 
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
