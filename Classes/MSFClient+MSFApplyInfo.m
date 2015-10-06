@@ -21,7 +21,7 @@
 	//[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
-		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:[self msf_convert:value.parsedResult] error:nil];
+		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:[self convertDictionary:value.parsedResult] error:nil];
 		return forms;
 	}];
 }
@@ -41,8 +41,7 @@
 	}
 }
 
-- (NSDictionary *)msf_convert:(NSDictionary *)dic {
-	
+- (NSDictionary *)convertDictionary:(NSDictionary *)dic {
 	NSArray *additionalList = [self msf_filter:dic[@"additionalList"] class:NSArray.class];
 	NSString *qq = @"";
 	NSString *tb = @"";
@@ -85,8 +84,7 @@
 		empTelExtension = empTelComponents[2];
 	}
 	
-	return @{
-					 @"homeCode" : homeTelCode,
+	return @{@"homeCode" : homeTelCode,
 					 @"homeLine" : homeTel,
 					 @"email" : [self msf_filter:basicInfo[@"email"] class:NSString.class],
 					 @"currentProvinceCode" : [self msf_filter:basicInfo[@"abodeStateCode"] class:NSString.class],
@@ -182,12 +180,15 @@
 		contrastList = [MTLJSONAdapter JSONArrayFromModels:forms.contrastList];
 	}
 	
-	NSDictionary *dic = @{@"baseInfo" : basicInfo,
-												@"occupationInfo" : occupation,
-												@"contrastList" : contrastList,
-												@"additionalList" : additionalList};
-	return dic;
+	NSString *jsonBasicInfo = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:basicInfo options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
+	NSString *jsonOccupation = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:occupation options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
+	NSString *jsonContrastList = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:contrastList options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
+	NSString *jsonAdditionalList = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:additionalList options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
 	
+	return @{@"baseInfo" : jsonBasicInfo,
+					 @"occupationInfo" : jsonOccupation,
+					 @"contrastList" : jsonContrastList,
+					 @"additionalList" : jsonAdditionalList};
 }
 
 - (RACSignal *)fetchApplyInfoSubmit1:(NSString *)moneyNum months:(NSString *)months moneyUsed:(NSString *)moneyUsed isInsurancePlane:(NSString *)InsurancePlane applyStatus:(NSString *)status loanID:(NSString *)loanID {
@@ -195,11 +196,9 @@
 }
 
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model {
-	//NSDictionary *uploadDic = [self convertToSubmit:model];
 	NSMutableDictionary *uploadDic = [NSMutableDictionary dictionaryWithDictionary:[self convertToSubmit:model]];
 	[uploadDic setObject:self.user.objectID forKey:@"uniqueId"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];
-	//[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
 		NSLog(@"%@", value);
 		return value;
