@@ -20,8 +20,13 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFInputTradePasswordView.h"
-#import "MSFInputTradePasswordViewController.h"
+//#import "MSFInputTradePasswordViewController.h"
 #import "MSFBankCardListViewModel.h"
+#import "MSFCheckHasTradePasswordModel.h"
+#import "MSFSetTradePasswordTableViewController.h"
+
+#import "MSFAuthorizeViewModel.h"
+#import "AppDelegate.h"
 
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
@@ -62,6 +67,11 @@
 	
 	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 	[signal subscribeNext:^(id x) {
+		for (NSObject *ob in x) {
+			if ([ob isEqual:[NSNull null]]) {
+				return ;
+			}
+		}
 		self.dataArray = x;
 		[self.tableView reloadData];
 	}error:^(NSError *error) {
@@ -70,8 +80,8 @@
 	
 	self.checkTPViewModel = [[MSFCheckHasTradePassword alloc] initWithServices:self.services];
 	
-	[[self.checkTPViewModel.executeChenkTradePassword execute:nil] subscribeNext:^(id x) {
-		[MSFUtils setTradePassword:x];
+	[[self.checkTPViewModel.executeChenkTradePassword execute:nil] subscribeNext:^(MSFCheckHasTradePasswordModel *model) {
+		[MSFUtils setisTradePassword:model.hasTransPwd];
 	} error:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
@@ -122,7 +132,7 @@
 	cell.bankIconImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [self getImgString:model.bankCode]]];
 	cell.bankName.text = model.bankName;
 	cell.BankType.text = [NSString stringWithFormat:@"%@ %@", [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4], [self bankType:model.bankCardType]];
-	if ([model.isMaster isEqualToString:@"YES"]) {
+	if (model.master) {
 		cell.isMaster.hidden = NO;
 		cell.setMasterBT.hidden = YES;
 		cell.unBindMaster.hidden = YES;
@@ -148,15 +158,15 @@
 			return ;
 		}
 		//[self.view addSubview:inputTradePassword];
-		self.inputTradePassword.type = 0;
-		[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 		
-		//		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
-		//			MSFInputTradePasswordViewController * inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
-		//			[[UIApplication sharedApplication].keyWindow addSubview:inputTradePassword];
-		//		} else {
-		//
-		//		}
+		
+				if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+					MSFInputTradePasswordViewController * inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+					[[UIApplication sharedApplication].keyWindow addSubview:inputTradePassword.view];
+				} else {
+					self.inputTradePassword.type = 0;
+					[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
+				}
 		
 	}];
 	[[[cell.unBindMaster rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
@@ -211,13 +221,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 1) {
-		MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
-		BOOL isFirstBankCard = NO;
-		if (self.dataArray.count > 0) {
-			isFirstBankCard = YES;
+		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			AppDelegate * delegate = [UIApplication sharedApplication].delegate;
+			MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+			MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+			
+			[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+		} else {
+			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+			BOOL isFirstBankCard = NO;
+			if (self.dataArray.count > 0) {
+				isFirstBankCard = YES;
+			}
+			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.services andIsFirstBankCard:isFirstBankCard];
+			[self.navigationController pushViewController:vc animated:YES];
 		}
-		vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.services andIsFirstBankCard:isFirstBankCard];
-		[self.navigationController pushViewController:vc animated:YES];
+		
 	}
 }
 

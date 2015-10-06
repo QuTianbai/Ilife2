@@ -13,6 +13,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
+#import "MSFUtils.h"
 
 @interface MSFSetTradePasswordTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *tradePasswordTF;
@@ -51,7 +52,7 @@
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
 	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
 	
-	self.checkCodeBT.rac_command = self.viewModel.executeCaptcha;
+	self.checkCodeBT.rac_command = self.viewModel.executeCapthaTradePwd;
 	
 	RAC(self, countLB.text) = RACObserve(self, viewModel.counter);
 	
@@ -80,6 +81,7 @@
 	
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
 		[signal subscribeNext:^(id x) {
+			[MSFUtils setisTradePassword:@"YES"];
 			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];

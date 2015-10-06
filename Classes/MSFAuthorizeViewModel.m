@@ -60,6 +60,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	_counting = NO;
 	_signInValid = YES;
 	_permanent = NO;
+	_captchType = @"REG";
 	_loginType = [[NSUserDefaults standardUserDefaults] boolForKey:@"install-boot"] ? MSFLoginSignIn :MSFLoginSignUp;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"install-boot"];
 	_captchaHighlightedImage = [[UIImage imageNamed:@"bg-send-captcha-highlighted"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
@@ -106,6 +107,47 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			}];
 		}];
 	
+	_executeCapthaTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.username isMobile]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
+		}
+		return [[self executeCaptchaTradePwdSignal]
+						doNext:^(id x) {
+							@strongify(self)
+							self.counting = YES;
+							RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+							__block int repetCount = kCounterLength;
+							[repetitiveEventSignal subscribeNext:^(id x) {
+								self.counter = [@(--repetCount) stringValue];
+							} completed:^{
+								self.counter = @"获取验证码";
+								self.counting = NO;
+							}];
+						}];
+	}];
+
+	_executeCaprchForgetTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.username isMobile]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
+		}
+		return [[self executeCaptchaTradePwdSignal]
+						doNext:^(id x) {
+							@strongify(self)
+							self.counting = YES;
+							RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+							__block int repetCount = kCounterLength;
+							[repetitiveEventSignal subscribeNext:^(id x) {
+								self.counter = [@(--repetCount) stringValue];
+							} completed:^{
+								self.counter = @"获取验证码";
+								self.counting = NO;
+							}];
+						}];
+	}];
+
+	
 	_executeFindPassword = [[RACCommand alloc] initWithEnabled:self.findPasswordValidSignal
 		signalBlock:^RACSignal *(id input) {
 			@strongify(self)
@@ -117,7 +159,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		signalBlock:^RACSignal *(id input) {
 			@strongify(self)
 			if (![self.username isMobile]) {
-				return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
+				return [RACSignal error:[self.class errorWithFailureReason:@"手机号获取失败"]];
 			}
 			return [[self executeFindPasswordCaptchaSignal] doNext:^(id x) {
 				self.counting = YES;
@@ -254,8 +296,9 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			}
 			return [RACSignal error:error];
 		}]
-		doNext:^(id x) {
-			[MSFUtils setHttpClient:x];
+		doNext:^(MSFClient *client) {
+			[MSFUtils setHttpClient:client];
+			//MSFUser *user = client.user;
 		}];
 }
 
@@ -310,6 +353,16 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 - (RACSignal *)executeCaptchaSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client fetchSignUpCaptchaWithPhone:self.username];
+}
+
+- (RACSignal *)executeCaptchaTradePwdSignal {
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
+	return [client fetchLoginCaptchaTradeWithPhone:self.username];
+}
+
+- (RACSignal *)executeCaptchForgetTradePwd {
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
+	return [client fetchLoginCaptchaForgetTradeWithPhone:self.username];
 }
 
 - (RACSignal *)executeFindPasswordSignal {
