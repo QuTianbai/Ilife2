@@ -19,8 +19,6 @@
 #import "MSFUtils.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
-#import "MSFInputTradePasswordView.h"
-//#import "MSFInputTradePasswordViewController.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFCheckHasTradePasswordModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
