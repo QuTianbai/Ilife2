@@ -195,9 +195,15 @@
 }
 
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model {
-	NSDictionary *uploadDic = [self convertToSubmit:model];
+	NSMutableDictionary *uploadDic = [self convertToSubmit:model].mutableCopy;
+	[uploadDic enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+		if ([obj isKindOfClass:NSDictionary.class] || [obj isKindOfClass:NSArray.class]) {
+			NSData *data = [NSJSONSerialization dataWithJSONObject:obj options:NSJSONWritingPrettyPrinted error:nil];
+			[uploadDic setObject:[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] forKey:key];
+		}
+	}];
+	[uploadDic setObject:self.user.objectID forKey:@"uniqueId"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];
-	[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
 		NSLog(@"%@", value);
 		return value;
