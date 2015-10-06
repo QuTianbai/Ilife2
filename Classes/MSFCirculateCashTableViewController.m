@@ -16,6 +16,8 @@
 #import "MSFClient+MSFBankCardList.h"
 #import "MSFUtils.h"
 #import "MSFBankCardListModel.h"
+#import "MSFSetTradePasswordTableViewController.h"
+#import "AppDelegate.h"
 
 @interface MSFCirculateCashTableViewController ()
 @property (weak, nonatomic) IBOutlet MSFLoanLimitView *loanlimiteView;
@@ -68,37 +70,78 @@
 	
 	[[self.outMoneyBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
-		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
-		[signal subscribeNext:^(id x) {
-			self.dataArray = x;
-			for (MSFBankCardListModel *model in self.dataArray) {
-				if (model.master) {
-					MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:0];
-					MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
-					drawCashVC.viewModel = viewModel;
-					drawCashVC.type = 0;
-					[self.navigationController pushViewController:drawCashVC animated:YES];
+		
+		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				if (index.intValue == 1) {
+					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
 				}
-			}
-		}];
+				
+			}];
+		} else {
+			RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+			[signal subscribeNext:^(id x) {
+				self.dataArray = x;
+				for (MSFBankCardListModel *model in self.dataArray) {
+					if (model.master) {
+						MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:0];
+						MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
+						drawCashVC.viewModel = viewModel;
+						drawCashVC.type = 0;
+						[self.navigationController pushViewController:drawCashVC animated:YES];
+					}
+				}
+			}];
+		}
+		
 		
 	}];
 	
 	[[self.inputMoneyBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
-		 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
-		 [signal subscribeNext:^(id x) {
-			 self.dataArray = x;
-			 for (MSFBankCardListModel *model in self.dataArray) {
-				 if (model.master) {
-					 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
-					 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
-					 drawCashVC.viewModel = viewModel;
-					 drawCashVC.type = 1;
-					 [self.navigationController pushViewController:drawCashVC animated:YES];
+		 
+		 if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			 
+			 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											 message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			 [alert show];
+			 [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				 if (index.intValue == 1) {
+					 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					 MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					 MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					 
+					 [self.navigationController pushViewController:setTradePasswordVC animated:YES];
 				 }
-			 }
-		 }];
+				 
+			 }];
+		 } else {
+			 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+			 [signal subscribeNext:^(id x) {
+				 
+				 self.dataArray = x;
+				 for (MSFBankCardListModel *model in self.dataArray) {
+					 if (model.master) {
+						 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
+						 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
+						 drawCashVC.viewModel = viewModel;
+						 drawCashVC.type = 1;
+						 [self.navigationController pushViewController:drawCashVC animated:YES];
+					 }
+				 }
+			 }];
+
+		 }
+		 
+		 
 		 
 	 }];
 	

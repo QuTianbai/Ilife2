@@ -797,7 +797,7 @@ static NSDictionary *messages;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/unbind" parameters:parameters];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/unbind" parameters:parameters];
 	
 	return [self enqueueRequest:request];
 }

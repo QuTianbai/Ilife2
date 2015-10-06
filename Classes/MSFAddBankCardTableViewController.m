@@ -34,6 +34,8 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 @property (weak, nonatomic) IBOutlet UILabel *bankCarTypeLB;
 
+@property (nonatomic, copy) NSString *tradePwd;
+
 @property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
 
 @end
@@ -43,6 +45,9 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"添加银行卡";
+	_tradePwd = @"";
+	
+	RAC(self, viewModel.transPassword) = RACObserve(self, tradePwd);
 	
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
@@ -166,14 +171,17 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 }
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
-	//self.tradePwd = pwd;
+	self.tradePwd = pwd;
 	if (type == 2) {
 		@weakify(self)
 		[[self.viewModel.executeAddBankCard execute:nil]
-		subscribeNext:^(id x) {
+		subscribeNext:^(RACSignal *signal) {
 			@strongify(self)
 			[self.view endEditing:YES];
 			[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+			[signal subscribeNext:^(id x) {
+				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
+			}];
 //			[authSignal subscribeNext:^(id x) {
 //				
 //				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];

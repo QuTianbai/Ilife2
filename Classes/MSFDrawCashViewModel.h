@@ -15,6 +15,7 @@
 
 @interface MSFDrawCashViewModel : RVMViewModel
 
+
 @property (nonatomic, copy) NSString *bankIcon;
 
 @property (nonatomic, copy) NSString *bankName;

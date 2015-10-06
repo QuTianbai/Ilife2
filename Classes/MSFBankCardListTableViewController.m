@@ -65,6 +65,8 @@
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
 	
+	RAC(self, viewModel.pwd) = RACObserve(self, tradePwd);
+	
 	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 	[signal subscribeNext:^(id x) {
 		for (NSObject *ob in x) {
@@ -157,22 +159,51 @@
 			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"主卡暂不支持%@", [self bankType:model.bankCardType]]];
 			return ;
 		}
-		//[self.view addSubview:inputTradePassword];
-		
-		
-				if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
-					MSFInputTradePasswordViewController * inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
-					[[UIApplication sharedApplication].keyWindow addSubview:inputTradePassword.view];
+		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+					
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																													message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+					[alert show];
+					[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+						if (index.intValue == 1) {
+							AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+							MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+							MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+							
+							[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+						}
+						
+					}];
 				} else {
 					self.inputTradePassword.type = 0;
+					self.viewModel.bankCardID = model.bankCardId;
 					[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 				}
 		
 	}];
 	[[[cell.unBindMaster rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		@strongify(self)
-		self.inputTradePassword.type = 1;
-		[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
+		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				if (index.intValue == 1) {
+					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+				}
+				
+			}];
+		} else {
+			self.inputTradePassword.type = 1;
+			self.viewModel.bankCardID = model.bankCardId;
+			[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
+		}
+		
 		
 	}];
 	
@@ -222,11 +253,21 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 1) {
 		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
-			AppDelegate * delegate = [UIApplication sharedApplication].delegate;
-			MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
-			MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 			
-			[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				if (index.intValue == 1) {
+					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+				}
+				
+			}];
+			
 		} else {
 			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 			BOOL isFirstBankCard = NO;
