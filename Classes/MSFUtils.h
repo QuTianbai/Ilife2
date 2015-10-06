@@ -60,6 +60,7 @@
 + (NSString *)isCircuteCash;
 
 //产品群编码
++ (void)setProductCode:(NSString *)procd;
 + (NSString *)productCode;
 
 //用户基本信息完成情况

@@ -124,8 +124,12 @@ static MSFServer *server;
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"isCircuteCash"];
 }
 
++ (void)setProductCode:(NSString *)procd {
+	[[NSUserDefaults standardUserDefaults] setObject:procd?:@"" forKey:@"productCode"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
 + (NSString *)productCode {
-	return @"";
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
 
 + (NSString *)complateCustInfo {
