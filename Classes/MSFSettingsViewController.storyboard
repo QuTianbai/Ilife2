@@ -827,14 +827,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="o97-rO-xpz">
+                                                    <rect key="frame" x="20" y="13" width="22" height="17"/>
+                                                </imageView>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写交易密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6fK-fG-EKI">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="alphabet" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="o97-rO-xpz">
-                                                    <rect key="frame" x="20" y="13.5" width="22" height="17"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="6fK-fG-EKI" firstAttribute="leading" secondItem="o97-rO-xpz" secondAttribute="trailing" constant="10" id="AdT-UU-IoZ"/>
@@ -955,7 +955,13 @@
                         <outlet property="bankNOTF" destination="oX2-0R-iHm" id="hAe-Ib-LzV"/>
                         <outlet property="bankNameTF" destination="xfn-0o-wMc" id="1Is-Jj-fpg"/>
                         <outlet property="bankWarningLB" destination="GFF-ZC-3AY" id="iV2-5F-up7"/>
+                        <outlet property="checkCodeBT" destination="ZAq-yD-QTA" id="laT-Vy-7s0"/>
+                        <outlet property="checkCodeTF" destination="2M7-Hc-dbO" id="nEu-jH-zlV"/>
+                        <outlet property="countLB" destination="ZNH-m5-DU6" id="jwU-AM-IiN"/>
+                        <outlet property="sendCaptchaView" destination="kQe-7P-MNb" id="BJO-wW-irG"/>
                         <outlet property="submitBT" destination="XX8-qz-JsU" id="0M1-VV-ahN"/>
+                        <outlet property="sureTradePasswordTF" destination="jte-As-Fsy" id="lYk-na-svf"/>
+                        <outlet property="tradePasswordTF" destination="6fK-fG-EKI" id="Cug-Jy-4mt"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hyp-sj-bAr" userLabel="First Responder" sceneMemberID="firstResponder"/>

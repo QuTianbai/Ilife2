@@ -510,69 +510,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qmZ-hS-f5L" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="264" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qmZ-hS-f5L" id="HI1-f2-XYx">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="viO-yf-N9w">
-                                                    <rect key="frame" x="52" y="8" width="145" height="27.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join"/>
-                                                </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-verify-code.png" translatesAutoresizingMaskIntoConstraints="NO" id="wcc-ev-V42">
-                                                    <rect key="frame" x="20" y="13" width="22" height="17"/>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Liv-yE-pyU">
-                                                    <rect key="frame" x="207" y="0.0" width="99" height="43"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-send-captcha.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ugr-LE-ukp">
-                                                            <rect key="frame" x="0.0" y="0.0" width="99" height="43"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IrD-T4-Hl7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="99" height="43"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuA-Y6-P9E">
-                                                            <rect key="frame" x="0.0" y="0.0" width="99" height="43"/>
-                                                        </button>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstItem="IrD-T4-Hl7" firstAttribute="leading" secondItem="Liv-yE-pyU" secondAttribute="leading" id="0Bi-KU-ltN"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Ugr-LE-ukp" secondAttribute="bottom" id="1Rz-An-iBz"/>
-                                                        <constraint firstAttribute="bottom" secondItem="KuA-Y6-P9E" secondAttribute="bottom" id="3Tr-lX-0eV"/>
-                                                        <constraint firstAttribute="trailing" secondItem="KuA-Y6-P9E" secondAttribute="trailing" id="3XO-jg-fHW"/>
-                                                        <constraint firstAttribute="bottom" secondItem="IrD-T4-Hl7" secondAttribute="bottom" id="4z2-Dc-Kan"/>
-                                                        <constraint firstItem="Ugr-LE-ukp" firstAttribute="top" secondItem="Liv-yE-pyU" secondAttribute="top" id="D6z-aS-r4Q"/>
-                                                        <constraint firstItem="KuA-Y6-P9E" firstAttribute="top" secondItem="Liv-yE-pyU" secondAttribute="top" id="Dh4-7d-cVa"/>
-                                                        <constraint firstAttribute="trailing" secondItem="IrD-T4-Hl7" secondAttribute="trailing" id="EFs-fv-ogg"/>
-                                                        <constraint firstItem="IrD-T4-Hl7" firstAttribute="top" secondItem="Liv-yE-pyU" secondAttribute="top" id="Euf-wQ-wHU"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Ugr-LE-ukp" secondAttribute="trailing" id="cxh-LS-THf"/>
-                                                        <constraint firstItem="Ugr-LE-ukp" firstAttribute="leading" secondItem="Liv-yE-pyU" secondAttribute="leading" id="eXg-Zn-2Dd"/>
-                                                        <constraint firstItem="KuA-Y6-P9E" firstAttribute="leading" secondItem="Liv-yE-pyU" secondAttribute="leading" id="fdR-gE-h8s"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="Liv-yE-pyU" firstAttribute="leading" secondItem="viO-yf-N9w" secondAttribute="trailing" constant="10" id="0Pr-FI-cI4"/>
-                                                <constraint firstItem="wcc-ev-V42" firstAttribute="leading" secondItem="HI1-f2-XYx" secondAttribute="leading" constant="20" id="1YL-mK-5Gc"/>
-                                                <constraint firstItem="viO-yf-N9w" firstAttribute="centerY" secondItem="HI1-f2-XYx" secondAttribute="centerY" id="2tr-lW-Z0X"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="viO-yf-N9w" secondAttribute="bottom" id="32k-Cb-Bnu"/>
-                                                <constraint firstItem="wcc-ev-V42" firstAttribute="centerY" secondItem="HI1-f2-XYx" secondAttribute="centerY" id="7DH-dG-Q7U"/>
-                                                <constraint firstItem="Liv-yE-pyU" firstAttribute="top" secondItem="HI1-f2-XYx" secondAttribute="top" id="A7R-Ta-xaM"/>
-                                                <constraint firstAttribute="trailing" secondItem="Liv-yE-pyU" secondAttribute="trailing" constant="14" id="DYY-oT-ZeX"/>
-                                                <constraint firstItem="viO-yf-N9w" firstAttribute="top" secondItem="HI1-f2-XYx" secondAttribute="topMargin" id="LmN-We-17n"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="viO-yf-N9w" secondAttribute="trailing" constant="115" id="grl-XD-1kn"/>
-                                                <constraint firstItem="viO-yf-N9w" firstAttribute="leading" secondItem="wcc-ev-V42" secondAttribute="trailing" constant="10" id="jnb-fE-FqR"/>
-                                                <constraint firstAttribute="bottom" secondItem="Liv-yE-pyU" secondAttribute="bottom" constant="1" id="tq3-z5-U1p"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -589,10 +526,6 @@
                         <outlet property="bankNOTF" destination="Ss9-cJ-F8k" id="I7z-Nc-NCF"/>
                         <outlet property="bankNameTF" destination="YMV-c5-0ds" id="ziO-ac-Ken"/>
                         <outlet property="bankWarningLB" destination="vmS-RE-LOi" id="ijO-ri-6z1"/>
-                        <outlet property="checkCodeBT" destination="KuA-Y6-P9E" id="9fN-BU-F9u"/>
-                        <outlet property="checkCodeTF" destination="viO-yf-N9w" id="ifx-GC-glc"/>
-                        <outlet property="countLB" destination="IrD-T4-Hl7" id="OFv-Ft-2MS"/>
-                        <outlet property="sendCaptchaView" destination="Ugr-LE-ukp" id="3wz-Ud-npK"/>
                         <outlet property="submitBT" destination="mpk-Oa-uuO" id="N1Q-Ez-Azf"/>
                         <outlet property="sureTradePasswordTF" destination="v3E-th-vVS" id="hom-jo-okz"/>
                         <outlet property="tradePasswordTF" destination="hZs-B9-PGs" id="0fC-OR-4oB"/>
@@ -604,8 +537,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bg-send-captcha.png" width="33" height="14"/>
         <image name="icon-password.png" width="22" height="17"/>
-        <image name="icon-verify-code.png" width="22" height="17"/>
     </resources>
 </document>

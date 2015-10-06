@@ -182,11 +182,11 @@ NSLocalizedFailureReasonErrorKey: str,
 																																										}];
 		return [RACSignal error:error];
 	}
-	return [self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:self.bankNO AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode];
+	return [self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode];
 }
 
 - (RACSignal *)executeResetTrade {
-	return [self.services.httpClient resetTradepwdWithBankCardNo:self.bankNO AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword];
+	return [self.services.httpClient resetTradepwdWithBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword];
 }
 
 @end

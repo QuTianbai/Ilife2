@@ -17,6 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *bankName;
 @property (nonatomic, copy, readonly) NSString *bankBranchCityCode;
 @property (nonatomic, copy, readonly) NSString *bankBranchProvinceCode;
-@property (nonatomic, copy, readonly) NSString *isMaster;
+//@property (nonatomic, assign, readonly) BOOL isMaster;
+@property (nonatomic, assign, readonly) BOOL master;
 
 @end

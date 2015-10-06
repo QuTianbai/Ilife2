@@ -72,7 +72,7 @@
 		[signal subscribeNext:^(id x) {
 			self.dataArray = x;
 			for (MSFBankCardListModel *model in self.dataArray) {
-				if ([model.isMaster isEqualToString:@"YES"]) {
+				if (model.master) {
 					MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:0];
 					MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
 					drawCashVC.viewModel = viewModel;
@@ -90,7 +90,7 @@
 		 [signal subscribeNext:^(id x) {
 			 self.dataArray = x;
 			 for (MSFBankCardListModel *model in self.dataArray) {
-				 if ([model.isMaster isEqualToString:@"YES"]) {
+				 if (model.master) {
 					 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
 					 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
 					 drawCashVC.viewModel = viewModel;

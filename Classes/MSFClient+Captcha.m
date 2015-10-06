@@ -46,4 +46,13 @@
 	return [self enqueueRequest:request resultClass:nil];
 }
 
+- (RACSignal *)fetchLoginCaptchaForgetTradeWithPhone:(NSString *)phone {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+																																																@"codeType": @"FORGET_TRANS_PASSWORD",
+																																																@"mobile": phone
+																																																}];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
 @end

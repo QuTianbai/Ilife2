@@ -144,7 +144,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		NSLog(@"jfds");
 	}];
 	
-	self.checkCodeBT.rac_command = self.authviewModel.executeCaptcha;
+	self.checkCodeBT.rac_command = self.authviewModel.executeCaprchForgetTradePwd;
 	
 	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);
 	
@@ -177,6 +177,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[authSignal subscribeNext:^(id x) {
 			
 			[SVProgressHUD showSuccessWithStatus:@"重置交易密码成功"];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {

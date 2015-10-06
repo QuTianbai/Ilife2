@@ -132,7 +132,7 @@
 	cell.bankIconImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [self getImgString:model.bankCode]]];
 	cell.bankName.text = model.bankName;
 	cell.BankType.text = [NSString stringWithFormat:@"%@ %@", [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4], [self bankType:model.bankCardType]];
-	if ([model.isMaster isEqualToString:@"YES"]) {
+	if (model.master) {
 		cell.isMaster.hidden = NO;
 		cell.setMasterBT.hidden = YES;
 		cell.unBindMaster.hidden = YES;
