@@ -770,14 +770,7 @@ static NSDictionary *messages;
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/bind" parameters:parameters];
 	[request setHTTPMethod:@"POST"];
 	
-	return [[[self enqueueRequest:request resultClass:MSFUser.class]
-					 flattenMap:^RACStream *(id value) {
-						 return [self fetchUserInfo];
-					 }]
-					map:^id(id value) {
-						self.user = value;
-						return self;
-					}];
+	return [self enqueueRequest:request];
 }
 
 - (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {

@@ -27,6 +27,7 @@
 
 #import "MSFAuthorizeViewModel.h"
 #import "AppDelegate.h"
+#import <SVPullToRefresh/SVPullToRefresh.h>
 
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
@@ -66,9 +67,10 @@
 	_inputTradePassword.delegate = self;
 	
 	RAC(self, viewModel.pwd) = RACObserve(self, tradePwd);
-	
+	@weakify(self)
 	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 	[signal subscribeNext:^(id x) {
+		@strongify(self)
 		for (NSObject *ob in x) {
 			if ([ob isEqual:[NSNull null]]) {
 				return ;
@@ -86,6 +88,42 @@
 		[MSFUtils setisTradePassword:model.hasTransPwd];
 	} error:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[[self rac_signalForSelector:@selector(viewWillAppear:)]
+	subscribeNext:^(id x) {
+		@strongify(self)
+		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+		[signal subscribeNext:^(id x) {
+			for (NSObject *ob in x) {
+				if ([ob isEqual:[NSNull null]]) {
+					return ;
+				}
+			}
+			self.dataArray = x;
+			[self.tableView reloadData];
+		}error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+	}];
+	
+	[self.tableView addPullToRefreshWithActionHandler:^{
+		@strongify(self)
+		
+		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+		[signal subscribeNext:^(id x) {
+			for (NSObject *ob in x) {
+				if ([ob isEqual:[NSNull null]]) {
+					return ;
+				}
+			}
+			self.dataArray = x;
+			[self.tableView reloadData];
+			[self.tableView.pullToRefreshView stopAnimating];
+		}error:^(NSError *error) {
+			[self.tableView.pullToRefreshView stopAnimating];
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 	}];
 	
 }

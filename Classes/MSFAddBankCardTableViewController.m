@@ -178,10 +178,11 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		subscribeNext:^(RACSignal *signal) {
 			@strongify(self)
 			[self.view endEditing:YES];
-			[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-			[signal subscribeNext:^(id x) {
+//			[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+//			[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
-			}];
+				[self.navigationController popViewControllerAnimated:YES];
+			//}];
 //			[authSignal subscribeNext:^(id x) {
 //				
 //				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];

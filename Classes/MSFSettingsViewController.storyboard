@@ -985,7 +985,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="boG-aN-uKF"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" title="确定"/>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="boG-aN-uKF"/>
