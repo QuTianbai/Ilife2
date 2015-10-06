@@ -62,6 +62,9 @@
 		@strongify(self)
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(MSFMarkets *markets) {
 			self.markets = markets;
+		} error:^(NSError *error) {
+			NSLog(@"");
+			
 		}];
 		[[self.services.httpClient fetchApplyInfo]
 		 subscribeNext:^(MSFApplicationForms *forms) {

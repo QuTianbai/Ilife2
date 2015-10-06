@@ -161,6 +161,7 @@
 		return NO;
   }
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+		self.viewModel.formsViewModel.active = NO;
 		self.viewModel.formsViewModel.active = YES;
   }
 	
