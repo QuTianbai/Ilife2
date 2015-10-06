@@ -64,7 +64,7 @@
 }
 
 - (void)pushDetailViewController {
-	[self.services pushViewModel:self.model];
+	[self.services pushViewModel:self];
 }
 
 @end

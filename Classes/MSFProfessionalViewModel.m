@@ -462,7 +462,7 @@
 		}
 	}
 	
-	return [self.formsViewModel submitUserInfo];
+	return [self.formsViewModel submitUserInfoType:2];
 	//return [self.formsViewModel submitSignalWithPage:3];
 }
 

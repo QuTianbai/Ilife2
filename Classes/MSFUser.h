@@ -11,13 +11,14 @@
 @interface MSFUser : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *uniqueId;
-@property (nonatomic, copy, readonly) NSString *complateCustInfo;
+@property (nonatomic, copy) NSString *complateCustInfo;
 @property (nonatomic, copy, readonly) NSString *productId;
 @property (nonatomic, copy, readonly) NSString *ident;
 
 @property (nonatomic, copy, readonly) NSString *userID;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *mobile;
+@property (nonatomic, assign, readonly) BOOL hasTransactionalCode;
 
 // 客户类型
 //

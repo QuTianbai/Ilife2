@@ -15,6 +15,6 @@
 - (RACSignal *)fetchApplyInfo;
 - (RACSignal *)fetchApplyInfoSubmit1:(NSString *)moneyNum months:(NSString *)months moneyUsed:(NSString *)moneyUsed isInsurancePlane:(NSString *)InsurancePlane applyStatus:(NSString *)status loanID:(NSString *)loanID;
 
-- (RACSignal *)submitUserInfo:(MSFApplicationForms *)model;
+- (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type;
 
 @end
