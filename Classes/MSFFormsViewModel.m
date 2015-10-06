@@ -60,12 +60,12 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(id x) {
-			self.markets = x;
+		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(MSFMarkets *markets) {
+			self.markets = markets;
 		}];
 		[[self.services.httpClient fetchApplyInfo]
-		 subscribeNext:^(id x) {
-			self.model = x;
+		 subscribeNext:^(MSFApplicationForms *forms) {
+			self.model = forms;
 		}];
 	}];
 //	[self.didBecomeActiveSignal subscribeNext:^(id x) {
