@@ -95,11 +95,9 @@ static NSDictionary *messages;
 		[devices addObject:OpenUDID.value];
 		[devices addObject:@"0,0"];
 		[devices addObject:@"1"];
-		NSString *cookie = [NSString stringWithFormat:@"uid=\"%@\";Domain=i.msxf.com;isHttpOnly=true", OpenUDID.value];
 		
 		return [@{
 			@"deviceInfo": [devices componentsJoinedByString:@"; "],
-			@"Set-Cookie": cookie,
 		} mutableCopy];
 	};
 	self.defaultHeaders = MFSClientDefaultHeaders();
