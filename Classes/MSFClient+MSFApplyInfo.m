@@ -10,12 +10,15 @@
 #import "MSFApplicationForms.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFResponse.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (MSFApplyInfo)
 
 - (RACSignal *)fetchApplyInfo {
 	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"userInfoApply" ofType:@"json"]]];
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"cust/getInfo" parameters:nil];
+	//NSMutableURLRequest *request =
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"cust/getInfo" parameters:nil];
+	[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
 		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:[self convert:value.parsedResult] error:nil];
@@ -23,31 +26,48 @@
 	}];
 }
 
+- (id)filter:(id)obj class:(Class)class {
+	if ([obj isKindOfClass:class]) {
+		return obj;
+	} else {
+		if (class == NSString.class) {
+			return @"";
+		} else if (class == NSArray.class) {
+			return @[];
+		} else if (class == NSDictionary.class) {
+			return @{};
+		}
+		return nil;
+	}
+}
+
 - (NSDictionary *)convert:(NSDictionary *)dic {
 	
-	NSArray *additionalList = dic[@"additionalList"];
+	NSArray *additionalList = [self filter:dic[@"additionalList"] class:NSArray.class];
 	NSString *qq = @"";
 	NSString *tb = @"";
 	NSString *jd = @"";
 	for (NSDictionary *addition in additionalList) {
-		switch ([addition[@"additionalType"] intValue]) {
+		switch ([[self filter:addition[@"additionalType"] class:NSString.class] intValue]) {
 			case 0:
-				qq = addition[@"additionalValue"];
+				qq = [self filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 			case 1:
-				tb = addition[@"additionalValue"];
+				tb = [self filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 			case 2:
-				jd = addition[@"additionalValue"];
+				jd = [self filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 		}
 	}
 	
-	NSDictionary *basicInfo = dic[@"baseInfo"];
-	NSDictionary *occupation = dic[@"occupationInfo"];
+	NSDictionary *basicInfo = [self filter:dic[@"baseInfo"]
+																	 class:NSDictionary.class];
+	NSDictionary *occupation = [self filter:dic[@"occupationInfo"]
+																		class:NSDictionary.class];
 	
-	NSString *homeTelFull = basicInfo[@"homePhone"];
-	NSString *empTelFull  = occupation[@"empPhone"];
+	NSString *homeTelFull = [self filter:basicInfo[@"homePhone"] class:NSString.class];
+	NSString *empTelFull  = [self filter:occupation[@"empPhone"] class:NSString.class];
 	NSArray *homeTelComponents = [homeTelFull componentsSeparatedByString:@"-"];
 	NSArray *empTelComponents = [empTelFull componentsSeparatedByString:@"-"];
 	NSString *homeTelCode = @"";
@@ -68,44 +88,41 @@
 	return @{
 					 @"homeCode" : homeTelCode,
 					 @"homeLine" : homeTel,
-					 @"email" : basicInfo[@"email"],
-					 @"currentProvinceCode" : basicInfo[@"abodeStateCode"],
-					 @"currentCityCode" : basicInfo[@"abodeCityCode"],
-					 @"currentCountryCode" : basicInfo[@"abodeZoneCode"],
-					 @"abodeDetail" : basicInfo[@"abodeDetail"],
-					 @"houseType" : basicInfo[@"houseCondition"],
-					 @"maritalStatus" : basicInfo[@"maritalStatus"],
+					 @"email" : [self filter:basicInfo[@"email"] class:NSString.class],
+					 @"currentProvinceCode" : [self filter:basicInfo[@"abodeStateCode"] class:NSString.class],
+					 @"currentCityCode" : [self filter:basicInfo[@"abodeCityCode"] class:NSString.class],
+					 @"currentCountryCode" : [self filter:basicInfo[@"abodeZoneCode"] class:NSString.class],
+					 @"abodeDetail" : [self filter:basicInfo[@"abodeDetail"] class:NSString.class],
+					 @"houseType" : [self filter:basicInfo[@"houseCondition"] class:NSString.class],
+					 @"maritalStatus" : [self filter:basicInfo[@"maritalStatus"] class:NSString.class],
 					 @"qq" : qq,
 					 @"taobao" : tb,
 					 @"jdAccount" : jd,
-					 @"socialStatus" : occupation[@"socialIdentity"],
-					 @"education" : occupation[@"qualification"],
-					 @"unitName" : occupation[@"unitName"],
-					 @"empStandFrom" : occupation[@"empStandFrom"],
-					 @"programLength" : occupation[@"lengthOfSchooling"],
-					 @"workStartDate" : occupation[@"workStartDate"],
-					 @"income" : occupation[@"monthIncome"],
-					 @"otherIncome" : occupation[@"otherIncome"],
-					 @"familyExpense" : occupation[@"otherLoan"],
-					 @"department" : occupation[@"empDepapment"],
-					 @"title" : occupation[@"empPost"],
-					 @"industry" : occupation[@"empType"],
-					 @"companyType" : occupation[@"empStructure"],
-					 @"workProvinceCode" : occupation[@"empProvinceCode"],
-					 @"workCityCode" : occupation[@"empCityCode"],
-					 @"workCountryCode" : occupation[@"empZoneCode"],
-					 @"empAdd" : occupation[@"empAdd"],
+					 @"socialStatus" : [self filter:occupation[@"socialIdentity"] class:NSString.class],
+					 @"education" : [self filter:occupation[@"qualification"] class:NSString.class],
+					 @"unitName" : [self filter:occupation[@"unitName"] class:NSString.class],
+					 @"empStandFrom" : [self filter:occupation[@"empStandFrom"] class:NSString.class],
+					 @"programLength" : [self filter:occupation[@"lengthOfSchooling"] class:NSString.class],
+					 @"workStartDate" : [self filter:occupation[@"workStartDate"] class:NSString.class],
+					 @"income" : [self filter:occupation[@"monthIncome"] class:NSString.class],
+					 @"otherIncome" : [self filter:occupation[@"otherIncome"] class:NSString.class],
+					 @"familyExpense" : [self filter:occupation[@"otherLoan"] class:NSString.class],
+					 @"department" : [self filter:occupation[@"empDepapment"] class:NSString.class],
+					 @"title" : [self filter:occupation[@"empPost"] class:NSString.class],
+					 @"industry" : [self filter:occupation[@"empType"] class:NSString.class],
+					 @"companyType" : [self filter:occupation[@"empStructure"] class:NSString.class],
+					 @"workProvinceCode" : [self filter:occupation[@"empProvinceCode"] class:NSString.class],
+					 @"workCityCode" : [self filter:occupation[@"empCityCode"] class:NSString.class],
+					 @"workCountryCode" : [self filter:occupation[@"empZoneCode"] class:NSString.class],
+					 @"empAdd" : [self filter:occupation[@"empAdd"] class:NSString.class],
 					 @"unitAreaCode" : empTelCode,
 					 @"unitTelephone" : empTel,
 					 @"unitExtensionTelephone" : empTelExtension,
-					 @"infoType" : dic[@"infoType"],
-					 @"contrastList" : dic[@"contrastList"]
+					 @"contrastList" : [self filter:dic[@"contrastList"] class:NSArray.class]
 					 };
 }
 
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
-	int infoType = forms.infoType;
-	
 	NSString *homePhone = @"";
 	NSString *empPhone = @"";
 	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
@@ -165,14 +182,10 @@
 		contrastList = [MTLJSONAdapter JSONArrayFromModels:forms.contrastList];
 	}
 	
-	NSDictionary *dic = @{
-												@"infoType" : @(infoType),
-												@"baseInfo" : basicInfo,
+	NSDictionary *dic = @{@"baseInfo" : basicInfo,
 												@"occupationInfo" : occupation,
 												@"contrastList" : contrastList,
-												@"additionalList" : additionalList
-												};
-	
+												@"additionalList" : additionalList};
 	return dic;
 	
 }
@@ -182,12 +195,9 @@
 }
 
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model {
-	
-//	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:uploadDic options:NSJSONWritingPrettyPrinted error:nil];
-//	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//	NSDictionary *paramDict = [NSDictionary dictionaryWithObject:jsonStr forKey:@"loans"];
 	NSDictionary *uploadDic = [self convertToSubmit:model];
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];	
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];
+	[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
 		NSLog(@"%@", value);
 		return value;

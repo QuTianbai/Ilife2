@@ -125,7 +125,6 @@
 @property (nonatomic, copy) NSString *monthlyFeeRate;//月服务费利率
 
 #pragma mark - 2.0参数
-@property (nonatomic, assign) int infoType;//信息类型：1：基本信息，2：职业信息，3：联系人信息
 @property (nonatomic, strong) NSArray *contrastList;//联系人信息
 
 //baseInfo
