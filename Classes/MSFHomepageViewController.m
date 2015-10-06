@@ -20,6 +20,8 @@
 #import "MSFClient.h"
 #import "MSFUser.h"
 
+#import "MSFClient+RepaymentSchedules.h"
+
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
@@ -90,6 +92,13 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		self.viewModel.active = NO;
 	}];
+	
+//	[[[MSFUtils.httpClient fetchRepaymentSchedules] map:^id(id value) {
+//		NSLog(@"%@", value);
+//		return nil;
+//	}] subscribeNext:^(id x) {
+//		NSLog(@"%@", x);
+//	}];
 }
 
 #pragma mark - UICollectionViewDataSource
