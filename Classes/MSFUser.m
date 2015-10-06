@@ -18,6 +18,7 @@
 		@"userID": @"userId",
 		@"name": @"name",
 		@"mobile": @"mobile",
+		@"hasTransactionalCode": @"hasTransPwd"
 	};
 }
 
@@ -30,6 +31,12 @@
 	}
 	
 	return [self modelWithDictionary:userDict error:NULL];
+}
+
++ (NSValueTransformer *)hasTransactionalCodeJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(NSString *value) {
+		return [value isEqualToString:@"NO"] ? @NO : @YES;
+	}];
 }
 
 #pragma mark - Custom Accessors
