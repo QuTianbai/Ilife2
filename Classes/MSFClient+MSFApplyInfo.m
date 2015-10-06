@@ -18,7 +18,7 @@
 	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"userInfoApply" ofType:@"json"]]];
 	//NSMutableURLRequest *request =
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"cust/getInfo" parameters:nil];
-	[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
+	//[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
 		MSFApplicationForms *forms = [MTLJSONAdapter modelOfClass:MSFApplicationForms.class fromJSONDictionary:[self convert:value.parsedResult] error:nil];
@@ -195,9 +195,11 @@
 }
 
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model {
-	NSDictionary *uploadDic = [self convertToSubmit:model];
+	//NSDictionary *uploadDic = [self convertToSubmit:model];
+	NSMutableDictionary *uploadDic = [NSMutableDictionary dictionaryWithDictionary:[self convertToSubmit:model]];
+	[uploadDic setObject:self.user.objectID forKey:@"uniqueId"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];
-	[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
+	//[request setValue:self.user.objectID forHTTPHeaderField:@"uniqueId"];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
 		NSLog(@"%@", value);
 		return value;
