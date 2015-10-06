@@ -260,6 +260,7 @@ static NSDictionary *messages;
 					[user mergeValueForKey:@keypath(user.server) fromModel:client.user];
 					client.user = user;
 					[MSFUtils setUniqueId:user.uniqueId];
+					[MSFUtils setCircuteCash:user.type];
 				
 					return [RACSignal combineLatest:@[
 						[RACSignal return:client],
