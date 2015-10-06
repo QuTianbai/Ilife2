@@ -13,6 +13,6 @@
 @property (nonatomic, copy, readonly) NSString *contractNum;
 @property (nonatomic, copy, readonly) NSString *contractStatus;
 @property (nonatomic, copy, readonly) NSString *repaymentTime;
-@property (nonatomic, assign, readonly) double repaymentTotalAmount;
+@property (nonatomic, copy, readonly) NSString *repaymentTotalAmount;
 
 @end

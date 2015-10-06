@@ -12,10 +12,10 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 		return @{
-						 @"contractNum": @"contract_no",
-						 @"contractStatus": @"contract_status",
-						 @"repaymentTime":@"repayment_time",
-						 @"repaymentTotalAmount":@"repayment_total_amount",
+						 @"contractNum": @"contractNo",
+						 @"contractStatus": @"contractStatus",
+						 @"repaymentTime":@"dueDate",
+						 @"repaymentTotalAmount":@"dueMoney",
 						 };
 }
 

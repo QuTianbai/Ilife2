@@ -13,9 +13,8 @@
 @implementation MSFClient (RepaymentSchedules)
 
 - (RACSignal *)fetchRepaymentSchedules {
-	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"plans" parameters:nil];
-	
-	return [[self enqueueRequest:requset resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/schedules" parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
 @end
