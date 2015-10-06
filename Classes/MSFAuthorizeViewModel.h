@@ -135,4 +135,8 @@ extern NSString *const MSFAuthorizeErrorDomain;
 @property (nonatomic, strong) NSString *usingMobile;
 @property (nonatomic, strong) NSString *updatingMobile;
 
+@property (nonatomic, strong) NSString *usingSignInPasssword;
+@property (nonatomic, strong) NSString *updatingSignInPasssword;
+@property (nonatomic, strong) RACCommand *executeUpdateSignInPassword;
+
 @end

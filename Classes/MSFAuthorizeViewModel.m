@@ -187,6 +187,17 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	_executeUpdateTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self updateTradeExecute];
 	}];
+	
+	_executeUpdateSignInPassword = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.usingSignInPasssword isPassword]) {
+			return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"原密码错误"}]];
+		}
+		if (![self.updatingSignInPasssword isPassword]) {
+			return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:@"请填写8~16位字母和数字组合的新密码"}]];
+		}
+		return [self updateSignInPasswordSignal];
+  }];
 
 	
 	self.signInInvalidSignal = [[RACSubject subject] setNameWithFormat:@"`MSFAuthorizeViewModel signIn captcha required signal`"];
@@ -474,6 +485,10 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	}
 	
 	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD AndNewPwd:self.TradePassword AndCaptch:self.smsCode];
+}
+
+- (RACSignal *)updateSignInPasswordSignal {
+	return [self.services.httpClient updateSignInPassword:self.usingSignInPasssword password:self.updatingSignInPasssword];
 }
 
 @end

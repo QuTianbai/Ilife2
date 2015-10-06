@@ -66,7 +66,7 @@ static NSDictionary *messages;
 @property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
 @property (nonatomic, strong, readwrite) MSFUser *user;
 @property (nonatomic, copy, readwrite) NSString *token;
-@property (nonatomic, copy, readwrite) NSString *session;
+@property (nonatomic, copy, readwrite) NSString *session __deprecated_msg("Unused");
 
 @end
 
@@ -432,17 +432,18 @@ static NSDictionary *messages;
 }
 
 - (RACSignal *)signOut {
-	self.user = nil;
-	self.token = nil;
-	self.session = nil;
-	NSURLRequest *request = [self requestWithMethod:@"DELETE" path:@"authenticate" parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:@{
+		@"uniqueId": self.user.uniqueId
+	}];
+	
 	@weakify(self)
 	return [[[self enqueueRequest:request resultClass:nil]
-		flattenMap:^RACStream *(id value) {
+		doCompleted:^{
 			@strongify(self)
 			[self clearAuthorizationHeader];
-		
-			return [RACSignal return:self];
+			self.token = nil;
+			self.session = nil;
+			self.user = nil;
 		}]
 		replay];
 }
@@ -694,7 +695,6 @@ static NSDictionary *messages;
 			
 			if (operation.response.statusCode == MSFClientNotModifiedStatusCode) {
 				// No change in the data.
-				[subscriber sendNext:nil];
 				[subscriber sendCompleted];
 				return;
 			}
