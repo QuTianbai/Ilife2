@@ -13,6 +13,7 @@
 #import "MSFAddressInfo.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient.h"
+#import <NSString-Hashes/NSString+Hashes.h>
 
 static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardViewModelErrorDomain";
 
@@ -186,7 +187,7 @@ NSLocalizedFailureReasonErrorKey: str,
 }
 
 - (RACSignal *)executeResetTrade {
-	return [self.services.httpClient resetTradepwdWithBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword];
+	return [self.services.httpClient resetTradepwdWithBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword.sha256];
 }
 
 @end

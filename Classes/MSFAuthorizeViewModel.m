@@ -15,6 +15,7 @@
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "NSDate+UTC0800.h"
+#import <NSString-Hashes/NSString+Hashes.h>
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -132,7 +133,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		if (![self.username isMobile]) {
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
-		return [[self executeCaptchaTradePwdSignal]
+		return [[self executeCaptchForgetTradePwd]
 						doNext:^(id x) {
 							@strongify(self)
 							self.counting = YES;
@@ -473,7 +474,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	}
 
 
-	return [self.services.httpClient setTradePwdWithPWD:self.TradePassword AndCaptch:self.smsCode];
+	return [self.services.httpClient setTradePwdWithPWD:self.TradePassword.sha256 AndCaptch:self.smsCode];
 }
 
 - (RACSignal *)updateTradeExecute {
@@ -509,7 +510,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:error];
 	}
 	
-	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD AndNewPwd:self.TradePassword AndCaptch:self.smsCode];
+	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD.sha256 AndNewPwd:self.TradePassword.sha256 AndCaptch:self.smsCode];
 }
 
 - (RACSignal *)updateSignInPasswordSignal {
