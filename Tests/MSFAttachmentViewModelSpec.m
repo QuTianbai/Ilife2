@@ -8,6 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
+#import "MSFApplyCashVIewModel.h"
 
 QuickSpecBegin(MSFAttachmentViewModelSpec)
 
@@ -15,12 +16,16 @@ __block MSFAttachmentViewModel *viewModel;
 __block MSFAttachment *model;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
+__block MSFApplyCashVIewModel *cashViewModel;
 
 beforeEach(^{
 	client = mock(MSFClient.class);
 	services = mockProtocol(@protocol(MSFViewModelServices));
+	cashViewModel = mock([MSFApplyCashVIewModel class]);
+	stubProperty(cashViewModel, services, services);
+	stubProperty(cashViewModel, appNO, @"foo");
 	model = mock([MSFAttachment class]);
-	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model services:services];
+	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
 	expect(viewModel).notTo(beNil());
 });
 
@@ -74,7 +79,7 @@ describe(@"attachment from camera", ^{
 		stubProperty(model, thumbURL, URL);
 		
 		[given([services httpClient]) willReturn:client];
-		[given([client uploadAttachment:model]) willDo:^id(NSInvocation *invocation) {
+		[given([client uploadAttachment:model applicationNumber:@"foo"]) willDo:^id(NSInvocation *invocation) {
 			[givenVoid([model mergeValueForKey:@"objectID" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
 				stubProperty(model, objectID, @"3033");
 				return nil;
@@ -118,7 +123,7 @@ describe(@"attachment placholder", ^{
 		stubProperty(model, isPlaceholder, @YES);
 		stubProperty(model, thumbURL, [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"]);
 		
-		viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model services:services];
+		viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
 		[given([services takePicture]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
 		
 		// when
@@ -160,7 +165,7 @@ it(@"should take photo when attachment is a placeholder", ^{
 	// given
 	model = mock(MSFAttachment.class);
 	stubProperty(model, isPlaceholder, @YES);
-	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model services:services];
+	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
 	
 	// when
 	BOOL valid = [[viewModel.takePhotoValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];

@@ -11,6 +11,7 @@
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
 #import "MSFAttachmentViewModel.h"
+#import "MSFApplyCashVIewModel.h"
 
 @interface MSFElementViewModel ()
 
@@ -19,6 +20,7 @@
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, strong, readwrite) NSArray *attachments;
 @property (nonatomic, strong, readonly) MSFAttachmentViewModel *placeholderViewModel;
+@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
 
 @end
 
@@ -26,12 +28,13 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_services = services;
+	_viewModel = viewModel;
+	_services = viewModel.services;
 	_element = model;
 	_attachments = NSMutableArray.new;
 	
@@ -40,10 +43,10 @@
 		@"thumbURL": URL,
 		@"isPlaceholder": @YES
 	} error:nil];
-	_placeholderViewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:placheholderAttchment services:self.services];
+	_placeholderViewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:placheholderAttchment viewModel:viewModel];
 	_viewModels = @[self.placeholderViewModel];
 	
-	RAC(self, title) = RACObserve(self, element.plain);
+	RAC(self, title) = RACObserve(self, element.title);
 	RAC(self, name) = RACObserve(self, element.name);
 	RAC(self, thumbURL) = RACObserve(self, element.thumbURL);
 	RAC(self, sampleURL) = RACObserve(self, element.sampleURL);
@@ -58,7 +61,7 @@
 				@"fileURL": URL,
 				@"thumbURL": URL,
 				@"type": self.element.type,
-				@"plain": self.element.plain,
+				@"title": self.element.title,
 			} error:nil];
 			[self addAttachment:attachment];
 		}
@@ -71,12 +74,23 @@
   return self;
 }
 
+- (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_services = services;
+	_element = model;
+	
+  return self;
+}
+
 #pragma mark - Custom Accessors
 
 - (void)addAttachment:(MSFAttachment *)attachment {
 	self.attachments = [self.attachments arrayByAddingObject:attachment];
 	if ([attachment.type isEqualToString:self.element.type]) {
-		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:attachment services:self.services];
+		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:attachment viewModel:self.viewModel];
 		[viewModel.removeCommand.executionSignals subscribeNext:^(id x) {
 			[self removeAttachment:attachment];
 		}];

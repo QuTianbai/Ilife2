@@ -73,7 +73,7 @@ ABPersonViewControllerDelegate>
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
 		[_tempContactList addObject:contact];
 	}
-#warning TODO
+//TODO:
 	for (MSFUserContact *contact in _tempContactList) {
 		if (!contact.openDetailAddress) {
 			contact.contactAddress = self.viewModel.model.currentAddress;

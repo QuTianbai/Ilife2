@@ -11,6 +11,7 @@
 #import "MSFViewModelServices.h"
 #import "MSFAttachmentViewModel.h"
 #import "MSFClient+Attachment.h"
+#import "MSFApplyCashVIewModel.h"
 
 QuickSpecBegin(MSFElementViewModelSpec)
 
@@ -18,19 +19,27 @@ __block MSFElementViewModel *viewModel;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
 __block MSFElement *element;
+__block MSFApplyCashVIewModel *cashViewModel;
 
 beforeEach(^{
 	services = mockProtocol(@protocol(MSFViewModelServices));
+	
 	client = mock([MSFClient class]);
 	[given([services httpClient]) willReturn:client];
+	
 	element = mock(MSFElement.class);
+	
+	cashViewModel = mock([MSFApplyCashVIewModel class]);
+	stubProperty(cashViewModel, services, services);
+	stubProperty(cashViewModel, appNO, @"foo");
+	
 	stubProperty(element, required, @YES);
-	stubProperty(element, plain, @"身份证验证");
+	stubProperty(element, title, @"身份证验证");
 	stubProperty(element, type, @"bar");
 	stubProperty(element, maximum, @1);
 	stubProperty(element, sampleURL, [NSURL URLWithString:@"http://sample.png"]);
 	stubProperty(element, thumbURL, [NSURL URLWithString:@"http://icon.png"]);
-	viewModel = [[MSFElementViewModel alloc] initWithElement:element services:services];
+	viewModel = [[MSFElementViewModel alloc] initWithElement:element viewModel:cashViewModel];
 	expect(viewModel).notTo(beNil());
 });
 
@@ -109,7 +118,7 @@ it(@"should upload attachments's file", ^{
 	MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL, @"type": element.type} error:nil];
 	[viewModel addAttachment:attachment];
 	
-	[given([client uploadAttachment:attachment]) willDo:^id(NSInvocation *invocation) {
+	[given([client uploadAttachment:attachment applicationNumber:@"foo"]) willDo:^id(NSInvocation *invocation) {
 		MSFAttachment *result = [[MSFAttachment alloc] initWithDictionary:@{
 			@"objectID": @"foo",
 			@"type": @"image/jpg",
@@ -138,12 +147,12 @@ it(@"should return a error when upload max number of attachments", ^{
 	MSFAttachment *attachment2 = [[MSFAttachment alloc] initWithDictionary:@{@"fileURL": URL2, @"type": element.type} error:nil];
 	[viewModel addAttachment:attachment2];
 	
-	[given([client uploadAttachment:attachment2]) willDo:^id(NSInvocation *invocation) {
+	[given([client uploadAttachment:attachment2 applicationNumber:@"foo"]) willDo:^id(NSInvocation *invocation) {
 		NSError *error = [NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"max number image"}];
 		return [RACSignal error:error];
 	}];
 	
-	[given([client uploadAttachment:attachment]) willDo:^id(NSInvocation *invocation) {
+	[given([client uploadAttachment:attachment applicationNumber:@"foo"]) willDo:^id(NSInvocation *invocation) {
 		NSError *error = [NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"max number image"}];
 		return [RACSignal error:error];
 	}];

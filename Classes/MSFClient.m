@@ -66,7 +66,6 @@ static NSDictionary *messages;
 @property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
 @property (nonatomic, strong, readwrite) MSFUser *user;
 @property (nonatomic, copy, readwrite) NSString *token;
-@property (nonatomic, copy, readwrite) NSString *session __deprecated_msg("Unused");
 
 @end
 
@@ -217,14 +216,13 @@ static NSDictionary *messages;
 	return client;
 }
 
-+ (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session {
++ (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token {
 	NSParameterAssert(user != nil);
 	NSParameterAssert(token != nil);
 	
 	MSFClient *client = [[self alloc] initWithServer:user.server];
 	client.user = user;
 	client.token = token;
-	client.session = session;
 	
 	return client;
 }
@@ -443,7 +441,6 @@ static NSDictionary *messages;
 			@strongify(self)
 			[self clearAuthorizationHeader];
 			self.token = nil;
-			self.session = nil;
 			self.user = nil;
 		}]
 		replay];

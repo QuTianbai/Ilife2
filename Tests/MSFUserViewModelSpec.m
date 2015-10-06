@@ -23,7 +23,7 @@ beforeEach(^{
   MSFUser *user = mock(MSFUser.class);
   stubProperty(user, objectID, @"xx");
   stubProperty(user, server, MSFServer.dotComServer);
-  MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"xxx" session:@""];
+  MSFClient *client = [MSFClient authenticatedClientWithUser:user token:@"xxx"];
 	
 	services = mockProtocol(@protocol(MSFViewModelServices));
 	[given([services httpClient]) willReturn:client];

@@ -68,7 +68,7 @@
 		[[[[[self.formsViewModel.services httpClient]
 			fetchElementsWithProduct:self.product amount:forms.principal term:forms.tenor]
 			map:^id(MSFElement *element) {
-				return [[MSFElementViewModel alloc] initWithElement:element services:self.formsViewModel.services];
+				return [[MSFElementViewModel alloc] initWithElement:element viewModel:self.cashViewModel];
 			}]
 			collect]
 			subscribeNext:^(id x) {
@@ -127,7 +127,6 @@
 		return [RACSignal return:attachments];
 	}];
 }
-
 
 #pragma mark - Private
 
