@@ -62,6 +62,8 @@
 		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
 			//self.circulateModel = x;
 			self.infoModel = x;
+		} error:^(NSError *error) {
+			NSLog(@"");
 		}];
 	}];
 	

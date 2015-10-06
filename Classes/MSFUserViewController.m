@@ -190,6 +190,7 @@
 - (IBAction)settings:(id)sender {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:NSStringFromClass(MSFSettingsViewController.class) bundle:nil];
 	UIViewController *settingsViewController = storyboard.instantiateInitialViewController;
+	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[(id <MSFReactiveView>)settingsViewController bindViewModel:self.viewModel.authorizeViewModel];
 	[self.navigationController pushViewController:settingsViewController animated:YES];
 }

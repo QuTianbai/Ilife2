@@ -17,7 +17,7 @@
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="xGv-JH-w4Z">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -26,7 +26,7 @@
                             <tableViewSection id="nq0-2D-v4I">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Cpk-fF-J1f" style="IBUITableViewCellStyleDefault" id="qfX-Lz-UTb">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="74" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qfX-Lz-UTb" id="ngT-rK-b1T">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -45,7 +45,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="a7T-5j-5ka" kind="push" id="0pd-6s-Hdy"/>
+                                            <segue destination="a7T-5j-5ka" kind="show" id="0pd-6s-Hdy"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -53,7 +53,7 @@
                             <tableViewSection id="X3G-yw-6qd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8c8-gx-T9n" style="IBUITableViewCellStyleDefault" id="nNs-4a-FM3">
-                                        <rect key="frame" x="0.0" y="65" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="129" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nNs-4a-FM3" id="Ar8-JT-U9Z">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -72,7 +72,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="duu-88-vGP" kind="push" id="2Pt-Tm-ADX"/>
+                                            <segue destination="duu-88-vGP" kind="show" id="2Pt-Tm-ADX"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -80,7 +80,7 @@
                             <tableViewSection id="4Wl-M5-U6h">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="uUt-Ep-sdn" style="IBUITableViewCellStyleDefault" id="NJJ-9a-PeG">
-                                        <rect key="frame" x="0.0" y="120" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="184" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NJJ-9a-PeG" id="oiZ-3d-7hN">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -99,11 +99,11 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="M2g-zC-k5B" kind="push" id="zxx-bi-zJ7"/>
+                                            <segue destination="M2g-zC-k5B" kind="show" id="zxx-bi-zJ7"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="gVA-0Z-UfY" style="IBUITableViewCellStyleDefault" id="de2-DF-VOG">
-                                        <rect key="frame" x="0.0" y="164" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="228" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="de2-DF-VOG" id="4uo-ZU-HXL">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -122,11 +122,11 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="Iyn-V7-U7b" kind="push" id="213-RC-nZx"/>
+                                            <segue destination="Iyn-V7-U7b" kind="show" id="213-RC-nZx"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="yqm-kZ-sJV" style="IBUITableViewCellStyleDefault" id="afs-r5-Xxc">
-                                        <rect key="frame" x="0.0" y="208" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="272" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="afs-r5-Xxc" id="hRD-2p-sgP">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -145,7 +145,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <segue destination="Lc2-Kr-HqI" kind="push" id="ICT-X9-eRb"/>
+                                            <segue destination="Lc2-Kr-HqI" kind="show" id="ICT-X9-eRb"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -153,7 +153,7 @@
                             <tableViewSection id="VIX-NO-kFG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fRA-ZG-gYy">
-                                        <rect key="frame" x="0.0" y="263" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="327" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fRA-ZG-gYy" id="29P-L4-oAk">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -186,11 +186,30 @@
                             <outlet property="delegate" destination="utM-co-EPK" id="DdX-3T-gz5"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="ewd-wt-odl"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmj-f2-yE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-431" y="-880"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rfi-z9-V6z">
+            <objects>
+                <navigationController storyboardIdentifier="nav" id="2Rw-6Q-31f" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="AMB-YZ-GvX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="utM-co-EPK" kind="relationship" relationship="rootViewController" id="jcC-cS-DQE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KGH-vx-1iV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-879" y="-855"/>
         </scene>
         <!--设置交易密码-->
         <scene sceneID="A1k-dA-ums">
@@ -202,7 +221,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="5OS-9S-AdK">
-                            <rect key="frame" x="0.0" y="132" width="320" height="128"/>
+                            <rect key="frame" x="0.0" y="196" width="320" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqo-4o-sVa" customClass="MSFEdgeButton">
@@ -256,7 +275,7 @@
                             <tableViewSection id="Y24-IO-Gfs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lCa-ac-cdd" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lCa-ac-cdd" id="xtp-x4-Ugb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -287,7 +306,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="UDg-Jr-rfQ" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UDg-Jr-rfQ" id="pdn-6b-gDl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -318,7 +337,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eKs-kS-TfK" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eKs-kS-TfK" id="ESU-hQ-RIB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -420,7 +439,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="aQS-vc-mVa">
-                            <rect key="frame" x="0.0" y="308" width="320" height="128"/>
+                            <rect key="frame" x="0.0" y="372" width="320" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XX8-qz-JsU" customClass="MSFEdgeButton">
@@ -534,7 +553,7 @@
                             <tableViewSection id="QNl-Td-7sd">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="oCq-lJ-m5l">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oCq-lJ-m5l" id="MQv-az-JLP">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -591,7 +610,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="6BI-QY-7tz">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6BI-QY-7tz" id="MPM-md-O9I">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -678,7 +697,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Rnu-Xe-6iU">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rnu-Xe-6iU" id="Ide-yw-aii">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -765,7 +784,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Nsn-dZ-acn">
-                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nsn-dZ-acn" id="LpZ-uU-ea2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -881,7 +900,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1pd-u8-OYL" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1pd-u8-OYL" id="MD1-en-dOf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -912,7 +931,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="pc6-uJ-cVa" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="220" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="284" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pc6-uJ-cVa" id="w5w-om-Lad">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -943,7 +962,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lJv-46-6vT" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="264" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="328" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lJv-46-6vT" id="BuG-UF-pt2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -1054,7 +1073,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="S66-tg-7Sa">
-                            <rect key="frame" x="0.0" y="176" width="320" height="128"/>
+                            <rect key="frame" x="0.0" y="240" width="320" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvM-2Y-a0x" customClass="MSFEdgeButton">
@@ -1108,7 +1127,7 @@
                             <tableViewSection id="N2p-kI-LPk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="58v-os-7XC" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="58v-os-7XC" id="OQ2-Tv-yXw">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -1139,7 +1158,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ulh-uJ-CWf" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ulh-uJ-CWf" id="uxa-cc-4Z9">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -1170,7 +1189,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="quZ-ql-S2t" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="quZ-ql-S2t" id="EmI-2j-4jU">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -1201,7 +1220,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="TOT-UI-i37" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TOT-UI-i37" id="Jph-6W-iEB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -1306,13 +1325,13 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="ld4-9s-AXo">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="wmd-Y5-24X">
-                            <rect key="frame" x="0.0" y="108" width="320" height="100"/>
+                            <rect key="frame" x="0.0" y="172" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ2-tq-fjt" customClass="MSFEdgeButton">
@@ -1344,7 +1363,7 @@
                             <tableViewSection id="6Io-5q-AoC">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4qA-VY-hBB" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="84" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4qA-VY-hBB" id="bdz-Uy-1BT">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1390,7 +1409,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jtB-Hh-2Zb" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="128" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jtB-Hh-2Zb" id="ipH-NT-ReX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1460,14 +1479,14 @@
         <!--修改绑定手机号-->
         <scene sceneID="ZgP-ve-CwT">
             <objects>
-                <tableViewController storyboardIdentifier="MSFSignInPasswordViewController" id="duu-88-vGP" customClass="MSFSignInPasswordViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFSignInPhoneViewController" id="duu-88-vGP" customClass="MSFSignInPhoneViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rxV-Jo-94f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="zuK-Zl-t24">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更换手机号后, 下次登录可使用新手机号登录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4F-x3-JFV">
@@ -1488,7 +1507,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="DTf-vM-2t4">
-                            <rect key="frame" x="0.0" y="226" width="320" height="100"/>
+                            <rect key="frame" x="0.0" y="414" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-m2-Afl" customClass="MSFBlurButton">
@@ -1519,16 +1538,82 @@
                             </constraints>
                         </view>
                         <sections>
+                            <tableViewSection id="Dww-wd-mBr">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fjW-uZ-Fg4" customClass="MSFGroupTableViewCell">
+                                        <rect key="frame" x="0.0" y="104" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fjW-uZ-Fg4" id="Ohy-da-OvN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写姓名" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ccv-zn-3kW">
+                                                    <rect key="frame" x="52" y="8" width="245" height="27.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="GfW-LL-9A9">
+                                                    <rect key="frame" x="20" y="13.5" width="22" height="17"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="GfW-LL-9A9" firstAttribute="leading" secondItem="Ohy-da-OvN" secondAttribute="leading" constant="20" id="9kh-ld-W1K"/>
+                                                <constraint firstItem="ccv-zn-3kW" firstAttribute="centerY" secondItem="Ohy-da-OvN" secondAttribute="centerY" id="Cev-G9-xnz"/>
+                                                <constraint firstItem="ccv-zn-3kW" firstAttribute="top" secondItem="Ohy-da-OvN" secondAttribute="topMargin" id="DS2-SN-cnk"/>
+                                                <constraint firstItem="ccv-zn-3kW" firstAttribute="leading" secondItem="GfW-LL-9A9" secondAttribute="trailing" constant="10" id="Frw-Pr-EzH"/>
+                                                <constraint firstItem="GfW-LL-9A9" firstAttribute="centerY" secondItem="Ohy-da-OvN" secondAttribute="centerY" id="QkI-y6-43l"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ccv-zn-3kW" secondAttribute="bottom" id="cfg-Pa-6EY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ccv-zn-3kW" secondAttribute="trailing" constant="15" id="nej-DA-Vpk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NqP-fG-nou" customClass="MSFGroupTableViewCell">
+                                        <rect key="frame" x="0.0" y="148" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NqP-fG-nou" id="7If-rH-7F9">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写身份证号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O1E-qN-yKS">
+                                                    <rect key="frame" x="52" y="8" width="245" height="27.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="join"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-id.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nfj-p0-9vP">
+                                                    <rect key="frame" x="20" y="13.5" width="22" height="17"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="O1E-qN-yKS" secondAttribute="bottom" id="Be6-vb-lFO"/>
+                                                <constraint firstItem="O1E-qN-yKS" firstAttribute="top" secondItem="7If-rH-7F9" secondAttribute="topMargin" id="BjG-jn-75N"/>
+                                                <constraint firstItem="Nfj-p0-9vP" firstAttribute="centerY" secondItem="7If-rH-7F9" secondAttribute="centerY" id="NF6-hV-duD"/>
+                                                <constraint firstItem="O1E-qN-yKS" firstAttribute="leading" secondItem="Nfj-p0-9vP" secondAttribute="trailing" constant="10" id="P15-Tz-0Xo"/>
+                                                <constraint firstItem="O1E-qN-yKS" firstAttribute="centerY" secondItem="7If-rH-7F9" secondAttribute="centerY" id="PBF-2L-sOQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="O1E-qN-yKS" secondAttribute="trailing" constant="15" id="lB0-xO-mjZ"/>
+                                                <constraint firstItem="Nfj-p0-9vP" firstAttribute="leading" secondItem="7If-rH-7F9" secondAttribute="leading" constant="20" id="zcP-Rn-S46"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="sfp-4P-P0C">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZFD-hB-0D6" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="40" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="228" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFD-hB-0D6" id="yVR-6t-i9j">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写完整的旧手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Azi-Rw-Kgs">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写旧手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Azi-Rw-Kgs">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -1553,7 +1638,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BRs-q5-jne" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="84" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="272" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BRs-q5-jne" id="lPl-4w-v3F">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1563,7 +1648,7 @@
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="S9q-lu-UIZ">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
@@ -1588,7 +1673,7 @@
                             <tableViewSection id="pqW-3R-KkK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ury-eV-COP" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="164" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="352" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ury-eV-COP" id="QCu-jT-a5y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1670,8 +1755,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="captcha" destination="QrV-70-JJD" id="aAO-Lr-fYU"/>
+                        <outlet property="citizenID" destination="O1E-qN-yKS" id="ZIo-1s-hUC"/>
                         <outlet property="commitButton" destination="oNh-m2-Afl" id="Nlx-Ry-waV"/>
                         <outlet property="counterLabel" destination="3nG-7x-YZN" id="Hla-NC-LxR"/>
+                        <outlet property="name" destination="ccv-zn-3kW" id="oep-Ze-KPR"/>
                         <outlet property="sendCaptchaButton" destination="wcV-jV-nSm" id="gNR-Xe-XiL"/>
                         <outlet property="sendCaptchaView" destination="v45-V5-ePX" id="Fva-MD-QO2"/>
                         <outlet property="updatingField" destination="vC0-48-Q91" id="0bB-nL-dCy"/>
@@ -1687,6 +1774,8 @@
         <image name="bg-send-captcha.png" width="33" height="14"/>
         <image name="btn-showpwd-normal.png" width="22" height="14"/>
         <image name="btn-showpwd-selected.png" width="22" height="14"/>
+        <image name="icon-id.png" width="22" height="17"/>
+        <image name="icon-name.png" width="22" height="17"/>
         <image name="icon-password.png" width="22" height="17"/>
         <image name="icon-phone.png" width="22" height="17"/>
         <image name="icon-verify-code.png" width="22" height="17"/>

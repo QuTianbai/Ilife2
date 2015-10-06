@@ -14,7 +14,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "MSFInputTradePasswordViewController.h"
-#import "MSFInputTradePasswordView.h"
 #import "MSFUtils.h"
 
 
@@ -123,7 +122,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
 		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
-			MSFInputTradePasswordViewController * inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+			MSFInputTradePasswordViewController *inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 			[[UIApplication sharedApplication].keyWindow addSubview:inputTradePassword.view];
 		} else {
 			self.inputTradePassword.type = 2;
@@ -178,20 +177,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		subscribeNext:^(RACSignal *signal) {
 			@strongify(self)
 			[self.view endEditing:YES];
-//			[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-//			[signal subscribeNext:^(id x) {
-				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
-				[self.navigationController popViewControllerAnimated:YES];
-			//}];
-//			[authSignal subscribeNext:^(id x) {
-//				
-//				[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
+			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
+			[self.navigationController popViewControllerAnimated:YES];
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 	}
-	
 }
-
 
 @end

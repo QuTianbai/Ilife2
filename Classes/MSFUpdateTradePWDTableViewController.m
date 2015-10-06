@@ -42,13 +42,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	self.title = @"修改交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_viewModel = appdelegate.authorizeVewModel;
-	
+	[[self.oldpwdTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 textField.text = [textField.text substringToIndex:6];
+		 }
+	 }];
 	RAC(self, viewModel.oldTradePWD) = self.oldpwdTF.rac_textSignal;
+	[[self.pwdTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 textField.text = [textField.text substringToIndex:6];
+		 }
+	 }];
 	RAC(self, viewModel.TradePassword) = self.pwdTF.rac_textSignal;
+	
+	[[self.codeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 4) {
+			textField.text = [textField.text substringToIndex:4];
+		}
+	}];
 	RAC(self, viewModel.smsCode) = self.codeTF.rac_textSignal;
+	
+	[[self.surepwdTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 textField.text = [textField.text substringToIndex:6];
+		 }
+	 }];
 	RAC(self, viewModel.againTradePWD) = self.surepwdTF.rac_textSignal;
 	
 	self.codeBT.rac_command = self.viewModel.executeCaptchUpdateTradePwd;

@@ -12,6 +12,7 @@ typedef NS_ENUM(NSUInteger, MSFLoginType) {
 	MSFLoginSignUp,
 	MSFLoginSignIn,
 	MSFLoginIDSignIn,
+	MSFLoginAlterMobile,
 };
 
 extern NSString *const MSFAuthorizeCaptchaSignUp;
@@ -93,6 +94,9 @@ extern NSString *const MSFAuthorizeErrorDomain;
 @property (nonatomic, strong) RACCommand *executeCaprchForgetTradePwd;
 
 @property (nonatomic, strong) RACCommand *executeCaptchUpdateTradePwd;
+
+@property (nonatomic, strong) RACCommand *executeCaptchaAlterMobile;
+@property (nonatomic, strong) RACCommand *executeAlterMobile;
 
 // Request server find password
 @property (nonatomic, strong) RACCommand *executeFindPassword;

@@ -14,8 +14,8 @@
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFUtils.h"
 
+@interface MSFDrawCashTableViewController () <MSFInputTradePasswordDelegate>
 
-@interface MSFDrawCashTableViewController ()<MSFInputTradePasswordDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *showInfoLB;
 @property (weak, nonatomic) IBOutlet UILabel *warningLB;
 @property (weak, nonatomic) IBOutlet UIImageView *bankImg;

@@ -266,7 +266,7 @@ describe(@"without a user", ^{
 
 describe(@"authenticated", ^{
   beforeEach(^{
-    client = [MSFClient authenticatedClientWithUser:user token:@"" session:@""];
+    client = [MSFClient authenticatedClientWithUser:user token:@""];
     expect(client).notTo(beNil());
   });
   

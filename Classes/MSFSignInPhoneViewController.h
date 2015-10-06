@@ -7,6 +7,6 @@
 #import "MSFGroupTableViewController.h"
 #import "MSFReactiveView.h"
 
-@interface MSFSignInPasswordViewController : MSFGroupTableViewController <MSFReactiveView>
+@interface MSFSignInPhoneViewController : MSFGroupTableViewController <MSFReactiveView>
 
 @end

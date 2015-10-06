@@ -9,11 +9,20 @@
 
 #if DEBUG
 
+<<<<<<< HEAD
 //NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
 //NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080/msfinanceweb";
 
 NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
 NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
+=======
+NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
+NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
+
+
+//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
+//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080/msfinanceweb";
+>>>>>>> 24dd9295a8f46134f7b8d8fc83750296a8a2eff2
 
 #elif UAT
 

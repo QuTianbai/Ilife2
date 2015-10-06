@@ -64,4 +64,13 @@
 	return [self enqueueRequest:request resultClass:nil];
 }
 
+- (RACSignal *)fetchAlertMobileCaptchaWithPhone:(NSString *)phone {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+		@"codeType": @"MODIFY_MOBILE",
+		@"mobile": phone
+	}];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
 @end

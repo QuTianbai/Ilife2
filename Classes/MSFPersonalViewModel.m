@@ -212,7 +212,6 @@
 	}
 	return nil;
 }*/
-
 /*
 - (RACSignal *)commitValidSignal {
 	return [RACSignal
@@ -235,7 +234,6 @@
 			);
 		}];
 }
-
 - (BOOL)validAddress {
 	NSInteger length1 = self.model.currentTown.length > 0 ? 1: 0;
 	NSInteger length2 = self.model.currentCommunity.length > 0 ? 1: 0;

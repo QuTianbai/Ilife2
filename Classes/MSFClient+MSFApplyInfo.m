@@ -26,7 +26,7 @@
 	}];
 }
 
-- (id)filter:(id)obj class:(Class)class {
+- (id)msf_filter:(id)obj class:(Class)class {
 	if ([obj isKindOfClass:class]) {
 		return obj;
 	} else {
@@ -42,32 +42,31 @@
 }
 
 - (NSDictionary *)convertDictionary:(NSDictionary *)dic {
-	
-	NSArray *additionalList = [self filter:dic[@"additionalList"] class:NSArray.class];
+	NSArray *additionalList = [self msf_filter:dic[@"additionalList"] class:NSArray.class];
 	NSString *qq = @"";
 	NSString *tb = @"";
 	NSString *jd = @"";
 	for (NSDictionary *addition in additionalList) {
-		switch ([[self filter:addition[@"additionalType"] class:NSString.class] intValue]) {
+		switch ([[self msf_filter:addition[@"additionalType"] class:NSString.class] intValue]) {
 			case 0:
-				qq = [self filter:addition[@"additionalValue"] class:NSString.class];
+				qq = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 			case 1:
-				tb = [self filter:addition[@"additionalValue"] class:NSString.class];
+				tb = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 			case 2:
-				jd = [self filter:addition[@"additionalValue"] class:NSString.class];
+				jd = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 		}
 	}
 	
-	NSDictionary *basicInfo = [self filter:dic[@"baseInfo"]
+	NSDictionary *basicInfo = [self msf_filter:dic[@"baseInfo"]
 																	 class:NSDictionary.class];
-	NSDictionary *occupation = [self filter:dic[@"occupationInfo"]
+	NSDictionary *occupation = [self msf_filter:dic[@"occupationInfo"]
 																		class:NSDictionary.class];
 	
-	NSString *homeTelFull = [self filter:basicInfo[@"homePhone"] class:NSString.class];
-	NSString *empTelFull  = [self filter:occupation[@"empPhone"] class:NSString.class];
+	NSString *homeTelFull = [self msf_filter:basicInfo[@"homePhone"] class:NSString.class];
+	NSString *empTelFull  = [self msf_filter:occupation[@"empPhone"] class:NSString.class];
 	NSArray *homeTelComponents = [homeTelFull componentsSeparatedByString:@"-"];
 	NSArray *empTelComponents = [empTelFull componentsSeparatedByString:@"-"];
 	NSString *homeTelCode = @"";
@@ -87,37 +86,38 @@
 	
 	return @{@"homeCode" : homeTelCode,
 					 @"homeLine" : homeTel,
-					 @"email" : [self filter:basicInfo[@"email"] class:NSString.class],
-					 @"currentProvinceCode" : [self filter:basicInfo[@"abodeStateCode"] class:NSString.class],
-					 @"currentCityCode" : [self filter:basicInfo[@"abodeCityCode"] class:NSString.class],
-					 @"currentCountryCode" : [self filter:basicInfo[@"abodeZoneCode"] class:NSString.class],
-					 @"abodeDetail" : [self filter:basicInfo[@"abodeDetail"] class:NSString.class],
-					 @"houseType" : [self filter:basicInfo[@"houseCondition"] class:NSString.class],
-					 @"maritalStatus" : [self filter:basicInfo[@"maritalStatus"] class:NSString.class],
+					 @"email" : [self msf_filter:basicInfo[@"email"] class:NSString.class],
+					 @"currentProvinceCode" : [self msf_filter:basicInfo[@"abodeStateCode"] class:NSString.class],
+					 @"currentCityCode" : [self msf_filter:basicInfo[@"abodeCityCode"] class:NSString.class],
+					 @"currentCountryCode" : [self msf_filter:basicInfo[@"abodeZoneCode"] class:NSString.class],
+					 @"abodeDetail" : [self msf_filter:basicInfo[@"abodeDetail"] class:NSString.class],
+					 @"houseType" : [self msf_filter:basicInfo[@"houseCondition"] class:NSString.class],
+					 @"maritalStatus" : [self msf_filter:basicInfo[@"maritalStatus"] class:NSString.class],
 					 @"qq" : qq,
 					 @"taobao" : tb,
 					 @"jdAccount" : jd,
-					 @"socialStatus" : [self filter:occupation[@"socialIdentity"] class:NSString.class],
-					 @"education" : [self filter:occupation[@"qualification"] class:NSString.class],
-					 @"unitName" : [self filter:occupation[@"unitName"] class:NSString.class],
-					 @"empStandFrom" : [self filter:occupation[@"empStandFrom"] class:NSString.class],
-					 @"programLength" : [self filter:occupation[@"lengthOfSchooling"] class:NSString.class],
-					 @"workStartDate" : [self filter:occupation[@"workStartDate"] class:NSString.class],
-					 @"income" : [self filter:occupation[@"monthIncome"] class:NSString.class],
-					 @"otherIncome" : [self filter:occupation[@"otherIncome"] class:NSString.class],
-					 @"familyExpense" : [self filter:occupation[@"otherLoan"] class:NSString.class],
-					 @"department" : [self filter:occupation[@"empDepapment"] class:NSString.class],
-					 @"title" : [self filter:occupation[@"empPost"] class:NSString.class],
-					 @"industry" : [self filter:occupation[@"empType"] class:NSString.class],
-					 @"companyType" : [self filter:occupation[@"empStructure"] class:NSString.class],
-					 @"workProvinceCode" : [self filter:occupation[@"empProvinceCode"] class:NSString.class],
-					 @"workCityCode" : [self filter:occupation[@"empCityCode"] class:NSString.class],
-					 @"workCountryCode" : [self filter:occupation[@"empZoneCode"] class:NSString.class],
-					 @"empAdd" : [self filter:occupation[@"empAdd"] class:NSString.class],
+					 @"socialStatus" : [self msf_filter:occupation[@"socialIdentity"] class:NSString.class],
+					 @"education" : [self msf_filter:occupation[@"qualification"] class:NSString.class],
+					 @"unitName" : [self msf_filter:occupation[@"unitName"] class:NSString.class],
+					 @"empStandFrom" : [self msf_filter:occupation[@"empStandFrom"] class:NSString.class],
+					 @"programLength" : [self msf_filter:occupation[@"lengthOfSchooling"] class:NSString.class],
+					 @"workStartDate" : [self msf_filter:occupation[@"workStartDate"] class:NSString.class],
+					 @"income" : [self msf_filter:occupation[@"monthIncome"] class:NSString.class],
+					 @"otherIncome" : [self msf_filter:occupation[@"otherIncome"] class:NSString.class],
+					 @"familyExpense" : [self msf_filter:occupation[@"otherLoan"] class:NSString.class],
+					 @"department" : [self msf_filter:occupation[@"empDepapment"] class:NSString.class],
+					 @"title" : [self msf_filter:occupation[@"empPost"] class:NSString.class],
+					 @"industry" : [self msf_filter:occupation[@"empType"] class:NSString.class],
+					 @"companyType" : [self msf_filter:occupation[@"empStructure"] class:NSString.class],
+					 @"workProvinceCode" : [self msf_filter:occupation[@"empProvinceCode"] class:NSString.class],
+					 @"workCityCode" : [self msf_filter:occupation[@"empCityCode"] class:NSString.class],
+					 @"workCountryCode" : [self msf_filter:occupation[@"empZoneCode"] class:NSString.class],
+					 @"empAdd" : [self msf_filter:occupation[@"empAdd"] class:NSString.class],
 					 @"unitAreaCode" : empTelCode,
 					 @"unitTelephone" : empTel,
 					 @"unitExtensionTelephone" : empTelExtension,
-					 @"contrastList" : [self filter:dic[@"contrastList"] class:NSArray.class]};
+					 @"contrastList" : [self msf_filter:dic[@"contrastList"] class:NSArray.class]
+					 };
 }
 
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {

@@ -93,7 +93,6 @@ extern const NSInteger MSFClientErrorTooManyRequests;
 
 @property (nonatomic, strong, readonly) MSFUser *user;
 @property (nonatomic, copy, readonly) NSString *token;
-@property (nonatomic, copy, readonly) NSString *session;
 
 @property (nonatomic, readonly, getter = isAuthenticated) BOOL authenticated;
 
@@ -114,7 +113,7 @@ extern const NSInteger MSFClientErrorTooManyRequests;
  *
  *	@return Client
  */
-+ (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token session:(NSString *)session;
++ (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token;
 
 /**
  *	用户手机号登录
@@ -138,18 +137,6 @@ extern const NSInteger MSFClientErrorTooManyRequests;
  *  @return client with authenticated user, token
  */
 + (RACSignal *)signInAsUser:(MSFUser *)user username:(NSString *)username password:(NSString *)password citizenID:(NSString *)idcard;
-
-/**
- *	注册
- *
- *	@param user			Use `userWithName:phone:` to create
- *	@param password
- *	@param phone
- *	@param captcha	短信验证码
- *
- *	@return authenticated client, Has token and user
- */
-+ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha __deprecated_msg("Use `signUpAsUser: password:phone:captcha:realname:citizenID:citizenIDExpiredDate:");
 
 /**
  *  2.0 版本注册

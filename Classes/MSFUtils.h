@@ -56,9 +56,11 @@
 + (NSString *)isSetTradePassword;
 
 //是否支持循环现金贷
++ (void)setCircuteCash:(NSString *)isCircuteCash;
 + (NSString *)isCircuteCash;
 
 //产品群编码
++ (void)setProductCode:(NSString *)procd;
 + (NSString *)productCode;
 
 //用户基本信息完成情况

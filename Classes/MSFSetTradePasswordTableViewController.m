@@ -14,6 +14,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"
+#import "AppDelegate.h"
 
 @interface MSFSetTradePasswordTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *tradePasswordTF;
@@ -46,11 +47,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	self.title = @"设置交易密码";
+	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+	_viewModel = appdelegate.authorizeVewModel;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.automaticallyAdjustsScrollViewInsets = NO;
+	[[self.tradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 6) {
+			textField.text = [textField.text substringToIndex:6];
+		}
+	}];
 	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
+	[[self.checkCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 4) {
+			textField.text = [textField.text substringToIndex:4];
+		}
+	}];
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
+	[[self.sureTradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 6) {
+			textField.text = [textField.text substringToIndex:6];
+		}
+	}];
 	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
+	
 	
 	self.checkCodeBT.rac_command = self.viewModel.executeCapthaTradePwd;
 	
@@ -92,6 +115,11 @@
 	}];
 	
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 15;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

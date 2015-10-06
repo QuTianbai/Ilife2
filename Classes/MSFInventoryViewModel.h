@@ -37,5 +37,4 @@
 
 - (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel;
 
-
 @end

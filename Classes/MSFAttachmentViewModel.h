@@ -9,6 +9,7 @@
 
 @class RACCommand;
 @class MSFAttachment;
+@class MSFApplyCashVIewModel;
 
 @interface MSFAttachmentViewModel : RVMViewModel
 
@@ -65,6 +66,7 @@
 // services - 调用相机，以及上传用到的服务
 //
 // return 新的附件ViewModel
-- (instancetype)initWthAttachment:(MSFAttachment *)attachment services:(id <MSFViewModelServices>)services;
+- (instancetype)initWthAttachment:(MSFAttachment *)attachment services:(id <MSFViewModelServices>)services __deprecated_msg("Use `initWthAttachment:viewModel:");
+- (instancetype)initWthAttachment:(MSFAttachment *)attachment viewModel:(MSFApplyCashVIewModel *)viewModel;
 
 @end

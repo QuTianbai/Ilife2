@@ -9,6 +9,8 @@
 #import "MSFUser.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import <NSString-Hashes/NSString+Hashes.h>
+#import "MSFResponse.h"
+#import "MSFUtils.h"
 
 @implementation MSFClient (Users)
 
@@ -84,6 +86,27 @@
 	parameters[@"detail_address"] = address;
 	
 	return [[self enqueueUserRequestWithMethod:@"POST" relativePath:@"/bind_bank_card" parameters:parameters resultClass:MSFUser.class] msf_parsedResults];
+}
+
+- (RACSignal *)associateSignInMobile:(NSString *)mobile usingMobile:(NSString *)usingMobile captcha:(NSString *)captcha citizenID:(NSString *)citizenID name:(NSString *)name {
+	NSDictionary *parameters = @{
+		@"newMobile": mobile,
+		@"oldMobile": usingMobile,
+		@"smsCode": captcha,
+		@"idCard": citizenID,
+		@"name": name,
+		@"uniqueId": self.user.objectID,
+	};
+	
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/updateMobile" parameters:parameters];
+	return [[self enqueueRequest:request resultClass:nil]
+		map:^id(MSFResponse *response) {
+			NSString *token = response.parsedResult[@"token"];
+			MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:response.parsedResult error:nil];
+			MSFClient *client = [MSFClient authenticatedClientWithUser:user token:token];
+			[MSFUtils setHttpClient:client];
+			return client;
+		}];
 }
 
 - (RACSignal *)checkUserHasCredit {

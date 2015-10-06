@@ -72,6 +72,7 @@
  */
 - (RACSignal *)associateUserPasscard:(NSString *)card bank:(NSString *)bank country:(NSString *)country province:(NSString *)province city:(NSString *)city address:(NSString *)address;
 
+- (RACSignal *)associateSignInMobile:(NSString *)mobile usingMobile:(NSString *)usingMobile captcha:(NSString *)captcha citizenID:(NSString *)citizenID name:(NSString *)name;
 
 /**
  *	检查用户是否存在贷款
