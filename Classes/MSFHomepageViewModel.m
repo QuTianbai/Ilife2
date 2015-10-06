@@ -85,8 +85,8 @@
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
-		//self.viewModel.active = NO;
-		//self.viewModel.active = YES;
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
 	}];
 	
 	return self;
@@ -110,11 +110,11 @@
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if (self.services.httpClient.user.type.integerValue == 0) {
-		return @"MSFHomePageContentCollectionViewCell";
-	} else {
+//	if (self.services.httpClient.user.type.integerValue == 0) {
+//		return @"MSFHomePageContentCollectionViewCell";
+//	} else {
 		return @"MSFCirculateViewCell";
-	}
+	//}
 }
 
 @end

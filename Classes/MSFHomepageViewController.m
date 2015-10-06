@@ -81,16 +81,15 @@ UICollectionViewDelegateFlowLayout>
 				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	self.viewModel.active = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	self.viewModel.active = NO;
+	
+	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
+		@strongify(self)
+		self.viewModel.active = YES;
+	}];
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		@strongify(self)
+		self.viewModel.active = NO;
+	}];
 }
 
 #pragma mark - UICollectionViewDataSource

@@ -15,6 +15,7 @@
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
+static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUTO_USERNAME";
 
 @interface MSFSignInViewController ()
 
@@ -45,14 +46,14 @@ static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUT
 	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
-	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
-		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey];
-		self.password.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingPasswordEnvironmentKey];
-	}
-	
 	// 登录用户名/密码
 	self.username.text = MSFUtils.phone;
 	self.viewModel.username = MSFUtils.phone;
+	
+	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
+		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingUsernameEnvironmentKey];
+		self.password.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingPasswordEnvironmentKey];
+	}
 	
 	@weakify(self)
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {

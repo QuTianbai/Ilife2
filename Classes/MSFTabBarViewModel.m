@@ -64,9 +64,15 @@
 	}];
 	[self.authorizeViewModel.executeSignOut.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		[signal subscribeNext:^(id x) {
+		[signal subscribeCompleted:^{
 			self.formsViewModel.active = NO;
-			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
+			[(RACSubject *)self.authorizationUpdatedSignal sendNext:self.services.httpClient];
+		}];
+	}];
+	[self.authorizeViewModel.executeUpdateSignInPassword.executionSignals subscribeNext:^(RACSignal *signal){
+		@strongify(self)
+		[signal subscribeCompleted:^{
+			[self.authorizeViewModel.executeSignOut execute:nil];
 		}];
 	}];
 	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]

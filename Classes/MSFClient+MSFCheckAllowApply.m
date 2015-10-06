@@ -14,9 +14,9 @@
 
 - (RACSignal *)fetchCheckAllowApply {
 	
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"allow" ofType:@"json"]]];
+	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"allow" ofType:@"json"]]];
 	
-	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/allow" parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/allow" parameters:nil];
 	
 	return [[self enqueueRequest:request resultClass:MSFCheckAllowApply.class] msf_parsedResults];
 }

@@ -11,13 +11,14 @@
 #import "MSFUserViewModel.h"
 #import "MSFUtils.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFAuthorizeViewModel.h"
 
 @interface MSFEditPasswordViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *passoword1;
 @property (nonatomic, weak) IBOutlet UITextField *passoword2;
 @property (nonatomic, weak) IBOutlet UIButton *button;
-@property (nonatomic, weak) MSFUserViewModel *viewModel;
+@property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
 @property (nonatomic, weak) IBOutlet UIButton *password1Button;
 @property (nonatomic, weak) IBOutlet UIButton *password2Button;
@@ -45,29 +46,28 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"修改密码";
-	RAC(self.viewModel, usedPassword) = [self.passoword1.rac_textSignal map:^id(NSString *value) {
+	RAC(self, viewModel.usingSignInPasssword) = [self.passoword1.rac_textSignal map:^id(NSString *value) {
 		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
 		self.passoword1.text = tempStr;
 		return tempStr;
 	}];
-	RAC(self.viewModel, updatePassword) = [self.passoword2.rac_textSignal map:^id(NSString *value) {
+	RAC(self, viewModel.updatingSignInPasssword) = [self.passoword2.rac_textSignal map:^id(NSString *value) {
 		NSString *tempStr = value.length > 16 ? [value substringToIndex:16] : value;
 		self.passoword2.text = tempStr;
 		return tempStr;
 	}];
-	self.button.rac_command = self.viewModel.executeUpdatePassword;
+	self.button.rac_command = self.viewModel.executeUpdateSignInPassword;
 	
 	@weakify(self)
-	[self.viewModel.executeUpdatePassword.executionSignals subscribeNext:^(RACSignal *signal) {
+	[self.viewModel.executeUpdateSignInPassword.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"密码更新成功"];
-			[self.navigationController popViewControllerAnimated:YES];
+		[signal subscribeCompleted:^{
+			[SVProgressHUD showSuccessWithStatus:@"密码更新成功, 请重新登录。"];
 		}];
 	}];
-	[self.viewModel.executeUpdatePassword.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeUpdateSignInPassword.errors subscribeNext:^(NSError *error) {
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -75,7 +75,7 @@
 	
 	[self.passoword2.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[self.viewModel.executeUpdatePassword execute:nil];
+		[self.viewModel.executeUpdateSignInPassword execute:nil];
 	}];
 	
 	self.passoword1.clearButtonMode = UITextFieldViewModeNever;

@@ -39,9 +39,9 @@
 }
 
 - (RACSignal *)updateSignInPassword:(NSString *)oldpassword password:(NSString *)newpassword {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"password/updateUserPassword" parameters: @{
-		@"password": oldpassword.sha256,
-		@"new_password": newpassword.sha256,
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"password/updatePassword" parameters: @{
+		@"oldPassword": oldpassword.sha256,
+		@"newPassword": newpassword.sha256,
 		@"uniqueId": self.user.objectID
 	}];
 	

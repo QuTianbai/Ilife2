@@ -20,5 +20,6 @@
 
 @property (nonatomic, copy, readonly) NSString *total_installments;//总期数
 @property (nonatomic, assign, readonly) NSNumber *status;//0 1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
+@property (nonatomic, copy ,readonly) NSString *statusString;//2.0版本状态码
 
 @end
