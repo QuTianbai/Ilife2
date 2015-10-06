@@ -24,7 +24,7 @@ it(@"should has contractNum contractStatus repaymentTime repaymentTotalAmount", 
   expect(repayMentSchedules.contractNum).to(equal(@"1dafds782nj8"));
   expect(repayMentSchedules.contractStatus).to(equal(@"1dafds782nj9"));
   expect(repayMentSchedules.repaymentTime).to(equal(@"2015-05-03T15:38:45Z"));
-  expect(@(repayMentSchedules.repaymentTotalAmount)).to(equal(@0.99));
+  expect(repayMentSchedules.repaymentTotalAmount).to(equal(@"0.99"));
 });
 
 QuickSpecEnd

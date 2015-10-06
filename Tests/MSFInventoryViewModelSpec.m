@@ -20,6 +20,7 @@
 #import "MSFInventory.h"
 #import "MSFClient+MSFApplyCash.h"
 #import "MSFApplicationResponse.h"
+#import "MSFApplyCashVIewModel.h"
 
 QuickSpecBegin(MSFInventoryViewModelSpec)
 
@@ -28,6 +29,7 @@ __block id <MSFViewModelServices> services;
 __block MSFClient *client;
 __block MSFFormsViewModel *formsViewModel;
 __block MSFApplicationForms *form;
+__block MSFApplyCashVIewModel *cashViewModel;
 
 beforeEach(^{
 	client = mock(MSFClient.class);
@@ -42,7 +44,11 @@ beforeEach(^{
 	stubProperty(formsViewModel, model, form);
 	[given([formsViewModel services]) willReturn:services];
 	
-	viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:formsViewModel];
+	cashViewModel = mock([MSFApplyCashVIewModel class]);
+	stubProperty(cashViewModel, services, services);
+	stubProperty(cashViewModel, formViewModel, formsViewModel);
+	
+	viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:cashViewModel];
 	expect(viewModel).notTo(beNil());
 });
 
@@ -155,7 +161,7 @@ it(@"should update inventory when required elements have attachment", ^{
 	MSFElement *mockElement = mock([MSFElement class]);
 	stubProperty(mockElement, required, @YES);
 	stubProperty(mockElement, type, @"foo");
-	stubProperty(mockElement, plain, @"bar");
+	stubProperty(mockElement, title, @"bar");
 	stubProperty(mockElement, name, @"bar");
 	[given([client fetchElementsWithProduct:viewModel.product amount:viewModel.formsViewModel.model.tenor term:viewModel.formsViewModel.model.tenor]) willReturn:[RACSignal return:mockElement]];
 	

@@ -28,15 +28,6 @@
 	return [RACSignal return:nil];
 }
 
-- (RACSignal *)eductionalSystmeSignal {
-	MSFSelectKeyValues *model = [[MSFSelectKeyValues alloc] initWithDictionary:@{
-		@"code": @"1",
-		@"text": @"bar",
-	} error:nil];
-	//self.eductionalSystme = model;
-	return [RACSignal return:nil];
-}
-
 - (RACSignal *)workingLengthSignal {
 	MSFSelectKeyValues *model = [[MSFSelectKeyValues alloc] initWithDictionary:@{
 		@"code": @"1",

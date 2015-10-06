@@ -11,6 +11,7 @@
 #import "MSFClient+Attachment.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "UIImage+Resize.h"
+#import "MSFApplyCashVIewModel.h"
 
 @interface MSFAttachmentViewModel ()
 
@@ -24,12 +25,12 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWthAttachment:(MSFAttachment *)attachment services:(id <MSFViewModelServices>)services {
+- (instancetype)initWthAttachment:(MSFAttachment *)attachment viewModel:(MSFApplyCashVIewModel *)viewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_services = services;
+	_services = viewModel.services;
 	_attachment = attachment;
 	_removeEnabled = !attachment.isPlaceholder;
 	RACChannelTo(self, thumbURL) = RACChannelTo(self, attachment.thumbURL);
@@ -40,7 +41,7 @@
 	}];
 	_takePhotoCommand.allowsConcurrentExecution = YES;
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
-		return [[self.services.httpClient uploadAttachment:self.attachment] doNext:^(id x) {
+		return [[self.services.httpClient uploadAttachment:self.attachment applicationNumber:viewModel.appNO] doNext:^(id x) {
 			[self.attachment mergeValueForKey:@"name" fromModel:x];
 			[self.attachment mergeValueForKey:@"contentName" fromModel:x];
 			[self.attachment mergeValueForKey:@"contentType" fromModel:x];
@@ -62,6 +63,17 @@
 		return [RACSignal empty];
 	}];
   
+  return self;
+}
+
+- (instancetype)initWthAttachment:(MSFAttachment *)attachment services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_services = services;
+	_attachment = attachment;
+	
   return self;
 }
 
