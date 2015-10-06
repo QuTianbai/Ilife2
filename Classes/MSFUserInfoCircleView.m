@@ -180,6 +180,7 @@
 @property (nonatomic, strong) MSFUserInfoTitleView *homeTitle;
 @property (nonatomic, strong) MSFUserInfoTitleView *jobTitle;
 
+@property (nonatomic, strong) NSString *statusString;
 @property (nonatomic, strong) NSArray *statusArray;
 @property (nonatomic, assign) NSInteger clickIndex;
 
@@ -224,6 +225,7 @@
 	_margin = 3.0f;
 	_centralRate = 0.4f;
 	_degree = 0.33f;
+	_statusString = @"000";
 	
 	@weakify(self)
 	_clickCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -292,7 +294,6 @@
 		make.height.equalTo(@50);
 	}];
 	
-	
 	[self setCompeltionStatus:@"000"];
 }
 
@@ -345,13 +346,14 @@
 #pragma mark - Layout
 
 - (void)setCompeltionStatus:(NSString *)status {
-	if (status.length != 3) {
+	if (status.length != 3 || [_statusString isEqualToString:status]) {
 		return;
 	}
+	_statusString = status;
 	
 	BOOL b0 = [status substringWithRange:NSMakeRange(0, 1)].integerValue == 1;
-	BOOL b1 = [status substringWithRange:NSMakeRange(1, 1)].integerValue == 1;
-	BOOL b2 = [status substringWithRange:NSMakeRange(2, 1)].integerValue == 1;
+	BOOL b1 = [status substringWithRange:NSMakeRange(2, 1)].integerValue == 1;
+	BOOL b2 = [status substringWithRange:NSMakeRange(1, 1)].integerValue == 1;
 	_statusArray = @[@(b0), @(b1), @(b2)];
 	
 	NSInteger completion = 0;
@@ -368,7 +370,7 @@
 	if (completion == 3) {
 		_infoView.percent = @"100%";
 	} else {
-		_infoView.percent = [NSString stringWithFormat:@"%ld%%", completion * 33];
+		_infoView.percent = [NSString stringWithFormat:@"%ld%%", (long)completion * 33];
 	}
 	
 	_basicTitle.highlighted = b0;

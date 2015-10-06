@@ -58,16 +58,15 @@
 		}
 		return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
 			if (value.processing) {
-				
+				/*
 				MSFApplyCashInfo *data = [[MSFApplyCashInfo alloc] init];
 				data.applyTime = @"2015-08-23";
 				data.appLmt = @"3000";
 				data.loanTerm = @"3";
 				data.status = @"V";
 				data.appNo = @"7";
-				
 				value.data = data;
-				
+				*/
 				if (value.data) {
 					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
 					return [RACSignal return:@[viewModel]];

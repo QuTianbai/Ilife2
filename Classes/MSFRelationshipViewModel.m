@@ -295,7 +295,7 @@
 	if (error) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFRelationShipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: error}]];
 	}
-	return [self.formsViewModel submitUserInfo];
+	return [self.formsViewModel submitUserInfoType:3];
 	//return [self.formsViewModel submitSignalWithPage:4];
 }
 

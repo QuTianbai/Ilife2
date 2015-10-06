@@ -195,13 +195,15 @@
 	return nil;
 }
 
-- (RACSignal *)submitUserInfo:(MSFApplicationForms *)model {
+- (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type {
 	NSMutableDictionary *uploadDic = [NSMutableDictionary dictionaryWithDictionary:[self convertToSubmit:model]];
-	[uploadDic setObject:self.user.objectID forKey:@"uniqueId"];
+	[uploadDic setObject:self.user.uniqueId forKey:@"uniqueId"];
+	[uploadDic setObject:@(type) forKey:@"infoType"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];
-	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
-		NSLog(@"%@", value);
-		return value;
+	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
+		NSLog(@"%@", value.parsedResult);
+		self.user.complateCustInfo = value.parsedResult[@"complateCustInfo"];
+		return value.parsedResult[@"complateCustInfo"];
 	}];
 }
 

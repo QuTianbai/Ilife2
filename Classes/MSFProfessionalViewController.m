@@ -299,11 +299,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"relationship" bundle:nil];
-			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-			[vc bindViewModel:viewModel];
-			[self.navigationController pushViewController:vc animated:YES];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
