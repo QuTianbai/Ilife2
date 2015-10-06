@@ -1479,7 +1479,7 @@
         <!--修改绑定手机号-->
         <scene sceneID="ZgP-ve-CwT">
             <objects>
-                <tableViewController storyboardIdentifier="MSFSignInPasswordViewController" id="duu-88-vGP" customClass="MSFSignInPasswordViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFSignInPhoneViewController" id="duu-88-vGP" customClass="MSFSignInPhoneViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rxV-Jo-94f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1507,7 +1507,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="DTf-vM-2t4">
-                            <rect key="frame" x="0.0" y="290" width="320" height="100"/>
+                            <rect key="frame" x="0.0" y="414" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-m2-Afl" customClass="MSFBlurButton">
@@ -1538,16 +1538,82 @@
                             </constraints>
                         </view>
                         <sections>
+                            <tableViewSection id="Dww-wd-mBr">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fjW-uZ-Fg4" customClass="MSFGroupTableViewCell">
+                                        <rect key="frame" x="0.0" y="104" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fjW-uZ-Fg4" id="Ohy-da-OvN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写姓名" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ccv-zn-3kW">
+                                                    <rect key="frame" x="52" y="8" width="245" height="27.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-name.png" translatesAutoresizingMaskIntoConstraints="NO" id="GfW-LL-9A9">
+                                                    <rect key="frame" x="20" y="13.5" width="22" height="17"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="GfW-LL-9A9" firstAttribute="leading" secondItem="Ohy-da-OvN" secondAttribute="leading" constant="20" id="9kh-ld-W1K"/>
+                                                <constraint firstItem="ccv-zn-3kW" firstAttribute="centerY" secondItem="Ohy-da-OvN" secondAttribute="centerY" id="Cev-G9-xnz"/>
+                                                <constraint firstItem="ccv-zn-3kW" firstAttribute="top" secondItem="Ohy-da-OvN" secondAttribute="topMargin" id="DS2-SN-cnk"/>
+                                                <constraint firstItem="ccv-zn-3kW" firstAttribute="leading" secondItem="GfW-LL-9A9" secondAttribute="trailing" constant="10" id="Frw-Pr-EzH"/>
+                                                <constraint firstItem="GfW-LL-9A9" firstAttribute="centerY" secondItem="Ohy-da-OvN" secondAttribute="centerY" id="QkI-y6-43l"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ccv-zn-3kW" secondAttribute="bottom" id="cfg-Pa-6EY"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ccv-zn-3kW" secondAttribute="trailing" constant="15" id="nej-DA-Vpk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NqP-fG-nou" customClass="MSFGroupTableViewCell">
+                                        <rect key="frame" x="0.0" y="148" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NqP-fG-nou" id="7If-rH-7F9">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写身份证号" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="O1E-qN-yKS">
+                                                    <rect key="frame" x="52" y="8" width="245" height="27.5"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" returnKeyType="join"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-id.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nfj-p0-9vP">
+                                                    <rect key="frame" x="20" y="13.5" width="22" height="17"/>
+                                                    <animations/>
+                                                </imageView>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="O1E-qN-yKS" secondAttribute="bottom" id="Be6-vb-lFO"/>
+                                                <constraint firstItem="O1E-qN-yKS" firstAttribute="top" secondItem="7If-rH-7F9" secondAttribute="topMargin" id="BjG-jn-75N"/>
+                                                <constraint firstItem="Nfj-p0-9vP" firstAttribute="centerY" secondItem="7If-rH-7F9" secondAttribute="centerY" id="NF6-hV-duD"/>
+                                                <constraint firstItem="O1E-qN-yKS" firstAttribute="leading" secondItem="Nfj-p0-9vP" secondAttribute="trailing" constant="10" id="P15-Tz-0Xo"/>
+                                                <constraint firstItem="O1E-qN-yKS" firstAttribute="centerY" secondItem="7If-rH-7F9" secondAttribute="centerY" id="PBF-2L-sOQ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="O1E-qN-yKS" secondAttribute="trailing" constant="15" id="lB0-xO-mjZ"/>
+                                                <constraint firstItem="Nfj-p0-9vP" firstAttribute="leading" secondItem="7If-rH-7F9" secondAttribute="leading" constant="20" id="zcP-Rn-S46"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="sfp-4P-P0C">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZFD-hB-0D6" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="104" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="228" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFD-hB-0D6" id="yVR-6t-i9j">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写完整的旧手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Azi-Rw-Kgs">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写旧手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Azi-Rw-Kgs">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -1572,7 +1638,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BRs-q5-jne" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="148" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="272" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BRs-q5-jne" id="lPl-4w-v3F">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1582,7 +1648,7 @@
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join" secureTextEntry="YES"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="S9q-lu-UIZ">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
@@ -1607,7 +1673,7 @@
                             <tableViewSection id="pqW-3R-KkK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ury-eV-COP" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="228" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="352" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ury-eV-COP" id="QCu-jT-a5y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1689,8 +1755,10 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="captcha" destination="QrV-70-JJD" id="aAO-Lr-fYU"/>
+                        <outlet property="citizenID" destination="O1E-qN-yKS" id="ZIo-1s-hUC"/>
                         <outlet property="commitButton" destination="oNh-m2-Afl" id="Nlx-Ry-waV"/>
                         <outlet property="counterLabel" destination="3nG-7x-YZN" id="Hla-NC-LxR"/>
+                        <outlet property="name" destination="ccv-zn-3kW" id="oep-Ze-KPR"/>
                         <outlet property="sendCaptchaButton" destination="wcV-jV-nSm" id="gNR-Xe-XiL"/>
                         <outlet property="sendCaptchaView" destination="v45-V5-ePX" id="Fva-MD-QO2"/>
                         <outlet property="updatingField" destination="vC0-48-Q91" id="0bB-nL-dCy"/>
@@ -1706,6 +1774,8 @@
         <image name="bg-send-captcha.png" width="33" height="14"/>
         <image name="btn-showpwd-normal.png" width="22" height="14"/>
         <image name="btn-showpwd-selected.png" width="22" height="14"/>
+        <image name="icon-id.png" width="22" height="17"/>
+        <image name="icon-name.png" width="22" height="17"/>
         <image name="icon-password.png" width="22" height="17"/>
         <image name="icon-phone.png" width="22" height="17"/>
         <image name="icon-verify-code.png" width="22" height="17"/>

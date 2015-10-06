@@ -16,6 +16,7 @@
  *	@return response
  */
 - (RACSignal *)fetchSignUpCaptchaWithPhone:(NSString *)phone;
+- (RACSignal *)fetchAlertMobileCaptchaWithPhone:(NSString *)phone;
 
 /**
  *	获取找回密码验证码

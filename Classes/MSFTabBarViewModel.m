@@ -75,6 +75,12 @@
 			[self.authorizeViewModel.executeSignOut execute:nil];
 		}];
 	}];
+	[self.authorizeViewModel.executeAlterMobile.executionSignals subscribeNext:^(RACSignal *signal){
+		@strongify(self)
+		[signal subscribeCompleted:^{
+			[self.authorizeViewModel.executeSignOut execute:nil];
+		}];
+	}];
 	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
 		takeUntil:self.rac_willDeallocSignal]
 		subscribeNext:^(NSNotification *notification) {

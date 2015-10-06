@@ -93,7 +93,6 @@ extern const NSInteger MSFClientErrorTooManyRequests;
 
 @property (nonatomic, strong, readonly) MSFUser *user;
 @property (nonatomic, copy, readonly) NSString *token;
-@property (nonatomic, copy, readonly) NSString *session;
 
 @property (nonatomic, readonly, getter = isAuthenticated) BOOL authenticated;
 

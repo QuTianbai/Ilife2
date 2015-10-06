@@ -106,6 +106,29 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 				}];
 			}];
 		}];
+	_executeCaptchaAlterMobile = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.updatingMobile isMobile]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
+		}
+		return [[self executeCaptchaAlertMobileSignal]
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				} completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
+		}];
+	
+	_executeAlterMobile = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeAlterMobileSignal];
+	}];
 	
 	_executeCapthaTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -384,6 +407,40 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 - (RACSignal *)executeCaptchaSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client fetchSignUpCaptchaWithPhone:self.username];
+}
+
+- (RACSignal *)executeCaptchaAlertMobileSignal {
+	return [self.services.httpClient fetchAlertMobileCaptchaWithPhone:self.updatingMobile];
+}
+
+- (RACSignal *)executeAlterMobileSignal {
+	NSError *error = nil;
+	// 另外支持输入"."、"。"、"·"和"▪"。但是第一位和最后一位必须是汉字。
+  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+    NSString *str = @"请填写真实的姓名";
+    if (self.name.length == 0) {
+      str = @"请填写真实的姓名";
+    }
+    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+      NSLocalizedFailureReasonErrorKey: str,
+      }];
+    return [RACSignal error:error];
+  }
+	if (self.card.length != 18) {
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
+		}];
+    return [RACSignal error:error];
+	}
+	
+	if (![self.usingMobile isMobile]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的旧手机号码"]];
+	} else if (![self.updatingMobile isMobile]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的新手机号码"]];
+	} else if (![self.captcha isCaptcha]) {
+		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
+	}
+	return [self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name];
 }
 
 - (RACSignal *)executeCaptchaTradePwdSignal {
