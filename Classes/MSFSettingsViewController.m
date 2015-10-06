@@ -50,7 +50,6 @@
 #pragma mark - Private
 
 - (BOOL)hasTransactionalCode {
-	return YES;
 	return [self.viewModel.services httpClient].user.hasTransactionalCode;
 }
 
@@ -71,6 +70,7 @@
 			//TODO: 更新交易密码/设置交易密码
 			{
 				if (self.hasTransactionalCode) {
+				//  修改
 				}
 			}
 			break;

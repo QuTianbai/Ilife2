@@ -340,7 +340,7 @@
         <scene sceneID="ZgP-ve-CwT">
             <objects>
                 <tableViewController storyboardIdentifier="MSFSignInPhoneViewController" id="duu-88-vGP" customClass="MSFSignInPhoneViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="rxV-Jo-94f">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="1" id="rxV-Jo-94f">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
@@ -367,7 +367,7 @@
                             </constraints>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="DTf-vM-2t4">
-                            <rect key="frame" x="0.0" y="414" width="320" height="100"/>
+                            <rect key="frame" x="0.0" y="363" width="320" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-m2-Afl" customClass="MSFBlurButton">
@@ -467,7 +467,7 @@
                             <tableViewSection id="sfp-4P-P0C">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZFD-hB-0D6" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="228" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="211" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZFD-hB-0D6" id="yVR-6t-i9j">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -498,7 +498,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BRs-q5-jne" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="272" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="255" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BRs-q5-jne" id="lPl-4w-v3F">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -533,7 +533,7 @@
                             <tableViewSection id="pqW-3R-KkK">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ury-eV-COP" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="352" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="318" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ury-eV-COP" id="QCu-jT-a5y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
