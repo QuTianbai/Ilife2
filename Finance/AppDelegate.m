@@ -38,7 +38,6 @@
 #import "MSFConfirmContactViewModel.h"
 #import <BugshotKit/BugshotKit.h>
 
-
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;

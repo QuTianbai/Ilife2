@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "AppDelegate.h"
 
 @interface MSFUpdateTradePWDTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *oldpwdTF;
@@ -41,12 +42,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+	_viewModel = appdelegate.authorizeVewModel;
+	
 	RAC(self, viewModel.oldTradePWD) = self.oldpwdTF.rac_textSignal;
 	RAC(self, viewModel.TradePassword) = self.pwdTF.rac_textSignal;
 	RAC(self, viewModel.smsCode) = self.codeTF.rac_textSignal;
 	RAC(self, viewModel.againTradePWD) = self.surepwdTF.rac_textSignal;
 	
-	self.codeBT.rac_command = self.viewModel.executeCaptcha;
+	self.codeBT.rac_command = self.viewModel.executeCaptchUpdateTradePwd;
 	
 	RAC(self, codeLB.text) = RACObserve(self, viewModel.counter);
 	

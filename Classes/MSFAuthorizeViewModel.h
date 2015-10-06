@@ -92,6 +92,8 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 @property (nonatomic, strong) RACCommand *executeCaprchForgetTradePwd;
 
+@property (nonatomic, strong) RACCommand *executeCaptchUpdateTradePwd;
+
 // Request server find password
 @property (nonatomic, strong) RACCommand *executeFindPassword;
 

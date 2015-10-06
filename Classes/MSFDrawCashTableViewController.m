@@ -11,8 +11,11 @@
 #import "MSFDrawCashViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFInputTradePasswordViewController.h"
+#import "MSFUtils.h"
 
-@interface MSFDrawCashTableViewController ()
+
+@interface MSFDrawCashTableViewController ()<MSFInputTradePasswordDelegate>
 @property (weak, nonatomic) IBOutlet UILabel *showInfoLB;
 @property (weak, nonatomic) IBOutlet UILabel *warningLB;
 @property (weak, nonatomic) IBOutlet UIImageView *bankImg;
@@ -22,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputMoneyTF;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 
+@property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
+
 @end
 
 @implementation MSFDrawCashTableViewController
@@ -29,6 +34,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[self setviewTitle];
+	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+	_inputTradePassword.delegate = self;
 	RAC(self.bankImg, image) = [RACObserve(self, viewModel.bankIcon) map:^id(NSString *value) {
 		UIImage *img = [UIImage imageNamed:value];
 		return img;
@@ -43,26 +50,31 @@
 	RAC(self.inputMoneyTF, text) = drawCashChannel;
 	[self.inputMoneyTF.rac_textSignal subscribe:drawCashChannel];
 	
-	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
-	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		NSString *str = @"正在提现...";
-		if (self.type == 1) {
-			str = @"正在还款";
-		}
-		
-		[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
-		[signal subscribeNext:^(id x) {
-			NSString *str = @"恭喜你，提款已成功";
-			if (self.type == 1) {
-				str = @"恭喜你，还款已成功";
-			}
-			[SVProgressHUD showSuccessWithStatus:str];
-		}];
-		
+	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+	subscribeNext:^(id x) {
+		[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 	}];
-	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
+	
+//	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
+//	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+//		NSString *str = @"正在提现...";
+//		if (self.type == 1) {
+//			str = @"正在还款";
+//		}
+//		
+//		[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
+//		[signal subscribeNext:^(id x) {
+//			NSString *str = @"恭喜你，提款已成功";
+//			if (self.type == 1) {
+//				str = @"恭喜你，还款已成功";
+//			}
+//			[SVProgressHUD showSuccessWithStatus:str];
+//		}];
+//		
+//	}];
+//	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
+//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+//	}];
 }
 
 - (void)setviewTitle {
@@ -75,7 +87,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,5 +99,30 @@
 	}
 }
 
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type {
+		[[self.viewModel.executeSubmitCommand execute:nil]
+		 subscribeNext:^(RACSignal *signal) {
+			 [SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
+			 NSString *str = @"正在提现...";
+			 if (self.type == 1) {
+				 str = @"正在还款";
+			 }
+			 
+			 [SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
+			 [signal subscribeNext:^(id x) {
+				 NSString *str = @"恭喜你，提款已成功";
+				 if (self.type == 1) {
+					 str = @"恭喜你，还款已成功";
+				 }
+				 [SVProgressHUD showSuccessWithStatus:str];
+			 }error:^(NSError *error) {
+				 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+			 }];
+		 } error:^(NSError *error) {
+			 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		 }];
+}
 
 @end

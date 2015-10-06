@@ -110,7 +110,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	_executeCapthaTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		if (![self.username isMobile]) {
-			return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
+			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchaTradePwdSignal]
 						doNext:^(id x) {
@@ -130,9 +130,29 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	_executeCaprchForgetTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		if (![self.username isMobile]) {
-			return [RACSignal error:[self.class errorWithFailureReason:@"请填写正确的手机号"]];
+			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchaTradePwdSignal]
+						doNext:^(id x) {
+							@strongify(self)
+							self.counting = YES;
+							RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+							__block int repetCount = kCounterLength;
+							[repetitiveEventSignal subscribeNext:^(id x) {
+								self.counter = [@(--repetCount) stringValue];
+							} completed:^{
+								self.counter = @"获取验证码";
+								self.counting = NO;
+							}];
+						}];
+	}];
+
+	_executeCaptchUpdateTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.username isMobile]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
+		}
+		return [[self executeCaptchaUpdateTradePwdSignal]
 						doNext:^(id x) {
 							@strongify(self)
 							self.counting = YES;
@@ -369,6 +389,11 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 - (RACSignal *)executeCaptchaTradePwdSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
 	return [client fetchLoginCaptchaTradeWithPhone:self.username];
+}
+
+- (RACSignal *)executeCaptchaUpdateTradePwdSignal {
+	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
+	return [client fetchCapthchaUpdateTradeWithPhone:self.username];
 }
 
 - (RACSignal *)executeCaptchForgetTradePwd {

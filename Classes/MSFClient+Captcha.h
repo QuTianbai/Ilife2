@@ -30,6 +30,8 @@
 
 - (RACSignal *)fetchLoginCaptchaTradeWithPhone:(NSString *)phone;
 
+- (RACSignal *)fetchCapthchaUpdateTradeWithPhone:(NSString *)phone;
+
 - (RACSignal *)fetchLoginCaptchaForgetTradeWithPhone:(NSString *)phone;
 
 @end
