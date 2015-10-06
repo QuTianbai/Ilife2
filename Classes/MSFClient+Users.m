@@ -31,7 +31,7 @@
 - (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"mobile"] = phone;
-	parameters[@"password"] = password.sha256;
+	parameters[@"newPassword"] = password.sha256;
 	parameters[@"smsCode"] = captcha;
 	parameters[@"name"] = name;
 	parameters[@"ident"] = citizenID;

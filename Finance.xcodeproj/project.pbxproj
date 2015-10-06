@@ -34,6 +34,9 @@
 		0738C48F1B944B54006D7177 /* bank.db in Resources */ = {isa = PBXBuildFile; fileRef = 0738C48E1B944B54006D7177 /* bank.db */; };
 		074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0746968F1B98200C0074E180 /* MSFConfirmContractModel.m */; };
 		074696961B9820780074E180 /* MSFClient+ConfirmContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 074696951B9820780074E180 /* MSFClient+ConfirmContract.m */; };
+		0747E2601BC3CD5100B4E572 /* ForgetTradePwd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25D1BC3CD5100B4E572 /* ForgetTradePwd.storyboard */; settings = {ASSET_TAGS = (); }; };
+		0747E2611BC3CD5100B4E572 /* SetTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25E1BC3CD5100B4E572 /* SetTradePassword.storyboard */; settings = {ASSET_TAGS = (); }; };
+		0747E2621BC3CD5100B4E572 /* UpdateTradePWD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25F1BC3CD5100B4E572 /* UpdateTradePWD.storyboard */; settings = {ASSET_TAGS = (); }; };
 		074AC21D1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074AC21C1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m */; settings = {ASSET_TAGS = (); }; };
 		074AC22C1BBA7A200056BA22 /* AddBankCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */; settings = {ASSET_TAGS = (); }; };
 		074AC2301BBA8D790056BA22 /* MSFAddBankCardVIewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074AC22F1BBA8D790056BA22 /* MSFAddBankCardVIewModel.m */; settings = {ASSET_TAGS = (); }; };
@@ -790,6 +793,9 @@
 		0746968F1B98200C0074E180 /* MSFConfirmContractModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContractModel.m; sourceTree = "<group>"; };
 		074696941B9820780074E180 /* MSFClient+ConfirmContract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+ConfirmContract.h"; sourceTree = "<group>"; };
 		074696951B9820780074E180 /* MSFClient+ConfirmContract.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+ConfirmContract.m"; sourceTree = "<group>"; };
+		0747E25D1BC3CD5100B4E572 /* ForgetTradePwd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgetTradePwd.storyboard; sourceTree = "<group>"; };
+		0747E25E1BC3CD5100B4E572 /* SetTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetTradePassword.storyboard; sourceTree = "<group>"; };
+		0747E25F1BC3CD5100B4E572 /* UpdateTradePWD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpdateTradePWD.storyboard; sourceTree = "<group>"; };
 		074AC21B1BBA791F0056BA22 /* MSFAddBankCardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddBankCardTableViewController.h; sourceTree = "<group>"; };
 		074AC21C1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddBankCardTableViewController.m; sourceTree = "<group>"; };
 		074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddBankCard.storyboard; sourceTree = "<group>"; };
@@ -2153,6 +2159,9 @@
 		07E3ED631BBBB9F60010AAD2 /* TradePassword */ = {
 			isa = PBXGroup;
 			children = (
+				0747E25D1BC3CD5100B4E572 /* ForgetTradePwd.storyboard */,
+				0747E25E1BC3CD5100B4E572 /* SetTradePassword.storyboard */,
+				0747E25F1BC3CD5100B4E572 /* UpdateTradePWD.storyboard */,
 				07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */,
 				07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */,
 				07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */,
@@ -3993,6 +4002,7 @@
 				4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */,
 				077347CE1BBA338900D7A130 /* add@2x.png in Resources */,
 				07C06C541B1345C300F2DFCC /* unit_nature.json in Resources */,
+				0747E2611BC3CD5100B4E572 /* SetTradePassword.storyboard in Resources */,
 				077347E41BBA338900D7A130 /* ICBC@3x.png in Resources */,
 				077347D91BBA338900D7A130 /* CMSB.png in Resources */,
 				10DC2DA31B99C17F00A2AF9C /* icon_order1_n.png in Resources */,
@@ -4145,6 +4155,7 @@
 				4944C0331B68A5A100805C0A /* icon-account-info@3x.png in Resources */,
 				4944C0341B68A5A100805C0A /* icon-account-repay.png in Resources */,
 				4944C0151B68A44A00805C0A /* icon-cloze-selected.png in Resources */,
+				0747E2621BC3CD5100B4E572 /* UpdateTradePWD.storyboard in Resources */,
 				4944C0351B68A5A100805C0A /* icon-account-repay@2x.png in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-about@2x.png in Resources */,
 				07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */,
@@ -4225,6 +4236,7 @@
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				077347D21BBA338900D7A130 /* CBC@3x.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
+				0747E2601BC3CD5100B4E572 /* ForgetTradePwd.storyboard in Resources */,
 				C7D2D1201B67938C000F51ED /* icon-cloze-bankName@2x.png in Resources */,
 				491DDB3E1BBFEE1D00D62DEA /* MSFSettingsViewController.storyboard in Resources */,
 				C7A351821B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@3x.png in Resources */,
