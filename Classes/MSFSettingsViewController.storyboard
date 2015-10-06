@@ -188,6 +188,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="ewd-wt-odl"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="signOutButton" destination="Q0v-ZZ-kdR" id="rd9-A9-TXP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fmj-f2-yE3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

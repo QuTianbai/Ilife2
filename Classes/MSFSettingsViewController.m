@@ -5,10 +5,14 @@
 //
 
 #import "MSFSettingsViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <libextobjc/extobjc.h>
+#import "MSFAuthorizeViewModel.h"
 
 @interface MSFSettingsViewController ()
 
-@property (nonatomic, strong) id viewModel;
+@property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UIButton *signOutButton;
 
 @end
 
@@ -16,6 +20,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.signOutButton.rac_command = self.viewModel.executeSignOut;
 }
 
 - (void)bindViewModel:(id)viewModel {
