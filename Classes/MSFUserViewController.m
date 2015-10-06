@@ -138,13 +138,8 @@
 		case 1: {
 			switch (indexPath.row) {
 				case 0:[self settings:nil]; break;
-				case 1:
-				{
-					//MSFSetTradePasswordViewModel *viewModel = [[MSFSetTradePasswordViewModel alloc] initWithServices:self.viewModel.servcies];
-					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
-					
-					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
-					//[self pushAbout:nil];
+				case 1: {
+					[self pushAbout:nil];
 					break;
 				}
 			}
