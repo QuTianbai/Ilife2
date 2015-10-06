@@ -91,8 +91,8 @@
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
 			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
-			 subscribeNext:^(NSString *x) {
-				 if ([x isEqualToString:@"申请中"]) {
+			 subscribeNext:^(UIButton *x) {
+				 if ([x.titleLabel.text isEqualToString:@"申请中"]) {
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
@@ -113,15 +113,18 @@
 				[[[_statusButton
 					 rac_signalForControlEvents:UIControlEventTouchUpInside]
 					takeUntil:self.rac_prepareForReuseSignal]
-				 subscribeNext:^(NSString *x) {
-					 if ([x isEqualToString:@"还款中"] || [x isEqualToString:@"已逾期"]) {
+				 subscribeNext:^(UIButton *x) {
+					 if ([x.titleLabel.text isEqualToString:@"还款中"] || [x.titleLabel.text isEqualToString:@"已逾期"]) {
 						 [viewModel pushDetailViewController];
 					 }
 				 }];
 				return;
 			}
 		}
+	} else {
+		[self placeholderShow:YES];
 	}
+	
 	self.ConFirmContractBT.hidden = YES;
 	self.statusButton.hidden = NO;
 	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -143,8 +146,6 @@
 		self.ConFirmContractBT.hidden = YES;
 		self.statusButton.hidden = NO;
 	}];
-	
-	[self placeholderShow:YES];
 }
 
 - (void)placeholderShow:(BOOL)b {

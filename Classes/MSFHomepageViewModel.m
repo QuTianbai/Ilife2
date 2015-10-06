@@ -58,8 +58,22 @@
 		}
 		return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
 			if (value.processing) {
-				MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
-				return [RACSignal return:@[viewModel]];
+				
+				MSFApplyCashInfo *data = [[MSFApplyCashInfo alloc] init];
+				data.applyTime = @"2015-08-23";
+				data.appLmt = @"3000";
+				data.loanTerm = @"3";
+				data.status = @"V";
+				data.appNo = @"7";
+				
+				value.data = data;
+				
+				if (value.data) {
+					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
+					return [RACSignal return:@[viewModel]];
+				} else {
+					return [RACSignal return:nil];
+				}
 			} else {
 				return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
 					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
@@ -67,6 +81,10 @@
 				}];
 			}
 		}];
+	}];
+	
+	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
+		self.viewModels = x;
 	}];
 	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
@@ -81,7 +99,6 @@
 		}
 	}];
 	
-	//RAC(self, allowApply) = [[self.refreshCommand.executionSignals switchToLatest] ignore:nil];
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
@@ -93,28 +110,27 @@
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-	//return self.viewModels.count == 0 ? 1 : self.viewModels.count;
 	return 1;
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
 	if (self.services.httpClient.user.type.integerValue == 0) {
-		if (self.viewModels.count > indexPath.item) {
-			return self.viewModels[indexPath.item];
+		if (self.viewModels.count > 0) {
+			return self.viewModels[0];
+		} else {
+			return nil;
 		}
 	} else {
 		return self.circulateCashViewModel;
 	}
-
-	return nil;
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-//	if (self.services.httpClient.user.type.integerValue == 0) {
-//		return @"MSFHomePageContentCollectionViewCell";
-//	} else {
+	if (self.services.httpClient.user.type.integerValue == 0) {
+		return @"MSFHomePageContentCollectionViewCell";
+	} else {
 		return @"MSFCirculateViewCell";
-	//}
+	}
 }
 
 @end
