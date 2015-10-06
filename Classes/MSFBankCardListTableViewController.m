@@ -19,8 +19,6 @@
 #import "MSFUtils.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
-#import "MSFInputTradePasswordView.h"
-//#import "MSFInputTradePasswordViewController.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFCheckHasTradePasswordModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
@@ -57,6 +55,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
+	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.tableView.backgroundColor = [MSFCommandView getColorWithString:@"#F6F6F6"];
 	self.title = @"银行卡";
 	_tradePwd = @"";

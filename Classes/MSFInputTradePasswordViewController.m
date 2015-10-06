@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <IQKeyboardManager/KeyboardManager.h>
 #import "MSFGrayButton.h"
+#import <NSString-Hashes/NSString+Hashes.h>
 
 @interface MSFInputTradePasswordViewController ()<UITextFieldDelegate>
 
@@ -72,7 +73,7 @@
 		if (textField.text.length == 6) {
 			[self.view removeFromSuperview];
 			if ([self.delegate respondsToSelector:@selector(getTradePassword:type:)]) {
-				[self.delegate getTradePassword:textField.text type:self.type];
+				[self.delegate getTradePassword:textField.text.sha256 type:self.type];
 			}
 		}
 		

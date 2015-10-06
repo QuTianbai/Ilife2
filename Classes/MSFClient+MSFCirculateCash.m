@@ -9,17 +9,18 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import "MSFUtils.h"
 
 @implementation MSFClient (MSFCirculateCash)
 
 - (RACSignal *)fetchCirculateCash {
 	
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"cirCulate" ofType:@"json"];
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"cirCulate" ofType:@"json"];
+//	
+//	NSURL *url = [NSURL fileURLWithPath:path];
+//	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	
-	NSURL *url = [NSURL fileURLWithPath:path];
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-	
-	//NSMutableURLRequest *request = [self requestWithMethod:@"POST " path:@"loan/currentloaninfo" parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/currentloaninfo" parameters:@{@"uniqueId":MSFUtils.uniqueId}];
 
 	//currentloaninfo
 	

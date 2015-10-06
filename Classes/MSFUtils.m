@@ -115,12 +115,21 @@ static MSFServer *server;
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"isSetTradePassword"];
 }
 
-+ (NSString *)isCircuteCash {
-	return @"1";
++ (void)setCircuteCash:(NSString *)isCircuteCash {
+	[[NSUserDefaults standardUserDefaults] setObject:isCircuteCash?:@"" forKey:@"isCircuteCash"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
++ (NSString *)isCircuteCash {
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"isCircuteCash"];
+}
+
++ (void)setProductCode:(NSString *)procd {
+	[[NSUserDefaults standardUserDefaults] setObject:procd?:@"" forKey:@"productCode"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
 + (NSString *)productCode {
-	return @"";
+	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
 
 + (NSString *)complateCustInfo {

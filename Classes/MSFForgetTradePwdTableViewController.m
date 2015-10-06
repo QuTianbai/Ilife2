@@ -60,14 +60,34 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+	self.title = @"忘记交易密码";
 	//_viewModel = viewModel;
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_authviewModel = appdelegate.authorizeVewModel;
 	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithServices:self.authviewModel.services andIsFirstBankCard:NO];
 	
+	[[self.tradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 textField.text = [textField.text substringToIndex:6];
+		 }
+	 }];
 	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
+	
+	[[self.sureTradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 6) {
+			 textField.text = [textField.text substringToIndex:6];
+		 }
+	 }];
 	RAC(self, viewModel.againTradePWD) = self.sureTradePasswordTF.rac_textSignal;
+	
+	[[self.checkCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 4) {
+			 textField.text = [textField.text substringToIndex:4];
+		 }
+	 }];
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
     
 	RAC(self.bankAddressTF, text) = RACObserve(self.viewModel, bankAddress);
@@ -174,8 +194,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-		[authSignal subscribeNext:^(id x) {
-			
+		[authSignal subscribeCompleted:^{
 			[SVProgressHUD showSuccessWithStatus:@"重置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
@@ -187,6 +206,10 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
 	
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 15;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 1) {

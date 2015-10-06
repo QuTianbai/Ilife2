@@ -105,12 +105,9 @@
 		0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF6D1B1F05D200880617 /* MSFPhoto.m */; };
 		078EEB831BBF719C00E7AB42 /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 078EEB821BBF719C00E7AB42 /* submit.json */; settings = {ASSET_TAGS = (); }; };
 		078EEB931BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078EEB921BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		078EEB951BBF75E800E7AB42 /* SetTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 078EEB941BBF75E800E7AB42 /* SetTradePassword.storyboard */; settings = {ASSET_TAGS = (); }; };
 		078EEB981BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 078EEB971BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.m */; settings = {ASSET_TAGS = (); }; };
 		078EEBA41BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078EEBA31BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		078EEBB31BBFCE0500E7AB42 /* UpdateTradePWD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 078EEBB21BBFCE0500E7AB42 /* UpdateTradePWD.storyboard */; settings = {ASSET_TAGS = (); }; };
 		078EEBB61BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078EEBB51BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		078EEBB81BBFD54800E7AB42 /* ForgetTradePwd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 078EEBB71BBFD54800E7AB42 /* ForgetTradePwd.storyboard */; settings = {ASSET_TAGS = (); }; };
 		07997AAC1BA01C2000E3E4DD /* icon-confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07997AAA1BA01C2000E3E4DD /* icon-confirm@2x.png */; };
 		07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07997AAB1BA01C2000E3E4DD /* icon-confirm@3x.png */; };
 		07AFE5A01B26D202009E0124 /* position.json in Resources */ = {isa = PBXBuildFile; fileRef = 07AFE59F1B26D202009E0124 /* position.json */; };
@@ -158,8 +155,6 @@
 		07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 07CDAEAB1B11BC9E00B7014C /* dicareas.db */; };
 		07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		07E3ED621BBBB8B40010AAD2 /* InputTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */; settings = {ASSET_TAGS = (); }; };
-		07E3ED661BBBBB960010AAD2 /* MSFInputTradePasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED651BBBBB960010AAD2 /* MSFInputTradePasswordView.m */; settings = {ASSET_TAGS = (); }; };
-		07E3ED681BBBBBBD0010AAD2 /* InpuTradePassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED671BBBBBBD0010AAD2 /* InpuTradePassword.xib */; settings = {ASSET_TAGS = (); }; };
 		07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6A1BBBC3020010AAD2 /* tradePassWordBG.png */; settings = {ASSET_TAGS = (); }; };
 		07E3ED711BBBC3020010AAD2 /* tradePassWordBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6B1BBBC3020010AAD2 /* tradePassWordBG@2x.png */; settings = {ASSET_TAGS = (); }; };
 		07E3ED721BBBC3020010AAD2 /* tradePassWordBG@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6C1BBBC3020010AAD2 /* tradePassWordBG@3x.png */; settings = {ASSET_TAGS = (); }; };
@@ -893,15 +888,12 @@
 		078EEB821BBF719C00E7AB42 /* submit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submit.json; sourceTree = "<group>"; };
 		078EEB911BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSetTradePasswordTableViewController.h; sourceTree = "<group>"; };
 		078EEB921BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSetTradePasswordTableViewController.m; sourceTree = "<group>"; };
-		078EEB941BBF75E800E7AB42 /* SetTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetTradePassword.storyboard; sourceTree = "<group>"; };
 		078EEB961BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSetTradePasswordViewModel.h; sourceTree = "<group>"; };
 		078EEB971BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSetTradePasswordViewModel.m; sourceTree = "<group>"; };
 		078EEBA21BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUpdateTradePWDTableViewController.h; sourceTree = "<group>"; };
 		078EEBA31BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUpdateTradePWDTableViewController.m; sourceTree = "<group>"; };
-		078EEBB21BBFCE0500E7AB42 /* UpdateTradePWD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpdateTradePWD.storyboard; sourceTree = "<group>"; };
 		078EEBB41BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFForgetTradePwdTableViewController.h; sourceTree = "<group>"; };
 		078EEBB51BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFForgetTradePwdTableViewController.m; sourceTree = "<group>"; };
-		078EEBB71BBFD54800E7AB42 /* ForgetTradePwd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgetTradePwd.storyboard; sourceTree = "<group>"; };
 		07997AAA1BA01C2000E3E4DD /* icon-confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-confirm@2x.png"; sourceTree = "<group>"; };
 		07997AAB1BA01C2000E3E4DD /* icon-confirm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-confirm@3x.png"; sourceTree = "<group>"; };
 		07AFE59F1B26D202009E0124 /* position.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = position.json; sourceTree = "<group>"; };
@@ -972,9 +964,6 @@
 		07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputTradePasswordViewController.h; sourceTree = "<group>"; };
 		07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputTradePasswordViewController.m; sourceTree = "<group>"; };
 		07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InputTradePassword.storyboard; sourceTree = "<group>"; };
-		07E3ED641BBBBB960010AAD2 /* MSFInputTradePasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputTradePasswordView.h; sourceTree = "<group>"; };
-		07E3ED651BBBBB960010AAD2 /* MSFInputTradePasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputTradePasswordView.m; sourceTree = "<group>"; };
-		07E3ED671BBBBBBD0010AAD2 /* InpuTradePassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InpuTradePassword.xib; sourceTree = "<group>"; };
 		07E3ED6A1BBBC3020010AAD2 /* tradePassWordBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tradePassWordBG.png; sourceTree = "<group>"; };
 		07E3ED6B1BBBC3020010AAD2 /* tradePassWordBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tradePassWordBG@2x.png"; sourceTree = "<group>"; };
 		07E3ED6C1BBBC3020010AAD2 /* tradePassWordBG@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tradePassWordBG@3x.png"; sourceTree = "<group>"; };
@@ -2169,18 +2158,12 @@
 				07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */,
 				07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */,
 				07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */,
-				07E3ED641BBBBB960010AAD2 /* MSFInputTradePasswordView.h */,
-				07E3ED651BBBBB960010AAD2 /* MSFInputTradePasswordView.m */,
-				07E3ED671BBBBBBD0010AAD2 /* InpuTradePassword.xib */,
 				078EEB911BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.h */,
 				078EEB921BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.m */,
-				078EEB941BBF75E800E7AB42 /* SetTradePassword.storyboard */,
 				078EEBA21BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.h */,
 				078EEBA31BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.m */,
-				078EEBB21BBFCE0500E7AB42 /* UpdateTradePWD.storyboard */,
 				078EEBB41BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.h */,
 				078EEBB51BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m */,
-				078EEBB71BBFD54800E7AB42 /* ForgetTradePwd.storyboard */,
 			);
 			name = TradePassword;
 			sourceTree = "<group>";
@@ -4024,7 +4007,6 @@
 				077347E41BBA338900D7A130 /* ICBC@3x.png in Resources */,
 				077347D91BBA338900D7A130 /* CMSB.png in Resources */,
 				10DC2DA31B99C17F00A2AF9C /* icon_order1_n.png in Resources */,
-				07E3ED681BBBBBBD0010AAD2 /* InpuTradePassword.xib in Resources */,
 				496444881B69BA77001FB1BE /* btn-showpwd-normal@2x.png in Resources */,
 				C7A3517A1B217CB10001DF6A /* iconfont-guanyuwomen.png in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
@@ -4037,7 +4019,6 @@
 				4944C0531B68A60200805C0A /* icon-avatar-placeholder.png in Resources */,
 				49CA93611BBA212A0032F5C2 /* groupedTableViewCell_topRow@2x.png in Resources */,
 				C7A351801B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin.png in Resources */,
-				078EEBB31BBFCE0500E7AB42 /* UpdateTradePWD.storyboard in Resources */,
 				4975C98E1B46D6D400AA79EB /* StyleSettings.plist in Resources */,
 				49AFD9A51B073F5600438183 /* login.storyboard in Resources */,
 				077347DD1BBA338900D7A130 /* guangda@2x.png in Resources */,
@@ -4051,7 +4032,6 @@
 				077347D11BBA338900D7A130 /* CBC@2x.png in Resources */,
 				49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
-				078EEBB81BBFD54800E7AB42 /* ForgetTradePwd.storyboard in Resources */,
 				070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */,
 				49E22B001B37ED9E00749717 /* btn-family-reduce.png in Resources */,
 				077347DA1BBA338900D7A130 /* CMSB@2x.png in Resources */,
@@ -4157,7 +4137,6 @@
 				07C06C781B1347C200F2DFCC /* json_banks.json in Resources */,
 				077347DB1BBA338900D7A130 /* CMSB@3x.png in Resources */,
 				07E3ED961BBCDD830010AAD2 /* CirculateCash.storyboard in Resources */,
-				078EEB951BBF75E800E7AB42 /* SetTradePassword.storyboard in Resources */,
 				4944C00D1B68A44A00805C0A /* icon-cloze-idcard@3x.png in Resources */,
 				4944C0361B68A5A100805C0A /* icon-account-repay@3x.png in Resources */,
 				10DC2DA91B99C17F00A2AF9C /* icon_order4_n.png in Resources */,
@@ -4474,7 +4453,6 @@
 				07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */,
 				C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
-				07E3ED661BBBBB960010AAD2 /* MSFInputTradePasswordView.m in Sources */,
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */,
