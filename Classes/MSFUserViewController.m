@@ -126,6 +126,7 @@
 				case 1:{
 					MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] init];
 					vc.services = self.viewModel.servcies;
+					vc.hidesBottomBarWhenPushed = YES;
 					[self.navigationController pushViewController:vc animated:YES];
 				}
 					break;
