@@ -54,7 +54,7 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (instancetype)init {
-	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:@"MSFCertificatesCollectionViewController"];
+	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFInventoryViewController.class)];
 }
 
 - (void)viewDidLoad {

@@ -236,6 +236,7 @@
 		10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */; };
 		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
 		2058B440DD03E6FBC6158AB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C7E4D250D094AB88DCA842 /* libPods.a */; };
+		4902E4081BC4B4640087FA1E /* mock-elements.json in Resources */ = {isa = PBXBuildFile; fileRef = 4902E4071BC4B4640087FA1E /* mock-elements.json */; settings = {ASSET_TAGS = (); }; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		49075CA71BA91326006F63FF /* MSFTableViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */; };
@@ -1090,6 +1091,7 @@
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5A55417088280C9EEC234F /* Pods.tp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.tp.xcconfig; path = "Pods/Target Support Files/Pods/Pods.tp.xcconfig"; sourceTree = "<group>"; };
 		41B95997B3C939CDBCD59AA1 /* Pods.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test.xcconfig"; sourceTree = "<group>"; };
+		4902E4071BC4B4640087FA1E /* mock-elements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mock-elements.json"; sourceTree = "<group>"; };
 		4902EE101B195A2F00EC836C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Externals/Crashlytics.framework; sourceTree = "<group>"; };
 		4902EE111B195A2F00EC836C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Externals/Fabric.framework; sourceTree = "<group>"; };
 		49075CA51BA91326006F63FF /* MSFTableViewBindingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTableViewBindingHelper.h; sourceTree = "<group>"; };
@@ -2018,6 +2020,7 @@
 				07C06C591B13464200F2DFCC /* edu_background.json */,
 				07C06C5B1B13465A00F2DFCC /* school_system.json */,
 				49A342381B7992DF006F5106 /* life-insurance */,
+				4902E4071BC4B4640087FA1E /* mock-elements.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -4186,6 +4189,7 @@
 				4944C04D1B68A5DA00805C0A /* nav-setting.png in Resources */,
 				49CA93601BBA212A0032F5C2 /* groupedTableViewCell_singleRow@2x.png in Resources */,
 				C7B978041B08E8DF005F247C /* MSFTradeTableViewController.xib in Resources */,
+				4902E4081BC4B4640087FA1E /* mock-elements.json in Resources */,
 				077347ED1BBA338900D7A130 /* zhongxin@3x.png in Resources */,
 				0750AAFB1B969DED00AD67F3 /* MSFCustomAlertViewController.xib in Resources */,
 				496444891B69BA77001FB1BE /* btn-showpwd-normal@3x.png in Resources */,

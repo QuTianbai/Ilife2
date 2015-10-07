@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "code": "IDCARD",
+      "name": "身份证",
+      "title": "身份证",
+      "comment": "请放在正中间",
+      "must": "true",
+      "exampleUrl": "http://www.aaa.com/111.jsp",
+      "iconUrl": "http://www.aaa.com/111.icon",
+      "maxNum": 1
+    },
+    {
+      "code": "REPAY_BANK_ACCOUNT",
+      "name": "代扣银行卡",
+      "title": "代扣银行卡",
+      "comment": "请放在正中间",
+      "must": "true",
+      "exampleUrl": "http://www.aaa.com/222.jsp",
+      "iconUrl": "http://www.aaa.com/222.icon",
+      "maxNum": 1
+    },
+    {
+      "code": "SOCIAL_SECURITY_CARD",
+      "name": "社保卡",
+      "title": "社保卡",
+      "comment": "请放在正中间",
+      "must": "false",
+      "exampleUrl": "http://www.aaa.com/333.jsp",
+      "iconUrl": "http://www.aaa.com/333.icon",
+      "maxNum": 10
+    }
+  ]
+}
