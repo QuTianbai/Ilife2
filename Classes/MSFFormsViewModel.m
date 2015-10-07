@@ -77,8 +77,9 @@
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			for (MSFBankCardListModel *ob in x) {
+				self.master = NO;
 				if ([ob isEqual:[NSNull null]]) {
-					self.master = NO;
+					//self.master = NO;
 					return ;
 				} else {
 					self.masterBankCardNO = ob.bankCardNo;
