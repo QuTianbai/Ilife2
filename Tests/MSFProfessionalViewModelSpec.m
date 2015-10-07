@@ -163,27 +163,4 @@ describe(@"work", ^{
 	});
 });
 
-it(@"should commit professional information", ^{
-	// given
-	[given([viewModel.formsViewModel submitUserInfo]) willDo:^id(NSInvocation *invocation) {
-		MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{
-			@"complateCustInfo": @"010"
-		}];
-		return [RACSignal return:response];
-	}];
-	
-	BOOL sucess = NO;
-	NSError *error = nil;
-	
-	// when
-	[viewModel.executeEducationCommand execute:nil];
-	[viewModel.executeSocialStatusCommand execute:nil];
-	MSFResponse *response = [[viewModel.executeCommitCommand execute:nil] asynchronousFirstOrDefault:nil success:&sucess error:&error];
-	
-	// then
-	expect(@(sucess)).to(beTruthy());
-	expect(error).to(beNil());
-	expect(response.parsedResult[@"complateCustInfo"]).to(equal(@"010"));
-});
-
 QuickSpecEnd
