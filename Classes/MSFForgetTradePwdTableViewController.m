@@ -211,7 +211,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.row == 1) {
+	if (indexPath.row == 0) {
 		[_viewModel.executeSelected execute:nil];
 	}
 }

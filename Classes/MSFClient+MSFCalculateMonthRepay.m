@@ -23,7 +23,7 @@
 	[SVProgressHUD showWithStatus:@""];
 	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"repay" ofType:@"json"]]];
 	
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt?:@"", @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": jionLifeInsurance?:@"", @"uniqueId":MSFUtils.uniqueId}];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt?:@"", @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": @"0"?:@"", @"uniqueId":MSFUtils.uniqueId}];
 	
 	return [[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class] msf_parsedResults];
 }

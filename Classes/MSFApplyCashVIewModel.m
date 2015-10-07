@@ -123,6 +123,11 @@
 		return [self executeNextSignal];
 	}];
 	
+	_executeAllowCashCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeAllow];
+	}];
+	
 	
 	return self;
 }
@@ -195,6 +200,10 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+- (RACSignal *)executeAllow {
+	return [self.services.httpClient fetchCheckAllowApply];
 }
 
 - (void)setSVPBackGround {

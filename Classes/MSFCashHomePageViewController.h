@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class MSFApplyCashVIewModel;
+
 @interface MSFCashHomePageViewController : UIViewController
+
+@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
+
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel;
 
 @end
