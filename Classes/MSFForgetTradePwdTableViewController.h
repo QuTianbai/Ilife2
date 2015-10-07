@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFGroupTableViewController.h"
 
-@interface MSFForgetTradePwdTableViewController : UITableViewController
+@interface MSFForgetTradePwdTableViewController : MSFGroupTableViewController
 
 - (instancetype)initWithViewModel:(id)viewModel AndAuthViewModel:(id)authViewModel;
 
