@@ -48,12 +48,13 @@
 	_model.productCd = MSFUtils.productCode;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
+	_array = [[NSArray alloc] init];
 
 	RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
 	
 	RAC(self, model.appNO) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
-	RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
+	//RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
 	RAC(self, model.lifeInsuranceAmt) = RACObserve(self, lifeInsuranceAmt);
