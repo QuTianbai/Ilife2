@@ -9,80 +9,40 @@
 
 @class RACCommand;
 @class MSFSelectKeyValues;
-@class MSFAreas;
 @class MSFFormsViewModel;
 @class MSFApplicationForms;
 @class MSFAddressViewModel;
 
-// 职业－学生/在职人员/自由职业
 @interface MSFProfessionalViewModel : RVMViewModel
 
-#pragma mark - 教育/社会身份
-
-// 教育程度
-@property (nonatomic, strong) MSFSelectKeyValues *degrees;
+@property (nonatomic, strong) MSFSelectKeyValues *degrees;// 教育程度
 @property (nonatomic, strong) NSString *degreesTitle;
-
-// 社会身份
-@property (nonatomic, strong) MSFSelectKeyValues *socialstatus;
+@property (nonatomic, strong) MSFSelectKeyValues *socialstatus;// 社会身份
 @property (nonatomic, strong) NSString *socialstatusTitle;
-
-#pragma mark - 学生信息
-
-// 学生
-@property (nonatomic, strong) NSString *school;
-//@property (nonatomic, strong) MSFSelectKeyValues *eductionalSystme;
-//@property (nonatomic, strong) NSString *eductionalSystmeTitle;
-@property (nonatomic, strong) NSString *enrollmentYear;
-
-#pragma mark - 职业信息
-
-// 工作年限
-@property (nonatomic, strong) MSFSelectKeyValues *seniority;
-@property (nonatomic, strong) NSString *seniorityTitle;
-
-// 单位信息
-@property (nonatomic, strong) NSString *company; // 单位名称
 @property (nonatomic, strong) MSFSelectKeyValues *industry; // 行业类别
-@property (nonatomic, strong) NSString *industryTitle; // 行业类别
+@property (nonatomic, strong) NSString *industryTitle;
 @property (nonatomic, strong) MSFSelectKeyValues *nature; // 单位性质
 @property (nonatomic, strong) NSString *natureTitle; // 单位性质
-
-// 职位信息
 @property (nonatomic, strong) MSFSelectKeyValues *position; // 职位
-@property (nonatomic, strong) NSString *startedDate; // 入职时间
-
-@property (nonatomic, strong) NSString *departmentTitle; // 部门
 @property (nonatomic, strong) NSString *positionTitle; // 职位
 
+@property (nonatomic, readonly) RACCommand *startedWorkDateCommand;
+@property (nonatomic, readonly) RACCommand *startedDateCommand;
+@property (nonatomic, readonly) RACCommand *enrollmentYearCommand;
 
-@property (nonatomic, strong) NSString *unitAreaCode;
-@property (nonatomic, strong) NSString *unitTelephone;
-@property (nonatomic, strong) NSString *unitExtensionTelephone;
+@property (nonatomic, readonly) RACCommand *executeEducationCommand;// 选择教育程度
+@property (nonatomic, readonly) RACCommand *executeSocialStatusCommand;// 选择社会身份
+@property (nonatomic, readonly) RACCommand *executeIndustryCommand;// 选择行业信息
+@property (nonatomic, readonly) RACCommand *executeNatureCommand;// 选择单位性质
+@property (nonatomic, readonly) RACCommand *executePositionCommand;// 选择部门信息
 
-/**
- *	详细地址
- */
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong, readonly) RACCommand *executeAddressCommand; //选择地址信息
+@property (nonatomic, strong) NSString *address;// 详细地址
 
-@property (nonatomic, readonly) MSFFormsViewModel *formsViewModel;
-@property (nonatomic, readonly) MSFApplicationForms *model;
-@property (nonatomic, readonly) RACCommand *executeEducationCommand;
-@property (nonatomic, readonly) RACCommand *executeSocialStatusCommand;
-//@property (nonatomic, readonly) RACCommand *executeEductionalSystmeCommand;
-@property (nonatomic, readonly) RACCommand *executeWorkingLengthCommand;
-
-// 单位信息
-@property (nonatomic, readonly) RACCommand *executeIndustryCommand;
-@property (nonatomic, readonly) RACCommand *executeNatureCommand;
-
-// 部门信息
-@property (nonatomic, readonly) RACCommand *executePositionCommand;
-
-@property (nonatomic, strong, readonly) RACCommand *executeAddressCommand;
+@property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
+//- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel addressViewModel:(MSFAddressViewModel *)addressViewModel;
 
 @end
