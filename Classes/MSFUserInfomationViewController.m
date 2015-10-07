@@ -25,7 +25,7 @@
 #import "MSFUtils.h"
 #import "MSFUser.h"
 #import "MSFInventoryViewModel.h"
-#import "MSFCertificatesCollectionViewController.h"
+#import "MSFInventoryViewController.h"
 
 @interface MSFUserInfomationViewController ()
 
@@ -91,7 +91,7 @@
 	subscribeNext:^(id x) {
 		if ([MSFUtils.complateCustInfo isEqualToString:@"111"]) {
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel];
-			MSFCertificatesCollectionViewController *certifivatesVC = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
+			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];
 		}
 	}];

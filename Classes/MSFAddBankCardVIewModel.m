@@ -14,6 +14,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient.h"
 #import <NSString-Hashes/NSString+Hashes.h>
+#import "MSFClient+Users.h"
 
 static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardViewModelErrorDomain";
 

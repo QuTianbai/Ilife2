@@ -50,8 +50,6 @@
 	self.title = @"设置交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_viewModel = appdelegate.authorizeVewModel;
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.automaticallyAdjustsScrollViewInsets = NO;
 	[[self.tradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	subscribeNext:^(UITextField *textField) {
 		if (textField.text.length > 6) {
@@ -104,7 +102,7 @@
 	
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交" maskType:SVProgressHUDMaskTypeClear];
-		[signal subscribeNext:^(id x) {
+		[signal subscribeCompleted:^{
 			[MSFUtils setisTradePassword:@"YES"];
 			[SVProgressHUD showSuccessWithStatus:@"设置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];

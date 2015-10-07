@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFPhotosUploadHeaderView : UICollectionReusableView
+@interface MSFElementTableViewHeader : UICollectionReusableView
 
 @property (weak, nonatomic) IBOutlet UIButton *browserButton;
 @property (weak, nonatomic) IBOutlet UIButton *foldButton;

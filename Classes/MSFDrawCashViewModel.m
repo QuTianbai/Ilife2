@@ -9,7 +9,7 @@
 #import "MSFDrawCashViewModel.h"
 #import "MSFGetBankIcon.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient.h"
+#import "MSFClient+Users.h"
 
 static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelErrorDomain";
 

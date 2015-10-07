@@ -207,14 +207,13 @@
 		10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */; settings = {ASSET_TAGS = (); }; };
 		10DBCD341BB8E08A000A23B7 /* MSFLoanLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */; settings = {ASSET_TAGS = (); }; };
 		10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */; };
-		10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */; };
-		10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */; };
-		10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */; };
-		10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */; };
-		10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */; };
+		10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFInventoryViewController.m */; };
+		10DC2D0A1B969D4300A2AF9C /* MSFElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */; };
+		10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D0D1B969D9400A2AF9C /* MSFInventoryTableViewCell.m */; };
+		10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFElementTableViewHeader.m */; };
+		10DC2D1A1B969E1600A2AF9C /* MSFElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFElementTableViewCell.m */; };
 		10DC2D331B97186000A2AF9C /* MSFExtraOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D321B97186000A2AF9C /* MSFExtraOptionCell.m */; };
 		10DC2D381B9841F900A2AF9C /* ic_attachment_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D371B9841F900A2AF9C /* ic_attachment_delete.png */; };
-		10DC2D5C1B997D4A00A2AF9C /* icon-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D591B997D4A00A2AF9C /* icon-arrow-right.png */; };
 		10DC2D601B997FA100A2AF9C /* icon_attachment_full.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D5F1B997FA100A2AF9C /* icon_attachment_full.png */; };
 		10DC2D621B9982F600A2AF9C /* photoUpload_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D611B9982F600A2AF9C /* photoUpload_placeholder.png */; };
 		10DC2DA21B99C17F00A2AF9C /* icon_order1_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D9A1B99C17F00A2AF9C /* icon_order1_h.png */; };
@@ -236,6 +235,10 @@
 		10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */; };
 		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
 		2058B440DD03E6FBC6158AB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C7E4D250D094AB88DCA842 /* libPods.a */; };
+		4902E4081BC4B4640087FA1E /* mock-elements.json in Resources */ = {isa = PBXBuildFile; fileRef = 4902E4071BC4B4640087FA1E /* mock-elements.json */; settings = {ASSET_TAGS = (); }; };
+		4902E41F1BC4C56F0087FA1E /* icon-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */; settings = {ASSET_TAGS = (); }; };
+		4902E4201BC4C56F0087FA1E /* icon-arrow-right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */; settings = {ASSET_TAGS = (); }; };
+		4902E4211BC4C56F0087FA1E /* icon-arrow-right@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */; settings = {ASSET_TAGS = (); }; };
 		4902EE121B195A2F00EC836C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE101B195A2F00EC836C /* Crashlytics.framework */; };
 		4902EE131B195A2F00EC836C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4902EE111B195A2F00EC836C /* Fabric.framework */; };
 		49075CA71BA91326006F63FF /* MSFTableViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */; };
@@ -1046,20 +1049,19 @@
 		10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanLimitView.h; sourceTree = "<group>"; };
 		10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanLimitView.m; sourceTree = "<group>"; };
 		10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photosUpload.storyboard; sourceTree = "<group>"; };
-		10DC2D051B969D1000A2AF9C /* MSFCertificatesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificatesCollectionViewController.h; sourceTree = "<group>"; };
-		10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificatesCollectionViewController.m; sourceTree = "<group>"; };
-		10DC2D081B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoUploadCollectionViewController.h; sourceTree = "<group>"; };
-		10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoUploadCollectionViewController.m; sourceTree = "<group>"; };
-		10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificateCell.h; sourceTree = "<group>"; };
-		10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificateCell.m; sourceTree = "<group>"; };
-		10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadHeaderView.h; sourceTree = "<group>"; };
-		10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadHeaderView.m; sourceTree = "<group>"; };
-		10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadCell.h; sourceTree = "<group>"; };
-		10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadCell.m; sourceTree = "<group>"; };
+		10DC2D051B969D1000A2AF9C /* MSFInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInventoryViewController.h; sourceTree = "<group>"; };
+		10DC2D061B969D1000A2AF9C /* MSFInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventoryViewController.m; sourceTree = "<group>"; };
+		10DC2D081B969D4300A2AF9C /* MSFElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementViewController.h; sourceTree = "<group>"; };
+		10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementViewController.m; sourceTree = "<group>"; };
+		10DC2D0C1B969D9400A2AF9C /* MSFInventoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInventoryTableViewCell.h; sourceTree = "<group>"; };
+		10DC2D0D1B969D9400A2AF9C /* MSFInventoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventoryTableViewCell.m; sourceTree = "<group>"; };
+		10DC2D151B969DF500A2AF9C /* MSFElementTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementTableViewHeader.h; sourceTree = "<group>"; };
+		10DC2D161B969DF500A2AF9C /* MSFElementTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementTableViewHeader.m; sourceTree = "<group>"; };
+		10DC2D181B969E1600A2AF9C /* MSFElementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementTableViewCell.h; sourceTree = "<group>"; };
+		10DC2D191B969E1600A2AF9C /* MSFElementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementTableViewCell.m; sourceTree = "<group>"; };
 		10DC2D311B97186000A2AF9C /* MSFExtraOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFExtraOptionCell.h; sourceTree = "<group>"; };
 		10DC2D321B97186000A2AF9C /* MSFExtraOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFExtraOptionCell.m; sourceTree = "<group>"; };
 		10DC2D371B9841F900A2AF9C /* ic_attachment_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_attachment_delete.png; sourceTree = "<group>"; };
-		10DC2D591B997D4A00A2AF9C /* icon-arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-right.png"; sourceTree = "<group>"; };
 		10DC2D5F1B997FA100A2AF9C /* icon_attachment_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_attachment_full.png; sourceTree = "<group>"; };
 		10DC2D611B9982F600A2AF9C /* photoUpload_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoUpload_placeholder.png; sourceTree = "<group>"; };
 		10DC2D9A1B99C17F00A2AF9C /* icon_order1_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_order1_h.png; sourceTree = "<group>"; };
@@ -1090,6 +1092,10 @@
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5A55417088280C9EEC234F /* Pods.tp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.tp.xcconfig; path = "Pods/Target Support Files/Pods/Pods.tp.xcconfig"; sourceTree = "<group>"; };
 		41B95997B3C939CDBCD59AA1 /* Pods.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test.xcconfig"; sourceTree = "<group>"; };
+		4902E4071BC4B4640087FA1E /* mock-elements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mock-elements.json"; sourceTree = "<group>"; };
+		4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-right.png"; sourceTree = "<group>"; };
+		4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-right@2x.png"; sourceTree = "<group>"; };
+		4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-right@3x.png"; sourceTree = "<group>"; };
 		4902EE101B195A2F00EC836C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Externals/Crashlytics.framework; sourceTree = "<group>"; };
 		4902EE111B195A2F00EC836C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Externals/Fabric.framework; sourceTree = "<group>"; };
 		49075CA51BA91326006F63FF /* MSFTableViewBindingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTableViewBindingHelper.h; sourceTree = "<group>"; };
@@ -1728,7 +1734,6 @@
 				10DC2D371B9841F900A2AF9C /* ic_attachment_delete.png */,
 				0707249D1B671A240089916B /* 1242-2208-灰色.png */,
 				0707249F1B671A240089916B /* btnSlider.png */,
-				10DC2D591B997D4A00A2AF9C /* icon-arrow-right.png */,
 			);
 			name = ApplyProduct;
 			sourceTree = "<group>";
@@ -2018,6 +2023,7 @@
 				07C06C591B13464200F2DFCC /* edu_background.json */,
 				07C06C5B1B13465A00F2DFCC /* school_system.json */,
 				49A342381B7992DF006F5106 /* life-insurance */,
+				4902E4071BC4B4640087FA1E /* mock-elements.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -2302,10 +2308,10 @@
 			isa = PBXGroup;
 			children = (
 				10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */,
-				10DC2D051B969D1000A2AF9C /* MSFCertificatesCollectionViewController.h */,
-				10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */,
-				10DC2D081B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.h */,
-				10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */,
+				10DC2D051B969D1000A2AF9C /* MSFInventoryViewController.h */,
+				10DC2D061B969D1000A2AF9C /* MSFInventoryViewController.m */,
+				10DC2D081B969D4300A2AF9C /* MSFElementViewController.h */,
+				10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */,
 				10DC2D0B1B969D7300A2AF9C /* cells */,
 			);
 			name = PhotosUpload;
@@ -2314,12 +2320,12 @@
 		10DC2D0B1B969D7300A2AF9C /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */,
-				10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */,
-				10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */,
-				10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */,
-				10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */,
-				10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */,
+				10DC2D0C1B969D9400A2AF9C /* MSFInventoryTableViewCell.h */,
+				10DC2D0D1B969D9400A2AF9C /* MSFInventoryTableViewCell.m */,
+				10DC2D151B969DF500A2AF9C /* MSFElementTableViewHeader.h */,
+				10DC2D161B969DF500A2AF9C /* MSFElementTableViewHeader.m */,
+				10DC2D181B969E1600A2AF9C /* MSFElementTableViewCell.h */,
+				10DC2D191B969E1600A2AF9C /* MSFElementTableViewCell.m */,
 				10DC2E1E1B9FDF9100A2AF9C /* MSFBlankCell.h */,
 				10DC2E1F1B9FDF9100A2AF9C /* MSFBlankCell.m */,
 				10DC2D311B97186000A2AF9C /* MSFExtraOptionCell.h */,
@@ -3506,6 +3512,9 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */,
+				4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */,
+				4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */,
 				07E3ED691BBBC2DB0010AAD2 /* TradePassword */,
 				077347981BBA333B00D7A130 /* Bank */,
 				0707249C1B671A080089916B /* ApplyProduct */,
@@ -3939,6 +3948,7 @@
 				49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */,
 				49C0F1C51B2C341400E92572 /* tabbar-account-normal@2x.png in Resources */,
 				4944C02A1B68A5A100805C0A /* icon-account-about@3x.png in Resources */,
+				4902E4201BC4C56F0087FA1E /* icon-arrow-right@2x.png in Resources */,
 				49C0F1AE1B2C315100E92572 /* icon-verify-code@3x.png in Resources */,
 				077347CC1BBA338900D7A130 /* ABC@3x.png in Resources */,
 				49B37B5B1B608F39004EED47 /* bar-normal@2x.png in Resources */,
@@ -3970,6 +3980,7 @@
 				4944C04E1B68A5DA00805C0A /* nav-setting@2x.png in Resources */,
 				499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */,
 				07E3ED7A1BBBF6C00010AAD2 /* blackpoint@2x.png in Resources */,
+				4902E4211BC4C56F0087FA1E /* icon-arrow-right@3x.png in Resources */,
 				10DC2D601B997FA100A2AF9C /* icon_attachment_full.png in Resources */,
 				077347EC1BBA338900D7A130 /* zhongxin@2x.png in Resources */,
 				4944C0121B68A44A00805C0A /* icon-cloze-name@2x.png in Resources */,
@@ -4177,6 +4188,7 @@
 				49C0F1A41B2C315100E92572 /* icon-check-selected@2x.png in Resources */,
 				4EDB520D1B69C7E600388306 /* btn-FamilyInformation-phone.png in Resources */,
 				07E3ED7B1BBBF6C00010AAD2 /* blackpoint@3x.png in Resources */,
+				4902E41F1BC4C56F0087FA1E /* icon-arrow-right.png in Resources */,
 				4944C04C1B68A5DA00805C0A /* nav-back@3x.png in Resources */,
 				1011A3A81BB9702600CCADB5 /* icon_circle_basic_h.png in Resources */,
 				49C0F1AA1B2C315100E92572 /* icon-phone@2x.png in Resources */,
@@ -4186,6 +4198,7 @@
 				4944C04D1B68A5DA00805C0A /* nav-setting.png in Resources */,
 				49CA93601BBA212A0032F5C2 /* groupedTableViewCell_singleRow@2x.png in Resources */,
 				C7B978041B08E8DF005F247C /* MSFTradeTableViewController.xib in Resources */,
+				4902E4081BC4B4640087FA1E /* mock-elements.json in Resources */,
 				077347ED1BBA338900D7A130 /* zhongxin@3x.png in Resources */,
 				0750AAFB1B969DED00AD67F3 /* MSFCustomAlertViewController.xib in Resources */,
 				496444891B69BA77001FB1BE /* btn-showpwd-normal@3x.png in Resources */,
@@ -4230,7 +4243,6 @@
 				C7D2D11C1B67938C000F51ED /* icon-cloze-bankAddress.png in Resources */,
 				1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
-				10DC2D5C1B997D4A00A2AF9C /* icon-arrow-right.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
 				070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */,
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
@@ -4459,7 +4471,7 @@
 				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
 				108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
-				10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */,
+				10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */,
 				C7AF470B1B04E154001B39F2 /* MSFClient+Installment.m in Sources */,
 				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
@@ -4473,7 +4485,7 @@
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
-				10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */,
+				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
 				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
@@ -4482,7 +4494,7 @@
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
-				10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */,
+				10DC2D0A1B969D4300A2AF9C /* MSFElementViewController.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
 				10DAE1C01BBBC989001BD017 /* MSFRelationPhoneCell.m in Sources */,
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
@@ -4589,7 +4601,7 @@
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */,
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
-				10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */,
+				10DC2D1A1B969E1600A2AF9C /* MSFElementTableViewCell.m in Sources */,
 				491DDB441BBFF90000D62DEA /* MSFSignInPhoneViewController.m in Sources */,
 				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
@@ -4634,7 +4646,7 @@
 				07330B5B1BBE2C63000EB8FD /* MSFTeams2.m in Sources */,
 				1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
-				10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */,
+				10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,

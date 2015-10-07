@@ -15,5 +15,4 @@
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFTeams2.class];
 }
 
-
 @end

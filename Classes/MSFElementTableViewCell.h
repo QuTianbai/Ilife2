@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFPhotosUploadCell : UICollectionViewCell
+@interface MSFElementTableViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 

@@ -66,6 +66,7 @@ static NSDictionary *messages;
 @property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
 @property (nonatomic, strong, readwrite) MSFUser *user;
 @property (nonatomic, copy, readwrite) NSString *token;
+@property (nonatomic, strong) NSString *reachabilityStatus;
 
 @end
 
@@ -78,48 +79,33 @@ static NSDictionary *messages;
 	if (!(self = [super initWithBaseURL:server.APIEndpoint])) {
 		return nil;
 	}
+	self.reachabilityStatus = @"9";
+	self.defaultHeaders = NSMutableDictionary.dictionary;
+	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus]];
 	
-	NSMutableDictionary *(^MFSClientDefaultHeaders)(void) = ^{
-		// 0平台; 1系统版本; 2渠道; 3App内部版本号; 4制造商; 5牌子; 6型号; 7编译ID; 8设备ID; 9GPS(lat,lng); 10网络情况
-		NSDictionary *info = [NSBundle mainBundle].infoDictionary;
-		NSMutableArray *devices = NSMutableArray.new;
-		[devices addObject:@"IOS"];
-		[devices addObject:[UIDevice currentDevice].systemVersion];
-		[devices addObject:@"appstore"];
-		[devices addObject:[info[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""]];
-		[devices addObject:@"Apple"];
-		[devices addObject:@"iPhone"];
-		[devices addObject:[UIDevice currentDevice].name];
-		[devices addObject:info[@"CFBundleVersion"]];
-		[devices addObject:OpenUDID.value];
-		[devices addObject:@"0,0"];
-		[devices addObject:@"1"];
-		
-		return [@{
-			@"deviceInfo": [devices componentsJoinedByString:@"; "],
-		} mutableCopy];
-	};
-	self.defaultHeaders = MFSClientDefaultHeaders();
 	self.requestSerializer.timeoutInterval = 15;
 	#if DEBUG
 	self.requestSerializer.timeoutInterval = 3;
 	#endif
+	
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
 	if (isRunningTests()) {
 		return self;
 	}
+	
 	CLAuthorizationStatus const status = [CLLocationManager authorizationStatus];
 	if (status > 1) {
 		[[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
 		[[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
 		[[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
-			[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:newLocation.coordinate]];
+			[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:newLocation.coordinate reachabilityStatus:self.reachabilityStatus]];
 			[[RCLocationManager sharedManager] stopUpdatingLocation];
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
-	[self.reachabilityManager startMonitoring];
+	
 	@weakify(self)
+	[self.reachabilityManager startMonitoring];
 	[self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 		NSString *network;
 		switch (status) {
@@ -140,12 +126,14 @@ static NSDictionary *messages;
 				break;
 			}
 			default: {
+				network = @"9";
 				break;
 			}
 		}
-		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
 		@strongify(self)
-		[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:coordinate network:network]];
+		self.reachabilityStatus = network;
+		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
+		[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:coordinate reachabilityStatus:self.reachabilityStatus]];
 	}];
 	
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"code-message" withExtension:@"json"];
@@ -447,30 +435,6 @@ static NSDictionary *messages;
 		replay];
 }
 
-- (RACSignal *)realnameAuthentication:(NSString *)name idcard:(NSString *)idcard expire:(NSDate *)date session:(BOOL)session	province:(NSString *)provinceCode city:(NSString *)cityCode bank:(NSString *)bankCode card:(NSString *)card {
-	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"username"] = name;
-	parameters[@"id_card"] = idcard;
-	parameters[@"expire"] = !session ? [NSDateFormatter msf_stringFromDate:date] : @"";
-	parameters[@"valid_for_lifetime"] = @(session);
-	parameters[@"bank_card_number"] = [card stringByReplacingOccurrencesOfString:@" " withString:@""];
-	parameters[@"bankCode"] = bankCode;
-	parameters[@"bankProvinceCode"] = provinceCode;
-	parameters[@"bankCityCode"] = cityCode;
-	NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:parameters];
-	[request setHTTPMethod:@"POST"];
-	
-	return [[[self enqueueRequest:request resultClass:MSFUser.class]
-		flattenMap:^RACStream *(id value) {
-			return [self fetchUserInfo];
-		}]
-		map:^id(id value) {
-			self.user = value;
-			return self;
-		}];
-}
-
 #pragma mark - Request
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void(^)(id <AFMultipartFormData> formData))block {
@@ -560,9 +524,7 @@ static NSDictionary *messages;
 
 #pragma mark - Private
 
-+ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate network:(NSString *)network {
-	// Device:平台 +系统版本; + 渠道; + App内部版本号; + 制造商; + 牌子; + 型号; + 编译ID; + 设备ID; + GPS(lat,lng)
-	// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
++ (NSString *)deviceInfoWithCoordinate:(CLLocationCoordinate2D)coordinate reachabilityStatus:(NSString *)status {
 	NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 	NSMutableArray *devices = NSMutableArray.new;
 	[devices addObject:@"IOS"];
@@ -575,13 +537,9 @@ static NSDictionary *messages;
 	[devices addObject:info[@"CFBundleVersion"]];
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
-	[devices addObject:network];
+	[devices addObject:status];
 	
 	return [devices componentsJoinedByString:@"; "];
-}
-
-+ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate {
-	return [self deviceWithCoordinate:coordinate network:@""];
 }
 
 + (NSError *)userRequiredError {
@@ -726,9 +684,10 @@ static NSDictionary *messages;
 - (void)reportFabric:(AFHTTPRequestOperation *)operation error:(NSError *)error {
 	NSString *responseString = operation.responseString ?: @"";
 	NSString *errorInfo = error.localizedDescription ?: @"";
-	[Answers logCustomEventWithName:@"RequestError"
-								 customAttributes:@{@"responseString" : responseString,
-																		@"errorInfo" : errorInfo}];
+	[Answers logCustomEventWithName:@"RequestError" customAttributes:@{
+		@"responseString": responseString,
+		@"errorInfo" : errorInfo
+	}];
 }
 
 - (void)enqueueHTTPRequestOperation:(AFHTTPRequestOperation *)operation {
@@ -751,76 +710,6 @@ static NSDictionary *messages;
 
 - (void)clearAuthorizationHeader {
 	[self.defaultHeaders removeObjectForKey:@"token"];
-}
-
-#pragma mark - addBankCard
-
-- (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
-	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = MSFUtils.uniqueId;
-	parameters[@"transPassword"] = transPassword;
-	parameters[@"bankCardNo"] = bankCardNo;
-	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
-	parameters[@"bankBranchCityCode"] = bankBranchCityCode;
-	
-	//NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/bind" parameters:parameters];
-	[request setHTTPMethod:@"POST"];
-	
-	return [self enqueueRequest:request];
-}
-
-- (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
-	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = MSFUtils.uniqueId;
-	parameters[@"transPassword"] = pwd;
-	parameters[@"bankCardId"] = bankCardID;
-	
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/mainbind" parameters:parameters];
-	
-	return [self enqueueRequest:request];
-}
-
-- (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
-	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = MSFUtils.uniqueId;
-	parameters[@"transPassword"] = pwd;
-	parameters[@"bankCardId"] = bankCardID;
-	
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/unbind" parameters:parameters];
-	
-	return [self enqueueRequest:request];
-}
-
-- (RACSignal *)drawCashWithDrawCount:(NSString *)count AndContraceNO :(NSString *)contractNO AndType:(int)type {
-	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-	parameters[@"drawingAmount"] = count;
-	parameters[@"contractNo"] = contractNO;
-	
-	NSString *path = @"loan/drawings";
-	if (type == 1) {
-		path = @"loan/repay";
-	}
-	
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
-	
-	return [self enqueueRequest:request];
-	
-}
-
-- (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":capthch?:@""}];
-	return [self enqueueRequest:request];
-}
-
-- (RACSignal *)updateTradePwdWitholdPwd:(NSString *)oldpwd AndNewPwd:(NSString *)pwd AndCaptch:(NSString *)captch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":captch?:@"", @"oldTransPassword":oldpwd?:@""}];
-	return [self enqueueRequest:request];
-}
-
-- (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":newTransPassword?:@"", @"smsCode":smsCode?:@"", @"bankCardNo":bankCardNO?:@"", @"provinceCode":provinceCode?:@"", @"cityCode":cityCode?:@""}];
-	return [self enqueueRequest:request];
 }
 
 @end

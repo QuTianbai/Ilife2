@@ -68,25 +68,20 @@
 	
 	NSInteger row = indexPath.row;
 	switch (row) {
-		case 0:
-			//TODO: 更新交易密码/设置交易密码
-			{
-				UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"SetTradePassword" bundle:nil];
-				if (self.hasTransactionalCode) {
-				//  修改
-					storyborad = [UIStoryboard storyboardWithName:@"UpdateTradePWD" bundle:nil];
-				}
-				[self.navigationController pushViewController:storyborad.instantiateInitialViewController animated:YES];
-				
+		case 0: {
+			UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"SetTradePassword" bundle:nil];
+			if (self.hasTransactionalCode) { //  修改
+				storyborad = [UIStoryboard storyboardWithName:@"UpdateTradePWD" bundle:nil];
 			}
-			break;
-		case 1:
-			//TODO: 忘记交易密码
-		{
+			[self.navigationController pushViewController:storyborad.instantiateInitialViewController animated:YES];
+				
+		}
+		break;
+		case 1: {
 			UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"ForgetTradePwd" bundle:nil];
 			[self.navigationController pushViewController:storyborad.instantiateInitialViewController animated:YES];
 		}
-			break;
+		break;
 		default:
 			break;
 	}

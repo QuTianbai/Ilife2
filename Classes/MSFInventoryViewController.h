@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFCertificatesCollectionViewController : UIViewController
+@interface MSFInventoryViewController : UIViewController
 
 @property (nonatomic, assign) BOOL optional;
 

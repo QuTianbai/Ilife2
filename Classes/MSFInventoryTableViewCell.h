@@ -1,5 +1,5 @@
 //
-//  MSFPhotoUploadCollectionViewController.h
+//  MSFCertificateCell.h
 //  Finance
 //
 //  Created by 赵勇 on 9/2/15.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFPhotoUploadCollectionViewController : UIViewController
+@interface MSFInventoryTableViewCell : UICollectionViewCell
 
+- (void)drawSeparatorAtIndex:(NSIndexPath *)indexPath total:(NSInteger)total;
 - (void)bindViewModel:(id)viewModel;
 
 @end

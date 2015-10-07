@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFCertificatesCollectionViewController.h"
+#import "MSFInventoryViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <libextobjc/extobjc.h>
 #import <KGModal/KGModal.h>
-#import "MSFCertificateCell.h"
+#import "MSFInventoryTableViewCell.h"
 #import "MSFBlankCell.h"
 #import "MSFExtraOptionCell.h"
 #import "MSFInventoryViewModel.h"
@@ -27,9 +27,9 @@
 #import "MSFApplyCashVIewModel.h"
 
 
-#import "MSFPhotoUploadCollectionViewController.h"
+#import "MSFElementViewController.h"
 
-@interface MSFCertificatesCollectionViewController ()
+@interface MSFInventoryViewController ()
 <UICollectionViewDataSource,
 UICollectionViewDelegate,
 UICollectionViewDelegateFlowLayout>
@@ -41,7 +41,7 @@ UICollectionViewDelegateFlowLayout>
 
 @end
 
-@implementation MSFCertificatesCollectionViewController
+@implementation MSFInventoryViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
   self = [self init];
@@ -54,7 +54,7 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (instancetype)init {
-	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:@"MSFCertificatesCollectionViewController"];
+	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFInventoryViewController.class)];
 }
 
 - (void)viewDidLoad {
@@ -225,7 +225,7 @@ UICollectionViewDelegateFlowLayout>
 			MSFBlankCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFBlankCell" forIndexPath:indexPath];
 			return cell;
 		} else {
-			MSFCertificateCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
+			MSFInventoryTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCertificateCell" forIndexPath:indexPath];
 			if (self.optional) {
 				[cell bindViewModel:self.viewModel.optionalViewModels[indexPath.row]];
 			} else {
@@ -254,7 +254,7 @@ UICollectionViewDelegateFlowLayout>
 			[self performSegueWithIdentifier:@"photosUploadSegue" sender:indexPath];
 		}
 	} else {
-		MSFCertificatesCollectionViewController *vc = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:self.viewModel];
+		MSFInventoryViewController *vc = [[MSFInventoryViewController alloc] initWithViewModel:self.viewModel];
 		vc.navigationItem.title = @"更多资料";
 		vc.optional = YES;
 		[self.navigationController pushViewController:vc animated:YES];
@@ -266,7 +266,7 @@ UICollectionViewDelegateFlowLayout>
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"photosUploadSegue"]) {
 		NSIndexPath *indexPath = sender;
-		MSFPhotoUploadCollectionViewController *vc = (MSFPhotoUploadCollectionViewController *)segue.destinationViewController;
+		MSFElementViewController *vc = (MSFElementViewController *)segue.destinationViewController;
 		if (self.optional) {
 			MSFElementViewModel *viewModel = self.viewModel.optionalViewModels[indexPath.row];
 			vc.title = viewModel.title;
