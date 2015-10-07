@@ -39,7 +39,7 @@
     [super viewDidLoad];
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
 	
-	[self.viewModel.executeNextCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			if (model.processing == 1) {
@@ -65,7 +65,7 @@
 			[SVProgressHUD dismiss];
 		}];
 	}];
-	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeAllowCashCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	

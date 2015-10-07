@@ -130,7 +130,8 @@ static MSFServer *server;
 }
 
 + (NSString *)productCode {
-	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
+	return @"2001";
+	//return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
 
 + (NSString *)complateCustInfo {
