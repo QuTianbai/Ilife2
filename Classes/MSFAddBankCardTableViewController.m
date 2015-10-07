@@ -174,14 +174,16 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	if (type == 2) {
 		@weakify(self)
 		[[self.viewModel.executeAddBankCard execute:nil]
-		subscribeNext:^(RACSignal *signal) {
+		subscribeCompleted:^{
 			@strongify(self)
 			[self.view endEditing:YES];
 			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
 			[self.navigationController popViewControllerAnimated:YES];
-		} error:^(NSError *error) {
+		} ];
+		[self.viewModel.executeAddBankCard.errors subscribeNext:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
+
 	}
 }
 

@@ -103,9 +103,10 @@
 	self.sureBT.rac_command = self.viewModel.executeSetTradePwd;
 	
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
+		[SVProgressHUD showWithStatus:@"正在提交" maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[MSFUtils setisTradePassword:@"YES"];
-			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
+			[SVProgressHUD showSuccessWithStatus:@"设置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];

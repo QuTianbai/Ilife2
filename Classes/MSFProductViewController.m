@@ -165,7 +165,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.viewModel.appLmt = value;
     return value;
   }];
-	NSLog(@"%f",FLT_MAX);
 	//self.moneySlider.maximumValue = 2999999999;
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
     if (!value) {
