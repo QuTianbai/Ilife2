@@ -45,6 +45,8 @@
 	self.title = @"修改交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_viewModel = appdelegate.authorizeVewModel;
+	
+	//[self.viewModel.repetitiveEventSignal sendCo]
 	[[self.oldpwdTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 6) {

@@ -60,6 +60,8 @@
 
 @property (nonatomic, strong) RACCommand *executeNextCommand;
 
+@property (nonatomic, copy) NSString *masterBankCardNO;
+
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status;

@@ -18,6 +18,10 @@
 
 @interface MSFFormsViewModel : RVMViewModel
 
+@property (nonatomic, assign) BOOL master;
+@property (nonatomic, copy) NSString *masterBankCardNO;
+
+@property (nonatomic, strong, readonly) NSArray *bankCardArray;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) MSFApplicationForms *model;
 @property (nonatomic, strong, readonly) MSFMarket *market;
