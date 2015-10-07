@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFPhotosUploadHeaderView.h"
+#import "MSFElementTableViewHeader.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MSFElementViewModel.h"
 #import "MSFElement.h"
 #import "UILabel+AttributeColor.h"
 #import "UIColor+Utils.h"
 
-@interface MSFPhotosUploadHeaderView ()
+@interface MSFElementTableViewHeader ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *displayImageView;
 @property (nonatomic, strong) MSFElementViewModel *viewModel;
@@ -22,7 +22,7 @@
 
 @end
 
-@implementation MSFPhotosUploadHeaderView
+@implementation MSFElementTableViewHeader
 
 - (void)awakeFromNib {
 	_displayImageView.layer.cornerRadius = 5;

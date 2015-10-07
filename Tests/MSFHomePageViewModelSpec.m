@@ -41,7 +41,7 @@ it(@"should not has viewmodel for placeholder", ^{
   
   // then
   expect(sub).to(beNil());
-  expect(reusableIdentifier).to(equal(@"MSFCirculateViewCell"));
+  expect(reusableIdentifier).to(equal(@"MSFHomePageContentCollectionViewCell"));
 });
 
 //TODO: 暂时不考虑这里的状态

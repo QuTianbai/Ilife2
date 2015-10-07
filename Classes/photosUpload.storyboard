@@ -29,7 +29,7 @@
         <!--上传资料-->
         <scene sceneID="Uh1-s7-bNx">
             <objects>
-                <viewController storyboardIdentifier="MSFCertificatesCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="y1b-jP-7vn" customClass="MSFCertificatesCollectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MSFInventoryViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="y1b-jP-7vn" customClass="MSFInventoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LEe-hs-haB"/>
                         <viewControllerLayoutGuide type="bottom" id="jWa-fY-Ub9"/>
@@ -75,7 +75,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFCertificateCell" id="ePJ-qm-1FS" customClass="MSFCertificateCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFCertificateCell" id="ePJ-qm-1FS" customClass="MSFInventoryTableViewCell">
                                         <rect key="frame" x="63.5" y="0.0" width="193" height="139"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="593" y="-652"/>
         </scene>
-        <!--Photo Upload Collection View Controller-->
+        <!--Element View Controller-->
         <scene sceneID="7CO-Si-CaK">
             <objects>
-                <viewController storyboardIdentifier="MSFPhotoUploadCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="3aB-XV-yFa" customClass="MSFPhotoUploadCollectionViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MSFPhotoUploadCollectionViewController" automaticallyAdjustsScrollViewInsets="NO" hidesBottomBarWhenPushed="YES" id="3aB-XV-yFa" customClass="MSFElementViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LpO-7v-gVC"/>
                         <viewControllerLayoutGuide type="bottom" id="VnG-wU-VAV"/>
@@ -232,7 +232,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadCell" id="e3I-4q-4Ql" customClass="MSFPhotosUploadCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadCell" id="e3I-4q-4Ql" customClass="MSFElementTableViewCell">
                                         <rect key="frame" x="0.0" y="210" width="154" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -273,7 +273,7 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadHeaderView" id="nP8-3v-e59" customClass="MSFPhotosUploadHeaderView">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MSFPhotosUploadHeaderView" id="nP8-3v-e59" customClass="MSFElementTableViewHeader">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>

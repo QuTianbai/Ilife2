@@ -18,7 +18,7 @@
 #import "MSFSelectionViewController.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFRelationshipViewModel.h"
-#import "MSFCertificatesCollectionViewController.h"
+#import "MSFInventoryViewController.h"
 #import "MSFApplicationForms.h"
 #import "MSFApplicationResponse.h"
 #import "MSFCommandView.h"

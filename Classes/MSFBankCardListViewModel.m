@@ -9,6 +9,7 @@
 #import "MSFBankCardListViewModel.h"
 #import "MSFClient+MSFBankCardList.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFClient+Users.h"
 
 @interface MSFBankCardListViewModel ()
 

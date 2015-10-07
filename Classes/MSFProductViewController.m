@@ -71,6 +71,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet MSFCounterLabel *repayMoneyMonth;
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
+@property (weak, nonatomic) IBOutlet UILabel *bankCard;
+
+@property (nonatomic, assign) BOOL master;
 
 @property (nonatomic, strong, readwrite) MSFApplyCashVIewModel *viewModel;
 
@@ -134,6 +137,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.navigationItem.titleView = label;
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
+	RAC(self, bankCard.text) = [RACObserve(self, viewModel.masterBankCardNO) map:^id(id value) {
+		if ([value isEqualToString:@""] || value == nil) {
+			self.master = NO;
+			[self.tableView reloadData];
+		}
+		self.master = YES;
+		return value;
+	}];
+	
 	self.viewModel.jionLifeInsurance = @"1";
 	RAC(self.viewModel, jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(id value) {
 		return value;
@@ -153,6 +165,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.viewModel.appLmt = value;
     return value;
   }];
+	//self.moneySlider.maximumValue = 2999999999;
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
     if (!value) {
       return @0;
@@ -231,6 +244,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
 		[cell setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if (self.master) {
+		return 2;
+	}
+	return 3;
 }
 
 - (void)viewDidLayoutSubviews {

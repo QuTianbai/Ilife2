@@ -117,4 +117,72 @@
 	return [self enqueueUserRequestWithMethod:@"GET" relativePath:@"/check_employee" parameters:nil resultClass:nil];
 }
 
+- (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"transPassword"] = transPassword;
+	parameters[@"bankCardNo"] = bankCardNo;
+	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
+	parameters[@"bankBranchCityCode"] = bankBranchCityCode;
+	
+	//NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/bind" parameters:parameters];
+	[request setHTTPMethod:@"POST"];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"transPassword"] = pwd;
+	parameters[@"bankCardId"] = bankCardID;
+	
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/mainbind" parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"transPassword"] = pwd;
+	parameters[@"bankCardId"] = bankCardID;
+	
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/unbind" parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)drawCashWithDrawCount:(NSString *)count AndContraceNO :(NSString *)contractNO AndType:(int)type {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"drawingAmount"] = count;
+	parameters[@"contractNo"] = contractNO;
+	
+	NSString *path = @"loan/drawings";
+	if (type == 1) {
+		path = @"loan/repay";
+	}
+	
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
+	
+}
+
+- (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":capthch?:@""}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)updateTradePwdWitholdPwd:(NSString *)oldpwd AndNewPwd:(NSString *)pwd AndCaptch:(NSString *)captch {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":captch?:@"", @"oldTransPassword":oldpwd?:@""}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":newTransPassword?:@"", @"smsCode":smsCode?:@"", @"bankCardNo":bankCardNO?:@"", @"provinceCode":provinceCode?:@"", @"cityCode":cityCode?:@""}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
 @end

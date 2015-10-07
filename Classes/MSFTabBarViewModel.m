@@ -62,6 +62,13 @@
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
+	[self.authorizeViewModel.executeSignUp.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
+		[signal subscribeNext:^(id x) {
+			self.formsViewModel.active = NO;
+			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
+		}];
+	}];
 	[self.authorizeViewModel.executeSignOut.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeCompleted:^{

@@ -97,7 +97,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			doNext:^(id x) {
 				@strongify(self)
 				self.counting = YES;
-				RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.executeSignIn.executionSignals];
 				__block int repetCount = kCounterLength;
 				[repetitiveEventSignal subscribeNext:^(id x) {
 					self.counter = [@(--repetCount) stringValue];
@@ -406,8 +406,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 - (RACSignal *)executeCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchSignUpCaptchaWithPhone:self.username];
+	if (self.loginType == MSFLoginSignUp) {
+		MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
+		return [client fetchSignUpCaptchaWithPhone:self.username];
+	} else {
+		MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
+		return [client fetchLoginCaptchaWithPhone:self.username];
+	}
 }
 
 - (RACSignal *)executeCaptchaAlertMobileSignal {

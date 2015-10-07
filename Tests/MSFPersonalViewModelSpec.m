@@ -49,41 +49,6 @@ it(@"should update address", ^{
 	expect(viewModel.address).to(equal(@"重庆市直辖市沙坪坝区"));
 });
 
-it(@"should submit personal information", ^{
-	// given
-	[given([viewModel.formsViewModel submitUserInfo]) willDo:^id(NSInvocation *invocation) {
-		MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{
-			@"complateCustInfo": @"100"
-		}];
-		return [RACSignal return:response];
-	}];
-	
-	model.income = @"1000";
-	model.familyExpense = @"0";
-	model.otherIncome = @"100";
-	model.homeCode = @"023";
-	model.homeLine = @"64649999";
-	model.email = @"gitmac@qq.com";
-	model.currentTown = @"foo";
-	model.currentStreet = @"bar";
-	model.houseType = @"foo";
-	model.maritalStatus = @"bar";
-	model.abodeDetail = @"detal";
-	
-	[[viewModel.executeAlterAddressCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
-	
-	BOOL success = NO;
-	NSError *error = nil;
-	
-	// when
-	MSFResponse *response = [[viewModel.executeCommitCommand execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
-	
-	// then
-	expect(@(success)).to(beTruthy());
-	expect(error).to(beNil());
-	expect(response.parsedResult[@"complateCustInfo"]).to(equal(@"100"));
-});
-
 it(@"should not accept with error QQ", ^{
 	// given
 	NSError *error = nil;
