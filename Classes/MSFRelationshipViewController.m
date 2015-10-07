@@ -50,9 +50,9 @@ typedef NS_ENUM(NSUInteger, MSFRelationshipViewSection) {
 <ABPeoplePickerNavigationControllerDelegate,
 ABPersonViewControllerDelegate>
 
-@property (nonatomic, copy) NSString *currendAddress;
+//@property (nonatomic, copy) NSString *currendAddress;
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
-@property (nonatomic, strong) MSFSelectKeyValues *selectKeyValues;
+//@property (nonatomic, strong) MSFSelectKeyValues *selectKeyValues;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;

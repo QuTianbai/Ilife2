@@ -20,17 +20,6 @@
 @property (nonatomic, readonly) MSFApplicationForms *model;
 
 /**
- *婚姻状况
- */
-@property (nonatomic, strong) MSFSelectKeyValues *marryValues;
-@property (nonatomic, strong) NSString *marryValuesTitle;
-/**
- *住房状况
- */
-@property (nonatomic, strong) MSFSelectKeyValues *houseValues;
-@property (nonatomic, strong) NSString *houseValuesTitle;
-
-/**
  *家庭成员一与申请人关系
  */
 @property (nonatomic, strong) MSFSelectKeyValues *familyOneValues;
@@ -98,18 +87,13 @@
 @property (nonatomic, assign) BOOL hasContact2;
 @property (nonatomic, strong, readonly) NSString *confirmMessage;
 
-//@property (nonatomic, strong, readonly) RACCommand *executeMarryValuesCommand;
-//@property (nonatomic, strong, readonly) RACCommand *executeHouseValuesCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeFamilyValuesCommand;
-//@property (nonatomic, strong, readonly) RACCommand *executeFamilyTwoValuesCommand;
-//@property (nonatomic, strong, readonly) RACCommand *executeOtherOneValuesCommand;
-//@property (nonatomic, strong, readonly) RACCommand *executeOtherTwoValuesCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
-- (NSString *)checkForm;
+//- (NSString *)checkForm;
 
 @end
