@@ -75,6 +75,7 @@
 		}];
 		RACSignal *signal = [[self.services.httpClient fetchBankCardList].collect replayLazily];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			for (MSFBankCardListModel *ob in x) {
 				if ([ob isEqual:[NSNull null]]) {
 					self.master = NO;

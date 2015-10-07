@@ -241,7 +241,7 @@ static NSDictionary *messages;
 					client.user = user;
 					[MSFUtils setUniqueId:user.uniqueId];
 					[MSFUtils setCircuteCash:user.type];
-					[MSFUtils setProductCode:user.productId];
+					[MSFUtils setProductCode:user.type];
 				
 					return [RACSignal combineLatest:@[
 						[RACSignal return:client],

@@ -44,7 +44,7 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			if (model.processing == 1) {
 				
-				if ([MSFUtils.isCircuteCash isEqualToString:@"1"]) {
+				if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 					MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 					MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
 					[self.navigationController pushViewController:circulateViewController animated:YES];

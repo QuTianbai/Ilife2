@@ -19,7 +19,7 @@
 //	NSString *path = [[NSBundle mainBundle] pathForResource:@"bankCardList" ofType:@"json"];
 //	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
 //	return [[self enqueueRequest:request resultClass:MSFBankCardListModel.class] msf_parsedResults];
-	[SVProgressHUD showInfoWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 	
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/bindingList" parameters:@{@"uniqueId":self.user.uniqueId}];
 		return [[self enqueueRequest:request resultClass:MSFBankCardListModel.class] msf_parsedResults];
