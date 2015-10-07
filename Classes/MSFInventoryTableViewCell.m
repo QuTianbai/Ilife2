@@ -6,12 +6,12 @@
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFCertificateCell.h"
+#import "MSFInventoryTableViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UIColor+Utils.h"
 #import "MSFElementViewModel.h"
 
-@interface MSFCertificateCell ()
+@interface MSFInventoryTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *markImageView;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation MSFCertificateCell
+@implementation MSFInventoryTableViewCell
 
 - (void)bindViewModel:(MSFElementViewModel *)viewModel {
 	_viewModel = viewModel;

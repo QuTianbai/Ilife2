@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFPhotosUploadCell.h"
+#import "MSFElementTableViewCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
 #import "UIColor+Utils.h"
 
-@interface MSFPhotosUploadCell ()<UIAlertViewDelegate>
+@interface MSFElementTableViewCell ()<UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *uploadImageView;
 
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation MSFPhotosUploadCell
+@implementation MSFElementTableViewCell
 
 - (void)awakeFromNib {
 	_uploadImageView.layer.cornerRadius = 5;

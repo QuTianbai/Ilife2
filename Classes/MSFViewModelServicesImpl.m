@@ -27,7 +27,7 @@
 #import "MSFLocationModel.h"
 
 #import "MSFInventoryViewModel.h"
-#import "MSFCertificatesCollectionViewController.h"
+#import "MSFInventoryViewController.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
@@ -72,7 +72,7 @@
 		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
   } else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
-		viewController = [[MSFCertificatesCollectionViewController alloc] initWithViewModel:viewModel];
+		viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];

@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFPhotoUploadCollectionViewController.h"
+#import "MSFElementViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <MWPhotoBrowser/MWPhotoBrowser.h>
-#import "MSFPhotosUploadCell.h"
-#import "MSFPhotosUploadHeaderView.h"
+#import "MSFElementTableViewCell.h"
+#import "MSFElementTableViewHeader.h"
 #import "MSFElementViewModel.h"
 #import "MSFElement.h"
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
 #import "UIColor+Utils.h"
 
-@interface MSFPhotoUploadCollectionViewController ()
+@interface MSFElementViewController ()
 <UICollectionViewDataSource,
 UICollectionViewDelegate,
 UICollectionViewDelegateFlowLayout,
@@ -33,7 +33,7 @@ MWPhotoBrowserDelegate>
 
 @end
 
-@implementation MSFPhotoUploadCollectionViewController
+@implementation MSFElementViewController
 
 
 - (void)bindViewModel:(MSFElementViewModel *)viewModel {
@@ -156,14 +156,14 @@ MWPhotoBrowserDelegate>
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	MSFPhotosUploadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPhotosUploadCell" forIndexPath:indexPath];
+	MSFElementTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPhotosUploadCell" forIndexPath:indexPath];
 	[cell bindViewModel:self.viewModel.viewModels[indexPath.row]];
 	return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
 	if (kind == UICollectionElementKindSectionHeader) {
-		MSFPhotosUploadHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFPhotosUploadHeaderView" forIndexPath:indexPath];
+		MSFElementTableViewHeader *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFPhotosUploadHeaderView" forIndexPath:indexPath];
 		[view bindModel:self.viewModel shouldFold:self.shouldFold folded:self.folded];
 		@weakify(self)
 		[[[view.foldButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:view.rac_prepareForReuseSignal] subscribeNext:^(id x) {

@@ -207,11 +207,11 @@
 		10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */; settings = {ASSET_TAGS = (); }; };
 		10DBCD341BB8E08A000A23B7 /* MSFLoanLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */; settings = {ASSET_TAGS = (); }; };
 		10DC2D041B96924E00A2AF9C /* photosUpload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */; };
-		10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */; };
-		10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */; };
-		10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */; };
-		10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */; };
-		10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */; };
+		10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D061B969D1000A2AF9C /* MSFInventoryViewController.m */; };
+		10DC2D0A1B969D4300A2AF9C /* MSFElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */; };
+		10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D0D1B969D9400A2AF9C /* MSFInventoryTableViewCell.m */; };
+		10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D161B969DF500A2AF9C /* MSFElementTableViewHeader.m */; };
+		10DC2D1A1B969E1600A2AF9C /* MSFElementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D191B969E1600A2AF9C /* MSFElementTableViewCell.m */; };
 		10DC2D331B97186000A2AF9C /* MSFExtraOptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DC2D321B97186000A2AF9C /* MSFExtraOptionCell.m */; };
 		10DC2D381B9841F900A2AF9C /* ic_attachment_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D371B9841F900A2AF9C /* ic_attachment_delete.png */; };
 		10DC2D5C1B997D4A00A2AF9C /* icon-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DC2D591B997D4A00A2AF9C /* icon-arrow-right.png */; };
@@ -1046,16 +1046,16 @@
 		10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanLimitView.h; sourceTree = "<group>"; };
 		10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanLimitView.m; sourceTree = "<group>"; };
 		10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = photosUpload.storyboard; sourceTree = "<group>"; };
-		10DC2D051B969D1000A2AF9C /* MSFCertificatesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificatesCollectionViewController.h; sourceTree = "<group>"; };
-		10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificatesCollectionViewController.m; sourceTree = "<group>"; };
-		10DC2D081B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotoUploadCollectionViewController.h; sourceTree = "<group>"; };
-		10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotoUploadCollectionViewController.m; sourceTree = "<group>"; };
-		10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCertificateCell.h; sourceTree = "<group>"; };
-		10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCertificateCell.m; sourceTree = "<group>"; };
-		10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadHeaderView.h; sourceTree = "<group>"; };
-		10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadHeaderView.m; sourceTree = "<group>"; };
-		10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPhotosUploadCell.h; sourceTree = "<group>"; };
-		10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPhotosUploadCell.m; sourceTree = "<group>"; };
+		10DC2D051B969D1000A2AF9C /* MSFInventoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInventoryViewController.h; sourceTree = "<group>"; };
+		10DC2D061B969D1000A2AF9C /* MSFInventoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventoryViewController.m; sourceTree = "<group>"; };
+		10DC2D081B969D4300A2AF9C /* MSFElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementViewController.h; sourceTree = "<group>"; };
+		10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementViewController.m; sourceTree = "<group>"; };
+		10DC2D0C1B969D9400A2AF9C /* MSFInventoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInventoryTableViewCell.h; sourceTree = "<group>"; };
+		10DC2D0D1B969D9400A2AF9C /* MSFInventoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInventoryTableViewCell.m; sourceTree = "<group>"; };
+		10DC2D151B969DF500A2AF9C /* MSFElementTableViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementTableViewHeader.h; sourceTree = "<group>"; };
+		10DC2D161B969DF500A2AF9C /* MSFElementTableViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementTableViewHeader.m; sourceTree = "<group>"; };
+		10DC2D181B969E1600A2AF9C /* MSFElementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElementTableViewCell.h; sourceTree = "<group>"; };
+		10DC2D191B969E1600A2AF9C /* MSFElementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementTableViewCell.m; sourceTree = "<group>"; };
 		10DC2D311B97186000A2AF9C /* MSFExtraOptionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFExtraOptionCell.h; sourceTree = "<group>"; };
 		10DC2D321B97186000A2AF9C /* MSFExtraOptionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFExtraOptionCell.m; sourceTree = "<group>"; };
 		10DC2D371B9841F900A2AF9C /* ic_attachment_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_attachment_delete.png; sourceTree = "<group>"; };
@@ -2302,10 +2302,10 @@
 			isa = PBXGroup;
 			children = (
 				10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */,
-				10DC2D051B969D1000A2AF9C /* MSFCertificatesCollectionViewController.h */,
-				10DC2D061B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m */,
-				10DC2D081B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.h */,
-				10DC2D091B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m */,
+				10DC2D051B969D1000A2AF9C /* MSFInventoryViewController.h */,
+				10DC2D061B969D1000A2AF9C /* MSFInventoryViewController.m */,
+				10DC2D081B969D4300A2AF9C /* MSFElementViewController.h */,
+				10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */,
 				10DC2D0B1B969D7300A2AF9C /* cells */,
 			);
 			name = PhotosUpload;
@@ -2314,12 +2314,12 @@
 		10DC2D0B1B969D7300A2AF9C /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				10DC2D0C1B969D9400A2AF9C /* MSFCertificateCell.h */,
-				10DC2D0D1B969D9400A2AF9C /* MSFCertificateCell.m */,
-				10DC2D151B969DF500A2AF9C /* MSFPhotosUploadHeaderView.h */,
-				10DC2D161B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m */,
-				10DC2D181B969E1600A2AF9C /* MSFPhotosUploadCell.h */,
-				10DC2D191B969E1600A2AF9C /* MSFPhotosUploadCell.m */,
+				10DC2D0C1B969D9400A2AF9C /* MSFInventoryTableViewCell.h */,
+				10DC2D0D1B969D9400A2AF9C /* MSFInventoryTableViewCell.m */,
+				10DC2D151B969DF500A2AF9C /* MSFElementTableViewHeader.h */,
+				10DC2D161B969DF500A2AF9C /* MSFElementTableViewHeader.m */,
+				10DC2D181B969E1600A2AF9C /* MSFElementTableViewCell.h */,
+				10DC2D191B969E1600A2AF9C /* MSFElementTableViewCell.m */,
 				10DC2E1E1B9FDF9100A2AF9C /* MSFBlankCell.h */,
 				10DC2E1F1B9FDF9100A2AF9C /* MSFBlankCell.m */,
 				10DC2D311B97186000A2AF9C /* MSFExtraOptionCell.h */,
@@ -4459,7 +4459,7 @@
 				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
 				108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
-				10DC2D0E1B969D9400A2AF9C /* MSFCertificateCell.m in Sources */,
+				10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */,
 				C7AF470B1B04E154001B39F2 /* MSFClient+Installment.m in Sources */,
 				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
@@ -4473,7 +4473,7 @@
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
-				10DC2D071B969D1000A2AF9C /* MSFCertificatesCollectionViewController.m in Sources */,
+				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
 				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				49DA22641B062AF200DD4483 /* MSFAgreement.m in Sources */,
@@ -4482,7 +4482,7 @@
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
-				10DC2D0A1B969D4300A2AF9C /* MSFPhotoUploadCollectionViewController.m in Sources */,
+				10DC2D0A1B969D4300A2AF9C /* MSFElementViewController.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
 				10DAE1C01BBBC989001BD017 /* MSFRelationPhoneCell.m in Sources */,
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
@@ -4589,7 +4589,7 @@
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */,
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
-				10DC2D1A1B969E1600A2AF9C /* MSFPhotosUploadCell.m in Sources */,
+				10DC2D1A1B969E1600A2AF9C /* MSFElementTableViewCell.m in Sources */,
 				491DDB441BBFF90000D62DEA /* MSFSignInPhoneViewController.m in Sources */,
 				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
@@ -4634,7 +4634,7 @@
 				07330B5B1BBE2C63000EB8FD /* MSFTeams2.m in Sources */,
 				1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
-				10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */,
+				10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,
