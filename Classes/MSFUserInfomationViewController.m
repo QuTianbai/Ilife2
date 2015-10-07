@@ -23,6 +23,7 @@
 #import "UIColor+Utils.h"
 
 #import "MSFUtils.h"
+#import "MSFUser.h"
 #import "MSFInventoryViewModel.h"
 #import "MSFCertificatesCollectionViewController.h"
 
@@ -60,7 +61,7 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
 	_headerImageView = [[UIImageView alloc] init];
-	_headerImageView.image = [UIImage imageNamed:@"userInfo_header.png"];
+	_headerImageView.image = [UIImage imageNamed:@"home-banner-pl.png"];
 	[self.view addSubview:_headerImageView];
 	
 	@weakify(self)
@@ -73,11 +74,16 @@
 		 [self onClickCircle:x.integerValue];
 	}];
 	
+	[RACObserve(self.services.httpClient.user, complateCustInfo) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.circleView setCompeltionStatus:x];
+	}];
+	
 	_nextStepButton = [UIButton buttonWithType:UIButtonTypeSystem];
 	_nextStepButton.backgroundColor = [UIColor themeColorNew];
 	[_nextStepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
-	_nextStepButton.hidden = _showNextStep;
+	_nextStepButton.hidden = !_showNextStep;
 	_nextStepButton.layer.cornerRadius = 5;
 	[self.view addSubview:_nextStepButton];
 	//_nextStepButton.rac_command = self.viewModel.executeNextCommand;
@@ -95,7 +101,7 @@
 		make.top.equalTo(self.view).offset(64);
 		make.left.equalTo(self.view);
 		make.right.equalTo(self.view);
-		make.height.equalTo(self.headerImageView.mas_width).multipliedBy(0.267);
+		make.height.equalTo(self.headerImageView.mas_width).multipliedBy(0.463);
 	}];
 	
 	[_circleView mas_makeConstraints:^(MASConstraintMaker *make) {
