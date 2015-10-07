@@ -64,6 +64,7 @@
 	RAC(self, maxMoney) = RACObserve(self, formViewModel.markets.allMaxAmount);
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
+		self.loanPurpose = value.code;
 		return value.code;
 	}];
 	
