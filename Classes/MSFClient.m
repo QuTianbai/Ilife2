@@ -66,6 +66,7 @@ static NSDictionary *messages;
 @property (nonatomic, strong) NSMutableDictionary *defaultHeaders;
 @property (nonatomic, strong, readwrite) MSFUser *user;
 @property (nonatomic, copy, readwrite) NSString *token;
+@property (nonatomic, strong) NSString *reachabilityStatus;
 
 @end
 
@@ -78,48 +79,33 @@ static NSDictionary *messages;
 	if (!(self = [super initWithBaseURL:server.APIEndpoint])) {
 		return nil;
 	}
+	self.reachabilityStatus = @"9";
+	self.defaultHeaders = NSMutableDictionary.dictionary;
+	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus]];
 	
-	NSMutableDictionary *(^MFSClientDefaultHeaders)(void) = ^{
-		// 0平台; 1系统版本; 2渠道; 3App内部版本号; 4制造商; 5牌子; 6型号; 7编译ID; 8设备ID; 9GPS(lat,lng); 10网络情况
-		NSDictionary *info = [NSBundle mainBundle].infoDictionary;
-		NSMutableArray *devices = NSMutableArray.new;
-		[devices addObject:@"IOS"];
-		[devices addObject:[UIDevice currentDevice].systemVersion];
-		[devices addObject:@"appstore"];
-		[devices addObject:[info[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""]];
-		[devices addObject:@"Apple"];
-		[devices addObject:@"iPhone"];
-		[devices addObject:[UIDevice currentDevice].name];
-		[devices addObject:info[@"CFBundleVersion"]];
-		[devices addObject:OpenUDID.value];
-		[devices addObject:@"0,0"];
-		[devices addObject:@"1"];
-		
-		return [@{
-			@"deviceInfo": [devices componentsJoinedByString:@"; "],
-		} mutableCopy];
-	};
-	self.defaultHeaders = MFSClientDefaultHeaders();
 	self.requestSerializer.timeoutInterval = 15;
 	#if DEBUG
 	self.requestSerializer.timeoutInterval = 3;
 	#endif
+	
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
 	if (isRunningTests()) {
 		return self;
 	}
+	
 	CLAuthorizationStatus const status = [CLLocationManager authorizationStatus];
 	if (status > 1) {
 		[[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
 		[[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
 		[[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
-			[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:newLocation.coordinate]];
+			[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:newLocation.coordinate reachabilityStatus:self.reachabilityStatus]];
 			[[RCLocationManager sharedManager] stopUpdatingLocation];
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
-	[self.reachabilityManager startMonitoring];
+	
 	@weakify(self)
+	[self.reachabilityManager startMonitoring];
 	[self.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 		NSString *network;
 		switch (status) {
@@ -140,12 +126,14 @@ static NSDictionary *messages;
 				break;
 			}
 			default: {
+				network = @"9";
 				break;
 			}
 		}
-		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
 		@strongify(self)
-		[self setDefaultHeader:@"Device" value:[self.class deviceWithCoordinate:coordinate network:network]];
+		self.reachabilityStatus = network;
+		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
+		[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:coordinate reachabilityStatus:self.reachabilityStatus]];
 	}];
 	
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"code-message" withExtension:@"json"];
@@ -560,9 +548,7 @@ static NSDictionary *messages;
 
 #pragma mark - Private
 
-+ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate network:(NSString *)network {
-	// Device:平台 +系统版本; + 渠道; + App内部版本号; + 制造商; + 牌子; + 型号; + 编译ID; + 设备ID; + GPS(lat,lng)
-	// Android 5.0; msfinance; 10001; Genymotion; generic; Google Nexus 5 - 5.0.0 - API 21 - 1080x1920; 000000000000000;
++ (NSString *)deviceInfoWithCoordinate:(CLLocationCoordinate2D)coordinate reachabilityStatus:(NSString *)status {
 	NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 	NSMutableArray *devices = NSMutableArray.new;
 	[devices addObject:@"IOS"];
@@ -575,13 +561,9 @@ static NSDictionary *messages;
 	[devices addObject:info[@"CFBundleVersion"]];
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
-	[devices addObject:network];
+	[devices addObject:status];
 	
 	return [devices componentsJoinedByString:@"; "];
-}
-
-+ (NSString *)deviceWithCoordinate:(CLLocationCoordinate2D)coordinate {
-	return [self deviceWithCoordinate:coordinate network:@""];
 }
 
 + (NSError *)userRequiredError {
