@@ -57,18 +57,25 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[self.executeCirculate subscribeNext:^(MSFCirculateCashModel *x) {
+		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
 			self.infoModel = x;
 		} error:^(NSError *error) {
 			NSLog(@"%@", error.localizedDescription);
 		}];
 	}];
 	
+	_executeCirculateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+			[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
+				self.infoModel = x;
+			} error:^(NSError *error) {
+				NSLog(@"%@", error.localizedDescription);
+			}];
+			return nil;
+		}];
+	}];
+	
 	return self;
-}
-
-- (RACSignal *)executeCirculate {
-	return [self.services.httpClient fetchCirculateCash];
 }
 
 @end

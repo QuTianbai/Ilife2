@@ -20,8 +20,7 @@
 @property (nonatomic, assign) CGFloat textMargin;
 @property (nonatomic, strong) UIFont *textFont;
 
-@property (nonatomic, strong) NSString *usableLimit;
-@property (nonatomic, strong) NSString *usedLimit;
+@property (nonatomic, strong) MSFCirculateCashViewModel *viewModel;
 @property (nonatomic, strong) NSString *repayment;
 @property (nonatomic, strong) NSString *overDue;
 
@@ -37,11 +36,10 @@
 }
 
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
-	_usableLimit = viewModel.usableLimit;
-	_usedLimit = viewModel.usedLimit;
+	_viewModel = viewModel;
 	_repayment = [NSString stringWithFormat:@"￥%@", viewModel.latestDueMoney.length > 0 ? viewModel.latestDueMoney : @"0"];
 	_overDue = [NSString stringWithFormat:@"￥%@", viewModel.overdueMoney.length > 0 ? viewModel.overdueMoney : @"0"];
-	[_loanLimitView setAvailableCredit:_usableLimit usedCredit:_usedLimit];
+	[_loanLimitView setAvailableCredit:viewModel.usableLimit usedCredit:viewModel.usedLimit];
 	[self setNeedsDisplay];
 }
 
@@ -68,14 +66,13 @@
 	NSDictionary *attri = @{NSForegroundColorAttributeName : textColor,
 												  NSFontAttributeName : _textFont,
 												  NSParagraphStyleAttributeName : paragraph};
-	if (_overDue.length > 0) {
+	if (self.viewModel.overdueMoney.length > 0) {
 		[@"已逾期" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 		[_overDue drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	} else {
 		[@"下期还款" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 		[_repayment drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	}
-	
 }
 
 @end
