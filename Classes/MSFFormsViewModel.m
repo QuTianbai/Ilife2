@@ -91,34 +91,6 @@
 			self.model = forms;
 		}];
 	}];
-//	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-//		@strongify(self)
-//		[[[[self.services.httpClient fetchApplyInfo]
-//			zipWith:[self.services.httpClient fetchCheckEmployee]]
-//			flattenMap:^RACStream *(RACTuple *modelAndMarket) {
-//				RACTupleUnpack(MSFApplicationForms *model, MSFMarket *market) = modelAndMarket;
-//				[self.model mergeValuesForKeysFromModel:model];
-//				[self.market mergeValuesForKeysFromModel:market];
-//        self.isHaveProduct = YES;
-//				return [self.services.httpClient checkUserHasCredit];
-//			}]
-//			subscribeNext:^(MSFResponse *response) {
-//				self.pending = [response.parsedResult[@"processing"] boolValue];
-//				[(RACSubject *)self.updatedContentSignal sendNext:nil];
-//				[(RACSubject *)self.updatedContentSignal sendCompleted];
-//			} error:^(NSError *error) {
-//        self.isHaveProduct = NO;
-//				self.active = NO;
-//				[(RACSubject *)self.updatedContentSignal sendError:error];
-//			}];
-//	}];
-	
-//	RAC(self.currentAddress, province) = RACObserve(self.model, currentProvinceCode);
-//	RAC(self.currentAddress, city) = RACObserve(self.model, currentCityCode);
-//	RAC(self.currentAddress, area) = RACObserve(self.model, currentCountryCode);
-//	RAC(self.workAddress, province) = RACObserve(self.model, workProvinceCode);
-//	RAC(self.workAddress, city) = RACObserve(self.model, workCityCode);
-//	RAC(self.workAddress, area) = RACObserve(self.model, workCountryCode);
 	
 	return self;
 }

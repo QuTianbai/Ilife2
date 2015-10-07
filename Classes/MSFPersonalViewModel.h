@@ -22,7 +22,6 @@
 @property (nonatomic, strong, readonly) RACCommand *executeHouseValuesCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeMarryValuesCommand;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel
-											addressViewModel:(MSFAddressViewModel *)addressViewModel;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
 @end

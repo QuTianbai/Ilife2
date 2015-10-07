@@ -64,8 +64,7 @@
 	id<MSFViewModelServices>services = tabbarController.viewModel.services;
 	switch (index) {
 		case 0: {
-			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:services];
-			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;
 		}
@@ -75,8 +74,7 @@
 			break;
 		}
 		case 2: {
-			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:tabbarController.viewModel.formsViewModel.currentAddress services:services];
-			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel addressViewModel:addrViewModel];
+			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;
 		}

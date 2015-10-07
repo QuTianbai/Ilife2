@@ -43,6 +43,6 @@
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 //- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel addressViewModel:(MSFAddressViewModel *)addressViewModel;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
 @end

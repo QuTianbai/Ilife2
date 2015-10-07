@@ -10,8 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFRelationshipViewController : UITableViewController <MSFReactiveView>
-
-- (void)fetchAddressBook:(UITextField *)textField;
+@interface MSFRelationshipViewController : UITableViewController
+<MSFReactiveView>
 
 @end

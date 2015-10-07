@@ -19,6 +19,7 @@
 #import "MSFSelectKeyValues.h"
 
 #import "MSFAreas.h"
+#import "MSFAddress.h"
 #import "MSFAddressInfo.h"
 #import "NSString+Matches.h"
 
@@ -33,15 +34,16 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel addressViewModel:(MSFAddressViewModel *)addressViewModel {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_address = @"";
-  _services = viewModel.services;
+	_services = viewModel.services;
 	_formsViewModel = viewModel;
-	_addressViewModel = addressViewModel;
+	MSFAddress *addressModel = [MSFAddress modelWithDictionary:@{@"province" : viewModel.model.currentProvinceCode, @"city" : viewModel.model.currentCityCode, @"area" : viewModel.model.currentCountryCode} error:nil];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addressModel services:_services];
+	_address = _addressViewModel.address;
 	
 	if (CLLocationCoordinate2DIsValid([RCLocationManager sharedManager].location.coordinate)) {
 		[self getLocationCoordinate:[RCLocationManager sharedManager].location.coordinate];
@@ -54,8 +56,22 @@
 	RAC(self.formsViewModel.model, currentCityCode) = RACObserve(self.addressViewModel, cityCode);
 	RAC(self.formsViewModel.model, currentCountry) = RACObserve(self.addressViewModel, areaName);
 	RAC(self.formsViewModel.model, currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
-	
 	_executeAlterAddressCommand = self.addressViewModel.selectCommand;
+	
+	NSArray *houseTypes = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];
+	[houseTypes enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.formsViewModel.model.houseType]) {
+			self.formsViewModel.model.houseTypeTitle = obj.text;
+			*stop = YES;
+		}
+	}];
+	NSArray *marriageStatus = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
+	[marriageStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.formsViewModel.model.maritalStatus]) {
+			self.formsViewModel.model.marriageTitle = obj.text;
+			*stop = YES;
+		}
+	}];
 	
 	@weakify(self)
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -84,7 +100,7 @@
 		 if (self.address.length > 0) {
 			return;
 		 }
-     
+		 
      NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
      FMDatabase *fmdb = [FMDatabase databaseWithPath:path];
      [fmdb open];

@@ -24,6 +24,7 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFAddressViewModel.h"
 #import "MSFFormsViewModel.h"
+#import "MSFAddress.h"
 
 @interface MSFProfessionalViewModel ( )
 
@@ -54,14 +55,18 @@
 	return self;
 }*/
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel addressViewModel:(MSFAddressViewModel *)addressViewModel {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_services = formsViewModel.services;
 	_formsViewModel = formsViewModel;
-	_addressViewModel = addressViewModel;
+	
+	MSFAddress *addressModel = [MSFAddress modelWithDictionary:@{@"province" : formsViewModel.model.workProvinceCode, @"city" : formsViewModel.model.workCityCode, @"area" : formsViewModel.model.workCountryCode} error:nil];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addressModel services:_services];
+	_address = _addressViewModel.address;
+	
 	[self initialize];
 	
 	return self;
@@ -499,7 +504,7 @@
 		NSInteger year = [components year];
 		NSMutableArray *dataSource = [NSMutableArray array];
 		for (int i = 0; i < 5; i ++) {
-			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 6)]];
+			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 4)]];
 		}
 		
 		[ActionSheetStringPicker
@@ -519,6 +524,5 @@
 		return nil;
 	}] replay];
 }
-
 
 @end
