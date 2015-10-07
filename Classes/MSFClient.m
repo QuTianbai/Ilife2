@@ -84,10 +84,6 @@ static NSDictionary *messages;
 	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus]];
 	
 	self.requestSerializer.timeoutInterval = 15;
-	#if DEBUG
-	self.requestSerializer.timeoutInterval = 3;
-	#endif
-	
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
 	if (isRunningTests()) {
