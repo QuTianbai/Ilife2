@@ -52,18 +52,15 @@
 	RAC(self, latestDueDate) = RACObserve(self, infoModel.latestDueDate);
 	RAC(self, totalOverdueMoney) = RACObserve(self, infoModel.totalOverdueMoney);
 	RAC(self, contractNo) = RACObserve(self, infoModel.contractNo);
-	RAC(self, overdueMoney) = [RACObserve(self, infoModel.overdueMoney) map:^id(id value) {
-		return [NSString stringWithFormat:@"已逾期：￥%@", value];
-	}];
+	RAC(self, overdueMoney) = RACObserve(self, infoModel.overdueMoney);
 
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
-			//self.circulateModel = x;
+		[self.executeCirculate subscribeNext:^(MSFCirculateCashModel *x) {
 			self.infoModel = x;
 		} error:^(NSError *error) {
-			NSLog(@"");
+			NSLog(@"%@", error.localizedDescription);
 		}];
 	}];
 	

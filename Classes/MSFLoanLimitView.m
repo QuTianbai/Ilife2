@@ -100,10 +100,16 @@
 }
 
 - (void)setAvailableCredit:(NSString *)ac usedCredit:(NSString *)uc {
+	_angle = - M_PI * 7 / 6;
+	if (ac.length == 0 || uc.length == 0) {
+		ac = @"0";
+		uc = @"0";
+		_endAngle = _angle;
+	} else {
+		_endAngle = - M_PI * 7 / 6 + ac.floatValue / (ac.floatValue + uc.floatValue) * M_PI * 4 / 3;
+	}
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
-	_endAngle = - M_PI * 7 / 6 + ac.floatValue / (ac.floatValue + uc.floatValue) * M_PI * 4 / 3;
-	_angle = - M_PI * 7 / 6;
 	[self circleAnimation];
 }
 
