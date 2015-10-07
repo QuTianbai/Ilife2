@@ -33,6 +33,7 @@
 #import "MSFCirculateCashViewModel.h"
 
 #import "MSFApplyCashVIewModel.h"
+#import "MSFMarkets.h"
 
 @interface MSFTabBarController () 
 
@@ -161,7 +162,7 @@
 		return NO;
   }
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
-		if (!self.viewModel.formsViewModel.markets) {
+		if (!self.viewModel.formsViewModel.markets.teams == 0) {
 			self.viewModel.formsViewModel.active = NO;
 			self.viewModel.formsViewModel.active = YES;
 		}
