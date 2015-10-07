@@ -24,9 +24,13 @@
 
 #import "MSFMarkets.h"
 #import "MSFClient+MSFCheckEmploee2.h"
+#import "MSFClient+MSFBankCardList.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFBankCardListModel.h"
 
 @interface MSFFormsViewModel ()
 
+@property (nonatomic, strong, readwrite) NSArray *bankCardArray;
 @property (nonatomic, strong, readwrite) RACSubject *updatedContentSignal;
 @property (nonatomic, strong, readwrite) MSFApplicationForms *model;
 @property (nonatomic, strong, readwrite) MSFMarket *market;
@@ -65,6 +69,22 @@
 		} error:^(NSError *error) {
 			NSLog(@"");
 			
+		}];
+		RACSignal *signal = [[self.services.httpClient fetchBankCardList].collect replayLazily];
+		[signal subscribeNext:^(id x) {
+			for (MSFBankCardListModel *ob in x) {
+				if ([ob isEqual:[NSNull null]]) {
+					self.master = NO;
+					return ;
+				} else {
+					self.masterBankCardNO = ob.bankCardNo;
+					self.master = YES;
+					break;
+				}
+			}
+			
+		}error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 		[[self.services.httpClient fetchApplyInfo]
 		 subscribeNext:^(MSFApplicationForms *forms) {

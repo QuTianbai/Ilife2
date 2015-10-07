@@ -219,7 +219,14 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="codeBT" destination="YFX-Wf-Pel" id="ypb-QE-lMw"/>
+                        <outlet property="codeLB" destination="atf-qH-ywl" id="TXq-CD-Jft"/>
+                        <outlet property="codeTF" destination="1Qh-hq-mhK" id="9OA-WY-cJI"/>
+                        <outlet property="codebgimg" destination="dXT-dH-HwO" id="YkD-tB-VTC"/>
+                        <outlet property="oldpwdTF" destination="5oN-ut-pKm" id="dMX-yZ-nad"/>
+                        <outlet property="pwdTF" destination="6GQ-KY-TL9" id="YcJ-sZ-7NP"/>
                         <outlet property="submitBT" destination="jbk-eF-Rwb" id="Pyt-aI-paP"/>
+                        <outlet property="surepwdTF" destination="Fsb-V4-cpa" id="R5s-TE-r6F"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDG-s7-ChB" userLabel="First Responder" sceneMemberID="firstResponder"/>

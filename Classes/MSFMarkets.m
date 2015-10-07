@@ -15,28 +15,5 @@
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFTeams2.class];
 }
 
-+ (NSValueTransformer *)allMinAmountJSONTransformer {
-	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-		return num.intValue>=0?num:@"";
-	} reverseBlock:^id(NSString *str) {
-		if (str==nil) {
-			return [NSDecimalNumber decimalNumberWithString:str];
-		}
-		
-		return nil;
-	}];
-}
-
-+ (NSValueTransformer *)allMaxAmountJSONTransformer {
-	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *num) {
-		return num.intValue>=0?num:@"";
-	} reverseBlock:^id(NSString *str) {
-		if (str==nil) {
-			return [NSDecimalNumber decimalNumberWithString:str];
-		}
-		
-		return nil;
-	}];
-}
 
 @end

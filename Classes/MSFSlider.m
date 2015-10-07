@@ -52,7 +52,7 @@
   titleLabel.textColor = [UIColor blackColor];
   [self addSubview:titleLabel];
   
-  self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 100, 20)];
+  self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 200, 20)];
   self.moneyNumLabel.textColor = [UIColor blackColor];
   self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
   //self.moneyNumLabel.text = @"0元";

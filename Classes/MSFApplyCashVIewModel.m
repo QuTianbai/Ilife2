@@ -26,6 +26,7 @@
 #import "MSFApplyCashInfo.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFClient+MSFSubmitAppyCash.h"
+#import "MSFBankCardListModel.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -48,6 +49,7 @@
 	_jionLifeInsurance = @"";
 	_appNO = @"";
 
+	RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
 	
 	RAC(self, model.appNO) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
