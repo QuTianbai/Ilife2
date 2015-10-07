@@ -39,8 +39,8 @@
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
 	_usableLimit = viewModel.usableLimit;
 	_usedLimit = viewModel.usedLimit;
-	_repayment = [NSString stringWithFormat:@"￥%@",viewModel.latestDueMoney];
-	_overDue = [NSString stringWithFormat:@"￥%@",viewModel.overdueMoney];
+	_repayment = [NSString stringWithFormat:@"￥%@", viewModel.latestDueMoney];
+	_overDue = [NSString stringWithFormat:@"￥%@", viewModel.overdueMoney];
 	[_loanLimitView setAvailableCredit:_usableLimit usedCredit:_usedLimit];
 	[self setNeedsDisplay];
 }

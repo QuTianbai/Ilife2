@@ -128,6 +128,7 @@ static MSFServer *server;
 	[[NSUserDefaults standardUserDefaults] setObject:procd?:@"" forKey:@"productCode"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 + (NSString *)productCode {
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
