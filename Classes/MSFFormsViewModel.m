@@ -65,7 +65,10 @@
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(MSFMarkets *markets) {
-			self.markets = markets;
+			if (self.markets.teams.count == 0) {
+				self.markets = markets;
+			}
+			
 		} error:^(NSError *error) {
 			NSLog(@"");
 			
