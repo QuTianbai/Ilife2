@@ -121,13 +121,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			[MSFUtils setRegisterPhone:@""]; 
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
-			[self dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}];
 	
