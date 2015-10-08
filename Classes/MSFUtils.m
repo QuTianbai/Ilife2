@@ -130,6 +130,7 @@ static MSFServer *server;
 }
 
 + (NSString *)productCode {
+	//return @"2001";
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
 

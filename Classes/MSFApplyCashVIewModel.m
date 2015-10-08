@@ -48,12 +48,13 @@
 	_model.productCd = MSFUtils.productCode;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
+	_array = [[NSArray alloc] init];
 
 	RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
 	
 	RAC(self, model.appNO) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
-	RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
+	//RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
 	RAC(self, model.lifeInsuranceAmt) = RACObserve(self, lifeInsuranceAmt);
@@ -63,6 +64,7 @@
 	RAC(self, maxMoney) = RACObserve(self, formViewModel.markets.allMaxAmount);
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
+		self.loanPurpose = value.code;
 		return value.code;
 	}];
 	
@@ -96,6 +98,10 @@
 						return [RACSignal return:response];
 					}] map:^id(MSFCalculatemMonthRepayModel *model) {
 						if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
+							[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
+							self.loanFixedAmt = @"0.00";
+							
+							[SVProgressHUD dismiss];
 							return nil;
 						}
 						[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
@@ -121,6 +127,11 @@
 	_executeNextCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executeNextSignal];
+	}];
+	
+	_executeAllowCashCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeAllow];
 	}];
 	
 	
@@ -170,31 +181,35 @@
 																																																	 }]];
 			return nil;
 		}
-		[[self.services.httpClient fetchCheckAllowApply] subscribeNext:^(MSFCheckAllowApply *model) {
-			[SVProgressHUD dismiss];
-			if (model.processing == 0) {
-				[[[UIAlertView alloc] initWithTitle:@"提示"
-																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
-																	 delegate:nil
-													cancelButtonTitle:@"确认"
-													otherButtonTitles:nil] show];
-			} else {
-				
-				self.model.applyStatus = model.data.status;
-				self.appNO = model.data.appNo;
+//		[[self.services.httpClient fetchCheckAllowApply] subscribeNext:^(MSFCheckAllowApply *model) {
+//			[SVProgressHUD dismiss];
+//			if (model.processing == 0) {
+//				[[[UIAlertView alloc] initWithTitle:@"提示"
+//																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
+//																	 delegate:nil
+//													cancelButtonTitle:@"确认"
+//													otherButtonTitles:nil] show];
+//			} else {
+//				
+//				self.model.applyStatus = model.data.status;
+//				self.appNO = model.data.appNo;
 				//[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
 				
 				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
 				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self];
 				[self.services pushViewModel:viewModel];
 				
-			}
-		} error:^(NSError *error) {
-			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-		}];
+//			}
+//		} error:^(NSError *error) {
+//			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+//		}];
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+- (RACSignal *)executeAllow {
+	return [self.services.httpClient fetchCheckAllowApply];
 }
 
 - (void)setSVPBackGround {

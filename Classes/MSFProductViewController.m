@@ -143,6 +143,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			[self.tableView reloadData];
 		}
 		self.master = YES;
+		[self.tableView reloadData];
 		return value;
 	}];
 	
@@ -248,9 +249,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (self.master) {
-		return 2;
+		return 3;
 	}
-	return 3;
+	return 2;
 }
 
 - (void)viewDidLayoutSubviews {

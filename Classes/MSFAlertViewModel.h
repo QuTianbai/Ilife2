@@ -8,6 +8,7 @@
 
 @class MSFFormsViewModel;
 @class MSFUser;
+@class MSFApplyCashVIewModel;
 
 @interface MSFAlertViewModel : RVMViewModel
 
@@ -19,6 +20,6 @@
 
 @property (nonatomic, strong, readonly) RACSignal *buttonClickedSignal;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel user:(MSFUser *)user;
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)cashViewModel user:(MSFUser *)user;
 
 @end

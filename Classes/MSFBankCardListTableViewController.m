@@ -71,6 +71,7 @@
 	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 	[signal subscribeNext:^(id x) {
 		@strongify(self)
+		[SVProgressHUD dismiss];
 		for (NSObject *ob in x) {
 			if ([ob isEqual:[NSNull null]]) {
 				return ;
@@ -95,6 +96,7 @@
 		@strongify(self)
 		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			for (NSObject *ob in x) {
 				if ([ob isEqual:[NSNull null]]) {
 					return ;
@@ -112,6 +114,7 @@
 		
 		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			for (NSObject *ob in x) {
 				if ([ob isEqual:[NSNull null]]) {
 					return ;
@@ -329,6 +332,7 @@
 			 [SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
 			 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 			 [signal subscribeNext:^(id x) {
+				 [SVProgressHUD dismiss];
 				 self.dataArray = x;
 				 [self.tableView reloadData];
 			 }error:^(NSError *error) {
@@ -343,6 +347,7 @@
 			 [SVProgressHUD showSuccessWithStatus:@"银行卡解绑成功"];
 			 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 			 [signal subscribeNext:^(id x) {
+				 [SVProgressHUD dismiss];
 				 self.dataArray = x;
 				 [self.tableView reloadData];
 			 }error:^(NSError *error) {

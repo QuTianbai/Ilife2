@@ -16,7 +16,7 @@
 - (RACSignal *)fetchCheckEmploeeWithProductCode:(NSString *)code {
 	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"markets" ofType:@"json"]]];
 	
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/product" parameters:@{@"productCode":@"2001", @"uniqueId":MSFUtils.uniqueId}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/product" parameters:@{@"productCode":MSFUtils.productCode, @"uniqueId":MSFUtils.uniqueId}];
 	
 	return [[self enqueueRequest:request resultClass:MSFMarkets.class] msf_parsedResults];
 }
