@@ -96,7 +96,7 @@
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
-			return;
+			//return;
 		} else {
 			_titleLabel.text  = viewModel.title;
 			[_statusButton setTitle:viewModel.status forState:UIControlStateNormal];
@@ -116,7 +116,7 @@
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
-			return;
+			//return;
 		}
 	} else {
 		NSString *compeltionStatus = [MSFUtils httpClient].user.complateCustInfo;

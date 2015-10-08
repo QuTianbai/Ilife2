@@ -30,6 +30,9 @@
 @property (nonatomic, readwrite) NSArray *viewModels;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
+@property (nonatomic, strong) NSString *normalUserCode;
+@property (nonatomic, strong) NSString *whiteListUserCode;
+
 @end
 
 @implementation MSFHomepageViewModel
@@ -43,6 +46,9 @@
 	if (!self) {
 		return nil;
 	}
+	_normalUserCode = @"1101";
+	_whiteListUserCode = @"4101";
+	
 	_viewModel = viewModel;
 	_services = services;
 	_bannersViewModel = [[MSFBannersViewModel alloc] initWithServices:self.services];
@@ -51,14 +57,8 @@
 	@weakify(self)
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		/*
-		self.bannersViewModel.active = NO;
-		self.bannersViewModel.active = YES;
-		if (!self.services.httpClient.isAuthenticated) {
-			return [RACSignal return:nil];
-		}*/
-		
-		if (self.services.httpClient.user.type == 0) {
+		NSLog(@"用户类型:---%@", self.services.httpClient.user.type);
+		if ([self.services.httpClient.user.type isEqualToString:_normalUserCode]) {
 			return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
 				if (value.processing) {
 					return [RACSignal return:nil];
@@ -86,29 +86,25 @@
 		}
 		return [RACSignal return:nil];
 	}];
-	
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = x;
+	}];
+	[self.refreshCommand.errors subscribeNext:^(id x) {
+		@strongify(self)
+		self.viewModels = nil;
 	}];
 	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if (self.services.httpClient.user.isAuthenticated) {
-			if (self.services.httpClient.user.type.integerValue == 0) {
+			if ([self.services.httpClient.user.type isEqualToString:_normalUserCode]) {
 				[self.refreshCommand execute:nil];
-			} else {
+			} else if ([self.services.httpClient.user.type isEqualToString:_whiteListUserCode]) {
 				self.circulateCashViewModel.active = NO;
 				self.circulateCashViewModel.active = YES;
 			}
 		}
-	}];
-	
-	[self.refreshCommand.errors subscribeNext:^(id x) {
-		@strongify(self)
-		self.viewModels = nil;
-//		self.viewModel.active = NO;
-//		self.viewModel.active = YES;
 	}];
 	
 	return self;
@@ -119,22 +115,24 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if (self.services.httpClient.user.type.integerValue == 0) {
+	if ([self.services.httpClient.user.type isEqualToString:_normalUserCode]) {
 		if (self.viewModels.count > 0) {
 			return self.viewModels[0];
 		} else {
 			return nil;
 		}
-	} else {
+	} else if ([self.services.httpClient.user.type isEqualToString:_whiteListUserCode]) {
 		return self.circulateCashViewModel;
+	} else {
+		return nil;
 	}
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if (self.services.httpClient.user.type.integerValue == 0) {
-		return @"MSFHomePageContentCollectionViewCell";
-	} else {
+	if ([self.services.httpClient.user.type isEqualToString:_whiteListUserCode]) {
 		return @"MSFCirculateViewCell";
+	} else {
+		return @"MSFHomePageContentCollectionViewCell";
 	}
 }
 
