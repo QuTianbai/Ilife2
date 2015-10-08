@@ -58,14 +58,22 @@
 	}];
 	
 	RAC(self, requiredViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
-		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
+		return [[[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
 			return value.isRequired;
-		}] array];
+		}] array] sortedArrayUsingComparator:^NSComparisonResult(MSFElementViewModel *obj1, MSFElementViewModel *obj2) {
+			if (obj1.element.sort > obj2.element.sort) return NSOrderedDescending;
+			if (obj1.element.sort < obj1.element.sort) return NSOrderedAscending;
+			return NSOrderedSame;
+		}];
 	}];
 	RAC(self, optionalViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
-		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
+		return [[[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
 			return !value.isRequired;
-		}] array];
+		}] array] sortedArrayUsingComparator:^NSComparisonResult(MSFElementViewModel *obj1, MSFElementViewModel *obj2) {
+			if (obj1.element.sort > obj2.element.sort) return NSOrderedDescending;
+			if (obj1.element.sort < obj1.element.sort) return NSOrderedAscending;
+			return NSOrderedSame;
+		}];
 	}];
 	
 	_executeSubmit = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
