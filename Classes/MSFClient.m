@@ -663,6 +663,10 @@ static NSDictionary *messages;
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			#endif
 			
+			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:error];
+			}
+			
 			[self reportFabric:operation error:error];
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];
 		}];
