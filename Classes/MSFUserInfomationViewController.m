@@ -120,6 +120,7 @@
 			return ;
 		}
 		if ([MSFUtils.complateCustInfo isEqualToString:@"111"]) {
+		//TODO:  进去图片上传界面
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel];
 			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];
