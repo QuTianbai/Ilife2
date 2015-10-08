@@ -34,6 +34,17 @@
 	return date;
 }
 
++ (NSString *)msf_fullStringFromDate:(NSDate *)date {
+	NSParameterAssert(date != nil);
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+	formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+	
+	return [formatter stringFromDate:date];
+}
+
 + (NSString *)msf_stringFromDate:(NSDate *)date {
 	NSParameterAssert(date != nil);
 	
