@@ -12,7 +12,6 @@
 #import <Masonry/Masonry.h>
 
 #import "MSFTabBarController.h"
-
 #import "MSFUserInfoCircleView.h"
 
 #import "MSFLoanViewModel.h"
@@ -37,8 +36,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
-@property (assign, nonatomic) BOOL circleShow;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
+
+@property (assign, nonatomic) BOOL circleShow;
 
 @end
 
