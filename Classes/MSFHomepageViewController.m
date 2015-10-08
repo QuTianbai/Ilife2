@@ -21,6 +21,8 @@
 #import "MSFUser.h"
 
 #import "MSFClient+RepaymentSchedules.h"
+#import "MSFClient+ApplyList.h"
+#import "MSFUtils.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -88,6 +90,19 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
+		
+		[[[[MSFUtils.httpClient fetchApplyList] concat] replayLazily] subscribeNext:^(id x) {
+			NSLog(@"%@", x);
+		} error:^(NSError *error) {
+			NSLog(@"error : %@", error.localizedDescription);
+		}];
+		
+		[[MSFUtils.httpClient fetchRepaymentSchedules] subscribeNext:^(id x) {
+			NSLog(@"%@", x);
+		} error:^(NSError *error) {
+			NSLog(@"error : %@", error.localizedDescription);
+		}];
+		
 	}];
 }
 
