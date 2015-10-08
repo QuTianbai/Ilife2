@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fm7-dX-UjU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="fm7-dX-UjU">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -12,6 +12,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="30" sectionFooterHeight="22" id="BDJ-Po-BBQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="OIA-nD-KhU">
                             <rect key="frame" x="0.0" y="972" width="320" height="64"/>
@@ -19,6 +20,7 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Wz-kg-ezK" customClass="MSFEdgeButton">
                                     <rect key="frame" x="10" y="10" width="300" height="44"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="Rsa-9k-uXK"/>
                                     </constraints>
@@ -27,6 +29,7 @@
                                     </state>
                                 </button>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="8Wz-kg-ezK" secondAttribute="trailing" constant="10" id="VTE-bK-Mm6"/>
@@ -46,6 +49,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="教育程度" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-mG-r1v">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="Q23-b8-O64"/>
                                                     </constraints>
@@ -55,17 +59,20 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择教育程度" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nab-WT-r66">
                                                     <rect key="frame" x="120" y="7" width="157" height="30"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-U1-uaa">
                                                     <rect key="frame" x="120" y="7" width="157" height="29"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Prp-U1-uaa" secondAttribute="bottom" constant="7" id="2Vf-92-RBI"/>
                                                 <constraint firstItem="bTa-mG-r1v" firstAttribute="leading" secondItem="Au9-g5-IKd" secondAttribute="leading" constant="15" id="6Tn-cJ-xQR"/>
@@ -80,6 +87,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="nab-WT-r66" secondAttribute="bottom" constant="7" id="yFU-UW-sEW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="a8K-43-ICX">
                                         <rect key="frame" x="0.0" y="74" width="320" height="44"/>
@@ -90,6 +98,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="社会身份" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSA-2B-ifZ">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="hgS-S8-wjH"/>
                                                     </constraints>
@@ -99,16 +108,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择社会身份" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5xr-wt-Pes">
                                                     <rect key="frame" x="120" y="7" width="157" height="30"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rq-28-qQO">
                                                     <rect key="frame" x="120" y="7" width="149" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="5xr-wt-Pes" secondAttribute="bottom" constant="7" id="2me-Nr-pRt"/>
                                                 <constraint firstAttribute="bottom" secondItem="VSA-2B-ifZ" secondAttribute="bottom" constant="11.5" id="E97-NB-XxN"/>
@@ -123,6 +135,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="3rq-28-qQO" secondAttribute="bottom" constant="7" id="qal-vp-s5r"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="i5d-9Y-Ffh">
                                         <rect key="frame" x="0.0" y="118" width="320" height="44"/>
@@ -133,6 +146,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="参加工作日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Z0-bO-ccU">
                                                     <rect key="frame" x="15" y="11" width="90" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="90" id="IK9-Je-T4w"/>
                                                     </constraints>
@@ -142,16 +156,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择参加工作日期" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wNX-Vi-cSj">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T9Z-38-4Pz">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="T9Z-38-4Pz" firstAttribute="top" secondItem="let-bq-rBi" secondAttribute="top" constant="7" id="5YZ-op-afH"/>
                                                 <constraint firstAttribute="bottom" secondItem="1Z0-bO-ccU" secondAttribute="bottom" constant="11.5" id="6dP-61-3mJ"/>
@@ -166,6 +183,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="T9Z-38-4Pz" secondAttribute="trailing" constant="10" id="pSZ-eq-EIL"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -180,6 +198,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学校名称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3vg-QY-xDv">
                                                     <rect key="frame" x="15" y="11" width="85" height="17"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="phM-dy-szh"/>
                                                     </constraints>
@@ -189,10 +208,12 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学校" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ksj-B7-xO8">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="ksj-B7-xO8" firstAttribute="top" secondItem="e0r-43-aMZ" secondAttribute="top" constant="7" id="1uP-VT-5Tz"/>
                                                 <constraint firstAttribute="bottom" secondItem="ksj-B7-xO8" secondAttribute="bottom" constant="7" id="IZq-ip-Cs7"/>
@@ -203,6 +224,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="3vg-QY-xDv" secondAttribute="bottom" constant="15" id="ytb-D5-xHr"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="Msd-OB-Vkr">
                                         <rect key="frame" x="0.0" y="236" width="320" height="44"/>
@@ -213,6 +235,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入学时间" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XdE-DY-VZY">
                                                     <rect key="frame" x="15" y="11" width="85" height="18"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="lPC-YH-x6t"/>
                                                     </constraints>
@@ -222,16 +245,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入学年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cf8-OE-eun">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM8-o5-a5w">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="XdE-DY-VZY" secondAttribute="bottom" constant="15" id="4yS-cv-Mfe"/>
                                                 <constraint firstItem="XdE-DY-VZY" firstAttribute="top" secondItem="vLn-4U-wWb" secondAttribute="top" constant="11.5" id="7fk-j4-dCv"/>
@@ -246,6 +272,7 @@
                                                 <constraint firstItem="cf8-OE-eun" firstAttribute="leading" secondItem="XdE-DY-VZY" secondAttribute="trailing" constant="20" id="s4F-2E-Mxm"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Mwn-N0-Xt8">
                                         <rect key="frame" x="0.0" y="280" width="320" height="44"/>
@@ -256,6 +283,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学制" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2r-ed-Yk1">
                                                     <rect key="frame" x="15" y="13" width="85" height="18"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="dWt-5Z-cBO"/>
                                                     </constraints>
@@ -265,6 +293,7 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学制" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5ef-ak-9QF">
                                                     <rect key="frame" x="120" y="7" width="80" height="30"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="0Y4-mh-fWF"/>
                                                         <constraint firstAttribute="width" constant="80" id="LuU-76-2Hb"/>
@@ -274,6 +303,7 @@
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年制" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlc-tg-ENi">
                                                     <rect key="frame" x="208" y="14" width="26" height="16"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="26" id="jCA-Rm-03G"/>
                                                     </constraints>
@@ -282,6 +312,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="Vlc-tg-ENi" firstAttribute="leading" secondItem="5ef-ak-9QF" secondAttribute="trailing" constant="8" id="DJj-e3-HPk"/>
                                                 <constraint firstItem="W2r-ed-Yk1" firstAttribute="centerY" secondItem="GKe-Hx-xSP" secondAttribute="centerY" id="KfM-Tz-tso"/>
@@ -299,6 +330,7 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -313,11 +345,13 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写工作单位全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XqC-hX-BRY">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单位全称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dx6-vB-fsS">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="vOq-st-anl"/>
                                                     </constraints>
@@ -326,6 +360,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="XqC-hX-BRY" secondAttribute="trailing" constant="10" id="Bax-gW-IaI"/>
                                                 <constraint firstItem="XqC-hX-BRY" firstAttribute="leading" secondItem="Dx6-vB-fsS" secondAttribute="trailing" constant="20" id="MId-Mt-8FP"/>
@@ -336,6 +371,7 @@
                                                 <constraint firstItem="Dx6-vB-fsS" firstAttribute="leading" secondItem="Zvx-iE-v2C" secondAttribute="leading" constant="15" id="wgF-GS-vQ4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="XO0-5c-0QM">
                                         <rect key="frame" x="0.0" y="398" width="320" height="44"/>
@@ -346,6 +382,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="行业类别" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEy-2U-HDa">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="7oY-K5-ohG"/>
                                                     </constraints>
@@ -355,16 +392,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择行业" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jxe-L5-xwx">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3r-cW-lzz">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="j3r-cW-lzz" secondAttribute="bottom" constant="7" id="51A-Ia-7IY"/>
                                                 <constraint firstItem="Jxe-L5-xwx" firstAttribute="top" secondItem="q7W-3g-qO5" secondAttribute="top" constant="7" id="8q2-0V-U5G"/>
@@ -379,6 +419,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="j3r-cW-lzz" secondAttribute="trailing" constant="10" id="odp-FS-nrm"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="CzU-VD-zPs">
                                         <rect key="frame" x="0.0" y="442" width="320" height="44"/>
@@ -389,6 +430,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单位性质" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGE-Ke-VDl">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="NUr-PF-s96"/>
                                                     </constraints>
@@ -398,16 +440,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择单位性质" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a5q-Xr-icE">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0b-Hf-KXk">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="a5q-Xr-icE" firstAttribute="top" secondItem="HVQ-Fq-a0K" secondAttribute="top" constant="7" id="2ka-aj-XAj"/>
                                                 <constraint firstItem="cGE-Ke-VDl" firstAttribute="top" secondItem="HVQ-Fq-a0K" secondAttribute="top" constant="11" id="4dK-4Z-FiO"/>
@@ -422,6 +467,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="a5q-Xr-icE" secondAttribute="bottom" constant="7" id="yiw-rn-4iY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -436,6 +482,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="部门" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-SX-r30">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="efA-Ns-cD5"/>
                                                     </constraints>
@@ -445,10 +492,12 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写当前就职部门全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MoM-ZD-cBb">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="MoM-ZD-cBb" secondAttribute="bottom" constant="7" id="BKI-2U-jqE"/>
                                                 <constraint firstItem="YHa-SX-r30" firstAttribute="leading" secondItem="9EB-Dw-to9" secondAttribute="leading" constant="15" id="BhD-H8-0w5"/>
@@ -459,6 +508,7 @@
                                                 <constraint firstItem="YHa-SX-r30" firstAttribute="top" secondItem="9EB-Dw-to9" secondAttribute="top" constant="11" id="x16-0e-dq7"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="woq-Qr-n9p">
                                         <rect key="frame" x="0.0" y="560" width="320" height="44"/>
@@ -469,6 +519,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="职位" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPQ-ao-d31">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="JUH-Tt-KU8"/>
                                                     </constraints>
@@ -478,16 +529,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择职位" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qeo-TP-XAm">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C28-sT-cUl">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="Qeo-TP-XAm" firstAttribute="top" secondItem="Ceq-ph-I1u" secondAttribute="top" constant="7" id="5xo-9y-O75"/>
                                                 <constraint firstItem="pPQ-ao-d31" firstAttribute="leading" secondItem="Ceq-ph-I1u" secondAttribute="leading" constant="15" id="72d-QQ-k2l"/>
@@ -502,6 +556,7 @@
                                                 <constraint firstItem="Qeo-TP-XAm" firstAttribute="leading" secondItem="pPQ-ao-d31" secondAttribute="trailing" constant="20" id="xLJ-hh-GT0"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="vhd-XA-9st">
                                         <rect key="frame" x="0.0" y="604" width="320" height="44"/>
@@ -512,11 +567,13 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入职年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-1W-w0M">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="入职日期" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2M-kX-qHW">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="EPE-O3-Axz"/>
                                                     </constraints>
@@ -526,11 +583,13 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEm-Fj-4AM">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="j2M-kX-qHW" firstAttribute="top" secondItem="ovv-Yw-F70" secondAttribute="top" constant="11" id="4m4-o4-U64"/>
                                                 <constraint firstItem="ODD-1W-w0M" firstAttribute="leading" secondItem="j2M-kX-qHW" secondAttribute="trailing" constant="20" id="8FF-2E-Q9S"/>
@@ -545,6 +604,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="ODD-1W-w0M" secondAttribute="trailing" constant="10" id="vrO-Pn-yNJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -559,6 +619,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJH-al-GrT">
                                                     <rect key="frame" x="260" y="12" width="50" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="fHu-eo-9XJ"/>
                                                     </constraints>
@@ -568,6 +629,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工作收入" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMf-c3-vZW">
                                                     <rect key="frame" x="15" y="12" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="6Dy-bb-rQP"/>
                                                     </constraints>
@@ -577,10 +639,12 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写每月税前收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v1S-gw-tZn">
                                                     <rect key="frame" x="120" y="7" width="130" height="30"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="v1S-gw-tZn" firstAttribute="leading" secondItem="CMf-c3-vZW" secondAttribute="trailing" constant="20" id="5mM-oq-5ED"/>
                                                 <constraint firstItem="CMf-c3-vZW" firstAttribute="leading" secondItem="iH5-3x-6ns" secondAttribute="leading" constant="15" id="O9I-L5-6pp"/>
@@ -594,6 +658,7 @@
                                                 <constraint firstItem="cJH-al-GrT" firstAttribute="leading" secondItem="v1S-gw-tZn" secondAttribute="trailing" constant="10" id="s1O-1l-DGu"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="AcF-vS-LyW">
                                         <rect key="frame" x="0.0" y="722" width="320" height="44"/>
@@ -604,11 +669,13 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写其他收入" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJJ-GX-XVv">
                                                     <rect key="frame" x="120" y="7" width="130" height="30"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q30-5H-2xD">
                                                     <rect key="frame" x="260" y="12" width="50" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="vxE-7g-qhM"/>
                                                     </constraints>
@@ -618,6 +685,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他收入" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSL-nm-3cP">
                                                     <rect key="frame" x="15" y="12" width="102" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="102" id="DbB-wf-4Ju"/>
                                                     </constraints>
@@ -626,6 +694,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="QJJ-GX-XVv" firstAttribute="leading" secondItem="JSL-nm-3cP" secondAttribute="trailing" constant="3" id="0y9-pM-DkE"/>
                                                 <constraint firstAttribute="trailing" secondItem="q30-5H-2xD" secondAttribute="trailing" constant="10" id="5YC-vm-2RG"/>
@@ -639,6 +708,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="QJJ-GX-XVv" secondAttribute="bottom" constant="7" id="mtH-ua-Val"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="nLk-cV-ctr">
                                         <rect key="frame" x="0.0" y="766" width="320" height="44"/>
@@ -649,11 +719,13 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="其他贷款每月应还金额" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R76-fM-cxH">
                                                     <rect key="frame" x="120" y="7" width="130" height="30"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元/月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ku-rc-dFP">
                                                     <rect key="frame" x="260" y="12" width="50" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="HE6-Vn-dc2"/>
                                                     </constraints>
@@ -663,6 +735,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他贷款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6es-6J-ChK">
                                                     <rect key="frame" x="15" y="12" width="85" height="21.5"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="GdI-oa-zWg"/>
                                                     </constraints>
@@ -671,6 +744,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="6es-6J-ChK" firstAttribute="top" secondItem="7VC-xB-VmT" secondAttribute="top" constant="12" id="1AG-sh-MHu"/>
                                                 <constraint firstItem="R76-fM-cxH" firstAttribute="leading" secondItem="6es-6J-ChK" secondAttribute="trailing" constant="20" id="2rj-ac-QxA"/>
@@ -684,6 +758,7 @@
                                                 <constraint firstItem="R76-fM-cxH" firstAttribute="top" secondItem="7VC-xB-VmT" secondAttribute="top" constant="7" id="t0G-qh-M0H"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -698,6 +773,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单位电话" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBN-BM-Izn">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="xrY-8e-J4o"/>
                                                     </constraints>
@@ -707,6 +783,7 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="区号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kQ-MM-jC6">
                                                     <rect key="frame" x="120" y="7" width="49" height="30"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="49" id="MQ9-us-oat"/>
                                                     </constraints>
@@ -715,15 +792,18 @@
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-2X-djv">
                                                     <rect key="frame" x="247" y="7" width="43" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="座机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PuU-me-SGl">
                                                     <rect key="frame" x="172" y="7" width="72" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="PuU-me-SGl" secondAttribute="bottom" constant="7" id="1L5-eb-LWh"/>
                                                 <constraint firstItem="fRk-2X-djv" firstAttribute="top" secondItem="ci8-GD-fRo" secondAttribute="top" constant="7" id="JAk-tu-rKn"/>
@@ -740,6 +820,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="xBN-BM-Izn" secondAttribute="bottom" constant="11.5" id="oGT-Yk-Nd3"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="hQE-3o-zjq">
                                         <rect key="frame" x="0.0" y="884" width="320" height="44"/>
@@ -750,6 +831,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单位地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xr6-DC-HLk">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="5FB-gz-dy7"/>
                                                     </constraints>
@@ -759,16 +841,19 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择单位地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aai-MT-gaM">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyU-Fh-qfL">
                                                     <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <animations/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="xr6-DC-HLk" firstAttribute="top" secondItem="MPv-90-j5s" secondAttribute="top" constant="11" id="672-CN-WhN"/>
                                                 <constraint firstAttribute="bottom" secondItem="xr6-DC-HLk" secondAttribute="bottom" constant="11.5" id="6aO-0G-aRF"/>
@@ -783,6 +868,7 @@
                                                 <constraint firstItem="vyU-Fh-qfL" firstAttribute="leading" secondItem="xr6-DC-HLk" secondAttribute="trailing" constant="20" id="o1J-Qw-u6G"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="YML-2P-TCJ">
                                         <rect key="frame" x="0.0" y="928" width="320" height="44"/>
@@ -793,6 +879,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="详细地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OqQ-4q-bik">
                                                     <rect key="frame" x="15" y="11" width="85" height="21"/>
+                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="yRN-6s-Bwa"/>
                                                     </constraints>
@@ -802,10 +889,12 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写详细地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fGL-lh-hSR">
                                                     <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="send"/>
                                                 </textField>
                                             </subviews>
+                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="fGL-lh-hSR" secondAttribute="bottom" constant="7" id="FUC-d6-OkO"/>
                                                 <constraint firstItem="fGL-lh-hSR" firstAttribute="leading" secondItem="OqQ-4q-bik" secondAttribute="trailing" constant="20" id="Fgs-u1-BjN"/>
@@ -816,6 +905,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="OqQ-4q-bik" secondAttribute="bottom" constant="11.5" id="tIS-nm-lT4"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
