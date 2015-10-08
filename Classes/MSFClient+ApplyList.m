@@ -17,6 +17,8 @@
 	//NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loans" parameters:parameters];
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
+		
+		NSLog(@"%@", value);
 		return [MTLJSONAdapter modelsOfClass:MSFApplyList.class fromJSONArray:[self convertArray:value] error:nil];
 	}];
 }

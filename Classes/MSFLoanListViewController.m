@@ -14,7 +14,7 @@
 #import "MSFUtils.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSLoanListTableViewCell.h"
-#import "NSDateFormatter+MSFFormattingAdditions.h"
+
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
 #import "MSFWebViewController.h"
@@ -45,6 +45,7 @@
 	self.title = @"申请记录";
 	self.dataArray = [[NSMutableArray alloc] init];
 	self.view.backgroundColor = [UIColor whiteColor];
+	[self.dataTableView registerClass:MSLoanListTableViewCell.class forCellReuseIdentifier:@"MSLoanListTableViewCell"];
 	
 	[self creatTableView];
 	RACSignal *signal = [MSFUtils.httpClient fetchApplyList];
@@ -79,34 +80,15 @@
 }
 
 - (MSLoanListTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellStr = @"MSLoanListTableVewCell";
-	
-	MSLoanListTableViewCell *cell = (MSLoanListTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellStr];
-	
-	if (cell == nil) {
-		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
-	}
-
-	MSFApplyList *listModel = [_dataArray objectAtIndex:indexPath.row];
-	cell.moneyLabel.text = listModel.total_amount;
-	cell.monthsLabel.text = [NSString stringWithFormat:@"%@期", listModel.total_installments];
-	cell.timeLabel.text = [NSDateFormatter msf_stringFromDateForDash:listModel.apply_time];
-
-	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-		cell.selectable = YES;
-		cell.checkLabel.textColor = [MSFCommandView getColorWithString:ORAGECOLOR];
-	} else {
-		cell.selectable = NO;
-		cell.checkLabel.textColor = [MSFCommandView getColorWithString:@"#585858"];
-	}
-
-	cell.checkLabel.text = [self getStatus:listModel.status.integerValue];
-	
+	MSLoanListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSLoanListTableViewCell"];
+	[cell bindModel:[_dataArray objectAtIndex:indexPath.row]];
 	return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+#warning TODO
+	return;
 	MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
 	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
 		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {

@@ -9,9 +9,24 @@
 #import "MSLoanListTableViewCell.h"
 #import <libextobjc/extobjc.h>
 #import <Masonry/Masonry.h>
+
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"
+#import "MSFApplyList.h"
+
+#import "NSDateFormatter+MSFFormattingAdditions.h"
+
 #define TYPEFACECOLOR @"#585858"
+
+@interface MSLoanListTableViewCell ()
+
+@property (strong, nonatomic) UILabel *moneyLabel;
+@property (strong, nonatomic) UILabel *monthsLabel;
+@property (strong, nonatomic) UILabel *timeLabel;
+@property (strong, nonatomic) UILabel *checkLabel;
+@property (assign, nonatomic) BOOL selectable;
+
+@end
 
 @implementation MSLoanListTableViewCell
 
@@ -77,6 +92,24 @@ reuseIdentifier {
   }
   
   return self;
+}
+
+- (void)bindModel:(MSFApplyList *)model {
+
+	_moneyLabel.text = model.total_amount;
+	_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.total_installments];
+	_timeLabel.text = model.apply_time;
+	/*
+	if (model.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
+		cell.selectable = YES;
+		cell.checkLabel.textColor = [MSFCommandView getColorWithString:ORAGECOLOR];
+	} else {
+		cell.selectable = NO;
+		cell.checkLabel.textColor = [MSFCommandView getColorWithString:@"#585858"];
+	}*/
+	
+	_checkLabel.text = @"状态";//[self getStatus:listModel.status.integerValue];
+
 }
 
 - (void)setSelectable:(BOOL)selectable {

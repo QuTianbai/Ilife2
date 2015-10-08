@@ -224,19 +224,6 @@ ABPersonViewControllerDelegate>
 			return cell;
 		}
 		case 2: {
-			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
-			cell.titleLabel.text = @"姓名";
-			cell.tfInput.placeholder = @"请填写联系人姓名";
-			cell.tfInput.text = contact.contactName;
-			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
-				if (textField.text.length > 40) {
-					textField.text = [textField.text substringToIndex:40];
-				}
-				contact.contactName = textField.text;
-			}];
-			return cell;
-		}
-		case 3: {
 			MSFRelationPhoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationPhoneCell"];
 			cell.tfInput.text = contact.contactMobile;
 			cell.tfInput.tag = indexPath.section;
@@ -252,6 +239,19 @@ ABPersonViewControllerDelegate>
 			[[[cell.onContactBook rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 				@strongify(self)
 				[self fetchAddressBook:cell.tfInput];
+			}];
+			return cell;
+		}
+		case 3: {
+			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
+			cell.titleLabel.text = @"姓名";
+			cell.tfInput.placeholder = @"请填写联系人姓名";
+			cell.tfInput.text = contact.contactName;
+			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+				if (textField.text.length > 40) {
+					textField.text = [textField.text substringToIndex:40];
+				}
+				contact.contactName = textField.text;
 			}];
 			return cell;
 		}
@@ -331,8 +331,13 @@ ABPersonViewControllerDelegate>
 		phone = [phones objectAtIndex:identifier];
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
+	
+	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
+	NSLog(@"%@", fullName);
+
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
+	contact.contactName = fullName;
 	[self.tableView reloadData];
 }
 
@@ -363,8 +368,12 @@ ABPersonViewControllerDelegate>
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
 	
+	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
+	NSLog(@"%@", fullName);
+	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
+	contact.contactName = fullName;
 	[self.tableView reloadData];
 	
  [peoplePicker dismissViewControllerAnimated:YES completion:nil];

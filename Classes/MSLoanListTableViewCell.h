@@ -7,14 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class MSFCellButton;
 
 @interface MSLoanListTableViewCell : UITableViewCell
 
-@property (strong, nonatomic) UILabel *moneyLabel;
-@property (strong, nonatomic) UILabel *monthsLabel;
-@property (strong, nonatomic) UILabel *timeLabel;
-@property (strong, nonatomic) UILabel *checkLabel;
-@property (assign, nonatomic) BOOL selectable;
+- (void)bindModel:(id)model;
 
 @end
