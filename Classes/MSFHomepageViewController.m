@@ -90,7 +90,7 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
-		
+		/*
 		[[[[MSFUtils.httpClient fetchApplyList] concat] replayLazily] subscribeNext:^(id x) {
 			NSLog(@"%@", x);
 		} error:^(NSError *error) {
@@ -102,7 +102,7 @@ UICollectionViewDelegateFlowLayout>
 		} error:^(NSError *error) {
 			NSLog(@"error : %@", error.localizedDescription);
 		}];
-		
+		*/
 	}];
 }
 
