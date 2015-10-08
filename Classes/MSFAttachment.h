@@ -12,9 +12,11 @@
 
 // 文件id
 @property (nonatomic, copy, readonly) NSString *fileID;
-@property (nonatomic, copy, readonly) NSString *fileName;
 
 // 文件名
+@property (nonatomic, copy, readonly) NSString *fileName;
+
+// 文件类型名
 @property (nonatomic, copy, readonly) NSString *name;
 
 // 文件类型 eg. IDCARD
@@ -44,13 +46,20 @@
 @property (nonatomic, copy, readonly) NSString *status;
 
 // 附件上传，后从服务器返回的json中的文件类型 `image/jpg`
-@property (nonatomic, copy, readonly) NSString *contentType;
-@property (nonatomic, copy, readonly) NSString *contentName;
-@property (nonatomic, copy, readonly) NSString *contentID;
+@property (nonatomic, copy, readonly) NSString * contentType __deprecated_msg("Unused 2.0");
+@property (nonatomic, copy, readonly) NSString * contentName __deprecated_msg("Unused 2.0");
+@property (nonatomic, copy, readonly) NSString * contentID __deprecated_msg("Unused 2.0");
 
+// 文件缩略图地址
+//
+// - 如果文件是本地牌照图片，则文件缩略图地址是本地图片存储地址
+// - 如果文件是尚未拍照，或者下载，则缩略图地址占位图地址
 @property (nonatomic, strong) NSURL *thumbURL;
+
+// 拍照图片存储地址
 @property (nonatomic, strong) NSURL *fileURL;
 
+// 判断当前附件viewModel是否是占位用于弹出拍照控件的cell
 @property (nonatomic, assign, readonly) BOOL isPlaceholder;
 
 @end

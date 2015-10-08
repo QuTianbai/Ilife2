@@ -11,24 +11,28 @@
 // type `IDCARD`
 @property (nonatomic, copy, readonly) NSString *type;
 
+// Title
 @property (nonatomic, copy, readonly) NSString *title;
 
+// The elment name.
 @property (nonatomic, copy, readonly) NSString *name;
 
+// The element's comment use to display on headers subtitle.
 @property (nonatomic, copy, readonly) NSString *comment;
 
-// 示例图片地址
+// The Example's image URL
 @property (nonatomic, copy, readonly) NSURL *sampleURL;
 
-// 图标地址
+// The thumb image URL.
 @property (nonatomic, copy, readonly) NSURL *thumbURL;
 
-// 是否必须
+// The element property is required or not.
 @property (nonatomic, assign, readonly) BOOL required;
 
-// 最大上传数量
+// The Max contain attachments.
 @property (nonatomic, assign, readonly) NSUInteger maximum;
 
+// The sort number.
 @property (nonatomic, assign, readonly) NSInteger sort;
 
 @end

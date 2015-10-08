@@ -18,6 +18,7 @@
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readwrite) NSURL *fileURL;
 @property (nonatomic, strong, readwrite) NSURL *thumbURL;
+@property (nonatomic, strong, readwrite) NSString *fileName;
 
 @end
 

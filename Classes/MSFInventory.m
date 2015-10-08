@@ -9,6 +9,8 @@
 
 @implementation MSFInventory
 
+#pragma mark - MTLJSONSerializing
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"objectID": @"applyId",

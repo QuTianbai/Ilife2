@@ -61,7 +61,7 @@
 				@"fileURL": URL,
 				@"thumbURL": URL,
 				@"type": self.element.type,
-				@"title": self.element.title,
+				@"name": self.element.name,
 			} error:nil];
 			[self addAttachment:attachment];
 		}

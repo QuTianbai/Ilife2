@@ -16,6 +16,8 @@
 
 @implementation MSFAttachment
 
+#pragma mark - MTLJSONSerializing
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"objectID": @"fileId",
@@ -81,6 +83,8 @@
 	return *objectID == nil;
 }
 
+#pragma mark - ValueTransformer
+
 + (NSValueTransformer *)commentURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
 }
@@ -92,6 +96,8 @@
 + (NSValueTransformer *)updatedDateJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
 }
+
+#pragma mark - NSObject
 
 - (BOOL)isEqual:(MSFAttachment *)other {
 	if (other == self) {
