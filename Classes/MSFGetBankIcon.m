@@ -37,7 +37,7 @@
 		return @"guangfa";//广发11
 	}
 
-	return @"";
+	return @"bankdefult";
 }
 
 @end
