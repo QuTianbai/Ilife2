@@ -135,7 +135,7 @@ static MSFServer *server;
 }
 
 + (NSString *)complateCustInfo {
-	return @"111";
+	return MSFUtils.httpClient.user.complateCustInfo;
 }
 
 @end

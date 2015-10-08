@@ -39,6 +39,7 @@
 	
 	_amount = [NSString stringWithFormat:@"%@元", cashViewModel.appLmt];
 	_repayment = [NSString stringWithFormat:@"%@元", cashViewModel.loanFixedAmt];
+	_bankNumber = cashViewModel.formViewModel.masterBankCardNO;
 	
   return self;
 }
