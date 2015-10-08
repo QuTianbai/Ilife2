@@ -90,7 +90,7 @@
                             <constraint firstItem="juA-PJ-DxE" firstAttribute="top" secondItem="TTN-w7-ccN" secondAttribute="bottom" constant="15" id="yXT-Ua-fCu"/>
                         </constraints>
                     </view>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM3-Za-J73" customClass="MSFUserInfoCircleView">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM3-Za-J73" customClass="MSFUserInfoCircleView">
                         <rect key="frame" x="35" y="66" width="282" height="282"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
