@@ -207,6 +207,15 @@
 		}
 	}];
 	
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil] subscribeNext:^(NSError *error) {
+		@strongify(self)
+		[MSFUtils setHttpClient:nil];
+		self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+		self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+		[self unAuthenticatedControllers];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil] subscribeNext:^(id x) {
 		self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 		self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
@@ -220,19 +229,6 @@
 			}
 		}];
 	}];
-	
-	// Error Handle
-	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil]
-		takeUntil:self.rac_willDeallocSignal]
-		subscribeNext:^(NSNotification *notification) {
-			@strongify(self)
-			NSError *error = notification.object;
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message: error.userInfo[NSLocalizedFailureReasonErrorKey] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-			[self unAuthenticatedControllers];
-			[MSFUtils setHttpClient:nil];
-			if (alertView.isVisible) return;
-			[alertView show];
-		}];
 }
 
 - (void)unAuthenticatedControllers {

@@ -166,8 +166,7 @@
 - (void)onClickCircle:(NSInteger)index {
 	switch (index) {
 		case 0: {
-			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formViewModel.currentAddress services:self.services];
-			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel addressViewModel:addrViewModel];
+			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
 			[self.services pushViewModel:viewModel];
 			break;
 		}
@@ -177,8 +176,7 @@
 			break;
 		}
 		case 2: {
-			MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formViewModel.currentAddress services:self.services];
-			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel addressViewModel:addrViewModel];
+			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
 			[self.services pushViewModel:viewModel];
 			break;
 		}

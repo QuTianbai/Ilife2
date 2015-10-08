@@ -199,6 +199,7 @@
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
 		10A295CB1BBFCE88001847A8 /* userInfoApply.json in Resources */ = {isa = PBXBuildFile; fileRef = 10A295BD1BBFC9FE001847A8 /* userInfoApply.json */; };
 		10AEFB071BC29AAC009486DF /* MSFTempForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEFB061BC29AAC009486DF /* MSFTempForms.m */; settings = {ASSET_TAGS = (); }; };
+		10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */ = {isa = PBXBuildFile; fileRef = 10AEFB3D1BC53954009486DF /* familyMember_type1.json */; settings = {ASSET_TAGS = (); }; };
 		10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C240791BBA8F5E006C23DC /* MSFUserContact.m */; settings = {ASSET_TAGS = (); }; };
 		10C2407D1BBA8F6F006C23DC /* MSFUserAdditional.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */; settings = {ASSET_TAGS = (); }; };
 		10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C83F811BBE19EA0086BF31 /* home-banner-pl.png */; settings = {ASSET_TAGS = (); }; };
@@ -1035,6 +1036,7 @@
 		10A295BD1BBFC9FE001847A8 /* userInfoApply.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userInfoApply.json; sourceTree = "<group>"; };
 		10AEFB051BC29AAC009486DF /* MSFTempForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTempForms.h; sourceTree = "<group>"; };
 		10AEFB061BC29AAC009486DF /* MSFTempForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTempForms.m; sourceTree = "<group>"; };
+		10AEFB3D1BC53954009486DF /* familyMember_type1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type1.json; sourceTree = "<group>"; };
 		10C240781BBA8F5E006C23DC /* MSFUserContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserContact.h; sourceTree = "<group>"; };
 		10C240791BBA8F5E006C23DC /* MSFUserContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserContact.m; sourceTree = "<group>"; };
 		10C2407B1BBA8F6F006C23DC /* MSFUserAdditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserAdditional.h; sourceTree = "<group>"; };
@@ -2015,8 +2017,9 @@
 				49E07D481BBD25F0001F9E1A /* code-message.json */,
 				49CBDDB31B0DF03E009EF662 /* banners.json */,
 				07AFE59F1B26D202009E0124 /* position.json */,
-				499EA2B51B5679E50051AF66 /* familyMember_type2.json */,
 				07C06C6E1B1347C200F2DFCC /* familyMember_type.json */,
+				10AEFB3D1BC53954009486DF /* familyMember_type1.json */,
+				499EA2B51B5679E50051AF66 /* familyMember_type2.json */,
 				07C06C6F1B1347C200F2DFCC /* housing_conditions.json */,
 				07C06C701B1347C200F2DFCC /* json_banks.json */,
 				07C06C711B1347C200F2DFCC /* marital_status.json */,
@@ -4131,6 +4134,7 @@
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
 				4EDB520E1B69C7E600388306 /* btn-FamilyInformation-phone@2x.png in Resources */,
 				4944C00F1B68A44A00805C0A /* icon-cloze-idcarddate@2x.png in Resources */,
+				10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */,
 				49C0F1A51B2C315100E92572 /* icon-check-selected@3x.png in Resources */,
 				C7D2D1321B67938C000F51ED /* icon-cloze-question@2x.png in Resources */,
 				49CA935E1BBA212A0032F5C2 /* groupedTableViewCell_bottomRow@2x.png in Resources */,

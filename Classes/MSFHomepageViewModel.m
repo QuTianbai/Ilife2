@@ -51,38 +51,44 @@
 	@weakify(self)
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
+		/*
 		self.bannersViewModel.active = NO;
 		self.bannersViewModel.active = YES;
 		if (!self.services.httpClient.isAuthenticated) {
 			return [RACSignal return:nil];
-		}
-		return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
-			if (value.processing) {
-				/*
-				MSFApplyCashInfo *data = [[MSFApplyCashInfo alloc] init];
-				data.applyTime = @"2015-08-23";
-				data.appLmt = @"3000";
-				data.loanTerm = @"3";
-				data.status = @"V";
-				data.appNo = @"7";
-				value.data = data;
-				*/
-				if (value.data) {
-					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
-					return [RACSignal return:@[viewModel]];
-				} else {
+		}*/
+		
+		if (self.services.httpClient.user.type == 0) {
+			return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
+				if (value.processing) {
 					return [RACSignal return:nil];
+				} else {
+					if (value.data) {
+						/*
+						 MSFApplyCashInfo *data = [[MSFApplyCashInfo alloc] init];
+						 data.applyTime = @"2015-08-23";
+						 data.appLmt = @"3000";
+						 data.loanTerm = @"3";
+						 data.status = @"V";
+						 data.appNo = @"7";
+						 value.data = data;
+						 */
+						MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
+						return [RACSignal return:@[viewModel]];
+					} else {
+						return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
+							MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
+							return @[viewModel];
+						}];
+					}
 				}
-			} else {
-				return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
-					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
-					return @[viewModel];
-				}];
-			}
-		}];
+			}];
+		}
+		return [RACSignal return:nil];
 	}];
 	
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
+		@strongify(self)
 		self.viewModels = x;
 	}];
 	
@@ -101,8 +107,8 @@
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
-		self.viewModel.active = NO;
-		self.viewModel.active = YES;
+//		self.viewModel.active = NO;
+//		self.viewModel.active = YES;
 	}];
 	
 	return self;
