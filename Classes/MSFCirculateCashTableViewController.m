@@ -18,6 +18,7 @@
 #import "MSFBankCardListModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "AppDelegate.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFCirculateCashTableViewController ()
 @property (weak, nonatomic) IBOutlet MSFLoanLimitView *loanlimiteView;
@@ -89,6 +90,7 @@
 		} else {
 			RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
 			[signal subscribeNext:^(id x) {
+				[SVProgressHUD dismiss];
 				self.dataArray = x;
 				for (MSFBankCardListModel *model in self.dataArray) {
 					if (model.master) {

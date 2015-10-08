@@ -98,6 +98,7 @@
 		flattenMap:^RACStream *(id value) {
 			return [[NSURLConnection rac_sendAsynchronousRequest:value]
 				reduceEach:^id(NSURLResponse *response, NSData *data){
+					NSLog(@"%@",data);
 					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 				}];
 			}];

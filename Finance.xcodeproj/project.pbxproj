@@ -117,6 +117,9 @@
 		07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B3687F1B7ED86400574A81 /* basic-information-prompt-1242.png */; };
 		07B368831B7ED86400574A81 /* basic-information-prompt-1242@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B368801B7ED86400574A81 /* basic-information-prompt-1242@2x.png */; };
 		07B368841B7ED86400574A81 /* basic-information-prompt-1242@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B368811B7ED86400574A81 /* basic-information-prompt-1242@3x.png */; };
+		07B6DA7D1BC6506E0025A849 /* bankdefult.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6DA7A1BC6506E0025A849 /* bankdefult.png */; settings = {ASSET_TAGS = (); }; };
+		07B6DA7E1BC6506E0025A849 /* bankdefult@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6DA7B1BC6506E0025A849 /* bankdefult@2x.png */; settings = {ASSET_TAGS = (); }; };
+		07B6DA7F1BC6506E0025A849 /* bankdefult@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B6DA7C1BC6506E0025A849 /* bankdefult@3x.png */; settings = {ASSET_TAGS = (); }; };
 		07B915871B22D42B00E0D1FF /* checkemployee.json in Resources */ = {isa = PBXBuildFile; fileRef = 07B915861B22D42B00E0D1FF /* checkemployee.json */; };
 		07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BA6CE41B5F5BD7001D6CFA /* MSFSegment.m */; };
 		07BC21F21B1C2C50001C12E2 /* loadinfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BC21F11B1C2C50001C12E2 /* loadinfo.json */; };
@@ -905,6 +908,9 @@
 		07B3687F1B7ED86400574A81 /* basic-information-prompt-1242.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic-information-prompt-1242.png"; sourceTree = "<group>"; };
 		07B368801B7ED86400574A81 /* basic-information-prompt-1242@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic-information-prompt-1242@2x.png"; sourceTree = "<group>"; };
 		07B368811B7ED86400574A81 /* basic-information-prompt-1242@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "basic-information-prompt-1242@3x.png"; sourceTree = "<group>"; };
+		07B6DA7A1BC6506E0025A849 /* bankdefult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bankdefult.png; sourceTree = "<group>"; };
+		07B6DA7B1BC6506E0025A849 /* bankdefult@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankdefult@2x.png"; sourceTree = "<group>"; };
+		07B6DA7C1BC6506E0025A849 /* bankdefult@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankdefult@3x.png"; sourceTree = "<group>"; };
 		07B915861B22D42B00E0D1FF /* checkemployee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkemployee.json; sourceTree = "<group>"; };
 		07BA6CE31B5F5BD7001D6CFA /* MSFSegment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSegment.h; sourceTree = "<group>"; };
 		07BA6CE41B5F5BD7001D6CFA /* MSFSegment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSegment.m; sourceTree = "<group>"; };
@@ -1895,6 +1901,9 @@
 		077347981BBA333B00D7A130 /* Bank */ = {
 			isa = PBXGroup;
 			children = (
+				07B6DA7A1BC6506E0025A849 /* bankdefult.png */,
+				07B6DA7B1BC6506E0025A849 /* bankdefult@2x.png */,
+				07B6DA7C1BC6506E0025A849 /* bankdefult@3x.png */,
 				077347A61BBA338900D7A130 /* ABC.png */,
 				077347A71BBA338900D7A130 /* ABC@2x.png */,
 				077347A81BBA338900D7A130 /* ABC@3x.png */,
@@ -4057,6 +4066,7 @@
 				4944C04B1B68A5DA00805C0A /* nav-back@2x.png in Resources */,
 				4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */,
 				49C0F1C81B2C341400E92572 /* tabbar-account-selected@2x.png in Resources */,
+				07B6DA7D1BC6506E0025A849 /* bankdefult.png in Resources */,
 				4944C0141B68A44A00805C0A /* icon-cloze-normal.png in Resources */,
 				07E3ED7D1BBC12F90010AAD2 /* bankCardList.json in Resources */,
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
@@ -4136,6 +4146,7 @@
 				49CA935F1BBA212A0032F5C2 /* groupedTableViewCell_middleRow@2x.png in Resources */,
 				070119D61BA669DD00ACE8C6 /* icon-empty@2x.png in Resources */,
 				07B368831B7ED86400574A81 /* basic-information-prompt-1242@2x.png in Resources */,
+				07B6DA7E1BC6506E0025A849 /* bankdefult@2x.png in Resources */,
 				07E3ED711BBBC3020010AAD2 /* tradePassWordBG@2x.png in Resources */,
 				4944C02C1B68A5A100805C0A /* icon-account-apply@2x.png in Resources */,
 				493224DE1BBFB3640087830E /* icon-account-intro@2x.png in Resources */,
@@ -4215,6 +4226,7 @@
 				077347D61BBA338900D7A130 /* CMBC.png in Resources */,
 				07C06C521B1345A300F2DFCC /* installments.json in Resources */,
 				C7A351791B217CB10001DF6A /* iconfont-chanpinjieshao@3x.png in Resources */,
+				07B6DA7F1BC6506E0025A849 /* bankdefult@3x.png in Resources */,
 				077347CD1BBA338900D7A130 /* add.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
