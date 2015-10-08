@@ -29,4 +29,6 @@
 // 最大上传数量
 @property (nonatomic, assign, readonly) NSUInteger maximum;
 
+@property (nonatomic, assign, readonly) NSInteger sort;
+
 @end

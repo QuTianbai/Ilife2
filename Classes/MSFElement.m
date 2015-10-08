@@ -8,6 +8,8 @@
 
 @implementation MSFElement
 
+#pragma mark - MTLJSONSerializing
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"type": @"code",
@@ -16,8 +18,9 @@
 		@"comment": @"comment",
 		@"sampleURL": @"exampleUrl",
 		@"thumbURL": @"iconUrl",
-		@"required": @"must",
+		@"required": @"status",
 		@"maximum": @"maxNum",
+		@"sort": @"sort",
 	};
 }
 
@@ -27,6 +30,12 @@
 
 + (NSValueTransformer *)thumbURLJSONTransformer {
 	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+}
+
++ (NSValueTransformer *)requiredJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^id(NSString *string) {
+		return [string isEqualToString:@"M"] ? @YES: @NO;
+	}];
 }
 
 - (BOOL)validateRequired:(id *)required error:(NSError **)error {
