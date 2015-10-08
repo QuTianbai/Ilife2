@@ -11,6 +11,7 @@
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFResponse.h"
 #import "MSFUser.h"
+#import "MSFUtils.h"
 
 @implementation MSFClient (MSFApplyInfo)
 
@@ -200,6 +201,7 @@
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
 		self.user.complateCustInfo = value.parsedResult[@"complateCustInfo"];
+		
 		return value.parsedResult[@"complateCustInfo"];
 	}];
 }

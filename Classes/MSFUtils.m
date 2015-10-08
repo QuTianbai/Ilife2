@@ -134,8 +134,9 @@ static MSFServer *server;
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
 
+
 + (NSString *)complateCustInfo {
-	return @"111";
+	return MSFUtils.httpClient.user.complateCustInfo;
 }
 
 @end
