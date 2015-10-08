@@ -11,6 +11,7 @@
 
 @implementation MSFApplyList
 
+/*
 + (NSValueTransformer *)apply_timeJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(NSString *string) {
 		return [NSDateFormatter msf_dateFromString:string];
@@ -27,7 +28,7 @@
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {
 		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
 	}];
-}
+}*/
 
 + (NSValueTransformer *)current_installmentJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {

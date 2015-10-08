@@ -62,7 +62,6 @@ it(@"should fetch uploaded attachment information", ^{
 	expect(attachment.additionDate).to(equal([NSDateFormatter msf_dateFromString:@"2015-07-27 20:00:26"]));
 	expect(attachment.updatedDate).to(equal([NSDateFormatter msf_dateFromString:@"2015-07-27 20:00:03"]));
 	expect(attachment.status).to(equal(@"I"));
-	expect(attachment.contentType).to(equal(@"image/jpg"));
 });
 
 it(@"should create placeholder attachment", ^{

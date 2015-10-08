@@ -21,9 +21,9 @@
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 
 @property (nonatomic, copy) NSString *appNO;
-@property (nonatomic, copy) NSString *appLmt;
+@property (nonatomic, copy) NSString *appLmt; // 贷款金额
 @property (nonatomic, copy) NSString *applyStatus;
-@property (nonatomic, copy) NSString *loanTerm;
+@property (nonatomic, copy) NSString *loanTerm; // 贷款期数
 @property (nonatomic, copy) NSString *loanPurpose;
 @property (nonatomic, copy) NSString *jionLifeInsurance;
 @property (nonatomic, copy) NSString *lifeInsuranceAmt;

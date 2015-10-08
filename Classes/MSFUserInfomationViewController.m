@@ -120,7 +120,8 @@
 			return ;
 		}
 		if ([MSFUtils.complateCustInfo isEqualToString:@"111"]) {
-			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel];
+		//TODO:  进去图片上传界面
+			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel];
 			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];
 		} else {

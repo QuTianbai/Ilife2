@@ -5,10 +5,8 @@
 //
 
 #import "MSFAgreement.h"
-#import "MSFServer.h"
 #import <libextobjc/extobjc.h>
-#import "MSFProduct.h"
-#import "MSFApplyList.h"
+#import "MSFServer.h"
 
 @implementation MSFAgreement
 

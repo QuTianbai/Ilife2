@@ -18,7 +18,7 @@
 // 加密时间戳
 @property (nonatomic, copy, readonly) NSString *timestamp;
 
-// 用对象的`sign` `timestamp` 拼接HTTP查询query
+// 用对象的`sign` `timestamp` `appkey` 拼接HTTP查询query
 @property (nonatomic, readonly) NSString *query;
 
 @end
