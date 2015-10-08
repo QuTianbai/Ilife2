@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -16,24 +16,28 @@
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="lbt-Fb-eDY" userLabel="bar1.png">
                             <rect key="frame" x="62" y="43" width="36.5" height="4"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="eFZ-ZF-O83"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="jP1-qY-kQH" userLabel="bar2.png">
                             <rect key="frame" x="141" y="43" width="37.5" height="4"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="vU5-m5-X6N"/>
                             </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bar-normal.png" highlightedImage="bar-highlighted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rJP-eL-8JJ" userLabel="bar3.png">
                             <rect key="frame" x="221" y="43" width="37.5" height="4"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="4" id="84d-V8-n1n"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nT0-KG-JRh" userLabel="1">
                             <rect key="frame" x="18" y="22" width="45" height="45"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="d9V-1O-NiY"/>
                                 <constraint firstAttribute="height" constant="45" id="ecd-a3-SPE"/>
@@ -45,6 +49,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6a-y9-i6t" userLabel="2">
                             <rect key="frame" x="97" y="22" width="45" height="45"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="Eff-iF-9Ul"/>
                                 <constraint firstAttribute="width" constant="45" id="kh4-rM-R3G"/>
@@ -56,6 +61,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8L-n6-7L0" userLabel="3">
                             <rect key="frame" x="177" y="22" width="45" height="45"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="KYI-Dq-bdp"/>
                                 <constraint firstAttribute="height" constant="45" id="YFF-0f-BWh"/>
@@ -67,6 +73,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sV6-DW-0GU" userLabel="4">
                             <rect key="frame" x="257" y="22" width="45" height="45"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="45" id="Q5l-o1-hoP"/>
                                 <constraint firstAttribute="height" constant="45" id="aad-45-cqo"/>
@@ -78,29 +85,34 @@
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="基本信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VoN-LX-Mfy">
                             <rect key="frame" x="0.0" y="74" width="80" height="16"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="职业信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovC-VD-NJf">
                             <rect key="frame" x="80" y="74" width="80" height="16"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="家庭信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gu-CP-pup">
                             <rect key="frame" x="160" y="74" width="80" height="16"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传资料" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTw-Dk-CZq">
                             <rect key="frame" x="240" y="74" width="80" height="16"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="centerY" secondItem="lbt-Fb-eDY" secondAttribute="centerY" id="1dF-Ry-VMH"/>
@@ -135,6 +147,7 @@
                     </constraints>
                 </view>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="V0w-yI-34D" secondAttribute="leading" id="ASd-H2-gs2"/>

@@ -84,20 +84,12 @@ describe(@"attachment from camera", ^{
 				stubProperty(model, objectID, @"3033");
 				return nil;
 			}];
-			[givenVoid([model mergeValueForKey:@"contentID" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, contentID, @"3033");
+			[givenVoid([model mergeValueForKey:@"fileID" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
+				stubProperty(model, fileID, @"3033");
 				return nil;
 			}];
-			[givenVoid([model mergeValueForKey:@"contentType" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, contentType, @"image/jpg");
-				return nil;
-			}];
-			[givenVoid([model mergeValueForKey:@"name" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, name, @"foo.jpg");
-				return nil;
-			}];
-			[givenVoid([model mergeValueForKey:@"contentName" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, contentName, @"foo.jpg");
+			[givenVoid([model mergeValueForKey:@"fileName" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
+				stubProperty(model, fileName, @"temp-response.jpg");
 				return nil;
 			}];
 			return [RACSignal return:attachment];
@@ -108,12 +100,10 @@ describe(@"attachment from camera", ^{
 		
 		// then
 		expect(viewModel.attachment.objectID).to(equal(@"3033"));
-		expect(viewModel.attachment.contentType).to(equal(@"image/jpg"));
-		expect(viewModel.attachment.name).to(equal(@"foo.jpg"));
+		expect(viewModel.attachment.fileID).to(equal(@"3033"));
+		expect(viewModel.attachment.fileName).to(equal(@"temp-response.jpg"));
 		expect(viewModel.attachment.fileURL).to(equal(URL));
 		expect(viewModel.attachment.thumbURL).to(equal(URL));
-		expect(viewModel.attachment.contentName).to(equal(@"foo.jpg"));
-		expect(viewModel.attachment.contentID).to(equal(@"3033"));
 	});
 });
 

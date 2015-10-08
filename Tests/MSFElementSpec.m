@@ -13,7 +13,7 @@ NSDictionary *representation = @{
 	@"name": @"身份证",
 	@"title": @"身份证",
 	@"comment": @"请放在正中间",
-	@"must": @"true",
+	@"status": @"M",
 	@"exampleUrl": @"http://www.aaa.com/111.jsp",
 	@"iconUrl": @"http://www.aaa.com/111.icon",
 	@"maxNum": @1

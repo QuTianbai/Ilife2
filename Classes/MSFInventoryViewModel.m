@@ -8,13 +8,11 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import "MSFClient+Elements.h"
-#import "MSFClient+Inventory.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFProduct.h"
 #import "MSFElement.h"
 #import "MSFElementViewModel.h"
-#import "MSFInventory.h"
 #import "MSFApplicationResponse.h"
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
@@ -32,41 +30,18 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
+- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_formsViewModel = formsViewModel.formViewModel;
-	_cashViewModel = formsViewModel;
-	RAC(self, model) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
-		return [[MSFInventory alloc] initWithDictionary:@{
-			@"objectID": formsViewModel.formViewModel.model.loanId ?: @"",
-			@"applyNo": formsViewModel.formViewModel.model.applyNo ?: @"",
-			@"attachments": @[],
-		} error:nil];
-	}];
-	
-	RAC(self, product) = [RACObserve(self, formsViewModel.model.productId) map:^id(id value) {
-		return [[MSFProduct alloc] initWithDictionary:@{
-			@"productId": formsViewModel.formViewModel.model.productId ?: @"",
-		} error:nil];
-	}];
-	
-	RAC(self, credit) = [RACObserve(self, formsViewModel.model.applyNo) map:^id(id value) {
-		return [[MSFApplicationResponse alloc] initWithDictionary:@{
-			@"applyID": formsViewModel.formViewModel.model.applyNo ?: @"",
-			@"applyNo": formsViewModel.formViewModel.model.loanId ?: @"",
-			@"personId": formsViewModel.formViewModel.model.personId ?: @"",
-		} error:nil];
-	}];
+	_cashViewModel = cashViewModel;
 	
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		MSFApplicationForms *forms = self.formsViewModel.model;
-		[[[[[self.formsViewModel.services httpClient]
-			fetchElementsWithProduct:self.product amount:forms.principal term:forms.tenor]
+		[[[[[self.cashViewModel.services httpClient]
+			fetchElementsWithProduct:nil amount:self.cashViewModel.appLmt term:self.cashViewModel.loanTerm]
 			map:^id(MSFElement *element) {
 				return [[MSFElementViewModel alloc] initWithElement:element viewModel:self.cashViewModel];
 			}]
@@ -81,14 +56,22 @@
 	}];
 	
 	RAC(self, requiredViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
-		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
+		return [[[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
 			return value.isRequired;
-		}] array];
+		}] array] sortedArrayUsingComparator:^NSComparisonResult(MSFElementViewModel *obj1, MSFElementViewModel *obj2) {
+			if (obj1.element.sort > obj2.element.sort) return NSOrderedDescending;
+			if (obj1.element.sort < obj1.element.sort) return NSOrderedAscending;
+			return NSOrderedSame;
+		}];
 	}];
 	RAC(self, optionalViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
-		return [[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
+		return [[[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
 			return !value.isRequired;
-		}] array];
+		}] array] sortedArrayUsingComparator:^NSComparisonResult(MSFElementViewModel *obj1, MSFElementViewModel *obj2) {
+			if (obj1.element.sort > obj2.element.sort) return NSOrderedDescending;
+			if (obj1.element.sort < obj1.element.sort) return NSOrderedAscending;
+			return NSOrderedSame;
+		}];
 	}];
 	
 	_executeSubmit = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -96,6 +79,10 @@
 	}];
 	
   return self;
+}
+
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
+	return [self initWithCashViewModel:formsViewModel];
 }
 
 #pragma mark - Custom Accessors
@@ -131,12 +118,9 @@
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
-	@weakify(self)
-	return [self.updateValidSignal flattenMap:^RACStream *(id value) {
-		@strongify(self)
-		self.model.attachments = value;
+	return [self.updateValidSignal flattenMap:^RACStream *(NSArray *objects) {
 		NSMutableArray *attachments = [[NSMutableArray alloc] init];
-		[self.model.attachments enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *_Nonnull stop) {
+		[objects enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *_Nonnull stop) {
 			[attachments addObject:@{
 				@"accessoryType": obj.type,
 				@"fileId": obj.fileID

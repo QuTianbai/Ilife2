@@ -74,16 +74,14 @@ UICollectionViewDelegateFlowLayout>
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
-			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.cashViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
+			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.cashViewModel user:[self.viewModel.cashViewModel.services httpClient].user];
 			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
 			
 			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
 			[[KGModal sharedInstance] setShowCloseButton:NO];
 			[[KGModal sharedInstance] showWithContentViewController:alertViewController];
 			
-			//[[KGModal sharedInstance] hideAnimated:NO withCompletionBlock:^{
-				[self.viewModel.executeUpdateCommand execute:nil];
-			//}];
+			[self.viewModel.executeUpdateCommand execute:nil];
 			
 			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
 				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
@@ -139,14 +137,6 @@ UICollectionViewDelegateFlowLayout>
 
 #pragma mark - UICollectionViewFlowLayout
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-	if (section == 0 && !self.optional) {
-		return CGSizeMake([UIScreen mainScreen].bounds.size.width, 100);
-	} else {
-		return CGSizeZero;
-	}
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 	CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
 	if (indexPath.section == 0) {
@@ -198,17 +188,6 @@ UICollectionViewDelegateFlowLayout>
 	} else {
 		return 1;
 	}
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-	if (kind == UICollectionElementKindSectionHeader) {
-		UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"MSFHeaderReuseView" forIndexPath:indexPath];
-		MSFHeaderView *header = [MSFHeaderView headerViewWithIndex:3];
-		header.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-		[view addSubview:header];
-		return view;
-	}
-	return nil;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {

@@ -156,7 +156,7 @@ MWPhotoBrowserDelegate>
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	MSFElementTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPhotosUploadCell" forIndexPath:indexPath];
+	MSFElementTableViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFElementTableViewCell" forIndexPath:indexPath];
 	[cell bindViewModel:self.viewModel.viewModels[indexPath.row]];
 	return cell;
 }

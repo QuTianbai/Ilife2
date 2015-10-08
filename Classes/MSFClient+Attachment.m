@@ -5,6 +5,7 @@
 //
 
 #import "MSFClient+Attachment.h"
+#import <libextobjc/extobjc.h>
 #import "MSFAttachment.h"
 #import "RACSignal+MSFClientAdditions.h"
 
@@ -20,14 +21,15 @@
 		constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 			NSString *fileName = [attachment.fileURL lastPathComponent];
 			NSString *mimeType = @"image/*";
-			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachment.fileURL] name:@"image" fileName:fileName mimeType:mimeType];
+			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachment.fileURL] name:@"file" fileName:fileName mimeType:mimeType];
 	}];
 	
 	return [[[self enqueueRequest:request resultClass:MSFAttachment.class]
 		msf_parsedResults]
 		map:^id(id x) {
-			[attachment mergeValueForKey:@"fileId" fromModel:x];
-			[attachment mergeValueForKey:@"fileName" fromModel:x];
+			[attachment mergeValueForKey:@keypath(MSFAttachment.new, objectID) fromModel:x];
+			[attachment mergeValueForKey:@keypath(MSFAttachment.new, fileID) fromModel:x];
+			[attachment mergeValueForKey:@keypath(MSFAttachment.new, fileName) fromModel:x];
 			return attachment;
 		}];
 }
@@ -45,14 +47,15 @@
 		constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
 			NSString *fileName = [attachment.fileURL lastPathComponent];
 			NSString *mimeType = @"image/*";
-			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachment.fileURL] name:@"image" fileName:fileName mimeType:mimeType];
+			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachment.fileURL] name:@"file" fileName:fileName mimeType:mimeType];
 	}];
 	
 	return [[[self enqueueRequest:request resultClass:MSFAttachment.class]
 		msf_parsedResults]
 		map:^id(id x) {
-			[attachment mergeValueForKey:@"fileId" fromModel:x];
-			[attachment mergeValueForKey:@"fileName" fromModel:x];
+			[attachment mergeValueForKey:@keypath(MSFAttachment.new, objectID) fromModel:x];
+			[attachment mergeValueForKey:@keypath(MSFAttachment.new, fileID) fromModel:x];
+			[attachment mergeValueForKey:@keypath(MSFAttachment.new, fileName) fromModel:x];
 			return attachment;
 		}];
 }

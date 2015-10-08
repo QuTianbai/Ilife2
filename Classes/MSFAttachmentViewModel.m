@@ -6,6 +6,7 @@
 
 #import "MSFAttachmentViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <libextobjc/extobjc.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
@@ -18,6 +19,7 @@
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readwrite) NSURL *fileURL;
 @property (nonatomic, strong, readwrite) NSURL *thumbURL;
+@property (nonatomic, strong, readwrite) NSString *fileName;
 
 @end
 
@@ -42,11 +44,9 @@
 	_takePhotoCommand.allowsConcurrentExecution = YES;
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
 		return [[self.services.httpClient uploadAttachment:self.attachment applicationNumber:viewModel.appNO] doNext:^(id x) {
-			[self.attachment mergeValueForKey:@"name" fromModel:x];
-			[self.attachment mergeValueForKey:@"contentName" fromModel:x];
-			[self.attachment mergeValueForKey:@"contentType" fromModel:x];
-			[self.attachment mergeValueForKey:@"contentID" fromModel:x];
-			[self.attachment mergeValueForKey:@"objectID" fromModel:x];
+			[self.attachment mergeValueForKey:@keypath(MSFAttachment.new, objectID) fromModel:x];
+			[self.attachment mergeValueForKey:@keypath(MSFAttachment.new, fileID) fromModel:x];
+			[self.attachment mergeValueForKey:@keypath(MSFAttachment.new, fileName) fromModel:x];
 		}];
 	}];
 	_downloadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.downloadValidSignal signalBlock:^RACSignal *(id input) {

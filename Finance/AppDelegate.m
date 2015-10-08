@@ -210,8 +210,6 @@
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil] subscribeNext:^(NSError *error) {
 		@strongify(self)
 		[MSFUtils setHttpClient:nil];
-		self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
-		self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
 		[self unAuthenticatedControllers];
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];

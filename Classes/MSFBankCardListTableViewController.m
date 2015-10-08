@@ -26,6 +26,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "AppDelegate.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
+#import "MSFGetBankIcon.h"
 
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
@@ -172,7 +173,7 @@
 			cell.unBindMaster.hidden = NO;
 		}
 	MSFBankCardListModel *model = self.dataArray[indexPath.row];
-	cell.bankIconImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [self getImgString:model.bankCode]]];
+	cell.bankIconImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [MSFGetBankIcon getIconNameWithBankCode:model.bankCode]]];
 	cell.bankName.text = model.bankName;
 	cell.BankType.text = [NSString stringWithFormat:@"%@ %@", [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4], [self bankType:model.bankCardType]];
 	if (model.master) {
@@ -360,37 +361,6 @@
 	
 }
 
-- (NSString *)getImgString:(NSString *)code {
-	if ([code isEqualToString:@"0103"]) {
-		return @"ABC";//农业1
-	} else if ([code isEqualToString:@"0303"]) {
-		return @"guangda";//光大2
-	} else if ([code isEqualToString:@"0308"]) {
-		return @"CMBC";//招商3
-	} else if ([code isEqualToString:@"0102"]) {
-		return @"ICBC";//工商4
-	} else if ([code isEqualToString:@"0305"]) {
-		//民生5
-		return @"CMSB";
-	} else if ([code isEqualToString:@"0105"]) {
-		//建设6
-		return @"CBC";
-	} else if ([code isEqualToString:@"0302"]) {
-		 return @"zhongxin";//中信7
-	} else if ([code isEqualToString:@"0309"]) {
-		return @"xingye";//兴业8
-	} else if ([code isEqualToString:@"0104"]) {
-		return @"china";//中国9
-	} else if ([code isEqualToString:@"0100"]) {
-		return @"youzheng";//邮政10
-	} else if ([code isEqualToString:@"0306"]) {
-		return @"guangfa";//广发11
-	}
-	
-	return @"";
-	
-}
-
 - (NSString *)bankType:(NSString *)type {
 	switch (type.intValue) {
   case 1:
@@ -407,7 +377,7 @@
 			
   default:
 			break;
-	}
+	} 
 	
 	return @"";
 }

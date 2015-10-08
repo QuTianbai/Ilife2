@@ -141,6 +141,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		if ([value isEqualToString:@""] || value == nil) {
 			self.master = NO;
 			[self.tableView reloadData];
+			return @"";
 		}
 		self.master = YES;
 		[self.tableView reloadData];
@@ -148,9 +149,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}];
 	
 	self.viewModel.jionLifeInsurance = @"1";
-	RAC(self.viewModel, jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(id value) {
-		return value;
-	}];
+	RAC(self, viewModel.jionLifeInsurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];
@@ -174,7 +173,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return value;
   }];
 	
-	RAC(self.viewModel, appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
+	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
