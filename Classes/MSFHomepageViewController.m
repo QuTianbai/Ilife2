@@ -86,19 +86,9 @@ UICollectionViewDelegateFlowLayout>
 	
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
+		self.viewModel.active = NO;
 		self.viewModel.active = YES;
 	}];
-	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
-		@strongify(self)
-		self.viewModel.active = NO;
-	}];
-	
-//	[[[MSFUtils.httpClient fetchRepaymentSchedules] map:^id(id value) {
-//		NSLog(@"%@", value);
-//		return nil;
-//	}] subscribeNext:^(id x) {
-//		NSLog(@"%@", x);
-//	}];
 }
 
 #pragma mark - UICollectionViewDataSource

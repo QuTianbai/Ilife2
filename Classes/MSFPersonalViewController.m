@@ -11,13 +11,16 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAreas.h"
-#import "MSFApplicationForms.h"
+
 #import "MSFApplicationResponse.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "NSString+Matches.h"
+
 #import "MSFPersonalViewModel.h"
-#import "MSFAddressViewModel.h"
+#import "MSFFormsViewModel.h"
+#import "MSFApplicationForms.h"
+//#import "MSFAddressViewModel.h"
 
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
@@ -78,49 +81,14 @@
 	[super viewDidLoad];
 	
 	self.navigationItem.title = @"基本信息";
-	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-	/*
-	[[self.monthInComeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 5) {
-			 textField.text = [textField.text substringToIndex:5];
-		 }
-	 }];
-	
-	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.model, income);
-	RAC(self.monthInComeTF, text) = incomeChannel;
-	[self.monthInComeTF.rac_textSignal subscribe:incomeChannel];
-	
-	[[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 5) {
-			 textField.text = [textField.text substringToIndex:5];
-		 }
-	 }];
-	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
-	RAC(self.repayMonthTF, text) = familyExpenseChannel;
-	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
-	
-	[[self.familyOtherIncomeYF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 6) {
-			 if (textField.text.length > 6) {
-				 textField.text = [textField.text substringToIndex:6];
-			 }
-		 }
-	 }];
-	RACChannelTerminal *otherIncomeChannel = RACChannelTo(self.viewModel.model, otherIncome);
-	RAC(self.familyOtherIncomeYF, text) = otherIncomeChannel;
-	[self.familyOtherIncomeYF.rac_textSignal subscribe:otherIncomeChannel];
-	*/
-	
+
 	@weakify(self)
 	//住房情况
-	RAC(self.housingTF, text) = RACObserve(self.viewModel.model, houseTypeTitle);
+	RAC(self.housingTF, text) = RACObserve(self.viewModel.formsViewModel.model, houseTypeTitle);
 	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
 	//婚姻状况
-	RAC(self.marriageTF, text) = RACObserve(self.viewModel.model, marriageTitle);
+	RAC(self.marriageTF, text) = RACObserve(self.viewModel.formsViewModel.model, marriageTitle);
 	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
 	//电子邮件
 	[[self.emailTF rac_signalForControlEvents:UIControlEventEditingChanged]
@@ -129,7 +97,7 @@
 			 textField.text = [textField.text substringToIndex:40];
 		 }
 	 }];
-	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.model, email);
+	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.formsViewModel.model, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
 	//住宅电话
@@ -145,11 +113,11 @@
 		 }
 	 }];
 	
-	RACChannelTerminal *homeTelCodeChannel = RACChannelTo(self.viewModel.model, homeCode);
+	RACChannelTerminal *homeTelCodeChannel = RACChannelTo(self.viewModel.formsViewModel.model, homeCode);
 	RAC(self.homeTelCodeTF, text) = homeTelCodeChannel;
 	[self.homeTelCodeTF.rac_textSignal subscribe:homeTelCodeChannel];
 	
-	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel.model, homeLine);
+	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel.formsViewModel.model, homeLine);
 	RAC(self.homeTelTF, text) = homeTelChannel;
 	[self.homeTelTF.rac_textSignal subscribe:homeTelChannel];
 	
@@ -163,89 +131,40 @@
 			 textField.text = [textField.text substringToIndex:80];
 		 }
 	 }];
-	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.model, abodeDetail);
+	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.formsViewModel.model, abodeDetail);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
-	
 
-
-//	RACChannelTerminal *homeLineChannel = RACChannelTo(self.viewModel.model, homeLine);
-//	RAC(self.homeTelTF, text) = homeLineChannel;
-//	[self.homeTelTF.rac_textSignal subscribe:homeLineChannel];
-	
-
-	/*
-	[[self.repayMonthTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 5) {
-			 textField.text = [textField.text substringToIndex:5];
-		 }
-	 }];
-	RACChannelTerminal *familyExpenseChannel = RACChannelTo(self.viewModel.model, familyExpense);
-	RAC(self.repayMonthTF, text) = familyExpenseChannel;
-	[self.repayMonthTF.rac_textSignal subscribe:familyExpenseChannel];
-	
-	[[self.homeLineCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-  subscribeNext:^(UITextField *textField) {
-		@strongify(self)
-		if (textField.text.length == 3) {
-			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-			if ([validArea containsObject:textField.text]) {
-				[self.homeTelTF becomeFirstResponder];
-			}
-		} else if (textField.text.length == 4) {
-			[self.homeTelTF becomeFirstResponder];
-		}
-	}];
-	[[self.homeTelTF rac_signalForControlEvents:UIControlEventEditingChanged]
-  subscribeNext:^(UITextField *textField) {
-		@strongify(self)
-		if (textField.text.length == 0) {
-			[self.homeLineCodeTF becomeFirstResponder];
-		}
-		
-		if (textField.text.length>8) {
-			//if (textField.text.length >4 ) {
-			textField.text = [textField.text substringToIndex:8];
-			//}
-		}
-	}];
-	RACChannelTerminal *homecodeChannel = RACChannelTo(self.viewModel.model, homeCode);
-	RAC(self.homeLineCodeTF, text) = homecodeChannel;
-	[self.homeLineCodeTF.rac_textSignal subscribe:homecodeChannel];
-	
-	RACChannelTerminal *hometelephoneChannel = RACChannelTo(self.viewModel.model, homeLine);
-	RAC(self.homeTelTF, text) = hometelephoneChannel;
-	[self.homeTelTF.rac_textSignal subscribe:hometelephoneChannel];
-	*/
-
+	//QQ
 	[[self.tencentUsername rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 15) {
 			 textField.text = [textField.text substringToIndex:15];
 		 }
 	 }];
-	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.model, qq);
+	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.formsViewModel.model, qq);
 	RAC(self.tencentUsername, text) = tencentUsernameChannel;
 	[self.tencentUsername.rac_textSignal subscribe:tencentUsernameChannel];
 	
+	//TAOBAO
 	[[self.taobaoUsername rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 40) {
 			 textField.text = [textField.text substringToIndex:40];
 		 }
 	 }];
-	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.model, taobao);
+	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.formsViewModel.model, taobao);
 	RAC(self.taobaoUsername, text) = taobaoUsernameChannel;
 	[self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
 
+	//JD
 	[[self.jdUsername rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 if (textField.text.length > 40) {
 			 textField.text = [textField.text substringToIndex:40];
 		 }
 	 }];
-	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.model, jdAccount);
+	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.formsViewModel.model, jdAccount);
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
 
