@@ -42,9 +42,11 @@
 	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
+			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
 				
 					MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
+				  [productViewController setHidesBottomBarWhenPushed:YES];
 					[self.navigationController pushViewController:productViewController animated:YES];
 
 				
@@ -55,7 +57,7 @@
 													cancelButtonTitle:@"确认"
 													otherButtonTitles:nil] show];
 			}
-			[SVProgressHUD dismiss];
+			
 		}];
 	}];
 	[self.viewModel.executeAllowCashCommand.errors subscribeNext:^(NSError *error) {
