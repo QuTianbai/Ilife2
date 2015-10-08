@@ -8,13 +8,11 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import "MSFClient+Elements.h"
-#import "MSFClient+Inventory.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFProduct.h"
 #import "MSFElement.h"
 #import "MSFElementViewModel.h"
-#import "MSFInventory.h"
 #import "MSFApplicationResponse.h"
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
@@ -32,12 +30,12 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
+- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_cashViewModel = formsViewModel;
+	_cashViewModel = cashViewModel;
 	
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
@@ -83,6 +81,10 @@
   return self;
 }
 
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
+	return [self initWithCashViewModel:formsViewModel];
+}
+
 #pragma mark - Custom Accessors
 
 - (RACSignal *)updateValidSignal {
@@ -116,12 +118,9 @@
 #pragma mark - Private
 
 - (RACSignal *)updateSignal {
-	@weakify(self)
-	return [self.updateValidSignal flattenMap:^RACStream *(id value) {
-		@strongify(self)
-		self.model.attachments = value;
+	return [self.updateValidSignal flattenMap:^RACStream *(NSArray *objects) {
 		NSMutableArray *attachments = [[NSMutableArray alloc] init];
-		[self.model.attachments enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *_Nonnull stop) {
+		[objects enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *_Nonnull stop) {
 			[attachments addObject:@{
 				@"accessoryType": obj.type,
 				@"fileId": obj.fileID

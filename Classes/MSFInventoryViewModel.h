@@ -9,14 +9,12 @@
 
 @class MSFFormsViewModel;
 @class RACCommand;
-@class MSFInventory;
 @class MSFProduct;
 @class MSFApplicationResponse;
 @class MSFApplyCashVIewModel;
 
 @interface MSFInventoryViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) MSFInventory *model;
 @property (nonatomic, strong) MSFApplyCashVIewModel *cashViewModel;
 
 // MSFElementViewModel viewModels
@@ -32,6 +30,7 @@
 
 - (RACSignal *)updateValidSignal;
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel;
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel __deprecated_msg("Use `initWithCashViewModel:");
+- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel;
 
 @end

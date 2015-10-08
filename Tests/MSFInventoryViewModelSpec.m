@@ -15,9 +15,7 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFResponse.h"
-#import "MSFClient+Inventory.h"
 #import "MSFAttachment.h"
-#import "MSFInventory.h"
 #import "MSFClient+MSFApplyCash.h"
 #import "MSFApplicationResponse.h"
 #import "MSFApplyCashVIewModel.h"
@@ -48,7 +46,7 @@ beforeEach(^{
 	stubProperty(cashViewModel, services, services);
 	stubProperty(cashViewModel, formViewModel, formsViewModel);
 	
-	viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:cashViewModel];
+	viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:cashViewModel];
 	expect(viewModel).notTo(beNil());
 });
 
@@ -60,14 +58,13 @@ it(@"should initialize", ^{
 	// then
 	expect(viewModel).notTo(beNil());
 	expect(viewModel.executeUpdateCommand).notTo(beNil());
-	expect(viewModel.product.productId).to(equal(@"102"));
 });
 
 it(@"should fetch required element viewmodels", ^{
 	// given
 	MSFElement *element = mock([MSFElement class]);
 	stubProperty(element, required, @YES);
-	[given([client fetchElementsWithProduct:viewModel.product amount:viewModel.formsViewModel.model.principal term:viewModel.formsViewModel.model.tenor]) willReturn:[RACSignal return:element]];
+	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:element]];
 	
 	// when
 	viewModel.active = YES;
@@ -81,7 +78,7 @@ it(@"should fetch optional element viewmodels", ^{
 	// given
 	MSFElement *element = mock([MSFElement class]);
 	stubProperty(element, required, @NO);
-	[given([client fetchElementsWithProduct:viewModel.product amount:viewModel.formsViewModel.model.principal term:viewModel.formsViewModel.model.tenor]) willReturn:[RACSignal return:element]];
+	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:element]];
 	
 	// when
 	viewModel.active = YES;
@@ -94,7 +91,7 @@ it(@"should fetch optional element viewmodels", ^{
 it(@"should update inventory to server", ^{
 	// given
 	MSFElement *element = [[MSFElement alloc] initWithDictionary:@{@"type": @"IMG"} error:nil];
-	[given([client fetchElementsWithProduct:viewModel.product amount:viewModel.formsViewModel.model.principal	term:viewModel.formsViewModel.model.tenor]) willReturn:[RACSignal return:element]];
+	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:element]];
 	
 	MSFAttachment *attachment = mock(MSFAttachment.class);
 	stubProperty(attachment, fileID, @"foo");
@@ -103,19 +100,20 @@ it(@"should update inventory to server", ^{
 	
 	// when
 	viewModel.active = YES;
-	[viewModel.viewModels.firstObject addAttachment:attachment];
+	MSFElementViewModel *elementViewModel = viewModel.viewModels.firstObject;
+	expect(elementViewModel).notTo(beNil());
+	
+	[elementViewModel addAttachment:attachment];
+	
+	expect(@(elementViewModel.viewModels.count)).to(equal(@2));
 	
 	NSError *error;
 	NSArray *attachments = [[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
 	
-	
-	MSFElementViewModel *elementViewModel = viewModel.viewModels.firstObject;
 	// then
-	expect(elementViewModel).notTo(beNil());
-	expect(elementViewModel.attachments.firstObject).notTo(beNil());
 	expect(error).to(beNil());
+	
 	expect(@(attachments.count)).to(equal(@1));
-	expect(viewModel.model.attachments.firstObject).to(beAKindOf(MSFAttachment.class));
 });
 
 it(@"should get error when required element doese not have attachment", ^{
@@ -128,7 +126,7 @@ it(@"should get error when required element doese not have attachment", ^{
 	stubProperty(mockElement, required, @YES);
 	stubProperty(mockElement, type, @"foo");
 	stubProperty(mockElement, name, @"bar");
-	[given([client fetchElementsWithProduct:viewModel.product amount:viewModel.formsViewModel.model.principal term:viewModel.formsViewModel.model.tenor]) willReturn:[RACSignal return:mockElement]];
+	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt	term:cashViewModel.loanTerm]) willReturn:[RACSignal return:mockElement]];
 	
 	// when
 	viewModel.active = YES;
@@ -163,7 +161,7 @@ it(@"should update inventory when required elements have attachment", ^{
 	stubProperty(mockElement, type, @"foo");
 	stubProperty(mockElement, title, @"bar");
 	stubProperty(mockElement, name, @"bar");
-	[given([client fetchElementsWithProduct:viewModel.product amount:viewModel.formsViewModel.model.tenor term:viewModel.formsViewModel.model.tenor]) willReturn:[RACSignal return:mockElement]];
+	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:mockElement]];
 	
 	// when
 	viewModel.active = YES;
