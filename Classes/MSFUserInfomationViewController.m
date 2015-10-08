@@ -26,6 +26,10 @@
 #import "MSFUser.h"
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "AppDelegate.h"
+#import "MSFSetTradePasswordTableViewController.h"
+#import "MSFAddBankCardTableViewController.h"
 
 @interface MSFUserInfomationViewController ()
 
@@ -89,10 +93,38 @@
 	//_nextStepButton.rac_command = self.viewModel.executeNextCommand;
 	[[self.nextStepButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
+		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				if (index.intValue == 1) {
+					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+									}
+				
+			}];
+			return ;
+		}
+		if (!self.viewModel.formViewModel.master) {
+			[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
+			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+			BOOL isFirstBankCard = YES;
+			
+			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.services andIsFirstBankCard:isFirstBankCard];
+			[self.navigationController pushViewController:vc animated:YES];
+			
+			return ;
+		}
 		if ([MSFUtils.complateCustInfo isEqualToString:@"111"]) {
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.viewModel];
 			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];
+		} else {
+			[SVProgressHUD showErrorWithStatus:@"请先完善资料"];
 		}
 	}];
 	

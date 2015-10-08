@@ -241,7 +241,7 @@ static NSDictionary *messages;
 					client.user = user;
 					[MSFUtils setUniqueId:user.uniqueId];
 					[MSFUtils setCircuteCash:user.type];
-					[MSFUtils setProductCode:user.productId];
+					[MSFUtils setProductCode:user.type];
 				
 					return [RACSignal combineLatest:@[
 						[RACSignal return:client],
@@ -662,6 +662,10 @@ static NSDictionary *messages;
 			#elif TEST
 				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			#endif
+			
+			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:error];
+			}
 			
 			[self reportFabric:operation error:error];
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];

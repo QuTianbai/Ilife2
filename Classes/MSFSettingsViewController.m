@@ -27,6 +27,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"设置";
 	self.signOutButton.rac_command = self.viewModel.executeSignOut;
 }
 

@@ -12,6 +12,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
+#import "MSFUtils.h"
 
 @implementation MSFClient (MSFCalculateMonthRepay)
 
@@ -20,9 +21,9 @@
 	[SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 130)];
 	[SVProgressHUD setForegroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[SVProgressHUD showWithStatus:@""];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"repay" ofType:@"json"]]];
+	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"repay" ofType:@"json"]]];
 	
-	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt?:@"", @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": jionLifeInsurance?:@""}];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt?:@"", @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": @"0"?:@"", @"uniqueId":MSFUtils.uniqueId}];
 	
 	return [[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class] msf_parsedResults];
 }

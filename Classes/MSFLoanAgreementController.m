@@ -24,6 +24,7 @@
 #import "MSFUserInfomationViewController.h"
 
 #import "MSFEdgeButton.h"
+#import "MSFApplyCashVIewModel.h"
 
 @interface MSFLoanAgreementController ()<UIWebViewDelegate>
 
@@ -84,8 +85,9 @@
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
 			[SVProgressHUD dismiss];
+			self.viewModel.formsViewModel.appNO = applyCash.appNo;
 			MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
-			userInfoVC.showNextStep = NO;
+			userInfoVC.showNextStep = YES;
 			[self.navigationController pushViewController:userInfoVC animated:YES];
 //			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
 //			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;

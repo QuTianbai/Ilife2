@@ -65,16 +65,21 @@
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(MSFMarkets *markets) {
-			self.markets = markets;
+			if (self.markets.teams.count == 0) {
+				self.markets = markets;
+			}
+			
 		} error:^(NSError *error) {
 			NSLog(@"");
 			
 		}];
 		RACSignal *signal = [[self.services.httpClient fetchBankCardList].collect replayLazily];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			for (MSFBankCardListModel *ob in x) {
+				self.master = NO;
 				if ([ob isEqual:[NSNull null]]) {
-					self.master = NO;
+					//self.master = NO;
 					return ;
 				} else {
 					self.masterBankCardNO = ob.bankCardNo;

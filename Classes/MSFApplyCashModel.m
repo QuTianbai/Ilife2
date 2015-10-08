@@ -17,7 +17,7 @@
 	}
 	_appNO = @"";
 	_appLmt = @"";
-	_applyStatus = @"";
+	_applyStatus = 0;
 	_loanTerm = @"";
 	_loanPurpose = @"";
 	_lifeInsuranceAmt = @"";

@@ -74,7 +74,7 @@ UICollectionViewDelegateFlowLayout>
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
-			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
+			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.cashViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
 			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
 			
 			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
