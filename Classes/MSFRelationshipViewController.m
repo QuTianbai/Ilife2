@@ -337,6 +337,7 @@ ABPersonViewControllerDelegate>
 
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
+	contact.contactName = fullName;
 	[self.tableView reloadData];
 }
 
@@ -367,8 +368,12 @@ ABPersonViewControllerDelegate>
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
 	
+	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
+	NSLog(@"%@", fullName);
+	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
+	contact.contactName = fullName;
 	[self.tableView reloadData];
 	
  [peoplePicker dismissViewControllerAnimated:YES completion:nil];
