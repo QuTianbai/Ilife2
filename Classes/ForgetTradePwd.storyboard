@@ -403,8 +403,8 @@
                                                 <constraint firstItem="Dlb-3j-ZZC" firstAttribute="top" secondItem="b7m-4F-ahQ" secondAttribute="top" constant="7" id="HRL-H6-rFk"/>
                                                 <constraint firstItem="FNI-ZS-JaC" firstAttribute="centerY" secondItem="b7m-4F-ahQ" secondAttribute="centerY" id="Nbb-1i-bha"/>
                                                 <constraint firstItem="Dlb-3j-ZZC" firstAttribute="leading" secondItem="FNI-ZS-JaC" secondAttribute="trailing" constant="43" id="Pck-tm-p51"/>
-                                                <constraint firstItem="FNI-ZS-JaC" firstAttribute="leading" secondItem="b7m-4F-ahQ" secondAttribute="leading" constant="15" id="bVv-tx-Bjg"/>
-                                                <constraint firstAttribute="trailing" secondItem="H8c-Cy-N5Z" secondAttribute="trailing" constant="30" id="cBi-fR-QiV"/>
+                                                <constraint firstItem="FNI-ZS-JaC" firstAttribute="leading" secondItem="b7m-4F-ahQ" secondAttribute="leading" constant="20" id="bVv-tx-Bjg"/>
+                                                <constraint firstAttribute="trailing" secondItem="H8c-Cy-N5Z" secondAttribute="trailing" constant="20" id="cBi-fR-QiV"/>
                                                 <constraint firstItem="H8c-Cy-N5Z" firstAttribute="leading" secondItem="Dlb-3j-ZZC" secondAttribute="trailing" constant="10" id="vsf-1i-g9o"/>
                                             </constraints>
                                             <variation key="default">
@@ -414,13 +414,13 @@
                                                     <exclude reference="Dlb-3j-ZZC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="Nbb-1i-bha"/>
-                                                    <exclude reference="bVv-tx-Bjg"/>
                                                     <exclude reference="HRL-H6-rFk"/>
                                                     <exclude reference="Pck-tm-p51"/>
                                                     <exclude reference="DPQ-Rm-mXy"/>
                                                     <exclude reference="cBi-fR-QiV"/>
                                                     <exclude reference="vsf-1i-g9o"/>
+                                                    <exclude reference="Nbb-1i-bha"/>
+                                                    <exclude reference="bVv-tx-Bjg"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -430,13 +430,13 @@
                                                     <include reference="Dlb-3j-ZZC"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="Nbb-1i-bha"/>
-                                                    <include reference="bVv-tx-Bjg"/>
                                                     <include reference="HRL-H6-rFk"/>
                                                     <include reference="Pck-tm-p51"/>
                                                     <include reference="DPQ-Rm-mXy"/>
                                                     <include reference="cBi-fR-QiV"/>
                                                     <include reference="vsf-1i-g9o"/>
+                                                    <include reference="Nbb-1i-bha"/>
+                                                    <include reference="bVv-tx-Bjg"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

@@ -15,6 +15,7 @@
 #import <REFormattedNumberField/REFormattedNumberField.h>
 #import "MSFAuthorizeViewModel.h"
 #import "AppDelegate.h"
+#import "MSFGetBankIcon.h"
 
 static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
 static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
@@ -65,6 +66,10 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_authviewModel = appdelegate.authorizeVewModel;
 	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithServices:self.authviewModel.services andIsFirstBankCard:NO];
+	
+	RAC(self, bankIcon.image) = [RACObserve(self, viewModel.bankCode) map:^id(NSString *value) {
+		return [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:value]];
+	}];
 	
 	[[self.tradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {

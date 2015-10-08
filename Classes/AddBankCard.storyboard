@@ -427,13 +427,13 @@
                                                     <exclude reference="noe-KO-baN"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <exclude reference="PBn-E2-Ftq"/>
-                                                    <exclude reference="fii-Rz-bYY"/>
                                                     <exclude reference="6x1-8B-T79"/>
                                                     <exclude reference="aDF-ZN-wJo"/>
                                                     <exclude reference="5eL-sP-8CP"/>
                                                     <exclude reference="88Y-rS-E2j"/>
                                                     <exclude reference="l98-IN-emS"/>
+                                                    <exclude reference="PBn-E2-Ftq"/>
+                                                    <exclude reference="fii-Rz-bYY"/>
                                                 </mask>
                                             </variation>
                                             <variation key="widthClass=compact">
@@ -443,13 +443,13 @@
                                                     <include reference="noe-KO-baN"/>
                                                 </mask>
                                                 <mask key="constraints">
-                                                    <include reference="PBn-E2-Ftq"/>
-                                                    <include reference="fii-Rz-bYY"/>
                                                     <include reference="6x1-8B-T79"/>
                                                     <include reference="aDF-ZN-wJo"/>
                                                     <include reference="5eL-sP-8CP"/>
                                                     <include reference="88Y-rS-E2j"/>
                                                     <include reference="l98-IN-emS"/>
+                                                    <include reference="PBn-E2-Ftq"/>
+                                                    <include reference="fii-Rz-bYY"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>

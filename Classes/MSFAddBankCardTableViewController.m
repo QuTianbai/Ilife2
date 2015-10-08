@@ -15,6 +15,7 @@
 
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFUtils.h"
+#import "MSFGetBankIcon.h"
 
 
 static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
@@ -47,6 +48,9 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	_tradePwd = @"";
 	
 	RAC(self, viewModel.transPassword) = RACObserve(self, tradePwd);
+	RAC(self, bankIcon.image) = [RACObserve(self, viewModel.bankCode) map:^id(NSString *value) {
+		return [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:value]];
+	}];
 	
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
@@ -59,14 +63,14 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	RAC(self.bankNameTF, text) = RACObserve(self.viewModel, bankName);
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
-		if (bankName != nil && ![bankName isEqualToString:@""]) {
+		//if (bankName != nil && ![bankName isEqualToString:@""]) {
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
 			self.bankNameTF.alpha = 1.0;
 			[UIView commitAnimations];
-		} else {
-			self.bankNameTF.alpha = 0;
-		}
+//		} else {
+//			self.bankNameTF.alpha = 1.0;
+//		}
 		
 	}];
 	
