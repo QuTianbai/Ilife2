@@ -25,7 +25,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet UITextField *bankAddressTF;
 @property (weak, nonatomic) IBOutlet UITextField *bankNOTF;
 
-@property (weak, nonatomic) IBOutlet UILabel *bankNameTF;
+@property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankInfoCS;
 
@@ -97,7 +97,14 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
 	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 	
-	RAC(self.bankNameTF, text) = RACObserve(self.viewModel, bankName);
+	RAC(self.bankNameTF, text) = [RACObserve(self.viewModel, bankName) map:^id(NSString *value) {
+		if ([value isEqualToString:@""]) {
+			return @"请输入正确的银行卡号";
+		}
+		
+		return value;
+		
+	}];
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
 		if (bankName != nil && ![bankName isEqualToString:@""]) {
 			[UIView beginAnimations:nil context:nil];
@@ -105,7 +112,8 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 			self.bankNameTF.alpha = 1.0;
 			[UIView commitAnimations];
 		} else {
-			self.bankNameTF.alpha = 0;
+			self.bankNameTF.alpha = 1.0;
+			bankName = @"请输入正确的银行卡号";
 		}
 		
 	}];

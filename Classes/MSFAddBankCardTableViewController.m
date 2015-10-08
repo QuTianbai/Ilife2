@@ -25,7 +25,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet UITextField *bankAddressTF;
 @property (weak, nonatomic) IBOutlet UITextField *bankNOTF;
 
-@property (weak, nonatomic) IBOutlet UILabel *bankNameTF;
+@property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankInfoCS;
 

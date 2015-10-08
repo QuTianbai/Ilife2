@@ -104,7 +104,7 @@
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
 		[[self.viewModel.executeSubmitCommand execute:nil]
 		 subscribeNext:^(RACSignal *signal) {
-			 [SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
+			 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
 			 NSString *str = @"正在提现...";
 			 if (self.type == 1) {
 				 str = @"正在还款";

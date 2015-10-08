@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="XfU-w1-jdi"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Jm3-X0-ifd">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khC-kc-7Gb" customClass="MSFEdgeButton">
@@ -47,9 +47,9 @@
                                 <exclude reference="khC-kc-7Gb"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="PED-P9-9TM"/>
                                 <exclude reference="79S-Mv-CtM"/>
                                 <exclude reference="uGx-kn-zPB"/>
-                                <exclude reference="PED-P9-9TM"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -57,9 +57,9 @@
                                 <include reference="khC-kc-7Gb"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="PED-P9-9TM"/>
                                 <include reference="79S-Mv-CtM"/>
                                 <include reference="uGx-kn-zPB"/>
-                                <include reference="PED-P9-9TM"/>
                             </mask>
                         </variation>
                     </view>
