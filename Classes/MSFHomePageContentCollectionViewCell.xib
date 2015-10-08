@@ -15,7 +15,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="353" height="414"/>
                 <subviews>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bS2-FN-dOQ" userLabel="content">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bS2-FN-dOQ" userLabel="content">
                         <rect key="frame" x="0.0" y="0.0" width="353" height="414"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款申请状态" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="120" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-uZ-TFK">
