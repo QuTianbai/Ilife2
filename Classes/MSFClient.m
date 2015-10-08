@@ -435,10 +435,9 @@ static NSDictionary *messages;
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void(^)(id <AFMultipartFormData> formData))block {
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
-	MSFSignature *signature = [self signatureWithPath:URL.path parameters:parameters];
 	NSMutableURLRequest *request = [self.requestSerializer multipartFormRequestWithMethod:method
-		URLString:[URL.absoluteString stringByAppendingString:signature.query]
-		parameters:nil
+		URLString:URL.absoluteString
+		parameters:[self signatureArgumentsWithPath:URL.path parameters:parameters]
 		constructingBodyWithBlock:block error:nil];
 	request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
 	
@@ -446,17 +445,6 @@ static NSDictionary *messages;
 }
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(id)parameters {
-	if ([path isEqualToString:@"attachment/saveList"]) {
-		NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
-		MSFSignature *signature = [self signatureWithPath:URL.path parameters:nil];
-		NSMutableURLRequest *request = [AFJSONRequestSerializer.serializer requestWithMethod:@"POST"
-			URLString:[URL.absoluteString stringByAppendingString:signature.query]
-			parameters:parameters
-			error:nil];
-		request.allHTTPHeaderFields = [request.allHTTPHeaderFields mtl_dictionaryByAddingEntriesFromDictionary:self.defaultHeaders];
-		
-		return request;
-	}
 	NSURL *URL = [NSURL URLWithString:path relativeToURL:self.baseURL];
 	NSMutableURLRequest *request = [self.requestSerializer requestWithMethod:method
 		URLString:URL.absoluteString
