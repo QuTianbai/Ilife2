@@ -1,17 +1,17 @@
  [
   {
   "text": "已婚",
-  "code": "MG02",
+  "code": "20",
   "typeId": "008"
   },
   {
   "text": "未婚",
-  "code": "MG01",
+  "code": "10",
   "typeId": "008"
   },
   {
   "text": "其他",
-  "code": "MG04",
+  "code": "90",
   "typeId": "008"
   }
 ]
