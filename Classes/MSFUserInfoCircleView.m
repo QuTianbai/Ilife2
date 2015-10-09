@@ -302,6 +302,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 	CGPoint loc = [gestureRecognizer locationInView:self];
+	NSLog(@"---gesture：%f,%f", loc.x, loc.y);
 	BOOL shouldTap = [self isEffectiveTap:loc];
 	if (shouldTap) {
 		_clickIndex = [self tappedArea:loc];
