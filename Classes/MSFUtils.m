@@ -103,7 +103,8 @@ static MSFServer *server;
 }
 
 + (NSString *)uniqueId {
-	return [[NSUserDefaults standardUserDefaults] stringForKey:@"uniqueId"];
+	//return [[NSUserDefaults standardUserDefaults] stringForKey:@"uniqueId"];
+	return @"645c9b2289904836a8eb42276d444481";
 }
 
 + (void)setisTradePassword:(NSString *)isSetTradePassword {

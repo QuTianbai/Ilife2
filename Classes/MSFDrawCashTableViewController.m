@@ -13,6 +13,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFUtils.h"
+#import "MSFResponse.h"
+#import "MSFCirculateCashModel.h"
 
 @interface MSFDrawCashTableViewController () <MSFInputTradePasswordDelegate>
 
@@ -102,27 +104,32 @@
 #pragma mark - MSFInputTradePasswordDelegate
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
-		[[self.viewModel.executeSubmitCommand execute:nil]
-		 subscribeNext:^(RACSignal *signal) {
-			 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
-			 NSString *str = @"正在提现...";
-			 if (self.type == 1) {
-				 str = @"正在还款";
-			 }
-			 
-			 [SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
-			 [signal subscribeNext:^(id x) {
-				 NSString *str = @"恭喜你，提款已成功";
-				 if (self.type == 1) {
-					 str = @"恭喜你，还款已成功";
-				 }
-				 [SVProgressHUD showSuccessWithStatus:str];
-			 }error:^(NSError *error) {
-				 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-			 }];
-		 } error:^(NSError *error) {
-			 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-		 }];
+	NSString *str = @"正在提现...";
+	if (self.type == 1) {
+		str = @"正在还款";
+	}
+	
+	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
+	
+	self.viewModel.tradePWd = pwd;
+	[[self.viewModel.executeSubmitCommand execute:nil]
+	 subscribeNext:^(MSFResponse *response) {
+		 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
+//		 NSDictionary *result = response.parsedResult;
+		
+		 NSString *str = @"恭喜你，提款已成功";
+		 if (self.type == 1) {
+			 str = @"恭喜你，还款已成功";
+			 //NSDictionary *result = response.parsedResult;
+			 MSFCirculateCashModel *mocel = [MTLJSONAdapter modelOfClass:[MSFCirculateCashModel class] fromJSONDictionary:response.parsedResult error:nil];
+			 self.viewModel.circulateViewModel.infoModel = mocel;
+		 }
+		 [SVProgressHUD showSuccessWithStatus:str];
+	 }];
+	
+	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 @end

@@ -11,6 +11,7 @@
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFResponse.h"
 #import "MSFUtils.h"
+#import "MSFCirculateCashModel.h"
 
 @implementation MSFClient (Users)
 
@@ -154,14 +155,16 @@
 	return [self enqueueRequest:request resultClass:nil];
 }
 
-- (RACSignal *)drawCashWithDrawCount:(NSString *)count AndContraceNO :(NSString *)contractNO AndType:(int)type {
+- (RACSignal *)drawCashWithDrawCount:(NSString *)count AndContraceNO :(NSString *)contractNO AndPwd:(NSString *)pwd AndType:(int)type {
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 	parameters[@"drawingAmount"] = count;
 	parameters[@"contractNo"] = contractNO;
-	
+	parameters[@"uniqueId"] = @"645c9b2289904836a8eb42276d444481";
+	parameters[@"dealPwd"] = pwd?:@"";
 	NSString *path = @"loan/drawings";
 	if (type == 1) {
 		path = @"loan/repay";
+		parameters[@"money"] = count;
 	}
 	
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];

@@ -26,6 +26,10 @@
 
 @property (nonatomic, copy) NSString *drawCash;
 
+@property (nonatomic, copy) NSString *tradePWd;
+
+@property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
+
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
 

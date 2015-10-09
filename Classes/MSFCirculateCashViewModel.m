@@ -13,7 +13,6 @@
 
 @interface MSFCirculateCashViewModel ()
 
-@property (nonatomic, strong) MSFCirculateCashModel *infoModel;
 
 @end
 

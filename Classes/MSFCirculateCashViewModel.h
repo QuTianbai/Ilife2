@@ -10,8 +10,11 @@
 #import "MSFViewModelServices.h"
 
 @class RACCommand;
+@class MSFCirculateCashModel;
 
 @interface MSFCirculateCashViewModel : RVMViewModel
+
+@property (nonatomic, strong) MSFCirculateCashModel *infoModel;
 
 @property (nonatomic, copy) NSString *totalLimit;
 

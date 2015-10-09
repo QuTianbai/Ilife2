@@ -20,8 +20,9 @@
 //	NSURL *url = [NSURL fileURLWithPath:path];
 //	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 	
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/currentloaninfo" parameters:@{@"uniqueId":@"645c9b2289904836a8eb42276d444481"}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/currentloaninfo" parameters:@{@"uniqueId":MSFUtils.uniqueId}];
 
+	NSLog(@"%@", MSFUtils.uniqueId);
 	//currentloaninfo
 	
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
