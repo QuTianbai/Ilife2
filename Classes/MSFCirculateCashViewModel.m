@@ -10,6 +10,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
+
 
 @interface MSFCirculateCashViewModel ()
 
@@ -46,9 +48,29 @@
 		return value;
 	}];
 	
-	RAC(self, contractExpireDate) = RACObserve(self,infoModel.contractExpireDate);
+	RAC(self, contractExpireDate) = [RACObserve(self,infoModel.contractExpireDate) map:^id(NSString *value) {
+		NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+		[inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+		[inputFormatter setDateFormat:@"yyyyMMDD"];
+		NSDate *inputDate = [inputFormatter dateFromString:value];
+		NSString *str = @"";
+		if (inputDate != nil) {
+			str = [NSDateFormatter msf_stringFromDate:inputDate];
+		}
+		return str;
+	}];
 	RAC(self, latestDueMoney) = RACObserve(self, infoModel.latestDueMoney);
-	RAC(self, latestDueDate) = RACObserve(self, infoModel.latestDueDate);
+	RAC(self, latestDueDate) = [RACObserve(self, infoModel.latestDueDate) map:^id(NSString *value) {
+		NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
+		[inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+		[inputFormatter setDateFormat:@"yyyyMMdd"];
+		NSDate *inputDate = [inputFormatter dateFromString:value];
+		NSString *str = @"";
+		if (inputDate != nil) {
+			str = [NSDateFormatter msf_stringFromDate:inputDate];
+		}
+		return str;
+	}];
 	RAC(self, totalOverdueMoney) = RACObserve(self, infoModel.totalOverdueMoney);
 	RAC(self, contractNo) = RACObserve(self, infoModel.contractNo);
 	RAC(self, overdueMoney) = RACObserve(self, infoModel.overdueMoney);

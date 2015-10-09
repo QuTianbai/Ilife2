@@ -170,7 +170,9 @@
     [self.viewModel.verifyCommand execute:nil];
 		return NO;
   }
-  if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+ 
+ 
+	if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
 		if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;
@@ -183,7 +185,7 @@
 	
 		
   }
-	
+
   return YES;
 }
 
