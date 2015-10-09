@@ -10,6 +10,7 @@
 
 @interface MSFUser : MSFObject
 
+@property (nonatomic, copy, readonly) NSString *hasTransPwd;
 @property (nonatomic, copy, readonly) NSString *uniqueId;
 @property (nonatomic, copy) NSString *complateCustInfo;
 @property (nonatomic, copy, readonly) NSString *productId;

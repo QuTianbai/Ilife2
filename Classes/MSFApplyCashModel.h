@@ -10,7 +10,7 @@
 
 @interface MSFApplyCashModel : MSFObject
 
-@property (nonatomic, copy) NSString *appNO;
+@property (nonatomic, copy) NSString *appNo;
 @property (nonatomic, copy) NSString *appLmt;
 @property (nonatomic, assign) int applyStatus;
 @property (nonatomic, copy) NSString *loanTerm;

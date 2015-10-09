@@ -52,7 +52,7 @@
 
 	RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
 	
-	RAC(self, model.appNO) = RACObserve(self, appNO);
+	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
 	//RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
 	
