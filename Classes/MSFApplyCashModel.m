@@ -15,7 +15,7 @@
 	if (!self) {
 		return nil;
 	}
-	_appNO = @"";
+	_appNo = @"";
 	_appLmt = @"";
 	_applyStatus = 0;
 	_loanTerm = @"";

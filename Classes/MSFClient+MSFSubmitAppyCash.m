@@ -10,6 +10,7 @@
 #import "MSFSubmitApplyModel.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFApplyCashModel.h"
+#import "MSFUtils.h"
 
 @implementation MSFClient (MSFSubmitAppyCash)
 
@@ -18,17 +19,23 @@
 	
 	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"submit" ofType:@"json"]]];
 	infoModel.applyStatus = 0;
+	if ([status isEqualToString:@"1"]) {
+		infoModel.applyStatus = 1;
+	}
 	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:infoModel.dictionaryValue];
 	
 	[dict removeObjectForKey:@"server"];
 	[dict removeObjectForKey:@"objectID"];
+//	NSString *loanTerm = [dict objectForKey:@"loanTerm"];
+//	[dict removeObjectForKey:@"loanTerm"];
+//	[dict setObject:loanTerm forKey:@"longTerm"];
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	
 	NSData *arrayData = [NSJSONSerialization dataWithJSONObject:AccessoryInfoVO options:NSJSONWritingPrettyPrinted error:nil];
-	NSString *accesory = [[NSString alloc] initWithData:arrayData encoding:NSUTF8StringEncoding];
+	NSString *accesory = [[NSString alloc] initWithData:arrayData encoding:NSUTF8StringEncoding]; 
 	
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/apply" parameters:@{@"ApplyVO": jsonStr, @"AccessoryInfoVO": accesory, @"applyStatus": status}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/apply" parameters:@{@"ApplyVO": jsonStr, @"AccessoryInfoVO": accesory, @"applyStatus": status, @"uniqueId":MSFUtils.uniqueId}];
 //	[request setHTTPMethod:@"POST"];
 	
 	return [[self enqueueRequest:request resultClass:MSFSubmitApplyModel.class] msf_parsedResults];
