@@ -92,6 +92,12 @@
 			[signal subscribeNext:^(id x) {
 				[SVProgressHUD dismiss];
 				self.dataArray = x;
+				if (self.dataArray.count == 0) {
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																													message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+					[alert show];
+					return ;
+				}
 				for (MSFBankCardListModel *model in self.dataArray) {
 					if (model.master) {
 						MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:0];
@@ -99,6 +105,7 @@
 						drawCashVC.viewModel = viewModel;
 						drawCashVC.type = 0;
 						[self.navigationController pushViewController:drawCashVC animated:YES];
+						break;
 					}
 				}
 			}];
@@ -130,6 +137,12 @@
 			 [signal subscribeNext:^(id x) {
 				 [SVProgressHUD dismiss];
 				 self.dataArray = x;
+				 if (self.dataArray.count == 0) {
+					 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																													 message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+					 [alert show];
+					 return ;
+				 }
 				 for (MSFBankCardListModel *model in self.dataArray) {
 					 if (model.master) {
 						 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
@@ -137,6 +150,7 @@
 						 drawCashVC.viewModel = viewModel;
 						 drawCashVC.type = 1;
 						 [self.navigationController pushViewController:drawCashVC animated:YES];
+						 break;
 					 }
 				 }
 			 }];
