@@ -17,6 +17,7 @@
 @property (nonatomic, strong) UILabel *usedLabel;
 @property (nonatomic, strong) UILabel *usableLabel;
 
+@property (nonatomic, assign) CGFloat standardFontSize;
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) CGFloat endAngle;
 @property (nonatomic, assign) CGFloat angle;
@@ -42,6 +43,7 @@
 }
 
 - (void)commonInit {
+	_standardFontSize = [UIScreen mainScreen].bounds.size.width > 320 ? 60 : 45;
 	_lineWidth = 11.0f;
 	_endAngle = - M_PI * 7 / 6;
 	_angle = - M_PI * 7 / 6;
@@ -54,8 +56,7 @@
 	[self addSubview:titleLabel];
 
 	_usableLabel = [[UILabel alloc] init];
-	BOOL iphone6 = [UIScreen mainScreen].bounds.size.width > 320;
-	_usableLabel.font = [UIFont systemFontOfSize:iphone6 ? 60 : 45];
+	_usableLabel.font = [UIFont systemFontOfSize:_standardFontSize];
 	_usableLabel.textColor = [UIColor darkCircleColor];
 	_usableLabel.textAlignment = NSTextAlignmentCenter;
 	_usableLabel.text = @"8000";
@@ -73,6 +74,7 @@
 		@strongify(self)
 		make.left.equalTo(self.mas_left).offset(8);
 		make.right.equalTo(self.mas_right).offset(-8);
+		make.width.equalTo(self.mas_height).multipliedBy(1.2);
 		make.centerX.equalTo(self.mas_centerX);
 		make.centerY.equalTo(self.mas_centerY).offset(15);
 	}];
@@ -90,13 +92,6 @@
 		make.right.equalTo(self.mas_right).offset(-8);
 		make.bottom.equalTo(self.mas_bottom).offset(-5);
 	}];
-	
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
-	[self addGestureRecognizer:tap];
-}
-
-- (void)tap {
-	[self setAvailableCredit:@"10000" usedCredit:@"3000"];
 }
 
 - (void)setAvailableCredit:(NSString *)ac usedCredit:(NSString *)uc {
@@ -108,9 +103,20 @@
 	} else {
 		_endAngle = - M_PI * 7 / 6 + ac.floatValue / (ac.floatValue + uc.floatValue) * M_PI * 4 / 3;
 	}
+	[self ajustLabelFont:ac];
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
 	[self circleAnimation];
+}
+
+- (void)ajustLabelFont:(NSString *)ac {
+	CGFloat fontSize = 0;
+	if (ac.length * _standardFontSize * 0.5 > self.frame.size.height * 1.2) {
+		fontSize = self.frame.size.height * 2.4 / _standardFontSize;
+	} else {
+		fontSize = _standardFontSize;
+	}
+	_usableLabel.font = [UIFont systemFontOfSize:fontSize];
 }
 
 - (void)circleAnimation {
