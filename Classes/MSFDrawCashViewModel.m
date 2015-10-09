@@ -19,7 +19,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 @property (nonatomic, copy) NSString *contractNO;
 
-@property (nonatomic, assign) int enablemoney;
+@property (nonatomic, assign) NSString *enablemoney;
 
 @property (nonatomic, assign) int type;
 
@@ -88,7 +88,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		return [RACSignal error:error];
 	}
 	if (self.type == 0) {
-		if (self.drawCash.intValue > self.enablemoney) {
+		if (self.drawCash.intValue > self.enablemoney.intValue) {
 			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"超出最大额度限制，请重新填写", }];
 			return [RACSignal error:error];
 		}
