@@ -30,10 +30,10 @@
 @property (nonatomic, readwrite) NSArray *viewModels;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
-@property (nonatomic, strong) NSString *normalUserCode;
-@property (nonatomic, strong) NSString *whiteListUserCode;
-
 @end
+
+static NSString *msf_normalUserCode = @"1101";
+static NSString *msf_whiteListUserCode = @"4101";
 
 @implementation MSFHomepageViewModel
 
@@ -46,19 +46,14 @@
 	if (!self) {
 		return nil;
 	}
-	_normalUserCode = @"1101";
-	_whiteListUserCode = @"4101";
-	
 	_viewModel = viewModel;
 	_services = services;
-	_bannersViewModel = [[MSFBannersViewModel alloc] initWithServices:self.services];
 	_circulateCashViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:services];
 	
 	@weakify(self)
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		NSLog(@"用户类型:---%@", self.services.httpClient.user.type);
-		if ([self.services.httpClient.user.type isEqualToString:_normalUserCode]) {
+		if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
 			return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
 				if (value.processing) {
 					return [RACSignal return:nil];
@@ -89,9 +84,11 @@
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if (self.services.httpClient.user.isAuthenticated) {
-			if ([self.services.httpClient.user.type isEqualToString:_normalUserCode]) {
+			if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
 				[self.refreshCommand execute:nil];
-			} else if ([self.services.httpClient.user.type isEqualToString:_whiteListUserCode]) {
+				self.viewModel.active = NO;
+				self.viewModel.active = YES;
+			} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
 				self.circulateCashViewModel.active = NO;
 				self.circulateCashViewModel.active = YES;
 			}
@@ -106,13 +103,13 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if ([self.services.httpClient.user.type isEqualToString:_normalUserCode]) {
+	if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
 		if (self.viewModels.count > 0) {
 			return self.viewModels[0];
 		} else {
 			return nil;
 		}
-	} else if ([self.services.httpClient.user.type isEqualToString:_whiteListUserCode]) {
+	} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
 		return self.circulateCashViewModel;
 	} else {
 		return nil;
@@ -120,7 +117,7 @@
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if ([self.services.httpClient.user.type isEqualToString:_whiteListUserCode]) {
+	if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
 		return @"MSFCirculateViewCell";
 	} else {
 		return @"MSFHomePageContentCollectionViewCell";

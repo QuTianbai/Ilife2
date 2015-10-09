@@ -49,13 +49,13 @@
 	NSString *jd = @"";
 	for (NSDictionary *addition in additionalList) {
 		switch ([[self msf_filter:addition[@"additionalType"] class:NSString.class] intValue]) {
-			case 0:
+			case 1:
 				qq = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
 				break;
-			case 1:
+			case 2:
 				tb = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
 				break;
-			case 2:
+			case 3:
 				jd = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
 				break;
 		}
