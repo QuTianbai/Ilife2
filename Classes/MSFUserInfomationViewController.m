@@ -93,6 +93,7 @@
 	//_nextStepButton.rac_command = self.viewModel.executeNextCommand;
 	[[self.nextStepButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
+		@strongify(self)
 		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];

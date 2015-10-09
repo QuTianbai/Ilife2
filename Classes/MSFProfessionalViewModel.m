@@ -406,8 +406,19 @@
 	return [self.formsViewModel submitUserInfoType:2];
 }
 
-- (NSString *)compareDay:(NSDate *)day1 earlierThanDay:(NSDate *)day2 {
-	if (day1.timeIntervalSince1970 < day2.timeIntervalSince1970) {
+- (NSString *)compareDay:(NSString *)day1 earlierThanDay:(NSString *)day2 {
+	NSArray *components1 = [day1 componentsSeparatedByString:@"-"];
+	NSArray *components2 = [day2 componentsSeparatedByString:@"-"];
+	if (components1.count != 2) {
+		return @"请选择入职日期";
+	}
+	if (components2.count != 2) {
+		return @"请选择参加工作日期";
+	}
+	if ([components1[0] integerValue] < [components2[0] integerValue]) {
+		return @"入职日期不能早于参加工作日期";
+	}
+	if ([components1[0] integerValue] == [components2[0] integerValue] && [components1[1] integerValue] < [components2[1] integerValue]) {
 		return @"入职日期不能早于参加工作日期";
 	}
 	return nil;
@@ -435,7 +446,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.workStartDate = selectedDate;
+			 self.formsViewModel.model.workStartDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -469,7 +480,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.empStandFrom = selectedDate;
+			 self.formsViewModel.model.empStandFrom = [NSDateFormatter msf_stringFromDate2:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -503,7 +514,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.empStandFrom = selectedDate;
+				self.formsViewModel.model.empStandFrom = [NSDateFormatter msf_stringFromDate2:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
