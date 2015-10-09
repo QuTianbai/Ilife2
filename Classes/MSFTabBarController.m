@@ -85,7 +85,7 @@
 //	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:nil];
   UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	
-	if ([MSFUtils.isCircuteCash isEqualToString:@"1101"]) {//4101
+	if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {//4101
 		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 		self.circulateViewModel = viewModel;
 		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
@@ -122,12 +122,12 @@
 	//MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
 	
-	//if ([MSFUtils.isCircuteCash isEqualToString:@"2101"]) {
+	if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
 		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
 		
-	//}
+	}
 	
 	productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
@@ -170,12 +170,12 @@
 		return NO;
   }
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
-		if (!self.viewModel.formsViewModel.markets.teams == 0) {
+		//if (!self.viewModel.formsViewModel.markets.teams == 0) {
 			self.viewModel.formsViewModel.active = NO;
 			self.viewModel.formsViewModel.active = YES;
 			
 			
-		}
+		//}
 		self.circulateViewModel.active = NO;
 		self.circulateViewModel.active = YES;
   }

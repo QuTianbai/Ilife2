@@ -242,6 +242,7 @@ static NSDictionary *messages;
 					[MSFUtils setUniqueId:user.uniqueId];
 					[MSFUtils setCircuteCash:user.type];
 					[MSFUtils setProductCode:user.type];
+					[MSFUtils setisTradePassword:user.hasTransPwd];
 				
 					return [RACSignal combineLatest:@[
 						[RACSignal return:client],
