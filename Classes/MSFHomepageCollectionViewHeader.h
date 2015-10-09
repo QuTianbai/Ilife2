@@ -5,10 +5,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFReactiveView.h"
 
-@interface MSFHomepageCollectionViewHeader : UICollectionReusableView <MSFReactiveView>
-
-- (void)bindViewModel:(id)viewModel;
+@interface MSFHomepageCollectionViewHeader : UICollectionReusableView
 
 @end
