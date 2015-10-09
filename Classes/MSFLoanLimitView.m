@@ -72,9 +72,7 @@
 	@weakify(self)
 	[_usableLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self.mas_left).offset(8);
-		make.right.equalTo(self.mas_right).offset(-8);
-		make.width.equalTo(self.mas_height).multipliedBy(1.2);
+		make.width.equalTo(self.mas_height).multipliedBy(1.1);
 		make.centerX.equalTo(self.mas_centerX);
 		make.centerY.equalTo(self.mas_centerY).offset(15);
 	}];
@@ -110,9 +108,10 @@
 }
 
 - (void)ajustLabelFont:(NSString *)ac {
+	CGFloat width = [ac boundingRectWithSize:CGSizeMake(10000, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:_standardFontSize]} context:nil].size.width;
 	CGFloat fontSize = 0;
-	if (ac.length * _standardFontSize * 0.5 > self.frame.size.height * 1.2) {
-		fontSize = self.frame.size.height * 2.4 / _standardFontSize;
+	if (width > self.frame.size.height * 1.1) {
+		fontSize = floor(_standardFontSize * self.frame.size.height * 1.1 / width);
 	} else {
 		fontSize = _standardFontSize;
 	}
