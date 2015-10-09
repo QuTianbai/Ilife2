@@ -97,7 +97,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			doNext:^(id x) {
 				@strongify(self)
 				self.counting = YES;
-				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.executeSignIn.executionSignals];
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
 				__block int repetCount = kCounterLength;
 				[repetitiveEventSignal subscribeNext:^(id x) {
 					self.counter = [@(--repetCount) stringValue];
@@ -116,7 +116,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			doNext:^(id x) {
 				@strongify(self)
 				self.counting = YES;
-				RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
 				__block int repetCount = kCounterLength;
 				[repetitiveEventSignal subscribeNext:^(id x) {
 					self.counter = [@(--repetCount) stringValue];
@@ -140,7 +140,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 						doNext:^(id x) {
 							@strongify(self)
 							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
 							__block int repetCount = kCounterLength;
 							[repetitiveEventSignal subscribeNext:^(id x) {
 								self.counter = [@(--repetCount) stringValue];
@@ -160,7 +160,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 						doNext:^(id x) {
 							@strongify(self)
 							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
 							__block int repetCount = kCounterLength;
 							[repetitiveEventSignal subscribeNext:^(id x) {
 								self.counter = [@(--repetCount) stringValue];
@@ -180,7 +180,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 						doNext:^(id x) {
 							@strongify(self)
 							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
 							__block int repetCount = kCounterLength;
 							[repetitiveEventSignal subscribeNext:^(id x) {
 								self.counter = [@(--repetCount) stringValue];
@@ -207,7 +207,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			}
 			return [[self executeFindPasswordCaptchaSignal] doNext:^(id x) {
 				self.counting = YES;
-				RACSignal *repetitiveEventSignal = [[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength];
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
 				__block int repetCount = kCounterLength;
 				[repetitiveEventSignal subscribeNext:^(id x) {
 					 self.counter = [@(--repetCount) stringValue];

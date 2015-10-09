@@ -270,6 +270,7 @@
 		492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */ = {isa = PBXBuildFile; fileRef = 492007491BA00CCD00C0722C /* NSData+Storage.m */; };
 		492007521BA00CCD00C0722C /* StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 4920074C1BA00CCD00C0722C /* StandardPaths.m */; };
 		492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4920074E1BA00CCD00C0722C /* UIImage+Resize.m */; };
+		49216E091BC76D020090B784 /* MSFTabBarViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */; settings = {ASSET_TAGS = (); }; };
 		4925AD581B2A786900872A8A /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 4925AD571B2A786900872A8A /* products.json */; };
 		4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925ADBD1B2AB92500872A8A /* MSFBlurView.m */; };
 		4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925ADD31B2AC07300872A8A /* MSFBlurFieldView.m */; };
@@ -1150,6 +1151,7 @@
 		4920074C1BA00CCD00C0722C /* StandardPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StandardPaths.m; sourceTree = "<group>"; };
 		4920074D1BA00CCD00C0722C /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		4920074E1BA00CCD00C0722C /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarViewModelSpec.m; sourceTree = "<group>"; };
 		4925AD571B2A786900872A8A /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		4925ADBC1B2AB92500872A8A /* MSFBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBlurView.h; sourceTree = "<group>"; };
 		4925ADBD1B2AB92500872A8A /* MSFBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBlurView.m; sourceTree = "<group>"; };
@@ -2841,6 +2843,7 @@
 				49CA93851BBA840E0032F5C2 /* MSFAuthorizeRequestSpec.m */,
 				49CA93921BBA91360032F5C2 /* MSFAuthorizeResponseSpec.m */,
 				49CA93961BBAA7880032F5C2 /* MSFCardSpec.m */,
+				49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -4698,6 +4701,7 @@
 				49EF59551B9039AB00BDBD44 /* MSFRelationshipViewModelSpec.m in Sources */,
 				49588DEE1B86FC6A00FCF171 /* MSFProductSpec.m in Sources */,
 				4948E8BD1B959A410048D125 /* MSFAttachmentViewModelSpec.m in Sources */,
+				49216E091BC76D020090B784 /* MSFTabBarViewModelSpec.m in Sources */,
 				496A44671B6A57BE00104215 /* MSFAuthorizationSpec.m in Sources */,
 				496A44721B6A57BE00104215 /* MSFObjectSpec.m in Sources */,
 				49C2FE531B4677D200B6B20A /* MSFTestAddressViewModel.m in Sources */,

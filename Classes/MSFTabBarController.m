@@ -77,7 +77,6 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
   homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 	homePageViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStyleDone target:nil action:nil];
-	homePageViewController.navigationItem.leftBarButtonItem.rac_command = self.viewModel.signInCommand;
 	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
 	
 	MSFCashHomePageViewController *productViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:nil];
@@ -163,6 +162,7 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+<<<<<<< HEAD
   if (!self.viewModel.isAuthenticated) {
 		[self.viewModel.signInCommand execute:nil];
 		return NO;
@@ -173,17 +173,18 @@
  
  
 	if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+=======
+  if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+>>>>>>> be03e3f2ebcae8741dcc8c5278680990aacce978
 		if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;
 		} else {
 			if (!self.viewModel.formsViewModel.markets.teams == 0) {
-						self.viewModel.formsViewModel.active = NO;
-						self.viewModel.formsViewModel.active = YES;
+					self.viewModel.formsViewModel.active = NO;
+					self.viewModel.formsViewModel.active = YES;
 			}
 		}
-	
-		
   }
 
   return YES;

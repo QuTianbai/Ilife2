@@ -7,9 +7,11 @@
 #import "MSFHomepageViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
+
 #import "MSFHomepageCollectionViewHeader.h"
 #import "MSFHomePageContentCollectionViewCell.h"
 #import "MSFCirculateViewCell.h"
+
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFFormsViewModel.h"
@@ -69,10 +71,6 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-	[RACObserve(self.viewModel.viewModel, model) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.collectionView reloadData];
-	}];
 	[RACObserve(MSFUtils.httpClient.user, complateCustInfo) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collectionView reloadData];
@@ -94,8 +92,6 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
-		self.viewModel.viewModel.active = NO;
-		self.viewModel.viewModel.active = YES;
 		/*
 		[[[[MSFUtils.httpClient fetchApplyList] concat] replayLazily] subscribeNext:^(id x) {
 			NSLog(@"%@", x);
@@ -125,7 +121,6 @@ UICollectionViewDelegateFlowLayout>
 		MSFHomepageCollectionViewHeader *header =
 		[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
 		 withReuseIdentifier:@"header" forIndexPath:indexPath];
-		[header bindViewModel:self.viewModel];
 		return header;
 	}
 	return UICollectionReusableView.new;

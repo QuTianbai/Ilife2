@@ -31,6 +31,8 @@
 
 @implementation MSFSignInPhoneViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.citizenID.delegate = self;
@@ -103,6 +105,18 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.viewModel.active = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	self.viewModel.active = NO;
+}
+
+#pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel =  viewModel;
