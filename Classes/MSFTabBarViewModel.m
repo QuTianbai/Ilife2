@@ -39,22 +39,9 @@
 - (void)initialize {
 	_formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
 	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
-	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel updatedContentSignal"];
+	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel `authorizationUpdatedSignal`"];
 	
 	@weakify(self)
-	_signInCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self signInSignal];
-	}];
-	_signUpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self signUpSignal];
-	}];
-	_verifyCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self verifySignal];
-	}];
-	
 	[self.authorizeViewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
@@ -88,55 +75,6 @@
 			[self.authorizeViewModel.executeSignOut execute:nil];
 		}];
 	}];
-	[[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFClozeViewModelDidUpdateNotification" object:nil]
-		takeUntil:self.rac_willDeallocSignal]
-		subscribeNext:^(NSNotification *notification) {
-			@strongify(self)
-			self.formsViewModel.active = NO;
-			MSFClient *client = notification.object;
-			[(RACSubject *)self.authorizationUpdatedSignal sendNext:client];
-	}];
-}
-
-#pragma mark - Custom Accessors
-
-- (RACSignal *)signInSignal {
-  @weakify(self)
-  RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    @strongify(self)
-		self.authorizeViewModel.loginType = MSFLoginSignIn;
-		[self.services presentViewModel:self.authorizeViewModel];
-		[subscriber sendCompleted];
-		return nil;
-  }];
-  
-  return [[signal replay] setNameWithFormat:@"%@ `-signIn`", self.class];
-}
-
-- (RACSignal *)signUpSignal {
-	@weakify(self)
-  RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-    @strongify(self)
-		self.authorizeViewModel.loginType = MSFLoginSignUp;
-		[self.services presentViewModel:self.authorizeViewModel];
-		return nil;
-  }];
-  
-  return [[signal replay] setNameWithFormat:@"%@ `-signUp`", self.class];
-}
-
-- (RACSignal *)verifySignal {
-	return [RACSignal empty];
-}
-
-#pragma mark - Custom Accessors
-
-- (BOOL)isAuthenticated {
-	return [self.services httpClient].isAuthenticated;
-}
-
-- (BOOL)isUserAuthenticated {
-	return [self.services httpClient].user.isAuthenticated;
 }
 
 @end

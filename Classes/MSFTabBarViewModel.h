@@ -13,21 +13,30 @@
 
 @interface MSFTabBarViewModel : RVMViewModel
 
+// Create Tab‘s Controller.
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
-// 登录控制
-@property (nonatomic, strong, readonly) RACCommand *signInCommand;
-@property (nonatomic, strong, readonly) RACCommand *signUpCommand;
-@property (nonatomic, strong, readonly) RACCommand *verifyCommand;
-
+// Global application forms information.
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 
+// Global authorize ViewModel.
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
+
+// 授权信息变化信号.
+//
+// SignIn,
+// SignUp,
+// SignOut,
+// Update SignIn Password,
+// Update Mobile Number.
 @property (nonatomic, strong, readonly) RACSignal *authorizationUpdatedSignal;
 
-@property (nonatomic, assign, readonly) BOOL isAuthenticated;
-@property (nonatomic, assign, readonly) BOOL isUserAuthenticated;
 
+// Create ViewModel
+//
+// services -  Created by Appdelegate.
+//
+// Returns viewModel instance.
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end
