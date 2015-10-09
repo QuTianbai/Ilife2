@@ -189,6 +189,16 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.viewModel.active = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	self.viewModel.active = NO;
+}
+
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
