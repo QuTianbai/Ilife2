@@ -135,18 +135,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.universityName.rac_textSignal subscribe:universityNameChannel];
 	
 	//入学时间
-	[[RACObserve(self.viewModel.formsViewModel.model, empStandFrom)
-		map:^id(id value) {
-			if (value) {
-				return [NSDateFormatter msf_stringFromDate2:value];
-			}
-			return nil;
-	}] subscribeNext:^(NSString *x) {
-		@strongify(self)
-		if (x.length > 0) {
-			self.enrollmentYear.text = x;
-		}
-	}];
+	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.enrollmentYearCommand execute:self.view];
@@ -164,18 +153,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.programLength.rac_textSignal subscribe:eductionalLengthChannel];
 	
 	//参加工作日期
-	[[RACObserve(self.viewModel.formsViewModel.model, workStartDate)
-		map:^id(id value) {
-			if (value) {
-				return [NSDateFormatter msf_stringFromDate2:value];
-			}
-			return nil;
-	}] subscribeNext:^(NSString *x) {
-		@strongify(self)
-		if (x.length > 0) {
-			self.workingLength.text = x;
-		}
-	}];
+	RAC(self.workingLength, text) = RACObserve(self.viewModel.formsViewModel.model, workStartDate);
 	[[self.workingLengthButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.startedWorkDateCommand execute:self.view];
@@ -263,18 +241,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	
 	//入职日期
-	[[RACObserve(self.viewModel.formsViewModel.model, empStandFrom)
-		map:^id(id value) {
-			if (value) {
-				return [NSDateFormatter msf_stringFromDate2:value];
-			}
-			return nil;
-		}] subscribeNext:^(NSString *x) {
-			@strongify(self)
-			if (x.length > 0) {
-				self.currentJobDate.text = x;
-			}
-		}];
+	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
 	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.startedDateCommand execute:self.view];

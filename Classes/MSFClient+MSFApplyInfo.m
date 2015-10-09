@@ -121,19 +121,11 @@
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
 	NSString *homePhone = @"";
 	NSString *empPhone = @"";
-	NSString *empStandFrom = @"";
-	NSString *workStartDate = @"";
 	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
 		homePhone = [NSString stringWithFormat:@"%@-%@", forms.homeCode, forms.homeLine];
 	}
 	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0 && forms.unitExtensionTelephone.length > 0) {
 		empPhone = [NSString stringWithFormat:@"%@-%@-%@", forms.unitAreaCode, forms.unitTelephone, forms.unitExtensionTelephone];
-	}
-	if (forms.empStandFrom) {
-		empStandFrom = [NSDateFormatter msf_fullStringFromDate:forms.empStandFrom];
-	}
-	if (forms.workStartDate) {
-		workStartDate = [NSDateFormatter msf_fullStringFromDate:forms.workStartDate];
 	}
 	
 	NSDictionary *basicInfo = @{
@@ -150,9 +142,9 @@
 															 @"socialIdentity" : forms.socialStatus ?: @"",
 															 @"qualification" : forms.education ?: @"",
 															 @"unitName" : forms.unitName ?: @"",
-															 @"empStandFrom" : empStandFrom,
+															 @"empStandFrom" : forms.empStandFrom ?: @"",
 															 @"lengthOfSchooling" : forms.programLength ?: @"",
-															 @"workStartDate" : workStartDate,
+															 @"workStartDate" : forms.workStartDate ?: @"",
 															 @"monthIncome" : forms.income ?: @"",
 															 @"otherIncome" : forms.otherIncome ?: @"",
 															 @"otherLoan" : forms.familyExpense ?: @"",
