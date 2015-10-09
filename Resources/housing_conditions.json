@@ -1,26 +1,30 @@
  [
   {
-  "text": "自有房",
-  "code": "LC01",
+  "text": "自置无按揭",
+  "code": "1",
   "typeId": "014"
   },
   {
-  "text": "父母房",
-  "code": "LC02",
+  "text": "自置有按揭",
+  "code": "2",
   "typeId": "014"
   },
   {
-  "text": "租住房",
-  "code": "LC03",
+  "text": "亲属楼宇",
+  "code": "3",
   "typeId": "014"
   },
   {
-  "text": "福利房",
-  "code": "LC04",
+  "text": "集体宿舍",
+  "code": "4",
   "typeId": "014"
   },{
-  "text": "集体宿舍",
-  "code": "LC05",
+  "text": "租房",
+  "code": "5",
   "typeId": "014"
-  }
+	},{
+	"text": "其他",
+	"code": "7",
+	"typeId": "014"
+	}
   ]
