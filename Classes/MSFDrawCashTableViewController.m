@@ -57,26 +57,6 @@
 		[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 	}];
 	
-//	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
-//	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-//		NSString *str = @"正在提现...";
-//		if (self.type == 1) {
-//			str = @"正在还款";
-//		}
-//		
-//		[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
-//		[signal subscribeNext:^(id x) {
-//			NSString *str = @"恭喜你，提款已成功";
-//			if (self.type == 1) {
-//				str = @"恭喜你，还款已成功";
-//			}
-//			[SVProgressHUD showSuccessWithStatus:str];
-//		}];
-//		
-//	}];
-//	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
-//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//	}];
 }
 
 - (void)setviewTitle {
