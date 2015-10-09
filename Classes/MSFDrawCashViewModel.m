@@ -19,7 +19,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 @property (nonatomic, copy) NSString *contractNO;
 
-@property (nonatomic, assign) int enablemoney;
+@property (nonatomic, assign) NSString *enablemoney;
 
 @property (nonatomic, assign) int type;
 
@@ -32,22 +32,45 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	if (!self) {
 		return  nil;
 	}
+	
+	_circulateViewModel = viewModel;
 	_type = type;
 	_services = services;
 	_bankIcon = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
 	_bankName = model.bankName;
 	
-	_money = [NSString stringWithFormat:@"剩余可用额度%@元", viewModel.usableLimit];
-	self.drawCash = viewModel.usableLimit;
+	
+	
+	
+	//_money = [NSString stringWithFormat:@"剩余可用额度%@元", viewModel.usableLimit];
+	//self.drawCash = viewModel.usableLimit;
 	
 	if (type == 1) {
-		_money = [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];
-		self.drawCash = viewModel.latestDueMoney;
+		RAC(self, money) = [RACSignal combineLatest:
+												@[
+													RACObserve(self, circulateViewModel.latestDueMoney),
+													RACObserve(self, circulateViewModel.totalOverdueMoney)]
+												reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
+													return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
+												}];
+		
+		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
+		//_money = [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];
+		//self.drawCash = viewModel.latestDueMoney;
+	} else {
+		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
+			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
+		}];
+		RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
 	}
 	
-	_enablemoney = viewModel.usableLimit.intValue;
+	RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
+	//_enablemoney = viewModel.usableLimit.intValue;
+	//RAC(self, bankCardNO) = RACObserve(self, <#KEYPATH#>)
 	_bankCardNO = [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4];
-	_contractNO = viewModel.contractNo;
+	
+	RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
+	//_contractNO = viewModel.contractNo;
 	
 	
 	
@@ -65,13 +88,13 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		return [RACSignal error:error];
 	}
 	if (self.type == 0) {
-		if (self.drawCash.intValue > self.enablemoney) {
+		if (self.drawCash.intValue > self.enablemoney.intValue) {
 			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"超出最大额度限制，请重新填写", }];
 			return [RACSignal error:error];
 		}
 	}
 	
-	return [self.services.httpClient drawCashWithDrawCount:self.drawCash AndContraceNO:self.contractNO AndType:self.type];
+	return [self.services.httpClient drawCashWithDrawCount:self.drawCash AndContraceNO:self.contractNO AndPwd:self.tradePWd AndType:self.type];
 }
 
 @end

@@ -149,9 +149,9 @@
 @property (nonatomic, copy) NSString *socialStatus;//社会身份
 @property (nonatomic, copy) NSString *education;//教育程度code
 	@property (nonatomic, copy) NSString *unitName;//单位名称。学生显示学校，职工显示单位
-	@property (nonatomic, strong) NSDate *empStandFrom;//起始日期。学生显示入学，职工显示入职日期
+	@property (nonatomic, copy) NSString *empStandFrom;//起始日期。学生显示入学，职工显示入职日期
 @property (nonatomic, copy) NSString *programLength;//学制 学制
-@property (nonatomic, copy) NSDate *workStartDate;//工作开始时间
+@property (nonatomic, copy) NSString *workStartDate;//工作开始时间
 @property (nonatomic, copy) NSString *income;//工作收入 工作月收入
 @property (nonatomic, copy) NSString *otherIncome;//其他收入 其他月收入
 @property (nonatomic, copy) NSString *familyExpense;//每月其他还款

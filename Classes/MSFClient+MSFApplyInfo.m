@@ -29,6 +29,9 @@
 		return obj;
 	} else {
 		if (class == NSString.class) {
+			if ([obj isKindOfClass:NSNumber.class]) {
+				return [obj stringValue];
+			}
 			return @"";
 		} else if (class == NSArray.class) {
 			return @[];
@@ -71,15 +74,13 @@
 	NSString *homeTel = @"";
 	NSString *empTelCode = @"";
 	NSString *empTel = @"";
-	NSString *empTelExtension = @"";
 	if (homeTelComponents.count == 2) {
 		homeTelCode = homeTelComponents[0];
 		homeTel = homeTelComponents[1];
 	}
-	if (empTelComponents.count == 3) {
+	if (empTelComponents.count == 2) {
 		empTelCode = empTelComponents[0];
 		empTel = empTelComponents[1];
-		empTelExtension = empTelComponents[2];
 	}
 	
 	return @{@"homeCode" : homeTelCode,
@@ -103,17 +104,17 @@
 					 @"income" : [self msf_filter:occupation[@"monthIncome"] class:NSString.class],
 					 @"otherIncome" : [self msf_filter:occupation[@"otherIncome"] class:NSString.class],
 					 @"familyExpense" : [self msf_filter:occupation[@"otherLoan"] class:NSString.class],
-					 @"department" : [self msf_filter:occupation[@"empDepapment"] class:NSString.class],
+					 @"department" : [self msf_filter:occupation[@"empDepartment"] class:NSString.class],
 					 @"title" : [self msf_filter:occupation[@"empPost"] class:NSString.class],
 					 @"industry" : [self msf_filter:occupation[@"empType"] class:NSString.class],
 					 @"companyType" : [self msf_filter:occupation[@"empStructure"] class:NSString.class],
 					 @"workProvinceCode" : [self msf_filter:occupation[@"empProvinceCode"] class:NSString.class],
 					 @"workCityCode" : [self msf_filter:occupation[@"empCityCode"] class:NSString.class],
 					 @"workCountryCode" : [self msf_filter:occupation[@"empZoneCode"] class:NSString.class],
-					 @"empAdd" : [self msf_filter:occupation[@"empAdd"] class:NSString.class],
+					 @"empAdd" : [self msf_filter:occupation[@"empAddr"] class:NSString.class],
 					 @"unitAreaCode" : empTelCode,
 					 @"unitTelephone" : empTel,
-					 @"unitExtensionTelephone" : empTelExtension,
+					 @"unitExtensionTelephone" : [self msf_filter:occupation[@"empPhoneExtNum"] class:NSString.class],
 					 @"contrastList" : [self msf_filter:dic[@"contrastList"] class:NSArray.class]
 					 };
 }
@@ -121,19 +122,11 @@
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
 	NSString *homePhone = @"";
 	NSString *empPhone = @"";
-	NSString *empStandFrom = @"";
-	NSString *workStartDate = @"";
 	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
 		homePhone = [NSString stringWithFormat:@"%@-%@", forms.homeCode, forms.homeLine];
 	}
-	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0 && forms.unitExtensionTelephone.length > 0) {
-		empPhone = [NSString stringWithFormat:@"%@-%@-%@", forms.unitAreaCode, forms.unitTelephone, forms.unitExtensionTelephone];
-	}
-	if (forms.empStandFrom) {
-		empStandFrom = [NSDateFormatter msf_fullStringFromDate:forms.empStandFrom];
-	}
-	if (forms.workStartDate) {
-		workStartDate = [NSDateFormatter msf_fullStringFromDate:forms.workStartDate];
+	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0) {
+		empPhone = [NSString stringWithFormat:@"%@-%@", forms.unitAreaCode, forms.unitTelephone];
 	}
 	
 	NSDictionary *basicInfo = @{
@@ -150,21 +143,22 @@
 															 @"socialIdentity" : forms.socialStatus ?: @"",
 															 @"qualification" : forms.education ?: @"",
 															 @"unitName" : forms.unitName ?: @"",
-															 @"empStandFrom" : empStandFrom,
+															 @"empStandFrom" : forms.empStandFrom ?: @"",
 															 @"lengthOfSchooling" : forms.programLength ?: @"",
-															 @"workStartDate" : workStartDate,
+															 @"workStartDate" : forms.workStartDate ?: @"",
 															 @"monthIncome" : forms.income ?: @"",
 															 @"otherIncome" : forms.otherIncome ?: @"",
 															 @"otherLoan" : forms.familyExpense ?: @"",
-															 @"empDepapment" : forms.department ?: @"",
+															 @"empDepartment" : forms.department ?: @"",
 															 @"empPost" : forms.title ?: @"",
 															 @"empType" : forms.industry ?: @"",
 															 @"empStructure" : forms.companyType ?: @"",
 															 @"empProvinceCode" : forms.workProvinceCode ?: @"",
 															 @"empCityCode" : forms.workCityCode ?: @"",
 															 @"empZoneCode" : forms.workCountryCode ?: @"",
-															 @"empAdd" : forms.empAdd ?: @"",
-															 @"empPhone" : empPhone
+															 @"empAddr" : forms.empAdd ?: @"",
+															 @"empPhone" : empPhone,
+															 @"empPhoneExtNum" : forms.unitExtensionTelephone ?: @""
 															 };
 	
 	NSMutableArray *additionalList = [NSMutableArray array];

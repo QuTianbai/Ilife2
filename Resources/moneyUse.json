@@ -40,28 +40,23 @@
  "typeId": "002"
  },
  {
- "text": "购车",
- "code": "PL09",
+ "text": "医疗",
+ "code": "PL14",
  "typeId": "002"
  },
  {
- "text": "购房",
- "code": "PL10",
+ "text": "美容",
+ "code": "PL15",
  "typeId": "002"
  },
  {
- "text": "贷款/债务偿还",
- "code": "PL11",
+ "text": "家具",
+ "code": "PL16",
  "typeId": "002"
  },
  {
- "text": "企业经营",
- "code": "PL12",
- "typeId": "002"
- },
- {
- "text": "股债交易/投资",
- "code": "PL13",
+ "text": "生活用品",
+ "code": "PL17",
  "typeId": "002"
  },
  {

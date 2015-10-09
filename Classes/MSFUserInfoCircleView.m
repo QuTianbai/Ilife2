@@ -229,6 +229,7 @@
 	
 	@weakify(self)
 	_clickCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 			[subscriber sendNext:@(self.clickIndex)];
 			[subscriber sendCompleted];
@@ -301,6 +302,7 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 	CGPoint loc = [gestureRecognizer locationInView:self];
+	NSLog(@"---gesture：%f,%f", loc.x, loc.y);
 	BOOL shouldTap = [self isEffectiveTap:loc];
 	if (shouldTap) {
 		_clickIndex = [self tappedArea:loc];

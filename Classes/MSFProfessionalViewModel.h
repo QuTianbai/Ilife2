@@ -42,7 +42,6 @@
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
-//- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
 @end
