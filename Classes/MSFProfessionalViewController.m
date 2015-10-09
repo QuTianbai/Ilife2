@@ -83,6 +83,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
 
 @property (nonatomic, strong) MSFProfessionalViewModel *viewModel;
+@property (nonatomic, assign) NSInteger statusHash;
 
 @end
 
@@ -92,6 +93,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	_statusHash = self.viewModel.formsViewModel.model.hash;
 }
 
 #pragma mark - Lifecycle
@@ -296,6 +298,10 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 }
 
 - (void)back {
+	if (_statusHash == self.viewModel.formsViewModel.model.hash) {
+		[self.navigationController popViewControllerAnimated:YES];
+		return;
+	}
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃职业信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
 		if ([x integerValue] == 1) {

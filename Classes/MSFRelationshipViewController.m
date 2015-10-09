@@ -38,6 +38,7 @@ ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
+@property (nonatomic, assign) NSInteger statusHash;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
@@ -50,6 +51,7 @@ ABPersonViewControllerDelegate>
 - (void)bindViewModel:(id)viewModel {
 	
 	self.viewModel = viewModel;
+	_statusHash = self.viewModel.formsViewModel.model.hash;
 	
 	_tempContactList = [NSMutableArray arrayWithArray:self.viewModel.formsViewModel.model.contrastList];
 	
@@ -120,6 +122,10 @@ ABPersonViewControllerDelegate>
 #pragma mark - Private Method
 
 - (void)back {
+	if (_statusHash == self.viewModel.formsViewModel.model.hash) {
+		[self.navigationController popViewControllerAnimated:YES];
+		return;
+	}
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃联系人信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
 		if ([x integerValue] == 1) {

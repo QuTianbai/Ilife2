@@ -64,15 +64,6 @@
 					return [RACSignal return:nil];
 				} else {
 					if (value.data) {
-						/*
-						 MSFApplyCashInfo *data = [[MSFApplyCashInfo alloc] init];
-						 data.applyTime = @"2015-08-23";
-						 data.appLmt = @"3000";
-						 data.loanTerm = @"3";
-						 data.status = @"V";
-						 data.appNo = @"7";
-						 value.data = data;
-						 */
 						MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
 						return [RACSignal return:@[viewModel]];
 					} else {

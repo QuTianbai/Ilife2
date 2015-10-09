@@ -73,6 +73,10 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
+	[RACObserve(MSFUtils.httpClient.user, complateCustInfo) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.collectionView reloadData];
+	}];
 	
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
@@ -90,6 +94,8 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
+		self.viewModel.viewModel.active = NO;
+		self.viewModel.viewModel.active = YES;
 		/*
 		[[[[MSFUtils.httpClient fetchApplyList] concat] replayLazily] subscribeNext:^(id x) {
 			NSLog(@"%@", x);
