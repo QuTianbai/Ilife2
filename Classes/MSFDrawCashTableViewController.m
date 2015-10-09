@@ -97,7 +97,9 @@
 		 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
 //		 NSDictionary *result = response.parsedResult;
 		
-		 NSString *str = @"恭喜你，提款已成功";
+		 
+		 NSDictionary *result = response.parsedResult;
+		 NSString *str = result[@"message"];
 		 if (self.type == 1) {
 			 str = @"恭喜你，还款已成功";
 			 //NSDictionary *result = response.parsedResult;
@@ -105,6 +107,7 @@
 			 self.viewModel.circulateViewModel.infoModel = mocel;
 		 }
 		 [SVProgressHUD showSuccessWithStatus:str];
+		 [self.navigationController popViewControllerAnimated:YES];
 	 }];
 	
 	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {

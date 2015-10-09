@@ -39,11 +39,9 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	_bankIcon = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
 	_bankName = model.bankName;
 	
-	RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
-		return [NSString stringWithFormat:@"剩余可用额度%@元", value];
-	}];
 	
-	RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
+	
+	
 	//_money = [NSString stringWithFormat:@"剩余可用额度%@元", viewModel.usableLimit];
 	//self.drawCash = viewModel.usableLimit;
 	
@@ -59,6 +57,11 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
 		//_money = [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];
 		//self.drawCash = viewModel.latestDueMoney;
+	} else {
+		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
+			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
+		}];
+		RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
 	}
 	
 	RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
