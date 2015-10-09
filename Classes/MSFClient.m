@@ -635,12 +635,6 @@ static NSDictionary *messages;
 				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			#endif
 			
-			if (operation.response.statusCode == MSFClientNotModifiedStatusCode) {
-				// No change in the data.
-				[subscriber sendCompleted];
-				return;
-			}
-			
 			[[RACSignal return:RACTuplePack(operation.response, responseObject)] subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
