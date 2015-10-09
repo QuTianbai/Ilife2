@@ -9,41 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFRepaymentTableViewCell : UITableViewCell <MSFReactiveView>
-/**
- *	合同编号
- */
-@property (strong, nonatomic) UILabel *contractNum;
-/**
- *	合同状态
- */
-@property (strong, nonatomic) UILabel *contractStatus;
-/**
- *	应还金额
- */
-@property (strong, nonatomic) UILabel *shouldAmount;
-/**
- *	截止日期
- */
-@property (strong, nonatomic) UILabel *asOfDate;
-
-/**
- *	合同编号Label
- */
-@property (strong, nonatomic) UILabel *contractNumLabel;
-/**
- *	合同状态Label
- */
-@property (strong, nonatomic) UILabel *contractStatusLabel;
-/**
- *	应还金额Label
- */
-@property (strong, nonatomic) UILabel *shouldAmountLabel;
-/**
- *	截止日期Label
- */
-@property (strong, nonatomic) UILabel *asOfDateLabel;
-
-@property (strong, nonatomic) UILabel *arrowHead;
+@interface MSFRepaymentTableViewCell : UITableViewCell
+<MSFReactiveView>
 
 @end

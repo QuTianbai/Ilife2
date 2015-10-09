@@ -7,118 +7,162 @@
 //
 
 #import "MSFRepaymentTableViewCell.h"
-#import "MSFCommandView.h"
+#import <libextobjc/extobjc.h>
 #import <Masonry/Masonry.h>
-#define BLUETCOLOR @"0babed"
 #import "MSFRepaymentSchedulesViewModel.h"
+#import "MSFCommandView.h"
+
+#define REPAY_DARK_COLOR  @"464646"
+#define REPAY_LIGHT_COLOR @"878787"
+#define REPAY_BORDER_COLOR @"DADADA"
+
+@interface MSFRepaymentTableViewCell ()
+
+/** UI **/
+@property (strong, nonatomic) UILabel *contractNum;//合同编号
+
+@property (strong, nonatomic) UILabel *contractStatus;//合同状态
+@property (strong, nonatomic) UILabel *shouldAmount;//应还金额
+@property (strong, nonatomic) UILabel *asOfDate;//截止日期
+
+@property (strong, nonatomic) UILabel *contractStatusLabel;//合同状态value
+@property (strong, nonatomic) UILabel *shouldAmountLabel;//应还金额value
+@property (strong, nonatomic) UILabel *asOfDateLabel;//截止日期Label
+
+//UI参数
+@property (assign, nonatomic) CGFloat padding;
+@property (assign, nonatomic) CGFloat topLineGuide;
+@property (assign, nonatomic) CGFloat labelHeight;
+
+@end
 
 @implementation MSFRepaymentTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 	if (self) {
-		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		_contractNum = [[UILabel alloc]init];
+		
+		_padding = 8.f;
+		_topLineGuide = 40.f;
+		_labelHeight = 30.f;
+		
+		_contractNum		= [[UILabel alloc]init];
 		_contractStatus = [[UILabel alloc]init];
-		_shouldAmount = [[UILabel alloc]init];
-		_asOfDate = [[UILabel alloc]init];
-		_contractNumLabel = [[UILabel alloc]init];
+		_shouldAmount		= [[UILabel alloc]init];
+		_asOfDate				= [[UILabel alloc]init];
 		_contractStatusLabel = [[UILabel alloc]init];
-		_shouldAmountLabel = [[UILabel alloc]init];
-		_asOfDateLabel = [[UILabel alloc]init];
+		_shouldAmountLabel	 = [[UILabel alloc]init];
+		_asOfDateLabel			 = [[UILabel alloc]init];
 		
-		[_contractNum setText:@"合同编号"];
-		[_contractNum setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+		[_contractNum setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
+		_contractNum.font = [UIFont systemFontOfSize:17];
+		
 		[_contractStatus setText:@"合同状态"];
-		[_contractStatus setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+		[_contractStatus setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
+		_contractStatus.font = [UIFont systemFontOfSize:15];
+		
 		[_shouldAmount setText:@"应还金额"];
-		[_shouldAmount setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+		[_shouldAmount setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
+		_shouldAmount.font = [UIFont systemFontOfSize:15];
+		
 		[_asOfDate setText:@"截止日期"];
-		[_asOfDate setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
+		[_asOfDate setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
+		_asOfDate.font = [UIFont systemFontOfSize:15];
 		
-		//[_contractNumLabel setText:@"1231525346"];
-		[_contractNumLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		//[_contractStatusLabel setText:@"已逾期"];
-		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		//[_shouldAmountLabel setText:@"716.00"];
-		[_shouldAmountLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		//[_asOfDateLabel setText:@"现在"];
-		[_asOfDateLabel setTextColor:[MSFCommandView getColorWithString:BLUETCOLOR]];
-		
+		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
+		_contractStatusLabel.font = [UIFont systemFontOfSize:15];
+		[_shouldAmountLabel setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
+		_shouldAmountLabel.font = [UIFont systemFontOfSize:15];
+		[_asOfDateLabel setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
+		_asOfDateLabel.font = [UIFont systemFontOfSize:15];
 		
 		[self addSubview:_contractNum];
 		[self addSubview:_contractStatus];
 		[self addSubview:_shouldAmount];
 		[self addSubview:_asOfDate];
-		[self addSubview:_contractNumLabel];
 		[self addSubview:_contractStatusLabel];
 		[self addSubview:_shouldAmountLabel];
 		[self addSubview:_asOfDateLabel];
 		
-		UIView *superView = self;
-		int padding = 6;//上左下右
-		/**
-		 *	静态Label cellHeigth = 150
-		 */
+		@weakify(self)
 		[_contractNum mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.greaterThanOrEqualTo(superView.mas_top).offset(padding);
-			make.left.equalTo(superView.mas_left).offset(4 * padding);
-			make.bottom.equalTo(_contractStatus.mas_top).offset(-padding);
-			make.width.equalTo(@[_contractStatus.mas_width, _shouldAmount.mas_width,_asOfDate.mas_width]);
-			make.height.equalTo(@30);
-			make.height.equalTo(@[_contractStatus.mas_height, _shouldAmount.mas_height, _asOfDate.mas_height,_contractStatusLabel.mas_height, _shouldAmountLabel.mas_height, _asOfDateLabel.mas_height
-														, _contractNumLabel.mas_height]);
+			@strongify(self)
+			make.left.equalTo(self).offset(self.padding);
+			make.right.equalTo(self).offset(-self.padding);
+			make.top.equalTo(self).offset(self.padding);
 		}];
-		
 		[_contractStatus mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(superView.mas_left).offset(4 * padding);
-			make.bottom.equalTo(_shouldAmount.mas_top).offset(-padding);
+			@strongify(self)
+			make.top.equalTo(self).offset(self.topLineGuide);
+			make.left.equalTo(self);
+			make.height.equalTo(@(self.labelHeight));
 		}];
-		
 		[_shouldAmount mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(superView.mas_left).offset(4 * padding);
-			make.bottom.equalTo(_asOfDate.mas_top).offset(-padding);
+			@strongify(self)
+			make.top.equalTo(self).offset(self.topLineGuide);
+			make.left.equalTo(self.contractStatus.mas_right);
+			make.height.equalTo(@(self.labelHeight));
+			make.width.equalTo(self.contractStatus);
 		}];
-		
 		[_asOfDate mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.left.equalTo(superView.mas_left).offset(4 * padding);
+			@strongify(self)
+			make.top.equalTo(self).offset(self.topLineGuide);
+			make.left.equalTo(self.asOfDate.mas_right);
+			make.right.equalTo(self);
+			make.height.equalTo(@(self.labelHeight));
+			make.width.equalTo(self.asOfDate);
 		}];
-		
-		/**
-		 *	动态Label
-		 */
-		[_contractNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.greaterThanOrEqualTo(superView.mas_top).offset(padding);
-			make.bottom.equalTo(_contractStatusLabel.mas_top).offset(-padding);
-			make.right.equalTo(self.mas_right).offset(-7 * padding);
-			make.width.equalTo(@[_contractStatusLabel.mas_width, _shouldAmountLabel.mas_width,
-													 _asOfDateLabel.mas_width]);
-		}];
-		
 		[_contractStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.bottom.equalTo(_shouldAmountLabel.mas_top).offset(-padding);
-			make.right.equalTo(self.mas_right).offset(-7 * padding);
+			@strongify(self)
+			make.top.equalTo(self.contractStatus.mas_bottom);
+			make.left.equalTo(self);
+			make.height.equalTo(@(self.labelHeight));
 		}];
-		
 		[_shouldAmountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.bottom.equalTo(_asOfDateLabel.mas_top).offset(-padding);
-			make.right.equalTo(self.mas_right).offset(-7 * padding);
+			@strongify(self)
+			make.top.equalTo(self.shouldAmountLabel.mas_bottom);
+			make.left.equalTo(self.contractStatusLabel.mas_right);
+			make.height.equalTo(@(self.labelHeight));
+			make.width.equalTo(self.contractStatusLabel);
 		}];
-		
 		[_asOfDateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.right.equalTo(self.mas_right).offset(-7 * padding);
+			@strongify(self)
+			make.top.equalTo(self.asOfDate.mas_bottom);
+			make.left.equalTo(self.shouldAmountLabel.mas_right);
+			make.right.equalTo(self);
+			make.height.equalTo(@(self.labelHeight));
+			make.width.equalTo(self.shouldAmountLabel);
 		}];
-		
 	}
 	
 	return self;
 }
 
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
-	self.contractNumLabel.text = viewModel.repaymentNumber;
-	self.contractStatusLabel.text = viewModel.status;
-	self.shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.amount];
-	self.asOfDateLabel.text = viewModel.date;
+	_contractNum.text = [NSString stringWithFormat:@"账户编号    %@", viewModel.repaymentNumber];
+	_contractStatusLabel.text = viewModel.status;
+	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.amount];
+	_asOfDateLabel.text = viewModel.date;
+}
+
+- (void)drawRect:(CGRect)rect {
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	[[MSFCommandView getColorWithString:REPAY_BORDER_COLOR] setStroke];
+	CGContextSetLineWidth(context, 0.5);
+	
+	CGContextMoveToPoint(context, 0, 0);
+	CGContextAddLineToPoint(context, rect.size.width, 0);
+	
+	CGContextMoveToPoint(context, 0, rect.size.height);
+	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+	
+	CGContextMoveToPoint(context, rect.size.width / 3, self.topLineGuide);
+	CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding);
+	
+	CGContextMoveToPoint(context, rect.size.width * 2 / 3, self.topLineGuide);
+	CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding);
+	
+	CGContextStrokePath(context);
 }
 
 @end
