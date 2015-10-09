@@ -10,12 +10,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-#import "MSFSelectKeyValues.h"
-
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
-
-#import "MSFAreas.h"
 
 #import "MSFApplicationResponse.h"
 #import "MSFProfessionalViewModel.h"
@@ -27,7 +23,9 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSFHeaderView.h"
-
+#import "MSFSelectKeyValues.h"
+#import "MSFAreas.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionSchool = 1,
@@ -137,10 +135,16 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.universityName.rac_textSignal subscribe:universityNameChannel];
 	
 	//入学时间
-	[RACObserve(self.viewModel.formsViewModel.model, empStandFrom) subscribeNext:^(NSString *x) {
+	[[RACObserve(self.viewModel.formsViewModel.model, empStandFrom)
+		map:^id(id value) {
+			if (value) {
+				return [NSDateFormatter msf_stringFromDate2:value];
+			}
+			return nil;
+	}] subscribeNext:^(NSString *x) {
 		@strongify(self)
 		if (x.length > 0) {
-			self.enrollmentYear.text = [NSString stringWithFormat:@"%@年", x];
+			self.enrollmentYear.text = x;
 		}
 	}];
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -160,7 +164,18 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.programLength.rac_textSignal subscribe:eductionalLengthChannel];
 	
 	//参加工作日期
-	RAC(self.workingLength, text) = RACObserve(self.viewModel.formsViewModel.model, workStartDate);
+	[[RACObserve(self.viewModel.formsViewModel.model, workStartDate)
+		map:^id(id value) {
+			if (value) {
+				return [NSDateFormatter msf_stringFromDate2:value];
+			}
+			return nil;
+	}] subscribeNext:^(NSString *x) {
+		@strongify(self)
+		if (x.length > 0) {
+			self.workingLength.text = x;
+		}
+	}];
 	[[self.workingLengthButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.startedWorkDateCommand execute:self.view];
@@ -248,7 +263,18 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	
 	//入职日期
-	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
+	[[RACObserve(self.viewModel.formsViewModel.model, empStandFrom)
+		map:^id(id value) {
+			if (value) {
+				return [NSDateFormatter msf_stringFromDate2:value];
+			}
+			return nil;
+		}] subscribeNext:^(NSString *x) {
+			@strongify(self)
+			if (x.length > 0) {
+				self.currentJobDate.text = x;
+			}
+		}];
 	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.startedDateCommand execute:self.view];

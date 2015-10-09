@@ -8,6 +8,7 @@
 
 #import "MSFApplicationForms.h"
 #import "MSFPhotoStatus.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @implementation MSFApplicationForms
 
@@ -52,6 +53,28 @@
 		}
 		
 		return nil;
+	}];
+}
+
++ (NSValueTransformer *)empStandFromJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *dateString) {
+		if (![dateString isKindOfClass:NSString.class]) {
+			return nil;
+		}
+		return [NSDateFormatter msf_dateFromString:dateString];
+	} reverseBlock:^id(NSDate *date) {
+		return [NSDateFormatter msf_fullStringFromDate:date];
+	}];
+}
+
++ (NSValueTransformer *)workStartDateJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *dateString) {
+		if (![dateString isKindOfClass:NSString.class]) {
+			return nil;
+		}
+		return [NSDateFormatter msf_dateFromString:dateString];
+	} reverseBlock:^id(NSDate *date) {
+		return [NSDateFormatter msf_fullStringFromDate:date];
 	}];
 }
 

@@ -309,7 +309,7 @@
 				NSLocalizedFailureReasonErrorKey: @"请填写正确的学校名称",
 			}]];
 		}
-		if (forms.empStandFrom.length == 0) {
+		if (!forms.empStandFrom) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择入学年月",
 			}]];
@@ -320,7 +320,7 @@
 			}]];
 		}
 	} else if ([forms.socialStatus isEqualToString:@"SI02"] || [forms.socialStatus isEqualToString:@"SI04"]) {
-		if (forms.workStartDate.length == 0) {
+		if (!forms.workStartDate) {
 			return [RACSignal error:[NSError	errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择参加工作日期",
 			}]];
@@ -346,7 +346,7 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择职位",
 			}]];
 		}
-		if (forms.empStandFrom.length == 0) {
+		if (!forms.empStandFrom) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择入职年月",
 			}]];
@@ -406,19 +406,8 @@
 	return [self.formsViewModel submitUserInfoType:2];
 }
 
-- (NSString *)compareDay:(NSString *)day1 earlierThanDay:(NSString *)day2 {
-	NSArray *components1 = [day1 componentsSeparatedByString:@"-"];
-	NSArray *components2 = [day2 componentsSeparatedByString:@"-"];
-	if (components1.count != 2) {
-		return @"请选择入职日期";
-	}
-	if (components2.count != 2) {
-		return @"请选择参加工作日期";
-	}
-	if ([components1[0] integerValue] < [components2[0] integerValue]) {
-		return @"入职日期不能早于参加工作日期";
-	}
-	if ([components1[0] integerValue] == [components2[0] integerValue] && [components1[1] integerValue] < [components2[1] integerValue]) {
+- (NSString *)compareDay:(NSDate *)day1 earlierThanDay:(NSDate *)day2 {
+	if (day1.timeIntervalSince1970 < day2.timeIntervalSince1970) {
 		return @"入职日期不能早于参加工作日期";
 	}
 	return nil;
@@ -446,7 +435,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.workStartDate = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
+			 self.formsViewModel.model.workStartDate = selectedDate;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -480,7 +469,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.empStandFrom = [NSDateFormatter msf_stringFromDate2:[NSDate msf_date:selectedDate]];
+			 self.formsViewModel.model.empStandFrom = selectedDate;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -495,6 +484,38 @@
 }
 
 - (RACSignal *)enrollmentYearSignal:(UIView *)aView {
+	@weakify(self)
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		
+		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+		NSDate *currentDate = [NSDate msf_date];
+		NSDateComponents *comps = [[NSDateComponents alloc] init];
+		[comps setYear:0];
+		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		[comps setYear:-5];
+		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+		
+		[ActionSheetDatePicker
+		 showPickerWithTitle:@""
+		 datePickerMode:UIDatePickerModeDate
+		 selectedDate:currentDate
+		 minimumDate:minDate
+		 maximumDate:maxDate
+		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+			 self.formsViewModel.model.empStandFrom = selectedDate;
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 cancelBlock:^(ActionSheetDatePicker *picker) {
+			 self.formsViewModel.model.empStandFrom = nil;
+			 [subscriber sendNext:nil];
+			 [subscriber sendCompleted];
+		 }
+		 origin:aView];
+		return nil;
+	}] replay];
+	/*
 	@weakify(self)
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
@@ -522,7 +543,7 @@
 		 } origin:aView];
 		
 		return nil;
-	}] replay];
+	}] replay];*/
 }
 
 @end
