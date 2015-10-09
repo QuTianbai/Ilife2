@@ -162,20 +162,8 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-<<<<<<< HEAD
-  if (!self.viewModel.isAuthenticated) {
-		[self.viewModel.signInCommand execute:nil];
-		return NO;
-  } else if (!self.viewModel.isUserAuthenticated) {
-    [self.viewModel.verifyCommand execute:nil];
-		return NO;
-  }
- 
- 
-	if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
-=======
+
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
->>>>>>> be03e3f2ebcae8741dcc8c5278680990aacce978
 		if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;
