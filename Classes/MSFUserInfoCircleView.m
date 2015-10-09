@@ -229,6 +229,7 @@
 	
 	@weakify(self)
 	_clickCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 			[subscriber sendNext:@(self.clickIndex)];
 			[subscriber sendCompleted];
