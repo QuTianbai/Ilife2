@@ -38,7 +38,7 @@
 	RAC(self, applyStatus) = [RACObserve(model, applyStatus) map:^id(NSString *status) {
 		NSDictionary *statusValues = @{@"A" : @"",
 																	 @"B" : @"审核中",
-																	 @"C" : @"合同未确认",
+																	 @"C" : @"确认合同",
 																	 @"D" : @"审核未通过",
 																	 @"E" : @"待放款",
 																	 @"F" : @"还款中",
@@ -51,7 +51,7 @@
 	RAC(self, contractStatus) = [RACObserve(model, contractStatus) map:^id(NSString *contractStatus) {
 		NSDictionary *statusValues = @{@"A" : @"",
 																	 @"B" : @"审核中",
-																	 @"C" : @"合同未确认",
+																	 @"C" : @"确认合同",
 																	 @"D" : @"审核未通过",
 																	 @"E" : @"待放款",
 																	 @"F" : @"还款中",

@@ -76,6 +76,7 @@
                             <constraint firstItem="mR0-cN-Bq2" firstAttribute="leading" secondItem="4e3-eE-Krw" secondAttribute="leading" id="q7y-Ay-WHX"/>
                             <constraint firstAttribute="trailing" secondItem="pmZ-tl-wi8" secondAttribute="trailing" id="ynY-HA-GvW"/>
                             <constraint firstItem="pmZ-tl-wi8" firstAttribute="top" secondItem="mR0-cN-Bq2" secondAttribute="bottom" id="zgt-io-MTy"/>
+                            <constraint firstAttribute="bottom" secondItem="pmZ-tl-wi8" secondAttribute="bottom" id="zuE-Yv-21J"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -83,13 +84,14 @@
                                 <exclude reference="pmZ-tl-wi8"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="juU-D1-2NH"/>
                                 <exclude reference="8Hy-f5-12P"/>
                                 <exclude reference="Dh5-ah-f2d"/>
                                 <exclude reference="q7y-Ay-WHX"/>
                                 <exclude reference="RAv-3A-bOI"/>
                                 <exclude reference="ynY-HA-GvW"/>
                                 <exclude reference="zgt-io-MTy"/>
+                                <exclude reference="zuE-Yv-21J"/>
+                                <exclude reference="juU-D1-2NH"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -98,13 +100,14 @@
                                 <include reference="pmZ-tl-wi8"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="juU-D1-2NH"/>
                                 <include reference="8Hy-f5-12P"/>
                                 <include reference="Dh5-ah-f2d"/>
                                 <include reference="q7y-Ay-WHX"/>
                                 <include reference="RAv-3A-bOI"/>
                                 <include reference="ynY-HA-GvW"/>
                                 <include reference="zgt-io-MTy"/>
+                                <include reference="zuE-Yv-21J"/>
+                                <exclude reference="juU-D1-2NH"/>
                             </mask>
                         </variation>
                     </view>

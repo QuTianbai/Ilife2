@@ -99,6 +99,8 @@
 			 subscribeNext:^(UIButton *x) {
 				 if ([x.titleLabel.text isEqualToString:@"审核中"] || [x.titleLabel.text isEqualToString:@"审核未通过"] || [x.titleLabel.text isEqualToString:@"待放款"] || [x.titleLabel.text isEqualToString:@"已取消"] || [x.titleLabel.text isEqualToString:@"已还款"]) {
 					 [viewModel pushDetailViewController];
+				 } else if ([x.titleLabel.text isEqualToString:@"确认合同"]) {
+					 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 				 }
 			 }];
 		} else {
@@ -127,21 +129,21 @@
 		[self placeholderShow:YES];
 	}
 	
-	self.ConFirmContractBT.hidden = YES;
+	//self.ConFirmContractBT.hidden = YES;
 	self.statusButton.hidden = NO;
-	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
-	 }];
+//	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+//	 }];
 	
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil] subscribeNext:^(id x) {
-		self.ConFirmContractBT.hidden = NO;
-		self.statusButton.hidden = YES;
-	}];
+//	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil] subscribeNext:^(id x) {
+//		self.ConFirmContractBT.hidden = NO;
+//		self.statusButton.hidden = YES;
+//	}];
 	
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil] subscribeNext:^(id x) {
-		self.ConFirmContractBT.hidden = YES;
-		self.statusButton.hidden = NO;
-	}];
+//	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil] subscribeNext:^(id x) {
+//		self.ConFirmContractBT.hidden = YES;
+//		self.statusButton.hidden = NO;
+//	}];
 }
 
 - (void)placeholderShow:(BOOL)b {
