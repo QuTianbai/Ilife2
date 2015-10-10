@@ -46,13 +46,13 @@
 		_topLineGuide = 40.f;
 		_labelHeight = 30.f;
 		
-		_contractNum		= [[UILabel alloc]init];
+		_contractNum = [[UILabel alloc]init];
 		_contractStatus = [[UILabel alloc]init];
-		_shouldAmount		= [[UILabel alloc]init];
-		_asOfDate				= [[UILabel alloc]init];
+		_shouldAmount = [[UILabel alloc]init];
+		_asOfDate = [[UILabel alloc]init];
 		_contractStatusLabel = [[UILabel alloc]init];
-		_shouldAmountLabel	 = [[UILabel alloc]init];
-		_asOfDateLabel			 = [[UILabel alloc]init];
+		_shouldAmountLabel = [[UILabel alloc]init];
+		_asOfDateLabel = [[UILabel alloc]init];
 		
 		[_contractNum setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
 		_contractNum.font = [UIFont systemFontOfSize:17];

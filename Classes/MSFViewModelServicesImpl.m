@@ -78,7 +78,7 @@
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFLoanViewModel class]]) {
-		if (((MSFLoanViewModel *)viewModel).isApply) {
+		if ([((MSFLoanViewModel *)viewModel).type isEqualToString:@"APPLY"]) {
 			viewController = [[MSFLoanListViewController alloc] init];
 		} else {
 			viewController = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];

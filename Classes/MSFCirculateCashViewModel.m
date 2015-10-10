@@ -13,11 +13,6 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 
 
-@interface MSFCirculateCashViewModel ()
-
-
-@end
-
 @implementation MSFCirculateCashViewModel
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {

@@ -65,6 +65,9 @@ static UIColor *backupColor;
 	} error:^(NSError *error) {
 		 [activityIndicatorView stopAnimating];
 		 label.text = error.userInfo[NSLocalizedFailureReasonErrorKey];
+	} completed:^{
+		[activityIndicatorView stopAnimating];
+		label.text = message;
 	}];
 	
 	return view;

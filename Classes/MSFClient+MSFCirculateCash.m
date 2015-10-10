@@ -14,19 +14,8 @@
 @implementation MSFClient (MSFCirculateCash)
 
 - (RACSignal *)fetchCirculateCash {
-	
-//	NSString *path = [[NSBundle mainBundle] pathForResource:@"cirCulate" ofType:@"json"];
-//	
-//	NSURL *url = [NSURL fileURLWithPath:path];
-//	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-	
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/currentloaninfo" parameters:@{@"uniqueId":MSFUtils.uniqueId}];
-
-	NSLog(@"%@", MSFUtils.uniqueId);
-	//currentloaninfo
-	
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
-	
 }
 
 @end
