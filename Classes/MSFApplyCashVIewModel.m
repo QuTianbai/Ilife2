@@ -57,7 +57,12 @@
 	//RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
-	RAC(self, model.lifeInsuranceAmt) = RACObserve(self, lifeInsuranceAmt);
+	RAC(self, model.lifeInsuranceAmt) = [RACObserve(self, lifeInsuranceAmt) map:^id(NSString *value) {
+		if (value == nil || [value isEqualToString:@""]) {
+			return @"0.00";
+		}
+		return value;
+	}];
 	RAC(self, model.loanFixedAmt) = RACObserve(self, loanFixedAmt);
 	
 	RAC(self, minMoney) = RACObserve(self, formViewModel.markets.allMinAmount);
