@@ -71,40 +71,6 @@
 
 #pragma mark - Private
 
-- (void)unAuthenticatedControllers {
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
-  MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
-	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
-  homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
-	homePageViewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录" style:UIBarButtonItemStyleDone target:nil action:nil];
-	homePageViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:nil action:nil];
-	
-	MSFCashHomePageViewController *productViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:nil];
-	
-//	MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:nil];
-  UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
-	
-	if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {//4101
-		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
-		self.circulateViewModel = viewModel;
-		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:nil];
-		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
-		
-	}
-	
-  productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
-	
-	
-  MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:nil];
-  UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
-	
-	
-  userpage.tabBarItem =  [self itemWithNormal:@"我的账户" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
-	
-	self.viewControllers = @[homepage, productpage, userpage];
-	self.selectedIndex = 0;
-}
-
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
@@ -112,23 +78,16 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
-	//MSFProductViewModel *productViewModel = [[MSFProductViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel];
-	
-	MSFApplyCashVIewModel *productViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
-	
-	MSFCashHomePageViewController *productViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:productViewModel];
-	
-	//MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:productViewModel];
-	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:productViewController];
+	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
+	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
+	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	
 	if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
-	self.circulateViewModel = viewModel;
+		self.circulateViewModel = viewModel;
 		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
 		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
-		
 	}
-	
 	productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
@@ -162,16 +121,13 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
 		if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;
-		} else {
-			if (!self.viewModel.formsViewModel.markets.teams == 0) {
-					self.viewModel.formsViewModel.active = NO;
-					self.viewModel.formsViewModel.active = YES;
-			}
+		} else if (!self.viewModel.formsViewModel.markets.teams == 0) {
+			self.viewModel.formsViewModel.active = NO;
+			self.viewModel.formsViewModel.active = YES;
 		}
   }
 
