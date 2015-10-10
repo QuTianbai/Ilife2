@@ -135,13 +135,10 @@
 		07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C551B1345DD00F2DFCC /* industry_category.json */; };
 		07C06C581B13461F00F2DFCC /* professional.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C571B13461E00F2DFCC /* professional.json */; };
 		07C06C5A1B13464200F2DFCC /* edu_background.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C591B13464200F2DFCC /* edu_background.json */; };
-		07C06C5C1B13465A00F2DFCC /* school_system.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C5B1B13465A00F2DFCC /* school_system.json */; };
 		07C06C761B1347C200F2DFCC /* familyMember_type.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C6E1B1347C200F2DFCC /* familyMember_type.json */; };
 		07C06C771B1347C200F2DFCC /* housing_conditions.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C6F1B1347C200F2DFCC /* housing_conditions.json */; };
 		07C06C781B1347C200F2DFCC /* json_banks.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C701B1347C200F2DFCC /* json_banks.json */; };
 		07C06C791B1347C200F2DFCC /* marital_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C711B1347C200F2DFCC /* marital_status.json */; };
-		07C06C7A1B1347C200F2DFCC /* relationship.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C721B1347C200F2DFCC /* relationship.json */; };
-		07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C731B1347C200F2DFCC /* service_year.json */; };
 		07C06C7C1B1347C200F2DFCC /* sex.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C741B1347C200F2DFCC /* sex.json */; };
 		07C06C7D1B1347C200F2DFCC /* social_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C751B1347C200F2DFCC /* social_status.json */; };
 		07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C06C801B134F8A00F2DFCC /* MSFSelectKeyValues.m */; };
@@ -532,7 +529,6 @@
 		49CA939B1BBAA80A0032F5C2 /* MSFCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CA939A1BBAA80A0032F5C2 /* MSFCard.m */; settings = {ASSET_TAGS = (); }; };
 		49CBDD9C1B0DD904009EF662 /* MSFBannersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDD9B1B0DD904009EF662 /* MSFBannersViewController.m */; };
 		49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */; };
-		49CBDDB41B0DF03E009EF662 /* banners.json in Resources */ = {isa = PBXBuildFile; fileRef = 49CBDDB31B0DF03E009EF662 /* banners.json */; };
 		49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */; };
 		49CCFBD81B07233F008A9CD1 /* MSFAboutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD71B07233F008A9CD1 /* MSFAboutsViewController.m */; };
 		49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBDA1B072359008A9CD1 /* MSFHomepageViewController.m */; };
@@ -935,13 +931,10 @@
 		07C06C551B1345DD00F2DFCC /* industry_category.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = industry_category.json; sourceTree = "<group>"; };
 		07C06C571B13461E00F2DFCC /* professional.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = professional.json; sourceTree = "<group>"; };
 		07C06C591B13464200F2DFCC /* edu_background.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edu_background.json; sourceTree = "<group>"; };
-		07C06C5B1B13465A00F2DFCC /* school_system.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = school_system.json; sourceTree = "<group>"; };
 		07C06C6E1B1347C200F2DFCC /* familyMember_type.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type.json; sourceTree = "<group>"; };
 		07C06C6F1B1347C200F2DFCC /* housing_conditions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = housing_conditions.json; sourceTree = "<group>"; };
 		07C06C701B1347C200F2DFCC /* json_banks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = json_banks.json; sourceTree = "<group>"; };
 		07C06C711B1347C200F2DFCC /* marital_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = marital_status.json; sourceTree = "<group>"; };
-		07C06C721B1347C200F2DFCC /* relationship.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = relationship.json; sourceTree = "<group>"; };
-		07C06C731B1347C200F2DFCC /* service_year.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service_year.json; sourceTree = "<group>"; };
 		07C06C741B1347C200F2DFCC /* sex.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sex.json; sourceTree = "<group>"; };
 		07C06C751B1347C200F2DFCC /* social_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = social_status.json; sourceTree = "<group>"; };
 		07C06C7F1B134F8A00F2DFCC /* MSFSelectKeyValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSelectKeyValues.h; sourceTree = "<group>"; };
@@ -1505,7 +1498,6 @@
 		49CBDD9B1B0DD904009EF662 /* MSFBannersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewController.m; sourceTree = "<group>"; };
 		49CBDDA01B0DD9C3009EF662 /* MSFBannersViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBannersViewModel.h; sourceTree = "<group>"; };
 		49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewModel.m; sourceTree = "<group>"; };
-		49CBDDB31B0DF03E009EF662 /* banners.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = banners.json; sourceTree = "<group>"; };
 		49CCFBD31B072327008A9CD1 /* MSFSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInViewController.h; sourceTree = "<group>"; };
 		49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInViewController.m; sourceTree = "<group>"; };
 		49CCFBD61B07233F008A9CD1 /* MSFAboutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAboutsViewController.h; sourceTree = "<group>"; };
@@ -2011,7 +2003,6 @@
 			isa = PBXGroup;
 			children = (
 				49E07D481BBD25F0001F9E1A /* code-message.json */,
-				49CBDDB31B0DF03E009EF662 /* banners.json */,
 				07AFE59F1B26D202009E0124 /* position.json */,
 				07C06C6E1B1347C200F2DFCC /* familyMember_type.json */,
 				10AEFB3D1BC53954009486DF /* familyMember_type1.json */,
@@ -2019,8 +2010,6 @@
 				07C06C6F1B1347C200F2DFCC /* housing_conditions.json */,
 				07C06C701B1347C200F2DFCC /* json_banks.json */,
 				07C06C711B1347C200F2DFCC /* marital_status.json */,
-				07C06C721B1347C200F2DFCC /* relationship.json */,
-				07C06C731B1347C200F2DFCC /* service_year.json */,
 				07C06C741B1347C200F2DFCC /* sex.json */,
 				07C06C751B1347C200F2DFCC /* social_status.json */,
 				07C06C4F1B1344AA00F2DFCC /* moneyUse.json */,
@@ -2029,7 +2018,6 @@
 				07C06C551B1345DD00F2DFCC /* industry_category.json */,
 				07C06C571B13461E00F2DFCC /* professional.json */,
 				07C06C591B13464200F2DFCC /* edu_background.json */,
-				07C06C5B1B13465A00F2DFCC /* school_system.json */,
 				49A342381B7992DF006F5106 /* life-insurance */,
 				4902E4071BC4B4640087FA1E /* mock-elements.json */,
 			);
@@ -4062,7 +4050,6 @@
 				49C0F1CE1B2C341400E92572 /* tabbar-apply-selected@2x.png in Resources */,
 				49C0F1A21B2C315100E92572 /* icon-check-normal@3x.png in Resources */,
 				49C0F1D41B2C341400E92572 /* tabbar-home-selected@2x.png in Resources */,
-				07C06C7B1B1347C200F2DFCC /* service_year.json in Resources */,
 				077347E71BBA338900D7A130 /* xingye@3x.png in Resources */,
 				C7D2D1221B67938C000F51ED /* icon-cloze-bankNO.png in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
@@ -4128,7 +4115,6 @@
 				4944C00E1B68A44A00805C0A /* icon-cloze-idcarddate.png in Resources */,
 				4944C00B1B68A44A00805C0A /* icon-cloze-idcard.png in Resources */,
 				4964448A1B69BA77001FB1BE /* btn-showpwd-selected.png in Resources */,
-				49CBDDB41B0DF03E009EF662 /* banners.json in Resources */,
 				4944C02B1B68A5A100805C0A /* icon-account-apply.png in Resources */,
 				074AC22C1BBA7A200056BA22 /* AddBankCard.storyboard in Resources */,
 				C7A351811B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@2x.png in Resources */,
@@ -4218,14 +4204,12 @@
 				4944C0311B68A5A100805C0A /* icon-account-info.png in Resources */,
 				077347E81BBA338900D7A130 /* youzheng.png in Resources */,
 				49C0F1A71B2C315100E92572 /* icon-password@2x.png in Resources */,
-				07C06C5C1B13465A00F2DFCC /* school_system.json in Resources */,
 				4964448C1B69BA77001FB1BE /* btn-showpwd-selected@3x.png in Resources */,
 				49C0F1A31B2C315100E92572 /* icon-check-selected.png in Resources */,
 				49E22AFE1B37ED9E00749717 /* btn-family-add@2x.png in Resources */,
 				4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */,
 				49C0F1B11B2C315100E92572 /* logo@3x.png in Resources */,
 				077347E61BBA338900D7A130 /* xingye@2x.png in Resources */,
-				07C06C7A1B1347C200F2DFCC /* relationship.json in Resources */,
 				49E07D3A1BBCF138001F9E1A /* bg-date-disable@2x.png in Resources */,
 				10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */,
 				C7A3517C1B217CB10001DF6A /* iconfont-guanyuwomen@3x.png in Resources */,
