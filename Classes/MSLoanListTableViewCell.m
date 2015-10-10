@@ -15,7 +15,6 @@
 #import "MSFApplyList.h"
 
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-
 #define TYPEFACECOLOR @"#585858"
 
 @interface MSLoanListTableViewCell ()
@@ -32,32 +31,32 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)
 reuseIdentifier {
-  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-  
-  if (self) {
-    _moneyLabel = [[UILabel alloc] init];
-    _monthsLabel = [[UILabel alloc] init];
-    _timeLabel = [[UILabel alloc] init];
-    _checkLabel = [[UILabel alloc] init];
-    
-    _moneyLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-    _monthsLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-    _timeLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-    
-    _moneyLabel.font = [UIFont systemFontOfSize:13];
-    _monthsLabel.font = [UIFont systemFontOfSize:13];
-    _timeLabel.font = [UIFont systemFontOfSize:13];
-    _checkLabel.font = [UIFont systemFontOfSize:12];
+	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+	
+	if (self) {
+		_moneyLabel = [[UILabel alloc] init];
+		_monthsLabel = [[UILabel alloc] init];
+		_timeLabel = [[UILabel alloc] init];
+		_checkLabel = [[UILabel alloc] init];
+		
+		_moneyLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+		_monthsLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+		_timeLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+		
+		_moneyLabel.font = [UIFont systemFontOfSize:13];
+		_monthsLabel.font = [UIFont systemFontOfSize:13];
+		_timeLabel.font = [UIFont systemFontOfSize:13];
+		_checkLabel.font = [UIFont systemFontOfSize:12];
 		
 		_moneyLabel.textAlignment = NSTextAlignmentCenter;
-    _monthsLabel.textAlignment = NSTextAlignmentCenter;
+		_monthsLabel.textAlignment = NSTextAlignmentCenter;
 		_timeLabel.textAlignment = NSTextAlignmentCenter;
 		_checkLabel.textAlignment = NSTextAlignmentCenter;
-    
-    [self addSubview:_moneyLabel];
-    [self addSubview:_monthsLabel];
-    [self addSubview:_timeLabel];
-    [self addSubview:_checkLabel];
+		
+		[self addSubview:_moneyLabel];
+		[self addSubview:_monthsLabel];
+		[self addSubview:_timeLabel];
+		[self addSubview:_checkLabel];
 		
 		CGFloat width = ([UIScreen mainScreen].bounds.size.width - 41) / 4;
 		@weakify(self)
@@ -74,7 +73,7 @@ reuseIdentifier {
 			make.left.equalTo(self.timeLabel.mas_right);
 			make.width.equalTo(@(width));
 		}];
-
+		
 		[_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.centerY.equalTo(self);
@@ -82,16 +81,16 @@ reuseIdentifier {
 			make.width.equalTo(@(width));
 		}];
 		
-    [_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+		[_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.moneyLabel.mas_right);
 			make.width.equalTo(@(width));
-    }];
+		}];
 		
-  }
-  
-  return self;
+	}
+	
+	return self;
 }
 
 - (void)bindModel:(MSFApplyList *)model {
@@ -99,6 +98,18 @@ reuseIdentifier {
 	_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.total_installments];
 	_timeLabel.text = model.apply_time;
 	_checkLabel.text = model.statusString;
+	
+	
+	if ([model.statusString isEqualToString:@""] || [model.statusString isEqualToString:@""] || [model.statusString isEqualToString:@""]) {
+		cell.selectable = YES;
+		cell.checkLabel.textColor = [MSFCommandView getColorWithString:ORAGECOLOR];
+	} else {
+		cell.selectable = NO;
+		cell.checkLabel.textColor = [MSFCommandView getColorWithString:@"#585858"];
+	}
+	
+	1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
+
 }
 
 - (void)setSelectable:(BOOL)selectable {
