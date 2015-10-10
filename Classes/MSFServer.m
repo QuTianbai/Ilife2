@@ -9,10 +9,10 @@
 
 #if DEBUG
 //
-NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
-NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080/msfinanceweb";//66
-//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
-//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
+//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
+//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080/msfinanceweb";//66
+NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
+NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
 //NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
 //NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
 
