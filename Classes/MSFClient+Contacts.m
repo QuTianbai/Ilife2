@@ -18,9 +18,10 @@
 	return [[self enqueueRequest:request resultClass:MSFContactListModel.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchContactsInfoWithID:(NSString *)contractID {
+- (RACSignal *)fetchContactsInfoWithAppNO:(NSString *)appNO AndProductNO:(NSString *)productCode AndtemplateType:(NSString *)templateType {
+	
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"POST" path:@"contract/showContract" parameters:@{@"contractId":contractID}];
+		NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/showDetail" parameters:@{@"appNo":appNO, @"productCode":productCode,@"templateType":templateType}];
 		[subscriber sendNext:request];
 		[subscriber sendCompleted];
 		return nil;
