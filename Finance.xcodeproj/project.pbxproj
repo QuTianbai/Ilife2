@@ -145,6 +145,9 @@
 		07C06C7C1B1347C200F2DFCC /* sex.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C741B1347C200F2DFCC /* sex.json */; };
 		07C06C7D1B1347C200F2DFCC /* social_status.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C751B1347C200F2DFCC /* social_status.json */; };
 		07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C06C801B134F8A00F2DFCC /* MSFSelectKeyValues.m */; };
+		07C158DC1BC8E7E600127339 /* addver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07C158D91BC8E7E600127339 /* addver.jpg */; settings = {ASSET_TAGS = (); }; };
+		07C158DD1BC8E7E600127339 /* addver@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07C158DA1BC8E7E600127339 /* addver@2x.jpg */; settings = {ASSET_TAGS = (); }; };
+		07C158DE1BC8E7E600127339 /* addver@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 07C158DB1BC8E7E600127339 /* addver@3x.jpg */; settings = {ASSET_TAGS = (); }; };
 		07C924D71B0C2D1C00FA73BD /* MSFLoanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C924D61B0C2D1C00FA73BD /* MSFLoanListViewController.m */; };
 		07C924DB1B0C603B00FA73BD /* MSLoanListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C924D91B0C603B00FA73BD /* MSLoanListTableViewCell.m */; };
 		07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C924DF1B0C84C800FA73BD /* MSFMarket.m */; };
@@ -944,6 +947,9 @@
 		07C06C751B1347C200F2DFCC /* social_status.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = social_status.json; sourceTree = "<group>"; };
 		07C06C7F1B134F8A00F2DFCC /* MSFSelectKeyValues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSelectKeyValues.h; sourceTree = "<group>"; };
 		07C06C801B134F8A00F2DFCC /* MSFSelectKeyValues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSelectKeyValues.m; sourceTree = "<group>"; };
+		07C158D91BC8E7E600127339 /* addver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addver.jpg; sourceTree = "<group>"; };
+		07C158DA1BC8E7E600127339 /* addver@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "addver@2x.jpg"; sourceTree = "<group>"; };
+		07C158DB1BC8E7E600127339 /* addver@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "addver@3x.jpg"; sourceTree = "<group>"; };
 		07C2E0731B1AE9FE00C7FEDE /* MSFReactiveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFReactiveView.h; sourceTree = "<group>"; };
 		07C924D51B0C2D1C00FA73BD /* MSFLoanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanListViewController.h; sourceTree = "<group>"; };
 		07C924D61B0C2D1C00FA73BD /* MSFLoanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanListViewController.m; sourceTree = "<group>"; };
@@ -2044,6 +2050,9 @@
 		07C497FF1B1420BE00069F74 /* loan */ = {
 			isa = PBXGroup;
 			children = (
+				07C158D91BC8E7E600127339 /* addver.jpg */,
+				07C158DA1BC8E7E600127339 /* addver@2x.jpg */,
+				07C158DB1BC8E7E600127339 /* addver@3x.jpg */,
 				07B3687F1B7ED86400574A81 /* basic-information-prompt-1242.png */,
 				07B368801B7ED86400574A81 /* basic-information-prompt-1242@2x.png */,
 				07B368811B7ED86400574A81 /* basic-information-prompt-1242@3x.png */,
@@ -3944,6 +3953,7 @@
 				077347CC1BBA338900D7A130 /* ABC@3x.png in Resources */,
 				49B37B5B1B608F39004EED47 /* bar-normal@2x.png in Resources */,
 				07E3ED721BBBC3020010AAD2 /* tradePassWordBG@3x.png in Resources */,
+				07C158DC1BC8E7E600127339 /* addver.jpg in Resources */,
 				49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
 				07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */,
@@ -4016,6 +4026,7 @@
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49E07D491BBD25F0001F9E1A /* code-message.json in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
+				07C158DE1BC8E7E600127339 /* addver@3x.jpg in Resources */,
 				4944C0131B68A44A00805C0A /* icon-cloze-name@3x.png in Resources */,
 				07B368841B7ED86400574A81 /* basic-information-prompt-1242@3x.png in Resources */,
 				4944C0531B68A60200805C0A /* icon-avatar-placeholder.png in Resources */,
@@ -4162,6 +4173,7 @@
 				4944C0151B68A44A00805C0A /* icon-cloze-selected.png in Resources */,
 				0747E2621BC3CD5100B4E572 /* UpdateTradePWD.storyboard in Resources */,
 				4944C0351B68A5A100805C0A /* icon-account-repay@2x.png in Resources */,
+				07C158DD1BC8E7E600127339 /* addver@2x.jpg in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-about@2x.png in Resources */,
 				07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */,
 				07E3ED751BBBC3020010AAD2 /* tradepasswordimg@3x.png in Resources */,
