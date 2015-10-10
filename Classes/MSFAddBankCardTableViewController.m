@@ -174,6 +174,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 }
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
+	[SVProgressHUD showWithStatus:@"正在绑定银行卡..." maskType:SVProgressHUDMaskTypeClear];
 	self.tradePwd = pwd;
 	if (type == 2) {
 		@weakify(self)

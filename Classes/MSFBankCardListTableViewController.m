@@ -67,6 +67,8 @@
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
 	
+	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+	
 	RAC(self, viewModel.pwd) = RACObserve(self, tradePwd);
 	@weakify(self)
 	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
@@ -326,6 +328,11 @@
 #pragma mark - MSFInputTradePasswordDelegate
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
+	NSString *str = @"正在设置主卡...";
+	if (type == 1) {
+		str = @"正在解绑银行卡...";
+	}
+	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
 	self.tradePwd = pwd;
 	if (type == 0) {
 		[[self.viewModel.executeSetMaster execute:nil]
