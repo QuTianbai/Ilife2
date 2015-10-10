@@ -11,7 +11,9 @@
 @interface MSFUser : MSFObject
 
 // 用户是否已设置交易密码
+// ##OBJCLEAN_SKIP##
 @property (nonatomic, copy, readonly) NSString *hasTransPwd __deprecated_msg("Use `hasTransactionalCode`");
+// ##OBJCLEAN_ENDSKIP##
 
 // 用户uniqueId
 @property (nonatomic, copy, readonly) NSString *uniqueId;

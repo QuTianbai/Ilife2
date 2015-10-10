@@ -76,8 +76,6 @@
 			}
 		}
 	} error:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-		//NSLog(@"%@", error);
 	}];
 }
 
