@@ -1,3 +1,359 @@
+Version 2.0.0.1:
+ - Bumping version to 2.0.0
+ - 确认合同
+ - Update 确认合同
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 确认合同
+ - 确认合同
+ - Update 测试环境地址
+ - Update 静态协议
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 确认合同
+ - Update 去掉合同查询错误提示
+ - 优化 基本信息验证
+ - Update 贷款申请协议
+ - commit
+ - Refactor client
+ - commit
+ - update 申请贷款列表日期格式
+ - 链接
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Merge remote-tracking branch 'origin/master'
+ - Refactor user class
+ - delete useless json file
+ - Fix 登录注册验证码倒计时
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update test repaymentPlanList
+ - Fix image fit
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge branch 'xbmDev' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 优化
+ - update loanListCell
+ - 马上贷首页图片
+ - Refactor tabbar view controller
+ - commit
+ - commit
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - update 贷款申请记录cell
+ - 默认寿险金额0.00
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update 马上贷状态显示
+ - Refactor client for nil response 204
+ - 合并
+ - 合并
+ - 马上贷时间钻换
+ - Fix merge issue
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Improve 验证码计数停止
+ - fix qq/jd/taobao code错误
+ - update 首页UI更新
+ - fix loanLimitView自适应字体
+ - 住房状况
+ - loanLimitView自适应字体
+ - 马上贷数据字典：婚姻，贷款用途
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷
+ - 完成个人信息接口bug调试修复
+ - 随借随还
+ - Refactor tabbar viewModel
+ - 银行卡默认图标
+ - 代码删除
+ - 随借随还
+ - 随借随还
+ - 随借随还
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update RepaymentTableViewCell UI
+ - commit
+ - update date/tap log
+ - recover date
+ - Improve 忘记密码
+ - 切换马上贷
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷
+ - merge code
+ - merge code
+ - update 工作信息提交日期格式
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Fix timeout can't login
+ - 提交银行卡显示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - haha
+ - Update 附件图片上传
+ - Fix merge warnings
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Improve edit inventory
+ - Update inventory
+ - Fix signature url encode
+ - Update cipher for upload binary data
+ - Update element sort for display
+ - Update required element property
+ - Update inventory viewmodel
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷
+ - update loanListViewController/repaymentListViewController
+ - 马上贷
+ - 银行卡图标
+ - test 申请列表、还款计划
+ - commit
+ - update 家庭信息通讯录图标/选择电话时同时更新姓名
+ - commit
+ - commit
+ - sortCode
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update 用户类型判别
+ - 马上贷
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/master'
+ - Improve timeout response
+ - update 首页UI/数据刷新逻辑
+ - 基本信息
+ - 清除 MSFLoanLimitView显示Null值
+ - 马上贷
+ - 申请贷款接口
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update personal/relationship
+ - 马上贷
+ - Improve fonts text
+ - mashangdai
+ - 马上贷
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷
+ - Fix 超时时间
+ - update professional/personal
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update professionalViewController
+ - 马上贷
+ - 合并
+ - 接口返回修改
+ - Improve 界面
+ - 马上贷
+ - 马上贷
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Refactor client
+ - 马上贷
+ - Improve client deviceinfo
+ - Update 附件清单管理
+ - Refactor attachements management
+ - Update 注册
+ - Fix specs
+ - Fix warnings
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update 提交家庭信息
+ - Update 注册协议文字
+ - Update 登录注册验证码校验
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Update 密码重置
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷
+ - Update 忘记密码
+ - Update 交易密码设置
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Update 退出登录
+ - 添加交易密码storyboard
+ - merge code
+ - merge code
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - update 首页个人信息显示
+ - 马上贷
+ - Update 修改登录手机号
+ - 交易密码
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 交易密码加密
+ - Fix specs
+ - update 首页获取数据
+ - update convertToDictionary
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 调试接口
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Update 提交申请单
+ - update申请记录、还款计划
+ - Update 更新用户登录密码
+ - 银行卡，交易密码接口调试
+ - 银行卡添加，设置主卡，解除绑定主卡已调通
+ - Update abouts viewcontroller
+ - Remove client request headers cookie
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - 调试拉取修改用户信息
+ - 调接口
+ - 调试
+ - merge code
+ - sort code
+ - Update 用户注册
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Update 发送验证码
+ - Improve 版本检测
+ - Update 登录如果没有验证码，则验证码不传给服务器
+ - Update Cipher
+ - sort code
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Update 设置
+ - 代码规范
+ - merge master
+ - update LoanViewModel
+ - 交易密码
+ - Update settings
+ - 交易密码
+ - 银行卡
+ - Refactor
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 忘记交易密码
+ - Remove tabarcontroller category
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Fix viewmodel
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 设置密码，验证码
+ - Add category
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update pages refresh
+ - Update max identifier card date
+ - Refactor
+ - Update request headers
+ - remove warnings
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - 马上贷，提交贷款
+ - Update 个人中心首页
+ - 马上贷
+ - Fix Specs
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update status setter
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷资料
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - 合并zhaoy
+ - 资料
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 设置交易密码
+ - Update 附件清单接口
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update userInformationViewController
+ - 马上贷
+ - Update 附件上传, 附件清单下载接口
+ - Update Element
+ - Update Podfile
+ - 马上贷
+ - Merge branch 'next'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Fix weak
+ - update homepage
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 马上贷
+ - Update client request timeout
+ - Improve login segmented view
+ - 马上贷
+ - add client request with network status
+ - Fix spec issue
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - 马上贷
+ - add circulateViewModel to homepage
+ - Fix specs
+ - Fix inventory spec
+ - Fix Specs errors
+ - 合并
+ - recover DEBUG BaseUrl
+ - @合并
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 贷款
+ - update homepage cell
+ - Fix merge conflict
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge branch 'todo/user' into next
+ - Update 用户登录ViewModel
+ - Update 用户登录密码接口
+ - Merge branch 'xbmDev' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update homepage banner
+ - 马上贷，循环现金贷 model字段
+ - 开发环境下增加调试信息输出窗口
+ - update forms
+ - Update 用户注册接口
+ - 循环现金贷
+ - Update 用户登录接口
+ - finish professional
+ - Refactor Utils
+ - Update Cipher
+ - Update Cipher
+ - Merge remote-tracking branch 'finance/zhaoyong' into xbmDev
+ - 添加银行卡，循环现金贷
+ - finish relationship
+ - Update 注册/登录 token
+ - Fix 身份证长期有效日期不能选中的时候状态显示
+ - Fix specs
+ - Update 定义验证码常量
+ - update
+ - Update 2.0 版本登录/注册
+ - finish relation UI
+ - add cell action
+ - relationship页面添加动态cells
+ - add relationship cells
+ - finish 基本信息子页面
+ - temp commit
+ - validating information; 09.29工作
+ - 个人信息页面
+ - convert to MSFApplicationForm
+ - 修改MSFPersonalViewController
+ - add MSFUserInformationViewController
+ - update MSFUserInfoCircleView font
+ - finish MSFUserInfoCircleView
+ - Add Group Table
+ - update MSFLoanLimitView
+ - Fix style warings
+ - Update Podfile
+ - @wip
+ - Merge branch 'next'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/master' into zhaoyong
+ - temp commit
+ - Merge branch 'todo/tests' into next
+ - Update Podfile
+ - Fix Tests
+ - Fix Cannot merge previous GCDA file: corrupt arc tag
+ - add MSFLoanLimitView
+ - Remove ObjectiveC.gcda
+ - Update gitignore
+ - Remove XcodeCoverage
+ - update crashlytics answer
+ - @wip Quick/Nimble
+ - Rename Test to TEST for test user
+ - Remove distribution keep release for appstore
+ - Add TP环境
+ - Add 测试环境，取消环境切换控件
+ - Add Debug log
+ - add Crashlytics Answers custom event
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 再次进入忘记密码页崩溃
+ - Update xcodeproj
+ - Update README
+ - Update README
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Add comments
+ - 注册页面记忆手机号
+ - Refactor settings
+ - Clean notification name
+ - Improve authentication failed
+ - update Crashlytics
+ - Improve 授权失败错误处理
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 升级Crashlytics
+
 Version 1.1.0.11:
  - Improve hidden history table header
  - Fix build issue
