@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addver.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MOR-Gi-nEe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addver.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="MOR-Gi-nEe">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                             </imageView>
@@ -44,14 +44,14 @@
                                 <exclude reference="ydl-0Z-1Uy"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5tq-X7-3g2"/>
-                                <exclude reference="8fV-Pa-atp"/>
-                                <exclude reference="O9v-nP-tQP"/>
+                                <exclude reference="O2Q-ub-nPF"/>
+                                <exclude reference="bvA-1b-0JY"/>
                                 <exclude reference="ckb-6T-YdD"/>
                                 <exclude reference="dt1-T0-Koy"/>
                                 <exclude reference="hn5-WP-Ejx"/>
-                                <exclude reference="O2Q-ub-nPF"/>
-                                <exclude reference="bvA-1b-0JY"/>
+                                <exclude reference="5tq-X7-3g2"/>
+                                <exclude reference="8fV-Pa-atp"/>
+                                <exclude reference="O9v-nP-tQP"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -60,14 +60,14 @@
                                 <include reference="ydl-0Z-1Uy"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5tq-X7-3g2"/>
-                                <include reference="8fV-Pa-atp"/>
-                                <include reference="O9v-nP-tQP"/>
+                                <include reference="O2Q-ub-nPF"/>
+                                <include reference="bvA-1b-0JY"/>
                                 <include reference="ckb-6T-YdD"/>
                                 <include reference="dt1-T0-Koy"/>
                                 <include reference="hn5-WP-Ejx"/>
-                                <include reference="O2Q-ub-nPF"/>
-                                <include reference="bvA-1b-0JY"/>
+                                <include reference="5tq-X7-3g2"/>
+                                <include reference="8fV-Pa-atp"/>
+                                <include reference="O9v-nP-tQP"/>
                             </mask>
                         </variation>
                     </view>

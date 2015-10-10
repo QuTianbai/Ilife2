@@ -7,6 +7,7 @@
 #import "MSFClient+Captcha.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
+#import "MSFAuthorizeViewModel.h"
 
 @implementation MSFClient (Captcha)
 
@@ -38,28 +39,28 @@
 }
 
 - (RACSignal *)fetchLoginCaptchaTradeWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
-																																																@"codeType": @"INIT_TRANS_PASSWORD",
-																																																@"mobile": phone
-																																																}];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters: @{
+		@"codeType": @"INIT_TRANS_PASSWORD",
+		@"mobile": phone
+	}];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)fetchLoginCaptchaForgetTradeWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
-																																																@"codeType": @"FORGET_TRANS_PASSWORD",
-																																																@"mobile": phone
-																																																}];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters: @{
+		@"codeType": @"FORGET_TRANS_PASSWORD",
+		@"mobile": phone
+	}];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)fetchCapthchaUpdateTradeWithPhone:(NSString *)phone {
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
-																																																@"codeType": @"MODIFY_TRANS_PASSWORD",
-																																																@"mobile": phone
-																																																}];
+		@"codeType": @"MODIFY_TRANS_PASSWORD",
+		@"mobile": phone
+	}];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
