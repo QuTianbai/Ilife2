@@ -26,7 +26,7 @@
 #import "MSFEdgeButton.h"
 #import "MSFApplyCashVIewModel.h"
 
-@interface MSFLoanAgreementController ()<UIWebViewDelegate>
+@interface MSFLoanAgreementController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
 @property (nonatomic, strong) MSFLoanAgreementViewModel *viewModel;
@@ -58,23 +58,16 @@
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal = [self.viewModel.agreementViewModel loanAgreementSignalWithViewModel:self.viewModel.formsViewModel];
-	[self.LoanAgreenmentWV stringByEvaluatingJavaScriptFromString:@"var script = document.createElement('script');"
-	 "script.type = 'text/javascript';"
-	 "script.text = \"function confirm() { "
-	 "window.location.href ='objc';"
-	 "}\";"
-	 "document.getElementsByTagName('head')[0].appendChild(script);"];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[self.LoanAgreenmentWV
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
 		withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
-		 [SVProgressHUD dismiss];
-	 }
-	 error:^(NSError *error) {
+			[SVProgressHUD dismiss];
+	 } error:^(NSError *error) {
 		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	 }];
+	}];
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];
@@ -89,29 +82,20 @@
 			MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
 			userInfoVC.showNextStep = YES;
 			[self.navigationController pushViewController:userInfoVC animated:YES];
-//			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"personal" bundle:nil];
-//			UIViewController <MSFReactiveView> *vc = storyboard.instantiateInitialViewController;
-//			vc.hidesBottomBarWhenPushed = YES;
-//			self.viewModel.formsViewModel.model.applyNo = applyCash.applyNo;
-//			self.viewModel.formsViewModel.model.loanId = applyCash.applyID;
-//			self.viewModel.formsViewModel.model.personId = applyCash.personId;
-//			MSFAddressViewModel *addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:self.viewModel.formsViewModel.currentAddress services:self.viewModel.services];
-//			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel addressViewModel:addressViewModel];
-//			[vc bindViewModel:viewModel];
-//			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
-	
-	
+	self.LoanAgreenmentWV.scrollView.delegate = self;
+	self.submitButton.enabled = NO;
 }
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
 }
+
+#pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
 	NSString *urlString = [[request URL] absoluteString];
@@ -121,6 +105,15 @@
 		return NO;
 	}
 	return YES;
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+			NSLog(@"BOTTOM REACHED");
+			self.submitButton.enabled = YES;
+	}
 }
 
 @end
