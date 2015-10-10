@@ -100,16 +100,13 @@ reuseIdentifier {
 	_checkLabel.text = model.statusString;
 	
 	
-	if ([model.statusString isEqualToString:@""] || [model.statusString isEqualToString:@""] || [model.statusString isEqualToString:@""]) {
-		cell.selectable = YES;
-		cell.checkLabel.textColor = [MSFCommandView getColorWithString:ORAGECOLOR];
+	if ([model.statusString isEqualToString:@"还款中"] || [model.statusString isEqualToString:@"已完结"] || [model.statusString isEqualToString:@"已逾期"]) {
+		self.selectable = YES;
+		self.checkLabel.textColor = [MSFCommandView getColorWithString:[UIColor orangeColor]];
 	} else {
-		cell.selectable = NO;
-		cell.checkLabel.textColor = [MSFCommandView getColorWithString:@"#585858"];
+		self.selectable = NO;
+		self.checkLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
 	}
-	
-	1：申请中，2：申请成功，3：申请失败，4：还款中，5：取消，6：已完结，7：已逾期
-
 }
 
 - (void)setSelectable:(BOOL)selectable {
