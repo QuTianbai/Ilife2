@@ -95,21 +95,10 @@ reuseIdentifier {
 }
 
 - (void)bindModel:(MSFApplyList *)model {
-
 	_moneyLabel.text = model.total_amount;
 	_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.total_installments];
 	_timeLabel.text = model.apply_time;
-	/*
-	if (model.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-		cell.selectable = YES;
-		cell.checkLabel.textColor = [MSFCommandView getColorWithString:ORAGECOLOR];
-	} else {
-		cell.selectable = NO;
-		cell.checkLabel.textColor = [MSFCommandView getColorWithString:@"#585858"];
-	}*/
-	
-	_checkLabel.text = @"状态";//[self getStatus:listModel.status.integerValue];
-
+	_checkLabel.text = model.statusString;
 }
 
 - (void)setSelectable:(BOOL)selectable {

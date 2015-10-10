@@ -11,28 +11,21 @@
 
 @implementation MSFApplyList
 
-/*
-+ (NSValueTransformer *)apply_timeJSONTransformer {
-	return [MTLValueTransformer transformerWithBlock:^id(NSString *string) {
-		return [NSDateFormatter msf_dateFromString:string];
-	}];
-}
-
-+ (NSValueTransformer *)loan_id_installmentsJSONTransformer {
-	return [MTLValueTransformer transformerWithBlock:^id(id object) {
-		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
-	}];
-}
-
-+ (NSValueTransformer *)total_installmentsJSONTransformer {
-	return [MTLValueTransformer transformerWithBlock:^id(id object) {
-		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
-	}];
-}*/
-
 + (NSValueTransformer *)current_installmentJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {
 		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
+}
+
++ (NSValueTransformer *)statusStringJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		NSDictionary *formatter = @{@"U" : @"正在处理",
+																@"R" : @"拒绝",
+																@"A" : @"通过",
+																@"C" : @"激活前取消",
+																@"N" : @"签署",
+																@"J" : @"放弃"};
+		return formatter[object];
 	}];
 }
 

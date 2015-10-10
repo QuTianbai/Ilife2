@@ -47,7 +47,6 @@
 	
 	self.dataArray = [[NSMutableArray alloc] init];
 	self.view.backgroundColor = [UIColor whiteColor];
-	[self.dataTableView registerClass:MSLoanListTableViewCell.class forCellReuseIdentifier:@"MSLoanListTableViewCell"];
 
 	[self creatTableView];
 	RACSignal *signal = [MSFUtils.httpClient fetchApplyList];
@@ -81,12 +80,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
 	return 44;
 }
 
 - (MSLoanListTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	MSLoanListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSLoanListTableViewCell"];
+	static NSString *identifier = @"MSLoanListTableViewCell";
+	MSLoanListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+	if (!cell) {
+		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+	}
 	[cell bindModel:[_dataArray objectAtIndex:indexPath.row]];
 	return cell;
 }
@@ -125,47 +127,6 @@
 }
 
 #pragma mark - Private
-
-- (NSString *)getStatus:(NSInteger)status {
-	//0 1：审核中，2：审核通过，3：审核未通过，4：还款中，5：取消，6：已完结，7：已逾期
-	switch (status) {
-		case 0:
-			return @"审核中";
-			break;
-		case 1:
-			return @"审核中";
-			break;
-		case 2:
-			return @"审核通过";
-			break;
-		case 3:
-			return @"审核未通过";
-			break;
-		case 4:
-			return @"还款中";
-			break;
-		case 5:
-			return @"已取消";
-			break;
-		case 6:
-			return @"已结束";
-			break;
-		case 7:
-			return @"已逾期";
-			break;
-		case 8:
-			return @"预审核通过";
-			break;
-		case 9:
-			return @"待放款";
-			break;
-		default:
-			return @"";
-			break;
-	}
-	
-	return @"";
-}
 
 - (void)headView {
 	_money = [[UILabel alloc] init];

@@ -9,15 +9,13 @@
 #import "MSFClient+ApplyList.h"
 #import "MSFApplyList.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import "MSFResponse.h"
 
 @implementation MSFClient (ApplyList)
 
 - (RACSignal *)fetchApplyList {
-	//NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	//NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loans" parameters:parameters];
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
-	return [[self enqueueRequest:request resultClass:nil] map:^id(id value) {
-		
+	return [[[self enqueueRequest:request resultClass:nil] collect] map:^id(id value) {
 		NSLog(@"%@", value);
 		return [MTLJSONAdapter modelsOfClass:MSFApplyList.class fromJSONArray:[self convertArray:value] error:nil];
 	}];
@@ -28,6 +26,9 @@
 		return obj;
 	} else {
 		if (class == NSString.class) {
+			if ([obj isKindOfClass:NSNumber.class]) {
+				return [obj stringValue];
+			}
 			return @"";
 		} else if (class == NSArray.class) {
 			return @[];
@@ -44,7 +45,8 @@
 	}
 	NSMutableArray *mArray = [NSMutableArray array];
 	for (int i = 0; i < array.count; i++) {
-		NSDictionary *dic = array[i];
+		MSFResponse *response = array[i];
+		NSDictionary *dic = response.parsedResult;
 		NSDictionary *apply =
 	@{@"apply_time" : [self filter:dic[@"applyTime"] class:NSString.class],
 		@"total_amount" : [self filter:dic[@"appLmt"] class:NSString.class],
