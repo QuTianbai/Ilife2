@@ -10,6 +10,6 @@
 
 @interface MSFClient (ConfirmContract)
 
-- (RACSignal *)fetchConfirmContractWithContractID:(NSString *)contractID;
+- (RACSignal *)fetchConfirmContractWithAppNO:(NSString *)appNO AndProductNO:(NSString *)productCode AndtemplateType:(NSString *)templateType;
 
 @end

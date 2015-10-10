@@ -18,9 +18,11 @@
 @property (nonatomic, strong) RACCommand *laterConfirmCommand;
 @property (nonatomic, strong) RACCommand *confirmCommand;
 @property (nonatomic, strong) RACCommand *requestConfirmCommand;
+@property (nonatomic, weak) id<MSFViewModelServices> servers;
 
 - (RACSignal *)requestContactInfo;
 - (id)initWithServers:(id<MSFViewModelServices>)servers;
 - (void)fetchContractist;
+- (RACSignal *)requestContactInfo:(NSString *)type;
 
 @end

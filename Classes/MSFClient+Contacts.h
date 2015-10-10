@@ -11,6 +11,6 @@
 @interface MSFClient (Contacts)
 
 - (RACSignal *)fetchContacts;
-- (RACSignal *)fetchContactsInfoWithID:(NSString *)contractID;
+- (RACSignal *)fetchContactsInfoWithAppNO:(NSString *)appNO AndProductNO:(NSString *)productCode AndtemplateType:(NSString *)templateType;
 
 @end

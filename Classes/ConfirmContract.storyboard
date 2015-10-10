@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="diY-Ug-NQr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="diY-Ug-NQr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
@@ -19,46 +19,104 @@
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-cN-Bq2">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pmZ-tl-wi8">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf9-rX-v8j" customClass="MSFEdgeButton">
+                                        <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                        <animations/>
+                                        <state key="normal" title="确认"/>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Lf9-rX-v8j" secondAttribute="bottom" constant="4" id="DZd-yj-o1v"/>
+                                    <constraint firstItem="Lf9-rX-v8j" firstAttribute="leading" secondItem="pmZ-tl-wi8" secondAttribute="leading" constant="20" id="Jp4-X7-CUt"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lf9-rX-v8j" secondAttribute="trailing" constant="20" id="LJX-ZV-awg"/>
+                                    <constraint firstAttribute="height" constant="44" id="dQd-li-6Or"/>
+                                    <constraint firstItem="Lf9-rX-v8j" firstAttribute="top" secondItem="pmZ-tl-wi8" secondAttribute="top" constant="4" id="eS9-jy-Rmb"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="Lf9-rX-v8j"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="dQd-li-6Or"/>
+                                        <exclude reference="DZd-yj-o1v"/>
+                                        <exclude reference="Jp4-X7-CUt"/>
+                                        <exclude reference="LJX-ZV-awg"/>
+                                        <exclude reference="eS9-jy-Rmb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="Lf9-rX-v8j"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="dQd-li-6Or"/>
+                                        <include reference="DZd-yj-o1v"/>
+                                        <include reference="Jp4-X7-CUt"/>
+                                        <include reference="LJX-ZV-awg"/>
+                                        <include reference="eS9-jy-Rmb"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="R7L-yu-c30" firstAttribute="top" secondItem="mR0-cN-Bq2" secondAttribute="bottom" id="SP5-EZ-5Ve"/>
-                            <constraint firstAttribute="trailing" secondItem="mR0-cN-Bq2" secondAttribute="trailing" id="Zvy-hy-sRt"/>
-                            <constraint firstItem="mR0-cN-Bq2" firstAttribute="leading" secondItem="4e3-eE-Krw" secondAttribute="leading" id="mY3-aY-BIl"/>
-                            <constraint firstItem="mR0-cN-Bq2" firstAttribute="top" secondItem="4e3-eE-Krw" secondAttribute="top" id="pwa-zM-djp"/>
+                            <constraint firstItem="mR0-cN-Bq2" firstAttribute="top" secondItem="4e3-eE-Krw" secondAttribute="top" id="8Hy-f5-12P"/>
+                            <constraint firstAttribute="trailing" secondItem="mR0-cN-Bq2" secondAttribute="trailing" id="Dh5-ah-f2d"/>
+                            <constraint firstItem="pmZ-tl-wi8" firstAttribute="leading" secondItem="4e3-eE-Krw" secondAttribute="leading" id="RAv-3A-bOI"/>
+                            <constraint firstItem="R7L-yu-c30" firstAttribute="top" secondItem="pmZ-tl-wi8" secondAttribute="bottom" id="juU-D1-2NH"/>
+                            <constraint firstItem="mR0-cN-Bq2" firstAttribute="leading" secondItem="4e3-eE-Krw" secondAttribute="leading" id="q7y-Ay-WHX"/>
+                            <constraint firstAttribute="trailing" secondItem="pmZ-tl-wi8" secondAttribute="trailing" id="ynY-HA-GvW"/>
+                            <constraint firstItem="pmZ-tl-wi8" firstAttribute="top" secondItem="mR0-cN-Bq2" secondAttribute="bottom" id="zgt-io-MTy"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="mR0-cN-Bq2"/>
+                                <exclude reference="pmZ-tl-wi8"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="SP5-EZ-5Ve"/>
-                                <exclude reference="Zvy-hy-sRt"/>
-                                <exclude reference="mY3-aY-BIl"/>
-                                <exclude reference="pwa-zM-djp"/>
+                                <exclude reference="8Hy-f5-12P"/>
+                                <exclude reference="Dh5-ah-f2d"/>
+                                <exclude reference="q7y-Ay-WHX"/>
+                                <exclude reference="RAv-3A-bOI"/>
+                                <exclude reference="ynY-HA-GvW"/>
+                                <exclude reference="zgt-io-MTy"/>
+                                <exclude reference="juU-D1-2NH"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="mR0-cN-Bq2"/>
+                                <include reference="pmZ-tl-wi8"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="SP5-EZ-5Ve"/>
-                                <include reference="Zvy-hy-sRt"/>
-                                <include reference="mY3-aY-BIl"/>
-                                <include reference="pwa-zM-djp"/>
+                                <include reference="8Hy-f5-12P"/>
+                                <include reference="Dh5-ah-f2d"/>
+                                <include reference="q7y-Ay-WHX"/>
+                                <include reference="RAv-3A-bOI"/>
+                                <include reference="ynY-HA-GvW"/>
+                                <include reference="zgt-io-MTy"/>
+                                <include reference="juU-D1-2NH"/>
                             </mask>
                         </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="button" destination="Lf9-rX-v8j" id="a0h-Ja-MFu"/>
                         <outlet property="confirmContractWebView" destination="mR0-cN-Bq2" id="WrW-zq-gYn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDX-E4-Nwm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="331.5" y="174"/>
+            <point key="canvasLocation" x="166.5" y="-11"/>
         </scene>
     </scenes>
 </document>

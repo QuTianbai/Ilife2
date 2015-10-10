@@ -12,10 +12,11 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFConfirmContractModel.h"
 
-@interface MSFConfirmContractViewController ()<UIWebViewDelegate>
+@interface MSFConfirmContractViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *confirmContractWebView;
 
 @property (nonatomic, strong) MSFConfirmContactViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UIButton *button;
 
 @end
 
@@ -70,6 +71,36 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFCONFIRMCONTACTIONLATERNOTIFICATION" object:nil];
 	}];
 	
+	NSArray *types = @[@"INTRODUCTION",@"CASH_CONTRACT",@"IMPORTENT_ITEM"];
+	static int index = 0;
+	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		if (index == 3) {
+			[self.navigationController popToRootViewControllerAnimated:YES];
+			return;
+		}
+		@strongify(self)
+		[[self.viewModel.requestConfirmCommand execute:types[index]] subscribeNext:^(id x) {
+			index++;
+			RACSignal *signal = [self.viewModel requestContactInfo];
+			[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
+				//[SVProgressHUD dismiss];
+			}];
+		}];
+	}];
+	
+	self.button.enabled = NO;
+	self.confirmContractWebView.scrollView.delegate = self;
+}
+
+- (RACSignal *)loanAgreementSignalWithViewModel:(MSFApplyCashVIewModel *)product {
+	return [[self.viewModel.services.httpClient
+					 fetchAgreementURLWithProduct:product]
+					flattenMap:^RACStream *(id value) {
+						return [[NSURLConnection rac_sendAsynchronousRequest:value]
+										reduceEach:^id(NSURLResponse *response, NSData *data){
+											return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+										}];
+					}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -93,6 +124,15 @@
 	}
 	return YES;
 	
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
+		NSLog(@"BOTTOM REACHED");
+		self.button.enabled = YES;
+	}
 }
 
 @end

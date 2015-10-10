@@ -13,7 +13,7 @@
  *
  *马上贷字段
  */
-@property (nonatomic, copy) NSString *type;//合同/申请单
+@property (nonatomic, copy) NSString *type;//合同/申请单，APPLY确认合同（applyStatus）不是得话contractStatus
 
 @property (nonatomic, copy) NSString *money;//申请单：申请金额 合同还款中为 ：每月应还款额  逾期状态：所有未还金额
 
@@ -25,7 +25,7 @@
 
 @property (nonatomic, copy) NSString *contractStatus;
 
-@property (nonatomic, copy) NSString *applyStatus;//状态：申请中，还款中，已逾期
+@property (nonatomic, copy) NSString *applyStatus;//状态：申请中，还款中，已逾期，
 
 @property (nonatomic, copy) NSString *produceType;//产品类型   循环贷/马上贷
 

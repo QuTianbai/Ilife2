@@ -12,6 +12,7 @@
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 
+
 @implementation MSFCirculateCashViewModel
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
@@ -72,8 +73,17 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
-			self.infoModel = x;
+		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
+			self.infoModel = model;
+			
+//			if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"A"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"A"])) {
+//				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
+//			} 
+			
+//			if ([model.contractStatus isEqualToString:@"A"]) {
+//				self.model = model;
+//				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
+			
 		} error:^(NSError *error) {
 			NSLog(@"%@", error.localizedDescription);
 		}];
