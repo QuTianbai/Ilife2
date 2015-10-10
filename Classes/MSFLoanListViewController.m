@@ -92,7 +92,7 @@
 	[cell bindModel:[_dataArray objectAtIndex:indexPath.row]];
 	return cell;
 }
-
+/*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 #warning TODO
@@ -104,7 +104,7 @@
 			[self.navigationController pushViewController:webViewController animated:YES];
 		}];
 	}
-}
+}*/
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {

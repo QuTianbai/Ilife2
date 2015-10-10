@@ -64,21 +64,11 @@
 	id<MSFViewModelServices>services = tabbarController.viewModel.services;
 	switch (index) {
 		case 0: {
-			MSFLoanViewModel *model = [[MSFLoanViewModel alloc] init];
-			model.type = @"APPLY";
-			[services pushViewModel:model];
-			return;
-			
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;
 		}
 		case 1: {
-			MSFLoanViewModel *model = [[MSFLoanViewModel alloc] init];
-			model.type = @"CONTRACT";
-			[services pushViewModel:model];
-			return;
-			
 			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;
