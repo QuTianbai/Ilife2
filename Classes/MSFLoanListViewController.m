@@ -69,6 +69,7 @@
 	self.dataTableView.dataSource = self;
 	self.dataTableView.delegate = self;
 	self.dataTableView.tableFooterView = [UIView new];
+	self.dataTableView.allowsSelection = YES;
 	
 	[self.view addSubview:self.dataTableView];
 }
@@ -168,33 +169,30 @@
 	[superView addSubview:_time];
 	[superView addSubview:_check];
 	
-	CGFloat width = ([UIScreen mainScreen].bounds.size.width - 41) / 4;
 	@weakify(self)
 	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerY.equalTo(superView);
-		make.left.equalTo(superView.mas_left).offset(8);
-		make.width.equalTo(@(width));
+		make.left.equalTo(superView);
 	}];
 	
 	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
 		make.centerY.equalTo(superView);
 		make.left.equalTo(self.time.mas_right);
-		make.width.equalTo(@(width));
 	}];
 	
 	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
 		make.centerY.equalTo(superView);
 		make.left.equalTo(self.months.mas_right);
-		make.width.equalTo(@(width));
 	}];
 	
 	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
 		make.centerY.equalTo(superView);
 		make.left.equalTo(self.money.mas_right);
-		make.width.equalTo(@(width));
+		make.right.equalTo(superView);
+		make.width.equalTo(@[_time, _months, _money]);
 	}];
 	
 }

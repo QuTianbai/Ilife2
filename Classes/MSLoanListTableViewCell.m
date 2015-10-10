@@ -58,34 +58,31 @@ reuseIdentifier {
 		[self addSubview:_timeLabel];
 		[self addSubview:_checkLabel];
 		
-		CGFloat width = ([UIScreen mainScreen].bounds.size.width - 41) / 4;
 		@weakify(self)
 		[_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.centerY.equalTo(self);
-			make.left.equalTo(self.mas_left).offset(8);
-			make.width.equalTo(@(width));
+			make.left.equalTo(self);
 		}];
 		
 		[_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {\
 			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.timeLabel.mas_right);
-			make.width.equalTo(@(width));
 		}];
 		
 		[_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.monthsLabel.mas_right);
-			make.width.equalTo(@(width));
 		}];
 		
 		[_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.moneyLabel.mas_right);
-			make.width.equalTo(@(width));
+			make.right.equalTo(self);
+			make.width.equalTo(@[_timeLabel, _monthsLabel, _moneyLabel]);
 		}];
 	}
 	
@@ -97,16 +94,16 @@ reuseIdentifier {
 	_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.total_installments];
 	_timeLabel.text = model.apply_time;
 	_checkLabel.text = model.statusString;
-	
+	/*
 	if ([model.statusString isEqualToString:@"还款中"] || [model.statusString isEqualToString:@"已完结"] || [model.statusString isEqualToString:@"已逾期"]) {
 		self.selectable = YES;
 		//self.checkLabel.textColor = [MSFCommandView getColorWithString:[UIColor orangeColor]];
 	} else {
 		self.selectable = NO;
 		//self.checkLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-	}
+	}*/
 }
-
+/*
 - (void)setSelectable:(BOOL)selectable {
 	_selectable = selectable;
 	if (selectable) {
@@ -116,6 +113,6 @@ reuseIdentifier {
 		self.accessoryType  = UITableViewCellAccessoryNone;
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
-}
+}*/
 
 @end
