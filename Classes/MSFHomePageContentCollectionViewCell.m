@@ -102,7 +102,7 @@
 			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
 			 subscribeNext:^(UIButton *x) {
-				 if ([x.titleLabel.text isEqualToString:@"申请中"]) {
+				 if ([x.titleLabel.text isEqualToString:@"审核中"] || [x.titleLabel.text isEqualToString:@"审核未通过"] || [x.titleLabel.text isEqualToString:@"待放款"] || [x.titleLabel.text isEqualToString:@"已取消"] || [x.titleLabel.text isEqualToString:@"已还款"]) {
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
