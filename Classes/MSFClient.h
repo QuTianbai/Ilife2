@@ -60,104 +60,91 @@ extern const NSInteger MSFClientErrorTooManyRequests;
 
 @interface MSFClient : AFHTTPRequestOperationManager
 
-/**
- * 添加request到请求队列
- *
- *	@param request		 The request
- *	@param resultClass The result Class
- *
- *	@return `requestClass == nil will return MSFResponse instance`
- */
+// 添加request到请求队列
+//
+// request		 - The request
+// resultClass - The result Class
+//
+// Returns `requestClass == nil will return MSFResponse instance`
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request resultClass:(Class)resultClass;
 
-/**
- *	添加与用户相关的请求到队列
- *
- *	@param method				GET POST PUT DELETE
- *	@param relativePath it must start with `/`
- *	@param parameters		参数
- *	@param resultClass	The result class
- *
- *	@return `requestClass == nil will return MSFResponse instance`
- */
+// 添加与用户相关的请求到队列
+//
+//  method			 - GET POST PUT DELETE
+//  relativePath - it must start with `/`
+//  parameters	 - 参数
+//  resultClass	 - The result class
+//
+// Returns `requestClass == nil will return MSFResponse instance`
 - (RACSignal *)enqueueUserRequestWithMethod:(NSString *)method relativePath:(NSString *)relativePath parameters:(NSDictionary *)parameters resultClass:(Class)resultClass;
 
-/**
- *	创建Client的方法
- *
- *	@param server MSFServer.dotComServer
- *
- *	@return client instance
- */
+// 创建Client的方法
+//
+// server - MSFServer.dotComServer
+//
+// Returns client instance
 - (instancetype)initWithServer:(MSFServer *)server;
 
+// Authenticated user
 @property (nonatomic, strong, readonly) MSFUser *user;
+
+// Service request headers `token`
 @property (nonatomic, copy, readonly) NSString *token;
 
+// Client authenticated with `user`
 @property (nonatomic, readonly, getter = isAuthenticated) BOOL authenticated;
 
-/**
- *	创建未授权的Client
- *
- *	@param user 用户信息 Use `userWithName:phone:` to create
- *
- *	@return client
- */
+// 创建未授权的Client
+//
+// user - 用户信息 Use `userWithName:phone:` to create
+//
+// Returns client
 + (instancetype)unauthenticatedClientWithUser:(MSFUser *)user;
 
-/**
- *	创建授权的Client
- *
- *	@param user	 User must contain objectID
- *	@param token 服务器返回的token
- *
- *	@return Client
- */
+// 创建授权的Client
+//
+// user	 - User must contain objectID
+// token - 服务器返回的token
+//
+// Returns Client
 + (instancetype)authenticatedClientWithUser:(MSFUser *)user token:(NSString *)token;
 
-/**
- *	用户手机号登录
- *
- *	@param user			Use `userWithName:phone:` to create
- *	@param password
- *	@param phone
- *
- *	@return authenticated client, Has token and user
- */
+// 用户手机号登录
+//
+// user			- Use `userWithServer:` create unauthenticated user
+// password - User password
+// phone	  - The User Phone number
+// captcha	- Option, When User login in different device
+//
+// Returns authenticated client, Has token and user
 + (RACSignal *)signInAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha;
 
-/**
- *  用户身份证登录
- *
- *  @param user     user contain server
- *  @param username user realname
- *  @param password user password
- *  @param idcard   user id card number
- *
- *  @return client with authenticated user, token
- */
+// 用户身份证登录
+//
+// user     - user contain server
+// username - user realname
+// password - user password
+// idcard   - user id card number
+//
+// Returns client with authenticated user, token
 + (RACSignal *)signInAsUser:(MSFUser *)user username:(NSString *)username password:(NSString *)password citizenID:(NSString *)idcard;
 
-/**
- *  2.0 版本注册
- *
- *  @param user        user witch contain api server
- *  @param password    The password
- *  @param phone       The phone number
- *  @param captcha     The captcha number
- *  @param realname    The user Chinese name
- *  @param citizenID   The User citizen ID Number
- *  @param expiredDate The User citizen ID number expired date, The Max value is 2099-12-31
- *
- *  @return authenticated client with user and token
- */
+// 2.0 版本注册
+//
+// user        - user witch contain api server
+// password    - The password
+// phone       - The phone number
+// captcha     - The captcha number
+// realname    - The user Chinese name
+// citizenID   - The User citizen ID Number
+// expiredDate - The User citizen ID number expired date, The Max value is 2099-12-31
+//
+// Returns authenticated client with user and token
 + (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha realname:(NSString *)realname citizenID:(NSString *)citizenID citizenIDExpiredDate:(NSDate *)expiredDate;
 
-/**
- *	退出登录
- *
- *	@return unauthenticated client, without token
- */
+// 退出登录
+//
+// Returns unauthenticated client, without token
 - (RACSignal *)signOut;
 
 // 用户加密
@@ -168,18 +155,22 @@ extern const NSInteger MSFClientErrorTooManyRequests;
 
 @interface MSFClient (Requests)
 
-/**
- *	Create JSON Requests
- *
- *	@param method			GET POST
- *	@param path				The path
- *	@param parameters
- *
- *	@return NSMutableURLRequest instance
- */
+// Create forms Requests
+//
+// method			- `GET` `POST`
+// path				- The path
+// parameters - The parameters
+//
+// Return NSMutableURLRequest instance
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(id)parameters;
-- (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void(^)(id <AFMultipartFormData> formData))block;
 
-- (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode;
+// Create mutable binary flow request
+//
+// method			- set POST
+// path				- The request path
+// parameters - request parameters
+//
+// Returns NSMutableURLRequest instance for submit image/file
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method path:(NSString *)path parameters:(NSDictionary *)parameters constructingBodyWithBlock:(void(^)(id <AFMultipartFormData> formData))block;
 
 @end

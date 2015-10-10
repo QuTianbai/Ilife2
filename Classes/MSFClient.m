@@ -42,8 +42,6 @@ NSString *const MSFClientErrorFieldKey = @"fields";
 NSString *const MSFClientErrorMessageCodeKey = @"code";
 NSString *const MSFClientErrorMessageKey = @"message";
 
-static const NSInteger MSFClientNotModifiedStatusCode = 204;
-
 static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPONSES";
 
 static MSFCipher *cipher;
@@ -349,7 +347,7 @@ static NSDictionary *messages;
 					[RACSignal return:client],
 					[RACSignal return:response],
 				]];
-		}];
+			}];
 	};
 	
 	return [[[[[registeringSignalWithUser(user)
@@ -628,11 +626,11 @@ static NSDictionary *messages;
 	RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
 			#if DEBUG
-			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
-				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
-			}
+				if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
+					NSLog(@"%@ %@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
+				}
 			#elif TEST
-				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
+				NSLog(@"%@ %@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			#endif
 			
 			[[RACSignal return:RACTuplePack(operation.response, responseObject)] subscribe:subscriber];
@@ -640,10 +638,10 @@ static NSDictionary *messages;
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 			#if DEBUG
 				if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
-					NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
+					NSLog(@"%@ %@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 				}
 			#elif TEST
-				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
+				NSLog(@"%@ %@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			#endif
 			
 			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
