@@ -64,6 +64,15 @@
 		if (contact.contactAddress.length < 8 || contact.contactAddress.length > 60) {
 			return [NSString stringWithFormat:@"请填写长度8~60的联系人%d联系地址", i + 1];
 		}
+		for (int j = 0; j < contactList.count; j++) {
+			if (i == j) {
+				continue;
+			}
+			MSFUserContact *contractJ = contactList[j];
+			if ([contractJ.contactName isEqualToString:contact.contactName] || [contractJ.contactMobile isEqualToString:contact.contactMobile]) {
+				return @"联系人的姓名或者手机号不能相同";
+			}
+		}
 	}
 	return nil;
 }
