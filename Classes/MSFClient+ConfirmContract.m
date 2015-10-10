@@ -12,8 +12,8 @@
 
 @implementation MSFClient (ConfirmContract)
 
-- (RACSignal *)fetchConfirmContractWithContractID:(NSString *)contractID {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"contract/confirm" parameters:@{@"contractId":contractID}];
+- (RACSignal *)fetchConfirmContractWithAppNO:(NSString *)appNO AndProductNO:(NSString *)productCode AndtemplateType:(NSString *)templateType {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/showDetail" parameters:@{@"appNo":appNO, @"productCode":productCode,@"templateType":templateType}];
 	
 	return [[self enqueueRequest:request resultClass:MSFConfirmContractModel.class] msf_parsedResults];
 }

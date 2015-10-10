@@ -12,7 +12,6 @@
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 
-NSString *const MSFCONFIRMCONTACTNOTIFACATION = @"MSFCONFIRMCONTACTNOTIFACATION";
 
 @implementation MSFCirculateCashViewModel
 
@@ -77,9 +76,9 @@ NSString *const MSFCONFIRMCONTACTNOTIFACATION = @"MSFCONFIRMCONTACTNOTIFACATION"
 		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
 			self.infoModel = model;
 			
-			if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"A"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"A"])) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-			} 
+//			if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"A"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"A"])) {
+//				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
+//			} 
 			
 //			if ([model.contractStatus isEqualToString:@"A"]) {
 //				self.model = model;
