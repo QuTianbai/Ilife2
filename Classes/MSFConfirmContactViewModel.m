@@ -18,9 +18,6 @@
 #import "MSFUtils.h"
 
 @interface MSFConfirmContactViewModel ()
-{
-	 id<MSFViewModelServices> _servers;
-}
 
 @property (nonatomic, strong) NSArray *contactsArray;
 @property (nonatomic, strong) MSFContactListModel *model;
@@ -74,7 +71,7 @@
 	[[self.servers.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
 		//self.infoModel = model;
 		@strongify(self)
-		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"A"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"A"])) {
+		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"C"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"C"])) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
 			self.circulateModel = model;
 			//self.appNO = model.contractNo;
@@ -123,15 +120,12 @@
 	}];
 }
 
-- (RACSignal *)requestContactInfo {
-	return [[[self.servers.httpClient fetchContactsInfoWithID:self.model.contactID] flattenMap:^RACStream *(id value) {
-		NSLog(@"request:%@", value);
+- (RACSignal *)requestContactInfo:(NSString *)type {
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:[MSFUtils productCode] AndtemplateType:type] flattenMap:^RACStream *(id value) {
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
 	}] replayLast];
-	
-	
 }
 
 //- (RACSignal *)requestContactInfo:(NSString *)type {
@@ -146,7 +140,7 @@
 //}
 
 - (RACSignal *)executeSubmitConfirmContract {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.contractNo AndProductNO:MSFUtils.productCode AndtemplateType:@""];
+	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:MSFUtils.productCode AndtemplateType:@""];
 }
 
 - (RACSignal *)executeSubmitConfirmContract:(NSString *)type {

@@ -80,8 +80,7 @@
 		if (self.confirmContactViewModel == nil) {
 			self.confirmContactViewModel = [[MSFConfirmContactViewModel alloc] initWithServers:self.viewModel.services];
 		} else {
-			
-			//[self.confirmContactViewModel fetchContractist];
+			[self.confirmContactViewModel fetchContractist];
 		}
 	}];
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFCONFIRMCONTACTNOTIFACATION object:nil] subscribeNext:^(id x) {

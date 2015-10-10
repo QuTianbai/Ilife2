@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="R7L-yu-c30"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4e3-eE-Krw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mR0-cN-Bq2">
@@ -28,15 +28,15 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lf9-rX-v8j" customClass="MSFEdgeButton">
                                         <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                         <animations/>
-                                        <state key="normal" title="确认"/>
+                                        <state key="normal" title="下一步"/>
                                     </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Lf9-rX-v8j" secondAttribute="bottom" constant="4" id="DZd-yj-o1v"/>
-                                    <constraint firstItem="Lf9-rX-v8j" firstAttribute="leading" secondItem="pmZ-tl-wi8" secondAttribute="leading" constant="20" id="Jp4-X7-CUt"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lf9-rX-v8j" secondAttribute="trailing" constant="20" id="LJX-ZV-awg"/>
+                                    <constraint firstItem="Lf9-rX-v8j" firstAttribute="leading" secondItem="pmZ-tl-wi8" secondAttribute="leading" constant="10" id="Jp4-X7-CUt"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lf9-rX-v8j" secondAttribute="trailing" constant="10" id="LJX-ZV-awg"/>
                                     <constraint firstAttribute="height" constant="44" id="dQd-li-6Or"/>
                                     <constraint firstItem="Lf9-rX-v8j" firstAttribute="top" secondItem="pmZ-tl-wi8" secondAttribute="top" constant="4" id="eS9-jy-Rmb"/>
                                 </constraints>
@@ -83,13 +83,13 @@
                                 <exclude reference="pmZ-tl-wi8"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="juU-D1-2NH"/>
                                 <exclude reference="8Hy-f5-12P"/>
                                 <exclude reference="Dh5-ah-f2d"/>
                                 <exclude reference="q7y-Ay-WHX"/>
                                 <exclude reference="RAv-3A-bOI"/>
                                 <exclude reference="ynY-HA-GvW"/>
                                 <exclude reference="zgt-io-MTy"/>
-                                <exclude reference="juU-D1-2NH"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -98,13 +98,13 @@
                                 <include reference="pmZ-tl-wi8"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="juU-D1-2NH"/>
                                 <include reference="8Hy-f5-12P"/>
                                 <include reference="Dh5-ah-f2d"/>
                                 <include reference="q7y-Ay-WHX"/>
                                 <include reference="RAv-3A-bOI"/>
                                 <include reference="ynY-HA-GvW"/>
                                 <include reference="zgt-io-MTy"/>
-                                <include reference="juU-D1-2NH"/>
                             </mask>
                         </variation>
                     </view>

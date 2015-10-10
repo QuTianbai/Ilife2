@@ -39,9 +39,8 @@
 	self.title = @"确认合同";
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.confirmContractWebView.delegate = self;
-	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
-	RACSignal *signal = [self.viewModel requestContactInfo];
+	RACSignal *signal = [self.viewModel requestContactInfo:@"INTRODUCTION"];
 	[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
 		//[SVProgressHUD dismiss];
 	}];
@@ -71,36 +70,32 @@
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFCONFIRMCONTACTIONLATERNOTIFICATION" object:nil];
 	}];
 	
-	NSArray *types = @[@"INTRODUCTION",@"CASH_CONTRACT",@"IMPORTENT_ITEM"];
+	NSArray *types = @[
+		@"CASH_CONTRACT",
+		@"CONTRACT_IMPORTENT_ITEM"
+	];
 	static int index = 0;
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		if (index == 3) {
-			[self.navigationController popToRootViewControllerAnimated:YES];
+		@strongify(self)
+		if (index == 2) {
+			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			}];
 			return;
 		}
-		@strongify(self)
-		[[self.viewModel.requestConfirmCommand execute:types[index]] subscribeNext:^(id x) {
-			index++;
-			RACSignal *signal = [self.viewModel requestContactInfo];
-			[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
-				//[SVProgressHUD dismiss];
+		self.button.enabled = NO;
+		[SVProgressHUD showWithStatus:@"正在加载..."];
+		RACSignal *signal = [self.viewModel requestContactInfo:types[index]];
+		[[self.confirmContractWebView
+			rac_liftSelector:@selector(loadHTMLString:baseURL:)
+			withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
+			subscribeNext:^(id x) {
+				index++;
 			}];
-		}];
 	}];
 	
 	self.button.enabled = NO;
 	self.confirmContractWebView.scrollView.delegate = self;
-}
-
-- (RACSignal *)loanAgreementSignalWithViewModel:(MSFApplyCashVIewModel *)product {
-	return [[self.viewModel.services.httpClient
-					 fetchAgreementURLWithProduct:product]
-					flattenMap:^RACStream *(id value) {
-						return [[NSURLConnection rac_sendAsynchronousRequest:value]
-										reduceEach:^id(NSURLResponse *response, NSData *data){
-											return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-										}];
-					}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -123,7 +118,10 @@
 		return NO;
 	}
 	return YES;
-	
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+	[SVProgressHUD dismiss];
 }
 
 #pragma mark - UIScrollViewDelegate
