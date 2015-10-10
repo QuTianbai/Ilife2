@@ -162,6 +162,7 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
 		if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
@@ -173,7 +174,7 @@
 			}
 		}
   }
-	
+
   return YES;
 }
 
