@@ -87,7 +87,6 @@ reuseIdentifier {
 			make.left.equalTo(self.moneyLabel.mas_right);
 			make.width.equalTo(@(width));
 		}];
-		
 	}
 	
 	return self;
@@ -99,23 +98,22 @@ reuseIdentifier {
 	_timeLabel.text = model.apply_time;
 	_checkLabel.text = model.statusString;
 	
-	
 	if ([model.statusString isEqualToString:@"还款中"] || [model.statusString isEqualToString:@"已完结"] || [model.statusString isEqualToString:@"已逾期"]) {
 		self.selectable = YES;
-		self.checkLabel.textColor = [MSFCommandView getColorWithString:[UIColor orangeColor]];
+		//self.checkLabel.textColor = [MSFCommandView getColorWithString:[UIColor orangeColor]];
 	} else {
 		self.selectable = NO;
-		self.checkLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+		//self.checkLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
 	}
 }
 
 - (void)setSelectable:(BOOL)selectable {
 	_selectable = selectable;
 	if (selectable) {
-		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		self.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
 		self.selectionStyle = UITableViewCellSelectionStyleDefault;
 	} else {
-		self.accessoryType = UITableViewCellAccessoryNone;
+		self.accessoryType  = UITableViewCellAccessoryNone;
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
 }
