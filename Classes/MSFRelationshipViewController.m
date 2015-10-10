@@ -19,6 +19,8 @@
 #import "MSFRelationshipViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
+#import "MSFAddress.h"
+#import "MSFAddressViewModel.h"
 
 #import "UIColor+Utils.h"
 #import "MSFCommandView.h"
@@ -39,6 +41,7 @@ ABPersonViewControllerDelegate>
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
 @property (nonatomic, assign) NSInteger statusHash;
+@property (nonatomic, strong) NSString *provinceAddress;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
@@ -51,10 +54,16 @@ ABPersonViewControllerDelegate>
 - (void)bindViewModel:(id)viewModel {
 	
 	self.viewModel = viewModel;
-	_statusHash = self.viewModel.formsViewModel.model.hash;
+	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
+	_statusHash = forms.hash;
 	
-	_tempContactList = [NSMutableArray arrayWithArray:self.viewModel.formsViewModel.model.contrastList];
+	MSFAddress *addrModel =
+	[MSFAddress modelWithDictionary:@{@"province" : forms.currentProvinceCode ?: @"", @"city" : forms.currentCityCode ?: @"", @"area" : forms.currentCountryCode ?: @""} error:nil];
+	MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:self.viewModel.services];
+	_provinceAddress = addrViewModel.address;
+
 	
+	_tempContactList = [NSMutableArray arrayWithArray:forms.contrastList];
 	if (_tempContactList.count < 2) {
 		MSFUserContact *contact0 = [[MSFUserContact alloc] init];
 		contact0.openDetailAddress = NO;
@@ -64,16 +73,17 @@ ABPersonViewControllerDelegate>
 		[_tempContactList addObject:contact1];
 	}
 
+	NSString *fullAddr = [NSString stringWithFormat:@"%@%@", _provinceAddress, forms.abodeDetail];
 	for (MSFUserContact *contact in _tempContactList) {
 		if (contact.contactAddress.length > 0) {
-			if ([contact.contactAddress isEqualToString:self.viewModel.formsViewModel.model.abodeDetail]) {
+			if ([contact.contactAddress isEqualToString:fullAddr]) {
 				contact.openDetailAddress = NO;
 			} else {
 				contact.openDetailAddress = YES;
 			}
 		} else {
 			if (!contact.openDetailAddress) {
-				contact.contactAddress = self.viewModel.formsViewModel.model.abodeDetail;
+				contact.contactAddress = fullAddr;
 			}
 		}
 	}
@@ -269,7 +279,7 @@ ABPersonViewControllerDelegate>
 				@strongify(self)
 				if (x.boolValue) {
 					contact.openDetailAddress = NO;
-					contact.contactAddress = self.viewModel.formsViewModel.model.abodeDetail;
+					contact.contactAddress = [NSString stringWithFormat:@"%@%@", _provinceAddress, self.viewModel.formsViewModel.model.abodeDetail];
 				} else {
 					contact.openDetailAddress = YES;
 					contact.contactAddress = nil;

@@ -146,8 +146,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	//学制
 	[[self.programLength rac_signalForControlEvents:UIControlEventEditingChanged]
 		subscribeNext:^(UITextField *textField) {
-			if (textField.text.length > 2) {
-				textField.text = [textField.text substringToIndex:2];
+			if (textField.text.length > 1) {
+				textField.text = [textField.text substringToIndex:1];
 			}
 		}];
 	RACChannelTerminal *eductionalLengthChannel = RACChannelTo(self.viewModel.formsViewModel.model, programLength);
