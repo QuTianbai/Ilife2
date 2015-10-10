@@ -10,20 +10,33 @@
 
 @interface MSFUser : MSFObject
 
-@property (nonatomic, copy, readonly) NSString *hasTransPwd;
+// 用户是否已设置交易密码
+@property (nonatomic, copy, readonly) NSString *hasTransPwd __deprecated_msg("Use `hasTransactionalCode`");
+
+// 用户uniqueId
 @property (nonatomic, copy, readonly) NSString *uniqueId;
+
 @property (nonatomic, copy) NSString *complateCustInfo;
+
+// 用户产品群
 @property (nonatomic, copy, readonly) NSString *productId;
+
+// 用户身份证号
 @property (nonatomic, copy, readonly) NSString *ident;
 
+// 用户userid
 @property (nonatomic, copy, readonly) NSString *userID;
+
+// 用户姓名
 @property (nonatomic, copy, readonly) NSString *name;
+
+// 用户手机号
 @property (nonatomic, copy, readonly) NSString *mobile;
+
+// 判断用户是否已设置交易密码
 @property (nonatomic, assign, readonly) BOOL hasTransactionalCode;
 
 // 客户类型
-//
-// (0为马上贷客户，1为白名单客户）
 @property (nonatomic, copy, readonly) NSString *type;
 
 /**
