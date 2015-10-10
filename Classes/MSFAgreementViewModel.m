@@ -9,6 +9,7 @@
 #import "MSFAgreement.h"
 #import "MSFClient+Agreements.h"
 #import "NSURLRequest+RequestWithIgnoreSSL.h"
+#import "MSFServer.h"
 
 @interface MSFAgreementViewModel ()
 
@@ -38,48 +39,74 @@
 	return self;
 }
 
-- (RACSignal *)registerAgreementSignal {
-	NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.registerURL];
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services model:(MSFAgreement *)agreement {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_services = services;
+	_agreement = agreement;
 	
-	return [[NSURLConnection rac_sendAsynchronousRequest:request]
-		reduceEach:^id(NSURLResponse *resposne, NSData *data){
-			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	return self;
+}
+
+- (RACSignal *)registerAgreementSignal {
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
+	return [[client
+		fetchRegisterURL]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
 		}];
 }
 
 - (RACSignal *)aboutAgreementSignal {
-	NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.aboutWeURL];
-	
-	return [[NSURLConnection rac_sendAsynchronousRequest:request]
-		reduceEach:^id(NSURLResponse *resposne, NSData *data){
-			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
+	return [[client
+		fetchAgreementURLWithType:@"ABOUT_US"]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
 		}];
 }
 
 - (RACSignal *)productAgreementSignal {
-	NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.productURL];
-	
-	return [[NSURLConnection rac_sendAsynchronousRequest:request]
-		reduceEach:^id(NSURLResponse *resposne, NSData *data){
-			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
+	return [[client
+		fetchAgreementURLWithType:@"PRODUCTION_INTRODUCTION"]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
 		}];
 }
 
 - (RACSignal *)usersAgreementSignal {
-	NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.helpURL];
-	
-	return [[NSURLConnection rac_sendAsynchronousRequest:request]
-		reduceEach:^id(NSURLResponse *resposne, NSData *data){
-			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
+	return [[client
+		fetchAgreementURLWithType:@"USER_HELP"]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
 		}];
 }
 
 - (RACSignal *)branchAgreementSignal {
-	NSURLRequest *request = [NSURLRequest requestWithURL:_agreement.branchesURL];
-	
-	return [[NSURLConnection rac_sendAsynchronousRequest:request]
-		reduceEach:^id(NSURLResponse *resposne, NSData *data){
-			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
+	return [[client
+		fetchAgreementURLWithType:@"STORE_BRANCH"]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
 		}];
 }
 
@@ -100,7 +127,7 @@
 				reduceEach:^id(NSURLResponse *response, NSData *data){
 					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 				}];
-			}];
+		}];
 }
 
 @end

@@ -21,4 +21,26 @@
 	}];
 }
 
+- (RACSignal *)fetchRegisterURL {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/article" parameters:@{
+			@"templateType" :@"REGISTRATION_PROTOCOL",
+		}];
+		[subscriber sendNext:request];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)fetchAgreementURLWithType:(NSString *)type {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/article" parameters:@{
+			@"templateType" :type,
+		}];
+		[subscriber sendNext:request];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
 @end

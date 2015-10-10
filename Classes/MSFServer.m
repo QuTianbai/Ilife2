@@ -8,13 +8,9 @@
 #import "MSFServer+Private.h"
 
 #if DEBUG
-//
-//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
-//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080/msfinanceweb";//66
+
 NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
-NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
-//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
-//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080/msfinanceweb";
+NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080";
 
 #elif UAT
 
@@ -39,7 +35,7 @@ NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 #endif
 
 NSString *const MSFServerAPIEndpointPathComponent = @"api/app/V1";
-NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
+NSString *const MSFServerAPIBaseWebPathComponent = @"api/app/V1";
 
 @implementation MSFServer
 
@@ -93,7 +89,7 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"msfinanceweb";
 - (NSURL *)baseWebURL {
 	NSString *endpoint = NSProcessInfo.processInfo.environment[@"BASE_WEBURL"];
 	if (endpoint.length > 0) return [NSURL URLWithString:endpoint];
-	return [NSURL URLWithString:MSFServerDotComBaseWebURL];
+	return [[NSURL URLWithString:MSFServerDotComBaseWebURL] URLByAppendingPathComponent:MSFServerAPIBaseWebPathComponent];
 }
 
 @end

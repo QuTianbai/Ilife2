@@ -17,6 +17,7 @@
 
 - (instancetype)initWithModel:(MSFAgreement *)agreement;
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services model:(MSFAgreement *)agreement;
 
 - (RACSignal *)registerAgreementSignal;
 - (RACSignal *)aboutAgreementSignal;

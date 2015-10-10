@@ -12,5 +12,7 @@
 @interface MSFClient (Agreements)
 
 - (RACSignal *)fetchAgreementURLWithProduct:(MSFApplyCashVIewModel *)product;
+- (RACSignal *)fetchRegisterURL;
+- (RACSignal *)fetchAgreementURLWithType:(NSString *)type;
 
 @end
