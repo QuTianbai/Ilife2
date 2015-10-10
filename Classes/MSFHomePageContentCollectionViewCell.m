@@ -64,6 +64,11 @@
 	id<MSFViewModelServices>services = tabbarController.viewModel.services;
 	switch (index) {
 		case 0: {
+			
+			MSFLoanViewModel *viewModel1 = [[MSFLoanViewModel alloc] init];
+			viewModel1.type = @"SSS";
+			[services pushViewModel:viewModel1];
+			return;
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;

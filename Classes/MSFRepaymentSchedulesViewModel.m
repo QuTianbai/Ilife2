@@ -23,7 +23,7 @@
 	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(id value) {
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
 		NSDateFormatter *df = [[NSDateFormatter alloc]init];
-		df.dateFormat = @"yyyy/MM/dd";
+		df.dateFormat = @"yyyy-MM-dd";
 		return [df stringFromDate:time];
 	}];
 	

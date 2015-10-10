@@ -9,7 +9,7 @@
 
 @interface MSFLoanViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) NSString *type;//合同/申请单
+@property (nonatomic, strong) NSString *type;//合同/申请单
 @property (nonatomic, strong, readonly) NSString *title;// 标题
 @property (nonatomic, strong, readonly) NSString *money;//申请单：申请金额。合同还款中为：每月应还款额；逾期状态：所有未还金额
 @property (nonatomic, strong, readonly) NSString *loanTerm;	// 期数
