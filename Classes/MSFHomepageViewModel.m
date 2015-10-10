@@ -56,19 +56,19 @@ static NSString *msf_whiteListUserCode = @"4101";
 		if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
 			return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
 				if (value.processing) {
+					self.viewModel.active = NO;
+					self.viewModel.active = YES;
 					return [RACSignal return:nil];
 				} else {
-					if (value.data) {
-						MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value.data services:services];
-						return [RACSignal return:@[viewModel]];
-					} else {
-						return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
-							MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
-							return @[viewModel];
-						}];
-					}
+					return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
+						MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
+						return @[viewModel];
+					}];
 				}
 			}];
+		} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
+			self.circulateCashViewModel.active = NO;
+			self.circulateCashViewModel.active = YES;
 		}
 		return [RACSignal return:nil];
 	}];
@@ -80,18 +80,10 @@ static NSString *msf_whiteListUserCode = @"4101";
 		@strongify(self)
 		self.viewModels = nil;
 	}];
-	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if (self.services.httpClient.user.isAuthenticated) {
-			if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
-				[self.refreshCommand execute:nil];
-				self.viewModel.active = NO;
-				self.viewModel.active = YES;
-			} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
-				self.circulateCashViewModel.active = NO;
-				self.circulateCashViewModel.active = YES;
-			}
+			[self.refreshCommand execute:nil];
 		}
 	}];
 	

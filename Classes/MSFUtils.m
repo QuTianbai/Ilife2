@@ -131,7 +131,7 @@ static MSFServer *server;
 
 + (NSString *)productCode {
 	//return @"2001";
-	NSLog(@"%@",[[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"]);
+	NSLog(@"%@", [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"]);
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"productCode"];
 }
 

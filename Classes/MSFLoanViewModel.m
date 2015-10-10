@@ -6,14 +6,12 @@
 
 #import "MSFLoanViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-
-#import "MSFApplyCashInfo.h"
 #import "MSFCirculateCashModel.h"
 
 @interface MSFLoanViewModel ()
 
 @property (nonatomic, weak) id<MSFViewModelServices>services;
-@property (nonatomic, strong) id model;
+@property (nonatomic, strong) MSFCirculateCashModel *model;
 
 @end
 
@@ -21,7 +19,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services {
+- (instancetype)initWithModel:(MSFCirculateCashModel *)model services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
@@ -29,37 +27,42 @@
 	_services = services;
 	_model = model;
 	
-	if ([model isKindOfClass:MSFApplyCashInfo.class]) {
-		_title = @"贷款申请状态";
-		_isApply = YES;
-		MSFApplyCashInfo *tempModel = model;
-		RAC(self, status) = [RACObserve(tempModel, status) map:^id(NSString *status) {
-			NSDictionary *statusValues = @{@"V" : @"申请中",
-																		 @"R" : @"还款中",
-																		 @"O" : @"已逾期"};
-			return statusValues[status];
-		}];
-		RAC(self, applyTime) = RACObserve(tempModel, applyTime);
-		RAC(self, applyLmt) = RACObserve(tempModel, appLmt);
-		RAC(self, loanTerm) = RACObserve(tempModel, loanTerm);
-		RAC(self, applyNo) = RACObserve(tempModel, appNo);
-	} else if ([model isKindOfClass:MSFCirculateCashModel.class]) {
-		_title = @"合同还款状态";
-		_isApply = NO;
-		MSFCirculateCashModel *tempModel = model;
-		RAC(self, status) = [RACObserve(tempModel, status) map:^id(NSString *status) {
-			NSDictionary *statusValues = @{@"V" : @"申请中",
-																		 @"R" : @"还款中",
-																		 @"O" : @"已逾期"};
-			return statusValues[status];
-		}];
-		RAC(self, type) = RACObserve(tempModel, type);
-		RAC(self, money) = RACObserve(tempModel, money);
-		RAC(self, applyDate) = RACObserve(tempModel, applyDate);
-		RAC(self, period) = RACObserve(tempModel, period);
-		RAC(self, currentPeriodDate) = RACObserve(tempModel, currentPeriodDate);
-		RAC(self, produceType) = RACObserve(tempModel, produceType);
-	}
+	RAC(self, type) = RACObserve(model, type);
+	RAC(self, title) = [RACObserve(model, type) map:^id(NSString *type) {
+		if ([type isEqualToString:@"APPLY"]) {
+			return @"贷款申请状态";
+		} else {
+			return @"合同还款状态";
+		}
+	}];
+	RAC(self, applyStatus) = [RACObserve(model, applyStatus) map:^id(NSString *status) {
+		NSDictionary *statusValues = @{@"A" : @"",
+																	 @"B" : @"审核中",
+																	 @"C" : @"合同未确认",
+																	 @"D" : @"审核未通过",
+																	 @"E" : @"待放款",
+																	 @"G" : @"已取消"};
+		return statusValues[status];
+	}];
+	RAC(self, contractStatus) = [RACObserve(model, contractStatus) map:^id(NSString *contractStatus) {
+		NSDictionary *statusValues = @{@"A" : @"",
+																	 @"F" : @"还款中",
+																	 @"H" : @"已还款",
+																	 @"I" : @"已逾期",
+																	 @"J" : @"已到期"};
+		return statusValues[contractStatus];
+	}];
+	RAC(self, money) = RACObserve(model, money);
+	RAC(self, loanTerm) = RACObserve(model, period);
+	
+	/*** 申请状态 ***/
+	RAC(self, applyTime) = RACObserve(model, applyDate);
+	//RAC(self, applyNo) = RACObserve(model, contractNo);
+	
+	/*** 还款状态 ***/
+	RAC(self, applyDate) = RACObserve(model, applyDate);
+	RAC(self, currentPeriodDate) = RACObserve(model, currentPeriodDate);
+
 	return self;
 }
 

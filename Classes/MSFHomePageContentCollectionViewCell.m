@@ -64,11 +64,21 @@
 	id<MSFViewModelServices>services = tabbarController.viewModel.services;
 	switch (index) {
 		case 0: {
+			MSFLoanViewModel *model = [[MSFLoanViewModel alloc] init];
+			model.type = @"APPLY";
+			[services pushViewModel:model];
+			return;
+			
 			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;
 		}
 		case 1: {
+			MSFLoanViewModel *model = [[MSFLoanViewModel alloc] init];
+			model.type = @"CONTRACT";
+			[services pushViewModel:model];
+			return;
+			
 			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:tabbarController.viewModel.formsViewModel];
 			[services pushViewModel:viewModel];
 			break;
@@ -84,10 +94,10 @@
 - (void)bindViewModel:(MSFLoanViewModel *)viewModel {
 	if (viewModel) {
 		[self placeholderShow:NO];
-		if (viewModel.isApply) {
+		if ([viewModel.type isEqualToString:@"APPLY"]) {
 			_titleLabel.text  = viewModel.title;
-			[_statusButton setTitle:viewModel.status forState:UIControlStateNormal];
-			_amountLabel.text = viewModel.applyLmt;
+			[_statusButton setTitle:viewModel.applyStatus forState:UIControlStateNormal];
+			_amountLabel.text = viewModel.money;
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
 			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
@@ -96,14 +106,13 @@
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
-			//return;
 		} else {
 			_titleLabel.text  = viewModel.title;
-			[_statusButton setTitle:viewModel.status forState:UIControlStateNormal];
+			[_statusButton setTitle:viewModel.contractStatus forState:UIControlStateNormal];
 			_amountLabel.text = viewModel.money;
-			if ([viewModel.status isEqualToString:@"还款中"]) {
+			if ([viewModel.contractStatus isEqualToString:@"还款中"]) {
 				_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
-			} else if ([viewModel.status isEqualToString:@"已逾期"]) {
+			} else if ([viewModel.contractStatus isEqualToString:@"已逾期"]) {
 				[_infoLabel setText:@"您的合同已逾期\n请及时联系客服还款：400-036-8876" highLightText:@"已逾期" highLightColor:[UIColor themeColorNew]];
 			} else {
 				_infoLabel.text = nil;
@@ -116,7 +125,6 @@
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
-			//return;
 		}
 	} else {
 		NSString *compeltionStatus = [MSFUtils httpClient].user.complateCustInfo;

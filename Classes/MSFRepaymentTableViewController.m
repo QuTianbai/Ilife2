@@ -35,7 +35,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"还款计划";
+	self.navigationItem.title = @"还款计划";
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	
 	RACSignal *signal = [[[[MSFUtils.httpClient fetchRepaymentSchedules] map:^id(id value) {
 		return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value];
 	}]
@@ -55,6 +57,10 @@
 	self.tableView.tableFooterView = UIView.new;
 	self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.tableView sourceSignal:signal selectionCommand:command registerClass:MSFRepaymentTableViewCell.class];
 	self.bindingHelper.delegate = self;
+}
+
+- (void)back {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDelegate

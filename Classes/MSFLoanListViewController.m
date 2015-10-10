@@ -42,11 +42,13 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"申请记录";
+	self.navigationItem.title = @"申请记录";
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	
 	self.dataArray = [[NSMutableArray alloc] init];
 	self.view.backgroundColor = [UIColor whiteColor];
 	[self.dataTableView registerClass:MSLoanListTableViewCell.class forCellReuseIdentifier:@"MSLoanListTableViewCell"];
-	
+
 	[self creatTableView];
 	RACSignal *signal = [MSFUtils.httpClient fetchApplyList];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
@@ -57,6 +59,10 @@
 		self.dataArray = x;
 		[self.dataTableView reloadData];
 	}];
+}
+
+- (void)back {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)creatTableView {

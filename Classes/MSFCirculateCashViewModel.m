@@ -11,11 +11,6 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
 
-@interface MSFCirculateCashViewModel ()
-
-
-@end
-
 @implementation MSFCirculateCashViewModel
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
