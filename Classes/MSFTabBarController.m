@@ -168,10 +168,10 @@
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;
 		} else {
-			if (!self.viewModel.formsViewModel.markets.teams == 0) {
+			//if (!self.viewModel.formsViewModel.markets.teams == 0) {
 					self.viewModel.formsViewModel.active = NO;
 					self.viewModel.formsViewModel.active = YES;
-			}
+			//}
 		}
   }
 

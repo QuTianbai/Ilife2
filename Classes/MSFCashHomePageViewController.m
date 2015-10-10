@@ -18,7 +18,7 @@
 #import "MSFProductViewController.h"
 
 @interface MSFCashHomePageViewController ()
-@property (weak, nonatomic) IBOutlet MSFEdgeButton *nextBT;
+@property (weak, nonatomic) IBOutlet UIButton *nextBT;
 
 @end
 
@@ -34,9 +34,8 @@
 }
 
 - (void)viewDidLoad {
-	
-	
     [super viewDidLoad];
+	self.title = @"马上贷";
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
 	
 	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {
