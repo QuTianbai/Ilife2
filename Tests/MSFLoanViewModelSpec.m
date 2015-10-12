@@ -19,17 +19,9 @@ beforeEach(^{
   viewModel = [[MSFLoanViewModel alloc] initWithModel:model services:nil];
 });
 
-//TODO: 区分不同的model，请求状态下的model还是
-xit(@"should initialize", ^{
+it(@"should initialize", ^{
   // then
   expect(viewModel).notTo(beNil());
-  expect(viewModel.status).to(equal(@"无效"));
-  expect(viewModel.applyDate).to(equal(@"2015年05月03日"));
-//  expect(viewModel.repaidAmount).to(equal(@"200"));
-//  expect(viewModel.totalAmount).to(equal(@"300"));
-//  expect(viewModel.mothlyRepaymentAmount).to(equal(@"400"));
-//  expect(viewModel.totalInstallments).to(equal(@"10"));
-//  expect(viewModel.currentInstallment).to(equal(@"4"));
 });
 
 QuickSpecEnd
