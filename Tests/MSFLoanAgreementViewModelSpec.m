@@ -30,7 +30,6 @@ it(@"should initialize", ^{
 	expect(viewModel).notTo(beNil());
 	expect(viewModel.product).to(equal(product));
 	expect(viewModel.services).to(equal(services));
-	expect(viewModel.agreementViewModel).notTo(beNil());
 });
 
 QuickSpecEnd

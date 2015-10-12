@@ -9,8 +9,8 @@
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFAgreementViewModel.h"
 #import "MSFUtils.h"
+#import "MSFClient+Agreements.h"
 
 @implementation MSFRegisterAgreementViewController
 
@@ -22,6 +22,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"用户注册协议";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	UIWebView *webView = UIWebView.new;
 	[self.view addSubview:webView];
@@ -31,10 +32,12 @@
 	
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[webView
-		 rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		 withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.registerAgreementSignal, [RACSignal return:nil]]]]
-		deliverOn:
-		[RACScheduler mainThreadScheduler]]
+		rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		withSignalOfArguments:[RACSignal combineLatest:@[
+			[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeRegister],
+			[RACSignal return:nil]
+		]]]
+		deliverOn:RACScheduler.mainThreadScheduler]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 		}

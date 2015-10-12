@@ -11,8 +11,8 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFAddress.h"
-#import "MSFAgreementViewModel.h"
 #import "MSFApplyCashVIewModel.h"
+#import "MSFClient+Agreements.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -22,7 +22,6 @@
 		return nil;
 	}
 	_product = formsViewModel;
-	_agreementViewModel = [[MSFAgreementViewModel alloc] initWithServices:formsViewModel.services];
 	_formsViewModel = formsViewModel;
 	_services = formsViewModel.services;
 	@weakify(self)
@@ -32,6 +31,10 @@
 	}];
 	
 	return self;
+}
+
+- (RACSignal *)loanAgreementSignal {
+	return [self.services.httpClient fetchLoanAgreementWithProduct:self.formsViewModel];
 }
 
 @end

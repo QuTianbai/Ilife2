@@ -16,6 +16,7 @@
 
 @property (nonatomic, strong) NSURL *HTMLURL;
 @property (nonatomic, strong) NSURLRequest *request;
+@property (nonatomic, strong) MSFWebViewModel *viewModel;
 
 @end
 
@@ -26,8 +27,7 @@
 	if (!self) {
 		return nil;
 	}
-	_HTMLURL = viewModel.URL;
-	_request = [NSURLRequest requestWithURL:self.HTMLURL];
+	_viewModel = viewModel;
 	
 	return self;
 }
@@ -63,24 +63,44 @@
 	}];
 	
 	[SVProgressHUD showWithStatus:@"正在加载...."];
-
-	[webView loadRequest:self.request
-	 progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-	 }
-	 success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
-		 [SVProgressHUD dismiss];
-		 return HTML;
-	 }
-	 failure:^(NSError *error) {
-		 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	 }];
-	
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+	}];
 	[[self rac_signalForSelector:@selector(webViewDidFinishLoad:) fromProtocol:@protocol(UIWebViewDelegate)]
-	 subscribeNext:^(RACTuple *x) {
-		 UIWebView *webView = x.last;
-		 NSString *theTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-		 self.title = theTitle;
-	 }];
+		subscribeNext:^(RACTuple *x) {
+			UIWebView *webView = x.last;
+			NSString *theTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+			self.title = theTitle;
+		}];
+	
+	if (!self.viewModel) {
+		[webView loadRequest:self.request
+		 progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+		 }
+		 success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
+			 [SVProgressHUD dismiss];
+			 return HTML;
+		 }
+		 failure:^(NSError *error) {
+			 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		 }];
+		 return;
+	}
+	
+	[[[webView
+		rac_liftSelector:@selector(loadHTMLString:baseURL:)
+		withSignalOfArguments:[RACSignal combineLatest:@[
+			self.viewModel.HTMLSignal,
+			[RACSignal return:nil]
+		]]]
+		deliverOn:RACScheduler.mainThreadScheduler]
+		subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}
+		error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+	
 }
 
 #pragma mark - UIWebViewDelegate

@@ -5,17 +5,14 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @interface MSFWebViewModel : RVMViewModel
 
-// viewModel URL load html
-@property (nonatomic, strong, readonly) NSURL *URL;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
-// Create new viewModel
-//
-// URL - Use to load webview html
-//
-// return viewModel instance
-- (instancetype)initWithURL:(NSURL *)URL;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)agreementType;
+
+- (RACSignal *)HTMLSignal;
 
 @end

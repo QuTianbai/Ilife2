@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
-#import "MSFAgreementViewModel.h"
+#import "MSFClient+Agreements.h"
 
 @implementation MSFBranchesCell
 
@@ -20,7 +20,7 @@
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_branchWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.branchAgreementSignal, [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeAddresses], [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

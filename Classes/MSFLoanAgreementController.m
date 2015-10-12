@@ -11,7 +11,6 @@
 #import <libextobjc/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
-#import "MSFAgreementViewModel.h"
 #import "MSFApplicationResponse.h"
 #import "MSFApplicationForms.h"
 #import "MSFLoanAgreementViewModel.h"
@@ -57,11 +56,10 @@
 	self.title = @"贷款协议";
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RACSignal *signal = [self.viewModel.agreementViewModel loanAgreementSignalWithViewModel:self.viewModel.formsViewModel];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[self.LoanAgreenmentWV
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[self.viewModel.loanAgreementSignal, [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

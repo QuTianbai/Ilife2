@@ -13,7 +13,7 @@
 
 @interface MSFUtils : NSObject
 
-//	设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
+// 设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
 //
 // Returns an signal after fetch server timestamp
 + (RACSignal *)setupSignal;
@@ -26,13 +26,10 @@
 // The global Server
 + (MSFServer *)server;
 
-// The global agreement viewModel
-+ (MSFAgreementViewModel *)agreementViewModel;
-
-//	登录 需要更新这里的client以保证client是授权的
-//	退出登录 需要设置为nil,检测到其他设备登录的时候都应该设置为nil
+// 登录 需要更新这里的client以保证client是授权的
+// 退出登录 需要设置为nil,检测到其他设备登录的时候都应该设置为nil
 //
-//	httpClient -  Update global http request client
+// httpClient -  Update global http request client
 + (void)setHttpClient:(MSFClient *)httpClient;
 
 // 存储用户登录手机号
