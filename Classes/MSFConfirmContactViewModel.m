@@ -66,6 +66,10 @@
 	return self;
 }
 
+- (RACSignal *)requestContactInfo {
+	return RACSignal.empty;
+}
+
 - (void)fetchContractist {
 	@weakify(self)
 	[[self.servers.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
@@ -127,17 +131,6 @@
 		}];
 	}] replayLast];
 }
-
-//- (RACSignal *)requestContactInfo:(NSString *)type {
-//	return [[[self.servers.httpClient fetchContactsInfoWithID:self.model.contactID] flattenMap:^RACStream *(id value) {
-//		NSLog(@"request:%@", value);
-//		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
-//			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//		}];
-//	}] replayLast];
-//	
-//	
-//}
 
 - (RACSignal *)executeSubmitConfirmContract {
 	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:MSFUtils.productCode AndtemplateType:@""];

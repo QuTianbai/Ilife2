@@ -21,11 +21,22 @@
 	[SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 130)];
 	[SVProgressHUD setForegroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[SVProgressHUD showWithStatus:@""];
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"repay" ofType:@"json"]]];
 	
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{@"appLmt": appLmt?:@"", @"loanTerm": loanTerm, @"productCode": productCode, @"jionLifeInsurance": @"0"?:@"", @"uniqueId":MSFUtils.uniqueId}];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{
+		@"appLmt": appLmt?:@"",
+		@"loanTerm": loanTerm,
+		@"productCode": productCode,
+		@"jionLifeInsurance": jionLifeInsurance.boolValue ? @"1" : @"0",
+		@"uniqueId": MSFUtils.uniqueId
+	}];
 
-	return [[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class] msf_parsedResults];
+	return [[[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class]
+		msf_parsedResults]
+		doError:^(NSError *error) {
+			[SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
+			[SVProgressHUD setForegroundColor:[UIColor blackColor]];
+			[SVProgressHUD resetOffsetFromCenter];
+		}];
 }
 
 @end
