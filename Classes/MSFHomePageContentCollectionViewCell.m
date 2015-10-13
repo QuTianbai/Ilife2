@@ -26,6 +26,7 @@
 #import "UIColor+Utils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
+#import "MSFDeviceGet.h"
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -35,7 +36,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
 
 @property (assign, nonatomic) BOOL circleShow;
@@ -43,6 +43,21 @@
 @end
 
 @implementation MSFHomePageContentCollectionViewCell
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+	}
+	return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	if (self) {
+		
+	}
+	return self;
+}
 
 - (void)awakeFromNib {
 	
@@ -52,6 +67,7 @@
 	_circleView.alpha = 1;
 	_content.alpha = 0;
 	_circleShow = YES;
+	
 	@weakify(self)
 	[[_circleView.clickCommand.executionSignals switchToLatest]
 	 subscribeNext:^(NSNumber *x) {
@@ -129,21 +145,7 @@
 		[self placeholderShow:YES];
 	}
 	
-	//self.ConFirmContractBT.hidden = YES;
 	self.statusButton.hidden = NO;
-//	[[self.ConFirmContractBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//		 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
-//	 }];
-	
-//	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil] subscribeNext:^(id x) {
-//		self.ConFirmContractBT.hidden = NO;
-//		self.statusButton.hidden = YES;
-//	}];
-	
-//	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil] subscribeNext:^(id x) {
-//		self.ConFirmContractBT.hidden = YES;
-//		self.statusButton.hidden = NO;
-//	}];
 }
 
 - (void)placeholderShow:(BOOL)b {

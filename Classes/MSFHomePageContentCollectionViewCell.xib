@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -90,13 +88,10 @@
                             <constraint firstItem="juA-PJ-DxE" firstAttribute="top" secondItem="TTN-w7-ccN" secondAttribute="bottom" constant="15" id="yXT-Ua-fCu"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MM3-Za-J73" customClass="MSFUserInfoCircleView">
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MM3-Za-J73" customClass="MSFUserInfoCircleView">
                         <rect key="frame" x="35" y="66" width="282" height="282"/>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="MM3-Za-J73" secondAttribute="height" id="WMS-yw-agP"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
                 <animations/>
@@ -104,20 +99,16 @@
             </view>
             <animations/>
             <constraints>
-                <constraint firstItem="MM3-Za-J73" firstAttribute="centerY" secondItem="qxk-5Z-PyQ" secondAttribute="centerY" id="46z-iN-JHK"/>
                 <constraint firstItem="bS2-FN-dOQ" firstAttribute="leading" secondItem="qxk-5Z-PyQ" secondAttribute="leading" id="7vX-ra-9Np"/>
                 <constraint firstItem="bS2-FN-dOQ" firstAttribute="top" secondItem="qxk-5Z-PyQ" secondAttribute="top" id="Aiu-6V-2Dw"/>
-                <constraint firstItem="MM3-Za-J73" firstAttribute="width" secondItem="bS2-FN-dOQ" secondAttribute="width" multiplier="0.8" id="CEZ-b4-wfn"/>
                 <constraint firstAttribute="bottom" secondItem="bS2-FN-dOQ" secondAttribute="bottom" id="LqX-y5-cwc"/>
                 <constraint firstAttribute="trailing" secondItem="bS2-FN-dOQ" secondAttribute="trailing" id="j7q-3j-MV0"/>
-                <constraint firstItem="MM3-Za-J73" firstAttribute="centerX" secondItem="qxk-5Z-PyQ" secondAttribute="centerX" id="ufX-11-JHB"/>
             </constraints>
             <size key="customSize" width="353" height="414"/>
             <connections>
                 <outlet property="ConFirmContractBT" destination="6OA-8r-U1a" id="3Fk-rE-hbK"/>
                 <outlet property="amountLabel" destination="juA-PJ-DxE" id="oj2-kr-ZLG"/>
                 <outlet property="circleView" destination="MM3-Za-J73" id="qfn-p2-z4V"/>
-                <outlet property="constraint" destination="CEZ-b4-wfn" id="3v3-Ge-skD"/>
                 <outlet property="content" destination="bS2-FN-dOQ" id="U8v-7d-EZA"/>
                 <outlet property="infoLabel" destination="gVN-1q-TlX" id="qzh-Uf-9fo"/>
                 <outlet property="statusButton" destination="TTN-w7-ccN" id="Fmu-xn-beP"/>

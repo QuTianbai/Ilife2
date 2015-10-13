@@ -221,7 +221,7 @@
 }
 
 - (void)commonInit {
-	self.backgroundColor = [UIColor whiteColor];
+	//self.backgroundColor = [UIColor whiteColor];
 	_margin = 3.0f;
 	_centralRate = 0.4f;
 	_degree = 0.33f;

@@ -58,17 +58,42 @@
  
  */
 #import "MSFDeviceGet.h"
-#import <sys/utsname.h>
+#import <sys/sysctl.h>
 #import <OpenUDID/OpenUDID.h>
+#import <UIKit/UIKit.h>
 
 @implementation MSFDeviceGet
 
+MsfScreenType msf_getScreenType() {
+	CGFloat height = [UIScreen mainScreen].bounds.size.height;
+	if (height <= 480) {
+		return MSF_SCREEN_4;
+	} else if (height <= 568) {
+		return MSF_SCREEN_5;
+	} else if (height <= 667) {
+		return MSF_SCREEN_6;
+	} else {
+		return MSF_SCREEN_6P;
+	}
+	return MSF_SCREEN_5;
+}
+
 + (DeviceTypeNum)deviceNum {
-	struct utsname systemInfo;
-	uname(&systemInfo);
-	NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-	NSLog(@"shebei:%@", platform);
 	
+	int mib[2];
+	size_t len;
+	char *machine;
+	
+	mib[0] = CTL_HW;
+	mib[1] = HW_MACHINE;
+	sysctl(mib, 2, NULL, &len, NULL, 0);
+	machine = malloc(len);
+	sysctl(mib, 2, machine, &len, NULL, 0);
+	
+	NSString *platform = [NSString stringWithCString:machine encoding:NSASCIIStringEncoding];
+	free(machine);
+	NSLog(@"msf simple device type:%@", platform);
+
 	if ([platform isEqualToString:@"iPhone3,1"] ||[platform isEqualToString:@"iPhone3,2"] || [platform isEqualToString:@"iPhone3,3"]) return IPHONE4;
 	
 	if ([platform isEqualToString:@"iPhone4,1"]) return IPHONE4S;
