@@ -60,23 +60,8 @@
 #import "MSFDeviceGet.h"
 #import <sys/sysctl.h>
 #import <OpenUDID/OpenUDID.h>
-#import <UIKit/UIKit.h>
 
 @implementation MSFDeviceGet
-
-MsfScreenType msf_getScreenType() {
-	CGFloat height = [UIScreen mainScreen].bounds.size.height;
-	if (height <= 480) {
-		return MSF_SCREEN_4;
-	} else if (height <= 568) {
-		return MSF_SCREEN_5;
-	} else if (height <= 667) {
-		return MSF_SCREEN_6;
-	} else {
-		return MSF_SCREEN_6P;
-	}
-	return MSF_SCREEN_5;
-}
 
 + (DeviceTypeNum)deviceNum {
 	

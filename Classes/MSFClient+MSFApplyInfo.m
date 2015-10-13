@@ -150,7 +150,7 @@
 															 @"otherIncome" : forms.otherIncome ?: @"",
 															 @"otherLoan" : forms.familyExpense ?: @"",
 															 @"empDepartment" : forms.department ?: @"",
-															 @"empPost" : forms.title ?: @"",
+															 @"empPost" : forms.professional ?: @"",
 															 @"empType" : forms.industry ?: @"",
 															 @"empStructure" : forms.companyType ?: @"",
 															 @"empProvinceCode" : forms.workProvinceCode ?: @"",

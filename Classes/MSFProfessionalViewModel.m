@@ -96,10 +96,10 @@
 			*stop = YES;
 		}
 	}];
-	NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"position"];
+	NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"professional"];
 	[positions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.title]) {
-			self.position = obj;
+		if ([obj.code isEqualToString:self.formsViewModel.model.professional]) {
+			self.professional = obj;
 			*stop = YES;
 		}
 	}];
@@ -151,10 +151,10 @@
 		self.natureTitle = object.text;
 	}];
 
-	[RACObserve(self, position) subscribeNext:^(MSFSelectKeyValues *object) {
+	[RACObserve(self, professional) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
-		self.formsViewModel.model.title = object.code;
-		self.positionTitle = object.text;
+		self.formsViewModel.model.professional = object.code;
+		self.professionalTitle = object.text;
 	}];
 	
 	_startedWorkDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -278,13 +278,12 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"position"]];
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"professional"]];
 		[self.services pushViewModel:viewModel];
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
-			self.position = x;
-			self.formsViewModel.model.title = x.code;
+			self.professional = x;
 			[self.services popViewModel];
 		}];
 		return nil;
@@ -341,7 +340,7 @@
 		if (forms.department.length == 0 || ![forms.department isChineseName]) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写当前就职部门全称"}]];
 		}
-		if (forms.title.length == 0) {
+		if (forms.professional.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择职位",
 			}]];

@@ -23,8 +23,8 @@
 @property (nonatomic, strong) NSString *industryTitle;
 @property (nonatomic, strong) MSFSelectKeyValues *nature; // 单位性质
 @property (nonatomic, strong) NSString *natureTitle; // 单位性质
-@property (nonatomic, strong) MSFSelectKeyValues *position; // 职位
-@property (nonatomic, strong) NSString *positionTitle; // 职位
+@property (nonatomic, strong) MSFSelectKeyValues *professional; // 职业
+@property (nonatomic, strong) NSString *professionalTitle; // 职业
 
 @property (nonatomic, readonly) RACCommand *startedWorkDateCommand;
 @property (nonatomic, readonly) RACCommand *startedDateCommand;

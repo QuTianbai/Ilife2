@@ -156,7 +156,7 @@
 @property (nonatomic, copy) NSString *otherIncome;//其他收入 其他月收入
 @property (nonatomic, copy) NSString *familyExpense;//每月其他还款
 @property (nonatomic, copy) NSString *department;//任职部门 任职部门
-@property (nonatomic, copy) NSString *title;//职位
+@property (nonatomic, copy) NSString *professional;//职位
 @property (nonatomic, copy) NSString *industry;//行业类别code
 @property (nonatomic, copy) NSString *companyType;//单位性质code
 @property (nonatomic, copy) NSString *workProvinceCode;//单位地址省code

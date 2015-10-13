@@ -239,7 +239,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.department.rac_textSignal subscribe:departmentChannel];
 	
 	//职位
-	RAC(self.position, text) = RACObserve(self.viewModel, positionTitle);
+	RAC(self.position, text) = RACObserve(self.viewModel, professionalTitle);
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	
 	//入职日期

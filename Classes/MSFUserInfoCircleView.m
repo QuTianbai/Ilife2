@@ -38,7 +38,11 @@
 		if ([UIScreen mainScreen].bounds.size.width > 320) {
 			label.font = [UIFont boldSystemFontOfSize:15];
 		} else {
-			label.font = [UIFont boldSystemFontOfSize:13];
+			if ([UIScreen mainScreen].bounds.size.height > 480) {
+				label.font = [UIFont boldSystemFontOfSize:13];
+			} else {
+				label.font = [UIFont boldSystemFontOfSize:11];
+			}
 		}
 		label.textAlignment = NSTextAlignmentCenter;
 		label.textColor = [UIColor color999999];
@@ -129,14 +133,22 @@
 		UILabel *titleLabel = [[UILabel alloc] init];
 		titleLabel.textColor = [UIColor color666666];
 		titleLabel.textAlignment = NSTextAlignmentCenter;
-		titleLabel.font = [UIFont boldSystemFontOfSize:15];
+		if ([UIScreen mainScreen].bounds.size.height > 480) {
+			titleLabel.font = [UIFont boldSystemFontOfSize:15];
+		} else {
+			titleLabel.font = [UIFont boldSystemFontOfSize:13];
+		}
 		titleLabel.text = @"资料完整度";
 		[self addSubview:titleLabel];
 		
 		UILabel *percentLabel = [[UILabel alloc] init];
 		percentLabel.textColor = [UIColor percentColor];
 		percentLabel.textAlignment = NSTextAlignmentCenter;
-		percentLabel.font = [UIFont boldSystemFontOfSize:30];
+		if ([UIScreen mainScreen].bounds.size.height > 480) {
+			percentLabel.font = [UIFont boldSystemFontOfSize:30];
+		} else {
+			percentLabel.font = [UIFont boldSystemFontOfSize:25];
+		}
 		percentLabel.text = @"0%";
 		percentLabel.tag = 100;
 		[self addSubview:percentLabel];
@@ -221,7 +233,7 @@
 }
 
 - (void)commonInit {
-	//self.backgroundColor = [UIColor whiteColor];
+	self.backgroundColor = [UIColor whiteColor];
 	_margin = 3.0f;
 	_centralRate = 0.4f;
 	_degree = 0.33f;

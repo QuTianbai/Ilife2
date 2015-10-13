@@ -26,7 +26,6 @@
 #import "UIColor+Utils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
-#import "MSFDeviceGet.h"
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -43,21 +42,6 @@
 @end
 
 @implementation MSFHomePageContentCollectionViewCell
-
-- (instancetype)initWithCoder:(NSCoder *)aDecoder {
-	self = [super initWithCoder:aDecoder];
-	if (self) {
-	}
-	return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-	self = [super initWithFrame:frame];
-	if (self) {
-		
-	}
-	return self;
-}
 
 - (void)awakeFromNib {
 	

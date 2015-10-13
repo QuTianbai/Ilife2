@@ -137,11 +137,16 @@
 		make.height.equalTo(self.headerImageView.mas_width).multipliedBy(0.463);
 	}];
 	
+	CGFloat h1 = [UIScreen mainScreen].bounds.size.width * 0.463;
+	CGFloat h2 = 60.f;
+	CGFloat offsetY = (h1 - h2) / 2;
 	[_circleView mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.top.equalTo(self.headerImageView.mas_bottom).offset(30);
+		make.top.greaterThanOrEqualTo(self.headerImageView.mas_bottom);
+		make.bottom.greaterThanOrEqualTo(self.view.mas_bottom).offset(-h2);
 		make.centerX.equalTo(self.view);
-		make.width.equalTo(self.view.mas_width).multipliedBy(0.8);
+		make.centerY.equalTo(self.view).offset(offsetY);
+		make.width.priorityMedium().equalTo(self.view.mas_width).multipliedBy(0.8);
 		make.height.equalTo(self.circleView.mas_width);
 	}];
 	

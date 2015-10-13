@@ -18,14 +18,6 @@ typedef enum {
 	IPHONE6P = 1 << 6
 }DeviceTypeNum;
 
-typedef NS_ENUM(NSInteger, MsfScreenType) {
-	MSF_SCREEN_UNKNOWN = 0,
-	MSF_SCREEN_4 = 1,
-	MSF_SCREEN_5 = 2,
-	MSF_SCREEN_6 = 3,
-	MSF_SCREEN_6P = 4
-};
-
 static const DeviceTypeNum litter6 = IPHONE4 | IPHONE4S | IPHONE5 | IPHONE5C |IPHONE5S;
 
 static const DeviceTypeNum bigger6 = IPHONE6 | IPHONE6P;
@@ -35,7 +27,5 @@ static const DeviceTypeNum bigger6 = IPHONE6 | IPHONE6P;
 + (DeviceTypeNum)deviceNum;
 
 + (NSString *)imei;
-
-MsfScreenType msf_getScreenType();
 
 @end
