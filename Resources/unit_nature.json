@@ -1,27 +1,7 @@
  [
 	{
-	"text": "党政机关",
+	"text": "机关事业单位",
 	"code": "A",
-	"typeId": "003"
-	},
-	{
-	"text": "事业单位",
-	"code": "B",
-	"typeId": "003"
-	},
-	{
-	"text": "军队",
-	"code": "C",
-	"typeId": "003"
-	},
-	{
-	"text": "社会团体",
-	"code": "D",
-	"typeId": "003"
-	},
-	{
-	"text": "内资企业",
-	"code": "E",
 	"typeId": "003"
 	},
 	{
@@ -35,16 +15,6 @@
 	"typeId": "003"
 	},
 	{
-	"text": "股份合作企业",
-	"code": "H",
-	"typeId": "003"
-	},
-	{
-	"text": "联营企业",
-	"code": "I",
-	"typeId": "003"
-	},
-  {
   "text": "有限责任公司",
   "code": "J",
   "typeId": "003"
@@ -90,7 +60,7 @@
 	"typeId": "003"
 	},
 	{
-	"text": "其他企业",
+	"text": "其他",
 	"code": "Z",
 	"typeId": "003"
 	}
