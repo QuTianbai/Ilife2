@@ -10,7 +10,7 @@
 #import "MSFSubmitApplyModel.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFApplyCashModel.h"
-#import "MSFUtils.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (MSFSubmitAppyCash)
 
@@ -35,8 +35,12 @@
 	NSData *arrayData = [NSJSONSerialization dataWithJSONObject:AccessoryInfoVO options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *accesory = [[NSString alloc] initWithData:arrayData encoding:NSUTF8StringEncoding]; 
 	
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/apply" parameters:@{@"ApplyVO": jsonStr, @"AccessoryInfoVO": accesory, @"applyStatus": status, @"uniqueId":MSFUtils.uniqueId}];
-//	[request setHTTPMethod:@"POST"];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/apply" parameters:@{
+		@"ApplyVO": jsonStr,
+		@"AccessoryInfoVO": accesory,
+		@"applyStatus": status,
+		@"uniqueId":self.user.uniqueId
+	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFSubmitApplyModel.class] msf_parsedResults];
 }

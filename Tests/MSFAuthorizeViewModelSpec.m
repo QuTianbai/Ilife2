@@ -22,7 +22,6 @@ __block BOOL success;
 
 beforeEach(^{
 	services = mockProtocol(@protocol(MSFViewModelServices));
-	[given([services server]) willReturn:[MSFServer dotComServer]];
   viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:services];
   error = nil;
   success = NO;

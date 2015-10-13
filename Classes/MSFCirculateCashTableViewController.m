@@ -14,11 +14,11 @@
 #import "MSFDrawCashTableViewController.h"
 #import "MSFDrawCashViewModel.h"
 #import "MSFClient+MSFBankCardList.h"
-#import "MSFUtils.h"
 #import "MSFBankCardListModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "AppDelegate.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFUser.h"
 
 @interface MSFCirculateCashTableViewController ()
 @property (weak, nonatomic) IBOutlet MSFLoanLimitView *loanlimiteView;
@@ -72,7 +72,8 @@
 	[[self.outMoneyBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
 		
-		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
 			
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -88,7 +89,7 @@
 				
 			}];
 		} else {
-			RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+			RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 			[signal subscribeNext:^(id x) {
 				[SVProgressHUD dismiss];
 				self.dataArray = x;
@@ -116,8 +117,8 @@
 	
 	[[self.inputMoneyBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	 subscribeNext:^(id x) {
-		 
-		 if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+			MSFUser *user = [self.viewModel.services httpClient].user;
+		 if (!user.hasTransactionalCode) {
 			 
 			 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											 message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -133,7 +134,7 @@
 				 
 			 }];
 		 } else {
-			 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+			 RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 			 [signal subscribeNext:^(id x) {
 				 [SVProgressHUD dismiss];
 				 self.dataArray = x;

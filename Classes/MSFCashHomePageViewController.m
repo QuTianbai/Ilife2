@@ -13,7 +13,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCheckAllowApply.h"
 #import "MSFCirculateCashViewModel.h"
-#import "MSFUtils.h"
 #import "MSFCirculateCashTableViewController.h"
 #import "MSFProductViewController.h"
 

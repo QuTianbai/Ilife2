@@ -7,7 +7,6 @@
 #import "MSFUserInfoViewController.h"
 #import "MSFUserInfoTableViewCell.h"
 #import "MSFClient.h"
-#import "MSFUtils.h"
 #import "MSFEdgeButton.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>

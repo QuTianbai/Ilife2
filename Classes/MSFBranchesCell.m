@@ -9,18 +9,19 @@
 #import "MSFBranchesCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFUtils.h"
 #import "MSFClient+Agreements.h"
+#import "MSFServer.h"
 
 @implementation MSFBranchesCell
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"网点分布";
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_branchWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeAddresses], [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[[client fetchUserAgreementWithType:MSFAgreementTypeAddresses], [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

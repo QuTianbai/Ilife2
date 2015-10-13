@@ -11,4 +11,6 @@
 
 @interface MSFLoanListViewController : UIViewController
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

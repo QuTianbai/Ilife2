@@ -11,6 +11,7 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFClient+MSFBankCardList.h"
 
 @implementation MSFCirculateCashViewModel
 
@@ -100,6 +101,10 @@
 	}];
 	
 	return self;
+}
+
+- (RACSignal *)fetchBankCardListSignal {
+	return [self.services.httpClient fetchBankCardList];
 }
 
 @end

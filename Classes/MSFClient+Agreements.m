@@ -7,7 +7,7 @@
 #import "MSFClient+Agreements.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFApplyCashVIewModel.h"
-#import "MSFUtils.h"
+#import "MSFUser.h"
 
 NSString *const MSFAgreementTypeRegister = @"REGISTRATION_PROTOCOL";
 NSString *const MSFAgreementTypeAboutUs = @"ABOUT_US";
@@ -25,7 +25,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 - (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashVIewModel *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{
-			@"productCode": MSFUtils.productCode ?: @"",
+			@"productCode": self.user.productId ?: @"",
 			@"appLmt": product.appLmt?:@"",
 			@"loanTerm": product.loanTerm
 		}];

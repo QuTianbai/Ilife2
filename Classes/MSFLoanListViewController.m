@@ -11,7 +11,6 @@
 #import "MSFLoanListViewController.h"
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
-#import "MSFUtils.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSLoanListTableViewCell.h"
 
@@ -19,6 +18,7 @@
 #import "MSFCellButton.h"
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
+#import "MSFLoanViewModel.h"
 
 #define ORAGECOLOR @"ff6600"
 #define BLUECOLOR @"#0babed"
@@ -31,6 +31,7 @@
 @property (strong, nonatomic)  UILabel *months;
 @property (strong, nonatomic)  UILabel *time;
 @property (strong, nonatomic)  UILabel *check;
+@property (nonatomic, weak) MSFLoanViewModel *viewModel;
 
 @end
 
@@ -38,6 +39,16 @@
 
 - (void)dealloc {
 		NSLog(@"MSFLoanListViewController `-dealloc`");
+}
+
+- (instancetype)initWithViewModel:(id)viewModel {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+	
+  return self;
 }
 
 - (void)viewDidLoad {
@@ -49,7 +60,7 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 
 	[self creatTableView];
-	RACSignal *signal = [MSFUtils.httpClient fetchApplyList];
+	RACSignal *signal = [self.viewModel fetchApplyListSignal];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
 		if ([x count] != 0) {

@@ -7,10 +7,11 @@
 #import "MSFLoanViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCirculateCashModel.h"
+#import "MSFClient+ApplyList.h"
+#import "MSFClient+RepaymentSchedules.h"
 
 @interface MSFLoanViewModel ()
 
-@property (nonatomic, weak) id<MSFViewModelServices>services;
 @property (nonatomic, strong) MSFCirculateCashModel *model;
 
 @end
@@ -77,6 +78,14 @@
 
 - (void)pushDetailViewController {
 	[self.services pushViewModel:self];
+}
+
+- (RACSignal *)fetchApplyListSignal {
+	return [self.services.httpClient fetchApplyList];
+}
+
+- (RACSignal *)fetchRepaymentSchedulesSignal {
+	return [self.services.httpClient fetchRepaymentSchedules];
 }
 
 @end

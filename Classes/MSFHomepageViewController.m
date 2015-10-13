@@ -16,7 +16,6 @@
 #import "MSFLoanViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFReactiveView.h"
-#import "MSFUtils.h"
 #import "UIColor+Utils.h"
 #import "MSFAboutsViewController.h"
 #import "MSFClient.h"
@@ -24,7 +23,6 @@
 
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFClient+ApplyList.h"
-#import "MSFUtils.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -68,10 +66,6 @@ UICollectionViewDelegateFlowLayout>
 	
 	@weakify(self)
 	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.collectionView reloadData];
-	}];
-	[RACObserve(MSFUtils.httpClient.user, complateCustInfo) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];

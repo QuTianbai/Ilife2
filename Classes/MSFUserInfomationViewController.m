@@ -22,7 +22,6 @@
 #import "MSFClient+MSFApplyInfo.h"
 #import "UIColor+Utils.h"
 
-#import "MSFUtils.h"
 #import "MSFUser.h"
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
@@ -94,7 +93,8 @@
 	[[self.nextStepButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
 		@strongify(self)
-		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 			[alert show];
@@ -120,7 +120,7 @@
 			
 			return ;
 		}
-		if ([MSFUtils.complateCustInfo isEqualToString:@"111"]) {
+		if ([[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel];
 			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];

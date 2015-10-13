@@ -14,8 +14,9 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "MSFInputTradePasswordViewController.h"
-#import "MSFUtils.h"
 #import "MSFGetBankIcon.h"
+#import "MSFUser.h"
+#import "MSFClient.h"
 
 
 static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
@@ -125,7 +126,8 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
-		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
 			MSFInputTradePasswordViewController *inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 			[[UIApplication sharedApplication].keyWindow addSubview:inputTradePassword.view];
 		} else {

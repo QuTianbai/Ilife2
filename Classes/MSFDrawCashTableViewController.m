@@ -12,7 +12,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
-#import "MSFUtils.h"
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
 

@@ -5,6 +5,7 @@
 //
 
 #import "RVMViewModel.h"
+#import "MSFViewModelServices.h"
 
 @class MSFRepaymentSchedules;
 
@@ -24,6 +25,9 @@
 // 应还款日期
 @property (nonatomic, readonly) NSString *date;
 
-- (instancetype)initWithModel:(id)model;
+- (instancetype)initWithModel:(id)model __deprecated_msg("Use initWithModel:services:");
+- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;;
+
+- (RACSignal *)fetchPlanPerodicTablesSignal;
 
 @end

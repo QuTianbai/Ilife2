@@ -9,12 +9,14 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "RACSignal+MSFClientAdditions.h"
-#import "MSFUtils.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (MSFCirculateCash)
 
 - (RACSignal *)fetchCirculateCash {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/currentloaninfo" parameters:@{@"uniqueId":MSFUtils.uniqueId}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/currentloaninfo" parameters:@{
+		@"uniqueId": self.user.uniqueId
+	}];
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
 }
 

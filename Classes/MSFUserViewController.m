@@ -10,11 +10,9 @@
 #import <Masonry/Masonry.h>
 #import <libextobjc/extobjc.h>
 #import "MSFRepaymentTableViewController.h"
-#import "MSFTradeTableViewController.h"
 #import "MSFEditPasswordViewController.h"
 #import "MSFUserInfoViewController.h"
 #import "MSFUserInfomationViewController.h"
-#import "MSFUtils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
@@ -124,8 +122,7 @@
 					[self userInfo];
 					break;
 				case 1:{
-					MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] init];
-					vc.services = self.viewModel.servcies;
+					MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
 					vc.hidesBottomBarWhenPushed = YES;
 					[self.navigationController pushViewController:vc animated:YES];
 				}
@@ -162,12 +159,6 @@
 	MSFRepaymentTableViewController *repaymentVC = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
 	repaymentVC.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:repaymentVC animated:YES];
-}
-
-- (IBAction)historyDetails:(id)sender {
-	MSFTradeTableViewController *tradeVC = [[MSFTradeTableViewController alloc]initWithStyle:UITableViewStylePlain];
-	tradeVC.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:tradeVC animated:YES];
 }
 
 - (IBAction)editUserInfo:(id)sender {

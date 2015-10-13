@@ -10,7 +10,6 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFResponse.h"
-#import "MSFUtils.h"
 #import "MSFCirculateCashModel.h"
 
 @implementation MSFClient (Users)
@@ -105,7 +104,6 @@
 			NSString *token = response.parsedResult[@"token"];
 			MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:response.parsedResult error:nil];
 			MSFClient *client = [MSFClient authenticatedClientWithUser:user token:token];
-			[MSFUtils setHttpClient:client];
 			return client;
 		}];
 }
@@ -120,7 +118,7 @@
 
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"transPassword"] = transPassword;
 	parameters[@"bankCardNo"] = bankCardNo;
 	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
@@ -135,7 +133,7 @@
 
 - (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
@@ -146,7 +144,7 @@
 
 - (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = MSFUtils.uniqueId;
+	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
@@ -174,17 +172,17 @@
 }
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":capthch?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":capthch?:@""}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)updateTradePwdWitholdPwd:(NSString *)oldpwd AndNewPwd:(NSString *)pwd AndCaptch:(NSString *)captch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":captch?:@"", @"oldTransPassword":oldpwd?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":captch?:@"", @"oldTransPassword":oldpwd?:@""}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{@"uniqueId":MSFUtils.uniqueId, @"newTransPassword":newTransPassword?:@"", @"smsCode":smsCode?:@"", @"bankCardNo":bankCardNO?:@"", @"provinceCode":provinceCode?:@"", @"cityCode":cityCode?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":newTransPassword?:@"", @"smsCode":smsCode?:@"", @"bankCardNo":bankCardNO?:@"", @"provinceCode":provinceCode?:@"", @"cityCode":cityCode?:@""}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 

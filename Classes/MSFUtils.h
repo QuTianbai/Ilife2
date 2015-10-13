@@ -6,10 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class MSFClient;
-@class MSFServer;
 @class RACSignal;
-@class MSFAgreementViewModel;
 
 @interface MSFUtils : NSObject
 
@@ -18,50 +15,9 @@
 // Returns an signal after fetch server timestamp
 + (RACSignal *)setupSignal;
 
-// The global use client
-//
-// Returns MSFClient instance
-+ (MSFClient *)httpClient;
-
-// The global Server
-+ (MSFServer *)server;
-
-// 登录 需要更新这里的client以保证client是授权的
-// 退出登录 需要设置为nil,检测到其他设备登录的时候都应该设置为nil
-//
-// httpClient -  Update global http request client
-+ (void)setHttpClient:(MSFClient *)httpClient;
-
 // 存储用户登录手机号
-+ (void)setPhone:(NSString *)phone;
-+ (NSString *)phone;
-
-// 存储用户注册手机号
-+ (void)setRegisterPhone:(NSString *)phone;
-+ (NSString *)registerPhone;
-
-// Save test user update baseURL `Unused`
-+ (void)setBaseURLString:(NSString *)url;
-+ (NSString *)baseURLString;
-
-//用户id
-+ (void)setUniqueId:(NSString *)uniqueId;
-+ (NSString *)uniqueId;
-
-//交易密码
-+ (void)setisTradePassword:(NSString *)isSetTradePassword;
-+ (NSString *)isSetTradePassword;
-
-//是否支持循环现金贷
-+ (void)setCircuteCash:(NSString *)isCircuteCash;
-+ (NSString *)isCircuteCash;
-
-//产品群编码
-+ (void)setProductCode:(NSString *)procd;
-+ (NSString *)productCode;
-
-//用户基本信息完成情况
-+ (NSString *)complateCustInfo;
++ (void)setSignInMobile:(NSString *)phone;
++ (NSString *)signInMobile;
 
 @end
 

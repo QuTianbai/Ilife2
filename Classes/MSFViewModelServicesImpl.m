@@ -9,7 +9,8 @@
 #import <libextobjc/extobjc.h>
 
 #import "MSFClient.h"
-#import "MSFUtils.h"
+#import "MSFServer.h"
+#import "MSFUser.h"
 #import "UIWindow+PazLabs.h"
 
 #import "MSFSelectionViewModel.h"
@@ -46,7 +47,26 @@
 
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
+@interface MSFViewModelServicesImpl ()
+
+@property (nonatomic, strong) MSFClient *client;
+
+@end
+
 @implementation MSFViewModelServicesImpl
+
+#pragma mark - Lifecycle
+
+- (instancetype)init {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
+	_client = [MSFClient unauthenticatedClientWithUser:user];
+  
+  return self;
+}
 
 #pragma mark - Private
 
@@ -81,7 +101,7 @@
 		if ([((MSFLoanViewModel *)viewModel).type isEqualToString:@"APPLY"]) {
 			viewController = [[MSFLoanListViewController alloc] init];
 		} else {
-			viewController = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
+			viewController = [[MSFRepaymentTableViewController alloc] initWithViewModel:viewModel];
 		}
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
@@ -129,35 +149,9 @@
   [self.navigationController presentViewController:viewController animated:YES completion:nil];
 }
 
-- (MSFClient *)httpClient {
-	return MSFUtils.httpClient;
-}
+#pragma mark - Signals
 
-- (MSFServer *)server {
-	return MSFUtils.server;
-}
-
-- (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=sTLArkR5mCiQrGcflln8li7c&location=%f,%f&output=json&pois=1", latitude, longitude]];
-		[[NSURLConnection rac_sendAsynchronousRequest:[NSURLRequest requestWithURL:URL]] subscribeNext:^(id x) {
-			RACTupleUnpack(NSHTTPURLResponse *response, NSData *data) = x;
-			if (response.statusCode != 200) {
-				[subscriber sendCompleted];
-			} else {
-				NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-				MSFLocationModel *model = [MTLJSONAdapter modelOfClass:MSFLocationModel.class fromJSONDictionary:representation	error:nil];
-				[subscriber sendNext:model];
-				[subscriber sendCompleted];
-			}
-		}];
-	
-		return nil;
-	}];
-	return nil;
-}
-
-- (RACSignal *)takePicture {
+- (RACSignal *)msf_takePictureSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
@@ -177,6 +171,16 @@
 			[imagePickerController dismissViewControllerAnimated:NO completion:nil];
 		}];
 	}];
+}
+
+#pragma mark - Custom Accessors
+
+- (MSFClient *)httpClient {
+	return self.client;
+}
+
+- (void)setHttpClient:(MSFClient *)client {
+	self.client = client;
 }
 
 @end

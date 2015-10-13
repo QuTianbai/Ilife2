@@ -10,6 +10,8 @@
 #import "MSFClient+MSFBankCardList.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+Users.h"
+#import "MSFClient+MSFBankCardList.h"
+#import "MSFCheckHasTradePassword.h"
 
 @interface MSFBankCardListViewModel ()
 
@@ -34,6 +36,7 @@
 //	_executeBankList = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 //		return [self executeBankListSignal];
 //	}];
+	_checkHasTrandPasswordViewModel = [[MSFCheckHasTradePassword alloc] initWithServices:self.services];
 	
 	return self;
 }
@@ -52,6 +55,10 @@
 
 - (RACSignal *)executeUnbindSignal {
 	return [self.services.httpClient unBindBankCard:self.bankCardID AndTradePwd:self.pwd];
+}
+
+- (RACSignal *)fetchBankCardListSignal {
+	return [self.services.httpClient fetchBankCardList];
 }
 
 @end

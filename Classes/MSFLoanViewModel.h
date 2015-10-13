@@ -24,7 +24,12 @@
 @property (nonatomic, strong, readonly) NSString *applyDate;//申请日期
 @property (nonatomic, strong, readonly) NSString *currentPeriodDate;//当前期截止日期
 
+@property (nonatomic, weak, readonly) id<MSFViewModelServices>services;
+
 - (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
 - (void)pushDetailViewController;
+
+- (RACSignal *)fetchApplyListSignal;
+- (RACSignal *)fetchRepaymentSchedulesSignal;
 
 @end

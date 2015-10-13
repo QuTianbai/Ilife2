@@ -10,7 +10,6 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplyCashModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFUtils.h"
 #import "MSFCalculatemMonthRepayModel.h"
 #import "MSFClient+MSFCalculateMonthRepay.h"
 #import "MSFResponse.h"
@@ -26,6 +25,7 @@
 #import "MSFClient+MSFSubmitAppyCash.h"
 #import "MSFBankCardListModel.h"
 #import "MSFClient+Agreements.h"
+#import "MSFUser.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -44,7 +44,7 @@
 	_formViewModel = viewModel;
 	_model = [[MSFApplyCashModel alloc] init];
 	_services = viewModel.services;
-	_model.productCd = MSFUtils.productCode;
+	_model.productCd = [self.services httpClient].user.productId;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
 	_array = [[NSArray alloc] init];
@@ -97,7 +97,7 @@
 					if (!loanTerm) {
 						return [RACSignal return:@0];
 					}
-					return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:MSFUtils.productCode AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
+					return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:[self.services httpClient].user.productId AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
 						MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
 						return [RACSignal return:response];
 					}] map:^id(MSFCalculatemMonthRepayModel *model) {

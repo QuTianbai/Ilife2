@@ -11,8 +11,6 @@
 
 @interface MSFBankCardListTableViewController : UITableViewController
 
-@property (nonatomic, assign) id<MSFViewModelServices> services;
-
 - (instancetype)initWithViewModel:(id)viewModel;
 
 @end

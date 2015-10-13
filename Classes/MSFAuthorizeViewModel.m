@@ -10,12 +10,12 @@
 #import "NSString+Matches.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
-#import "MSFUtils.h"
 #import "MSFClient+Captcha.h"
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "NSDate+UTC0800.h"
 #import <NSString-Hashes/NSString+Hashes.h>
+#import "MSFServer.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -219,9 +219,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		}];
 	
 	_executeSignOut = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [[MSFUtils.httpClient signOut] doNext:^(id x) {
-			[MSFUtils setHttpClient:nil];
-		}];
+		return [self.services.httpClient signOut];
 	}];
 	
 	_executeSetTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -326,7 +324,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	if (![self.password isPassword]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"密码错误，请重新填写"]];
 	}
-	MSFUser *user = [MSFUser userWithServer:self.services.server];
+	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	
 	if (self.loginType == MSFLoginIDSignIn) {
 	return [[[MSFClient
@@ -339,7 +337,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:error];
 		}]
 		doNext:^(id x) {
-			[MSFUtils setHttpClient:x];
+			[self.services setHttpClient:x];
 		}];
 	}
 	return [[[MSFClient
@@ -352,8 +350,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:error];
 		}]
 		doNext:^(MSFClient *client) {
-			[MSFUtils setHttpClient:client];
-			//MSFUser *user = client.user;
+			[self.services setHttpClient:client];
 		}];
 }
 
@@ -397,21 +394,19 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	dateFormatter.dateFormat = @"yyyy-MM-dd";
 	NSDate *expiredDate = self.permanent ? [NSDate msf_date:[dateFormatter dateFromString:@"2099-12-31"]]: self.expired;
 	
-	MSFUser *user = [MSFUser userWithServer:self.services.server];
+	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	return [[MSFClient
 		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:expiredDate]
 		doNext:^(id x) {
-			[MSFUtils setHttpClient:x];
+			[self.services setHttpClient:x];
 		}];
 }
 
 - (RACSignal *)executeCaptchaSignal {
 	if (self.loginType == MSFLoginSignUp) {
-		MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-		return [client fetchSignUpCaptchaWithPhone:self.username];
+		return [self.services.httpClient fetchSignUpCaptchaWithPhone:self.username];
 	} else {
-		MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-		return [client fetchLoginCaptchaWithPhone:self.username];
+		return [self.services.httpClient fetchLoginCaptchaWithPhone:self.username];
 	}
 }
 
@@ -446,22 +441,21 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	} else if (![self.captcha isCaptcha]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
 	}
-	return [self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name];
+	return [[self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name] doNext:^(id x) {
+		[self.services setHttpClient:x];
+	}];
 }
 
 - (RACSignal *)executeCaptchaTradePwdSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchLoginCaptchaTradeWithPhone:self.username];
+	return [self.services.httpClient fetchLoginCaptchaTradeWithPhone:self.username];
 }
 
 - (RACSignal *)executeCaptchaUpdateTradePwdSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchCapthchaUpdateTradeWithPhone:self.username];
+	return [self.services.httpClient fetchCapthchaUpdateTradeWithPhone:self.username];
 }
 
 - (RACSignal *)executeCaptchForgetTradePwd {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchLoginCaptchaForgetTradeWithPhone:self.username];
+	return [self.services.httpClient fetchLoginCaptchaForgetTradeWithPhone:self.username];
 }
 
 - (RACSignal *)executeFindPasswordSignal {
@@ -489,13 +483,11 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	} else if (![self.captcha isCaptcha]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
 	}
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client resetSignInPassword:self.password phone:self.username captcha:self.captcha name:self.name citizenID:self.card];
+	return [self.services.httpClient resetSignInPassword:self.password phone:self.username captcha:self.captcha name:self.name citizenID:self.card];
 }
 
 - (RACSignal *)executeFindPasswordCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchResetPasswordCaptchaWithPhone:self.username];
+	return [self.services.httpClient fetchResetPasswordCaptchaWithPhone:self.username];
 }
 
 + (NSError *)errorWithFailureReason:(NSString *)string {

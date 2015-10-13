@@ -10,8 +10,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
-#import "MSFUtils.h"
 #import "UITextField+RACKeyboardSupport.h"
+#import "MSFUtils.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -47,8 +47,8 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
 	// 登录用户名/密码
-	self.username.text = MSFUtils.phone;
-	self.viewModel.username = MSFUtils.phone;
+	self.username.text = MSFUtils.signInMobile;
+	self.viewModel.username = MSFUtils.signInMobile;
 	
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingUsernameEnvironmentKey];
@@ -86,7 +86,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		[MSFUtils setPhone:self.username.text];
+		[MSFUtils setSignInMobile:self.username.text];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

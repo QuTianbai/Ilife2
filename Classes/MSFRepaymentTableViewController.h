@@ -13,4 +13,6 @@
  */
 @interface MSFRepaymentTableViewController : UITableViewController
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

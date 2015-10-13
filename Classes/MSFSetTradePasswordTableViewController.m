@@ -13,8 +13,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtils.h"
 #import "AppDelegate.h"
+#import "MSFUser.h"
+#import "MSFClient.h"
 
 @interface MSFSetTradePasswordTableViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *tradePasswordTF;
@@ -103,7 +104,8 @@
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交" maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeCompleted:^{
-			[MSFUtils setisTradePassword:@"YES"];
+			MSFUser *user = [[MSFUser alloc] initWithDictionary:@{@"hasTransactionalCode": @YES} error:nil];
+			[[self.viewModel.services httpClient].user mergeValueForKey:@"hasTransactionalCode" fromModel:user];
 			[SVProgressHUD showSuccessWithStatus:@"设置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];

@@ -9,8 +9,8 @@
 #import <libextobjc/extobjc.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFUtils.h"
 #import "MSFClient+Agreements.h"
+#import "MSFServer.h"
 
 @implementation MSFRegisterAgreementViewController
 
@@ -31,10 +31,12 @@
 	}];
 	
 	[SVProgressHUD showWithStatus:@"正在加载..."];
+	
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
 	[[[webView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
 		withSignalOfArguments:[RACSignal combineLatest:@[
-			[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeRegister],
+			[client fetchUserAgreementWithType:MSFAgreementTypeRegister],
 			[RACSignal return:nil]
 		]]]
 		deliverOn:RACScheduler.mainThreadScheduler]

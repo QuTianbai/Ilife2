@@ -17,7 +17,6 @@
 
 #import "MSFPlanPerodicTables.h"
 #import "MSFClient+PlanPerodicTables.h"
-#import "MSFUtils.h"
 
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 
@@ -26,13 +25,26 @@
 #define BLUETCOLOR @"#0babed"
 #define BLACKCOLOR @"#585858"
 
+#import "MSFRepaymentSchedulesViewModel.h"
+
 @interface MSFContractDetailsTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *viewModel;
 
 @end
 
 @implementation MSFContractDetailsTableViewController
+
+- (instancetype)initWithViewModel:(id)viewModel {
+  self = [super initWithStyle:UITableViewStylePlain];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -41,7 +53,7 @@
 	self.tableView.estimatedRowHeight = 44.0f;
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
 	
-	[[[MSFUtils.httpClient fetchPlanPerodicTables:_repayMentSchdues]
+	[[[self.viewModel fetchPlanPerodicTablesSignal]
 		collect]
 	 subscribeNext:^(id x) {
 		 self.objects = x;

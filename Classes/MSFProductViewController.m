@@ -8,7 +8,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <libextobjc/extobjc.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFUtils.h"
 #import "MSFMarket.h"
 #import "MSFProduct.h"
 #import "MSFTeams.h"

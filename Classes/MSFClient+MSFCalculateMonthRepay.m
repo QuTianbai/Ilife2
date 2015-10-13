@@ -12,7 +12,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
-#import "MSFUtils.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (MSFCalculateMonthRepay)
 
@@ -27,7 +27,7 @@
 		@"loanTerm": loanTerm,
 		@"productCode": productCode,
 		@"jionLifeInsurance": jionLifeInsurance.boolValue ? @"1" : @"0",
-		@"uniqueId": MSFUtils.uniqueId
+		@"uniqueId":self.user.uniqueId
 	}];
 
 	return [[[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class]

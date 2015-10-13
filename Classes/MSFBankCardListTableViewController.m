@@ -12,11 +12,9 @@
 #import "MSFCommandView.h"
 #import "MSFAddBankCardTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFUtils.h"
 #import "MSFClient+MSFBankCardList.h"
 #import "MSFBankCardListModel.h"
 #import "MSFCheckHasTradePassword.h"
-#import "MSFUtils.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFBankCardListViewModel.h"
@@ -27,14 +25,13 @@
 #import "AppDelegate.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFGetBankIcon.h"
+#import "MSFUser.h"
 
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
 
 @property (nonatomic, strong) MSFBankCardListViewModel *viewModel;
-
-@property (nonatomic, strong) MSFCheckHasTradePassword *checkTPViewModel;
 
 @property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
 
@@ -62,7 +59,6 @@
 	self.title = @"银行卡";
 	_tradePwd = @"";
 	self.dataArray = [[NSArray alloc] init];
-	_viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services];
 	
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
@@ -71,7 +67,7 @@
 	
 	RAC(self, viewModel.pwd) = RACObserve(self, tradePwd);
 	@weakify(self)
-	RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+	RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 	[signal subscribeNext:^(id x) {
 		@strongify(self)
 		[SVProgressHUD dismiss];
@@ -86,10 +82,11 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	self.checkTPViewModel = [[MSFCheckHasTradePassword alloc] initWithServices:self.services];
-	
-	[[self.checkTPViewModel.executeChenkTradePassword execute:nil] subscribeNext:^(MSFCheckHasTradePasswordModel *model) {
-		[MSFUtils setisTradePassword:model.hasTransPwd];
+	[[self.viewModel.checkHasTrandPasswordViewModel.executeChenkTradePassword execute:nil] subscribeNext:^(MSFCheckHasTradePasswordModel *model) {
+		MSFUser *user = [[MSFUser alloc] initWithDictionary:@{
+			@"hasTransactionalCode": [model.hasTransPwd isEqualToString:@"YES"] ? @YES : @NO
+		} error:nil];
+		[[self.viewModel.services httpClient].user mergeValueForKey:@"hasTransactionalCode" fromModel:user];
 	} error:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
@@ -97,7 +94,7 @@
 	[[self rac_signalForSelector:@selector(viewWillAppear:)]
 	subscribeNext:^(id x) {
 		@strongify(self)
-		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+		RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			for (NSObject *ob in x) {
@@ -115,7 +112,7 @@
 	[self.tableView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		
-		RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+		RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			for (NSObject *ob in x) {
@@ -203,7 +200,8 @@
 			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"主卡暂不支持%@", [self bankType:model.bankCardType]]];
 			return ;
 		}
-		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
 					
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																													message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -227,7 +225,8 @@
 	}];
 	[[[cell.unBindMaster rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		@strongify(self)
-		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
 			
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -296,7 +295,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 1) {
-		if ([MSFUtils.isSetTradePassword isEqualToString:@"NO"]) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
 			
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -318,7 +318,7 @@
 			if (self.dataArray.count > 0) {
 				isFirstBankCard = YES;
 			}
-			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.services andIsFirstBankCard:isFirstBankCard];
+			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
 			[self.navigationController pushViewController:vc animated:YES];
 		}
 		
@@ -338,7 +338,7 @@
 		[[self.viewModel.executeSetMaster execute:nil]
 		 subscribeNext:^(id x) {
 			 [SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
-			 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+			 RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 			 [signal subscribeNext:^(id x) {
 				 [SVProgressHUD dismiss];
 				 self.dataArray = x;
@@ -353,7 +353,7 @@
 		[[self.viewModel.executeUnbind execute:nil]
 		 subscribeNext:^(id x) {
 			 [SVProgressHUD showSuccessWithStatus:@"银行卡解绑成功"];
-			 RACSignal *signal = [[MSFUtils.httpClient fetchBankCardList].collect replayLazily];
+			 RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 			 [signal subscribeNext:^(id x) {
 				 [SVProgressHUD dismiss];
 				 self.dataArray = x;

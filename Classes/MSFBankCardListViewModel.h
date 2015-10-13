@@ -9,6 +9,7 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFBankCardInfoViewModel.h"
+#import "MSFCheckHasTradePassword.h"
 
 @class RACCommand;
 
@@ -24,9 +25,12 @@
 @property (nonatomic, copy) NSString *pwd;
 
 @property (nonatomic, copy) NSString *bankCardID;
+@property (nonatomic, strong, readonly) MSFCheckHasTradePassword *checkHasTrandPasswordViewModel;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)servers;
 
 - (MSFBankCardInfoViewModel *)getBankCardInfoViewModel:(NSInteger)integer;
+
+- (RACSignal *)fetchBankCardListSignal;
 
 @end

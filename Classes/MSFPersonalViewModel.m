@@ -22,6 +22,7 @@
 #import "MSFAddress.h"
 #import "MSFAddressInfo.h"
 #import "NSString+Matches.h"
+#import "NSURLConnection+Locations.h"
 
 @interface MSFPersonalViewModel ()
 
@@ -92,7 +93,7 @@
 }
 
 - (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
-  [[self.services fetchLocationWithLatitude:coordinate.latitude longitude:coordinate.longitude]
+  [[NSURLConnection fetchLocationWithLatitude:coordinate.latitude longitude:coordinate.longitude]
    subscribeNext:^(MSFLocationModel *model) {
      if (self.addressViewModel.isStopAutoLocation) {
        return;

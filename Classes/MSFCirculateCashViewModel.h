@@ -40,4 +40,6 @@
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
+- (RACSignal *)fetchBankCardListSignal;
+
 @end

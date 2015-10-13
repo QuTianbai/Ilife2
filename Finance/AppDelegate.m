@@ -33,7 +33,6 @@
 #import "MSFVersion.h"
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFUtilsViewController.h"
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 #import <BugshotKit/BugshotKit.h>
@@ -209,23 +208,9 @@
 	
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil] subscribeNext:^(NSError *error) {
 		@strongify(self)
-		[MSFUtils setHttpClient:nil];
+		[self.viewModelServices.httpClient signOut];
 		[self unAuthenticatedControllers];
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-	
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFUtilsURLDidUpdateNotification object:nil] subscribeNext:^(id x) {
-		self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
-		self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
-		[self unAuthenticatedControllers];
-		[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
-			@strongify(self)
-			if (client.isAuthenticated) {
-				[self authenticatedControllers];
-			} else {
-				[self unAuthenticatedControllers];
-			}
-		}];
 	}];
 }
 

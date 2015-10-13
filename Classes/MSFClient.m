@@ -19,7 +19,6 @@
 #import <OpenUDID/OpenUDID.h>
 #import <libextobjc/extobjc.h>
 #import <NSString-Hashes/NSString+Hashes.h>
-#import "MSFUtils.h"
 #import "MSFSignature.h"
 #import "RCLocationManager.h"
 #import <Crashlytics/Crashlytics.h>
@@ -83,6 +82,8 @@ static NSDictionary *messages;
 	
 	self.requestSerializer.timeoutInterval = 15;
 	self.securityPolicy.allowInvalidCertificates = YES;
+	
+	cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[NSDate.date timeIntervalSince1970] * 1000];
 	
 	if (isRunningTests()) {
 		return self;
@@ -237,10 +238,6 @@ static NSDictionary *messages;
 					MSFUser *user = [MTLJSONAdapter modelOfClass:MSFUser.class fromJSONDictionary:responseObject error:nil];
 					[user mergeValueForKey:@keypath(user.server) fromModel:client.user];
 					client.user = user;
-					[MSFUtils setUniqueId:user.uniqueId];
-					[MSFUtils setCircuteCash:user.type];
-					[MSFUtils setProductCode:user.type];
-					[MSFUtils setisTradePassword:user.hasTransPwd];
 				
 					return [RACSignal combineLatest:@[
 						[RACSignal return:client],
@@ -420,7 +417,14 @@ static NSDictionary *messages;
 	}];
 	
 	@weakify(self)
-	return [[[self enqueueRequest:request resultClass:nil]
+	return [[[[self enqueueRequest:request resultClass:nil]
+		catch:^RACSignal *(NSError *error) {
+			@strongify(self)
+			[self clearAuthorizationHeader];
+			self.token = nil;
+			self.user = nil;
+			return [RACSignal error:error];
+		}]
 		doCompleted:^{
 			@strongify(self)
 			[self clearAuthorizationHeader];
@@ -686,7 +690,7 @@ static NSDictionary *messages;
 }
 
 - (void)setAuthorizationHeaderWithToken:(NSString *)token {
-		[self setDefaultHeader:@"token" value:token];
+	[self setDefaultHeader:@"token" value:token];
 }
 
 - (void)clearAuthorizationHeader {

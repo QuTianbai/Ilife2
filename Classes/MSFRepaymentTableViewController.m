@@ -11,7 +11,6 @@
 #import <libextobjc/extobjc.h>
 #import "MSFRepaymentSchedules.h"
 #import "MSFClient+RepaymentSchedules.h"
-#import "MSFUtils.h"
 #import "MSFRepaymentTableViewCell.h"
 #import "MSFContractDetailsTableViewController.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
@@ -22,24 +21,36 @@
 #define BLUETCOLOR @"0babed"
 #import "MSFTableViewBindingHelper.h"
 #import "MSFRepaymentSchedulesViewModel.h"
+#import "MSFLoanViewModel.h"
 
 @interface MSFRepaymentTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
 @property (nonatomic, strong) MSFRepaymentSchedules *rs;
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
+@property (nonatomic, weak) MSFLoanViewModel *viewModel;
 
 @end
 
 @implementation MSFRepaymentTableViewController
+
+- (instancetype)initWithViewModel:(id)viewModel {
+  self = [super initWithStyle:UITableViewStylePlain];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.navigationItem.title = @"还款计划";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
-	RACSignal *signal = [[[[MSFUtils.httpClient fetchRepaymentSchedules] map:^id(id value) {
-		return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value];
+	RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal] map:^id(id value) {
+		return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
 	}]
 	collect]
 	replayLazily];
@@ -47,8 +58,7 @@
 	self.tableView.backgroundView = [self.tableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	RACCommand *command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFRepaymentSchedulesViewModel *input) {
 		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			MSFContractDetailsTableViewController *cdTableViewController = [[MSFContractDetailsTableViewController alloc]initWithStyle:UITableViewStylePlain];
-			cdTableViewController.repayMentSchdues = input.model;
+			MSFContractDetailsTableViewController *cdTableViewController = [[MSFContractDetailsTableViewController alloc] initWithViewModel:input];
 			[self.navigationController pushViewController:cdTableViewController animated:YES];
 			[subscriber sendCompleted];
 			return nil;

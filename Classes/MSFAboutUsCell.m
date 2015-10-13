@@ -9,7 +9,7 @@
 #import "MSFAboutUsCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFUtils.h"
+#import "MSFServer.h"
 #import "MSFClient+Agreements.h"
 
 @implementation MSFAboutUsCell
@@ -17,10 +17,11 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"关于我们";
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_aboutWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeAboutUs], [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[[client fetchUserAgreementWithType:MSFAgreementTypeAboutUs], [RACSignal return:nil]]]]
 		deliverOn:
 		[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {

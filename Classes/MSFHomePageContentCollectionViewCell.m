@@ -24,7 +24,6 @@
 
 #import "UILabel+AttributeColor.h"
 #import "UIColor+Utils.h"
-#import "MSFUtils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
 
@@ -124,8 +123,7 @@
 			 }];
 		}
 	} else {
-		NSString *compeltionStatus = [MSFUtils httpClient].user.complateCustInfo;
-		[self.circleView setCompeltionStatus:compeltionStatus];
+		[self.circleView setCompeltionStatus:@""];
 		[self placeholderShow:YES];
 	}
 	

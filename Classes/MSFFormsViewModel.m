@@ -8,7 +8,6 @@
 #import <libextobjc/EXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import "MSFUtils.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFRelationshipViewModel.h"
@@ -27,6 +26,7 @@
 #import "MSFClient+MSFBankCardList.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFBankCardListModel.h"
+#import "MSFUser.h"
 
 @interface MSFFormsViewModel ()
 
@@ -64,7 +64,7 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCheckEmploeeWithProductCode:MSFUtils.productCode] subscribeNext:^(MSFMarkets *markets) {
+		[[self.services.httpClient fetchCheckEmploeeWithProductCode:[self.services httpClient].user.productId] subscribeNext:^(MSFMarkets *markets) {
 			if (self.markets.teams.count == 0) {
 				self.markets = markets;
 			}

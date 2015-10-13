@@ -9,19 +9,19 @@
 #import "MSFProductIntroductionCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFUtils.h"
+#import "MSFServer.h"
 #import "MSFClient+Agreements.h"
 
 @implementation MSFProductIntroductionCell
 
 - (void)viewDidLoad {
-	
+	[super viewDidLoad];
 	self.title = @"产品介绍";
-	
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_productWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeIntro], [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[[client fetchUserAgreementWithType:MSFAgreementTypeIntro], [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

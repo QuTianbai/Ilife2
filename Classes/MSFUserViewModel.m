@@ -11,6 +11,7 @@
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "MSFAuthorizeViewModel.h"
+#import "MSFBankCardListViewModel.h"
 
 static const int kPasswordMaxLength = 16;
 static const int kPasswordMinLength = 8;
@@ -55,6 +56,7 @@ static const int kPasswordMinLength = 8;
 			[(RACSubject *)self.contentUpdateSignal sendNext:nil];
 		}];
 	}];
+	_bankCardListViewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.servcies];
 	
 	return self;
 }

@@ -9,14 +9,15 @@
 #import "MSFClient+MSFCheckEmploee2.h"
 #import "MSFMarkets.h"
 #import "RACSignal+MSFClientAdditions.h"
-#import "MSFUtils.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (MSFCheckEmploee2)
 
 - (RACSignal *)fetchCheckEmploeeWithProductCode:(NSString *)code {
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"markets" ofType:@"json"]]];
-	
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/product" parameters:@{@"productCode":MSFUtils.productCode, @"uniqueId":MSFUtils.uniqueId}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/product" parameters:@{
+		@"productCode": self.user.productId,
+		@"uniqueId": self.user.uniqueId
+	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFMarkets.class] msf_parsedResults];
 }

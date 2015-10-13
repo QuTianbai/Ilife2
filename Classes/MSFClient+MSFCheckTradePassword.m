@@ -7,7 +7,6 @@
 //
 
 #import "MSFClient+MSFCheckTradePassword.h"
-#import "MSFUtils.h"
 #import "MSFCheckHasTradePasswordModel.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFUser.h"

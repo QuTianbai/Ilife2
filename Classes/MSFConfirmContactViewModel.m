@@ -15,7 +15,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCirculateCashModel.h"
 #import "MSFClient+MSFCirculateCash.h"
-#import "MSFUtils.h"
+#import "MSFUser.h"
 
 @interface MSFConfirmContactViewModel ()
 
@@ -125,7 +125,7 @@
 }
 
 - (RACSignal *)requestContactInfo:(NSString *)type {
-	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:[MSFUtils productCode] AndtemplateType:type] flattenMap:^RACStream *(id value) {
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:type] flattenMap:^RACStream *(id value) {
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
@@ -133,11 +133,11 @@
 }
 
 - (RACSignal *)executeSubmitConfirmContract {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:MSFUtils.productCode AndtemplateType:@""];
+	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:@""];
 }
 
 - (RACSignal *)executeSubmitConfirmContract:(NSString *)type {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.contractNo AndProductNO:MSFUtils.productCode AndtemplateType:type];
+	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.contractNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:type];
 }
 
 @end

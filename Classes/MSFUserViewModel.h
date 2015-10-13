@@ -9,6 +9,7 @@
 
 @class RACCommand;
 @class MSFAuthorizeViewModel;
+@class MSFBankCardListViewModel;
 
 @interface MSFUserViewModel : RVMViewModel
 
@@ -25,6 +26,7 @@
 
 @property (nonatomic, strong, readonly) RACSignal *contentUpdateSignal;
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
+@property (nonatomic, strong, readonly) MSFBankCardListViewModel *bankCardListViewModel;
 
 - (instancetype)initWithAuthorizeViewModel:(MSFAuthorizeViewModel *)viewModel services:(id <MSFViewModelServices>)services;
 

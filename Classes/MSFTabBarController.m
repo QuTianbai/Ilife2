@@ -21,7 +21,6 @@
 
 #import "MSFClient.h"
 #import "MSFUser.h"
-#import "MSFUtils.h"
 #import "UIColor+Utils.h"
 #import "MobClick.h"
 #import "MSFUmengMacro.h"
@@ -82,7 +81,7 @@
 	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	
-	if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
+	if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
 		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 		self.circulateViewModel = viewModel;
 		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
@@ -122,7 +121,7 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
-		if ([MSFUtils.isCircuteCash isEqualToString:@"4101"]) {
+		if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;
 		} else {

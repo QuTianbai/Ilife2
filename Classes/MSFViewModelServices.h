@@ -7,17 +7,23 @@
 #import <Foundation/Foundation.h>
 
 @class MSFClient;
-@class MSFServer;
 @class RACSignal;
 
 @protocol MSFViewModelServices <NSObject>
 
-- (void)pushViewModel:(id)viewModel;
 - (void)popViewModel;
+
+- (void)pushViewModel:(id)viewModel;
 - (void)presentViewModel:(id)viewModel;
+
+// Client instance.
 - (MSFClient *)httpClient;
-- (MSFServer *)server;
-- (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude;
-- (RACSignal *)takePicture;
+
+// Update When signIn or SignUp.
+//
+// client - authenticated client or unauthenticated client.
+- (void)setHttpClient:(MSFClient *)client;
+
+- (RACSignal *)msf_takePictureSignal;
 
 @end

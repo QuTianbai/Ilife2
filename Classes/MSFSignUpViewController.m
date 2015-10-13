@@ -120,7 +120,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[SVProgressHUD showWithStatus:@"正在注册..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[MSFUtils setRegisterPhone:@""]; 
 		}];
 	}];
 	

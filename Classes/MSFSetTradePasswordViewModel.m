@@ -11,6 +11,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+Captcha.h"
 #import "MSFClient.h"
+#import "MSFServer.h"
 #import "MSFUtils.h"
 
 static const int kCounterLength = 60;
@@ -54,8 +55,8 @@ static const int kCounterLength = 60;
 }
 
 - (RACSignal *)executeCaptchaSignal {
-	MSFClient *client = [[MSFClient alloc] initWithServer:self.services.server];
-	return [client fetchSignUpCaptchaWithPhone:MSFUtils.phone];
+	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
+	return [client fetchSignUpCaptchaWithPhone:MSFUtils.signInMobile];
 }
 
 - (RACSignal *)captchaRequestValidSignal {

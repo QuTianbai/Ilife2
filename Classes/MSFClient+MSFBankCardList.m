@@ -7,7 +7,6 @@
 //
 
 #import "MSFClient+MSFBankCardList.h"
-#import "MSFUtils.h"
 #import "MSFBankCardListModel.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFUser.h"

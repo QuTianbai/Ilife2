@@ -9,7 +9,6 @@
 #import <libextobjc/extobjc.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUserViewModel.h"
-#import "MSFUtils.h"
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFAuthorizeViewModel.h"
 

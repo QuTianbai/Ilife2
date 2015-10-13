@@ -9,11 +9,11 @@
 #import <libextobjc/extobjc.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtils.h"
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "UIColor+Utils.h"
+#import "MSFUtils.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 
 @interface MSFFindPasswordViewController () <UITextFieldDelegate>
@@ -39,8 +39,8 @@
 	[super viewDidLoad];
 	self.title = @"忘记密码";
 	
-	self.username.text = MSFUtils.phone;
-	self.viewModel.username = MSFUtils.phone;
+	self.username.text = MSFUtils.signInMobile;
+	self.viewModel.username = MSFUtils.signInMobile;
 	
 	self.name.delegate = self;
 	self.card.delegate = self;
@@ -100,7 +100,7 @@
 	self.commitButton.rac_command = self.viewModel.executeFindPassword;
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
-		[MSFUtils setPhone:self.username.text];
+		[MSFUtils setSignInMobile:self.username.text];
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeCompleted:^{
