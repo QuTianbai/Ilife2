@@ -46,7 +46,6 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MSFReleaseNote *releaseNote;
-@property (nonatomic, strong) MSFAuthorizeViewModel *authorizeVewModel;
 
 @end
 
