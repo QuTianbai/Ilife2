@@ -36,6 +36,7 @@
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 #import <BugshotKit/BugshotKit.h>
+#import "MSFAuthorizeViewModel.h"
 
 @interface AppDelegate ()
 
@@ -45,6 +46,7 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MSFReleaseNote *releaseNote;
+@property (nonatomic, strong) MSFAuthorizeViewModel *authorizeVewModel;
 
 @end
 
@@ -53,8 +55,12 @@
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	self.window.backgroundColor = UIColor.whiteColor;
+	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
+	[self.window makeKeyAndVisible];
+	
 	[Fabric with:@[CrashlyticsKit]];
-  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 #if TEST || DEBUG
 	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
@@ -64,12 +70,120 @@
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 		[manager startUpdatingLocation];
 	}];
+
+	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
+		[self setup];
+		return [RACSignal empty];
+	}] subscribeNext:^(MSFReleaseNote *releasenote) {
+		[self setup];
+		self.releaseNote = releasenote;
+		if (releasenote.status == 1) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
+			}];
+		} else if (releasenote.status == 2) {
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
+			}];
+		}
+		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	}];
 	
-	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-	self.window.backgroundColor = UIColor.whiteColor;
-	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
-	[self.window makeKeyAndVisible];
+	return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+	if (self.releaseNote) [self updateCheck];
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
+}
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
+}
+
+#pragma mark - Private
+
+- (void)updateCheck {
+	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.status == 1) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			[[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
+		}];
+	} else if (self.releaseNote.status == 2) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
+			message:self.releaseNote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
+			if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
+		}];
+	}
+}
+
+- (void)updateContract {
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
+}
+
+#pragma mark - Setup
+
+- (void)setup {
+	// 通用颜色配置
+	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
+	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
+  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
+	// ViewModels
+	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	self.authorizeVewModel = self.viewModel.authorizeViewModel;
+	
+	// 启动到登录的过渡动画
+	CATransition *transition = [CATransition animation];
+	transition.duration = 0.7;
+	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+	transition.type = kCATransitionFade;
+	transition.subtype = kCATransitionReveal;
+	[self.window.layer addAnimation:transition forKey:nil];
+	
+	// 加载未授权界面
+	[self unAuthenticatedControllers];
+	
+	@weakify(self)
+	
+	// 登录注册验证变化
+	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
+		@strongify(self)
+		if (client.isAuthenticated) {
+			[self authenticatedControllers];
+		} else {
+			[self unAuthenticatedControllers];
+		}
+	}];
+	
+	// 超时授权失败
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil] subscribeNext:^(NSError *error) {
+		@strongify(self)
+		[self unAuthenticatedControllers];
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	// 更多配置
+	[self umengSetup];
+	[self contractSetup];
+}
+
+- (void)contractSetup {
 	// 确认合同
 	@weakify(self)
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFREQUESTCONTRACTSNOTIFACATION object:nil] subscribeNext:^(id x) {
@@ -103,9 +217,10 @@
 		@strongify(self)
 		self.timer = [NSTimer scheduledTimerWithTimeInterval:60 * 3 target:self selector:@selector(updateContract) userInfo:nil repeats:YES];
 	}];
-	
-	
-	///添加Umeng统计
+}
+
+- (void)umengSetup {
+	// 添加Umeng统计
 	NSString *umengAppKey = nil;
 #if DEBUG
 	umengAppKey = MSF_Umeng_AppKey_Test;
@@ -114,105 +229,9 @@
 #endif
 	[MobClick startWithAppkey:umengAppKey reportPolicy:BATCH channelId:nil];
 	[MobClick setAppVersion:[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"]];
-	
-	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-		[self setup];
-		return [RACSignal empty];
-	}] subscribeNext:^(MSFReleaseNote *releasenote) {
-		[self setup];
-		self.releaseNote = releasenote;
-		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
-		if (releasenote.status == 1) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-				message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		} else if (releasenote.status == 2) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-				message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		}
-	}];
-	
-	return YES;
 }
 
-- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler {
-	NSLog(@"application: handleEventsForBackgroundURLSession: completionHandler:");
-	
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-	NSLog(@"applicationDidBecomeActive:");
-	if (self.releaseNote) [self updateCheck];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-	if (self.timer != nil) {
-		[self.timer setFireDate:[NSDate distantFuture]];
-	}
-	NSLog(@"applicationDidEnterBackground:");
-}
-
-#pragma mark - Private
-
-- (void)updateCheck {
-	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
-	if (self.releaseNote.status == 1) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-		[alert show];
-		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-			[[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
-		}];
-	} else if (self.releaseNote.status == 2) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
-			message:self.releaseNote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-		[alert show];
-		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-			if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:self.releaseNote.updatedURL];
-		}];
-	}
-}
-
-- (void)setup {
-	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
-	
-	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
-	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
-	self.authorizeVewModel = self.viewModel.authorizeViewModel;
-	CATransition *transition = [CATransition animation];
-	transition.duration = 0.7;
-	transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-	transition.type = kCATransitionFade;
-	transition.subtype = kCATransitionReveal;
-	[self.window.layer addAnimation:transition forKey:nil];
-	[self unAuthenticatedControllers];
-	
-	@weakify(self)
-	[self.viewModel.authorizationUpdatedSignal subscribeNext:^(MSFClient *client) {
-		@strongify(self)
-		if (client.isAuthenticated) {
-			[self authenticatedControllers];
-		} else {
-			[self unAuthenticatedControllers];
-		}
-	}];
-	
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:MSFClientErrorAuthenticationFailedNotification object:nil] subscribeNext:^(NSError *error) {
-		@strongify(self)
-		[self.viewModelServices.httpClient signOut];
-		[self unAuthenticatedControllers];
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-}
+#pragma mark - Authenticated
 
 - (void)unAuthenticatedControllers {
 	if (self.timer != nil) {
@@ -227,10 +246,6 @@
 - (void)authenticatedControllers {
 	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
 	self.window.rootViewController = tabBarController;
-}
-
-- (void)updateContract {
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
 }
 
 @end
