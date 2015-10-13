@@ -11,6 +11,7 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "MSFResponse.h"
 #import "MSFUser.h"
+#import "MSFViewModelServicesImpl.h"
 
 QuickSpecBegin(MSFAuthorizeViewModelSpec)
 
@@ -21,7 +22,7 @@ __block NSError *error;
 __block BOOL success;
 
 beforeEach(^{
-	services = mockProtocol(@protocol(MSFViewModelServices));
+	services = [[MSFViewModelServicesImpl alloc] init];
   viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:services];
   error = nil;
   success = NO;

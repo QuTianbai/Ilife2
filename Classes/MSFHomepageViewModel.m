@@ -28,7 +28,6 @@
 @interface MSFHomepageViewModel ()
 
 @property (nonatomic, readwrite) NSArray *viewModels;
-@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
 
@@ -99,12 +98,12 @@ static NSString *msf_whiteListUserCode = @"4101";
 		if (self.viewModels.count > 0) {
 			return self.viewModels[0];
 		} else {
-			return nil;
+			return self;
 		}
 	} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
 		return self.circulateCashViewModel;
 	} else {
-		return nil;
+		return self;
 	}
 }
 

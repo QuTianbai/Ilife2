@@ -287,7 +287,7 @@
 		4925ADF71B2AFD8800872A8A /* btn_uncheck@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */; };
 		492BB43F1B1C0D3C0024897C /* loaninfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 492BB43E1B1C0D3C0024897C /* loaninfo.json */; };
 		492C6A181B4D174900547616 /* loan-response-cash.json in Resources */ = {isa = PBXBuildFile; fileRef = 492C6A171B4D174900547616 /* loan-response-cash.json */; };
-		492CBE991B8811740059B6C2 /* Utils.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492CBE981B8811740059B6C2 /* Utils.storyboard */; };
+		492CBE991B8811740059B6C2 /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492CBE981B8811740059B6C2 /* Alert.storyboard */; };
 		492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */; };
 		492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEAB1B88151A0059B6C2 /* MSFAlertViewModel.m */; };
 		492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */; };
@@ -1168,7 +1168,7 @@
 		4925ADF11B2AFD8800872A8A /* btn_uncheck@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_uncheck@3x.png"; sourceTree = "<group>"; };
 		492BB43E1B1C0D3C0024897C /* loaninfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loaninfo.json; sourceTree = "<group>"; };
 		492C6A171B4D174900547616 /* loan-response-cash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "loan-response-cash.json"; sourceTree = "<group>"; };
-		492CBE981B8811740059B6C2 /* Utils.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Utils.storyboard; sourceTree = "<group>"; };
+		492CBE981B8811740059B6C2 /* Alert.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
 		492CBEA71B8814EF0059B6C2 /* MSFAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAlertViewController.h; sourceTree = "<group>"; };
 		492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAlertViewController.m; sourceTree = "<group>"; };
 		492CBEAA1B88151A0059B6C2 /* MSFAlertViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAlertViewModel.h; sourceTree = "<group>"; };
@@ -2452,6 +2452,20 @@
 			name = Button;
 			sourceTree = "<group>";
 		};
+		491DB1EE1BCCDE04002C5C78 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				492CBE981B8811740059B6C2 /* Alert.storyboard */,
+				492CBEA71B8814EF0059B6C2 /* MSFAlertViewController.h */,
+				492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */,
+				492CBEAD1B8815FB0059B6C2 /* MSFAlertContentViewController.h */,
+				492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */,
+				492CBEAA1B88151A0059B6C2 /* MSFAlertViewModel.h */,
+				492CBEAB1B88151A0059B6C2 /* MSFAlertViewModel.m */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
 		492007421BA00CCD00C0722C /* EssentialImager */ = {
 			isa = PBXGroup;
 			children = (
@@ -2764,6 +2778,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				491DB1EE1BCCDE04002C5C78 /* Alert */,
 				07E3ED631BBBB9F60010AAD2 /* TradePassword */,
 				077347EE1BBA379200D7A130 /* BankCard */,
 				49CA93471BBA21120032F5C2 /* Group */,
@@ -3192,6 +3207,10 @@
 		49C7CBAA1B04A3B600EF5A68 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
+				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
+				491DB1DC1BCCB543002C5C78 /* NSURLConnection+Locations.h */,
+				491DB1DD1BCCB543002C5C78 /* NSURLConnection+Locations.m */,
 				49CA93731BBA22CF0032F5C2 /* UIView+Sizes.h */,
 				49CA93741BBA22CF0032F5C2 /* UIView+Sizes.m */,
 				4917A4431B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.h */,
@@ -3402,21 +3421,10 @@
 				49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */,
 				49DA22621B062AF200DD4483 /* MSFUtils.h */,
 				49DA22631B062AF200DD4483 /* MSFUtils.m */,
-				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
-				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
 				07C2E0731B1AE9FE00C7FEDE /* MSFReactiveView.h */,
 				4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */,
 				4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */,
 				4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */,
-				492CBEA71B8814EF0059B6C2 /* MSFAlertViewController.h */,
-				492CBEA81B8814EF0059B6C2 /* MSFAlertViewController.m */,
-				492CBEAD1B8815FB0059B6C2 /* MSFAlertContentViewController.h */,
-				492CBEAE1B8815FB0059B6C2 /* MSFAlertContentViewController.m */,
-				492CBEAA1B88151A0059B6C2 /* MSFAlertViewModel.h */,
-				492CBEAB1B88151A0059B6C2 /* MSFAlertViewModel.m */,
-				491DB1DC1BCCB543002C5C78 /* NSURLConnection+Locations.h */,
-				491DB1DD1BCCB543002C5C78 /* NSURLConnection+Locations.m */,
-				492CBE981B8811740059B6C2 /* Utils.storyboard */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -4015,7 +4023,7 @@
 				4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */,
 				49B37B5A1B608F39004EED47 /* bar-normal.png in Resources */,
 				077347E21BBA338900D7A130 /* ICBC.png in Resources */,
-				492CBE991B8811740059B6C2 /* Utils.storyboard in Resources */,
+				492CBE991B8811740059B6C2 /* Alert.storyboard in Resources */,
 				077347D11BBA338900D7A130 /* CBC@2x.png in Resources */,
 				49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
@@ -4755,7 +4763,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4784,7 +4792,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 			};
 			name = UAT;
 		};
@@ -4852,7 +4860,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4920,7 +4928,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
 			};
 			name = Debug;
 		};
@@ -5035,7 +5043,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5068,7 +5076,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 			};
 			name = TEST;
 		};
@@ -5128,7 +5136,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5161,7 +5169,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 			};
 			name = TP;
 		};
