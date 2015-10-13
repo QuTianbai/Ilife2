@@ -21,6 +21,7 @@
 @property (nonatomic, readonly) NSArray *viewModels;
 @property (nonatomic, readonly) RACCommand *refreshCommand;
 @property (nonatomic, readonly) MSFCirculateCashViewModel *circulateCashViewModel;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
