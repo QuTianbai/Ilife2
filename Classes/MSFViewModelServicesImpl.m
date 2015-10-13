@@ -22,6 +22,9 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 
+#import "MSFLifeInsuranceViewModel.h"
+#import "MSFLifeInsuranceViewController.h"
+
 #import "MSFWebViewModel.h"
 #import "MSFWebViewController.h"
 
@@ -116,6 +119,8 @@
 		viewController = [[MSFProfessionalViewController alloc] init];
 		[viewController bindViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
+		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }

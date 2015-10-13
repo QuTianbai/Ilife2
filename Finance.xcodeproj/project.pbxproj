@@ -159,6 +159,10 @@
 		07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD31091B09CC7600E0C2DF /* MSFCommandView.m */; };
 		07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */; };
 		07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 07CDAEAB1B11BC9E00B7014C /* dicareas.db */; };
+		07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */; settings = {ASSET_TAGS = (); }; };
+		07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */; settings = {ASSET_TAGS = (); }; };
+		07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */; settings = {ASSET_TAGS = (); }; };
+		07D2249F1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249E1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.m */; settings = {ASSET_TAGS = (); }; };
 		07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		07E3ED621BBBB8B40010AAD2 /* InputTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */; settings = {ASSET_TAGS = (); }; };
 		07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6A1BBBC3020010AAD2 /* tradePassWordBG.png */; settings = {ASSET_TAGS = (); }; };
@@ -963,6 +967,13 @@
 		07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAppliesHeaderView.h; sourceTree = "<group>"; };
 		07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAppliesHeaderView.m; sourceTree = "<group>"; };
 		07CDAEAB1B11BC9E00B7014C /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
+		07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLifeInsuranceViewController.h; sourceTree = "<group>"; };
+		07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLifeInsuranceViewController.m; sourceTree = "<group>"; };
+		07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LifeInsurance.storyboard; sourceTree = "<group>"; };
+		07D224991BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLifeInsuranceViewModel.h; sourceTree = "<group>"; };
+		07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLifeInsuranceViewModel.m; sourceTree = "<group>"; };
+		07D2249D1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFLifeInsurance.h"; sourceTree = "<group>"; };
+		07D2249E1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFLifeInsurance.m"; sourceTree = "<group>"; };
 		07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputTradePasswordViewController.h; sourceTree = "<group>"; };
 		07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputTradePasswordViewController.m; sourceTree = "<group>"; };
 		07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InputTradePassword.storyboard; sourceTree = "<group>"; };
@@ -1967,6 +1978,8 @@
 				49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */,
 				495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */,
 				495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */,
+				07D224991BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.h */,
+				07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */,
 			);
 			name = Forms;
 			sourceTree = "<group>";
@@ -2060,6 +2073,9 @@
 				07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */,
 				07330B331BBE2467000EB8FD /* MSFCashHomePageViewController.h */,
 				07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */,
+				07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */,
+				07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */,
+				07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */,
 			);
 			name = AppliesInfo;
 			sourceTree = "<group>";
@@ -2138,6 +2154,15 @@
 				07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */,
 			);
 			name = ClassCatory;
+			sourceTree = "<group>";
+		};
+		07D2249C1BCCD11B00B00BEF /* LifeInsurance */ = {
+			isa = PBXGroup;
+			children = (
+				07D2249D1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.h */,
+				07D2249E1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.m */,
+			);
+			name = LifeInsurance;
 			sourceTree = "<group>";
 		};
 		07E3ED631BBBB9F60010AAD2 /* TradePassword */ = {
@@ -2669,6 +2694,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				07D2249C1BCCD11B00B00BEF /* LifeInsurance */,
 				07667BEE1BBEAAC2002DFF62 /* CheckIsAllowApplyCash */,
 				07330B621BBE3187000EB8FD /* ApplyCash */,
 				07330B481BBE2BF1000EB8FD /* Market2.0 */,
@@ -3926,6 +3952,7 @@
 				10DC2DA21B99C17F00A2AF9C /* icon_order1_h.png in Resources */,
 				077347D81BBA338900D7A130 /* CMBC@3x.png in Resources */,
 				4944C04E1B68A5DA00805C0A /* nav-setting@2x.png in Resources */,
+				07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */,
 				499EA2B61B5679E50051AF66 /* familyMember_type2.json in Resources */,
 				07E3ED7A1BBBF6C00010AAD2 /* blackpoint@2x.png in Resources */,
 				4902E4211BC4C56F0087FA1E /* icon-arrow-right@3x.png in Resources */,
@@ -4369,6 +4396,7 @@
 				07330B691BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m in Sources */,
 				078EEB981BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.m in Sources */,
 				07C924D71B0C2D1C00FA73BD /* MSFLoanListViewController.m in Sources */,
+				07D2249F1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.m in Sources */,
 				07CB4C7F1B104944006C220E /* MSFProfessionalViewController.m in Sources */,
 				49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */,
 				49CA93911BBA91230032F5C2 /* MSFAuthorizeResponse.m in Sources */,
@@ -4423,6 +4451,7 @@
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
 				4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */,
 				07BD83FC1B156CAA00D731BF /* MSFProduct.m in Sources */,
+				07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */,
 				07BE0E741B0D8D2B00D11F1A /* MSFTeams.m in Sources */,
 				07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */,
 				077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */,
@@ -4565,6 +4594,7 @@
 				C7B91FA81B04BD3A0091B091 /* MSFTrade.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
+				07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */,
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */,

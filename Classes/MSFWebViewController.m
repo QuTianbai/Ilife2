@@ -100,7 +100,6 @@
 		error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
-	
 }
 
 #pragma mark - UIWebViewDelegate
