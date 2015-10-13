@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zca-I6-Jc8">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--寿险计划-->
+        <scene sceneID="LGp-Ra-j2K">
+            <objects>
+                <viewController title="寿险计划" id="zca-I6-Jc8" customClass="MSFLifeInsuranceViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Csf-jf-T98"/>
+                        <viewControllerLayoutGuide type="bottom" id="DIx-ao-JIA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zzb-MN-QDW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loa-uJ-QIX">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DIx-ao-JIA" firstAttribute="top" secondItem="loa-uJ-QIX" secondAttribute="bottom" id="BUv-C2-T2x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="loa-uJ-QIX" secondAttribute="trailing" id="UjK-j1-Clf"/>
+                            <constraint firstItem="loa-uJ-QIX" firstAttribute="leading" secondItem="zzb-MN-QDW" secondAttribute="leadingMargin" id="esh-Wq-VtW"/>
+                            <constraint firstItem="loa-uJ-QIX" firstAttribute="top" secondItem="Csf-jf-T98" secondAttribute="bottom" id="rEh-Fg-vrn"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="loa-uJ-QIX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="UjK-j1-Clf"/>
+                                <exclude reference="esh-Wq-VtW"/>
+                                <exclude reference="rEh-Fg-vrn"/>
+                                <exclude reference="BUv-C2-T2x"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="loa-uJ-QIX"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="UjK-j1-Clf"/>
+                                <include reference="esh-Wq-VtW"/>
+                                <include reference="rEh-Fg-vrn"/>
+                                <include reference="BUv-C2-T2x"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="lifeInsuranceWebView" destination="loa-uJ-QIX" id="XdG-BH-btd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N25-XU-mnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="734" y="201"/>
+        </scene>
+    </scenes>
+</document>
