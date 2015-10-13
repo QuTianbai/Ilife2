@@ -44,9 +44,9 @@
 
 - (instancetype)initWithViewModel:(id)viewModel services:(id<MSFViewModelServices>)services {
 	//self = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
-	self = [super init];
+	self = [super initWithNibName:@"MSFUserInformationViewController" bundle:nil];
 	if (self) {
-		self.view = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
+		//self.view = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
 		self.hidesBottomBarWhenPushed = YES;
 		_services = services;
 		_viewModel = viewModel;
@@ -70,8 +70,6 @@
 //	[self.view addSubview:_headerImageView];
 //	
 	@weakify(self)
-	_circleView = [[MSFUserInfoCircleView alloc] init];
-	[self.view addSubview:_circleView];
 	[[_circleView.clickCommand.executionSignals
 		switchToLatest]
 	 subscribeNext:^(NSNumber *x) {
