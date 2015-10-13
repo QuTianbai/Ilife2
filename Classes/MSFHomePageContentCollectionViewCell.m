@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
 
 @property (assign, nonatomic) BOOL circleShow;
@@ -44,6 +45,7 @@
 @implementation MSFHomePageContentCollectionViewCell
 
 - (void)awakeFromNib {
+	
 	_statusButton.layer.cornerRadius = 5;
 	_statusButton.layer.borderColor = UIColor.tintColor.CGColor;
 	_statusButton.layer.borderWidth = 1;

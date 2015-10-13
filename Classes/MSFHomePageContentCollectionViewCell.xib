@@ -117,6 +117,7 @@
                 <outlet property="ConFirmContractBT" destination="6OA-8r-U1a" id="3Fk-rE-hbK"/>
                 <outlet property="amountLabel" destination="juA-PJ-DxE" id="oj2-kr-ZLG"/>
                 <outlet property="circleView" destination="MM3-Za-J73" id="qfn-p2-z4V"/>
+                <outlet property="constraint" destination="CEZ-b4-wfn" id="3v3-Ge-skD"/>
                 <outlet property="content" destination="bS2-FN-dOQ" id="U8v-7d-EZA"/>
                 <outlet property="infoLabel" destination="gVN-1q-TlX" id="qzh-Uf-9fo"/>
                 <outlet property="statusButton" destination="TTN-w7-ccN" id="Fmu-xn-beP"/>
