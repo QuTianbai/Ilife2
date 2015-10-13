@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSFUserInfomationViewController">
+            <connections>
+                <outlet property="circleView" destination="4q0-wR-qye" id="Dkg-Xw-zHg"/>
+                <outlet property="view" destination="iN0-l3-epB" id="5BS-73-7Yd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home-banner-pl.png" translatesAutoresizingMaskIntoConstraints="NO" id="T0B-fl-GKb">
+                    <rect key="frame" x="0.0" y="64" width="320" height="148"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="T0B-fl-GKb" secondAttribute="height" multiplier="1242:575" id="4u3-w1-0Bz"/>
+                    </constraints>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dA3-9o-wxl">
+                    <rect key="frame" x="0.0" y="212" width="320" height="296"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4q0-wR-qye" customClass="MSFUserInfoCircleView">
+                            <rect key="frame" x="32" y="20" width="256" height="256"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="4q0-wR-qye" secondAttribute="height" id="AcX-mR-bVW"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="4q0-wR-qye" firstAttribute="centerY" secondItem="dA3-9o-wxl" secondAttribute="centerY" id="PwB-7w-JSj"/>
+                        <constraint firstItem="4q0-wR-qye" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dA3-9o-wxl" secondAttribute="top" id="aRo-bm-PFt"/>
+                        <constraint firstItem="4q0-wR-qye" firstAttribute="centerX" secondItem="dA3-9o-wxl" secondAttribute="centerX" id="bs0-2X-7RE"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="4q0-wR-qye" secondAttribute="bottom" id="i0F-ea-wcr"/>
+                        <constraint firstItem="4q0-wR-qye" firstAttribute="width" secondItem="dA3-9o-wxl" secondAttribute="width" multiplier="0.8" priority="750" id="ua7-RI-hvf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="T0B-fl-GKb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="64" id="6aJ-E0-Gmg"/>
+                <constraint firstItem="T0B-fl-GKb" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BH6-8d-Py0"/>
+                <constraint firstItem="dA3-9o-wxl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FUe-4f-J4l"/>
+                <constraint firstAttribute="trailing" secondItem="dA3-9o-wxl" secondAttribute="trailing" id="JJx-2D-gD5"/>
+                <constraint firstAttribute="bottom" secondItem="dA3-9o-wxl" secondAttribute="bottom" constant="60" id="RHO-kI-XPd"/>
+                <constraint firstItem="dA3-9o-wxl" firstAttribute="top" secondItem="T0B-fl-GKb" secondAttribute="bottom" id="gEP-g5-hOO"/>
+                <constraint firstAttribute="trailing" secondItem="T0B-fl-GKb" secondAttribute="trailing" id="x9D-7X-iey"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="home-banner-pl.png" width="1242" height="575"/>
+    </resources>
+</document>

@@ -32,9 +32,9 @@
 
 @interface MSFUserInfomationViewController ()
 
-@property (nonatomic, strong) UIImageView *headerImageView;
+//@property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIButton *nextStepButton;
-@property (nonatomic, strong) MSFUserInfoCircleView *circleView;
+@property (nonatomic, strong) IBOutlet MSFUserInfoCircleView *circleView;
 @property (nonatomic, weak) id<MSFViewModelServices>services;
 @property (nonatomic, strong) MSFApplyCashVIewModel *viewModel;
 
@@ -43,8 +43,10 @@
 @implementation MSFUserInfomationViewController
 
 - (instancetype)initWithViewModel:(id)viewModel services:(id<MSFViewModelServices>)services {
+	//self = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
 	self = [super init];
 	if (self) {
+		self.view = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
 		self.hidesBottomBarWhenPushed = YES;
 		_services = services;
 		_viewModel = viewModel;
@@ -63,10 +65,10 @@
 	self.navigationItem.title = @"个人信息";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
-	_headerImageView = [[UIImageView alloc] init];
-	_headerImageView.image = [UIImage imageNamed:@"home-banner-pl.png"];
-	[self.view addSubview:_headerImageView];
-	
+//	_headerImageView = [[UIImageView alloc] init];
+//	_headerImageView.image = [UIImage imageNamed:@"home-banner-pl.png"];
+//	[self.view addSubview:_headerImageView];
+//	
 	@weakify(self)
 	_circleView = [[MSFUserInfoCircleView alloc] init];
 	[self.view addSubview:_circleView];
@@ -129,30 +131,30 @@
 		}
 	}];
 	
-	[_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-		@strongify(self)
-		make.top.equalTo(self.view).offset(64);
-		make.left.equalTo(self.view);
-		make.right.equalTo(self.view);
-		make.height.equalTo(self.headerImageView.mas_width).multipliedBy(0.463);
-	}];
+//	[_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//		@strongify(self)
+//		make.top.equalTo(self.view).offset(64);
+//		make.left.equalTo(self.view);
+//		make.right.equalTo(self.view);
+//		make.height.equalTo(self.headerImageView.mas_width).multipliedBy(0.463);
+//	}];
 	
-	CGFloat h1 = [UIScreen mainScreen].bounds.size.width * 0.463;
-	CGFloat h2 = 60.f;
-	CGFloat offsetY = (h1 - h2) / 2;
-	[_circleView mas_makeConstraints:^(MASConstraintMaker *make) {
-		@strongify(self)
-		make.top.greaterThanOrEqualTo(self.headerImageView.mas_bottom);
-		make.bottom.greaterThanOrEqualTo(self.view.mas_bottom).offset(-h2);
-		make.centerX.equalTo(self.view);
-		make.centerY.equalTo(self.view).offset(offsetY);
-		make.width.priorityMedium().equalTo(self.view.mas_width).multipliedBy(0.8);
-		make.height.equalTo(self.circleView.mas_width);
-	}];
+//	CGFloat h1 = [UIScreen mainScreen].bounds.size.width * 0.463;
+//	CGFloat h2 = 60.f;
+//	CGFloat offsetY = (h1 - h2) / 2;
+//	[_circleView mas_makeConstraints:^(MASConstraintMaker *make) {
+//		@strongify(self)
+//		make.top.greaterThanOrEqualTo(self.view.mas_top).offset(h1 + 64.f).priorityHigh();
+//		make.bottom.greaterThanOrEqualTo(self.view.mas_bottom).offset(-h2).priorityHigh();
+//		make.centerX.equalTo(self.view);
+//		make.centerY.equalTo(self.view).offset(-off);
+//		make.width.equalTo(self.view.mas_width).multipliedBy(0.8).priorityMedium();
+//		make.height.equalTo(self.circleView.mas_width);
+//	}];
 	
 	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.bottom.equalTo(self.view).offset(-20);
+		make.bottom.equalTo(self.view).offset(-10);
 		make.left.equalTo(self.view).offset(20);
 		make.right.equalTo(self.view).offset(-20);
 		make.height.equalTo(@40);
