@@ -50,12 +50,6 @@ static const int kPasswordMinLength = 8;
     return [self executeUpdatePasswordSignal];
   }];
 	
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[[self.servcies.httpClient fetchUserInfo] subscribeNext:^(MSFUser *user) {
-			[(RACSubject *)self.contentUpdateSignal sendNext:nil];
-		}];
-	}];
 	_bankCardListViewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.servcies];
 	
 	return self;
