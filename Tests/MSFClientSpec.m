@@ -120,7 +120,7 @@ describe(@"without a user", ^{
     // then
     expect(request).notTo(beNil());
     expect(request.HTTPMethod).to(equal(@"GET"));
-    expect(request.URL).to(equal([NSURL URLWithString:@"https://api.msfinance.cn/get"]));
+    expect(request.URL.path).to(equal(@"/get"));
   });
   
   it(@"should GET a JSON Dictionary", ^{

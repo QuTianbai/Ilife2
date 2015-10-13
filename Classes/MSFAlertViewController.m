@@ -23,7 +23,7 @@
 @implementation MSFAlertViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
-	self = [UIStoryboard storyboardWithName:@"Utils" bundle:nil].instantiateInitialViewController;
+	self = [UIStoryboard storyboardWithName:@"Alert" bundle:nil].instantiateInitialViewController;
 	self.view.frame = CGRectMake(0, 0, 280, 320);
 	self.viewModel = viewModel;
 	[self.contentViewController bindViewModel:self.viewModel];

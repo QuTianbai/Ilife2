@@ -114,7 +114,7 @@ describe(@"attachment placholder", ^{
 		stubProperty(model, thumbURL, [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"]);
 		
 		viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
-		[given([services takePicture]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
+		[given([services msf_takePictureSignal]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
 		
 		// when
 		[[viewModel.takePhotoCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
