@@ -5,6 +5,7 @@
 //
 
 #import "MSFElement.h"
+#import "MSFServer.h"
 
 @implementation MSFElement
 
@@ -16,20 +17,20 @@
 		@"name": @"name",
 		@"title": @"title",
 		@"comment": @"comment",
-		@"sampleURL": @"exampleUrl",
-		@"thumbURL": @"iconUrl",
+		@"relativeSamplePath": @"exampleUrl",
+		@"relativeThumbPath": @"iconUrl",
 		@"required": @"status",
 		@"maximum": @"maxNum",
 		@"sort": @"sort",
 	};
 }
 
-+ (NSValueTransformer *)sampleURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+- (NSURL *)sampleURL {
+	return [self.server.baseURL URLByAppendingPathComponent:self.relativeSamplePath];
 }
 
-+ (NSValueTransformer *)thumbURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
+- (NSURL *)thumbURL {
+	return [self.server.baseURL URLByAppendingPathComponent:self.relativeThumbPath];
 }
 
 + (NSValueTransformer *)requiredJSONTransformer {
