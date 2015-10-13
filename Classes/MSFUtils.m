@@ -15,8 +15,6 @@
 #import "MSFResponse.h"
 #import "MSFCipher.h"
 #import "MSFAuthorization.h"
-#import "MSFAgreement.h"
-#import "MSFAgreementViewModel.h"
 #import "MSFClient+ReleaseNote.h"
 #import "MSFReleaseNote.h"
 
@@ -59,13 +57,6 @@ static MSFServer *server;
 		return;
 	}
 	client = [[MSFClient alloc] initWithServer:server];
-}
-
-+ (MSFAgreementViewModel *)agreementViewModel {
-	MSFAgreement *agreement = [[MSFAgreement alloc] initWithServer:MSFServer.dotComServer];
-	MSFAgreementViewModel *viewModel = [[MSFAgreementViewModel alloc] initWithModel:agreement];
-	
-	return viewModel;
 }
 
 #pragma mark - Persistent values

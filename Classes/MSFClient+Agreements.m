@@ -9,11 +9,25 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFUtils.h"
 
+NSString *const MSFAgreementTypeRegister = @"REGISTRATION_PROTOCOL";
+NSString *const MSFAgreementTypeAboutUs = @"ABOUT_US";
+NSString *const MSFAgreementTypeIntro = @"PRODUCTION_INTRODUCTION";
+NSString *const MSFAgreementTypeHelper = @"USER_HELP";
+NSString *const MSFAgreementTypeAddresses = @"STORE_BRANCH";
+NSString *const MSFAgreementTypeInsurance = @"LIFE_INSURANCE_PROTOCOL";
+
+static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPONSES";
+
 @implementation MSFClient (Agreements)
 
-- (RACSignal *)fetchAgreementURLWithProduct:(MSFApplyCashVIewModel *)product {
+#pragma mark - Private
+
+- (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashVIewModel *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{@"productCode": MSFUtils.productCode ?: @"", @"appLmt" :product.appLmt?:@"", @"loanTerm" : product.loanTerm
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{
+			@"productCode": MSFUtils.productCode ?: @"",
+			@"appLmt": product.appLmt?:@"",
+			@"loanTerm": product.loanTerm
 		}];
 		[subscriber sendNext:request];
 		[subscriber sendCompleted];
@@ -21,18 +35,7 @@
 	}];
 }
 
-- (RACSignal *)fetchRegisterURL {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/article" parameters:@{
-			@"templateType" :@"REGISTRATION_PROTOCOL",
-		}];
-		[subscriber sendNext:request];
-		[subscriber sendCompleted];
-		return nil;
-	}];
-}
-
-- (RACSignal *)fetchAgreementURLWithType:(NSString *)type {
+- (RACSignal *)fetchUserAgreementRequestWithType:(NSString *)type {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/article" parameters:@{
 			@"templateType" :type,
@@ -41,6 +44,38 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+#pragma mark - Public
+
+- (RACSignal *)fetchUserAgreementWithType:(NSString *)type {
+	return [[self
+		fetchUserAgreementRequestWithType:type]
+		flattenMap:^RACStream *(id value) {
+			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
+				NSLog(@"%@", [value description]);
+			}
+			return [[[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}]
+				doError:^(NSError *error) {
+					if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
+						NSLog(@"%@", error.description);
+					}
+				}];
+		}];
+}
+
+- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashVIewModel *)product {
+	return [[self
+		fetchLoanAgreementRequestWithProduct:product]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
+		}];
 }
 
 @end

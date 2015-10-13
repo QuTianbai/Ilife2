@@ -5,17 +5,29 @@
 //
 
 #import "MSFWebViewModel.h"
+#import "MSFClient+Agreements.h"
+
+@interface MSFWebViewModel ()
+
+@property (nonatomic, strong) NSString *agreementType;
+
+@end
 
 @implementation MSFWebViewModel
 
-- (instancetype)initWithURL:(NSURL *)URL {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)agreementType {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_URL = URL;
+	_services = services;
+	_agreementType = agreementType;
   
   return self;
+}
+
+- (RACSignal *)HTMLSignal {
+	return [self.services.httpClient fetchUserAgreementWithType:self.agreementType];
 }
 
 @end

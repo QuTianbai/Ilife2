@@ -17,11 +17,12 @@
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) MSFAgreementViewModel *agreementViewModel;
 @property (nonatomic, strong, readonly) MSFApplyCashVIewModel *formsViewModel;
 @property (nonatomic, strong, readonly) MSFApplyCashVIewModel *product;
 @property (nonatomic, strong, readonly) RACCommand *executeRequest;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
+- (RACSignal *)loanAgreementSignal;
 
 - (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel;
 

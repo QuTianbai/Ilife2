@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
-#import "MSFAgreementViewModel.h"
+#import "MSFClient+Agreements.h"
 
 @implementation MSFUserHelpCell
 
@@ -20,7 +20,7 @@
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_userHelpWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.usersAgreementSignal, [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeHelper], [RACSignal return:nil]]]]
 		deliverOn:RACScheduler.mainThreadScheduler]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

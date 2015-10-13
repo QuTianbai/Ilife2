@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
-#import "MSFAgreementViewModel.h"
+#import "MSFClient+Agreements.h"
 
 @implementation MSFProductIntroductionCell
 
@@ -21,7 +21,7 @@
 	[SVProgressHUD showWithStatus:@"正在加载..."];
 	[[[_productWebView
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
-		withSignalOfArguments:[RACSignal combineLatest:@[MSFUtils.agreementViewModel.productAgreementSignal, [RACSignal return:nil]]]]
+		withSignalOfArguments:[RACSignal combineLatest:@[[MSFUtils.httpClient fetchUserAgreementWithType:MSFAgreementTypeIntro], [RACSignal return:nil]]]]
 		deliverOn:[RACScheduler mainThreadScheduler]]
 		subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];

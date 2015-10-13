@@ -17,8 +17,6 @@
 #import "MSFMarkets.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFWebViewModel.h"
-#import "MSFAgreement.h"
-#import "MSFAgreementViewModel.h"
 #import "MSFTeam.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClient+MSFCheckAllowApply.h"
@@ -27,7 +25,11 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFClient+MSFSubmitAppyCash.h"
 #import "MSFBankCardListModel.h"
+<<<<<<< HEAD
 #import "MSFLifeInsuranceViewModel.h"
+=======
+#import "MSFClient+Agreements.h"
+>>>>>>> d715d19d2e1e5112d4ad74ff60fff46c83d69b1c
 
 @interface MSFApplyCashVIewModel ()
 
@@ -160,8 +162,12 @@
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+<<<<<<< HEAD
 //		MSFWebViewModel *viewModel = [[MSFWebViewModel alloc] initWithURL:[MSFUtils.agreementViewModel.agreement lifeInsuranceURL]];
 		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services];
+=======
+		MSFWebViewModel *viewModel = [[MSFWebViewModel alloc] initWithServices:self.services type:MSFAgreementTypeInsurance];
+>>>>>>> d715d19d2e1e5112d4ad74ff60fff46c83d69b1c
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
