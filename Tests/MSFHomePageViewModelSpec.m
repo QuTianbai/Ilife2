@@ -40,7 +40,7 @@ it(@"should not has viewmodel for placeholder", ^{
   NSString *reusableIdentifier = [viewModel reusableIdentifierForIndexPath:indexPath];
   
   // then
-  expect(sub).to(beNil());
+  expect(sub).to(beAKindOf([MSFHomepageViewModel class]));
   expect(reusableIdentifier).to(equal(@"MSFHomePageContentCollectionViewCell"));
 });
 
