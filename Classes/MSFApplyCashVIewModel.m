@@ -105,6 +105,7 @@
 						if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
 							[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
 							self.loanFixedAmt = @"0.00";
+							self.lifeInsuranceAmt = @"0.00";
 							
 							[SVProgressHUD dismiss];
 							return nil;

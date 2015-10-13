@@ -275,18 +275,6 @@ describe(@"authenticated", ^{
     expect(@(client.isAuthenticated)).to(beTruthy());
   });
   
-  it(@"should fetch userinfo", ^{
-    // given
-    stubResponse(@"/users/1/profile",@"profile.json");
-    
-    // when
-    RACSignal *request = [client fetchUserInfo];
-    MSFUser *user = [request asynchronousFirstOrDefault:nil success:&success error:&error];
-    
-    // then
-    expect(user).to(beAKindOf(MSFUser.class));
-  });
-  
   it(@"should update user password", ^{
     stubResponse(@"/password/updatePassword", nil);
 		
@@ -298,30 +286,6 @@ describe(@"authenticated", ^{
 		expect(@(success)).to(beTruthy());
 		expect(error).to(beNil());
 		expect(@(response.statusCode)).to(equal(@200));
-  });
-  
-  it(@"should checking user has credit", ^{
-    // given
-    stubResponse(@"/users/1/processing",@{@"processing": @YES});
-    
-    // when
-    RACSignal *request = [client checkUserHasCredit];
-    MSFResponse *resposne = [request asynchronousFirstOrDefault:nil success:nil error:nil];
-    
-    // then
-    expect(resposne.parsedResult[@"processing"]).to(beTruthy());
-  });
-  
-  it(@"should check user is employee", ^{
-    // given
-    stubResponse(@"/users/1/check_employee",@{@"employee": @YES});
-    
-    // when
-    RACSignal *request = [client checkUserIsEmployee];
-    MSFResponse *resposne = [request asynchronousFirstOrDefault:nil success:nil error:nil];
-    
-    // then
-    expect(resposne.parsedResult[@"employee"]).to(beTruthy());
   });
 });
 

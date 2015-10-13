@@ -146,7 +146,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}];
 	
 	self.viewModel.jionLifeInsurance = @"1";
-	RAC(self, viewModel.jionLifeInsurance) = self.isInLifeInsurancePlaneSW.rac_newOnChannel;
+	RAC(self, viewModel.jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(NSNumber *value) {
+		if (value.integerValue == 0) {
+			self.moneyInsuranceLabel.hidden = YES;
+			//self.moneyInsuranceLabel.text = @"";
+		} else {
+			self.moneyInsuranceLabel.hidden = NO;
+		}
+		return value;
+	}];
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];

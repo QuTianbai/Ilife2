@@ -26,6 +26,9 @@
 // The thumb image URL.
 @property (nonatomic, copy, readonly) NSURL *thumbURL;
 
+@property (nonatomic, copy, readonly) NSString *relativeSamplePath;
+@property (nonatomic, copy, readonly) NSString *relativeThumbPath;
+
 // The element property is required or not.
 @property (nonatomic, assign, readonly) BOOL required;
 

@@ -4763,7 +4763,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4792,7 +4792,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 			};
 			name = UAT;
 		};
@@ -4860,7 +4860,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4928,7 +4928,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
 			};
 			name = Debug;
 		};
@@ -5043,7 +5043,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5076,7 +5076,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 			};
 			name = TEST;
 		};
@@ -5136,7 +5136,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5169,7 +5169,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
+				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
 			};
 			name = TP;
 		};

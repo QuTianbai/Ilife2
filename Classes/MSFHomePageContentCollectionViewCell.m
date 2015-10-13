@@ -26,6 +26,7 @@
 #import "UIColor+Utils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
+#import "MSFHomepageViewModel.h"
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -88,6 +89,13 @@
 }
 
 - (void)bindViewModel:(MSFLoanViewModel *)viewModel {
+	if ([viewModel isKindOfClass:[MSFHomepageViewModel class]]) {
+		MSFUser *user = [[(MSFHomepageViewModel *)viewModel services] httpClient].user;
+		[self.circleView setCompeltionStatus:user.complateCustInfo];
+		[self placeholderShow:YES];
+		self.statusButton.hidden = NO;
+		return;
+	}
 	if (viewModel) {
 		[self placeholderShow:NO];
 		if ([viewModel.type isEqualToString:@"APPLY"]) {

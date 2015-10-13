@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFAuthorizeViewModel.h"
 
 @class MSFCustomAlertView;
-//@class MSFAuthorizeViewModel;
+@class MSFAuthorizeViewModel;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) MSFCustomAlertView *confirmContactWindow;
-
 @property (nonatomic, strong) MSFAuthorizeViewModel *authorizeVewModel;
 
 @end
