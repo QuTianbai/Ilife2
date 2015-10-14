@@ -106,6 +106,7 @@
 					 @"familyExpense" : [self msf_filter:occupation[@"otherLoan"] class:NSString.class],
 					 @"department" : [self msf_filter:occupation[@"empDepartment"] class:NSString.class],
 					 @"title" : [self msf_filter:occupation[@"empPost"] class:NSString.class],
+					 @"professional" : [self msf_filter:occupation[@"empPost"] class:NSString.class],
 					 @"industry" : [self msf_filter:occupation[@"empType"] class:NSString.class],
 					 @"companyType" : [self msf_filter:occupation[@"empStructure"] class:NSString.class],
 					 @"workProvinceCode" : [self msf_filter:occupation[@"empProvinceCode"] class:NSString.class],

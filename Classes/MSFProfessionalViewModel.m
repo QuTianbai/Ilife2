@@ -342,7 +342,7 @@
 		}
 		if (forms.professional.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择职位",
+				NSLocalizedFailureReasonErrorKey: @"请选择职业",
 			}]];
 		}
 		if (!forms.empStandFrom) {
