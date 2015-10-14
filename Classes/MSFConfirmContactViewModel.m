@@ -137,7 +137,7 @@
 }
 
 - (RACSignal *)executeSubmitConfirmContract:(NSString *)type {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.contractNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:type];
+	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:type];
 }
 
 @end
