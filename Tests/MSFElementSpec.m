@@ -14,8 +14,8 @@ NSDictionary *representation = @{
 	@"title": @"身份证",
 	@"comment": @"请放在正中间",
 	@"status": @"M",
-	@"exampleUrl": @"http://www.aaa.com/111.jsp",
-	@"iconUrl": @"http://www.aaa.com/111.icon",
+	@"exampleUrl": @"111.jsp",
+	@"iconUrl": @"111.icon",
 	@"maxNum": @1
 };
 
@@ -31,8 +31,8 @@ it(@"should initialize", ^{
 	expect(element.type).to(equal(@"IDCARD"));
 	expect(element.title).to(equal(@"身份证"));
 	expect(element.comment).to(equal(@"请放在正中间"));
-	expect(element.sampleURL).to(equal([NSURL URLWithString:@"http://www.aaa.com/111.jsp"]));
-	expect(element.thumbURL).to(equal([NSURL URLWithString:@"http://www.aaa.com/111.icon"]));
+	expect(element.relativeSamplePath).to(equal(@"111.jsp"));
+	expect(element.relativeThumbPath).to(equal(@"111.icon"));
 	expect(@(element.required)).to(beTruthy());
 	expect(@(element.maximum)).to(equal(@1));
 });
