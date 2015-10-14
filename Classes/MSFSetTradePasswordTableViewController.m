@@ -103,12 +103,15 @@
 	
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交" maskType:SVProgressHUDMaskTypeClear];
-		[signal subscribeCompleted:^{
+		[signal subscribeNext:^(id x) {
 			MSFUser *user = [[MSFUser alloc] initWithDictionary:@{@"hasTransactionalCode": @YES} error:nil];
 			[[self.viewModel.services httpClient].user mergeValueForKey:@"hasTransactionalCode" fromModel:user];
 			[SVProgressHUD showSuccessWithStatus:@"设置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
+
 	}];
 	
 	[self.viewModel.executeSetTradePwd.errors subscribeNext:^(NSError *error) {

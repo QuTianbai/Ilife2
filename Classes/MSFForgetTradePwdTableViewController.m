@@ -207,10 +207,14 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-		[authSignal subscribeCompleted:^{
+		[authSignal subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"重置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
+//		[authSignal subscribeCompleted:^{
+//			[SVProgressHUD showSuccessWithStatus:@"重置交易密码成功"];
+//			[self.navigationController popViewControllerAnimated:YES];
+//		}];
 	}];
 	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
