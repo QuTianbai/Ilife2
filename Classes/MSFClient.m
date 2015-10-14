@@ -525,6 +525,7 @@ static NSDictionary *messages;
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	[devices addObject:status];
+	[devices addObject:@""];
 	
 	return [devices componentsJoinedByString:@"; "];
 }
