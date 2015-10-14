@@ -82,6 +82,7 @@
 			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
 				[self.navigationController popToRootViewControllerAnimated:YES];
 			}];
+			
 			return;
 		}
 		self.button.enabled = NO;
@@ -92,7 +93,14 @@
 			withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]
 			subscribeNext:^(id x) {
 				index++;
+				if (index == 2) {
+					self.button.titleLabel.text = @"确定";
+				}
 			}];
+	}];
+	
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
+		index = 0;
 	}];
 	
 	self.button.enabled = NO;
