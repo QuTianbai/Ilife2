@@ -78,6 +78,7 @@
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		if (index == 2) {
+			//self.button.titleLabel.text = @"确定";
 			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
 				[self.navigationController popToRootViewControllerAnimated:YES];
 			}];
