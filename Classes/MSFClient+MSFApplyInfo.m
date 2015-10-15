@@ -42,6 +42,14 @@
 	}
 }
 
+- (NSArray *)convertPhoneNumber:(NSString *)phoneNumber {
+	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+	if ([numbers containsObject:[phoneNumber substringToIndex:2]]) {
+		return @[[phoneNumber substringToIndex:2], [phoneNumber substringFromIndex:2]];
+	}
+	return @[[phoneNumber substringToIndex:3], [phoneNumber substringFromIndex:3]];
+}
+
 - (NSDictionary *)convertDictionary:(NSDictionary *)dic {
 	NSArray *additionalList = [self msf_filter:dic[@"additionalList"] class:NSArray.class];
 	NSString *qq = @"";
@@ -66,22 +74,12 @@
 	NSDictionary *occupation = [self msf_filter:dic[@"occupationInfo"]
 																		class:NSDictionary.class];
 	
-	NSString *homeTelFull = [self msf_filter:basicInfo[@"homePhone"] class:NSString.class];
-	NSString *empTelFull  = [self msf_filter:occupation[@"empPhone"] class:NSString.class];
-	NSArray *homeTelComponents = [homeTelFull componentsSeparatedByString:@"-"];
-	NSArray *empTelComponents = [empTelFull componentsSeparatedByString:@"-"];
-	NSString *homeTelCode = @"";
-	NSString *homeTel = @"";
-	NSString *empTelCode = @"";
-	NSString *empTel = @"";
-	if (homeTelComponents.count == 2) {
-		homeTelCode = homeTelComponents[0];
-		homeTel = homeTelComponents[1];
-	}
-	if (empTelComponents.count == 2) {
-		empTelCode = empTelComponents[0];
-		empTel = empTelComponents[1];
-	}
+	NSArray *homeTelComponents = [self convertPhoneNumber:[self msf_filter:basicInfo[@"homePhone"] class:NSString.class]];
+	NSArray *empTelComponents = [self convertPhoneNumber:[self msf_filter:occupation[@"empPhone"] class:NSString.class]];
+	NSString *homeTelCode = homeTelComponents[0];
+	NSString *homeTel = homeTelComponents[1];
+	NSString *empTelCode = empTelComponents[0];
+	NSString *empTel = empTelComponents[1];
 	
 	return @{@"homeCode" : homeTelCode,
 					 @"homeLine" : homeTel,
@@ -124,10 +122,10 @@
 	NSString *homePhone = @"";
 	NSString *empPhone = @"";
 	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
-		homePhone = [NSString stringWithFormat:@"%@-%@", forms.homeCode, forms.homeLine];
+		homePhone = [NSString stringWithFormat:@"%@%@", forms.homeCode, forms.homeLine];
 	}
 	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0) {
-		empPhone = [NSString stringWithFormat:@"%@-%@", forms.unitAreaCode, forms.unitTelephone];
+		empPhone = [NSString stringWithFormat:@"%@%@", forms.unitAreaCode, forms.unitTelephone];
 	}
 	
 	NSDictionary *basicInfo = @{
