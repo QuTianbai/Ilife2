@@ -19,12 +19,16 @@
 
 + (NSValueTransformer *)statusStringJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {
-		NSDictionary *formatter = @{@"U" : @"正在处理",
-																@"R" : @"拒绝",
-																@"A" : @"通过",
-																@"C" : @"激活前取消",
-																@"N" : @"签署",
-																@"J" : @"放弃"};
+		NSDictionary *formatter = @{@"A" : @"",
+																@"B" : @"审核中",
+																@"C" : @"确认合同",
+																@"D" : @"审核未通过",
+																@"E" : @"待放款",
+																@"F" : @"还款中",
+																@"G" : @"已取消",
+																@"H" : @"已还款",
+																@"I" : @"已逾期",
+																@"J" : @"已到期"};
 		return formatter[object];
 	}];
 }

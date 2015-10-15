@@ -102,7 +102,7 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFLoanViewModel class]]) {
 		if ([((MSFLoanViewModel *)viewModel).type isEqualToString:@"APPLY"]) {
-			viewController = [[MSFLoanListViewController alloc] init];
+			viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 		} else {
 			viewController = [[MSFRepaymentTableViewController alloc] initWithViewModel:viewModel];
 		}
