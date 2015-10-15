@@ -15,9 +15,11 @@
 #import "MSFCirculateCashViewModel.h"
 #import "MSFCirculateCashTableViewController.h"
 #import "MSFProductViewController.h"
+#import "MSFDeviceGet.h"
 
 @interface MSFCashHomePageViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *nextBT;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 
 @end
 
@@ -34,7 +36,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
+	DeviceTypeNum deviceType = [MSFDeviceGet deviceNum];
+	if (deviceType &( IPHONE4 | IPHONE4S)) {
+		self.bgImgView.contentMode = UIViewContentModeCenter;
+	}
+	
 	self.title = @"马上贷";
+	self.automaticallyAdjustsScrollViewInsets = NO;
+	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
 	
 	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {

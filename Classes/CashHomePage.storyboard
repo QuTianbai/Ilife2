@@ -24,6 +24,19 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ydl-0Z-1Uy">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="221" id="JB2-3D-OXY"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="JB2-3D-OXY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="JB2-3D-OXY"/>
+                                    </mask>
+                                </variation>
                             </button>
                         </subviews>
                         <animations/>
@@ -33,8 +46,7 @@
                             <constraint firstItem="MOR-Gi-nEe" firstAttribute="leading" secondItem="Jm3-X0-ifd" secondAttribute="leading" id="8fV-Pa-atp"/>
                             <constraint firstItem="XfU-w1-jdi" firstAttribute="top" secondItem="MOR-Gi-nEe" secondAttribute="bottom" id="O2Q-ub-nPF"/>
                             <constraint firstItem="MOR-Gi-nEe" firstAttribute="top" secondItem="XDM-wQ-4xQ" secondAttribute="bottom" id="O9v-nP-tQP"/>
-                            <constraint firstItem="XfU-w1-jdi" firstAttribute="top" secondItem="ydl-0Z-1Uy" secondAttribute="bottom" constant="33" id="bvA-1b-0JY"/>
-                            <constraint firstItem="ydl-0Z-1Uy" firstAttribute="top" secondItem="XDM-wQ-4xQ" secondAttribute="bottom" constant="294" id="ckb-6T-YdD"/>
+                            <constraint firstItem="XfU-w1-jdi" firstAttribute="top" secondItem="ydl-0Z-1Uy" secondAttribute="bottom" constant="10" id="bvA-1b-0JY"/>
                             <constraint firstAttribute="trailing" secondItem="ydl-0Z-1Uy" secondAttribute="trailing" constant="45" id="dt1-T0-Koy"/>
                             <constraint firstItem="ydl-0Z-1Uy" firstAttribute="leading" secondItem="Jm3-X0-ifd" secondAttribute="leading" constant="176" id="hn5-WP-Ejx"/>
                         </constraints>
@@ -46,7 +58,6 @@
                             <mask key="constraints">
                                 <exclude reference="O2Q-ub-nPF"/>
                                 <exclude reference="bvA-1b-0JY"/>
-                                <exclude reference="ckb-6T-YdD"/>
                                 <exclude reference="dt1-T0-Koy"/>
                                 <exclude reference="hn5-WP-Ejx"/>
                                 <exclude reference="5tq-X7-3g2"/>
@@ -62,7 +73,6 @@
                             <mask key="constraints">
                                 <include reference="O2Q-ub-nPF"/>
                                 <include reference="bvA-1b-0JY"/>
-                                <include reference="ckb-6T-YdD"/>
                                 <include reference="dt1-T0-Koy"/>
                                 <include reference="hn5-WP-Ejx"/>
                                 <include reference="5tq-X7-3g2"/>
@@ -73,6 +83,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="bgImgView" destination="MOR-Gi-nEe" id="XnA-hd-TtB"/>
                         <outlet property="nextBT" destination="ydl-0Z-1Uy" id="bIl-cL-D24"/>
                     </connections>
                 </viewController>
