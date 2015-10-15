@@ -60,8 +60,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
 
 @property (weak, nonatomic) IBOutlet MSFSlider *moneySlider;
-@property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
-@property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
+//@property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
+//@property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
 @property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
 @property (weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
 @property (weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
