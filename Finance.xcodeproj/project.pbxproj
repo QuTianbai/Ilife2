@@ -27,7 +27,6 @@
 		07330B611BBE2D9E000EB8FD /* MSFClient+MSFCheckEmploee2.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B601BBE2D9E000EB8FD /* MSFClient+MSFCheckEmploee2.m */; settings = {ASSET_TAGS = (); }; };
 		07330B651BBE31BF000EB8FD /* MSFApplyCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B641BBE31BF000EB8FD /* MSFApplyCashModel.m */; settings = {ASSET_TAGS = (); }; };
 		07330B691BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B681BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m */; settings = {ASSET_TAGS = (); }; };
-		07330B6C1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B6B1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.m */; settings = {ASSET_TAGS = (); }; };
 		07330B6F1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B6E1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m */; settings = {ASSET_TAGS = (); }; };
 		07330B711BBE7BDC000EB8FD /* markets.json in Resources */ = {isa = PBXBuildFile; fileRef = 07330B701BBE7BDC000EB8FD /* markets.json */; settings = {ASSET_TAGS = (); }; };
 		0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0738C48C1B943C98006D7177 /* MSFBankInfoModel.m */; };
@@ -457,6 +456,7 @@
 		49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B37B441B608F39004EED47 /* bar-normal@3x.png */; };
 		49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */; };
 		49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B5D7B11B08461700917D2C /* MSFAuthorization.m */; };
+		49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BBD6001BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m */; settings = {ASSET_TAGS = (); }; };
 		49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49BE4B631B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m */; };
 		49C0F1A01B2C315100E92572 /* icon-check-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F18B1B2C315100E92572 /* icon-check-normal.png */; };
 		49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F18C1B2C315100E92572 /* icon-check-normal@2x.png */; };
@@ -780,8 +780,6 @@
 		07330B641BBE31BF000EB8FD /* MSFApplyCashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyCashModel.m; sourceTree = "<group>"; };
 		07330B671BBE5B0D000EB8FD /* MSFApplyCashVIewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyCashVIewModel.h; sourceTree = "<group>"; };
 		07330B681BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyCashVIewModel.m; sourceTree = "<group>"; };
-		07330B6A1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCalculatemMonthRepayModel.h; sourceTree = SOURCE_ROOT; };
-		07330B6B1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCalculatemMonthRepayModel.m; sourceTree = SOURCE_ROOT; };
 		07330B6D1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFCalculateMonthRepay.h"; sourceTree = "<group>"; };
 		07330B6E1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFCalculateMonthRepay.m"; sourceTree = "<group>"; };
 		07330B701BBE7BDC000EB8FD /* markets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markets.json; sourceTree = "<group>"; };
@@ -1406,6 +1404,8 @@
 		49B5D7B01B08461700917D2C /* MSFAuthorization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorization.h; sourceTree = "<group>"; };
 		49B5D7B11B08461700917D2C /* MSFAuthorization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorization.m; sourceTree = "<group>"; };
 		49BAB2821B3B96ED004B4170 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		49BBD5FF1BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCalculatemMonthRepayModel.h; sourceTree = "<group>"; };
+		49BBD6001BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCalculatemMonthRepayModel.m; sourceTree = "<group>"; };
 		49BE4B621B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+MSFActivityIndicatorViewAdditions.h"; sourceTree = "<group>"; };
 		49BE4B631B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+MSFActivityIndicatorViewAdditions.m"; sourceTree = "<group>"; };
 		49C0F18B1B2C315100E92572 /* icon-check-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-check-normal.png"; sourceTree = "<group>"; };
@@ -1759,8 +1759,8 @@
 			children = (
 				07330B631BBE31BF000EB8FD /* MSFApplyCashModel.h */,
 				07330B641BBE31BF000EB8FD /* MSFApplyCashModel.m */,
-				07330B6A1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.h */,
-				07330B6B1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.m */,
+				49BBD5FF1BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.h */,
+				49BBD6001BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m */,
 				07330B6D1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.h */,
 				07330B6E1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m */,
 				07667BDF1BBEA5D4002DFF62 /* repay.json */,
@@ -4529,7 +4529,6 @@
 				07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */,
 				077347FA1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
-				07330B6C1BBE5E48000EB8FD /* MSFCalculatemMonthRepayModel.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
 				492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */,
@@ -4623,6 +4622,7 @@
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
+				49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
 				49CA938B1BBA843A0032F5C2 /* MSFAuthorizeRequest.m in Sources */,
