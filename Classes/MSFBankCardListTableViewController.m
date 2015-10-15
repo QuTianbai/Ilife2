@@ -46,7 +46,7 @@
 	if (!self) {
 		return nil;
 	}
-	//_viewModel = viewModel;
+	_viewModel = viewModel;
 	
 	return self;
 }
