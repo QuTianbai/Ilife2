@@ -79,10 +79,18 @@
 	
 	NSArray *homeTelComponents = [self convertPhoneNumber:[self msf_filter:basicInfo[@"homePhone"] class:NSString.class]];
 	NSArray *empTelComponents = [self convertPhoneNumber:[self msf_filter:occupation[@"empPhone"] class:NSString.class]];
-	NSString *homeTelCode = homeTelComponents[0];
-	NSString *homeTel = homeTelComponents[1];
-	NSString *empTelCode = empTelComponents[0];
-	NSString *empTel = empTelComponents[1];
+	NSString *homeTelCode = @"";
+	NSString *homeTel = @"";
+	NSString *empTelCode = @"";
+	NSString *empTel = @"";
+	if (homeTelComponents.count == 2) {
+		homeTelCode = homeTelComponents[0];
+		homeTel = homeTelComponents[1];
+	}
+	if (empTelComponents.count == 2) {
+		empTelCode = empTelComponents[0];
+		empTel = empTelComponents[1];
+	}
 	
 	return @{@"homeCode" : homeTelCode,
 					 @"homeLine" : homeTel,
