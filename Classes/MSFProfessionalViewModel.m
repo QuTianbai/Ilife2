@@ -313,9 +313,9 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择入学年月",
 			}]];
 		}
-		if (forms.programLength.length == 0) {
+		if (forms.programLength.intValue < 1 || forms.programLength.intValue > 8) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写学制",
+				NSLocalizedFailureReasonErrorKey: @"请填写学制（1~8整数）",
 			}]];
 		}
 	} else if ([forms.socialStatus isEqualToString:@"SI02"] || [forms.socialStatus isEqualToString:@"SI04"]) {
