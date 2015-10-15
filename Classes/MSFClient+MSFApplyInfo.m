@@ -44,6 +44,9 @@
 
 - (NSArray *)convertPhoneNumber:(NSString *)phoneNumber {
 	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+	if (phoneNumber.length < 4) {
+		return nil;
+	}
 	if ([numbers containsObject:[phoneNumber substringToIndex:2]]) {
 		return @[[phoneNumber substringToIndex:2], [phoneNumber substringFromIndex:2]];
 	}
