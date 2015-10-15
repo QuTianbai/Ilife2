@@ -7,7 +7,7 @@
 #import "MSFWebViewController.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <AFNetworking/UIWebView+AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFWebViewModel.h"

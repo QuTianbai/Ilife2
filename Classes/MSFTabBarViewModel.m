@@ -7,7 +7,7 @@
 #import "MSFTabBarViewModel.h"
 #import <UIKit/UIKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/EXTScope.h>
+#import <Mantle/EXTScope.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFUser.h"

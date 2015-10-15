@@ -6,7 +6,7 @@
 
 #import "MSFFindPasswordViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAuthorizeViewModel.h"
 #import "UITextField+RACKeyboardSupport.h"

@@ -6,7 +6,7 @@
 
 #import "MSFClient+Captcha.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFAuthorizeViewModel.h"
 
 @implementation MSFClient (Captcha)

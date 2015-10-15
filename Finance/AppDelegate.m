@@ -5,7 +5,7 @@
 //
 
 #import "AppDelegate.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "MSFTabBarController.h"

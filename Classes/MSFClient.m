@@ -17,7 +17,7 @@
 #import <Mantle/Mantle.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <OpenUDID/OpenUDID.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFSignature.h"
 #import "RCLocationManager.h"
@@ -525,6 +525,7 @@ static NSDictionary *messages;
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	[devices addObject:status];
+	[devices addObject:@""];
 	
 	return [devices componentsJoinedByString:@"; "];
 }

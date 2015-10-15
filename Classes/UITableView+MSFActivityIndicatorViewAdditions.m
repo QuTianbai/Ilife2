@@ -7,7 +7,7 @@
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 
 static UIView *backupView;
 static UITableViewCellSeparatorStyle backupStyle;

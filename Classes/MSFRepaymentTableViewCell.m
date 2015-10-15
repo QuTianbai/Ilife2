@@ -7,7 +7,7 @@
 //
 
 #import "MSFRepaymentTableViewCell.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <Masonry/Masonry.h>
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "MSFCommandView.h"

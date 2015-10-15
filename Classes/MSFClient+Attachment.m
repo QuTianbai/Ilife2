@@ -5,7 +5,7 @@
 //
 
 #import "MSFClient+Attachment.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFAttachment.h"
 #import "RACSignal+MSFClientAdditions.h"
 

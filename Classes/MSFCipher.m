@@ -6,7 +6,7 @@
 
 #import "MSFCipher.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFResponse.h"
 #import "MSFSignature.h"
 #import "MSFClient+Cipher.h"

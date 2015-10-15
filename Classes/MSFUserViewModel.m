@@ -6,7 +6,7 @@
 
 #import "MSFUserViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"

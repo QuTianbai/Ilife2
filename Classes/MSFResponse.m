@@ -5,7 +5,7 @@
 //
 
 #import "MSFResponse.h"
-#import <libextobjc/EXTKeyPathCoding.h>
+#import <Mantle/EXTKeyPathCoding.h>
 
 @interface MSFResponse ()
 

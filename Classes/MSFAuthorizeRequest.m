@@ -6,7 +6,8 @@
 
 #import "MSFAuthorizeRequest.h"
 #import "NSValueTransformer+MSFPredefinedTransformerAdditions.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
+#import <Mantle/EXTKeyPathCoding.h>
 
 @implementation MSFAuthorizeRequest
 

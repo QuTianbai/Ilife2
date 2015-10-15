@@ -6,7 +6,7 @@
 
 #import "MSFAlertViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFFormsViewModel.h"
 #import "MSFUser.h"
 #import "MSFApplicationForms.h"
