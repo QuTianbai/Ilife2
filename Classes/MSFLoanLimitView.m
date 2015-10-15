@@ -8,7 +8,7 @@
 
 #import "MSFLoanLimitView.h"
 #import <Masonry/Masonry.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "UIColor+Utils.h"
 #import "MSFDeviceGet.h"
 

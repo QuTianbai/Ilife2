@@ -6,7 +6,7 @@
 
 #import "MSFAttachmentViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"

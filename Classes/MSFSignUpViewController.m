@@ -7,7 +7,7 @@
 #import "MSFSignUpViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtils.h"

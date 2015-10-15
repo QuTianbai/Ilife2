@@ -7,7 +7,7 @@ inhibit_all_warnings!
 pod 'AFNetworking', '2.5.0'
 pod 'MTLFMDBAdapter', '0.1.8'
 
-pod 'libextobjc', '0.4.1'
+#pod 'libextobjc', '0.4.1'
 pod 'ReactiveCocoa', '2.4.2'
 pod 'ReactiveViewModel', '0.3'
 pod 'Mantle', '1.5.1'

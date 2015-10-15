@@ -8,7 +8,7 @@
 
 #import "MSFLoanAgreementController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/EXTScope.h>
+#import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFApplicationResponse.h"
 #import "MSFApplicationForms.h"

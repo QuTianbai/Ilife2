@@ -7,7 +7,7 @@
 #import "MSFAddressViewModel.h"
 #import <FMDB/FMDB.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/EXTScope.h>
+#import <Mantle/EXTScope.h>
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFAreas.h"

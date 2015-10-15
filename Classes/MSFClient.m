@@ -17,7 +17,7 @@
 #import <Mantle/Mantle.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <OpenUDID/OpenUDID.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFSignature.h"
 #import "RCLocationManager.h"

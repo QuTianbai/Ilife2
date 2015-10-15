@@ -5,7 +5,7 @@
 //
 
 #import "MSFCard.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTKeyPathCoding.h>
 
 @implementation MSFCard
 

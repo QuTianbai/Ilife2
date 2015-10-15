@@ -9,7 +9,7 @@
 #import "MSFInventoryViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <KGModal/KGModal.h>
 #import "MSFInventoryTableViewCell.h"
 #import "MSFBlankCell.h"
