@@ -36,7 +36,7 @@
 
 #import "MSFApplyCashVIewModel.h"
 
-static const CGFloat heightOfAboveCell = 303;//上面cell总高度
+static const CGFloat heightOfAboveCell = 303;//上面cell总高度259
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
 static const CGFloat heightOfRepayView = 90;//预计每期还款金额的高度
 static const CGFloat heightOfPlace = 30;//button与下方tabbar的空白高度
@@ -101,10 +101,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	if (litter6 & deviceType) {
 		self.repayConstraint.constant = 40;
 		self.footerVer.constant = 40;
-	} else if (bigger6 & deviceType) {
+	} else if ((IPHONE6P | IPHONE6SP) & deviceType) {
 		self.footerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - heightOfAboveCell  - heightOfNavigationANDTabbar - heightOfPlace);
 		self.footerVer.constant = 0;
-		self.repayConstraint.constant = ([UIScreen mainScreen].bounds.size.height - heightOfAboveCell - heightOfPlace - heightOfButton - heightOfNavigationANDTabbar - heightOfRepayView ) / 2;
+		self.repayConstraint.constant = ([UIScreen mainScreen].bounds.size.height - heightOfAboveCell - heightOfPlace - heightOfButton - heightOfNavigationANDTabbar - heightOfRepayView ) / 2 ;
 	}
 	
 	//self.warningLabel.numberOfLines = 0;
