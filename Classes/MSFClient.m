@@ -80,7 +80,7 @@ static NSDictionary *messages;
 	self.defaultHeaders = NSMutableDictionary.dictionary;
 	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus]];
 	
-	self.requestSerializer.timeoutInterval = 15;
+	self.requestSerializer.timeoutInterval = 60;
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
 	cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[NSDate.date timeIntervalSince1970] * 1000];
