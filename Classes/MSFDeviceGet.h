@@ -15,7 +15,9 @@ typedef enum {
 	IPHONE5C = 1 << 3,
 	IPHONE5S = 1 << 4,
 	IPHONE6 = 1 << 5,
-	IPHONE6P = 1 << 6
+	IPHONE6P = 1 << 6,
+	IPHONE6S = 1 << 7,
+	IPHONE6SP = 1 << 8
 }DeviceTypeNum;
 
 static const DeviceTypeNum litter6 = IPHONE4 | IPHONE4S | IPHONE5 | IPHONE5C |IPHONE5S;
