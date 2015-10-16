@@ -1,3 +1,12 @@
+Version 2.0.0.5:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Add utils view controller
+ - 马上贷款页面，适配iphone6
+ - Update bugshotkit scroll logger
+ - sort code
+ - Update Script
+
 Version 2.0.0.4:
  - fix
  - fix 电话号码解析崩溃
