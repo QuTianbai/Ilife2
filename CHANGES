@@ -1,3 +1,19 @@
+Version 2.0.0.5:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Add utils view controller
+ - 马上贷款页面，适配iphone6
+ - Update bugshotkit scroll logger
+ - sort code
+ - Update Script
+
+Version 2.0.0.4:
+ - fix
+ - fix 电话号码解析崩溃
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 修复loan list显示问题
+ - 修改学制限制
+
 Version 2.0.0.3:
  - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
  - Merge remote-tracking branch 'origin/zhaoyong'

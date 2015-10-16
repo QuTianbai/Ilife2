@@ -297,6 +297,8 @@
 		493224DE1BBFB3640087830E /* icon-account-intro@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 493224DB1BBFB3640087830E /* icon-account-intro@2x.png */; settings = {ASSET_TAGS = (); }; };
 		493224DF1BBFB3640087830E /* icon-account-intro@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 493224DC1BBFB3640087830E /* icon-account-intro@3x.png */; settings = {ASSET_TAGS = (); }; };
 		49386C151B8178D100B1282B /* check-user-credit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49386C141B8178D100B1282B /* check-user-credit.json */; };
+		493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
 		4943C3571B047437000BBF5E /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3561B047437000BBF5E /* Tests.m */; };
@@ -1181,6 +1183,10 @@
 		493224DB1BBFB3640087830E /* icon-account-intro@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-intro@2x.png"; sourceTree = "<group>"; };
 		493224DC1BBFB3640087830E /* icon-account-intro@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-intro@3x.png"; sourceTree = "<group>"; };
 		49386C141B8178D100B1282B /* check-user-credit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-user-credit.json"; sourceTree = "<group>"; };
+		493E92001BD0D6F700C4BFC6 /* MSFUtilsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsViewController.h; sourceTree = "<group>"; };
+		493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsViewController.m; sourceTree = "<group>"; };
+		493E92101BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsDetailsViewController.h; sourceTree = "<group>"; };
+		493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsDetailsViewController.m; sourceTree = "<group>"; };
 		4943C32B1B047403000BBF5E /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3521B047437000BBF5E /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3551B047437000BBF5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3428,6 +3434,10 @@
 				4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */,
 				4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */,
 				4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */,
+				493E92001BD0D6F700C4BFC6 /* MSFUtilsViewController.h */,
+				493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */,
+				493E92101BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.h */,
+				493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -3739,7 +3749,6 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
-				851B7F14B73C183FECF443B7 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3759,7 +3768,6 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
-				A674B40ACF5D19F705EC3635 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4380,21 +4388,6 @@
 			shellPath = /bin/sh;
 			shellScript = "#${SRCROOT}/Script/brsp/xcode-build-bump.sh";
 		};
-		851B7F14B73C183FECF443B7 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4408,21 +4401,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A674B40ACF5D19F705EC3635 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4463,6 +4441,7 @@
 				4917A4451B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m in Sources */,
 				49CA93781BBA36090032F5C2 /* MSFIDSignInViewController.m in Sources */,
 				0750AAFA1B969DED00AD67F3 /* MSFCustomAlertViewController.m in Sources */,
+				493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */,
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
@@ -4485,6 +4464,7 @@
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				07C924E01B0C84C800FA73BD /* MSFMarket.m in Sources */,
+				493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */,
 				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
 				108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
@@ -4828,7 +4808,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 			};
 			name = UAT;
 		};
@@ -4964,7 +4944,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
+				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
 			};
 			name = Debug;
 		};
@@ -5112,7 +5092,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 			};
 			name = TEST;
 		};
@@ -5205,7 +5185,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "99a388f5-b033-4db0-bbc5-25915a16188c";
+				PROVISIONING_PROFILE = "ac0cc5c9-91e8-4b84-a477-27445b2c0a13";
 			};
 			name = TP;
 		};

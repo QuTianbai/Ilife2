@@ -93,6 +93,10 @@
 	
 	if ([platform isEqualToString:@"iPhone7,2"]) return IPHONE6;
 	
+	if ([platform isEqualToString:@"iphone8,2"]) return IPHONE6S;
+	
+	if ([platform isEqualToString:@"iphone8,2"]) return IPHONE6SP;
+	
 	return 0;
 	
 	

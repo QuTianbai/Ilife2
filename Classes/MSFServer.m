@@ -20,8 +20,14 @@ NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #elif TEST
 
+static NSString *URLString(void) {
+	NSString *url = [NSUserDefaults.standardUserDefaults stringForKey:@"test_url"];
+	return url ?: @"http://api3.msxf.test";
+}
+
 NSString *const MSFServerDotComAPIEndpoint = @"http://api3.msxf.test";
 NSString *const MSFServerDotComBaseWebURL = @"http://api3.msxf.test";
+
 
 #elif TP
 
@@ -81,6 +87,9 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"api/app/V1";
 		 return [NSURL URLWithString:endpoint];
 		}
 		
+#if TEST
+		return [[NSURL URLWithString:URLString()] URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
+#endif
 		return [[NSURL URLWithString:MSFServerDotComAPIEndpoint] URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
 	} else {
 		return [self.baseURL URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
