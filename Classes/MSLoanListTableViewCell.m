@@ -42,6 +42,7 @@ reuseIdentifier {
 		_moneyLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
 		_monthsLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
 		_timeLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
+		_checkLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
 		
 		_moneyLabel.font = [UIFont systemFontOfSize:13];
 		_monthsLabel.font = [UIFont systemFontOfSize:13];
@@ -94,25 +95,6 @@ reuseIdentifier {
 	_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.total_installments];
 	_timeLabel.text = model.apply_time;
 	_checkLabel.text = model.statusString;
-	/*
-	if ([model.statusString isEqualToString:@"还款中"] || [model.statusString isEqualToString:@"已完结"] || [model.statusString isEqualToString:@"已逾期"]) {
-		self.selectable = YES;
-		//self.checkLabel.textColor = [MSFCommandView getColorWithString:[UIColor orangeColor]];
-	} else {
-		self.selectable = NO;
-		//self.checkLabel.textColor = [MSFCommandView getColorWithString:TYPEFACECOLOR];
-	}*/
 }
-/*
-- (void)setSelectable:(BOOL)selectable {
-	_selectable = selectable;
-	if (selectable) {
-		self.accessoryType  = UITableViewCellAccessoryDisclosureIndicator;
-		self.selectionStyle = UITableViewCellSelectionStyleDefault;
-	} else {
-		self.accessoryType  = UITableViewCellAccessoryNone;
-		self.selectionStyle = UITableViewCellSelectionStyleNone;
-	}
-}*/
 
 @end
