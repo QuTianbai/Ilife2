@@ -68,10 +68,12 @@
 	
 	/*** 申请状态 ***/
 	RAC(self, applyTime) = [RACObserve(model, applyDate) map:^id(id value) {
-		if (![value isKindOfClass:NSString.class]) {
+		if (![value isKindOfClass:NSString.class] || [value length] == 0) {
 			return nil;
 		}
-		NSDate *date = [NSDateFormatter msf_dateFromString:value];
+		NSDateFormatter *df = [[NSDateFormatter alloc] init];
+		[df setDateFormat:@"yyyyMMddHHmmss"];
+		NSDate *date = [df dateFromString:value];
 		return [NSDateFormatter msf_stringFromDate:date];
 	}];
 	//RAC(self, applyNo) = RACObserve(model, contractNo);
