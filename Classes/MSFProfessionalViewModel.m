@@ -337,8 +337,8 @@
 				NSLocalizedFailureReasonErrorKey: @"请选择单位性质",
 			}]];
 		}
-		if (forms.department.length == 0 || ![forms.department isChineseName]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写当前就职部门全称"}]];
+		if (forms.department.length == 0) {
+			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的就职部门全称"}]];
 		}
 		if (forms.professional.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
