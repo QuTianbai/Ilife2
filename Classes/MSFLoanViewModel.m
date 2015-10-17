@@ -9,6 +9,7 @@
 #import "MSFCirculateCashModel.h"
 #import "MSFClient+ApplyList.h"
 #import "MSFClient+RepaymentSchedules.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @interface MSFLoanViewModel ()
 
@@ -66,7 +67,15 @@
 	RAC(self, loanTerm) = RACObserve(model, period);
 	
 	/*** 申请状态 ***/
-	RAC(self, applyTime) = RACObserve(model, applyDate);
+	RAC(self, applyTime) = [RACObserve(model, applyDate) map:^id(id value) {
+		if (![value isKindOfClass:NSString.class] || [value length] == 0) {
+			return nil;
+		}
+		NSDateFormatter *df = [[NSDateFormatter alloc] init];
+		[df setDateFormat:@"yyyyMMddHHmmss"];
+		NSDate *date = [df dateFromString:value];
+		return [NSDateFormatter msf_stringFromDate:date];
+	}];
 	//RAC(self, applyNo) = RACObserve(model, contractNo);
 	
 	/*** 还款状态 ***/
