@@ -315,7 +315,7 @@
 		} else {
 			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 			BOOL isFirstBankCard = NO;
-			if (self.dataArray.count > 0) {
+			if (self.dataArray.count == 0) {
 				isFirstBankCard = YES;
 			}
 			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
