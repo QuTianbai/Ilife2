@@ -45,11 +45,6 @@
 // 文档状态，I--初始，Y--合格，N--不合格
 @property (nonatomic, copy, readonly) NSString *status;
 
-// 附件上传，后从服务器返回的json中的文件类型 `image/jpg`
-@property (nonatomic, copy, readonly) NSString * contentType __deprecated_msg("Unused 2.0");
-@property (nonatomic, copy, readonly) NSString * contentName __deprecated_msg("Unused 2.0");
-@property (nonatomic, copy, readonly) NSString * contentID __deprecated_msg("Unused 2.0");
-
 // 文件缩略图地址
 //
 // - 如果文件是本地牌照图片，则文件缩略图地址是本地图片存储地址

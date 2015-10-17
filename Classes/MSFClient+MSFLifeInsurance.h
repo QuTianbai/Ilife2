@@ -10,6 +10,9 @@
 
 @interface MSFClient (MSFLifeInsurance)
 
+// 获取寿险协议.
+//
+// Returns HTML Request.
 - (RACSignal *)fetchLifeInsuranceAgreement;
 
 @end

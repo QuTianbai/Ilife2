@@ -10,7 +10,10 @@
 
 @interface MSFObject : MTLModel <MTLJSONSerializing>
 
+// model id always parser json id key.
 @property (nonatomic, copy, readonly) NSString *objectID;
+
+// Model server URL.
 @property (nonatomic, strong, readonly) MSFServer *server;
 
 @end
