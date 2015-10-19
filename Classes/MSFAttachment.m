@@ -33,9 +33,6 @@
 		@"additionDate": @"rawAddTime",
 		@"updatedDate": @"rawUpdateTime",
 		@"status": @"status",
-		@"contentID": @"id",
-		@"contentName": @"name",
-		@"contentType": @"type",
 	};
 }
 

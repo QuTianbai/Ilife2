@@ -118,4 +118,9 @@
 	}];
 }
 
+- (void)setBankCardMasterDefult {
+	self.masterBankCardNO = @"";
+	self.master = NO;
+}
+
 @end
