@@ -1,3 +1,39 @@
+Version 2.0.0.6:
+ - Update provisioning profile
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Improve 拍照提交按钮操作流程
+ - fix 联系人信息 bug111
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Add launch poster
+ - Update releasenote with posters
+ - Add poster
+ - Remove fabric from project group
+ - Update README
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix 首页状态显示逻辑
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - fix 个人信息字段验证
+ - Update ocmocktio 2.0.1
+ - 申请贷款个人信息点击下一步的判断提示顺序调整
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 【APP-IOS-2.0.0】登录一个用户提交申请后，退出，注册并登录另一个用户，提交申请失败，审批收到的银行卡相关信息全部为空
+ - 处理未添加银行卡申请贷款的银行卡显示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 工作单位和部门两个输入框支持英文输入
+ - Update comments
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Update provisioning profile
+ - Merge branch 'xbmDev' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 修复添加信用卡时的提示
+ - fix crash
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 更改像是时间位60s,  版本号2.0.0.6
+ - 切换环境崩溃
+ - update 首页显示时间格式
+
 Version 2.0.0.5:
  - Merge remote-tracking branch 'origin/xbmDev'
  - Merge remote-tracking branch 'origin/zhaoyong'
