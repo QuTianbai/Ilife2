@@ -94,6 +94,11 @@
 	subscribeNext:^(id x) {
 		@strongify(self)
 		MSFUser *user = [self.viewModel.services httpClient].user;
+		
+		if (![[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
+			[SVProgressHUD showErrorWithStatus:@"请先完善资料"];
+			return ;
+			}
 		if (!user.hasTransactionalCode) {
 			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
 																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -120,13 +125,11 @@
 			
 			return ;
 		}
-		if ([[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
+		//if ([[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel];
 			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];
-		} else {
-			[SVProgressHUD showErrorWithStatus:@"请先完善资料"];
-		}
+		//}
 	}];
 	
 //	[_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
