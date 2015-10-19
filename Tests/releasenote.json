@@ -5,5 +5,14 @@
   "description": "foo",
   "published": "2015-05-03T15:38:45Z",
   "status": 1,
-  "timestamp": 1432733616221
+  "timestamp": 1432733616221,
+	"picList": [
+        {
+            "id": 1,
+            "picUrl": "http://foo.png",
+            "timeStart": "2015-10-19 10:00:00",
+            "timeEnd": "2015-10-26 10:00:00"
+        }
+    ]
+
 }
