@@ -34,5 +34,5 @@ pod 'MWPhotoBrowser', '2.1.1'
 pod 'BugshotKit', :head
 
 target 'Tests', :exclusive => true do
-    pod 'OCMockito', :head
+    pod 'OCMockito', '2.0.1'
 end
