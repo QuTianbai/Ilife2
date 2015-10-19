@@ -8,4 +8,6 @@
 
 @interface MSFActivityIndicatorViewController : UIViewController
 
+@property (nonatomic, weak) IBOutlet UIImageView *backgroundView;
+
 @end

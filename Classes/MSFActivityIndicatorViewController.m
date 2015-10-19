@@ -5,7 +5,16 @@
 //
 
 #import "MSFActivityIndicatorViewController.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "MSFPoster.h"
+#import "MSFUtils.h"
 
 @implementation MSFActivityIndicatorViewController
+
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	if (!MSFUtils.poster) return;
+	[self.backgroundView setImageWithURL:MSFUtils.poster.photoURL placeholderImage:[UIImage imageNamed:@"launch.jpg"]];
+}
 
 @end
