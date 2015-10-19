@@ -41,7 +41,8 @@ ABPersonViewControllerDelegate>
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
 @property (nonatomic, assign) NSInteger statusHash;
-@property (nonatomic, strong) NSString *provinceAddress;
+//@property (nonatomic, strong) NSString *provinceAddress;
+@property (nonatomic, strong) NSString *fullAddress;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
@@ -60,30 +61,47 @@ ABPersonViewControllerDelegate>
 	MSFAddress *addrModel =
 	[MSFAddress modelWithDictionary:@{@"province" : forms.currentProvinceCode ?: @"", @"city" : forms.currentCityCode ?: @"", @"area" : forms.currentCountryCode ?: @""} error:nil];
 	MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:self.viewModel.services];
-	_provinceAddress = addrViewModel.address;
-
+	_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
 	
-	_tempContactList = [NSMutableArray arrayWithArray:forms.contrastList];
-	if (_tempContactList.count < 2) {
-		MSFUserContact *contact0 = [[MSFUserContact alloc] init];
-		contact0.openDetailAddress = NO;
-		[_tempContactList addObject:contact0];
-		MSFUserContact *contact1 = [[MSFUserContact alloc] init];
-		contact1.openDetailAddress = NO;
-		[_tempContactList addObject:contact1];
+	_tempContactList = [NSMutableArray array];
+	NSMutableArray *tempArray = [NSMutableArray arrayWithArray:forms.contrastList];
+	NSArray *relation1 = @[@"RF01", @"RF02", @"RF03", @"RF06", @"RF04", @"RF05"];
+	NSArray *relation2 = @[@"R002", @"R004", @"R003", @"R005"];
+	for (int i = 0; i < tempArray.count; i++) {
+		MSFUserContact *contract = tempArray[i];
+		if ([relation1 containsObject:contract.contactRelation]) {
+			[_tempContactList addObject:contract];
+			[tempArray removeObjectAtIndex:i];
+			break;
+		}
 	}
+	if (_tempContactList.count == 0) {
+		[_tempContactList addObject:[[MSFUserContact alloc] init]];
+	}
+	for (int i = 0; i < tempArray.count; i++) {
+		MSFUserContact *contract = tempArray[i];
+		if ([relation2 containsObject:contract.contactRelation]) {
+			[_tempContactList addObject:contract];
+			[tempArray removeObjectAtIndex:i];
+			break;
+		}
+	}
+	[_tempContactList addObjectsFromArray:tempArray];
 
-	NSString *fullAddr = [NSString stringWithFormat:@"%@%@", _provinceAddress, forms.abodeDetail];
 	for (MSFUserContact *contact in _tempContactList) {
 		if (contact.contactAddress.length > 0) {
-			if ([contact.contactAddress isEqualToString:fullAddr]) {
+			if ([contact.contactAddress isEqualToString:_fullAddress]) {
 				contact.openDetailAddress = NO;
 			} else {
 				contact.openDetailAddress = YES;
 			}
 		} else {
-			if (!contact.openDetailAddress) {
-				contact.contactAddress = fullAddr;
+			if ([relation1 containsObject:contact.contactRelation]) {
+				contact.openDetailAddress = NO;
+				contact.contactAddress = _fullAddress;
+			} else if ([relation2 containsObject:contact.contactRelation]) {
+				contact.openDetailAddress = YES;
+				contact.contactAddress = nil;
 			}
 		}
 	}
@@ -219,6 +237,9 @@ ABPersonViewControllerDelegate>
 					cell.tfInput.text = obj.text;
 					*stop = YES;
 				}
+				if (*stop == NO) {
+					cell.tfInput.text = nil;
+				}
 			}];
 			@weakify(self)
 			[[[cell.selectionButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
@@ -234,6 +255,14 @@ ABPersonViewControllerDelegate>
 				[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 					cell.tfInput.text = x.text;
 					contact.contactRelation = x.code;
+					if ([@[@"R002", @"R004", @"R003", @"R005"] containsObject:x.code]) {
+						contact.openDetailAddress = YES;
+						contact.contactAddress = nil;
+					} else {
+						contact.openDetailAddress = NO;
+						contact.contactAddress = _fullAddress;
+					}
+					[tableView reloadData];
 					[self.viewModel.services popViewModel];
 				}];
 			}];
@@ -279,7 +308,7 @@ ABPersonViewControllerDelegate>
 				@strongify(self)
 				if (x.boolValue) {
 					contact.openDetailAddress = NO;
-					contact.contactAddress = [NSString stringWithFormat:@"%@%@", _provinceAddress, self.viewModel.formsViewModel.model.abodeDetail];
+					contact.contactAddress = self.fullAddress;
 				} else {
 					contact.openDetailAddress = YES;
 					contact.contactAddress = nil;
@@ -309,7 +338,10 @@ ABPersonViewControllerDelegate>
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == _tempContactList.count) {
-		[_tempContactList addObject:[[MSFUserContact alloc] init]];
+		MSFUserContact *contact = [[MSFUserContact alloc] init];
+		contact.contactAddress = _fullAddress;
+		contact.openDetailAddress = NO;
+		[_tempContactList addObject:contact];
 		[UIView animateWithDuration:.3 animations:^{
 			[self.tableView reloadData];
 		}];

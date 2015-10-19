@@ -210,7 +210,13 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"edu_background"]];
+		NSString *jsonFile = @"";
+		if ([self.socialstatus.code isEqualToString:@"SI01"]) {
+			jsonFile = @"edu_background1";
+		} else {
+			jsonFile = @"edu_background";
+		}
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:jsonFile]];
 		[self.services pushViewModel:viewModel];
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			[subscriber sendNext:nil];
@@ -234,6 +240,10 @@
 			[subscriber sendCompleted];
 			self.socialstatus = x;
 			self.formsViewModel.model.socialStatus = x.code;
+			if ([x.code isEqualToString:@"SI01"] && ([self.degrees.code isEqualToString:@"LE09"] || [self.degrees.code isEqualToString:@"LE10"] || [self.degrees.code isEqualToString:@"LE11"])) {
+				self.degrees = nil;
+				self.degreesTitle = nil;
+			}
 			[self.services popViewModel];
 		}];
 		return nil;

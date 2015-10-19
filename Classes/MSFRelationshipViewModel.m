@@ -61,8 +61,14 @@
 		if (![contact.contactMobile isMobile]) {
 			return [NSString stringWithFormat:@"请填写正确的联系人%d手机号码", i + 1];
 		}
-		if (contact.contactAddress.length < 8 || contact.contactAddress.length > 60) {
-			return [NSString stringWithFormat:@"请填写长度8~60的联系人%d联系地址", i + 1];
+		if ([@[@"R002", @"R004", @"R003", @"R005"] containsObject:contact.contactRelation]) {
+			if (contact.contactAddress.length > 0 && (contact.contactAddress.length < 8 || contact.contactAddress.length > 60)) {
+				return [NSString stringWithFormat:@"请填写长度8~60的联系人%d联系地址", i + 1];
+			}
+		} else {
+			if (contact.contactAddress.length < 8 || contact.contactAddress.length > 60) {
+				return [NSString stringWithFormat:@"请填写长度8~60的联系人%d联系地址", i + 1];
+			}
 		}
 		for (int j = 0; j < contactList.count; j++) {
 			if (i == j) {
