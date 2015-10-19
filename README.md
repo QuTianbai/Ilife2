@@ -2,19 +2,21 @@
 
 > 测试接口例
 
-http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10000
-
-## API
-
-- https://www.msxf.dev 
-- database
-
-数据库  ip 192.168.2.60  
-core20150818
-用户名: corerw
-密码: core111111
-
----
+    GET http://api3.msxf.test/api/app/V1/checkVersion?appKey=123456&sign=A06570BACFF07CAD52C1FCC224A63DCC&timestamp=2015-10-19%2011%3A19%3A46&versionCode=2006&versionType=iOS {
+        "Accept-Language" = "zh-Hans-US;q=1, en-US;q=0.9";
+        "Content-Type" = "application/x-www-form-urlencoded; charset=utf-8";
+        "User-Agent" = "Finance/2.0.0 (iPhone; iOS 9.0; Scale/2.00)";
+        deviceInfo = "IOS; 9.0; appstore; 2006; Apple; iPhone; iPhone Simulator; 2.0.0.6; 81ccfdae1ba21786428910ad90a0e3ef9f2c9bf7; 0.000000,0.000000; 9; ";
+    }  => 200 {
+        "Cache-Control" = "max-age=0";
+        Connection = close;
+        "Content-Type" = "application/json;charset=UTF-8";
+        Date = "Mon, 19 Oct 2015 03:18:20 GMT";
+        Expires = "Mon, 19 Oct 2015 03:18:20 GMT";
+        Server = "nginx/1.8.0";
+        "Transfer-Encoding" = Identity;
+    }:
+    {"timestamp":1445224700175,"status":"0","versionName":null,"lastVersion":null,"lastVersionDescription":null,"updateUrl":null}
 
 ## Conventions
 
@@ -22,11 +24,7 @@ core20150818
 - [Objective-C Code Style Guide](./Documentation/objective-c-style-guide.md)
 - [Assets](./Documentation/assets.md)
 
----
-
-## Vendors
-
-### 日志记录
+## 日志记录
 
 > Script
 
@@ -37,19 +35,3 @@ core20150818
 
 统计分析：umeng
 崩溃收集：fabric
-
-### 信用卡扫描控件
-
-pod 'CardIO'
-
-https://github.com/card-io/card.io-iOS-source
-https://github.com/card-io/card.io-iOS-SDK
-
-### 测试数据库地址及密码
-
-testgrouprw
-testgroup111111
-两服务器的数据库地址
-test的ip: 192.168.2.61
-tp的ip: 192.168.7.28
-
