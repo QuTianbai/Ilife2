@@ -168,14 +168,16 @@
 	if (forms.maritalStatus.length == 0) {
 		return @"请选择婚姻状况";
 	}
-	if (![forms.email containsString:@"@"] || ![forms.email containsString:@"."]) {
+	if (forms.email.length > 0 && (![forms.email containsString:@"@"] || ![forms.email containsString:@"."])) {
 		return @"请填写正确的邮箱";
 	}
-	if (forms.homeCode.length < 3 || ![forms.homeCode isScalar]) {
-		return @"请填写正确的住宅座机号";
-	}
-	if (forms.homeLine.length < 7 || ![forms.homeCode isScalar]) {
-		return @"请填写正确的住宅座机号";
+	if (forms.homeCode.length > 0 || forms.homeLine.length > 0) {
+		if (forms.homeCode.length < 3 || ![forms.homeCode isScalar]) {
+			return @"请填写正确的住宅座机号";
+		}
+		if (forms.homeLine.length < 7 || ![forms.homeCode isScalar]) {
+			return @"请填写正确的住宅座机号";
+		}
 	}
 	if (forms.currentProvinceCode.length == 0) {
 		return @"请选择完整的现居地址";
