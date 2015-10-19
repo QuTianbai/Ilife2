@@ -74,6 +74,10 @@ MWPhotoBrowserDelegate>
 		if (hasUpload) {
 			[self.viewModel.uploadCommand execute:nil];
 		} else {
+			if (self.viewModel.isCompleted) {
+				[self.navigationController popViewControllerAnimated:YES];
+				return;
+			}
 			[SVProgressHUD showErrorWithStatus:@"请拍摄当前类型照片"];
 		}
 	}];
