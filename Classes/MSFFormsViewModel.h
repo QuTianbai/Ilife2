@@ -37,4 +37,6 @@
 - (RACSignal *)submitSignalWithPage:(NSInteger)page;
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
+- (void)setBankCardMasterDefult;
+
 @end

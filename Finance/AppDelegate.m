@@ -39,6 +39,8 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtilsViewController.h"
 
+#import "MSFFormsViewModel.h"
+
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
@@ -238,6 +240,7 @@
 	if (self.timer != nil) {
 		[self.timer setFireDate:[NSDate distantFuture]];
 	}
+	[self.viewModel.formsViewModel setBankCardMasterDefult];
 	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
