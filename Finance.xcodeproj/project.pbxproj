@@ -188,6 +188,7 @@
 		07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F089261BBD39250067C5BC /* MSFGetBankIcon.m */; settings = {ASSET_TAGS = (); }; };
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
+		10028A601BD4F28F00D36508 /* edu_background1.json in Resources */ = {isa = PBXBuildFile; fileRef = 10028A5F1BD4F28F00D36508 /* edu_background1.json */; settings = {ASSET_TAGS = (); }; };
 		1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */; settings = {ASSET_TAGS = (); }; };
 		1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */; settings = {ASSET_TAGS = (); }; };
 		1011A3A61BB9702600CCADB5 /* icon_circle_home_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A01BB9702600CCADB5 /* icon_circle_home_n.png */; settings = {ASSET_TAGS = (); }; };
@@ -1015,6 +1016,7 @@
 		07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyInfo.m"; sourceTree = "<group>"; };
 		07FE07321B0740ED00484069 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0C902AAFF4566E5C3F86DCD0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		10028A5F1BD4F28F00D36508 /* edu_background1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edu_background1.json; sourceTree = "<group>"; };
 		1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoCircleView.h; sourceTree = "<group>"; };
 		1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoCircleView.m; sourceTree = "<group>"; };
 		1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_h.png; sourceTree = "<group>"; };
@@ -2020,6 +2022,7 @@
 				07C06C551B1345DD00F2DFCC /* industry_category.json */,
 				07C06C571B13461E00F2DFCC /* professional.json */,
 				07C06C591B13464200F2DFCC /* edu_background.json */,
+				10028A5F1BD4F28F00D36508 /* edu_background1.json */,
 				49A342381B7992DF006F5106 /* life-insurance */,
 				4902E4071BC4B4640087FA1E /* mock-elements.json */,
 			);
@@ -4134,6 +4137,7 @@
 				4944C0321B68A5A100805C0A /* icon-account-info@2x.png in Resources */,
 				07E3ED731BBBC3020010AAD2 /* tradepasswordimg.png in Resources */,
 				4944C02D1B68A5A100805C0A /* icon-account-apply@3x.png in Resources */,
+				10028A601BD4F28F00D36508 /* edu_background1.json in Resources */,
 				10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */,
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
 				077347E31BBA338900D7A130 /* ICBC@2x.png in Resources */,
