@@ -6,7 +6,7 @@
 
 #import "MSFTabBarController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/EXTScope.h>
+#import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "MSFHomepageViewController.h"

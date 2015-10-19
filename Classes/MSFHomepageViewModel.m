@@ -6,7 +6,7 @@
 
 #import "MSFHomepageViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFClient+Users.h"
 #import "MSFClient+Repayment.h"
 #import "MSFUser.h"

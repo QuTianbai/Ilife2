@@ -6,7 +6,7 @@
 
 #import "MSFRegisterAgreementViewController.h"
 #import <Masonry/Masonry.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAgreementViewModel.h"

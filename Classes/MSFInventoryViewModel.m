@@ -6,7 +6,7 @@
 
 #import "MSFInventoryViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFClient+Elements.h"
 #import "MSFClient+Inventory.h"
 #import "MSFFormsViewModel.h"

@@ -3039,6 +3039,7 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				109A8F621B6F142100C60B05 /* Fabric */,
+				F8034E97CC6FA076B7DFF716 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3058,6 +3059,7 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
+				C917EC9A16DE950E8541D8BC /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3616,6 +3618,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C917EC9A16DE950E8541D8BC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8034E97CC6FA076B7DFF716 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -4034,7 +4066,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4101,7 +4133,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
+				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
 			};
 			name = Debug;
 		};

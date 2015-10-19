@@ -6,7 +6,8 @@
 
 #import "MSFAgreement.h"
 #import "MSFServer.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
+#import <Mantle/EXTKeyPathCoding.h>
 #import "MSFProduct.h"
 #import "MSFApplyList.h"
 

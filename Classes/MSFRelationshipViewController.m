@@ -7,7 +7,7 @@
 //
 
 #import "MSFRelationshipViewController.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <KGModal/KGModal.h>

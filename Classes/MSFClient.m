@@ -17,7 +17,7 @@
 #import <Mantle/Mantle.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <OpenUDID/OpenUDID.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFUtils.h"
 #import "MSFSignature.h"
@@ -520,9 +520,7 @@ static BOOL isRunningTests(void) {
 - (RACSignal *)enqueueRequest:(NSURLRequest *)request {
 	RACSignal *signal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
-				NSLog(@"%@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
-			}
+					NSLog(@"%@ %@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
 				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];
 				self.token = authorization.token;
@@ -559,9 +557,7 @@ static BOOL isRunningTests(void) {
 				 subscribe:subscriber];
 			
 		} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-			if (NSProcessInfo.processInfo.environment[MSFClientResponseLoggingEnvironmentKey] != nil) {
-				NSLog(@"%@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
-			}
+				NSLog(@"%@ %@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 			
 			if (operation.response.allHeaderFields[@"msfinance"] && operation.response.allHeaderFields[@"finance"]) {
 				MSFAuthorization *authorization = [MTLJSONAdapter modelOfClass:MSFAuthorization.class fromJSONDictionary:operation.response.allHeaderFields error:nil];

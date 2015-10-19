@@ -8,7 +8,7 @@
 
 #import "MSFTradeTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFTrade.h"
 #import "MSFClient+Trades.h"

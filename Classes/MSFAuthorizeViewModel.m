@@ -6,7 +6,7 @@
 
 #import "MSFAuthorizeViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "NSString+Matches.h"
 #import "MSFClient.h"
 #import "MSFUser.h"

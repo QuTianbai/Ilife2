@@ -6,7 +6,7 @@
 
 #import "MSFElementViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFElement.h"
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"

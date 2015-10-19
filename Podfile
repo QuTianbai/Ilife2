@@ -6,7 +6,6 @@ inhibit_all_warnings!
 pod 'AFNetworking', '2.5.0'
 pod 'MTLFMDBAdapter', '0.1.8'
 
-pod 'libextobjc', '0.4.1'
 pod 'ReactiveCocoa', '2.4.2'
 pod 'ReactiveViewModel', '0.3'
 pod 'Mantle', '1.5.1'
@@ -31,6 +30,7 @@ pod 'KGModal', '1.1.0'
 pod 'ZSWTappableLabel', '1.1'
 pod 'ZSWTaggedString', '1.1'
 pod 'MWPhotoBrowser', '2.1.1'
+pod 'BugshotKit',:head
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', :git => 'https://github.com/jonreid/OCMockito', :commit=>'f20ee6d'

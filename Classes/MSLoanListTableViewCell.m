@@ -7,7 +7,7 @@
 //
 
 #import "MSLoanListTableViewCell.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <Masonry/Masonry.h>
 #import "MSFCommandView.h"
 #import "MSFCellButton.h"

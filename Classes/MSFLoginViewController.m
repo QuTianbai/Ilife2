@@ -6,7 +6,7 @@
 
 #import "MSFLoginViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <Masonry/Masonry.h>
 #import "MSFAuthorizeViewModel.h"
 #import "UIColor+Utils.h"

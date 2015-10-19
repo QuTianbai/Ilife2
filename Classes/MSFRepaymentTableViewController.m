@@ -8,7 +8,7 @@
 
 #import "MSFRepaymentTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFRepaymentSchedules.h"
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFUtils.h"

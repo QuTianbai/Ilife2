@@ -6,7 +6,7 @@
 
 #import "MSFClozeViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFClozeViewModel.h"
 #import "MSFUtils.h"
 #import "MSFSelectionViewModel.h"
@@ -15,7 +15,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <REFormattedNumberField/REFormattedNumberField.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"

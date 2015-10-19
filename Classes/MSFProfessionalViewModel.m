@@ -8,7 +8,7 @@
 #import <FMDB/FMDB.h>
 #import <MTLFMDBAdapter/MTLFMDBAdapter.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationForms.h"
 #import "MSFAreas.h"

@@ -8,7 +8,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFRepaymentTableViewController.h"
 #import "MSFTradeTableViewController.h"
 #import "MSFEditPasswordViewController.h"

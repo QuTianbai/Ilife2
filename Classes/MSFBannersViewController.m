@@ -6,7 +6,7 @@
 
 #import "MSFBannersViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import <Masonry/Masonry.h>
 #import "MSFUtils.h"

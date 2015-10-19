@@ -5,7 +5,8 @@
 //
 
 #import "MSFAttachment.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
+#import <Mantle/EXTKeyPathCoding.h>
 #import "NSValueTransformer+MSFPredefinedTransformerAdditions.h"
 
 @interface MSFAttachment ()

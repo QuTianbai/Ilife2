@@ -6,7 +6,7 @@
 
 #import "MSFProductViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFUtils.h"
 #import "MSFMarket.h"

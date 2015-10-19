@@ -5,7 +5,7 @@
 //
 
 #import "AppDelegate.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "MSFTabBarController.h"
@@ -36,6 +36,7 @@
 #import "MSFUtilsViewController.h"
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
+#import <BugshotKit/BugshotKit.h>
 
 @interface AppDelegate ()
 
@@ -60,6 +61,8 @@
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 		[manager startUpdatingLocation];
 	}];
+	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
+	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
 	
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	self.window.backgroundColor = UIColor.whiteColor;

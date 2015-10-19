@@ -5,7 +5,8 @@
 //
 
 #import "MSFUser.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
+#import <Mantle/EXTKeyPathCoding.h>
 
 @implementation MSFUser
 

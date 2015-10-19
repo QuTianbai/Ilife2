@@ -9,7 +9,7 @@
 #import "MSFPersonalViewController.h"
 #import <FMDB/FMDatabase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFAreas.h"
 #import "MSFApplicationForms.h"

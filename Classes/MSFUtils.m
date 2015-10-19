@@ -7,7 +7,7 @@
 #import "MSFUtils.h"
 #import <AFNetworking/AFNetworking.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFClient.h"
 #import "MSFServer.h"
 #import "MSFUser.h"

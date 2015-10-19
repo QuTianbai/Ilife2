@@ -14,7 +14,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationForms.h"
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFAreas.h"
 #import <FMDB/FMDatabase.h>

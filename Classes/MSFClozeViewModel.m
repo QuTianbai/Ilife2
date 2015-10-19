@@ -6,7 +6,7 @@
 
 #import "MSFClozeViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "MSFAddressViewModel.h"

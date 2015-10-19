@@ -6,7 +6,7 @@
 
 #import "MSFSettingsViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <libextobjc/extobjc.h>
+#import <Mantle/EXTScope.h>
 #import "MSFUtils.h"
 #import "MSFClient.h"
 #import "MSFCommandView.h"
