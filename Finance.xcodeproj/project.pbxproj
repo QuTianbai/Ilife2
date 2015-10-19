@@ -560,6 +560,8 @@
 		49E22B071B37EDF700749717 /* icon-loan-question@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22B041B37EDF700749717 /* icon-loan-question@2x.png */; };
 		49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22B051B37EDF700749717 /* icon-loan-question@3x.png */; };
 		49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */; };
+		49E5B7781BD4D8C4001995F8 /* MSFPosterSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E5B7771BD4D8C4001995F8 /* MSFPosterSpec.m */; settings = {ASSET_TAGS = (); }; };
+		49E5B7891BD4D94C001995F8 /* MSFPoster.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E5B7881BD4D94C001995F8 /* MSFPoster.m */; settings = {ASSET_TAGS = (); }; };
 		49E8B8F01B5FA01300680061 /* MSFHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49E8B8EF1B5FA01300680061 /* MSFHeaderView.m */; };
 		49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E8B8F11B5FA02200680061 /* MSFHeaderView.xib */; };
 		49EA18AE1B6A4421006EEB9F /* launch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 49EA18AD1B6A4421006EEB9F /* launch.jpg */; };
@@ -1543,6 +1545,9 @@
 		49E22B051B37EDF700749717 /* icon-loan-question@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-loan-question@3x.png"; sourceTree = "<group>"; };
 		49E418821B4CD18400422C20 /* MSFPersonalViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPersonalViewModel.h; sourceTree = "<group>"; };
 		49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPersonalViewModel.m; sourceTree = "<group>"; };
+		49E5B7771BD4D8C4001995F8 /* MSFPosterSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPosterSpec.m; sourceTree = "<group>"; };
+		49E5B7871BD4D94C001995F8 /* MSFPoster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPoster.h; sourceTree = "<group>"; };
+		49E5B7881BD4D94C001995F8 /* MSFPoster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPoster.m; sourceTree = "<group>"; };
 		49E8B8EE1B5FA01300680061 /* MSFHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHeaderView.h; sourceTree = "<group>"; };
 		49E8B8EF1B5FA01300680061 /* MSFHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHeaderView.m; sourceTree = "<group>"; };
 		49E8B8F11B5FA02200680061 /* MSFHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFHeaderView.xib; sourceTree = "<group>"; };
@@ -2711,6 +2716,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49E5B7861BD4D930001995F8 /* Poster */,
 				07D2249C1BCCD11B00B00BEF /* LifeInsurance */,
 				07667BEE1BBEAAC2002DFF62 /* CheckIsAllowApplyCash */,
 				07330B621BBE3187000EB8FD /* ApplyCash */,
@@ -2850,6 +2856,7 @@
 				49CA93921BBA91360032F5C2 /* MSFAuthorizeResponseSpec.m */,
 				49CA93961BBAA7880032F5C2 /* MSFCardSpec.m */,
 				49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */,
+				49E5B7771BD4D8C4001995F8 /* MSFPosterSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -3475,6 +3482,15 @@
 				07330B431BBE2481000EB8FD /* CashHomePage.storyboard */,
 			);
 			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		49E5B7861BD4D930001995F8 /* Poster */ = {
+			isa = PBXGroup;
+			children = (
+				49E5B7871BD4D94C001995F8 /* MSFPoster.h */,
+				49E5B7881BD4D94C001995F8 /* MSFPoster.m */,
+			);
+			name = Poster;
 			sourceTree = "<group>";
 		};
 		49E8B8E01B5FA00400680061 /* Header */ = {
@@ -4647,6 +4663,7 @@
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */,
 				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
+				49E5B7891BD4D94C001995F8 /* MSFPoster.m in Sources */,
 				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
 				49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */,
@@ -4689,6 +4706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49E5B7781BD4D8C4001995F8 /* MSFPosterSpec.m in Sources */,
 				496A44601B6A57BE00104215 /* MSFAccordToNperListsSpec.m in Sources */,
 				496A44611B6A57BE00104215 /* MSFAddressViewModelSpec.m in Sources */,
 				496A44661B6A57BE00104215 /* MSFApplyInfoSpec.m in Sources */,
