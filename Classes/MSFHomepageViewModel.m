@@ -15,6 +15,7 @@
 #import "MSFRepaymentViewModel.h"
 #import "MSFBannersViewModel.h"
 #import "MSFCirculateCashViewModel.h"
+#import "MSFCirculateCashModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFCheckAllowApply.h"
 #import "MSFApplyCashInfo.h"
@@ -53,6 +54,20 @@ static NSString *msf_whiteListUserCode = @"4101";
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
+			
+			return [RACSignal combineLatest:@[[self.services.httpClient fetchCheckAllowApply], [self.services.httpClient fetchCirculateCash]] reduce:^id(MSFCheckAllowApply *allow, MSFCirculateCashModel *loan){
+				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"A"];
+				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"A"];
+				if (loan.type.length == 0 || (allow.processing && (applyBlank || contractBlank))) {
+					self.viewModel.active = NO;
+					self.viewModel.active = YES;
+					return nil;
+				} else {
+					MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:loan services:services];
+					return @[viewModel];
+				}
+			}];
+			/*
 			return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
 				if (value.processing) {
 					self.viewModel.active = NO;
@@ -64,7 +79,7 @@ static NSString *msf_whiteListUserCode = @"4101";
 						return @[viewModel];
 					}];
 				}
-			}];
+			}];*/
 		} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
 			self.circulateCashViewModel.active = NO;
 			self.circulateCashViewModel.active = YES;
