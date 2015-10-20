@@ -18,7 +18,7 @@ pod 'ActionSheetPicker-3.0', '1.6.2'
 pod 'ASValueTrackingSlider'
 pod 'ISO8601DateFormatter', '0.7'
 pod 'Masonry', '0.6.1'
-pod 'MSPageViewController', '1.0.1'
+pod 'MSPageViewController', :head
 pod 'RMPickerViewController', '1.3.2'
 pod 'UIColor-Hex', '0.1.1'
 pod 'CZPhotoPickerController', '1.2.4'
