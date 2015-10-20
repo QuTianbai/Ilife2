@@ -650,7 +650,7 @@ static NSDictionary *messages;
 			#endif
 			
 			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:error];
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
 			}
 			
 			[self reportFabric:operation error:error];

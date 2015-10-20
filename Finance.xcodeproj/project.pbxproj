@@ -4793,7 +4793,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b81830f7-7c58-4c9a-bd1c-8e0bf319ea30";
+				PROVISIONING_PROFILE = "b06caacd-c957-4c19-a827-da874f77cdab";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4822,7 +4822,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b81830f7-7c58-4c9a-bd1c-8e0bf319ea30";
+				PROVISIONING_PROFILE = "b06caacd-c957-4c19-a827-da874f77cdab";
 			};
 			name = UAT;
 		};
@@ -5073,7 +5073,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b81830f7-7c58-4c9a-bd1c-8e0bf319ea30";
+				PROVISIONING_PROFILE = "b06caacd-c957-4c19-a827-da874f77cdab";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5106,7 +5106,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b81830f7-7c58-4c9a-bd1c-8e0bf319ea30";
+				PROVISIONING_PROFILE = "b06caacd-c957-4c19-a827-da874f77cdab";
 			};
 			name = TEST;
 		};
@@ -5166,7 +5166,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "b81830f7-7c58-4c9a-bd1c-8e0bf319ea30";
+				PROVISIONING_PROFILE = "b06caacd-c957-4c19-a827-da874f77cdab";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5199,7 +5199,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "b81830f7-7c58-4c9a-bd1c-8e0bf319ea30";
+				PROVISIONING_PROFILE = "b06caacd-c957-4c19-a827-da874f77cdab";
 			};
 			name = TP;
 		};
