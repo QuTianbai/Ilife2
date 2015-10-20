@@ -153,7 +153,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		} else {
 			self.moneyInsuranceLabel.hidden = NO;
 		}
-		return value;
+		
+		return value.stringValue;
 	}];
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
