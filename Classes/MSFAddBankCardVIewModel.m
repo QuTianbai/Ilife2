@@ -55,6 +55,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	}];
 	
 	RAC(self, bankAddress) = [[RACObserve(self.addressViewModel, address) ignore:nil] map:^id(id value) {
+		@strongify(self)
 		if (self.addressViewModel.provinceName == nil || self.addressViewModel.cityName == nil) {
 			return @"";
 		}
@@ -64,6 +65,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	RAC(self, bankBranchProvinceCode) = [RACObserve(self.addressViewModel, provinceCode) ignore:nil];
 	
 	RAC(self, bankInfo) = [RACObserve(self, bankNO) map:^id(NSString *bankNO) {
+		@strongify(self)
 		if (bankNO.length >= 3) {
 			return [self selectBankInfo];
 		}
@@ -95,6 +97,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	}];
 	
 	_executeReSetTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return [self executeResetTrade];
 	}];
 
@@ -143,8 +146,9 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 }
 
 - (RACSignal *)submitValidSignal {
-	
+	@weakify(self)
 	return [RACObserve(self, bankInfo.support) map:^id(NSString *support) {
+		@strongify(self)
 		int re = 0;
 		switch (support.intValue) {
 			case 0:

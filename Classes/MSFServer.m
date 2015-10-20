@@ -11,6 +11,11 @@
 //NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
 //NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080";
 //api2.msxf.lotest
+//10.16.18.14:8080
+
+//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.7:8080";
+//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.7:8080";
+
 
 NSString *const MSFServerDotComAPIEndpoint = @"http://api2.msxf.lotest";
 NSString *const MSFServerDotComBaseWebURL = @"http://api2.msxf.lotest";

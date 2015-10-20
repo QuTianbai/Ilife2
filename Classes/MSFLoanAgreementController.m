@@ -52,6 +52,7 @@
 }
 
 - (void)viewDidLoad {
+	[super viewDidLoad];
 	self.title = @"贷款协议";
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
