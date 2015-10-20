@@ -1,3 +1,7 @@
+Version 2.0.0.7:
+ - Update provisioning profile
+ - Update 401 notification object
+
 Version 2.0.0.6:
  - Update provisioning profile
  - Merge remote-tracking branch 'origin/zhaoyong'
