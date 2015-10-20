@@ -56,6 +56,9 @@ static NSString *msf_whiteListUserCode = @"4101";
 		if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
 			
 			return [RACSignal combineLatest:@[[self.services.httpClient fetchCheckAllowApply], [self.services.httpClient fetchCirculateCash]] reduce:^id(MSFCheckAllowApply *allow, MSFCirculateCashModel *loan){
+				if ([loan.produceType isEqualToString:@"MS"]) {
+					NSLog(@"productType: 马上贷产品");
+				}
 				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"A"];
 				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"A"];
 				if (loan.type.length == 0 || (allow.processing && (applyBlank || contractBlank))) {
