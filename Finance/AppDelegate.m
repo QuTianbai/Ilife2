@@ -245,6 +245,13 @@
 	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 	self.window.rootViewController = navigationController;
+	
+	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
+	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]];
+		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
+		[vc dismissViewControllerAnimated:NO completion:NO];
+	}
 }
 
 - (void)authenticatedControllers {
