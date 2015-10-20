@@ -7,6 +7,7 @@
 #import "MSFReleaseNote.h"
 #import "MSFVersion.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFPoster.h"
 
 QuickSpecBegin(MSFReleaseNoteSpec)
 
@@ -39,6 +40,12 @@ it(@"should has version code", ^{
   expect(releasenote.updatedURL).to(equal([NSURL URLWithString:@"http://objczl.com"]));
   expect(releasenote.summary).to(equal(@"foo"));
   expect(releasenote.updatedDate).to(equal(date));
+});
+
+it(@"should has posters", ^{
+	// then
+	expect(releasenote.posters).to(beAKindOf([NSArray class]));
+	expect(releasenote.posters.firstObject).to(beAKindOf(MSFPoster.class));
 });
 
 QuickSpecEnd

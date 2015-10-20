@@ -24,5 +24,6 @@
 @property (nonatomic, strong, readonly) NSString *summary;
 @property (nonatomic, strong, readonly) NSDate *updatedDate;
 @property (nonatomic, strong, readonly) NSString *timestamp;
+@property (nonatomic, strong, readonly) NSArray *posters;
 
 @end

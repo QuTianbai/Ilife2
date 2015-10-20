@@ -6,8 +6,11 @@
 
 #import "MSFReleaseNote.h"
 #import "NSValueTransformer+MSFPredefinedTransformerAdditions.h"
+#import "MSFPoster.h"
 
 @implementation MSFReleaseNote
+
+#pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
@@ -18,6 +21,7 @@
 		@"summary": @"description",
 		@"updatedDate": @"published",
 		@"timestamp": @"timestamp",
+		@"posters": @"picList",
 	};
 }
 
@@ -34,7 +38,11 @@
 		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
 	} reverseBlock:^ id (NSString *str) {
 		 return str;
-	 }];
+	}];
+}
+
++ (NSValueTransformer *)postersJSONTransformer {
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFPoster.class];
 }
 
 @end

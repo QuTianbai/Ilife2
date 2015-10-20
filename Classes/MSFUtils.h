@@ -7,6 +7,7 @@
 #import <Foundation/Foundation.h>
 
 @class RACSignal;
+@class MSFPoster;
 
 @interface MSFUtils : NSObject
 
@@ -18,6 +19,9 @@
 // 存储用户登录手机号
 + (void)setSignInMobile:(NSString *)phone;
 + (NSString *)signInMobile;
+
+// 获取一个有效的广告宣传图对象
++ (MSFPoster *)poster;
 
 @end
 

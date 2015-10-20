@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MSFActivityIndicatorViewController">
             <connections>
+                <outlet property="backgroundView" destination="ZOD-1R-sJM" id="Yyd-2n-YIw"/>
                 <outlet property="view" destination="iN0-l3-epB" id="eQw-dc-HZr"/>
             </connections>
         </placeholder>
