@@ -8,10 +8,11 @@
 
 #import "MSFClient+MSFApplyInfo.h"
 #import "MSFApplicationForms.h"
-#import "RACSignal+MSFClientAdditions.h"
 #import "MSFResponse.h"
 #import "MSFUser.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "RACSignal+MSFClientAdditions.h"
+#import "NSObject+MSFValidItem.h"
 
 @implementation MSFClient (MSFApplyInfo)
 
