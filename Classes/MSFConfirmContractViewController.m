@@ -39,7 +39,7 @@
 	self.title = @"确认合同";
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.confirmContractWebView.delegate = self;
-	
+	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal = [self.viewModel requestContactInfo:@"INTRODUCTION"];
 	[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
 		//[SVProgressHUD dismiss];
@@ -50,13 +50,13 @@
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		[signal subscribeNext:^(MSFConfirmContractModel *model) {
-			if ([model.errorCode isEqualToString:@"0"]) {
+			//if ([model.errorCode isEqualToString:@"0"]) {
 				[SVProgressHUD showSuccessWithStatus:@"合同确认成功"];
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
-				[self.navigationController popViewControllerAnimated:YES];
-			} else {
-				[SVProgressHUD showErrorWithStatus:@"确认失败，请稍后重试"];
-			}
+//				[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
+//				[self.navigationController popViewControllerAnimated:YES];
+//			} else {
+//				[SVProgressHUD showErrorWithStatus:@"确认失败，请稍后重试"];
+//			}
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
