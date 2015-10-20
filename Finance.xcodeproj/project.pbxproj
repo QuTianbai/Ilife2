@@ -4922,7 +4922,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
+				PROVISIONING_PROFILE = "18b06747-2919-4853-951f-2daa30ce3a0e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4990,7 +4990,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
+				PROVISIONING_PROFILE = "18b06747-2919-4853-951f-2daa30ce3a0e";
 			};
 			name = Debug;
 		};
