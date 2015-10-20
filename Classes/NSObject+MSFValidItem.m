@@ -38,8 +38,11 @@
 }
 
 - (NSString *)trimmedString {
-	NSAssert([self isKindOfClass:NSString.class], @"String to be trimmed is not valid.");
-	return [(NSString *)self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	if ([self isKindOfClass:NSString.class]) {
+		return [(NSString *)self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+	} else {
+		return @"";
+	}
 }
 
 @end

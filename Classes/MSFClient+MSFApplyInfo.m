@@ -25,24 +25,6 @@
 	}];
 }
 
-- (id)msf_filter:(id)obj class:(Class)class {
-	if ([obj isKindOfClass:class]) {
-		return obj;
-	} else {
-		if (class == NSString.class) {
-			if ([obj isKindOfClass:NSNumber.class]) {
-				return [obj stringValue];
-			}
-			return @"";
-		} else if (class == NSArray.class) {
-			return @[];
-		} else if (class == NSDictionary.class) {
-			return @{};
-		}
-		return nil;
-	}
-}
-
 - (NSArray *)convertPhoneNumber:(NSString *)phoneNumber {
 	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
 	if (phoneNumber.length < 4) {
@@ -55,134 +37,125 @@
 }
 
 - (NSDictionary *)convertDictionary:(NSDictionary *)dic {
-	NSArray *additionalList = [self msf_filter:dic[@"additionalList"] class:NSArray.class];
+	NSArray *additionalList = [dic[@"additionalList"] validArray];
 	NSString *qq = @"";
 	NSString *tb = @"";
 	NSString *jd = @"";
 	for (NSDictionary *addition in additionalList) {
-		switch ([[self msf_filter:addition[@"additionalType"] class:NSString.class] intValue]) {
-			case 1:
-				qq = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
-				break;
-			case 2:
-				tb = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
-				break;
-			case 3:
-				jd = [self msf_filter:addition[@"additionalValue"] class:NSString.class];
-				break;
+		switch ([addition[@"additionalType"] validString].intValue) {
+			case 1: qq = [addition[@"additionalValue"] validString]; break;
+			case 2: tb = [addition[@"additionalValue"] validString]; break;
+			case 3: jd = [addition[@"additionalValue"] validString]; break;
 		}
 	}
 	
-	NSDictionary *basicInfo = [self msf_filter:dic[@"baseInfo"]
-																	 class:NSDictionary.class];
-	NSDictionary *occupation = [self msf_filter:dic[@"occupationInfo"]
-																		class:NSDictionary.class];
+	NSDictionary *basicInfo  = [dic[@"baseInfo"] validDictionary];
+	NSDictionary *occupation = [dic[@"occupationInfo"] validDictionary];
 	
-	NSArray *homeTelComponents = [self convertPhoneNumber:[self msf_filter:basicInfo[@"homePhone"] class:NSString.class]];
-	NSArray *empTelComponents = [self convertPhoneNumber:[self msf_filter:occupation[@"empPhone"] class:NSString.class]];
+	NSArray *homeTelComponents = [self convertPhoneNumber:
+																[basicInfo[@"homePhone"] validString]];
+	NSArray *empTelComponents  = [self convertPhoneNumber:
+																[occupation[@"empPhone"] validString]];
 	NSString *homeTelCode = @"";
-	NSString *homeTel = @"";
-	NSString *empTelCode = @"";
-	NSString *empTel = @"";
+	NSString *homeTel			= @"";
+	NSString *empTelCode  = @"";
+	NSString *empTel			= @"";
 	if (homeTelComponents.count == 2) {
 		homeTelCode = homeTelComponents[0];
-		homeTel = homeTelComponents[1];
+		homeTel		  = homeTelComponents[1];
 	}
 	if (empTelComponents.count == 2) {
-		empTelCode = empTelComponents[0];
-		empTel = empTelComponents[1];
+		empTelCode  = empTelComponents[0];
+		empTel	    = empTelComponents[1];
 	}
 	
-	return @{@"homeCode" : homeTelCode,
-					 @"homeLine" : homeTel,
-					 @"email" : [self msf_filter:basicInfo[@"email"] class:NSString.class],
-					 @"currentProvinceCode" : [self msf_filter:basicInfo[@"abodeStateCode"] class:NSString.class],
-					 @"currentCityCode" : [self msf_filter:basicInfo[@"abodeCityCode"] class:NSString.class],
-					 @"currentCountryCode" : [self msf_filter:basicInfo[@"abodeZoneCode"] class:NSString.class],
-					 @"abodeDetail" : [self msf_filter:basicInfo[@"abodeDetail"] class:NSString.class],
-					 @"houseType" : [self msf_filter:basicInfo[@"houseCondition"] class:NSString.class],
-					 @"maritalStatus" : [self msf_filter:basicInfo[@"maritalStatus"] class:NSString.class],
-					 @"qq" : qq,
-					 @"taobao" : tb,
-					 @"jdAccount" : jd,
-					 @"socialStatus" : [self msf_filter:occupation[@"socialIdentity"] class:NSString.class],
-					 @"education" : [self msf_filter:occupation[@"qualification"] class:NSString.class],
-					 @"unitName" : [self msf_filter:occupation[@"unitName"] class:NSString.class],
-					 @"empStandFrom" : [self msf_filter:occupation[@"empStandFrom"] class:NSString.class],
-					 @"programLength" : [self msf_filter:occupation[@"lengthOfSchooling"] class:NSString.class],
-					 @"workStartDate" : [self msf_filter:occupation[@"workStartDate"] class:NSString.class],
-					 @"income" : [self msf_filter:occupation[@"monthIncome"] class:NSString.class],
-					 @"otherIncome" : [self msf_filter:occupation[@"otherIncome"] class:NSString.class],
-					 @"familyExpense" : [self msf_filter:occupation[@"otherLoan"] class:NSString.class],
-					 @"department" : [self msf_filter:occupation[@"empDepartment"] class:NSString.class],
-					 @"title" : [self msf_filter:occupation[@"empPost"] class:NSString.class],
-					 @"professional" : [self msf_filter:occupation[@"empPost"] class:NSString.class],
-					 @"industry" : [self msf_filter:occupation[@"empType"] class:NSString.class],
-					 @"companyType" : [self msf_filter:occupation[@"empStructure"] class:NSString.class],
-					 @"workProvinceCode" : [self msf_filter:occupation[@"empProvinceCode"] class:NSString.class],
-					 @"workCityCode" : [self msf_filter:occupation[@"empCityCode"] class:NSString.class],
-					 @"workCountryCode" : [self msf_filter:occupation[@"empZoneCode"] class:NSString.class],
-					 @"empAdd" : [self msf_filter:occupation[@"empAddr"] class:NSString.class],
-					 @"unitAreaCode" : empTelCode,
-					 @"unitTelephone" : empTel,
-					 @"unitExtensionTelephone" : [self msf_filter:occupation[@"empPhoneExtNum"] class:NSString.class],
-					 @"contrastList" : [self msf_filter:dic[@"contrastList"] class:NSArray.class]
-					 };
+	return @{@"homeCode"						: homeTelCode,
+					 @"homeLine"						: homeTel,
+					 @"email"								: [basicInfo[@"email"]							validString],
+					 @"currentProvinceCode" : [basicInfo[@"abodeStateCode"]			validString],
+					 @"currentCityCode"			: [basicInfo[@"abodeCityCode"]			validString],
+					 @"currentCountryCode"	: [basicInfo[@"abodeZoneCode"]			validString],
+					 @"abodeDetail"					: [basicInfo[@"abodeDetail"]				validString],
+					 @"houseType"						: [basicInfo[@"houseCondition"]			validString],
+					 @"maritalStatus"				: [basicInfo[@"maritalStatus"]			validString],
+					 @"qq"									: qq,
+					 @"taobao"							: tb,
+					 @"jdAccount"						: jd,
+					 @"socialStatus"				: [occupation[@"socialIdentity"]		validString],
+					 @"education"						: [occupation[@"qualification"]			validString],
+					 @"unitName"						: [occupation[@"unitName"]					validString],
+					 @"empStandFrom"				: [occupation[@"empStandFrom"]			validString],
+					 @"programLength"				: [occupation[@"lengthOfSchooling"] validString],
+					 @"workStartDate"				: [occupation[@"workStartDate"]			validString],
+					 @"income"							: [occupation[@"monthIncome"]				validString],
+					 @"otherIncome"					: [occupation[@"otherIncome"]				validString],
+					 @"familyExpense"				: [occupation[@"otherLoan"]					validString],
+					 @"department"					: [occupation[@"empDepartment"]			validString],
+					 @"title"								: [occupation[@"empPost"]						validString],
+					 @"professional"				: [occupation[@"empPost"]						validString],
+					 @"industry"						: [occupation[@"empType"]						validString],
+					 @"companyType"					: [occupation[@"empStructure"]			validString],
+					 @"workProvinceCode"		: [occupation[@"empProvinceCode"]		validString],
+					 @"workCityCode"				: [occupation[@"empCityCode"]				validString],
+					 @"workCountryCode"			: [occupation[@"empZoneCode"]				validString],
+					 @"empAdd"							: [occupation[@"empAddr"]						validString],
+					 @"unitAreaCode"				: empTelCode,
+					 @"unitTelephone"				: empTel,
+					 @"unitExtensionTelephone" : [occupation[@"empPhoneExtNum"] validString],
+					 @"contrastList"				: [dic[@"contrastList"]							validArray]};
 }
 
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
 	NSString *homePhone = @"";
-	NSString *empPhone = @"";
+	NSString *empPhone  = @"";
 	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
 		homePhone = [NSString stringWithFormat:@"%@%@", forms.homeCode, forms.homeLine];
 	}
 	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0) {
-		empPhone = [NSString stringWithFormat:@"%@%@", forms.unitAreaCode, forms.unitTelephone];
+		empPhone  = [NSString stringWithFormat:@"%@%@", forms.unitAreaCode, forms.unitTelephone];
 	}
 	
-	NSDictionary *basicInfo = @{
-															@"homePhone" : homePhone,
-															@"email" : forms.email ?: @"",
-															@"abodeStateCode" : forms.currentProvinceCode ?: @"",
-															@"abodeCityCode" : forms.currentCityCode ?: @"",
-															@"abodeZoneCode" : forms.currentCountryCode ?: @"",
-															@"abodeDetail" : forms.abodeDetail ?: @"",
-															@"houseCondition" : forms.houseType ?: @"",
-															@"maritalStatus" : forms.maritalStatus ?: @""
+	NSDictionary *basicInfo = @{@"homePhone"			: homePhone,
+															@"email"					: forms.email.trimmedString,
+															@"abodeStateCode" : forms.currentProvinceCode.trimmedString,
+															@"abodeCityCode"  : forms.currentCityCode.trimmedString,
+															@"abodeZoneCode"  : forms.currentCountryCode.trimmedString,
+															@"abodeDetail"		: forms.abodeDetail.trimmedString,
+															@"houseCondition" : forms.houseType.trimmedString,
+															@"maritalStatus"	: forms.maritalStatus.trimmedString
 															};
 	NSDictionary *occupation = @{
-															 @"socialIdentity" : forms.socialStatus ?: @"",
-															 @"qualification" : forms.education ?: @"",
-															 @"unitName" : forms.unitName ?: @"",
-															 @"empStandFrom" : forms.empStandFrom ?: @"",
-															 @"lengthOfSchooling" : forms.programLength ?: @"",
-															 @"workStartDate" : forms.workStartDate ?: @"",
-															 @"monthIncome" : forms.income ?: @"",
-															 @"otherIncome" : forms.otherIncome ?: @"",
-															 @"otherLoan" : forms.familyExpense ?: @"",
-															 @"empDepartment" : forms.department ?: @"",
-															 @"empPost" : forms.professional ?: @"",
-															 @"empType" : forms.industry ?: @"",
-															 @"empStructure" : forms.companyType ?: @"",
-															 @"empProvinceCode" : forms.workProvinceCode ?: @"",
-															 @"empCityCode" : forms.workCityCode ?: @"",
-															 @"empZoneCode" : forms.workCountryCode ?: @"",
-															 @"empAddr" : forms.empAdd ?: @"",
-															 @"empPhone" : empPhone,
-															 @"empPhoneExtNum" : forms.unitExtensionTelephone ?: @""
-															 };
+															 @"socialIdentity": forms.socialStatus.trimmedString,
+															 @"qualification" : forms.education.trimmedString,
+															 @"unitName"			: forms.unitName.trimmedString,
+															 @"empStandFrom"	: forms.empStandFrom.trimmedString,
+															 @"lengthOfSchooling" : forms.programLength.trimmedString,
+															 @"workStartDate" : forms.workStartDate.trimmedString,
+															 @"monthIncome"		: forms.income.trimmedString,
+															 @"otherIncome"		: forms.otherIncome.trimmedString,
+															 @"otherLoan"			: forms.familyExpense.trimmedString,
+															 @"empDepartment" : forms.department.trimmedString,
+															 @"empPost"				: forms.professional.trimmedString,
+															 @"empType"				: forms.industry.trimmedString,
+															 @"empStructure"	: forms.companyType.trimmedString,
+															 @"empProvinceCode" : forms.workProvinceCode.trimmedString,
+															 @"empCityCode"		: forms.workCityCode.trimmedString,
+															 @"empZoneCode"		: forms.workCountryCode.trimmedString,
+															 @"empAddr"				: forms.empAdd.trimmedString,
+															 @"empPhone"			: empPhone,
+															 @"empPhoneExtNum": forms.unitExtensionTelephone.trimmedString};
 	
 	NSMutableArray *additionalList = [NSMutableArray array];
 	if (forms.qq.length > 0) {
-		[additionalList addObject:@{@"additionalType" : @"1",
+		[additionalList addObject:@{@"additionalType"  : @"1",
 																@"additionalValue" : forms.qq}];
 	}
 	if (forms.taobao.length > 0) {
-		[additionalList addObject:@{@"additionalType" : @"2",
+		[additionalList addObject:@{@"additionalType"  : @"2",
 																@"additionalValue" : forms.taobao}];
 	}
 	if (forms.jdAccount.length > 0) {
-		[additionalList addObject:@{@"additionalType" : @"3",
+		[additionalList addObject:@{@"additionalType"  : @"3",
 																@"additionalValue" : forms.jdAccount}];
 	}
 	
@@ -196,9 +169,9 @@
 	NSString *jsonContrastList = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:contrastList options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
 	NSString *jsonAdditionalList = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:additionalList options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
 	
-	return @{@"baseInfo" : jsonBasicInfo,
+	return @{@"baseInfo"			 : jsonBasicInfo,
 					 @"occupationInfo" : jsonOccupation,
-					 @"contrastList" : jsonContrastList,
+					 @"contrastList"   : jsonContrastList,
 					 @"additionalList" : jsonAdditionalList};
 }
 
@@ -214,7 +187,6 @@
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
 		self.user.complateCustInfo = value.parsedResult[@"complateCustInfo"];
-		
 		return value.parsedResult[@"complateCustInfo"];
 	}];
 }
