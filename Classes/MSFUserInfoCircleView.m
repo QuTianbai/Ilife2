@@ -173,6 +173,7 @@
 }
 
 - (void)layoutSubviews {
+	[super layoutSubviews];
 	self.layer.cornerRadius = self.frame.size.width / 2;
 }
 

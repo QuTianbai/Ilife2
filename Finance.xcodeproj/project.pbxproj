@@ -189,6 +189,7 @@
 		07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE072D1B07278800484069 /* MSFApplicationForms.m */; };
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
 		10028A601BD4F28F00D36508 /* edu_background1.json in Resources */ = {isa = PBXBuildFile; fileRef = 10028A5F1BD4F28F00D36508 /* edu_background1.json */; settings = {ASSET_TAGS = (); }; };
+		10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */; settings = {ASSET_TAGS = (); }; };
 		1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */; settings = {ASSET_TAGS = (); }; };
 		1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */; settings = {ASSET_TAGS = (); }; };
 		1011A3A61BB9702600CCADB5 /* icon_circle_home_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A01BB9702600CCADB5 /* icon_circle_home_n.png */; settings = {ASSET_TAGS = (); }; };
@@ -1017,6 +1018,8 @@
 		07FE07321B0740ED00484069 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		0C902AAFF4566E5C3F86DCD0 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		10028A5F1BD4F28F00D36508 /* edu_background1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edu_background1.json; sourceTree = "<group>"; };
+		10028A6E1BD5DD3B00D36508 /* NSObject+MSFValidItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MSFValidItem.h"; sourceTree = "<group>"; };
+		10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MSFValidItem.m"; sourceTree = "<group>"; };
 		1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoCircleView.h; sourceTree = "<group>"; };
 		1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoCircleView.m; sourceTree = "<group>"; };
 		1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_h.png; sourceTree = "<group>"; };
@@ -3252,6 +3255,8 @@
 				07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */,
 				49588E0F1B872BC700FCF171 /* NSDate+UTC0800.h */,
 				49588E101B872BC700FCF171 /* NSDate+UTC0800.m */,
+				10028A6E1BD5DD3B00D36508 /* NSObject+MSFValidItem.h */,
+				10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4454,6 +4459,7 @@
 				49CA93781BBA36090032F5C2 /* MSFIDSignInViewController.m in Sources */,
 				0750AAFA1B969DED00AD67F3 /* MSFCustomAlertViewController.m in Sources */,
 				493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */,
+				10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */,
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
@@ -4890,7 +4896,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
+				PROVISIONING_PROFILE = "18b06747-2919-4853-951f-2daa30ce3a0e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -4958,7 +4964,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "e2d0cbcd-c2c9-4a5b-96a0-f4926acae8d8";
+				PROVISIONING_PROFILE = "18b06747-2919-4853-951f-2daa30ce3a0e";
 			};
 			name = Debug;
 		};
