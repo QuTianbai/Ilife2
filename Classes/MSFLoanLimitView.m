@@ -42,11 +42,16 @@
 	return self;
 }
 
-- (void)commonInit {
+- (void)setUpProperties {
 	_standardFontSize = [UIScreen mainScreen].bounds.size.width > 320 ? 60 : 45;
 	_lineWidth = 11.0f;
-	_endAngle = - M_PI * 7 / 6;
-	_angle = - M_PI * 7 / 6;
+	_endAngle	 = - M_PI * 7 / 6;
+	_angle		 = - M_PI * 7 / 6;
+}
+
+- (void)commonInit {
+	
+	[self setUpProperties];
 	
 	UILabel *titleLabel = [[UILabel alloc] init];
 	titleLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -126,7 +131,10 @@
 		return;
 	}
 	[self setNeedsDisplay];
-	[self performSelector:@selector(circleAnimation) withObject:nil afterDelay:0.02 inModes:@[NSRunLoopCommonModes]];
+	[self performSelector:@selector(circleAnimation)
+						 withObject:nil
+						 afterDelay:0.02
+								inModes:@[NSRunLoopCommonModes]];
 }
 
 - (CGFloat)setAngle {
@@ -134,6 +142,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+	
 	CGFloat radius = (rect.size.height - _lineWidth * 2) * 2 / 3;
 	
 	UIBezierPath *path1 = [UIBezierPath
@@ -157,6 +166,7 @@
 	[path2 setLineWidth:_lineWidth];
 	[[UIColor darkCircleColor] set];
 	[path2 stroke];
+	
 }
 
 @end
