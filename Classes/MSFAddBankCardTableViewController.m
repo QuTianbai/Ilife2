@@ -9,7 +9,6 @@
 #import "MSFAddBankCardTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFBankInfoModel.h"
-//#import <REFormattedNumberField/REFormattedNumberField.h>
 #import "MSFEdgeButton.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SHSPhoneComponent/SHSPhoneTextField.h>
@@ -27,7 +26,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 @interface MSFAddBankCardTableViewController ()<MSFInputTradePasswordDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *bankAddressTF;
-@property (weak, nonatomic) IBOutlet SHSPhoneTextField *bankNOTF;
+@property (weak, nonatomic) IBOutlet UITextField *bankNOTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
@@ -79,7 +78,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		
 	}];
 	
-	RAC(self.viewModel, bankNO) = self.bankNOTF.rac_textSignal;//银行卡号
 	
 	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
 		@strongify(self)
@@ -157,8 +155,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 //	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
 //		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 //	}];
-	
-	[self.bankNOTF.formatter setDefaultOutputPattern:@"#### #### #### #### ###"];
+
+	[[(SHSPhoneTextField *)self.bankNOTF formatter] setDefaultOutputPattern:@"#### #### #### #### ###"];
+	((SHSPhoneTextField *)self.bankNOTF).textDidChangeBlock = ^(UITextField *textField){
+		@strongify(self)
+		self.viewModel.bankNO = textField.text;
+	};
 }
 
 - (void)didReceiveMemoryWarning {
