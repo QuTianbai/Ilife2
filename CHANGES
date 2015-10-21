@@ -1,3 +1,6 @@
+Version 2.0.0.9:
+ - Update provisioning profile
+
 Version 2.0.0.8:
  - Merge remote-tracking branch 'origin/xbmDev'
  - Update request headers urlencode
