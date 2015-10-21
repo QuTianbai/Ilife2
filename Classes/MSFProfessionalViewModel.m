@@ -373,15 +373,10 @@
 		if (forms.familyExpense.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月其它贷款应还金额"}]];
 		}
-		if (forms.unitAreaCode.length < 3) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-		}
-		if (forms.unitAreaCode.length == 3) {
-			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-			if (forms.unitAreaCode.length > 0 && ![validArea containsObject:forms.unitAreaCode]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-			}
-		} else if (forms.unitAreaCode.length > 4 || ![forms.unitAreaCode isScalar]) {
+		BOOL length  = forms.unitAreaCode.length < 3 || forms.unitAreaCode.length > 4;
+		BOOL length3 = forms.unitAreaCode.length == 3 && ![forms.unitAreaCode isShortAreaCode];
+		BOOL scalar  = ![forms.unitAreaCode isScalar];
+		if (length || length3 || scalar) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
 		}
 		if (forms.unitTelephone.length < 7 || ![forms.unitTelephone isScalar]) {

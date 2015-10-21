@@ -42,6 +42,7 @@ ABPersonViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *tempContactList;
 @property (nonatomic, assign) NSInteger statusHash;
 @property (nonatomic, strong) NSString *fullAddress;
+@property (nonatomic, assign) BOOL existAddr;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
@@ -51,17 +52,21 @@ ABPersonViewControllerDelegate>
 
 #pragma mark - MSFReactiveView
 
-- (void)bindViewModel:(id)viewModel {
-	
-	self.viewModel = viewModel;
-	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
-	_statusHash = forms.hash;
-	
+- (void)setUpFullAddress:(MSFApplicationForms *)forms {
 	MSFAddress *addrModel =
 	[MSFAddress modelWithDictionary:@{@"province" : forms.currentProvinceCode ?: @"", @"city" : forms.currentCityCode ?: @"", @"area" : forms.currentCountryCode ?: @""} error:nil];
 	MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:self.viewModel.services];
 	_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
+}
+
+- (void)bindViewModel:(id)viewModel {
 	
+	self.viewModel = viewModel;
+	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
+	self.statusHash = forms.hash;
+	[self setUpFullAddress:forms];
+	self.existAddr = NO;//forms.abodeDetail.length > 0;
+
 	_tempContactList = [NSMutableArray array];
 	NSMutableArray *tempArray = [NSMutableArray arrayWithArray:forms.contrastList];
 	for (int i = 0; i < tempArray.count; i++) {
@@ -174,11 +179,12 @@ ABPersonViewControllerDelegate>
 	if (section == _tempContactList.count) {
 		return 1;
 	} else {
+		NSInteger hasAddr = self.existAddr ? 0 : 1;
 		MSFUserContact *contact = _tempContactList[section];
 		if (contact.openDetailAddress) {
-			return 6;
+			return 6 - hasAddr;
 		} else {
-			return 5;
+			return 5 - hasAddr;
 		}
 	}
 }
@@ -297,23 +303,37 @@ ABPersonViewControllerDelegate>
 			return cell;
 		}
 		case 4: {
-			MSFRelationSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSwitchCell"];
-			@weakify(self)
-			cell.switchButton.on = !contact.openDetailAddress;
-			[[cell.switchButton.rac_newOnChannel takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *x) {
-				@strongify(self)
-				if (x.boolValue) {
-					contact.openDetailAddress = NO;
-					contact.contactAddress = self.fullAddress;
-				} else {
-					contact.openDetailAddress = YES;
-					contact.contactAddress = nil;
-				}
-				[UIView animateWithDuration:0.3 animations:^{
-					[tableView reloadData];
+			if (self.existAddr) {
+				MSFRelationSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSwitchCell"];
+				@weakify(self)
+				cell.switchButton.on = !contact.openDetailAddress;
+				[[cell.switchButton.rac_newOnChannel takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *x) {
+					@strongify(self)
+					if (x.boolValue) {
+						contact.openDetailAddress = NO;
+						contact.contactAddress = self.fullAddress;
+					} else {
+						contact.openDetailAddress = YES;
+						contact.contactAddress = nil;
+					}
+					[UIView animateWithDuration:0.3 animations:^{
+						[tableView reloadData];
+					}];
 				}];
-			}];
-			return cell;
+				return cell;
+			} else {
+				MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
+				cell.titleLabel.text = @"联系地址";
+				cell.tfInput.placeholder = contact.isFamily ? @"请填写联系地址" : @"请填写联系地址（选填）";
+				cell.tfInput.text = contact.contactAddress;
+				[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
+					if (textField.text.length > 60) {
+						textField.text = [textField.text substringToIndex:60];
+					}
+					contact.contactAddress = textField.text;
+				}];
+				return cell;
+			}
 		}
 		case 5: {
 			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];

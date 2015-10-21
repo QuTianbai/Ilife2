@@ -45,13 +45,28 @@
  */
 - (BOOL)isCaptcha;
 
+/**
+ *	中文名有效性判定
+ */
 - (BOOL)isChineseName;
 
+/**
+ *	验证码有效性判定
+ */
 - (BOOL)isFormValid;
 
+/**
+ *	数字有效性判定
+ */
 - (BOOL)isNum;
 
 - (BOOL)isValidName;
+
 - (BOOL)isValidIDCardRange:(NSRange)range;
+
+/**
+ *	判定是不是固定电话短区号
+ */
+- (BOOL)isShortAreaCode;
 
 @end

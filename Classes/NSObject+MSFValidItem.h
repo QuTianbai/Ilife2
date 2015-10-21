@@ -10,10 +10,16 @@
 
 @interface NSObject(MSFValidItem)
 
+//转换为有效字符串
 - (NSString *)validString;
+
+//转换为有效数组
 - (NSArray *)validArray;
+
+//转换为有效字典
 - (NSDictionary *)validDictionary;
 
+//转换为首尾去空格换行符的字符串
 - (NSString *)trimmedString;
 
 @end
