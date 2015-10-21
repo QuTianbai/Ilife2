@@ -41,7 +41,6 @@ ABPersonViewControllerDelegate>
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
 @property (nonatomic, assign) NSInteger statusHash;
-//@property (nonatomic, strong) NSString *provinceAddress;
 @property (nonatomic, strong) NSString *fullAddress;
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
@@ -65,11 +64,9 @@ ABPersonViewControllerDelegate>
 	
 	_tempContactList = [NSMutableArray array];
 	NSMutableArray *tempArray = [NSMutableArray arrayWithArray:forms.contrastList];
-	NSArray *relation1 = @[@"RF01", @"RF02", @"RF03", @"RF06", @"RF04", @"RF05"];
-	NSArray *relation2 = @[@"R002", @"R004", @"R003", @"R005"];
 	for (int i = 0; i < tempArray.count; i++) {
 		MSFUserContact *contract = tempArray[i];
-		if ([relation1 containsObject:contract.contactRelation]) {
+		if (contract.isFamily) {
 			[_tempContactList addObject:contract];
 			[tempArray removeObjectAtIndex:i];
 			break;
@@ -80,14 +77,14 @@ ABPersonViewControllerDelegate>
 	}
 	for (int i = 0; i < tempArray.count; i++) {
 		MSFUserContact *contract = tempArray[i];
-		if ([relation2 containsObject:contract.contactRelation]) {
+		if (!contract.isFamily) {
 			[_tempContactList addObject:contract];
 			[tempArray removeObjectAtIndex:i];
 			break;
 		}
 	}
 	[_tempContactList addObjectsFromArray:tempArray];
-
+	
 	for (MSFUserContact *contact in _tempContactList) {
 		if (contact.contactAddress.length > 0) {
 			if ([contact.contactAddress isEqualToString:_fullAddress]) {
@@ -96,10 +93,10 @@ ABPersonViewControllerDelegate>
 				contact.openDetailAddress = YES;
 			}
 		} else {
-			if ([relation1 containsObject:contact.contactRelation]) {
+			if (contact.isFamily) {
 				contact.openDetailAddress = NO;
 				contact.contactAddress = _fullAddress;
-			} else if ([relation2 containsObject:contact.contactRelation]) {
+			} else {
 				contact.openDetailAddress = YES;
 				contact.contactAddress = nil;
 			}
@@ -122,7 +119,7 @@ ABPersonViewControllerDelegate>
 	
 	self.navigationItem.title = @"联系人信息";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-
+	
 	[self.nextPageBT setBackgroundColor:[MSFCommandView getColorWithString:POINTCOLOR]];
 	[self.nextPageBT setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	
@@ -144,7 +141,6 @@ ABPersonViewControllerDelegate>
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
 }
 
 #pragma mark - Private Method
@@ -255,12 +251,12 @@ ABPersonViewControllerDelegate>
 				[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 					cell.tfInput.text = x.text;
 					contact.contactRelation = x.code;
-					if ([@[@"R002", @"R004", @"R003", @"R005"] containsObject:x.code]) {
-						contact.openDetailAddress = YES;
-						contact.contactAddress = nil;
-					} else {
+					if (contact.isFamily) {
 						contact.openDetailAddress = NO;
 						contact.contactAddress = _fullAddress;
+					} else {
+						contact.openDetailAddress = YES;
+						contact.contactAddress = nil;
 					}
 					[tableView reloadData];
 					[self.viewModel.services popViewModel];
@@ -313,7 +309,7 @@ ABPersonViewControllerDelegate>
 					contact.openDetailAddress = YES;
 					contact.contactAddress = nil;
 				}
-				[UIView animateWithDuration:.3 animations:^{
+				[UIView animateWithDuration:0.3 animations:^{
 					[tableView reloadData];
 				}];
 			}];
@@ -322,7 +318,7 @@ ABPersonViewControllerDelegate>
 		case 5: {
 			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
 			cell.titleLabel.text = @"联系地址";
-			cell.tfInput.placeholder = [@[@"R002", @"R004", @"R003", @"R005"] containsObject:contact.contactRelation] ? @"请填写联系地址（选填）" : @"请填写联系地址";
+			cell.tfInput.placeholder = contact.isFamily ? @"请填写联系地址" : @"请填写联系地址（选填）";
 			cell.tfInput.text = contact.contactAddress;
 			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
 				if (textField.text.length > 60) {
@@ -382,7 +378,7 @@ ABPersonViewControllerDelegate>
 	
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
 	NSLog(@"%@", fullName);
-
+	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
 	contact.contactName = fullName;
