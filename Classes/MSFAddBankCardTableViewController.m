@@ -9,9 +9,10 @@
 #import "MSFAddBankCardTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFBankInfoModel.h"
-#import <REFormattedNumberField/REFormattedNumberField.h>
+//#import <REFormattedNumberField/REFormattedNumberField.h>
 #import "MSFEdgeButton.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <SHSPhoneComponent/SHSPhoneTextField.h>
 
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFGetBankIcon.h"
@@ -26,7 +27,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 @interface MSFAddBankCardTableViewController ()<MSFInputTradePasswordDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *bankAddressTF;
-@property (weak, nonatomic) IBOutlet UITextField *bankNOTF;
+@property (weak, nonatomic) IBOutlet SHSPhoneTextField *bankNOTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
@@ -157,8 +158,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 //		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 //	}];
 	
-	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
-	
+	[self.bankNOTF.formatter setDefaultOutputPattern:@"#### #### #### #### ###"];
 }
 
 - (void)didReceiveMemoryWarning {
