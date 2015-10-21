@@ -1,3 +1,38 @@
+Version 2.0.0.8:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Update request headers urlencode
+ - 【APP-IOS-2.0.0.6】尝试首张银行卡绑定贷记卡，页面显示一直处理中，点击返回按钮无响应
+ - 【APP-IOS-2.0.0.6】尝试首张银行卡绑定贷记卡，页面显示一直处理中，点击返回按钮无响应
+ - 【APP-IOS-2.0.0.6】尝试首张银行卡绑定贷记卡，页面显示一直处理中，点击返回按钮无响应
+ - 解除注释
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Add name for inventory's attachments
+ - Update client request headers
+ - Update server api
+ -  【APP-IOS-2.0.0.6】个人中心->设置->忘记交易密码，交易密码与重复交易密码不一致，返回修改成功
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 优化
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 确认合同
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - 环境
+ - 确认合同
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Merge branch 'issue/crash'
+ - Fix crash ios7
+ - Merge branch 'issue/ios7'
+ - Fix ios7 not display signIn/signUp buttons
+ - Update Podfile
+ - Update dev provisioning profile
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 更改寿险计划传值
+ - 去除提交参数首尾空格换行
+ - add NSObject+MSFValidItem
+
 Version 2.0.0.7:
  - Update provisioning profile
  - Update 401 notification object
