@@ -524,6 +524,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
 																																								NSLocalizedFailureReasonErrorKey: str,
 																																								}];
+		if ([self.TradePassword isSimplePWD]) {
+			NSString *str = @"交易密码设置太简单，请重新输入";
+			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+										NSLocalizedFailureReasonErrorKey: str,
+							}];
+		}
+		
 		return [RACSignal error:error];
 	}
 
@@ -561,6 +568,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
 																																								NSLocalizedFailureReasonErrorKey: str,
 																																								}];
+		if ([self.TradePassword isSimplePWD]) {
+			NSString *str = @"交易密码设置太简单，请重新输入";
+			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																									NSLocalizedFailureReasonErrorKey: str,
+																																									}];
+		}
+
 		return [RACSignal error:error];
 	}
 	

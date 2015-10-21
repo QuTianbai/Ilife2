@@ -169,4 +169,25 @@
 	return self.length == 4;
 }
 
+- (BOOL)isSimplePWD {
+	NSMutableArray *array = [[NSMutableArray alloc] init];
+	for (int i = 0; i<10; i++) {
+		NSString *str = @"";
+		for (int j = 0; j<6; j++) {
+			[str stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", i]];
+		}
+		[array addObject:str];
+	}
+	
+	for (NSString *str in array) {
+		if ([str isEqualToString:self]) {
+			return YES;
+			break;
+		}
+	}
+	
+	return NO;
+	
+}
+
 @end

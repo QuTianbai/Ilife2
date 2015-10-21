@@ -54,4 +54,8 @@
 - (BOOL)isValidName;
 - (BOOL)isValidIDCardRange:(NSRange)range;
 
+/**
+ * 交易密码是否相各位相同
+ */
+- (BOOL)isSimplePWD;
 @end
