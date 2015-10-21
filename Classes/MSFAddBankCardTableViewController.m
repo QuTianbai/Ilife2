@@ -63,8 +63,10 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 	
 	RAC(self.bankNameTF, text) = RACObserve(self.viewModel, bankName);
+	@weakify(self)
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
 		//if (bankName != nil && ![bankName isEqualToString:@""]) {
+		@strongify(self)
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
 			self.bankNameTF.alpha = 1.0;
@@ -78,6 +80,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self.viewModel, bankNO) = self.bankNOTF.rac_textSignal;//银行卡号
 	
 	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
+		@strongify(self)
 		CGFloat alpha = 0;
 		switch (support.intValue) {
 			case 1:
@@ -113,6 +116,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		return value;
 	}];
 	[[RACObserve(self.viewModel, bankType) ignore:nil] subscribeNext:^(NSString *type) {
+		@strongify(self)
 		if (type != nil && ![type isEqualToString:@""] ) {
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
@@ -126,6 +130,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
+		@strongify(self)
 		MSFUser *user = [self.viewModel.services httpClient].user;
 		if (!user.hasTransactionalCode) {
 			MSFInputTradePasswordViewController *inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
@@ -151,7 +156,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 //		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 //	}];
 	
-	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
+	//[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
 	
 }
 

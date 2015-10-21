@@ -55,6 +55,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	}];
 	
 	RAC(self, bankAddress) = [[RACObserve(self.addressViewModel, address) ignore:nil] map:^id(id value) {
+		@strongify(self)
 		if (self.addressViewModel.provinceName == nil || self.addressViewModel.cityName == nil) {
 			return @"";
 		}
@@ -64,6 +65,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	RAC(self, bankBranchProvinceCode) = [RACObserve(self.addressViewModel, provinceCode) ignore:nil];
 	
 	RAC(self, bankInfo) = [RACObserve(self, bankNO) map:^id(NSString *bankNO) {
+		@strongify(self)
 		if (bankNO.length >= 3) {
 			return [self selectBankInfo];
 		}
@@ -95,6 +97,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	}];
 	
 	_executeReSetTradePwd = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return [self executeResetTrade];
 	}];
 
@@ -143,8 +146,9 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 }
 
 - (RACSignal *)submitValidSignal {
-	
+	@weakify(self)
 	return [RACObserve(self, bankInfo.support) map:^id(NSString *support) {
+		@strongify(self)
 		int re = 0;
 		switch (support.intValue) {
 			case 0:
@@ -188,6 +192,56 @@ NSLocalizedFailureReasonErrorKey: str,
 }
 
 - (RACSignal *)executeResetTrade {
+	
+	NSError *error;
+	
+	if (self.addressViewModel.provinceCode.length == 0) {
+		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+																																													NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
+																																													}];
+		return [RACSignal error:error];
+	}
+	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
+		NSString *str = @"请填写正确的银行卡号";
+		if (self.bankNO.length == self.maxSize.integerValue) {
+			str = @"你的银行卡号长度有误，请修改后再试";
+		}
+		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+																																													NSLocalizedFailureReasonErrorKey: str,
+																																													}];
+		return [RACSignal error:error];
+	}
+
+	
+	if (self.TradePassword.length == 0) {
+		NSString *str = @"请填写交易密码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	if (self.smsCode.length == 0) {
+		NSString *str = @"请填写验证码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	
+	if (self.againTradePWD.length == 0) {
+		NSString *str = @"请填写确认交易密码";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
+	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
+		NSString *str = @"交易密码和确认交易密码不一致";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
 	return [self.services.httpClient resetTradepwdWithBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword.sha256];
 }
 
