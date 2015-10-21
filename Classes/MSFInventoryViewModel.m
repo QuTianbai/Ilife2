@@ -123,7 +123,8 @@
 		[objects enumerateObjectsUsingBlock:^(MSFAttachment *obj, NSUInteger idx, BOOL *_Nonnull stop) {
 			[attachments addObject:@{
 				@"accessoryType": obj.type,
-				@"fileId": obj.fileID
+				@"fileId": obj.fileID,
+				@"name": obj.name?:@"",
 			}];
 		}];
 		return [RACSignal return:attachments];
