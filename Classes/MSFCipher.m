@@ -13,8 +13,8 @@
 #import "NSURL+QueryDictionary.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 
-NSString *const MSFCipherAppKey = @"123456";
-NSString *const MSFCipherAppSecret = @"e10adc3949ba59abbe56e057f20f883e";
+NSString *const MSFCipherAppKey = @"MS_IOS";
+NSString *const MSFCipherAppSecret = @"b3faf6e8ba2f7ed7d326b69d92a1f4fae6d8274e146a7413";
 
 static NSString *const kTimestamp = @"timestamp";
 static NSString *const kSign = @"sign";
