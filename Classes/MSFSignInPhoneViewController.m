@@ -43,11 +43,21 @@
 	RAC(self, citizenID.text) = RACObserve(self, viewModel.card);
 	RAC(self, name.text) = RACObserve(self, viewModel.name);
 	
-	[self.name.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x length] > MSFAuthorizeNameMaxLength) self.name.text = [x substringToIndex:MSFAuthorizeNameMaxLength];
-		self.viewModel.name = self.name.text;
-	}];
+	RAC(self.name, text) = [[[self.name.rac_textSignal
+		map:^id(NSString *value) {
+			return [value stringByTrimmingCharactersInSet:[[NSCharacterSet chineseCharacterSet] invertedSet]];
+		}]
+		map:^id(NSString *value) {
+			if (value.length > MSFAuthorizeNameMaxLength) {
+				return [value substringToIndex:MSFAuthorizeNameMaxLength];
+			} else {
+				return value;
+			}
+		}]
+		doNext:^(id x) {
+			@strongify(self)
+			self.viewModel.name = x;
+		}];
 	
 	[self.citizenID.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
