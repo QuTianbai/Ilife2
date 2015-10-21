@@ -34,6 +34,8 @@
 
 @property (nonatomic, copy) NSString *contractNo;
 
+@property (nonatomic, copy) NSString *contractStatus;
+
 @property (nonatomic, assign) id<MSFViewModelServices>services;
 
 @property (nonatomic, strong) RACCommand *executeCirculateCommand;

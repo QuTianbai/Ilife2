@@ -322,7 +322,7 @@ ABPersonViewControllerDelegate>
 		case 5: {
 			MSFRelationTFCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationTFCell"];
 			cell.titleLabel.text = @"联系地址";
-			cell.tfInput.placeholder = @"请填写联系地址";
+			cell.tfInput.placeholder = [@[@"R002", @"R004", @"R003", @"R005"] containsObject:contact.contactRelation] ? @"请填写联系地址（选填）" : @"请填写联系地址";
 			cell.tfInput.text = contact.contactAddress;
 			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
 				if (textField.text.length > 60) {

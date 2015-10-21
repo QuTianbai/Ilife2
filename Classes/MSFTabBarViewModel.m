@@ -58,20 +58,20 @@
 	}];
 	[self.authorizeViewModel.executeSignOut.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		[signal subscribeCompleted:^{
+		[signal subscribeNext:^(id x) {
 			self.formsViewModel.active = NO;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:self.services.httpClient];
 		}];
 	}];
 	[self.authorizeViewModel.executeUpdateSignInPassword.executionSignals subscribeNext:^(RACSignal *signal){
 		@strongify(self)
-		[signal subscribeCompleted:^{
+		[signal subscribeNext:^(id x) {
 			[self.authorizeViewModel.executeSignOut execute:nil];
 		}];
 	}];
 	[self.authorizeViewModel.executeAlterMobile.executionSignals subscribeNext:^(RACSignal *signal){
 		@strongify(self)
-		[signal subscribeCompleted:^{
+		[signal subscribeNext:^(id x) {
 			[self.authorizeViewModel.executeSignOut execute:nil];
 		}];
 	}];

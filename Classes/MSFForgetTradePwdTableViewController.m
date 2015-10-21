@@ -12,7 +12,7 @@
 #import "MSFAddBankCardVIewModel.h"
 #import "MSFBankInfoModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
-#import <REFormattedNumberField/REFormattedNumberField.h>
+#import <SHSPhoneComponent/SHSPhoneTextField.h>
 #import "MSFAuthorizeViewModel.h"
 #import "AppDelegate.h"
 #import "MSFGetBankIcon.h"
@@ -220,7 +220,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
+	[[(SHSPhoneTextField *)self.bankNOTF formatter] setDefaultOutputPattern:@"#### #### #### #### ###"];
+	((SHSPhoneTextField *)self.bankNOTF).textDidChangeBlock = ^(UITextField *textField){
+		@strongify(self)
+		self.viewModel.bankNO = textField.text;
+	};
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {

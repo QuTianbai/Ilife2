@@ -37,6 +37,7 @@ const NSInteger MSFClientErrorUnsupportedMediaType = 415;
 const NSInteger MSFClientErrorUnprocessableEntry = 422;
 const NSInteger MSFClientErrorTooManyRequests = 429;
 const NSInteger MSFClientErrorBadRequest = 400;
+const NSInteger MSFClientResponseWithoutContent = 204;
 
 NSString *const MSFClientErrorFieldKey = @"fields";
 NSString *const MSFClientErrorMessageCodeKey = @"code";
