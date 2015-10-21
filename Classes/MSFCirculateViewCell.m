@@ -30,9 +30,9 @@
 
 - (void)awakeFromNib {
 	_separatorLoc = ([UIScreen mainScreen].bounds.size.width - 80) * 2 / 3 + 50;
-	_unitWidth		= 60.f;
-	_textFont			= [UIFont systemFontOfSize:17];
-	_textMargin		= (_unitWidth - _textFont.lineHeight * 2) / 3;
+	_unitWidth = 60.f;
+	_textFont = [UIFont systemFontOfSize:17];
+	_textMargin = (_unitWidth - _textFont.lineHeight * 2) / 3;
 }
 
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
@@ -68,7 +68,8 @@
 												  NSFontAttributeName : _textFont,
 												  NSParagraphStyleAttributeName : paragraph};
 	if (self.viewModel.overdueMoney.length > 0) {
-		[@"已逾期" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
+		NSString *drawText = [self.viewModel.contractStatus isEqualToString:@"J"] ? @"已到期" : @"已逾期";
+		[drawText drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 		[_overDue drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	} else {
 		[@"下期还款" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];

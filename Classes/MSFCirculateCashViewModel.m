@@ -30,6 +30,7 @@
 	_latestDueDate = @"";
 	_totalOverdueMoney = @"";
 	_contractNo = @"";
+	_contractStatus = @"";
 	
 	_infoModel = [[MSFCirculateCashModel alloc] init];
 	
@@ -69,21 +70,13 @@
 	RAC(self, totalOverdueMoney) = RACObserve(self, infoModel.totalOverdueMoney);
 	RAC(self, contractNo) = RACObserve(self, infoModel.contractNo);
 	RAC(self, overdueMoney) = RACObserve(self, infoModel.overdueMoney);
+	RAC(self, contractStatus) = RACObserve(self, infoModel.contractStatus);
 
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
 			self.infoModel = model;
-			
-//			if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"A"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"A"])) {
-//				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-//			} 
-			
-//			if ([model.contractStatus isEqualToString:@"A"]) {
-//				self.model = model;
-//				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-			
 		} error:^(NSError *error) {
 			NSLog(@"%@", error.localizedDescription);
 		}];

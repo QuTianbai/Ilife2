@@ -57,9 +57,9 @@
 	NSArray *empTelComponents  = [self convertPhoneNumber:
 																[occupation[@"empPhone"] validString]];
 	NSString *homeTelCode = @"";
-	NSString *homeTel			= @"";
-	NSString *empTelCode  = @"";
-	NSString *empTel			= @"";
+	NSString *homeTel = @"";
+	NSString *empTelCode = @"";
+	NSString *empTel = @"";
 	if (homeTelComponents.count == 2) {
 		homeTelCode = homeTelComponents[0];
 		homeTel		  = homeTelComponents[1];
