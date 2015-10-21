@@ -84,11 +84,21 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.viewModel.name = self.name.text;
 	}];
 	
-	[self.card.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x length] > MSFAuthorizeIdentifierMaxLength) self.card.text = [x substringToIndex:MSFAuthorizeIdentifierMaxLength];
-		self.viewModel.card = self.card.text;
-	}];
+	RAC(self.card, text) = [[[self.card.rac_textSignal
+		map:^id(NSString *value) {
+			return [value stringByTrimmingCharactersInSet:[[NSCharacterSet identifyCardCharacterSet] invertedSet]];
+		}]
+		map:^id(NSString *value) {
+			if (value.length > MSFAuthorizeIdentifierMaxLength) {
+				return [value substringToIndex:MSFAuthorizeIdentifierMaxLength];
+			} else {
+				return value;
+			}
+		}]
+		doNext:^(id x) {
+			@strongify(self)
+			self.viewModel.card = x;
+		}];
 	
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
