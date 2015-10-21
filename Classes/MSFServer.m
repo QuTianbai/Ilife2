@@ -8,11 +8,8 @@
 #import "MSFServer+Private.h"
 
 #if DEBUG
-//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.123:8080";
-//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.123:8080";
-//api2.msxf.lotest
-//10.16.18.14:8080
 
+<<<<<<< HEAD
 //NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.7:8080";
 //NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.7:8080";
 
@@ -22,15 +19,15 @@ NSString *const MSFServerDotComBaseWebURL = @"http://api2.msxf.lotest";
 
 //NSString *const MSFServerDotComAPIEndpoint = @"http://api3.msxf.test";
 //NSString *const MSFServerDotComBaseWebURL = @"http://api3.msxf.test";
+=======
+NSString *const MSFServerDotComAPIEndpoint = @"http://api3.msxf.test";
+NSString *const MSFServerDotComBaseWebURL = @"http://api3.msxf.test";
+>>>>>>> 4189b171f88c9ffc70f2f305b740d3e578c24b16
 
 #elif UAT
-// https://api2.mshttps://api2.mshttps://api2.msxf.louat
 
-NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.louat";
+NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.uat";
 NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
-
-//NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.uat";
-//NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #elif TEST
 

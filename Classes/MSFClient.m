@@ -23,6 +23,7 @@
 #import "RCLocationManager.h"
 #import <Crashlytics/Crashlytics.h>
 #import "MSFDeviceGet.h"
+#import "UIDevice-Hardware.h"
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
@@ -520,7 +521,7 @@ static NSDictionary *messages;
 	[devices addObject:[info[@"CFBundleVersion"] stringByReplacingOccurrencesOfString:@"." withString:@""]];
 	[devices addObject:@"Apple"];
 	[devices addObject:@"iPhone"];
-	[devices addObject:[UIDevice currentDevice].name];
+	[devices addObject:[UIDevice currentDevice].modelIdentifier];
 	[devices addObject:info[@"CFBundleVersion"]];
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
