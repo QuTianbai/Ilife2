@@ -40,20 +40,26 @@
 	
 	@weakify(self)
 	RAC(self, counterLabel.text) = RACObserve(self, viewModel.counter);
-	RAC(self, citizenID.text) = RACObserve(self, viewModel.card);
-	RAC(self, name.text) = RACObserve(self, viewModel.name);
-	
 	[self.name.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x length] > MSFAuthorizeNameMaxLength) self.name.text = [x substringToIndex:MSFAuthorizeNameMaxLength];
 		self.viewModel.name = self.name.text;
 	}];
-	
-	[self.citizenID.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x length] > MSFAuthorizeIdentifierMaxLength) self.citizenID.text = [x substringToIndex:MSFAuthorizeIdentifierMaxLength];
-		self.viewModel.card = self.citizenID.text;
-	}];
+	RAC(self.citizenID, text) = [[[self.citizenID.rac_textSignal
+		map:^id(NSString *value) {
+			return [value stringByTrimmingCharactersInSet:[[NSCharacterSet identifyCardCharacterSet] invertedSet]];
+		}]
+		map:^id(NSString *value) {
+			if (value.length > MSFAuthorizeIdentifierMaxLength) {
+				return [value substringToIndex:MSFAuthorizeIdentifierMaxLength];
+			} else {
+				return value;
+			}
+		}]
+		doNext:^(id x) {
+			@strongify(self)
+			self.viewModel.card = x;
+		}];
 	
 	[self.captcha.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)

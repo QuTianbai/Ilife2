@@ -32,6 +32,7 @@ pod 'ZSWTappableLabel', '1.1'
 pod 'ZSWTaggedString', '1.1'
 pod 'MWPhotoBrowser', '2.1.1'
 pod 'BugshotKit', :head
+pod 'SHSPhoneComponent', '2.15'
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', '2.0.1'

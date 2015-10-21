@@ -58,6 +58,8 @@ extern const NSInteger MSFClientErrorBadRequest;
 // 由于速度限制请求被拒绝
 extern const NSInteger MSFClientErrorTooManyRequests;
 
+extern const NSInteger MSFClientResponseWithoutContent;
+
 @interface MSFClient : AFHTTPRequestOperationManager
 
 // 添加request到请求队列
