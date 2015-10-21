@@ -373,20 +373,21 @@
 		if (forms.familyExpense.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月其它贷款应还金额"}]];
 		}
-		if (forms.unitAreaCode.length < 3) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-		}
-		if (forms.unitAreaCode.length == 3) {
-			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-			if (![validArea containsObject:forms.unitAreaCode]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-			}
-		} else if (forms.unitAreaCode.length > 4 || ![forms.unitAreaCode isScalar]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-		}
-		if (forms.unitTelephone.length < 7 || ![forms.unitTelephone isScalar]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机号"}]];
-		}
+		// 单位座机是选填，但是不填的话过不了
+//		if (forms.unitAreaCode.length < 3) {
+//			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
+//		}
+//		if (forms.unitAreaCode.length == 3) {
+//			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+//			if (![validArea containsObject:forms.unitAreaCode]) {
+//			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
+//			}
+//		} else if (forms.unitAreaCode.length > 4 || ![forms.unitAreaCode isScalar]) {
+//			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
+//		}
+//		if (forms.unitTelephone.length < 7 || ![forms.unitTelephone isScalar]) {
+//			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机号"}]];
+//		}
 		if (forms.unitExtensionTelephone.length > 0 && (forms.unitExtensionTelephone.length > 5 || ![forms.unitExtensionTelephone isScalar])) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位电话分机号"}]];
 		}
