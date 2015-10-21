@@ -15,6 +15,7 @@
 #import "MSFClient.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFClient+Users.h"
+#import "NSString+Matches.h"
 
 static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardViewModelErrorDomain";
 
@@ -232,6 +233,14 @@ NSLocalizedFailureReasonErrorKey: str,
 		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
 																																													NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
 																																													}];
+		return [RACSignal error:error];
+	}
+	
+	if ([self.transPassword isSimplePWD]) {
+		NSString *str = @"交易密码设置太简单，请重新输入";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
 		return [RACSignal error:error];
 	}
 

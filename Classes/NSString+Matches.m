@@ -174,7 +174,7 @@
 	for (int i = 0; i<10; i++) {
 		NSString *str = @"";
 		for (int j = 0; j<6; j++) {
-			[str stringByAppendingPathComponent:[NSString stringWithFormat:@"%d", i]];
+			str = [str stringByAppendingString:[NSString stringWithFormat:@"%d", i]];
 		}
 		[array addObject:str];
 	}
