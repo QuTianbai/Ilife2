@@ -20,7 +20,8 @@
 
 
 static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
-static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
+//static NSString *bankCardShowStrB = @"主卡不能为贷记卡。";
+static NSString *bankCardShowStrB = @"提示：主卡不能为贷记卡。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
 @interface MSFAddBankCardTableViewController ()<MSFInputTradePasswordDelegate>
@@ -63,8 +64,10 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 	
 	RAC(self.bankNameTF, text) = RACObserve(self.viewModel, bankName);
+	@weakify(self)
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
 		//if (bankName != nil && ![bankName isEqualToString:@""]) {
+		@strongify(self)
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
 			self.bankNameTF.alpha = 1.0;
@@ -78,6 +81,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self.viewModel, bankNO) = self.bankNOTF.rac_textSignal;//银行卡号
 	
 	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
+		@strongify(self)
 		CGFloat alpha = 0;
 		switch (support.intValue) {
 			case 1:
@@ -113,6 +117,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		return value;
 	}];
 	[[RACObserve(self.viewModel, bankType) ignore:nil] subscribeNext:^(NSString *type) {
+		@strongify(self)
 		if (type != nil && ![type isEqualToString:@""] ) {
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
@@ -126,6 +131,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
+		@strongify(self)
 		MSFUser *user = [self.viewModel.services httpClient].user;
 		if (!user.hasTransactionalCode) {
 			MSFInputTradePasswordViewController *inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
