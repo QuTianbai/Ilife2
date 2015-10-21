@@ -165,7 +165,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 			default:
 				break;
 		}
-		return [NSNumber numberWithInt:re];
+		return [NSNumber numberWithInt:1];
 		//		return @( support == nil || support.intValue == 0 || support.intValue != 1 || support.intValue != 2 || support.intValue ==3);
 	}];
 }
