@@ -156,9 +156,10 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 				re = 1;
 				break;
 			case 2:
-				if (!self.isFirstBankCard) {
-					re = 1;
-				}
+				re = 1;
+//				if (!self.isFirstBankCard) {
+//					re = 1;
+//				}
 				break;
 				
 			default:
@@ -188,6 +189,14 @@ NSLocalizedFailureReasonErrorKey: str,
 																																										}];
 		return [RACSignal error:error];
 	}
+	
+	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
+		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+																																													NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
+																																													}];
+		return [RACSignal error:error];
+	}
+	
 	return [self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode];
 }
 
@@ -242,6 +251,15 @@ NSLocalizedFailureReasonErrorKey: str,
 																																								}];
 		return [RACSignal error:error];
 	}
+	
+	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
+		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+																																													NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
+																																													}];
+		return [RACSignal error:error];
+	}
+
+	
 	return [self.services.httpClient resetTradepwdWithBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword.sha256];
 }
 
