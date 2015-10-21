@@ -31,6 +31,8 @@
 
 @property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
 
+@property (nonatomic, assign) NSInteger statusHash;
+
 @end
 
 @implementation MSFSetTradePasswordTableViewController
@@ -47,12 +49,17 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	self.title = @"设置交易密码";
+	
+	//self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_viewModel = appdelegate.authorizeVewModel;
+	_statusHash = 0;
 	[[self.tradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	subscribeNext:^(UITextField *textField) {
+		_statusHash = 1;
 		if (textField.text.length > 6) {
 			textField.text = [textField.text substringToIndex:6];
 		}
@@ -60,6 +67,7 @@
 	RAC(self, viewModel.TradePassword) = self.tradePasswordTF.rac_textSignal;
 	[[self.checkCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	subscribeNext:^(UITextField *textField) {
+		_statusHash = 1;
 		if (textField.text.length > 4) {
 			textField.text = [textField.text substringToIndex:4];
 		}
@@ -67,6 +75,7 @@
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
 	[[self.sureTradePasswordTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	subscribeNext:^(UITextField *textField) {
+		_statusHash = 1;
 		if (textField.text.length > 6) {
 			textField.text = [textField.text substringToIndex:6];
 		}
@@ -136,6 +145,22 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+	
+}
+
+- (void)back {
+	if (_statusHash == 0) {
+		[self.navigationController popViewControllerAnimated:YES];
+		return;
+	}
+	
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"确认放弃设置交易密码？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+	[alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
+		if ([x integerValue] == 1) {
+			[self.navigationController popViewControllerAnimated:YES];
+		}
+	}];
+	[alertView show];
 	
 }
 
