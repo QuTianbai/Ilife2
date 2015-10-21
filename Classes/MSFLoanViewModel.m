@@ -42,12 +42,13 @@
 																	 @"B" : @"审核中",
 																	 @"C" : @"确认合同",
 																	 @"D" : @"审核未通过",
-																	 @"E" : @"待放款",
+																	 @"E" : @"合同已签署",
 																	 @"F" : @"还款中",
 																	 @"G" : @"已取消",
 																	 @"H" : @"已还款",
 																	 @"I" : @"已逾期",
-																	 @"J" : @"已到期"};
+																	 @"J" : @"已到期",
+																	 @"K" : @"处理中"};
 		return statusValues[status];
 	}];
 	RAC(self, contractStatus) = [RACObserve(model, contractStatus) map:^id(NSString *contractStatus) {
@@ -55,12 +56,13 @@
 																	 @"B" : @"审核中",
 																	 @"C" : @"确认合同",
 																	 @"D" : @"审核未通过",
-																	 @"E" : @"待放款",
+																	 @"E" : @"合同已签署",
 																	 @"F" : @"还款中",
 																	 @"G" : @"已取消",
 																	 @"H" : @"已还款",
 																	 @"I" : @"已逾期",
-																	 @"J" : @"已到期"};
+																	 @"J" : @"已到期",
+																	 @"K" : @"处理中"};
 		return statusValues[contractStatus];
 	}];
 	RAC(self, money) = RACObserve(model, money);

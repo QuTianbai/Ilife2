@@ -18,7 +18,7 @@
 @property (nonatomic, assign) CGFloat separatorLoc;
 @property (nonatomic, assign) CGFloat unitWidth;
 @property (nonatomic, assign) CGFloat textMargin;
-@property (nonatomic, strong) UIFont *textFont;
+@property (nonatomic, strong) UIFont  *textFont;
 
 @property (nonatomic, strong) MSFCirculateCashViewModel *viewModel;
 @property (nonatomic, strong) NSString *repayment;
@@ -30,16 +30,17 @@
 
 - (void)awakeFromNib {
 	_separatorLoc = ([UIScreen mainScreen].bounds.size.width - 80) * 2 / 3 + 50;
-	_unitWidth = 60.f;
-	_textFont = [UIFont systemFontOfSize:17];
-	_textMargin = (_unitWidth - _textFont.lineHeight * 2) / 3;
+	_unitWidth		= 60.f;
+	_textFont			= [UIFont systemFontOfSize:17];
+	_textMargin		= (_unitWidth - _textFont.lineHeight * 2) / 3;
 }
 
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
 	_viewModel = viewModel;
 	_repayment = [NSString stringWithFormat:@"￥%@", viewModel.latestDueMoney.length > 0 ? viewModel.latestDueMoney : @"0"];
-	_overDue = [NSString stringWithFormat:@"￥%@", viewModel.overdueMoney.length > 0 ? viewModel.overdueMoney : @"0"];
-	[_loanLimitView setAvailableCredit:viewModel.usableLimit usedCredit:viewModel.usedLimit];
+	_overDue   = [NSString stringWithFormat:@"￥%@", viewModel.overdueMoney.length > 0 ? viewModel.overdueMoney : @"0"];
+	[_loanLimitView setAvailableCredit:viewModel.usableLimit
+													usedCredit:viewModel.usedLimit];
 	[self setNeedsDisplay];
 }
 
