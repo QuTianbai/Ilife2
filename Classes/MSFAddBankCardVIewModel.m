@@ -49,10 +49,11 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:services];
 	_executeSelected = self.addressViewModel.selectCommand;
 	@weakify(self)
-	_executeAddBankCard = [[RACCommand alloc] initWithEnabled:[self submitValidSignal] signalBlock:^RACSignal *(id input) {
+	_executeAddBankCard = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executeAuthSignal];
 	}];
+
 	
 	RAC(self, bankAddress) = [[RACObserve(self.addressViewModel, address) ignore:nil] map:^id(id value) {
 		@strongify(self)
@@ -143,31 +144,6 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	}
 	[self.fmdb close];
 	return bankInfo;
-}
-
-- (RACSignal *)submitValidSignal {
-	@weakify(self)
-	return [RACObserve(self, bankInfo.support) map:^id(NSString *support) {
-		@strongify(self)
-		int re = 0;
-		switch (support.intValue) {
-			case 0:
-			case 3:
-				re = 1;
-				break;
-			case 2:
-				re = 1;
-//				if (!self.isFirstBankCard) {
-//					re = 1;
-//				}
-				break;
-				
-			default:
-				break;
-		}
-		return [NSNumber numberWithInt:1];
-		//		return @( support == nil || support.intValue == 0 || support.intValue != 1 || support.intValue != 2 || support.intValue ==3);
-	}];
 }
 
 - (RACSignal *)executeAuthSignal {
