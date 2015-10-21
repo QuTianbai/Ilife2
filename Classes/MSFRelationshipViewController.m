@@ -53,10 +53,15 @@ ABPersonViewControllerDelegate>
 #pragma mark - MSFReactiveView
 
 - (void)setUpFullAddress:(MSFApplicationForms *)forms {
-	MSFAddress *addrModel =
-	[MSFAddress modelWithDictionary:@{@"province" : forms.currentProvinceCode ?: @"", @"city" : forms.currentCityCode ?: @"", @"area" : forms.currentCountryCode ?: @""} error:nil];
-	MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:self.viewModel.services];
-	_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
+	self.existAddr = forms.abodeDetail.length > 0;
+	if (self.existAddr) {
+		MSFAddress *addrModel =
+		[MSFAddress modelWithDictionary:@{@"province" : forms.currentProvinceCode ?: @"", @"city" : forms.currentCityCode ?: @"", @"area" : forms.currentCountryCode ?: @""} error:nil];
+		MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:self.viewModel.services];
+		_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
+	} else {
+		_fullAddress = nil;
+	}
 }
 
 - (void)bindViewModel:(id)viewModel {
@@ -65,7 +70,6 @@ ABPersonViewControllerDelegate>
 	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
 	self.statusHash = forms.hash;
 	[self setUpFullAddress:forms];
-	self.existAddr = NO;//forms.abodeDetail.length > 0;
 
 	_tempContactList = [NSMutableArray array];
 	NSMutableArray *tempArray = [NSMutableArray arrayWithArray:forms.contrastList];
