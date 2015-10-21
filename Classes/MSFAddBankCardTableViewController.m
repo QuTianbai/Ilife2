@@ -156,7 +156,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 //		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 //	}];
 	
-	[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
+	//[(REFormattedNumberField *)self.bankNOTF setFormat:@"XXXX XXXX XXXX XXXX XXX"];
 	
 }
 
