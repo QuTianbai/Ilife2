@@ -8,7 +8,6 @@
 
 #import "NSObject+MSFValidItem.h"
 
-
 @implementation NSObject(MSFValidItem)
 
 - (NSString *)validString {

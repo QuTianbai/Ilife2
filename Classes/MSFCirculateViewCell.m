@@ -31,8 +31,8 @@
 - (void)awakeFromNib {
 	_separatorLoc = ([UIScreen mainScreen].bounds.size.width - 80) * 2 / 3 + 50;
 	_unitWidth = 60.f;
-	_textFont	= [UIFont systemFontOfSize:17];
-	_textMargin	= (_unitWidth - _textFont.lineHeight * 2) / 3;
+	_textFont = [UIFont systemFontOfSize:17];
+	_textMargin = (_unitWidth - _textFont.lineHeight * 2) / 3;
 }
 
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
