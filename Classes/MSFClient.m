@@ -528,7 +528,7 @@ static NSDictionary *messages;
 	[devices addObject:status];
 	[devices addObject:@""];
 	
-	return [devices componentsJoinedByString:@"; "];
+	return [[devices componentsJoinedByString:@"; "] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 + (NSError *)userRequiredError {
