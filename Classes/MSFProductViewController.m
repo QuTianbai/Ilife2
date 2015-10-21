@@ -180,6 +180,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   }];
 	
 	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
+		self.viewModel.product = nil;
 		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
 	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
@@ -327,8 +328,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
       [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
       self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+//		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+//		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
 }
 
