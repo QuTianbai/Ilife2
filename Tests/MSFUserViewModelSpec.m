@@ -52,21 +52,4 @@ it(@"should update user password", ^{
   expect(response.parsedResult[@"message"]).to(equal(@"send success"));
 });
 
-it(@"should has user information", ^{
-  // given
-  [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
-    NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"authorizations" withExtension:@"json"];
-    return [OHHTTPStubsResponse responseWithFileURL:URL statusCode:200 responseTime:0 headers:@{@"Content-Type": @"application/json"}];
-  }];
-  
-  // when
-  viewModel.active = YES;
-  [viewModel.contentUpdateSignal asynchronousFirstOrDefault:nil success:nil error:nil];
-  
-  // then
-  expect(viewModel.username).to(beNil());
-  //expect(viewModel.mobile).to(equal(beNil()));
-  expect(viewModel.identifyCard).to(beNil());
-});
-
 QuickSpecEnd

@@ -425,7 +425,6 @@
 		4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58921B06E38600120D93 /* applycash.json */; };
 		4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983ED9F1B09CC0E00ADE3E5 /* applyList.json */; };
 		4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */; };
-		4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983EDA51B09D8CD00ADE3E5 /* MSFUserInfoViewController.m */; };
 		498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */; };
 		498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */; };
 		498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F3D491B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m */; };
@@ -504,7 +503,6 @@
 		49C2FE531B4677D200B6B20A /* MSFTestAddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2FE521B4677D200B6B20A /* MSFTestAddressViewModel.m */; };
 		49C7CB991B048F4800EF5A68 /* error.json in Resources */ = {isa = PBXBuildFile; fileRef = 49C7CB981B048F4800EF5A68 /* error.json */; };
 		49C7CB9D1B049CDD00EF5A68 /* MSFReleaseNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C7CB9C1B049CDD00EF5A68 /* MSFReleaseNote.m */; };
-		49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C7CBA11B049F2F00EF5A68 /* MSFVersion.m */; };
 		49C7CBA61B04A34200EF5A68 /* MSFClient+ReleaseNote.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C7CBA51B04A34200EF5A68 /* MSFClient+ReleaseNote.m */; };
 		49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C7CBA81B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m */; };
 		49C7CBAC1B04A4FC00EF5A68 /* releasenote.json in Resources */ = {isa = PBXBuildFile; fileRef = 49C7CBAB1B04A4FC00EF5A68 /* releasenote.json */; };
@@ -1361,8 +1359,6 @@
 		4983ED9F1B09CC0E00ADE3E5 /* applyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyList.json; sourceTree = "<group>"; };
 		4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEditPasswordViewController.h; sourceTree = "<group>"; };
 		4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEditPasswordViewController.m; sourceTree = "<group>"; };
-		4983EDA41B09D8CD00ADE3E5 /* MSFUserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoViewController.h; sourceTree = "<group>"; };
-		4983EDA51B09D8CD00ADE3E5 /* MSFUserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoViewController.m; sourceTree = "<group>"; };
 		498BFC561B11FF8A00FFE88F /* MSFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWebViewController.h; sourceTree = "<group>"; };
 		498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewController.m; sourceTree = "<group>"; };
 		498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
@@ -1466,8 +1462,6 @@
 		49C7CB981B048F4800EF5A68 /* error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = error.json; sourceTree = "<group>"; };
 		49C7CB9B1B049CDD00EF5A68 /* MSFReleaseNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFReleaseNote.h; sourceTree = "<group>"; };
 		49C7CB9C1B049CDD00EF5A68 /* MSFReleaseNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFReleaseNote.m; sourceTree = "<group>"; };
-		49C7CBA01B049F2F00EF5A68 /* MSFVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFVersion.h; sourceTree = "<group>"; };
-		49C7CBA11B049F2F00EF5A68 /* MSFVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFVersion.m; sourceTree = "<group>"; };
 		49C7CBA41B04A34200EF5A68 /* MSFClient+ReleaseNote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+ReleaseNote.h"; sourceTree = "<group>"; };
 		49C7CBA51B04A34200EF5A68 /* MSFClient+ReleaseNote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+ReleaseNote.m"; sourceTree = "<group>"; };
 		49C7CBA71B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RACSignal+MSFClientAdditions.h"; sourceTree = "<group>"; };
@@ -3212,8 +3206,6 @@
 			children = (
 				49C7CB9B1B049CDD00EF5A68 /* MSFReleaseNote.h */,
 				49C7CB9C1B049CDD00EF5A68 /* MSFReleaseNote.m */,
-				49C7CBA01B049F2F00EF5A68 /* MSFVersion.h */,
-				49C7CBA11B049F2F00EF5A68 /* MSFVersion.m */,
 				49C7CBA41B04A34200EF5A68 /* MSFClient+ReleaseNote.h */,
 				49C7CBA51B04A34200EF5A68 /* MSFClient+ReleaseNote.m */,
 			);
@@ -3354,8 +3346,6 @@
 				105A0CA31BBA3E8F0046F927 /* 2.0 */,
 				49CCFBDF1B072397008A9CD1 /* MSFUserViewController.h */,
 				49CCFBE01B072397008A9CD1 /* MSFUserViewController.m */,
-				4983EDA41B09D8CD00ADE3E5 /* MSFUserInfoViewController.h */,
-				4983EDA51B09D8CD00ADE3E5 /* MSFUserInfoViewController.m */,
 				4946ABE71B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.h */,
 				4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */,
 				4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */,
@@ -4494,7 +4484,6 @@
 				10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */,
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
-				4983EDA61B09D8CD00ADE3E5 /* MSFUserInfoViewController.m in Sources */,
 				49075CCB1BA91CE3006F63FF /* MSFTradeViewModel.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
@@ -4676,7 +4665,6 @@
 				49E5B7891BD4D94C001995F8 /* MSFPoster.m in Sources */,
 				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
-				49C7CBA31B049F3300EF5A68 /* MSFVersion.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
 				4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,

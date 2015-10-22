@@ -11,7 +11,6 @@
 #import <Mantle/EXTScope.h>
 #import "MSFRepaymentTableViewController.h"
 #import "MSFEditPasswordViewController.h"
-#import "MSFUserInfoViewController.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFClient.h"
 #import "MSFUser.h"

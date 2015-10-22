@@ -37,7 +37,6 @@ static const int kPasswordMinLength = 8;
 	_usedPassword = @"";
 	_updatePassword = @"";
 	
-	self.contentUpdateSignal = [[RACSubject subject] setNameWithFormat:@"MSFUserViewModel `contentUpdateSignal`"];
 	@weakify(self)
   _executeUpdatePassword = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     @strongify(self)
