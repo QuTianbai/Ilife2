@@ -169,4 +169,11 @@
 	return self.length == 4;
 }
 
+- (BOOL)isShortAreaCode {
+	if ([@[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"] containsObject:self]) {
+		return YES;
+	}
+	return NO;
+}
+
 @end

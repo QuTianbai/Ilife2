@@ -790,15 +790,18 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-2X-djv">
-                                                    <rect key="frame" x="257" y="7" width="43" height="29.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分机号(选填)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fRk-2X-djv">
+                                                    <rect key="frame" x="236" y="7" width="84" height="29.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="座机号(选填)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PuU-me-SGl">
-                                                    <rect key="frame" x="163" y="7" width="91" height="29.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="座机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PuU-me-SGl">
+                                                    <rect key="frame" x="163" y="7" width="70" height="29.5"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="70" id="Acw-ze-IMp"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -811,7 +814,7 @@
                                                 <constraint firstItem="PuU-me-SGl" firstAttribute="leading" secondItem="3kQ-MM-jC6" secondAttribute="trailing" constant="3" id="LL9-t8-5TB"/>
                                                 <constraint firstAttribute="bottom" secondItem="fRk-2X-djv" secondAttribute="bottom" constant="7" id="U1q-AM-CyL"/>
                                                 <constraint firstAttribute="bottom" secondItem="3kQ-MM-jC6" secondAttribute="bottom" constant="7" id="WHb-Wf-mPd"/>
-                                                <constraint firstAttribute="trailing" secondItem="fRk-2X-djv" secondAttribute="trailing" constant="20" id="Xbr-Kk-d2n"/>
+                                                <constraint firstAttribute="trailing" secondItem="fRk-2X-djv" secondAttribute="trailing" id="Xbr-Kk-d2n"/>
                                                 <constraint firstItem="fRk-2X-djv" firstAttribute="leading" secondItem="PuU-me-SGl" secondAttribute="trailing" constant="3" id="aVp-tr-1WV"/>
                                                 <constraint firstItem="PuU-me-SGl" firstAttribute="top" secondItem="ci8-GD-fRo" secondAttribute="top" constant="7" id="e9D-I0-Q2U"/>
                                                 <constraint firstItem="3kQ-MM-jC6" firstAttribute="leading" secondItem="xBN-BM-Izn" secondAttribute="trailing" constant="20" id="ko7-2L-LyQ"/>

@@ -373,15 +373,10 @@
 		if (forms.familyExpense.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的每月其它贷款应还金额"}]];
 		}
-		if (forms.unitAreaCode.length < 3) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-		}
-		if (forms.unitAreaCode.length == 3) {
-			NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-			if (![validArea containsObject:forms.unitAreaCode]) {
-			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
-			}
-		} else if (forms.unitAreaCode.length > 4 || ![forms.unitAreaCode isScalar]) {
+		BOOL length  = forms.unitAreaCode.length < 3 || forms.unitAreaCode.length > 4;
+		BOOL length3 = forms.unitAreaCode.length == 3 && ![forms.unitAreaCode isShortAreaCode];
+		BOOL scalar  = ![forms.unitAreaCode isScalar];
+		if (length || length3 || scalar) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的单位座机区号"}]];
 		}
 		if (forms.unitTelephone.length < 7 || ![forms.unitTelephone isScalar]) {
@@ -515,7 +510,6 @@
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[comps setYear:-5];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
@@ -535,35 +529,6 @@
 		 origin:aView];
 		return nil;
 	}] replay];
-	/*
-	@weakify(self)
-	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate msf_date];
-		NSDateComponents *components = [calendar components:NSYearCalendarUnit fromDate:currentDate];
-		NSInteger year = [components year];
-		NSMutableArray *dataSource = [NSMutableArray array];
-		for (int i = 0; i < 5; i ++) {
-			[dataSource addObject:[NSString stringWithFormat:@"%ld年", (long)(year + i - 4)]];
-		}
-		
-		[ActionSheetStringPicker
-		 showPickerWithTitle:nil
-		 rows:dataSource
-		 initialSelection:dataSource.count-1
-		 doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, NSString *selectedValue) {
-			 self.formsViewModel.model.empStandFrom = [selectedValue stringByReplacingOccurrencesOfString:@"年" withString:@""];
-			 [subscriber sendNext:nil];
-			 [subscriber sendCompleted];
-		 } cancelBlock:^(ActionSheetStringPicker *picker) {
-			 self.formsViewModel.model.empStandFrom = nil;
-			 [subscriber sendNext:nil];
-			 [subscriber sendCompleted];
-		 } origin:aView];
-		
-		return nil;
-	}] replay];*/
 }
 
 @end

@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSString *contactMobile;
 @property (nonatomic, copy) NSString *contactAddress;
 @property (nonatomic, assign) BOOL openDetailAddress;
+@property (nonatomic, assign, readonly) BOOL isFamily;
 
 @end
