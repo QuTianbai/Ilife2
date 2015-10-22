@@ -30,7 +30,6 @@
 
 #import "MobClick.h"
 #import "MSFUmengMacro.h"
-#import "MSFVersion.h"
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"

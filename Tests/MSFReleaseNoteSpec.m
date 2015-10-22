@@ -5,7 +5,6 @@
 //
 
 #import "MSFReleaseNote.h"
-#import "MSFVersion.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFPoster.h"
 
