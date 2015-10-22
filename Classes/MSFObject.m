@@ -72,4 +72,17 @@
 	}
 }
 
+#pragma mark - NSObject
+
+- (NSUInteger)hash {
+	return self.server.hash ^ self.objectID.hash;
+}
+
+- (BOOL)isEqual:(MSFObject *)obj {
+	if (self == obj) return YES;
+	if (![obj isMemberOfClass:self.class]) return NO;
+	
+	return [obj.server isEqual:self.server] && [obj.objectID isEqual:self.objectID];
+}
+
 @end
