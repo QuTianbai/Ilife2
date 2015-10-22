@@ -31,10 +31,14 @@
 }
 
 + (NSDate *)max_date {
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = @"yyyy-MM-dd";
-	NSDate *expiredDate = [dateFormatter dateFromString:@"2099-12-31"];
-	return expiredDate;
+	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	NSDate *currentDate = [NSDate msf_date];
+	NSDateComponents *comps = [[NSDateComponents alloc] init];
+	comps.year = 20;
+	comps.month = 12;
+	comps.day = 31;
+	NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+	return maxDate;
 }
 
 @end
