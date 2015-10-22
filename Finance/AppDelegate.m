@@ -30,7 +30,6 @@
 
 #import "MobClick.h"
 #import "MSFUmengMacro.h"
-#import "MSFVersion.h"
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"
@@ -250,7 +249,7 @@
 	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
 		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]];
 		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
-		[vc dismissViewControllerAnimated:NO completion:NO];
+		[vc dismissViewControllerAnimated:NO completion:nil];
 	}
 }
 

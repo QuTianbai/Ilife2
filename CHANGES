@@ -1,3 +1,31 @@
+Version 2.0.0.11:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - fix
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix 215/216
+ - Fix warnings
+ -  单位座机是选填，但是不填的话过不了
+ - 【APP-IOS-2.0.0.6】简单交易密码设置成功,提示：密码设置太简单，请重新输入
+ - fix personal empty phoneNumber value crash
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 设置密码简单提示
+ - Fix ios7 bank card format
+ - Fix input bank card format ios7
+ - Improve name/citizenid input character
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Improve citizen id input character
+ - Update server
+ - Fix #189 #195 更新绑定手机号本地验证意外退出到登录界面
+ - Fix 中文名字限制长度
+ - 设置密码，修改密码页，返回时的提示
+ - Update client response statusCode
+ - update forms‘ placeholder for optional textfield
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - sort code
+ - update 随借随还首页状态显示
+
 Version 2.0.0.10:
  - Merge remote-tracking branch 'origin/xbmDev'
  - Merge remote-tracking branch 'origin/zhaoyong'

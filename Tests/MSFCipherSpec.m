@@ -71,7 +71,7 @@ it(@"should encrypt with request parameters", ^{
   NSURLRequest *request = [client requestWithMethod:@"GET" path:@"msfinanceapi/v1/app/check_version" parameters:parameters];
 
   // then
-  NSURL *expectURL = [NSURL URLWithString:@"http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10004&channel=msfinance&sign=A0D415546A5C767EF6BBE4984B9672D3&timestamp=2015-05-27%2021:33:37"];
+  NSURL *expectURL = [NSURL URLWithString:@"http://192.168.2.41:9898/msfinanceapi/v1/app/check_version?versionCode=10004&channel=msfinance&sign=8462D6E0F4016B2484559BC14580CA22&timestamp=2015-05-27%2021:33:37"];
   
   expect(request.URL.uq_queryDictionary).to(equal(expectURL.uq_queryDictionary));
 });

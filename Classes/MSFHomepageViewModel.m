@@ -70,19 +70,6 @@ static NSString *msf_whiteListUserCode = @"4101";
 					return @[viewModel];
 				}
 			}];
-			/*
-			return [[self.services.httpClient fetchCheckAllowApply] flattenMap:^RACStream *(MSFCheckAllowApply *value) {
-				if (value.processing) {
-					self.viewModel.active = NO;
-					self.viewModel.active = YES;
-					return [RACSignal return:nil];
-				} else {
-					return [[self.services.httpClient fetchCirculateCash] map:^id(id value) {
-						MSFLoanViewModel *viewModel = [[MSFLoanViewModel alloc] initWithModel:value services:services];
-						return @[viewModel];
-					}];
-				}
-			}];*/
 		} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
 			self.circulateCashViewModel.active = NO;
 			self.circulateCashViewModel.active = YES;
@@ -96,6 +83,8 @@ static NSString *msf_whiteListUserCode = @"4101";
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModels = nil;
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
 	}];
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)

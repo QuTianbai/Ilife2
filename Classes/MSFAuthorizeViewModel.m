@@ -570,6 +570,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 																																								}];
 		return [RACSignal error:error];
 	}
+	
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
@@ -586,6 +587,5 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 - (RACSignal *)updateSignInPasswordSignal {
 	return [self.services.httpClient updateSignInPassword:self.usingSignInPasssword password:self.updatingSignInPasssword];
 }
-
 
 @end

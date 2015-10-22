@@ -25,7 +25,7 @@
 
 @property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
 
-@property (nonatomic, assign)NSInteger statusHash;
+@property (nonatomic, assign) NSInteger statusHash;
 
 @end
 

@@ -35,3 +35,22 @@
 
 统计分析：umeng
 崩溃收集：fabric
+
+## 测试数据库地址信息
+
+test
+url: jdbc:mysql://appservertest2.msxf.dbtest:3306/appserver
+username: appserverrw
+password: appserver111111
+
+sit3 
+
+url: jdbc:mysql://appserversit3.msxf.dbtest:3306/appserver
+username: appserverrw
+password: appserver111111
+
+uat2
+
+url: jdbc:mysql://appserveruat2.msxf.dbuat:3306/appserver
+username: appserverrw
+password: appserver111111
