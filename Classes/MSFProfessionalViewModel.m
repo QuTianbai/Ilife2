@@ -318,7 +318,7 @@
 				NSLocalizedFailureReasonErrorKey: @"请填写正确的学校名称",
 			}]];
 		}
-		if (!forms.empStandFrom) {
+		if (forms.empStandFrom.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
 				NSLocalizedFailureReasonErrorKey: @"请选择入学年月",
 			}]];

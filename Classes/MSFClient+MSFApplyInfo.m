@@ -25,37 +25,28 @@
 	}];
 }
 
-- (NSArray *)convertPhoneNumber:(NSString *)phoneNumber {
-	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-	if (phoneNumber.length < 4) {
+- (NSDictionary *)convertDictionary:(NSDictionary *)dic {
+	if (!dic) {
 		return nil;
 	}
-	if ([numbers containsObject:[phoneNumber substringToIndex:2]]) {
-		return @[[phoneNumber substringToIndex:2], [phoneNumber substringFromIndex:2]];
-	}
-	return @[[phoneNumber substringToIndex:3], [phoneNumber substringFromIndex:3]];
-}
-
-- (NSDictionary *)convertDictionary:(NSDictionary *)dic {
-	NSArray *additionalList = [dic[@"additionalList"] validArray];
+	
+	NSArray *additionalList = [dic arrayForKey:@"additionalList"];
 	NSString *qq = @"";
 	NSString *tb = @"";
 	NSString *jd = @"";
 	for (NSDictionary *addition in additionalList) {
-		switch ([addition[@"additionalType"] validString].intValue) {
-			case 1: qq = [addition[@"additionalValue"] validString]; break;
-			case 2: tb = [addition[@"additionalValue"] validString]; break;
-			case 3: jd = [addition[@"additionalValue"] validString]; break;
+		switch ([addition stringForKey:@"additionalType"].intValue) {
+			case 1: qq = [addition stringForKey:@"additionalValue"]; break;
+			case 2: tb = [addition stringForKey:@"additionalValue"]; break;
+			case 3: jd = [addition stringForKey:@"additionalValue"]; break;
 		}
 	}
 	
-	NSDictionary *basicInfo  = [dic[@"baseInfo"] validDictionary];
-	NSDictionary *occupation = [dic[@"occupationInfo"] validDictionary];
+	NSDictionary *basicInfo  = [dic dictionaryForKey:@"baseInfo"];
+	NSDictionary *occupation = [dic dictionaryForKey:@"occupationInfo"];
 	
-	NSArray *homeTelComponents = [self convertPhoneNumber:
-																[basicInfo[@"homePhone"] validString]];
-	NSArray *empTelComponents  = [self convertPhoneNumber:
-																[occupation[@"empPhone"] validString]];
+	NSArray *homeTelComponents = [self convertToDownloadPhone:[basicInfo stringForKey:@"homePhone"]];
+	NSArray *empTelComponents  = [self convertToDownloadPhone:[occupation stringForKey:@"empPhone"]];
 	NSString *homeTelCode = @"";
 	NSString *homeTel = @"";
 	NSString *empTelCode = @"";
@@ -71,79 +62,73 @@
 	
 	return @{@"homeCode"						: homeTelCode,
 					 @"homeLine"						: homeTel,
-					 @"email"								: [basicInfo[@"email"]							validString],
-					 @"currentProvinceCode" : [basicInfo[@"abodeStateCode"]			validString],
-					 @"currentCityCode"			: [basicInfo[@"abodeCityCode"]			validString],
-					 @"currentCountryCode"	: [basicInfo[@"abodeZoneCode"]			validString],
-					 @"abodeDetail"					: [basicInfo[@"abodeDetail"]				validString],
-					 @"houseType"						: [basicInfo[@"houseCondition"]			validString],
-					 @"maritalStatus"				: [basicInfo[@"maritalStatus"]			validString],
+					 @"email"								: [basicInfo stringForKey:@"email"],
+					 @"currentProvinceCode" : [basicInfo stringForKey:@"abodeStateCode"],
+					 @"currentCityCode"			: [basicInfo stringForKey:@"abodeCityCode"],
+					 @"currentCountryCode"	: [basicInfo stringForKey:@"abodeZoneCode"],
+					 @"abodeDetail"					: [basicInfo stringForKey:@"abodeDetail"],
+					 @"houseType"						: [basicInfo stringForKey:@"houseCondition"],
+					 @"maritalStatus"				: [basicInfo stringForKey:@"maritalStatus"],
 					 @"qq"									: qq,
 					 @"taobao"							: tb,
 					 @"jdAccount"						: jd,
-					 @"socialStatus"				: [occupation[@"socialIdentity"]		validString],
-					 @"education"						: [occupation[@"qualification"]			validString],
-					 @"unitName"						: [occupation[@"unitName"]					validString],
-					 @"empStandFrom"				: [occupation[@"empStandFrom"]			validString],
-					 @"programLength"				: [occupation[@"lengthOfSchooling"] validString],
-					 @"workStartDate"				: [occupation[@"workStartDate"]			validString],
-					 @"income"							: [occupation[@"monthIncome"]				validString],
-					 @"otherIncome"					: [occupation[@"otherIncome"]				validString],
-					 @"familyExpense"				: [occupation[@"otherLoan"]					validString],
-					 @"department"					: [occupation[@"empDepartment"]			validString],
-					 @"title"								: [occupation[@"empPost"]						validString],
-					 @"professional"				: [occupation[@"empPost"]						validString],
-					 @"industry"						: [occupation[@"empType"]						validString],
-					 @"companyType"					: [occupation[@"empStructure"]			validString],
-					 @"workProvinceCode"		: [occupation[@"empProvinceCode"]		validString],
-					 @"workCityCode"				: [occupation[@"empCityCode"]				validString],
-					 @"workCountryCode"			: [occupation[@"empZoneCode"]				validString],
-					 @"empAdd"							: [occupation[@"empAddr"]						validString],
+					 @"socialStatus"				: [occupation stringForKey:@"socialIdentity"],
+					 @"education"						: [occupation stringForKey:@"qualification"],
+					 @"unitName"						: [occupation stringForKey:@"unitName"],
+					 @"empStandFrom"				: [occupation stringForKey:@"empStandFrom"],
+					 @"programLength"				: [occupation stringForKey:@"lengthOfSchooling"],
+					 @"workStartDate"				: [occupation stringForKey:@"workStartDate"],
+					 @"income"							: [occupation stringForKey:@"monthIncome"],
+					 @"otherIncome"					: [occupation stringForKey:@"otherIncome"],
+					 @"familyExpense"				: [occupation stringForKey:@"otherLoan"],
+					 @"department"					: [occupation stringForKey:@"empDepartment"],
+					 @"professional"				: [occupation stringForKey:@"empPost"],
+					 @"industry"						: [occupation stringForKey:@"empType"],
+					 @"companyType"					: [occupation stringForKey:@"empStructure"],
+					 @"workProvinceCode"		: [occupation stringForKey:@"empProvinceCode"],
+					 @"workCityCode"				: [occupation stringForKey:@"empCityCode"],
+					 @"workCountryCode"			: [occupation stringForKey:@"empZoneCode"],
+					 @"empAdd"							: [occupation stringForKey:@"empAddr"],
 					 @"unitAreaCode"				: empTelCode,
 					 @"unitTelephone"				: empTel,
-					 @"unitExtensionTelephone" : [occupation[@"empPhoneExtNum"] validString],
-					 @"contrastList"				: [dic[@"contrastList"]							validArray]};
+					 @"unitExtensionTelephone" : [occupation stringForKey:@"empPhoneExtNum"],
+					 @"contrastList"				: [dic arrayForKey:@"contrastList"]};
 }
 
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
-	NSString *homePhone = @"";
-	NSString *empPhone  = @"";
-	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
-		homePhone = [NSString stringWithFormat:@"%@%@", forms.homeCode, forms.homeLine];
-	}
-	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0) {
-		empPhone  = [NSString stringWithFormat:@"%@%@", forms.unitAreaCode, forms.unitTelephone];
-	}
-	
+	NSString *homePhone = [self convertToUploadPhone:forms.homeLine
+																							code:forms.homeCode];
+	NSString *empPhone  = [self convertToUploadPhone:forms.unitTelephone
+																							code:forms.unitAreaCode];
 	NSDictionary *basicInfo = @{@"homePhone"			: homePhone,
-															@"email"					: forms.email.trimmedString,
-															@"abodeStateCode" : forms.currentProvinceCode.trimmedString,
-															@"abodeCityCode"  : forms.currentCityCode.trimmedString,
-															@"abodeZoneCode"  : forms.currentCountryCode.trimmedString,
-															@"abodeDetail"		: forms.abodeDetail.trimmedString,
-															@"houseCondition" : forms.houseType.trimmedString,
-															@"maritalStatus"	: forms.maritalStatus.trimmedString
+															@"email"					: [self trimString:forms.email],
+															@"abodeStateCode" : [self trimString:forms.currentProvinceCode],
+															@"abodeCityCode"  : [self trimString:forms.currentCityCode],
+															@"abodeZoneCode"  : [self trimString:forms.currentCountryCode],
+															@"abodeDetail"		: [self trimString:forms.abodeDetail],
+															@"houseCondition" : [self trimString:forms.houseType],
+															@"maritalStatus"	: [self trimString:forms.maritalStatus]
 															};
 	NSDictionary *occupation = @{
-															 @"socialIdentity": forms.socialStatus.trimmedString,
-															 @"qualification" : forms.education.trimmedString,
-															 @"unitName"			: forms.unitName.trimmedString,
-															 @"empStandFrom"	: forms.empStandFrom.trimmedString,
-															 @"lengthOfSchooling" : forms.programLength.trimmedString,
-															 @"workStartDate" : forms.workStartDate.trimmedString,
-															 @"monthIncome"		: forms.income.trimmedString,
-															 @"otherIncome"		: forms.otherIncome.trimmedString,
-															 @"otherLoan"			: forms.familyExpense.trimmedString,
-															 @"empDepartment" : forms.department.trimmedString,
-															 @"empPost"				: forms.professional.trimmedString,
-															 @"empType"				: forms.industry.trimmedString,
-															 @"empStructure"	: forms.companyType.trimmedString,
-															 @"empProvinceCode" : forms.workProvinceCode.trimmedString,
-															 @"empCityCode"		: forms.workCityCode.trimmedString,
-															 @"empZoneCode"		: forms.workCountryCode.trimmedString,
-															 @"empAddr"				: forms.empAdd.trimmedString,
+															 @"socialIdentity": [self trimString:forms.socialStatus],
+															 @"qualification" : [self trimString:forms.education],
+															 @"unitName"			: [self trimString:forms.unitName],
+															 @"empStandFrom"	: [self trimString:forms.empStandFrom],
+															 @"lengthOfSchooling" : [self trimString:forms.programLength],
+															 @"workStartDate" : [self trimString:forms.workStartDate],
+															 @"monthIncome"		: [self trimString:forms.income],
+															 @"otherIncome"		: [self trimString:forms.otherIncome],
+															 @"otherLoan"			: [self trimString:forms.familyExpense],
+															 @"empDepartment" : [self trimString:forms.department],
+															 @"empPost"				: [self trimString:forms.professional],
+															 @"empType"				: [self trimString:forms.industry],
+															 @"empStructure"	: [self trimString:forms.companyType],
+															 @"empProvinceCode" : [self trimString:forms.workProvinceCode],
+															 @"empCityCode"		: [self trimString:forms.workCityCode],
+															 @"empZoneCode"		: [self trimString:forms.workCountryCode],
+															 @"empAddr"				: [self trimString:forms.empAdd],
 															 @"empPhone"			: empPhone,
-															 @"empPhoneExtNum": forms.unitExtensionTelephone.trimmedString};
+															 @"empPhoneExtNum": [self trimString:forms.unitExtensionTelephone]};
 	
 	NSMutableArray *additionalList = [NSMutableArray array];
 	if (forms.qq.length > 0) {
