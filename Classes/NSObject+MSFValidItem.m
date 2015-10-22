@@ -17,7 +17,7 @@
 	id obj = [((NSDictionary *)self) objectForKey:key];
 	if ([obj isKindOfClass:NSString.class]) {
 		return obj;
-	} else if	([obj isKindOfClass:NSNumber.class]) {
+	} else if ([obj isKindOfClass:NSNumber.class]) {
 		return [obj stringValue];
 	} else {
 		return @"";
@@ -47,7 +47,6 @@
 		return @{};
 	}
 }
-
 
 - (NSString *)trimString:(NSString *)aString {
 	if ([aString isKindOfClass:NSString.class]) {

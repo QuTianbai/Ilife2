@@ -77,9 +77,11 @@
 		[self setup];
 		return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
+		#if !DEBUG
 		if (MSFUtils.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
+		#endif
 		[self setup];
 		self.releaseNote = releasenote;
 		if (releasenote.status == 1) {
