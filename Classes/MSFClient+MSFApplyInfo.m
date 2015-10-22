@@ -25,17 +25,6 @@
 	}];
 }
 
-- (NSArray *)convertPhoneNumber:(NSString *)phoneNumber {
-	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-	if (phoneNumber.length < 4) {
-		return nil;
-	}
-	if ([numbers containsObject:[phoneNumber substringToIndex:2]]) {
-		return @[[phoneNumber substringToIndex:2], [phoneNumber substringFromIndex:2]];
-	}
-	return @[[phoneNumber substringToIndex:3], [phoneNumber substringFromIndex:3]];
-}
-
 - (NSDictionary *)convertDictionary:(NSDictionary *)dic {
 	if (!dic) {
 		return nil;
@@ -56,8 +45,8 @@
 	NSDictionary *basicInfo  = [dic dictionaryForKey:@"baseInfo"];
 	NSDictionary *occupation = [dic dictionaryForKey:@"occupationInfo"];
 	
-	NSArray *homeTelComponents = [self convertPhoneNumber:[basicInfo stringForKey:@"homePhone"]];
-	NSArray *empTelComponents  = [self convertPhoneNumber:[occupation stringForKey:@"empPhone"]];
+	NSArray *homeTelComponents = [self convertToDownloadPhone:[basicInfo stringForKey:@"homePhone"]];
+	NSArray *empTelComponents  = [self convertToDownloadPhone:[occupation stringForKey:@"empPhone"]];
 	NSString *homeTelCode = @"";
 	NSString *homeTel = @"";
 	NSString *empTelCode = @"";
@@ -107,15 +96,10 @@
 }
 
 - (NSDictionary *)convertToSubmit:(MSFApplicationForms *)forms {
-	NSString *homePhone = @"";
-	NSString *empPhone  = @"";
-	if (forms.homeLine.length > 0 && forms.homeCode.length > 0) {
-		homePhone = [NSString stringWithFormat:@"%@%@", forms.homeCode, forms.homeLine];
-	}
-	if (forms.unitAreaCode.length > 0 && forms.unitTelephone.length > 0) {
-		empPhone  = [NSString stringWithFormat:@"%@%@", forms.unitAreaCode, forms.unitTelephone];
-	}
-	
+	NSString *homePhone = [self convertToUploadPhone:forms.homeLine
+																							code:forms.homeCode];
+	NSString *empPhone  = [self convertToUploadPhone:forms.unitTelephone
+																							code:forms.unitAreaCode];
 	NSDictionary *basicInfo = @{@"homePhone"			: homePhone,
 															@"email"					: [self trimString:forms.email],
 															@"abodeStateCode" : [self trimString:forms.currentProvinceCode],

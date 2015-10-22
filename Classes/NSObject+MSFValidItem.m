@@ -57,4 +57,22 @@
 	}
 }
 
+- (NSString *)convertToUploadPhone:(NSString *)phone code:(NSString *)code {
+	if (phone.length > 0 && code.length > 0) {
+		return [NSString stringWithFormat:@"%@%@", code, phone];
+	}
+	return @"";
+}
+
+- (NSArray *)convertToDownloadPhone:(NSString *)phone {
+	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+	if (phone.length < 4) {
+		return nil;
+	}
+	if ([numbers containsObject:[phone substringToIndex:2]]) {
+		return @[[phone substringToIndex:2], [phone substringFromIndex:2]];
+	}
+	return @[[phone substringToIndex:3], [phone substringFromIndex:3]];
+}
+
 @end
