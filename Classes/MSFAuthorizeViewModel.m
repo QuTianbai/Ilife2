@@ -526,6 +526,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 																																								}];
 		return [RACSignal error:error];
 	}
+	if ([self.TradePassword isSimplePWD]) {
+		NSString *str = @"交易密码设置太简单，请重新输入";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+	}
 
 
 	return [self.services.httpClient setTradePwdWithPWD:self.TradePassword.sha256 AndCaptch:self.smsCode];
@@ -564,12 +571,21 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:error];
 	}
 	
+	if ([self.TradePassword isSimplePWD]) {
+		NSString *str = @"交易密码设置太简单，请重新输入";
+		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+																																								NSLocalizedFailureReasonErrorKey: str,
+																																								}];
+		return [RACSignal error:error];
+		
+	}
+
+	
 	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD.sha256 AndNewPwd:self.TradePassword.sha256 AndCaptch:self.smsCode];
 }
 
 - (RACSignal *)updateSignInPasswordSignal {
 	return [self.services.httpClient updateSignInPassword:self.usingSignInPasssword password:self.updatingSignInPasssword];
 }
-
 
 @end
