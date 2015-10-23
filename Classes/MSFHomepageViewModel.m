@@ -59,8 +59,8 @@ static NSString *msf_whiteListUserCode = @"4101";
 				if ([loan.produceType isEqualToString:@"MS"]) {
 					NSLog(@"productType: 马上贷产品");
 				}
-				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"A"];
-				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"A"];
+				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
+				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
 				if (loan.type.length == 0 || (allow.processing && (applyBlank || contractBlank))) {
 					self.viewModel.active = NO;
 					self.viewModel.active = YES;
