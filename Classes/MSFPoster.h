@@ -18,4 +18,10 @@
 // 图片失效时间
 @property (nonatomic, strong, readonly) NSDate *endDate;
 
+// 图片的尺寸字符串集
+@property (nonatomic, copy, readonly) NSString *sizes;
+
+// 图片使用的地址，根据不同的屏幕尺寸获取
+- (NSURL *)imageURL;
+
 @end

@@ -14,7 +14,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	if (!MSFUtils.poster) return;
-	[self.backgroundView setImageWithURL:MSFUtils.poster.photoURL placeholderImage:[UIImage imageNamed:@"launch.jpg"]];
+	[self.backgroundView setImageWithURL:MSFUtils.poster.imageURL placeholderImage:[UIImage imageNamed:@"launch.jpg"]];
 }
 
 @end
