@@ -92,12 +92,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-	if ([textField isEqual:self.name]) {
-		NSCharacterSet *blockedCharacters = [[NSCharacterSet letterCharacterSet] invertedSet];
-    NSCharacterSet *blockedCharatersSquared = [NSCharacterSet characterSetWithCharactersInString:@"➋➌➍➎➏➐➑➒"];
-		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound) ||
-			 ([string rangeOfCharacterFromSet:blockedCharatersSquared].location != NSNotFound);
-	} else if ([textField isEqual:self.card]) {
+	if ([textField isEqual:self.card]) {
 		if (range.location > 17) return NO;
 		if (range.location == 17) {
 			NSCharacterSet *blockedCharacters = [[NSCharacterSet identifyCardCharacterSet] invertedSet];

@@ -111,9 +111,9 @@
 }
 
 - (BOOL)isChineseName {
-	NSString *regex = @"[\u4e00-\u9fa5]+";
-	NSPredicate *regextetmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-	return [regextetmobile evaluateWithObject:self];
+	NSString *nameRegex = @"^[\\u4E00-\\u9FA5]([\\u4E00-\\u9FA5]|\\u002e|\\u3002|·|\\u25aa){0,18}[\\u4E00-\\u9FA5]$";
+	NSPredicate *nameText = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", nameRegex];
+	return [nameText evaluateWithObject:self];
 }
 
 - (BOOL)isNum {

@@ -13,7 +13,7 @@
 
 @property (nonatomic, readonly) MSFRepaymentSchedules *model;
 
-// 还款编码
+// 合同编号
 @property (nonatomic, readonly) NSString *repaymentNumber;
 
 // 还款状态 eg. `逾期`

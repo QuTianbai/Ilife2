@@ -70,8 +70,9 @@ ABPersonViewControllerDelegate>
 	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
 	self.statusHash = forms.hash;
 	[self setUpFullAddress:forms];
-
 	_tempContactList = [NSMutableArray array];
+	
+	//遍历获取的联系人列表，将第一个家庭联系人添加到第一位置
 	NSMutableArray *tempArray = [NSMutableArray arrayWithArray:forms.contrastList];
 	for (int i = 0; i < tempArray.count; i++) {
 		MSFUserContact *contract = tempArray[i];
@@ -81,9 +82,11 @@ ABPersonViewControllerDelegate>
 			break;
 		}
 	}
+	//遍历无家庭联系人时，添加一个空联系人到第一位置
 	if (_tempContactList.count == 0) {
 		[_tempContactList addObject:[[MSFUserContact alloc] init]];
 	}
+	//遍历获取的联系人列表，将第一个普通联系人添加到第二位置
 	for (int i = 0; i < tempArray.count; i++) {
 		MSFUserContact *contract = tempArray[i];
 		if (!contract.isFamily) {
@@ -92,8 +95,14 @@ ABPersonViewControllerDelegate>
 			break;
 		}
 	}
+	//遍历无普通联系人时，添加一个空联系人到第二位置
+	if (_tempContactList.count == 1) {
+		[_tempContactList addObject:[[MSFUserContact alloc] init]];
+	}
+	//将剩余联系人依次添加进数组
 	[_tempContactList addObjectsFromArray:tempArray];
 	
+	//遍历新的联系人数组，初始化开关及地址信息
 	for (MSFUserContact *contact in _tempContactList) {
 		if (contact.contactAddress.length > 0) {
 			if ([contact.contactAddress isEqualToString:_fullAddress]) {
@@ -172,7 +181,7 @@ ABPersonViewControllerDelegate>
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (_tempContactList.count == 5) {
+	if (_tempContactList.count >= 5) {
 		return 5;
 	} else {
 		return _tempContactList.count + 1;

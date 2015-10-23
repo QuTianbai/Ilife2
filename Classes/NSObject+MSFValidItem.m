@@ -10,38 +10,68 @@
 
 @implementation NSObject(MSFValidItem)
 
-- (NSString *)validString {
-	if ([self isKindOfClass:NSString.class]) {
-		return (NSString *)self;
-	} else if ([self isKindOfClass:NSNumber.class]) {
-		return ((NSNumber *)self).stringValue;
+- (NSString *)stringForKey:(NSString *)key {
+	if (![self isKindOfClass:NSDictionary.class]) {
+		return @"";
+	}
+	id obj = [((NSDictionary *)self) objectForKey:key];
+	if ([obj isKindOfClass:NSString.class]) {
+		return obj;
+	} else if ([obj isKindOfClass:NSNumber.class]) {
+		return [obj stringValue];
 	} else {
 		return @"";
 	}
 }
 
-- (NSArray *)validArray {
-	if ([self isKindOfClass:NSArray.class]) {
-		return (NSArray *)self;
+- (NSArray *)arrayForKey:(NSString *)key {
+	if (![self isKindOfClass:NSDictionary.class]) {
+		return @[];
+	}
+	id obj = [((NSDictionary *)self) objectForKey:key];
+	if ([obj isKindOfClass:NSArray.class]) {
+		return obj;
 	} else {
 		return @[];
 	}
 }
 
-- (NSDictionary *)validDictionary {
-	if ([self isKindOfClass:NSDictionary.class]) {
-		return (NSDictionary *)self;
+- (NSDictionary *)dictionaryForKey:(NSString *)key {
+	if (![self isKindOfClass:NSDictionary.class]) {
+		return @{};
+	}
+	id obj = [((NSDictionary *)self) objectForKey:key];
+	if ([obj isKindOfClass:NSDictionary.class]) {
+		return obj;
 	} else {
 		return @{};
 	}
 }
 
-- (NSString *)trimmedString {
-	if ([self isKindOfClass:NSString.class]) {
-		return [(NSString *)self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+- (NSString *)trimString:(NSString *)aString {
+	if ([aString isKindOfClass:NSString.class]) {
+		return [aString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	} else {
 		return @"";
 	}
+}
+
+- (NSString *)convertToUploadPhone:(NSString *)phone code:(NSString *)code {
+	if (phone.length > 0 && code.length > 0) {
+		return [NSString stringWithFormat:@"%@%@", code, phone];
+	}
+	return @"";
+}
+
+- (NSArray *)convertToDownloadPhone:(NSString *)phone {
+	NSArray *numbers = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
+	if (phone.length < 4) {
+		return nil;
+	}
+	if ([numbers containsObject:[phone substringToIndex:2]]) {
+		return @[[phone substringToIndex:2], [phone substringFromIndex:2]];
+	}
+	return @[[phone substringToIndex:3], [phone substringFromIndex:3]];
 }
 
 @end

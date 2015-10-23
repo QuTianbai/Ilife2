@@ -140,6 +140,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		[self.view endEditing:YES];
 		[self.viewModel.enrollmentYearCommand execute:self.view];
 	}];
 	
@@ -158,6 +159,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.workingLength, text) = RACObserve(self.viewModel.formsViewModel.model, workStartDate);
 	[[self.workingLengthButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		[self.view endEditing:YES];
 		[self.viewModel.startedWorkDateCommand execute:self.view];
 	}];
 	
@@ -246,6 +248,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
 	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		[self.view endEditing:YES];
 		[self.viewModel.startedDateCommand execute:self.view];
 	}];
 	
