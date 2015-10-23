@@ -84,8 +84,7 @@
 }
 
 - (void)bindViewModel:(MSFLoanViewModel *)viewModel {
-	
-	//
+	//显示饼图
 	if ([viewModel isKindOfClass:[MSFHomepageViewModel class]]) {
 		MSFUser *user = [[(MSFHomepageViewModel *)viewModel services] httpClient].user;
 		[self.circleView setCompeltionStatus:user.complateCustInfo];
@@ -93,52 +92,31 @@
 		self.statusButton.hidden = NO;
 		return;
 	}
+	//显示马上贷
 	if (viewModel) {
 		[self placeholderShow:NO];
-		
 		_titleLabel.text  = viewModel.title;
 		_amountLabel.text = viewModel.money;
-		if ([viewModel.contractStatus isEqualToString:@"已逾期"]) {
-			_statusButton.backgroundColor = UIColor.tintColor;
-		} else {
-			_statusButton.backgroundColor = [UIColor clearColor];
-		}
-		
-		if ([viewModel.type isEqualToString:@"APPLY"]) {
-			[_statusButton setTitle:viewModel.applyStatus forState:UIControlStateNormal];
+		[_statusButton setTitle:viewModel.statusString forState:UIControlStateNormal];
+		if ([@[@"G", @"H", @"I", @"J", @"K"] containsObject:viewModel.status]) {
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
-			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-				takeUntil:self.rac_prepareForReuseSignal]
-			 subscribeNext:^(UIButton *x) {
-				 if ([x.titleLabel.text isEqualToString:@"审核中"] || [x.titleLabel.text isEqualToString:@"审核未通过"] || [x.titleLabel.text isEqualToString:@"合同已签署"] || [x.titleLabel.text isEqualToString:@"已取消"] || [x.titleLabel.text isEqualToString:@"已还款"] || [x.titleLabel.text isEqualToString:@"处理中"]) {
-					 [viewModel pushDetailViewController];
-				 } else if ([x.titleLabel.text isEqualToString:@"确认合同"]) {
-					 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
-				 }
-			 }];
+		} else if ([@[@"A", @"B", @"C", @"D"] containsObject:viewModel.status]) {
+			_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
+		} else if	([viewModel.status isEqualToString:@"E"]) {
+			_infoLabel.text = @"合同正在处理中";
 		} else {
-			[_statusButton setTitle:viewModel.contractStatus forState:UIControlStateNormal];
-			if ([viewModel.contractStatus isEqualToString:@"还款中"]) {
-				_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
-			} else if ([viewModel.contractStatus isEqualToString:@"已逾期"]) {
-				[_infoLabel setText:@"您的合同已逾期\n请及时联系客服还款：400-036-8876" highLightText:@"已逾期" highLightColor:[UIColor themeColorNew]];
-			} else {
-				_infoLabel.text = nil;
-			}
-			[[[_statusButton
-				 rac_signalForControlEvents:UIControlEventTouchUpInside]
-				takeUntil:self.rac_prepareForReuseSignal]
-			 subscribeNext:^(UIButton *x) {
-				 if ([x.titleLabel.text isEqualToString:@"还款中"] || [x.titleLabel.text isEqualToString:@"已逾期"] || [x.titleLabel.text isEqualToString:@"处理中"]) {
-					 [viewModel pushDetailViewController];
-				 }
-			 }];
+			_infoLabel.text = nil;
 		}
-	} else {
-		[self.circleView setCompeltionStatus:@""];
-		[self placeholderShow:YES];
+		[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+			takeUntil:self.rac_prepareForReuseSignal]
+		 subscribeNext:^(UIButton *x) {
+			 if ([x.titleLabel.text isEqualToString:@"确认合同"]) {
+				 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+			 } else {
+				 [viewModel pushDetailViewController];
+			 }
+		 }];
 	}
-	
 	self.statusButton.hidden = NO;
 }
 
