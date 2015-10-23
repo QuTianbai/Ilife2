@@ -11,9 +11,10 @@ QuickSpecBegin(MSFPosterSpec)
 
 NSDictionary *representation = @{
 	@"id": @1,
-	@"picUrl": @"http://foo.png",
+	@"picUrl": @"http://sample.com/foo.png",
 	@"timeStart": @"1445220000000",
 	@"timeEnd": @"1445306400000",
+	@"sizes": @"480_840$1280_1920$1600_2560",
 };
 
 __block MSFPoster *poster;
@@ -36,7 +37,7 @@ it(@"should initialize", ^{
 	
   // then
 	expect(poster.objectID).to(equal(@"1"));
-	expect(poster.photoURL).to(equal([NSURL URLWithString:@"http://foo.png"]));
+	expect(poster.photoURL).to(equal([NSURL URLWithString:@"http://sample.com/foo.png"]));
 	expect(poster.startDate).to(equal(expectStartDate));
 	expect(poster.endDate).to(equal(expectEndDate));
 });
@@ -64,6 +65,16 @@ it(@"should same with id", ^{
 	expect(poster1).to(equal(poster2));
 	expect(@(items.count)).to(equal(@1));
 	expect(@(poster1.hash)).to(equal(@(poster2.hash)));
+});
+
+it(@"should has sizes", ^{
+	// then
+	expect(poster.sizes).to(equal(@"480_840$1280_1920$1600_2560"));
+});
+
+it(@"should access imageURL", ^{
+	// then
+	expect(poster.imageURL).to(equal([NSURL URLWithString:@"http://sample.com/foo_1600_2560.png"]));
 });
 
 QuickSpecEnd

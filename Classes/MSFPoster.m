@@ -17,6 +17,7 @@
 		@"photoURL": @"picUrl",
 		@"startDate": @"timeStart",
 		@"endDate": @"timeEnd",
+		@"sizes": @"sizes",
 	};
 }
 
@@ -34,6 +35,15 @@
 	return [MTLValueTransformer transformerWithBlock:^id(NSNumber *number) {
 		return [NSDate dateWithTimeIntervalSince1970:number.doubleValue / 1000.0];
 	}];
+}
+
+#pragma mark - Custom Accessors
+
+- (NSURL *)imageURL {
+	NSURL *URL = self.photoURL.URLByDeletingPathExtension;
+	NSString *string = [NSString stringWithFormat:@"%@_%@.%@",
+		URL.absoluteString, [self.sizes componentsSeparatedByString:@"$"].lastObject, self.photoURL.pathExtension];
+	return [NSURL URLWithString:string];
 }
 
 @end
