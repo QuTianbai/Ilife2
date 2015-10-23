@@ -84,6 +84,8 @@
 }
 
 - (void)bindViewModel:(MSFLoanViewModel *)viewModel {
+	
+	//
 	if ([viewModel isKindOfClass:[MSFHomepageViewModel class]]) {
 		MSFUser *user = [[(MSFHomepageViewModel *)viewModel services] httpClient].user;
 		[self.circleView setCompeltionStatus:user.complateCustInfo];
@@ -93,24 +95,29 @@
 	}
 	if (viewModel) {
 		[self placeholderShow:NO];
+		
+		_titleLabel.text  = viewModel.title;
+		_amountLabel.text = viewModel.money;
+		if ([viewModel.contractStatus isEqualToString:@"已逾期"]) {
+			_statusButton.backgroundColor = UIColor.tintColor;
+		} else {
+			_statusButton.backgroundColor = [UIColor clearColor];
+		}
+		
 		if ([viewModel.type isEqualToString:@"APPLY"]) {
-			_titleLabel.text  = viewModel.title;
 			[_statusButton setTitle:viewModel.applyStatus forState:UIControlStateNormal];
-			_amountLabel.text = viewModel.money;
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
 			[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
 			 subscribeNext:^(UIButton *x) {
-				 if ([x.titleLabel.text isEqualToString:@"审核中"] || [x.titleLabel.text isEqualToString:@"审核未通过"] || [x.titleLabel.text isEqualToString:@"合同已签署"] || [x.titleLabel.text isEqualToString:@"已取消"] || [x.titleLabel.text isEqualToString:@"已还款"]) {
+				 if ([x.titleLabel.text isEqualToString:@"审核中"] || [x.titleLabel.text isEqualToString:@"审核未通过"] || [x.titleLabel.text isEqualToString:@"合同已签署"] || [x.titleLabel.text isEqualToString:@"已取消"] || [x.titleLabel.text isEqualToString:@"已还款"] || [x.titleLabel.text isEqualToString:@"处理中"]) {
 					 [viewModel pushDetailViewController];
 				 } else if ([x.titleLabel.text isEqualToString:@"确认合同"]) {
 					 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 				 }
 			 }];
 		} else {
-			_titleLabel.text  = viewModel.title;
 			[_statusButton setTitle:viewModel.contractStatus forState:UIControlStateNormal];
-			_amountLabel.text = viewModel.money;
 			if ([viewModel.contractStatus isEqualToString:@"还款中"]) {
 				_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
 			} else if ([viewModel.contractStatus isEqualToString:@"已逾期"]) {
@@ -122,7 +129,7 @@
 				 rac_signalForControlEvents:UIControlEventTouchUpInside]
 				takeUntil:self.rac_prepareForReuseSignal]
 			 subscribeNext:^(UIButton *x) {
-				 if ([x.titleLabel.text isEqualToString:@"还款中"] || [x.titleLabel.text isEqualToString:@"已逾期"]) {
+				 if ([x.titleLabel.text isEqualToString:@"还款中"] || [x.titleLabel.text isEqualToString:@"已逾期"] || [x.titleLabel.text isEqualToString:@"处理中"]) {
 					 [viewModel pushDetailViewController];
 				 }
 			 }];
