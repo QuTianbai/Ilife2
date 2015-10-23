@@ -25,11 +25,15 @@
 }
 
 + (NSValueTransformer *)startDateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
+	return [MTLValueTransformer transformerWithBlock:^id(NSNumber *number) {
+		return [NSDate dateWithTimeIntervalSince1970:number.doubleValue / 1000.0];
+	}];
 }
 
 + (NSValueTransformer *)endDateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
+	return [MTLValueTransformer transformerWithBlock:^id(NSNumber *number) {
+		return [NSDate dateWithTimeIntervalSince1970:number.doubleValue / 1000.0];
+	}];
 }
 
 @end

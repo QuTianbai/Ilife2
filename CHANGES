@@ -1,3 +1,23 @@
+Version 2.0.0.12:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - Fix #227 限制身份证最大有效时间
+ - Fix #223 中文姓名判断规则
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ -  【APP-IOS-2.0.0.11】个人中心->设置->忘记交易密码， 新的交易密码为6位重复数字，重置成功
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Fix poster spec
+ - Delay launch screen for showing ads
+ - Update server debug api
+ - Update poster date format
+ - Update MSFObject isEqual
+ - Update posters save as sets
+ - fix 个人信息页面联系人初始个数错误
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix forms empty value crash
+ - Remove msfversion
+ - Remove userinfo viewcontroller
+ - Update README
+
 Version 2.0.0.11:
  - Merge remote-tracking branch 'origin/xbmDev'
  - Merge remote-tracking branch 'origin/zhaoyong'

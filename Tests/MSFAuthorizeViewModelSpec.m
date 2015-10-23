@@ -12,6 +12,7 @@
 #import "MSFResponse.h"
 #import "MSFUser.h"
 #import "MSFViewModelServicesImpl.h"
+#import "NSString+Matches.h"
 
 QuickSpecBegin(MSFAuthorizeViewModelSpec)
 
@@ -298,6 +299,16 @@ it(@"should execute find password", ^{
   
   // then
   expect(response.parsedResult[@"message"]).to(equal(@"send success"));
+});
+
+it(@"should accept user name", ^{
+	// then
+	expect(@([@"张。三" isChineseName])).to(beTruthy());
+});
+
+it(@"should not accept user name", ^{
+	// then
+	expect(@([@"张三." isChineseName])).to(beFalsy());
 });
 
 QuickSpecEnd

@@ -30,9 +30,11 @@
 + (void)savePosters:(NSArray *)posters {
 	if (posters.count == 0) return;
 	NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"posters.plist"];
-	NSArray *items = [NSKeyedUnarchiver unarchiveObjectWithFile:path] ?: NSArray.array;
-	NSMutableArray *mutablePosters = items.mutableCopy;
-	[mutablePosters addObjectsFromArray:posters];
+	NSSet *items = [NSKeyedUnarchiver unarchiveObjectWithFile:path] ?: NSSet.set;
+	NSMutableSet *mutablePosters = items.mutableCopy;
+	[posters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		[mutablePosters addObject:obj];
+	}];
 	[NSKeyedArchiver archiveRootObject:mutablePosters toFile:path];
 }
 
@@ -50,10 +52,10 @@
 + (MSFPoster *)poster {
 	__block MSFPoster *poster;
 	NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"posters.plist"];
-	NSArray *items = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+	NSSet *items = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
 	if (!items) return nil;
-	
-	[items enumerateObjectsUsingBlock:^(MSFPoster *obj, NSUInteger idx, BOOL *stop) {
+
+	[items enumerateObjectsUsingBlock:^(MSFPoster *obj, BOOL *stop) {
 		NSTimeInterval start = [obj.startDate timeIntervalSinceNow];
 		NSTimeInterval end = [obj.endDate timeIntervalSinceNow];
 		NSTimeInterval now = [NSDate.date timeIntervalSinceNow];
