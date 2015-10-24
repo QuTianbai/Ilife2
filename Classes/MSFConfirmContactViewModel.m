@@ -55,7 +55,7 @@
 
 	@weakify(self)
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMCONTRACT" object:nil] subscribeNext:^(id x) {
-		NSLog(@"我是收通知");
+		NSLog(@"接收确认合同通知");
 		@strongify(self)
 		[self.confirmCommand execute:nil];
 		//[[self executeConfirmContract] replayLast];
@@ -75,7 +75,7 @@
 	[[self.servers.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
 		//self.infoModel = model;
 		@strongify(self)
-		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"C"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"C"])) {
+		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"I"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"I"])) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
 			self.circulateModel = model;
 			//self.appNO = model.contractNo;
