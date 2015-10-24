@@ -1,3 +1,25 @@
+Version 2.0.0.15:
+ - Format codes
+ - Fix spec
+ - update 申请单/合同状态
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 切换用户类型时清空数据
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - temp
+ - temp
+ - temp
+ - update homepageVIewModel
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - delete
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Fix icon width
+ - 银行卡bin添加卡bin号为451461招商银行贷记卡
+ - Merge branch 'next'
+ - Improve loan agreement html webview user touch
+ - Fix #227
+ - Merge branch 'issue/223'
+
 Version 2.0.0.14:
  - Improve 首页启动广告图
 
