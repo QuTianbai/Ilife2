@@ -30,43 +30,39 @@
 	_model = model;
 	
 	RAC(self, type) = RACObserve(model, type);
+	RAC(self, money) = RACObserve(model, money);
+	RAC(self, loanTerm) = RACObserve(model, period);
 	RAC(self, title) = [RACObserve(model, type) map:^id(NSString *type) {
+		if ([model.contractStatus isEqualToString:@"E"]) {
+			return @"合同状态";
+		}
 		if ([type isEqualToString:@"APPLY"]) {
 			return @"贷款申请状态";
 		} else {
 			return @"合同还款状态";
 		}
 	}];
-	RAC(self, applyStatus) = [RACObserve(model, applyStatus) map:^id(NSString *status) {
-		NSDictionary *statusValues = @{@"A" : @"",
-																	 @"B" : @"审核中",
-																	 @"C" : @"确认合同",
-																	 @"D" : @"审核未通过",
-																	 @"E" : @"合同已签署",
-																	 @"F" : @"还款中",
-																	 @"G" : @"已取消",
-																	 @"H" : @"已还款",
-																	 @"I" : @"已逾期",
-																	 @"J" : @"已到期",
-																	 @"K" : @"处理中"};
-		return statusValues[status];
+	
+	RAC(self, status) = [RACSignal combineLatest:@[RACObserve(model, applyStatus), RACObserve(model, contractStatus)] reduce:^id(NSString *a, NSString *b){
+		if ((a.length > 0 && b.length > 0) || (a.length == 0 && b.length == 0)) {
+			return @"F";
+		}
+		return a.length > 0 ? a : b;
 	}];
-	RAC(self, contractStatus) = [RACObserve(model, contractStatus) map:^id(NSString *contractStatus) {
-		NSDictionary *statusValues = @{@"A" : @"",
-																	 @"B" : @"审核中",
-																	 @"C" : @"确认合同",
-																	 @"D" : @"审核未通过",
-																	 @"E" : @"合同已签署",
-																	 @"F" : @"还款中",
-																	 @"G" : @"已取消",
-																	 @"H" : @"已还款",
-																	 @"I" : @"已逾期",
-																	 @"J" : @"已到期",
-																	 @"K" : @"处理中"};
-		return statusValues[contractStatus];
+	RAC(self, statusString) = [RACObserve(self, status) map:^id(id value) {
+		NSDictionary *statusValues = @{@"A" : @"已还款",
+																	 @"B" : @"已到期",
+																	 @"C" : @"已逾期",
+																	 @"D" : @"还款中",
+																	 @"E" : @"处理中",
+																	 @"F" : @"",
+																	 @"G" : @"审核中",
+																	 @"H" : @"审核未通过",
+																	 @"I" : @"合同未确认",
+																	 @"J" : @"合同已签署",
+																	 @"K" : @"已取消"};
+		return statusValues[value];
 	}];
-	RAC(self, money) = RACObserve(model, money);
-	RAC(self, loanTerm) = RACObserve(model, period);
 	
 	/*** 申请状态 ***/
 	RAC(self, applyTime) = [RACObserve(model, applyDate) map:^id(id value) {
@@ -83,7 +79,7 @@
 	/*** 还款状态 ***/
 	RAC(self, applyDate) = RACObserve(model, applyDate);
 	RAC(self, currentPeriodDate) = RACObserve(model, currentPeriodDate);
-
+	
 	return self;
 }
 
