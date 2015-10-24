@@ -110,7 +110,7 @@
 		[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 			takeUntil:self.rac_prepareForReuseSignal]
 		 subscribeNext:^(UIButton *x) {
-			 if ([x.titleLabel.text isEqualToString:@"确认合同"]) {
+			 if ([x.titleLabel.text isEqualToString:@"合同未确认"]) {
 				 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 			 } else {
 				 [viewModel pushDetailViewController];
