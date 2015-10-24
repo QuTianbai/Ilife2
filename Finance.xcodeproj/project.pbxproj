@@ -190,6 +190,7 @@
 		07FE07331B0740ED00484069 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 07FE07321B0740ED00484069 /* applyInfo.json */; };
 		10028A601BD4F28F00D36508 /* edu_background1.json in Resources */ = {isa = PBXBuildFile; fileRef = 10028A5F1BD4F28F00D36508 /* edu_background1.json */; settings = {ASSET_TAGS = (); }; };
 		10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */; settings = {ASSET_TAGS = (); }; };
+		10113E431BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 10113E421BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m */; settings = {ASSET_TAGS = (); }; };
 		1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */; settings = {ASSET_TAGS = (); }; };
 		1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */; settings = {ASSET_TAGS = (); }; };
 		1011A3A61BB9702600CCADB5 /* icon_circle_home_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A01BB9702600CCADB5 /* icon_circle_home_n.png */; settings = {ASSET_TAGS = (); }; };
@@ -1018,6 +1019,8 @@
 		10028A5F1BD4F28F00D36508 /* edu_background1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = edu_background1.json; sourceTree = "<group>"; };
 		10028A6E1BD5DD3B00D36508 /* NSObject+MSFValidItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MSFValidItem.h"; sourceTree = "<group>"; };
 		10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MSFValidItem.m"; sourceTree = "<group>"; };
+		10113E411BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+MSFKeyValue.h"; sourceTree = "<group>"; };
+		10113E421BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+MSFKeyValue.m"; sourceTree = "<group>"; };
 		1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoCircleView.h; sourceTree = "<group>"; };
 		1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoCircleView.m; sourceTree = "<group>"; };
 		1011A39F1BB9702600CCADB5 /* icon_circle_job_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_h.png; sourceTree = "<group>"; };
@@ -3249,6 +3252,8 @@
 				49588E101B872BC700FCF171 /* NSDate+UTC0800.m */,
 				10028A6E1BD5DD3B00D36508 /* NSObject+MSFValidItem.h */,
 				10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */,
+				10113E411BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.h */,
+				10113E421BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4649,6 +4654,7 @@
 				07667BF41BBEAB83002DFF62 /* MSFApplyCashInfo.m in Sources */,
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
 				499147201B247A6900260E97 /* MSFSelectionTableViewCell.m in Sources */,
+				10113E431BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m in Sources */,
 				078EEBB61BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m in Sources */,
 				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
 				4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */,

@@ -10,6 +10,7 @@
 #import "MSFClient+ApplyList.h"
 #import "MSFClient+RepaymentSchedules.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFLoanViewModel ()
 
@@ -50,18 +51,7 @@
 		return a.length > 0 ? a : b;
 	}];
 	RAC(self, statusString) = [RACObserve(self, status) map:^id(id value) {
-		NSDictionary *statusValues = @{@"A" : @"已还款",
-																	 @"B" : @"已到期",
-																	 @"C" : @"已逾期",
-																	 @"D" : @"还款中",
-																	 @"E" : @"处理中",
-																	 @"F" : @"",
-																	 @"G" : @"审核中",
-																	 @"H" : @"审核未通过",
-																	 @"I" : @"合同未确认",
-																	 @"J" : @"合同已签署",
-																	 @"K" : @"已取消"};
-		return statusValues[value];
+		return [NSDictionary statusStringForKey:value];
 	}];
 	
 	/*** 申请状态 ***/
