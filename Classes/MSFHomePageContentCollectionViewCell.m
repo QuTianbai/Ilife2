@@ -102,7 +102,7 @@
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
 		} else if ([@[@"A", @"B", @"C", @"D"] containsObject:viewModel.status]) {
 			_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
-		} else if	([viewModel.status isEqualToString:@"E"]) {
+		} else if ([viewModel.status isEqualToString:@"E"]) {
 			_infoLabel.text = @"合同正在处理中";
 		} else {
 			_infoLabel.text = nil;
