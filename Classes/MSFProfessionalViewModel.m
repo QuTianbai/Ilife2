@@ -40,20 +40,6 @@
 - (void)dealloc {
 	NSLog(@"MSFProfessionalViewModel `-dealloc`");
 }
-/*
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel  {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-	_services = formsViewModel.services;
-	_formsViewModel = formsViewModel;
-	//_model = formsViewModel.model;
-	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:formsViewModel.workAddress services:formsViewModel.services];
-	[self initialize];
-	
-	return self;
-}*/
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel {
 	self = [super init];
@@ -112,20 +98,53 @@
 	}];
 }
 
+- (void)resetProperties:(NSString *)newStatus {
+	NSArray *status = @[@[@"SI01"], @[@"SI02", @"SI04"], @[@"SI03", @"SI05", @"SI06"]];
+	BOOL reset = YES;
+	for (int i = 0; i < 3; i++) {
+		NSArray *arr = status[i];
+		if ([arr containsObject:self.formsViewModel.model.socialStatus] && [arr containsObject:newStatus]) {
+			reset = NO;
+			break;
+		}
+	}
+	if (reset) {
+		self.formsViewModel.model.unitName = nil;
+		self.formsViewModel.model.empStandFrom = nil;
+		self.formsViewModel.model.programLength = nil;
+		self.formsViewModel.model.workStartDate = nil;
+		self.formsViewModel.model.income = nil;
+		self.formsViewModel.model.otherIncome = nil;
+		self.formsViewModel.model.familyExpense = nil;
+		self.formsViewModel.model.department = nil;
+		self.formsViewModel.model.professional = nil;
+		self.formsViewModel.model.industry = nil;
+		self.formsViewModel.model.companyType = nil;
+		self.formsViewModel.model.workProvinceCode = nil;
+		self.formsViewModel.model.workCityCode = nil;
+		self.formsViewModel.model.workCountryCode = nil;
+		self.formsViewModel.model.empAdd = nil;
+		self.formsViewModel.model.unitAreaCode = nil;
+		self.formsViewModel.model.unitTelephone = nil;
+		self.formsViewModel.model.unitExtensionTelephone = nil;
+		
+		self.industry = nil;
+		self.industryTitle = nil;
+		self.nature = nil;
+		self.natureTitle = nil;
+		self.professional = nil;
+		self.professionalTitle = nil;
+		
+		self.address = nil;
+	}
+}
+
 - (void)initialize {
 	[self commonInit];
 	
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
-	RAC(self.formsViewModel.model, currentAddress) = RACObserve(self.addressViewModel, address);
-	RAC(self.formsViewModel.model, workProvince) = RACObserve(self.addressViewModel, provinceName);
-	RAC(self.formsViewModel.model, workProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
-	RAC(self.formsViewModel.model, workCity) = RACObserve(self.addressViewModel, cityName);
-	RAC(self.formsViewModel.model, workCityCode) = RACObserve(self.addressViewModel, cityCode);
-	RAC(self.formsViewModel.model, workCountry) = RACObserve(self.addressViewModel, areaName);
-	RAC(self.formsViewModel.model, workCountryCode) = RACObserve(self.addressViewModel, areaCode);
-	
 	_executeAddressCommand = self.addressViewModel.selectCommand;
-
+	
 	@weakify(self)
 	[RACObserve(self, degrees) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
@@ -135,6 +154,7 @@
 	
 	[RACObserve(self, socialstatus) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
+		[self resetProperties:object.code];
 		self.formsViewModel.model.socialStatus = object.code;
 		self.socialstatusTitle = object.text;
 	}];
@@ -150,7 +170,7 @@
 		self.formsViewModel.model.companyType = object.code;
 		self.natureTitle = object.text;
 	}];
-
+	
 	[RACObserve(self, professional) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		self.formsViewModel.model.professional = object.code;
@@ -169,7 +189,6 @@
 		@strongify(self)
 		return [self enrollmentYearSignal:input];
 	}];
-	
 	_executeEducationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self educationSignal];
@@ -200,10 +219,10 @@
 	}];
 	_executePositionCommand.allowsConcurrentExecution = YES;
 	
-  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self)
-    return [self commitSignal];
-  }];
+	_executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self commitSignal];
+	}];
 }
 
 - (RACSignal *)educationSignal {
@@ -304,61 +323,61 @@
 	MSFApplicationForms *forms = self.formsViewModel.model;
 	if (forms.education.length == 0) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择教育程度",
-		}]];
+																																															 NSLocalizedFailureReasonErrorKey: @"请选择教育程度",
+																																															 }]];
 	}
 	if (forms.socialStatus.length == 0) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
-		}]];
+																																															 NSLocalizedFailureReasonErrorKey: @"请选择社会身份",
+																																															 }]];
 	}
 	if ([forms.socialStatus isEqualToString:@"SI01"]) {
 		if (forms.unitName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写正确的学校名称",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请填写正确的学校名称",
+																																																 }]];
 		}
 		if (forms.empStandFrom.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择入学年月",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择入学年月",
+																																																 }]];
 		}
 		if (forms.programLength.intValue < 1 || forms.programLength.intValue > 8) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写学制（1~8整数）",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请填写学制（1~8整数）",
+																																																 }]];
 		}
 	} else if ([forms.socialStatus isEqualToString:@"SI02"] || [forms.socialStatus isEqualToString:@"SI04"]) {
 		if (!forms.workStartDate) {
 			return [RACSignal error:[NSError	errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择参加工作日期",
-			}]];
+																																																	NSLocalizedFailureReasonErrorKey: @"请选择参加工作日期",
+																																																	}]];
 		}
 		if (forms.unitName.length < 4) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写正确的工作单位名称",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请填写正确的工作单位名称",
+																																																 }]];
 		}
 		if (forms.industry.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择行业"}]];
 		}
 		if (forms.companyType.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择单位性质",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择单位性质",
+																																																 }]];
 		}
 		if (forms.department.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请填写正确的就职部门全称"}]];
 		}
 		if (forms.professional.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择职业",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择职业",
+																																																 }]];
 		}
 		if (!forms.empStandFrom) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择入职年月",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择入职年月",
+																																																 }]];
 		}
 		NSString *compareResult = [self compareDay:forms.empStandFrom earlierThanDay:forms.workStartDate];
 		if (compareResult) {
@@ -387,23 +406,23 @@
 		}
 		if (forms.workProvinceCode.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
-	    }]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+																																																 }]];
 		}
 		if (forms.workCityCode.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+																																																 }]];
 		}
 		if (forms.workCountryCode.length == 0) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-			  NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请选择单位地址",
+																																																 }]];
 		}
 		if (forms.empAdd.length < 3 || forms.empAdd.length > 40) {
 			return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: @"请填写正确的单位详细地址"
-			}]];
+																																																 NSLocalizedFailureReasonErrorKey: @"请填写正确的单位详细地址"
+																																																 }]];
 		}
 	}
 	

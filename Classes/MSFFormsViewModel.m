@@ -105,7 +105,7 @@
 	return [self.services.httpClient submitUserInfo:self.model
 																				 infoType:infoType];
 }
-
+/*
 - (RACSignal *)submitSignalWithPage:(NSInteger)page {
 	self.model.page = [@(page) stringValue];
 	if (page == 5) {
@@ -117,7 +117,7 @@
 		if (page == 5) self.pending = YES;
 	}];
 }
-
+*/
 - (void)setBankCardMasterDefult {
 	self.masterBankCardNO = @"";
 	self.master = NO;

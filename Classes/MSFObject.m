@@ -75,7 +75,7 @@
 #pragma mark - NSObject
 
 - (NSUInteger)hash {
-	return self.server.hash ^ self.objectID.hash;
+	return self.server.hash ^ self.objectID.hash ^ [super hash];
 }
 
 - (BOOL)isEqual:(MSFObject *)obj {

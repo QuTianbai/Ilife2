@@ -333,7 +333,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && section == 0) {
 		return [super tableView:tableView titleForHeaderInSection:section];
 	}
-	
 	return nil;
 }
 
