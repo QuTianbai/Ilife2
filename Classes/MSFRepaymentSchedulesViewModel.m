@@ -14,6 +14,8 @@
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
+@property (nonatomic, readwrite) NSString *date;
+
 @end
 
 @implementation MSFRepaymentSchedulesViewModel
@@ -45,7 +47,12 @@
 	_model = model;
 	_services = services;
 	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
-	RAC(self, status) = RACObserve(self, model.contractStatus);
+	RAC(self, status) = [RACObserve(self, model.contractStatus) map:^id(NSString *value) {
+		if ([value isEqualToString:@"已逾期"]) {
+			self.date = @"现在";
+		}
+		return value;
+	}];
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
 	RAC(self, date) = [[RACObserve(self, model.repaymentTime) ignore:nil] map:^id(id value) {
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
