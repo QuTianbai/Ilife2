@@ -427,7 +427,7 @@ static NSDictionary *messages;
 			self.user = nil;
 			return [RACSignal error:error];
 		}]
-		doCompleted:^{
+		doNext:^(id x) {
 			@strongify(self)
 			[self clearAuthorizationHeader];
 			self.token = nil;
