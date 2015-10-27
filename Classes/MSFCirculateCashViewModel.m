@@ -57,7 +57,12 @@
 		}
 		return str;
 	}];
-	RAC(self, latestDueMoney) = RACObserve(self, infoModel.latestDueMoney);
+	RAC(self, latestDueMoney) = [RACObserve(self, infoModel.latestDueMoney) map:^id(id value) {
+		if (value == nil) {
+			return @"0";
+		}
+		return value;
+	}];
 	RAC(self, latestDueDate) = [RACObserve(self, infoModel.latestDueDate) map:^id(NSString *value) {
 		NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 		[inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
