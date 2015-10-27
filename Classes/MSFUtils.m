@@ -11,6 +11,7 @@
 #import "MSFClient+ReleaseNote.h"
 #import "MSFReleaseNote.h"
 #import "MSFPoster.h"
+#import "NSDate+UTC0800.h"
 
 @implementation MSFUtils
 
@@ -28,14 +29,10 @@
 #pragma mark - Private
 
 + (void)savePosters:(NSArray *)posters {
-	if (posters.count == 0) return;
+	if (posters.count == 0) posters = @[];
 	NSString *path = [NSTemporaryDirectory() stringByAppendingString:@"posters.plist"];
-	NSSet *items = [NSKeyedUnarchiver unarchiveObjectWithFile:path] ?: NSSet.set;
-	NSMutableSet *mutablePosters = items.mutableCopy;
-	[posters enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		[mutablePosters addObject:obj];
-	}];
-	[NSKeyedArchiver archiveRootObject:mutablePosters toFile:path];
+	NSSet *items = [NSSet setWithArray:posters];
+	[NSKeyedArchiver archiveRootObject:items toFile:path];
 }
 
 #pragma mark - Persistent values
