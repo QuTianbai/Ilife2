@@ -14,6 +14,8 @@
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
+@property (nonatomic, readwrite) NSString *date;
+
 @end
 
 @implementation MSFRepaymentSchedulesViewModel

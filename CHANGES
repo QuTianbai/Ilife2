@@ -1,3 +1,10 @@
+Version 2.0.0.16:
+ - fix 合同确认状态吗错误
+ - commit
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix 分机号长度
+ - Update provsioning profile
+
 Version 2.0.0.15:
  - Format codes
  - Fix spec
