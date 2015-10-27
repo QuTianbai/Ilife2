@@ -73,16 +73,16 @@
 	return self;
 }
 
-- (void)pushDetailViewController {
-	[self.services pushViewModel:self];
-}
-
 - (RACSignal *)fetchApplyListSignal {
 	return [self.services.httpClient fetchApplyList];
 }
 
 - (RACSignal *)fetchRepaymentSchedulesSignal {
 	return [self.services.httpClient fetchRepaymentSchedules];
+}
+
+- (void)pushDetailViewController {
+	[self.services pushViewModel:self];
 }
 
 @end

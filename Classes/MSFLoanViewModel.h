@@ -9,11 +9,11 @@
 
 @interface MSFLoanViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) NSString *type;//合同/申请单
-@property (nonatomic, strong, readonly) NSString *title;// 标题
-@property (nonatomic, strong, readonly) NSString *money;//申请单：申请金额。合同还款中为：每月应还款额；逾期状态：所有未还金额
+@property (nonatomic, strong, readonly) NSString *type;			//合同/申请单
+@property (nonatomic, strong, readonly) NSString *title;		// 标题
+@property (nonatomic, strong, readonly) NSString *money;		//申请单：申请金额。合同还款中为：每月应还款额；逾期状态：所有未还金额
 @property (nonatomic, strong, readonly) NSString *loanTerm;	// 期数
-@property (nonatomic, strong, readonly) NSString *status;//状态码
+@property (nonatomic, strong, readonly) NSString *status;		//状态码
 @property (nonatomic, strong, readonly) NSString *statusString;//状态描述
 
 /*** 申请状态 ***/
@@ -24,10 +24,12 @@
 
 @property (nonatomic, weak, readonly) id<MSFViewModelServices>services;
 
-- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
-- (void)pushDetailViewController;
+- (instancetype)initWithModel:(id)model
+										 services:(id<MSFViewModelServices>)services;
 
 - (RACSignal *)fetchApplyListSignal;
 - (RACSignal *)fetchRepaymentSchedulesSignal;
+
+- (void)pushDetailViewController;
 
 @end

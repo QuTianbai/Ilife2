@@ -27,7 +27,10 @@
 	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
 	RAC(self, status) = RACObserve(self, model.contractStatus);
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
-	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(id value) {
+	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
+		if (value.length == 0) {
+			return @"当天";
+		}
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
 		NSDateFormatter *df = [[NSDateFormatter alloc]init];
 		df.dateFormat = @"yyyy-MM-dd";
@@ -47,7 +50,10 @@
 	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
 	RAC(self, status) = RACObserve(self, model.contractStatus);
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
-	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(id value) {
+	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
+		if (value.length == 0) {
+			return @"当天";
+		}
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
 		NSDateFormatter *df = [[NSDateFormatter alloc]init];
 		df.dateFormat = @"yyyy-MM-dd";
