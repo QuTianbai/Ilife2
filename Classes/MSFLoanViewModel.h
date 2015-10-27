@@ -15,6 +15,7 @@
 @property (nonatomic, strong, readonly) NSString *loanTerm;	// 期数
 @property (nonatomic, strong, readonly) NSString *status;		//状态码
 @property (nonatomic, strong, readonly) NSString *statusString;//状态描述
+@property (nonatomic, assign, readonly) NSInteger jumpDes;  //跳转目标。1，申请列表；2，还款列表；3，合同确认
 
 /*** 申请状态 ***/
 @property (nonatomic, strong, readonly) NSString *applyTime;// 申请时间 `2015-07-14`

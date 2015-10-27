@@ -53,6 +53,15 @@
 	RAC(self, statusString) = [RACObserve(self, status) map:^id(id value) {
 		return [NSDictionary statusStringForKey:value];
 	}];
+	RAC(self, jumpDes) = [RACObserve(self, status) map:^id(id value) {
+		if ([@[@"D", @"C"] containsObject:value]) {
+			return @2;
+		} else if ([value isEqualToString:@"I"]) {
+			return @3;
+		} else {
+			return @1;
+		}
+	}];
 	
 	/*** 申请状态 ***/
 	RAC(self, applyTime) = [RACObserve(model, applyDate) map:^id(id value) {
@@ -64,7 +73,6 @@
 		NSDate *date = [df dateFromString:value];
 		return [NSDateFormatter msf_stringFromDate:date];
 	}];
-	//RAC(self, applyNo) = RACObserve(model, contractNo);
 	
 	/*** 还款状态 ***/
 	RAC(self, applyDate) = RACObserve(model, applyDate);
