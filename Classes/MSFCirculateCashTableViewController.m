@@ -61,7 +61,9 @@
 	RAC(self.lastInputMoneyTimeLB, text) = RACObserve(self.viewModel, latestDueDate);
 	RAC(self.countInpoutMoneyLB, text) = [RACObserve(self.viewModel, usedLimit) ignore:nil];
 	RAC(self.deadLineLB, text) = RACObserve(self.viewModel, contractExpireDate);
-	RAC(self.outTimeMoneyLB, text) = RACObserve(self, viewModel.overdueMoney);
+	RAC(self.outTimeMoneyLB, text) = [RACObserve(self, viewModel.overdueMoney) map:^id(NSString *value) {
+		return [NSString stringWithFormat:@"已逾期：%@", value];
+	}];
 	RAC(self, contractNO) = RACObserve(self.viewModel, contractNo);
 	
 	RAC(self, usableLimit) = [RACObserve(self.viewModel, usableLimit) map:^id(id value) {
