@@ -77,23 +77,23 @@
 	@weakify(self)
 	[_usableLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.width.equalTo(self.mas_height).multipliedBy(1.1);
-		make.centerX.equalTo(self.mas_centerX);
-		make.centerY.equalTo(self.mas_centerY).offset(15);
+		make.width.equalTo(self);
+		make.centerX.equalTo(self);
+		make.centerY.equalTo(self).offset(15);
 	}];
 	
 	[titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self.mas_left).offset(8);
-		make.right.equalTo(self.mas_right).offset(-8);
+		make.left.equalTo(self).offset(8);
+		make.right.equalTo(self).offset(-8);
 		make.bottom.equalTo(self.usableLabel.mas_top).offset(-8);
 	}];
 	
 	[_usedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self.mas_left).offset(8);
-		make.right.equalTo(self.mas_right).offset(-8);
-		make.bottom.equalTo(self.mas_bottom).offset(-5);
+		make.left.equalTo(self).offset(8);
+		make.right.equalTo(self).offset(-8);
+		make.bottom.equalTo(self).offset(-5);
 	}];
 }
 
@@ -115,8 +115,8 @@
 - (void)ajustLabelFont:(NSString *)ac {
 	CGFloat width = [ac boundingRectWithSize:CGSizeMake(10000, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:_standardFontSize]} context:nil].size.width;
 	CGFloat fontSize = 0;
-	if (width > self.frame.size.height * 1.1) {
-		fontSize = floor(_standardFontSize * self.frame.size.height * 1.1 / width);
+	if (width > self.frame.size.height) {
+		fontSize = floor(_standardFontSize * self.frame.size.height / width);
 	} else {
 		fontSize = _standardFontSize;
 	}
@@ -124,7 +124,7 @@
 }
 
 - (void)circleAnimation {
-	_angle += M_PI / 30;
+	_angle += M_PI / 20;
 	if (_angle > _endAngle) {
 		_angle = _endAngle;
 		[self setNeedsDisplay];

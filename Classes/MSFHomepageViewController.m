@@ -15,6 +15,8 @@
 #import "MSFHomepageViewModel.h"
 #import "MSFLoanViewModel.h"
 #import "MSFFormsViewModel.h"
+#import "MSFCirculateCashModel.h"
+#import "MSFCirculateCashViewModel.h"
 #import "MSFReactiveView.h"
 #import "UIColor+Utils.h"
 #import "MSFAboutsViewController.h"
@@ -69,7 +71,11 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-	
+	[RACObserve(self.viewModel.circulateCashViewModel, infoModel) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.collectionView reloadData];
+	}];
+	/*
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
@@ -81,7 +87,7 @@ UICollectionViewDelegateFlowLayout>
 				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
-	
+	*/
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.active = NO;
