@@ -60,8 +60,13 @@
 	RAC(self.lastInputMoneyLB, text) = RACObserve(self.viewModel, latestDueMoney);
 	RAC(self.lastInputMoneyTimeLB, text) = RACObserve(self.viewModel, latestDueDate);
 	RAC(self.countInpoutMoneyLB, text) = [RACObserve(self.viewModel, usedLimit) ignore:nil];
-	RAC(self.deadLineLB, text) = RACObserve(self.viewModel, contractExpireDate);
+	RAC(self.deadLineLB, text) = [RACObserve(self.viewModel, contractExpireDate) map:^id(id value) {
+		return value;
+	}];
 	RAC(self.outTimeMoneyLB, text) = [RACObserve(self, viewModel.overdueMoney) map:^id(NSString *value) {
+		if (value == nil || [value isEqualToString:@"0"]) {
+			return @"";
+		}
 		return [NSString stringWithFormat:@"已逾期：%@", value];
 	}];
 	RAC(self, contractNO) = RACObserve(self.viewModel, contractNo);
@@ -184,7 +189,12 @@
 	
 	//[self.loanlimiteView setAvailableCredit:@"4000" usedCredit:@"3000"];
 	
-	self.viewModel.active = YES;
+	
+	[[self rac_signalForSelector:@selector(viewWillAppear:)]
+	subscribeNext:^(id x) {
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
+	}];
 	
 }
 
