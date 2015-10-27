@@ -29,7 +29,10 @@
 	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
 	RAC(self, status) = RACObserve(self, model.contractStatus);
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
-	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(id value) {
+	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
+		if (value.length == 0) {
+			return @"当天";
+		}
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
 		NSDateFormatter *df = [[NSDateFormatter alloc]init];
 		df.dateFormat = @"yyyy-MM-dd";
@@ -47,14 +50,12 @@
 	_model = model;
 	_services = services;
 	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
-	RAC(self, status) = [RACObserve(self, model.contractStatus) map:^id(NSString *value) {
-		if ([value isEqualToString:@"已逾期"]) {
-			self.date = @"现在";
-		}
-		return value;
-	}];
+	RAC(self, status) = RACObserve(self, model.contractStatus);
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
-	RAC(self, date) = [[RACObserve(self, model.repaymentTime) ignore:nil] map:^id(id value) {
+	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
+		if (value.length == 0) {
+			return @"当天";
+		}
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
 		NSDateFormatter *df = [[NSDateFormatter alloc]init];
 		df.dateFormat = @"yyyy-MM-dd";
