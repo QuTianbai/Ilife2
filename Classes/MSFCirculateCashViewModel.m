@@ -64,6 +64,9 @@
 		return value;
 	}];
 	RAC(self, latestDueDate) = [RACObserve(self, infoModel.latestDueDate) map:^id(NSString *value) {
+		if (value == nil) {
+			return @"0000-00-00";
+		}
 		NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 		[inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
 		inputFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
