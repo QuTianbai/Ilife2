@@ -83,7 +83,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 - (RACSignal *)executeDrawCash {
 	NSError *error = nil;
-	if (self.drawCash.length == 0 ) {
+	if (self.drawCash.length == 0 || [self.drawCash isEqualToString:@"0"] ) {
 		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入提现金额", }];
 		return [RACSignal error:error];
 	}
