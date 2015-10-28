@@ -1,3 +1,15 @@
+Version 2.0.0.18:
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - fix 白名单申请状态首页显示错误
+ - fix 三方账号只取第一个
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - fix bug 334
+ - 323 【APP-IOS-2.0.0.15】申请贷款->随借随还 页面中最近应还款额与最近应还款日期为空，未到账单日应显示金额为0，日期为0000-00-00
+ - 323 【APP-IOS-2.0.0.15】申请贷款->随借随还 页面中最近应还款额与最近应还款日期为空，未到账单日应显示金额为0，日期为0000-00-00
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 325 【APP-IOS-2.0.0.15】申请贷款->随借随还 页面中合同截止日期显示不正确 320 【APP-IOS-2.0.0.15】随借随还提款后，申请贷款页面中可用额度与已用额度没有实时刷新
+ - fix 随借随还屏幕适配，数据显示
+
 Version 2.0.0.17:
  - Update xcodeproj
  - Update Chinese name rules
