@@ -61,7 +61,7 @@ static NSString *msf_whiteListUserCode = @"4101";
 				}
 				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
 				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
-				if (loan.type.length == 0 || (allow.processing && (applyBlank || contractBlank))) {
+				if (loan.type.length == 0 || applyBlank || contractBlank) {
 					self.viewModel.active = NO;
 					self.viewModel.active = YES;
 					return nil;
