@@ -100,8 +100,12 @@
 		[_statusButton setTitle:viewModel.statusString forState:UIControlStateNormal];
 		if ([@[@"G", @"H", @"I", @"J", @"K"] containsObject:viewModel.status]) {
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
-		} else if ([@[@"A", @"B", @"C", @"D"] containsObject:viewModel.status]) {
+		} else if ([viewModel.status isEqualToString:@"D"]) {
 			_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
+		} else if ([viewModel.status isEqualToString:@"C"]) {
+			[_infoLabel setText:@"你的合同已逾期\n请及时联系客服还款：400-036-8876"
+						highLightText:@"已逾期"
+					 highLightColor:UIColor.tintColor];
 		} else if ([viewModel.status isEqualToString:@"E"]) {
 			_infoLabel.text = @"合同正在处理中";
 		} else {
