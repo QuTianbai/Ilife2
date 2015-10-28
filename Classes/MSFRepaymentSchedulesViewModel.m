@@ -34,9 +34,7 @@
 			return @"当天";
 		}
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
-		NSDateFormatter *df = [[NSDateFormatter alloc]init];
-		df.dateFormat = @"yyyy-MM-dd";
-		return [df stringFromDate:time];
+		return [NSDateFormatter msf_stringFromDate:time];
 	}];
 	
   return self;
@@ -57,9 +55,7 @@
 			return @"当天";
 		}
 		NSDate *time = [NSDateFormatter msf_dateFromString:value];
-		NSDateFormatter *df = [[NSDateFormatter alloc]init];
-		df.dateFormat = @"yyyy-MM-dd";
-		return [df stringFromDate:time];
+		return [NSDateFormatter msf_stringFromDate:time];
 	}];
 	
   return self;

@@ -10,6 +10,7 @@
 #import "MSFLoanLimitView.h"
 #import "MSFCirculateCashViewModel.h"
 #import "UIColor+Utils.h"
+#import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFCirculateViewCell ()
 
@@ -29,10 +30,19 @@
 @implementation MSFCirculateViewCell
 
 - (void)awakeFromNib {
-	_separatorLoc = ([UIScreen mainScreen].bounds.size.width - 80) * 2 / 3 + 50;
 	_unitWidth = 60.f;
 	_textFont = [UIFont systemFontOfSize:17];
 	_textMargin = (_unitWidth - _textFont.lineHeight * 2) / 3;
+	CGFloat margin = 5.f;
+	
+	CGFloat cellHeight = [UIScreen mainScreen].bounds.size.height - [UIScreen mainScreen].bounds.size.width / 2.16 - 64 - 49;
+	CGFloat freferredWidth = [UIScreen mainScreen].bounds.size.width - 80;
+	CGFloat frefferedHeight = freferredWidth * 2 / 3;
+	if (frefferedHeight + _unitWidth + margin * 3 > cellHeight) {
+		_separatorLoc = cellHeight - _unitWidth - margin;
+	} else {
+		_separatorLoc = frefferedHeight;
+	}
 }
 
 - (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
@@ -66,9 +76,9 @@
 	paragraph.alignment = NSTextAlignmentCenter;
 	NSDictionary *attri = @{NSForegroundColorAttributeName : textColor,
 												  NSFontAttributeName : _textFont,
-												  NSParagraphStyleAttributeName : paragraph};
-	if (self.viewModel.overdueMoney.length > 0) {
-		NSString *drawText = [self.viewModel.contractStatus isEqualToString:@"J"] ? @"已到期" : @"已逾期";
+												  NSParagraphStyleAttributeName : paragraph};	
+	if (self.viewModel.overdueMoney.doubleValue > 0) {
+		NSString *drawText = [self.viewModel.contractStatus isEqualToString:@"B"] ? @"已到期" : @"已逾期";
 		[drawText drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 		[_overDue drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	} else {

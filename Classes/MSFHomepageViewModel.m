@@ -78,7 +78,9 @@ static NSString *msf_whiteListUserCode = @"4101";
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
 		@strongify(self)
-		self.viewModels = x;
+		if ([self.services.httpClient.user.type isEqualToString:msf_normalUserCode]) {
+			self.viewModels = x;
+		}
 	}];
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
