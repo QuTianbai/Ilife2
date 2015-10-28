@@ -63,6 +63,7 @@
 		self.title = @"还款";
 		self.showInfoLB.text = @"还款金额从此银行账户代扣";
 		self.warningLB.text = @"";
+		[self.submitBT setTitle:@"确认还款" forState:UIControlStateNormal];
 	}
 }
 

@@ -303,7 +303,7 @@ it(@"should execute find password", ^{
 
 it(@"should accept user name", ^{
 	// then
-	expect(@([@"张。三" isChineseName])).to(beTruthy());
+	expect(@([@"张·三" isChineseName])).to(beTruthy());
 });
 
 it(@"should not accept user name", ^{

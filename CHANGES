@@ -1,3 +1,23 @@
+Version 2.0.0.17:
+ - Update xcodeproj
+ - Update Chinese name rules
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - merge code
+ - fix bugs
+ - fix 地址选择错误
+ - Update test address
+ - Improve 首页广告图显示效果
+ - 还款计划，已逾期返回时间为空，此时显示当天
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - 【APP-IOS-2.0.0.15】白名单用户首次登录，进入申请贷款页面，总欠款金额显示为2058
+ - Update podfile
+ - 还款已逾期，截止日期显示现在
+ - Improve signout
+ - Update server for develop
+ - Update provsioning profile for new devices
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 294 【APP-IOS-2.0.0.15】首页显示合同状态已逾期，点击已逾期，程序闪退
+
 Version 2.0.0.16:
  - fix 合同确认状态吗错误
  - commit
