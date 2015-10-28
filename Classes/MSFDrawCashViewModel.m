@@ -51,6 +51,12 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 													RACObserve(self, circulateViewModel.latestDueMoney),
 													RACObserve(self, circulateViewModel.totalOverdueMoney)]
 												reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
+													if (lastDueMoney == nil) {
+														lastDueMoney = @"0";
+													}
+													if (totaloverdueMoney == nil) {
+														totaloverdueMoney = @"0";
+													}
 													return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
 												}];
 		
