@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBt-ib-4Yc" customClass="MSFLoanLimitView">
-                        <rect key="frame" x="40" y="20" width="242" height="161.5"/>
+                        <rect key="frame" x="40" y="5" width="242" height="161.5"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -29,10 +29,11 @@
             </view>
             <animations/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="OBt-ib-4Yc" secondAttribute="trailing" constant="40" id="61c-L7-bJe"/>
-                <constraint firstItem="OBt-ib-4Yc" firstAttribute="leading" secondItem="sOy-Dg-aJ7" secondAttribute="leading" constant="40" id="76f-S5-4BD"/>
+                <constraint firstAttribute="trailing" secondItem="OBt-ib-4Yc" secondAttribute="trailing" priority="750" constant="40" id="61c-L7-bJe"/>
+                <constraint firstItem="OBt-ib-4Yc" firstAttribute="leading" secondItem="sOy-Dg-aJ7" secondAttribute="leading" priority="750" constant="40" id="76f-S5-4BD"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OBt-ib-4Yc" secondAttribute="bottom" constant="70" id="Mab-eR-f03"/>
                 <constraint firstItem="OBt-ib-4Yc" firstAttribute="centerX" secondItem="sOy-Dg-aJ7" secondAttribute="centerX" id="ely-Mw-poe"/>
-                <constraint firstItem="OBt-ib-4Yc" firstAttribute="top" secondItem="sOy-Dg-aJ7" secondAttribute="top" constant="20" id="gFt-a3-Jrc"/>
+                <constraint firstItem="OBt-ib-4Yc" firstAttribute="top" secondItem="sOy-Dg-aJ7" secondAttribute="top" constant="5" id="gFt-a3-Jrc"/>
             </constraints>
             <size key="customSize" width="322" height="242"/>
             <connections>

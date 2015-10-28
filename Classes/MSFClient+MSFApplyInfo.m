@@ -36,9 +36,24 @@
 	NSString *jd = @"";
 	for (NSDictionary *addition in additionalList) {
 		switch ([addition stringForKey:@"additionalType"].intValue) {
-			case 1: qq = [addition stringForKey:@"additionalValue"]; break;
-			case 2: tb = [addition stringForKey:@"additionalValue"]; break;
-			case 3: jd = [addition stringForKey:@"additionalValue"]; break;
+			case 1: {
+				if (qq.length == 0) {
+					qq = [addition stringForKey:@"additionalValue"];
+				}
+				break;
+			}
+			case 2: {
+				if (tb.length == 0) {
+					tb = [addition stringForKey:@"additionalValue"];
+				}
+				break;
+			}
+			case 3: {
+				if (jd.length == 0) {
+					jd = [addition stringForKey:@"additionalValue"];
+				}
+				break;
+			}
 		}
 	}
 	
