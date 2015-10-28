@@ -84,11 +84,14 @@
 		@strongify(self);
 		return [self houseValuesSignal];
 	}];
+	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
 	
 	_executeMarryValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self);
 		return [self marryValuesSignal];
 	}];
+	_executeMarryValuesCommand.allowsConcurrentExecution = YES;
+	
 	return self;
 }
 

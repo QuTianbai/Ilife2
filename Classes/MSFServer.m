@@ -9,7 +9,7 @@
 
 #if DEBUG
 
-NSString *const MSFServerDotComAPIEndpoint = @"http://api2.msxf.lotest";
+NSString *const MSFServerDotComAPIEndpoint = @"http://api3.msxf.test";
 NSString *const MSFServerDotComBaseWebURL = @"http://api3.msxf.test";
 
 #elif UAT
