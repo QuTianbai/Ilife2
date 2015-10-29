@@ -19,6 +19,7 @@
 #import "MSFPersonalViewModel.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFRelationshipViewModel.h"
+#import "MSFHomepageViewModel.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFFormsViewModel.h"
 
@@ -26,7 +27,6 @@
 #import "UIColor+Utils.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
-#import "MSFHomepageViewModel.h"
 
 @interface MSFHomePageContentCollectionViewCell ()
 

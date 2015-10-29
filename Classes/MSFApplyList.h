@@ -14,7 +14,7 @@
 @property (nonatomic, copy, readonly) NSString *apply_time;//申请时间
 @property (nonatomic, copy, readonly) NSString *total_amount;//总金额
 @property (nonatomic, copy, readonly) NSString *total_installments;//总期数
-@property (nonatomic, copy ,readonly) NSString *statusString;//2.0版本状态码。U：正在处理 R：拒绝 A：通过 C：激活前取消 N：签署 J：放弃
+@property (nonatomic, copy ,readonly) NSString *statusString;//2.0版本状态码
 @property (nonatomic, copy, readonly) NSString *loan_id;//贷款合同ID
 
 //老参数
