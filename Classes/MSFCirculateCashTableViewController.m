@@ -38,6 +38,8 @@
 
 @property (nonatomic, copy) NSString *usedL;
 
+@property (nonatomic, copy) NSString *usedMoneyCount;
+
 @property (nonatomic, strong) MSFCirculateCashViewModel *viewModel;
 
 @end
@@ -59,7 +61,7 @@
 	
 	RAC(self.lastInputMoneyLB, text) = RACObserve(self.viewModel, latestDueMoney);
 	RAC(self.lastInputMoneyTimeLB, text) = RACObserve(self.viewModel, latestDueDate);
-	RAC(self.countInpoutMoneyLB, text) = [RACObserve(self.viewModel, usedLimit) ignore:nil];
+	RAC(self.countInpoutMoneyLB, text) = [RACObserve(self.viewModel, totalOverdueMoney) ignore:nil];
 	RAC(self.deadLineLB, text) = [RACObserve(self.viewModel, contractExpireDate) map:^id(id value) {
 		return value;
 	}];
@@ -110,6 +112,7 @@
 					if (model.master) {
 						MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:0];
 						MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
+						viewModel.drawCash = self.usableLimit;
 						drawCashVC.viewModel = viewModel;
 						drawCashVC.type = 0;
 						[self.navigationController pushViewController:drawCashVC animated:YES];
@@ -155,6 +158,7 @@
 					 if (model.master) {
 						 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
 						 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
+						 viewModel.drawCash = self.usedL;
 						 drawCashVC.viewModel = viewModel;
 						 drawCashVC.type = 1;
 						 [self.navigationController pushViewController:drawCashVC animated:YES];
@@ -181,11 +185,13 @@
 //	 }];
 //	
 	
-	RAC(self, usedL) = [RACObserve(self, viewModel.usedLimit) map:^id(id value) {
+	RAC(self, usedMoneyCount) = [RACObserve(self, viewModel.usedLimit) map:^id(id value) {
 		[self.loanlimiteView setAvailableCredit:self.viewModel.usableLimit usedCredit:self.viewModel.usedLimit];
 		
 		return value;
 	}];
+	
+	RAC(self, usedL) = RACObserve(self, viewModel.latestDueMoney);
 	
 	//[self.loanlimiteView setAvailableCredit:@"4000" usedCredit:@"3000"];
 	
