@@ -10,9 +10,9 @@
 #import "MSFViewModelServices.h"
 
 typedef NS_ENUM(NSInteger, MSFHomePageCellType) {
-	MSFHomePageCellTypeInfo,	//饼图
-	MSFHomePageCellTypeMS,		//马上贷
-	MSFHomePageCellTypeXH,		//白名单
+	MSFHomePageCellTypeInfo, //饼图
+	MSFHomePageCellTypeMS, //马上贷
+	MSFHomePageCellTypeXH, //白名单
 };
 
 @interface MSFHomePageCellModel : RVMViewModel
