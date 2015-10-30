@@ -60,7 +60,7 @@
 				
 			} else {
 				[[[UIAlertView alloc] initWithTitle:@"提示"
-																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
+																		message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。"
 																	 delegate:nil
 													cancelButtonTitle:@"确认"
 													otherButtonTitles:nil] show];

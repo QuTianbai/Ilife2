@@ -9,15 +9,8 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
 
-typedef NS_ENUM(NSInteger, MSFHomePageCellType) {
-	MSFHomePageCellTypeInfo,
-	MSFHomePageCellTypeMS,
-	MSFHomePageCellTypeXH,
-};
-
 @interface MSFHomePageCellModel : RVMViewModel
 
-@property (nonatomic, assign) MSFHomePageCellType cellType;
 @property (nonatomic, weak) id<MSFViewModelServices>services;
 
 /*
