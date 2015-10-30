@@ -68,13 +68,13 @@
 		}
 	}];
 	RAC(self, applyTime) = [RACObserve(self.model, applyDate) map:^id(id value) {
-		if (![value isKindOfClass:NSString.class] || [value length] == 0) {
-			return nil;
-		}
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		[df setDateFormat:@"yyyyMMddHHmmss"];
 		NSDate *date = [df dateFromString:value];
-		return [NSDateFormatter msf_stringFromDate:date];
+		if (date) {
+			return [NSDateFormatter msf_stringFromDate:date];
+		}
+		return nil;
 	}];
 	RAC(self, applyDate) = RACObserve(self.model, applyDate);
 	RAC(self, currentPeriodDate) = RACObserve(self.model, currentPeriodDate);
@@ -85,34 +85,9 @@
 	RAC(self, totalLimit) = RACObserve(self.model, totalLimit);
 	RAC(self, usedLimit) = RACObserve(self.model, usedLimit);
 	RAC(self, usableLimit) = RACObserve(self.model, usableLimit);
-	RAC(self, contractExpireDate) = [RACObserve(self.model, contractExpireDate) map:^id(NSString *value) {
-		NSDateFormatter *df = [[NSDateFormatter alloc] init];
-		[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
-		[df setDateFormat:@"yyyyMMdd"];
-		df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-		NSDate *inputDate = [df dateFromString:value ?: @""];
-		NSString *str = @"";
-		if (inputDate != nil) {
-			str = [NSDateFormatter msf_stringFromDate:inputDate];
-		}
-		return str;
-	}];
+	RAC(self, contractExpireDate) = RACObserve(self.model, contractExpireDate);
 	RAC(self, latestDueMoney) = RACObserve(self.model, latestDueMoney);
-	RAC(self, latestDueDate) = [RACObserve(self.model, latestDueDate) map:^id(NSString *value) {
-		if (value == nil) {
-			return @"0000-00-00";
-		}
-		NSDateFormatter *df = [[NSDateFormatter alloc] init];
-		[df setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
-		df.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-		[df setDateFormat:@"yyyyMMdd"];
-		NSDate *inputDate = [df dateFromString:value];
-		NSString *str = @"";
-		if (inputDate != nil) {
-			str = [NSDateFormatter msf_stringFromDate:inputDate];
-		}
-		return str;
-	}];
+	RAC(self, latestDueDate) = RACObserve(self.model, latestDueDate);
 	RAC(self, totalOverdueMoney) = RACObserve(self.model, totalOverdueMoney);
 	RAC(self, contractNo) = RACObserve(self.model, contractNo);
 	RAC(self, overdueMoney) = RACObserve(self.model, overdueMoney);

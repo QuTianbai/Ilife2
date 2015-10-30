@@ -30,11 +30,7 @@
 	RAC(self, status) = RACObserve(self, model.contractStatus);
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
 	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
-		if (value.length == 0) {
-			return @"当天";
-		}
-		NSDate *time = [NSDateFormatter msf_dateFromString:value];
-		return [NSDateFormatter msf_stringFromDate:time];
+		return value.length > 0 ? value : @"当天";
 	}];
 	
   return self;
@@ -51,11 +47,7 @@
 	RAC(self, status) = RACObserve(self, model.contractStatus);
 	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
 	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
-		if (value.length == 0) {
-			return @"当天";
-		}
-		NSDate *time = [NSDateFormatter msf_dateFromString:value];
-		return [NSDateFormatter msf_stringFromDate:time];
+		return value.length > 0 ? value : @"当天";
 	}];
 	
   return self;

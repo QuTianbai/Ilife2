@@ -7,27 +7,22 @@
 //
 
 #import "MSFPersonalViewController.h"
-#import <FMDB/FMDatabase.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFAreas.h"
 
-#import "MSFApplicationResponse.h"
-#import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
-#import "NSString+Matches.h"
-
-#import "MSFPersonalViewModel.h"
-#import "MSFFormsViewModel.h"
-#import "MSFApplicationForms.h"
-
-#import "UITextField+RACKeyboardSupport.h"
-#import "MSFCommandView.h"
-#import "MSFHeaderView.h"
-#import "MSFCommandView.h"
-#import "MSFXBMCustomHeader.h"
 
 #import "MSFSegment.h"
+#import "MSFCommandView.h"
+
+#import "MSFSelectionViewModel.h"
+#import "MSFPersonalViewModel.h"
+#import "MSFFormsViewModel.h"
+
+#import "MSFAreas.h"
+#import "MSFApplicationForms.h"
+
+#import "NSString+Matches.h"
 
 @interface MSFPersonalViewController ()
 <MSFSegmentDelegate>
