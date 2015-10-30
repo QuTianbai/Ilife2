@@ -134,7 +134,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.navigationItem.titleView = label;
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
-	RAC(self, bankCard.text) = [RACObserve(self, viewModel.masterBankCardNO) map:^id(id value) {
+	RAC(self, bankCard.text) = [RACObserve(self, viewModel.masterBankCardNameAndNO) map:^id(id value) {
 		if ([value isEqualToString:@""] || value == nil) {
 			self.master = NO;
 			[self.tableView reloadData];
