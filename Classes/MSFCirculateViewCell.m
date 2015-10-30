@@ -77,9 +77,8 @@
 	NSDictionary *attri = @{NSForegroundColorAttributeName : textColor,
 												  NSFontAttributeName : _textFont,
 												  NSParagraphStyleAttributeName : paragraph};	
-	if (self.viewModel.overdueMoney.doubleValue > 0) {
-		NSString *drawText = [self.viewModel.contractStatus isEqualToString:@"B"] ? @"已到期" : @"已逾期";
-		[drawText drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
+	if ([self.viewModel.contractStatus isEqualToString:@"B"]) {
+		[@"已逾期" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 		[_overDue drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textFont.lineHeight + _textMargin * 2, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];
 	} else {
 		[@"下期还款" drawInRect:CGRectMake(rect.size.width / 2 - _unitWidth, _separatorLoc + _textMargin, _unitWidth * 2, _unitWidth / 2) withAttributes:attri];

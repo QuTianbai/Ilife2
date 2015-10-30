@@ -109,7 +109,7 @@ static NSString *msf_whiteListUserCode = @"4101";
 		} else {
 			return self;
 		}
-	} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
+	} else if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode] && self.circulateCashViewModel.totalLimit.doubleValue > 0) {
 		return self.circulateCashViewModel;
 	} else {
 		return self;
@@ -117,7 +117,7 @@ static NSString *msf_whiteListUserCode = @"4101";
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode]) {
+	if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode] && self.circulateCashViewModel.totalLimit.doubleValue > 0) {
 		return @"MSFCirculateViewCell";
 	} else {
 		return @"MSFHomePageContentCollectionViewCell";
