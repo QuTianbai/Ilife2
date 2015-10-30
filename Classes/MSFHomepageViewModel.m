@@ -39,16 +39,22 @@ static NSString *msf_whiteListUserCode = @"4101";
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
-			BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
-			BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
-			if (loan.type.length == 0 || applyBlank || contractBlank) {
-				self.viewModel.active = NO;
-				self.viewModel.active = YES;
-				return nil;
-			} else {
+			if ([loan.produceType isEqualToString:@"MS"]) {
+				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
+				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
+				if (loan.type.length == 0 || applyBlank || contractBlank) {
+					self.viewModel.active = NO;
+					self.viewModel.active = YES;
+					return nil;
+				} else {
+					MSFHomePageCellModel *viewModel = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
+					return @[viewModel];
+				}
+			} else if ([loan.produceType isEqualToString:@"XH"]) {
 				MSFHomePageCellModel *viewModel = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
 				return @[viewModel];
 			}
+			return nil;
 		}];
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {

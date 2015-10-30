@@ -29,7 +29,7 @@
 
 @property (nonatomic, copy) NSString *produceType;//产品类型   循环贷/马上贷
 
-@property (nonatomic, copy) NSString *applyNo;//产品类型   循环贷/马上贷
+@property (nonatomic, copy) NSString *applyNo;//申请单号
 
 /*
  *
