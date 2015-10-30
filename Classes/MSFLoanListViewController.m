@@ -18,7 +18,7 @@
 #import "MSFCellButton.h"
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#import "MSFLoanViewModel.h"
+#import "MSFHomePageCellModel.h"
 
 #define ORAGECOLOR @"ff6600"
 #define BLUECOLOR @"#0babed"
@@ -31,7 +31,7 @@
 @property (strong, nonatomic)  UILabel *months;
 @property (strong, nonatomic)  UILabel *time;
 @property (strong, nonatomic)  UILabel *check;
-@property (nonatomic, weak) MSFLoanViewModel *viewModel;
+@property (nonatomic, weak) MSFHomePageCellModel *viewModel;
 
 @end
 
@@ -41,7 +41,7 @@
 		NSLog(@"MSFLoanListViewController `-dealloc`");
 }
 
-- (instancetype)initWithViewModel:(id)viewModel {
+- (instancetype)initWithViewModel:(MSFHomePageCellModel *)viewModel {
   self = [super init];
   if (!self) {
     return nil;

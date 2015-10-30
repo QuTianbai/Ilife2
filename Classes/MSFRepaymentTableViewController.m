@@ -21,20 +21,20 @@
 #define BLUETCOLOR @"0babed"
 #import "MSFTableViewBindingHelper.h"
 #import "MSFRepaymentSchedulesViewModel.h"
-#import "MSFLoanViewModel.h"
+#import "MSFHomePageCellModel.h"
 
 @interface MSFRepaymentTableViewController ()
 
 @property (nonatomic, strong) NSArray *objects;
 @property (nonatomic, strong) MSFRepaymentSchedules *rs;
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
-@property (nonatomic, weak) MSFLoanViewModel *viewModel;
+@property (nonatomic, weak) MSFHomePageCellModel *viewModel;
 
 @end
 
 @implementation MSFRepaymentTableViewController
 
-- (instancetype)initWithViewModel:(id)viewModel {
+- (instancetype)initWithViewModel:(MSFHomePageCellModel *)viewModel {
   self = [super initWithStyle:UITableViewStylePlain];
   if (!self) {
     return nil;

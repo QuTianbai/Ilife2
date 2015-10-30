@@ -8,9 +8,9 @@
 
 #import "MSFCirculateViewCell.h"
 #import "MSFLoanLimitView.h"
-#import "MSFCirculateCashViewModel.h"
-#import "UIColor+Utils.h"
+#import "MSFHomePageCellModel.h"
 #import "NSDictionary+MSFKeyValue.h"
+#import "UIColor+Utils.h"
 
 @interface MSFCirculateViewCell ()
 
@@ -21,7 +21,7 @@
 @property (nonatomic, assign) CGFloat textMargin;
 @property (nonatomic, strong) UIFont  *textFont;
 
-@property (nonatomic, strong) MSFCirculateCashViewModel *viewModel;
+@property (nonatomic, strong) MSFHomePageCellModel *viewModel;
 @property (nonatomic, strong) NSString *repayment;
 @property (nonatomic, strong) NSString *overDue;
 
@@ -34,7 +34,6 @@
 	_textFont = [UIFont systemFontOfSize:17];
 	_textMargin = (_unitWidth - _textFont.lineHeight * 2) / 3;
 	CGFloat margin = 5.f;
-	
 	CGFloat cellHeight = [UIScreen mainScreen].bounds.size.height - [UIScreen mainScreen].bounds.size.width / 2.16 - 64 - 49;
 	CGFloat freferredWidth = [UIScreen mainScreen].bounds.size.width - 80;
 	CGFloat frefferedHeight = freferredWidth * 2 / 3;
@@ -45,7 +44,7 @@
 	}
 }
 
-- (void)bindViewModel:(MSFCirculateCashViewModel *)viewModel {
+- (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
 	_viewModel = viewModel;
 	_repayment = [NSString stringWithFormat:@"￥%@", viewModel.latestDueMoney.length > 0 ? viewModel.latestDueMoney : @"0"];
 	_overDue   = [NSString stringWithFormat:@"￥%@", viewModel.overdueMoney.length > 0 ? viewModel.overdueMoney : @"0"];

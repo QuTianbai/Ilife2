@@ -13,24 +13,13 @@
 #import "MSFCirculateViewCell.h"
 
 #import "MSFHomepageViewModel.h"
-#import "MSFLoanViewModel.h"
-#import "MSFFormsViewModel.h"
-#import "MSFCirculateCashModel.h"
-#import "MSFCirculateCashViewModel.h"
 #import "MSFReactiveView.h"
 #import "UIColor+Utils.h"
-#import "MSFAboutsViewController.h"
-#import "MSFClient.h"
-#import "MSFUser.h"
-
-#import "MSFClient+RepaymentSchedules.h"
-#import "MSFClient+ApplyList.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic, strong) UIView *separatorView;
 @property (nonatomic, strong, readwrite) MSFHomepageViewModel *viewModel;
 
 @end
@@ -52,12 +41,16 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	//titleView
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
 	label.text = @"马上贷";
 	label.textColor = [UIColor tintColor];
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textAlignment = NSTextAlignmentCenter;
 	self.navigationItem.titleView = label;
+	
+	//collectionView
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.collectionView.allowsSelection = NO;
@@ -71,11 +64,6 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-	[RACObserve(self.viewModel.circulateCashViewModel, infoModel) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.collectionView reloadData];
-	}];
-	
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
@@ -87,7 +75,6 @@ UICollectionViewDelegateFlowLayout>
 				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
-	
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.active = NO;

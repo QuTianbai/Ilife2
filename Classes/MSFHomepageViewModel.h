@@ -12,23 +12,19 @@
 @end
 
 @class RACCommand;
-@class MSFCirculateCashViewModel;
 @class MSFFormsViewModel;
 
 @interface MSFHomepageViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFFormsViewModel *viewModel;
-@property (nonatomic, readonly) NSArray *viewModels;
-@property (nonatomic, readonly) RACCommand *refreshCommand;
-@property (nonatomic, readonly) MSFCirculateCashViewModel *circulateCashViewModel;
+@property (nonatomic, strong, readonly) NSArray *viewModels;
+@property (nonatomic, strong, readonly) RACCommand *refreshCommand;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
-
-
-- (NSInteger)numberOfItemsInSection:(NSInteger)section;
-- (id)viewModelForIndexPath:(NSIndexPath *)indexPath;
-- (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath;
 
 - (instancetype)initWithModel:(MSFFormsViewModel *)viewModel
 										 services:(id <MSFViewModelServices>)services;
+- (NSInteger)numberOfItemsInSection:(NSInteger)section;
+- (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath;
+- (id)viewModelForIndexPath:(NSIndexPath *)indexPath;
 
 @end

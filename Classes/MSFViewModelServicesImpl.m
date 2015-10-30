@@ -35,7 +35,7 @@
 #import "MSFConfirmContactViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
-#import "MSFLoanViewModel.h"
+#import "MSFHomePageCellModel.h"
 #import "MSFLoanListViewController.h"
 #import "MSFRepaymentTableViewController.h"
 
@@ -100,8 +100,8 @@
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFLoanViewModel class]]) {
-		if (((MSFLoanViewModel *)viewModel).jumpDes == 1) {
+	} else if ([viewModel isKindOfClass:[MSFHomePageCellModel class]]) {
+		if (((MSFHomePageCellModel *)viewModel).jumpDes == 1) {
 			viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 		} else {
 			viewController = [[MSFRepaymentTableViewController alloc] initWithViewModel:viewModel];

@@ -6,7 +6,7 @@
 
 #import "MSFHomepageViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFLoanViewModel.h"
+#import "MSFHomePageCellModel.h"
 #import "MSFClient.h"
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
@@ -36,7 +36,7 @@ it(@"should not has viewmodel for placeholder", ^{
   NSIndexPath *indexPath = mock(NSIndexPath.class);
   
   // when
-  MSFLoanViewModel *sub = [viewModel viewModelForIndexPath:indexPath];
+  MSFHomePageCellModel *sub = [viewModel viewModelForIndexPath:indexPath];
   NSString *reusableIdentifier = [viewModel reusableIdentifierForIndexPath:indexPath];
   
   // then

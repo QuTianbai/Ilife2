@@ -12,6 +12,8 @@
 #import "NSDictionary+MSFKeyValue.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFClient+MSFCirculateCash.h"
+#import "MSFClient+RepaymentSchedules.h"
+#import "MSFClient+ApplyList.h"
 
 @interface MSFHomePageCellModel ()
 
@@ -77,7 +79,6 @@
 	RAC(self, applyDate) = RACObserve(self.model, applyDate);
 	RAC(self, currentPeriodDate) = RACObserve(self.model, currentPeriodDate);
 	
-	
 	/*
 	 随借随还
 	 */
@@ -128,6 +129,18 @@
 	}];
 	
 	return self;
+}
+
+- (RACSignal *)fetchApplyListSignal {
+	return [self.services.httpClient fetchApplyList];
+}
+
+- (RACSignal *)fetchRepaymentSchedulesSignal {
+	return [self.services.httpClient fetchRepaymentSchedules];
+}
+
+- (void)pushDetailViewController {
+	[self.services pushViewModel:self];
 }
 
 @end
