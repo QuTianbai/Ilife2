@@ -436,7 +436,6 @@
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[comps setYear:-50];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate
@@ -470,7 +469,6 @@
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[comps setYear:-50];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
 		 datePickerMode:UIDatePickerModeDate

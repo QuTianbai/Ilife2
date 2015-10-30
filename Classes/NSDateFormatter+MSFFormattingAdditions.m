@@ -66,12 +66,8 @@
 
 + (NSString *)msf_stringFromDate2:(NSDate *)date {
 	NSParameterAssert(date != nil);
-	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 	formatter.dateFormat = @"yyyy-MM";
-	
 	return [formatter stringFromDate:date];
 }
 
