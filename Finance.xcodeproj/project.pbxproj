@@ -200,6 +200,7 @@
 		1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */; };
 		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
+		107A0D1F1BE203410076E08C /* MSFHomePageCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */; };
 		108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */; };
 		108B0A981BBE7F01000EAEF8 /* MSFCirculateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
@@ -1033,6 +1034,8 @@
 		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
 		105E839A1B7E074500E821CB /* MSFRepaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentViewModel.h; sourceTree = "<group>"; };
 		105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentViewModel.m; sourceTree = "<group>"; };
+		107A0D1D1BE203410076E08C /* MSFHomePageCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomePageCellModel.h; sourceTree = "<group>"; };
+		107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageCellModel.m; sourceTree = "<group>"; };
 		108B0A941BBE7F01000EAEF8 /* MSFCirculateViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateViewCell.h; sourceTree = "<group>"; };
 		108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCirculateViewCell.m; sourceTree = "<group>"; };
 		108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFCirculateViewCell.xib; sourceTree = "<group>"; };
@@ -3042,6 +3045,8 @@
 			children = (
 				498113CB1B1C4242003D1B7A /* MSFHomepageViewModel.h */,
 				498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */,
+				107A0D1D1BE203410076E08C /* MSFHomePageCellModel.h */,
+				107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */,
 				105E839A1B7E074500E821CB /* MSFRepaymentViewModel.h */,
 				105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */,
 			);
@@ -3760,6 +3765,7 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
+				5E6248C4F28F877B5A69423E /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3779,6 +3785,7 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
+				40948D3DD22138BC287272DD /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4345,6 +4352,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		40948D3DD22138BC287272DD /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4912D7AB1B622E230014059D /* todo */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4399,6 +4421,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#${SRCROOT}/Script/brsp/xcode-build-bump.sh";
+		};
+		5E6248C4F28F877B5A69423E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4616,6 +4653,7 @@
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
+				107A0D1F1BE203410076E08C /* MSFHomePageCellModel.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
 				49CA938B1BBA843A0032F5C2 /* MSFAuthorizeRequest.m in Sources */,
 				4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */,
@@ -4793,7 +4831,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "5de73d6f-1922-4afc-ac1a-5b1f40b7705c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4822,7 +4860,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "5de73d6f-1922-4afc-ac1a-5b1f40b7705c";
 			};
 			name = UAT;
 		};
@@ -5073,7 +5111,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "e2c6c256-4e4a-41cc-a209-ccee98e0c324";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5106,7 +5144,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "e8bd435e-edac-4f35-9d2c-47a134d66212";
 			};
 			name = TEST;
 		};
@@ -5166,7 +5204,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "5de73d6f-1922-4afc-ac1a-5b1f40b7705c";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5199,7 +5237,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "5de73d6f-1922-4afc-ac1a-5b1f40b7705c";
 			};
 			name = TP;
 		};

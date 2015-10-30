@@ -75,7 +75,7 @@ UICollectionViewDelegateFlowLayout>
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];
-	/*
+	
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
@@ -87,7 +87,7 @@ UICollectionViewDelegateFlowLayout>
 				[self.collectionView.pullToRefreshView stopAnimating];
 			}];
 	}];
-	*/
+	
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.active = NO;
