@@ -8,6 +8,7 @@
 
 #import "MSFUserInfomationViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import <Masonry/Masonry.h>
 
 #import "MSFUserInfoCircleView.h"
@@ -25,14 +26,12 @@
 #import "MSFUser.h"
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
-#import <SVProgressHUD/SVProgressHUD.h>
 #import "AppDelegate.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFAddBankCardTableViewController.h"
 
 @interface MSFUserInfomationViewController ()
 
-//@property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIButton *nextStepButton;
 @property (nonatomic, strong) IBOutlet MSFUserInfoCircleView *circleView;
 @property (nonatomic, weak) id<MSFViewModelServices>services;
@@ -43,10 +42,8 @@
 @implementation MSFUserInfomationViewController
 
 - (instancetype)initWithViewModel:(id)viewModel services:(id<MSFViewModelServices>)services {
-	//self = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
 	self = [super initWithNibName:@"MSFUserInformationViewController" bundle:nil];
 	if (self) {
-		//self.view = [[NSBundle mainBundle] loadNibNamed:@"MSFUserInformationViewController" owner:self options:nil][0];
 		self.hidesBottomBarWhenPushed = YES;
 		_services = services;
 		_viewModel = viewModel;
@@ -65,17 +62,13 @@
 	self.navigationItem.title = @"个人信息";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
-//	_headerImageView = [[UIImageView alloc] init];
-//	_headerImageView.image = [UIImage imageNamed:@"home-banner-pl.png"];
-//	[self.view addSubview:_headerImageView];
-//	
 	@weakify(self)
 	[[_circleView.clickCommand.executionSignals
 		switchToLatest]
 	 subscribeNext:^(NSNumber *x) {
 		 @strongify(self)
 		 [self onClickCircle:x.integerValue];
-	}];
+	 }];
 	
 	[RACObserve(self.services.httpClient.user, complateCustInfo) subscribeNext:^(id x) {
 		@strongify(self)
@@ -89,69 +82,45 @@
 	_nextStepButton.hidden = !_showNextStep;
 	_nextStepButton.layer.cornerRadius = 5;
 	[self.view addSubview:_nextStepButton];
-	//_nextStepButton.rac_command = self.viewModel.executeNextCommand;
 	[[self.nextStepButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		@strongify(self)
-		MSFUser *user = [self.viewModel.services httpClient].user;
-		
-		if (![[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
-			[SVProgressHUD showErrorWithStatus:@"请先完善资料"];
-			return ;
+	 subscribeNext:^(id x) {
+		 @strongify(self)
+		 MSFUser *user = [self.viewModel.services httpClient].user;
+		 
+		 if (![[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
+			 [SVProgressHUD showErrorWithStatus:@"请先完善资料"];
+			 return ;
 			}
-		if (!user.hasTransactionalCode) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-				if (index.intValue == 1) {
-					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
-					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
-					
-					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
-									}
-				
-			}];
-			return ;
-		}
-		if (!self.viewModel.formViewModel.master) {
-			[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
-			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
-			BOOL isFirstBankCard = YES;
-			
-			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.services andIsFirstBankCard:isFirstBankCard];
-			[self.navigationController pushViewController:vc animated:YES];
-			
-			return ;
-		}
-		//if ([[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
+		 if (!user.hasTransactionalCode) {
+			 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											 message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			 [alert show];
+			 [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				 if (index.intValue == 1) {
+					 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					 MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					 MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					 
+					 [self.navigationController pushViewController:setTradePasswordVC animated:YES];
+				 }
+				 
+			 }];
+			 return ;
+		 }
+		 if (!self.viewModel.formViewModel.master) {
+			 [SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
+			 MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+			 BOOL isFirstBankCard = YES;
+			 
+			 vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.services andIsFirstBankCard:isFirstBankCard];
+			 [self.navigationController pushViewController:vc animated:YES];
+			 
+			 return ;
+		 }
 			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel];
 			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:certifivatesVC animated:YES];
-		//}
-	}];
-	
-//	[_headerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//		@strongify(self)
-//		make.top.equalTo(self.view).offset(64);
-//		make.left.equalTo(self.view);
-//		make.right.equalTo(self.view);
-//		make.height.equalTo(self.headerImageView.mas_width).multipliedBy(0.463);
-//	}];
-	
-//	CGFloat h1 = [UIScreen mainScreen].bounds.size.width * 0.463;
-//	CGFloat h2 = 60.f;
-//	CGFloat offsetY = (h1 - h2) / 2;
-//	[_circleView mas_makeConstraints:^(MASConstraintMaker *make) {
-//		@strongify(self)
-//		make.top.greaterThanOrEqualTo(self.view.mas_top).offset(h1 + 64.f).priorityHigh();
-//		make.bottom.greaterThanOrEqualTo(self.view.mas_bottom).offset(-h2).priorityHigh();
-//		make.centerX.equalTo(self.view);
-//		make.centerY.equalTo(self.view).offset(-off);
-//		make.width.equalTo(self.view.mas_width).multipliedBy(0.8).priorityMedium();
-//		make.height.equalTo(self.circleView.mas_width);
-//	}];
+	 }];
 	
 	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
