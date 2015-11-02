@@ -1,20 +1,27 @@
 #! /bin/bash
 
-mkdir Vendor
-mkdir Classes
-mkdir Resources
-touch README.md
+if [[ ! -f "README.md" ]]; then
+	mkdir Vendor
+	mkdir Classes
+	mkdir Resources
+	touch README.md
 
-sh Script/utils/github-quick-dependencies.sh
+	# Copy Configurations files
+	cp Script/config/Podfile Podfile
+	cp Script/config/gitignore .gitignore
 
-# Copy Configurations files
-cp Script/config/Podfile Podfile
-cp Script/config/gitignore .gitignore
+	sh Script/utils/github-quick-submodules.sh
+	pod install --no-repo-update
 
+	echo ""
+	echo "config Xcode Build Phases"
+	echo "objclean \"\${SRCROOT}/Script/brsp/xcode-objclean-warnings.sh\""
+	echo "todo \"\${SRCROOT}/Script/brsp/xcode-todo-warnings.sh\""
+	exit
+fi
+
+# git submodules update
+git submodule update --init --recursive
 # CocoaPods install
 pod install --no-repo-update
 
-echo "buildbump \"\${SRCROOT}/Script/brsp/xcode-build-bump.sh\""
-echo "versionbump \"\${SRCROOT}/Script/brsp/xcode-version-bump.sh\""
-echo "objclean \"\${SRCROOT}/Script/brsp/xcode-objclean-warnings.sh\""
-echo "todo \"\${SRCROOT}/Script/brsp/xcode-todo-warnings.sh\""

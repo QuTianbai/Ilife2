@@ -82,6 +82,7 @@
 					return ;
 				} else {
 					self.masterBankCardNO = ob.bankCardNo;
+					self.masterbankInfo = [NSString stringWithFormat:@"%@(%@)", ob.bankName, ob.bankCardNo];
 					self.master = YES;
 					break;
 				}

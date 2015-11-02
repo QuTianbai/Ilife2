@@ -61,7 +61,8 @@
 @property (nonatomic, strong) RACCommand *executeNextCommand;
 @property (nonatomic, strong) RACCommand *executeAllowCashCommand;
 
-@property (nonatomic, copy) NSString *masterBankCardNO;
+//@property (nonatomic, copy) NSString *masterBankCardNO;
+@property (nonatomic, copy) NSString *masterBankCardNameAndNO;
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
 

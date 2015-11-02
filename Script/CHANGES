@@ -1,3 +1,13 @@
+Version 0.2.0:
+ - Update example spec
+ - Update README
+ - Update Quick/Nimble Xcode 7.0
+ - Rename Utils
+ - Update Bump-verion
+ - Update utils
+ - Merge remote-tracking branch 'origin/master'
+ - Rename TestsSpec
+
 Version 0.1.0
  - Update bump-version
  - Add bump-version
