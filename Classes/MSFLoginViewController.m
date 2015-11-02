@@ -102,6 +102,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString:@"page"]) {
 		self.loginPageController = segue.destinationViewController;
+		self.loginPageController.upgrade = self.viewModel.upgrade;
 	}
 }
 

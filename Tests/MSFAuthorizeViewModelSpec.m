@@ -11,6 +11,7 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "MSFResponse.h"
 #import "MSFUser.h"
+#import "MSFIntergrant.h"
 
 QuickSpecBegin(MSFAuthorizeViewModelSpec)
 
@@ -19,11 +20,15 @@ __block id <MSFViewModelServices> services;
 
 __block NSError *error;
 __block BOOL success;
+__block MSFIntergrant *upgrade;
 
 beforeEach(^{
+	upgrade = mock([MSFIntergrant class]);
+	stubProperty(upgrade, isUpgrade, @YES);
+	
 	services = mockProtocol(@protocol(MSFViewModelServices));
 	[given([services server]) willReturn:[MSFServer dotComServer]];
-  viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:services];
+  viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:services upgrade:upgrade];
   error = nil;
   success = NO;
 });
@@ -295,6 +300,11 @@ it(@"should execute find password", ^{
   
   // then
   expect(response.parsedResult[@"message"]).to(equal(@"send success"));
+});
+
+it(@"should upgrade to 1.2 intergrade version", ^{
+	// then
+	expect(@(viewModel.isUpgrade)).to(beTruthy());
 });
 
 QuickSpecEnd

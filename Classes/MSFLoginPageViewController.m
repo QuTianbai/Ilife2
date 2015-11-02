@@ -17,8 +17,9 @@
 #pragma mark - Lifecycle
 
 - (NSArray *)pageIdentifiers {
+	NSString *identifier = self.upgrade ? @"MSFSignUpWebViewController" : @"MSFSignUpViewController";
 	return @[
-		@"MSFSignUpViewController",
+		identifier,
 		@"MSFSignInViewController"
 	];
 }

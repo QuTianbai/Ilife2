@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, MSFLoginType) {
 
 @class MSFServer;
 @class RACCommand;
+@class MSFIntergrant;
 
 // 授权接口调用错误域
 extern NSString *const MSFAuthorizeErrorDomain;
@@ -78,5 +79,10 @@ extern NSString *const MSFAuthorizeErrorDomain;
 //
 // Return a new MSFAuthorizeViewModel instance
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services upgrade:(MSFIntergrant *)upgrade;
+
+
+@property (nonatomic, readonly) MSFIntergrant *upgrade;
+@property (nonatomic, readonly) BOOL isUpgrade;
 
 @end

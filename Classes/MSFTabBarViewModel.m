@@ -14,6 +14,7 @@
 #import "MSFUser.h"
 #import "MSFClient.h"
 #import "MSFClozeViewController.h"
+#import "MSFIntergrant.h"
 
 @interface MSFTabBarViewModel ()
 
@@ -39,8 +40,10 @@
 #pragma mark - Private
 
 - (void)initialize {
+//TODO: 需要新增接口获取升级状态
+	MSFIntergrant *upgrade = [[MSFIntergrant alloc] initWithUpgrade:YES HTMLURL:[NSURL URLWithString:@"http://baiud.com"]];
 	_formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
-	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
+	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services upgrade:upgrade];
 	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel updatedContentSignal"];
 	
 	@weakify(self)

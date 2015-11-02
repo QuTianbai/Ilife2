@@ -14,6 +14,7 @@
 #import "MSFClient+Captcha.h"
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
+#import "MSFIntergrant.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -28,6 +29,16 @@ static const int kCounterLength = 60;
 @implementation MSFAuthorizeViewModel
 
 #pragma mark - Lifecycle
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services upgrade:(MSFIntergrant *)upgrade {
+	if (!(self = [self initWithServices:services])) {
+		return nil;
+	}
+	_upgrade = upgrade;
+	_isUpgrade = upgrade.isUpgrade;
+	
+	return self;
+}
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];

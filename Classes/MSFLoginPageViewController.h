@@ -9,6 +9,7 @@
 
 @interface MSFLoginPageViewController : MSPageViewController <UIPageViewControllerDelegate>
 
+@property (nonatomic, assign) BOOL upgrade;
 @property (nonatomic, assign) BOOL dragging;
 @property (nonatomic, assign, readonly) CGFloat offset;
 

@@ -401,6 +401,9 @@
 		49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE811B2E840A009433C5 /* relationship.storyboard */; };
 		49DC50381BE7262A00C80D87 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		49DC50391BE7262F00C80D87 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
+		49DC503E1BE7295500C80D87 /* MSFIntergrantSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DC503D1BE7295500C80D87 /* MSFIntergrantSpec.m */; };
+		49DC504F1BE7297600C80D87 /* MSFIntergrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DC504E1BE7297600C80D87 /* MSFIntergrant.m */; };
+		49DCB0671BE7396A00CB5B10 /* MSFSignUpWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DCB0661BE7396A00CB5B10 /* MSFSignUpWebViewController.m */; };
 		49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF71B37ED9E00749717 /* btn-family-add.png */; };
 		49E22AFE1B37ED9E00749717 /* btn-family-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */; };
 		49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */; };
@@ -1176,6 +1179,11 @@
 		49DAEE7D1B2E83E4009433C5 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
 		49DAEE811B2E840A009433C5 /* relationship.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = relationship.storyboard; sourceTree = "<group>"; };
+		49DC503D1BE7295500C80D87 /* MSFIntergrantSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFIntergrantSpec.m; sourceTree = "<group>"; };
+		49DC504D1BE7297600C80D87 /* MSFIntergrant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFIntergrant.h; sourceTree = "<group>"; };
+		49DC504E1BE7297600C80D87 /* MSFIntergrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFIntergrant.m; sourceTree = "<group>"; };
+		49DCB0651BE7396A00CB5B10 /* MSFSignUpWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpWebViewController.h; sourceTree = "<group>"; };
+		49DCB0661BE7396A00CB5B10 /* MSFSignUpWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpWebViewController.m; sourceTree = "<group>"; };
 		49E22AF71B37ED9E00749717 /* btn-family-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add.png"; sourceTree = "<group>"; };
 		49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add@2x.png"; sourceTree = "<group>"; };
 		49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add@3x.png"; sourceTree = "<group>"; };
@@ -2066,6 +2074,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49DC504C1BE7296400C80D87 /* Intergrant */,
 				49075CD21BA95B12006F63FF /* RepaymentSchedules */,
 				49075CBB1BA91CCC006F63FF /* Trade */,
 				4948E87A1B953FED0048D125 /* Element */,
@@ -2198,6 +2207,7 @@
 				4948E8AA1B9552040048D125 /* MSFElementViewModelSpec.m */,
 				4948E8B71B9578050048D125 /* MSFInventoryViewModelSpec.m */,
 				4948E8BC1B959A410048D125 /* MSFAttachmentViewModelSpec.m */,
+				49DC503D1BE7295500C80D87 /* MSFIntergrantSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -2597,6 +2607,8 @@
 				498F3D4C1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m */,
 				4967EE6C1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.h */,
 				4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */,
+				49DCB0651BE7396A00CB5B10 /* MSFSignUpWebViewController.h */,
+				49DCB0661BE7396A00CB5B10 /* MSFSignUpWebViewController.m */,
 				49AFD9A41B073F5600438183 /* login.storyboard */,
 			);
 			name = Login;
@@ -2780,6 +2792,15 @@
 				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
 			);
 			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		49DC504C1BE7296400C80D87 /* Intergrant */ = {
+			isa = PBXGroup;
+			children = (
+				49DC504D1BE7297600C80D87 /* MSFIntergrant.h */,
+				49DC504E1BE7297600C80D87 /* MSFIntergrant.m */,
+			);
+			name = Intergrant;
 			sourceTree = "<group>";
 		};
 		49E8B8E01B5FA00400680061 /* Header */ = {
@@ -3685,6 +3706,7 @@
 				4991472C1B25C4E900260E97 /* MSFProductViewModel.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
+				49DC504F1BE7297600C80D87 /* MSFIntergrant.m in Sources */,
 				C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
@@ -3823,6 +3845,7 @@
 				49DA22651B062AF200DD4483 /* MSFClient+Captcha.m in Sources */,
 				499EA2861B560ACB0051AF66 /* MSFTabBarViewModel.m in Sources */,
 				49E8B8F01B5FA01300680061 /* MSFHeaderView.m in Sources */,
+				49DCB0671BE7396A00CB5B10 /* MSFSignUpWebViewController.m in Sources */,
 				1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
 				10DC2D171B969DF500A2AF9C /* MSFPhotosUploadHeaderView.m in Sources */,
@@ -3870,6 +3893,7 @@
 				496A446B1B6A57BE00104215 /* MSFCipherSpec.m in Sources */,
 				4943C3571B047437000BBF5E /* Tests.m in Sources */,
 				496A44681B6A57BE00104215 /* MSFAuthorizeViewModelSpec.m in Sources */,
+				49DC503E1BE7295500C80D87 /* MSFIntergrantSpec.m in Sources */,
 				496A447D1B6A57BF00104215 /* MSFTradeSpec.m in Sources */,
 				496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */,
 				49F21C591B8D635900CA96C1 /* MSFTestProfessionalViewModel.m in Sources */,
