@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This only work with project.xcworkspace
+
 # works with a file called VERSION in the current directory,
 # the contents of which should be a semantic version number
 # such as "1.2.3"
@@ -26,12 +28,16 @@ update_xcode_version() {
         #statements
         exit
     fi
-    NEWSUBVERSION=$1
-    # Updated version
-    /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEWSUBVERSION" "$SCHEME_PLIST"
-    # Log New Version
-    VERSIONNUM=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$SCHEME_PLIST")
-    echo [$SCHEME] bumped verion to $VERSIONNUM
+
+    if [[ -f "$SCHEME_PLIST" ]]; then
+        NEWSUBVERSION=$1
+        # Updated version
+        /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEWSUBVERSION" "$SCHEME_PLIST"
+        # Log New Version
+        VERSIONNUM=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$SCHEME_PLIST")
+        echo [$SCHEME] bumped verion to $VERSIONNUM
+        #statements
+    fi
 }
 
 if [ -f VERSION ]; then
@@ -60,7 +66,7 @@ if [ -f VERSION ]; then
     # Update xcode info.plist build verson
     update_xcode_version $INPUT_STRING
 
-    # todo 
+    # todo
     # git add VERSION CHANGES $SCHEME_PLIST
     git add .
     git commit -m "Bumping version to $INPUT_STRING"
@@ -84,7 +90,7 @@ else
         # Update xcode info.plist build verson
         update_xcode_version 0.1.0
 
-        # todo 
+        # todo
         # git add VERSION CHANGES $SCHEME_PLIST
         git add .
         git commit -m "Added VERSION and CHANGES files, Bumping version to v0.1.0"

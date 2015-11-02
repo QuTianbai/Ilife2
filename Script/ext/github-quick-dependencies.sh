@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# https://github.com/Quick/Quick  v0.2.3
+# https://github.com/Quick/Quick  v0.6.0
 # Merge pull request #270 from tibr/iOS7-support `ce729620fa9db8d3c76b69bbfc429cece97dbe36`
-# https://github.com/Quick/Nimble v0.3.1
+# https://github.com/Quick/Nimble v2.0.0
 # Merge pull request #102 from marciok/iOS7-support `1088d5f70497f34be946e3e2829a10529f7bea8e`
 
 
@@ -19,7 +19,7 @@ if [[ ! -d $QUICK_PATH ]]; then
   git clone https://github.com/Quick/Quick.git $EXTERNAL_DIR/Quick
 fi
 cd $QUICK_PATH
-git checkout v0.3.1
+git checkout v0.6.0
 rm -rf $QUICK_PATH/Externals/Nimble/.git
 rm -rf $QUICK_PATH/.git
 
@@ -29,7 +29,7 @@ if [[ ! -d $NIMBLE_PATH ]]; then
   git clone https://github.com/Quick/Nimble.git $EXTERNAL_DIR/Nimble
 fi
 cd $NIMBLE_PATH
-git checkout v0.4.2
+git checkout v2.0.0
 rm -rf $NIMBLE_PATH/.git
 
 # OHHTTPStubs
