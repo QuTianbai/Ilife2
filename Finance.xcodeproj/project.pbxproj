@@ -159,8 +159,6 @@
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
 		492E62B61B0ECCCB00D34069 /* UIButton+BottomTitles.m in Sources */ = {isa = PBXBuildFile; fileRef = 492E62B51B0ECCCB00D34069 /* UIButton+BottomTitles.m */; };
 		49386C151B8178D100B1282B /* check-user-credit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49386C141B8178D100B1282B /* check-user-credit.json */; };
-		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
-		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
 		4943C3571B047437000BBF5E /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3561B047437000BBF5E /* Tests.m */; };
 		4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3601B04782B000BBF5E /* SwiftSpec.swift */; };
 		4943C3681B04796B000BBF5E /* libOHHTTPStubs-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */; };
@@ -401,6 +399,8 @@
 		49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7D1B2E83E4009433C5 /* personal.storyboard */; };
 		49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7F1B2E83F9009433C5 /* professional.storyboard */; };
 		49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE811B2E840A009433C5 /* relationship.storyboard */; };
+		49DC50381BE7262A00C80D87 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
+		49DC50391BE7262F00C80D87 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
 		49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF71B37ED9E00749717 /* btn-family-add.png */; };
 		49E22AFE1B37ED9E00749717 /* btn-family-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF81B37ED9E00749717 /* btn-family-add@2x.png */; };
 		49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF91B37ED9E00749717 /* btn-family-add@3x.png */; };
@@ -848,8 +848,6 @@
 		4943C3561B047437000BBF5E /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4943C3601B04782B000BBF5E /* SwiftSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpec.swift; sourceTree = "<group>"; };
 		4943C3621B047849000BBF5E /* Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
-		4943C3631B047966000BBF5E /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Externals/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
-		4943C3641B047966000BBF5E /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = "Externals/Quick/build/Debug-iphoneos/Quick.framework"; sourceTree = "<group>"; };
 		4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libOHHTTPStubs-iOS.a"; path = "Externals/OHHTTPStubs/OHHTTPStubs/build/Debug-iphoneos/libOHHTTPStubs-iOS.a"; sourceTree = "<group>"; };
 		4943C3721B047C66000BBF5E /* MSFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFObject.h; sourceTree = "<group>"; };
 		4943C3731B047C66000BBF5E /* MSFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFObject.m; sourceTree = "<group>"; };
@@ -1333,8 +1331,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */,
-				493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */,
+				49DC50391BE7262F00C80D87 /* Quick.framework in Frameworks */,
+				49DC50381BE7262A00C80D87 /* Nimble.framework in Frameworks */,
 				4943C3681B04796B000BBF5E /* libOHHTTPStubs-iOS.a in Frameworks */,
 				6BC3A55CCC9A340BB762528E /* libPods-Tests.a in Frameworks */,
 			);
@@ -2999,8 +2997,6 @@
 				4902EE101B195A2F00EC836C /* Crashlytics.framework */,
 				4902EE111B195A2F00EC836C /* Fabric.framework */,
 				4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */,
-				4943C3631B047966000BBF5E /* Nimble.framework */,
-				4943C3641B047966000BBF5E /* Quick.framework */,
 				1F02B5C08373E00BAD678B72 /* libPods.a */,
 				C85C468932002FC66C8F9BB2 /* libPods-Tests.a */,
 			);
@@ -4120,8 +4116,8 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Externals\"",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				INFOPLIST_FILE = Finance/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
