@@ -50,7 +50,8 @@
 	_appNO = @"";
 	_array = [[NSArray alloc] init];
 
-	RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
+	//RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
+	RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
 	
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);

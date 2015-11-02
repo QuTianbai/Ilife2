@@ -21,6 +21,8 @@
 @property (nonatomic, assign) BOOL master;
 @property (nonatomic, copy) NSString *masterBankCardNO;
 
+@property (nonatomic, copy) NSString *masterbankInfo;
+
 @property (nonatomic, strong, readonly) NSArray *bankCardArray;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) MSFApplicationForms *model;
