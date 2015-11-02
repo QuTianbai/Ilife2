@@ -45,6 +45,8 @@ static const int kCounterLength = 60;
 	if (!self) {
 		return nil;
 	}
+	_upgrade = [MSFUtils upgrade];
+	_isUpgrade = _upgrade.isUpgrade;
 	_services = services;
 	_username = @"";
 	_password = @"";

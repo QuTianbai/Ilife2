@@ -19,6 +19,7 @@ extern NSString *const MSFAuthorizationDidLoseConnectNotification;
 @class MSFServer;
 @class RACSignal;
 @class MSFAgreementViewModel;
+@class MSFIntergrant;
 
 @interface MSFUtils : NSObject
 
@@ -62,5 +63,8 @@ extern NSString *const MSFAuthorizationDidLoseConnectNotification;
 
 + (void)setBaseURLString:(NSString *)url;
 + (NSString *)baseURLString;
+
++ (MSFIntergrant *)upgrade;
+
 
 @end

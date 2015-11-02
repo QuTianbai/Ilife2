@@ -10,6 +10,7 @@
 
 @property (nonatomic, readonly) BOOL isUpgrade;
 @property (nonatomic, readonly) NSURL *HTMLURL;
+@property (nonatomic, readonly) NSString *bref;
 
 - (instancetype)initWithUpgrade:(BOOL)upgrade HTMLURL:(NSURL *)URL;
 

@@ -18,12 +18,14 @@
 #import "MSFAgreement.h"
 #import "MSFAgreementViewModel.h"
 #import "MSFUtilsViewController.h"
+#import "MSFIntergrant.h"
 
 NSString *const MSFAuthorizationDidErrorNotification = @"MSFAuthorizationDidErrorNotification";
 NSString *const MSFAuthorizationDidLoseConnectNotification = @"MSFAuthorizationDidLoseConnectNotification";
 
 static MSFClient *client;
 static MSFServer *server;
+static MSFIntergrant *upgrade;
 
 @implementation MSFUtils
 
@@ -47,10 +49,14 @@ static MSFServer *server;
 			}];
 		}];
 	
-	return [[self.httpClient fetchServerInterval] doNext:^(MSFResponse *resposne) {
-		MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[resposne.parsedResult[@"time"] longLongValue]];
-		[MSFClient setCipher:cipher];
-	}];
+	return [[[self.httpClient fetchServerInterval]
+		zipWith:[self.class fetchUpgrade]]
+		doNext:^(RACTuple *responseAndUpgrade) {
+			RACTupleUnpack(MSFResponse *response, MSFIntergrant *aUpgrade) = responseAndUpgrade;
+			MSFCipher *cipher = [[MSFCipher alloc] initWithSession:[response.parsedResult[@"time"] longLongValue]];
+			[MSFClient setCipher:cipher];
+			upgrade = aUpgrade;
+		}];
 }
 
 + (MSFClient *)httpClient {
@@ -92,6 +98,24 @@ static MSFServer *server;
 
 + (NSString *)baseURLString {
 	return [[NSUserDefaults standardUserDefaults] stringForKey:@"user-base-url"];
+}
+
++ (RACSignal *)fetchUpgrade {
+	// http://10.16.18.36:8081/msfinanceapi/V1/register
+	NSURLRequest *request = [client requestWithMethod:@"GET" path:@"register" parameters:nil];
+	return [[[client enqueueRequest:request resultClass:nil]
+		catch:^RACSignal *(NSError *error) {
+			return [RACSignal return:[[MSFIntergrant alloc] initWithUpgrade:NO HTMLURL:[NSURL URLWithString:@"http://baidu.com"]]];
+		}]
+		map:^id(MSFResponse *response) {
+			if ([response isKindOfClass:MSFResponse.class])
+				return [MTLJSONAdapter modelOfClass:[MSFIntergrant class] fromJSONDictionary:response.parsedResult error:nil];
+			return response;
+		}];
+}
+
++ (MSFIntergrant *)upgrade {
+	return upgrade;
 }
 
 @end

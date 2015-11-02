@@ -9,6 +9,7 @@
 #import <AFNetworking/UIWebView+AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFIntergrant.h"
+#import "MSFClient.h"
 
 @interface MSFSignUpWebViewController ()
 
@@ -26,8 +27,13 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.webView.scalesPageToFit = YES;
+	self.webView.backgroundColor = [UIColor clearColor];
+	self.webView.opaque = NO;
+	if (!self.viewModel.upgrade) return;
+	
+	NSURLRequest *request = [[self.viewModel.services httpClient] requestWithMethod:@"GET" path:self.viewModel.upgrade.bref parameters:nil];
 	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-	[self.webView loadRequest:[NSURLRequest requestWithURL:self.viewModel.upgrade.HTMLURL] progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+	[self.webView loadRequest:request progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
 	} success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
 		[SVProgressHUD dismiss];
 		return HTML;
