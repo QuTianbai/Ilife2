@@ -1,18 +1,8 @@
-j# Script
-
-## Build Version Script
-
-1. Set build version number `1`
-2. Create `New Run Script Phase` with the code:
-
-    "${SRCROOT}/Script/xcode-build-bump.sh"
-
-> Lock(git lock) Info.plist avoid commit build version every times.
-> Before merge branch unlock Info.plist
+# Script
 
 ## bootstrap
 
-1. Delete `ExampleTests` Add Tests can use default Podfile,remmember clean scheme.
+1. Delete `ExampleTests` Add `Tests` can use default Podfile,remember clean scheme.
 2. Add Created folder in project group.
 
 ## Tests
@@ -24,8 +14,9 @@ j# Script
 
 // "Enable Modules" to NO. '__Verify' is invalid in C99
 #define MOCKITO_SHORTHAND
-#import <OCMockito/OCMockito.h> 
+#import <OCMockito/OCMockito.h>
 ```
+
 > 由于Objective-C++ 不支持@import只能才用上面的方式导入
 
 ```
@@ -33,9 +24,21 @@ j# Script
 @import Nimble;
 ```
 
+## Archive command
+
+xcodebuild -exportArchive -archivePath
+~/Developer/Finance/build/Archive/Finance.xcarchive -exportPath
+~/Developer/Finance/build/Archive/ -exportOptionsPlist
+exportPlist.plist   | xcpretty
+
+## Updating 
+
+* ext 
+* podfile
+
 ## Reference
 
-[objc-build-scripts]https://github.com/jspahrsummers/objc-build-scripts
-https://github.com/krzysztofzablocki/KZBootstrap
-https://github.com/jspahrsummers/xcconfigs
-https://github.com/krzysztofzablocki/craftercconfigs
+* [objc-build-scripts](https://github.com/jspahrsummers/objc-build-scripts)
+* [KZBootstrap](https://github.com/krzysztofzablocki/KZBootstrap)
+* [xcconfigs](https://github.com/jspahrsummers/xcconfigs)
+* [craftercconfigs](https://github.com/krzysztofzablocki/craftercconfigs)

@@ -1,13 +1,10 @@
-
 #import <Nimble/Nimble.h>
 #import <Quick/Quick.h>
 
-
-QuickSpecBegin(OCTAuthorizationSpec)
+QuickSpecBegin(TestsSpec)
 
 it(@"should be false", ^{
   expect(@YES).to(beFalse());
 });
-
 
 QuickSpecEnd
