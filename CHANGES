@@ -1,3 +1,15 @@
+Version 2.0.0.21:
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - sort code
+ - fix 随借随还显示bug / 收入字段键盘
+ - fix 时区错误
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 客户完善银行卡信息之后，进入申请页面，带出的银行卡号信息增加银行名称
+ - sort code
+ - merge code
+ - delete MSFLoanViewModel
+ - 首页cell使用同一个viewModel：MSFHomePageCellModel
+
 Version 2.0.0.20:
  - Merge remote-tracking branch 'origin/xbmDev'
  - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
