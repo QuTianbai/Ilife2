@@ -108,9 +108,8 @@ static MSFIntergrant *upgrade;
 			return [RACSignal return:[[MSFIntergrant alloc] initWithUpgrade:NO HTMLURL:[NSURL URLWithString:@"http://baidu.com"]]];
 		}]
 		map:^id(MSFResponse *response) {
-			if ([response isKindOfClass:MSFResponse.class])
-				return [MTLJSONAdapter modelOfClass:[MSFIntergrant class] fromJSONDictionary:response.parsedResult error:nil];
-			return response;
+			if ([response isKindOfClass:MSFIntergrant.class]) return response;
+			return [MTLJSONAdapter modelOfClass:[MSFIntergrant class] fromJSONDictionary:response.parsedResult error:nil];
 		}];
 }
 
