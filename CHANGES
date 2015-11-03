@@ -1,3 +1,9 @@
+Version 1.2.0.3:
+ - Update 环境更新提醒
+ - Update 1.2.0完善资料跳转到引导网页
+ - Fix hidden register html
+ - Bumping version to 1.2.0
+
 Version 1.2.0.2:
  - Complete html register feature
  - Format style
