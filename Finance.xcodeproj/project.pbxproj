@@ -4844,7 +4844,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "5de73d6f-1922-4afc-ac1a-5b1f40b7705c";
 			};
@@ -4980,7 +4980,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "3792074d-630f-44c1-8d7a-1fa46e0518bb";
 			};
@@ -5007,7 +5007,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "9a2024a7-4714-4479-a1d1-a80bc673f5ad";
 			};
@@ -5097,7 +5097,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "f2e8c678-178f-43be-9d16-133bd6279576";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5128,9 +5128,9 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "3fec2b0c-daf3-49ab-a0f3-a4abfb13578a";
+				PROVISIONING_PROFILE = "f2e8c678-178f-43be-9d16-133bd6279576";
 			};
 			name = TEST;
 		};
@@ -5221,7 +5221,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msfinance.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "5de73d6f-1922-4afc-ac1a-5b1f40b7705c";
 			};
