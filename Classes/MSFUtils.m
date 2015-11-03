@@ -110,7 +110,7 @@ static MSFIntergrant *upgrade;
 	return [[[client enqueueRequest:request resultClass:nil]
 		catch:^RACSignal *(NSError *error) {
 			return [RACSignal return:[[MSFIntergrant alloc] initWithDictionary:@{
-					@keypath(MSFIntergrant.new, isUpgrade) : @YES,
+					@keypath(MSFIntergrant.new, isUpgrade) : @NO,
 					@keypath(MSFIntergrant.new, bref): @"path",
 				} error:nil]];
 		}]
