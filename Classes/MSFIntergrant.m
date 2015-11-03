@@ -8,19 +8,6 @@
 
 @implementation MSFIntergrant
 
-#pragma mark - Lifecycle
-
-- (instancetype)initWithUpgrade:(BOOL)upgrade HTMLURL:(NSURL *)URL {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_isUpgrade = upgrade;
-	_HTMLURL = URL;
-  
-  return self;
-}
-
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {

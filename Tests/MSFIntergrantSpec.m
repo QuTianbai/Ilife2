@@ -5,14 +5,17 @@
 //
 
 #import "MSFIntergrant.h"
+#import <Mantle/EXTKeyPathCoding.h>
 
 QuickSpecBegin(MSFIntergrantSpec)
 
 __block MSFIntergrant *sut;
-NSURL *URL = [NSURL URLWithString:@"http://objczl.com"];
 
 beforeEach(^{
-	sut = [[MSFIntergrant alloc] initWithUpgrade:YES HTMLURL:URL];
+	sut = [[MSFIntergrant alloc] initWithDictionary:@{
+		@keypath(MSFIntergrant.new, isUpgrade) : @YES,
+		@keypath(MSFIntergrant.new, bref): @"path",
+	} error:nil];
 });
 
 it(@"should initialize", ^{
@@ -23,7 +26,7 @@ it(@"should initialize", ^{
 it(@"should be true for load webview", ^{
 	// then
 	expect(@(sut.isUpgrade)).to(beTruthy());
-	expect(sut.HTMLURL).to(equal(URL));
+	expect(sut.bref).to(equal(@"path"));
 });
 
 QuickSpecEnd

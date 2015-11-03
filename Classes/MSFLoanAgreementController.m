@@ -108,6 +108,10 @@
 		[self.viewModel.executeRequest execute:nil];
 		return NO;
 	}
+	if ([request.URL.absoluteString hasPrefix:@"https://itunes.apple.com"]) {
+		[[UIApplication sharedApplication] openURL:request.URL];
+		return NO;
+	}
 	return YES;
 }
 

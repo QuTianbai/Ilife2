@@ -11,7 +11,7 @@
 #import "MSFIntergrant.h"
 #import "MSFClient.h"
 
-@interface MSFSignUpWebViewController ()
+@interface MSFSignUpWebViewController () <UIWebViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
@@ -22,28 +22,39 @@
 
 @synthesize pageIndex;
 
-#pragma mark - MSFReactiveView
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.webView.scalesPageToFit = YES;
+	self.webView.delegate = self;
 	self.webView.backgroundColor = [UIColor clearColor];
 	self.webView.opaque = NO;
+	
 	if (!self.viewModel.upgrade) return;
 	
 	NSURLRequest *request = [[self.viewModel.services httpClient] requestWithMethod:@"GET" path:self.viewModel.upgrade.bref parameters:nil];
-	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 	[self.webView loadRequest:request progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-	} success:^NSString *(NSHTTPURLResponse *response, NSString *HTML) {
-		[SVProgressHUD dismiss];
-		return HTML;
+	} success:^NSString *(NSHTTPURLResponse *response, NSString *_HTML) {
+		return _HTML;
 	} failure:^(NSError *error) {
 		[SVProgressHUD dismiss];
 	}];
 }
 
+#pragma mark - MSFReactiveView
+
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+}
+
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+	if ([request.URL.absoluteString hasPrefix:@"https://itunes.apple.com"]) {
+		[[UIApplication sharedApplication] openURL:request.URL];
+		return NO;
+	}
+	return YES;
 }
 
 @end

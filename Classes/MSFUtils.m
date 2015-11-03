@@ -34,6 +34,10 @@ static MSFIntergrant *upgrade;
 #if !DISTRIBUTION && !UAT
 	server = MSFUtils.baseURLString.length > 0 ? [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]] : [MSFServer dotComServer];
 #endif
+
+#if DEBUG
+	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://10.16.18.36:8081"]];
+#endif
 }
 
 + (RACSignal *)setupSignal {
@@ -105,7 +109,10 @@ static MSFIntergrant *upgrade;
 	NSURLRequest *request = [client requestWithMethod:@"GET" path:@"register" parameters:nil];
 	return [[[client enqueueRequest:request resultClass:nil]
 		catch:^RACSignal *(NSError *error) {
-			return [RACSignal return:[[MSFIntergrant alloc] initWithUpgrade:NO HTMLURL:[NSURL URLWithString:@"http://baidu.com"]]];
+			return [RACSignal return:[[MSFIntergrant alloc] initWithDictionary:@{
+					@keypath(MSFIntergrant.new, isUpgrade) : @YES,
+					@keypath(MSFIntergrant.new, bref): @"path",
+				} error:nil]];
 		}]
 		map:^id(MSFResponse *response) {
 			if ([response isKindOfClass:MSFIntergrant.class]) return response;
