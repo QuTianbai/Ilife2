@@ -6,6 +6,7 @@
 
 #import "MSFUtilsViewController.h"
 #import "MSFUtils.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotification";
 
@@ -29,7 +30,9 @@ NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotific
 	
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)];
-	label.text = @"更新后请结束进程，重新开启程序!";
+	label.text = @"更新后请手动结束进程，重新开启程序!";
+	label.textAlignment = NSTextAlignmentCenter;
+	label.textColor = [UIColor redColor];
 	self.tableView.tableFooterView = label;
 }
 
@@ -46,6 +49,7 @@ NSString *const MSFUtilsURLDidUpdateNotification = @"MSFUtilsURLDidUpdateNotific
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[[NSNotificationCenter defaultCenter] postNotificationName:MSFUtilsURLDidUpdateNotification object:URLs[indexPath.row]];
 	[MSFUtils setBaseURLString:URLs[indexPath.row]];
+	[SVProgressHUD showWithStatus:@"更新完成, 请手动结束进程，重新开启程序!" maskType:SVProgressHUDMaskTypeClear];
 }
 
 @end
