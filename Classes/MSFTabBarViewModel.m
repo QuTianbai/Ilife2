@@ -111,7 +111,7 @@
 
 - (RACSignal *)verifySignal {
   return [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.services];
+		MSFClozeViewModel *viewModel = [[MSFClozeViewModel alloc] initWithServices:self.services authorizeViewModel:self.authorizeViewModel];
 		[self.services presentViewModel:viewModel];
     [subscriber sendCompleted];
 		return nil;

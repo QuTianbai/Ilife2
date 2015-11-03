@@ -33,6 +33,8 @@
 #import "MSFCertificatesCollectionViewController.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFConfirmContractViewController.h"
+#import "MSFIntergrant.h"
+#import "MSFSignUpWebViewController.h"
 
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 
@@ -94,8 +96,16 @@
 		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else if ([viewModel isKindOfClass:MSFClozeViewModel.class]) {
-    MSFClozeViewController *clozeViewController = [[MSFClozeViewController alloc] initWithViewModel:viewModel];
-		viewController = [[UINavigationController alloc] initWithRootViewController:clozeViewController];
+		MSFAuthorizeViewModel *authorizeViewModel = [(MSFClozeViewModel *)viewModel authorizeViewModel];
+		if (authorizeViewModel.upgrade.isUpgrade) {
+			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+			MSFSignUpWebViewController *vc = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignUpWebViewController class])];
+			[vc bindViewModel:authorizeViewModel];
+			viewController = [[UINavigationController alloc] initWithRootViewController:vc];
+		} else {
+			MSFClozeViewController *clozeViewController = [[MSFClozeViewController alloc] initWithViewModel:viewModel];
+			viewController = [[UINavigationController alloc] initWithRootViewController:clozeViewController];
+		}
 	} else {
     NSLog(@"an unknown ViewModel was present!");
   }

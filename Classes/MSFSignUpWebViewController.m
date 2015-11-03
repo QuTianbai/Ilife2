@@ -8,6 +8,8 @@
 #import "MSFAuthorizeViewModel.h"
 #import <AFNetworking/UIWebView+AFNetworking.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Mantle/EXTScope.h>
 #import "MSFIntergrant.h"
 #import "MSFClient.h"
 
@@ -38,6 +40,14 @@
 		return _HTML;
 	} failure:^(NSError *error) {
 		[SVProgressHUD dismiss];
+	}];
+	
+	@weakify(self)
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		[self dismissViewControllerAnimated:YES completion:nil];
+		return [RACSignal empty];
 	}];
 }
 

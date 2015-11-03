@@ -11,6 +11,7 @@
 @class MSFClient;
 @class MSFAddressViewModel;
 @class MSFBankInfoModel;
+@class MSFAuthorizeViewModel;
 
 @interface MSFClozeViewModel : RVMViewModel
 
@@ -58,9 +59,11 @@
 
 // Address Select ViewModel
 @property (nonatomic, strong, readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak, readonly) MSFAuthorizeViewModel *authorizeViewModel;
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services __deprecated;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services authorizeViewModel:(MSFAuthorizeViewModel *)viewModel;
 
 @end

@@ -34,10 +34,6 @@ static MSFIntergrant *upgrade;
 #if !DISTRIBUTION && !UAT
 	server = MSFUtils.baseURLString.length > 0 ? [MSFServer serverWithBaseURL:[NSURL URLWithString:MSFUtils.baseURLString]] : [MSFServer dotComServer];
 #endif
-
-#if DEBUG
-	server = [MSFServer serverWithBaseURL:[NSURL URLWithString:@"http://10.16.18.36:8081"]];
-#endif
 }
 
 + (RACSignal *)setupSignal {
@@ -111,7 +107,7 @@ static MSFIntergrant *upgrade;
 		catch:^RACSignal *(NSError *error) {
 			return [RACSignal return:[[MSFIntergrant alloc] initWithDictionary:@{
 					@keypath(MSFIntergrant.new, isUpgrade) : @NO,
-					@keypath(MSFIntergrant.new, bref): @"path",
+					@keypath(MSFIntergrant.new, bref): @"coresys/cont/contract/fineinfo",
 				} error:nil]];
 		}]
 		map:^id(MSFResponse *response) {

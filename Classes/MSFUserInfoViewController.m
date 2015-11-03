@@ -21,6 +21,8 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFEditPasswordViewController.h"
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
+#import "MSFIntergrant.h"
+#import "MSFSignUpWebViewController.h"
 
 @interface MSFUserInfoViewController ()
 
@@ -69,11 +71,21 @@
 		[self.tableView reloadData];
 		if (self.viewModel.identifyCard.length == 0) {
 			UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-			MSFClozeViewController *clozeViewController =
-			[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
-			UINavigationController *navigationController =
-			[[UINavigationController alloc] initWithRootViewController:clozeViewController];
-			[self presentViewController:navigationController animated:YES completion:nil];
+			
+			MSFAuthorizeViewModel *authorizeViewModel = [(MSFUserViewModel *)self.viewModel authorizeViewModel];
+			if (authorizeViewModel.upgrade.isUpgrade) {
+				MSFSignUpWebViewController *vc = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignUpWebViewController class])];
+				[vc bindViewModel:authorizeViewModel];
+				UINavigationController *navigationController =
+				[[UINavigationController alloc] initWithRootViewController:vc];
+				[self presentViewController:navigationController animated:YES completion:nil];
+			} else {
+				MSFClozeViewController *clozeViewController =
+				[storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(MSFClozeViewController.class)];
+				UINavigationController *navigationController =
+				[[UINavigationController alloc] initWithRootViewController:clozeViewController];
+				[self presentViewController:navigationController animated:YES completion:nil];
+			}
 		}
 	}];
 }

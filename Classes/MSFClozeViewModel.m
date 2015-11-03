@@ -32,6 +32,14 @@ static NSString *const MSFClozeViewModelErrorDomain = @"MSFClozeViewModelErrorDo
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services authorizeViewModel:(MSFAuthorizeViewModel *)viewModel {
+	if (!(self = [self initWithServices:services])) {
+		return nil;
+	}
+	_authorizeViewModel = viewModel;
+	return self;
+}
+
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
