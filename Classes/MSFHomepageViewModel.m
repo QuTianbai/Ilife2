@@ -39,7 +39,8 @@ static NSString *msf_whiteListUserCode = @"4101";
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
-			if ([loan.produceType isEqualToString:@"MS"]) {
+			NSString *userType = self.services.httpClient.user.type;
+			if ([userType isEqualToString:msf_normalUserCode]) {
 				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
 				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
 				if (loan.type.length == 0 || applyBlank || contractBlank) {
@@ -50,11 +51,12 @@ static NSString *msf_whiteListUserCode = @"4101";
 					MSFHomePageCellModel *viewModel = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
 					return @[viewModel];
 				}
-			} else if ([loan.produceType isEqualToString:@"XH"]) {
+			} else if ([userType isEqualToString:msf_whiteListUserCode]) {
 				MSFHomePageCellModel *viewModel = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
 				return @[viewModel];
+			} else {
+				return nil;
 			}
-			return nil;
 		}];
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {

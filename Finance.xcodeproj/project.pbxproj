@@ -157,7 +157,6 @@
 		07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7F61B203AC00020116E /* MSFProductViewController.m */; };
 		07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD31091B09CC7600E0C2DF /* MSFCommandView.m */; };
 		07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */; };
-		07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 07CDAEAB1B11BC9E00B7014C /* dicareas.db */; };
 		07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */; };
 		07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */; };
 		07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */; };
@@ -198,6 +197,7 @@
 		1011A3A81BB9702600CCADB5 /* icon_circle_basic_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */; };
 		1011A3A91BB9702600CCADB5 /* icon_circle_job_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */; };
 		1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */; };
+		105542421BE4BE9100CF4C56 /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 105542411BE4BE9100CF4C56 /* dicareas.db */; };
 		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
 		107A0D1F1BE203410076E08C /* MSFHomePageCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */; };
@@ -968,7 +968,6 @@
 		07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_MSFappliesViewControllerCatogery.h; sourceTree = "<group>"; };
 		07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAppliesHeaderView.h; sourceTree = "<group>"; };
 		07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAppliesHeaderView.m; sourceTree = "<group>"; };
-		07CDAEAB1B11BC9E00B7014C /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLifeInsuranceViewController.h; sourceTree = "<group>"; };
 		07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLifeInsuranceViewController.m; sourceTree = "<group>"; };
 		07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LifeInsurance.storyboard; sourceTree = "<group>"; };
@@ -1029,6 +1028,7 @@
 		1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_basic_h.png; sourceTree = "<group>"; };
 		1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_n.png; sourceTree = "<group>"; };
 		1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_basic_n.png; sourceTree = "<group>"; };
+		105542411BE4BE9100CF4C56 /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfomationViewController.h; sourceTree = "<group>"; };
 		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
 		105E839A1B7E074500E821CB /* MSFRepaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentViewModel.h; sourceTree = "<group>"; };
@@ -2617,8 +2617,8 @@
 		492D13101B2EAEA10094699A /* db */ = {
 			isa = PBXGroup;
 			children = (
+				105542411BE4BE9100CF4C56 /* dicareas.db */,
 				0738C48E1B944B54006D7177 /* bank.db */,
-				07CDAEAB1B11BC9E00B7014C /* dicareas.db */,
 			);
 			name = db;
 			sourceTree = "<group>";
@@ -4005,7 +4005,6 @@
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
 				070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */,
-				07CDAEAC1B11BC9E00B7014C /* dicareas.db in Resources */,
 				4944C02E1B68A5A100805C0A /* icon-account-history.png in Resources */,
 				4944C00C1B68A44A00805C0A /* icon-cloze-idcard@2x.png in Resources */,
 				C7D2D11D1B67938C000F51ED /* icon-cloze-bankAddress@2x.png in Resources */,
@@ -4123,6 +4122,7 @@
 				4944C0551B68A60200805C0A /* icon-avatar-placeholder@3x.png in Resources */,
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
+				105542421BE4BE9100CF4C56 /* dicareas.db in Resources */,
 				4944C00F1B68A44A00805C0A /* icon-cloze-idcarddate@2x.png in Resources */,
 				10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */,
 				49C0F1A51B2C315100E92572 /* icon-check-selected@3x.png in Resources */,
