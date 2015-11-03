@@ -61,7 +61,7 @@
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 		[manager startUpdatingLocation];
 	}];
-#if DEBUG
+#if DEBUG || !DISTRIBUTION
 	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
 	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
 #endif
