@@ -15,10 +15,10 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"status": @"status",
-		@"versionCode": @"versionCode",
+		@"versionCode": @"lastVersion",
 		@"versionName": @"versionName",
 		@"updatedURL": @"updateUrl",
-		@"summary": @"description",
+		@"summary": @"lastVersionDescription",
 		@"updatedDate": @"published",
 		@"timestamp": @"timestamp",
 		@"posters": @"picList",

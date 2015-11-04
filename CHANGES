@@ -1,3 +1,16 @@
+Version 2.0.0.23:
+ - Rename 马上金融
+ - Fix finance 2.0 release note
+
+Version 2.0.0.22:
+ - Update provisioning profile
+ - Merge remote-tracking branch 'origin/zhaoyong'
+ - fix合同签署状态显示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 地址数据库去除港澳台
+ - Update default test api address
+ - Update script
+
 Version 2.0.0.21:
  - Merge remote-tracking branch 'origin/xbmDev' into next
  - sort code
