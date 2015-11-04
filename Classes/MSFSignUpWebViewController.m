@@ -12,6 +12,7 @@
 #import <Mantle/EXTScope.h>
 #import "MSFIntergrant.h"
 #import "MSFClient.h"
+#import "MSFClient.h"
 
 @interface MSFSignUpWebViewController () <UIWebViewDelegate>
 
@@ -34,7 +35,10 @@
 	
 	if (!self.viewModel.upgrade) return;
 	
-	NSURLRequest *request = [[self.viewModel.services httpClient] requestWithMethod:@"GET" path:self.viewModel.upgrade.bref parameters:nil];
+	NSURLRequest *request = [[self.viewModel.services httpClient] requestWithMethod:@"GET" path:[self.viewModel.upgrade relativeStringWithType:@"1"] parameters:nil];
+	if (![self.viewModel.services httpClient].isAuthenticated) {
+		request = [[self.viewModel.services httpClient] requestWithMethod:@"GET" path:[self.viewModel.upgrade relativeStringWithType:@"0"] parameters:nil];
+	}
 	[self.webView loadRequest:request progress:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
 	} success:^NSString *(NSHTTPURLResponse *response, NSString *_HTML) {
 		return _HTML;

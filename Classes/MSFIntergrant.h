@@ -11,4 +11,6 @@
 @property (nonatomic, readonly) BOOL isUpgrade;
 @property (nonatomic, readonly) NSString *bref;
 
+- (NSString *)relativeStringWithType:(NSString *)type;
+
 @end

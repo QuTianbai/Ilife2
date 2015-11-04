@@ -17,4 +17,8 @@
 	};
 }
 
+- (NSString *)relativeStringWithType:(NSString *)type {
+	return [NSString stringWithFormat:@"%@?type=%@", self.bref, type];
+}
+
 @end
