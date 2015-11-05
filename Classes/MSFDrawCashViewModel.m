@@ -90,9 +90,27 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 - (RACSignal *)executeDrawCash {
 	NSError *error = nil;
 	if (self.drawCash.length == 0 || [self.drawCash isEqualToString:@"0"] ) {
-		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入提现金额", }];
+		NSString *errorStr = @"请输入提现金额";
+		if (self.type == 1) {
+			errorStr = @"请输入还款金额";
+		}
+		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 		return [RACSignal error:error];
 	}
+	
+	NSArray *moneyArray = [self.drawCash componentsSeparatedByString:@"."];
+	if (moneyArray.count >= 2) {
+		if (((NSString *)moneyArray[1]).length >2) {
+			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"金额小数不可超过2位，请重新填写", }];
+			return [RACSignal error:error];
+		}
+		
+	}
+	if ([(NSString *)moneyArray[0] isEqualToString:@""]) {
+		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"金额输入错误，请重新填写", }];
+		return [RACSignal error:error];
+	}
+	
 	if (self.type == 0) {
 		if (self.drawCash.intValue > self.enablemoney.intValue) {
 			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"超出最大额度限制，请重新填写", }];
