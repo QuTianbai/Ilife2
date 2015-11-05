@@ -16,6 +16,7 @@
 #import "MSFCirculateCashTableViewController.h"
 #import "MSFProductViewController.h"
 #import "MSFDeviceGet.h"
+#import "UIColor+Utils.h"
 
 @interface MSFCashHomePageViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *nextBT;
@@ -42,7 +43,12 @@
 		self.bgImgView.contentMode = UIViewContentModeCenter;
 	}
 	
-	self.title = @"马上金融";
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+	label.text = @"马上金融";
+	label.textColor = UIColor.tintColor;
+	label.font = [UIFont boldSystemFontOfSize:17];
+	label.textAlignment = NSTextAlignmentCenter;
+	self.navigationItem.titleView = label;
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
