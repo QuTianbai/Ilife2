@@ -11,7 +11,7 @@
 @interface MSFCirculateCashModel : MSFObject
 /*
  *
- *马上贷字段
+ *马上金融字段
  */
 @property (nonatomic, copy) NSString *type;//合同/申请单，APPLY确认合同（applyStatus）不是得话contractStatus
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic, copy) NSString *applyStatus;//状态：申请中，还款中，已逾期，
 
-@property (nonatomic, copy) NSString *produceType;//产品类型   循环贷/马上贷
+@property (nonatomic, copy) NSString *produceType;//产品类型   循环贷/马上金融
 
 @property (nonatomic, copy) NSString *applyNo;//申请单号
 

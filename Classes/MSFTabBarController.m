@@ -75,7 +75,7 @@
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
-	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
+	homepage.tabBarItem = [self itemWithNormal:@"马上金融" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
 	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
 	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
@@ -112,7 +112,7 @@
 	NSString *tabName = @"";
 	NSString *selectedIndex = [@(tabBarController.selectedIndex) stringValue];
 	switch (tabBarController.selectedIndex) {
-		case 0:tabName = @"马上贷";break;
+		case 0:tabName = @"马上金融";break;
 		case 1:tabName = @"申请贷款";break;
 		case 2:tabName = @"我的账户";break;
 	}

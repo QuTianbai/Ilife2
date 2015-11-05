@@ -42,7 +42,7 @@
 		self.bgImgView.contentMode = UIViewContentModeCenter;
 	}
 	
-	self.title = @"马上贷";
+	self.title = @"马上金融";
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;

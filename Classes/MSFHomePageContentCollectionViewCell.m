@@ -90,7 +90,7 @@
 		self.statusButton.hidden = NO;
 		return;
 	}
-	//显示马上贷
+	//显示马上金融
 	
 	[self placeholderShow:NO];
 	_titleLabel.text  = viewModel.title;
