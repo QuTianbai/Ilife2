@@ -17,7 +17,7 @@
 #import "AppDelegate.h"
 #import "MSFGetBankIcon.h"
 
-static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
+static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
 static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
@@ -99,7 +99,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	//	 self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.bankWarningLB.numberOfLines = 0;
 	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
-	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、农业银行、中国银行、建设银行、招商银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
+	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
 	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 	
 	RAC(self.bankNameTF, text) = [RACObserve(self.viewModel, bankName) map:^id(NSString *value) {
