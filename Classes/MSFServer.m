@@ -34,7 +34,7 @@ NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.tp";
 
 #else
 
-NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.com";
+NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.com";
 NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #endif
