@@ -34,11 +34,14 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
-#import <BugshotKit/BugshotKit.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtilsViewController.h"
 
 #import "MSFFormsViewModel.h"
+
+#if TEST || DEBUG
+#import <BugshotKit/BugshotKit.h>
+#endif
 
 @interface AppDelegate ()
 
