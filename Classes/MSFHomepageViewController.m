@@ -41,15 +41,6 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
-	//titleView
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-	label.text = @"马上金融";
-	label.textColor = [UIColor tintColor];
-	label.font = [UIFont boldSystemFontOfSize:17];
-	label.textAlignment = NSTextAlignmentCenter;
-	self.navigationItem.titleView = label;
-	
 	//collectionView
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
