@@ -34,7 +34,7 @@
 	_model = model;
 	
 	/*
-	 马上贷
+	 马上金融
 	 */
 	RAC(self, type) = RACObserve(self.model, type);
 	RAC(self, money) = RACObserve(self.model, money);
