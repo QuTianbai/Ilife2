@@ -51,13 +51,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-	label.text = @"个人中心";
-	label.textColor = UIColor.tintColor;
-	label.font = [UIFont boldSystemFontOfSize:17];
-	label.textAlignment = NSTextAlignmentCenter;
-	self.navigationItem.titleView = label;
-	
 	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
 	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
 	

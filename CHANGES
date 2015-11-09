@@ -1,3 +1,38 @@
+Version 2.0.0.28:
+ - Remove bugshotKit
+
+Version 2.0.0.27:
+ - Fix private api
+
+Version 2.0.0.26:
+ - fix contactBook crash
+
+Version 2.0.0.25:
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - 解决冲突
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - fix
+ - 交易密码键盘
+
+Version 2.0.0.24:
+ - Update api distribution
+ - Update tab bars name
+ - Rename launch.png
+ - Update launch/icons
+ - Merge remote-tracking branch 'origin/xbmDev'
+ - 1 IOS-白名单-提现时提示错误
+ - Fix center tabbar item name
+ - Remove abouts `网点分布`
+ - Rename 马上金融
+ - Update README
+ - Update provisioning profile
+ - Update script clean
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - 添加银行卡农行，招行提示语修改
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - pods
+ - Fix specs
+
 Version 2.0.0.23:
  - Rename 马上金融
  - Fix finance 2.0 release note

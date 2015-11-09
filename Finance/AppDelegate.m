@@ -34,7 +34,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
-#import <BugshotKit/BugshotKit.h>
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtilsViewController.h"
 
@@ -62,11 +61,6 @@
 	[self.window makeKeyAndVisible];
 	
 	[Fabric with:@[CrashlyticsKit]];
-	
-#if TEST || DEBUG
-	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
-	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
-#endif
 	
 	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {

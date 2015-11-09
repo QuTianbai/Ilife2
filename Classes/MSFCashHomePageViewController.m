@@ -43,12 +43,6 @@
 		self.bgImgView.contentMode = UIViewContentModeCenter;
 	}
 	
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-	label.text = @"马上金融";
-	label.textColor = UIColor.tintColor;
-	label.font = [UIFont boldSystemFontOfSize:17];
-	label.textAlignment = NSTextAlignmentCenter;
-	self.navigationItem.titleView = label;
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;

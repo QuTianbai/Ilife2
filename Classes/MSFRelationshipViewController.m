@@ -403,7 +403,7 @@ ABPersonViewControllerDelegate>
 	NSString *phone = @"";
 	
 	if (phones.count > 0) {
-		phone = [phones objectAtIndex:identifier];
+		phone = [phones objectAtIndex:0];
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
 	
@@ -439,7 +439,7 @@ ABPersonViewControllerDelegate>
 	NSString *phone = @"";
 	
 	if (phones.count > 0) {
-		phone = [phones objectAtIndex:identifier];
+		phone = [phones objectAtIndex:0];
 		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
 	}
 	
