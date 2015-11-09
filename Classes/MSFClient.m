@@ -85,7 +85,7 @@ static NSDictionary *messages;
 	self.requestSerializer.timeoutInterval = 60;
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
-	cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[NSDate.date timeIntervalSince1970] * 1000];
+	if (!cipher) cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[NSDate.date timeIntervalSince1970] * 1000];
 	
 	if (isRunningTests()) {
 		return self;
