@@ -39,6 +39,7 @@ static NSString *const kAppKey = @"appKey";
 	_internet = contestant;
 	_client = [self bumpstamp];
 	_dateFormatter = [[NSDateFormatter alloc] init];
+	_dateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Shanghai"];
 	_dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
 	
 	return self;
