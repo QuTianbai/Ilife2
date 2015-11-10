@@ -14,7 +14,7 @@
 @property (nonatomic, weak) id<MSFViewModelServices>services;
 
 /*
- *马上贷
+ *马上金融
  */
 
 //合同/申请单(CONTRACT/APPLY)

@@ -1,4 +1,4 @@
-# 马上贷
+# 马上金融
 
 > 测试接口例
 
@@ -54,3 +54,7 @@ uat2
 url: jdbc:mysql://appserveruat2.msxf.dbuat:3306/appserver
 username: appserverrw
 password: appserver111111
+
+## 发布状态
+
+- Appstore 1.0(2.0.0.28) waiting for review

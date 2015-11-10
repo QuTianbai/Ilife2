@@ -16,6 +16,7 @@
 #import "MSFCirculateCashTableViewController.h"
 #import "MSFProductViewController.h"
 #import "MSFDeviceGet.h"
+#import "UIColor+Utils.h"
 
 @interface MSFCashHomePageViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *nextBT;
@@ -42,7 +43,6 @@
 		self.bgImgView.contentMode = UIViewContentModeCenter;
 	}
 	
-	self.title = @"马上贷";
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;

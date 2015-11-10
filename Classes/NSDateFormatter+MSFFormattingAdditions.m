@@ -114,4 +114,14 @@
 	return [formatter stringFromDate:str];
 }
 
++ (NSDate *)gmt_dateFromString:(NSString *)str {
+	NSParameterAssert(str != nil);
+	
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.dateFormat = @"EE, dd MM yyyy HH:mm:ss 'GMT'";
+	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+	return [formatter dateFromString:str];
+}
+
 @end

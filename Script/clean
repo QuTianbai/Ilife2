@@ -11,18 +11,20 @@ XCWORKSPACE=$(find_pattern "*.xcworkspace")
 SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
 
 echo "========================================================================="
-echo "rm -rf $BUILD_DIR"
-echo "========================================================================="
-
-rm -rf .$BUILD_DIR
-
-echo "========================================================================="
 echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME clean"
 echo "========================================================================="
 
 xctool -workspace $XCWORKSPACE -scheme $SCHEME clean
 
+echo "========================================================================="
+echo "rm -rf $BUILD_DIR"
+echo "========================================================================="
+
+rm -rf $BUILD_DIR
+
+echo "========================================================================="
 echo 'DerivedData Cleaning...'
+echo "========================================================================="
 
 rm -rf ~/Library/Developer/Xcode/DerivedData/*
 

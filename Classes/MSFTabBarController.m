@@ -74,25 +74,29 @@
 	self.viewModel.formsViewModel.active = YES;
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
 	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
+	homePageViewController.title = @"首页";
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
-	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
+	homepage.tabBarItem = [self itemWithNormal:@"首页" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
 	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
 	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
+	cashViewController.title = @"马上";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	
 	if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
 		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 		self.circulateViewModel = viewModel;
 		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
+		circulateViewController.title = @"马上";
 		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
 	}
-	productpage.tabBarItem = [self itemWithNormal:@"申请贷款" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	productpage.tabBarItem = [self itemWithNormal:@"马上" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
+	userViewController.title = @"我的";
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
-	userpage.tabBarItem =  [self itemWithNormal:@"我的账户" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
+	userpage.tabBarItem =  [self itemWithNormal:@"我的" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 	
 	self.viewControllers = @[homepage, productpage, userpage];
 }
@@ -112,7 +116,7 @@
 	NSString *tabName = @"";
 	NSString *selectedIndex = [@(tabBarController.selectedIndex) stringValue];
 	switch (tabBarController.selectedIndex) {
-		case 0:tabName = @"马上贷";break;
+		case 0:tabName = @"马上金融";break;
 		case 1:tabName = @"申请贷款";break;
 		case 2:tabName = @"我的账户";break;
 	}

@@ -41,7 +41,6 @@
 		@"关于我们",
 		@"产品介绍",
 		@"用户帮助",
-		@"网点分布",
 	];
 }
 
@@ -56,7 +55,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 4;
+	return 3;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
