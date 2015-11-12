@@ -5009,7 +5009,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "83ba9173-99fe-4540-8ffc-0db006f9c794";
+				PROVISIONING_PROFILE = "e5b9c4f1-a945-4161-b794-83e3dfd6c680";
 			};
 			name = Release;
 		};
