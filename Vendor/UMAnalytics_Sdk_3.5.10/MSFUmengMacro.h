@@ -10,7 +10,7 @@
 #define Finance_MSFUmengMacro_h
 
 #define MSF_Umeng_AppKey_Test @"559a30b867e58e522b00202d"
-#define MSF_Umeng_AppKey @"559f73a867e58e8506000185"
+#define MSF_Umeng_AppKey @"56493a5967e58e42b500101e"
 
 #define MSF_Umeng_Statistics_TaskId_CheckUpdate @"check_app_update"
 #define MSF_Umeng_Statistics_TaskId_Tabs @"loans_f_tabs"
