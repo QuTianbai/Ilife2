@@ -85,7 +85,7 @@ static NSDictionary *messages;
 	self.requestSerializer.timeoutInterval = 60;
 	self.securityPolicy.allowInvalidCertificates = YES;
 	
-	cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[NSDate.date timeIntervalSince1970] * 1000];
+	if (!cipher) cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[NSDate.date timeIntervalSince1970] * 1000];
 	
 	if (isRunningTests()) {
 		return self;
@@ -639,6 +639,10 @@ static NSDictionary *messages;
 					NSLog(@"%@ %@ %@ %@ => %li %@:\n%@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode, operation.response.allHeaderFields, operation.responseString);
 				}
 			#endif
+			if (operation.response.allHeaderFields[@"Date"]) {
+				NSDate *date = [NSDateFormatter gmt_dateFromString:operation.response.allHeaderFields[@"Date"]];
+				cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[date timeIntervalSince1970] * 1000];
+			}
 			
 			[[RACSignal return:RACTuplePack(operation.response, responseObject)] subscribe:subscriber];
 			
@@ -650,6 +654,11 @@ static NSDictionary *messages;
 					NSLog(@"%@ %@ %@ %@ => FAILED WITH %li %@ \n %@", request.HTTPMethod, request.URL, request.allHTTPHeaderFields, [[[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding], (long)operation.response.statusCode,operation.response.allHeaderFields,operation.responseString);
 				}
 			#endif
+			
+			if (operation.response.allHeaderFields[@"Date"]) {
+				NSDate *date = [NSDateFormatter gmt_dateFromString:operation.response.allHeaderFields[@"Date"]];
+				cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[date timeIntervalSince1970] * 1000];
+			}
 			
 			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];

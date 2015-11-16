@@ -24,4 +24,6 @@
 // 2015/08/01
 + (NSString *)msf_stringFromDateForDash:(NSDate *)date;
 
++ (NSDate *)gmt_dateFromString:(NSString *)str;
+
 @end
