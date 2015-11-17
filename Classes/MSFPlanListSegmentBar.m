@@ -10,6 +10,16 @@
 
 @implementation MSFPlanListSegmentBar
 
+- (instancetype)initWithTitles:(NSArray *)titles {
+	self = [super init];
+	if (self) {
+		for (int i=0; i < titles.count; i++) {
+			
+		}
+	}
+	return self;
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

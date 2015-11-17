@@ -2362,13 +2362,13 @@
 			path = UMAnalytics_Sdk_3.5.10;
 			sourceTree = "<group>";
 		};
-		10E5461D1BFB2A1E00BBA827 /* 2.1 */ = {
+		10E5461D1BFB2A1E00BBA827 /* PlanListSegmentBar */ = {
 			isa = PBXGroup;
 			children = (
 				10E5461E1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.h */,
 				10E5461F1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m */,
 			);
-			name = 2.1;
+			name = PlanListSegmentBar;
 			sourceTree = "<group>";
 		};
 		49075CBB1BA91CCC006F63FF /* Trade */ = {
@@ -3352,7 +3352,7 @@
 		49CCFBE51B072501008A9CD1 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				10E5461D1BFB2A1E00BBA827 /* 2.1 */,
+				10E5461D1BFB2A1E00BBA827 /* PlanListSegmentBar */,
 				105A0CA31BBA3E8F0046F927 /* 2.0 */,
 				49CCFBDF1B072397008A9CD1 /* MSFUserViewController.h */,
 				49CCFBE01B072397008A9CD1 /* MSFUserViewController.m */,
@@ -4996,7 +4996,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "75f4674e-b8ec-4e01-924a-c73efdae8baa";
+				PROVISIONING_PROFILE = "2ebaf597-d2c6-471b-9293-23702d518265";
 			};
 			name = Debug;
 		};
