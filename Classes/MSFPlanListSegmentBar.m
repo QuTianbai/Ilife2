@@ -7,25 +7,102 @@
 //
 
 #import "MSFPlanListSegmentBar.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIColor+Utils.h"
+
+@interface MSFPlanListSegmentBar ()<UIGestureRecognizerDelegate>
+
+@property (nonatomic, strong) NSArray *titles;
+@property (nonatomic, strong) UIView *bar;
+@property (nonatomic, assign) int curIndex;
+@property (nonatomic, assign) BOOL locked;
+
+@end
 
 @implementation MSFPlanListSegmentBar
 
 - (instancetype)initWithTitles:(NSArray *)titles {
 	self = [super init];
 	if (self) {
-		for (int i=0; i < titles.count; i++) {
-			
-		}
+		self.backgroundColor = UIColor.whiteColor;
+		_titles = titles;
+		_curIndex = 0;
+		
+		_bar = [[UIView alloc] init];
+		_bar.backgroundColor = UIColor.themeColorNew;
+		[self addSubview:_bar];
+		
+		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] init];
+		tap.delegate = self;
+		tap.delaysTouchesBegan = YES;
+		[self addGestureRecognizer:tap];
+		
+		_executeSelectionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			return [RACSignal return:input];
+		}];
+				
 	}
 	return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)layoutSubviews {
+	if (_titles.count > 0) {
+		CGFloat width = self.frame.size.width / _titles.count;
+		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 2, width, 2);
+	}
 }
-*/
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+	if (_locked) {
+		return NO;
+	}
+	CGPoint loc = [gestureRecognizer locationInView:self];
+	int index = -1;
+	CGFloat width = self.frame.size.width / _titles.count;
+	for (int i = 0; i < _titles.count; i++) {
+		if (CGRectContainsPoint(CGRectMake(width * i, 0, width, self.frame.size.height), loc)) {
+			index = i;
+			break;
+		}
+	}
+	if (index > -1 && (_curIndex != index || _titles.count == 1)) {
+		_curIndex = index;
+		[self barAnimation];
+		return YES;
+	} else {
+		return NO;
+	}
+}
+
+- (void)barAnimation {
+	_locked = YES;
+	[_executeSelectionCommand execute:@(_curIndex)];
+	CGFloat width = self.frame.size.width / _titles.count;
+	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 2, width, 2);
+	} completion:^(BOOL finished) {
+		_locked = NO;
+	}];
+}
+
+- (void)drawRect:(CGRect)rect {
+	[super drawRect:rect];
+	if (_titles.count == 0) {
+		return;
+	}
+	CGFloat width = rect.size.width / _titles.count;
+	NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
+	style.lineBreakMode = NSLineBreakByTruncatingTail;
+	style.alignment = NSTextAlignmentCenter;
+	UIFont *font = [UIFont systemFontOfSize:15];
+	NSDictionary *attri =
+	@{NSForegroundColorAttributeName : UIColor.themeColorNew,
+		NSFontAttributeName : font,
+		NSParagraphStyleAttributeName : style};
+	for (int i = 0; i < _titles.count; i++) {
+		[_titles[i] drawInRect:CGRectMake(width * i, (rect.size.height - font.lineHeight) / 2, width, rect.size.height)
+						withAttributes:attri];
+	}
+}
 
 @end

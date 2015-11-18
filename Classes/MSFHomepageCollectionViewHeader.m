@@ -6,6 +6,8 @@
 
 #import "MSFHomepageCollectionViewHeader.h"
 #import <Masonry/Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFPlanListSegmentBar.h"
 
 @interface MSFHomepageCollectionViewHeader ()
 
@@ -25,6 +27,19 @@
 	[bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self);
 	}];
+	
+	/*
+	MSFPlanListSegmentBar *bar = [[MSFPlanListSegmentBar alloc] initWithTitles:@[@"马上贷", @"麻辣贷", @"麻辣贷", @"麻辣贷", @"麻辣贷"]];
+	[bar.executeSelectionCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		NSLog(@"点击了：%@", x);
+	}];
+	[self addSubview:bar];
+	[bar mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self);
+		make.right.equalTo(self);
+		make.top.equalTo(self);
+		make.height.equalTo(@40);
+	}];*/
 	
 	return self;
 }
