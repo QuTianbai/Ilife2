@@ -27,8 +27,8 @@ static NSString *URLString(void) {
 	return url ?: @"http://api3.msxf.test";
 }
 
-NSString *const MSFServerDotComAPIEndpoint = @"http://api.msxf.lotest";
-NSString *const MSFServerDotComBaseWebURL = @"http://api.msxf.lotest";
+NSString *const MSFServerDotComAPIEndpoint = @"http://api2.msxf.lotest";
+NSString *const MSFServerDotComBaseWebURL = @"http://api2.msxf.lotest";
 
 #elif TP
 
