@@ -90,10 +90,17 @@ reuseIdentifier {
 	return self;
 }
 
-- (void)bindModel:(MSFApplyList *)model {
-	_moneyLabel.text = model.total_amount;
-	_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.total_installments];
-	_timeLabel.text = model.apply_time;
+- (void)bindModel:(MSFApplyList *)model type:(int)type {
+	if (type == 1) {
+		_moneyLabel.hidden = YES;
+		_monthsLabel.hidden = YES;
+	} else {
+		_monthsLabel.hidden = NO;
+		_moneyLabel.hidden = NO;
+		_moneyLabel.text = model.appLmt;
+		_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.loanTerm];
+	}
+	_timeLabel.text = model.applyTime;
 	_checkLabel.text = model.statusString;
 }
 

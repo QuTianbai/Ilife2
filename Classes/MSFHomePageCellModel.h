@@ -83,7 +83,8 @@
 
 - (instancetype)initWithModel:(id)model
 										 services:(id<MSFViewModelServices>)services;
-- (RACSignal *)fetchApplyListSignal;
+//type: 0,社保带申请列表；1，麻辣贷申请列表
+- (RACSignal *)fetchApplyListSignal:(int)type;
 - (RACSignal *)fetchRepaymentSchedulesSignal;
 - (void)pushDetailViewController;
 

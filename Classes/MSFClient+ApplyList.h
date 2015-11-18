@@ -12,7 +12,8 @@
 
 @interface MSFClient (ApplyList)
 
-- (RACSignal *)fetchApplyList;
+- (RACSignal *)fetchMSApplyList;
+- (RACSignal *)fetchSpicyApplyList;
 - (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
 
 @end

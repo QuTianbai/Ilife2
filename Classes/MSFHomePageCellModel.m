@@ -106,8 +106,13 @@
 	return self;
 }
 
-- (RACSignal *)fetchApplyListSignal {
-	return [self.services.httpClient fetchApplyList];
+- (RACSignal *)fetchApplyListSignal:(int)type {
+	if (type == 0) {
+		return [self.services.httpClient fetchMSApplyList];
+	} else if (type == 1) {
+		return [self.services.httpClient fetchSpicyApplyList];
+	}
+	return nil;
 }
 
 - (RACSignal *)fetchRepaymentSchedulesSignal {
