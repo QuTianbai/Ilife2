@@ -48,7 +48,7 @@
 - (void)layoutSubviews {
 	if (_titles.count > 0) {
 		CGFloat width = self.frame.size.width / _titles.count;
-		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 2, width, 2);
+		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 3, width, 3);
 	}
 }
 
@@ -67,6 +67,7 @@
 	}
 	if (index > -1 && (_curIndex != index || _titles.count == 1)) {
 		_curIndex = index;
+		[self setNeedsDisplay];
 		[self barAnimation];
 		return YES;
 	} else {
@@ -79,7 +80,7 @@
 	[_executeSelectionCommand execute:@(_curIndex)];
 	CGFloat width = self.frame.size.width / _titles.count;
 	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 2, width, 2);
+		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 3, width, 3);
 	} completion:^(BOOL finished) {
 		_locked = NO;
 	}];
@@ -95,11 +96,18 @@
 	style.lineBreakMode = NSLineBreakByTruncatingTail;
 	style.alignment = NSTextAlignmentCenter;
 	UIFont *font = [UIFont systemFontOfSize:15];
-	NSDictionary *attri =
+	NSMutableDictionary *attri = [NSMutableDictionary dictionaryWithDictionary:
 	@{NSForegroundColorAttributeName : UIColor.themeColorNew,
 		NSFontAttributeName : font,
-		NSParagraphStyleAttributeName : style};
+		NSParagraphStyleAttributeName : style}];
 	for (int i = 0; i < _titles.count; i++) {
+		if (i == _curIndex) {
+			[attri setObject:UIColor.themeColor
+								forKey:NSForegroundColorAttributeName];
+		} else {
+			[attri setObject:UIColor.lightGrayColor
+								forKey:NSForegroundColorAttributeName];
+		}
 		[_titles[i] drawInRect:CGRectMake(width * i, (rect.size.height - font.lineHeight) / 2, width, rect.size.height)
 						withAttributes:attri];
 	}
