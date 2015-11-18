@@ -27,6 +27,8 @@
 #import "MSFSettingsViewController.h"
 
 #import "MSFBankCardListTableViewController.h"
+#import "MSFRepaymentPlanViewController.h"
+#import "MSFRepaymentViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -56,6 +58,7 @@
 	
 	self.rowTitles = @[@[
 			@"个人信息",
+			@"还款计划",
 			@"银行卡"
 		], @[
 			@"设置",
@@ -63,6 +66,7 @@
 		]];
 	self.icons = @[@[
 			[UIImage imageNamed:@"icon-account-info"],
+			[UIImage imageNamed:@"icon-account-repay"],
 			[UIImage imageNamed:@"icon-account-repay"]
 		], @[
 			[UIImage imageNamed:@"icon-account-about"],
@@ -113,7 +117,15 @@
 				case 0:
 					[self userInfo];
 					break;
-				case 1:{
+				case 1:
+				{
+					MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.servcies];
+					MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
+					repayViewController.hidesBottomBarWhenPushed = YES;
+					[self.navigationController pushViewController:repayViewController animated:YES];
+				}
+					break;
+				case 2:{
 					MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
 					vc.hidesBottomBarWhenPushed = YES;
 					[self.navigationController pushViewController:vc animated:YES];

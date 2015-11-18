@@ -15,4 +15,7 @@
 @property (nonatomic, copy, readonly) NSString *repaymentTime;
 @property (nonatomic, copy, readonly) NSString *repaymentTotalAmount;
 
+@property (nonatomic, copy, readonly) NSString *contractExpireDate;
+@property (nonatomic, copy, readonly) NSString *totalOverdueMoney;
+
 @end

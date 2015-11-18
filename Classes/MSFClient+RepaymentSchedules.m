@@ -13,8 +13,22 @@
 @implementation MSFClient (RepaymentSchedules)
 
 - (RACSignal *)fetchRepaymentSchedules {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/schedules" parameters:nil];
+	NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"repayment" ofType:@"json"];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
+	
+	NSString *path = @"finance/schedules";
+	//NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
+
+- (RACSignal *)fetchCircleRepaymentSchedules {
+	NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"circleCash" ofType:@"json"];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
+	
+	NSString *path = @"append/schedules";
+	//NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
+}
+
 
 @end
