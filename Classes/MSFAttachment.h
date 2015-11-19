@@ -8,8 +8,6 @@
 
 @interface MSFAttachment : MSFObject
 
-// 获取的需要上传的清单附件信息本息
-
 // 文件id
 @property (nonatomic, copy, readonly) NSString *fileID;
 
@@ -22,29 +20,6 @@
 // 文件类型 eg. IDCARD
 @property (nonatomic, copy, readonly) NSString *type;
 
-// 文件描述 eg `身份证`
-@property (nonatomic, copy, readonly) NSString *plain;
-
-// 获取下载的已经上传的文件详细信息
-
-// 申请单id
-@property (nonatomic, copy, readonly) NSString *applyID;
-
-// 申请号
-@property (nonatomic, copy, readonly) NSString *applyNo;
-
-// 评论详细URL
-@property (nonatomic, copy, readonly) NSURL *commentURL;
-
-// 附件添加时间
-@property (nonatomic, strong, readonly) NSDate *additionDate;
-
-// 附件更新时间
-@property (nonatomic, strong, readonly) NSDate *updatedDate;
-
-// 文档状态，I--初始，Y--合格，N--不合格
-@property (nonatomic, copy, readonly) NSString *status;
-
 // 文件缩略图地址
 //
 // - 如果文件是本地牌照图片，则文件缩略图地址是本地图片存储地址
@@ -54,7 +29,44 @@
 // 拍照图片存储地址
 @property (nonatomic, strong) NSURL *fileURL;
 
+// 是否上传
+@property (nonatomic, assign, readonly) BOOL isUpload;
+
+// 申请订单号
+@property (nonatomic, copy, readonly) NSString *applicationNo;
+
 // 判断当前附件viewModel是否是占位用于弹出拍照控件的cell
 @property (nonatomic, assign, readonly) BOOL isPlaceholder;
+
+// Create blank attachment
+// Uset to take photo
+//
+// URL -  file url for default image
++ (instancetype)blankAttachmentWithAssetsURL:(NSURL *)URL;
+
+
+// Create instance with photo URL
+//
+// URL					 -  The disk file URL
+// applicaitonNo - applicaiton number
+// type					 - The attachment type
+//
+// Returns the instance
+- (instancetype)initWithFileURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type;
+
+// 提交后合并服务器返回的文件ID，文件名
+- (void)mergeAttachment:(MSFAttachment *)attachment;
+
+@end
+
+@interface MSFAttachment (Deprecated)
+
+@property (nonatomic, copy, readonly) NSString *plain;
+@property (nonatomic, copy, readonly) NSString *applyID;
+@property (nonatomic, copy, readonly) NSString *applyNo;
+@property (nonatomic, copy, readonly) NSURL *commentURL;
+@property (nonatomic, strong, readonly) NSDate *additionDate;
+@property (nonatomic, strong, readonly) NSDate *updatedDate;
+@property (nonatomic, copy, readonly) NSString *status;
 
 @end

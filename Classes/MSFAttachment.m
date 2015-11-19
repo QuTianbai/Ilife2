@@ -5,34 +5,43 @@
 //
 
 #import "MSFAttachment.h"
-#import <Mantle/EXTScope.h>
 #import <Mantle/EXTKeyPathCoding.h>
-#import "NSValueTransformer+MSFPredefinedTransformerAdditions.h"
 
 @interface MSFAttachment ()
 
 @property (nonatomic, assign, readwrite) BOOL isPlaceholder;
+@property (nonatomic, assign, readwrite) BOOL isUpload;
 
 @end
 
 @implementation MSFAttachment
 
+#pragma mark - Lifecycle
+
++ (instancetype)blankAttachmentWithAssetsURL:(NSURL *)URL {
+	return [[self alloc] initWithDictionary:@{
+		@keypath(MSFAttachment.new, thumbURL): URL ?: NSNull.null,
+		@keypath(MSFAttachment.new, isPlaceholder): @YES
+	} error:nil];
+}
+
+- (instancetype)initWithFileURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type {
+	return [self initWithDictionary:@{
+		@keypath(MSFAttachment.new, fileURL): URL,
+		@keypath(MSFAttachment.new, applicationNo): applicaitonNo,
+		@keypath(MSFAttachment.new, type): type,
+		@keypath(MSFAttachment.new, name): URL.lastPathComponent,
+		@keypath(MSFAttachment.new, isPlaceholder): @NO,
+		@keypath(MSFAttachment.new, thumbURL): URL,
+	} error:nil];
+}
+
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"objectID": @"fileId",
-		@"applyID": @"applyId",
-		@"applyNo": @"applyNo",
-		@"name": @"attachmentName",
-		@"type": @"attachmentType",
-		@"plain": @"attachmentTypePlain",
-		@"commentURL": @"comment",
 		@"fileID": @"fileId",
 		@"fileName": @"fileName",
-		@"additionDate": @"rawAddTime",
-		@"updatedDate": @"rawUpdateTime",
-		@"status": @"status",
 	};
 }
 
@@ -41,58 +50,9 @@
 
 	// This is a derived property.
 	[keys removeObject:@keypath(MSFAttachment.new, isPlaceholder)];
+	[keys removeObject:@keypath(MSFAttachment.new, isUpload)];
 
 	return keys;
-}
-
-- (BOOL)validateFileID:(id *)objectID error:(NSError **)error {
-	id object  = *objectID;
-	if ([object isKindOfClass:NSString.class]) {
-		return YES;
-	} else if ([object isKindOfClass:NSNumber.class]) {
-		*objectID = [*objectID stringValue];
-		return YES;
-	}
-	
-	return *objectID == nil;
-}
-
-- (BOOL)validateApplyID:(id *)objectID error:(NSError **)error {
-	id object  = *objectID;
-	if ([object isKindOfClass:NSString.class]) {
-		return YES;
-	} else if ([object isKindOfClass:NSNumber.class]) {
-		*objectID = [*objectID stringValue];
-		return YES;
-	}
-	
-	return *objectID == nil;
-}
-
-- (BOOL)validateObjectID:(id *)objectID error:(NSError **)error {
-	id object  = *objectID;
-	if ([object isKindOfClass:NSString.class]) {
-		return YES;
-	} else if ([object isKindOfClass:NSNumber.class]) {
-		*objectID = [*objectID stringValue];
-		return YES;
-	}
-	
-	return *objectID == nil;
-}
-
-#pragma mark - ValueTransformer
-
-+ (NSValueTransformer *)commentURLJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MTLURLValueTransformerName];
-}
-
-+ (NSValueTransformer *)additionDateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
-}
-
-+ (NSValueTransformer *)updatedDateJSONTransformer {
-	return [NSValueTransformer valueTransformerForName:MSFDateValueTransformerName];
 }
 
 #pragma mark - NSObject
@@ -109,6 +69,14 @@
 
 - (NSUInteger)hash {
 	return self.objectID.hash ^ self.thumbURL.hash;
+}
+
+#pragma mark - Public
+
+- (void)mergeAttachment:(MSFAttachment *)attachment {
+	self.isUpload = YES;
+	[self mergeValueForKey:@keypath(MSFAttachment.new, fileID) fromModel:attachment];
+	[self mergeValueForKey:@keypath(MSFAttachment.new, fileName) fromModel:attachment];
 }
 
 @end
