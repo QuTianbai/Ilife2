@@ -66,7 +66,7 @@
 		]];
 	self.icons = @[@[
 			[UIImage imageNamed:@"icon-account-info"],
-			[UIImage imageNamed:@"icon-account-repay"],
+			[UIImage imageNamed:@"repayPlanIcon"],
 			[UIImage imageNamed:@"icon-account-repay"]
 		], @[
 			[UIImage imageNamed:@"icon-account-about"],
