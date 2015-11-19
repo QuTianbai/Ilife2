@@ -33,6 +33,18 @@
 	_services = services;
 	_model = model;
 	
+	[RACObserve(self.model, produceType) subscribeNext:^(id x) {
+		if ([x isEqualToString:@"MS"]) {
+			self.productType = MSFProductTypeMS;
+		} else if ([x isEqualToString:@"XH"]) {
+			self.productType = MSFProductTypeXH;
+		} else if ([x isEqualToString:@"ML"]) {
+			self.productType = MSFProductTypeML;
+		} else {
+			self.productType = MSFProductTypeUnknown;
+		}
+	}];
+	
 	/*
 	 马上金融
 	 */

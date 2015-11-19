@@ -14,13 +14,9 @@
 
 @interface MSFHomepageViewModel ()
 
-@property (nonatomic, strong, readwrite) NSArray *viewModels;
+@property (nonatomic, strong, readwrite) MSFHomePageCellModel *cellModel;
 
 @end
-
-static NSString *msf_normalUserCode    = @"0000";
-static NSString *msf_msUserCode				 = @"1101";
-static NSString *msf_whiteListUserCode = @"4101";
 
 @implementation MSFHomepageViewModel
 
@@ -40,8 +36,12 @@ static NSString *msf_whiteListUserCode = @"4101";
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
-			NSString *userType = self.services.httpClient.user.type;
-			if ([userType isEqualToString:msf_msUserCode]) {
+			MSFHomePageCellModel *model = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
+			if (model.productType == MSFProductTypeUnknown) {
+				self.viewModel.active = NO;
+				self.viewModel.active = YES;
+				return nil;
+			} else if (model.productType == MSFProductTypeMS) {
 				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
 				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
 				if (loan.type.length == 0 || applyBlank || contractBlank) {
@@ -49,24 +49,20 @@ static NSString *msf_whiteListUserCode = @"4101";
 					self.viewModel.active = YES;
 					return nil;
 				} else {
-					MSFHomePageCellModel *viewModel = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
-					return @[viewModel];
+					return model;
 				}
-			} else if ([userType isEqualToString:msf_whiteListUserCode]) {
-				MSFHomePageCellModel *viewModel = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
-				return @[viewModel];
 			} else {
-				return nil;
+				return model;
 			}
 		}];
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
 		@strongify(self)
-			self.viewModels = x;
+			self.cellModel = x;
 	}];
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
-		self.viewModels = nil;
+		self.cellModel = nil;
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
 	}];
@@ -76,7 +72,6 @@ static NSString *msf_whiteListUserCode = @"4101";
 			[self.refreshCommand execute:nil];
 		}
 	}];
-	
 	return self;
 }
 
@@ -85,17 +80,12 @@ static NSString *msf_whiteListUserCode = @"4101";
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if (self.viewModels.count > 0) {
-		return self.viewModels[0];
-	} else {
-		return self;
-	}
+	return self.cellModel ?: self;
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if (self.viewModels.count > 0) {
-		MSFHomePageCellModel *viewModel = self.viewModels[0];
-		if ([self.services.httpClient.user.type isEqualToString:msf_whiteListUserCode] && viewModel.totalLimit.doubleValue > 0) {
+	if (_cellModel) {
+		if (_cellModel.productType == MSFProductTypeML && _cellModel.productType == MSFProductTypeXH && _cellModel.totalLimit.doubleValue > 0) {
 			return @"MSFCirculateViewCell";
 		} else {
 			return @"MSFHomePageContentCollectionViewCell";
