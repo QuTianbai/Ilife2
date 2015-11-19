@@ -9,6 +9,21 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
 
+typedef NS_ENUM(NSInteger, MSFHomePageDestination) {
+	MSFHomePageDesApplyList,
+	MSFHomePageDesRepayList,
+	MSFHomePageDesContract,
+	MSFHomePageDesUploadData
+};
+
+typedef NS_ENUM(NSInteger, MSFHomePageDateDisplayType) {
+	MSFHomePageDateDisplayTypeNone,
+	MSFHomePageDateDisplayTypeApply,
+	MSFHomePageDateDisplayTypeRepay,
+	MSFHomePageDateDisplayTypeOverDue,
+	MSFHomePageDateDisplayTypeProcessing
+};
+
 @interface MSFHomePageCellModel : RVMViewModel
 
 @property (nonatomic, weak) id<MSFViewModelServices>services;
@@ -17,75 +32,75 @@
  *马上金融
  */
 
-//合同/申请单(CONTRACT/APPLY)
-@property (nonatomic, strong) NSString *type;
-
 // 标题
 @property (nonatomic, strong) NSString *title;
 
-//申请：申请金额；合同：每月应还款额；逾期：所有未还金额
+// 申请：申请金额；合同：每月应还款额；逾期：所有未还金额
 @property (nonatomic, strong) NSString *money;
 
 // 期数
 @property (nonatomic, strong) NSString *loanTerm;
 
-//状态码
-@property (nonatomic, strong) NSString *status;
-
-//状态描述
+// 状态描述, 状态码对应的描述（申请、合同均取用此字段）
 @property (nonatomic, strong) NSString *statusString;
 
-//跳转目标。1，申请列表；2，还款列表；3，合同确认
-@property (nonatomic, assign) NSInteger jumpDes;
-
-//申请时间（申请单独有）
+// 申请时间（申请单独有）
 @property (nonatomic, strong) NSString *applyTime;
 
-//申请日期（合同独有）
+// 申请日期（合同独有）
 @property (nonatomic, strong) NSString *applyDate;
 
-//当前期截止日期（合同独有）
+// 当前期截止日期（合同独有）
 @property (nonatomic, strong) NSString *currentPeriodDate;
 
+// 跳转目标
+@property (nonatomic, assign) MSFHomePageDestination jumpDes;
+
+// 日期展示类型
+@property (nonatomic, assign) MSFHomePageDateDisplayType dateDisplay;
+
 /*
- *随借随还
+ * 随借随还
  */
 
-//总额度
+// 总额度
 @property (nonatomic, strong) NSString *totalLimit;
 
-//已用额度
+// 已用额度
 @property (nonatomic, strong) NSString *usedLimit;
 
-//可用额度
+// 可用额度
 @property (nonatomic, strong) NSString *usableLimit;
 
-//逾期金额
+// 逾期金额
 @property (nonatomic, strong) NSString *overdueMoney;
 
-//合同到期时间
+// 合同到期时间
 @property (nonatomic, strong) NSString *contractExpireDate;
 
-//最近应还款金额
+// 最近应还款金额， 带￥符号
 @property (nonatomic, strong) NSString *latestDueMoney;
 
-//最近还款日
+// 最近还款日
 @property (nonatomic, strong) NSString *latestDueDate;
 
-//总欠款额
+// 总欠款额
 @property (nonatomic, strong) NSString *totalOverdueMoney;
 
-//合同号
+// 合同号
 @property (nonatomic, strong) NSString *contractNo;
 
-//合同状态
-@property (nonatomic, strong) NSString *contractStatus;
+// 合同状态
+//@property (nonatomic, strong) NSString *contractStatus;
 
 - (instancetype)initWithModel:(id)model
 										 services:(id<MSFViewModelServices>)services;
+
 //type: 0,社保带申请列表；1，麻辣贷申请列表
 - (RACSignal *)fetchApplyListSignal:(int)type;
+
 - (RACSignal *)fetchRepaymentSchedulesSignal;
+
 - (void)pushDetailViewController;
 
 @end

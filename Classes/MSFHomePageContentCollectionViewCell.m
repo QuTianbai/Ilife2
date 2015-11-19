@@ -43,7 +43,6 @@
 @implementation MSFHomePageContentCollectionViewCell
 
 - (void)awakeFromNib {
-	
 	_statusButton.layer.cornerRadius = 5;
 	_statusButton.layer.borderColor = UIColor.tintColor.CGColor;
 	_statusButton.layer.borderWidth = 1;
@@ -84,41 +83,50 @@
 - (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
 	//显示饼图
 	if ([viewModel isKindOfClass:MSFHomepageViewModel.class]) {
-		MSFUser *user = [[(MSFHomepageViewModel *)viewModel services] httpClient].user;
+		MSFUser *user = ((MSFHomepageViewModel *)viewModel).services.httpClient.user;
 		[self.circleView setCompeltionStatus:user.complateCustInfo];
 		[self placeholderShow:YES];
 		self.statusButton.hidden = NO;
 		return;
 	}
 	//显示马上金融
-	
 	[self placeholderShow:NO];
 	_titleLabel.text  = viewModel.title;
 	_amountLabel.text = viewModel.money;
 	[_statusButton setTitle:viewModel.statusString
 								 forState:UIControlStateNormal];
-	if ([@[@"G", @"H", @"I", @"J", @"K"] containsObject:viewModel.status]) {
-		_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", viewModel.applyTime, viewModel.loanTerm];
-	} else if ([viewModel.status isEqualToString:@"D"]) {
-		_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", viewModel.currentPeriodDate];
-	} else if ([viewModel.status isEqualToString:@"C"]) {
-		[_infoLabel setText:@"你的合同已逾期\n请及时联系客服还款：400-036-8876"
-					highLightText:@"已逾期"
-				 highLightColor:UIColor.tintColor];
-	} else if ([viewModel.status isEqualToString:@"E"]) {
-		_infoLabel.text = @"合同正在处理中";
-	} else {
-		_infoLabel.text = nil;
-	}
+	[self setInfoLabelString:viewModel];
 	[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 		takeUntil:self.rac_prepareForReuseSignal]
 	 subscribeNext:^(UIButton *x) {
-		 if (viewModel.jumpDes == 3) {
+		 if (viewModel.jumpDes == MSFHomePageDesContract) {
 			 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 		 } else {
 			 [viewModel pushDetailViewController];
 		 }
 	 }];
+}
+
+- (void)setInfoLabelString:(MSFHomePageCellModel *)model {
+	switch (model.dateDisplay) {
+		case MSFHomePageDateDisplayTypeApply:
+			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyTime, model.loanTerm];
+			break;
+		case MSFHomePageDateDisplayTypeRepay:
+			_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", model.currentPeriodDate];
+			break;
+		case MSFHomePageDateDisplayTypeOverDue:
+			[_infoLabel setText:@"你的合同已逾期\n请及时联系客服还款：400-036-8876"
+						highLightText:@"已逾期"
+					 highLightColor:UIColor.tintColor];
+			break;
+		case MSFHomePageDateDisplayTypeProcessing:
+			_infoLabel.text = @"合同正在处理中";
+			break;
+		case MSFHomePageDateDisplayTypeNone:
+			_infoLabel.text = nil;
+			break;
+	}
 }
 
 - (void)placeholderShow:(BOOL)b {

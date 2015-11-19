@@ -18,7 +18,8 @@
 
 @end
 
-static NSString *msf_normalUserCode		 = @"1101";
+static NSString *msf_normalUserCode    = @"0000";
+static NSString *msf_msUserCode				 = @"1101";
 static NSString *msf_whiteListUserCode = @"4101";
 
 @implementation MSFHomepageViewModel
@@ -40,7 +41,7 @@ static NSString *msf_whiteListUserCode = @"4101";
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
 			NSString *userType = self.services.httpClient.user.type;
-			if ([userType isEqualToString:msf_normalUserCode]) {
+			if ([userType isEqualToString:msf_msUserCode]) {
 				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
 				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
 				if (loan.type.length == 0 || applyBlank || contractBlank) {
