@@ -1,0 +1,23 @@
+ [
+ {
+	"applyTime": "2015-04-19",
+	"appLmt": "1950.00",
+	"loanTerm": "6",
+	"status": "A",
+	"appNo": "190008"
+ },
+ {
+	"applyTime": "2015-07-22",
+	"appLmt": "800.00",
+	"loanTerm": "3",
+	"status": "A",
+	"appNo": "190009"
+ },
+ {
+	"applyTime": "2015-11-15",
+	"appLmt": "900.00",
+	"loanTerm": "3",
+	"status": "A",
+	"appNo": "190010"
+ }
+]

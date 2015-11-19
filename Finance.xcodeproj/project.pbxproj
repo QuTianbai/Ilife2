@@ -248,6 +248,8 @@
 		10DE89741B68AEDE009025C4 /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89731B68AEDE009025C4 /* MSFInfinityScroll.m */; };
 		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
 		10E546201BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E5461F1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m */; };
+		10E5464B1BFD644D00BBA827 /* MSFApplyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 10E5464A1BFD644D00BBA827 /* MSFApplyList.json */; };
+		10E5464D1BFD649E00BBA827 /* MSFSpicyApplyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 10E5464C1BFD649E00BBA827 /* MSFSpicyApplyList.json */; };
 		2058B440DD03E6FBC6158AB3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1C7E4D250D094AB88DCA842 /* libPods.a */; };
 		4902E4081BC4B4640087FA1E /* mock-elements.json in Resources */ = {isa = PBXBuildFile; fileRef = 4902E4071BC4B4640087FA1E /* mock-elements.json */; };
 		4902E41F1BC4C56F0087FA1E /* icon-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */; };
@@ -1109,6 +1111,8 @@
 		10DE89AC1B69C17F009025C4 /* MSFUmengMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFUmengMacro.h; sourceTree = "<group>"; };
 		10E5461E1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlanListSegmentBar.h; sourceTree = "<group>"; };
 		10E5461F1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanListSegmentBar.m; sourceTree = "<group>"; };
+		10E5464A1BFD644D00BBA827 /* MSFApplyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFApplyList.json; sourceTree = "<group>"; };
+		10E5464C1BFD649E00BBA827 /* MSFSpicyApplyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFSpicyApplyList.json; sourceTree = "<group>"; };
 		2149F08038F9531F26E05484 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3B5A55417088280C9EEC234F /* Pods.tp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.tp.xcconfig; path = "Pods/Target Support Files/Pods/Pods.tp.xcconfig"; sourceTree = "<group>"; };
 		41B95997B3C939CDBCD59AA1 /* Pods.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.test.xcconfig; path = "Pods/Target Support Files/Pods/Pods.test.xcconfig"; sourceTree = "<group>"; };
@@ -3428,6 +3432,8 @@
 				49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */,
 				4944C05C1B68A6CA00805C0A /* MSFClient+ApplyList.h */,
 				4944C05D1B68A6CA00805C0A /* MSFClient+ApplyList.m */,
+				10E5464A1BFD644D00BBA827 /* MSFApplyList.json */,
+				10E5464C1BFD649E00BBA827 /* MSFSpicyApplyList.json */,
 			);
 			name = "Apply List";
 			sourceTree = "<group>";
@@ -3971,6 +3977,7 @@
 				07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */,
 				49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */,
 				0738C48F1B944B54006D7177 /* bank.db in Resources */,
+				10E5464B1BFD644D00BBA827 /* MSFApplyList.json in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
@@ -4063,6 +4070,7 @@
 				077347E11BBA338900D7A130 /* guangfa@3x.png in Resources */,
 				49C0F1C61B2C341400E92572 /* tabbar-account-normal@3x.png in Resources */,
 				49DAEE7C1B2E83D7009433C5 /* product.storyboard in Resources */,
+				10E5464D1BFD649E00BBA827 /* MSFSpicyApplyList.json in Resources */,
 				077347E01BBA338900D7A130 /* guangfa@2x.png in Resources */,
 				492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */,
 				10DC2DA51B99C17F00A2AF9C /* icon_order2_n.png in Resources */,

@@ -11,6 +11,12 @@
 
 @implementation MSFApplyList
 
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+					 @"statusString" : @"status"
+					 };
+}
+
 + (NSValueTransformer *)loanTermJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {
 		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
