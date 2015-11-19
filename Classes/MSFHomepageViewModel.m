@@ -37,11 +37,7 @@
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
 			MSFHomePageCellModel *model = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
-			if (model.productType == MSFProductTypeUnknown) {
-				self.viewModel.active = NO;
-				self.viewModel.active = YES;
-				return nil;
-			} else if (model.productType == MSFProductTypeMS) {
+			if (model.productType == MSFProductTypeMS) {
 				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
 				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
 				if (loan.type.length == 0 || applyBlank || contractBlank) {

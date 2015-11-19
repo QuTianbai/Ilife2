@@ -40,8 +40,6 @@
 			self.productType = MSFProductTypeXH;
 		} else if ([x isEqualToString:@"ML"]) {
 			self.productType = MSFProductTypeML;
-		} else {
-			self.productType = MSFProductTypeUnknown;
 		}
 	}];
 	

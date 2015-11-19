@@ -41,7 +41,6 @@ UICollectionViewDelegateFlowLayout>
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	//collectionView
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.collectionView.allowsSelection = NO;

@@ -25,7 +25,6 @@ typedef NS_ENUM(NSInteger, MSFHomePageDateDisplayType) {
 };
 
 typedef NS_ENUM(NSInteger, MSFProductType) {
-	MSFProductTypeUnknown,
 	MSFProductTypeMS,
 	MSFProductTypeXH,
 	MSFProductTypeML
@@ -38,7 +37,7 @@ typedef NS_ENUM(NSInteger, MSFProductType) {
 //产品类型： MS、XH、ML
 @property (nonatomic, assign) MSFProductType productType;
 
-/*马上贷*/
+/* 马上贷 */
 
 // 标题
 @property (nonatomic, strong) NSString *title;
@@ -67,7 +66,7 @@ typedef NS_ENUM(NSInteger, MSFProductType) {
 // 日期展示类型
 @property (nonatomic, assign) MSFHomePageDateDisplayType dateDisplay;
 
-/*随借随还*/
+/* 随借随还 */
 
 // 总额度
 @property (nonatomic, strong) NSString *totalLimit;

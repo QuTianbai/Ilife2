@@ -179,7 +179,9 @@
 	[self setUpViews];
 	[self loadData:0];
 }
+
 #warning TODO : 同步性
+
 - (void)loadData:(int)type {
 	RACSignal *signal = [self.viewModel fetchApplyListSignal:type];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
