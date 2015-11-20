@@ -21,4 +21,21 @@
 	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
 }
 
+- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"append/getFile" parameters:@{
+		@"productId": productID,
+		@"applyNo": applicaitonNo,
+	}];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
+}
+
+- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
+		@"productCode": self.user.type,
+		@"amount": amount,
+		@"loanTerm": terms,
+	}];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
+}
+
 @end

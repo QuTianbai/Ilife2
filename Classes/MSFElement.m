@@ -6,6 +6,13 @@
 
 #import "MSFElement.h"
 #import "MSFServer.h"
+#import "MSFElement+Private.h"
+
+@interface MSFElement ()
+
+@property (nonatomic, strong) NSString *applicationNumberString;
+
+@end
 
 @implementation MSFElement
 
@@ -52,6 +59,16 @@
 
 - (NSURL *)thumbURL {
 	return [self.server.baseURL URLByAppendingPathComponent:self.relativeThumbPath];
+}
+
+#pragma mark - Private
+
+- (void)setApplicationNo:(NSString *)applicationNo {
+	self.applicationNumberString = applicationNo;
+}
+
+- (NSString *)applicationNo {
+	return self.applicationNumberString;
 }
 
 @end
