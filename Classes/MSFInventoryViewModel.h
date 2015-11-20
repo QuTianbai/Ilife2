@@ -12,10 +12,9 @@
 @class MSFProduct;
 @class MSFApplicationResponse;
 @class MSFApplyCashVIewModel;
+@class MSFInsuranceViewModel;
 
 @interface MSFInventoryViewModel : RVMViewModel
-
-@property (nonatomic, strong) MSFApplyCashVIewModel *cashViewModel;
 
 // MSFElementViewModel viewModels
 @property (nonatomic, strong, readonly) NSArray *viewModels;
@@ -24,13 +23,29 @@
 @property (nonatomic, strong, readonly) NSArray *optionalViewModels;
 
 @property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
-@property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
 
-@property (nonatomic, strong, readonly) RACCommand *executeSubmit;
+// 用于提交马上贷信息
+@property (nonatomic, weak, readonly) MSFApplyCashVIewModel *formsViewModel;
+
+// 用于提交社保信息
+@property (nonatomic, weak, readonly) MSFInsuranceViewModel *insuranceViewModel;
+
+// 提交命令
+@property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (RACSignal *)updateValidSignal;
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel __deprecated_msg("Use `initWithCashViewModel:");
+// 马上贷
 - (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel;
+
+// 社保贷
+- (instancetype)initWithInsuranceViewModel:(MSFInsuranceViewModel *)insuranceViewModel;
+
+// 从新提交附件信息
+- (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
+
+- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel __deprecated_msg("Use `initWithCashViewModel:");
+@property (nonatomic, strong) MSFApplyCashVIewModel *cashViewModel __deprecated;
+@property (nonatomic, strong, readonly) RACCommand *executeSubmit __deprecated;
 
 @end

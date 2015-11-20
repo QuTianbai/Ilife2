@@ -9,6 +9,8 @@
 #import "MSFElement.h"
 #import "MSFProduct.h"
 #import "MSFUser.h"
+#import "MSFElement+Private.h"
+#import "MSFResponse.h"
 
 @implementation MSFClient (Elements)
 
@@ -26,7 +28,11 @@
 		@"productId": productID,
 		@"applyNo": applicaitonNo,
 	}];
-	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
+		MSFElement *element = response.parsedResult;
+		element.applicationNo = applicaitonNo;
+		return element;
+	}];
 }
 
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms {
@@ -35,7 +41,11 @@
 		@"amount": amount,
 		@"loanTerm": terms,
 	}];
-	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
+		MSFElement *element = response.parsedResult;
+		element.applicationNo = applicaitonNo;
+		return element;
+	}];
 }
 
 @end
