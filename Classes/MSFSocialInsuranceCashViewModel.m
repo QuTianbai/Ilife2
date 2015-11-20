@@ -84,6 +84,8 @@
 	}];
 	RAC(self, model.empEdwStartDate) = RACObserve(self, employeeOlderDate);
 	RAC(self, model.empMdcInsuStartDate) = RACObserve(self, employeeMedicalDate);
+	RAC(self, model.empEdwMonths) = RACObserve(self, employeeOlderMonths);
+	RAC(self, model.empMdcMonths) = RACObserve(self, employeeMedicalMonths);
 	//居民保险
 	RAC(self, model.rsdtOldInsuExist) = [RACObserve(self, residentOlderInsuranceStatus) map:^id(MSFSelectKeyValues *value) {
 		self.residentOlderInsuranceStatusTitle = value.text;
@@ -103,6 +105,8 @@
 	}];
 	RAC(self, model.rsdtOldInsuStartDate) = RACObserve(self, residentOlderInsuranceDate);
 	RAC(self, model.rsdtMdcInsuStartDate) = RACObserve(self, residentMedicalInsuranceDate);
+	RAC(self, model.rsdtOldInsuYears) = RACObserve(self, residentOlderInsuranceYears);
+	RAC(self, model.rsdtMdcInsuYears) = RACObserve(self, residentMedicalInsuranceYears);
 	
 
 	

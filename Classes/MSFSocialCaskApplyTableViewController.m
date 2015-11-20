@@ -58,6 +58,9 @@
 		RAC(self, medicalBaseTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceMoneyTitle) ignore:nil];
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, residentOlderInsuranceDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, residentMedicalInsuranceDate);
+		
+		RAC(self, viewModel.employeeOlderMonths) = RACObserve(self, olderMonthsTF.text);
+		RAC(self, viewModel.employeeMedicalMonths) = RACObserve(self, medicalMonths.text);
 	} else {
 		RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.employeeOldInsuranceStatusTitle) ignore:nil];
 		RAC(self, olderBaseTF.text) = [RACObserve(self, viewModel.employeeOlderModeyTitle) ignore:nil];
@@ -69,6 +72,9 @@
 		
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, employeeOlderDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
+		
+		RAC(self, viewModel.residentOlderInsuranceYears) = RACObserve(self, olderMonthsTF.text);
+		RAC(self, viewModel.residentMedicalInsuranceYears) = RACObserve(self, medicalMonths.text);
 		
 	}
 	
