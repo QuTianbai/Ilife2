@@ -7,17 +7,14 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 
-@interface MSFHomepageDisplayModel : NSObject
-
-@end
-
 @class RACCommand;
 @class MSFFormsViewModel;
+@class MSFHomePageCellModel;
 
 @interface MSFHomepageViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) MSFFormsViewModel *viewModel;
-@property (nonatomic, strong, readonly) NSArray *viewModels;
+@property (nonatomic, strong, readonly) MSFHomePageCellModel *cellModel;
 @property (nonatomic, strong, readonly) RACCommand *refreshCommand;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 

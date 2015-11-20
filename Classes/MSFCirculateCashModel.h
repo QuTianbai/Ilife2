@@ -23,7 +23,7 @@
 
 @property (nonatomic, copy) NSString *currentPeriodDate;//当前期截止日期
 
-@property (nonatomic, copy) NSString *contractStatus;
+@property (nonatomic, copy) NSString *contractStatus;//合同状态
 
 @property (nonatomic, copy) NSString *applyStatus;//状态：申请中，还款中，已逾期，
 

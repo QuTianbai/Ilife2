@@ -101,10 +101,17 @@
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFHomePageCellModel class]]) {
-		if (((MSFHomePageCellModel *)viewModel).jumpDes == 1) {
-			viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-		} else {
-			viewController = [[MSFRepaymentTableViewController alloc] initWithViewModel:viewModel];
+		switch (((MSFHomePageCellModel *)viewModel).jumpDes) {
+			case MSFHomePageDesApplyList:
+				viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
+				break;
+			case MSFHomePageDesRepayList:
+				viewController = [[MSFRepaymentTableViewController alloc] initWithViewModel:viewModel];
+				break;
+			case MSFHomePageDesUploadData:
+//TODO: 未定义
+				break;
+			default:break;
 		}
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {

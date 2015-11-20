@@ -13,14 +13,25 @@
 
 @implementation MSFClient (ApplyList)
 
-- (RACSignal *)fetchApplyList {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
+- (RACSignal *)fetchMSApplyList {
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFApplyList" ofType:@"json"];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
+	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
+	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
+	/*
 	return [[[self enqueueRequest:request resultClass:nil] collect] map:^id(id value) {
-		NSLog(@"%@", value);
 		return [MTLJSONAdapter modelsOfClass:MSFApplyList.class fromJSONArray:[self convertArray:value] error:nil];
-	}];
+	}];*/
 }
 
+- (RACSignal *)fetchSpicyApplyList {
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFSpicyApplyList" ofType:@"json"];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
+	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/applyList" parameters:nil];
+	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
+}
+
+/*
 - (id)filter:(id)obj class:(Class)class {
 	if ([obj isKindOfClass:class]) {
 		return obj;
@@ -60,10 +71,10 @@
 	}
 	return nil;
 }
-
+*/
 - (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"coresys/cont/contract/pageQuery" parameters:@{@"applyId": applylist.loan_id}];
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"coresys/cont/contract/pageQuery" parameters:@{@"applyId": applylist.appNo}];
 		[subscriber sendNext:request];
 		[subscriber sendCompleted];
 		return nil;

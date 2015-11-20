@@ -10,17 +10,18 @@
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
 #import "UIColor+Utils.h"
-#import "MSFDeviceGet.h"
 
 @interface MSFLoanLimitView ()
 
+@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *usedLabel;
 @property (nonatomic, strong) UILabel *usableLabel;
+@property (nonatomic, strong) UIFont *acFont;
 
-@property (nonatomic, assign) CGFloat standardFontSize;
-@property (nonatomic, assign) CGFloat lineWidth;
-@property (nonatomic, assign) CGFloat endAngle;
+@property (nonatomic, assign) CGFloat startAngle;
 @property (nonatomic, assign) CGFloat angle;
+@property (nonatomic, assign) CGFloat animaAngle;
+@property (nonatomic, assign) CGFloat lineWidth;
 
 @end
 
@@ -42,91 +43,91 @@
 	return self;
 }
 
-- (void)setUpProperties {
-	_standardFontSize = [UIScreen mainScreen].bounds.size.width > 320 ? 60 : 45;
-	_lineWidth = 11.0f;
-	_endAngle	 = - M_PI * 7 / 6;
-	_angle		 = - M_PI * 7 / 6;
-}
-
 - (void)commonInit {
 	
-	[self setUpProperties];
+	_startAngle = _animaAngle = M_PI_4 * 3;
+	_acFont = [UIFont systemFontOfSize:25.f];
 	
-	UILabel *titleLabel = [[UILabel alloc] init];
-	titleLabel.font = [UIFont boldSystemFontOfSize:14];
-	titleLabel.textColor = [UIColor darkCircleColor];
-	titleLabel.textAlignment = NSTextAlignmentCenter;
-	titleLabel.text = @"可用额度（元）";
-	[self addSubview:titleLabel];
+	_titleLabel = [[UILabel alloc] init];
+	_titleLabel.textColor = [UIColor darkCircleColor];
+	_titleLabel.textAlignment = NSTextAlignmentCenter;
+	_titleLabel.text = @"可用额度（元）";
+	[self addSubview:_titleLabel];
 
 	_usableLabel = [[UILabel alloc] init];
-	_usableLabel.font = [UIFont systemFontOfSize:_standardFontSize];
 	_usableLabel.textColor = [UIColor darkCircleColor];
 	_usableLabel.textAlignment = NSTextAlignmentCenter;
-	_usableLabel.text = @"8000";
 	[self addSubview:_usableLabel];
 	
 	_usedLabel = [[UILabel alloc] init];
-	_usedLabel.font = [UIFont boldSystemFontOfSize:12];
 	_usedLabel.textColor = [UIColor color999999];
 	_usedLabel.textAlignment = NSTextAlignmentCenter;
-	_usedLabel.text = @"已用额度￥2000";
 	[self addSubview:_usedLabel];
 	
 	@weakify(self)
 	[_usableLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.width.equalTo(self);
+		//make.width.equalTo(self).multipliedBy(0.9);
 		make.centerX.equalTo(self);
-		make.centerY.equalTo(self).offset(15);
+		make.centerY.equalTo(self).offset(17);
 	}];
 	
-	[titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+	[_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self).offset(8);
-		make.right.equalTo(self).offset(-8);
+		make.centerX.equalTo(self);
 		make.bottom.equalTo(self.usableLabel.mas_top).offset(-8);
 	}];
 	
 	[_usedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self).offset(8);
-		make.right.equalTo(self).offset(-8);
-		make.bottom.equalTo(self).offset(-5);
+		make.centerX.equalTo(self);
+		make.width.equalTo(self).multipliedBy(0.7);
+		make.bottom.equalTo(self);
 	}];
 }
 
+- (void)layoutSubviews {
+	[super layoutSubviews];
+	_lineWidth = self.frame.size.width * 0.05;
+	CGFloat f1 = self.frame.size.width * 0.07;
+	CGFloat f2 = self.frame.size.width * 0.25;
+	CGFloat f3 = self.frame.size.width * 0.06;
+	_acFont = [UIFont systemFontOfSize:f2];
+	_titleLabel.font  = [UIFont boldSystemFontOfSize:f1];
+	[self adjustedLabelFont];
+	_usedLabel.font   = [UIFont boldSystemFontOfSize:f3];
+}
+
 - (void)setAvailableCredit:(NSString *)ac usedCredit:(NSString *)uc {
-	_angle = - M_PI * 7 / 6;
 	if (ac.length == 0 || uc.length == 0) {
 		ac = @"0";
 		uc = @"0";
-		_endAngle = _angle;
+		_animaAngle = _startAngle;
 	} else {
-		_endAngle = - M_PI * 7 / 6 + ac.floatValue / (ac.floatValue + uc.floatValue) * M_PI * 4 / 3;
+		_animaAngle = _startAngle + (3 * M_PI - 2 * _startAngle) * ac.floatValue / (ac.floatValue + uc.floatValue);
 	}
-	[self ajustLabelFont:ac];
+	_angle = _startAngle;
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
 	[self circleAnimation];
 }
 
-- (void)ajustLabelFont:(NSString *)ac {
-	CGFloat width = [ac boundingRectWithSize:CGSizeMake(10000, 10000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:_standardFontSize]} context:nil].size.width;
-	CGFloat fontSize = 0;
-	if (width > self.frame.size.height) {
-		fontSize = floor(_standardFontSize * self.frame.size.height / width);
-	} else {
-		fontSize = _standardFontSize;
+- (void)adjustedLabelFont {
+	if (_usableLabel.text.length == 0) {
+		return;
 	}
-	_usableLabel.font = [UIFont systemFontOfSize:fontSize];
+	CGFloat width = [_usableLabel.text boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : _acFont} context:nil].size.width;
+	if (width > self.frame.size.width - _lineWidth * 2) {
+		_usableLabel.font = [UIFont systemFontOfSize:_acFont.pointSize * (self.frame.size.height - _lineWidth * 2) / width];
+	} else {
+		_usableLabel.font = [UIFont systemFontOfSize:_acFont.pointSize];
+	}
 }
 
 - (void)circleAnimation {
 	_angle += M_PI / 20;
-	if (_angle > _endAngle) {
-		_angle = _endAngle;
+	if (_angle > _animaAngle) {
+		_angle = _animaAngle;
 		[self setNeedsDisplay];
 		return;
 	}
@@ -137,19 +138,21 @@
 								inModes:@[NSRunLoopCommonModes]];
 }
 
-- (CGFloat)setAngle {
-	return 0;
-}
-
 - (void)drawRect:(CGRect)rect {
-	
-	CGFloat radius = (rect.size.height - _lineWidth * 2) * 2 / 3;
-	
+	CGFloat expectedRate = sqrtf(2) / 4 + 0.5;
+	CGFloat rate = (rect.size.height - _lineWidth) / (rect.size.width - _lineWidth);
+	CGFloat radius;
+	if (rate > expectedRate) {
+		radius = (rect.size.width - _lineWidth) / 2;
+	} else {
+		radius = (rect.size.height - _lineWidth) / (1 + sin(M_PI - _startAngle));
+	}
+	CGPoint center = CGPointMake(rect.size.width / 2, rect.size.height - sin(M_PI - _startAngle) * radius - _lineWidth / 2);
 	UIBezierPath *path1 = [UIBezierPath
-												bezierPathWithArcCenter:CGPointMake(rect.size.width / 2, radius + _lineWidth)
+												bezierPathWithArcCenter:center
 												radius:radius
-												startAngle:- M_PI * 7 / 6
-												endAngle:M_PI / 6
+												startAngle:_startAngle
+												endAngle:M_PI - _startAngle
 												clockwise:YES];
 	[path1 setLineCapStyle:kCGLineCapRound];
 	[path1 setLineWidth:_lineWidth];
@@ -157,16 +160,15 @@
 	[path1 stroke];
 	
 	UIBezierPath *path2 = [UIBezierPath
-												bezierPathWithArcCenter:CGPointMake(rect.size.width / 2, radius + _lineWidth)
+												bezierPathWithArcCenter:center
 												radius:radius
-												startAngle:- M_PI * 7 / 6
+												startAngle:_startAngle
 												endAngle:_angle
 												clockwise:YES];
 	[path2 setLineCapStyle:kCGLineCapRound];
 	[path2 setLineWidth:_lineWidth];
 	[[UIColor darkCircleColor] set];
 	[path2 stroke];
-	
 }
 
 @end

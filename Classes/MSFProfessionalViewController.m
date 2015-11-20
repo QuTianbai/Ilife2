@@ -23,10 +23,10 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
-	MSFProfessionalViewSectionSchool = 1,
-	MSFProfessionalViewSectionCompany = 2,
-	MSFProfessionalViewSectionDepartment = 3,
-	MSFProfessionalViewSectionIncome = 4,
+	MSFProfessionalViewSectionIncome = 1,
+	MSFProfessionalViewSectionSchool = 2,
+	MSFProfessionalViewSectionCompany = 3,
+	MSFProfessionalViewSectionDepartment = 4,
 	MSFProfessionalViewSectionContact = 5,
 };
 
@@ -316,7 +316,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		return [super tableView:tableView titleForHeaderInSection:section];
 	}
 	if ([self.viewModel.socialstatus.code isEqualToString:@"SI01"]) {
-		if (section == 0 || section == MSFProfessionalViewSectionSchool) {
+		if (section == 0 || section == MSFProfessionalViewSectionSchool || section == MSFProfessionalViewSectionIncome) {
 			return [super tableView:tableView titleForHeaderInSection:section];
 		}
 	}
@@ -325,7 +325,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			return [super tableView:tableView titleForHeaderInSection:section];
 		}
 	}
-	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && section == 0) {
+	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && (section == 0 || section == MSFProfessionalViewSectionIncome)) {
 		return [super tableView:tableView titleForHeaderInSection:section];
 	}
 	return nil;
@@ -339,7 +339,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		if (section == 0) {
 			return 2;
 		}
-		if (section == MSFProfessionalViewSectionSchool) {
+		if (section == MSFProfessionalViewSectionSchool || section == MSFProfessionalViewSectionIncome) {
 			return [super tableView:tableView numberOfRowsInSection:section];
 		}
 	}
@@ -348,8 +348,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			return [super tableView:tableView numberOfRowsInSection:section];
 		}
 	}
-	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && section == 0) {
-		return 2;
+	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && (section == 0 || section == MSFProfessionalViewSectionIncome)) {
+		if (section == 0) {
+			return 2;
+		} else if (section == MSFProfessionalViewSectionIncome) {
+			return [super tableView:tableView numberOfRowsInSection:section];
+		}
 	}
 	return 0;
 }
