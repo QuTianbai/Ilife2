@@ -39,24 +39,6 @@
 	} error:nil];
 }
 
-+ (instancetype)blankAttachmentWithAssetsURL:(NSURL *)URL {
-	return [[self alloc] initWithDictionary:@{
-		@keypath(MSFAttachment.new, thumbURL): URL ?: NSNull.null,
-		@keypath(MSFAttachment.new, isPlaceholder): @YES
-	} error:nil];
-}
-
-- (instancetype)initWithFileURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type {
-	return [self initWithDictionary:@{
-		@keypath(MSFAttachment.new, fileURL): URL,
-		@keypath(MSFAttachment.new, applicationNo): applicaitonNo,
-		@keypath(MSFAttachment.new, type): type,
-		@keypath(MSFAttachment.new, name): URL.lastPathComponent,
-		@keypath(MSFAttachment.new, isPlaceholder): @NO,
-		@keypath(MSFAttachment.new, thumbURL): URL,
-	} error:nil];
-}
-
 #pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {

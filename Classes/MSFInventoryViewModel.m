@@ -76,9 +76,7 @@
 			}]
 			collect];
 	}];
-	_executeSubmit = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.formsViewModel submitSignalWithStatus:@"1"];
-	}];
+	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self.formsViewModel submitSignalWithStatus:@"1"];
 	}];

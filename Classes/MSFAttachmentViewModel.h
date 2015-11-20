@@ -48,15 +48,3 @@
 
 @end
 
-@class MSFApplyCashVIewModel;
-
-@interface MSFAttachmentViewModel (Deprecated)
-
-@property (nonatomic, strong, readonly) RACCommand *downloadAttachmentCommand __deprecated;
-@property (nonatomic, strong, readonly) NSURL *fileURL __deprecated;
-
-- (instancetype)initWthAttachment:(MSFAttachment *)attachment services:(id <MSFViewModelServices>)services __deprecated;
-- (instancetype)initWthAttachment:(MSFAttachment *)attachment viewModel:(MSFApplyCashVIewModel *)viewModel __deprecated;
-- (RACSignal *)downloadValidSignal __deprecated;
-
-@end

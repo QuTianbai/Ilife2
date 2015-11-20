@@ -44,8 +44,4 @@
 // 从新提交附件信息
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel __deprecated_msg("Use `initWithCashViewModel:");
-@property (nonatomic, strong) MSFApplyCashVIewModel *cashViewModel __deprecated;
-@property (nonatomic, strong, readonly) RACCommand *executeSubmit __deprecated;
-
 @end
