@@ -74,7 +74,7 @@ UICollectionViewDelegateFlowLayout>
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
-			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.cashViewModel user:[self.viewModel.cashViewModel.services httpClient].user];
+			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
 			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
 			
 			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
@@ -85,7 +85,7 @@ UICollectionViewDelegateFlowLayout>
 			
 			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
 				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-					[self.viewModel.executeSubmit execute:nil];
+					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
 			} completed:^{
 				[[KGModal sharedInstance] hideAnimated:YES];
@@ -98,7 +98,7 @@ UICollectionViewDelegateFlowLayout>
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
-			self.viewModel.cashViewModel.array = x;
+			self.viewModel.formsViewModel.array = x;
 		}];
 	}];
 	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
@@ -106,7 +106,7 @@ UICollectionViewDelegateFlowLayout>
 	}];
 
 	
-	[self.viewModel.executeSubmit.executionSignals subscribeNext:^(RACSignal *signal) {
+	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
@@ -115,7 +115,7 @@ UICollectionViewDelegateFlowLayout>
 		}];
 	}];
 	
-	[self.viewModel.executeSubmit.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
