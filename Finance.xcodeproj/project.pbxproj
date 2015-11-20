@@ -1535,6 +1535,7 @@
 		49DAEE7D1B2E83E4009433C5 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
 		49DAEE811B2E840A009433C5 /* relationship.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = relationship.storyboard; sourceTree = "<group>"; };
+		49DF43D71BFEEBFB00D19855 /* MSFElement+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFElement+Private.h"; sourceTree = "<group>"; };
 		49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-date-disable@2x.png"; sourceTree = "<group>"; };
 		49E07D481BBD25F0001F9E1A /* code-message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "code-message.json"; sourceTree = "<group>"; };
 		49E22AF71B37ED9E00749717 /* btn-family-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add.png"; sourceTree = "<group>"; };
@@ -2916,6 +2917,7 @@
 			children = (
 				4948E8881B953FFB0048D125 /* MSFElement.h */,
 				4948E8891B953FFB0048D125 /* MSFElement.m */,
+				49DF43D71BFEEBFB00D19855 /* MSFElement+Private.h */,
 				4948E88D1B95473B0048D125 /* MSFClient+Elements.h */,
 				4948E88E1B95473B0048D125 /* MSFClient+Elements.m */,
 			);
