@@ -65,33 +65,32 @@
 	@weakify(self)
 	[_usableLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.width.equalTo(self);
+		make.width.equalTo(self).multipliedBy(0.9);
 		make.centerX.equalTo(self);
-		make.centerY.equalTo(self).offset(15);
+		make.centerY.equalTo(self).offset(17);
 	}];
 	
 	[_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self).offset(8);
-		make.right.equalTo(self).offset(-8);
+		make.centerX.equalTo(self);
 		make.bottom.equalTo(self.usableLabel.mas_top).offset(-8);
 	}];
 	
 	[_usedLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.left.equalTo(self).offset(8);
-		make.right.equalTo(self).offset(-8);
-		make.bottom.equalTo(self).offset(-5);
+		make.centerX.equalTo(self);
+		make.width.equalTo(self).multipliedBy(0.7);
+		make.bottom.equalTo(self);
 	}];
 }
 
 - (void)layoutSubviews {
 	_lineWidth = self.frame.size.width * 0.05;
-	CGFloat f1 = self.frame.size.width * 0.06;
-	CGFloat f2 = self.frame.size.width * 0.22;
-	CGFloat f3 = self.frame.size.width * 0.05;
+	CGFloat f1 = self.frame.size.width * 0.07;
+	CGFloat f2 = self.frame.size.width * 0.25;
+	CGFloat f3 = self.frame.size.width * 0.06;
 	_titleLabel.font  = [UIFont boldSystemFontOfSize:f1];
-	_usableLabel.font = [UIFont boldSystemFontOfSize:f2];
+	_usableLabel.font = [UIFont systemFontOfSize:f2];
 	_usedLabel.font   = [UIFont boldSystemFontOfSize:f3];
 }
 
@@ -125,12 +124,12 @@
 
 - (void)drawRect:(CGRect)rect {
 	CGFloat expectedRate = sqrtf(2) / 4 + 0.5;
-	CGFloat rate = (rect.size.height - 2 * _lineWidth) / (rect.size.width - 2 * _lineWidth);
+	CGFloat rate = (rect.size.height - _lineWidth) / (rect.size.width - _lineWidth);
 	CGFloat radius;
 	if (rate > expectedRate) {
-		radius = (rect.size.width - _lineWidth * 2) / 2;
+		radius = (rect.size.width - _lineWidth) / 2;
 	} else {
-		radius = (rect.size.height - _lineWidth * 2) / (1 + sin(M_PI - _startAngle));
+		radius = (rect.size.height - _lineWidth) / (1 + sin(M_PI - _startAngle));
 	}
 	CGPoint center = CGPointMake(rect.size.width / 2, rect.size.height - sin(M_PI - _startAngle) * radius - _lineWidth / 2);
 	UIBezierPath *path1 = [UIBezierPath

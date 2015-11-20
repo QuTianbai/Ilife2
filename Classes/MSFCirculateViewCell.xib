@@ -19,7 +19,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OBt-ib-4Yc" customClass="MSFLoanLimitView">
                         <rect key="frame" x="63" y="5" width="196" height="167"/>
                         <animations/>
-                        <color key="backgroundColor" red="0.086274509799999996" green="0.59999999999999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" secondItem="OBt-ib-4Yc" secondAttribute="width" multiplier="0.854" id="XDZ-Ir-nZ1"/>
                         </constraints>

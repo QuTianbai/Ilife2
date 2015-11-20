@@ -22,7 +22,7 @@
 
 - (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
 	//_viewModel = viewModel;
-	[_loanLimitView setAvailableCredit:@"3000"
+	[_loanLimitView setAvailableCredit:@"18888.65"
 													usedCredit:@"99999"];
 	//[_loanLimitView setAvailableCredit:viewModel.usableLimit
 											//		usedCredit:viewModel.usedLimit];
@@ -32,17 +32,18 @@
 - (void)drawRect:(CGRect)rect {
 	
 	CGFloat width = rect.size.width;
-	CGFloat w = CGRectGetWidth(_loanLimitView.frame) * 3 / 16;//信息描述框半宽度
 	UIFont *font = [UIFont systemFontOfSize:CGRectGetWidth(rect) * 0.047];
-	CGFloat topLine = CGRectGetMaxY(_loanLimitView.frame) + 5;
-	CGFloat margin = (w - font.lineHeight * 2) / 3;
-	
+	CGFloat topLine = CGRectGetMaxY(_loanLimitView.frame) + 8;
+	CGFloat margin = 5;
+	CGFloat w = CGRectGetHeight(_loanLimitView.frame) * 0.375;//信息描述框半宽度
+	CGFloat h = font.lineHeight * 2 + margin * 3;//信息描述框高度
+
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextMoveToPoint(context, 0, topLine);
 	CGContextAddLineToPoint(context, width, topLine);
 	CGContextMoveToPoint(context, width / 2 - w, topLine);
-	CGContextAddLineToPoint(context, width / 2 - w, topLine + w);
-	CGContextAddLineToPoint(context, width / 2 + w, topLine + w);
+	CGContextAddLineToPoint(context, width / 2 - w, topLine + h);
+	CGContextAddLineToPoint(context, width / 2 + w, topLine + h);
 	CGContextAddLineToPoint(context, width / 2 + w, topLine);
 	CGContextSetLineWidth(context, 0.5);
 	[UIColor.lineColor setStroke];
@@ -53,8 +54,8 @@
 	NSMutableDictionary *attri = [NSMutableDictionary dictionary];
 	[attri setObject:font forKey:NSFontAttributeName];
 	[attri setObject:paragraph forKey:NSParagraphStyleAttributeName];
-	CGRect rect1 = CGRectMake(width / 2 - w, topLine + margin, w * 2, w / 2);
-	CGRect rect2 = CGRectMake(width / 2 - w, topLine + font.lineHeight + margin * 2, w * 2, w / 2);
+	CGRect rect1 = CGRectMake(width / 2 - w, topLine + margin, w * 2, font.lineHeight);
+	CGRect rect2 = CGRectMake(width / 2 - w, topLine + font.lineHeight + margin * 2, w * 2, font.lineHeight);
 //	if ([self.viewModel.statusString isEqualToString:@"已逾期"]) {
 //		[attri setObject:UIColor.overDueTextColor
 //							forKey:NSForegroundColorAttributeName];
