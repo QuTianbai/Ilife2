@@ -61,6 +61,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
+		@"objectID": @"fileId",
 		@"fileID": @"fileId",
 		@"fileName": @"fileName",
 	};
@@ -96,6 +97,7 @@
 
 - (void)mergeAttachment:(MSFAttachment *)attachment {
 	self.isUpload = YES;
+	[self mergeValueForKey:@keypath(MSFAttachment.new, objectID) fromModel:attachment];
 	[self mergeValueForKey:@keypath(MSFAttachment.new, fileID) fromModel:attachment];
 	[self mergeValueForKey:@keypath(MSFAttachment.new, fileName) fromModel:attachment];
 }

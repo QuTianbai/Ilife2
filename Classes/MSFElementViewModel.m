@@ -12,6 +12,7 @@
 #import "MSFClient+Attachment.h"
 #import "MSFAttachmentViewModel.h"
 #import "MSFApplyCashVIewModel.h"
+#import "MSFElement+Private.h"
 
 @interface MSFElementViewModel ()
 
@@ -19,8 +20,10 @@
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, strong, readwrite) NSArray *attachments;
+
+// 只有一个placeholder,用于添加附件ViewModel,当满足最大附件的时候从viewmodels中删除，
+// 当小于最大附件数量的时候添加到viewmodels中
 @property (nonatomic, strong, readonly) MSFAttachmentViewModel *placeholderViewModel;
-@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
 
 @end
 
@@ -28,22 +31,18 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel {
+- (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_viewModel = viewModel;
-	_services = viewModel.services;
+	_services = services;
 	_element = model;
 	_attachments = NSMutableArray.new;
 	
 	NSURL *URL = [[NSBundle mainBundle] URLForResource:@"btn-attachment-take-photo@3x" withExtension:@"png"];
-	MSFAttachment *placheholderAttchment = [[MSFAttachment alloc] initWithDictionary:@{
-		@"thumbURL": URL,
-		@"isPlaceholder": @YES
-	} error:nil];
-	_placeholderViewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:placheholderAttchment viewModel:viewModel];
+	MSFAttachment *placheholderAttchment = [[MSFAttachment alloc] initWithAssetsURL:URL applicationNo:self.element.applicationNo elementType:self.element.type elementName:self.element.name];
+	_placeholderViewModel = [[MSFAttachmentViewModel alloc] initWithModel:placheholderAttchment services:self.services];
 	_viewModels = @[self.placeholderViewModel];
 	
 	RAC(self, title) = RACObserve(self, element.title);
@@ -53,44 +52,25 @@
 	RAC(self, isRequired) = RACObserve(self, element.required);
 	
 	@weakify(self)
-	[RACObserve(self, placeholderViewModel.attachment.fileURL) subscribeNext:^(NSURL *URL) {
+	[[self.placeholderViewModel.takePhotoCommand execute:nil] subscribeNext:^(MSFAttachment *attachment) {
 		@strongify(self)
-		if (URL.isFileURL) {
-			self.placeholderViewModel.attachment.fileURL = nil;
-			MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{
-				@"fileURL": URL,
-				@"thumbURL": URL,
-				@"type": self.element.type,
-				@"name": self.element.name,
-			} error:nil];
-			[self addAttachment:attachment];
-		}
+		[self addAttachment:attachment];
 	}];
 	
 	_uploadCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return self.uploadSignal;
 	}];
 	
   return self;
 }
 
-- (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_services = services;
-	_element = model;
-	
-  return self;
-}
-
-#pragma mark - Custom Accessors
+#pragma mark - Public
 
 - (void)addAttachment:(MSFAttachment *)attachment {
 	self.attachments = [self.attachments arrayByAddingObject:attachment];
 	if ([attachment.type isEqualToString:self.element.type]) {
-		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:attachment viewModel:self.viewModel];
+		MSFAttachmentViewModel *viewModel = [[MSFAttachmentViewModel alloc] initWithModel:attachment services:self.services];
 		[viewModel.removeCommand.executionSignals subscribeNext:^(id x) {
 			[self removeAttachment:attachment];
 		}];
@@ -119,6 +99,8 @@
 		self.viewModels = [self.viewModels arrayByAddingObject:self.placeholderViewModel];
 	}
 }
+
+#pragma mark - Custom Accessors
 
 - (BOOL)isCompleted {
 	NSArray *models = [self.viewModels mtl_arrayByRemovingObject:self.placeholderViewModel];
@@ -156,6 +138,19 @@
 			return [error.domain isEqualToString:RACCommandErrorDomain] ? [RACSignal empty] : [RACSignal error:error];
 		}];
 	}] collect];
+}
+
+@end
+
+@implementation MSFElementViewModel (Deprecated)
+
+- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	
+  return self;
 }
 
 @end
