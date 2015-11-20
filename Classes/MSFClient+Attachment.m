@@ -13,7 +13,7 @@
 
 - (RACSignal *)uploadAttachment:(MSFAttachment *)attachment {
 	NSDictionary *parameters = @{
-		@"appNo": @"",
+		@"appNo": attachment.applicationNo,
 		@"name": attachment.name
 	};
 	NSMutableURLRequest *request =
@@ -24,14 +24,7 @@
 			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:attachment.fileURL] name:@"file" fileName:fileName mimeType:mimeType];
 	}];
 	
-	return [[[self enqueueRequest:request resultClass:MSFAttachment.class]
-		msf_parsedResults]
-		map:^id(id x) {
-			[attachment mergeValueForKey:@keypath(MSFAttachment.new, objectID) fromModel:x];
-			[attachment mergeValueForKey:@keypath(MSFAttachment.new, fileID) fromModel:x];
-			[attachment mergeValueForKey:@keypath(MSFAttachment.new, fileName) fromModel:x];
-			return attachment;
-		}];
+	return [[self enqueueRequest:request resultClass:MSFAttachment.class] msf_parsedResults];
 }
 
 - (RACSignal *)uploadAttachment:(MSFAttachment *)attachment applicationNumber:(NSString *)applicationNumber {

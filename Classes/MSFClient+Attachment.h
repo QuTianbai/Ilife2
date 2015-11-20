@@ -10,7 +10,7 @@
 
 @interface MSFClient (Attachment)
 
-- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment __deprecated_msg("Use uploadAttachment:applicationNumber: 2.0");
+- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment;
 
 // Upload attachment's photo.
 //
@@ -18,7 +18,7 @@
 // applicationNumber - The loan application number.
 //
 // Returns an attachement with `fileId` `fileName` which created by server.
-- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment applicationNumber:(NSString *)applicationNumber;
+- (RACSignal *)uploadAttachment:(MSFAttachment *)attachment applicationNumber:(NSString *)applicationNumber __deprecated;
 
 // Download attachment picture file.
 //
