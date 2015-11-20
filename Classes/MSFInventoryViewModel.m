@@ -96,7 +96,7 @@
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
 		return [[[self.services.httpClient
-			fetchElementsApplicationNo:@"" productID:productID]
+			fetchSupplementalElementsApplicationNo:applicaitonNo productID:productID]
 			map:^id(id value) {
 				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 			}]

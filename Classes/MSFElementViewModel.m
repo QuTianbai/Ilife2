@@ -52,9 +52,11 @@
 	RAC(self, isRequired) = RACObserve(self, element.required);
 	
 	@weakify(self)
-	[[self.placeholderViewModel.takePhotoCommand execute:nil] subscribeNext:^(MSFAttachment *attachment) {
+	[self.placeholderViewModel.takePhotoCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
-		[self addAttachment:attachment];
+		[signal subscribeNext:^(MSFAttachment *attachment) {
+			[self addAttachment:attachment];
+		}];
 	}];
 	
 	_uploadCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {

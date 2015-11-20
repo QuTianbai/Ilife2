@@ -14,19 +14,27 @@
 
 @implementation MSFClient (Elements)
 
-- (RACSignal *)fetchElementsWithProduct:(MSFProduct *)product amount:(NSString *)amount term:(NSString *)term {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
-		@"productCode": self.user.type,
-		@"amount": amount ?: @"",
-		@"loanTerm": term ?: @"",
+- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID {
+	NSParameterAssert(applicaitonNo);
+	NSParameterAssert(productID);
+	
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"append/getSecurityFile" parameters:@{
+		@"productId": productID,
 	}];
-	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
+		MSFElement *element = response.parsedResult;
+		element.applicationNo = applicaitonNo;
+		return element;
+	}];
 }
 
-- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID {
+- (RACSignal *)fetchSupplementalElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID {
+	NSParameterAssert(applicaitonNo);
+	NSParameterAssert(productID);
+	
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"append/getFile" parameters:@{
-		@"productId": productID,
 		@"applyNo": applicaitonNo,
+		@"productId": productID,
 	}];
 	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
 		MSFElement *element = response.parsedResult;
@@ -36,6 +44,10 @@
 }
 
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms {
+	NSParameterAssert(applicaitonNo);
+	NSParameterAssert(amount);
+	NSParameterAssert(terms);
+	
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
 		@"productCode": self.user.type,
 		@"amount": amount,

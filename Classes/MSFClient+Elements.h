@@ -10,16 +10,29 @@
 
 @interface MSFClient (Elements)
 
-// Fetch application need upload elements list.
+// 获取社保贷资料清单
 //
-// product - 贷款申请的产品信息，在2.0版本上这个产品信息使用`MSFUser`中的属性，则里传nil即可
-// amount  - 贷款申请的总额
-// term    - 贷款申请的期数
+// applicaitonNo - 申请订单号
+// productID - 申请的产品
 //
-// Returns elements signal sequence
-- (RACSignal *)fetchElementsWithProduct:(MSFProduct *)product amount:(NSString *)amount term:(NSString *)term __deprecated;
-
+// Returns a signal will send element instance flow
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID;
+
+// 获取资料重传清单
+//
+// applicaitonNo - 申请订单号
+// productID     - 申请的产品
+//
+// Returns a signal will send element instance flow
+- (RACSignal *)fetchSupplementalElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID;
+
+// 获取马上贷资料清单
+//
+// applicaitonNo - 申请订单号
+// amount        - 申请金额
+// terms         - 申请期数
+//
+// Returns a signal will send element instance flow
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms;
 
 @end
