@@ -24,6 +24,9 @@
 - (instancetype)initWithTitles:(NSArray *)titles {
 	self = [super init];
 	if (self) {
+		for (int i = 0; i < titles.count; i++) {
+			NSAssert([titles[i] isKindOfClass:NSString.class], @"'MSFPlanListSegmentBar' error : Title is not a string!");
+		}
 		self.backgroundColor = UIColor.whiteColor;
 		_titles = titles;
 		_curIndex = 0;

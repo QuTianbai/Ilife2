@@ -14,32 +14,36 @@
 @interface MSFCirculateViewCell ()
 
 @property (weak, nonatomic) IBOutlet MSFLoanLimitView *loanLimitView;
-@property (nonatomic, strong) MSFHomePageCellModel *viewModel;
+//@property (nonatomic, strong) MSFHomePageCellModel *viewModel;
 
 @end
 
 @implementation MSFCirculateViewCell
 
 - (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
-	_viewModel = viewModel;
-	[_loanLimitView setAvailableCredit:viewModel.usableLimit
-													usedCredit:viewModel.usedLimit];
+	//_viewModel = viewModel;
+	[_loanLimitView setAvailableCredit:@"3000"
+													usedCredit:@"99999"];
+	//[_loanLimitView setAvailableCredit:viewModel.usableLimit
+											//		usedCredit:viewModel.usedLimit];
 	[self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect {
-	CGFloat w0 = rect.size.width;
-	CGFloat w1 = 60.f;
-	UIFont *font = [UIFont systemFontOfSize:17.f];
-	CGFloat l = CGRectGetMaxY(_loanLimitView.frame) + 5;
-	CGFloat m = (w1 - font.lineHeight * 2) / 3;
+	
+	CGFloat width = rect.size.width;
+	CGFloat w = CGRectGetWidth(_loanLimitView.frame) * 3 / 16;//信息描述框半宽度
+	UIFont *font = [UIFont systemFontOfSize:CGRectGetWidth(rect) * 0.047];
+	CGFloat topLine = CGRectGetMaxY(_loanLimitView.frame) + 5;
+	CGFloat margin = (w - font.lineHeight * 2) / 3;
+	
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextMoveToPoint(context, 0, l);
-	CGContextAddLineToPoint(context, w0, l);
-	CGContextMoveToPoint(context, w0 / 2 - w1, l);
-	CGContextAddLineToPoint(context, w0 / 2 - w1, l + w1);
-	CGContextAddLineToPoint(context, w0 / 2 + w1, l + w1);
-	CGContextAddLineToPoint(context, w0 / 2 + w1, l);
+	CGContextMoveToPoint(context, 0, topLine);
+	CGContextAddLineToPoint(context, width, topLine);
+	CGContextMoveToPoint(context, width / 2 - w, topLine);
+	CGContextAddLineToPoint(context, width / 2 - w, topLine + w);
+	CGContextAddLineToPoint(context, width / 2 + w, topLine + w);
+	CGContextAddLineToPoint(context, width / 2 + w, topLine);
 	CGContextSetLineWidth(context, 0.5);
 	[UIColor.lineColor setStroke];
 	CGContextStrokePath(context);
@@ -49,19 +53,20 @@
 	NSMutableDictionary *attri = [NSMutableDictionary dictionary];
 	[attri setObject:font forKey:NSFontAttributeName];
 	[attri setObject:paragraph forKey:NSParagraphStyleAttributeName];
-	CGRect rect1 = CGRectMake(w0 / 2 - w1, l + m, w1 * 2, w1 / 2);
-	CGRect rect2 = CGRectMake(w0 / 2 - w1, l + font.lineHeight + m * 2, w1 * 2, w1 / 2);
-	if ([self.viewModel.statusString isEqualToString:@"已逾期"]) {
-		[attri setObject:UIColor.overDueTextColor
-							forKey:NSForegroundColorAttributeName];
-		[@"已逾期" drawInRect:rect1 withAttributes:attri];
-		[_viewModel.overdueMoney drawInRect:rect2 withAttributes:attri];
-	} else {
+	CGRect rect1 = CGRectMake(width / 2 - w, topLine + margin, w * 2, w / 2);
+	CGRect rect2 = CGRectMake(width / 2 - w, topLine + font.lineHeight + margin * 2, w * 2, w / 2);
+//	if ([self.viewModel.statusString isEqualToString:@"已逾期"]) {
+//		[attri setObject:UIColor.overDueTextColor
+//							forKey:NSForegroundColorAttributeName];
+//		[@"已逾期" drawInRect:rect1 withAttributes:attri];
+//		[_viewModel.overdueMoney drawInRect:rect2 withAttributes:attri];
+//	} else {
 		[attri setObject:UIColor.repaymentTextColor
 							forKey:NSForegroundColorAttributeName];
 		[@"下期还款" drawInRect:rect1 withAttributes:attri];
-		[_viewModel.latestDueMoney drawInRect:rect2 withAttributes:attri];
-	}
+		[@"￥69" drawInRect:rect2 withAttributes:attri];
+		//_viewModel.latestDueMoney
+	//}
 }
 
 @end

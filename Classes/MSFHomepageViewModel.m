@@ -80,6 +80,7 @@
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
+	return @"MSFCirculateViewCell";
 	if (_cellModel) {
 		if (_cellModel.productType == MSFProductTypeML && _cellModel.productType == MSFProductTypeXH && _cellModel.totalLimit.doubleValue > 0) {
 			return @"MSFCirculateViewCell";
