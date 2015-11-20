@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *usedLabel;
 @property (nonatomic, strong) UILabel *usableLabel;
+@property (nonatomic, strong) UIFont *acFont;
 
 @property (nonatomic, assign) CGFloat startAngle;
 @property (nonatomic, assign) CGFloat angle;
@@ -45,6 +46,7 @@
 - (void)commonInit {
 	
 	_startAngle = _animaAngle = M_PI_4 * 3;
+	_acFont = [UIFont systemFontOfSize:25.f];
 	
 	_titleLabel = [[UILabel alloc] init];
 	_titleLabel.textColor = [UIColor darkCircleColor];
@@ -65,7 +67,7 @@
 	@weakify(self)
 	[_usableLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		make.width.equalTo(self).multipliedBy(0.9);
+		//make.width.equalTo(self).multipliedBy(0.9);
 		make.centerX.equalTo(self);
 		make.centerY.equalTo(self).offset(17);
 	}];
@@ -85,12 +87,14 @@
 }
 
 - (void)layoutSubviews {
+	[super layoutSubviews];
 	_lineWidth = self.frame.size.width * 0.05;
 	CGFloat f1 = self.frame.size.width * 0.07;
 	CGFloat f2 = self.frame.size.width * 0.25;
 	CGFloat f3 = self.frame.size.width * 0.06;
+	_acFont = [UIFont systemFontOfSize:f2];
 	_titleLabel.font  = [UIFont boldSystemFontOfSize:f1];
-	_usableLabel.font = [UIFont systemFontOfSize:f2];
+	[self adjustedLabelFont];
 	_usedLabel.font   = [UIFont boldSystemFontOfSize:f3];
 }
 
@@ -106,6 +110,18 @@
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
 	[self circleAnimation];
+}
+
+- (void)adjustedLabelFont {
+	if (_usableLabel.text.length == 0) {
+		return;
+	}
+	CGFloat width = [_usableLabel.text boundingRectWithSize:CGSizeMake(1000, 1000) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : _acFont} context:nil].size.width;
+	if (width > self.frame.size.width - _lineWidth * 2) {
+		_usableLabel.font = [UIFont systemFontOfSize:_acFont.pointSize * (self.frame.size.height - _lineWidth * 2) / width];
+	} else {
+		_usableLabel.font = [UIFont systemFontOfSize:_acFont.pointSize];
+	}
 }
 
 - (void)circleAnimation {

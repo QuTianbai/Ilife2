@@ -22,7 +22,7 @@
 
 - (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
 	//_viewModel = viewModel;
-	[_loanLimitView setAvailableCredit:@"18888.65"
+	[_loanLimitView setAvailableCredit:@"9999.44"
 													usedCredit:@"99999"];
 	//[_loanLimitView setAvailableCredit:viewModel.usableLimit
 											//		usedCredit:viewModel.usedLimit];
