@@ -17,12 +17,13 @@
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
 #import "MSFApplicationForms.h"
-
+#import "MSFInsuranceViewModel.h"
 #import "MSFApplyCashVIewModel.h"
 
 @interface MSFInventoryViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 @end
 
@@ -30,31 +31,85 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithInsuranceViewModel:(MSFInsuranceViewModel *)insuranceViewModel {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_insuranceViewModel = insuranceViewModel;
+	_services = self.insuranceViewModel.services;
+	
+	@weakify(self)
+	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
+		return [[[self.services.httpClient
+			fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productId]
+			map:^id(id value) {
+				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+			}]
+			collect];
+	}];
+	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		//TODO: 提交社保贷信息
+		return [RACSignal empty];
+	}];
+	
+	[self initialize];
+	
+	return self;
+}
+
 - (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_cashViewModel = cashViewModel;
-	
+	_formsViewModel = cashViewModel;
+	_services = self.formsViewModel.services;
 	@weakify(self)
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		[[[[[self.cashViewModel.services httpClient]
-			fetchElementsWithProduct:nil amount:self.cashViewModel.appLmt term:self.cashViewModel.loanTerm]
-			map:^id(MSFElement *element) {
-				return [[MSFElementViewModel alloc] initWithElement:element viewModel:self.cashViewModel];
+		return [[[self.services.httpClient
+			fetchElementsApplicationNo:self.formsViewModel.appNO amount:self.formsViewModel.appLmt terms:self.formsViewModel.loanTerm]
+			map:^id(id value) {
+				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 			}]
-			collect]
-			subscribeNext:^(id x) {
-				self.viewModels = x;
-			}];
+			collect];
 	}];
 	
-	_executeUpdateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return self.updateSignal;
+	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self.formsViewModel submitSignalWithStatus:@"1"];
 	}];
+	[self initialize];
 	
+  return self;
+}
+
+- (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	@weakify(self)
+	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
+		return [[[self.services.httpClient
+			fetchSupplementalElementsApplicationNo:applicaitonNo productID:productID]
+			map:^id(id value) {
+				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+			}]
+			collect];
+	}];
+	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		//TODO: 提交重新资料
+		return [RACSignal empty];
+	}];
+	[self initialize];
+	
+  return self;
+}
+
+- (void)initialize {
 	RAC(self, requiredViewModels) = [RACObserve(self, viewModels) map:^id(NSArray *viewModels) {
 		return [[[viewModels.rac_sequence filter:^BOOL(MSFElementViewModel *value) {
 			return value.isRequired;
@@ -74,11 +129,11 @@
 		}];
 	}];
 	
-	_executeSubmit = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.cashViewModel submitSignalWithStatus:@"1"];
+	@weakify(self)
+	_executeUpdateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return self.updateSignal;
 	}];
-	
-  return self;
 }
 
 - (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
@@ -124,7 +179,7 @@
 			[attachments addObject:@{
 				@"accessoryType": obj.type,
 				@"fileId": obj.fileID,
-				@"name": obj.name?:@"",
+				@"name": obj.name,
 			}];
 		}];
 		return [RACSignal return:attachments];

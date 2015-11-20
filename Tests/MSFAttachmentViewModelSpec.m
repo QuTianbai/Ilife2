@@ -8,7 +8,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
-#import "MSFApplyCashVIewModel.h"
 
 QuickSpecBegin(MSFAttachmentViewModelSpec)
 
@@ -16,16 +15,13 @@ __block MSFAttachmentViewModel *viewModel;
 __block MSFAttachment *model;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
-__block MSFApplyCashVIewModel *cashViewModel;
 
 beforeEach(^{
 	client = mock(MSFClient.class);
 	services = mockProtocol(@protocol(MSFViewModelServices));
-	cashViewModel = mock([MSFApplyCashVIewModel class]);
-	stubProperty(cashViewModel, services, services);
-	stubProperty(cashViewModel, appNO, @"foo");
 	model = mock([MSFAttachment class]);
-	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
+	
+	viewModel = [[MSFAttachmentViewModel alloc] initWithModel:model services:services];
 	expect(viewModel).notTo(beNil());
 });
 
@@ -38,179 +34,81 @@ it(@"should initialize", ^{
   // then
 	expect(viewModel.attachment).to(equal(model));
 	expect(viewModel.thumbURL).to(beNil());
-	expect(viewModel.fileURL).to(beNil());
 	expect(viewModel.takePhotoCommand).notTo(beNil());
-	expect(viewModel.removeCommand).notTo(beNil());
 	expect(viewModel.uploadAttachmentCommand).notTo(beNil());
-	expect(viewModel.downloadAttachmentCommand).notTo(beNil());
 	expect(@(viewModel.isUploaded)).to(beFalsy());
 	expect(@(viewModel.removeEnabled)).to(beTruthy());
 });
 
-it(@"should download picture", ^{
+it(@"should create placholder attachment viewModel", ^{
 	// given
-	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
-	[given([services httpClient]) willReturn:client];
-	[given([client downloadAttachment:model]) willDo:^id(NSInvocation *invocation) {
-		stubProperty(model, thumbURL, URL);
-		stubProperty(model, fileURL, URL);
-		return [RACSignal return:UIImageJPEGRepresentation([UIImage imageNamed:@"tmp.jpg"], 1)];
+	stubProperty(model, isPlaceholder, @YES);
+	
+	// when
+	viewModel = [[MSFAttachmentViewModel alloc] initWithModel:model services:services];
+	
+	// then
+	expect(@(viewModel.removeEnabled)).to(beFalsy());
+});
+
+it(@"should create attachment viewModel", ^{
+	// when
+	viewModel = [[MSFAttachmentViewModel alloc] initWithModel:model services:services];
+	
+	// then
+	expect(@(viewModel.removeEnabled)).to(beTruthy());
+	expect(@(viewModel.isUploaded)).to(beFalsy());
+});
+
+it(@"should upload attachemnt's file to server", ^{
+	// given
+	stubProperty(model, applicationNo, @"");
+	stubProperty(model, name, @"");
+	stubProperty(model, isUpload, @NO);
+	
+	MSFAttachment *responseAttachment = mock([MSFAttachment class]);
+	
+	[givenVoid([model mergeAttachment:responseAttachment]) willDo:^id(NSInvocation *invocation) {
+		stubProperty(model, isUpload, @YES);
+		return nil;
 	}];
 	
+	[given([services httpClient]) willReturn:client];
+	[given([client uploadAttachment:model]) willReturn:[RACSignal return:responseAttachment]];
+	
+	viewModel = [[MSFAttachmentViewModel alloc] initWithModel:model services:services];
+	
 	// when
-	[[viewModel.downloadAttachmentCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+	[[viewModel.uploadAttachmentCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
 	
 	// then
-	expect(viewModel.attachment.thumbURL).notTo(beNil());
-	expect(viewModel.attachment.fileURL).notTo(beNil());
+	expect(@(model.isUpload)).to(beTruthy());
 });
 
-describe(@"attachment from camera", ^{
-	it(@"should upload picture", ^{
-		// given
-		MSFAttachment *attachment = [[MSFAttachment alloc] initWithDictionary:@{
-			@"objectID": @"3033",
-			@"type": @"image/jpg",
-			@"name": @"foo.jpg",
-		} error:nil];
-		
-		NSURL *URL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:@"temp.jpg"]];
-		stubProperty(model, fileURL, URL);
-		stubProperty(model, thumbURL, URL);
-		
-		[given([services httpClient]) willReturn:client];
-		[given([client uploadAttachment:model applicationNumber:@"foo"]) willDo:^id(NSInvocation *invocation) {
-			[givenVoid([model mergeValueForKey:@"objectID" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, objectID, @"3033");
-				return nil;
-			}];
-			[givenVoid([model mergeValueForKey:@"fileID" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, fileID, @"3033");
-				return nil;
-			}];
-			[givenVoid([model mergeValueForKey:@"fileName" fromModel:attachment]) willDo:^id(NSInvocation *invocation) {
-				stubProperty(model, fileName, @"temp-response.jpg");
-				return nil;
-			}];
-			return [RACSignal return:attachment];
-		}];
-		
-		// when
-		[[viewModel.uploadAttachmentCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
-		
-		// then
-		expect(viewModel.attachment.objectID).to(equal(@"3033"));
-		expect(viewModel.attachment.fileID).to(equal(@"3033"));
-		expect(viewModel.attachment.fileName).to(equal(@"temp-response.jpg"));
-		expect(viewModel.attachment.fileURL).to(equal(URL));
-		expect(viewModel.attachment.thumbURL).to(equal(URL));
-	});
-});
-
-describe(@"attachment placholder", ^{
-	it(@"should take photo from camera and album", ^{
-		// given
-		stubProperty(model, isPlaceholder, @YES);
-		stubProperty(model, thumbURL, [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"]);
-		
-		viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
-		[given([services msf_takePictureSignal]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
-		
-		// when
-		[[viewModel.takePhotoCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
-		
-		// then
-		expect(viewModel.fileURL).notTo(beNil());
-	});
-});
-
-
-it(@"should combine array", ^{
+it(@"should change fileURL when had take photo from camera", ^{
 	// given
-	NSArray *ar1 = @[@1, @2];
-	NSArray *ar2 = @[@3, @4];
-	
-	NSArray *ar = @[ar1, ar2];
-	
-	// when
-	NSArray *result;
-	
-	result = [[ar.rac_sequence flattenMap:^RACStream *(NSArray *value) {
-		return value.rac_sequence;
-	}] array];
-	
-	// then
-	expect(result).to(equal(@[@1, @2, @3, @4]));
-});
-
-it(@"should can't take photo when attachment is not a placholder", ^{
-	// when
-	BOOL valid = [[viewModel.takePhotoValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	
-	// then
-	expect(@(valid)).to(beFalsy());
-});
-
-it(@"should take photo when attachment is a placeholder", ^{
-	// given
-	model = mock(MSFAttachment.class);
 	stubProperty(model, isPlaceholder, @YES);
-	viewModel = [[MSFAttachmentViewModel alloc] initWthAttachment:model viewModel:cashViewModel];
+	stubProperty(model, type, @"W");
+	stubProperty(model, name, @"foo");
+	stubProperty(model, applicationNo, @"bar");
+	
+	[given([services msf_takePictureSignal]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
+	
+	viewModel = [[MSFAttachmentViewModel alloc] initWithModel:model services:services];
 	
 	// when
-	BOOL valid = [[viewModel.takePhotoValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	BOOL upload = [[viewModel.uploadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	BOOL download = [[viewModel.downloadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
+	BOOL success;
+	NSError *error;
+	MSFAttachment *attachmet = [[viewModel.takePhotoCommand execute:nil] asynchronousFirstOrDefault:nil success:&success error:&error];
 	
 	// then
-	expect(@(valid)).to(beTruthy());
-	expect(@(upload)).to(beFalsy());
-	expect(@(download)).to(beFalsy());
-});
-
-it(@"should can download or upload when the attachment is not a placeholder", ^{
-	// when
-	BOOL upload = [[viewModel.uploadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	BOOL download = [[viewModel.downloadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	
-	// then
-	expect(@(upload)).to(beTruthy());
-	expect(@(download)).to(beTruthy());
-});
-
-it(@"should can't upload when attachent is downloaded file", ^{
-	// given
-	stubProperty(model, objectID, @"foo");
-	
-	// when
-	BOOL upload = [[viewModel.uploadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	
-	// then
-	expect(@(upload)).to(beFalsy());
-});
-
-it(@"should can't download when attachment file download", ^{
-	// given
-	NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:@"tmp.jpg"];
-	[[NSFileManager defaultManager] createFileAtPath:path contents:UIImageJPEGRepresentation([UIImage imageNamed:@"tmp.jpg"], 1) attributes:nil];
-	
-	expect(@([[NSFileManager defaultManager] fileExistsAtPath:path])).to(beTruthy());
-	
-	stubProperty(model, name, @"tmp.jpg");
-	
-	// when
-	BOOL download = [[viewModel.downloadValidSignal asynchronousFirstOrDefault:nil success:nil error:nil] boolValue];
-	
-	// then
-	expect(@(download)).to(beFalsy());
-});
-
-it(@"should be uploaded when attachment's objectID does not be nil", ^{
-	// when
-	stubProperty(model, objectID, @"123");
-	
-	// then
-	expect(@(viewModel.isUploaded)).to(beTruthy());
+	expect(error).to(beNil());
+	expect(@(success)).to(beTruthy());
+	expect(attachmet.thumbURL).notTo(beNil());
+	expect(attachmet.fileURL).notTo(beNil());
+	expect(attachmet.type).to(equal(@"W"));
+	expect(attachmet.name).to(equal(@"foo"));
+	expect(attachmet.applicationNo).to(equal(@"bar"));
 });
 
 QuickSpecEnd

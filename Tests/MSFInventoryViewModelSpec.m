@@ -9,109 +9,101 @@
 #import "MSFViewModelServices.h"
 #import "MSFClient.h"
 #import "MSFClient+Elements.h"
-#import "MSFProduct.h"
 #import "MSFElement.h"
 #import "MSFElementViewModel.h"
-#import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFResponse.h"
 #import "MSFAttachment.h"
-#import "MSFClient+MSFApplyCash.h"
-#import "MSFApplicationResponse.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFInsuranceViewModel.h"
+#import "MSFElement+Private.h"
 
 QuickSpecBegin(MSFInventoryViewModelSpec)
 
 __block MSFInventoryViewModel *viewModel;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
-__block MSFFormsViewModel *formsViewModel;
-__block MSFApplicationForms *form;
-__block MSFApplyCashVIewModel *cashViewModel;
+__block MSFElement *mockRequiredElement;
+__block MSFInsuranceViewModel *insuranceViewModel;
 
 beforeEach(^{
 	client = mock(MSFClient.class);
+	
 	services = mockProtocol(@protocol(MSFViewModelServices));
 	[given([services httpClient]) willReturn:client];
+	[given([services msf_takePictureSignal]) willReturn:RACSignal.empty];
 	
-	form = mock(MSFApplicationForms.class);
-	
-	formsViewModel = mock(MSFFormsViewModel.class);
-	stubProperty(formsViewModel, model, form);
-	[given([formsViewModel services]) willReturn:services];
-	
-	cashViewModel = mock([MSFApplyCashVIewModel class]);
-	stubProperty(cashViewModel, services, services);
-	stubProperty(cashViewModel, formViewModel, formsViewModel);
-	
-	viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:cashViewModel];
-	expect(viewModel).notTo(beNil());
+	mockRequiredElement = mock([MSFElement class]);
+	stubProperty(mockRequiredElement, applicationNo, @"");
+	stubProperty(mockRequiredElement, name, @"");
+	stubProperty(mockRequiredElement, type, @"");
+	stubProperty(mockRequiredElement, required, @YES);
 });
 
-afterEach(^{
-	[NSFileManager.defaultManager removeItemAtPath:NSTemporaryDirectory() error:nil];
-});
-
-it(@"should initialize", ^{
-	// then
-	expect(viewModel).notTo(beNil());
-	expect(viewModel.executeUpdateCommand).notTo(beNil());
-});
-
-it(@"should fetch required element viewmodels", ^{
-	// given
-	MSFElement *element = mock([MSFElement class]);
-	stubProperty(element, required, @YES);
-	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:element]];
+describe(@"re-upload attachments", ^{
+	beforeEach(^{
+		insuranceViewModel = mock([MSFInsuranceViewModel class]);
+		stubProperty(insuranceViewModel, services, services);
+		stubProperty(insuranceViewModel, applicaitonNo, @"");
+		stubProperty(insuranceViewModel, productId, @"");
+		
+		viewModel = [[MSFInventoryViewModel alloc] initWithInsuranceViewModel:insuranceViewModel];
+		expect(viewModel).notTo(beNil());
+		
+		[given([client fetchElementsApplicationNo:@"" productID:@""]) willReturn:[RACSignal return:mockRequiredElement]];
+		viewModel.active = YES;
+	});
 	
-	// when
-	viewModel.active = YES;
+	it(@"should fetch viewmodels", ^{
+		expect(viewModel.viewModels).notTo(beNil());
+	});
 	
-	// then
-	expect(viewModel.viewModels).notTo(beNil());
-	expect(@(viewModel.requiredViewModels.count)).to(equal(@1));
-});
-
-it(@"should fetch optional element viewmodels", ^{
-	// given
-	MSFElement *element = mock([MSFElement class]);
-	stubProperty(element, required, @NO);
-	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:element]];
+	it(@"should has required elementViewModel", ^{
+		// when
+		MSFElementViewModel *elementViewModel = viewModel.requiredViewModels.firstObject;
+		
+		// then
+		expect(@(elementViewModel.isRequired)).to(beTruthy());
+	});
 	
-	// when
-	viewModel.active = YES;
+	it(@"should update valid", ^{
+		// given
+		MSFAttachment *attachment = mock([MSFAttachment class]);
+		stubProperty(attachment, type, mockRequiredElement.type);
+		stubProperty(attachment, name, mockRequiredElement.name);
+		stubProperty(attachment, applicationNo, mockRequiredElement.applicationNo);
+		stubProperty(attachment, isUpload, @YES);
+		
+		MSFElementViewModel *elementViewModel = viewModel.requiredViewModels.firstObject;
+		[elementViewModel addAttachment:attachment];
+		
+		// when
+		NSError *error;
+		BOOL valid = [viewModel.updateValidSignal asynchronousFirstOrDefault:nil success:nil error:&error];
+		
+		// then
+		expect(@(valid)).to(beTruthy());
+	});
 	
-	// then
-	expect(viewModel.viewModels).notTo(beNil());
-	expect(@(viewModel.optionalViewModels.count)).to(equal(@1));
-});
-
-it(@"should update inventory to server", ^{
-	// given
-	MSFElement *element = [[MSFElement alloc] initWithDictionary:@{@"type": @"IMG"} error:nil];
-	[given([client fetchElementsWithProduct:nil amount:cashViewModel.appLmt term:cashViewModel.loanTerm]) willReturn:[RACSignal return:element]];
-	
-	MSFAttachment *attachment = mock(MSFAttachment.class);
-	stubProperty(attachment, fileID, @"foo");
-	stubProperty(attachment, type, @"IMG");
-	stubProperty(attachment, objectID, @"foo"); // 附件已上传标志
-	
-	// when
-	viewModel.active = YES;
-	MSFElementViewModel *elementViewModel = viewModel.viewModels.firstObject;
-	expect(elementViewModel).notTo(beNil());
-	
-	[elementViewModel addAttachment:attachment];
-	
-	expect(@(elementViewModel.viewModels.count)).to(equal(@2));
-	
-	NSError *error;
-	NSArray *attachments = [[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:&error];
-	
-	// then
-	expect(error).to(beNil());
-	
-	expect(@(attachments.count)).to(equal(@1));
+	it(@"should update attachments when finish upload required elemnets", ^{
+		// given
+		MSFAttachment *attachment = mock([MSFAttachment class]);
+		stubProperty(attachment, type, mockRequiredElement.type);
+		stubProperty(attachment, name, mockRequiredElement.name);
+		stubProperty(attachment, applicationNo, mockRequiredElement.applicationNo);
+		stubProperty(attachment, isUpload, @YES);
+		stubProperty(attachment, fileID, @"bar");
+		stubProperty(attachment, fileName, @"");
+		
+		MSFElementViewModel *elementViewModel = viewModel.requiredViewModels.firstObject;
+		[elementViewModel addAttachment:attachment];
+		
+		// when
+		NSArray *attachments = [[viewModel.executeUpdateCommand execute:nil] asynchronousFirstOrDefault:nil success:nil error:nil];
+		
+		// then
+		expect(attachments).notTo(beNil());
+		expect(attachments.firstObject[@"fileId"]).to(equal(@"bar"));
+	});
 });
 
 QuickSpecEnd
