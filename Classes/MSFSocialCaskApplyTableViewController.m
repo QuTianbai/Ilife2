@@ -11,6 +11,8 @@
 #import "MSFXBMCustomHeader.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFEdgeButton.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFSocialCaskApplyTableViewController ()
 
@@ -27,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *injuryStatusTF;
 @property (weak, nonatomic) IBOutlet UITextField *unEmployTF;
 @property (weak, nonatomic) IBOutlet UITextField *bearTF;
+@property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 
 @property (nonatomic, copy) NSString *professional;
 @end
@@ -66,6 +69,20 @@
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
 		
 	}
+	
+	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
+	@weakify(self)
+	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+			//[self.navigationController popViewControllerAnimated:YES];
+		}];
+	}];
+	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 	
 	
 //	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceStatusTitle) ignore:nil];
