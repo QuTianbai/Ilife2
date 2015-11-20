@@ -21,21 +21,21 @@ it(@"should create local attachment without upload", ^{
 	NSURL *diskfileURL = [NSURL URLWithString:@"file://abc/attachment.jpg"];
 	
 	// when
-	attachment = [[MSFAttachment alloc] initWithFileURL:diskfileURL applicationNo:@"303" elementType:@"W"];
+	attachment = [[MSFAttachment alloc] initWithFileURL:diskfileURL applicationNo:@"303" elementType:@"W" elementName:@"foo"];
 	
 	// then
 	expect(@(attachment.isUpload)).to(beFalsy());
 	expect(attachment.fileURL).to(equal(diskfileURL));
 	expect(attachment.thumbURL).to(equal(diskfileURL));
 	expect(attachment.applicationNo).to(equal(@"303"));
-	expect(attachment.name).to(equal(@"attachment.jpg"));
 	expect(attachment.type).to(equal(@"W"));
+	expect(attachment.name).to(equal(@"foo"));
 });
 
 it(@"should merge response attachment when upload file to server", ^{
 	// given
 	NSURL *diskfileURL = [NSURL URLWithString:@"file://abc/attachment.jpg"];
-	attachment = [[MSFAttachment alloc] initWithFileURL:diskfileURL applicationNo:@"303" elementType:@"W"];
+	attachment = [[MSFAttachment alloc] initWithFileURL:diskfileURL applicationNo:@"303" elementType:@"W" elementName:@"foo"];
 	
 	// when
 	MSFAttachment *result = [MTLJSONAdapter modelOfClass:MSFAttachment.class fromJSONDictionary:representation error:nil];
@@ -47,16 +47,12 @@ it(@"should merge response attachment when upload file to server", ^{
 	expect(@(attachment.isUpload)).to(beTruthy());
 });
 
-it(@"should create placeholder attachment", ^{
-	// given
-	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
-	
+it(@"should create a blank attachment", ^{
 	// when
-	attachment = [MSFAttachment blankAttachmentWithAssetsURL:URL];
+	attachment = [[MSFAttachment alloc] initWithAssetsURL:[NSURL URLWithString:@"file://temp/url.jpg"] applicationNo:@"" elementType:@"" elementName:@""];
 	
 	// then
 	expect(@(attachment.isPlaceholder)).to(beTruthy());
-	expect(attachment.thumbURL).to(equal(URL));
 });
 
 QuickSpecEnd

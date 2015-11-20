@@ -18,6 +18,27 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithFileURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type elementName:(NSString *)name {
+	return [self initWithDictionary:@{
+		@keypath(MSFAttachment.new, fileURL): URL,
+		@keypath(MSFAttachment.new, thumbURL): URL,
+		@keypath(MSFAttachment.new, applicationNo): applicaitonNo,
+		@keypath(MSFAttachment.new, type): type,
+		@keypath(MSFAttachment.new, name): name,
+		@keypath(MSFAttachment.new, isPlaceholder): @NO,
+	} error:nil];
+}
+
+- (instancetype)initWithAssetsURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type elementName:(NSString *)name {
+	return [self initWithDictionary:@{
+		@keypath(MSFAttachment.new, thumbURL): URL,
+		@keypath(MSFAttachment.new, applicationNo): applicaitonNo,
+		@keypath(MSFAttachment.new, type): type,
+		@keypath(MSFAttachment.new, name): name,
+		@keypath(MSFAttachment.new, isPlaceholder): @YES,
+	} error:nil];
+}
+
 + (instancetype)blankAttachmentWithAssetsURL:(NSURL *)URL {
 	return [[self alloc] initWithDictionary:@{
 		@keypath(MSFAttachment.new, thumbURL): URL ?: NSNull.null,
