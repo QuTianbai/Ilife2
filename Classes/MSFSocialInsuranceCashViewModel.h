@@ -66,6 +66,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeResidentOlderInsuranceMoneyCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalInsuranceStatusCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalInsuranceMoneyCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeResidentInsuranceDateCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalDateCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 

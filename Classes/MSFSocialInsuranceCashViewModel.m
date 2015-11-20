@@ -101,6 +101,8 @@
 		self.residentMedicalInsuranceMoneyTitle = value.text;
 		return value.code;
 	}];
+	RAC(self, model.rsdtOldInsuStartDate) = RACObserve(self, residentOlderInsuranceDate);
+	RAC(self, model.rsdtMdcInsuStartDate) = RACObserve(self, residentMedicalInsuranceDate);
 	
 
 	
@@ -158,12 +160,22 @@
 	
 	_executeoldInsuranceDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [self OldInsurancestartSignal:input];
+		return [self OldInsurancestartSignal:input withIndex:0];
 	}];
 	
 	_executeoldMedicalDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [self medicalDateStartSignal:input];
+		return [self OldInsurancestartSignal:input withIndex:1];
+	}];
+	
+	_executeoldInsuranceDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self OldInsurancestartSignal:input withIndex:2];
+	}];
+	
+	_executeoldMedicalDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self OldInsurancestartSignal:input withIndex:3];
 	}];
 	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -229,7 +241,7 @@
 	return nil;
 }
 
-- (RACSignal *)OldInsurancestartSignal:(UIView *)aView {
+- (RACSignal *)OldInsurancestartSignal:(UIView *)aView withIndex:(NSInteger)index {
 	@weakify(self)
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
@@ -248,12 +260,43 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.employeeOlderDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+			 switch (index) {
+				 case 0:
+					 self.employeeOlderDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 break;
+				 case 1:
+					 self.employeeMedicalDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 break;
+				 case 2:
+					 self.residentOlderInsuranceDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 break;
+				 case 3:
+					 self.residentMedicalInsuranceDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 break;
+				 default:
+					 break;
+			 }
+				
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.employeeOlderDate = nil;
+			 switch (index) {
+				 case 0:
+					 self.employeeOlderDate = nil;
+					 break;
+				 case 1:
+					 self.employeeMedicalDate = nil;
+					 break;
+				 case 2:
+					 self.residentOlderInsuranceDate = nil;
+					 break;
+				 case 3:
+					 self.residentMedicalInsuranceDate = nil;
+					 break;
+				 default:
+					 break;
+			 }
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -262,38 +305,6 @@
 	}] replay];
 }
 
-- (RACSignal *)medicalDateStartSignal:(UIView *)aView {
-	@weakify(self)
-	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		
-		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-		NSDate *currentDate = [NSDate msf_date];
-		NSDateComponents *comps = [[NSDateComponents alloc] init];
-		[comps setYear:0];
-		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-5];
-		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[ActionSheetDatePicker
-		 showPickerWithTitle:@""
-		 datePickerMode:UIDatePickerModeDate
-		 selectedDate:currentDate
-		 minimumDate:minDate
-		 maximumDate:maxDate
-		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.employeeMedicalDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
-			 [subscriber sendNext:nil];
-			 [subscriber sendCompleted];
-		 }
-		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.employeeMedicalDate = nil;
-			 [subscriber sendNext:nil];
-			 [subscriber sendCompleted];
-		 }
-		 origin:aView];
-		return nil;
-	}] replay];
-}
 
 - (RACSignal *)submitSignal {
 	return nil;
