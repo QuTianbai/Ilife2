@@ -478,7 +478,6 @@
                         <outlet property="applyCashBT" destination="zaI-h7-4r2" id="DiG-sD-neJ"/>
                         <outlet property="applySocialBT" destination="PAP-0S-JI5" id="3bW-ec-5wX"/>
                         <outlet property="circulateView" destination="LLJ-NS-7Ov" id="dwP-l0-s8P"/>
-                        <outlet property="loanlimiteView" destination="Yb1-sh-orz" id="DYB-Dz-a4G"/>
                         <outlet property="nextBT" destination="AnH-TS-mUv" id="knO-BQ-Wbq"/>
                         <outlet property="outMoneyBT" destination="DHj-9k-EXw" id="MSM-b4-Ef1"/>
                         <outlet property="repayMoneyBT" destination="KcZ-Pa-xOr" id="nfo-rh-lU7"/>

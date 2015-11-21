@@ -27,6 +27,8 @@
 #import "MSFGrayButton.h"
 #import "MSFDrawCashViewModel.h"
 #import "MSFLoanLimitView.h"
+#import "MSFSocialCaskApplyTableViewController.h"
+#import "MSFSocialInsuranceCashViewModel.h"
 
 @interface MSFCashHomePageViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *nextBT;
@@ -71,6 +73,8 @@
 	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
+	self.circulateView.hidden = YES;
+	
 	if (![self.viewModel.services.httpClient.user.type isEqualToString:@"1101"]) {
 		self.twoAplyesView.hidden = YES;
 		self.applyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
@@ -81,6 +85,13 @@
 	} else if ([self.viewModel.services.httpClient.user.type isEqualToString:@""]) {
 		
 	}
+	
+	[[self.applySocialBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+	subscribeNext:^(id x) {
+		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
+		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+	}];
 	
 	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
 	
@@ -117,6 +128,8 @@
 	
 	RAC(self, usedMoneyCount) = [RACObserve(self, circulateViewModel.usedLimit) map:^id(id value) {
 		[self.loanlimiteView setAvailableCredit:self.circulateViewModel.usableLimit usedCredit:self.circulateViewModel.usedLimit];
+		//self.circulateView.hidden = NO;
+		
 		
 		return value;
 	}];
@@ -202,7 +215,7 @@
 					 if (model.master) {
 					 //TODO: 参数类型错误
 					 /*
-						 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.viewModel AndServices:self.viewModel.services AndType:1];
+						 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.circulateViewModel AndServices:self.viewModel.services AndType:1];
 						 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
 						 viewModel.drawCash = self.usedL;
 						 drawCashVC.viewModel = viewModel;
