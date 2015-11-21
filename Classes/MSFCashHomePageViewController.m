@@ -33,7 +33,7 @@
 @implementation MSFCashHomePageViewController
 
 - (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
-	self = [UIStoryboard storyboardWithName:@"CashHomePage" bundle:nil].instantiateInitialViewController;
+	self = [super init];
 	if (!self) {
 		return nil;
 	}

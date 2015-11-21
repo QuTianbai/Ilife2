@@ -20,7 +20,6 @@
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
 		07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */; };
-		07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07330B431BBE2481000EB8FD /* CashHomePage.storyboard */; };
 		07330B581BBE2C2C000EB8FD /* MSFMarkets.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B571BBE2C2C000EB8FD /* MSFMarkets.m */; };
 		07330B5B1BBE2C63000EB8FD /* MSFTeams2.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B5A1BBE2C63000EB8FD /* MSFTeams2.m */; };
 		07330B5E1BBE2C8F000EB8FD /* MSFTeam.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B5D1BBE2C8F000EB8FD /* MSFTeam.m */; };
@@ -781,7 +780,6 @@
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		07330B331BBE2467000EB8FD /* MSFCashHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCashHomePageViewController.h; sourceTree = "<group>"; };
 		07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCashHomePageViewController.m; sourceTree = "<group>"; };
-		07330B431BBE2481000EB8FD /* CashHomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CashHomePage.storyboard; sourceTree = "<group>"; };
 		07330B561BBE2C2C000EB8FD /* MSFMarkets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMarkets.h; sourceTree = "<group>"; };
 		07330B571BBE2C2C000EB8FD /* MSFMarkets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMarkets.m; sourceTree = "<group>"; };
 		07330B591BBE2C63000EB8FD /* MSFTeams2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTeams2.h; sourceTree = "<group>"; };
@@ -3554,7 +3552,6 @@
 				49DAEE7D1B2E83E4009433C5 /* personal.storyboard */,
 				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
 				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
-				07330B431BBE2481000EB8FD /* CashHomePage.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -4260,7 +4257,6 @@
 				4944C0351B68A5A100805C0A /* icon-account-repay@2x.png in Resources */,
 				07C158DD1BC8E7E600127339 /* addver@2x.jpg in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-about@2x.png in Resources */,
-				07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */,
 				07E3ED751BBBC3020010AAD2 /* tradepasswordimg@3x.png in Resources */,
 				10E546691C0011DD00BBA827 /* ad_mld.png in Resources */,
 				077347DC1BBA338900D7A130 /* guangda.png in Resources */,
