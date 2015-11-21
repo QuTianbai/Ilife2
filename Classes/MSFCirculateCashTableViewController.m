@@ -65,23 +65,6 @@
 	RAC(self.deadLineLB, text) = [RACObserve(self.viewModel, contractExpireDate) map:^id(id value) {
 		return value;
 	}];
-//	RAC(self, address) = [[RACSignal
-//												 combineLatest:@[
-//																				 RACObserve(self, province),
-//																				 RACObserve(self, city),
-//																				 RACObserve(self, area),
-//																				 ]
-//												 reduce:^id(MSFAreas *province, MSFAreas *city, MSFAreas *area) {
-//													 NSMutableString *address = NSMutableString.string;
-//													 [address appendString:province.name ?: @""];
-//													 [address appendString:city.name ?: @""];
-//													 [address appendString:area.name ?: @""];
-//													 
-//													 return address;
-//												 }]
-//												doNext:^(id x) {
-//													NSLog(@"`Address:`%@", x);
-//												}];
 	RAC(self.outTimeMoneyLB, text) = [RACSignal
 																		combineLatest:@[
 																										RACObserve(self, viewModel.overdueMoney),
@@ -95,12 +78,7 @@
 																		
 																		}];
 
-//	RAC(self.outTimeMoneyLB, text) = [RACObserve(self, viewModel.overdueMoney) map:^id(NSString *value) {
-//		if (value == nil || [value isEqualToString:@"0"] || [value isEqualToString:@"0.00"]) {
-//			return @"";
-//		}
-//		return [NSString stringWithFormat:@"已逾期：%@", value];
-//	}];
+
 	RAC(self, contractNO) = RACObserve(self.viewModel, contractNo);
 	
 	RAC(self, usableLimit) = [RACObserve(self.viewModel, usableLimit) map:^id(id value) {
@@ -203,17 +181,6 @@
 		 
 	 }];
 	
-//	RAC(self, usedL) = [[RACSignal
-//		combineLatest:@[
-//										RACObserve(self, viewModel.usableLimit),
-//										RACObserve(self, viewModel.usedLimit),
-//										]]
-//	 flattenMap:^RACStream *(RACTuple *modelAndMarket) {
-//		 RACTupleUnpack(NSString *abeluser, NSString *usedmoney) = modelAndMarket;
-//		 [self.loanlimiteView setAvailableCredit:abeluser usedCredit:usedmoney];
-//		 return usedmoney;
-//	 }];
-//	
 	
 	RAC(self, usedMoneyCount) = [RACObserve(self, viewModel.usedLimit) map:^id(id value) {
 		[self.loanlimiteView setAvailableCredit:self.viewModel.usableLimit usedCredit:self.viewModel.usedLimit];

@@ -12,4 +12,6 @@
 
 - (RACSignal *)fetchRepaymentSchedules;
 
+- (RACSignal *)fetchCircleRepaymentSchedules;
+
 @end

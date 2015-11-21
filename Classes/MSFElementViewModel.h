@@ -10,7 +10,6 @@
 @class RACCommand;
 @class MSFElement;
 @class MSFAttachment;
-@class MSFApplyCashVIewModel;
 
 @interface MSFElementViewModel : RVMViewModel
 
@@ -31,10 +30,17 @@
 
 @property (nonatomic, strong, readonly) RACCommand *uploadCommand;
 
-- (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services __deprecated_msg("Use Next one");
-- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel;
+- (instancetype)initWithElement:(id)model services:(id <MSFViewModelServices>)services;
 
 - (void)addAttachment:(MSFAttachment *)attachment;
 - (void)removeAttachment:(MSFAttachment *)attachment;
+
+@end
+
+@class MSFApplyCashVIewModel;
+
+@interface MSFElementViewModel (Deprecated)
+
+- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel __deprecated_msg("Use Next one");
 
 @end

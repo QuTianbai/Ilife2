@@ -188,28 +188,9 @@
 																																																	 }]];
 			return nil;
 		}
-//		[[self.services.httpClient fetchCheckAllowApply] subscribeNext:^(MSFCheckAllowApply *model) {
-//			[SVProgressHUD dismiss];
-//			if (model.processing == 0) {
-//				[[[UIAlertView alloc] initWithTitle:@"提示"
-//																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
-//																	 delegate:nil
-//													cancelButtonTitle:@"确认"
-//													otherButtonTitles:nil] show];
-//			} else {
-//				
-//				self.model.applyStatus = model.data.status;
-//				self.appNO = model.data.appNo;
-				//[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
-				
-				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
-				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self];
-				[self.services pushViewModel:viewModel];
-				
-//			}
-//		} error:^(NSError *error) {
-//			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//		}];
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self];
+		[self.services pushViewModel:viewModel];
+		
 		[subscriber sendCompleted];
 		return nil;
 	}];

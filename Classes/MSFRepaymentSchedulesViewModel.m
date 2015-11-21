@@ -33,6 +33,16 @@
 		return value.length > 0 ? value : @"当天";
 	}];
 	
+	RAC(self, ownerAllMoney) = [RACObserve(self, model.totalOverdueMoney) map:^id(id value) {
+		if (value == nil) {
+			return @"";
+		}
+		return value;
+	}];
+	RAC(self, contractLineDate) = [RACObserve(self, model.contractExpireDate) map:^id(NSString *value) {
+		return value.length > 0 ? value : @"当天";
+	}];
+	
   return self;
 }
 
@@ -49,6 +59,17 @@
 	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];
+	
+	RAC(self, ownerAllMoney) = [RACObserve(self, model.totalOverdueMoney) map:^id(id value) {
+		if (value == nil) {
+			return @"";
+		}
+		return value;
+	}];
+	RAC(self, contractLineDate) = [RACObserve(self, model.contractExpireDate) map:^id(NSString *value) {
+		return value.length > 0 ? value : @"当天";
+	}];
+
 	
   return self;
 }

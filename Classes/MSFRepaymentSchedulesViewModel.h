@@ -25,6 +25,12 @@
 // 应还款日期
 @property (nonatomic, readonly) NSString *date;
 
+//欠款总额
+@property (nonatomic, readonly) NSString *ownerAllMoney;
+
+//合同截止日期
+@property (nonatomic, readonly) NSString *contractLineDate;
+
 - (instancetype)initWithModel:(id)model __deprecated_msg("Use initWithModel:services:");
 - (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;;
 

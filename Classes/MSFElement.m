@@ -6,6 +6,13 @@
 
 #import "MSFElement.h"
 #import "MSFServer.h"
+#import "MSFElement+Private.h"
+
+@interface MSFElement ()
+
+@property (nonatomic, strong) NSString *applicationNumberString;
+
+@end
 
 @implementation MSFElement
 
@@ -25,14 +32,6 @@
 	};
 }
 
-- (NSURL *)sampleURL {
-	return [self.server.baseURL URLByAppendingPathComponent:self.relativeSamplePath];
-}
-
-- (NSURL *)thumbURL {
-	return [self.server.baseURL URLByAppendingPathComponent:self.relativeThumbPath];
-}
-
 + (NSValueTransformer *)requiredJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithBlock:^id(NSString *string) {
 		return [string isEqualToString:@"M"] ? @YES: @NO;
@@ -42,7 +41,7 @@
 - (BOOL)validateRequired:(id *)required error:(NSError **)error {
 	id object  = *required;
 	if ([object isKindOfClass:NSString.class]) {
-		*required = @([*required isEqualToString:@"true"]);
+		*required = @([*required isEqualToString:@"M"]);
 		return YES;
 	} else if ([object isKindOfClass:NSNumber.class]) {
 		*required = @([*required boolValue]);
@@ -50,6 +49,26 @@
 	}
 	*required = @NO;
 	return *required == nil;
+}
+
+#pragma mark - Custom Accessors
+
+- (NSURL *)sampleURL {
+	return [self.server.baseURL URLByAppendingPathComponent:self.relativeSamplePath];
+}
+
+- (NSURL *)thumbURL {
+	return [self.server.baseURL URLByAppendingPathComponent:self.relativeThumbPath];
+}
+
+#pragma mark - Private
+
+- (void)setApplicationNo:(NSString *)applicationNo {
+	self.applicationNumberString = applicationNo;
+}
+
+- (NSString *)applicationNo {
+	return self.applicationNumberString;
 }
 
 @end

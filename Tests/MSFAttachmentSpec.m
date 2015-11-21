@@ -10,68 +10,49 @@
 QuickSpecBegin(MSFAttachmentSpec)
 
 NSDictionary *representation = @{
-	@"attachmentName": @"111.jpg",
-	@"attachmentType": @"IDCARD",
-	@"attachmentTypePlain": @"身份证",
-	@"fileId": @100001
-};
-
-NSDictionary *info = @{
-	@"applyId": @528,
-	@"applyNo": @"20150727000528",
-	@"attachmentName": @"QQ截图20150727110907.png",
-	@"attachmentType": @"IDCARD",
-	@"attachmentTypePlain": @"身份证",
-	@"comment": @"http://192.168.2.41:8160/file/download?sysCode=105&bizCode=105005&fileId=3230",
-	@"fileId": @100001,
-	@"id": @1289,
-	@"rawAddTime": @"2015-07-27 20:00:26",
-	@"rawUpdateTime": @"2015-07-27 20:00:03",
-	@"status": @"I",
-	
-	@"type": @"image/jpg",
+	@"fileId": @"3033",
+	@"fileName": @"4b1bac5176264f0ca1be2c0ce8c5f52e.jpg",
 };
 
 __block MSFAttachment *attachment;
 
-beforeEach(^{
-	attachment = [MTLJSONAdapter modelOfClass:MSFAttachment.class fromJSONDictionary:representation error:nil];
-	expect(attachment).notTo(beNil());
-});
-
-it(@"should initialize", ^{
-  // then
-	expect(attachment.name).to(equal(@"111.jpg"));
-	expect(attachment.type).to(equal(@"IDCARD"));
-	expect(attachment.plain).to(equal(@"身份证"));
-	expect(attachment.fileID).to(equal(@"100001"));
-});
-
-it(@"should fetch uploaded attachment information", ^{
+it(@"should create local attachment without upload", ^{
+	// given
+	NSURL *diskfileURL = [NSURL URLWithString:@"file://abc/attachment.jpg"];
+	
 	// when
- attachment = [MTLJSONAdapter modelOfClass:MSFAttachment.class fromJSONDictionary:info error:nil];
+	attachment = [[MSFAttachment alloc] initWithFileURL:diskfileURL applicationNo:@"303" elementType:@"W" elementName:@"foo"];
 	
 	// then
-	expect(attachment.applyID).to(equal(@"528"));
-	expect(attachment.applyNo).to(equal(@"20150727000528"));
-	expect(attachment.name).to(equal(@"QQ截图20150727110907.png"));
-	expect(attachment.type).to(equal(@"IDCARD"));
-	expect(attachment.plain).to(equal(@"身份证"));
-	expect(attachment.commentURL).to(equal([NSURL URLWithString:@"http://192.168.2.41:8160/file/download?sysCode=105&bizCode=105005&fileId=3230"]));
-	expect(attachment.objectID).to(equal(@"100001"));
-	expect(attachment.additionDate).to(equal([NSDateFormatter msf_dateFromString:@"2015-07-27 20:00:26"]));
-	expect(attachment.updatedDate).to(equal([NSDateFormatter msf_dateFromString:@"2015-07-27 20:00:03"]));
-	expect(attachment.status).to(equal(@"I"));
+	expect(@(attachment.isUpload)).to(beFalsy());
+	expect(attachment.fileURL).to(equal(diskfileURL));
+	expect(attachment.thumbURL).to(equal(diskfileURL));
+	expect(attachment.applicationNo).to(equal(@"303"));
+	expect(attachment.type).to(equal(@"W"));
+	expect(attachment.name).to(equal(@"foo"));
 });
 
-it(@"should create placeholder attachment", ^{
+it(@"should merge response attachment when upload file to server", ^{
+	// given
+	NSURL *diskfileURL = [NSURL URLWithString:@"file://abc/attachment.jpg"];
+	attachment = [[MSFAttachment alloc] initWithFileURL:diskfileURL applicationNo:@"303" elementType:@"W" elementName:@"foo"];
+	
 	// when
-	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"tmp" withExtension:@"jpg"];
-	attachment = [[MSFAttachment alloc] initWithDictionary:@{@"isPlaceholder": @YES, @"thumbURL": URL} error:nil];
+	MSFAttachment *result = [MTLJSONAdapter modelOfClass:MSFAttachment.class fromJSONDictionary:representation error:nil];
+	[attachment mergeAttachment:result];
+	
+	// then
+	expect(attachment.fileID).to(equal(@"3033"));
+	expect(attachment.fileName).to(equal(@"4b1bac5176264f0ca1be2c0ce8c5f52e.jpg"));
+	expect(@(attachment.isUpload)).to(beTruthy());
+});
+
+it(@"should create a blank attachment", ^{
+	// when
+	attachment = [[MSFAttachment alloc] initWithAssetsURL:[NSURL URLWithString:@"file://temp/url.jpg"] applicationNo:@"" elementType:@"" elementName:@""];
 	
 	// then
 	expect(@(attachment.isPlaceholder)).to(beTruthy());
-	expect(attachment.thumbURL).to(equal(URL));
 });
 
 QuickSpecEnd
