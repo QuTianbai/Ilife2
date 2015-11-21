@@ -345,7 +345,6 @@
 		493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */; };
 		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
-		4943C3571B047437000BBF5E /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3561B047437000BBF5E /* Tests.m */; };
 		4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3601B04782B000BBF5E /* SwiftSpec.swift */; };
 		4943C3681B04796B000BBF5E /* libOHHTTPStubs-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */; };
 		4943C3741B047C66000BBF5E /* MSFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3731B047C66000BBF5E /* MSFObject.m */; };
@@ -1288,7 +1287,6 @@
 		4943C32B1B047403000BBF5E /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3521B047437000BBF5E /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3551B047437000BBF5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4943C3561B047437000BBF5E /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4943C3601B04782B000BBF5E /* SwiftSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSpec.swift; sourceTree = "<group>"; };
 		4943C3621B047849000BBF5E /* Tests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		4943C3631B047966000BBF5E /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = "Externals/Nimble/build/Debug-iphoneos/Nimble.framework"; sourceTree = "<group>"; };
@@ -2860,7 +2858,6 @@
 			children = (
 				4955DBB71B0DF3E600582A69 /* Frameworks */,
 				4943C36E1B047C34000BBF5E /* Specs */,
-				4943C3561B047437000BBF5E /* Tests.m */,
 				4943C3541B047437000BBF5E /* Supporting Files */,
 			);
 			path = Tests;
@@ -4977,7 +4974,6 @@
 				496A44731B6A57BE00104215 /* MSFPlanDetailsSpec.m in Sources */,
 				496A446B1B6A57BE00104215 /* MSFCipherSpec.m in Sources */,
 				49CA93971BBAA7880032F5C2 /* MSFCardSpec.m in Sources */,
-				4943C3571B047437000BBF5E /* Tests.m in Sources */,
 				496A44681B6A57BE00104215 /* MSFAuthorizeViewModelSpec.m in Sources */,
 				496A447D1B6A57BF00104215 /* MSFTradeSpec.m in Sources */,
 				496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */,
