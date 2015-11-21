@@ -309,11 +309,8 @@
 	}] replay];
 }
 
-
 - (RACSignal *)submitSignal {
 	return nil;
 }
-
-
 
 @end

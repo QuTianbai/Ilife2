@@ -19,8 +19,8 @@
 		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
-		072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072550C71BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072550C91BFEC1F60053F51F /* SocialCashApply.storyboard */; settings = {ASSET_TAGS = (); }; };
+		072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072550C71BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m */; };
+		072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072550C91BFEC1F60053F51F /* SocialCashApply.storyboard */; };
 		07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */; };
 		07330B441BBE2481000EB8FD /* CashHomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07330B431BBE2481000EB8FD /* CashHomePage.storyboard */; };
 		07330B581BBE2C2C000EB8FD /* MSFMarkets.m in Sources */ = {isa = PBXBuildFile; fileRef = 07330B571BBE2C2C000EB8FD /* MSFMarkets.m */; };
@@ -35,13 +35,13 @@
 		0738C48F1B944B54006D7177 /* bank.db in Resources */ = {isa = PBXBuildFile; fileRef = 0738C48E1B944B54006D7177 /* bank.db */; };
 		074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0746968F1B98200C0074E180 /* MSFConfirmContractModel.m */; };
 		074696961B9820780074E180 /* MSFClient+ConfirmContract.m in Sources */ = {isa = PBXBuildFile; fileRef = 074696951B9820780074E180 /* MSFClient+ConfirmContract.m */; };
-		07472BCE1BFF0434008A3890 /* isInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BCD1BFF0434008A3890 /* isInsurance.json */; settings = {ASSET_TAGS = (); }; };
-		07472BDD1BFF08A6008A3890 /* employeeOlderInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BDC1BFF08A6008A3890 /* employeeOlderInsurance.json */; settings = {ASSET_TAGS = (); }; };
-		07472BDF1BFF0975008A3890 /* employeeMedicalInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BDE1BFF0975008A3890 /* employeeMedicalInsurance.json */; settings = {ASSET_TAGS = (); }; };
-		07472BE11BFF0BD3008A3890 /* residentOlderInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BE01BFF0BD3008A3890 /* residentOlderInsurance.json */; settings = {ASSET_TAGS = (); }; };
-		07472BE31BFF0D93008A3890 /* residentMedicalInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BE21BFF0D93008A3890 /* residentMedicalInsurance.json */; settings = {ASSET_TAGS = (); }; };
-		07472BE71BFF1A4B008A3890 /* MSFSocialInsuranceCashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07472BE61BFF1A4B008A3890 /* MSFSocialInsuranceCashViewModel.m */; settings = {ASSET_TAGS = (); }; };
-		07472BEB1BFF2860008A3890 /* MSFSocialInsuranceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07472BEA1BFF2860008A3890 /* MSFSocialInsuranceModel.m */; settings = {ASSET_TAGS = (); }; };
+		07472BCE1BFF0434008A3890 /* isInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BCD1BFF0434008A3890 /* isInsurance.json */; };
+		07472BDD1BFF08A6008A3890 /* employeeOlderInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BDC1BFF08A6008A3890 /* employeeOlderInsurance.json */; };
+		07472BDF1BFF0975008A3890 /* employeeMedicalInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BDE1BFF0975008A3890 /* employeeMedicalInsurance.json */; };
+		07472BE11BFF0BD3008A3890 /* residentOlderInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BE01BFF0BD3008A3890 /* residentOlderInsurance.json */; };
+		07472BE31BFF0D93008A3890 /* residentMedicalInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07472BE21BFF0D93008A3890 /* residentMedicalInsurance.json */; };
+		07472BE71BFF1A4B008A3890 /* MSFSocialInsuranceCashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07472BE61BFF1A4B008A3890 /* MSFSocialInsuranceCashViewModel.m */; };
+		07472BEB1BFF2860008A3890 /* MSFSocialInsuranceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07472BEA1BFF2860008A3890 /* MSFSocialInsuranceModel.m */; };
 		0747E2601BC3CD5100B4E572 /* ForgetTradePwd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25D1BC3CD5100B4E572 /* ForgetTradePwd.storyboard */; };
 		0747E2611BC3CD5100B4E572 /* SetTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25E1BC3CD5100B4E572 /* SetTradePassword.storyboard */; };
 		0747E2621BC3CD5100B4E572 /* UpdateTradePWD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25F1BC3CD5100B4E572 /* UpdateTradePWD.storyboard */; };
@@ -121,35 +121,35 @@
 		078EEBB61BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078EEBB51BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m */; };
 		07997AAC1BA01C2000E3E4DD /* icon-confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07997AAA1BA01C2000E3E4DD /* icon-confirm@2x.png */; };
 		07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07997AAB1BA01C2000E3E4DD /* icon-confirm@3x.png */; };
-		07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */; settings = {ASSET_TAGS = (); }; };
-		07A7DACA1BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
-		07A7DACC1BFC502A00916ADD /* repayment.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DACB1BFC502A00916ADD /* repayment.json */; settings = {ASSET_TAGS = (); }; };
-		07A7DACE1BFC55DF00916ADD /* circleCash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DACD1BFC55DF00916ADD /* circleCash.json */; settings = {ASSET_TAGS = (); }; };
-		07A7DAD11BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		07A7DAE81BFDB65100916ADD /* applyCashBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD61BFDB65100916ADD /* applyCashBottom@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAE91BFDB65100916ADD /* applyCashButtonSelect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD71BFDB65100916ADD /* applyCashButtonSelect@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAEA1BFDB65100916ADD /* applyCashButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD81BFDB65100916ADD /* applyCashButton@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAEB1BFDB65100916ADD /* applyCashtop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD91BFDB65100916ADD /* applyCashtop@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAEE1BFDB65100916ADD /* applyCashBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADC1BFDB65100916ADD /* applyCashBottom.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAEF1BFDB65100916ADD /* applyCashButtonSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADD1BFDB65100916ADD /* applyCashButtonSelect.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAF01BFDB65100916ADD /* applyCashButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADE1BFDB65100916ADD /* applyCashButton@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAF11BFDB65100916ADD /* applyCashtop.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADF1BFDB65100916ADD /* applyCashtop.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAF41BFDB65100916ADD /* applyCashBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE21BFDB65100916ADD /* applyCashBottom@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAF51BFDB65100916ADD /* applyCashButtonSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE31BFDB65100916ADD /* applyCashButtonSelect@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAF61BFDB65100916ADD /* applyCashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE41BFDB65100916ADD /* applyCashButton.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAF71BFDB65200916ADD /* applyCashtop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE51BFDB65100916ADD /* applyCashtop@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DAFF1BFDC0F500916ADD /* applyCashBottomType.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAF91BFDC0F500916ADD /* applyCashBottomType.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB001BFDC0F500916ADD /* applyCashBottomType@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFA1BFDC0F500916ADD /* applyCashBottomType@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB011BFDC0F500916ADD /* applyCashBottomType@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFB1BFDC0F500916ADD /* applyCashBottomType@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB021BFDC0F500916ADD /* socialSecurityApply.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFC1BFDC0F500916ADD /* socialSecurityApply.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB031BFDC0F500916ADD /* socialSecurityApply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFD1BFDC0F500916ADD /* socialSecurityApply@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB041BFDC0F500916ADD /* socialSecurityApply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFE1BFDC0F500916ADD /* socialSecurityApply@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB081BFDC51900916ADD /* repayPlanIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB051BFDC51900916ADD /* repayPlanIcon.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB091BFDC51900916ADD /* repayPlanIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB061BFDC51900916ADD /* repayPlanIcon@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB0A1BFDC51900916ADD /* repayPlanIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB071BFDC51900916ADD /* repayPlanIcon@3x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB0E1BFDD65900916ADD /* lightApplyCash.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB0B1BFDD65900916ADD /* lightApplyCash.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB0F1BFDD65900916ADD /* lightApplyCash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB0C1BFDD65900916ADD /* lightApplyCash@2x.png */; settings = {ASSET_TAGS = (); }; };
-		07A7DB101BFDD65900916ADD /* lightApplyCash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB0D1BFDD65900916ADD /* lightApplyCash@3x.png */; settings = {ASSET_TAGS = (); }; };
+		07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */; };
+		07A7DACA1BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */; };
+		07A7DACC1BFC502A00916ADD /* repayment.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DACB1BFC502A00916ADD /* repayment.json */; };
+		07A7DACE1BFC55DF00916ADD /* circleCash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DACD1BFC55DF00916ADD /* circleCash.json */; };
+		07A7DAD11BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */; };
+		07A7DAE81BFDB65100916ADD /* applyCashBottom@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD61BFDB65100916ADD /* applyCashBottom@3x.png */; };
+		07A7DAE91BFDB65100916ADD /* applyCashButtonSelect@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD71BFDB65100916ADD /* applyCashButtonSelect@3x.png */; };
+		07A7DAEA1BFDB65100916ADD /* applyCashButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD81BFDB65100916ADD /* applyCashButton@3x.png */; };
+		07A7DAEB1BFDB65100916ADD /* applyCashtop@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAD91BFDB65100916ADD /* applyCashtop@3x.png */; };
+		07A7DAEE1BFDB65100916ADD /* applyCashBottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADC1BFDB65100916ADD /* applyCashBottom.png */; };
+		07A7DAEF1BFDB65100916ADD /* applyCashButtonSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADD1BFDB65100916ADD /* applyCashButtonSelect.png */; };
+		07A7DAF01BFDB65100916ADD /* applyCashButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADE1BFDB65100916ADD /* applyCashButton@2x.png */; };
+		07A7DAF11BFDB65100916ADD /* applyCashtop.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DADF1BFDB65100916ADD /* applyCashtop.png */; };
+		07A7DAF41BFDB65100916ADD /* applyCashBottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE21BFDB65100916ADD /* applyCashBottom@2x.png */; };
+		07A7DAF51BFDB65100916ADD /* applyCashButtonSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE31BFDB65100916ADD /* applyCashButtonSelect@2x.png */; };
+		07A7DAF61BFDB65100916ADD /* applyCashButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE41BFDB65100916ADD /* applyCashButton.png */; };
+		07A7DAF71BFDB65200916ADD /* applyCashtop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAE51BFDB65100916ADD /* applyCashtop@2x.png */; };
+		07A7DAFF1BFDC0F500916ADD /* applyCashBottomType.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAF91BFDC0F500916ADD /* applyCashBottomType.png */; };
+		07A7DB001BFDC0F500916ADD /* applyCashBottomType@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFA1BFDC0F500916ADD /* applyCashBottomType@2x.png */; };
+		07A7DB011BFDC0F500916ADD /* applyCashBottomType@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFB1BFDC0F500916ADD /* applyCashBottomType@3x.png */; };
+		07A7DB021BFDC0F500916ADD /* socialSecurityApply.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFC1BFDC0F500916ADD /* socialSecurityApply.png */; };
+		07A7DB031BFDC0F500916ADD /* socialSecurityApply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFD1BFDC0F500916ADD /* socialSecurityApply@2x.png */; };
+		07A7DB041BFDC0F500916ADD /* socialSecurityApply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAFE1BFDC0F500916ADD /* socialSecurityApply@3x.png */; };
+		07A7DB081BFDC51900916ADD /* repayPlanIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB051BFDC51900916ADD /* repayPlanIcon.png */; };
+		07A7DB091BFDC51900916ADD /* repayPlanIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB061BFDC51900916ADD /* repayPlanIcon@2x.png */; };
+		07A7DB0A1BFDC51900916ADD /* repayPlanIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB071BFDC51900916ADD /* repayPlanIcon@3x.png */; };
+		07A7DB0E1BFDD65900916ADD /* lightApplyCash.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB0B1BFDD65900916ADD /* lightApplyCash.png */; };
+		07A7DB0F1BFDD65900916ADD /* lightApplyCash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB0C1BFDD65900916ADD /* lightApplyCash@2x.png */; };
+		07A7DB101BFDD65900916ADD /* lightApplyCash@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DB0D1BFDD65900916ADD /* lightApplyCash@3x.png */; };
 		07AFE5A01B26D202009E0124 /* position.json in Resources */ = {isa = PBXBuildFile; fileRef = 07AFE59F1B26D202009E0124 /* position.json */; };
 		07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B3687F1B7ED86400574A81 /* basic-information-prompt-1242.png */; };
 		07B368831B7ED86400574A81 /* basic-information-prompt-1242@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07B368801B7ED86400574A81 /* basic-information-prompt-1242@2x.png */; };
@@ -3963,6 +3963,7 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
+				E9F2AD4E3112C3D2817439FB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3982,6 +3983,7 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
+				BC9D47B0382E061D7C7A9BAB /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4651,6 +4653,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC9D47B0382E061D7C7A9BAB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E9F2AD4E3112C3D2817439FB /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

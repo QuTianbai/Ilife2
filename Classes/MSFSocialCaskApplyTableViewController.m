@@ -32,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 
 @property (nonatomic, copy) NSString *professional;
+
 @end
 
 @implementation MSFSocialCaskApplyTableViewController
@@ -79,9 +80,7 @@
 	}
 	
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
-	@weakify(self)
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
