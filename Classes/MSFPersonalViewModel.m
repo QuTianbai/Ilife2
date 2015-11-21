@@ -51,12 +51,9 @@
 	}
 	
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
-	//RAC(self.formsViewModel.model, currentProvince) = RACObserve(self.addressViewModel, provinceName);
-	RAC(self.formsViewModel.model, currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
-	//RAC(self.formsViewModel.model, currentCity) = RACObserve(self.addressViewModel, cityName);
-	RAC(self.formsViewModel.model, currentCityCode) = RACObserve(self.addressViewModel, cityCode);
-	//RAC(self.formsViewModel.model, currentCountry) = RACObserve(self.addressViewModel, areaName);
-	RAC(self.formsViewModel.model, currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
+	RAC(self, formsViewModel.model.currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
+	RAC(self, formsViewModel.model.currentCityCode) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self, formsViewModel.model.currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
 	_executeAlterAddressCommand = self.addressViewModel.selectCommand;
 	
 	NSArray *houseTypes = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];

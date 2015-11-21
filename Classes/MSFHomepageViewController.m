@@ -50,7 +50,7 @@ UICollectionViewDelegateFlowLayout>
 	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFCirculateViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFCirculateViewCell"];
 	
 	@weakify(self)
-	[RACObserve(self.viewModel, cellModel) subscribeNext:^(id x) {
+	[RACObserve(self, viewModel.cellModel) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collectionView reloadData];
 	}];

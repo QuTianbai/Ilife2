@@ -33,7 +33,7 @@
 	_services = services;
 	_model = model;
 	
-	[RACObserve(self.model, produceType) subscribeNext:^(id x) {
+	[RACObserve(self, model.produceType) subscribeNext:^(id x) {
 		if ([x isEqualToString:@"MS"]) {
 			self.productType = MSFProductTypeMS;
 		} else if ([x isEqualToString:@"XH"]) {
@@ -46,9 +46,9 @@
 	/*
 	 马上金融
 	 */
-	RAC(self, money) = RACObserve(self.model, money);
-	RAC(self, loanTerm) = RACObserve(self.model, period);
-	RAC(self, title) = [RACObserve(self.model, type) map:^id(NSString *type) {
+	RAC(self, money) = RACObserve(self, model.money);
+	RAC(self, loanTerm) = RACObserve(self, model.period);
+	RAC(self, title) = [RACObserve(self, model.type) map:^id(NSString *type) {
 		if ([self.model.contractStatus isEqualToString:@"E"]) {
 			return @"合同状态";
 		}
@@ -60,7 +60,7 @@
 	}];
 
 	@weakify(self)
-	[[RACSignal combineLatest:@[RACObserve(self.model, applyStatus), RACObserve(self.model, contractStatus)] reduce:^id(NSString *a, NSString *b){
+	[[RACSignal combineLatest:@[RACObserve(self, model.applyStatus), RACObserve(self, model.contractStatus)] reduce:^id(NSString *a, NSString *b){
 		if ((a.length > 0 && b.length > 0) || (a.length == 0 && b.length == 0)) {
 			return @"F";
 		}
@@ -90,7 +90,7 @@
 		}
 	}];
 	
-	RAC(self, applyTime) = [RACObserve(self.model, applyDate) map:^id(id value) {
+	RAC(self, applyTime) = [RACObserve(self, model.applyDate) map:^id(id value) {
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		[df setDateFormat:@"yyyyMMddHHmmss"];
 		NSDate *date = [df dateFromString:value];
@@ -99,23 +99,23 @@
 		}
 		return nil;
 	}];
-	RAC(self, applyDate) = RACObserve(self.model, applyDate);
-	RAC(self, currentPeriodDate) = RACObserve(self.model, currentPeriodDate);
+	RAC(self, applyDate) = RACObserve(self, model.applyDate);
+	RAC(self, currentPeriodDate) = RACObserve(self, model.currentPeriodDate);
 	
 	/*
 	 随借随还
 	 */
-	RAC(self, totalLimit) = RACObserve(self.model, totalLimit);
-	RAC(self, usedLimit) = RACObserve(self.model, usedLimit);
-	RAC(self, usableLimit) = RACObserve(self.model, usableLimit);
-	RAC(self, contractExpireDate) = RACObserve(self.model, contractExpireDate);
-	RAC(self, latestDueMoney) = [RACObserve(self.model, latestDueMoney) map:^id(NSString *value) {
+	RAC(self, totalLimit) = RACObserve(self, model.totalLimit);
+	RAC(self, usedLimit) = RACObserve(self, model.usedLimit);
+	RAC(self, usableLimit) = RACObserve(self, model.usableLimit);
+	RAC(self, contractExpireDate) = RACObserve(self, model.contractExpireDate);
+	RAC(self, latestDueMoney) = [RACObserve(self, model.latestDueMoney) map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"￥%@", value.length > 0 ? value : @"0"];
 	}];
-	RAC(self, latestDueDate) = RACObserve(self.model, latestDueDate);
-	RAC(self, totalOverdueMoney) = RACObserve(self.model, totalOverdueMoney);
-	RAC(self, contractNo) = RACObserve(self.model, contractNo);
-	RAC(self, overdueMoney) = [RACObserve(self.model, overdueMoney) map:^id(NSString *value) {
+	RAC(self, latestDueDate) = RACObserve(self, model.latestDueDate);
+	RAC(self, totalOverdueMoney) = RACObserve(self, model.totalOverdueMoney);
+	RAC(self, contractNo) = RACObserve(self, model.contractNo);
+	RAC(self, overdueMoney) = [RACObserve(self, model.overdueMoney) map:^id(NSString *value) {
 		return [NSString stringWithFormat:@"￥%@", value.length > 0 ? value : @"0"];
 	}];
 	

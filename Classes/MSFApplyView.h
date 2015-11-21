@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, MSFApplyViewStatus) {
-	MSFApplyViewStatusMS,
-	MSFApplyViewStatusML,
-	MSFApplyViewStatusMSFull
+typedef NS_ENUM(NSInteger, MSFApplyViewType) {
+	MSFApplyViewTypeMS,
+	MSFApplyViewTypeML,
+	MSFApplyViewTypeMSFull
 };
 
 @interface MSFApplyView : UIView
 
-- (instancetype)initWithStatus:(MSFApplyViewStatus)status;
+- (instancetype)initWithStatus:(MSFApplyViewType)type;
 
 @end

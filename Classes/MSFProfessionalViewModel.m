@@ -139,10 +139,10 @@
 - (void)initialize {
 	[self commonInit];
 	
-	RAC(self, address) = RACObserve(self.addressViewModel, address);
-	RAC(self.formsViewModel.model, workProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
-	RAC(self.formsViewModel.model, workCityCode) = RACObserve(self.addressViewModel, cityCode);
-	RAC(self.formsViewModel.model, workCountryCode) = RACObserve(self.addressViewModel, areaCode);
+	RAC(self, address) = RACObserve(self, addressViewModel.address);
+	RAC(self, formsViewModel.model.workProvinceCode) = RACObserve(self, addressViewModel.provinceCode);
+	RAC(self, formsViewModel.model.workCityCode) = RACObserve(self, addressViewModel.cityCode);
+	RAC(self, formsViewModel.model.workCountryCode) = RACObserve(self, addressViewModel.areaCode);
 	_executeAddressCommand = self.addressViewModel.selectCommand;
 	
 	@weakify(self)

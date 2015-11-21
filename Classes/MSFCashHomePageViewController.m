@@ -9,6 +9,7 @@
 #import "MSFCashHomePageViewController.h"
 #import "MSFEdgeButton.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Masonry/Masonry.h>
 #import "MSFApplyCashVIewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCheckAllowApply.h"
@@ -18,7 +19,12 @@
 #import "MSFDeviceGet.h"
 #import "UIColor+Utils.h"
 
+#import "MSFClient+MSFProductType.h"
+#import "MSFApplyView.h"
+
+
 @interface MSFCashHomePageViewController ()
+
 @property (weak, nonatomic) IBOutlet UIButton *nextBT;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 
@@ -36,7 +42,35 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
+	UIView *topLayoutGuide = (id)self.topLayoutGuide;
+	UIView *bottomLayoutGuide = (id)self.bottomLayoutGuide;
+	/*
+	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS];
+	[self.view addSubview:ms];
+	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML];
+	[self.view addSubview:ml];
+	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(topLayoutGuide.mas_bottom);
+		make.left.right.equalTo(self.view);
+	}];
+	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(ms.mas_bottom);
+		make.bottom.equalTo(bottomLayoutGuide.mas_top);
+		make.left.right.equalTo(self.view);
+		make.height.equalTo(ms);
+	}];
+	*/
+	MSFApplyView *ms_full = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull];
+	[self.view addSubview:ms_full];
+	[ms_full mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(topLayoutGuide.mas_bottom);
+		make.bottom.equalTo(bottomLayoutGuide.mas_top);
+		make.left.right.equalTo(self.view);
+	}];
+	
+	return;
+	
 	
 	DeviceTypeNum deviceType = [MSFDeviceGet deviceNum];
 	if (deviceType &( IPHONE4 | IPHONE4S)) {
