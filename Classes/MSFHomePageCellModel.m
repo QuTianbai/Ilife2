@@ -60,7 +60,7 @@
 	}];
 
 	@weakify(self)
-	[[RACSignal combineLatest:@[RACObserve(self.model, applyStatus), RACObserve(self.model, contractStatus)] reduce:^id(NSString *a, NSString *b){
+	[[RACSignal combineLatest:@[RACObserve(self, model.applyStatus), RACObserve(self, model.contractStatus)] reduce:^id(NSString *a, NSString *b){
 		if ((a.length > 0 && b.length > 0) || (a.length == 0 && b.length == 0)) {
 			return @"F";
 		}
