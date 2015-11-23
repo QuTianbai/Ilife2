@@ -26,6 +26,7 @@
 
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
+#import "MSFSocialInsuranceCashViewModel.h"
 
 @interface MSFLoanAgreementController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
@@ -79,10 +80,16 @@
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
 			[SVProgressHUD dismiss];
-			self.viewModel.formsViewModel.appNO = applyCash.appNo;
-			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel.formsViewModel];
-			MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-			[self.navigationController pushViewController:viewController animated:YES];
+			self.viewModel.applicationViewModel.applicaitonNo = applyCash.appNo;
+			if ([self.viewModel.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel.applicationViewModel];
+				MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:viewController animated:YES];
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithInsuranceViewModel:self.viewModel.applicationViewModel];
+				MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:viewController animated:YES];
+			}
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {

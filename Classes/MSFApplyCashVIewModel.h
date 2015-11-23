@@ -19,6 +19,8 @@
 
 @interface MSFApplyCashVIewModel : RVMViewModel <MSFApplicationViewModel>
 
+@property (nonatomic, strong) NSString *applicaitonNo;
+
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 
 @property (nonatomic, copy) NSString *appNO;

@@ -31,6 +31,8 @@
 #import "MSFAddBankCardTableViewController.h"
 
 #import "MSFProductViewController.h"
+#import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFSocialCaskApplyTableViewController.h"
 
 @interface MSFUserInfomationViewController ()
 
@@ -119,8 +121,14 @@
 			 
 			 return ;
 		 }
-			MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
-			[self.navigationController pushViewController:productViewController animated:YES];
+		 
+			if ([self.viewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+				MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
+				[self.navigationController pushViewController:productViewController animated:YES];
+			} else if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:self.viewModel];
+				[self.navigationController pushViewController:insuranceViewController animated:YES];
+			}
 	 }];
 	
 	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {

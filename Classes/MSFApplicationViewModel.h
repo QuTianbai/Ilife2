@@ -5,13 +5,20 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MSFFormsViewModel.h"
 #import "MSFViewModelServices.h"
-#import "MSFFormsViewModel.h"
+@class MSFFormsViewModel;
 
 @protocol MSFApplicationViewModel <NSObject>
 
+@required
+
+@property (nonatomic, strong) NSString *applicaitonNo;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
+
+@optional
+
+// 社保贷产品ID
+@property (nonatomic, strong) NSString *productID;
 
 @end

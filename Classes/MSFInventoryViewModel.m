@@ -17,7 +17,7 @@
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
 #import "MSFApplicationForms.h"
-#import "MSFInsuranceViewModel.h"
+#import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFApplyCashVIewModel.h"
 
 @interface MSFInventoryViewModel ()
@@ -31,7 +31,7 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithInsuranceViewModel:(MSFInsuranceViewModel *)insuranceViewModel {
+- (instancetype)initWithInsuranceViewModel:(MSFSocialInsuranceCashViewModel *)insuranceViewModel {
   self = [super init];
   if (!self) {
     return nil;
@@ -43,7 +43,7 @@
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
 		return [[[self.services.httpClient
-			fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productId]
+			fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productID]
 			map:^id(id value) {
 				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 			}]

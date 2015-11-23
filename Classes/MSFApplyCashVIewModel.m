@@ -48,8 +48,11 @@
 	_model.productCd = [self.services httpClient].user.productId;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
+	_applicaitonNo = @"";
 	_array = [[NSArray alloc] init];
-
+	
+	RACChannelTo(self, applicaitonNo) = RACChannelTo(self, appNO);
+	
 	//RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
 	RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
 	
@@ -188,7 +191,7 @@
 																																																	 }]];
 			return nil;
 		}
-		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self];
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
 		[self.services pushViewModel:viewModel];
 		
 		[subscriber sendCompleted];

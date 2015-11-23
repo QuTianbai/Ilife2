@@ -9,10 +9,11 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFSelectKeyValues.h"
+#import "MSFApplicationViewModel.h"
 
 @class RACCommand;
 
-@interface MSFSocialInsuranceCashViewModel : RVMViewModel
+@interface MSFSocialInsuranceCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
 //职工保险
 @property (nonatomic, strong) MSFSelectKeyValues *purpose;// 教育程度
@@ -72,5 +73,14 @@
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+
+@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, strong) MSFFormsViewModel *formViewModel;
+@property (nonatomic, strong) NSString *applicaitonNo;
+
+//TODO: 提供社保贷的产品ID
+@property (nonatomic, strong) NSString *productID;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel services:(id <MSFViewModelServices>)services;
 
 @end
