@@ -12,7 +12,7 @@
 @class MSFProduct;
 @class MSFApplicationResponse;
 @class MSFApplyCashVIewModel;
-@class MSFInsuranceViewModel;
+@class MSFSocialInsuranceCashViewModel;
 
 @interface MSFInventoryViewModel : RVMViewModel
 
@@ -28,7 +28,7 @@
 @property (nonatomic, weak, readonly) MSFApplyCashVIewModel *formsViewModel;
 
 // 用于提交社保信息
-@property (nonatomic, weak, readonly) MSFInsuranceViewModel *insuranceViewModel;
+@property (nonatomic, weak, readonly) MSFSocialInsuranceCashViewModel *insuranceViewModel;
 
 // 提交命令
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
@@ -39,7 +39,7 @@
 - (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel;
 
 // 社保贷
-- (instancetype)initWithInsuranceViewModel:(MSFInsuranceViewModel *)insuranceViewModel;
+- (instancetype)initWithInsuranceViewModel:(MSFSocialInsuranceCashViewModel *)insuranceViewModel;
 
 // 从新提交附件信息
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;

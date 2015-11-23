@@ -1635,6 +1635,7 @@
 		49DA22611B062AF200DD4483 /* MSFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUser.m; sourceTree = "<group>"; };
 		49DA22621B062AF200DD4483 /* MSFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtils.h; sourceTree = "<group>"; };
 		49DA22631B062AF200DD4483 /* MSFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtils.m; sourceTree = "<group>"; };
+		49DAE1F11C02FE9500DE93E5 /* MSFApplicationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplicationViewModel.h; sourceTree = "<group>"; };
 		49DAEE7B1B2E83D7009433C5 /* product.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = product.storyboard; sourceTree = "<group>"; };
 		49DAEE7D1B2E83E4009433C5 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
@@ -2987,6 +2988,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				49DAE1E31C02FE8000DE93E5 /* ApplicationViewModel */,
 				07472BE41BFF17D6008A3890 /* SocialInsuranceCash */,
 				49DF43E71BFF028A00D19855 /* Insurance */,
 				07F088FE1BBD021A0067C5BC /* CirculateCash */,
@@ -3705,6 +3707,14 @@
 				494417F71B672C2200FF964D /* MSFClient+Agreements.m */,
 			);
 			name = Agreement;
+			sourceTree = "<group>";
+		};
+		49DAE1E31C02FE8000DE93E5 /* ApplicationViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				49DAE1F11C02FE9500DE93E5 /* MSFApplicationViewModel.h */,
+			);
+			name = ApplicationViewModel;
 			sourceTree = "<group>";
 		};
 		49DAEE6D1B2E8370009433C5 /* Storyboard */ = {

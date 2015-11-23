@@ -9,6 +9,7 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFSelectKeyValues.h"
+#import "MSFApplicationViewModel.h"
 
 @class MSFFormsViewModel;
 @class RACCommand;
@@ -16,7 +17,9 @@
 @class MSFMarkets;
 @class MSFTeam;
 
-@interface MSFApplyCashVIewModel : RVMViewModel
+@interface MSFApplyCashVIewModel : RVMViewModel <MSFApplicationViewModel>
+
+@property (nonatomic, strong) NSString *applicaitonNo;
 
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 

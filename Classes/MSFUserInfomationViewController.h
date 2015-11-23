@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @interface MSFUserInfomationViewController : UIViewController
 
 @property (nonatomic, assign) BOOL showNextStep;
 
-- (instancetype)initWithViewModel:(id)viewModel
+- (instancetype)initWithViewModel:(id <MSFApplicationViewModel>)viewModel
 												 services:(id<MSFViewModelServices>)services;
 
 @end
