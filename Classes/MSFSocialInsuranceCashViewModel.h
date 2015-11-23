@@ -72,4 +72,5 @@
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+
 @end

@@ -10,6 +10,6 @@
 
 @interface MSLoanListTableViewCell : UITableViewCell
 
-- (void)bindModel:(id)model;
+- (void)bindModel:(id)model type:(int)type;
 
 @end

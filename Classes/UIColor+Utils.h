@@ -49,4 +49,7 @@
 + (UIColor *)completedColor;
 + (UIColor *)percentColor;
 
+//msd-full
++ (UIColor *)msdFullBackgroundColor;
+
 @end

@@ -17,7 +17,6 @@
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/currentloaninfo" parameters:@{
 		@"uniqueId": self.user.uniqueId
 	}];
-	NSLog(@"%@", request);
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
 }
 

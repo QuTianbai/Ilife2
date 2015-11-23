@@ -7,12 +7,17 @@
 //
 
 #import "MSFApplyList.h"
-#import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSDictionary+MSFKeyValue.h"
 
 @implementation MSFApplyList
 
-+ (NSValueTransformer *)current_installmentJSONTransformer {
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+					 @"statusString" : @"status"
+					 };
+}
+
++ (NSValueTransformer *)loanTermJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {
 		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
 	}];

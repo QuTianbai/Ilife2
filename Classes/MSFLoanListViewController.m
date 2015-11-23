@@ -19,18 +19,139 @@
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #import "MSFHomePageCellModel.h"
+#import "MSFPlanListSegmentBar.h"
 
 #define ORAGECOLOR @"ff6600"
 #define BLUECOLOR @"#0babed"
 
+@interface MSFApplyListHeader : UIView
+
+@property (nonatomic, strong) UILabel *money;
+@property (nonatomic, strong) UILabel *months;
+@property (nonatomic, strong) UILabel *time;
+@property (nonatomic, strong) UILabel *check;
+
+- (void)msApply;
+- (void)mlApply;
+
+@end
+
+@implementation MSFApplyListHeader
+
+- (void)dealloc {
+	NSLog(@"MSFApplyListHeader : dealloc");
+}
+
+- (instancetype)init {
+	self = [super init];
+	if (self) {
+		self.layer.masksToBounds = YES;
+		self.layer.borderWidth = 0.9;
+		self.layer.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.08].CGColor;
+		self.backgroundColor = UIColor.clearColor;
+		
+		UILabel *money  = [[UILabel alloc] init];
+		UILabel *months = [[UILabel alloc] init];
+		UILabel *time   = [[UILabel alloc] init];
+		UILabel *check  = [[UILabel alloc] init];
+		money.textColor  = [MSFCommandView getColorWithString:BLUECOLOR];
+		months.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
+		time.textColor   = [MSFCommandView getColorWithString:BLUECOLOR];
+		check.textColor  = [MSFCommandView getColorWithString:BLUECOLOR];
+		money.textAlignment  = NSTextAlignmentCenter;
+		months.textAlignment = NSTextAlignmentCenter;
+		time.textAlignment   = NSTextAlignmentCenter;
+		check.textAlignment  = NSTextAlignmentCenter;
+		money.text  = @"金额";
+		months.text = @"期数";
+		time.text   = @"日期";
+		check.text  = @"状态";
+		[self addSubview:money];
+		[self addSubview:months];
+		[self addSubview:time];
+		[self addSubview:check];
+		
+		[time mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(self);
+		}];
+		[months mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(time.mas_right);
+		}];
+		[money mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(months.mas_right);
+		}];
+		[check mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(money.mas_right);
+			make.right.equalTo(self);
+			make.width.equalTo(@[time, months, money]);
+		}];
+		
+		_money = money;
+		_months = months;
+		_time = time;
+		_check = check;
+	}
+	return self;
+}
+
+- (void)msApply {
+	_money.hidden = NO;
+	_months.hidden = NO;
+	/*
+	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self);
+	}];
+	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(_time.mas_right);
+	}];
+	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(_months.mas_right);
+	}];
+	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(_money.mas_right);
+		make.right.equalTo(self);
+		make.width.equalTo(@[_time, _months, _money]);
+	}];
+	[self layoutIfNeeded];
+	*/
+}
+
+- (void)mlApply {
+	_money.hidden = YES;
+	_months.hidden = YES;
+	/*
+	[_money mas_makeConstraints:^(MASConstraintMaker *make) {}];
+	[_months mas_makeConstraints:^(MASConstraintMaker *make) {}];
+	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self);
+	}];
+	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(_time.mas_right);
+		make.right.equalTo(self);
+		make.width.equalTo(_time);
+	}];
+	[self layoutIfNeeded];
+	 */
+}
+
+@end
+
 @interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *dataTableView;
+@property (nonatomic, strong) MSFApplyListHeader *headView;
 @property (nonatomic, strong) NSArray *dataArray;
-@property (strong, nonatomic)  UILabel *money;
-@property (strong, nonatomic)  UILabel *months;
-@property (strong, nonatomic)  UILabel *time;
-@property (strong, nonatomic)  UILabel *check;
+@property (nonatomic, assign) int selectedIndex;
 @property (nonatomic, weak) MSFHomePageCellModel *viewModel;
 
 @end
@@ -43,11 +164,9 @@
 
 - (instancetype)initWithViewModel:(MSFHomePageCellModel *)viewModel {
   self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_viewModel = viewModel;
-	
+  if (self) {
+		_viewModel = viewModel;
+	}	
   return self;
 }
 
@@ -55,12 +174,15 @@
 	[super viewDidLoad];
 	self.navigationItem.title = @"申请记录";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-	
 	self.dataArray = [[NSMutableArray alloc] init];
 	self.view.backgroundColor = [UIColor whiteColor];
+	[self setUpViews];
+	[self loadData:0];
+}
 
-	[self creatTableView];
-	RACSignal *signal = [self.viewModel fetchApplyListSignal];
+//TODO: 同步性
+- (void)loadData:(int)type {
+	RACSignal *signal = [self.viewModel fetchApplyListSignal:type];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
 		if ([x count] != 0) {
@@ -73,16 +195,6 @@
 
 - (void)back {
 	[self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)creatTableView {
-	self.dataTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT) style:UITableViewStylePlain];
-	self.dataTableView.dataSource = self;
-	self.dataTableView.delegate = self;
-	self.dataTableView.tableFooterView = [UIView new];
-	self.dataTableView.allowsSelection = YES;
-	
-	[self.view addSubview:self.dataTableView];
 }
 
 #pragma mark - UITableViewDataSource
@@ -101,111 +213,60 @@
 	if (!cell) {
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
 	}
-	[cell bindModel:[_dataArray objectAtIndex:indexPath.row]];
+	[cell bindModel:[_dataArray objectAtIndex:indexPath.row]
+						 type:_selectedIndex];
 	return cell;
-}
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-#warning TODO
-	return;
-	MSFApplyList *listModel = [self.dataArray objectAtIndex:indexPath.row];
-	if (listModel.status.integerValue == 4 || listModel.status.integerValue == 6 || listModel.status.integerValue == 7) {
-		[[MSFUtils.httpClient fetchRepayURLWithAppliList:listModel] subscribeNext:^(id x) {
-			MSFWebViewController *webViewController = [[MSFWebViewController alloc] initWithRequest:x];
-			[self.navigationController pushViewController:webViewController animated:YES];
-		}];
-	}
-}*/
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-		[cell setSeparatorInset:UIEdgeInsetsZero];
-	}
-
-	if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-		[cell setLayoutMargins:UIEdgeInsetsZero];
-	}
-}
-
-- (void)viewDidLayoutSubviews {
-	if ([self.dataTableView respondsToSelector:@selector(setSeparatorInset:)]) {
-		[self.dataTableView setSeparatorInset:UIEdgeInsetsZero];
-	}
-
-	if ([self.dataTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-		[self.dataTableView setLayoutMargins:UIEdgeInsetsZero];
-	}
 }
 
 #pragma mark - Private
 
-- (void)headView {
-	_money = [[UILabel alloc] init];
-	_months = [[UILabel alloc] init];
-	_time = [[UILabel alloc] init];
-	_check = [[UILabel alloc] init];
+- (void)setUpViews {
+	MSFPlanListSegmentBar *bar = [[MSFPlanListSegmentBar alloc] initWithTitles:@[@"马上贷", @"麻辣贷"]];
+	[self.view addSubview:bar];
+	CGFloat baseLine = 0;
+	if (self.navigationController.navigationBar.translucent) {
+		baseLine = self.navigationController.navigationBar.frame.size.height + 20.f;
+	}
+	[bar mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(@(baseLine));
+		make.left.equalTo(self.view);
+		make.right.equalTo(self.view);
+		make.height.equalTo(@40);
+	}];
 	
-	UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
-	headView.layer.masksToBounds = YES;
-	headView.layer.borderWidth = 0.9;
-	headView.layer.borderColor = [[UIColor colorWithRed:0 green:0 blue:0 alpha:0.08] CGColor];
+	_headView = [[MSFApplyListHeader alloc] init];
+	[self.view addSubview:_headView];
+	[_headView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.view);
+		make.top.equalTo(bar.mas_bottom);
+		make.right.equalTo(self.view);
+		make.height.equalTo(@40);
+	}];
 	
-	[headView setBackgroundColor:[UIColor clearColor]];
-	
-	[self.view addSubview:headView];
-	
-	_dataTableView.tableHeaderView = headView;
-	
-	UIView *superView = _dataTableView.tableHeaderView;
-	
-	_money.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
-	_months.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
-	_time.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
-	_check.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
-	
-	_money.textAlignment = NSTextAlignmentCenter;
-	_months.textAlignment = NSTextAlignmentCenter;
-	_time.textAlignment = NSTextAlignmentCenter;
-	_check.textAlignment = NSTextAlignmentCenter;
-	
-	_money.text = @"金额";
-	_months.text = @"期数";
-	
-	_time.text = @"日期";
-	_check.text = @"状态";
-	
-	[superView addSubview:_money];
-	[superView addSubview:_months];
-	[superView addSubview:_time];
-	[superView addSubview:_check];
+	_dataTableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+	_dataTableView.dataSource = self;
+	_dataTableView.delegate = self;
+	_dataTableView.tableFooterView = [UIView new];
+	_dataTableView.allowsSelection = YES;
+	[self.view addSubview:_dataTableView];
+	[_dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.left.equalTo(self.view);
+		make.right.equalTo(self.view);
+		make.top.equalTo(_headView.mas_bottom);
+		make.bottom.equalTo(self.view);
+	}];
 	
 	@weakify(self)
-	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(superView);
-		make.left.equalTo(superView);
-	}];
-	
-	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
+	[bar.executeSelectionCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
 		@strongify(self)
-		make.centerY.equalTo(superView);
-		make.left.equalTo(self.time.mas_right);
+		if ([x intValue] == 0) {
+			[_headView msApply];
+		} else {
+			[_headView mlApply];
+		}
+		_selectedIndex = [x intValue];
+		[self loadData:[x intValue]];
 	}];
-	
-	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
-		@strongify(self)
-		make.centerY.equalTo(superView);
-		make.left.equalTo(self.months.mas_right);
-	}];
-	
-	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
-		@strongify(self)
-		make.centerY.equalTo(superView);
-		make.left.equalTo(self.money.mas_right);
-		make.right.equalTo(superView);
-		make.width.equalTo(@[_time, _months, _money]);
-	}];
-	
 }
 
 @end

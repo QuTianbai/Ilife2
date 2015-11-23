@@ -64,7 +64,7 @@
 		return;
 	}
 	
-	if (baseURL == nil || [baseURL.host isEqual:@"example.com"]) {
+	if (baseURL == nil) {
 		self.server = MSFServer.dotComServer;
 	} else {
 		NSString *baseURLString = [NSString stringWithFormat:@"%@://%@", baseURL.scheme, baseURL.host];

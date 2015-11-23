@@ -33,13 +33,22 @@
 	_services = services;
 	_model = model;
 	
+	[RACObserve(self, model.produceType) subscribeNext:^(id x) {
+		if ([x isEqualToString:@"MS"]) {
+			self.productType = MSFProductTypeMS;
+		} else if ([x isEqualToString:@"XH"]) {
+			self.productType = MSFProductTypeXH;
+		} else if ([x isEqualToString:@"ML"]) {
+			self.productType = MSFProductTypeML;
+		}
+	}];
+	
 	/*
 	 马上金融
 	 */
-	RAC(self, type) = RACObserve(self.model, type);
-	RAC(self, money) = RACObserve(self.model, money);
-	RAC(self, loanTerm) = RACObserve(self.model, period);
-	RAC(self, title) = [RACObserve(self.model, type) map:^id(NSString *type) {
+	RAC(self, money) = RACObserve(self, model.money);
+	RAC(self, loanTerm) = RACObserve(self, model.period);
+	RAC(self, title) = [RACObserve(self, model.type) map:^id(NSString *type) {
 		if ([self.model.contractStatus isEqualToString:@"E"]) {
 			return @"合同状态";
 		}
@@ -49,25 +58,39 @@
 			return @"合同还款状态";
 		}
 	}];
-	RAC(self, status) = [RACSignal combineLatest:@[RACObserve(self.model, applyStatus), RACObserve(self.model, contractStatus)] reduce:^id(NSString *a, NSString *b){
+
+	@weakify(self)
+	[[RACSignal combineLatest:@[RACObserve(self, model.applyStatus), RACObserve(self, model.contractStatus)] reduce:^id(NSString *a, NSString *b){
 		if ((a.length > 0 && b.length > 0) || (a.length == 0 && b.length == 0)) {
 			return @"F";
 		}
 		return a.length > 0 ? a : b;
-	}];
-	RAC(self, statusString) = [RACObserve(self, status) map:^id(id value) {
-		return [NSDictionary statusStringForKey:value];
-	}];
-	RAC(self, jumpDes) = [RACObserve(self, status) map:^id(id value) {
-		if ([@[@"D", @"C"] containsObject:value]) {
-			return @2;
-		} else if ([value isEqualToString:@"I"]) {
-			return @3;
+	}] subscribeNext:^(NSString *x) {
+		@strongify(self)
+		self.statusString = [NSDictionary statusStringForKey:x];
+		if ([@[@"D", @"C"] containsObject:x]) {
+			self.jumpDes = MSFHomePageDesRepayList;
+		} else if ([x isEqualToString:@"I"]) {
+			self.jumpDes = MSFHomePageDesContract;
+		} else if ([x isEqualToString:@"L"]) {
+			self.jumpDes = MSFHomePageDesUploadData;
 		} else {
-			return @1;
+			self.jumpDes = MSFHomePageDesApplyList;
+		}
+		if ([@[@"G", @"H", @"I", @"J", @"K"] containsObject:x]) {
+			self.dateDisplay = MSFHomePageDateDisplayTypeApply;
+		} else if ([x isEqualToString:@"D"]) {
+			self.dateDisplay = MSFHomePageDateDisplayTypeRepay;
+		} else if ([x isEqualToString:@"C"]) {
+			self.dateDisplay = MSFHomePageDateDisplayTypeOverDue;
+		} else if ([x isEqualToString:@"E"]) {
+			self.dateDisplay = MSFHomePageDateDisplayTypeProcessing;
+		} else {
+			self.dateDisplay = MSFHomePageDateDisplayTypeNone;
 		}
 	}];
-	RAC(self, applyTime) = [RACObserve(self.model, applyDate) map:^id(id value) {
+	
+	RAC(self, applyTime) = [RACObserve(self, model.applyDate) map:^id(id value) {
 		NSDateFormatter *df = [[NSDateFormatter alloc] init];
 		[df setDateFormat:@"yyyyMMddHHmmss"];
 		NSDate *date = [df dateFromString:value];
@@ -76,24 +99,26 @@
 		}
 		return nil;
 	}];
-	RAC(self, applyDate) = RACObserve(self.model, applyDate);
-	RAC(self, currentPeriodDate) = RACObserve(self.model, currentPeriodDate);
+	RAC(self, applyDate) = RACObserve(self, model.applyDate);
+	RAC(self, currentPeriodDate) = RACObserve(self, model.currentPeriodDate);
 	
 	/*
 	 随借随还
 	 */
-	RAC(self, totalLimit) = RACObserve(self.model, totalLimit);
-	RAC(self, usedLimit) = RACObserve(self.model, usedLimit);
-	RAC(self, usableLimit) = RACObserve(self.model, usableLimit);
-	RAC(self, contractExpireDate) = RACObserve(self.model, contractExpireDate);
-	RAC(self, latestDueMoney) = RACObserve(self.model, latestDueMoney);
-	RAC(self, latestDueDate) = RACObserve(self.model, latestDueDate);
-	RAC(self, totalOverdueMoney) = RACObserve(self.model, totalOverdueMoney);
-	RAC(self, contractNo) = RACObserve(self.model, contractNo);
-	RAC(self, overdueMoney) = RACObserve(self.model, overdueMoney);
-	RAC(self, contractStatus) = RACObserve(self.model, contractStatus);
+	RAC(self, totalLimit) = RACObserve(self, model.totalLimit);
+	RAC(self, usedLimit) = RACObserve(self, model.usedLimit);
+	RAC(self, usableLimit) = RACObserve(self, model.usableLimit);
+	RAC(self, contractExpireDate) = RACObserve(self, model.contractExpireDate);
+	RAC(self, latestDueMoney) = [RACObserve(self, model.latestDueMoney) map:^id(NSString *value) {
+		return [NSString stringWithFormat:@"￥%@", value.length > 0 ? value : @"0"];
+	}];
+	RAC(self, latestDueDate) = RACObserve(self, model.latestDueDate);
+	RAC(self, totalOverdueMoney) = RACObserve(self, model.totalOverdueMoney);
+	RAC(self, contractNo) = RACObserve(self, model.contractNo);
+	RAC(self, overdueMoney) = [RACObserve(self, model.overdueMoney) map:^id(NSString *value) {
+		return [NSString stringWithFormat:@"￥%@", value.length > 0 ? value : @"0"];
+	}];
 	
-	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
@@ -106,8 +131,13 @@
 	return self;
 }
 
-- (RACSignal *)fetchApplyListSignal {
-	return [self.services.httpClient fetchApplyList];
+- (RACSignal *)fetchApplyListSignal:(int)type {
+	if (type == 0) {
+		return [self.services.httpClient fetchMSApplyList];
+	} else if (type == 1) {
+		return [self.services.httpClient fetchSpicyApplyList];
+	}
+	return nil;
 }
 
 - (RACSignal *)fetchRepaymentSchedulesSignal {

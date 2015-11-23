@@ -40,7 +40,6 @@ static UIColor *backupColor;
 	label.hidden = NO;
 	[view addSubview:label];
 	[label mas_makeConstraints:^(MASConstraintMaker *make) {
-		//make.center.equalTo(view);
 		make.top.equalTo(imgView.mas_bottom).with.offset(10);
 		make.height.equalTo(@40);
 		make.left.equalTo(view).offset(30);

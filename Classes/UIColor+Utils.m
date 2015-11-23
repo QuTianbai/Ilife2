@@ -107,4 +107,8 @@
 	return [UIColor colorWithHex:0xff6600];
 }
 
++ (UIColor *)msdFullBackgroundColor {
+	return [UIColor colorWithHex:0x1ab5f5];
+}
+
 @end

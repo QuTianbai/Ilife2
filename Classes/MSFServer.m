@@ -11,13 +11,18 @@
 
 //NSString *const MSFServerDotComAPIEndpoint = @"http://api3.msxf.test";
 //NSString *const MSFServerDotComBaseWebURL = @"http://api3.msxf.test";
+//<<<<<<< HEAD
+//
+//NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
+//NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
+//
+////NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.com";
+////NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
+//=======
+//>>>>>>> 36d05086e207dbbfc64a95bfa23cb59452990a2b
 
-NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
-NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
-
-//NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.com";
-//NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
-
+NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
+NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080";
 
 #elif UAT
 
