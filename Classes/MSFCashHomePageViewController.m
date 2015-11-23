@@ -58,13 +58,18 @@
 
 @implementation MSFCashHomePageViewController
 
-- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
-	self = [super init];
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel AndCirculateViewModel:(MSFCirculateCashViewModel *)circulateViewModel {
+	self = [UIStoryboard storyboardWithName:@"CashHomePage" bundle:nil].instantiateInitialViewController;
+//=======
+//- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
+//	self = [super init];
+//>>>>>>> 36d05086e207dbbfc64a95bfa23cb59452990a2b
 	if (!self) {
 		return nil;
 	}
 	_viewModel = viewModel;
-	_circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:viewModel.services];
+	_circulateViewModel = circulateViewModel;
+	//self.circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:viewModel.services];
 	return self;
 }
 
@@ -108,26 +113,47 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
 	self.circulateView.hidden = YES;
+	[RACObserve(self, circulateViewModel.status) subscribeNext:^(NSNumber *status) {
+		NSInteger type = status.integerValue;
+		if (type == APPLYCASH) {
+			self.twoAplyesView.hidden = YES;
+//			self.applyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
+			self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
+		} else if (type == APPLYANGCIRCULATECASH) {
+			self.twoAplyesView.hidden = NO;
+			self.circulateView.hidden = NO;
+			self.thirdApplyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
+			
+			
+		} else if (type == ALLPYANDSOCIALCASH) {
+			self.twoAplyesView.hidden = NO;
+			self.circulateView.hidden = YES;
+			self.applyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
+			
+		}
+//		if (![self.viewModel.services.httpClient.user.type isEqualToString:@"1101"]) {
+//			self.twoAplyesView.hidden = YES;
+//			self.applyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
+//			self.thirdApplyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
+//		} else if ([self.viewModel.services.httpClient.user.type isEqualToString:@"4401"]) {
+//			
+//			
+//		} else if ([self.viewModel.services.httpClient.user.type isEqualToString:@""]) {
+//			
+//		}
+	}];
 	
-	if (![self.viewModel.services.httpClient.user.type isEqualToString:@"1101"]) {
-		self.twoAplyesView.hidden = YES;
-		self.applyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
-		self.thirdApplyCashBT.rac_command = self.viewModel.executeAllowCashCommand;
-	} else if ([self.viewModel.services.httpClient.user.type isEqualToString:@"4401"]) {
-		
-		
-	} else if ([self.viewModel.services.httpClient.user.type isEqualToString:@""]) {
-		
-	}
+	
 	
 	[[self.applySocialBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
 		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
 		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		vc.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:vc animated:YES];
 	}];
 	
-	self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
+	//self.nextBT.rac_command = self.viewModel.executeAllowCashCommand;
 	
 	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @class MSFApplyCashVIewModel;
+@class MSFCirculateCashViewModel;
 
 @interface MSFCashHomePageViewController : UIViewController
 
 @property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
 
-- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel;
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel AndCirculateViewModel:(MSFCirculateCashViewModel *)circulateViewModel;
 
 @end

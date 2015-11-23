@@ -30,6 +30,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *unEmployTF;
 @property (weak, nonatomic) IBOutlet UITextField *bearTF;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
+@property (weak, nonatomic) IBOutlet UILabel *monthsOrYeasLB;
+@property (weak, nonatomic) IBOutlet UILabel *oldMonthsOrYeasLB;
+@property (weak, nonatomic) IBOutlet UILabel *oldTypeLB;
+@property (weak, nonatomic) IBOutlet UILabel *medicalTypeLB;
 
 @property (nonatomic, copy) NSString *professional;
 
@@ -44,6 +48,7 @@
 	}
 	
 	_viewModel = viewModel;
+	self.professional = @"";
 	
 	return self;
 }
@@ -52,7 +57,11 @@
     [super viewDidLoad];
 	RAC(self, cashPuposeTF.text) = [RACObserve(self, viewModel.cashpurpose) ignore:nil];
 	
-	if ([self.professional isEqualToString:@""]) {
+	if ([self.professional isEqualToString:@""]) {//居民
+		self.monthsOrYeasLB.text = @"缴费年数";
+		self.oldTypeLB.text = @"缴费档次";
+		self.medicalTypeLB.text = @"缴费档次";
+		self.monthsOrYeasLB.text = @"缴费年数";
 		RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceStatusTitle) ignore:nil];
 		RAC(self, olderBaseTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceMoneyTitle) ignore:nil];
 		RAC(self, medicalStatusTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceStatusTitle) ignore:nil];
@@ -60,9 +69,10 @@
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, residentOlderInsuranceDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, residentMedicalInsuranceDate);
 		
-		RAC(self, viewModel.employeeOlderMonths) = RACObserve(self, olderMonthsTF.text);
-		RAC(self, viewModel.employeeMedicalMonths) = RACObserve(self, medicalMonths.text);
-	} else {
+		RAC(self, viewModel.residentOlderInsuranceYears) = RACObserve(self, olderMonthsTF.text);
+		RAC(self, viewModel.residentMedicalInsuranceYears) = RACObserve(self, medicalMonths.text);
+		
+	} else {//职工
 		RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.employeeOldInsuranceStatusTitle) ignore:nil];
 		RAC(self, olderBaseTF.text) = [RACObserve(self, viewModel.employeeOlderModeyTitle) ignore:nil];
 		RAC(self, medicalStatusTF.text) = [RACObserve(self, viewModel.employMedicalStatusTitle) ignore:nil];
@@ -73,14 +83,17 @@
 		
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, employeeOlderDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
+		RAC(self, viewModel.employeeOlderMonths) = RACObserve(self, olderMonthsTF.text);
+		RAC(self, viewModel.employeeMedicalMonths) = RACObserve(self, medicalMonths.text);
 		
-		RAC(self, viewModel.residentOlderInsuranceYears) = RACObserve(self, olderMonthsTF.text);
-		RAC(self, viewModel.residentMedicalInsuranceYears) = RACObserve(self, medicalMonths.text);
+		
 		
 	}
 	
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
+	//@weakify(self)
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		//@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
@@ -145,7 +158,9 @@
 	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, labelHeight, 200, 22)];
-	
+	if ([self.professional isEqualToString:@""]) {
+		sectionTitle = [sectionTitle stringByReplacingOccurrencesOfString:@"职工" withString:@"居民"];
+	}
 	titleLabel.text = sectionTitle;
 	titleLabel.font = [UIFont systemFontOfSize:14];
 	titleLabel.textColor = [MSFCommandView getColorWithString:POINTCOLOR];

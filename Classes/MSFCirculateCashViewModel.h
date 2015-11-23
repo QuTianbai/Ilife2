@@ -12,6 +12,12 @@
 @class RACCommand;
 @class MSFCirculateCashModel;
 
+enum SHOWTYPES {
+	APPLYCASH,
+	APPLYANGCIRCULATECASH,
+	ALLPYANDSOCIALCASH
+};
+
 @interface MSFCirculateCashViewModel : RVMViewModel
 
 @property (nonatomic, strong) MSFCirculateCashModel *infoModel;
@@ -35,6 +41,8 @@
 @property (nonatomic, copy) NSString *contractNo;
 
 @property (nonatomic, copy) NSString *contractStatus;
+
+@property (nonatomic, assign) NSInteger status;//用户显示产品状态，1马上贷 2马上贷+社保贷 3马上贷+循环贷
 
 @property (nonatomic, assign) id<MSFViewModelServices>services;
 

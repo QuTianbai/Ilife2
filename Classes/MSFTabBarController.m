@@ -34,6 +34,7 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFMarkets.h"
 #import "MSFCashHomePageViewController.h"
+#import "MSFProductListModel.h"
 
 @interface MSFTabBarController () 
 
@@ -79,14 +80,16 @@
 	homepage.tabBarItem = [self itemWithNormal:@"首页" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
 	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
-	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
+	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
+	self.circulateViewModel = circulateViewModel;
+	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel AndCirculateViewModel:self.circulateViewModel];
 	cashViewController.title = @"马上";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	
 	if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
-		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
-		self.circulateViewModel = viewModel;
-		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
+		//MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
+		//self.circulateViewModel = viewModel;
+		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:self.circulateViewModel];
 		circulateViewController.title = @"马上";
 		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
 	}
@@ -125,6 +128,64 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
   if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+		[[[self.viewModel.formsViewModel fetchProductListignal] collect]
+		subscribeNext:^(NSArray *dataArray) {
+			[SVProgressHUD dismiss];
+			if ([dataArray containsObject:@"1101"] && [dataArray containsObject:@"4101"]) {
+				
+    
+			} else if ([dataArray containsObject:@"1101"] && [dataArray containsObject:@"4102"]) {
+				
+				
+			} else if ([dataArray containsObject:@"1101"] && ![dataArray containsObject:@"4101"] && ![dataArray containsObject:@"4102"]) {
+				
+				
+			}
+			int i = 0;
+			int j = 0;
+			for (MSFProductListModel *model in dataArray) {
+				if ([model.productId isEqualToString:@"1101"]) {
+					self.viewModel.formsViewModel.active = NO;
+					self.viewModel.formsViewModel.active = YES;
+					i++;
+					j++;
+				}
+				if ([model.productId isEqualToString:@"4101"]) {
+					self.circulateViewModel.active = NO;
+					self.circulateViewModel.active = YES;
+					i++;
+				}
+				if ([model.productId isEqualToString:@"4102"]) {
+					self.circulateViewModel.active = NO;
+					self.circulateViewModel.active = YES;
+					j++;
+				}
+			}
+			if (i == 1 && j == 1) {
+				//马上贷
+				self.viewModel.formsViewModel.active = NO;
+				self.viewModel.formsViewModel.active = YES;
+				self.circulateViewModel.status = APPLYCASH;
+			} else if (i == 2 && j ==1) {
+				//马上贷和循环贷
+				self.viewModel.formsViewModel.active = NO;
+				self.viewModel.formsViewModel.active = YES;
+				self.circulateViewModel.active = NO;
+				self.circulateViewModel.active = YES;
+				self.circulateViewModel.status = APPLYANGCIRCULATECASH;
+			} else if (i == 1 && j == 2) {
+				//马上贷和社保贷
+				self.viewModel.formsViewModel.active = NO;
+				self.viewModel.formsViewModel.active = YES;
+				self.circulateViewModel.active = NO;
+				self.circulateViewModel.active = YES;
+				self.circulateViewModel.status = ALLPYANDSOCIALCASH;
+			}
+			
+			
+			NSLog(@"fda");
+		}];
 		if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
 			self.circulateViewModel.active = NO;
 			self.circulateViewModel.active = YES;

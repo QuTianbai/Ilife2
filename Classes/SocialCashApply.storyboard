@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Social Cask Apply Table View Controller-->
+        <!--社保信息-->
         <scene sceneID="fWe-mE-ZvF">
             <objects>
-                <tableViewController id="3ag-lx-VtT" customClass="MSFSocialCaskApplyTableViewController" sceneMemberID="viewController">
+                <tableViewController title="社保信息" id="3ag-lx-VtT" customClass="MSFSocialCaskApplyTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9S2-NS-4xH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -536,6 +536,10 @@
                         <outlet property="medicalDate" destination="RWL-iO-s47" id="9Sd-XD-3zY"/>
                         <outlet property="medicalMonths" destination="iH8-uD-oZW" id="Gne-mX-LPu"/>
                         <outlet property="medicalStatusTF" destination="7IM-uK-TZd" id="v38-CF-4sU"/>
+                        <outlet property="medicalTypeLB" destination="J9a-UB-ua0" id="pLW-Dq-EQw"/>
+                        <outlet property="monthsOrYeasLB" destination="7cp-6E-YFy" id="vrQ-Gd-tox"/>
+                        <outlet property="oldMonthsOrYeasLB" destination="MSM-5T-Eiw" id="IA4-tr-y8R"/>
+                        <outlet property="oldTypeLB" destination="uo1-ha-PxF" id="Io5-or-cjQ"/>
                         <outlet property="olderBaseTF" destination="IyG-xT-OMI" id="02w-Ho-wPY"/>
                         <outlet property="olderDateTF" destination="Zx7-12-KKb" id="5KI-qe-kOq"/>
                         <outlet property="olderMonthsTF" destination="8P6-DG-RhU" id="kFe-Eg-q85"/>

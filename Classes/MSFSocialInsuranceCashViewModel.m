@@ -14,6 +14,7 @@
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFClient+MSFSocialInsurance.h"
 
 @interface MSFSocialInsuranceCashViewModel()
 
@@ -319,7 +320,7 @@
 }
 
 - (RACSignal *)submitSignal {
-	return nil;
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:self.model];
 }
 
 @end
