@@ -46,5 +46,10 @@
 	return [[self enqueueRequest:request resultClass:MSFSubmitApplyModel.class] msf_parsedResults];
 }
 
+- (RACSignal *)fetchGetSocialInsuranceInfo {
+	//NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/loadAppendInfo" parameters:nil];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"socialInsurance" ofType:@"json"]]];
+	return [[self enqueueRequest:request resultClass:MSFSocialInsuranceModel.class] msf_parsedResults];
+}
 
 @end

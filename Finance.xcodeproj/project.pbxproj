@@ -198,6 +198,7 @@
 		07D13DAF1C02C4FD00A46980 /* MSFClient+MSFProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D13DAE1C02C4FD00A46980 /* MSFClient+MSFProductList.m */; settings = {ASSET_TAGS = (); }; };
 		07D13DB11C02C69000A46980 /* product.json in Resources */ = {isa = PBXBuildFile; fileRef = 07D13DB01C02C69000A46980 /* product.json */; settings = {ASSET_TAGS = (); }; };
 		07D13DB41C03009700A46980 /* MSFClient+MSFSocialInsurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */; settings = {ASSET_TAGS = (); }; };
+		07D13DC21C0320F800A46980 /* socialInsurance.json in Resources */ = {isa = PBXBuildFile; fileRef = 07D13DC11C0320F800A46980 /* socialInsurance.json */; settings = {ASSET_TAGS = (); }; };
 		07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */; };
 		07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */; };
 		07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */; };
@@ -1070,6 +1071,7 @@
 		07D13DB01C02C69000A46980 /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
 		07D13DB21C03009700A46980 /* MSFClient+MSFSocialInsurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFSocialInsurance.h"; sourceTree = "<group>"; };
 		07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFSocialInsurance.m"; sourceTree = "<group>"; };
+		07D13DC11C0320F800A46980 /* socialInsurance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = socialInsurance.json; sourceTree = "<group>"; };
 		07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLifeInsuranceViewController.h; sourceTree = "<group>"; };
 		07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLifeInsuranceViewController.m; sourceTree = "<group>"; };
 		07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LifeInsurance.storyboard; sourceTree = "<group>"; };
@@ -1960,6 +1962,7 @@
 				07472BEA1BFF2860008A3890 /* MSFSocialInsuranceModel.m */,
 				07D13DB21C03009700A46980 /* MSFClient+MSFSocialInsurance.h */,
 				07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */,
+				07D13DC11C0320F800A46980 /* socialInsurance.json */,
 			);
 			name = SocialInsurance;
 			sourceTree = "<group>";
@@ -4569,6 +4572,7 @@
 				49B37B581B608F39004EED47 /* bar-highlighted@2x.png in Resources */,
 				496444871B69BA77001FB1BE /* btn-showpwd-normal.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
+				07D13DC21C0320F800A46980 /* socialInsurance.json in Resources */,
 				07A7DAEA1BFDB65100916ADD /* applyCashButton@3x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
 				C7D2D1311B67938C000F51ED /* icon-cloze-question.png in Resources */,

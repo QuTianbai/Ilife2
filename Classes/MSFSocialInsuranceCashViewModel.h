@@ -12,12 +12,15 @@
 #import "MSFApplicationViewModel.h"
 
 @class RACCommand;
+@class MSFSocialInsuranceModel;
 
 @interface MSFSocialInsuranceCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
 @property (nonatomic, copy) NSString *productCd;
 @property (nonatomic, strong) NSArray *accessoryInfoVOArray;
 @property (nonatomic, copy) NSString *status;
+
+@property (nonatomic, strong) MSFSocialInsuranceModel *model;
 
 //职工保险
 @property (nonatomic, strong) MSFSelectKeyValues *purpose;// 贷款用途

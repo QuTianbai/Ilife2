@@ -16,4 +16,6 @@
 
 - (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status;
 
+- (RACSignal *)fetchGetSocialInsuranceInfo;
+
 @end

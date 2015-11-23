@@ -58,15 +58,37 @@
  */
 - (void)msAdView {
 	[self removeAllSubviews];
-	MSFApplyView *ms_full = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
+	
+	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS actionBlock:^{
 		[self.viewModel.executeAllowCashCommand execute:nil];
 	}];
-	[self.view addSubview:ms_full];
-	[ms_full mas_makeConstraints:^(MASConstraintMaker *make) {
+	[self.view addSubview:ms];
+	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
+		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
+		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+	}];
+	[self.view addSubview:ml];
+	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.equalTo(self.view).offset(64);
-		make.bottom.equalTo(self.view).offset(-49);
 		make.left.right.equalTo(self.view);
 	}];
+	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(ml.mas_bottom);
+		make.bottom.equalTo(self.view).offset(-49);
+		make.left.right.equalTo(self.view);
+		make.height.equalTo(ml);
+	}];
+	
+//	MSFApplyView *ms_full = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
+//		[self.viewModel.executeAllowCashCommand execute:nil];
+//	}];
+//	[self.view addSubview:ms_full];
+//	[ms_full mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.top.equalTo(self.view).offset(64);
+//		make.bottom.equalTo(self.view).offset(-49);
+//		make.left.right.equalTo(self.view);
+//	}];
 }
 
 /*

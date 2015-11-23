@@ -1,0 +1,21 @@
+{
+	"empEdwExist":"A",
+	"empEdwBase":"A",
+	"empEdwStartDate":"20131212",
+	"empEdwMonths":"13",
+	"empMdcInsuExist":"A",
+	"empMdcInsuBase":"B",
+	"empMdcInsuStartDate":"20141223",
+	"empMdcMonths":"24",
+	"injuInsuExist":"A",
+	"unempInsuExist":"A",
+	"birthInsuExist":"A",
+	"rsdtOldInsuExist":"B",
+	"rsdtOldInsuLvl":"B",
+	"rsdtOldInsuStartDate":"20120323",
+	"rsdtOldInsuYears":"5",
+	"rsdtMdcInsuExist":"Z",
+	"rsdtMdcInsuLvl":"A",
+	"rsdtMdcInsuStartDate":"20100323",
+	"rsdtMdcInsuYears":"5"
+}

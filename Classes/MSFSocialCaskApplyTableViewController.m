@@ -13,6 +13,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFEdgeButton.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFLoanAgreementViewModel.h"
+#import "MSFLoanAgreementController.h"
+#import "MSFSocialInsuranceModel.h"
 
 @interface MSFSocialCaskApplyTableViewController ()
 
@@ -69,8 +72,13 @@
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, residentOlderInsuranceDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, residentMedicalInsuranceDate);
 		
-		RAC(self, viewModel.residentOlderInsuranceYears) = RACObserve(self, olderMonthsTF.text);
-		RAC(self, viewModel.residentMedicalInsuranceYears) = RACObserve(self, medicalMonths.text);
+		RACChannelTerminal *residentOlderInsuranceYearsChannel = RACChannelTo(self, viewModel.model.rsdtOldInsuYears);
+		RAC(self.olderMonthsTF, text) = residentOlderInsuranceYearsChannel;
+		[self.olderMonthsTF.rac_textSignal subscribe:residentOlderInsuranceYearsChannel];
+		
+		RACChannelTerminal *residentMedicalInsuranceYears = RACChannelTo(self, viewModel.model.rsdtMdcInsuYears);
+		RAC(self.medicalMonths, text) = residentMedicalInsuranceYears;
+		[self.medicalMonths.rac_textSignal subscribe:residentMedicalInsuranceYears];
 		
 	} else {//职工
 		RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.employeeOldInsuranceStatusTitle) ignore:nil];
@@ -83,32 +91,35 @@
 		
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, employeeOlderDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
-		RAC(self, viewModel.employeeOlderMonths) = RACObserve(self, olderMonthsTF.text);
-		RAC(self, viewModel.employeeMedicalMonths) = RACObserve(self, medicalMonths.text);
+		
+		RACChannelTerminal *employeeOlderMonths = RACChannelTo(self.viewModel.model, empEdwMonths);
+		RAC(self.olderMonthsTF, text) = employeeOlderMonths;
+		[self.olderMonthsTF.rac_textSignal subscribe:employeeOlderMonths];
+		
+		RACChannelTerminal *employeeMedicalMonths = RACChannelTo(self.viewModel.model, empMdcMonths);
+		RAC(self.medicalMonths, text) = employeeMedicalMonths;
+		[self.medicalMonths.rac_textSignal subscribe:employeeMedicalMonths];
 		
 		
 		
 	}
 	
 	self.submitBT.rac_command = self.viewModel.executeSaveCommand;
-	//@weakify(self)
+	@weakify(self)
 	[self.viewModel.executeSaveCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		//@strongify(self)
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
+			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self.viewModel];
+			MSFLoanAgreementController *viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:viewController animated:YES];
 			//[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeSaveCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
-	
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceStatusTitle) ignore:nil];
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceMoneyTitle) ignore:nil];
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceStatusTitle) ignore:nil];
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceMoneyTitle) ignore:nil];
 	
 }
 
