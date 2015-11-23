@@ -31,6 +31,7 @@
 	_totalOverdueMoney = @"";
 	_contractNo = @"";
 	_contractStatus = @"";
+	_status = APPLYCASH;
 	
 	_infoModel = [[MSFCirculateCashModel alloc] init];
 	
@@ -110,5 +111,6 @@
 - (RACSignal *)fetchBankCardListSignal {
 	return [self.services.httpClient fetchBankCardList];
 }
+
 
 @end

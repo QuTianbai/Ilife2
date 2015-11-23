@@ -32,5 +32,4 @@
 @property (nonatomic, copy, readonly) NSString *rsdtMdcInsuStartDate;//居民医疗保险首次缴费日期
 @property (nonatomic, copy, readonly) NSString *rsdtMdcInsuYears;//居民医疗保险缴费年数
 
-
 @end
