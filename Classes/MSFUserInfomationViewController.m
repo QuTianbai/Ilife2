@@ -30,6 +30,8 @@
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFAddBankCardTableViewController.h"
 
+#import "MSFProductViewController.h"
+
 @interface MSFUserInfomationViewController ()
 
 @property (nonatomic, strong) UIButton *nextStepButton;
@@ -117,9 +119,8 @@
 			 
 			 return ;
 		 }
-			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel];
-			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-			[self.navigationController pushViewController:certifivatesVC animated:YES];
+			MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
+			[self.navigationController pushViewController:productViewController animated:YES];
 	 }];
 	
 	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {

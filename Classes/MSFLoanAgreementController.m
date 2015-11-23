@@ -24,6 +24,9 @@
 #import "MSFEdgeButton.h"
 #import "MSFApplyCashVIewModel.h"
 
+#import "MSFInventoryViewModel.h"
+#import "MSFInventoryViewController.h"
+
 @interface MSFLoanAgreementController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
@@ -77,9 +80,9 @@
 		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
 			[SVProgressHUD dismiss];
 			self.viewModel.formsViewModel.appNO = applyCash.appNo;
-			MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
-			userInfoVC.showNextStep = YES;
-			[self.navigationController pushViewController:userInfoVC animated:YES];
+			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel.formsViewModel];
+			MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:viewController animated:YES];
 		}];
 	}];
 	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
