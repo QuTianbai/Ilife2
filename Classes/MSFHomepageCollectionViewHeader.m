@@ -31,7 +31,7 @@
 	[bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self);
 	}];
-	
+	/*
 	UIButton *dianwo = [UIButton buttonWithType:UIButtonTypeSystem];
 	[dianwo setTitle:@"点我" forState:UIControlStateNormal];
 	[dianwo setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
@@ -42,7 +42,7 @@
 		make.left.equalTo(self);
 		make.width.equalTo(@46);
 		make.height.equalTo(@36);
-	}];
+	}];*/
 	return self;
 }
 

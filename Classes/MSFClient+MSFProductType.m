@@ -8,16 +8,17 @@
 
 #import "MSFClient+MSFProductType.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import "MSFResponse.h"
 
 @implementation MSFClient (MSFProductType)
 
 - (RACSignal *)fetchProductType {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/productList" parameters:nil];
-	return [[self enqueueRequest:request resultClass:nil] map:^id(NSArray *value) {
+	return [[self enqueueRequest:request resultClass:nil].collect map:^id(NSArray *value) {
 		NSMutableArray *array = [NSMutableArray array];
-		[value enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-			NSAssert([obj isKindOfClass:NSDictionary.class], @"ProductType : type error.");
-			[array addObject:obj[@"productId"]];
+		[value enumerateObjectsUsingBlock:^(MSFResponse *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+			NSAssert([obj.parsedResult isKindOfClass:NSDictionary.class], @"ProductType : type error.");
+			[array addObject:obj.parsedResult[@"productId"]];
 		}];
 		return array;
 	}];

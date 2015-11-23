@@ -24,8 +24,8 @@
 - (instancetype)init {
 	self = [super init];
 	if (self) {
-		self.backgroundColor = [UIColor blueColor];
-		
+		self.backgroundColor = UIColor.clearColor;
+	
 		_limitView = [[MSFLoanLimitView alloc] init];
 		[self addSubview:_limitView];
 		
@@ -34,7 +34,7 @@
 		_withdrawButton.layer.borderColor = UIColor.borderColor.CGColor;
 		_withdrawButton.layer.borderWidth = 1;
 		[_withdrawButton setTitleColor:UIColor.borderColor forState:UIControlStateNormal];
-		[_withdrawButton setTitle:@"提现" forState:UIControlStateNormal];
+		[_withdrawButton setTitle:@"提款" forState:UIControlStateNormal];
 		_withdrawButton.layer.cornerRadius = 5;
 		[self addSubview:_withdrawButton];
 		
@@ -43,7 +43,7 @@
 		_repayButton.layer.borderColor = UIColor.borderColor.CGColor;
 		_repayButton.layer.borderWidth = 1;
 		[_repayButton setTitleColor:UIColor.borderColor forState:UIControlStateNormal];
-		[_repayButton setTitle:@"提现" forState:UIControlStateNormal];
+		[_repayButton setTitle:@"还款" forState:UIControlStateNormal];
 		_repayButton.layer.cornerRadius = 5;
 		[self addSubview:_repayButton];
 		
@@ -71,7 +71,7 @@
 }
 
 - (void)setAvailableCredit:(NSString *)ac usedCredit:(NSString *)uc {
-	[_limitView setAvailableCredit:@"6788" usedCredit:@"2334.56"];
+	[_limitView setAvailableCredit:ac usedCredit:uc];
 }
 
 @end
