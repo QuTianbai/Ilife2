@@ -14,9 +14,9 @@
 
 - (RACSignal *)fetchProductList {
 	
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"product" ofType:@"json"]]];
+//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"product" ofType:@"json"]]];
 	
-	//NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/productList" parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/productList" parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFProductListModel.class] msf_parsedResults];
 }
 
