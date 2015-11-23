@@ -127,6 +127,7 @@
 				[self.navigationController pushViewController:productViewController animated:YES];
 			} else if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:self.viewModel];
+				insuranceViewController.hidesBottomBarWhenPushed = YES;
 				[self.navigationController pushViewController:insuranceViewController animated:YES];
 			}
 	 }];

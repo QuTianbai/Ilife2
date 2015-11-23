@@ -72,13 +72,29 @@
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, residentOlderInsuranceDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, residentMedicalInsuranceDate);
 		
-		RACChannelTerminal *residentOlderInsuranceYearsChannel = RACChannelTo(self, viewModel.model.rsdtOldInsuYears);
+		//self.olderMonthsTF.text = @"2";
+		
+		RACChannelTerminal *residentOlderInsuranceYearsChannel = RACChannelTo(self, viewModel.residentOlderInsuranceYears);
 		RAC(self.olderMonthsTF, text) = residentOlderInsuranceYearsChannel;
 		[self.olderMonthsTF.rac_textSignal subscribe:residentOlderInsuranceYearsChannel];
 		
-		RACChannelTerminal *residentMedicalInsuranceYears = RACChannelTo(self, viewModel.model.rsdtMdcInsuYears);
+		RACChannelTerminal *residentMedicalInsuranceYears = RACChannelTo(self, viewModel.residentMedicalInsuranceYears);
 		RAC(self.medicalMonths, text) = residentMedicalInsuranceYears;
 		[self.medicalMonths.rac_textSignal subscribe:residentMedicalInsuranceYears];
+		
+		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		subscribeNext:^(UITextField *x) {
+			if (x.text.integerValue < 1) {
+				x.text = @"2";
+			}
+		}];
+		
+		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.integerValue < 1) {
+				 x.text = @"2";
+			 }
+		 }];
 		
 	} else {//职工
 		RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.employeeOldInsuranceStatusTitle) ignore:nil];
@@ -92,15 +108,27 @@
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, employeeOlderDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
 		
-		RACChannelTerminal *employeeOlderMonths = RACChannelTo(self.viewModel.model, empEdwMonths);
+		RACChannelTerminal *employeeOlderMonths = RACChannelTo(self, viewModel.employeeOlderMonths);
 		RAC(self.olderMonthsTF, text) = employeeOlderMonths;
 		[self.olderMonthsTF.rac_textSignal subscribe:employeeOlderMonths];
 		
-		RACChannelTerminal *employeeMedicalMonths = RACChannelTo(self.viewModel.model, empMdcMonths);
+		RACChannelTerminal *employeeMedicalMonths = RACChannelTo(self, viewModel.employeeMedicalMonths);
 		RAC(self.medicalMonths, text) = employeeMedicalMonths;
 		[self.medicalMonths.rac_textSignal subscribe:employeeMedicalMonths];
 		
+		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.integerValue < 1) {
+				 x.text = @"12";
+			 }
+		 }];
 		
+		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.integerValue < 1) {
+				 x.text = @"12";
+			 }
+		 }];
 		
 	}
 	

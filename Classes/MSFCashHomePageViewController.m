@@ -66,6 +66,7 @@
 	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
 		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
 		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		vc.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:vc animated:YES];
 	}];
 	[self.view addSubview:ml];
@@ -103,6 +104,7 @@
 	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
 		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
 		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		vc.hidesBottomBarWhenPushed = YES;
 		[self.navigationController pushViewController:vc animated:YES];
 	}];
 	[self.view addSubview:ml];
