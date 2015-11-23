@@ -37,7 +37,7 @@
 @property (nonatomic, strong) UIButton *nextStepButton;
 @property (nonatomic, strong) IBOutlet MSFUserInfoCircleView *circleView;
 @property (nonatomic, weak) id<MSFViewModelServices>services;
-@property (nonatomic, strong) MSFApplyCashVIewModel *viewModel;
+@property (nonatomic, strong) id <MSFApplicationViewModel> viewModel;
 
 @end
 
