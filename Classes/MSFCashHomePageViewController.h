@@ -15,6 +15,6 @@
 
 @property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
 
-- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel AndCirculateViewModel:(MSFCirculateCashViewModel *)circulateViewModel;
+- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel;
 
 @end
