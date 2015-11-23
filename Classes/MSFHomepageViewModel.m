@@ -80,9 +80,6 @@
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	return @"MSFCirculateViewCell";
-	//TODO: 测试代码
-	/*
 	if (_cellModel) {
 		if (_cellModel.productType == MSFProductTypeML && _cellModel.productType == MSFProductTypeXH && _cellModel.totalLimit.doubleValue > 0) {
 			return @"MSFCirculateViewCell";
@@ -92,7 +89,6 @@
 	} else {
 		return @"MSFHomePageContentCollectionViewCell";
 	}
-	*/
 }
 
 @end

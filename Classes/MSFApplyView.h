@@ -10,12 +10,14 @@
 
 typedef NS_ENUM(NSInteger, MSFApplyViewType) {
 	MSFApplyViewTypeMS,
+	MSFApplyViewTypeLimitMS,
 	MSFApplyViewTypeML,
 	MSFApplyViewTypeMSFull
 };
 
 @interface MSFApplyView : UIView
 
-- (instancetype)initWithStatus:(MSFApplyViewType)type;
+- (instancetype)initWithStatus:(MSFApplyViewType)type
+									 actionBlock:(void(^)())action;
 
 @end

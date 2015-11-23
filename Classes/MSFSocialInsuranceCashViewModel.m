@@ -18,12 +18,21 @@
 
 @interface MSFSocialInsuranceCashViewModel()
 
-@property (nonatomic, assign) id<MSFViewModelServices>services;
 @property (nonatomic, strong) MSFSocialInsuranceModel *model;
 
 @end
 
 @implementation MSFSocialInsuranceCashViewModel
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel services:(id <MSFViewModelServices>)services {
+  self = [self initWithServices:services];
+  if (!self) {
+    return nil;
+  }
+	_formViewModel = formsViewModel;
+  
+  return self;
+}
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
 	self = [super init];

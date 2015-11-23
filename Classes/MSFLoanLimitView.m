@@ -23,6 +23,8 @@
 @property (nonatomic, assign) CGFloat animaAngle;
 @property (nonatomic, assign) CGFloat lineWidth;
 
+@property (nonatomic, assign) BOOL animating;
+
 @end
 
 @implementation MSFLoanLimitView
@@ -44,7 +46,7 @@
 }
 
 - (void)commonInit {
-	
+	self.backgroundColor = [UIColor clearColor];
 	_startAngle = _animaAngle = M_PI_4 * 3;
 	_acFont = [UIFont systemFontOfSize:25.f];
 	
@@ -57,11 +59,13 @@
 	_usableLabel = [[UILabel alloc] init];
 	_usableLabel.textColor = [UIColor darkCircleColor];
 	_usableLabel.textAlignment = NSTextAlignmentCenter;
+	_usableLabel.text = @"0";
 	[self addSubview:_usableLabel];
 	
 	_usedLabel = [[UILabel alloc] init];
 	_usedLabel.textColor = [UIColor color999999];
 	_usedLabel.textAlignment = NSTextAlignmentCenter;
+	_usedLabel.text = @"0";
 	[self addSubview:_usedLabel];
 	
 	@weakify(self)
@@ -106,9 +110,12 @@
 	} else {
 		_animaAngle = _startAngle + (3 * M_PI - 2 * _startAngle) * ac.floatValue / (ac.floatValue + uc.floatValue);
 	}
-	_angle = _startAngle;
+	if (!_animating) {
+		_angle = _startAngle;
+	}
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
+	_animating = YES;
 	[self circleAnimation];
 }
 
@@ -129,6 +136,7 @@
 	if (_angle > _animaAngle) {
 		_angle = _animaAngle;
 		[self setNeedsDisplay];
+		_animating = NO;
 		return;
 	}
 	[self setNeedsDisplay];
@@ -139,6 +147,7 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+	[super drawRect:rect];
 	CGFloat expectedRate = sqrtf(2) / 4 + 0.5;
 	CGFloat rate = (rect.size.height - _lineWidth) / (rect.size.width - _lineWidth);
 	CGFloat radius;

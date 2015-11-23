@@ -112,5 +112,4 @@
 	return [self.services.httpClient fetchBankCardList];
 }
 
-
 @end

@@ -82,7 +82,7 @@
 	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
 	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 	self.circulateViewModel = circulateViewModel;
-	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel AndCirculateViewModel:self.circulateViewModel];
+	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
 	cashViewController.title = @"马上";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	
