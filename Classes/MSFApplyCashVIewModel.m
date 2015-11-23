@@ -27,6 +27,9 @@
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFUser.h"
+#import "MSFClient+MSFProductType.h"
+#import "MSFClient+MSFCirculateCash.h"
+#import "MSFCirculateCashModel.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -179,16 +182,12 @@
 			if (self.appLmt.intValue == 0) {
 				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数", }]];
 				return nil;
-
 			}
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数",
-																																																	 }]];
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数"}]];
 			return nil;
 		}
 		if (!self.purpose) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-																																																	 NSLocalizedFailureReasonErrorKey: @"请选择贷款用途",
-																																																	 }]];
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款用途"}]];
 			return nil;
 		}
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
@@ -212,6 +211,20 @@
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
+}
+
+- (RACSignal *)fetchProductType {
+	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash]] reduce:^id(NSArray *product, MSFCirculateCashModel *loan){
+		if (loan.totalLimit.doubleValue > 0) {
+			return @2;
+		} else {
+			if ([product containsObject:@"4101"] || [product containsObject:@"4102"]) {
+				return @1;
+			} else {
+				return @0;
+			}
+		}
+	}];
 }
 
 @end
