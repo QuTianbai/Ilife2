@@ -31,9 +31,8 @@
 #import "MSFSocialCaskApplyTableViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 
-#import "MSFClient+MSFProductType.h"
 #import "MSFApplyView.h"
-
+#import "MSFCashHomeLoanLimit.h"
 
 @interface MSFCashHomePageViewController ()
 
@@ -64,36 +63,108 @@
 		return nil;
 	}
 	_viewModel = viewModel;
-	_circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:viewModel.services];
+	_circulateViewModel = [[MSFCirculateCashViewModel alloc]
+												 initWithServices:viewModel.services];
 	return self;
+}
+
+/*
+ * 马上贷申请全屏入口
+ */
+- (void)msAdView {
+	[self removeAllSubviews];
+	MSFApplyView *ms_full = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
+		
+	}];
+	[self.view addSubview:ms_full];
+	[ms_full mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(self.view).offset(64);
+		make.bottom.equalTo(self.view).offset(-49);
+		make.left.right.equalTo(self.view);
+	}];
+}
+
+/*
+ * 马上贷、社保带申请入口
+ */
+- (void)sbAdView {
+	[self removeAllSubviews];
+	 MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS actionBlock:^{
+		 
+	 }];
+	 [self.view addSubview:ms];
+	 MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
+		 
+	 }];
+	 [self.view addSubview:ml];
+	 [ms mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(self.view).offset(64);
+		make.left.right.equalTo(self.view);
+	 }];
+	 [ml mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(ms.mas_bottom);
+		make.bottom.equalTo(self.view).offset(-49);
+		make.left.right.equalTo(self.view);
+		make.height.equalTo(ms);
+	 }];
+}
+
+/*
+ * 展示额度、马上贷申请入口
+ */
+- (void)limitView {
+	[self removeAllSubviews];
+	MSFCashHomeLoanLimit *limit = [[MSFCashHomeLoanLimit alloc] init];
+	//limit.withdrawButton
+	//limit.repayButton
+	[limit setAvailableCredit:nil usedCredit:nil];
+	[self.view addSubview:limit];
+	
+	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeLimitMS actionBlock:^{
+		
+	}];
+	[self.view addSubview:ms];
+	
+	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.bottom.equalTo(self.view).offset(-49);
+		make.left.right.equalTo(self.view);
+		make.height.equalTo(ms.mas_width).multipliedBy(0.583);
+	}];
+	[limit mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(self.view).offset(64);
+		make.left.right.equalTo(self.view);
+		make.bottom.equalTo(ms.mas_top);
+	}];
+}
+
+- (void)removeAllSubviews {
+	[self.view.subviews enumerateObjectsUsingBlock:^(__kindof UIView *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+		[obj removeFromSuperview];
+	}];
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	UIView *topLayoutGuide = (id)self.topLayoutGuide;
-	UIView *bottomLayoutGuide = (id)self.bottomLayoutGuide;
-	/*
-	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS];
-	[self.view addSubview:ms];
-	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML];
-	[self.view addSubview:ml];
-	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(topLayoutGuide.mas_bottom);
-		make.left.right.equalTo(self.view);
-	}];
-	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(ms.mas_bottom);
-		make.bottom.equalTo(bottomLayoutGuide.mas_top);
-		make.left.right.equalTo(self.view);
-		make.height.equalTo(ms);
-	}];
-	*/
-	MSFApplyView *ms_full = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull];
-	[self.view addSubview:ms_full];
-	[ms_full mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(topLayoutGuide.mas_bottom);
-		make.bottom.equalTo(bottomLayoutGuide.mas_top);
-		make.left.right.equalTo(self.view);
+	
+	[self limitView];
+	return;
+	
+	@weakify(self)
+	[[_viewModel fetchProductType] subscribeNext:^(NSArray *x) {
+		@strongify(self)
+		if (![self.viewModel.services.httpClient.user.type isEqualToString:@"1101"]) {
+			if ([x containsObject:@"1101"]) {
+				[self msAdView];
+			}
+		} else {
+			if ([x containsObject:@"4101"] || [x containsObject:@"4102"]) {
+				[self sbAdView];
+			} else {
+				[self loanlimiteView];
+			}
+		}
+	} error:^(NSError *error) {
+		
 	}];
 	
 	return;
@@ -268,11 +339,6 @@
 	 }];
 
 	
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

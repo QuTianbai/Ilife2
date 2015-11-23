@@ -68,4 +68,6 @@
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status;
 
+- (RACSignal *)fetchProductType;
+
 @end

@@ -27,6 +27,14 @@
 
 @implementation MSFLoanLimitView
 
+- (instancetype)init {
+	self = [super init];
+	if (self) {
+		[self commonInit];
+	}
+	return self;
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {

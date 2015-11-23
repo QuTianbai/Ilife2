@@ -27,6 +27,7 @@
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFUser.h"
+#import "MSFClient+MSFProductType.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -209,6 +210,10 @@
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
+}
+
+- (RACSignal *)fetchProductType {
+	return [self.services.httpClient fetchProductType];
 }
 
 @end
