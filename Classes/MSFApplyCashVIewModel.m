@@ -28,6 +28,8 @@
 #import "MSFClient+Agreements.h"
 #import "MSFUser.h"
 #import "MSFClient+MSFProductType.h"
+#import "MSFClient+MSFCirculateCash.h"
+#import "MSFCirculateCashModel.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -209,7 +211,17 @@
 }
 
 - (RACSignal *)fetchProductType {
-	return [self.services.httpClient fetchProductType];
+	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash]] reduce:^id(MSFCirculateCashModel *loan, NSArray *product){
+		if (loan.totalLimit.doubleValue > 0) {
+			return @2;
+		} else {
+			if ([product containsObject:@"4101"] || [product containsObject:@"4102"]) {
+				return @1;
+			} else {
+				return @0;
+			}
+		}
+	}];
 }
 
 @end

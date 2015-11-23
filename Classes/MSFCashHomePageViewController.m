@@ -137,21 +137,23 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
 	@weakify(self)
-	[[_viewModel fetchProductType] subscribeNext:^(NSArray *x) {
-		@strongify(self)
-		if ([x containsObject:@"1101"] && [x containsObject:@"4101"]) {
-			[self limitView];
-		} else if ([x containsObject:@"1101"] && [x containsObject:@"4102"]) {
-			[self sbAdView];
-		} else {
-			[self msAdView];
-		}
-	} error:^(NSError *error) {
-		
+	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
+		[[_viewModel fetchProductType] subscribeNext:^(NSNumber *x) {
+			@strongify(self)
+			switch (x.integerValue) {
+				case 0:
+					[self msAdView];
+					break;
+				case 1:
+					[self sbAdView];
+					break;
+				case 2:
+					[self limitView];
+					break;
+			}
+		}];
 	}];
-	
 	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
@@ -168,22 +170,6 @@
 	[self.viewModel.executeAllowCashCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
-	/*
-	 RAC(self, usableLimit) = [RACObserve(self.circulateViewModel, usableLimit) map:^id(id value) {
-		
-		return value;
-	 }];
-	 RAC(self, usedL) = RACObserve(self, circulateViewModel.latestDueMoney);
-	 
-	 RAC(self, usedMoneyCount) = [RACObserve(self, circulateViewModel.usedLimit) map:^id(id value) {
-		[self.loanlimiteView setAvailableCredit:self.circulateViewModel.usableLimit usedCredit:self.circulateViewModel.usedLimit];
-		//self.circulateView.hidden = NO;
-		
-		
-		return value;
-	 }];
-	 */
 }
 
 - (BOOL)hasTransactionalCode {
