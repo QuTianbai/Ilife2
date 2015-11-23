@@ -45,6 +45,9 @@
 	_residentOlderInsuranceMoneyTitle = @"";
 	_residentMedicalInsuranceStatusTitle = @"";
 	_residentMedicalInsuranceMoneyTitle = @"";
+	_status = @"0";
+	_productCd = @"";
+	_accessoryInfoVOArray = [[NSArray alloc] init];
 	
 	
 	_model = [[MSFSocialInsuranceModel alloc] init];
@@ -183,6 +186,12 @@
 		return [self OldInsurancestartSignal:input withIndex:3];
 	}];
 	
+	_executeSaveCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self saveSignal];
+	}];
+
+	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self submitSignal];
@@ -311,7 +320,12 @@
 }
 
 - (RACSignal *)submitSignal {
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:self.model];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+}
+
+- (RACSignal *)saveSignal {
+	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
+	
 }
 
 @end

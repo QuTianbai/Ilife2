@@ -14,8 +14,12 @@
 
 @interface MSFSocialInsuranceCashViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *productCd;
+@property (nonatomic, strong) NSArray *accessoryInfoVOArray;
+@property (nonatomic, copy) NSString *status;
+
 //职工保险
-@property (nonatomic, strong) MSFSelectKeyValues *purpose;// 教育程度
+@property (nonatomic, strong) MSFSelectKeyValues *purpose;// 贷款用途
 @property (nonatomic, copy) NSString *cashpurpose;
 @property (nonatomic, strong) MSFSelectKeyValues *employeeInsuranceStatus;
 @property (nonatomic, copy) NSString *employeeOldInsuranceStatusTitle;
@@ -69,6 +73,7 @@
 @property (nonatomic, strong, readonly) RACCommand *executeResidentInsuranceDateCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalDateCommand;
 
+@property (nonatomic, strong, readonly) RACCommand *executeSaveCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;

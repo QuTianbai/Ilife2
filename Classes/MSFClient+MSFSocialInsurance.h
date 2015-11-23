@@ -12,6 +12,8 @@
 
 @interface MSFClient (MSFSocialInsurance)
 
-- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(MSFSocialInsuranceModel *)model;
+- (RACSignal *)fetchSaveSocialInsuranceInfoWithModel:(MSFSocialInsuranceModel *)model;
+
+- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status;
 
 @end

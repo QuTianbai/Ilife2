@@ -90,17 +90,17 @@
 		
 	}
 	
-	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
+	self.submitBT.rac_command = self.viewModel.executeSaveCommand;
 	//@weakify(self)
-	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+	[self.viewModel.executeSaveCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		//@strongify(self)
-		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			//[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
-	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeSaveCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
