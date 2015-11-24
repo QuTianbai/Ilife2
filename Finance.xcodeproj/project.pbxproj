@@ -645,8 +645,6 @@
 		C72149FE1B05C92C0045F919 /* planperodictables.json in Resources */ = {isa = PBXBuildFile; fileRef = C72149FD1B05C92C0045F919 /* planperodictables.json */; };
 		C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75976B81B0A213700FB9B0C /* MSFContractDetailsTableViewController.m */; };
 		C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C75976BB1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m */; };
-		C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C767BDD01B0830DD007E71A5 /* MSFRepaymentTableViewController.m */; };
-		C767BDD31B0830DD007E71A5 /* MSFRepaymentTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C767BDD11B0830DD007E71A5 /* MSFRepaymentTableViewController.xib */; };
 		C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C79402401B1EFCB700898535 /* MSFCellButton.m */; };
 		C7A351471B2173020001DF6A /* MSFAboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A351461B2173020001DF6A /* MSFAboutTableViewCell.m */; };
 		C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A351621B217CB10001DF6A /* iconfont-bangzhu.png */; };
@@ -1729,9 +1727,6 @@
 		C75976B81B0A213700FB9B0C /* MSFContractDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFContractDetailsTableViewController.m; sourceTree = "<group>"; };
 		C75976BA1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFContractDetailsTableViewCell.h; sourceTree = "<group>"; };
 		C75976BB1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFContractDetailsTableViewCell.m; sourceTree = "<group>"; };
-		C767BDCF1B0830DD007E71A5 /* MSFRepaymentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentTableViewController.h; sourceTree = "<group>"; };
-		C767BDD01B0830DD007E71A5 /* MSFRepaymentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentTableViewController.m; sourceTree = "<group>"; };
-		C767BDD11B0830DD007E71A5 /* MSFRepaymentTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFRepaymentTableViewController.xib; sourceTree = "<group>"; };
 		C794023F1B1EFCB700898535 /* MSFCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCellButton.h; sourceTree = "<group>"; };
 		C79402401B1EFCB700898535 /* MSFCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCellButton.m; sourceTree = "<group>"; };
 		C7A351451B2173020001DF6A /* MSFAboutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAboutTableViewCell.h; sourceTree = "<group>"; };
@@ -3629,9 +3624,6 @@
 				4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */,
 				4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */,
 				4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */,
-				C767BDCF1B0830DD007E71A5 /* MSFRepaymentTableViewController.h */,
-				C767BDD01B0830DD007E71A5 /* MSFRepaymentTableViewController.m */,
-				C767BDD11B0830DD007E71A5 /* MSFRepaymentTableViewController.xib */,
 				C7B977FB1B08C568005F247C /* MSFRepaymentTableViewCell.h */,
 				C7B977FC1B08C568005F247C /* MSFRepaymentTableViewCell.m */,
 				C75976B71B0A213700FB9B0C /* MSFContractDetailsTableViewController.h */,
@@ -4377,7 +4369,6 @@
 				07A7DACA1BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard in Resources */,
 				C7D2D11F1B67938C000F51ED /* icon-cloze-bankName.png in Resources */,
 				C7A351831B217CB10001DF6A /* iconfont-wangdian.png in Resources */,
-				C767BDD31B0830DD007E71A5 /* MSFRepaymentTableViewController.xib in Resources */,
 				4944C04A1B68A5DA00805C0A /* nav-back.png in Resources */,
 				077347CF1BBA338900D7A130 /* add@3x.png in Resources */,
 				07E3ED741BBBC3020010AAD2 /* tradepasswordimg@2x.png in Resources */,
@@ -4813,7 +4804,6 @@
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
 				074AC24C1BBB87740056BA22 /* MSFCheckHasTradePassword.m in Sources */,
 				07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */,
-				C767BDD21B0830DD007E71A5 /* MSFRepaymentTableViewController.m in Sources */,
 				072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
