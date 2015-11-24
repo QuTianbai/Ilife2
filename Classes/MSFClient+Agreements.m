@@ -78,9 +78,10 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 		}];
 }
 
-- (RACSignal *)fetchLifeLoanAgreement {
+- (RACSignal *)fetchLifeLoanAgreement:(NSString *)productCode {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-		@"templateType": @"CASH_CONTRACT",
+		@"templateType": @"LOAN_PROTOCOL",
+		@"productCode": productCode,
 	}];
 	return [[NSURLConnection rac_sendAsynchronousRequest:request]
 		reduceEach:^id(NSURLResponse *response, NSData *data){

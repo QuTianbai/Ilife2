@@ -43,6 +43,6 @@ extern NSString *const MSFAgreementTypeInsurance;
 // Returns HTML Content signal
 - (RACSignal *)fetchUserAgreementWithType:(NSString *)type;
 
-- (RACSignal *)fetchLifeLoanAgreement;
+- (RACSignal *)fetchLifeLoanAgreement:(NSString *)productCode;
 
 @end
