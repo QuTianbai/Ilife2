@@ -66,7 +66,7 @@
 + (NSString *)msf_stringFromDate2:(NSDate *)date {
 	NSParameterAssert(date != nil);
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.dateFormat = @"yyyy-MM";
+	formatter.dateFormat = @"yyyyMM";
 	return [formatter stringFromDate:date];
 }
 
