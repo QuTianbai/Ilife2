@@ -29,8 +29,7 @@
 	return [[self enqueueRequest:request resultClass:MSFApplicationResponse.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchSubmitWithApplyVO:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status {
-	
+- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status {
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	
