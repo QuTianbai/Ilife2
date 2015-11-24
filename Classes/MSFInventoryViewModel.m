@@ -48,15 +48,21 @@
 		@strongify(self)
 		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
-			return [[[self.services.httpClient
+			return [[[[self.services.httpClient
 				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm]
+				catch:^RACSignal *(NSError *error) {
+					return RACSignal.empty;
+				}]
 				map:^id(id value) {
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
 				collect];
 		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-			return [[[self.services.httpClient
+			return [[[[self.services.httpClient
 				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.productID]
+				catch:^RACSignal *(NSError *error) {
+					return RACSignal.empty;
+				}]
 				map:^id(id value) {
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
