@@ -26,8 +26,4 @@
 - (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicationViewModel;
 - (RACSignal *)loanAgreementSignal;
 
-@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *formsViewModel __deprecated;
-@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *product __deprecated;
-- (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel __deprecated;
-
 @end
