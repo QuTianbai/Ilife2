@@ -9,7 +9,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
-#import "MSFRepaymentTableViewController.h"
 #import "MSFEditPasswordViewController.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFClient.h"
@@ -30,6 +29,8 @@
 #import "MSFRepaymentPlanViewController.h"
 #import "MSFRepaymentViewModel.h"
 
+#import "MSFApplyListViewModel.h"
+
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *rowTitles;
@@ -42,36 +43,32 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel {
-  self = [super initWithStyle:UITableViewStyleGrouped];
-  if (!self) {
-    return nil;
-  }
+	self = [super initWithStyle:UITableViewStyleGrouped];
+	if (!self) {
+		return nil;
+	}
 	_viewModel = viewModel;
-  
-  return self;
+	
+	return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
 	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
-	
-	self.rowTitles = @[@[
-			@"个人信息",
-			@"还款计划",
-			@"银行卡"
-		], @[
-			@"设置",
-			@"关于"
-		]];
-	self.icons = @[@[
-			[UIImage imageNamed:@"icon-account-info"],
-			[UIImage imageNamed:@"repayPlanIcon"],
-			[UIImage imageNamed:@"icon-account-repay"]
-		], @[
-			[UIImage imageNamed:@"icon-account-about"],
-			[UIImage imageNamed:@"icon-account-intro"]
-		]];
+	self.rowTitles = @[@[@"个人信息",
+											 @"申请记录",
+											 @"还款计划",
+											 @"银行卡"],
+										 @[@"设置",
+											 @"关于"]];
+	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
+									 [UIImage imageNamed:@"icon-account-apply"],
+									 [UIImage imageNamed:@"icon-account-repay"],
+									 [UIImage imageNamed:@"icon-account-bankCard"]],
+								 @[[UIImage imageNamed:@"icon-account-settings"],
+									 [UIImage imageNamed:@"icon-account-about"]]];
+	NSLog(@"%@", self.icons);
 }
 
 #pragma mark - UITableViewDataSource
@@ -110,40 +107,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
-	
 	switch (indexPath.section) {
-		case 0:{
+		case 0: {
 			switch (indexPath.row) {
 				case 0:
 					[self userInfo];
 					break;
 				case 1:
-				{
-					MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.servcies];
-					MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
-					repayViewController.hidesBottomBarWhenPushed = YES;
-					[self.navigationController pushViewController:repayViewController animated:YES];
-				}
+					[self applyList];
 					break;
-				case 2:{
-					MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
-					vc.hidesBottomBarWhenPushed = YES;
-					[self.navigationController pushViewController:vc animated:YES];
-				}
+				case 2:
+					[self repaymentPlan];
 					break;
-					
-				default:
+				case 3:
+					[self bankCardList];
 					break;
+				default: break;
 			}
 		}
 			break;
 		case 1: {
 			switch (indexPath.row) {
-				case 0:[self settings:nil]; break;
-				case 1: {
-					[self pushAbout:nil];
+				case 0:
+					[self settings];
 					break;
-				}
+				case 1:
+					[self pushAbout];
+					break;
 			}
 			break;
 		}
@@ -159,31 +149,32 @@
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)repayMentPlan:(id)sender {
-	MSFRepaymentTableViewController *repaymentVC = [[MSFRepaymentTableViewController alloc]initWithStyle:UITableViewStylePlain];
-	repaymentVC.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:repaymentVC animated:YES];
+- (void)applyList {
+	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFLoanListViewController *applyList = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
+	[self.navigationController pushViewController:applyList animated:YES];
 }
 
-- (IBAction)editUserInfo:(id)sender {
-	MSFEditPasswordViewController *editUserinfoViewController = [[MSFEditPasswordViewController alloc] initWithViewModel:self.viewModel];
-	editUserinfoViewController.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:editUserinfoViewController animated:YES];
+- (void)repaymentPlan {
+	MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
+	repayViewController.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:repayViewController animated:YES];
 }
 
-- (IBAction)appliyStatusList:(id)sender {
-	MSFLoanListViewController *loanListVC = [[MSFLoanListViewController alloc] init];
-	loanListVC.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:loanListVC animated:YES];
+- (void)bankCardList {
+	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)pushAbout:(id)sender {
+- (void)pushAbout {
 	MSFAboutsViewController *settingsViewController = [[MSFAboutsViewController alloc] init];
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:settingsViewController animated:YES];
 }
 
-- (IBAction)settings:(id)sender {
+- (void)settings {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:NSStringFromClass(MSFSettingsViewController.class) bundle:nil];
 	UIViewController *settingsViewController = storyboard.instantiateInitialViewController;
 	settingsViewController.hidesBottomBarWhenPushed = YES;

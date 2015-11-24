@@ -6,13 +6,6 @@
 
 #import "MSFHomepageCollectionViewHeader.h"
 #import <Masonry/Masonry.h>
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-//#import "MSFPlanListSegmentBar.h"
-#import "MSFTabBarController.h"
-#import "MSFTabBarViewModel.h"
-#import "MSFFormsViewModel.h"
-#import "MSFHomePageCellModel.h"
-#import "MSFCirculateCashModel.h"
 
 @interface MSFHomepageCollectionViewHeader ()
 
@@ -31,26 +24,8 @@
 	[bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self);
 	}];
-	/*
-	UIButton *dianwo = [UIButton buttonWithType:UIButtonTypeSystem];
-	[dianwo setTitle:@"点我" forState:UIControlStateNormal];
-	[dianwo setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
-	[dianwo addTarget:self action:@selector(dianwo:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:dianwo];
-	[dianwo mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self);
-		make.left.equalTo(self);
-		make.width.equalTo(@46);
-		make.height.equalTo(@36);
-	}];*/
+	
 	return self;
-}
-
-- (void)dianwo:(id)sender {
-	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-	MSFHomePageCellModel *model = [[MSFHomePageCellModel alloc] initWithModel:[[MSFCirculateCashModel alloc] init] services:tab.viewModel.services];
-	model.jumpDes = 1;
-	[model pushDetailViewController];
 }
 
 @end
