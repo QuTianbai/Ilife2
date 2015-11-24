@@ -51,4 +51,13 @@
 	return [[self enqueueRequest:request resultClass:MSFSocialInsuranceModel.class] msf_parsedResults];
 }
 
+- (RACSignal *)confirmInsuranceSignalWith:(NSString *)applicationNo productCode:(NSString *)productCode {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"append/showDetail" parameters:@{
+		@"appNo": applicationNo,
+		@"productCode": productCode,
+		@"templateType": @"CASH_CONTRACT",
+	}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
 @end
