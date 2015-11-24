@@ -19,11 +19,15 @@
 #import "MSFApplicationForms.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFApplyCashVIewModel.h"
+#import "MSFClient+Inventory.h"
 
 @interface MSFInventoryViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
+@property (nonatomic, strong) NSString *applicaitonNo;
+@property (nonatomic, strong) NSString *productID;
 
 @end
 
@@ -31,58 +35,47 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithInsuranceViewModel:(MSFSocialInsuranceCashViewModel *)insuranceViewModel {
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_insuranceViewModel = insuranceViewModel;
-	_services = self.insuranceViewModel.services;
+	_applicationViewModel = applicaitonViewModel;
+	_services = applicaitonViewModel.services;
 	
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		return [[[self.services.httpClient
-			fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productID]
-			map:^id(id value) {
-				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-			}]
-			collect];
+		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
+			return [[[self.services.httpClient
+				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
+		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+			return [[[self.services.httpClient
+				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.productID]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
+		}
+		return RACSignal.empty;
 	}];
-	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		//TODO: 提交社保贷信息
-		return [RACSignal empty];
-	}];
+	
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
+		}];
+	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
+	}
 	
 	[self initialize];
 	
 	return self;
-}
-
-- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_formsViewModel = cashViewModel;
-	_services = self.formsViewModel.services;
-	@weakify(self)
-	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
-		@strongify(self)
-		return [[[self.services.httpClient
-			fetchElementsApplicationNo:self.formsViewModel.appNO amount:self.formsViewModel.appLmt terms:self.formsViewModel.loanTerm]
-			map:^id(id value) {
-				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-			}]
-			collect];
-	}];
-	
-	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.formsViewModel submitSignalWithStatus:@"1"];
-	}];
-	[self initialize];
-	
-  return self;
 }
 
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
@@ -90,19 +83,25 @@
   if (!self) {
     return nil;
   }
+	_applicaitonNo = applicaitonNo;
+	_productID = productID;
+	_services = services;
+	
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
 		return [[[self.services.httpClient
-			fetchSupplementalElementsApplicationNo:applicaitonNo productID:productID]
+			fetchSupplementalElementsApplicationNo:self.applicaitonNo productID:self.productID]
 			map:^id(id value) {
 				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 			}]
 			collect];
 	}];
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		//TODO: 提交重新资料
-		return [RACSignal empty];
+		@strongify(self)
+		return [self.updateSignal flattenMap:^RACStream *(id value) {
+			return [self.services.httpClient submitInventoryWithApplicaitonNo:self.applicaitonNo accessories:value];
+		}];
 	}];
 	[self initialize];
 	
@@ -134,10 +133,6 @@
 		@strongify(self)
 		return self.updateSignal;
 	}];
-}
-
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
-	return [self initWithCashViewModel:formsViewModel];
 }
 
 #pragma mark - Custom Accessors

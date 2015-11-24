@@ -12,7 +12,7 @@
 
 @required
 
-@property (nonatomic, strong) NSString *applicaitonNo;
+@property (nonatomic, strong) NSString *applicationNo;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 
@@ -20,5 +20,6 @@
 
 // 社保贷产品ID
 @property (nonatomic, strong) NSString *productID;
+@property (nonatomic, strong) NSArray *accessories;
 
 @end

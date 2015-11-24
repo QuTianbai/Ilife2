@@ -14,6 +14,7 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFClient+MSFSocialInsurance.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -32,8 +33,7 @@
 			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"0"];
 		}
 		if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-			//TODO: 提交社保贷协议数据
-			return [RACSignal empty];
+			return [self.applicationViewModel.services.httpClient confirmInsuranceSignalWith:self.applicationViewModel.applicationNo productCode:self.applicationViewModel.productID];
 		}
 		return RACSignal.empty;
 	}];
@@ -63,8 +63,7 @@
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	}
 	if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		//TODO: 加载社保贷协议HTML
-		return [RACSignal empty];
+		return [self.services.httpClient fetchLifeLoanAgreement];
 	}
 	return [RACSignal empty];
 }
