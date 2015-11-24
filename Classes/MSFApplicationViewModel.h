@@ -20,5 +20,6 @@
 
 // 社保贷产品ID
 @property (nonatomic, strong) NSString *productID;
+@property (nonatomic, strong) NSArray *accessories;
 
 @end

@@ -33,6 +33,7 @@
 @property (nonatomic, copy) NSString *loanFixedAmt;
 @property (nonatomic, copy) NSString *productCd;
 @property (nonatomic, strong) NSArray *array;
+@property (nonatomic, strong) NSArray *accessories;
 
 /**
  *	贷款目的

@@ -47,15 +47,16 @@
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
 		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
 			return [[[self.services.httpClient
-				fetchElementsApplicationNo:self.formsViewModel.appNO amount:self.formsViewModel.appLmt terms:self.formsViewModel.loanTerm]
+				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm]
 				map:^id(id value) {
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
 				collect];
 		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 			return [[[self.services.httpClient
-				fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productID]
+				fetchElementsApplicationNo:self.applicationViewModel.applicaitonNo productID:self.applicationViewModel.productID]
 				map:^id(id value) {
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
@@ -66,66 +67,15 @@
 	
 	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			return [self.formsViewModel submitSignalWithStatus:@"1"];
+			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
 		}];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		_executeSubmitCommand = self.insuranceViewModel.executeSubmitCommand;
+		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
 	}
 	
 	[self initialize];
 	
 	return self;
-}
-
-- (instancetype)initWithInsuranceViewModel:(MSFSocialInsuranceCashViewModel *)insuranceViewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_insuranceViewModel = insuranceViewModel;
-	_services = self.insuranceViewModel.services;
-	
-	@weakify(self)
-	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
-		@strongify(self)
-		return [[[self.services.httpClient
-			fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productID]
-			map:^id(id value) {
-				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-			}]
-			collect];
-	}];
-	_executeSubmitCommand = self.insuranceViewModel.executeSubmitCommand;
-	
-	[self initialize];
-	
-	return self;
-}
-
-- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_formsViewModel = cashViewModel;
-	_services = self.formsViewModel.services;
-	@weakify(self)
-	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
-		@strongify(self)
-		return [[[self.services.httpClient
-			fetchElementsApplicationNo:self.formsViewModel.appNO amount:self.formsViewModel.appLmt terms:self.formsViewModel.loanTerm]
-			map:^id(id value) {
-				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-			}]
-			collect];
-	}];
-	
-	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.formsViewModel submitSignalWithStatus:@"1"];
-	}];
-	[self initialize];
-	
-  return self;
 }
 
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
@@ -183,10 +133,6 @@
 		@strongify(self)
 		return self.updateSignal;
 	}];
-}
-
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
-	return [self initWithCashViewModel:formsViewModel];
 }
 
 #pragma mark - Custom Accessors
