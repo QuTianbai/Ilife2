@@ -41,23 +41,6 @@
 	return self;
 }
 
-- (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-	_product = formsViewModel;
-	_formsViewModel = formsViewModel;
-	_services = formsViewModel.services;
-	@weakify(self)
-	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self.formsViewModel submitSignalWithStatus:@"0"];
-	}];
-	
-	return self;
-}
-
 - (RACSignal *)loanAgreementSignal {
 	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];

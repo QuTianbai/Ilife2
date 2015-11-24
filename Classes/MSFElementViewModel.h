@@ -36,11 +36,3 @@
 - (void)removeAttachment:(MSFAttachment *)attachment;
 
 @end
-
-@class MSFApplyCashVIewModel;
-
-@interface MSFElementViewModel (Deprecated)
-
-- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel __deprecated_msg("Use Next one");
-
-@end
