@@ -13,6 +13,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFEdgeButton.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFLoanAgreementViewModel.h"
+#import "MSFLoanAgreementController.h"
+#import "MSFSocialInsuranceModel.h"
 
 @interface MSFSocialCaskApplyTableViewController ()
 
@@ -69,8 +72,29 @@
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, residentOlderInsuranceDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, residentMedicalInsuranceDate);
 		
-		RAC(self, viewModel.residentOlderInsuranceYears) = RACObserve(self, olderMonthsTF.text);
-		RAC(self, viewModel.residentMedicalInsuranceYears) = RACObserve(self, medicalMonths.text);
+		//self.olderMonthsTF.text = @"2";
+		
+		RACChannelTerminal *residentOlderInsuranceYearsChannel = RACChannelTo(self, viewModel.residentOlderInsuranceYears);
+		RAC(self.olderMonthsTF, text) = residentOlderInsuranceYearsChannel;
+		[self.olderMonthsTF.rac_textSignal subscribe:residentOlderInsuranceYearsChannel];
+		
+		RACChannelTerminal *residentMedicalInsuranceYears = RACChannelTo(self, viewModel.residentMedicalInsuranceYears);
+		RAC(self.medicalMonths, text) = residentMedicalInsuranceYears;
+		[self.medicalMonths.rac_textSignal subscribe:residentMedicalInsuranceYears];
+		
+		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		subscribeNext:^(UITextField *x) {
+			if (x.text.integerValue < 1) {
+				x.text = @"2";
+			}
+		}];
+		
+		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.integerValue < 1) {
+				 x.text = @"2";
+			 }
+		 }];
 		
 	} else {//职工
 		RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.employeeOldInsuranceStatusTitle) ignore:nil];
@@ -83,32 +107,47 @@
 		
 		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, employeeOlderDate);
 		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
-		RAC(self, viewModel.employeeOlderMonths) = RACObserve(self, olderMonthsTF.text);
-		RAC(self, viewModel.employeeMedicalMonths) = RACObserve(self, medicalMonths.text);
 		
+		RACChannelTerminal *employeeOlderMonths = RACChannelTo(self, viewModel.employeeOlderMonths);
+		RAC(self.olderMonthsTF, text) = employeeOlderMonths;
+		[self.olderMonthsTF.rac_textSignal subscribe:employeeOlderMonths];
 		
+		RACChannelTerminal *employeeMedicalMonths = RACChannelTo(self, viewModel.employeeMedicalMonths);
+		RAC(self.medicalMonths, text) = employeeMedicalMonths;
+		[self.medicalMonths.rac_textSignal subscribe:employeeMedicalMonths];
+		
+		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.integerValue < 1) {
+				 x.text = @"12";
+			 }
+		 }];
+		
+		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.integerValue < 1) {
+				 x.text = @"12";
+			 }
+		 }];
 		
 	}
 	
-	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
-	//@weakify(self)
-	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-		//@strongify(self)
-		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
+	self.submitBT.rac_command = self.viewModel.executeSaveCommand;
+	@weakify(self)
+	[self.viewModel.executeSaveCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
+			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self.viewModel];
+			MSFLoanAgreementController *viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:viewController animated:YES];
 			//[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
-	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeSaveCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
-	
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceStatusTitle) ignore:nil];
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceMoneyTitle) ignore:nil];
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceStatusTitle) ignore:nil];
-//	RAC(self, olderStatusTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceMoneyTitle) ignore:nil];
 	
 }
 

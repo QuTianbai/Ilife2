@@ -15,21 +15,25 @@
 #import <ActionSheetPicker-3.0/ActionSheetStringPicker.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFClient+MSFSocialInsurance.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @interface MSFSocialInsuranceCashViewModel()
-
-@property (nonatomic, strong) MSFSocialInsuranceModel *model;
 
 @end
 
 @implementation MSFSocialInsuranceCashViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
   self = [self initWithServices:services];
   if (!self) {
     return nil;
   }
+	_productID = productID;
+	_productCd = productID;
 	_formViewModel = formsViewModel;
+	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
+	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
   
   return self;
 }
@@ -54,9 +58,15 @@
 	_residentOlderInsuranceMoneyTitle = @"";
 	_residentMedicalInsuranceStatusTitle = @"";
 	_residentMedicalInsuranceMoneyTitle = @"";
+	_residentOlderInsuranceYears = @"2";
+	_status = @"0";
+	_productCd = @"";
+	_accessoryInfoVOArray = [[NSArray alloc] init];
 	
 	
 	_model = [[MSFSocialInsuranceModel alloc] init];
+	
+	[self commonInitDefult];
 	
 	RAC(self, cashpurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		return value.text;
@@ -66,6 +76,12 @@
 		self.employeeOldInsuranceStatusTitle = value.text;
 		return value.code;
 	}];
+	
+	RAC(self, employeeOldInsuranceStatusTitle) = [RACObserve(self, employeeInsuranceStatus) map:^id(id value) {
+		return [value text];
+	}];
+
+	
 	RAC(self, model.empEdwBase) = [RACObserve(self, employeeOlderModey) map:^id(MSFSelectKeyValues *value) {
 		self.employeeOlderModeyTitle = value.text;
 		return value.code;
@@ -101,10 +117,16 @@
 		self.residentOlderInsuranceStatusTitle = value.text;
 		return value.code;
 	}];
+	
+	RAC(self, residentOlderInsuranceStatusTitle) = [RACObserve(self, residentOlderInsuranceStatus) map:^id(id value) {
+		return [value text];
+	}];
+	
 	RAC(self, model.rsdtOldInsuLvl) = [RACObserve(self, residentOlderInsuranceMoney) map:^id(MSFSelectKeyValues *value) {
 		self.residentOlderInsuranceMoneyTitle = value.text;
 		return value.code;
 	}];
+	
 	RAC(self, model.rsdtMdcInsuExist) = [RACObserve(self, residentMedicalInsuranceStatus) map:^id(MSFSelectKeyValues *value) {
 		self.residentMedicalInsuranceStatusTitle = value.text;
 		return value.code;
@@ -115,10 +137,13 @@
 	}];
 	RAC(self, model.rsdtOldInsuStartDate) = RACObserve(self, residentOlderInsuranceDate);
 	RAC(self, model.rsdtMdcInsuStartDate) = RACObserve(self, residentMedicalInsuranceDate);
-	RAC(self, model.rsdtOldInsuYears) = RACObserve(self, residentOlderInsuranceYears);
-	RAC(self, model.rsdtMdcInsuYears) = RACObserve(self, residentMedicalInsuranceYears);
 	
-
+	[[self.services.httpClient fetchGetSocialInsuranceInfo] subscribeNext:^(id x) {
+		self.model = x;
+		[self commonInit];
+	} error:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 	
 	@weakify(self)
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -191,6 +216,12 @@
 		@strongify(self)
 		return [self OldInsurancestartSignal:input withIndex:3];
 	}];
+	
+	_executeSaveCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self saveSignal];
+	}];
+
 	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -319,8 +350,178 @@
 	}] replay];
 }
 
+- (void)commonInit {
+	//职工
+	NSArray *employeeOlderExist = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[employeeOlderExist enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.empEdwExist]) {
+			self.employeeInsuranceStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *employeeOlderModey = [MSFSelectKeyValues getSelectKeys:@"employeeOlderInsurance"];
+	[employeeOlderModey enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.empEdwBase]) {
+			self.employeeOlderModey = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *employMedicalStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[employMedicalStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.empMdcInsuExist]) {
+			self.employMedicalStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *employeeMedicalMoney = [MSFSelectKeyValues getSelectKeys:@"employeeMedicalInsurance"];
+	[employeeMedicalMoney enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.empMdcInsuBase]) {
+			self.employeeMedicalMoney = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *emplyoeeJuryStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[emplyoeeJuryStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.injuInsuExist]) {
+			self.emplyoeeJuryStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *employeeOutJobStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[employeeOutJobStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.unempInsuExist]) {
+			self.employeeOutJobStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *employeeBearStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[employeeBearStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.birthInsuExist]) {
+			self.employeeBearStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	self.employeeOlderDate = self.model.empEdwStartDate?:[self setTime];
+	self.employeeOlderMonths = self.model.empEdwMonths?:@"12";
+	self.employeeMedicalDate = self.model.empMdcInsuStartDate?:[self setTime];
+	self.employeeMedicalMonths = self.model.empMdcMonths?:@"12";
+	
+	//居民
+	NSArray *radOlderExist = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[radOlderExist enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.rsdtOldInsuExist]) {
+			self.residentOlderInsuranceStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *residentOlderInsuranceMoney = [MSFSelectKeyValues getSelectKeys:@"residentOlderInsurance"];
+	[residentOlderInsuranceMoney enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.rsdtOldInsuLvl]) {
+			self.residentOlderInsuranceMoney = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *residentMedicalInsuranceStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	[residentMedicalInsuranceStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.rsdtMdcInsuExist]) {
+			self.residentMedicalInsuranceStatus = obj;
+			*stop = YES;
+		}
+	}];
+	
+	NSArray *residentMedicalInsuranceMoney = [MSFSelectKeyValues getSelectKeys:@"residentMedicalInsurance"];
+	[residentMedicalInsuranceMoney enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.model.rsdtMdcInsuLvl]) {
+			self.residentMedicalInsuranceMoney = obj;
+			*stop = YES;
+		}
+	}];
+	
+	self.residentOlderInsuranceDate = self.model.rsdtOldInsuStartDate?:[self setTime];
+	self.residentOlderInsuranceYears = self.model.rsdtOldInsuYears?:@"2";
+	self.residentMedicalInsuranceDate = self.model.rsdtMdcInsuStartDate?:[self setTime];
+	self.residentMedicalInsuranceYears = self.model.rsdtMdcInsuYears?:@"2";
+	
+}
+
+- (void)commonInitDefult {
+	//职工
+	NSArray *employeeOlderExist = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.employeeInsuranceStatus = employeeOlderExist.firstObject;
+	
+	NSArray *employeeOlderModey = [MSFSelectKeyValues getSelectKeys:@"employeeOlderInsurance"];
+	self.employeeInsuranceStatus = employeeOlderModey[2];
+	
+	NSArray *employMedicalStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.employeeInsuranceStatus = employMedicalStatus.firstObject;
+	
+	NSArray *employeeMedicalMoney = [MSFSelectKeyValues getSelectKeys:@"employeeMedicalInsurance"];
+	self.employeeInsuranceStatus = employeeMedicalMoney[3];
+	
+	NSArray *emplyoeeJuryStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.employeeInsuranceStatus = emplyoeeJuryStatus.firstObject;
+	
+	NSArray *employeeOutJobStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.employeeInsuranceStatus = employeeOutJobStatus.firstObject;
+	
+	NSArray *employeeBearStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.employeeInsuranceStatus = employeeBearStatus.firstObject;
+	
+	self.employeeOlderDate = self.model.empEdwStartDate;
+	self.employeeOlderMonths = @"12";
+	self.employeeMedicalDate = self.model.empMdcInsuStartDate;
+	self.employeeMedicalMonths = @"12";
+	
+	//居民
+	NSArray *radOlderExist = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.residentOlderInsuranceStatus = radOlderExist.firstObject;
+	
+	NSArray *residentOlderInsuranceMoney = [MSFSelectKeyValues getSelectKeys:@"residentOlderInsurance"];
+	self.residentOlderInsuranceMoney = residentOlderInsuranceMoney[2];
+	
+	NSArray *residentMedicalInsuranceStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
+	self.residentMedicalInsuranceStatus = residentMedicalInsuranceStatus.firstObject;
+	
+	NSArray *residentMedicalInsuranceMoney = [MSFSelectKeyValues getSelectKeys:@"residentMedicalInsurance"];
+	self.residentMedicalInsuranceMoney = residentMedicalInsuranceMoney.firstObject;
+	
+	self.residentOlderInsuranceDate = self.model.rsdtOldInsuStartDate;
+	self.residentOlderInsuranceYears = @"2";
+
+	self.residentMedicalInsuranceDate = self.model.rsdtMdcInsuStartDate;
+	self.residentMedicalInsuranceYears = @"2";
+	
+}
+
+- (NSString *)setTime {
+	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+	
+	NSDateComponents *comps = nil;
+	
+	comps = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
+	NSDateComponents *adcomps = [[NSDateComponents alloc] init];
+ [adcomps setYear:-1];
+ NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:[NSDate date] options:0];
+	//+ (NSString *)msf_fullStringFromDate:(NSDate *)date;
+	return [NSDateFormatter msf_stringFromDate2:newdate];
+}
+
 - (RACSignal *)submitSignal {
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:self.model];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+}
+
+- (RACSignal *)saveSignal {
+	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
+	
 }
 
 @end

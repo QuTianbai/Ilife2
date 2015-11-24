@@ -12,11 +12,18 @@
 #import "MSFApplicationViewModel.h"
 
 @class RACCommand;
+@class MSFSocialInsuranceModel;
 
 @interface MSFSocialInsuranceCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
+@property (nonatomic, copy) NSString *productCd;
+@property (nonatomic, strong) NSArray *accessoryInfoVOArray;
+@property (nonatomic, copy) NSString *status;
+
+@property (nonatomic, strong) MSFSocialInsuranceModel *model;
+
 //职工保险
-@property (nonatomic, strong) MSFSelectKeyValues *purpose;// 教育程度
+@property (nonatomic, strong) MSFSelectKeyValues *purpose;// 贷款用途
 @property (nonatomic, copy) NSString *cashpurpose;
 @property (nonatomic, strong) MSFSelectKeyValues *employeeInsuranceStatus;
 @property (nonatomic, copy) NSString *employeeOldInsuranceStatusTitle;
@@ -70,17 +77,21 @@
 @property (nonatomic, strong, readonly) RACCommand *executeResidentInsuranceDateCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalDateCommand;
 
+@property (nonatomic, strong, readonly) RACCommand *executeSaveCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
-@property (nonatomic, strong) NSString *applicaitonNo;
+@property (nonatomic, strong) NSString *applicationNo;
 
-//TODO: 提供社保贷的产品ID
+// 保贷的产品ID
 @property (nonatomic, strong) NSString *productID;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel services:(id <MSFViewModelServices>)services;
+// 社保贷类型,通过职业信息确认
+@property (nonatomic, strong) NSString *productType;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 
 @end
