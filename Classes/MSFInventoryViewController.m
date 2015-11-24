@@ -168,6 +168,7 @@ UICollectionViewDelegateFlowLayout>
 	if (self.optional) {
 		return 1;
 	}
+	if (self.viewModel.optionalViewModels.count == 0) return 1;
 	return 2;
 }
 
