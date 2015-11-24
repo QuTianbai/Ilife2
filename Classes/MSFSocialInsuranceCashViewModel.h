@@ -89,9 +89,9 @@
 // 保贷的产品ID
 @property (nonatomic, strong) NSString *productID;
 
-// 社保贷类型
+// 社保贷类型,通过职业信息确认
 @property (nonatomic, strong) NSString *productType;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID productType:(NSString *)productType services:(id <MSFViewModelServices>)services;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 
 @end

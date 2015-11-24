@@ -24,14 +24,13 @@
 
 @implementation MSFSocialInsuranceCashViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID productType:(NSString *)productType services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
   self = [self initWithServices:services];
   if (!self) {
     return nil;
   }
 	_productID = productID;
 	_productCd = productID;
-	_productType = productType;
 	_formViewModel = formsViewModel;
 	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
