@@ -603,7 +603,6 @@
 		49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7D1B2E83E4009433C5 /* personal.storyboard */; };
 		49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7F1B2E83F9009433C5 /* professional.storyboard */; };
 		49DAEE821B2E840A009433C5 /* relationship.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE811B2E840A009433C5 /* relationship.storyboard */; };
-		49DF43EA1BFF029F00D19855 /* MSFInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DF43E91BFF029F00D19855 /* MSFInsuranceViewModel.m */; };
 		49E07D3A1BBCF138001F9E1A /* bg-date-disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */; };
 		49E07D491BBD25F0001F9E1A /* code-message.json in Resources */ = {isa = PBXBuildFile; fileRef = 49E07D481BBD25F0001F9E1A /* code-message.json */; };
 		49E22AFD1B37ED9E00749717 /* btn-family-add.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E22AF71B37ED9E00749717 /* btn-family-add.png */; };
@@ -1656,8 +1655,6 @@
 		49DAEE7F1B2E83F9009433C5 /* professional.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = professional.storyboard; sourceTree = "<group>"; };
 		49DAEE811B2E840A009433C5 /* relationship.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = relationship.storyboard; sourceTree = "<group>"; };
 		49DF43D71BFEEBFB00D19855 /* MSFElement+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFElement+Private.h"; sourceTree = "<group>"; };
-		49DF43E81BFF029F00D19855 /* MSFInsuranceViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInsuranceViewModel.h; sourceTree = "<group>"; };
-		49DF43E91BFF029F00D19855 /* MSFInsuranceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInsuranceViewModel.m; sourceTree = "<group>"; };
 		49E07D391BBCF138001F9E1A /* bg-date-disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-date-disable@2x.png"; sourceTree = "<group>"; };
 		49E07D481BBD25F0001F9E1A /* code-message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "code-message.json"; sourceTree = "<group>"; };
 		49E22AF71B37ED9E00749717 /* btn-family-add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-family-add.png"; sourceTree = "<group>"; };
@@ -3027,7 +3024,6 @@
 			children = (
 				49DAE1E31C02FE8000DE93E5 /* ApplicationViewModel */,
 				07472BE41BFF17D6008A3890 /* SocialInsuranceCash */,
-				49DF43E71BFF028A00D19855 /* Insurance */,
 				07F088FE1BBD021A0067C5BC /* CirculateCash */,
 				074AC2491BBB87500056BA22 /* TradePassword */,
 				074AC22D1BBA89680056BA22 /* BankCard */,
@@ -3769,15 +3765,6 @@
 				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
 			);
 			name = Storyboard;
-			sourceTree = "<group>";
-		};
-		49DF43E71BFF028A00D19855 /* Insurance */ = {
-			isa = PBXGroup;
-			children = (
-				49DF43E81BFF029F00D19855 /* MSFInsuranceViewModel.h */,
-				49DF43E91BFF029F00D19855 /* MSFInsuranceViewModel.m */,
-			);
-			name = Insurance;
 			sourceTree = "<group>";
 		};
 		49E5B7861BD4D930001995F8 /* Poster */ = {
@@ -4821,7 +4808,6 @@
 				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				49075CCB1BA91CE3006F63FF /* MSFTradeViewModel.m in Sources */,
-				49DF43EA1BFF029F00D19855 /* MSFInsuranceViewModel.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
 				0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */,

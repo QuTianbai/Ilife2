@@ -80,8 +80,7 @@ UICollectionViewDelegateFlowLayout>
 					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setStatus:@"1"];
 					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
-			}
-			else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
 				MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.applicationViewModel user:[self.viewModel.applicationViewModel.services httpClient].user];
 				MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
 				
