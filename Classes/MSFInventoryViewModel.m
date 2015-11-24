@@ -19,11 +19,15 @@
 #import "MSFApplicationForms.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFApplyCashVIewModel.h"
+#import "MSFClient+Inventory.h"
 
 @interface MSFInventoryViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
+@property (nonatomic, strong) NSString *applicaitonNo;
+@property (nonatomic, strong) NSString *productID;
 
 @end
 
@@ -49,10 +53,7 @@
 			}]
 			collect];
 	}];
-	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		//TODO: 提交社保贷信息
-		return [RACSignal empty];
-	}];
+	_executeSubmitCommand = self.insuranceViewModel.executeSubmitCommand;
 	
 	[self initialize];
 	
@@ -90,19 +91,25 @@
   if (!self) {
     return nil;
   }
+	_applicaitonNo = applicaitonNo;
+	_productID = productID;
+	_services = services;
+	
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
 		return [[[self.services.httpClient
-			fetchSupplementalElementsApplicationNo:applicaitonNo productID:productID]
+			fetchSupplementalElementsApplicationNo:self.applicaitonNo productID:self.productID]
 			map:^id(id value) {
 				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 			}]
 			collect];
 	}];
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		//TODO: 提交重新资料
-		return [RACSignal empty];
+		@strongify(self)
+		return [self.updateSignal flattenMap:^RACStream *(id value) {
+			return [self.services.httpClient submitInventoryWithApplicaitonNo:self.applicaitonNo accessories:value];
+		}];
 	}];
 	[self initialize];
 	

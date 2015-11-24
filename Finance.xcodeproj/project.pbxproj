@@ -426,6 +426,7 @@
 		4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */; };
 		495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */; };
 		49614C871C03FD6C004D6208 /* MSFClient+MSFSocialInsurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */; };
+		49614C8B1C03FF8F004D6208 /* MSFClient+Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 49614C8A1C03FF8F004D6208 /* MSFClient+Inventory.m */; };
 		496444871B69BA77001FB1BE /* btn-showpwd-normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444811B69BA77001FB1BE /* btn-showpwd-normal.png */; };
 		496444881B69BA77001FB1BE /* btn-showpwd-normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444821B69BA77001FB1BE /* btn-showpwd-normal@2x.png */; };
 		496444891B69BA77001FB1BE /* btn-showpwd-normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444831B69BA77001FB1BE /* btn-showpwd-normal@3x.png */; };
@@ -1417,6 +1418,8 @@
 		4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageCollectionViewHeader.m; sourceTree = "<group>"; };
 		495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementViewModel.h; sourceTree = "<group>"; };
 		495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementViewModel.m; sourceTree = "<group>"; };
+		49614C891C03FF8F004D6208 /* MSFClient+Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Inventory.h"; sourceTree = "<group>"; };
+		49614C8A1C03FF8F004D6208 /* MSFClient+Inventory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Inventory.m"; sourceTree = "<group>"; };
 		496444811B69BA77001FB1BE /* btn-showpwd-normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-normal.png"; sourceTree = "<group>"; };
 		496444821B69BA77001FB1BE /* btn-showpwd-normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-normal@2x.png"; sourceTree = "<group>"; };
 		496444831B69BA77001FB1BE /* btn-showpwd-normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-normal@3x.png"; sourceTree = "<group>"; };
@@ -2980,6 +2983,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				49614C881C03FF7E004D6208 /* Inventory */,
 				07D13D9B1C02C47900A46980 /* ProductList */,
 				07472BE81BFF2820008A3890 /* SocialInsurance */,
 				10E546721C004AD000BBA827 /* ProductType */,
@@ -3282,6 +3286,15 @@
 				4955DBE71B0DF40E00582A69 /* QuickFocused-iOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		49614C881C03FF7E004D6208 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				49614C891C03FF8F004D6208 /* MSFClient+Inventory.h */,
+				49614C8A1C03FF8F004D6208 /* MSFClient+Inventory.m */,
+			);
+			name = Inventory;
 			sourceTree = "<group>";
 		};
 		4975C97A1B46D6D400AA79EB /* Finance */ = {
@@ -4887,6 +4900,7 @@
 				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
 				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
+				49614C8B1C03FF8F004D6208 /* MSFClient+Inventory.m in Sources */,
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
 				07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */,
 				105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */,
