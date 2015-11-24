@@ -12,6 +12,7 @@
 #import "MSFUser.h"
 
 #import "MSFSetTradePasswordTableViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFSettingsViewController ()
 
@@ -29,6 +30,15 @@
 	[super viewDidLoad];
 	self.title = @"设置";
 	self.signOutButton.rac_command = self.viewModel.executeSignOut;
+	[self.signOutButton.rac_command.executionSignals subscribeNext:^(RACSignal *signal) {
+		[SVProgressHUD showWithStatus:@"正在退出..." maskType:SVProgressHUDMaskTypeClear];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		}];
+	}];
+	[self.signOutButton.rac_command.errors subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
