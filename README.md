@@ -67,3 +67,12 @@ password: appserver111111
 * **xbmDev** 胥佰淼开发分支.
 * **zhaoyong** 赵勇开发分支.
 
+## 开发环境说明
+
+开发环境切换的时候不用修改MSFServer.m文件
+
+1. API_ENDPOINT 请求的API地址
+2. INPUT_AUTO_DEBUG 请求的时候自动填写帐号/密码
+3. LOG_API_RESPONSES 设置运行的时候输出网络调用日志
+
+![](Resources/environment.png)
