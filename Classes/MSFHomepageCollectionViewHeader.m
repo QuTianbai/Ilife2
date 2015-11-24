@@ -6,13 +6,10 @@
 
 #import "MSFHomepageCollectionViewHeader.h"
 #import <Masonry/Masonry.h>
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-//#import "MSFPlanListSegmentBar.h"
+
 #import "MSFTabBarController.h"
 #import "MSFTabBarViewModel.h"
-#import "MSFFormsViewModel.h"
-#import "MSFHomePageCellModel.h"
-#import "MSFCirculateCashModel.h"
+#import "MSFApplyListViewModel.h"
 
 @interface MSFHomepageCollectionViewHeader ()
 
@@ -48,9 +45,8 @@
 
 - (void)dianwo:(id)sender {
 	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-	MSFHomePageCellModel *model = [[MSFHomePageCellModel alloc] initWithModel:[[MSFCirculateCashModel alloc] init] services:tab.viewModel.services];
-	model.jumpDes = 1;
-	[model pushDetailViewController];
+	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithServices:tab.viewModel.services];
+	[tab.viewModel.services pushViewModel:viewModel];
 }
 
 @end

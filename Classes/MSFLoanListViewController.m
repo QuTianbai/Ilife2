@@ -18,7 +18,7 @@
 #import "MSFCellButton.h"
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#import "MSFHomePageCellModel.h"
+#import "MSFApplyListViewModel.h"
 #import "MSFPlanListSegmentBar.h"
 
 #define ORAGECOLOR @"ff6600"
@@ -152,7 +152,7 @@
 @property (nonatomic, strong) MSFApplyListHeader *headView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, assign) int selectedIndex;
-@property (nonatomic, weak) MSFHomePageCellModel *viewModel;
+@property (nonatomic, strong) MSFApplyListViewModel *viewModel;
 
 @end
 
@@ -162,9 +162,10 @@
 		NSLog(@"MSFLoanListViewController `-dealloc`");
 }
 
-- (instancetype)initWithViewModel:(MSFHomePageCellModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFApplyListViewModel *)viewModel {
   self = [super init];
   if (self) {
+		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = viewModel;
 	}	
   return self;
@@ -180,7 +181,6 @@
 	[self loadData:0];
 }
 
-//TODO: 同步性
 - (void)loadData:(int)type {
 	RACSignal *signal = [self.viewModel fetchApplyListSignal:type];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
@@ -188,8 +188,10 @@
 		if ([x count] != 0) {
 			[self headView];
 		}
-		self.dataArray = x;
-		[self.dataTableView reloadData];
+		if (_selectedIndex == type) {
+			self.dataArray = x;
+			[self.dataTableView reloadData];
+		}
 	}];
 }
 

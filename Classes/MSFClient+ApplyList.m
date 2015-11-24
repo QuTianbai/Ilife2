@@ -14,20 +14,16 @@
 @implementation MSFClient (ApplyList)
 
 - (RACSignal *)fetchMSApplyList {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFApplyList" ofType:@"json"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
-	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFApplyList" ofType:@"json"];
+//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
 	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
-	/*
-	return [[[self enqueueRequest:request resultClass:nil] collect] map:^id(id value) {
-		return [MTLJSONAdapter modelsOfClass:MSFApplyList.class fromJSONArray:[self convertArray:value] error:nil];
-	}];*/
 }
 
 - (RACSignal *)fetchSpicyApplyList {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFSpicyApplyList" ofType:@"json"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
-	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/applyList" parameters:nil];
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFSpicyApplyList" ofType:@"json"];
+//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/applyList" parameters:nil];
 	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
 }
 
