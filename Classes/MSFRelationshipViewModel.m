@@ -14,6 +14,8 @@
 #import "MSFFormsViewModel.h"
 #import "MSFClient+MSFApplyCash.h"
 #import "NSString+Matches.h"
+#import "MSFSelectionViewModel.h"
+#import "MSFSelectKeyValues.h"
 
 @implementation MSFRelationshipViewModel
 
@@ -25,13 +27,43 @@
 	_formsViewModel = viewModel;
 	_services = viewModel.services;
 	
+	NSArray *marriageStatus = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
+	[marriageStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+		if ([obj.code isEqualToString:self.formsViewModel.model.maritalStatus]) {
+			self.formsViewModel.model.marriageTitle = obj.text;
+			*stop = YES;
+		}
+	}];
+
 	@weakify(self)
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
     @strongify(self)
     return [self commitSignal];
   }];
 	
+	_executeMarriageCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(UITableView *input) {
+		@strongify(self);
+		return [self marryValuesSignal];
+	}];
+	_executeMarriageCommand.allowsConcurrentExecution = YES;
+
+	
 	return self;
+}
+
+- (RACSignal *)marryValuesSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"marital_status"]];
+		[self.services pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
+			[subscriber sendNext:nil];
+			[subscriber sendCompleted];
+			self.formsViewModel.model.marriageTitle = x.text;
+			self.formsViewModel.model.maritalStatus = x.code;
+			[self.services popViewModel];
+		}];
+		return nil;
+	}];
 }
 
 - (RACSignal *)commitSignal {
@@ -43,6 +75,9 @@
 }
 
 - (NSString *)checkForm {
+	if (self.formsViewModel.model.maritalStatus.length == 0) {
+		return @"请选择婚姻状况";
+	}
 	NSArray *contactList = self.formsViewModel.model.contrastList;
 	if (contactList.count < 2) {
 		return [NSString stringWithFormat:@"请至少填写联系人1、2的信息"];
@@ -81,6 +116,17 @@
 		}
 	}
 	return nil;
+}
+
+- (BOOL)marriageStatusChange:(NSString *)newStatus {
+	if (![self.formsViewModel.model.maritalStatus isEqualToString:newStatus]) {
+		if ([self.formsViewModel.model.maritalStatus isEqualToString:@"20"]) {
+			return YES;
+		} else if ([newStatus isEqualToString:@"20"]) {
+			return YES;
+		}
+	}
+	return NO;
 }
 
 @end

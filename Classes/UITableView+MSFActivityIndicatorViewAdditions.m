@@ -9,7 +9,7 @@
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
 
-static UIView *backupView;
+//static UIView *backupView;
 static UITableViewCellSeparatorStyle backupStyle;
 static UIColor *backupColor;
 
@@ -46,7 +46,7 @@ static UIColor *backupColor;
 		make.right.equalTo(view).offset(-30);
 	}];
 	
-	backupView = self.backgroundView;
+	//backupView = self.backgroundView;
 	backupStyle = self.separatorStyle;
 	backupColor = self.separatorColor;
 	self.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -57,7 +57,7 @@ static UIColor *backupColor;
 		if ([x count] == 0) {
 			label.text = message;
 		} else {
-			self.backgroundView = backupView;
+			self.backgroundView = nil;
 			self.separatorStyle = backupStyle;
 			self.separatorColor = backupColor;
 		}

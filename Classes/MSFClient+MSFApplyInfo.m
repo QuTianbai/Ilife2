@@ -57,6 +57,7 @@
 		}
 	}
 	
+	NSString *marriage = [dic stringForKey:@"maritalStatus"];
 	NSDictionary *basicInfo  = [dic dictionaryForKey:@"baseInfo"];
 	NSDictionary *occupation = [dic dictionaryForKey:@"occupationInfo"];
 	
@@ -83,7 +84,7 @@
 					 @"currentCountryCode"	: [basicInfo stringForKey:@"abodeZoneCode"],
 					 @"abodeDetail"					: [basicInfo stringForKey:@"abodeDetail"],
 					 @"houseType"						: [basicInfo stringForKey:@"houseCondition"],
-					 @"maritalStatus"				: [basicInfo stringForKey:@"maritalStatus"],
+					 @"maritalStatus"				: marriage,
 					 @"qq"									: qq,
 					 @"taobao"							: tb,
 					 @"jdAccount"						: jd,
@@ -121,9 +122,7 @@
 															@"abodeCityCode"  : [self trimString:forms.currentCityCode],
 															@"abodeZoneCode"  : [self trimString:forms.currentCountryCode],
 															@"abodeDetail"		: [self trimString:forms.abodeDetail],
-															@"houseCondition" : [self trimString:forms.houseType],
-															@"maritalStatus"	: [self trimString:forms.maritalStatus]
-															};
+															@"houseCondition" : [self trimString:forms.houseType]};
 	NSDictionary *occupation = @{
 															 @"socialIdentity": [self trimString:forms.socialStatus],
 															 @"qualification" : [self trimString:forms.education],
@@ -169,7 +168,8 @@
 	NSString *jsonContrastList = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:contrastList options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
 	NSString *jsonAdditionalList = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:additionalList options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
 	
-	return @{@"baseInfo"			 : jsonBasicInfo,
+	return @{@"maritalStatus"  : [self trimString:forms.maritalStatus],
+					 @"baseInfo"			 : jsonBasicInfo,
 					 @"occupationInfo" : jsonOccupation,
 					 @"contrastList"   : jsonContrastList,
 					 @"additionalList" : jsonAdditionalList};
@@ -183,7 +183,7 @@
 	NSMutableDictionary *uploadDic = [NSMutableDictionary dictionaryWithDictionary:[self convertToSubmit:model]];
 	[uploadDic setObject:self.user.uniqueId forKey:@"uniqueId"];
 	[uploadDic setObject:@(type) forKey:@"infoType"];
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"cust/saveInfo" parameters:uploadDic];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"append/saveInfo" parameters:uploadDic];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
 		NSLog(@"%@", value.parsedResult);
 		self.user.complateCustInfo = value.parsedResult[@"complateCustInfo"];
