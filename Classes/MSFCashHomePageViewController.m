@@ -29,6 +29,9 @@
 
 #import "MSFApplyView.h"
 #import "MSFCashHomeLoanLimit.h"
+#import "MSFFormsViewModel.h"
+#import "MSFUserInfomationViewController.h"
+#import "MSFSocialInsuranceCashViewModel.h"
 
 @interface MSFCashHomePageViewController ()
 
@@ -58,38 +61,15 @@
  */
 - (void)msAdView {
 	[self removeAllSubviews];
-	
-	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS actionBlock:^{
+	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
 		[self.viewModel.executeAllowCashCommand execute:nil];
 	}];
 	[self.view addSubview:ms];
-	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
-		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
-		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
-		vc.hidesBottomBarWhenPushed = YES;
-		[self.navigationController pushViewController:vc animated:YES];
-	}];
-	[self.view addSubview:ml];
-	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.view).offset(64);
-		make.left.right.equalTo(self.view);
-	}];
 	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(ml.mas_bottom);
+		make.top.equalTo(self.view).offset(64);
 		make.bottom.equalTo(self.view).offset(-49);
 		make.left.right.equalTo(self.view);
-		make.height.equalTo(ml);
 	}];
-	
-//	MSFApplyView *ms_full = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
-//		[self.viewModel.executeAllowCashCommand execute:nil];
-//	}];
-//	[self.view addSubview:ms_full];
-//	[ms_full mas_makeConstraints:^(MASConstraintMaker *make) {
-//		make.top.equalTo(self.view).offset(64);
-//		make.bottom.equalTo(self.view).offset(-49);
-//		make.left.right.equalTo(self.view);
-//	}];
 }
 
 /*
@@ -102,10 +82,10 @@
 	}];
 	[self.view addSubview:ms];
 	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
-		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
-		MSFSocialCaskApplyTableViewController *vc = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
-		vc.hidesBottomBarWhenPushed = YES;
-		[self.navigationController pushViewController:vc animated:YES];
+		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel productID:@"4102" services:self.viewModel.services];
+		MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
+		userInfoVC.showNextStep = YES;
+		[self.navigationController pushViewController:userInfoVC animated:YES];
 	}];
 	[self.view addSubview:ml];
 	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,9 +163,9 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
-				MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
-				[productViewController setHidesBottomBarWhenPushed:YES];
-				[self.navigationController pushViewController:productViewController animated:YES];
+				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:self.viewModel services:self.viewModel.services];
+				userInfoVC.showNextStep = YES;
+				[self.navigationController pushViewController:userInfoVC animated:YES];
 			} else {
 				[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
 			}

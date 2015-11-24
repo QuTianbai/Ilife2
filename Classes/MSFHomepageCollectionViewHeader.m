@@ -7,10 +7,6 @@
 #import "MSFHomepageCollectionViewHeader.h"
 #import <Masonry/Masonry.h>
 
-#import "MSFTabBarController.h"
-#import "MSFTabBarViewModel.h"
-#import "MSFApplyListViewModel.h"
-
 @interface MSFHomepageCollectionViewHeader ()
 
 @end
@@ -28,25 +24,8 @@
 	[bannerView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self);
 	}];
-	/*
-	UIButton *dianwo = [UIButton buttonWithType:UIButtonTypeSystem];
-	[dianwo setTitle:@"点我" forState:UIControlStateNormal];
-	[dianwo setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
-	[dianwo addTarget:self action:@selector(dianwo:) forControlEvents:UIControlEventTouchUpInside];
-	[self addSubview:dianwo];
-	[dianwo mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self);
-		make.left.equalTo(self);
-		make.width.equalTo(@46);
-		make.height.equalTo(@36);
-	}];*/
+	
 	return self;
-}
-
-- (void)dianwo:(id)sender {
-	MSFTabBarController *tab = (MSFTabBarController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithServices:tab.viewModel.services];
-	[tab.viewModel.services pushViewModel:viewModel];
 }
 
 @end

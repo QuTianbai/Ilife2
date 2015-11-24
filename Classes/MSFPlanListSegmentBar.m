@@ -51,7 +51,7 @@
 - (void)layoutSubviews {
 	if (_titles.count > 0) {
 		CGFloat width = self.frame.size.width / _titles.count;
-		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 3, width, 3);
+		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 4, width, 4);
 	}
 }
 
@@ -83,7 +83,7 @@
 	[_executeSelectionCommand execute:@(_curIndex)];
 	CGFloat width = self.frame.size.width / _titles.count;
 	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 3, width, 3);
+		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 4, width, 4);
 	} completion:^(BOOL finished) {
 		_locked = NO;
 	}];
@@ -114,6 +114,12 @@
 		[_titles[i] drawInRect:CGRectMake(width * i, (rect.size.height - font.lineHeight) / 2, width, rect.size.height)
 						withAttributes:attri];
 	}
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextMoveToPoint(context, 0, rect.size.height);
+	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+	CGContextSetLineWidth(context, 1);
+	CGContextSetStrokeColorWithColor(context, UIColor.borderColor.CGColor);
+	CGContextStrokePath(context);
 }
 
 @end

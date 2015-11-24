@@ -63,10 +63,12 @@
 										 @[@"设置",
 											 @"关于"]];
 	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
-									 [UIImage imageNamed:@"repayPlanIcon"],
-									 [UIImage imageNamed:@"icon-account-repay"]],
-								 @[[UIImage imageNamed:@"icon-account-about"],
-									 [UIImage imageNamed:@"icon-account-intro"]]];
+									 [UIImage imageNamed:@"icon-account-apply"],
+									 [UIImage imageNamed:@"icon-account-repay"],
+									 [UIImage imageNamed:@"icon-account-bankCard"]],
+								 @[[UIImage imageNamed:@"icon-account-settings"],
+									 [UIImage imageNamed:@"icon-account-about"]]];
+	NSLog(@"%@", self.icons);
 }
 
 #pragma mark - UITableViewDataSource

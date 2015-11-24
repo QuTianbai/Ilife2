@@ -11,6 +11,7 @@
 #import "MSFLoanListViewController.h"
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
+#import "UIColor+Utils.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSLoanListTableViewCell.h"
 
@@ -46,8 +47,6 @@
 	self = [super init];
 	if (self) {
 		self.layer.masksToBounds = YES;
-		self.layer.borderWidth = 0.9;
-		self.layer.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.08].CGColor;
 		self.backgroundColor = UIColor.clearColor;
 		
 		UILabel *money  = [[UILabel alloc] init];
@@ -142,6 +141,15 @@
 	}];
 	[self layoutIfNeeded];
 	 */
+}
+
+- (void)drawRect:(CGRect)rect {
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextMoveToPoint(context, 0, rect.size.height);
+	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+	CGContextSetLineWidth(context, 1);
+	CGContextSetStrokeColorWithColor(context, UIColor.borderColor.CGColor);
+	CGContextStrokePath(context);
 }
 
 @end
