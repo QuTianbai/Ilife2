@@ -18,7 +18,7 @@
 	NSParameterAssert(applicaitonNo);
 	NSParameterAssert(productID);
 	
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"append/getSecurityFile" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/getSecurityFile" parameters:@{
 		@"productId": productID,
 	}];
 	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
