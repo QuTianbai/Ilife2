@@ -56,7 +56,7 @@
 				collect];
 		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 			return [[[self.services.httpClient
-				fetchElementsApplicationNo:self.applicationViewModel.applicaitonNo productID:self.applicationViewModel.productID]
+				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.productID]
 				map:^id(id value) {
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]

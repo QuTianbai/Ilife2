@@ -12,8 +12,7 @@
 
 @required
 
-//FIXME: 
-@property (nonatomic, strong) NSString *applicaitonNo;
+@property (nonatomic, strong) NSString *applicationNo;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 

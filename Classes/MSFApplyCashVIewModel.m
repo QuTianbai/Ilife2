@@ -51,10 +51,10 @@
 	_model.productCd = [self.services httpClient].user.productId;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
-	_applicaitonNo = @"";
+	_applicationNo = @"";
 	_array = [[NSArray alloc] init];
 	
-	RACChannelTo(self, applicaitonNo) = RACChannelTo(self, appNO);
+	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
 	
 	//RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);

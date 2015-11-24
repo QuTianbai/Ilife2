@@ -84,7 +84,7 @@
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
-@property (nonatomic, strong) NSString *applicaitonNo;
+@property (nonatomic, strong) NSString *applicationNo;
 
 //TODO: 提供社保贷的产品ID
 @property (nonatomic, strong) NSString *productID;
