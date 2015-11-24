@@ -35,6 +35,48 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_applicationViewModel = applicaitonViewModel;
+	_services = applicaitonViewModel.services;
+	
+	@weakify(self)
+	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
+		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+			return [[[self.services.httpClient
+				fetchElementsApplicationNo:self.formsViewModel.appNO amount:self.formsViewModel.appLmt terms:self.formsViewModel.loanTerm]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
+		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+			return [[[self.services.httpClient
+				fetchElementsApplicationNo:self.insuranceViewModel.applicaitonNo productID:self.insuranceViewModel.productID]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
+		}
+		return RACSignal.empty;
+	}];
+	
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			return [self.formsViewModel submitSignalWithStatus:@"1"];
+		}];
+	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		_executeSubmitCommand = self.insuranceViewModel.executeSubmitCommand;
+	}
+	
+	[self initialize];
+	
+	return self;
+}
+
 - (instancetype)initWithInsuranceViewModel:(MSFSocialInsuranceCashViewModel *)insuranceViewModel {
   self = [super init];
   if (!self) {
