@@ -253,6 +253,7 @@
 		10ACE5D91C043AD400EE5044 /* icon-account-about.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ACE5D61C043AD400EE5044 /* icon-account-about.png */; };
 		10ACE5DA1C043AD400EE5044 /* icon-account-about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ACE5D71C043AD400EE5044 /* icon-account-about@2x.png */; };
 		10ACE5DB1C043AD400EE5044 /* icon-account-about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ACE5D81C043AD400EE5044 /* icon-account-about@3x.png */; };
+		10ACE5ED1C0459B200EE5044 /* MSFRelationMarriageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */; };
 		10AEFB071BC29AAC009486DF /* MSFTempForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEFB061BC29AAC009486DF /* MSFTempForms.m */; };
 		10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */ = {isa = PBXBuildFile; fileRef = 10AEFB3D1BC53954009486DF /* familyMember_type1.json */; };
 		10AEFB4F1BC6141D009486DF /* btn-FamilyInformation-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 10AEFB4E1BC6141D009486DF /* btn-FamilyInformation-phone.png */; };
@@ -1150,6 +1151,8 @@
 		10ACE5D61C043AD400EE5044 /* icon-account-about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about.png"; sourceTree = "<group>"; };
 		10ACE5D71C043AD400EE5044 /* icon-account-about@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about@2x.png"; sourceTree = "<group>"; };
 		10ACE5D81C043AD400EE5044 /* icon-account-about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about@3x.png"; sourceTree = "<group>"; };
+		10ACE5EB1C0459B200EE5044 /* MSFRelationMarriageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationMarriageCell.h; sourceTree = "<group>"; };
+		10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationMarriageCell.m; sourceTree = "<group>"; };
 		10AEFB051BC29AAC009486DF /* MSFTempForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTempForms.h; sourceTree = "<group>"; };
 		10AEFB061BC29AAC009486DF /* MSFTempForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTempForms.m; sourceTree = "<group>"; };
 		10AEFB3D1BC53954009486DF /* familyMember_type1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type1.json; sourceTree = "<group>"; };
@@ -2517,6 +2520,8 @@
 				10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */,
 				10DAE1C41BBBC9B3001BD017 /* MSFRelationAddCell.h */,
 				10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */,
+				10ACE5EB1C0459B200EE5044 /* MSFRelationMarriageCell.h */,
+				10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */,
 			);
 			name = RelationCells;
 			sourceTree = "<group>";
@@ -5033,6 +5038,7 @@
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
 				10AEFB071BC29AAC009486DF /* MSFTempForms.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m in Sources */,
+				10ACE5ED1C0459B200EE5044 /* MSFRelationMarriageCell.m in Sources */,
 				0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */,
 				4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */,
 				49C7CBA61B04A34200EF5A68 /* MSFClient+ReleaseNote.m in Sources */,

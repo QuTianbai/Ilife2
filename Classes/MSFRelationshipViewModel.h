@@ -15,6 +15,7 @@
 @interface MSFRelationshipViewModel : RVMViewModel
 
 @property (nonatomic, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 

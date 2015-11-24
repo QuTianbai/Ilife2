@@ -27,9 +27,6 @@
 @interface MSFPersonalViewController ()
 <MSFSegmentDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *marriageTF;
-@property (weak, nonatomic) IBOutlet UIButton *marriageBT;
-
 @property (weak, nonatomic) IBOutlet UITextField *housingTF;
 @property (weak, nonatomic) IBOutlet UIButton *housingBT;
 
@@ -83,9 +80,6 @@
 	//住房情况
 	RAC(self.housingTF, text) = RACObserve(self.viewModel.formsViewModel.model, houseTypeTitle);
 	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
-	//婚姻状况
-	RAC(self.marriageTF, text) = RACObserve(self.viewModel.formsViewModel.model, marriageTitle);
-	self.marriageBT.rac_command = self.viewModel.executeMarryValuesCommand;
 	//电子邮件
 	[[self.emailTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
