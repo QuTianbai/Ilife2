@@ -18,6 +18,7 @@
 
 @property (nonatomic, copy) NSString *productCd;
 @property (nonatomic, strong) NSArray *accessoryInfoVOArray;
+@property (nonatomic, strong) NSArray *accessories;
 @property (nonatomic, copy) NSString *status;
 
 @property (nonatomic, strong) MSFSocialInsuranceModel *model;
