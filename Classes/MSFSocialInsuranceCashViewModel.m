@@ -630,14 +630,29 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 - (RACSignal *)submitSignal {
 	NSError *error = nil;
 	NSString *errorStr = @"";
+	if (self.cashpurpose.length == 0 ) {
+		errorStr = @"请选择贷款用途";
+		
+		error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+		return [RACSignal error:error];
+	}
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+}
+
+- (RACSignal *)saveSignal {
+	
+	NSError *error = nil;
+	NSString *errorStr = @"";
 	if (![self.productType isEqualToString:@"SI05"]) {
 		if (self.employeeOlderMonths.intValue > 600 ) {
+			self.employeeOlderMonths = @"12";
 			errorStr = @"职工养老保险实际缴费月数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 		if (self.employeeMedicalMonths.intValue > 600) {
+			self.employeeMedicalMonths = @"12";
 			errorStr = @"职工医疗保险实际缴费月数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
@@ -645,12 +660,14 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		}
 	} else {
 		if (self.residentOlderInsuranceYears.intValue > 50 ) {
+			self.residentOlderInsuranceYears = @"2";
 			errorStr = @"居民养老保险实际缴费年数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 		if (self.residentMedicalInsuranceYears.intValue > 50) {
+			self.residentMedicalInsuranceYears = @"2";
 			errorStr = @"居民医疗保险实际缴费年数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
@@ -658,18 +675,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		}
 	}
 	
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
-}
-
-- (RACSignal *)saveSignal {
-	NSError *error = nil;
-	NSString *errorStr = @"";
-	if (self.cashpurpose.length == 0 ) {
-			errorStr = @"请选择贷款用途";
-			
-			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-			return [RACSignal error:error];
-		}
 	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
 	
 }
