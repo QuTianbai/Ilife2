@@ -10,4 +10,36 @@
 
 @implementation MSFSocialInsuranceModel
 
++ (NSValueTransformer *)empEdwMonthsJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		return str;
+	}];
+}
+
++ (NSValueTransformer *)empMdcMonthsJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		return str;
+	}];
+}
+
++ (NSValueTransformer *)rsdtOldInsuYearsJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		return str;
+	}];
+}
+
++ (NSValueTransformer *)rsdtMdcInsuYearsJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		return str;
+	}];
+}
+
 @end
