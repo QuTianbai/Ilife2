@@ -17,6 +17,10 @@
 #import "MSFClient+MSFSocialInsurance.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFApplicationForms.h"
+#import "MSFFormsViewModel.h"
+
+static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialInsuranceCashViewModelErrorDomain";
 
 @interface MSFSocialInsuranceCashViewModel()
 
@@ -31,6 +35,7 @@
   }
 	_productID = productID;
 	_productCd = productID;
+	_productType = formsViewModel.model.socialStatus;//SI01学生    无业SI05
 	_formViewModel = formsViewModel;
 	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
@@ -516,6 +521,36 @@
 }
 
 - (RACSignal *)submitSignal {
+	NSError *error = nil;
+	NSString *errorStr = @"";
+	if (![self.productType isEqualToString:@"SI05"]) {
+		if (self.employeeOlderMonths.intValue > 600 ) {
+			errorStr = @"职工养老保险实际缴费月数:请输入600以内证书";
+			
+			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+			return [RACSignal error:error];
+		}
+		if (self.employeeMedicalMonths.intValue > 600) {
+			errorStr = @"职工医疗保险实际缴费月数:请输入600以内证书";
+			
+			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+			return [RACSignal error:error];
+		}
+	} else {
+		if (self.residentOlderInsuranceYears.intValue > 50 ) {
+			errorStr = @"居民养老保险实际缴费年数:请输入600以内证书";
+			
+			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+			return [RACSignal error:error];
+		}
+		if (self.residentMedicalInsuranceYears.intValue > 50) {
+			errorStr = @"居民医疗保险实际缴费年数:请输入600以内证书";
+			
+			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+			return [RACSignal error:error];
+		}
+	}
+	
 	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
 
