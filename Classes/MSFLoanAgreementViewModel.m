@@ -14,6 +14,7 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFClient+MSFSocialInsurance.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -32,27 +33,9 @@
 			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"0"];
 		}
 		if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-			//TODO: 提交社保贷协议数据
-			return [RACSignal empty];
+			return [self.applicationViewModel.services.httpClient confirmInsuranceSignal];
 		}
 		return RACSignal.empty;
-	}];
-	
-	return self;
-}
-
-- (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-	_product = formsViewModel;
-	_formsViewModel = formsViewModel;
-	_services = formsViewModel.services;
-	@weakify(self)
-	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self.formsViewModel submitSignalWithStatus:@"0"];
 	}];
 	
 	return self;
@@ -63,8 +46,7 @@
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	}
 	if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		//TODO: 加载社保贷协议HTML
-		return [RACSignal empty];
+		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.productID];
 	}
 	return [RACSignal empty];
 }

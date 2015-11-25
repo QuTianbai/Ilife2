@@ -25,7 +25,7 @@
 #import "MSFUser.h"
 #import "MSFClient.h"
 #import "MSFApplyCashVIewModel.h"
-
+#import "MSFSocialInsuranceCashViewModel.h"
 
 #import "MSFElementViewController.h"
 
@@ -74,22 +74,34 @@ UICollectionViewDelegateFlowLayout>
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
-			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.formsViewModel user:[self.viewModel.formsViewModel.services httpClient].user];
-			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
-			
-			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
-			[[KGModal sharedInstance] setShowCloseButton:NO];
-			[[KGModal sharedInstance] showWithContentViewController:alertViewController];
-			
-			[self.viewModel.executeUpdateCommand execute:nil];
-			
-			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
-				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+			if ([self.viewModel.applicationViewModel isKindOfClass:[MSFSocialInsuranceCashViewModel class]]) {
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setAccessoryInfoVOArray:x];
+					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setStatus:@"1"];
 					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
-			} completed:^{
-				[[KGModal sharedInstance] hideAnimated:YES];
-			}];
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
+				MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.applicationViewModel user:[self.viewModel.applicationViewModel.services httpClient].user];
+				MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+				
+				[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+				[[KGModal sharedInstance] setShowCloseButton:NO];
+				[[KGModal sharedInstance] showWithContentViewController:alertViewController];
+				
+				[self.viewModel.executeUpdateCommand execute:nil];
+				
+				[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+					[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+						[self.viewModel.executeSubmitCommand execute:nil];
+					}];
+				} completed:^{
+					[[KGModal sharedInstance] hideAnimated:YES];
+				}];
+			} else {
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					[self.viewModel.executeSubmitCommand execute:nil];
+				}];
+			}
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
@@ -98,7 +110,7 @@ UICollectionViewDelegateFlowLayout>
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
-			self.viewModel.formsViewModel.array = x;
+			self.viewModel.applicationViewModel.accessories = x;
 		}];
 	}];
 	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
@@ -168,6 +180,7 @@ UICollectionViewDelegateFlowLayout>
 	if (self.optional) {
 		return 1;
 	}
+	if (self.viewModel.optionalViewModels.count == 0) return 1;
 	return 2;
 }
 

@@ -11,6 +11,7 @@
 #import "MSFLoanListViewController.h"
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
+#import "UIColor+Utils.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSLoanListTableViewCell.h"
 
@@ -18,7 +19,7 @@
 #import "MSFCellButton.h"
 #import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#import "MSFHomePageCellModel.h"
+#import "MSFApplyListViewModel.h"
 #import "MSFPlanListSegmentBar.h"
 
 #define ORAGECOLOR @"ff6600"
@@ -46,8 +47,6 @@
 	self = [super init];
 	if (self) {
 		self.layer.masksToBounds = YES;
-		self.layer.borderWidth = 0.9;
-		self.layer.borderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.08].CGColor;
 		self.backgroundColor = UIColor.clearColor;
 		
 		UILabel *money  = [[UILabel alloc] init];
@@ -144,6 +143,15 @@
 	 */
 }
 
+- (void)drawRect:(CGRect)rect {
+	CGContextRef context = UIGraphicsGetCurrentContext();
+	CGContextMoveToPoint(context, 0, rect.size.height);
+	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
+	CGContextSetLineWidth(context, 1);
+	CGContextSetStrokeColorWithColor(context, UIColor.borderColor.CGColor);
+	CGContextStrokePath(context);
+}
+
 @end
 
 @interface MSFLoanListViewController() <UITableViewDataSource, UITableViewDelegate>
@@ -152,7 +160,7 @@
 @property (nonatomic, strong) MSFApplyListHeader *headView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, assign) int selectedIndex;
-@property (nonatomic, weak) MSFHomePageCellModel *viewModel;
+@property (nonatomic, strong) MSFApplyListViewModel *viewModel;
 
 @end
 
@@ -162,9 +170,10 @@
 		NSLog(@"MSFLoanListViewController `-dealloc`");
 }
 
-- (instancetype)initWithViewModel:(MSFHomePageCellModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFApplyListViewModel *)viewModel {
   self = [super init];
   if (self) {
+		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = viewModel;
 	}	
   return self;
@@ -180,16 +189,15 @@
 	[self loadData:0];
 }
 
-//TODO: 同步性
 - (void)loadData:(int)type {
 	RACSignal *signal = [self.viewModel fetchApplyListSignal:type];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
-		if ([x count] != 0) {
-			[self headView];
+		self.headView.hidden = [x count] == 0;
+		if (_selectedIndex == type) {
+			self.dataArray = x;
+			[self.dataTableView reloadData];
 		}
-		self.dataArray = x;
-		[self.dataTableView reloadData];
 	}];
 }
 

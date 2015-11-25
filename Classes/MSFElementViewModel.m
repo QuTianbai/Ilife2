@@ -11,7 +11,6 @@
 #import "MSFAttachment.h"
 #import "MSFClient+Attachment.h"
 #import "MSFAttachmentViewModel.h"
-#import "MSFApplyCashVIewModel.h"
 #import "MSFElement+Private.h"
 
 @interface MSFElementViewModel ()
@@ -140,19 +139,6 @@
 			return [error.domain isEqualToString:RACCommandErrorDomain] ? [RACSignal empty] : [RACSignal error:error];
 		}];
 	}] collect];
-}
-
-@end
-
-@implementation MSFElementViewModel (Deprecated)
-
-- (instancetype)initWithElement:(id)model viewModel:(MSFApplyCashVIewModel *)viewModel {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	
-  return self;
 }
 
 @end

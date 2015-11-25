@@ -101,11 +101,6 @@ typedef NS_ENUM(NSInteger, MSFProductType) {
 - (instancetype)initWithModel:(id)model
 										 services:(id<MSFViewModelServices>)services;
 
-//type: 0,社保带申请列表；1，麻辣贷申请列表
-- (RACSignal *)fetchApplyListSignal:(int)type;
-
-- (RACSignal *)fetchRepaymentSchedulesSignal;
-
 - (void)pushDetailViewController;
 
 @end

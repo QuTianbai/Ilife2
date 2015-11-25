@@ -14,6 +14,9 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFClient+ApplyList.h"
+#import "MSFApplyListViewModel.h"
+#import "MSFRepaymentViewModel.h"
+#import "MSFInventoryViewModel.h"
 
 @interface MSFHomePageCellModel ()
 
@@ -130,7 +133,7 @@
 	
 	return self;
 }
-
+/*
 - (RACSignal *)fetchApplyListSignal:(int)type {
 	if (type == 0) {
 		return [self.services.httpClient fetchMSApplyList];
@@ -142,10 +145,24 @@
 
 - (RACSignal *)fetchRepaymentSchedulesSignal {
 	return [self.services.httpClient fetchRepaymentSchedules];
-}
+}*/
 
 - (void)pushDetailViewController {
-	[self.services pushViewModel:self];
+	id viewModel = nil;
+	switch (self.jumpDes) {
+		case MSFHomePageDesApplyList:
+			viewModel = [[MSFApplyListViewModel alloc] initWithServices:self.services];
+			break;
+		case MSFHomePageDesRepayList:
+			viewModel = [[MSFRepaymentViewModel alloc] initWithServices:self.services];
+			break;
+		case MSFHomePageDesContract: {
+			viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.model.applyNo productID:self.model.produceType services:self.services];
+			break;
+		}
+		default:break;
+	}
+	[self.services pushViewModel:viewModel];
 }
 
 @end

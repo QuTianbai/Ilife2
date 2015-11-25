@@ -9,40 +9,15 @@
 
 #if DEBUG
 
-//NSString *const MSFServerDotComAPIEndpoint = @"http://api3.msxf.test";
-//NSString *const MSFServerDotComBaseWebURL = @"http://api3.msxf.test";
-//<<<<<<< HEAD
-
 NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
 NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
-
-////NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.com";
-////NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
-//=======
-//>>>>>>> 36d05086e207dbbfc64a95bfa23cb59452990a2b
-
-//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
-//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080";
-
-#elif UAT
-
-NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.louat";
-NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #elif TEST
 
 static NSString *URLString(void) {
 	NSString *url = [NSUserDefaults.standardUserDefaults stringForKey:@"test_url"];
-	return url ?: @"http://api3.msxf.test";
+	return url ?: @"http://api4.msxf.test";
 }
-
-NSString *const MSFServerDotComAPIEndpoint = @"http://api.msxf.lotest";
-NSString *const MSFServerDotComBaseWebURL = @"http://api.msxf.lotest";
-
-#elif TP
-
-NSString *const MSFServerDotComAPIEndpoint = @"https://i.msxf.tp";
-NSString *const MSFServerDotComBaseWebURL = @"https://i.msxf.tp";
 
 #else
 
@@ -89,27 +64,27 @@ NSString *const MSFServerAPIBaseWebPathComponent = @"api/app/V1";
 #pragma mark Properties
 
 - (NSURL *)APIEndpoint {
-	if (self.baseURL == nil) {
-		// This environment variable can be used to debug API requests by
-		// redirecting them to a different URL.
-		NSString *endpoint = NSProcessInfo.processInfo.environment[@"API_ENDPOINT"];
-		if (endpoint != nil) {
-		 return [NSURL URLWithString:endpoint];
-		}
-		
 #if TEST
 		return [[NSURL URLWithString:URLString()] URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
-#endif
+#else
+	if (self.baseURL == nil) {
+		NSString *endpoint = NSProcessInfo.processInfo.environment[@"API_ENDPOINT"];
+		if (endpoint != nil) return [NSURL URLWithString:endpoint];
 		return [[NSURL URLWithString:MSFServerDotComAPIEndpoint] URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
 	} else {
 		return [self.baseURL URLByAppendingPathComponent:MSFServerAPIEndpointPathComponent isDirectory:YES];
 	}
+#endif
 }
 
 - (NSURL *)baseWebURL {
+#if TEST
+	return [[NSURL URLWithString:URLString()] URLByAppendingPathComponent:MSFServerAPIBaseWebPathComponent];
+#else
 	NSString *endpoint = NSProcessInfo.processInfo.environment[@"BASE_WEBURL"];
 	if (endpoint.length > 0) return [NSURL URLWithString:endpoint];
 	return [[NSURL URLWithString:MSFServerDotComBaseWebURL] URLByAppendingPathComponent:MSFServerAPIBaseWebPathComponent];
+#endif
 }
 
 @end

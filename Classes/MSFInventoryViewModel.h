@@ -6,6 +6,7 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @class MSFFormsViewModel;
 @class RACCommand;
@@ -22,26 +23,15 @@
 @property (nonatomic, strong, readonly) NSArray *requiredViewModels;
 @property (nonatomic, strong, readonly) NSArray *optionalViewModels;
 
+@property (nonatomic, weak, readonly) id <MSFApplicationViewModel> applicationViewModel;
+
 @property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
-
-// 用于提交马上贷信息
-@property (nonatomic, weak, readonly) MSFApplyCashVIewModel *formsViewModel;
-
-// 用于提交社保信息
-@property (nonatomic, weak, readonly) MSFSocialInsuranceCashViewModel *insuranceViewModel;
-
-// 提交命令
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (RACSignal *)updateValidSignal;
 
-// 马上贷
-- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel;
-
-// 社保贷
-- (instancetype)initWithInsuranceViewModel:(MSFSocialInsuranceCashViewModel *)insuranceViewModel;
-
-// 从新提交附件信息
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel;
+// 重新提交附件信息
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 
 @end

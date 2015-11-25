@@ -29,9 +29,8 @@
 	return [[self enqueueRequest:request resultClass:MSFApplicationResponse.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchSubmitWithApplyVO:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status {
-	
-	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status {
+	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[dict mtl_dictionaryByAddingEntriesFromDictionary:@{@"appNo": @""}] options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	
 	NSData *arrayData = [NSJSONSerialization dataWithJSONObject:AccessoryInfoVO options:NSJSONWritingPrettyPrinted error:nil];
@@ -48,8 +47,11 @@
 
 - (RACSignal *)fetchGetSocialInsuranceInfo {
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/loadAppendInfo" parameters:nil];
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"socialInsurance" ofType:@"json"]]];
 	return [[self enqueueRequest:request resultClass:MSFSocialInsuranceModel.class] msf_parsedResults];
+}
+
+- (RACSignal *)confirmInsuranceSignal {
+	return [RACSignal return:[[MSFSubmitApplyModel alloc] initWithDictionary:@{@"appNo": @""} error:nil]];
 }
 
 @end

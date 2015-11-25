@@ -24,7 +24,6 @@
 
 @property (nonatomic, strong) RACCommand *executeUpdatePassword;
 
-@property (nonatomic, strong, readonly) RACSignal *contentUpdateSignal __deprecated;
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;
 @property (nonatomic, strong, readonly) MSFBankCardListViewModel *bankCardListViewModel;
 

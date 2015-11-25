@@ -24,12 +24,16 @@
 
 @implementation MSFSocialInsuranceCashViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
   self = [self initWithServices:services];
   if (!self) {
     return nil;
   }
+	_productID = productID;
+	_productCd = productID;
 	_formViewModel = formsViewModel;
+	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
+	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
   
   return self;
 }
@@ -512,7 +516,7 @@
 }
 
 - (RACSignal *)submitSignal {
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
 
 - (RACSignal *)saveSignal {
