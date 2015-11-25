@@ -52,7 +52,9 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_formViewModel = formsViewModel;
 	RAC(self, productType) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
 		self.productType = value;
-		[self commonInit];
+		//[self commonInit];
+		self.active = NO;
+		self.active = YES;
 		[self commonInitDefult];
 		return value;
 	}];
@@ -156,15 +158,18 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	RAC(self, model.rsdtMdcInsuStartDate) = RACObserve(self, residentMedicalInsuranceDate);
 	RAC(self, model.rsdtOldInsuYears) = RACObserve(self, residentOlderInsuranceYears);
 	RAC(self, model.rsdtMdcInsuYears) = RACObserve(self, residentMedicalInsuranceYears);
-	
-	[[self.services.httpClient fetchGetSocialInsuranceInfo] subscribeNext:^(id x) {
-		self.model = x;
-		[self commonInit];
-	} error:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	@weakify(self)
+	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[[self.services.httpClient fetchGetSocialInsuranceInfo] subscribeNext:^(id x) {
+			self.model = x;
+			[self commonInit];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 	}];
 	
-	@weakify(self)
+	
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executePurposeSignal:@"moneyUse" index:0];
@@ -628,6 +633,12 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (RACSignal *)submitSignal {
+	
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+}
+
+- (RACSignal *)saveSignal {
+	
 	NSError *error = nil;
 	NSString *errorStr = @"";
 	if (self.cashpurpose.length == 0 ) {
@@ -636,13 +647,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 		return [RACSignal error:error];
 	}
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
-}
-
-- (RACSignal *)saveSignal {
-	
-	NSError *error = nil;
-	NSString *errorStr = @"";
 	if (![self.productType isEqualToString:@"SI05"]) {
 		if (self.employeeOlderMonths.intValue > 600 ) {
 			self.employeeOlderMonths = @"12";
