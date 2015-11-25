@@ -49,11 +49,17 @@
 	self.title = @"还款计划";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.width.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
-	
+	[SVProgressHUD showWithStatus:@"正在加载..."];
 	RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal] map:^id(id value) {
+		
 		return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
 	}]
 	collect] replayLazily];
+	[signal subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+	} error:^(NSError *error) {
+		[SVProgressHUD dismiss];
+	}];
 	self.myTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	self.circulateRepayMentTableView.backgroundView = [self.circulateRepayMentTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	//self.circulateRepayMentTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
@@ -65,10 +71,15 @@
 		self.myTableView.hidden = NO;
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal] map:^id(id value) {
-			[SVProgressHUD dismiss];
+			
 			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
 		}]
 		collect] replayLazily];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		} error:^(NSError *error) {
+			[SVProgressHUD dismiss];
+		}];
 		self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.myTableView sourceSignal:signal selectionCommand:nil registerClass:MSFRepaymentTableViewCell.class];
 		self.bindingHelper.delegate = self;
 		[self updateIndicatorViewWithButton:self.leftBarButton];
@@ -81,10 +92,15 @@
 		self.circulateRepayMentTableView.hidden = NO;
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		RACSignal *signal = [[[[self.viewModel fetchCircleRepaymentSchrdulesSignal] map:^id(id value) {
-			[SVProgressHUD dismiss];
+			
 			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
 		}]
 		collect] replayLazily];
+		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		} error:^(NSError *error) {
+			[SVProgressHUD dismiss];
+		}];
 		self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.circulateRepayMentTableView sourceSignal:signal selectionCommand:nil registerClass:MSFCirculateRepaymentTableViewCell.class];
 		self.bindingHelper.delegate = self;
 		[self updateIndicatorViewWithButton:self.rightBarButton];
