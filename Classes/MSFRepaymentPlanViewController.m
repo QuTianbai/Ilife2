@@ -18,6 +18,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFRepaymentPlanViewController ()<UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UIButton *leftBarButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightBarButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leaderConstraint;
@@ -25,9 +26,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) IBOutlet UITableView *circulateRepayMentTableView;
-
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
-
 @property (nonatomic, strong) MSFRepaymentViewModel *viewModel;
 
 @end
@@ -45,16 +44,17 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	self.title = @"还款计划";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.width.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
 	[SVProgressHUD showWithStatus:@"正在加载..."];
-	RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal] map:^id(id value) {
-		
-		return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
-	}]
-	collect] replayLazily];
+	RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal]
+		map:^id(id value) {
+			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
+		}]
+		collect]
+		replayLazily];
 	[signal subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	} error:^(NSError *error) {
@@ -62,19 +62,20 @@
 	}];
 	self.myTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	self.circulateRepayMentTableView.backgroundView = [self.circulateRepayMentTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
-	//self.circulateRepayMentTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	self.circulateRepayMentTableView.hidden = YES;
 	
-	[[self.leftBarButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
+	@weakify(self)
+	[[self.leftBarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
 		self.circulateRepayMentTableView.hidden = YES;
 		self.myTableView.hidden = NO;
 		[SVProgressHUD showWithStatus:@"正在加载..."];
-		RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal] map:^id(id value) {
-			
-			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
-		}]
-		collect] replayLazily];
+		RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal]
+			map:^id(id value) {
+				return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
+			}]
+			collect]
+			replayLazily];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 		} error:^(NSError *error) {
@@ -85,14 +86,12 @@
 		[self updateIndicatorViewWithButton:self.leftBarButton];
 	}];
 	
-	[[self.rightBarButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		
+	[[self.rightBarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
 		self.myTableView.hidden = YES;
 		self.circulateRepayMentTableView.hidden = NO;
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		RACSignal *signal = [[[[self.viewModel fetchCircleRepaymentSchrdulesSignal] map:^id(id value) {
-			
 			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
 		}]
 		collect] replayLazily];
@@ -109,11 +108,6 @@
 	self.circulateRepayMentTableView.tableFooterView = UIView.new;
 	self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.myTableView sourceSignal:signal selectionCommand:nil registerClass:MSFRepaymentTableViewCell.class];
 	self.bindingHelper.delegate = self;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)updateIndicatorViewWithButton:(UIButton *)button {
