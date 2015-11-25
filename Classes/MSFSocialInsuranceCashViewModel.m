@@ -49,12 +49,20 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
   }
 	_productID = productID;
 	_productCd = productID;
-	_productType = formsViewModel.model.socialStatus;//SI01学生    无业SI05
 	_formViewModel = formsViewModel;
+	//_productType = formsViewModel.model.socialStatus;//SI01学生    无业SI05
+	RAC(self, productType) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
+		self.productType = value;
+		[self commonInit];
+		[self commonInitDefult];
+		return value;
+	}];
+	
+	
 	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
 	
-	[self commonInitDefult];
+	//[self commonInitDefult];
 	
   return self;
 }
