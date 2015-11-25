@@ -112,13 +112,7 @@ ABPersonViewControllerDelegate>
 				contact.openDetailAddress = YES;
 			}
 		} else {
-//			if (contact.isFamily) {
-//				contact.openDetailAddress = NO;
-//				contact.contactAddress = _fullAddress;
-//			} else {
-				contact.openDetailAddress = YES;
-//				contact.contactAddress = nil;
-//			}
+			contact.openDetailAddress = YES;
 		}
 	}
 }
@@ -205,14 +199,6 @@ ABPersonViewControllerDelegate>
 				return 5;
 			}
 		}
-//		
-//		NSInteger hasAddr = self.existAddr ? 0 : 1;
-//		MSFUserContact *contact = _tempContactList[section - 1];
-//		if (contact.openDetailAddress) {
-//			return 6 - hasAddr;
-//		} else {
-//			return 5 - hasAddr;
-//		}
 	}
 }
 
