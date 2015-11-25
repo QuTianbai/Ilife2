@@ -13,7 +13,7 @@
 	NSString *JSONString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/mendFile" parameters:@{
 		@"accessoryInfoVO": JSONString,
-		@"applyNO": applicationNo,
+		@"applyNo": applicationNo,
 	}];
 	return [self enqueueRequest:request resultClass:nil];
 }

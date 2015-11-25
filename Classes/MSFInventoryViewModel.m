@@ -96,8 +96,11 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		return [[[self.services.httpClient
+		return [[[[self.services.httpClient
 			fetchSupplementalElementsApplicationNo:self.applicaitonNo productID:self.productID]
+			catch:^RACSignal *(NSError *error) {
+				return RACSignal.empty;
+			}]
 			map:^id(id value) {
 				return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 			}]
