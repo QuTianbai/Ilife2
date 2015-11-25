@@ -143,12 +143,16 @@
 		return [self executeNextSignal];
 	}];
 	
-	_executeAllowCashCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeAllowMSCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executeAllow];
 	}];
 	
-	
+	_executeAllowMLCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeAllow];
+	}];
+
 	return self;
 }
 

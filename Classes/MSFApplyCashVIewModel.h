@@ -63,7 +63,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
 
 @property (nonatomic, strong) RACCommand *executeNextCommand;
-@property (nonatomic, strong) RACCommand *executeAllowCashCommand;
+@property (nonatomic, strong) RACCommand *executeAllowMSCommand;
+@property (nonatomic, strong) RACCommand *executeAllowMLCommand;
 
 //@property (nonatomic, copy) NSString *masterBankCardNO;
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
