@@ -635,7 +635,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	NSDateComponents *adcomps = [[NSDateComponents alloc] init];
  [adcomps setYear:-1];
  NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:[NSDate date] options:0];
-	return [NSDateFormatter msf_stringFromDate2:newdate];
+	return [NSDateFormatter msf_stringFromDate4:newdate];
 }
 
 - (RACSignal *)submitSignal {
