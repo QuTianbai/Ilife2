@@ -29,6 +29,9 @@
 
 @property (nonatomic, copy) NSString *produceType;//产品类型   循环贷/马上金融 1101:循环贷  4101：马上贷  4102：社保贷
 
+// 资料重传接口中返回的 productType @objczl
+@property (nonatomic, copy) NSString *productType;//产品类型   循环贷/马上金融 1101:循环贷  4101：马上贷  4102：社保贷
+
 @property (nonatomic, copy) NSString *applyNo;//申请单号
 
 /*

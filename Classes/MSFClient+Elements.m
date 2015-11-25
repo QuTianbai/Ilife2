@@ -32,7 +32,7 @@
 	NSParameterAssert(applicaitonNo);
 	NSParameterAssert(productID);
 	
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"append/getFile" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/getFile" parameters:@{
 		@"applyNo": applicaitonNo,
 		@"productId": productID,
 	}];
