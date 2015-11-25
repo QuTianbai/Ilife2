@@ -71,7 +71,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	
 	_model = [[MSFSocialInsuranceModel alloc] init];
 	
-	[self commonInitDefult];
 	
 	RAC(self, cashpurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		return value.text;
@@ -233,6 +232,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return [self submitSignal];
 	}];
 
+	[self commonInitDefult];
 	
 	return self;
 	
@@ -464,22 +464,22 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	self.employeeInsuranceStatus = employeeOlderExist.firstObject;
 	
 	NSArray *employeeOlderModey = [MSFSelectKeyValues getSelectKeys:@"employeeOlderInsurance"];
-	self.employeeInsuranceStatus = employeeOlderModey[2];
+	self.employeeOlderModey = employeeOlderModey[2];
 	
 	NSArray *employMedicalStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
-	self.employeeInsuranceStatus = employMedicalStatus.firstObject;
+	self.employMedicalStatus = employMedicalStatus.firstObject;
 	
 	NSArray *employeeMedicalMoney = [MSFSelectKeyValues getSelectKeys:@"employeeMedicalInsurance"];
-	self.employeeInsuranceStatus = employeeMedicalMoney[3];
+	self.employeeMedicalMoney = employeeMedicalMoney[3];
 	
 	NSArray *emplyoeeJuryStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
-	self.employeeInsuranceStatus = emplyoeeJuryStatus.firstObject;
+	self.emplyoeeJuryStatus = emplyoeeJuryStatus.firstObject;
 	
 	NSArray *employeeOutJobStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
-	self.employeeInsuranceStatus = employeeOutJobStatus.firstObject;
+	self.employeeOutJobStatus = employeeOutJobStatus.firstObject;
 	
 	NSArray *employeeBearStatus = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
-	self.employeeInsuranceStatus = employeeBearStatus.firstObject;
+	self.employeeBearStatus = employeeBearStatus.firstObject;
 	
 	self.employeeOlderDate = self.model.empEdwStartDate;
 	self.employeeOlderMonths = @"12";
@@ -555,6 +555,14 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (RACSignal *)saveSignal {
+	NSError *error = nil;
+	NSString *errorStr = @"";
+	if (self.cashpurpose.length == 0 ) {
+			errorStr = @"请选择贷款用途";
+			
+			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+			return [RACSignal error:error];
+		}
 	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
 	
 }
