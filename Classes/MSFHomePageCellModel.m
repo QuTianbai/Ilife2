@@ -10,7 +10,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCirculateCashModel.h"
 #import "NSDictionary+MSFKeyValue.h"
-#import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFClient+ApplyList.h"
@@ -93,15 +92,7 @@
 		}
 	}];
 	
-	RAC(self, applyTime) = [RACObserve(self, model.applyDate) map:^id(id value) {
-		NSDateFormatter *df = [[NSDateFormatter alloc] init];
-		[df setDateFormat:@"yyyyMMddHHmmss"];
-		NSDate *date = [df dateFromString:value];
-		if (date) {
-			return [NSDateFormatter msf_stringFromDate:date];
-		}
-		return nil;
-	}];
+	RAC(self, applyTime) = RACObserve(self, model.applyDate);
 	RAC(self, applyDate) = RACObserve(self, model.applyDate);
 	RAC(self, currentPeriodDate) = RACObserve(self, model.currentPeriodDate);
 	
@@ -133,19 +124,6 @@
 	
 	return self;
 }
-/*
-- (RACSignal *)fetchApplyListSignal:(int)type {
-	if (type == 0) {
-		return [self.services.httpClient fetchMSApplyList];
-	} else if (type == 1) {
-		return [self.services.httpClient fetchSpicyApplyList];
-	}
-	return nil;
-}
-
-- (RACSignal *)fetchRepaymentSchedulesSignal {
-	return [self.services.httpClient fetchRepaymentSchedules];
-}*/
 
 - (void)pushDetailViewController {
 	id viewModel = nil;

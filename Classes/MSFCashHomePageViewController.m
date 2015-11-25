@@ -12,18 +12,13 @@
 #import "MSFApplyCashVIewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCheckAllowApply.h"
-//#import "MSFCirculateCashViewModel.h"
-//#import "MSFCirculateCashTableViewController.h"
 #import "MSFProductViewController.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
 #import "AppDelegate.h"
 #import "MSFSetTradePasswordTableViewController.h"
-//#import "MSFBankCardListModel.h"
 #import "MSFDrawCashViewModel.h"
 #import "MSFDrawCashTableViewController.h"
-//#import "MSFGrayButton.h"
-//#import "MSFLoanLimitView.h"
 #import "MSFSocialCaskApplyTableViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 
@@ -37,9 +32,6 @@
 
 @property (nonatomic, strong) MSFCirculateCashViewModel *circulateViewModel;
 @property (nonatomic, strong) NSArray *dataArray;
-//@property (nonatomic, copy) NSString *usableLimit;
-//@property (nonatomic, copy) NSString *usedL;
-//@property (nonatomic, copy) NSString *usedMoneyCount;
 
 @end
 
@@ -62,7 +54,7 @@
 - (void)msAdView {
 	[self removeAllSubviews];
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
-		[self.viewModel.executeAllowCashCommand execute:nil];
+		[self.viewModel.executeAllowMSCommand execute:nil];
 	}];
 	[self.view addSubview:ms];
 	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -78,14 +70,11 @@
 - (void)sbAdView {
 	[self removeAllSubviews];
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS actionBlock:^{
-		[self.viewModel.executeAllowCashCommand execute:nil];
+		[self.viewModel.executeAllowMSCommand execute:nil];
 	}];
 	[self.view addSubview:ms];
 	MSFApplyView *ml = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeML actionBlock:^{
-		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel productID:@"4102" services:self.viewModel.services];
-		MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
-		userInfoVC.showNextStep = YES;
-		[self.navigationController pushViewController:userInfoVC animated:YES];
+		[self.viewModel.executeAllowMLCommand execute:nil];
 	}];
 	[self.view addSubview:ml];
 	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +101,7 @@
 	[self.view addSubview:limit];
 	
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeLimitMS actionBlock:^{
-		[self.viewModel.executeAllowCashCommand execute:nil];
+		[self.viewModel.executeAllowMSCommand execute:nil];
 	}];
 	[self.view addSubview:ms];
 	
@@ -158,7 +147,8 @@
 			}
 		}];
 	}];
-	[self.viewModel.executeAllowCashCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+	[self.viewModel.executeAllowMSCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
@@ -171,7 +161,25 @@
 			}
 		}];
 	}];
-	[self.viewModel.executeAllowCashCommand.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeAllowMSCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	[self.viewModel.executeAllowMLCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+		[signal subscribeNext:^(MSFCheckAllowApply *model) {
+			[SVProgressHUD dismiss];
+			if (model.processing == 1) {
+				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel productID:@"4102" services:self.viewModel.services];
+				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
+				userInfoVC.showNextStep = YES;
+				[self.navigationController pushViewController:userInfoVC animated:YES];
+			} else {
+				[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
+			}
+		}];
+	}];
+	[self.viewModel.executeAllowMLCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }
