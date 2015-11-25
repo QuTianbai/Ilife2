@@ -16,6 +16,7 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 #import "MSFSocialInsuranceModel.h"
+#import "MSFApplicationForms.h"
 
 @interface MSFSocialCaskApplyTableViewController ()
 
