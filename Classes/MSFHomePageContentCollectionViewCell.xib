@@ -123,6 +123,7 @@
                 <outlet property="infoLabel" destination="gVN-1q-TlX" id="qzh-Uf-9fo"/>
                 <outlet property="statusButton" destination="TTN-w7-ccN" id="Fmu-xn-beP"/>
                 <outlet property="titleLabel" destination="f0e-uZ-TFK" id="AUF-O0-GlC"/>
+                <outlet property="unitLabel" destination="k7y-dR-6kX" id="PqT-m5-yhB"/>
             </connections>
             <point key="canvasLocation" x="273.5" y="248"/>
         </collectionViewCell>

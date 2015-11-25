@@ -30,6 +30,7 @@
 
 @property (weak, nonatomic) IBOutlet UIView *content;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *unitLabel;
 @property (weak, nonatomic) IBOutlet UIButton *statusButton;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
@@ -92,7 +93,6 @@
 	//显示马上金融
 	[self placeholderShow:NO];
 	_titleLabel.text  = viewModel.title;
-	_amountLabel.text = viewModel.money;
 	[_statusButton setTitle:viewModel.statusString
 								 forState:UIControlStateNormal];
 	[self setInfoLabelString:viewModel];
@@ -110,20 +110,30 @@
 - (void)setInfoLabelString:(MSFHomePageCellModel *)model {
 	switch (model.dateDisplay) {
 		case MSFHomePageDateDisplayTypeApply:
+			_amountLabel.text = model.money;
+			_unitLabel.hidden = NO;
 			_infoLabel.text = [NSString stringWithFormat:@"%@   |   %@个月", model.applyTime, model.loanTerm];
 			break;
 		case MSFHomePageDateDisplayTypeRepay:
+			_amountLabel.text = model.money;
+			_unitLabel.hidden = NO;
 			_infoLabel.text = [NSString stringWithFormat:@"本期还款截止日期\n%@", model.currentPeriodDate];
 			break;
 		case MSFHomePageDateDisplayTypeOverDue:
+			_amountLabel.text = model.money;
+			_unitLabel.hidden = NO;
 			[_infoLabel setText:@"你的合同已逾期\n请及时联系客服还款：400-036-8876"
 						highLightText:@"已逾期"
 					 highLightColor:UIColor.tintColor];
 			break;
 		case MSFHomePageDateDisplayTypeProcessing:
+			_amountLabel.text = nil;
+			_unitLabel.hidden = YES;
 			_infoLabel.text = @"合同正在处理中";
 			break;
 		case MSFHomePageDateDisplayTypeNone:
+			_amountLabel.text = nil;
+			_unitLabel.hidden = YES;
 			_infoLabel.text = nil;
 			break;
 	}
