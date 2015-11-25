@@ -61,7 +61,7 @@
 		[SVProgressHUD dismiss];
 	}];
 	self.myTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
-	self.circulateRepayMentTableView.backgroundView = [self.circulateRepayMentTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
+	
 	self.circulateRepayMentTableView.hidden = YES;
 	
 	@weakify(self)
@@ -69,6 +69,8 @@
 		@strongify(self)
 		self.circulateRepayMentTableView.hidden = YES;
 		self.myTableView.hidden = NO;
+		self.myTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
+
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		RACSignal *signal = [[[[self.viewModel fetchRepaymentSchedulesSignal]
 			map:^id(id value) {
@@ -76,7 +78,10 @@
 			}]
 			collect]
 			replayLazily];
-		[signal subscribeNext:^(id x) {
+		[signal subscribeNext:^(NSArray *x) {
+			if (x.count != 0) {
+				self.myTableView.backgroundView.hidden = YES;
+			}
 			[SVProgressHUD dismiss];
 		} error:^(NSError *error) {
 			[SVProgressHUD dismiss];
@@ -90,12 +95,16 @@
 		@strongify(self)
 		self.myTableView.hidden = YES;
 		self.circulateRepayMentTableView.hidden = NO;
+		self.circulateRepayMentTableView.backgroundView = [self.circulateRepayMentTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		RACSignal *signal = [[[[self.viewModel fetchCircleRepaymentSchrdulesSignal] map:^id(id value) {
 			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
 		}]
 		collect] replayLazily];
-		[signal subscribeNext:^(id x) {
+		[signal subscribeNext:^(NSArray *x) {
+			if (x.count != 0) {
+				self.circulateRepayMentTableView.backgroundView.hidden = YES;
+			}
 			[SVProgressHUD dismiss];
 		} error:^(NSError *error) {
 			[SVProgressHUD dismiss];
