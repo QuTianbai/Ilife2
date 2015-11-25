@@ -107,7 +107,6 @@
 	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-//TODO: 资料重传
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
 		viewController = [[MSFPersonalViewController alloc] init];
 		[viewController bindViewModel:viewModel];
