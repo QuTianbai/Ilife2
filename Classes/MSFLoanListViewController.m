@@ -190,14 +190,17 @@
 }
 
 - (void)loadData:(int)type {
+	self.headView.hidden = YES;
+	self.dataArray = nil;
+	[self.dataTableView reloadData];
 	RACSignal *signal = [self.viewModel fetchApplyListSignal:type];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
-		self.headView.hidden = [x count] == 0;
 		if (_selectedIndex == type) {
 			self.dataArray = x;
 			[self.dataTableView reloadData];
 		}
+		self.headView.hidden = [x count] == 0;
 	}];
 }
 
@@ -243,6 +246,7 @@
 	}];
 	
 	_headView = [[MSFApplyListHeader alloc] init];
+	_headView.hidden = YES;
 	[self.view addSubview:_headView];
 	[_headView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.equalTo(self.view);

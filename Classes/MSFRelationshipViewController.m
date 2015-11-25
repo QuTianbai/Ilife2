@@ -266,9 +266,6 @@ ABPersonViewControllerDelegate>
 						cell.tfInput.text = nil;
 					}
 				}];
-				if ([self.viewModel.formsViewModel.model.maritalStatus isEqualToString:@"20"]) {
-					return cell;
-				}
 				@weakify(self)
 				[[[cell.selectionButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 					@strongify(self)

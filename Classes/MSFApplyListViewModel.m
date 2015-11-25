@@ -27,14 +27,7 @@
 }
 
 - (RACSignal *)fetchApplyListSignal:(int)type {
-	switch (type) {
-		case 0:
-			return [self.services.httpClient fetchMSApplyList];
-		case 1:
-			return [self.services.httpClient fetchSpicyApplyList];
-		default:
-			return [RACSignal return:nil];
-	}
+	return [self.services.httpClient fetchSpicyApplyList:type + 1];
 }
 
 @end
