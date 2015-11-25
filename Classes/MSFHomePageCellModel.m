@@ -93,15 +93,7 @@
 		}
 	}];
 	
-	RAC(self, applyTime) = [RACObserve(self, model.applyDate) map:^id(id value) {
-		NSDateFormatter *df = [[NSDateFormatter alloc] init];
-		[df setDateFormat:@"yyyyMMddHHmmss"];
-		NSDate *date = [df dateFromString:value];
-		if (date) {
-			return [NSDateFormatter msf_stringFromDate:date];
-		}
-		return nil;
-	}];
+	RAC(self, applyTime) = RACObserve(self, model.applyDate);
 	RAC(self, applyDate) = RACObserve(self, model.applyDate);
 	RAC(self, currentPeriodDate) = RACObserve(self, model.currentPeriodDate);
 	
