@@ -83,7 +83,9 @@ ABPersonViewControllerDelegate>
 	}
 	//遍历无家庭联系人时，添加一个空联系人到第一位置
 	if (_tempContactList.count == 0) {
-		[_tempContactList addObject:[[MSFUserContact alloc] init]];
+		MSFUserContact *contact = [[MSFUserContact alloc] init];
+		contact.contactAddress = _fullAddress;
+		[_tempContactList addObject:contact];
 	}
 	//遍历获取的联系人列表，将第一个普通联系人添加到第二位置
 	for (int i = 0; i < tempArray.count; i++) {
@@ -110,13 +112,13 @@ ABPersonViewControllerDelegate>
 				contact.openDetailAddress = YES;
 			}
 		} else {
-			if (contact.isFamily) {
-				contact.openDetailAddress = NO;
-				contact.contactAddress = _fullAddress;
-			} else {
+//			if (contact.isFamily) {
+//				contact.openDetailAddress = NO;
+//				contact.contactAddress = _fullAddress;
+//			} else {
 				contact.openDetailAddress = YES;
-				contact.contactAddress = nil;
-			}
+//				contact.contactAddress = nil;
+//			}
 		}
 	}
 }
@@ -193,13 +195,24 @@ ABPersonViewControllerDelegate>
 	} else if (section == _tempContactList.count + 1) {
 		return 1;
 	} else {
-		NSInteger hasAddr = self.existAddr ? 0 : 1;
-		MSFUserContact *contact = _tempContactList[section - 1];
-		if (contact.openDetailAddress) {
-			return 6 - hasAddr;
+		if (!self.existAddr) {
+			return 5;
 		} else {
-			return 5 - hasAddr;
+			MSFUserContact *contact = _tempContactList[section - 1];
+			if (contact.openDetailAddress) {
+				return 6;
+			} else {
+				return 5;
+			}
 		}
+//		
+//		NSInteger hasAddr = self.existAddr ? 0 : 1;
+//		MSFUserContact *contact = _tempContactList[section - 1];
+//		if (contact.openDetailAddress) {
+//			return 6 - hasAddr;
+//		} else {
+//			return 5 - hasAddr;
+//		}
 	}
 }
 

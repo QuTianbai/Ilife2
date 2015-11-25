@@ -12,6 +12,10 @@
 NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
 NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
 
+//NSString *const MSFServerDotComAPIEndpoint = @"http://10.16.18.36:8080";
+//NSString *const MSFServerDotComBaseWebURL = @"http://10.16.18.36:8080";
+
+
 #elif TEST
 
 static NSString *URLString(void) {
