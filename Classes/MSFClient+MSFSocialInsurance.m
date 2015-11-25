@@ -30,7 +30,7 @@
 }
 
 - (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status {
-	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[dict mtl_dictionaryByAddingEntriesFromDictionary:@{@"appNo": @""}] options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	
 	NSData *arrayData = [NSJSONSerialization dataWithJSONObject:AccessoryInfoVO options:NSJSONWritingPrettyPrinted error:nil];
@@ -47,15 +47,11 @@
 
 - (RACSignal *)fetchGetSocialInsuranceInfo {
 	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/loadAppendInfo" parameters:nil];
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"socialInsurance" ofType:@"json"]]];
 	return [[self enqueueRequest:request resultClass:MSFSocialInsuranceModel.class] msf_parsedResults];
 }
 
 - (RACSignal *)confirmInsuranceSignal {
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-		@"templateType": @"CASH_CONTRACT",
-	}];
-	return [[self enqueueRequest:request resultClass:MSFSubmitApplyModel.class] msf_parsedResults];
+	return [RACSignal return:[[MSFSubmitApplyModel alloc] initWithDictionary:@{@"appNo": @""} error:nil]];
 }
 
 @end

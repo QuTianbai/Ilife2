@@ -516,7 +516,7 @@
 }
 
 - (RACSignal *)submitSignal {
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
 
 - (RACSignal *)saveSignal {
