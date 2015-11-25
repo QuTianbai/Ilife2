@@ -17,33 +17,28 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFUser.h"
 
+static NSString *kSocialInsuranceLoanTemplate = @"4102";
+
 @interface MSFConfirmContactViewModel ()
 
 @property (nonatomic, strong) NSArray *contactsArray;
 @property (nonatomic, strong) MSFContactListModel *model;
-
-//@property (nonatomic, copy) NSString *appNO;
-
-@property (nonatomic, strong) MSFCirculateCashModel *circulateModel;
 
 @end
 
 @implementation MSFConfirmContactViewModel
 
 - (id)initWithServers:(id<MSFViewModelServices>)servers {
-	if (self = [super init]) {
-		
+	if (!(self = [super init])) {
+		return nil;
 	}
-	//_appNO = @"";
 	_servers = servers;
 	_laterConfirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeLaterConfirmContract];
 
 	}];
-	//_laterConfirmCommand.allowsConcurrentExecution = YES;
 	_confirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
-		//[self executeLaterConfirmContract];
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONSHOWBT" object:nil];
 		return [self executeConfirmContract];
 	}];
@@ -52,13 +47,11 @@
 		return [self executeSubmitConfirmContract:input];
 	}];
 
-
 	@weakify(self)
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMCONTRACT" object:nil] subscribeNext:^(id x) {
 		NSLog(@"接收确认合同通知");
 		@strongify(self)
 		[self.confirmCommand execute:nil];
-		//[[self executeConfirmContract] replayLast];
 	}];
 	
 	[self fetchContractist];
@@ -73,34 +66,14 @@
 - (void)fetchContractist {
 	@weakify(self)
 	[[self.servers.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
-		//self.infoModel = model;
 		@strongify(self)
 		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"I"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"I"])) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
 			self.circulateModel = model;
-			//self.appNO = model.contractNo;
 		}
-		
-		//			if ([model.contractStatus isEqualToString:@"A"]) {
-		//				self.model = model;
-		//				[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-		
 	} error:^(NSError *error) {
 		NSLog(@"%@", error.localizedDescription);
 	}];
-//	[[[self.servers.httpClient fetchContacts].collect replayLazily] subscribeNext:^(id x) {
-//		[SVProgressHUD dismiss];
-//		@strongify(self)
-//		self.contactsArray = x;
-//		for (MSFContactListModel *model in self.contactsArray) {
-//			if ([model.contractStatus isEqualToString:@"WN"]) {
-//			self.model = model;
-//			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-//			break;
-//			}
-//		}
-//	} error:^(NSError *error) {
-//	}];
 }
 
 - (RACSignal *)executeLaterConfirmContract {
@@ -125,7 +98,8 @@
 }
 
 - (RACSignal *)requestContactInfo:(NSString *)type {
-	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:type] flattenMap:^RACStream *(id value) {
+	NSString *product = [self.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate] ? self.circulateModel.productType : [self.servers.httpClient user].productId;
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:product AndtemplateType:type] flattenMap:^RACStream *(id value) {
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];

@@ -50,7 +50,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_productID = productID;
 	_productCd = productID;
 	_formViewModel = formsViewModel;
-	//_productType = formsViewModel.model.socialStatus;//SI01学生    无业SI05
 	RAC(self, productType) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
 		self.productType = value;
 		[self commonInit];
@@ -58,11 +57,8 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return value;
 	}];
 	
-	
 	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
-	
-	//[self commonInitDefult];
 	
   return self;
 }
@@ -72,7 +68,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	if (!self) {
 		return nil;
 	}
-		_services = services;
+	_services = services;
 	_cashpurpose = @"";
 	_employeeOldInsuranceStatusTitle = @"";
 	_employeeOlderModeyTitle = @"";
@@ -92,9 +88,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_productCd = @"";
 	_accessoryInfoVOArray = [[NSArray alloc] init];
 	
-	
 	_model = [[MSFSocialInsuranceModel alloc] init];
-	
 	
 	RAC(self, cashpurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		return value.text;
@@ -108,7 +102,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	RAC(self, employeeOldInsuranceStatusTitle) = [RACObserve(self, employeeInsuranceStatus) map:^id(id value) {
 		return [value text];
 	}];
-
 	
 	RAC(self, model.empEdwBase) = [RACObserve(self, employeeOlderModey) map:^id(MSFSelectKeyValues *value) {
 		self.employeeOlderModeyTitle = value.text;
@@ -145,10 +138,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		self.residentOlderInsuranceStatusTitle = value.text;
 		return value.code;
 	}];
-	
-//	RAC(self, residentOlderInsuranceStatusTitle) = [RACObserve(self, residentOlderInsuranceStatus) map:^id(id value) {
-//		return [value text];
-//	}];
 	
 	RAC(self, model.rsdtOldInsuLvl) = [RACObserve(self, residentOlderInsuranceMoney) map:^id(MSFSelectKeyValues *value) {
 		self.residentOlderInsuranceMoneyTitle = value.text;

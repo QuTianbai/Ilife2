@@ -57,12 +57,9 @@
 	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
 	
-	//RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
 	RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
-	
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
-	//RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
 	RAC(self, model.lifeInsuranceAmt) = [RACObserve(self, lifeInsuranceAmt) map:^id(NSString *value) {
@@ -96,37 +93,37 @@
 	}];
 
 	RAC(self, calculateModel) = [[RACSignal
-			combineLatest:@[
-				RACObserve(self, appLmt),
-				RACObserve(self, loanTerm),
-				RACObserve(self, jionLifeInsurance)
-				]]
-				flattenMap:^RACStream *(RACTuple *productAndInsurance) {
-					RACTupleUnpack(NSString *appLmt, NSString *loanTerm, NSString *jionLifeInsurance) = productAndInsurance;
-					if (!loanTerm) {
-						return [RACSignal return:@0];
-					}
-					return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:[self.services httpClient].user.productId AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
-						MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
-						return [RACSignal return:response];
-					}] map:^id(MSFCalculatemMonthRepayModel *model) {
-						if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
-							[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
-							self.loanFixedAmt = @"0.00";
-							self.lifeInsuranceAmt = @"0.00";
-							
-							[SVProgressHUD dismiss];
-							return nil;
-						}
-						[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
-						[SVProgressHUD dismiss];
-						[self performSelector:@selector(setSVPBackGround) withObject:self afterDelay:1];
+		combineLatest:@[
+			RACObserve(self, appLmt),
+			RACObserve(self, loanTerm),
+			RACObserve(self, jionLifeInsurance)
+		]]
+		flattenMap:^RACStream *(RACTuple *productAndInsurance) {
+			RACTupleUnpack(NSString *appLmt, NSString *loanTerm, NSString *jionLifeInsurance) = productAndInsurance;
+			if (!loanTerm) {
+				return [RACSignal return:@0];
+			}
+			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:[self.services httpClient].user.productId AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
+				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
+				return [RACSignal return:response];
+			}] map:^id(MSFCalculatemMonthRepayModel *model) {
+				if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
+					self.loanFixedAmt = @"0.00";
+					self.lifeInsuranceAmt = @"0.00";
+					
+					[SVProgressHUD dismiss];
+					return nil;
+				}
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
+				[SVProgressHUD dismiss];
+				[self performSelector:@selector(setSVPBackGround) withObject:self afterDelay:1];
 
-						self.loanFixedAmt = model.loanFixedAmt;
-						self.lifeInsuranceAmt = model.lifeInsuranceAmt;
-						return model;
-					}];
-				}];
+				self.loanFixedAmt = model.loanFixedAmt;
+				self.lifeInsuranceAmt = model.lifeInsuranceAmt;
+				return model;
+			}];
+		}];
 	
 	_executeLifeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
