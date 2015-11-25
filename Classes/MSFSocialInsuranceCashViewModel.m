@@ -525,26 +525,26 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	NSString *errorStr = @"";
 	if (![self.productType isEqualToString:@"SI05"]) {
 		if (self.employeeOlderMonths.intValue > 600 ) {
-			errorStr = @"职工养老保险实际缴费月数:请输入600以内证书";
+			errorStr = @"职工养老保险实际缴费月数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 		if (self.employeeMedicalMonths.intValue > 600) {
-			errorStr = @"职工医疗保险实际缴费月数:请输入600以内证书";
+			errorStr = @"职工医疗保险实际缴费月数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 	} else {
 		if (self.residentOlderInsuranceYears.intValue > 50 ) {
-			errorStr = @"居民养老保险实际缴费年数:请输入600以内证书";
+			errorStr = @"居民养老保险实际缴费年数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 		if (self.residentMedicalInsuranceYears.intValue > 50) {
-			errorStr = @"居民医疗保险实际缴费年数:请输入600以内证书";
+			errorStr = @"居民医疗保险实际缴费年数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];

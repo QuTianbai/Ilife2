@@ -82,12 +82,27 @@
 		RAC(self.medicalMonths, text) = residentMedicalInsuranceYears;
 		[self.medicalMonths.rac_textSignal subscribe:residentMedicalInsuranceYears];
 		
+		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingChanged]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.length > 2) {
+				 x.text = [x.text substringToIndex:2];
+			 }
+		 }];
+
+		
 		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
 		subscribeNext:^(UITextField *x) {
 			if (x.text.integerValue < 1) {
 				x.text = @"2";
 			}
 		}];
+		
+		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingChanged]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.length > 2) {
+				 x.text = [x.text substringToIndex:2];
+			 }
+		 }];
 		
 		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingDidEnd]
 		 subscribeNext:^(UITextField *x) {
@@ -116,10 +131,24 @@
 		RAC(self.medicalMonths, text) = employeeMedicalMonths;
 		[self.medicalMonths.rac_textSignal subscribe:employeeMedicalMonths];
 		
+		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingChanged]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.length > 3) {
+				 x.text = [x.text substringToIndex:3];
+			 }
+		 }];
+		
 		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
 		 subscribeNext:^(UITextField *x) {
 			 if (x.text.integerValue < 1) {
 				 x.text = @"12";
+			 }
+		 }];
+		
+		[[self.olderMonthsTF rac_signalForControlEvents:UIControlEventEditingChanged]
+		 subscribeNext:^(UITextField *x) {
+			 if (x.text.length > 3) {
+				 x.text = [x.text substringToIndex:3];
 			 }
 		 }];
 		

@@ -119,10 +119,6 @@ ABPersonViewControllerDelegate>
 
 #pragma mark - Lifecycle
 
-- (void)dealloc {
-	NSLog(@"MSFRelationshipViewController dealloc");
-}
-
 - (instancetype)init {
 	return [UIStoryboard storyboardWithName:@"relationship" bundle:nil].instantiateInitialViewController;
 }
@@ -427,7 +423,6 @@ ABPersonViewControllerDelegate>
 	}
 	
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-	NSLog(@"%@", fullName);
 	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
@@ -463,7 +458,6 @@ ABPersonViewControllerDelegate>
 	}
 	
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-	NSLog(@"%@", fullName);
 	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;

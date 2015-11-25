@@ -9,7 +9,6 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "RACSignal+MSFClientAdditions.h"
-#import "MSFUser.h"
 
 @implementation MSFClient (MSFCirculateCash)
 
