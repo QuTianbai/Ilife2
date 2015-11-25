@@ -13,17 +13,10 @@
 
 @implementation MSFClient (ApplyList)
 
-- (RACSignal *)fetchMSApplyList {
-//	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFApplyList" ofType:@"json"];
-//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/applyList" parameters:nil];
-	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
-}
-
-- (RACSignal *)fetchSpicyApplyList {
+- (RACSignal *)fetchSpicyApplyList:(NSInteger)type {
 //	NSString *path = [[NSBundle mainBundle] pathForResource:@"MSFSpicyApplyList" ofType:@"json"];
 //	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/applyList" parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/applyList" parameters:@{@"type" : [@(type) stringValue]}];
 	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
 }
 
