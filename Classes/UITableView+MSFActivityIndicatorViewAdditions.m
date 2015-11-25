@@ -22,13 +22,15 @@ static UIColor *backupColor;
 	
 	[activityIndicatorView startAnimating];
 	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.equalTo(view);
+		make.centerX.equalTo(view);
+		make.centerY.equalTo(view).offset(-40);
 	}];
 	
 	UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
 	[view addSubview:imgView];
 	[imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.equalTo(view);
+		make.centerX.equalTo(view);
+		make.centerY.equalTo(view).offset(-40);
 		make.size.mas_equalTo(CGSizeMake(69, 69));
 	}];
 	
