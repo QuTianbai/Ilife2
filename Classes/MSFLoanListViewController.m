@@ -259,7 +259,7 @@
 	_dataTableView.dataSource = self;
 	_dataTableView.delegate = self;
 	_dataTableView.tableFooterView = [UIView new];
-	_dataTableView.allowsSelection = YES;
+	_dataTableView.allowsSelection = NO;
 	[self.view addSubview:_dataTableView];
 	[_dataTableView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.left.equalTo(self.view);

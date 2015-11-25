@@ -66,7 +66,7 @@
 + (NSString *)msf_stringFromDate2:(NSDate *)date {
 	NSParameterAssert(date != nil);
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.dateFormat = @"yyyyMM";
+	formatter.dateFormat = @"yyyy-MM";
 	return [formatter stringFromDate:date];
 }
 
@@ -78,6 +78,13 @@
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 	formatter.dateFormat = @"yyyy";
 	
+	return [formatter stringFromDate:date];
+}
+
++ (NSString *)msf_stringFromDate4:(NSDate *)date {
+	NSParameterAssert(date != nil);
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.dateFormat = @"yyyyMM";
 	return [formatter stringFromDate:date];
 }
 

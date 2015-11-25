@@ -10,7 +10,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCirculateCashModel.h"
 #import "NSDictionary+MSFKeyValue.h"
-#import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFClient+ApplyList.h"
@@ -37,11 +36,11 @@
 	_model = model;
 	
 	[RACObserve(self, model.produceType) subscribeNext:^(id x) {
-		if ([x isEqualToString:@"MS"]) {
+		if ([x isEqualToString:@"1101"]) {
 			self.productType = MSFProductTypeMS;
-		} else if ([x isEqualToString:@"XH"]) {
+		} else if ([x isEqualToString:@"4101"]) {
 			self.productType = MSFProductTypeXH;
-		} else if ([x isEqualToString:@"ML"]) {
+		} else if ([x isEqualToString:@"4102"]) {
 			self.productType = MSFProductTypeML;
 		}
 	}];
@@ -80,7 +79,7 @@
 		} else {
 			self.jumpDes = MSFHomePageDesApplyList;
 		}
-		if ([@[@"G", @"H", @"I", @"J", @"K"] containsObject:x]) {
+		if ([@[@"G", @"H", @"J", @"K"] containsObject:x]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeApply;
 		} else if ([x isEqualToString:@"D"]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeRepay;
@@ -93,15 +92,7 @@
 		}
 	}];
 	
-	RAC(self, applyTime) = [RACObserve(self, model.applyDate) map:^id(id value) {
-		NSDateFormatter *df = [[NSDateFormatter alloc] init];
-		[df setDateFormat:@"yyyyMMddHHmmss"];
-		NSDate *date = [df dateFromString:value];
-		if (date) {
-			return [NSDateFormatter msf_stringFromDate:date];
-		}
-		return nil;
-	}];
+	RAC(self, applyTime) = RACObserve(self, model.applyDate);
 	RAC(self, applyDate) = RACObserve(self, model.applyDate);
 	RAC(self, currentPeriodDate) = RACObserve(self, model.currentPeriodDate);
 	
