@@ -44,7 +44,6 @@
 /**
  *	金额
  */
-//@property (nonatomic, strong) NSString *totalAmount;
 @property (nonatomic, copy) NSString *minMoney;
 @property (nonatomic, copy) NSString *maxMoney;
 
@@ -66,7 +65,6 @@
 @property (nonatomic, strong) RACCommand *executeAllowMSCommand;
 @property (nonatomic, strong) RACCommand *executeAllowMLCommand;
 
-//@property (nonatomic, copy) NSString *masterBankCardNO;
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;

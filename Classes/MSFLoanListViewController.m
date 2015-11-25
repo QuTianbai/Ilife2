@@ -100,47 +100,11 @@
 - (void)msApply {
 	_money.hidden = NO;
 	_months.hidden = NO;
-	/*
-	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.left.equalTo(self);
-	}];
-	[_months mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.left.equalTo(_time.mas_right);
-	}];
-	[_money mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.left.equalTo(_months.mas_right);
-	}];
-	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.left.equalTo(_money.mas_right);
-		make.right.equalTo(self);
-		make.width.equalTo(@[_time, _months, _money]);
-	}];
-	[self layoutIfNeeded];
-	*/
 }
 
 - (void)mlApply {
 	_money.hidden = YES;
 	_months.hidden = YES;
-	/*
-	[_money mas_makeConstraints:^(MASConstraintMaker *make) {}];
-	[_months mas_makeConstraints:^(MASConstraintMaker *make) {}];
-	[_time mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.left.equalTo(self);
-	}];
-	[_check mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerY.equalTo(self);
-		make.left.equalTo(_time.mas_right);
-		make.right.equalTo(self);
-		make.width.equalTo(_time);
-	}];
-	[self layoutIfNeeded];
-	 */
 }
 
 - (void)drawRect:(CGRect)rect {

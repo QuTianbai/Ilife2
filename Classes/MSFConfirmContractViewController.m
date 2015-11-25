@@ -11,6 +11,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFConfirmContractModel.h"
+#import "MSFCirculateCashModel.h"
+
+static NSString *kSocialInsuranceLoanTemplate = @"4102";
 
 @interface MSFConfirmContractViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *confirmContractWebView;
@@ -23,7 +26,6 @@
 @implementation MSFConfirmContractViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
-	//self = [super init];
 	self = [UIStoryboard storyboardWithName:@"ConfirmContract" bundle:nil].instantiateInitialViewController;
 	if (!self) {
 		return  nil;
@@ -31,7 +33,6 @@
 	
 	_viewModel = viewModel;
 	return self;
-	
 }
 
 - (void)viewDidLoad {
@@ -40,9 +41,14 @@
 	self.view.backgroundColor = [UIColor whiteColor];
 	self.confirmContractWebView.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-	RACSignal *signal = [self.viewModel requestContactInfo:@"INTRODUCTION"];
+	RACSignal *signal;
+	if ([self.viewModel.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate]) {
+		[self.button setTitle:@"确定" forState:UIControlStateNormal];
+		signal = [self.viewModel requestContactInfo:@"CASH_CONTRACT"];
+	} else {
+		signal = [self.viewModel requestContactInfo:@"INTRODUCTION"];
+	}
 	[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
-		//[SVProgressHUD dismiss];
 	}];
 	
 	@weakify(self)
@@ -50,13 +56,9 @@
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		[signal subscribeNext:^(MSFConfirmContractModel *model) {
-			//if ([model.errorCode isEqualToString:@"0"]) {
-				[SVProgressHUD showSuccessWithStatus:@"合同确认成功"];
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
-				[self.navigationController popViewControllerAnimated:YES];
-//			} else {
-//				[SVProgressHUD showErrorWithStatus:@"确认失败，请稍后重试"];
-//			}
+			[SVProgressHUD showSuccessWithStatus:@"合同确认成功"];
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATIONHIDDENBT" object:nil];
+			[self.navigationController popViewControllerAnimated:YES];
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
@@ -77,8 +79,14 @@
 	static int index = 0;
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		if ([self.viewModel.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate]) {
+			// 社保贷合同确认提交按钮
+			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			}];
+			return;
+		}
 		if (index == 2) {
-			//self.button.titleLabel.text = @"确定";
 			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
 				[self.navigationController popToRootViewControllerAnimated:YES];
 			}];
@@ -107,14 +115,9 @@
 	self.confirmContractWebView.scrollView.delegate = self;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-//	[SVProgressHUD showWithStatus:@"正在加载..."];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[SVProgressHUD dismiss];
 }
 
 #pragma mark - UIWebView Delegate method
