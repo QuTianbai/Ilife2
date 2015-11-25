@@ -47,6 +47,7 @@
 	[IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 	[[self.cancelBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
+		[IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 		[self.view removeFromSuperview];
 	}];
 	
@@ -73,6 +74,7 @@
 		if (textField.text.length == 6) {
 			[self.view removeFromSuperview];
 			if ([self.delegate respondsToSelector:@selector(getTradePassword:type:)]) {
+					[IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 				[self.delegate getTradePassword:textField.text.sha256 type:self.type];
 			}
 		}

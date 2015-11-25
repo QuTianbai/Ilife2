@@ -51,7 +51,7 @@
 	}
 	
 	_viewModel = viewModel;
-	self.professional = @"";
+	self.professional = viewModel.productType;
 	
 	return self;
 }
@@ -60,7 +60,7 @@
     [super viewDidLoad];
 	RAC(self, cashPuposeTF.text) = [RACObserve(self, viewModel.cashpurpose) ignore:nil];
 	
-	if ([self.professional isEqualToString:@""]) {//居民
+	if ([self.professional isEqualToString:@"SI05"]) {//居民
 		self.monthsOrYeasLB.text = @"缴费年数";
 		self.oldTypeLB.text = @"缴费档次";
 		self.medicalTypeLB.text = @"缴费档次";
@@ -197,7 +197,7 @@
 	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, labelHeight, 200, 22)];
-	if ([self.professional isEqualToString:@""]) {
+	if ([self.professional isEqualToString:@"SI05"]) {
 		sectionTitle = [sectionTitle stringByReplacingOccurrencesOfString:@"职工" withString:@"居民"];
 	}
 	titleLabel.text = sectionTitle;
@@ -229,7 +229,7 @@
 			switch (indexPath.row) {
 				case 0:
 				{
-					if ([self.professional isEqualToString:@""]) {
+					if ([self.professional isEqualToString:@"SI05"]) {
 					[self.viewModel.executeResidentOlderInsuranceStatusCommand execute:nil];
 					break;
 				}
@@ -237,7 +237,7 @@
 				}
 					break;
 				case 1:
-					if ([self.professional isEqualToString:@""]) {
+					if ([self.professional isEqualToString:@"SI05"]) {
 						[self.viewModel.executeResidentOlderInsuranceMoneyCommand execute:nil];
 						break;
 					}
@@ -255,14 +255,14 @@
 		case 2:
 			switch (indexPath.row) {
 				case 0:
-					if ([self.professional isEqualToString:@""]) {
+					if ([self.professional isEqualToString:@"SI05"]) {
 						[self.viewModel.executeResidentMedicalInsuranceStatusCommand execute:nil];
 						break;
 					}
 					[self.viewModel.executeEmployMedicalStatusCommand execute:nil];
 					break;
 				case 1:
-					if ([self.professional isEqualToString:@""]) {
+					if ([self.professional isEqualToString:@"SI05"]) {
 						[self.viewModel.executeResidentMedicalInsuranceMoneyCommand execute:nil];
 						break;
 					}
@@ -298,7 +298,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if ([self.professional isEqualToString:@""]) {
+	if ([self.professional isEqualToString:@"SI05"]) {
 		return 3;
 	}
 	return 4;

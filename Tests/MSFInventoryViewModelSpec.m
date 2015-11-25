@@ -14,8 +14,8 @@
 #import "MSFApplicationForms.h"
 #import "MSFResponse.h"
 #import "MSFAttachment.h"
-#import "MSFInsuranceViewModel.h"
 #import "MSFElement+Private.h"
+#import "MSFApplyCashVIewModel.h"
 
 QuickSpecBegin(MSFInventoryViewModelSpec)
 
@@ -23,7 +23,7 @@ __block MSFInventoryViewModel *viewModel;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
 __block MSFElement *mockRequiredElement;
-__block MSFInsuranceViewModel *insuranceViewModel;
+__block id <MSFApplicationViewModel> insuranceViewModel;
 
 beforeEach(^{
 	client = mock(MSFClient.class);
@@ -41,15 +41,15 @@ beforeEach(^{
 
 describe(@"re-upload attachments", ^{
 	beforeEach(^{
-		insuranceViewModel = mock([MSFInsuranceViewModel class]);
-		stubProperty(insuranceViewModel, services, services);
-		stubProperty(insuranceViewModel, applicaitonNo, @"");
-		stubProperty(insuranceViewModel, productId, @"");
+		insuranceViewModel = mock([MSFApplyCashVIewModel class]);
+		[given([insuranceViewModel services]) willReturn:services];
+		[given([insuranceViewModel applicationNo]) willReturn:@""];
+		[given([insuranceViewModel productID]) willReturn:@""];
 		
-		viewModel = [[MSFInventoryViewModel alloc] initWithInsuranceViewModel:insuranceViewModel];
+		viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:@"" productID:@"" services:services];
 		expect(viewModel).notTo(beNil());
 		
-		[given([client fetchElementsApplicationNo:@"" productID:@""]) willReturn:[RACSignal return:mockRequiredElement]];
+		[given([client fetchSupplementalElementsApplicationNo:@"" productID:@""]) willReturn:[RACSignal return:mockRequiredElement]];
 		viewModel.active = YES;
 	});
 	
