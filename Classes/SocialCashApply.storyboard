@@ -224,7 +224,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="IcG-io-J6P"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>
@@ -384,7 +384,7 @@
                                                         <constraint firstAttribute="height" constant="30" id="JWE-go-EHU"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>

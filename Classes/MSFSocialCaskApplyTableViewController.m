@@ -62,7 +62,7 @@
 	RAC(self, cashPuposeTF.text) = [RACObserve(self, viewModel.cashpurpose) ignore:nil];
 	
 	if ([self.professional isEqualToString:@"SI05"]) {//居民
-		self.monthsOrYeasLB.text = @"缴费年数";
+		self.oldMonthsOrYeasLB.text = @"缴费年数";
 		self.oldTypeLB.text = @"缴费档次";
 		self.medicalTypeLB.text = @"缴费档次";
 		self.monthsOrYeasLB.text = @"缴费年数";
@@ -242,6 +242,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[self.view endEditing:YES];
 	switch (indexPath.section) {
 		case 0:
 			switch (indexPath.row) {

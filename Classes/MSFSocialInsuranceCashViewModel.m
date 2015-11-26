@@ -52,7 +52,9 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_formViewModel = formsViewModel;
 	RAC(self, productType) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
 		self.productType = value;
-		[self commonInit];
+		//[self commonInit];
+		self.active = NO;
+		self.active = YES;
 		[self commonInitDefult];
 		return value;
 	}];
@@ -156,15 +158,18 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	RAC(self, model.rsdtMdcInsuStartDate) = RACObserve(self, residentMedicalInsuranceDate);
 	RAC(self, model.rsdtOldInsuYears) = RACObserve(self, residentOlderInsuranceYears);
 	RAC(self, model.rsdtMdcInsuYears) = RACObserve(self, residentMedicalInsuranceYears);
-	
-	[[self.services.httpClient fetchGetSocialInsuranceInfo] subscribeNext:^(id x) {
-		self.model = x;
-		[self commonInit];
-	} error:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	@weakify(self)
+	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[[self.services.httpClient fetchGetSocialInsuranceInfo] subscribeNext:^(id x) {
+			self.model = x;
+			[self commonInit];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 	}];
 	
-	@weakify(self)
+	
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executePurposeSignal:@"moneyUse" index:0];
@@ -314,7 +319,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
 		[comps setYear:0];
 		NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-		[comps setYear:-5];
+		[comps setYear:-50];
 		NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
 		[ActionSheetDatePicker
 		 showPickerWithTitle:@""
@@ -325,16 +330,16 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
 			 switch (index) {
 				 case 0:
-					 self.employeeOlderDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 self.employeeOlderDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
 					 break;
 				 case 1:
-					 self.employeeMedicalDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 self.employeeMedicalDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
 					 break;
 				 case 2:
-					 self.residentOlderInsuranceDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 self.residentOlderInsuranceDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
 					 break;
 				 case 3:
-					 self.residentMedicalInsuranceDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+					 self.residentMedicalInsuranceDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
 					 break;
 				 default:
 					 break;
@@ -628,16 +633,30 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (RACSignal *)submitSignal {
+	
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+}
+
+- (RACSignal *)saveSignal {
+	
 	NSError *error = nil;
 	NSString *errorStr = @"";
+	if (self.cashpurpose.length == 0 ) {
+		errorStr = @"请选择贷款用途";
+		
+		error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
+		return [RACSignal error:error];
+	}
 	if (![self.productType isEqualToString:@"SI05"]) {
 		if (self.employeeOlderMonths.intValue > 600 ) {
+			self.employeeOlderMonths = @"12";
 			errorStr = @"职工养老保险实际缴费月数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 		if (self.employeeMedicalMonths.intValue > 600) {
+			self.employeeMedicalMonths = @"12";
 			errorStr = @"职工医疗保险实际缴费月数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
@@ -645,12 +664,14 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		}
 	} else {
 		if (self.residentOlderInsuranceYears.intValue > 50 ) {
+			self.residentOlderInsuranceYears = @"2";
 			errorStr = @"居民养老保险实际缴费年数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 		if (self.residentMedicalInsuranceYears.intValue > 50) {
+			self.residentMedicalInsuranceYears = @"2";
 			errorStr = @"居民医疗保险实际缴费年数:请输入600以内整书";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
@@ -658,18 +679,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		}
 	}
 	
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
-}
-
-- (RACSignal *)saveSignal {
-	NSError *error = nil;
-	NSString *errorStr = @"";
-	if (self.cashpurpose.length == 0 ) {
-			errorStr = @"请选择贷款用途";
-			
-			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-			return [RACSignal error:error];
-		}
 	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
 	
 }
