@@ -57,9 +57,6 @@
 		if (x.integerValue == 1) {
 			[NSUserDefaults.standardUserDefaults setObject:[[NSUserDefaults.standardUserDefaults objectForKey:@"test_urls"] objectAtIndex:indexPath.row] forKey:@"test_url"];
 			[NSUserDefaults.standardUserDefaults synchronize];
-			//NSMutableArray *array = [NSMutableArray array];
-//			id y;
-//			[array addObject:y];
 		}
 	}];
 	[alertView show];

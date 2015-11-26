@@ -13,7 +13,8 @@
 
 + (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.map.baidu.com/geocoder/v2/?ak=sTLArkR5mCiQrGcflln8li7c&location=%f,%f&output=json&pois=1", latitude, longitude]];
+		NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:
+				@"http://api.map.baidu.com/geocoder/v2/?ak=sTLArkR5mCiQrGcflln8li7c&location=%f,%f&output=json&pois=1", latitude, longitude]];
 		[[NSURLConnection rac_sendAsynchronousRequest:[NSURLRequest requestWithURL:URL]] subscribeNext:^(id x) {
 			RACTupleUnpack(NSHTTPURLResponse *response, NSData *data) = x;
 			if (response.statusCode != 200) {
@@ -26,9 +27,10 @@
 			}
 		}];
 	
-		return nil;
+		return [RACDisposable disposableWithBlock:^{
+			
+		}];
 	}];
-	return nil;
 }
 
 @end
