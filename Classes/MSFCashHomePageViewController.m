@@ -144,6 +144,8 @@
 					self.circulateViewModel.active = YES;
 					break;
 			}
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[@"message"]];
 		}];
 	}];
 	[self.viewModel.executeAllowMSCommand.executionSignals subscribeNext:^(RACSignal *signal) {
