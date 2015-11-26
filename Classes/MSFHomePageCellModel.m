@@ -124,7 +124,7 @@
 	id viewModel = nil;
 	switch (self.jumpDes) {
 		case MSFHomePageDesApplyList:
-			viewModel = [[MSFApplyListViewModel alloc] initWithServices:self.services];
+			viewModel = [[MSFApplyListViewModel alloc] initWithProductType:self.productType services:self.services];
 			break;
 		case MSFHomePageDesRepayList:
 			viewModel = [[MSFRepaymentViewModel alloc] initWithServices:self.services];
