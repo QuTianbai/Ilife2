@@ -61,7 +61,7 @@
     [super viewDidLoad];
 	RAC(self, cashPuposeTF.text) = [RACObserve(self, viewModel.cashpurpose) ignore:nil];
 	
-	if ([self.professional isEqualToString:@"SI05"]) {//居民
+	if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {//居民
 		self.oldMonthsOrYeasLB.text = @"缴费年数";
 		self.oldTypeLB.text = @"缴费档次";
 		self.medicalTypeLB.text = @"缴费档次";
@@ -227,7 +227,7 @@
 	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
 	
 	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, labelHeight, 200, 22)];
-	if ([self.professional isEqualToString:@"SI05"]) {
+	if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
 		sectionTitle = [sectionTitle stringByReplacingOccurrencesOfString:@"职工" withString:@"居民"];
 	}
 	titleLabel.text = sectionTitle;
@@ -260,7 +260,7 @@
 			switch (indexPath.row) {
 				case 0:
 				{
-					if ([self.professional isEqualToString:@"SI05"]) {
+					if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
 					[self.viewModel.executeResidentOlderInsuranceStatusCommand execute:nil];
 					break;
 				}
@@ -268,7 +268,7 @@
 				}
 					break;
 				case 1:
-					if ([self.professional isEqualToString:@"SI05"]) {
+					if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
 						[self.viewModel.executeResidentOlderInsuranceMoneyCommand execute:nil];
 						break;
 					}
@@ -286,14 +286,14 @@
 		case 2:
 			switch (indexPath.row) {
 				case 0:
-					if ([self.professional isEqualToString:@"SI05"]) {
+					if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
 						[self.viewModel.executeResidentMedicalInsuranceStatusCommand execute:nil];
 						break;
 					}
 					[self.viewModel.executeEmployMedicalStatusCommand execute:nil];
 					break;
 				case 1:
-					if ([self.professional isEqualToString:@"SI05"]) {
+					if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
 						[self.viewModel.executeResidentMedicalInsuranceMoneyCommand execute:nil];
 						break;
 					}
@@ -329,7 +329,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if ([self.professional isEqualToString:@"SI05"]) {
+	if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
 		return 3;
 	}
 	return 4;
