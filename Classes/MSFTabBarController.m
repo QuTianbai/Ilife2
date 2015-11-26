@@ -35,6 +35,7 @@
 #import "MSFMarkets.h"
 #import "MSFCashHomePageViewController.h"
 #import "MSFProductListModel.h"
+#import "MSFCashHomePageViewModel.h"
 
 @interface MSFTabBarController () 
 
@@ -79,10 +80,12 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"首页" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
-	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
+//	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
 	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 	self.circulateViewModel = circulateViewModel;
-	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
+	
+	MSFCashHomePageViewModel *cashHomePageViewModel = [[MSFCashHomePageViewModel alloc] initWithFormViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
+	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashHomePageViewModel];
 	cashViewController.title = @"马上";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	

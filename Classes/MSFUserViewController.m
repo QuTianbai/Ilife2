@@ -144,7 +144,7 @@
 
 - (void)userInfo {
 	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
-	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel];
+	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel productType:@""];
 	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
 }
