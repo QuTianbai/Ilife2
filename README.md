@@ -58,3 +58,21 @@ password: appserver111111
 ## 发布状态
 
 - Appstore 1.0(2.0.0.28) waiting for review
+
+## 服务器分支说明
+
+* **master** 做最新合并分支,提交代码前先拉取服务器上master合并到`你的本地开发分支`上，解决因此产生的冲突，然后把`你的本地开发分支`提交到对应的服务器`你的服务器开发分支`上.
+* **intergrade-1.2.0** 马上贷1.2.0版本，马上贷最后一个升级维护代码.
+* **xcode7-1.1.0** 马上贷1.1.0兼容Xcode7分支.
+* **xbmDev** 胥佰淼开发分支.
+* **zhaoyong** 赵勇开发分支.
+
+## 开发环境说明
+
+开发环境切换的时候不用修改MSFServer.m文件
+
+1. API_ENDPOINT 请求的API地址
+2. INPUT_AUTO_DEBUG 请求的时候自动填写帐号/密码
+3. LOG_API_RESPONSES 设置运行的时候输出网络调用日志
+
+![](Resources/environment.png)

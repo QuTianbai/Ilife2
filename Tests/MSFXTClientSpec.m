@@ -178,7 +178,7 @@ it(@"should fetch accord to nper lists", ^{
   stubResponse(@"/loans/500/installments",@"accordtonperlist.json");
   
   MSFApplyList *al = mock([MSFApplyList class]);
-  stubProperty(al, total_amount, @"500");
+  //stubProperty(al, total_amount, @"500");
   // when
   RACSignal *request = [client fetchAccordToNperLists:al];
   MSFAccordToNperLists *accordToNperLists = [request asynchronousFirstOrDefault:nil success:nil error:nil];

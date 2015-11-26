@@ -22,13 +22,12 @@ beforeEach(^{
 	product = mock([MSFApplyCashVIewModel class]);
 	stubProperty(product, services, services);
 	
-	viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:product];
+	viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:product];
 });
 
 it(@"should initialize", ^{
   // then
 	expect(viewModel).notTo(beNil());
-	expect(viewModel.product).to(equal(product));
 	expect(viewModel.services).to(equal(services));
 });
 

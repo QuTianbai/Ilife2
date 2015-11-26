@@ -31,6 +31,7 @@
 #import "MSFRelationSelectionCell.h"
 #import "MSFRelationPhoneCell.h"
 #import "MSFRelationAddCell.h"
+#import "MSFRelationMarriageCell.h"
 
 @interface MSFRelationshipViewController ()
 <ABPeoplePickerNavigationControllerDelegate,
@@ -82,7 +83,9 @@ ABPersonViewControllerDelegate>
 	}
 	//遍历无家庭联系人时，添加一个空联系人到第一位置
 	if (_tempContactList.count == 0) {
-		[_tempContactList addObject:[[MSFUserContact alloc] init]];
+		MSFUserContact *contact = [[MSFUserContact alloc] init];
+		contact.contactAddress = _fullAddress;
+		[_tempContactList addObject:contact];
 	}
 	//遍历获取的联系人列表，将第一个普通联系人添加到第二位置
 	for (int i = 0; i < tempArray.count; i++) {
@@ -109,22 +112,12 @@ ABPersonViewControllerDelegate>
 				contact.openDetailAddress = YES;
 			}
 		} else {
-			if (contact.isFamily) {
-				contact.openDetailAddress = NO;
-				contact.contactAddress = _fullAddress;
-			} else {
-				contact.openDetailAddress = YES;
-				contact.contactAddress = nil;
-			}
+			contact.openDetailAddress = YES;
 		}
 	}
 }
 
 #pragma mark - Lifecycle
-
-- (void)dealloc {
-	NSLog(@"MSFRelationshipViewController dealloc");
-}
 
 - (instancetype)init {
 	return [UIStoryboard storyboardWithName:@"relationship" bundle:nil].instantiateInitialViewController;
@@ -180,22 +173,27 @@ ABPersonViewControllerDelegate>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (_tempContactList.count >= 5) {
-		return 5;
+		return 6;
 	} else {
-		return _tempContactList.count + 1;
+		return _tempContactList.count + 2;
 	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == _tempContactList.count) {
+	if (section == 0) {
+		return 1;
+	} else if (section == _tempContactList.count + 1) {
 		return 1;
 	} else {
-		NSInteger hasAddr = self.existAddr ? 0 : 1;
-		MSFUserContact *contact = _tempContactList[section];
-		if (contact.openDetailAddress) {
-			return 6 - hasAddr;
+		if (!self.existAddr) {
+			return 5;
 		} else {
-			return 5 - hasAddr;
+			MSFUserContact *contact = _tempContactList[section - 1];
+			if (contact.openDetailAddress) {
+				return 6;
+			} else {
+				return 5;
+			}
 		}
 	}
 }
@@ -213,16 +211,21 @@ ABPersonViewControllerDelegate>
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == _tempContactList.count) {
+	if (indexPath.section == 0) {
+		MSFRelationMarriageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationMarriageCell"];
+		cell.marriage = self.viewModel.formsViewModel.model.marriageTitle;
+		return cell;
+	}
+	if (indexPath.section == _tempContactList.count + 1) {
 		MSFRelationAddCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationAddCell"];
 		return cell;
 	}
-	MSFUserContact *contact = self.tempContactList[indexPath.section];
+	MSFUserContact *contact = self.tempContactList[indexPath.section - 1];
 	switch (indexPath.row) {
 		case 0: {
 			MSFRelationHeadCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationHeadCell"];
-			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld", (long)indexPath.section + 1];
-			cell.deleteButton.hidden = indexPath.section < 2;
+			cell.titleLabel.text = [NSString stringWithFormat:@"联系人%ld", (long)indexPath.section];
+			cell.deleteButton.hidden = indexPath.section < 3;
 			@weakify(self)
 			[[[cell.deleteButton
 				 rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -244,41 +247,46 @@ ABPersonViewControllerDelegate>
 		}
 		case 1: {
 			MSFRelationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSelectionCell"];
-			NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
-			[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-				if ([obj.code isEqualToString:contact.contactRelation]) {
-					cell.tfInput.text = obj.text;
-					*stop = YES;
-				}
-				if (*stop == NO) {
-					cell.tfInput.text = nil;
-				}
-			}];
-			@weakify(self)
-			[[[cell.selectionButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
-				@strongify(self)
-				NSString *familyKey = @"familyMember_type";
-				if (indexPath.section == 0) {
-					familyKey = @"familyMember_type1";
-				} else if (indexPath.section == 1) {
-					familyKey = @"familyMember_type2";
-				}
-				MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:familyKey]];
-				[self.viewModel.services pushViewModel:viewModel];
-				[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
-					cell.tfInput.text = x.text;
-					contact.contactRelation = x.code;
-					if (contact.isFamily) {
-						contact.openDetailAddress = NO;
-						contact.contactAddress = _fullAddress;
-					} else {
-						contact.openDetailAddress = YES;
-						contact.contactAddress = nil;
+			if ([self.viewModel.formsViewModel.model.maritalStatus isEqualToString:@"20"] && indexPath.section == 1) {
+				cell.tfInput.text = @"配偶";
+				contact.contactRelation = @"RF01";
+			} else {
+				NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"familyMember_type"];
+				[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+					if ([obj.code isEqualToString:contact.contactRelation]) {
+						cell.tfInput.text = obj.text;
+						*stop = YES;
 					}
-					[tableView reloadData];
-					[self.viewModel.services popViewModel];
+					if (*stop == NO) {
+						cell.tfInput.text = nil;
+					}
 				}];
-			}];
+				@weakify(self)
+				[[[cell.selectionButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+					@strongify(self)
+					NSString *familyKey = @"familyMember_type";
+					if (indexPath.section == 1) {
+						familyKey = @"familyMember_type1";
+					} else if (indexPath.section == 2) {
+						familyKey = @"familyMember_type2";
+					}
+					MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:familyKey]];
+					[self.viewModel.services pushViewModel:viewModel];
+					[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
+						cell.tfInput.text = x.text;
+						contact.contactRelation = x.code;
+						if (contact.isFamily) {
+							contact.openDetailAddress = NO;
+							contact.contactAddress = _fullAddress;
+						} else {
+							contact.openDetailAddress = YES;
+							contact.contactAddress = nil;
+						}
+						[tableView reloadData];
+						[self.viewModel.services popViewModel];
+					}];
+				}];
+			}
 			return cell;
 		}
 		case 2: {
@@ -364,7 +372,14 @@ ABPersonViewControllerDelegate>
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == _tempContactList.count) {
+	if (indexPath.section == 0) {
+		[[self.viewModel.executeMarriageCommand execute:nil]
+		 subscribeNext:^(id x) {
+			MSFUserContact *contact = _tempContactList[0];
+			contact.contactRelation = nil;
+			[tableView reloadData];
+		}];
+	} else if (indexPath.section == _tempContactList.count + 1) {
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
 		contact.contactAddress = _fullAddress;
 		contact.openDetailAddress = NO;
@@ -408,7 +423,6 @@ ABPersonViewControllerDelegate>
 	}
 	
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-	NSLog(@"%@", fullName);
 	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
@@ -444,7 +458,6 @@ ABPersonViewControllerDelegate>
 	}
 	
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-	NSLog(@"%@", fullName);
 	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;

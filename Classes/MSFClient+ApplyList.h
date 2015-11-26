@@ -12,7 +12,7 @@
 
 @interface MSFClient (ApplyList)
 
-- (RACSignal *)fetchApplyList;
+- (RACSignal *)fetchSpicyApplyList:(NSInteger)type;
 - (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
 
 @end

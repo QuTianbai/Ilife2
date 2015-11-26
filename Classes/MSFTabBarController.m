@@ -34,6 +34,7 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFMarkets.h"
 #import "MSFCashHomePageViewController.h"
+#import "MSFProductListModel.h"
 
 @interface MSFTabBarController () 
 
@@ -79,14 +80,16 @@
 	homepage.tabBarItem = [self itemWithNormal:@"首页" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
 	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
+	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
+	self.circulateViewModel = circulateViewModel;
 	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashViewModel];
 	cashViewController.title = @"马上";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	
 	if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
-		MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
-		self.circulateViewModel = viewModel;
-		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:viewModel];
+		//MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
+		//self.circulateViewModel = viewModel;
+		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:self.circulateViewModel];
 		circulateViewController.title = @"马上";
 		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
 	}
@@ -121,20 +124,6 @@
 		case 2:tabName = @"我的账户";break;
 	}
 	[MobClick event:MSF_Umeng_Statistics_TaskId_Tabs attributes:@{@"tabName":tabName, @"tabIndex":selectedIndex}];
-}
-
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-  if ([tabBarController.viewControllers indexOfObject:viewController] == 1) {
-		if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
-			self.circulateViewModel.active = NO;
-			self.circulateViewModel.active = YES;
-		} else {
-			self.viewModel.formsViewModel.active = NO;
-			self.viewModel.formsViewModel.active = YES;
-		}
-  }
-
-  return YES;
 }
 
 @end

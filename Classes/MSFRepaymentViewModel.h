@@ -11,6 +11,8 @@
 
 @interface MSFRepaymentViewModel : RVMViewModel
 
+@property (nonatomic, assign) id<MSFViewModelServices> services;
+
 //表示是否具有还款信息
 @property (nonatomic, assign, readonly) BOOL repaymentStatus;
 
@@ -27,8 +29,14 @@
 @property (nonatomic, strong, readonly) NSString *repaidAmount;
 
 
-- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
+//- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
 
-- (void)pushRepaymentPlan;
+//- (void)pushRepaymentPlan;
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+
+- (RACSignal *)fetchRepaymentSchedulesSignal;
+
+- (RACSignal *)fetchCircleRepaymentSchrdulesSignal;
 
 @end

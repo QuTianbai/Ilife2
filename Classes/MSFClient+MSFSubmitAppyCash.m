@@ -26,9 +26,6 @@
 	
 	[dict removeObjectForKey:@"server"];
 	[dict removeObjectForKey:@"objectID"];
-//	NSString *loanTerm = [dict objectForKey:@"loanTerm"];
-//	[dict removeObjectForKey:@"loanTerm"];
-//	[dict setObject:loanTerm forKey:@"longTerm"];
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	

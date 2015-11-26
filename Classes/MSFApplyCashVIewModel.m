@@ -27,6 +27,9 @@
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFUser.h"
+#import "MSFClient+MSFProductType.h"
+#import "MSFClient+MSFCirculateCash.h"
+#import "MSFCirculateCashModel.h"
 
 @interface MSFApplyCashVIewModel ()
 
@@ -48,14 +51,15 @@
 	_model.productCd = [self.services httpClient].user.productId;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
+	_applicationNo = @"";
 	_array = [[NSArray alloc] init];
-
-	//RAC(self, masterBankCardNO) = RACObserve(self, formViewModel.masterBankCardNO);
-	RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
 	
+	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
+	RACChannelTo(self, accessories) = RACChannelTo(self, array);
+	
+	RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
-	//RAC(self, model.applyStatus) = RACObserve(self, applyStatus);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
 	RAC(self, model.lifeInsuranceAmt) = [RACObserve(self, lifeInsuranceAmt) map:^id(NSString *value) {
@@ -89,37 +93,37 @@
 	}];
 
 	RAC(self, calculateModel) = [[RACSignal
-			combineLatest:@[
-				RACObserve(self, appLmt),
-				RACObserve(self, loanTerm),
-				RACObserve(self, jionLifeInsurance)
-				]]
-				flattenMap:^RACStream *(RACTuple *productAndInsurance) {
-					RACTupleUnpack(NSString *appLmt, NSString *loanTerm, NSString *jionLifeInsurance) = productAndInsurance;
-					if (!loanTerm) {
-						return [RACSignal return:@0];
-					}
-					return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:[self.services httpClient].user.productId AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
-						MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
-						return [RACSignal return:response];
-					}] map:^id(MSFCalculatemMonthRepayModel *model) {
-						if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
-							[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
-							self.loanFixedAmt = @"0.00";
-							self.lifeInsuranceAmt = @"0.00";
-							
-							[SVProgressHUD dismiss];
-							return nil;
-						}
-						[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
-						[SVProgressHUD dismiss];
-						[self performSelector:@selector(setSVPBackGround) withObject:self afterDelay:1];
+		combineLatest:@[
+			RACObserve(self, appLmt),
+			RACObserve(self, loanTerm),
+			RACObserve(self, jionLifeInsurance)
+		]]
+		flattenMap:^RACStream *(RACTuple *productAndInsurance) {
+			RACTupleUnpack(NSString *appLmt, NSString *loanTerm, NSString *jionLifeInsurance) = productAndInsurance;
+			if (!loanTerm) {
+				return [RACSignal return:@0];
+			}
+			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:[self.services httpClient].user.productId AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
+				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
+				return [RACSignal return:response];
+			}] map:^id(MSFCalculatemMonthRepayModel *model) {
+				if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
+					[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
+					self.loanFixedAmt = @"0.00";
+					self.lifeInsuranceAmt = @"0.00";
+					
+					[SVProgressHUD dismiss];
+					return nil;
+				}
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
+				[SVProgressHUD dismiss];
+				[self performSelector:@selector(setSVPBackGround) withObject:self afterDelay:1];
 
-						self.loanFixedAmt = model.loanFixedAmt;
-						self.lifeInsuranceAmt = model.lifeInsuranceAmt;
-						return model;
-					}];
-				}];
+				self.loanFixedAmt = model.loanFixedAmt;
+				self.lifeInsuranceAmt = model.lifeInsuranceAmt;
+				return model;
+			}];
+		}];
 	
 	_executeLifeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -136,12 +140,16 @@
 		return [self executeNextSignal];
 	}];
 	
-	_executeAllowCashCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeAllowMSCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executeAllow];
 	}];
 	
-	
+	_executeAllowMLCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeAllow];
+	}];
+
 	return self;
 }
 
@@ -176,40 +184,17 @@
 			if (self.appLmt.intValue == 0) {
 				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数", }]];
 				return nil;
-
 			}
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数",
-																																																	 }]];
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数"}]];
 			return nil;
 		}
 		if (!self.purpose) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{
-																																																	 NSLocalizedFailureReasonErrorKey: @"请选择贷款用途",
-																																																	 }]];
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款用途"}]];
 			return nil;
 		}
-//		[[self.services.httpClient fetchCheckAllowApply] subscribeNext:^(MSFCheckAllowApply *model) {
-//			[SVProgressHUD dismiss];
-//			if (model.processing == 0) {
-//				[[[UIAlertView alloc] initWithTitle:@"提示"
-//																		message:@"您目前还有一笔贷款正在申请中，暂不能申请贷款。"
-//																	 delegate:nil
-//													cancelButtonTitle:@"确认"
-//													otherButtonTitles:nil] show];
-//			} else {
-//				
-//				self.model.applyStatus = model.data.status;
-//				self.appNO = model.data.appNo;
-				//[self.formsViewModel.model mergeValuesForKeysFromModel:applyInfo];
-				
-				//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithFormsViewModel:self.formsViewModel];
-				MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithFromsViewModel:self];
-				[self.services pushViewModel:viewModel];
-				
-//			}
-//		} error:^(NSError *error) {
-//			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//		}];
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+		[self.services pushViewModel:viewModel];
+		
 		[subscriber sendCompleted];
 		return nil;
 	}];
@@ -228,6 +213,20 @@
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
+}
+
+- (RACSignal *)fetchProductType {
+	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash]] reduce:^id(NSArray *product, MSFCirculateCashModel *loan){
+		if (loan.totalLimit.doubleValue > 0) {
+			return @2;
+		} else {
+			if ([product containsObject:@"4101"] || [product containsObject:@"4102"]) {
+				return @1;
+			} else {
+				return @0;
+			}
+		}
+	}];
 }
 
 @end

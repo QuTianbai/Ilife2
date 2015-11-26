@@ -51,12 +51,9 @@
 	}
 	
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
-	//RAC(self.formsViewModel.model, currentProvince) = RACObserve(self.addressViewModel, provinceName);
-	RAC(self.formsViewModel.model, currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
-	//RAC(self.formsViewModel.model, currentCity) = RACObserve(self.addressViewModel, cityName);
-	RAC(self.formsViewModel.model, currentCityCode) = RACObserve(self.addressViewModel, cityCode);
-	//RAC(self.formsViewModel.model, currentCountry) = RACObserve(self.addressViewModel, areaName);
-	RAC(self.formsViewModel.model, currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
+	RAC(self, formsViewModel.model.currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
+	RAC(self, formsViewModel.model.currentCityCode) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self, formsViewModel.model.currentCountryCode) = RACObserve(self.addressViewModel, areaCode);
 	_executeAlterAddressCommand = self.addressViewModel.selectCommand;
 	
 	NSArray *houseTypes = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];
@@ -85,12 +82,6 @@
 		return [self houseValuesSignal];
 	}];
 	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
-	
-	_executeMarryValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self);
-		return [self marryValuesSignal];
-	}];
-	_executeMarryValuesCommand.allowsConcurrentExecution = YES;
 	
 	return self;
 }
@@ -168,9 +159,6 @@
 	if (forms.houseType.length == 0) {
 		return @"请选择住房状况";
 	}
-	if (forms.maritalStatus.length == 0) {
-		return @"请选择婚姻状况";
-	}
 	if (forms.email.length > 0 && (![forms.email containsString:@"@"] || ![forms.email containsString:@"."])) {
 		return @"请填写正确的邮箱";
 	}
@@ -209,21 +197,6 @@
 			[subscriber sendCompleted];
 			self.formsViewModel.model.houseTypeTitle = x.text;
 			self.formsViewModel.model.houseType = x.code;
-			[self.services popViewModel];
-		}];
-		return nil;
-	}];
-}
-
-- (RACSignal *)marryValuesSignal {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"marital_status"]];
-		[self.services pushViewModel:viewModel];
-		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
-			[subscriber sendNext:nil];
-			[subscriber sendCompleted];
-			self.formsViewModel.model.marriageTitle = x.text;
-			self.formsViewModel.model.maritalStatus = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;

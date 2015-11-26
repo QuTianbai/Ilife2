@@ -9,7 +9,7 @@
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
 
-static UIView *backupView;
+//static UIView *backupView;
 static UITableViewCellSeparatorStyle backupStyle;
 static UIColor *backupColor;
 
@@ -22,13 +22,15 @@ static UIColor *backupColor;
 	
 	[activityIndicatorView startAnimating];
 	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.equalTo(view);
+		make.centerX.equalTo(view);
+		make.centerY.equalTo(view).offset(-40);
 	}];
 	
 	UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
 	[view addSubview:imgView];
 	[imgView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.equalTo(view);
+		make.centerX.equalTo(view);
+		make.centerY.equalTo(view).offset(-40);
 		make.size.mas_equalTo(CGSizeMake(69, 69));
 	}];
 	
@@ -40,14 +42,13 @@ static UIColor *backupColor;
 	label.hidden = NO;
 	[view addSubview:label];
 	[label mas_makeConstraints:^(MASConstraintMaker *make) {
-		//make.center.equalTo(view);
 		make.top.equalTo(imgView.mas_bottom).with.offset(10);
 		make.height.equalTo(@40);
 		make.left.equalTo(view).offset(30);
 		make.right.equalTo(view).offset(-30);
 	}];
 	
-	backupView = self.backgroundView;
+	//backupView = self.backgroundView;
 	backupStyle = self.separatorStyle;
 	backupColor = self.separatorColor;
 	self.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -58,7 +59,7 @@ static UIColor *backupColor;
 		if ([x count] == 0) {
 			label.text = message;
 		} else {
-			self.backgroundView = backupView;
+			self.backgroundView = nil;
 			self.separatorStyle = backupStyle;
 			self.separatorColor = backupColor;
 		}

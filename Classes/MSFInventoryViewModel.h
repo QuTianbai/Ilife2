@@ -6,16 +6,16 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @class MSFFormsViewModel;
 @class RACCommand;
 @class MSFProduct;
 @class MSFApplicationResponse;
 @class MSFApplyCashVIewModel;
+@class MSFSocialInsuranceCashViewModel;
 
 @interface MSFInventoryViewModel : RVMViewModel
-
-@property (nonatomic, strong) MSFApplyCashVIewModel *cashViewModel;
 
 // MSFElementViewModel viewModels
 @property (nonatomic, strong, readonly) NSArray *viewModels;
@@ -23,14 +23,15 @@
 @property (nonatomic, strong, readonly) NSArray *requiredViewModels;
 @property (nonatomic, strong, readonly) NSArray *optionalViewModels;
 
-@property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
-@property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
+@property (nonatomic, weak, readonly) id <MSFApplicationViewModel> applicationViewModel;
 
-@property (nonatomic, strong, readonly) RACCommand *executeSubmit;
+@property (nonatomic, strong, readonly) RACCommand *executeUpdateCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
 - (RACSignal *)updateValidSignal;
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)formsViewModel __deprecated_msg("Use `initWithCashViewModel:");
-- (instancetype)initWithCashViewModel:(MSFApplyCashVIewModel *)cashViewModel;
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel;
+// 重新提交附件信息
+- (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 
 @end

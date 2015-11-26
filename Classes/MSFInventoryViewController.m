@@ -25,7 +25,7 @@
 #import "MSFUser.h"
 #import "MSFClient.h"
 #import "MSFApplyCashVIewModel.h"
-
+#import "MSFSocialInsuranceCashViewModel.h"
 
 #import "MSFElementViewController.h"
 
@@ -74,22 +74,34 @@ UICollectionViewDelegateFlowLayout>
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
-			MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.cashViewModel user:[self.viewModel.cashViewModel.services httpClient].user];
-			MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
-			
-			[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
-			[[KGModal sharedInstance] setShowCloseButton:NO];
-			[[KGModal sharedInstance] showWithContentViewController:alertViewController];
-			
-			[self.viewModel.executeUpdateCommand execute:nil];
-			
-			[viewModel.buttonClickedSignal subscribeNext:^(id x) {
-				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-					[self.viewModel.executeSubmit execute:nil];
+			if ([self.viewModel.applicationViewModel isKindOfClass:[MSFSocialInsuranceCashViewModel class]]) {
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setAccessoryInfoVOArray:x];
+					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setStatus:@"1"];
+					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
-			} completed:^{
-				[[KGModal sharedInstance] hideAnimated:YES];
-			}];
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
+				MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.applicationViewModel user:[self.viewModel.applicationViewModel.services httpClient].user];
+				MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+				
+				[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+				[[KGModal sharedInstance] setShowCloseButton:NO];
+				[[KGModal sharedInstance] showWithContentViewController:alertViewController];
+				
+				[self.viewModel.executeUpdateCommand execute:nil];
+				
+				[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+					[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+						[self.viewModel.executeSubmitCommand execute:nil];
+					}];
+				} completed:^{
+					[[KGModal sharedInstance] hideAnimated:YES];
+				}];
+			} else {
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					[self.viewModel.executeSubmitCommand execute:nil];
+				}];
+			}
 		} error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
@@ -98,7 +110,7 @@ UICollectionViewDelegateFlowLayout>
 	[self.viewModel.executeUpdateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
-			self.viewModel.cashViewModel.array = x;
+			self.viewModel.applicationViewModel.accessories = x;
 		}];
 	}];
 	[self.viewModel.executeUpdateCommand.errors subscribeNext:^(NSError *error) {
@@ -106,7 +118,7 @@ UICollectionViewDelegateFlowLayout>
 	}];
 
 	
-	[self.viewModel.executeSubmit.executionSignals subscribeNext:^(RACSignal *signal) {
+	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
@@ -115,7 +127,7 @@ UICollectionViewDelegateFlowLayout>
 		}];
 	}];
 	
-	[self.viewModel.executeSubmit.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
@@ -168,6 +180,7 @@ UICollectionViewDelegateFlowLayout>
 	if (self.optional) {
 		return 1;
 	}
+	if (self.viewModel.optionalViewModels.count == 0) return 1;
 	return 2;
 }
 

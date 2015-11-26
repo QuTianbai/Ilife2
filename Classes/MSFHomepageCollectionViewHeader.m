@@ -18,7 +18,6 @@
 	if (!self) {
 		return nil;
 	}
-	
 	UIImageView *bannerView = [[UIImageView alloc] init];
 	bannerView.image = [UIImage imageNamed:@"home-banner-pl.png"];
 	[self addSubview:bannerView];

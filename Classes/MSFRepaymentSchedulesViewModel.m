@@ -20,22 +20,6 @@
 
 @implementation MSFRepaymentSchedulesViewModel
 
-- (instancetype)initWithModel:(id)model {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	_model = model;
-	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
-	RAC(self, status) = RACObserve(self, model.contractStatus);
-	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
-	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
-		return value.length > 0 ? value : @"当天";
-	}];
-	
-  return self;
-}
-
 - (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services {
   self = [super init];
   if (!self) {
@@ -49,6 +33,17 @@
 	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];
+	
+	RAC(self, ownerAllMoney) = [RACObserve(self, model.totalOverdueMoney) map:^id(id value) {
+		if (value == nil) {
+			return @"";
+		}
+		return value;
+	}];
+	RAC(self, contractLineDate) = [RACObserve(self, model.contractExpireDate) map:^id(NSString *value) {
+		return value.length > 0 ? value : @"当天";
+	}];
+
 	
   return self;
 }

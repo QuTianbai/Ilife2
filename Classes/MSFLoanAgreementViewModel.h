@@ -6,6 +6,7 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @class MSFFormsViewModel;
 @class MSFApplicationResponse;
@@ -17,13 +18,12 @@
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *formsViewModel;
-@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *product;
 @property (nonatomic, strong, readonly) RACCommand *executeRequest;
+
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, weak, readonly) id <MSFApplicationViewModel> applicationViewModel;
 
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicationViewModel;
 - (RACSignal *)loanAgreementSignal;
-
-- (instancetype)initWithFromsViewModel:(MSFApplyCashVIewModel *)formsViewModel;
 
 @end

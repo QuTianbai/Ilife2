@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class MSFApplyCashVIewModel;
+@class MSFCirculateCashViewModel;
 
 @interface MSFCashHomePageViewController : UIViewController
 

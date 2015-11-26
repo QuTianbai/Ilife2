@@ -18,6 +18,7 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFApplyCashVIewModel.h"
 #import "MSFFormsViewModel.h"
+#import "MSFApplicationForms.h"
 #import "MSFAddressViewModel.h"
 
 #import "MSFClient+MSFApplyInfo.h"
@@ -30,12 +31,16 @@
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFAddBankCardTableViewController.h"
 
+#import "MSFProductViewController.h"
+#import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFSocialCaskApplyTableViewController.h"
+
 @interface MSFUserInfomationViewController ()
 
 @property (nonatomic, strong) UIButton *nextStepButton;
 @property (nonatomic, strong) IBOutlet MSFUserInfoCircleView *circleView;
 @property (nonatomic, weak) id<MSFViewModelServices>services;
-@property (nonatomic, strong) MSFApplyCashVIewModel *viewModel;
+@property (nonatomic, strong) id <MSFApplicationViewModel> viewModel;
 
 @end
 
@@ -86,24 +91,24 @@
 	 subscribeNext:^(id x) {
 		 @strongify(self)
 		 MSFUser *user = [self.viewModel.services httpClient].user;
-		 
 		 if (![[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
 			 [SVProgressHUD showErrorWithStatus:@"请先完善资料"];
 			 return ;
-			}
+		 }
+		 if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class] && [self.viewModel.formViewModel.model.socialStatus isEqualToString:@"SI01"]) {
+			 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此产品暂不支持学生申请" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+			 return;
+		 }
 		 if (!user.hasTransactionalCode) {
-			 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-																											 message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 			 [alert show];
 			 [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
 				 if (index.intValue == 1) {
 					 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
 					 MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
 					 MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
-					 
 					 [self.navigationController pushViewController:setTradePasswordVC animated:YES];
 				 }
-				 
 			 }];
 			 return ;
 		 }
@@ -117,9 +122,14 @@
 			 
 			 return ;
 		 }
-			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithCashViewModel:self.viewModel];
-			MSFInventoryViewController *certifivatesVC = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-			[self.navigationController pushViewController:certifivatesVC animated:YES];
+		 if ([self.viewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+				MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
+				[self.navigationController pushViewController:productViewController animated:YES];
+			} else if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:self.viewModel];
+				insuranceViewController.hidesBottomBarWhenPushed = YES;
+				[self.navigationController pushViewController:insuranceViewController animated:YES];
+			}
 	 }];
 	
 	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -81,6 +81,13 @@
 	return [formatter stringFromDate:date];
 }
 
++ (NSString *)msf_stringFromDate4:(NSDate *)date {
+	NSParameterAssert(date != nil);
+	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+	formatter.dateFormat = @"yyyyMM";
+	return [formatter stringFromDate:date];
+}
+
 + (NSString *)msf_stringFromDateForDash:(NSDate *)date {
 	NSParameterAssert(date != nil);
 	

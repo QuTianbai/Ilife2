@@ -31,6 +31,7 @@
 	_totalOverdueMoney = @"";
 	_contractNo = @"";
 	_contractStatus = @"";
+	_status = APPLYCASH;
 	
 	_infoModel = [[MSFCirculateCashModel alloc] init];
 	
@@ -90,17 +91,6 @@
 			self.infoModel = model;
 		} error:^(NSError *error) {
 			NSLog(@"%@", error.localizedDescription);
-		}];
-	}];
-	
-	_executeCirculateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
-				self.infoModel = x;
-			} error:^(NSError *error) {
-				NSLog(@"%@", error.localizedDescription);
-			}];
-			return nil;
 		}];
 	}];
 	

@@ -35,9 +35,10 @@
 #import "MSFConfirmContactViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
-#import "MSFHomePageCellModel.h"
+#import "MSFApplyListViewModel.h"
+#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewController.h"
 #import "MSFLoanListViewController.h"
-#import "MSFRepaymentTableViewController.h"
 
 #import "MSFRelationshipViewModel.h"
 #import "MSFRelationshipViewController.h"
@@ -100,12 +101,11 @@
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFHomePageCellModel class]]) {
-		if (((MSFHomePageCellModel *)viewModel).jumpDes == 1) {
-			viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-		} else {
-			viewController = [[MSFRepaymentTableViewController alloc] initWithViewModel:viewModel];
-		}
+	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
+		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
+		[viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
+		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
 		viewController = [[MSFPersonalViewController alloc] init];

@@ -23,11 +23,12 @@
 
 @property (nonatomic, copy) NSString *currentPeriodDate;//当前期截止日期
 
-@property (nonatomic, copy) NSString *contractStatus;
+@property (nonatomic, copy) NSString *contractStatus;//合同状态
 
 @property (nonatomic, copy) NSString *applyStatus;//状态：申请中，还款中，已逾期，
 
-@property (nonatomic, copy) NSString *produceType;//产品类型   循环贷/马上金融
+// 资料重传接口中返回的 productType @objczl
+@property (nonatomic, copy) NSString *productType;//产品类型   循环贷/马上金融 1101:循环贷  4101：马上贷  4102：社保贷
 
 @property (nonatomic, copy) NSString *applyNo;//申请单号
 

@@ -9,6 +9,7 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFSelectKeyValues.h"
+#import "MSFApplicationViewModel.h"
 
 @class MSFFormsViewModel;
 @class RACCommand;
@@ -16,7 +17,9 @@
 @class MSFMarkets;
 @class MSFTeam;
 
-@interface MSFApplyCashVIewModel : RVMViewModel
+@interface MSFApplyCashVIewModel : RVMViewModel <MSFApplicationViewModel>
+
+@property (nonatomic, strong) NSString *applicationNo;
 
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 
@@ -30,6 +33,7 @@
 @property (nonatomic, copy) NSString *loanFixedAmt;
 @property (nonatomic, copy) NSString *productCd;
 @property (nonatomic, strong) NSArray *array;
+@property (nonatomic, strong) NSArray *accessories;
 
 /**
  *	贷款目的
@@ -40,7 +44,6 @@
 /**
  *	金额
  */
-//@property (nonatomic, strong) NSString *totalAmount;
 @property (nonatomic, copy) NSString *minMoney;
 @property (nonatomic, copy) NSString *maxMoney;
 
@@ -59,13 +62,15 @@
 @property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
 
 @property (nonatomic, strong) RACCommand *executeNextCommand;
-@property (nonatomic, strong) RACCommand *executeAllowCashCommand;
+@property (nonatomic, strong) RACCommand *executeAllowMSCommand;
+@property (nonatomic, strong) RACCommand *executeAllowMLCommand;
 
-//@property (nonatomic, copy) NSString *masterBankCardNO;
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status;
+
+- (RACSignal *)fetchProductType;
 
 @end

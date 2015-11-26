@@ -13,7 +13,7 @@
 @implementation MSFClient (AccordToNperLists)
 
 - (RACSignal *)fetchAccordToNperLists:(MSFApplyList *)applyListID {
-	NSString *amount = [NSString stringWithFormat:@"loans/%@/installments", applyListID.total_amount];
+	NSString *amount = [NSString stringWithFormat:@"loans/%@/installments", applyListID.appLmt];
 	NSURLRequest *requset = [self requestWithMethod:@"GET" path:amount parameters:nil];
 	
 	return [[self enqueueRequest:requset resultClass:MSFAccordToNperLists.class] msf_parsedResults];
