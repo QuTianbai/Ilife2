@@ -350,6 +350,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:error];
 		}]
 		doNext:^(MSFClient *client) {
+			_signInValid = YES;
 			[self.services setHttpClient:client];
 		}];
 }
