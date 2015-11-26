@@ -34,16 +34,9 @@
 	
 	_services = services;
 	_model = model;
+	//NSString *productType = model.produceType;
 	
-	[RACObserve(self, model.produceType) subscribeNext:^(id x) {
-		if ([x isEqualToString:@"1101"]) {
-			self.productType = MSFProductTypeMS;
-		} else if ([x isEqualToString:@"4101"]) {
-			self.productType = MSFProductTypeXH;
-		} else if ([x isEqualToString:@"4102"]) {
-			self.productType = MSFProductTypeML;
-		}
-	}];
+	RAC(self, productType) = RACObserve(self, model.productType);
 	
 	/*
 	 马上金融
@@ -79,7 +72,9 @@
 		} else {
 			self.jumpDes = MSFHomePageDesApplyList;
 		}
-		if ([@[@"G", @"H", @"J", @"K"] containsObject:x]) {
+		if ([self.model.productType isEqualToString:@"4102"]) {
+			self.dateDisplay = MSFHomePageDateDisplayTypeNone;
+		} else if ([@[@"G", @"H", @"J", @"K"] containsObject:x]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeApply;
 		} else if ([x isEqualToString:@"D"]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeRepay;

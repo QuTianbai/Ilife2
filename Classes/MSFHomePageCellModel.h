@@ -24,18 +24,12 @@ typedef NS_ENUM(NSInteger, MSFHomePageDateDisplayType) {
 	MSFHomePageDateDisplayTypeProcessing
 };
 
-typedef NS_ENUM(NSInteger, MSFProductType) {
-	MSFProductTypeMS,
-	MSFProductTypeXH,
-	MSFProductTypeML
-};
-
 @interface MSFHomePageCellModel : RVMViewModel
 
 @property (nonatomic, weak) id<MSFViewModelServices>services;
 
-//产品类型： MS、XH、ML
-@property (nonatomic, assign) MSFProductType productType;
+//产品类型： 1101、4101、4102
+@property (nonatomic, strong) NSString *productType;
 
 /* 马上贷 */
 

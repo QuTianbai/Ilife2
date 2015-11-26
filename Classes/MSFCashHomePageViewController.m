@@ -97,14 +97,11 @@
 	MSFCashHomeLoanLimit *limit = [[MSFCashHomeLoanLimit alloc] init];
 	limit.withdrawButton.rac_command = self.withdrawCashCommand;
 	limit.repayButton.rac_command = self.repayCommand;
-	[limit setAvailableCredit:nil usedCredit:nil];
-	[self.view addSubview:limit];
-	
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeLimitMS actionBlock:^{
 		[self.viewModel.executeAllowMSCommand execute:nil];
 	}];
+	[self.view addSubview:limit];
 	[self.view addSubview:ms];
-	
 	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.bottom.equalTo(self.view).offset(-49);
 		make.left.right.equalTo(self.view);
@@ -143,6 +140,8 @@
 					break;
 				case 2:
 					[self limitView];
+					self.circulateViewModel.active = NO;
+					self.circulateViewModel.active = YES;
 					break;
 			}
 		}];
