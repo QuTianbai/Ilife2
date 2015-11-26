@@ -67,7 +67,8 @@
 
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
 
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel __deprecated;
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(NSString *)loanType;
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status;
 

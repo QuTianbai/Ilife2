@@ -36,7 +36,11 @@
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
-			return [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
+			if (loan) {
+				return [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
+			} else {
+				return nil;
+			}
 		}];
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
