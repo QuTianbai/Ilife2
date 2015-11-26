@@ -10,11 +10,12 @@
 
 @class MSFApplyCashVIewModel;
 @class MSFCirculateCashViewModel;
+@class MSFCashHomePageViewModel;
 
 @interface MSFCashHomePageViewController : UIViewController
 
-@property (nonatomic, strong, readonly) MSFApplyCashVIewModel *viewModel;
+@property (nonatomic, strong, readonly) MSFCashHomePageViewModel *viewModel;
 
-- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel;
+- (instancetype)initWithViewModel:(MSFCashHomePageViewModel *)viewModel;
 
 @end

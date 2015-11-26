@@ -62,15 +62,16 @@
 @property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
 
 @property (nonatomic, strong) RACCommand *executeNextCommand;
-@property (nonatomic, strong) RACCommand *executeAllowMSCommand;
-@property (nonatomic, strong) RACCommand *executeAllowMLCommand;
+@property (nonatomic, strong) RACCommand *executeAllowMSCommand __deprecated;
+@property (nonatomic, strong) RACCommand *executeAllowMLCommand __deprecated;
 
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
 
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel;
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel __deprecated;
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType;
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status;
 
-- (RACSignal *)fetchProductType;
+- (RACSignal *)fetchProductType __deprecated;
 
 @end

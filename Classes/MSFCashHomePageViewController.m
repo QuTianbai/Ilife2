@@ -27,6 +27,7 @@
 #import "MSFFormsViewModel.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFCashHomePageViewModel.h"
 
 @interface MSFCashHomePageViewController ()
 
@@ -37,7 +38,7 @@
 
 @implementation MSFCashHomePageViewController
 
-- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFCashHomePageViewModel *)viewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
@@ -154,7 +155,8 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
-				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:self.viewModel services:self.viewModel.services];
+				MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formViewModel productType:@"1101"];
+				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
 				userInfoVC.showNextStep = YES;
 				[self.navigationController pushViewController:userInfoVC animated:YES];
 			} else {
