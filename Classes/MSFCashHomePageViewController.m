@@ -246,16 +246,13 @@
 					} else {
 						for (MSFBankCardListModel *model in self.dataArray) {
 							if (model.master) {
-								//TODO: 参数类型错误
-								/*
 								 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.circulateViewModel AndServices:self.viewModel.services AndType:1];
 								 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
-								 viewModel.drawCash = self.usedL;
+								 viewModel.drawCash = self.circulateViewModel.usedLimit;
 								 drawCashVC.viewModel = viewModel;
 								 drawCashVC.type = 1;
 								 [self.navigationController pushViewController:drawCashVC animated:YES];
 								 break;
-								 */
 							}
 						}
 					}

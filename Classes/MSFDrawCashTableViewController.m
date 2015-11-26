@@ -33,7 +33,7 @@
 @implementation MSFDrawCashTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	[self setviewTitle];
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
@@ -52,9 +52,9 @@
 	[self.inputMoneyTF.rac_textSignal subscribe:drawCashChannel];
 	
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
-	}];
+	 subscribeNext:^(id x) {
+		 [[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
+	 }];
 	
 }
 
@@ -68,7 +68,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+	[super didReceiveMemoryWarning];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,8 +95,8 @@
 	[[self.viewModel.executeSubmitCommand execute:nil]
 	 subscribeNext:^(MSFResponse *response) {
 		 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
-//		 NSDictionary *result = response.parsedResult;
-		
+		 //		 NSDictionary *result = response.parsedResult;
+		 
 		 
 		 NSDictionary *result = response.parsedResult;
 		 NSString *str = result[@"message"];
