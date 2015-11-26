@@ -108,7 +108,8 @@
 		uc = @"0";
 		_animaAngle = _startAngle;
 	} else {
-		_animaAngle = _startAngle + (3 * M_PI - 2 * _startAngle) * ac.floatValue / (ac.floatValue + uc.floatValue);
+		CGFloat rate = ac.floatValue / (ac.floatValue + uc.floatValue) > 1 ?: 1;
+		_animaAngle = _startAngle + (3 * M_PI - 2 * _startAngle) * rate;
 	}
 	if (!_animating) {
 		_angle = _startAngle;
@@ -132,7 +133,7 @@
 }
 
 - (void)circleAnimation {
-	_angle += M_PI / 20;
+	_angle += M_PI / 40;
 	if (_angle > _animaAngle) {
 		_angle = _animaAngle;
 		[self setNeedsDisplay];
@@ -142,7 +143,7 @@
 	[self setNeedsDisplay];
 	[self performSelector:@selector(circleAnimation)
 						 withObject:nil
-						 afterDelay:0.02
+						 afterDelay:0.01
 								inModes:@[NSRunLoopCommonModes]];
 }
 

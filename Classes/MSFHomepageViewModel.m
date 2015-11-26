@@ -68,7 +68,7 @@
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
 	if (_cellModel) {
-		if ([_cellModel.productType isEqualToString:@"4102"] && [_cellModel.productType isEqualToString:@"4101"] && _cellModel.totalLimit.doubleValue > 0) {
+		if (([_cellModel.productType isEqualToString:@"4102"] || [_cellModel.productType isEqualToString:@"4101"]) && _cellModel.totalLimit.doubleValue > 0) {
 			return @"MSFCirculateViewCell";
 		} else {
 			return @"MSFHomePageContentCollectionViewCell";
