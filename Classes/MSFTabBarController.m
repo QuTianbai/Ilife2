@@ -80,7 +80,6 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"首页" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
 
-//	MSFApplyCashVIewModel *cashViewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formsViewModel];
 	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 	self.circulateViewModel = circulateViewModel;
 	
@@ -88,14 +87,6 @@
 	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashHomePageViewModel];
 	cashViewController.title = @"马上";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
-	
-	if ([[self.viewModel.services httpClient].user.type isEqualToString:@"4101"]) {
-		//MSFCirculateCashViewModel *viewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
-		//self.circulateViewModel = viewModel;
-		MSFCirculateCashTableViewController *circulateViewController = [[MSFCirculateCashTableViewController alloc] initWithViewModel:self.circulateViewModel];
-		circulateViewController.title = @"马上";
-		productpage = [[UINavigationController alloc] initWithRootViewController:circulateViewController];
-	}
 	productpage.tabBarItem = [self itemWithNormal:@"马上" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];

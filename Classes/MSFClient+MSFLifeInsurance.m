@@ -24,4 +24,16 @@
 	}];
 }
 
+- (RACSignal *)fetchLifeInsuranceAgreementWithProductType:(NSString *)product {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
+			@"productCode": product,
+			@"templateType": @"LIFE_INSURANCE_PROTOCOL"
+		}];
+		[subscriber sendNext:request];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
 @end

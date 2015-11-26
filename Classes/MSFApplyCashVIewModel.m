@@ -47,6 +47,7 @@
 	}
 	_formViewModel = viewModel;
 	_productType = productType;
+	_productID = productType;
 	[self initialize];
 	
 	return self;
@@ -69,7 +70,7 @@
 - (void)initialize {
 	_model = [[MSFApplyCashModel alloc] init];
 	_services = self.formViewModel.services;
-	_model.productCd = [self.services httpClient].user.productId;
+	_model.productCd = self.productType;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
 	_applicationNo = @"";

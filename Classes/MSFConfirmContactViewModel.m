@@ -97,6 +97,14 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	}];
 }
 
+- (RACSignal *)requestContactWithTemplate:(NSString *)templateType productType:(NSString *)productType {
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:productType AndtemplateType:templateType] flattenMap:^RACStream *(id value) {
+		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
+			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		}];
+	}] replayLast];
+}
+
 - (RACSignal *)requestContactInfo:(NSString *)type {
 	NSString *product = [self.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate] ? self.circulateModel.productType : [self.servers.httpClient user].productId;
 	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:product AndtemplateType:type] flattenMap:^RACStream *(id value) {
@@ -106,12 +114,8 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	}] replayLast];
 }
 
-- (RACSignal *)executeSubmitConfirmContract {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:@""];
-}
-
 - (RACSignal *)executeSubmitConfirmContract:(NSString *)type {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:[self.servers.httpClient user].productId AndtemplateType:type];
+	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:self.circulateModel.productType AndtemplateType:type];
 }
 
 @end
