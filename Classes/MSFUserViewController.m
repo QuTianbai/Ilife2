@@ -150,7 +150,7 @@
 }
 
 - (void)applyList {
-	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.viewModel.servcies];
 	MSFLoanListViewController *applyList = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:applyList animated:YES];
 }

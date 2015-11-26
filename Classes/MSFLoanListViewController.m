@@ -125,6 +125,7 @@
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, assign) int selectedIndex;
 @property (nonatomic, strong) MSFApplyListViewModel *viewModel;
+@property (nonatomic, assign) int pushType;
 
 @end
 
@@ -139,7 +140,8 @@
   if (self) {
 		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = viewModel;
-	}	
+		_pushType = [viewModel.productType isEqualToString:@"4102"] ? 1 : 0;
+	}
   return self;
 }
 
@@ -150,7 +152,7 @@
 	self.dataArray = [[NSMutableArray alloc] init];
 	self.view.backgroundColor = [UIColor whiteColor];
 	[self setUpViews];
-	[self loadData:0];
+	[self loadData:_pushType];
 }
 
 - (void)loadData:(int)type {
@@ -196,7 +198,7 @@
 #pragma mark - Private
 
 - (void)setUpViews {
-	MSFPlanListSegmentBar *bar = [[MSFPlanListSegmentBar alloc] initWithTitles:@[@"马上贷", @"麻辣贷"]];
+	MSFPlanListSegmentBar *bar = [[MSFPlanListSegmentBar alloc] initWithTitles:@[@"马上贷", @"随借随还"]];
 	[self.view addSubview:bar];
 	CGFloat baseLine = 0;
 	if (self.navigationController.navigationBar.translucent) {
