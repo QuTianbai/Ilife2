@@ -34,16 +34,9 @@
 	
 	_services = services;
 	_model = model;
+	//NSString *productType = model.produceType;
 	
-	[RACObserve(self, model.produceType) subscribeNext:^(id x) {
-		if ([x isEqualToString:@"1101"]) {
-			self.productType = MSFProductTypeMS;
-		} else if ([x isEqualToString:@"4101"]) {
-			self.productType = MSFProductTypeXH;
-		} else if ([x isEqualToString:@"4102"]) {
-			self.productType = MSFProductTypeML;
-		}
-	}];
+	RAC(self, productType) = RACObserve(self, model.productType);
 	
 	/*
 	 马上金融
@@ -79,7 +72,9 @@
 		} else {
 			self.jumpDes = MSFHomePageDesApplyList;
 		}
-		if ([@[@"G", @"H", @"J", @"K"] containsObject:x]) {
+		if ([self.model.productType isEqualToString:@"4102"]) {
+			self.dateDisplay = MSFHomePageDateDisplayTypeNone;
+		} else if ([@[@"G", @"H", @"J", @"K"] containsObject:x]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeApply;
 		} else if ([x isEqualToString:@"D"]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeRepay;
@@ -134,11 +129,6 @@
 		case MSFHomePageDesRepayList:
 			viewModel = [[MSFRepaymentViewModel alloc] initWithServices:self.services];
 			break;
-		case MSFHomePageDesContract: {
-			//!!!: 这里存在问题，资料重传的状态我测试获取到的是 `MSFHomePageDesUploadData` @objczl
-			viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.model.applyNo productID:self.model.produceType services:self.services];
-			break;
-		}
 		case MSFHomePageDesUploadData: {
 			viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.model.applyNo productID:self.model.productType services:self.services];
 			break;

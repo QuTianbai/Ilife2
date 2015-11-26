@@ -36,20 +36,7 @@
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
-			MSFHomePageCellModel *model = [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
-			if (model.productType == MSFProductTypeMS) {
-				BOOL applyBlank = [loan.type isEqualToString:@"APPLY"] && [loan.applyStatus isEqualToString:@"F"];
-				BOOL contractBlank = [loan.type isEqualToString:@"CONTRACT"] && [loan.contractStatus isEqualToString:@"F"];
-				if (loan.type.length == 0 || applyBlank || contractBlank) {
-					self.viewModel.active = NO;
-					self.viewModel.active = YES;
-					return nil;
-				} else {
-					return model;
-				}
-			} else {
-				return model;
-			}
+			return [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
 		}];
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
@@ -81,7 +68,7 @@
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
 	if (_cellModel) {
-		if (_cellModel.productType == MSFProductTypeML && _cellModel.productType == MSFProductTypeXH && _cellModel.totalLimit.doubleValue > 0) {
+		if (([_cellModel.productType isEqualToString:@"4102"] || [_cellModel.productType isEqualToString:@"4101"]) && _cellModel.totalLimit.doubleValue > 0) {
 			return @"MSFCirculateViewCell";
 		} else {
 			return @"MSFHomePageContentCollectionViewCell";

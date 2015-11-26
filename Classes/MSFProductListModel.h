@@ -10,6 +10,7 @@
 
 @interface MSFProductListModel : MSFObject
 
+// 产品ID
 @property (nonatomic, copy, readonly) NSString *productId;
 
 @end

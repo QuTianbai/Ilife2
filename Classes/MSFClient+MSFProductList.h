@@ -10,6 +10,9 @@
 
 @interface MSFClient (MSFProductList)
 
+// 获取产品列表
+//
+// Returns a signal will send instance of MSFProductListModel
 - (RACSignal *)fetchProductList;
 
 @end

@@ -94,17 +94,6 @@
 		}];
 	}];
 	
-	_executeCirculateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *x) {
-				self.infoModel = x;
-			} error:^(NSError *error) {
-				NSLog(@"%@", error.localizedDescription);
-			}];
-			return nil;
-		}];
-	}];
-	
 	return self;
 }
 
