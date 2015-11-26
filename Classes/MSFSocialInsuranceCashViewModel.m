@@ -374,7 +374,8 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (void)commonInit {
-	if ([self.productType isEqualToString:@"SI05"]) {
+	//SI03 SI05 SI06
+	if ([self.productType isEqualToString:@"SI05"] || [self.productType isEqualToString:@"SI03"] ||[self.productType isEqualToString:@"SI06"]) {
 		//居民
 		if (self.model.rsdtOldInsuExist == nil || [self.model.rsdtOldInsuExist isEqualToString:@""]) {
 			[self setPostionDefultWithName:@"isInsurance" selectValuesType:RESOLDSTATUS index:0];
@@ -526,7 +527,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (void)commonInitDefult {
-	if ([self.productType isEqualToString:@"SI05"]) {
+	if ([self.productType isEqualToString:@"SI05"] || [self.productType isEqualToString:@"SI03"] ||[self.productType isEqualToString:@"SI06"]) {
 		//居民
 		NSArray *radOlderExist = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
 		self.residentOlderInsuranceStatus = radOlderExist.firstObject;
@@ -647,7 +648,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 		return [RACSignal error:error];
 	}
-	if (![self.productType isEqualToString:@"SI05"]) {
+	if (!([self.productType isEqualToString:@"SI05"] || [self.productType isEqualToString:@"SI03"] ||[self.productType isEqualToString:@"SI06"])) {
 		if (self.employeeOlderMonths.intValue > 600 ) {
 			self.employeeOlderMonths = @"12";
 			errorStr = @"职工养老保险实际缴费月数:请输入600以内整书";
