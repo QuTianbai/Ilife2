@@ -34,101 +34,64 @@
 	return date;
 }
 
-+ (NSDate *)msf_dateFromString2:(NSString *)str {
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.dateFormat = @"yyyyMMdd";
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	return [formatter dateFromString:str];
-}
-
-+ (NSString *)msf_fullStringFromDate:(NSDate *)date {
-	NSParameterAssert(date != nil);
-	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	
-	return [formatter stringFromDate:date];
-}
-
 + (NSString *)msf_stringFromDate:(NSDate *)date {
 	NSParameterAssert(date != nil);
-	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 	formatter.dateFormat = @"yyyy-MM-dd";
-	
 	return [formatter stringFromDate:date];
 }
 
-+ (NSString *)msf_stringFromDate2:(NSDate *)date {
++ (NSString *)professional_stringFromDate:(NSDate *)date {
 	NSParameterAssert(date != nil);
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.dateFormat = @"yyyy-MM";
 	return [formatter stringFromDate:date];
 }
 
-+ (NSString *)msf_stringFromDate3:(NSDate *)date {
-	NSParameterAssert(date != nil);
-	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	formatter.dateFormat = @"yyyy";
-	
-	return [formatter stringFromDate:date];
-}
-
-+ (NSString *)msf_stringFromDate4:(NSDate *)date {
++ (NSString *)insurance_stringFromDate:(NSDate *)date {
 	NSParameterAssert(date != nil);
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.dateFormat = @"yyyyMM";
 	return [formatter stringFromDate:date];
 }
 
-+ (NSString *)msf_stringFromDateForDash:(NSDate *)date {
-	NSParameterAssert(date != nil);
-	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy/MM/dd";
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	
-	return [formatter stringFromDate:date];
-}
-
-+ (NSString *)msf_Chinese_stringFromDateString:(NSString *)str {
-	NSParameterAssert(str != nil);
-	
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	NSDate *date = [formatter dateFromString:str];
-	formatter.dateFormat = @"yyyy年MM月dd日";
-	return [formatter stringFromDate:date];
-}
-
-+ (NSString *)msf_Chinese_stringFromDate:(NSDate *)str {
-	NSParameterAssert(str != nil);
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-	formatter.dateFormat = @"yyyy年MM月dd日";
-	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	
-	return [formatter stringFromDate:str];
-}
-
 + (NSDate *)gmt_dateFromString:(NSString *)str {
 	NSParameterAssert(str != nil);
-	
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 	formatter.dateFormat = @"EE, dd MM yyyy HH:mm:ss 'GMT'";
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
 	return [formatter dateFromString:str];
+}
+
++ (NSDate *)msf_dateFromString2:(NSString *)str {
+	return [NSDate date];
+}
+
++ (NSString *)msf_stringFromDate2:(NSDate *)date {
+	return @"";
+}
+
++ (NSString *)msf_stringFromDate3:(NSDate *)date {
+	return @"";
+}
+
++ (NSString *)msf_stringFromDate4:(NSDate *)date {
+	return @"";
+}
+
++ (NSString *)msf_stringFromDateForDash:(NSDate *)date {
+	return @"";
+}
+
++ (NSString *)msf_Chinese_stringFromDateString:(NSString *)str {
+	return @"";
+}
+
++ (NSString *)msf_Chinese_stringFromDate:(NSDate *)str {
+	return @"";
 }
 
 @end

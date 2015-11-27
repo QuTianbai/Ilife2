@@ -337,16 +337,16 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
 			 switch (index) {
 				 case 0:
-					 self.employeeOlderDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
+					 self.employeeOlderDate = [NSDateFormatter insurance_stringFromDate:selectedDate];
 					 break;
 				 case 1:
-					 self.employeeMedicalDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
+					 self.employeeMedicalDate = [NSDateFormatter insurance_stringFromDate:selectedDate];
 					 break;
 				 case 2:
-					 self.residentOlderInsuranceDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
+					 self.residentOlderInsuranceDate = [NSDateFormatter insurance_stringFromDate:selectedDate];
 					 break;
 				 case 3:
-					 self.residentMedicalInsuranceDate = [NSDateFormatter msf_stringFromDate4:selectedDate];
+					 self.residentMedicalInsuranceDate = [NSDateFormatter insurance_stringFromDate:selectedDate];
 					 break;
 				 default:
 					 break;
@@ -637,7 +637,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	NSDateComponents *adcomps = [[NSDateComponents alloc] init];
  [adcomps setYear:-1];
  NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:[NSDate date] options:0];
-	return [NSDateFormatter msf_stringFromDate4:newdate];
+	return [NSDateFormatter insurance_stringFromDate:newdate];
 }
 
 - (RACSignal *)submitSignal {
