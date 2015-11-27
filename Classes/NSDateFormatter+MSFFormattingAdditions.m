@@ -66,32 +66,4 @@
 	return [formatter dateFromString:str];
 }
 
-+ (NSDate *)msf_dateFromString2:(NSString *)str {
-	return [NSDate date];
-}
-
-+ (NSString *)msf_stringFromDate2:(NSDate *)date {
-	return @"";
-}
-
-+ (NSString *)msf_stringFromDate3:(NSDate *)date {
-	return @"";
-}
-
-+ (NSString *)msf_stringFromDate4:(NSDate *)date {
-	return @"";
-}
-
-+ (NSString *)msf_stringFromDateForDash:(NSDate *)date {
-	return @"";
-}
-
-+ (NSString *)msf_Chinese_stringFromDateString:(NSString *)str {
-	return @"";
-}
-
-+ (NSString *)msf_Chinese_stringFromDate:(NSDate *)str {
-	return @"";
-}
-
 @end

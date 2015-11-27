@@ -20,7 +20,6 @@ it(@"msfinance user", ^{
   
   // then
   expect(user.objectID).to(equal(@"ds13dsaf21d"));
-	expect(user.type).to(equal(@"0"));
 	expect(@(user.isAuthenticated)).to(beTruthy());
 });
 
