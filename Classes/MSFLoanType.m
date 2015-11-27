@@ -5,8 +5,20 @@
 //
 
 #import "MSFLoanType.h"
+#import <Mantle/EXTKeyPathCoding.h>
 
 @implementation MSFLoanType
+
+#pragma mark - Lifecycle
+
+- (instancetype)initWithTypeID:(NSString *)typeID {
+	return [super initWithDictionary:@{
+		@keypath(MSFLoanType.new, objectID): typeID,
+		@keypath(MSFLoanType.new, typeID): typeID,
+	} error:nil];
+}
+
+#pragma mark - MTLJSONSerializing
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{

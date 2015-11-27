@@ -10,4 +10,6 @@
 
 @property (nonatomic, copy, readonly) NSString *typeID;
 
+- (instancetype)initWithTypeID:(NSString *)typeID;
+
 @end

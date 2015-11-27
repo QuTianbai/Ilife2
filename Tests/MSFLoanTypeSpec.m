@@ -11,7 +11,7 @@ QuickSpecBegin(MSFLoanTypeSpec)
 __block MSFLoanType *sut;
 
 beforeEach(^{
-	sut = [MTLJSONAdapter modelOfClass:[MSFLoanType class] fromJSONDictionary:@{@"productId": @"4011"} error:nil];
+	sut = [[MSFLoanType alloc] initWithTypeID:@"4011"];
 	expect(sut).notTo(beNil());
 });
 
