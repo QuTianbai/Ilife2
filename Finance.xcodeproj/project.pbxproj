@@ -564,6 +564,7 @@
 		49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C7CBA81B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m */; };
 		49C7CBAC1B04A4FC00EF5A68 /* releasenote.json in Resources */ = {isa = PBXBuildFile; fileRef = 49C7CBAB1B04A4FC00EF5A68 /* releasenote.json */; };
 		49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C9DE561B171FC300399DFE /* MSFTestCipher.m */; };
+		49CA32641C085732000E1DDB /* MSFApplyCashVIewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CA32631C085732000E1DDB /* MSFApplyCashVIewModelSpec.m */; };
 		49CA935D1BBA212A0032F5C2 /* MSFGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CA93561BBA212A0032F5C2 /* MSFGroupTableViewController.m */; };
 		49CA935E1BBA212A0032F5C2 /* groupedTableViewCell_bottomRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA93571BBA212A0032F5C2 /* groupedTableViewCell_bottomRow@2x.png */; };
 		49CA935F1BBA212A0032F5C2 /* groupedTableViewCell_middleRow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA93581BBA212A0032F5C2 /* groupedTableViewCell_middleRow@2x.png */; };
@@ -1596,6 +1597,7 @@
 		49C7CBAB1B04A4FC00EF5A68 /* releasenote.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = releasenote.json; sourceTree = "<group>"; };
 		49C9DE551B171FC300399DFE /* MSFTestCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTestCipher.h; sourceTree = "<group>"; };
 		49C9DE561B171FC300399DFE /* MSFTestCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTestCipher.m; sourceTree = "<group>"; };
+		49CA32631C085732000E1DDB /* MSFApplyCashVIewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyCashVIewModelSpec.m; sourceTree = "<group>"; };
 		49CA93551BBA212A0032F5C2 /* MSFGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGroupTableViewController.h; sourceTree = "<group>"; };
 		49CA93561BBA212A0032F5C2 /* MSFGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGroupTableViewController.m; sourceTree = "<group>"; };
 		49CA93571BBA212A0032F5C2 /* groupedTableViewCell_bottomRow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groupedTableViewCell_bottomRow@2x.png"; sourceTree = "<group>"; };
@@ -3132,6 +3134,7 @@
 				49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */,
 				49E5B7771BD4D8C4001995F8 /* MSFPosterSpec.m */,
 				491925221C08517B00E6EAC5 /* MSFLoanTypeSpec.m */,
+				49CA32631C085732000E1DDB /* MSFApplyCashVIewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -5054,6 +5057,7 @@
 				49EF59551B9039AB00BDBD44 /* MSFRelationshipViewModelSpec.m in Sources */,
 				49588DEE1B86FC6A00FCF171 /* MSFProductSpec.m in Sources */,
 				4948E8BD1B959A410048D125 /* MSFAttachmentViewModelSpec.m in Sources */,
+				49CA32641C085732000E1DDB /* MSFApplyCashVIewModelSpec.m in Sources */,
 				49216E091BC76D020090B784 /* MSFTabBarViewModelSpec.m in Sources */,
 				496A44671B6A57BE00104215 /* MSFAuthorizationSpec.m in Sources */,
 				496A44721B6A57BE00104215 /* MSFObjectSpec.m in Sources */,

@@ -30,15 +30,28 @@
 #import "MSFClient+MSFProductType.h"
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFLoanType.h"
 
 @interface MSFApplyCashVIewModel ()
 
 @property (nonatomic, copy) MSFCalculatemMonthRepayModel *calculateModel;
-@property (nonatomic, copy) NSString *productType;
+@property (nonatomic, copy) NSString *productType __deprecated;
 
 @end
 
 @implementation MSFApplyCashVIewModel
+
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(MSFLoanType *)loanType {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_formViewModel = viewModel;
+	_loanType = loanType;
+	[self initialize];
+	
+	return self;
+}
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType {
 	self = [super init];
@@ -48,6 +61,7 @@
 	_formViewModel = viewModel;
 	_productType = productType;
 	_productID = productType;
+	_loanType = [[MSFLoanType alloc] initWithTypeID:productType];
 	[self initialize];
 	
 	return self;
@@ -70,7 +84,7 @@
 - (void)initialize {
 	_model = [[MSFApplyCashModel alloc] init];
 	_services = self.formViewModel.services;
-	_model.productCd = self.productType;
+	_model.productCd = self.loanType.typeID;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
 	_applicationNo = @"";
@@ -125,7 +139,7 @@
 			if (!loanTerm) {
 				return [RACSignal return:@0];
 			}
-			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:self.productType AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
+			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:self.loanType.typeID AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
 				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
 				return [RACSignal return:response];
 			}] map:^id(MSFCalculatemMonthRepayModel *model) {

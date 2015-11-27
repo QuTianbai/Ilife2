@@ -8,6 +8,7 @@
 #import "MSFViewModelServices.h"
 
 @class MSFFormsViewModel;
+@class MSFLoanType;
 
 // 贷款申请
 @protocol MSFApplicationViewModel <NSObject>
@@ -26,7 +27,8 @@
 @optional
 
 // 社保贷产品ID
-@property (nonatomic, strong) NSString *productID;
+@property (nonatomic, strong) NSString *productID __deprecated;
+@property (nonatomic, strong) MSFLoanType *loanType;
 
 // 用户上传的附件清单, NSDictionary<KeyType, ObjectType>
 @property (nonatomic, strong) NSArray *accessories;
