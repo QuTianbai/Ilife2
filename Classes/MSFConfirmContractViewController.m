@@ -44,9 +44,9 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	RACSignal *signal;
 	if ([self.viewModel.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate]) {
 		[self.button setTitle:@"确定" forState:UIControlStateNormal];
-		signal = [self.viewModel requestContactInfo:@"CASH_CONTRACT"];
+		signal = [self.viewModel requestContactWithTemplate:@"CASH_CONTRACT" productType:self.viewModel.circulateModel.productType];
 	} else {
-		signal = [self.viewModel requestContactInfo:@"INTRODUCTION"];
+		signal = [self.viewModel requestContactWithTemplate:@"INTRODUCTION" productType:self.viewModel.circulateModel.productType];
 	}
 	[[self.confirmContractWebView rac_liftSelector:@selector(loadHTMLString:baseURL:) withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]] subscribeNext:^(id x) {
 	}];
@@ -95,7 +95,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 		}
 		self.button.enabled = NO;
 		[SVProgressHUD showWithStatus:@"正在加载..."];
-		RACSignal *signal = [self.viewModel requestContactInfo:types[index]];
+		RACSignal *signal = [self.viewModel requestContactWithTemplate:types[index] productType:self.viewModel.circulateModel.productType];
 		[[self.confirmContractWebView
 			rac_liftSelector:@selector(loadHTMLString:baseURL:)
 			withSignalOfArguments:[RACSignal combineLatest:@[signal, [RACSignal return:nil]]]]

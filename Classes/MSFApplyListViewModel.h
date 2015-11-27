@@ -13,11 +13,9 @@
 
 @interface MSFApplyListViewModel : MTLModel
 
-@property(nonatomic, strong, readonly) NSString *productType;
-
-- (instancetype)initWithProductType:(NSString *)productType
-													 services:(id<MSFViewModelServices>)services;
+@property (nonatomic, strong, readonly) NSString *productType;
 
 - (RACSignal *)fetchApplyListSignal:(int)type;
+- (instancetype)initWithProductType:(NSString *)productType services:(id<MSFViewModelServices>)services;
 
 @end

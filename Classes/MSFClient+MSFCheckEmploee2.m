@@ -15,7 +15,7 @@
 
 - (RACSignal *)fetchCheckEmploeeWithProductCode:(NSString *)code {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/product" parameters:@{
-		@"productCode": self.user.productId,
+		@"productCode": code,
 		@"uniqueId": self.user.uniqueId
 	}];
 	

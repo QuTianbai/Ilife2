@@ -66,6 +66,7 @@
 @property (nonatomic, strong) RACCommand *executeAllowMLCommand __deprecated;
 
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
+@property (nonatomic, strong) NSString *productID;
 
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel __deprecated;
 - (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType;

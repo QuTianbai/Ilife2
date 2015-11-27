@@ -65,7 +65,8 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCheckEmploeeWithProductCode:[self.services httpClient].user.productId] subscribeNext:^(MSFMarkets *markets) {
+		//TODO: 动态更改用户产品群ID
+		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"1101"] subscribeNext:^(MSFMarkets *markets) {
 			if (self.markets.teams.count == 0) {
 				self.markets = markets;
 			}

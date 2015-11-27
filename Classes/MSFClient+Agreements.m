@@ -25,7 +25,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 - (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashVIewModel *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{
-			@"productCode": self.user.productId ?: @"",
+			@"productCode": product.productID,
 			@"appLmt": product.appLmt?:@"",
 			@"loanTerm": product.loanTerm
 		}];

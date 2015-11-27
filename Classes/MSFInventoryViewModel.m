@@ -49,7 +49,7 @@
 		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
 			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm]
+				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.productID]
 				catch:^RACSignal *(NSError *error) {
 					return RACSignal.empty;
 				}]
