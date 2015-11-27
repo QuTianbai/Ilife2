@@ -10,7 +10,8 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"objectID": @"productId"
+		@"objectID": @"productId",
+		@"typeID": @"productId"
 	};
 }
 

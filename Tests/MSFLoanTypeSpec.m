@@ -18,6 +18,7 @@ beforeEach(^{
 it(@"should initialize", ^{
   // then
 	expect(sut.objectID).to(equal(@"4011"));
+	expect(sut.typeID).to(equal(@"4011"));
 });
 
 QuickSpecEnd

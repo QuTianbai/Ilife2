@@ -8,4 +8,6 @@
 
 @interface MSFLoanType : MSFObject
 
+@property (nonatomic, copy, readonly) NSString *typeID;
+
 @end
