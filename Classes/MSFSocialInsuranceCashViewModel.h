@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) MSFSocialInsuranceModel *model;
 
+@property (nonatomic, copy) NSString *jionLifeInsurance;
+
 //职工保险
 @property (nonatomic, strong) MSFSelectKeyValues *purpose;// 贷款用途
 @property (nonatomic, copy) NSString *cashpurpose;
@@ -80,6 +82,8 @@
 
 @property (nonatomic, strong, readonly) RACCommand *executeSaveCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
+
+@property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
