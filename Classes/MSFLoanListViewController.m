@@ -6,24 +6,16 @@
 //	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
+#import "MSFLoanListViewController.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFLoanListViewController.h"
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
 #import "UIColor+Utils.h"
-#import "MSFXBMCustomHeader.h"
 #import "MSLoanListTableViewCell.h"
-
-#import "MSFCommandView.h"
-#import "MSFCellButton.h"
-#import "MSFWebViewController.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
 #import "MSFApplyListViewModel.h"
 #import "MSFPlanListSegmentBar.h"
-
-#define ORAGECOLOR @"ff6600"
-#define BLUECOLOR @"#0babed"
 
 @interface MSFApplyListHeader : UIView
 
@@ -53,10 +45,10 @@
 		UILabel *months = [[UILabel alloc] init];
 		UILabel *time   = [[UILabel alloc] init];
 		UILabel *check  = [[UILabel alloc] init];
-		money.textColor  = [MSFCommandView getColorWithString:BLUECOLOR];
-		months.textColor = [MSFCommandView getColorWithString:BLUECOLOR];
-		time.textColor   = [MSFCommandView getColorWithString:BLUECOLOR];
-		check.textColor  = [MSFCommandView getColorWithString:BLUECOLOR];
+		money.textColor  = UIColor.themeColorNew;
+		months.textColor = UIColor.themeColorNew;
+		time.textColor   = UIColor.themeColorNew;
+		check.textColor  = UIColor.themeColorNew;
 		money.textAlignment  = NSTextAlignmentCenter;
 		months.textAlignment = NSTextAlignmentCenter;
 		time.textAlignment   = NSTextAlignmentCenter;
@@ -98,13 +90,41 @@
 }
 
 - (void)msApply {
-	_money.hidden = NO;
-	_months.hidden = NO;
+	[self addSubview:_money];
+	[self addSubview:_months];
+	[_time mas_remakeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self);
+	}];
+	[_months mas_remakeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self.time.mas_right);
+	}];
+	[_money mas_remakeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self.months.mas_right);
+	}];
+	[_check mas_remakeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self.money.mas_right);
+		make.right.equalTo(self);
+		make.width.equalTo(@[self.time, self.months, self.money]);
+	}];
 }
 
 - (void)mlApply {
-	_money.hidden = YES;
-	_months.hidden = YES;
+	[_money removeFromSuperview];
+	[_months removeFromSuperview];
+	[_time mas_remakeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self);
+	}];
+	[_check mas_remakeConstraints:^(MASConstraintMaker *make) {
+		make.centerY.equalTo(self);
+		make.left.equalTo(self.time.mas_right);
+		make.right.equalTo(self);
+		make.width.equalTo(self.time);
+	}];
 }
 
 - (void)drawRect:(CGRect)rect {
