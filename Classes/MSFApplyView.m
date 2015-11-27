@@ -12,7 +12,7 @@
 
 @interface MSFApplyView ()<UIGestureRecognizerDelegate>
 
-@property (nonatomic, assign) MSFApplyViewType type;
+@property (nonatomic, assign, readwrite) MSFApplyViewType type;
 @property (nonatomic, copy) void(^actionBlock)();
 
 @end

@@ -17,6 +17,8 @@ typedef NS_ENUM(NSInteger, MSFApplyViewType) {
 
 @interface MSFApplyView : UIView
 
+@property (nonatomic, assign, readonly) MSFApplyViewType type;
+
 - (instancetype)initWithStatus:(MSFApplyViewType)type
 									 actionBlock:(void(^)())action;
 

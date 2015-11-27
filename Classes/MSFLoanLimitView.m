@@ -108,7 +108,8 @@
 		uc = @"0";
 		_animaAngle = _startAngle;
 	} else {
-		CGFloat rate = ac.floatValue / (ac.floatValue + uc.floatValue) > 1 ?: 1;
+		CGFloat rate = ac.floatValue / (ac.floatValue + uc.floatValue);
+		rate = rate < 1 ? rate : 1;
 		_animaAngle = _startAngle + (3 * M_PI - 2 * _startAngle) * rate;
 	}
 	if (!_animating) {
