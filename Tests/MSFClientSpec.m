@@ -313,7 +313,6 @@ describe(@"sign in", ^{
     expect(client.token).to(equal(@"foo"));
 		expect(client.user).notTo(beNil());
 		expect(client.user.objectID).to(equal(@"foo"));
-		expect(client.user.type).to(equal(@"bar"));
   });
 	
 	it(@"should sigin with user citizen id number", ^{
@@ -339,7 +338,6 @@ describe(@"sign in", ^{
     expect(client.token).to(equal(@"foo"));
 		expect(client.user).notTo(beNil());
 		expect(client.user.objectID).to(equal(@"foo"));
-		expect(client.user.type).to(equal(@"bar"));
 	});
   
   it(@"should sign up a user", ^{
