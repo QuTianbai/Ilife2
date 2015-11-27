@@ -17,8 +17,12 @@
 #import "MSFLoanAgreementController.h"
 #import "MSFSocialInsuranceModel.h"
 #import "MSFApplicationForms.h"
+#import "UIColor+Utils.h"
+#import <ZSWTappableLabel/ZSWTappableLabel.h>
+#import <ZSWTaggedString/ZSWTaggedString.h>
+#import <KGModal/KGModal.h>
 
-@interface MSFSocialCaskApplyTableViewController ()
+@interface MSFSocialCaskApplyTableViewController ()<ZSWTappableLabelTapDelegate>
 
 @property (nonatomic, strong) MSFSocialInsuranceCashViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UITextField *cashPuposeTF;
@@ -40,6 +44,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *medicalTypeLB;
 
 @property (nonatomic, copy) NSString *professional;
+@property (weak, nonatomic) IBOutlet UISwitch *lifeInsuranceSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *isLifeInsuranceBT;
 
 @end
 
@@ -60,6 +66,63 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	RAC(self, cashPuposeTF.text) = [RACObserve(self, viewModel.cashpurpose) ignore:nil];
+	@weakify(self)
+	[[self.isLifeInsuranceBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 390)];
+		contentView.backgroundColor = [UIColor whiteColor];
+		
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 80, 20)];
+		titleLabel.textColor = [UIColor themeColorNew];
+		titleLabel.font = [UIFont boldSystemFontOfSize:18];
+		titleLabel.text = @"寿险条约";
+		[contentView addSubview:titleLabel];
+		
+		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-16, 1)];
+		line.backgroundColor = [UIColor themeColorNew];
+		[contentView addSubview:line];
+		
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"life-insurance" ofType:nil];
+		NSString *string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-8, contentView.frame.size.height-40)];
+		label.numberOfLines = 0;
+		label.font = [UIFont systemFontOfSize:15];
+		label.tapDelegate = self;
+		
+		ZSWTaggedStringOptions *options = [ZSWTaggedStringOptions defaultOptions];
+		[options setAttributes:@{
+														 ZSWTappableLabelTappableRegionAttributeName: @YES,
+														 ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
+														 ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
+														 NSForegroundColorAttributeName: [UIColor themeColorNew],
+														 NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+														 @"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
+														 } forTagName:@"link"];
+		label.attributedText = [[ZSWTaggedString stringWithString:string] attributedStringWithOptions:options];
+		[contentView addSubview:label];
+		[[KGModal sharedInstance] setCloseButtonLocation:KGModalCloseButtonLocationRight];
+		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+		[[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+	}];
+	
+	[[self rac_signalForSelector:@selector(tappableLabel:tappedAtIndex:withAttributes:) fromProtocol:@protocol(ZSWTappableLabelTapDelegate)] subscribeNext:^(id x) {
+		@strongify(self)
+		[[KGModal sharedInstance] hideWithCompletionBlock:^{
+			[self.viewModel.executeLifeInsuranceCommand execute:nil];
+		}];
+	}];
+	
+	self.viewModel.jionLifeInsurance = @"1";
+	RAC(self, viewModel.jionLifeInsurance) = [self.lifeInsuranceSwitch.rac_newOnChannel map:^id(NSNumber *value) {
+//		if (value.integerValue == 0) {
+//			self.moneyInsuranceLabel.hidden = YES;
+//			//self.moneyInsuranceLabel.text = @"";
+//		} else {
+//			self.moneyInsuranceLabel.hidden = NO;
+//		}
+		
+		return value.stringValue;
+	}];
 	
 	if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {//居民
 		self.oldMonthsOrYeasLB.text = @"缴费年数";
@@ -163,7 +226,6 @@
 	}
 	
 	self.submitBT.rac_command = self.viewModel.executeSaveCommand;
-	@weakify(self)
 	[self.viewModel.executeSaveCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
@@ -207,6 +269,8 @@
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
 }
+
+#pragma mark - UITableViewDelegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 	
@@ -334,6 +398,11 @@
 	}
 	return 4;
 	
+}
+
+#pragma mark - ZSWTappableLabelTapDelegate
+
+- (void)tappableLabel:(ZSWTappableLabel *)tappableLabel tappedAtIndex:(NSInteger)idx withAttributes:(NSDictionary *)attributes {
 }
 
 @end

@@ -14,7 +14,7 @@
 
 - (RACSignal *)fetchSaveSocialInsuranceInfoWithModel:(MSFSocialInsuranceModel *)model;
 
-- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status;
+- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status JoininLifeInsurance:(NSString *)jioninLifeInsurance;
 
 - (RACSignal *)fetchGetSocialInsuranceInfo;
 - (RACSignal *)confirmInsuranceSignal;

@@ -16,7 +16,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="IAn-3x-mkB">
-                            <rect key="frame" x="0.0" y="612" width="320" height="80"/>
+                            <rect key="frame" x="0.0" y="656" width="320" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aec-X8-vfe" customClass="MSFEdgeButton">
@@ -78,12 +78,69 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="G3h-UN-KCq">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G3h-UN-KCq" id="d6P-vc-Oqu">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否加入寿险计划" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-qe-qI0">
+                                                    <rect key="frame" x="15" y="11" width="120" height="21"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="T3R-DL-nRC"/>
+                                                        <constraint firstAttribute="height" constant="21" id="ozw-vQ-4x6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="9lD-DU-BUJ">
+                                                    <rect key="frame" x="140" y="12" width="20" height="20"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="3I4-BM-NMD"/>
+                                                        <constraint firstAttribute="width" constant="20" id="TPe-b8-WL6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tQo-jG-0Ic">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="NE5-GC-Hzw"/>
+                                                        <constraint firstAttribute="height" constant="31" id="WQM-Cw-i0R"/>
+                                                    </constraints>
+                                                </switch>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsz-H3-n7J">
+                                                    <rect key="frame" x="0.0" y="6" width="160" height="32"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="Mj6-RF-ZgO"/>
+                                                        <constraint firstAttribute="width" constant="160" id="q7r-RO-qVR"/>
+                                                    </constraints>
+                                                </button>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="tQo-jG-0Ic" secondAttribute="trailing" constant="20" id="FVW-Wg-8PF"/>
+                                                <constraint firstItem="9lD-DU-BUJ" firstAttribute="centerY" secondItem="d6P-vc-Oqu" secondAttribute="centerY" id="HS0-iG-Pzh"/>
+                                                <constraint firstItem="9Ac-qe-qI0" firstAttribute="leading" secondItem="d6P-vc-Oqu" secondAttribute="leading" constant="15" id="Mdt-BB-ChM"/>
+                                                <constraint firstItem="9lD-DU-BUJ" firstAttribute="leading" secondItem="9Ac-qe-qI0" secondAttribute="trailing" constant="5" id="Nlv-O8-sDi"/>
+                                                <constraint firstItem="tQo-jG-0Ic" firstAttribute="centerY" secondItem="d6P-vc-Oqu" secondAttribute="centerY" id="TlA-J6-B1f"/>
+                                                <constraint firstItem="9Ac-qe-qI0" firstAttribute="centerY" secondItem="d6P-vc-Oqu" secondAttribute="centerY" id="Uv8-2E-fKx"/>
+                                                <constraint firstItem="rsz-H3-n7J" firstAttribute="centerY" secondItem="d6P-vc-Oqu" secondAttribute="centerY" id="nc5-QQ-i6p"/>
+                                                <constraint firstItem="rsz-H3-n7J" firstAttribute="leading" secondItem="d6P-vc-Oqu" secondAttribute="leading" id="tRG-mV-nvu"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="职工养老保险信息" id="lNf-6m-KPR">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="ZeC-U2-lan">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZeC-U2-lan" id="gOc-H1-qek">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -122,7 +179,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="gFW-rI-ioo">
-                                        <rect key="frame" x="0.0" y="116" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="160" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gFW-rI-ioo" id="s6k-tW-6FT">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -161,7 +218,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="eAH-Of-OVu">
-                                        <rect key="frame" x="0.0" y="160" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="204" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eAH-Of-OVu" id="sSG-tm-Xc1">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -200,7 +257,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="Dmd-o2-cXR">
-                                        <rect key="frame" x="0.0" y="204" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="248" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dmd-o2-cXR" id="KN1-0h-NmH">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -243,7 +300,7 @@
                             <tableViewSection headerTitle="职工医疗保险信息" id="jmC-nw-IF6">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="bk2-Ma-iDs">
-                                        <rect key="frame" x="0.0" y="276" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bk2-Ma-iDs" id="VC6-QH-G99">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -282,7 +339,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="sPA-Qm-Gs5">
-                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sPA-Qm-Gs5" id="SWN-8x-7Wt">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -321,7 +378,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="IE7-Rp-dBU">
-                                        <rect key="frame" x="0.0" y="364" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="408" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IE7-Rp-dBU" id="1fZ-ki-Klc">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -360,7 +417,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="3hm-MO-I6h">
-                                        <rect key="frame" x="0.0" y="408" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="452" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hm-MO-I6h" id="pAI-Eu-wGf">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -403,7 +460,7 @@
                             <tableViewSection headerTitle="职工其他保险信息" id="y04-qH-gXB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="WaD-li-qWp">
-                                        <rect key="frame" x="0.0" y="480" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WaD-li-qWp" id="taq-7d-q9L">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -442,7 +499,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="fQD-82-362">
-                                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="568" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fQD-82-362" id="2sx-GZ-T26">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -481,7 +538,7 @@
                                         <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="A95-ln-L6E">
-                                        <rect key="frame" x="0.0" y="568" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="612" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A95-ln-L6E" id="ASn-ZN-iMT">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -532,6 +589,8 @@
                         <outlet property="bearTF" destination="6gp-An-ZuF" id="lT4-DR-q3d"/>
                         <outlet property="cashPuposeTF" destination="7VK-7e-4Wc" id="vPh-zS-pHW"/>
                         <outlet property="injuryStatusTF" destination="YLZ-Gk-Ygo" id="Yf4-Hc-M4N"/>
+                        <outlet property="isLifeInsuranceBT" destination="rsz-H3-n7J" id="Wyc-hV-nnS"/>
+                        <outlet property="lifeInsuranceSwitch" destination="tQo-jG-0Ic" id="OBM-Vx-Sgo"/>
                         <outlet property="medicalBaseTF" destination="Fdk-a5-h5P" id="TEf-ro-WXw"/>
                         <outlet property="medicalDate" destination="RWL-iO-s47" id="9Sd-XD-3zY"/>
                         <outlet property="medicalMonths" destination="iH8-uD-oZW" id="Gne-mX-LPu"/>
@@ -553,4 +612,7 @@
             <point key="canvasLocation" x="317" y="121"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-cloze-question.png" width="20" height="20"/>
+    </resources>
 </document>

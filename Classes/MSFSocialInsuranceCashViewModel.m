@@ -19,6 +19,7 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
+#import "MSFLifeInsuranceViewModel.h"
 
 enum SELECTTYPE {
 	EMPOLDSTATUS,    //职工养老社保状态
@@ -72,6 +73,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	}
 	_services = services;
 	_cashpurpose = @"";
+	_jionLifeInsurance = @"";
 	_employeeOldInsuranceStatusTitle = @"";
 	_employeeOlderModeyTitle = @"";
 	_employeeOlderDate = @"";
@@ -250,6 +252,11 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self submitSignal];
+	}];
+	
+	_executeLifeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self executeLifeInsuranceSignal];
 	}];
 	
 	return self;
@@ -635,7 +642,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (RACSignal *)submitSignal {
 	
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status JoininLifeInsurance:self.jionLifeInsurance];
 }
 
 - (RACSignal *)saveSignal {
@@ -682,6 +689,15 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	
 	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
 	
+}
+
+- (RACSignal *)executeLifeInsuranceSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end
