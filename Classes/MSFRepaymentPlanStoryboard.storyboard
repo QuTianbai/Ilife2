@@ -85,17 +85,17 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6uU-ce-x74" firstAttribute="top" secondItem="XUu-k9-6Nl" secondAttribute="bottom" id="Kfb-nP-Iyk"/>
+                            <constraint firstAttribute="bottom" secondItem="XUu-k9-6Nl" secondAttribute="bottom" id="891-L0-Gsn"/>
+                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="Dmj-hV-idZ"/>
+                            <constraint firstAttribute="bottom" secondItem="FPu-kI-Wxm" secondAttribute="bottom" id="Jiy-Hi-8O2"/>
                             <constraint firstAttribute="trailing" secondItem="gtj-M9-udv" secondAttribute="trailing" id="NNF-PR-O8f"/>
                             <constraint firstItem="gtj-M9-udv" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="R3s-9X-mv0"/>
-                            <constraint firstAttribute="trailing" secondItem="FPu-kI-Wxm" secondAttribute="trailing" id="Szk-V4-vJi"/>
-                            <constraint firstAttribute="trailing" secondItem="XUu-k9-6Nl" secondAttribute="trailing" id="YWQ-Ja-Wsn"/>
-                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="ZcW-S0-qDg"/>
-                            <constraint firstItem="XUu-k9-6Nl" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" id="apa-do-bcu"/>
+                            <constraint firstAttribute="trailing" secondItem="XUu-k9-6Nl" secondAttribute="trailing" id="R49-iS-k49"/>
+                            <constraint firstItem="XUu-k9-6Nl" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="gE2-mR-XZo"/>
+                            <constraint firstItem="XUu-k9-6Nl" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" id="lE3-Ff-vHE"/>
+                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" id="nGD-T2-DOl"/>
                             <constraint firstItem="gtj-M9-udv" firstAttribute="top" secondItem="En0-6F-9Rb" secondAttribute="top" id="uoR-Ut-QEX"/>
-                            <constraint firstItem="XUu-k9-6Nl" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="wE7-M5-8bL"/>
-                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" id="wGw-Qt-b46"/>
-                            <constraint firstItem="6uU-ce-x74" firstAttribute="top" secondItem="FPu-kI-Wxm" secondAttribute="bottom" id="xlT-3v-734"/>
+                            <constraint firstAttribute="trailing" secondItem="FPu-kI-Wxm" secondAttribute="trailing" id="xNj-SX-bao"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
