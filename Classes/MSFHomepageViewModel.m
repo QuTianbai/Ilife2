@@ -45,7 +45,11 @@
 	}];
 	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
 		@strongify(self)
-			self.cellModel = x;
+		self.cellModel = x;
+		if (!x) {
+			self.viewModel.active = NO;
+			self.viewModel.active = YES;
+		}
 	}];
 	[self.refreshCommand.errors subscribeNext:^(id x) {
 		@strongify(self)
