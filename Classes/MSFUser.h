@@ -18,9 +18,6 @@
 
 @property (nonatomic, copy) NSString *complateCustInfo;
 
-// 用户产品群
-@property (nonatomic, copy, readonly) NSString *productId __deprecated;
-
 // 用户身份证号
 @property (nonatomic, copy, readonly) NSString *ident;
 
@@ -35,9 +32,6 @@
 
 // 判断用户是否已设置交易密码
 @property (nonatomic, assign, readonly) BOOL hasTransactionalCode;
-
-// 客户类型
-@property (nonatomic, copy, readonly) NSString *type __deprecated;
 
 /**
  *	Create The user instance

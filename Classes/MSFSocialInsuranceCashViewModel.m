@@ -44,13 +44,13 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 @implementation MSFSocialInsuranceCashViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel loanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services {
   self = [self initWithServices:services];
   if (!self) {
     return nil;
   }
-	_productID = productID;
-	_productCd = productID;
+	_loanType = loanType;
+	_productCd = loanType.typeID;
 	_formViewModel = formsViewModel;
 	RAC(self, professional) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
 		self.professional = value;
@@ -694,7 +694,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:_productID];
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:self.loanType.typeID];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;

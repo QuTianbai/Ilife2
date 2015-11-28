@@ -30,7 +30,6 @@
 // type -  合同模版类型
 //
 // Returns a signal which wil send HTML String
-- (RACSignal *)requestContactInfo:(NSString *)type __deprecated;
 - (RACSignal *)requestContactWithTemplate:(NSString *)templateType productType:(NSString *)productType;
 
 @end

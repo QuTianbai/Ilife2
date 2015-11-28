@@ -76,15 +76,5 @@
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 @property (nonatomic, weak) id<MSFViewModelServices> services;
 
-
-// Deprecateds
-@property (nonatomic, strong) RACCommand *executeAllowMSCommand __deprecated;
-@property (nonatomic, strong) RACCommand *executeAllowMLCommand __deprecated;
-@property (nonatomic, strong) NSString *productID __deprecated;
-
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType __deprecated_msg("Use `-initWithViewModel:loanType` instead");
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel __deprecated;
-- (RACSignal *)fetchProductType __deprecated;
-
 @end
 

@@ -106,8 +106,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 }
 
 - (RACSignal *)requestContactInfo:(NSString *)type {
-	NSString *product = [self.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate] ? self.circulateModel.productType : [self.servers.httpClient user].productId;
-	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:product AndtemplateType:type] flattenMap:^RACStream *(id value) {
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:self.circulateModel.productType AndtemplateType:type] flattenMap:^RACStream *(id value) {
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];

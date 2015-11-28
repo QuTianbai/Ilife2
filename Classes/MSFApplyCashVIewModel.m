@@ -35,7 +35,6 @@
 @interface MSFApplyCashVIewModel ()
 
 @property (nonatomic, copy) MSFCalculatemMonthRepayModel *calculateModel;
-@property (nonatomic, copy) NSString *productType __deprecated;
 
 @end
 
@@ -48,32 +47,6 @@
 	}
 	_formViewModel = viewModel;
 	_loanType = loanType;
-	[self initialize];
-	
-	return self;
-}
-
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-	_formViewModel = viewModel;
-	_productType = productType;
-	_productID = productType;
-	_loanType = [[MSFLoanType alloc] initWithTypeID:productType];
-	[self initialize];
-	
-	return self;
-}
-
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel {
-	self = [super init];
-	
-	if (!self) {
-		return nil;
-	}
-	_formViewModel = viewModel;
 	[self initialize];
 	
 	return self;
@@ -175,16 +148,6 @@
 		@strongify(self)
 		return [self executeNextSignal];
 	}];
-	
-	_executeAllowMSCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self executeAllow];
-	}];
-	
-	_executeAllowMLCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self executeAllow];
-	}];
 }
 
 - (RACSignal *)executePurposeSignal {
@@ -203,7 +166,7 @@
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:self.productType];
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:self.loanType.typeID];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
@@ -236,10 +199,6 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
-}
-
-- (RACSignal *)executeAllow {
-	return [self.services.httpClient fetchCheckAllowApply];
 }
 
 - (void)setSVPBackGround {
