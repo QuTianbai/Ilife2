@@ -117,6 +117,10 @@
 	self.circulateRepayMentTableView.tableFooterView = UIView.new;
 	self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.myTableView sourceSignal:signal selectionCommand:nil registerClass:MSFRepaymentTableViewCell.class];
 	self.bindingHelper.delegate = self;
+	[[self rac_signalForSelector:@selector(viewWillDisappear:)]
+	 subscribeNext:^(id x) {
+		 [SVProgressHUD dismiss];
+	 }];
 }
 
 - (void)updateIndicatorViewWithButton:(UIButton *)button {
