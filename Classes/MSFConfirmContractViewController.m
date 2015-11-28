@@ -73,8 +73,8 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	}];
 	
 	NSArray *types = @[
-		@"CASH_CONTRACT",
-		@"CONTRACT_IMPORTENT_ITEM"
+		@"CONTRACT_IMPORTENT_ITEM",
+		@"CASH_CONTRACT"
 	];
 	static int index = 0;
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
