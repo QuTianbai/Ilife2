@@ -261,6 +261,7 @@
 		} else {
 			[_headView mlApply];
 		}
+		_selectedIndex = [x intValue];
 		[self loadData:[x intValue]];
 	}];
 	bar.selectedIndex = _pushType;
