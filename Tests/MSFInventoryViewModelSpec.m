@@ -16,6 +16,7 @@
 #import "MSFAttachment.h"
 #import "MSFElement+Private.h"
 #import "MSFApplyCashVIewModel.h"
+#import "MSFLoanType.h"
 
 QuickSpecBegin(MSFInventoryViewModelSpec)
 
@@ -41,10 +42,13 @@ beforeEach(^{
 
 describe(@"re-upload attachments", ^{
 	beforeEach(^{
+		MSFLoanType *loanType = mock([MSFLoanType class]);
+		stubProperty(loanType, typeID, @"");
+		
 		insuranceViewModel = mock([MSFApplyCashVIewModel class]);
 		[given([insuranceViewModel services]) willReturn:services];
 		[given([insuranceViewModel applicationNo]) willReturn:@""];
-		[given([insuranceViewModel productID]) willReturn:@""];
+		[given([insuranceViewModel loanType]) willReturn:loanType];
 		
 		viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:@"" productID:@"" services:services];
 		expect(viewModel).notTo(beNil());

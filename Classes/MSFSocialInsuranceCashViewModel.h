@@ -92,10 +92,13 @@
 @property (nonatomic, strong) NSString *applicationNo;
 
 // 保贷的产品ID
-@property (nonatomic, strong) NSString *productID;
+@property (nonatomic, strong) NSString *productID __deprecated;
 
 // 社保贷类型,通过职业信息确认
-@property (nonatomic, strong) NSString *productType;
+@property (nonatomic, strong) NSString *productType __deprecated_msg("Use professional");
+
+@property (nonatomic, strong) MSFLoanType *loanType;
+@property (nonatomic, strong) NSString *professional;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 

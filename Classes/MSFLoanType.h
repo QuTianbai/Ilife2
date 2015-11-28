@@ -1,0 +1,15 @@
+//
+// MSFLoanType.h
+//
+// Copyright (c) 2015 Zēng Liàng. All rights reserved.
+//
+
+#import "MSFObject.h"
+
+@interface MSFLoanType : MSFObject
+
+@property (nonatomic, copy, readonly) NSString *typeID;
+
+- (instancetype)initWithTypeID:(NSString *)typeID;
+
+@end

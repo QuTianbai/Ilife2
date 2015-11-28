@@ -20,6 +20,7 @@
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFApplyCashVIewModel.h"
 #import "MSFClient+Inventory.h"
+#import "MSFLoanType.h"
 
 @interface MSFInventoryViewModel ()
 
@@ -49,7 +50,7 @@
 		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
 			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.productID]
+				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.loanType.typeID]
 				catch:^RACSignal *(NSError *error) {
 					return RACSignal.empty;
 				}]
@@ -59,7 +60,7 @@
 				collect];
 		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.productID]
+				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.loanType.typeID]
 				catch:^RACSignal *(NSError *error) {
 					return RACSignal.empty;
 				}]
