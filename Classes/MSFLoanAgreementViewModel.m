@@ -15,6 +15,7 @@
 #import "MSFClient+Agreements.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFClient+MSFSocialInsurance.h"
+#import "MSFLoanType.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -46,7 +47,7 @@
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	}
 	if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.productID];
+		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
 	}
 	return [RACSignal empty];
 }

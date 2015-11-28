@@ -16,12 +16,9 @@
 @class MSFApplyCashModel;
 @class MSFMarkets;
 @class MSFTeam;
+@class MSFLoanType;
 
 @interface MSFApplyCashVIewModel : RVMViewModel <MSFApplicationViewModel>
-
-@property (nonatomic, strong) NSString *applicationNo;
-
-@property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 
 @property (nonatomic, copy) NSString *appNO;
 @property (nonatomic, copy) NSString *appLmt; // 贷款金额
@@ -33,46 +30,51 @@
 @property (nonatomic, copy) NSString *loanFixedAmt;
 @property (nonatomic, copy) NSString *productCd;
 @property (nonatomic, strong) NSArray *array;
-@property (nonatomic, strong) NSArray *accessories;
 
-/**
- *	贷款目的
- */
+// 贷款目的
 @property (nonatomic, strong) MSFSelectKeyValues *purpose;
 @property (nonatomic, strong, readonly) NSString *purposeText;
 
-/**
- *	金额
- */
+// 金额
 @property (nonatomic, copy) NSString *minMoney;
 @property (nonatomic, copy) NSString *maxMoney;
 
 // 贷款期数对应的产品
 @property (nonatomic, strong) MSFTeam *product;
 
-@property (nonatomic, copy) MSFApplyCashModel *model;
-
+@property (nonatomic, strong) MSFApplyCashModel *model;
 @property (nonatomic, strong) MSFMarkets *markets;
 
-@property (nonatomic, assign) id<MSFViewModelServices>services;
-
 @property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
-
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
-
-@property (nonatomic, strong) RACCommand *executeNextCommand;
-@property (nonatomic, strong) RACCommand *executeAllowMSCommand __deprecated;
-@property (nonatomic, strong) RACCommand *executeAllowMLCommand __deprecated;
+@property (nonatomic, strong, readonly) RACCommand *executeNextCommand;
 
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
-@property (nonatomic, strong) NSString *productID;
 
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel __deprecated;
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType;
-
+// 提交贷款申请信息
+//
+// status -  状态 0: 保存贷款信息 1: 提交信息到服务器审核
+//
+// Returns a signal will send instance of `MSFSubmitApplyModel`
 - (RACSignal *)submitSignalWithStatus:(NSString *)status;
 
-- (RACSignal *)fetchProductType __deprecated;
+
+// 创建ViewModel instance
+//
+// viewModel - 用户信息: 基本信息/职业信息/联系人信息
+// loanType  - 贷款产品群  社保贷/马上贷 etc.
+//
+// Returns a instance of `MSFApplyCashModel`
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(MSFLoanType *)loanType;
+
+
+// <MSFApplicationViewModel>
+@property (nonatomic, strong) NSArray *accessories;
+@property (nonatomic, strong) MSFLoanType *loanType;
+@property (nonatomic, strong) NSString *applicationNo;
+@property (nonatomic, strong) MSFFormsViewModel *formViewModel;
+@property (nonatomic, weak) id<MSFViewModelServices> services;
 
 @end
+

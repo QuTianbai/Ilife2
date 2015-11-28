@@ -15,7 +15,7 @@
 - (RACSignal *)fetchLifeInsuranceAgreement {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-			@"productCode": self.user.productId,
+			@"productCode": @"",
 			@"templateType": @"LIFE_INSURANCE_PROTOCOL"
 		}];
 		[subscriber sendNext:request];

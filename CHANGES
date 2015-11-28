@@ -1,3 +1,16 @@
+Version 2.1.0.2:
+ - Merge remote-tracking branch 'origin/xbmDev' into pu/v2.1
+ - Merge remote-tracking branch 'origin/zhaoyong' into pu/v2.1
+ - 每月还款金额获取失败时下一步限制
+ - 寿险协议传ProductID
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 还款计划加载动画消失
+ - update tab2 SVProgressHUD显示时机
+ - Merge remote-tracking branch 'origin/zhaoyong' into pu/v2.1
+ - Fix 提交缺少附件清单
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix 切换tab崩溃
+
 Version 2.1.0.1:
  - Merge remote-tracking branch 'origin/zhaoyong' into pu/v2.1
  - Update version to v1.1

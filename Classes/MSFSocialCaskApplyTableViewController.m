@@ -58,7 +58,7 @@
 	}
 	
 	_viewModel = viewModel;
-	self.professional = viewModel.productType;
+	self.professional = viewModel.professional;
 	
 	return self;
 }

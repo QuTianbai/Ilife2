@@ -14,8 +14,6 @@
 
 @interface MSFContractDetailsTableViewController : UITableViewController
 
-@property (nonatomic, strong) MSFRepaymentSchedules *repayMentSchdues __deprecated;
-
 - (instancetype)initWithViewModel:(id)viewModel;
 
 @end

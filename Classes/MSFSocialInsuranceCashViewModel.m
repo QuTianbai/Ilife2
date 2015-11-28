@@ -20,6 +20,7 @@
 #import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
 #import "MSFLifeInsuranceViewModel.h"
+#import "MSFLoanType.h"
 
 enum SELECTTYPE {
 	EMPOLDSTATUS,    //职工养老社保状态
@@ -43,16 +44,16 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 @implementation MSFSocialInsuranceCashViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel productID:(NSString *)productID services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel loanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services {
   self = [self initWithServices:services];
   if (!self) {
     return nil;
   }
-	_productID = productID;
-	_productCd = productID;
+	_loanType = loanType;
+	_productCd = loanType.typeID;
 	_formViewModel = formsViewModel;
-	RAC(self, productType) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
-		self.productType = value;
+	RAC(self, professional) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
+		self.professional = value;
 		//[self commonInit];
 		self.active = NO;
 		self.active = YES;
@@ -60,7 +61,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return value;
 	}];
 	
-	RACChannelTo(self, productCd) = RACChannelTo(self, productID);
+	RACChannelTo(self, productCd) = RACChannelTo(self, loanType.typeID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
 	
   return self;
@@ -382,7 +383,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (void)commonInit {
 	//SI03 SI05 SI06
-	if ([self.productType isEqualToString:@"SI05"] || [self.productType isEqualToString:@"SI03"] ||[self.productType isEqualToString:@"SI06"]) {
+	if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] ||[self.professional isEqualToString:@"SI06"]) {
 		//居民
 		if (self.model.rsdtOldInsuExist == nil || [self.model.rsdtOldInsuExist isEqualToString:@""]) {
 			[self setPostionDefultWithName:@"isInsurance" selectValuesType:RESOLDSTATUS index:0];
@@ -534,7 +535,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (void)commonInitDefult {
-	if ([self.productType isEqualToString:@"SI05"] || [self.productType isEqualToString:@"SI03"] ||[self.productType isEqualToString:@"SI06"]) {
+	if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] ||[self.professional isEqualToString:@"SI06"]) {
 		//居民
 		NSArray *radOlderExist = [MSFSelectKeyValues getSelectKeys:@"isInsurance"];
 		self.residentOlderInsuranceStatus = radOlderExist.firstObject;
@@ -655,7 +656,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 		return [RACSignal error:error];
 	}
-	if (!([self.productType isEqualToString:@"SI05"] || [self.productType isEqualToString:@"SI03"] ||[self.productType isEqualToString:@"SI06"])) {
+	if (!([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] ||[self.professional isEqualToString:@"SI06"])) {
 		if (self.employeeOlderMonths.intValue > 600 ) {
 			self.employeeOlderMonths = @"12";
 			errorStr = @"职工养老保险实际缴费月数:请输入600以内整书";
@@ -693,7 +694,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:_productID];
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:self.loanType.typeID];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
