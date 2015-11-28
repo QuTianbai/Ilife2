@@ -54,7 +54,7 @@
  */
 - (void)msAdView {
 	for (MSFApplyView *view in self.view.subviews) {
-		if (view.type == MSFApplyViewTypeMSFull) {
+		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
 			return;
 		}
 	}
@@ -75,7 +75,7 @@
  */
 - (void)sbAdView {
 	for (MSFApplyView *view in self.view.subviews) {
-		if (view.type == MSFApplyViewTypeMS) {
+		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
 			return;
 		}
 	}
@@ -105,7 +105,7 @@
  */
 - (void)limitView {
 	for (MSFApplyView *view in self.view.subviews) {
-		if (view.type == MSFApplyViewTypeLimitMS) {
+		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
 			return;
 		}
 	}
