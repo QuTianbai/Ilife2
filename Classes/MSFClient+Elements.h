@@ -33,7 +33,6 @@
 // terms         - 申请期数
 //
 // Returns a signal will send element instance flow
-- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms __deprecated;
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID;
 
 @end

@@ -30,36 +30,23 @@
 #import "MSFClient+MSFProductType.h"
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFLoanType.h"
 
 @interface MSFApplyCashVIewModel ()
 
 @property (nonatomic, copy) MSFCalculatemMonthRepayModel *calculateModel;
-@property (nonatomic, copy) NSString *productType;
 
 @end
 
 @implementation MSFApplyCashVIewModel
 
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel productType:(NSString *)productType {
+- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(MSFLoanType *)loanType {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_formViewModel = viewModel;
-	_productType = productType;
-	_productID = productType;
-	[self initialize];
-	
-	return self;
-}
-
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel {
-	self = [super init];
-	
-	if (!self) {
-		return nil;
-	}
-	_formViewModel = viewModel;
+	_loanType = loanType;
 	[self initialize];
 	
 	return self;
@@ -70,7 +57,7 @@
 - (void)initialize {
 	_model = [[MSFApplyCashModel alloc] init];
 	_services = self.formViewModel.services;
-	_model.productCd = self.productType;
+	_model.productCd = self.loanType.typeID;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
 	_applicationNo = @"";
@@ -125,7 +112,7 @@
 			if (!loanTerm) {
 				return [RACSignal return:@0];
 			}
-			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:self.productType AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
+			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:self.loanType.typeID AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
 				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
 				return [RACSignal return:response];
 			}] map:^id(MSFCalculatemMonthRepayModel *model) {
@@ -161,16 +148,6 @@
 		@strongify(self)
 		return [self executeNextSignal];
 	}];
-	
-	_executeAllowMSCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self executeAllow];
-	}];
-	
-	_executeAllowMLCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [self executeAllow];
-	}];
 }
 
 - (RACSignal *)executePurposeSignal {
@@ -189,7 +166,7 @@
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services];
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:self.loanType.typeID];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
@@ -212,16 +189,16 @@
 			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款用途"}]];
 			return nil;
 		}
+		if ([self.loanFixedAmt isEqualToString:@"0.00"] || [self.loanFixedAmt isEqualToString:@"0"] || self.loanFixedAmt == nil) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"每月还款金额获取失败"}]];
+			return nil;
+		}
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
 		[self.services pushViewModel:viewModel];
 		
 		[subscriber sendCompleted];
 		return nil;
 	}];
-}
-
-- (RACSignal *)executeAllow {
-	return [self.services.httpClient fetchCheckAllowApply];
 }
 
 - (void)setSVPBackGround {

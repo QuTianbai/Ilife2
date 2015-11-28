@@ -28,6 +28,7 @@
 #import "MSFUserInfomationViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFCashHomePageViewModel.h"
+#import "MSFLoanType.h"
 
 @interface MSFCashHomePageViewController ()
 
@@ -174,7 +175,8 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
-				MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formViewModel productType:@"1101"];
+				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"1101"];
+				MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formViewModel loanType:loanType];
 				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
 				userInfoVC.showNextStep = YES;
 				[self.navigationController pushViewController:userInfoVC animated:YES];
@@ -192,7 +194,8 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
-				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel productID:@"4102" services:self.viewModel.services];
+				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"4102"];
+				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel loanType:loanType services:self.viewModel.services];
 				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
 				userInfoVC.showNextStep = YES;
 				[self.navigationController pushViewController:userInfoVC animated:YES];

@@ -13,6 +13,7 @@
 
 - (RACSignal *)lifeInsuranceHTMLSignal;
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services ProductID:(NSString *)productID;
 
 @end

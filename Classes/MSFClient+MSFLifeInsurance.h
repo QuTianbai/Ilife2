@@ -13,7 +13,6 @@
 // 获取寿险协议.
 //
 // Returns HTML Request.
-- (RACSignal *)fetchLifeInsuranceAgreement __deprecated;
 - (RACSignal *)fetchLifeInsuranceAgreementWithProductType:(NSString *)product;
 
 @end

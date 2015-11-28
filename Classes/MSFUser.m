@@ -14,7 +14,6 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"objectID": @"uniqueId",
-		@"type": @"custType",
 		@"userID": @"userId",
 		@"name": @"name",
 		@"mobile": @"mobile",
