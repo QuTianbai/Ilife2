@@ -693,7 +693,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services];
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:_productID];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
