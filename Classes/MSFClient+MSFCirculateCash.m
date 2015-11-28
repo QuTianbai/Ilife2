@@ -17,7 +17,7 @@
 	if (type) {
 		param = @{@"type" : type};
 	}
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"aappend/currentloaninfo" parameters:param];
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/currentloaninfo" parameters:param];
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
 }
 
