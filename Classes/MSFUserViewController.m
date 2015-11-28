@@ -30,6 +30,7 @@
 #import "MSFRepaymentViewModel.h"
 
 #import "MSFApplyListViewModel.h"
+#import "MSFLoanType.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -144,7 +145,8 @@
 
 - (void)userInfo {
 	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
-	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel productType:@""];
+	MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
+	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
 	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
 }
