@@ -164,6 +164,7 @@
 					break;
 			}
 		} error:^(NSError *error) {
+			[SVProgressHUD dismiss];
 			[self showPlaceholderView:YES];
 		}];
 	}];
