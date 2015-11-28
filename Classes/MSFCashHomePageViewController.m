@@ -145,8 +145,12 @@
 	[super viewDidLoad];
 	@weakify(self)
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
+		@strongify(self)
+		if (self.view.subviews.count == 0) {
+			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+		}
 		[[_viewModel fetchProductType] subscribeNext:^(NSNumber *x) {
-			@strongify(self)
+			[SVProgressHUD dismiss];
 			switch (x.integerValue) {
 				case 0:
 					[self msAdView];
