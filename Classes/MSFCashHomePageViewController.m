@@ -146,9 +146,8 @@
 	@weakify(self)
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
-		if (self.view.subviews.count == 0) {
-			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
-		}
+		[self showPlaceholderView:NO];
+		[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
 		[[_viewModel fetchProductType] subscribeNext:^(NSNumber *x) {
 			[SVProgressHUD dismiss];
 			switch (x.integerValue) {
@@ -165,7 +164,7 @@
 					break;
 			}
 		} error:^(NSError *error) {
-			[SVProgressHUD showErrorWithStatus:error.userInfo[@"message"]];
+			[self showPlaceholderView:YES];
 		}];
 	}];
 	[self.viewModel.executeAllowMSCommand.executionSignals subscribeNext:^(RACSignal *signal) {
@@ -287,6 +286,57 @@
 			}
 			return [RACDisposable disposableWithBlock:^{}];
 		}];
+	}];
+}
+
+- (void)showPlaceholderView:(BOOL)show {
+	for (UIView *subview in self.view.subviews) {
+		if (subview.tag == 1000) {
+			[subview removeFromSuperview];
+		}
+	}
+	if (!show) {
+		return;
+	}
+	UIView *view = [[UIView alloc] init];
+	view.tag = 1000;
+	view.backgroundColor = UIColor.clearColor;
+	[self.view addSubview:view];
+	[view mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.center.equalTo(self.view);
+		make.width.equalTo(self.view);
+		make.height.equalTo(@300);
+	}];
+	/*
+	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	[view addSubview:activityIndicatorView];
+	
+	[activityIndicatorView startAnimating];
+	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerX.equalTo(view);
+		make.centerY.equalTo(view).offset(-40);
+	}];*/
+	
+	UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-empty"]];
+	[view addSubview:imgView];
+	[imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.centerX.equalTo(view);
+		make.centerY.equalTo(view).offset(-40);
+		make.size.mas_equalTo(CGSizeMake(69, 69));
+	}];
+	
+	UILabel *label = UILabel.new;
+	label.font = [UIFont boldSystemFontOfSize:[UIFont labelFontSize]];
+	label.textColor = UIColor.darkGrayColor;
+	label.numberOfLines = 2;
+	label.textAlignment = NSTextAlignmentCenter;
+	label.text = @"数据加载异常，请稍后重试";
+	[view addSubview:label];
+	[label mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.top.equalTo(imgView.mas_bottom).with.offset(10);
+		make.height.equalTo(@40);
+		make.left.equalTo(view).offset(30);
+		make.right.equalTo(view).offset(-30);
 	}];
 }
 
