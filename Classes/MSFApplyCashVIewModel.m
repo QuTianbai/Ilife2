@@ -212,6 +212,10 @@
 			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款用途"}]];
 			return nil;
 		}
+		if ([self.loanFixedAmt isEqualToString:@"0.00"] || [self.loanFixedAmt isEqualToString:@"0"] || self.loanFixedAmt == nil) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"每月还款金额获取失败"}]];
+			return nil;
+		}
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
 		[self.services pushViewModel:viewModel];
 		
