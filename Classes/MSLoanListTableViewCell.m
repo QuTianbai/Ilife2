@@ -7,7 +7,6 @@
 //
 
 #import "MSLoanListTableViewCell.h"
-#import <Mantle/EXTScope.h>
 #import <Masonry/Masonry.h>
 
 #import "MSFCommandView.h"
@@ -28,6 +27,10 @@
 @end
 
 @implementation MSLoanListTableViewCell
+
+- (void)dealloc {
+	
+}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)
 reuseIdentifier {
@@ -59,27 +62,22 @@ reuseIdentifier {
 		[self addSubview:_timeLabel];
 		[self addSubview:_checkLabel];
 		
-		@weakify(self)
 		[_timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self);
 		}];
 		
 		[_monthsLabel mas_makeConstraints:^(MASConstraintMaker *make) {\
-			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.timeLabel.mas_right);
 		}];
 		
 		[_moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.monthsLabel.mas_right);
 		}];
 		
 		[_checkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-			@strongify(self)
 			make.centerY.equalTo(self);
 			make.left.equalTo(self.moneyLabel.mas_right);
 			make.right.equalTo(self);
@@ -92,11 +90,39 @@ reuseIdentifier {
 
 - (void)bindModel:(MSFApplyList *)model type:(int)type {
 	if (type == 1) {
-		_moneyLabel.hidden = YES;
-		_monthsLabel.hidden = YES;
+		[_moneyLabel removeFromSuperview];
+		[_monthsLabel removeFromSuperview];
+		[_timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(self);
+		}];
+		[_checkLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(_timeLabel.mas_right);
+			make.right.equalTo(self);
+			make.width.equalTo(_timeLabel);
+		}];
 	} else {
-		_monthsLabel.hidden = NO;
-		_moneyLabel.hidden = NO;
+		[self addSubview:_moneyLabel];
+		[self addSubview:_monthsLabel];
+		[_timeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(self);
+		}];
+		[_monthsLabel mas_remakeConstraints:^(MASConstraintMaker *make) {\
+			make.centerY.equalTo(self);
+			make.left.equalTo(self.timeLabel.mas_right);
+		}];
+		[_moneyLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(self.monthsLabel.mas_right);
+		}];
+		[_checkLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.centerY.equalTo(self);
+			make.left.equalTo(self.moneyLabel.mas_right);
+			make.right.equalTo(self);
+			make.width.equalTo(@[_timeLabel, _monthsLabel, _moneyLabel]);
+		}];
 		_moneyLabel.text = model.appLmt;
 		_monthsLabel.text = [NSString stringWithFormat:@"%@期", model.loanTerm];
 	}

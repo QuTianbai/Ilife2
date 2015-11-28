@@ -24,10 +24,15 @@
   }
 	_model = model;
 	
+	
 	RAC(self, describe) = RACObserve(self, model.tradeDescription);
 	RAC(self, amount) = RACObserve(self, model.tradeAmount);
 	RAC(self, date) = [RACObserve(self, model.tradeDate) map:^id(id value) {
-		return [NSDateFormatter msf_stringFromDateForDash:value];
+		NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+		formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+		formatter.dateFormat = @"yyyy/MM/dd";
+		formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+		return [formatter stringFromDate:value];
 	}];
 	
   return self;

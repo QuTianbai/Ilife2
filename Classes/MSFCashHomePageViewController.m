@@ -53,6 +53,11 @@
  * 马上贷申请全屏入口
  */
 - (void)msAdView {
+	for (MSFApplyView *view in self.view.subviews) {
+		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
+			return;
+		}
+	}
 	[self removeAllSubviews];
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMSFull actionBlock:^{
 		[self.viewModel.executeAllowMSCommand execute:nil];
@@ -69,6 +74,11 @@
  * 马上贷、社保带申请入口
  */
 - (void)sbAdView {
+	for (MSFApplyView *view in self.view.subviews) {
+		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
+			return;
+		}
+	}
 	[self removeAllSubviews];
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeMS actionBlock:^{
 		[self.viewModel.executeAllowMSCommand execute:nil];
@@ -94,6 +104,11 @@
  * 展示额度、马上贷申请入口
  */
 - (void)limitView {
+	for (MSFApplyView *view in self.view.subviews) {
+		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
+			return;
+		}
+	}
 	[self removeAllSubviews];
 	MSFCashHomeLoanLimit *limit = [[MSFCashHomeLoanLimit alloc] init];
 	limit.withdrawButton.rac_command = self.withdrawCashCommand;

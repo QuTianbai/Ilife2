@@ -1,3 +1,214 @@
+Version 2.1.0.1:
+ - Merge remote-tracking branch 'origin/zhaoyong' into pu/v2.1
+ - Update version to v1.1
+ - 1、fix 调整额度转圈的角度 2、update 申请列表UI 3、update tab2刷新机制，减少不必要的刷新，减少刷新次数
+ - Merge branch 'todo/refactor' into next
+ - Update comment
+ - Clean code
+ - Refactor MSFFormattingAdditions
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 社保贷寿险协议
+ - fix 首页model为空状态刷新
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Merge branch 'todo/improve' into next
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 还款计划适配
+ - Improve 取消贷款贷款申请
+ - Add new device update provisioning profile
+ - update pod
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Fix 产品ID导致申请订单错误
+ - Update 登录成功后取消登录验证码的输入
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Merge remote-tracking branch 'origin/zhaoyong' into next
+ - Merge remote-tracking branch 'origin/xbmDev' into next
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Fix 马上贷产品每月还款获取失败
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 还款计划
+ - Updating cash viewmodel
+ - 判断申请列表的进入状态申请列表
+ - Merge remote-tracking branch 'origin/zhaoyong' into iss/01
+ - fix 首页申请产品为空时显示错误，增加Tab2提示信息
+ - Merge remote-tracking branch 'origin/zhaoyong' into iss/01
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update首页刷新机制
+ - Merge branch 'todo/v2.1' into next
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - Improve code comments
+ - 居民保险和社保贷区分
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - update 麻辣带首页展示，tab2刷新机制
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Clean code
+ - 检查修改首页展示方式
+ - 社保信息
+ - 社保贷信息
+ - 社保信息编辑
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 禁止学生申请麻辣贷
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 还款计划空数据时
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 社保贷时间
+ - update dateFormatter
+ - Update 社保贷合同确认
+ - 有在途申请时，添加申请限制
+ - 社保带信息
+ - 申请列表不可点击
+ - commit
+ - update 时间格式
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 社保信息
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - commit
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Update 测试完成资料重传
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix 首页状态展示错误
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 社保信息
+ - Format code merge checklist
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - update 新债务接口
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - Update 默认显示联系人信息的详细地址
+ - Update code formats
+ - update 新债务接口
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 还款计划
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - fix 初始化同现居住地址有误
+ - Update comments
+ - 社保缴纳月数，年数
+ - Improve code format
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - Fix specs
+ - 社保贷信息优化，社保贷传入职业，交易密码输入键盘title
+ - Merge branch 'zhaoyong' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - pod update
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - 申请列表占位图标、修复联系人无法点击
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Remove insurance viewmodel
+ - Update README
+ - Reset MSFServer
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - update 婚姻状况 贷款申请列表
+ - Update 资料重传提交
+ - Update 社保贷贷款申请提交
+ - Update 社保贷贷款提交接口
+ - Update 社保贷获取资料清单 HTTP Method POST
+ - Update 可选资料为空的时候隐藏可选按钮
+ - Fix 申请清单获取错误导致的程序崩溃
+ - Update 社保贷协议调用
+ - Update 社保贷时间格式
+ - Fix crash when apply social loan
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - 更新跳转
+ - Merge branch 'todo/signout' into next
+ - Remove deprecated methods
+ - Improve finance signOut timeout
+ - Update servers
+ - mergeCode
+ - delete repaymentTableViewController
+ - add applylist
+ - Fix error word
+ - Remove product type from social insurance viewmodel constract method
+ - Merge branch 'todo/complete' into next
+ - Update social insurance cash viewmodel construct method
+ - Fix error word
+ - Update social insurance agreement
+ - Improve inventoryviewmodel construction method
+ - Refactor inventoryviewmodel with applicaitonviewmodel
+ - omplete inventoryViewModel submit api
+ - Fix client category duplicate method
+ - 开放接口用于调试
+ - 开放接口于联调
+ - 社保信息编辑
+ - 社保信息显示
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 社保贷提交接口
+ - Fix merge issue
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - Merge branch 'todo/application-flow' into next
+ - Add 社保贷相关流程跳转
+ - commit
+ - update马上贷社保带入口
+ - pods update
+ - 提交合并
+ - 社保贷信息编写接口及产品接口
+ - update 马上贷申请入口
+ - Add MSFApplicationViewModel protocal
+ - Clean Warnigs
+ - Update 马上贷，贷款申请路程
+ - commit
+ - Merge branch 'guide' into guide2
+ - Fix enter home page crash code
+ - Remove default test suite
+ - Remove default test suite
+ - Merge remote-tracking branch 'origin/master' into zhaoyong
+ - delete storyboard CashHomePage
+ - update tab2
+ - Format code style
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - 社保信息
+ - 社保信息
+ - 社保
+ - 社保信息编辑界面
+ - Update README
+ - Merge remote-tracking branch 'origin/zhaoyong' into todo/v2.1
+ - Merge remote-tracking branch 'origin/xbmDev' into todo/v2.1
+ - Merge branch 'todo/inventory-refactor' into next
+ - Clean deprecated codes
+ - Improve elements fetch
+ - Fix warnings
+ - Update attachments submit to server
+ - Update elements fetch api
+ - Refactor MSFElementViewModel
+ - Add Element for applicationNo
+ - Refactor attachment viewmodel
+ - Update attachment submit method
+ - add MSFApplyView
+ - just LoanLimitView
+ - commit
+ - commit
+ - Update attachment construct method
+ - 马上贷，社保带，白名单广告引导切换，社保带的跳转等社保贷流程做完后添加
+ - update homePageCellView/Model
+ - commit
+ - update homePage
+ - sort code MSFCirculateVIewCell
+ - Update inventory's attachment
+ - Refactor inventory's element
+ - 添加模拟数据
+ - 马上金融二期，还款计划
+ - update PlanListSegmentBar
+ - update 申请列表
+ - 完成 MSFPlanListSegmentBar
+ - commit
+ - add MSFPlanListSegmentBar / Update 首页额度UI适配
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - commit
+ - Add report.patch
+ - 更换图片
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - update 体现还款状态码，4008开头一系列
+ - 证书
+ - 证书
+ - 又该申请单收入
+
 Version 2.0.0.34:
  - Update Umeng release appkey
 

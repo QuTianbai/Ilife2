@@ -105,7 +105,7 @@
 		NSParagraphStyleAttributeName : style}];
 	for (int i = 0; i < _titles.count; i++) {
 		if (i == _curIndex) {
-			[attri setObject:UIColor.themeColor
+			[attri setObject:UIColor.themeColorNew
 								forKey:NSForegroundColorAttributeName];
 		} else {
 			[attri setObject:UIColor.lightGrayColor

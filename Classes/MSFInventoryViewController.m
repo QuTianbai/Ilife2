@@ -81,22 +81,22 @@ UICollectionViewDelegateFlowLayout>
 					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
 			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
-				MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.applicationViewModel user:[self.viewModel.applicationViewModel.services httpClient].user];
-				MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
-				
 				[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
 				[[KGModal sharedInstance] setShowCloseButton:NO];
-				[[KGModal sharedInstance] showWithContentViewController:alertViewController];
-				
-				[self.viewModel.executeUpdateCommand execute:nil];
-				
-				[viewModel.buttonClickedSignal subscribeNext:^(id x) {
-					[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
-						[self.viewModel.executeSubmitCommand execute:nil];
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					MSFAlertViewModel *viewModel = [[MSFAlertViewModel alloc] initWithFormsViewModel:self.viewModel.applicationViewModel
+						user:[self.viewModel.applicationViewModel.services httpClient].user];
+					MSFAlertViewController *alertViewController = [[MSFAlertViewController alloc] initWithViewModel:viewModel];
+					[[KGModal sharedInstance] showWithContentViewController:alertViewController];
+					[viewModel.buttonClickedSignal subscribeNext:^(id x) {
+						[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
+							[self.viewModel.executeSubmitCommand execute:nil];
+						}];
+					} completed:^{
+						[[KGModal sharedInstance] hideAnimated:YES];
 					}];
-				} completed:^{
-					[[KGModal sharedInstance] hideAnimated:YES];
 				}];
+				
 			} else {
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
 					[self.viewModel.executeSubmitCommand execute:nil];

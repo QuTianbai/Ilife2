@@ -60,7 +60,7 @@
 }
 
 + (UIColor *)themeColorNew {
-	return [UIColor colorWithHex:0x0BABED];
+	return [UIColor colorWithHex:0x0babed];
 }
 
 + (UIColor *)separatorColor {
