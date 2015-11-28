@@ -44,7 +44,7 @@
 }
 
 - (RACSignal *)fetchProductType {
-	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash]] reduce:^id(NSArray *product, MSFCirculateCashModel *loan){
+	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash:@"ED"]] reduce:^id(NSArray *product, MSFCirculateCashModel *loan){
 		if (loan.totalLimit.doubleValue > 0) {
 			return @2;
 		} else {

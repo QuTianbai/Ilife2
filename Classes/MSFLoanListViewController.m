@@ -172,7 +172,6 @@
 	self.dataArray = [[NSMutableArray alloc] init];
 	self.view.backgroundColor = [UIColor whiteColor];
 	[self setUpViews];
-	[self loadData:_pushType];
 }
 
 - (void)loadData:(int)type {
@@ -262,9 +261,9 @@
 		} else {
 			[_headView mlApply];
 		}
-		_selectedIndex = [x intValue];
 		[self loadData:[x intValue]];
 	}];
+	bar.selectedIndex = _pushType;
 }
 
 @end

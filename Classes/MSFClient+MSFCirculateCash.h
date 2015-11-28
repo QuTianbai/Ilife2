@@ -10,6 +10,7 @@
 
 @interface MSFClient (MSFCirculateCash)
 
-- (RACSignal *)fetchCirculateCash;
+//type。@"1"：贷款申请 @"2"：额度显示 nil：首页申请
+- (RACSignal *)fetchCirculateCash:(NSString *)type;
 
 @end

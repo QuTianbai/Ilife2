@@ -13,13 +13,16 @@
 @interface MSFPlanListSegmentBar : UIView
 
 /*
- * 出入一组title，作为展示的名称。数目随意，但太多会造成不好点击和文字显示不全
- */
-- (instancetype)initWithTitles:(NSArray *)titles;
-
-/*
  * 依靠订阅command来获取点击事件，返回参数为点击的对应标题的index
  */
 @property (nonatomic, strong) RACCommand *executeSelectionCommand;
+
+@property (nonatomic, assign) NSInteger selectedIndex;
+
+
+/*
+ * 出入一组title，作为展示的名称。数目随意，但太多会造成不好点击和文字显示不全
+ */
+- (instancetype)initWithTitles:(NSArray *)titles;
 
 @end
