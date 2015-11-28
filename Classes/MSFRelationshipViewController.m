@@ -292,7 +292,7 @@ ABPersonViewControllerDelegate>
 		case 2: {
 			MSFRelationPhoneCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationPhoneCell"];
 			cell.tfInput.text = contact.contactMobile;
-			cell.tfInput.tag = indexPath.section;
+			cell.tfInput.tag = indexPath.section - 1;
 			
 			[[cell.tfInput rac_signalForControlEvents:UIControlEventEditingChanged] subscribeNext:^(UITextField *textField) {
 				if (textField.text.length > 11) {

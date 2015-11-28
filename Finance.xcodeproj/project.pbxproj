@@ -240,6 +240,7 @@
 		108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */; };
 		108B0A981BBE7F01000EAEF8 /* MSFCirculateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
+		109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109766FD1C098CB20097F656 /* MSFHomePageContentView.m */; };
 		10A295CB1BBFCE88001847A8 /* userInfoApply.json in Resources */ = {isa = PBXBuildFile; fileRef = 10A295BD1BBFC9FE001847A8 /* userInfoApply.json */; };
 		10ACE5AA1C040A7700EE5044 /* MSFApplyListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10ACE5A91C040A7700EE5044 /* MSFApplyListViewModel.m */; };
 		10ACE5CB1C0439B700EE5044 /* icon-account-repay.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ACE5C81C0439B700EE5044 /* icon-account-repay.png */; };
@@ -1131,6 +1132,8 @@
 		108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFCirculateViewCell.xib; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
+		109766FC1C098CB20097F656 /* MSFHomePageContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomePageContentView.h; sourceTree = "<group>"; };
+		109766FD1C098CB20097F656 /* MSFHomePageContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageContentView.m; sourceTree = "<group>"; };
 		10A295BD1BBFC9FE001847A8 /* userInfoApply.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = userInfoApply.json; sourceTree = "<group>"; };
 		10ACE5A81C040A7700EE5044 /* MSFApplyListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyListViewModel.h; sourceTree = "<group>"; };
 		10ACE5A91C040A7700EE5044 /* MSFApplyListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyListViewModel.m; sourceTree = "<group>"; };
@@ -3651,6 +3654,8 @@
 				108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */,
 				10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */,
 				10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */,
+				109766FC1C098CB20097F656 /* MSFHomePageContentView.h */,
+				109766FD1C098CB20097F656 /* MSFHomePageContentView.m */,
 			);
 			name = Homepage;
 			sourceTree = "<group>";
@@ -4820,6 +4825,7 @@
 				07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */,
 				077347FA1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
+				109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
 				492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */,
