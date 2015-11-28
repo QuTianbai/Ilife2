@@ -14,22 +14,25 @@
 
 @property (nonatomic, weak) id<MSFViewModelServices> services;
 
+@property (nonatomic, copy) NSString *productID;
+
 @end
 
 @implementation MSFLifeInsuranceViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services ProductID:(NSString *)productID {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_services = services;
+	_productID = productID;
 	
 	return self;
 }
 
 - (RACSignal *)lifeInsuranceHTMLSignal {
-	return [[self.services.httpClient fetchLifeInsuranceAgreement]
+	return [[self.services.httpClient fetchLifeInsuranceAgreementWithProductType:self.productID]
 		flattenMap:^RACStream *(id value) {
 			return [[NSURLConnection rac_sendAsynchronousRequest:value]
 				reduceEach:^id(NSURLResponse *responce, NSData *data){

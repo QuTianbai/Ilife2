@@ -189,7 +189,7 @@
 
 - (RACSignal *)executeLifeInsuranceSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services];
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services ProductID:self.productType];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
