@@ -451,14 +451,12 @@
 		496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */; };
 		496A44771B6A57BE00104215 /* MSFReleaseNoteSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */; };
 		496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */; };
-		496A44791B6A57BE00104215 /* MSFRepayMentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44571B6A57BE00104215 /* MSFRepayMentSpec.m */; };
 		496A447A1B6A57BE00104215 /* MSFResponseSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44581B6A57BE00104215 /* MSFResponseSpec.m */; };
 		496A447B1B6A57BE00104215 /* MSFSelectionViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44591B6A57BE00104215 /* MSFSelectionViewModelSpec.m */; };
 		496A447C1B6A57BF00104215 /* MSFServerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445A1B6A57BE00104215 /* MSFServerSpec.m */; };
 		496A447D1B6A57BF00104215 /* MSFTradeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445B1B6A57BE00104215 /* MSFTradeSpec.m */; };
 		496A447E1B6A57BF00104215 /* MSFUserSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445C1B6A57BE00104215 /* MSFUserSpec.m */; };
 		496A447F1B6A57BF00104215 /* MSFUserViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */; };
-		496A44811B6A57BF00104215 /* MSFXTClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */; };
 		496FE7731C06FE18004A5BAB /* MSFCashHomePageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 496FE7721C06FE18004A5BAB /* MSFCashHomePageViewModel.m */; };
 		497253BF1BC3A6A30017CA76 /* MSFClient+MSFApplyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07FE07301B07341500484069 /* MSFClient+MSFApplyInfo.m */; };
 		497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */; };
@@ -633,8 +631,6 @@
 		C71884361B06F16200C25955 /* MSFAccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884351B06F16200C25955 /* MSFAccordToNperLists.m */; };
 		C71884391B06F65D00C25955 /* MSFClient+AccordToNperLists.m in Sources */ = {isa = PBXBuildFile; fileRef = C71884381B06F65D00C25955 /* MSFClient+AccordToNperLists.m */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
-		C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D31B05996E0045F919 /* MSFRepayMent.m */; };
-		C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D61B0599970045F919 /* MSFClient+Repayment.m */; };
 		C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */; };
 		C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */; };
 		C72149E21B05A5970045F919 /* MSFPlanDetails.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149E11B05A5970045F919 /* MSFPlanDetails.m */; };
@@ -1444,14 +1440,12 @@
 		496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationViewModelSpec.m; sourceTree = "<group>"; };
 		496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFReleaseNoteSpec.m; sourceTree = "<group>"; };
 		496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedulesSpec.m; sourceTree = "<group>"; };
-		496A44571B6A57BE00104215 /* MSFRepayMentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepayMentSpec.m; sourceTree = "<group>"; };
 		496A44581B6A57BE00104215 /* MSFResponseSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFResponseSpec.m; sourceTree = "<group>"; };
 		496A44591B6A57BE00104215 /* MSFSelectionViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSelectionViewModelSpec.m; sourceTree = "<group>"; };
 		496A445A1B6A57BE00104215 /* MSFServerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFServerSpec.m; sourceTree = "<group>"; };
 		496A445B1B6A57BE00104215 /* MSFTradeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTradeSpec.m; sourceTree = "<group>"; };
 		496A445C1B6A57BE00104215 /* MSFUserSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserSpec.m; sourceTree = "<group>"; };
 		496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserViewModelSpec.m; sourceTree = "<group>"; };
-		496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFXTClientSpec.m; sourceTree = "<group>"; };
 		496FE7711C06FE18004A5BAB /* MSFCashHomePageViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCashHomePageViewModel.h; sourceTree = "<group>"; };
 		496FE7721C06FE18004A5BAB /* MSFCashHomePageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCashHomePageViewModel.m; sourceTree = "<group>"; };
 		497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginViewController.h; sourceTree = "<group>"; };
@@ -1701,10 +1695,6 @@
 		C71884371B06F65D00C25955 /* MSFClient+AccordToNperLists.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+AccordToNperLists.h"; sourceTree = "<group>"; };
 		C71884381B06F65D00C25955 /* MSFClient+AccordToNperLists.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+AccordToNperLists.m"; sourceTree = "<group>"; };
 		C718843A1B06F87200C25955 /* accordtonperlist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accordtonperlist.json; sourceTree = "<group>"; };
-		C72149D21B05996E0045F919 /* MSFRepayMent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepayMent.h; sourceTree = "<group>"; };
-		C72149D31B05996E0045F919 /* MSFRepayMent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepayMent.m; sourceTree = "<group>"; };
-		C72149D51B0599970045F919 /* MSFClient+Repayment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Repayment.h"; sourceTree = "<group>"; };
-		C72149D61B0599970045F919 /* MSFClient+Repayment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Repayment.m"; sourceTree = "<group>"; };
 		C72149D81B05A1FA0045F919 /* MSFRepaymentSchedules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentSchedules.h; sourceTree = "<group>"; };
 		C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedules.m; sourceTree = "<group>"; };
 		C72149DC1B05A3640045F919 /* MSFClient+RepaymentSchedules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+RepaymentSchedules.h"; sourceTree = "<group>"; };
@@ -3009,7 +2999,6 @@
 				49DA226C1B062B1100DD4483 /* Captcha */,
 				49DA226B1B062B0300DD4483 /* Users */,
 				C71884301B06EDBF00C25955 /* According to the amount of nper list */,
-				C72149D11B0599320045F919 /* Repayment */,
 				C72149DB1B05A20D0045F919 /* RepaymentSchedule */,
 				C72149DF1B05A4C60045F919 /* Plan details */,
 				C72149E81B05BFED0045F919 /* Plan the periodic table */,
@@ -3101,14 +3090,12 @@
 				496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */,
 				496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */,
 				496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */,
-				496A44571B6A57BE00104215 /* MSFRepayMentSpec.m */,
 				496A44581B6A57BE00104215 /* MSFResponseSpec.m */,
 				496A44591B6A57BE00104215 /* MSFSelectionViewModelSpec.m */,
 				496A445A1B6A57BE00104215 /* MSFServerSpec.m */,
 				496A445B1B6A57BE00104215 /* MSFTradeSpec.m */,
 				496A445C1B6A57BE00104215 /* MSFUserSpec.m */,
 				496A445D1B6A57BE00104215 /* MSFUserViewModelSpec.m */,
-				496A445F1B6A57BE00104215 /* MSFXTClientSpec.m */,
 				49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */,
 				49588DED1B86FC6A00FCF171 /* MSFProductSpec.m */,
 				49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */,
@@ -3853,17 +3840,6 @@
 				C71884381B06F65D00C25955 /* MSFClient+AccordToNperLists.m */,
 			);
 			name = "According to the amount of nper list";
-			sourceTree = "<group>";
-		};
-		C72149D11B0599320045F919 /* Repayment */ = {
-			isa = PBXGroup;
-			children = (
-				C72149D21B05996E0045F919 /* MSFRepayMent.h */,
-				C72149D31B05996E0045F919 /* MSFRepayMent.m */,
-				C72149D51B0599970045F919 /* MSFClient+Repayment.h */,
-				C72149D61B0599970045F919 /* MSFClient+Repayment.m */,
-			);
-			name = Repayment;
 			sourceTree = "<group>";
 		};
 		C72149DB1B05A20D0045F919 /* RepaymentSchedule */ = {
@@ -4793,7 +4769,6 @@
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
 				0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */,
-				C72149D71B0599970045F919 /* MSFClient+Repayment.m in Sources */,
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				078EEBA41BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.m in Sources */,
 				10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */,
@@ -4830,7 +4805,6 @@
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
-				C72149D41B05996E0045F919 /* MSFRepayMent.m in Sources */,
 				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
@@ -5028,7 +5002,6 @@
 				49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */,
 				496A446F1B6A57BE00104215 /* MSFHomePageViewModelSpec.m in Sources */,
 				4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */,
-				496A44791B6A57BE00104215 /* MSFRepayMentSpec.m in Sources */,
 				496A44771B6A57BE00104215 /* MSFReleaseNoteSpec.m in Sources */,
 				496A447F1B6A57BF00104215 /* MSFUserViewModelSpec.m in Sources */,
 				496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */,
@@ -5038,7 +5011,6 @@
 				49952F661B8AF84300CD9454 /* MSFProfessionalViewModelSpec.m in Sources */,
 				4948E88C1B95400A0048D125 /* MSFElementSpec.m in Sources */,
 				496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */,
-				496A44811B6A57BF00104215 /* MSFXTClientSpec.m in Sources */,
 				496A44731B6A57BE00104215 /* MSFPlanDetailsSpec.m in Sources */,
 				496A446B1B6A57BE00104215 /* MSFCipherSpec.m in Sources */,
 				49CA93971BBAA7880032F5C2 /* MSFCardSpec.m in Sources */,

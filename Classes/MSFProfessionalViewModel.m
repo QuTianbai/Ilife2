@@ -444,7 +444,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.workStartDate = [NSDateFormatter msf_stringFromDate2:selectedDate];
+			 self.formsViewModel.model.workStartDate = [NSDateFormatter professional_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -477,7 +477,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.empStandFrom = [NSDateFormatter msf_stringFromDate2:selectedDate];
+			 self.formsViewModel.model.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -510,7 +510,7 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.formsViewModel.model.empStandFrom = [NSDateFormatter msf_stringFromDate2:selectedDate];
+				self.formsViewModel.model.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
