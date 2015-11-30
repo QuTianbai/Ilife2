@@ -1510,7 +1510,7 @@
 		499B1B771B68DC73002D5ED7 /* MSFWebViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWebViewModel.h; sourceTree = "<group>"; };
 		499B1B781B68DC73002D5ED7 /* MSFWebViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewModel.m; sourceTree = "<group>"; };
 		499D6A821C06B453004DA69F /* product.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = product.json; sourceTree = "<group>"; };
-		499D6A841C06B480004DA69F /* socialInsurance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = socialInsurance.json; sourceTree = "<group>"; };
+		499D6A841C06B480004DA69F /* socialInsurance.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = socialInsurance.json; path = ../Resources/socialInsurance.json; sourceTree = "<group>"; };
 		499EA2481B55F6550051AF66 /* MSFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTabBarController.h; sourceTree = "<group>"; };
 		499EA2491B55F6550051AF66 /* MSFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarController.m; sourceTree = "<group>"; };
 		499EA25E1B55FCE40051AF66 /* UITextField+RACKeyboardSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+RACKeyboardSupport.h"; sourceTree = "<group>"; };
@@ -1952,6 +1952,7 @@
 				07472BEA1BFF2860008A3890 /* MSFSocialInsuranceModel.m */,
 				07D13DB21C03009700A46980 /* MSFClient+MSFSocialInsurance.h */,
 				07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */,
+				499D6A841C06B480004DA69F /* socialInsurance.json */,
 			);
 			name = SocialInsurance;
 			sourceTree = "<group>";
@@ -2183,7 +2184,6 @@
 		07C06C411B13431300F2DFCC /* json */ = {
 			isa = PBXGroup;
 			children = (
-				499D6A841C06B480004DA69F /* socialInsurance.json */,
 				499D6A821C06B453004DA69F /* product.json */,
 				49E07D481BBD25F0001F9E1A /* code-message.json */,
 				07AFE59F1B26D202009E0124 /* position.json */,
