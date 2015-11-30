@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class MSFApplyCashVIewModel;
-@class MSFCirculateCashViewModel;
 @class MSFCashHomePageViewModel;
 
 @interface MSFCashHomePageViewController : UIViewController

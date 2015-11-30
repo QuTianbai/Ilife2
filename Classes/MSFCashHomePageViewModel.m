@@ -8,19 +8,22 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Mantle/EXTScope.h>
+
 #import "MSFClient+MSFCheckAllowApply.h"
 #import "MSFClient+MSFProductType.h"
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFClient+MSFBankCardList.h"
+
+#import "MSFUser.h"
 #import "MSFCirculateCashModel.h"
+#import "AppDelegate.h"
+
 #import "MSFCirculateCashViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFUser.h"
-
-#import "AppDelegate.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFBankCardListModel.h"
 #import "MSFDrawCashViewModel.h"
+
 #import "MSFDrawCashTableViewController.h"
 #import "MSFSetTradePasswordTableViewController.h"
 
@@ -97,7 +100,7 @@
 				if (dataArray.count == 0) {
 					[[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
 				} else {
-					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 						if (obj.master) {
 							MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:self.circulateViewModel AndServices:self.services AndType:0];
 							viewModel.drawCash = self.circulateViewModel.usableLimit;
@@ -125,7 +128,7 @@
 				if (dataArray.count == 0) {
 					[[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
 				} else {
-					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 						if (obj.master) {
 							MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:self.circulateViewModel AndServices:self.services AndType:1];
 							viewModel.drawCash = self.circulateViewModel.usedLimit;

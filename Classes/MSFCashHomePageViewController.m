@@ -8,34 +8,20 @@
 
 #import "MSFCashHomePageViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <Masonry/Masonry.h>
-#import "MSFApplyCashVIewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <Masonry/Masonry.h>
+
 #import "MSFCheckAllowApply.h"
-#import "MSFProductViewController.h"
-#import "MSFClient.h"
-#import "MSFUser.h"
-#import "AppDelegate.h"
-#import "MSFSetTradePasswordTableViewController.h"
-#import "MSFDrawCashViewModel.h"
-#import "MSFDrawCashTableViewController.h"
-#import "MSFSocialCaskApplyTableViewController.h"
-#import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFLoanType.h"
 
 #import "MSFApplyView.h"
 #import "MSFCashHomeLoanLimit.h"
-#import "MSFFormsViewModel.h"
-#import "MSFUserInfomationViewController.h"
-#import "MSFSocialInsuranceCashViewModel.h"
+
+#import "MSFApplyCashVIewModel.h"
 #import "MSFCashHomePageViewModel.h"
-#import "MSFLoanType.h"
+#import "MSFUserInfomationViewController.h"
 
-@interface MSFCashHomePageViewController ()
-
-//@property (nonatomic, strong) MSFCirculateCashViewModel *circulateViewModel;
-//@property (nonatomic, strong) NSArray *dataArray;
-
-@end
+#import "MSFSocialInsuranceCashViewModel.h"
 
 @implementation MSFCashHomePageViewController
 
@@ -47,9 +33,7 @@
 	return self;
 }
 
-/*
- * 马上贷申请全屏入口
- */
+//马上贷申请全屏入口
 - (void)msAdView {
 	for (MSFApplyView *view in self.view.subviews) {
 		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
@@ -68,9 +52,7 @@
 	}];
 }
 
-/*
- * 马上贷、社保带申请入口
- */
+//马上贷、社保带申请入口
 - (void)sbAdView {
 	for (MSFApplyView *view in self.view.subviews) {
 		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
@@ -98,9 +80,7 @@
 	}];
 }
 
-/*
- * 展示额度、马上贷申请入口
- */
+//展示额度、马上贷申请入口
 - (void)limitView {
 	for (MSFApplyView *view in self.view.subviews) {
 		if ([view isKindOfClass:MSFApplyView.class] && view.type == MSFApplyViewTypeLimitMS) {
