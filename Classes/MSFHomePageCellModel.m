@@ -110,7 +110,7 @@
 	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[[self.services.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
+		[[self.services.httpClient fetchCirculateCash:nil] subscribeNext:^(MSFCirculateCashModel *model) {
 			self.model = model;
 		} error:^(NSError *error) {
 			NSLog(@"%@", error.localizedDescription);

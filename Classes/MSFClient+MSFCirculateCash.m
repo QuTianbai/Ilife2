@@ -12,8 +12,9 @@
 
 @implementation MSFClient (MSFCirculateCash)
 
-- (RACSignal *)fetchCirculateCash {
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/currentloaninfo" parameters:nil];
+- (RACSignal *)fetchCirculateCash:(NSString *)type {
+	type = type ?: @"";
+	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/currentloaninfo" parameters:@{@"type" : type}];
 	return [[self enqueueRequest:request resultClass:MSFCirculateCashModel.class] msf_parsedResults];
 }
 

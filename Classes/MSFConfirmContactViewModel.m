@@ -65,7 +65,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 
 - (void)fetchContractist {
 	@weakify(self)
-	[[self.servers.httpClient fetchCirculateCash] subscribeNext:^(MSFCirculateCashModel *model) {
+	[[self.servers.httpClient fetchCirculateCash:nil] subscribeNext:^(MSFCirculateCashModel *model) {
 		@strongify(self)
 		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"I"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"I"])) {
 			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];

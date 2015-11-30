@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, strong) UIView *bar;
-@property (nonatomic, assign) int curIndex;
 @property (nonatomic, assign) BOOL locked;
 
 @end
@@ -29,7 +28,7 @@
 		}
 		self.backgroundColor = UIColor.whiteColor;
 		_titles = titles;
-		_curIndex = 0;
+		_selectedIndex = 0;
 		
 		_bar = [[UIView alloc] init];
 		_bar.backgroundColor = UIColor.themeColorNew;
@@ -48,10 +47,16 @@
 	return self;
 }
 
+- (void)setSelectedIndex:(NSInteger)selectedIndex {
+	_selectedIndex = selectedIndex;
+	[self setNeedsDisplay];
+	[self barAnimation];
+}
+
 - (void)layoutSubviews {
 	if (_titles.count > 0) {
 		CGFloat width = self.frame.size.width / _titles.count;
-		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 4, width, 4);
+		_bar.frame = CGRectMake(width * _selectedIndex, self.frame.size.height - 4, width, 4);
 	}
 }
 
@@ -68,8 +73,8 @@
 			break;
 		}
 	}
-	if (index > -1 && (_curIndex != index || _titles.count == 1)) {
-		_curIndex = index;
+	if (index > -1 && (_selectedIndex != index || _titles.count == 1)) {
+		_selectedIndex = index;
 		[self setNeedsDisplay];
 		[self barAnimation];
 		return YES;
@@ -80,10 +85,10 @@
 
 - (void)barAnimation {
 	_locked = YES;
-	[_executeSelectionCommand execute:@(_curIndex)];
+	[_executeSelectionCommand execute:@(_selectedIndex)];
 	CGFloat width = self.frame.size.width / _titles.count;
 	[UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-		_bar.frame = CGRectMake(width * _curIndex, self.frame.size.height - 4, width, 4);
+		_bar.frame = CGRectMake(width * _selectedIndex, self.frame.size.height - 4, width, 4);
 	} completion:^(BOOL finished) {
 		_locked = NO;
 	}];
@@ -104,7 +109,7 @@
 		NSFontAttributeName : font,
 		NSParagraphStyleAttributeName : style}];
 	for (int i = 0; i < _titles.count; i++) {
-		if (i == _curIndex) {
+		if (i == _selectedIndex) {
 			[attri setObject:UIColor.themeColorNew
 								forKey:NSForegroundColorAttributeName];
 		} else {

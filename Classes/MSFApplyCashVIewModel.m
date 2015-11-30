@@ -212,18 +212,4 @@
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
 }
 
-- (RACSignal *)fetchProductType {
-	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash]] reduce:^id(NSArray *product, MSFCirculateCashModel *loan){
-		if (loan.totalLimit.doubleValue > 0) {
-			return @2;
-		} else {
-			if ([product containsObject:@"4101"] || [product containsObject:@"4102"]) {
-				return @1;
-			} else {
-				return @0;
-			}
-		}
-	}];
-}
-
 @end

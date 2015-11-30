@@ -35,7 +35,7 @@
 	@weakify(self)
 	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [[self.services.httpClient fetchCirculateCash] map:^id(MSFCirculateCashModel *loan) {
+		return [[self.services.httpClient fetchCirculateCash:nil] map:^id(MSFCirculateCashModel *loan) {
 			if (loan) {
 				return [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
 			} else {

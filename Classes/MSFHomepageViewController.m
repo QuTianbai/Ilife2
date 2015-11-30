@@ -14,7 +14,6 @@
 
 #import "MSFHomepageViewModel.h"
 #import "MSFReactiveView.h"
-#import "UIColor+Utils.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -30,24 +29,22 @@ UICollectionViewDelegateFlowLayout>
 
 - (instancetype)initWithViewModel:(MSFHomepageViewModel *)viewModel {
 	UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-  self = [super initWithCollectionViewLayout:flowLayout];
-  if (!self) {
-    return nil;
-  }
-	_viewModel = viewModel;
-  
-  return self;
+	self = [super initWithCollectionViewLayout:flowLayout];
+	if (self) {
+		_viewModel = viewModel;
+		self.collectionView.backgroundColor = [UIColor whiteColor];
+		self.edgesForExtendedLayout = UIRectEdgeNone;
+		self.collectionView.allowsSelection = NO;
+		[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
+						forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
+		[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
+		[self.collectionView registerNib:[UINib nibWithNibName:@"MSFCirculateViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFCirculateViewCell"];
+	}
+	return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.collectionView.backgroundColor = [UIColor whiteColor];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-	self.collectionView.allowsSelection = NO;
-	[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
-	 forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
-	[self.collectionView registerNib:[UINib nibWithNibName:@"MSFCirculateViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFCirculateViewCell"];
 	
 	@weakify(self)
 	[RACObserve(self, viewModel.cellModel) subscribeNext:^(id x) {
@@ -57,13 +54,11 @@ UICollectionViewDelegateFlowLayout>
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
-		[[self.viewModel.refreshCommand
-			execute:nil]
-			subscribeNext:^(id x) {
-				[self.collectionView.pullToRefreshView stopAnimating];
-			} error:^(NSError *error) {
-				[self.collectionView.pullToRefreshView stopAnimating];
-			}];
+		[[self.viewModel.refreshCommand execute:nil] subscribeNext:^(id x) {
+			[self.collectionView.pullToRefreshView stopAnimating];
+		} error:^(NSError *error) {
+			[self.collectionView.pullToRefreshView stopAnimating];
+		}];
 	}];
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
@@ -84,7 +79,7 @@ UICollectionViewDelegateFlowLayout>
 	if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
 		MSFHomepageCollectionViewHeader *header =
 		[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
-		 withReuseIdentifier:@"header" forIndexPath:indexPath];
+																			 withReuseIdentifier:@"header" forIndexPath:indexPath];
 		return header;
 	}
 	return UICollectionReusableView.new;
