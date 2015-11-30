@@ -210,8 +210,6 @@
 		07E3ED7B1BBBF6C00010AAD2 /* blackpoint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */; };
 		07E3ED7D1BBC12F90010AAD2 /* bankCardList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */; };
 		07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */; };
-		07E3ED961BBCDD830010AAD2 /* CirculateCash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED951BBCDD830010AAD2 /* CirculateCash.storyboard */; };
-		07E3ED991BBCDE120010AAD2 /* MSFCirculateCashTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED981BBCDE120010AAD2 /* MSFCirculateCashTableViewController.m */; };
 		07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F61BBCFA360067C5BC /* MSFCirculateCashModel.m */; };
 		07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F91BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m */; };
 		07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088FC1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m */; };
@@ -1088,9 +1086,6 @@
 		07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bankCardList.json; sourceTree = "<group>"; };
 		07E3ED8E1BBCD5200010AAD2 /* MSFGrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGrayButton.h; sourceTree = "<group>"; };
 		07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGrayButton.m; sourceTree = "<group>"; };
-		07E3ED951BBCDD830010AAD2 /* CirculateCash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CirculateCash.storyboard; sourceTree = "<group>"; };
-		07E3ED971BBCDE120010AAD2 /* MSFCirculateCashTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashTableViewController.h; sourceTree = "<group>"; };
-		07E3ED981BBCDE120010AAD2 /* MSFCirculateCashTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCirculateCashTableViewController.m; sourceTree = "<group>"; };
 		07F088F51BBCFA360067C5BC /* MSFCirculateCashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashModel.h; sourceTree = "<group>"; };
 		07F088F61BBCFA360067C5BC /* MSFCirculateCashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCirculateCashModel.m; sourceTree = "<group>"; };
 		07F088F81BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashInfoModel.h; sourceTree = "<group>"; };
@@ -2417,9 +2412,6 @@
 		07E3ED911BBCDBC50010AAD2 /* CirculateCash */ = {
 			isa = PBXGroup;
 			children = (
-				07E3ED971BBCDE120010AAD2 /* MSFCirculateCashTableViewController.h */,
-				07E3ED981BBCDE120010AAD2 /* MSFCirculateCashTableViewController.m */,
-				07E3ED951BBCDD830010AAD2 /* CirculateCash.storyboard */,
 				07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */,
 				07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */,
 				07F089201BBD31E30067C5BC /* DrawCash.storyboard */,
@@ -3639,8 +3631,6 @@
 			children = (
 				072550B81BFEBDF80053F51F /* SocialCashApply */,
 				07E3ED911BBCDBC50010AAD2 /* CirculateCash */,
-				1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */,
-				1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */,
 				49DAEE6D1B2E8370009433C5 /* Storyboard */,
 				07C924D11B0C2CB700FA73BD /* LoanList */,
 				07C924CF1B0C22FD00FA73BD /* AppliesInfo */,
@@ -3688,6 +3678,8 @@
 				108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */,
 				10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */,
 				10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */,
+				1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */,
+				1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */,
 				109766FC1C098CB20097F656 /* MSFHomePageContentView.h */,
 				109766FD1C098CB20097F656 /* MSFHomePageContentView.m */,
 			);
@@ -4484,7 +4476,6 @@
 				49C0F1D11B2C341400E92572 /* tabbar-home-normal@2x.png in Resources */,
 				07C06C781B1347C200F2DFCC /* json_banks.json in Resources */,
 				077347DB1BBA338900D7A130 /* CMSB@3x.png in Resources */,
-				07E3ED961BBCDD830010AAD2 /* CirculateCash.storyboard in Resources */,
 				4944C00D1B68A44A00805C0A /* icon-cloze-idcard@3x.png in Resources */,
 				10DC2DA91B99C17F00A2AF9C /* icon_order4_n.png in Resources */,
 				49CA93841BBA3F7E0032F5C2 /* icon-name@3x.png in Resources */,
@@ -4818,7 +4809,6 @@
 				C7B9FF631B2C1BD100FEF72F /* MSFRelationshipViewModel.m in Sources */,
 				49EA18B21B6A44A7006EEB9F /* MSFActivityIndicatorViewController.m in Sources */,
 				078EEB931BBF75D500E7AB42 /* MSFSetTradePasswordTableViewController.m in Sources */,
-				07E3ED991BBCDE120010AAD2 /* MSFCirculateCashTableViewController.m in Sources */,
 				49CA939B1BBAA80A0032F5C2 /* MSFCard.m in Sources */,
 				4917A4451B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m in Sources */,
 				49CA93781BBA36090032F5C2 /* MSFIDSignInViewController.m in Sources */,

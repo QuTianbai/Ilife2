@@ -5,6 +5,7 @@
 //
 
 #import "MSFViewModelServicesImpl.h"
+#import <CZPhotoPickerController/CZPhotoPickerController.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
 
@@ -18,6 +19,7 @@
 
 #import "MSFAuthorizeViewModel.h"
 #import "MSFLoginViewController.h"
+#import "MSFSetTradePasswordTableViewController.h"
 
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
@@ -49,7 +51,8 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFProfessionalViewController.h"
 
-#import <CZPhotoPickerController/CZPhotoPickerController.h>
+#import "MSFDrawCashViewModel.h"
+#import "MSFDrawCashTableViewController.h"
 
 @interface MSFViewModelServicesImpl ()
 
@@ -121,6 +124,10 @@
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
 		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:[MSFAuthorizeViewModel class]]) {
+		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
+		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }

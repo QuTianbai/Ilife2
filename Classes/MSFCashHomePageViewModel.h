@@ -12,13 +12,20 @@
 
 @interface MSFCashHomePageViewModel : RVMViewModel
 
+@property (nonatomic, strong, readonly) NSString *usableLmt;
+@property (nonatomic, strong, readonly) NSString *usedLmt;
+
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
-@property (nonatomic, strong, readonly) RACCommand *executeAllowMSCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeAllowMLCommand;
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formViewModel;
 
-- (RACSignal *)fetchProductType;
+@property (nonatomic, strong, readonly) RACCommand *executeAllowMSCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeAllowMLCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeWithdrawCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeRepayCommand;
 
-- (instancetype)initWithFormViewModel:(MSFFormsViewModel *)formViewModel services:(id <MSFViewModelServices>)services;
+- (void)refreshCirculate;
+- (RACSignal *)fetchProductType;
+- (instancetype)initWithFormViewModel:(MSFFormsViewModel *)formViewModel
+														 services:(id <MSFViewModelServices>)services;
 
 @end

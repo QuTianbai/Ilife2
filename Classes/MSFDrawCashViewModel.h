@@ -30,6 +30,7 @@
 
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
+@property (nonatomic, assign, readonly) int type;
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
 
