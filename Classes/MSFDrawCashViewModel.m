@@ -21,7 +21,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 @property (nonatomic, assign) NSString *enablemoney;
 
-@property (nonatomic, assign) int type;
+@property (nonatomic, assign, readwrite) int type;
 
 @end
 

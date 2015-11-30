@@ -27,10 +27,19 @@
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 
 @property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
+@property (nonatomic, strong) MSFDrawCashViewModel *viewModel;
 
 @end
 
 @implementation MSFDrawCashTableViewController
+
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
+	if (self) {
+		_viewModel = viewModel;
+	}
+	return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -59,7 +68,7 @@
 }
 
 - (void)setviewTitle {
-	if (self.type == 1) {
+	if (self.viewModel.type == 1) {
 		self.title = @"还款";
 		self.showInfoLB.text = @"还款金额从此银行账户代扣";
 		self.warningLB.text = @"";
@@ -85,7 +94,7 @@
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
 	NSString *str = @"正在提现...";
-	if (self.type == 1) {
+	if (self.viewModel.type == 1) {
 		str = @"正在还款";
 	}
 	
@@ -100,7 +109,7 @@
 		 
 		 NSDictionary *result = response.parsedResult;
 		 NSString *str = result[@"message"];
-		 if (self.type == 1) {
+		 if (self.viewModel.type == 1) {
 			 str = @"恭喜你，还款已成功";
 			 //NSDictionary *result = response.parsedResult;
 			 MSFCirculateCashModel *mocel = [MTLJSONAdapter modelOfClass:[MSFCirculateCashModel class] fromJSONDictionary:response.parsedResult error:nil];

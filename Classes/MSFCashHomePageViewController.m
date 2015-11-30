@@ -32,8 +32,8 @@
 
 @interface MSFCashHomePageViewController ()
 
-@property (nonatomic, strong) MSFCirculateCashViewModel *circulateViewModel;
-@property (nonatomic, strong) NSArray *dataArray;
+//@property (nonatomic, strong) MSFCirculateCashViewModel *circulateViewModel;
+//@property (nonatomic, strong) NSArray *dataArray;
 
 @end
 
@@ -41,12 +41,9 @@
 
 - (instancetype)initWithViewModel:(MSFCashHomePageViewModel *)viewModel {
 	self = [super init];
-	if (!self) {
-		return nil;
+	if (self) {
+		_viewModel = viewModel;
 	}
-	_viewModel = viewModel;
-	_circulateViewModel = [[MSFCirculateCashViewModel alloc]
-												 initWithServices:viewModel.services];
 	return self;
 }
 
@@ -112,8 +109,8 @@
 	}
 	[self removeAllSubviews];
 	MSFCashHomeLoanLimit *limit = [[MSFCashHomeLoanLimit alloc] init];
-	limit.withdrawButton.rac_command = self.withdrawCashCommand;
-	limit.repayButton.rac_command = self.repayCommand;
+	limit.withdrawButton.rac_command = self.viewModel.executeWithdrawCommand;
+	limit.repayButton.rac_command = self.viewModel.executeRepayCommand;
 	MSFApplyView *ms = [[MSFApplyView alloc] initWithStatus:MSFApplyViewTypeLimitMS actionBlock:^{
 		[self.viewModel.executeAllowMSCommand execute:nil];
 	}];
@@ -130,9 +127,9 @@
 		make.bottom.equalTo(ms.mas_top);
 	}];
 	@weakify(self)
-	[RACObserve(self, circulateViewModel.usedLimit) subscribeNext:^(id x) {
+	[RACObserve(self, viewModel.usedLmt) subscribeNext:^(id x) {
 		@strongify(self)
-		[limit setAvailableCredit:self.circulateViewModel.usableLimit usedCredit:self.circulateViewModel.usedLimit];
+		[limit setAvailableCredit:self.viewModel.usableLmt usedCredit:self.viewModel.usedLmt];
 	}];
 }
 
@@ -162,8 +159,7 @@
 					break;
 				case 2:
 					[self limitView];
-					self.circulateViewModel.active = NO;
-					self.circulateViewModel.active = YES;
+					[self.viewModel refreshCirculate];
 					break;
 			}
 		} error:^(NSError *error) {
@@ -208,90 +204,6 @@
 	}];
 	[self.viewModel.executeAllowMLCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-}
-
-- (BOOL)hasTransactionalCode {
-	MSFUser *user = [self.viewModel.services httpClient].user;
-	if (!user.hasTransactionalCode) {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-		[alert show];
-		[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-			if (index.intValue == 1) {
-				AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-				MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
-				MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
-				[self.navigationController pushViewController:setTradePasswordVC animated:YES];
-			}
-		}];
-		return NO;
-	}
-	return YES;
-}
-
-- (RACCommand *)withdrawCashCommand {
-	return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			if ([self hasTransactionalCode]) {
-				[[[self.circulateViewModel fetchBankCardListSignal].collect replayLazily] subscribeNext:^(id x) {
-					[SVProgressHUD dismiss];
-					self.dataArray = x;
-					if (self.dataArray.count == 0) {
-						[[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
-					} else {
-						for (MSFBankCardListModel *model in self.dataArray) {
-							if (model.master) {
-								MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.circulateViewModel AndServices:self.viewModel.services AndType:0];
-								MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
-								viewModel.drawCash = self.circulateViewModel.usableLimit;
-								drawCashVC.viewModel = viewModel;
-								drawCashVC.type = 0;
-								[self.navigationController pushViewController:drawCashVC animated:YES];
-								break;
-							}
-						}
-					}
-				} completed:^{
-					[subscriber sendCompleted];
-				}];
-			} else {
-				[subscriber sendCompleted];
-			}
-			return [RACDisposable disposableWithBlock:^{}];
-		}];
-	}];
-}
-
-- (RACCommand *)repayCommand {
-	return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			if ([self hasTransactionalCode]) {
-				[[[self.circulateViewModel fetchBankCardListSignal].collect replayLazily] subscribeNext:^(id x) {
-					[SVProgressHUD dismiss];
-					self.dataArray = x;
-					if (self.dataArray.count == 0) {
-						[[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
-					} else {
-						for (MSFBankCardListModel *model in self.dataArray) {
-							if (model.master) {
-								 MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.circulateViewModel AndServices:self.viewModel.services AndType:1];
-								 MSFDrawCashTableViewController *drawCashVC = [UIStoryboard storyboardWithName:@"DrawCash" bundle:nil].instantiateInitialViewController;
-								 viewModel.drawCash = self.circulateViewModel.usedLimit;
-								 drawCashVC.viewModel = viewModel;
-								 drawCashVC.type = 1;
-								 [self.navigationController pushViewController:drawCashVC animated:YES];
-								 break;
-							}
-						}
-					}
-				} completed:^{
-					[subscriber sendCompleted];
-				}];
-			} else {
-				[subscriber sendCompleted];
-			}
-			return [RACDisposable disposableWithBlock:^{}];
-		}];
 	}];
 }
 
