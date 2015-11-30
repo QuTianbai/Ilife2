@@ -375,10 +375,10 @@ ABPersonViewControllerDelegate>
 	if (indexPath.section == 0) {
 		[[self.viewModel.executeMarriageCommand execute:nil]
 		 subscribeNext:^(id x) {
-			MSFUserContact *contact = _tempContactList[0];
-			contact.contactRelation = nil;
-			[tableView reloadData];
-		}];
+			 MSFUserContact *contact = _tempContactList[0];
+			 contact.contactRelation = nil;
+			 [tableView reloadData];
+		 }];
 	} else if (indexPath.section == _tempContactList.count + 1) {
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
 		contact.contactAddress = _fullAddress;
@@ -396,10 +396,8 @@ ABPersonViewControllerDelegate>
 	ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
 	picker.peoplePickerDelegate = self;
 	picker.view.tag = textField.tag;
-	NSArray *displayedItems = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
-	picker.displayedProperties = displayedItems;
-	[self presentViewController:picker animated:YES completion:^{
-	}];
+	picker.displayedProperties = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
+	[self presentViewController:picker animated:YES completion:nil];
 	if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
 		picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];
 	}
@@ -409,33 +407,16 @@ ABPersonViewControllerDelegate>
 
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
 	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
-	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
-	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
-		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
-		aPhone = [aPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
-		[phones addObject:aPhone];
-	}
-	NSString *phone = @"";
-	
-	if (phones.count > 0) {
-		NSInteger index = identifier;
-		if (identifier > phones.count - 1) {
-			index = phones.count - 1;
-		}
-		phone = [phones objectAtIndex:index];
-		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-	}
-	
+	CFIndex index = ABMultiValueGetIndexForIdentifier(phoneMulti, identifier);
+	NSString *phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, index);
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
 	contact.contactName = fullName;
 	[self.tableView reloadData];
 }
 
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
-			shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
 	return YES;
 }
 
@@ -443,39 +424,17 @@ ABPersonViewControllerDelegate>
 	[peoplePicker dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
-			shouldContinueAfterSelectingPerson:(ABRecordRef)person
-																property:(ABPropertyID)property
-															identifier:(ABMultiValueIdentifier)identifier {
-	
+- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
 	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
-	NSMutableArray *phones = [NSMutableArray arrayWithCapacity:0];
-	for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++) {
-		NSString *aPhone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, i);
-		[phones addObject:aPhone];
-	}
-	NSString *phone = @"";
-	
-	if (phones.count > 0) {
-		NSInteger index = identifier;
-		if (identifier > phones.count - 1) {
-			index = phones.count - 1;
-		}
-		phone = [phones objectAtIndex:index];
-		phone = [[phone componentsSeparatedByCharactersInSet:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]] componentsJoinedByString:@""];
-	}
-	
+	CFIndex index = ABMultiValueGetIndexForIdentifier(phoneMulti, identifier);
+	NSString *phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, index);
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-	
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
 	contact.contactName = fullName;
 	[self.tableView reloadData];
-	
- [peoplePicker dismissViewControllerAnimated:YES completion:nil];
-	
+	[peoplePicker dismissViewControllerAnimated:YES completion:nil];
 	return NO;
-	
 }
 
 #pragma mark - ABPersonViewControllerDelegate

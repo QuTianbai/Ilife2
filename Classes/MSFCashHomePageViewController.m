@@ -148,7 +148,9 @@
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		[self showPlaceholderView:NO];
-		[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+		if (self.view.subviews.count == 0) {
+			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+		}
 		[[_viewModel fetchProductType] subscribeNext:^(NSNumber *x) {
 			[SVProgressHUD dismiss];
 			switch (x.integerValue) {
