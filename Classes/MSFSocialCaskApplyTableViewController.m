@@ -56,7 +56,6 @@
 	if (!self) {
 		return nil;
 	}
-	
 	_viewModel = viewModel;
 	self.professional = viewModel.professional;
 	
@@ -133,8 +132,10 @@
 		RAC(self, olderBaseTF.text) = [RACObserve(self, viewModel.residentOlderInsuranceMoneyTitle) ignore:nil];
 		RAC(self, medicalStatusTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceStatusTitle) ignore:nil];
 		RAC(self, medicalBaseTF.text) = [RACObserve(self, viewModel.residentMedicalInsuranceMoneyTitle) ignore:nil];
-		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, residentOlderInsuranceDate);
-		RAC(self.medicalDate, text) = RACObserve(self.viewModel, residentMedicalInsuranceDate);
+		RAC(self.olderDateTF, text) = [RACObserve(self, viewModel.residentOlderInsuranceDate) map:^id(id value) {
+			return value;
+		}];
+		RAC(self.medicalDate, text) = RACObserve(self, viewModel.residentMedicalInsuranceDate);
 		
 		//self.olderMonthsTF.text = @"2";
 		
@@ -184,8 +185,8 @@
 		RAC(self, unEmployTF.text) = [RACObserve(self, viewModel.employeeOutJobStatusTitle) ignore:nil];
 		RAC(self, bearTF.text) = [RACObserve(self, viewModel.employeeBearStatusTitle) ignore:nil];
 		
-		RAC(self.olderDateTF, text) = RACObserve(self.viewModel, employeeOlderDate);
-		RAC(self.medicalDate, text) = RACObserve(self.viewModel, employeeMedicalDate);
+		RAC(self.olderDateTF, text) = RACObserve(self, viewModel.employeeOlderDate);
+		RAC(self.medicalDate, text) = RACObserve(self, viewModel.employeeMedicalDate);
 		
 		RACChannelTerminal *employeeOlderMonths = RACChannelTo(self, viewModel.employeeOlderMonths);
 		RAC(self.olderMonthsTF, text) = employeeOlderMonths;
