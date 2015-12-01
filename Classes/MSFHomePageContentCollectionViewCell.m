@@ -26,6 +26,8 @@
 #import "MSFClient.h"
 #import "MSFUser.h"
 
+#import "MSFHomePageContentView.h"
+
 @interface MSFHomePageContentCollectionViewCell ()
 
 @property (weak, nonatomic) IBOutlet UIView *content;
@@ -36,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
+
+@property (strong, nonatomic) MSFHomePageContentView *content1;
 
 @property (assign, nonatomic) BOOL circleShow;
 
@@ -57,6 +61,25 @@
 		 @strongify(self)
 		 [self onClickCircle:x.integerValue];
 	 }];
+	
+	_content1 = [[MSFHomePageContentView alloc] init];
+	//_content1.statusCommand
+	
+//	[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+//		takeUntil:self.rac_prepareForReuseSignal]
+//	 subscribeNext:^(UIButton *x) {
+//		 if (viewModel.jumpDes == MSFHomePageDesContract) {
+//			 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+//		 } else {
+//			 [viewModel pushDetailViewController];
+//		 }
+//	 }];
+//
+	
+	[self.contentView addSubview:_content1];
+	[_content1 mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.edges.equalTo(self.contentView);
+	}];
 }
 
 - (void)onClickCircle:(NSInteger)index {
@@ -92,6 +115,9 @@
 	}
 	//显示马上金融
 	[self placeholderShow:NO];
+	_content.hidden = YES;
+	[_content1 updateWithModel:viewModel];
+	return;
 	_titleLabel.text  = viewModel.title;
 	[_statusButton setTitle:viewModel.statusString
 								 forState:UIControlStateNormal];

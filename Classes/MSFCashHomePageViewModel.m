@@ -69,8 +69,7 @@
 #pragma mark - Private
 
 - (void)refreshCirculate {
-	self.circulateViewModel.active = NO;
-	self.circulateViewModel.active = YES;
+	[self.circulateViewModel.executeRefrshCashHomeCommand execute:nil];
 }
 
 - (RACSignal *)executeAllow {
