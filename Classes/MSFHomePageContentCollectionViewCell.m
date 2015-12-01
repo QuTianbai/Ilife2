@@ -63,19 +63,6 @@
 	 }];
 	
 	_content1 = [[MSFHomePageContentView alloc] init];
-	//_content1.statusCommand
-	
-//	[[[_statusButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-//		takeUntil:self.rac_prepareForReuseSignal]
-//	 subscribeNext:^(UIButton *x) {
-//		 if (viewModel.jumpDes == MSFHomePageDesContract) {
-//			 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
-//		 } else {
-//			 [viewModel pushDetailViewController];
-//		 }
-//	 }];
-//
-	
 	[self.contentView addSubview:_content1];
 	[_content1 mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.edges.equalTo(self.contentView);
@@ -117,6 +104,14 @@
 	[self placeholderShow:NO];
 	_content.hidden = YES;
 	[_content1 updateWithModel:viewModel];
+	[_content1.statusCommand.executionSignals subscribeNext:^(id x) {
+		if (viewModel.jumpDes == MSFHomePageDesContract) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+		} else {
+			[viewModel pushDetailViewController];
+		}
+		
+	}];
 	return;
 	_titleLabel.text  = viewModel.title;
 	[_statusButton setTitle:viewModel.statusString
