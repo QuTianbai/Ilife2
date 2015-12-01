@@ -55,7 +55,6 @@
 	_pending = NO;
 	_services = services;
 	_model = [[MSFApplicationForms alloc] init];
-	//_market = [[MSFMarket alloc] init];
 	_markets = [[MSFMarkets alloc] init];
 	_currentAddress = [[MSFAddress alloc] init];
 	_workAddress = [[MSFAddress alloc] init];
@@ -65,15 +64,12 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		//TODO: 动态更改用户产品群ID
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"1101"] subscribeNext:^(MSFMarkets *markets) {
 			if (self.markets.teams.count == 0) {
-				self.markets = markets;
+				[self.markets mergeValuesForKeysFromModel:markets];
 			}
-			
 		} error:^(NSError *error) {
 			NSLog(@"");
-			
 		}];
 		RACSignal *signal = [[self.services.httpClient fetchBankCardList].collect replayLazily];
 		[signal subscribeNext:^(id x) {
@@ -95,7 +91,7 @@
 		}];
 		[[self.services.httpClient fetchApplyInfo]
 		 subscribeNext:^(MSFApplicationForms *forms) {
-			self.model = forms;
+			 [self.model mergeValuesForKeysFromModel:forms];
 		}];
 	}];
 	

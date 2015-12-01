@@ -49,7 +49,13 @@
 	_services = formsViewModel.services;
 	_formsViewModel = formsViewModel;
 	
-	MSFAddress *addressModel = [MSFAddress modelWithDictionary:@{@"province" : formsViewModel.model.workProvinceCode, @"city" : formsViewModel.model.workCityCode, @"area" : formsViewModel.model.workCountryCode} error:nil];
+	NSString *provinceCode = formsViewModel.model.workProvinceCode ?: @"";
+	NSString *cityCode = formsViewModel.model.workCityCode ?: @"";
+	NSString *areaCode = formsViewModel.model.workCountryCode ?: @"";
+	NSDictionary *addrDic = @{@"province" : provinceCode,
+														@"city" : cityCode,
+														@"area" : areaCode};
+	MSFAddress *addressModel = [MSFAddress modelWithDictionary:addrDic error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addressModel services:_services];
 	_address = _addressViewModel.address;
 	
