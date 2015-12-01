@@ -8,6 +8,9 @@
 
 @interface MSFClient (LoanTypes)
 
+// Fetch valid <MSFLoanType>
+//
+// Returns a signal will send <MSFLoanType> instance
 - (RACSignal *)fetchLoanTypes;
 
 @end

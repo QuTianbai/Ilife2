@@ -10,7 +10,7 @@
 
 @interface NSDictionary(MSFKeyValue)
 
-//申请、还款状态code码映射
+//申请、还款状态code码映射 Code to String
 + (NSString *)statusStringForKey:(NSString *)key;
 
 @end
