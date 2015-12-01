@@ -399,6 +399,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	return [[MSFClient
 		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:expiredDate]
 		doNext:^(id x) {
+			_signInValid = YES;
 			[self.services setHttpClient:x];
 		}];
 }
