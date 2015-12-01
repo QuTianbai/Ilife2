@@ -43,6 +43,13 @@
 	RAC(self, contractLineDate) = [RACObserve(self, model.contractExpireDate) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];
+	
+	RAC(self, overdueMoney) = [RACObserve(self, model.overdueMoney) map:^id(id value) {
+		if (value == nil || [value isEqualToString:@"0.00"] ||[value isEqualToString:@"0"] || [value isEqualToString:@""]) {
+			return @"";
+		}
+		return [NSString stringWithFormat:@"已逾期:￥%@", value];
+	}];
 
 	
   return self;

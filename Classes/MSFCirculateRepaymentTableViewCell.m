@@ -16,13 +16,14 @@
 #define REPAY_DARK_COLOR  @"464646"
 #define REPAY_LIGHT_COLOR @"878787"
 #define REPAY_BORDER_COLOR @"DADADA"
+#define REPAY_ORANGR_COLOR @"FF6600"
 
 @interface MSFCirculateRepaymentTableViewCell()
 
 /** UI **/
 //@property (strong, nonatomic) UILabel *contractNum;//合同编号
 
-@property (strong, nonatomic) UILabel *contractStatus;//合同状态
+//@property (strong, nonatomic) UILabel *contractStatus;//合同状态
 @property (strong, nonatomic) UILabel *shouldAmount;//最近应还金额
 @property (strong, nonatomic) UILabel *asOfDate;//最近应还日期
 @property (strong, nonatomic) UILabel *ownerAllMoney;//总欠款金额
@@ -55,7 +56,7 @@
 		_topLineGuide = _topHeight + _topMargin;
 		
 		//_contractNum				 = [[UILabel alloc]init];
-		_contractStatus			 = [[UILabel alloc]init];
+		//_contractStatus			 = [[UILabel alloc]init];
 		_shouldAmount				 = [[UILabel alloc]init];
 		_asOfDate						 = [[UILabel alloc]init];
 		_contractStatusLabel = [[UILabel alloc]init];
@@ -69,10 +70,10 @@
 		//[_contractNum setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
 		//_contractNum.font = [UIFont systemFontOfSize:15];
 		
-		[_contractStatus setText:@"合同状态"];
-		[_contractStatus setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
-		_contractStatus.font = [UIFont systemFontOfSize:13];
-		_contractStatus.textAlignment = NSTextAlignmentRight;
+//		[_contractStatus setText:@"合同状态"];
+//		[_contractStatus setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
+//		_contractStatus.font = [UIFont systemFontOfSize:13];
+//		_contractStatus.textAlignment = NSTextAlignmentRight;
 		
 		[_shouldAmount setText:@"最近应还金额"];
 		[_shouldAmount setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
@@ -96,9 +97,10 @@
 		
 		
 		
-		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
+		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:REPAY_ORANGR_COLOR]];
 		_contractStatusLabel.font = [UIFont systemFontOfSize:13];
-		_contractStatusLabel.textAlignment = NSTextAlignmentCenter;
+		_contractStatusLabel.textAlignment = NSTextAlignmentRight;
+		
 		[_shouldAmountLabel setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
 		_shouldAmountLabel.font = [UIFont systemFontOfSize:13];
 		_shouldAmountLabel.textAlignment = NSTextAlignmentCenter;
@@ -114,7 +116,7 @@
 		
 		
 		//[self addSubview:_contractNum];
-		[self addSubview:_contractStatus];
+		//[self addSubview:_contractStatus];
 		[self addSubview:_shouldAmount];
 		[self addSubview:_asOfDate];
 		[self addSubview:_contractStatusLabel];
@@ -125,47 +127,20 @@
 		[self addSubview:_contractLineDate];
 		[self addSubview:_contractLineDateValue];
 		@weakify(self)
-//		[_contractNum mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.left.equalTo(self).offset(self.padding);
-//			make.right.equalTo(self).offset(self.padding);
-//			make.top.equalTo(self).offset(self.topMargin);
-//			make.height.equalTo(@(self.topHeight));
-//		}];
-//		[_contractStatus mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.top.equalTo(self).offset(_topLineGuide);
-//			make.left.equalTo(self);
-//			make.height.equalTo(@(self.labelHeight));
-//		}];
-		[_contractStatus mas_makeConstraints:^(MASConstraintMaker *make) {
+
+		[_contractStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.top.equalTo(self).offset(self.topMargin);
 			make.left.equalTo(self).offset(self.padding);
 			make.right.equalTo(self).offset(-self.padding);
 			make.height.equalTo(@(self.topHeight));
 		}];
-//		[_shouldAmount mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.top.equalTo(self).offset(_topLineGuide);
-//			make.left.equalTo(self.contractStatus.mas_right);
-//			make.height.equalTo(@(self.labelHeight));
-//		}];
 		[_shouldAmount mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.top.equalTo(self).offset(_topLineGuide);
 			make.left.equalTo(self);
 			make.height.equalTo(@(self.labelHeight));
 		}];
-
-//		[_asOfDate mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.top.equalTo(self).offset(_topLineGuide);
-//			make.left.equalTo(self.shouldAmount.mas_right);
-//			make.right.equalTo(self);
-//			make.height.equalTo(@(self.labelHeight));
-//			make.width.equalTo(@[_contractStatus, _shouldAmount]);
-//		}];
 		[_asOfDate mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.top.equalTo(self).offset(_topLineGuide);
@@ -175,25 +150,6 @@
 			make.width.equalTo(@[_shouldAmount]);
 		}];
 
-//		[_contractStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.top.equalTo(self.contractStatus.mas_bottom);
-//			make.left.equalTo(self);
-//			make.height.equalTo(@(self.labelHeight));
-//		}];
-//		[_contractStatusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.top.equalTo(self.contractStatus.mas_bottom);
-//			make.left.equalTo(self);
-//			make.height.equalTo(@(self.labelHeight));
-//		}];
-
-//		[_shouldAmountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//			@strongify(self)
-//			make.top.equalTo(self.shouldAmount.mas_bottom);
-//			make.left.equalTo(self.contractStatusLabel.mas_right);
-//			make.height.equalTo(@(self.labelHeight));
-//		}];
 		[_shouldAmountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
 			make.top.equalTo(self.shouldAmount.mas_bottom);
@@ -246,7 +202,7 @@
 
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
 	//_contractNum.text = [NSString stringWithFormat:@"合同编号    %@", viewModel.repaymentNumber];
-	_contractStatusLabel.text = viewModel.status;
+	_contractStatusLabel.text = viewModel.overdueMoney;
 	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.amount];
 	_asOfDateLabel.text = viewModel.date;
 

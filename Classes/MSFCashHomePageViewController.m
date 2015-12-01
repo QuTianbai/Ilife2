@@ -22,6 +22,7 @@
 #import "MSFUserInfomationViewController.h"
 
 #import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFSubmitApplyModel.h"
 
 @implementation MSFCashHomePageViewController
 
@@ -153,11 +154,17 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
+				
 				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"1101"];
 				MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formViewModel loanType:loanType];
-				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
-				userInfoVC.showNextStep = YES;
-				[self.navigationController pushViewController:userInfoVC animated:YES];
+				[[viewModel submitSignalWithStatus:@"0"] subscribeNext:^(MSFSubmitApplyModel *applyCash) {
+					viewModel.applicationNo = applyCash.appNo;
+					MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
+					userInfoVC.showNextStep = YES;
+					[self.navigationController pushViewController:userInfoVC animated:YES];
+					
+				}];
+				
 			} else {
 				[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
 			}

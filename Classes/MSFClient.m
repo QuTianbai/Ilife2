@@ -24,6 +24,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "MSFDeviceGet.h"
 #import "UIDevice-Hardware.h"
+#import "RACSignal+MSFContactsAdditions.m"
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
@@ -66,6 +67,7 @@ static NSDictionary *messages;
 @property (nonatomic, strong, readwrite) MSFUser *user;
 @property (nonatomic, copy, readwrite) NSString *token;
 @property (nonatomic, strong) NSString *reachabilityStatus;
+@property (nonatomic, strong) NSNumber *contacts;
 
 @end
 
@@ -79,8 +81,9 @@ static NSDictionary *messages;
 		return nil;
 	}
 	self.reachabilityStatus = @"9";
+	self.contacts = @0;
 	self.defaultHeaders = NSMutableDictionary.dictionary;
-	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus]];
+	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus contacts:self.contacts]];
 	
 	self.requestSerializer.timeoutInterval = 60;
 	self.securityPolicy.allowInvalidCertificates = YES;
@@ -96,7 +99,7 @@ static NSDictionary *messages;
 		[[RCLocationManager sharedManager] setUserDistanceFilter:kCLLocationAccuracyKilometer];
 		[[RCLocationManager sharedManager] setUserDesiredAccuracy:kCLLocationAccuracyKilometer];
 		[[RCLocationManager sharedManager] startUpdatingLocationWithBlock:^(CLLocationManager *manager, CLLocation *newLocation, CLLocation *oldLocation) {
-			[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:newLocation.coordinate reachabilityStatus:self.reachabilityStatus]];
+			[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:newLocation.coordinate reachabilityStatus:self.reachabilityStatus contacts:self.contacts]];
 			[[RCLocationManager sharedManager] stopUpdatingLocation];
 		} errorBlock:^(CLLocationManager *manager, NSError *error) {}];
 	}
@@ -130,7 +133,14 @@ static NSDictionary *messages;
 		@strongify(self)
 		self.reachabilityStatus = network;
 		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
-		[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:coordinate reachabilityStatus:self.reachabilityStatus]];
+		[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:coordinate reachabilityStatus:self.reachabilityStatus contacts:self.contacts]];
+	}];
+	
+	[[RACSignal msf_contactsCountSignal] subscribeNext:^(id x) {
+		@strongify(self)
+		self.contacts = x;
+		CLLocationCoordinate2D coordinate = [RCLocationManager sharedManager].location.coordinate;
+		[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:coordinate reachabilityStatus:self.reachabilityStatus contacts:self.contacts]];
 	}];
 	
 	NSURL *URL = [[NSBundle bundleForClass:self.class] URLForResource:@"code-message" withExtension:@"json"];
@@ -513,7 +523,7 @@ static NSDictionary *messages;
 
 #pragma mark - Private
 
-+ (NSString *)deviceInfoWithCoordinate:(CLLocationCoordinate2D)coordinate reachabilityStatus:(NSString *)status {
++ (NSString *)deviceInfoWithCoordinate:(CLLocationCoordinate2D)coordinate reachabilityStatus:(NSString *)status contacts:(NSNumber *)contacts {
 	NSDictionary *info = [NSBundle mainBundle].infoDictionary;
 	NSMutableArray *devices = NSMutableArray.new;
 	[devices addObject:@"IOS"];
@@ -527,7 +537,7 @@ static NSDictionary *messages;
 	[devices addObject:OpenUDID.value];
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	[devices addObject:status];
-	[devices addObject:@""];
+	[devices addObject:contacts?:@""];
 	
 	return [[devices componentsJoinedByString:@"; "] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
