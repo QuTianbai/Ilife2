@@ -31,6 +31,8 @@
 //合同截止日期
 @property (nonatomic, readonly) NSString *contractLineDate;
 
+@property (nonatomic, readonly) NSString *overdueMoney;
+
 - (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;;
 
 - (RACSignal *)fetchPlanPerodicTablesSignal;
