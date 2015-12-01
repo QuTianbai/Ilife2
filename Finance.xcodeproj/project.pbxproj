@@ -5321,7 +5321,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "d1cfa35b-02f1-4ab9-abda-3fd0d2ca5404";
+				PROVISIONING_PROFILE = "80a66166-a1e0-49a6-8bcf-d60fd5e0a0d8";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5354,7 +5354,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "d1cfa35b-02f1-4ab9-abda-3fd0d2ca5404";
+				PROVISIONING_PROFILE = "80a66166-a1e0-49a6-8bcf-d60fd5e0a0d8";
 			};
 			name = Test;
 		};
