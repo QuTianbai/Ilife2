@@ -10,6 +10,14 @@
 
 @interface NSURLConnection (Locations)
 
+// Use to translate coordinate to address information <MSFLocationModel> instance
+//
+// When error the returns signal will send complete without error, This API use Baidu services API
+//
+// latitude  - The latitude
+// longitude - The longitude
+//
+// Returns a signal will send <MSFLocationModel> instance
 + (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude;
 
 @end

@@ -11,12 +11,16 @@
 
 @protocol MSFViewModelServices <NSObject>
 
+// Pop viewModel from navigtion controller stack
 - (void)popViewModel;
+
+// Push viewmodel into navigation controller stack
 - (void)pushViewModel:(id)viewModel;
 
+// Present viewmodel into current view
 - (void)presentViewModel:(id)viewModel;
 
-// Client instance.
+// Client global instance.
 - (MSFClient *)httpClient;
 
 // Update When signIn or SignUp.
