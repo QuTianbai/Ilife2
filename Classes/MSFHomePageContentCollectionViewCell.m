@@ -26,7 +26,7 @@
 #import "MSFClient.h"
 #import "MSFUser.h"
 
-#import "MSFHomePageContentView.h"
+//#import "MSFHomePageContentView.h"
 
 @interface MSFHomePageContentCollectionViewCell ()
 
@@ -39,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet MSFUserInfoCircleView *circleView;
 @property (weak, nonatomic) IBOutlet UIButton *ConFirmContractBT;
 
-@property (strong, nonatomic) MSFHomePageContentView *content1;
+//@property (strong, nonatomic) MSFHomePageContentView *content1;
 
 @property (assign, nonatomic) BOOL circleShow;
 
@@ -62,11 +62,11 @@
 		 [self onClickCircle:x.integerValue];
 	 }];
 	
-	_content1 = [[MSFHomePageContentView alloc] init];
-	[self.contentView addSubview:_content1];
-	[_content1 mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.edges.equalTo(self.contentView);
-	}];
+//	_content1 = [[MSFHomePageContentView alloc] init];
+//	[self.contentView addSubview:_content1];
+//	[_content1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//		make.edges.equalTo(self.contentView);
+//	}];
 }
 
 - (void)onClickCircle:(NSInteger)index {
@@ -102,17 +102,17 @@
 	}
 	//显示马上金融
 	[self placeholderShow:NO];
-	_content.hidden = YES;
-	[_content1 updateWithModel:viewModel];
-	[_content1.statusCommand.executionSignals subscribeNext:^(id x) {
-		if (viewModel.jumpDes == MSFHomePageDesContract) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
-		} else {
-			[viewModel pushDetailViewController];
-		}
-		
-	}];
-	return;
+//	_content.hidden = YES;
+//	[_content1 updateWithModel:viewModel];
+//	[_content1.statusCommand.executionSignals subscribeNext:^(id x) {
+//		if (viewModel.jumpDes == MSFHomePageDesContract) {
+//			[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+//		} else {
+//			[viewModel pushDetailViewController];
+//		}
+//		
+//	}];
+//	return;
 	_titleLabel.text  = viewModel.title;
 	[_statusButton setTitle:viewModel.statusString
 								 forState:UIControlStateNormal];
