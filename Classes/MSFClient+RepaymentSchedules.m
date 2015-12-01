@@ -22,11 +22,11 @@
 }
 
 - (RACSignal *)fetchCircleRepaymentSchedules {
-	NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"circleCash" ofType:@"json"];
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
+//	NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"circleCash" ofType:@"json"];
+//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
 	
-	//NSString *path = @"append/schedules";
-	//NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:nil];
+	NSString *path = @"append/schedules";
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
