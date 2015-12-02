@@ -10,6 +10,9 @@
 
 @interface UITableView (MSFActivityIndicatorViewAdditions)
 
+// 列表默认图
+//
+// signal - 列表数据下载新信号，信号执行
 - (UIView *)viewWithSignal:(RACSignal *)signal message:(NSString *)message AndImage:(UIImage *)image;
 
 @end

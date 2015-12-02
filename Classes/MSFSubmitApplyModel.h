@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 提交贷款资料返回的申请单号
 @interface MSFSubmitApplyModel : MSFObject
 
 @property (nonatomic, copy) NSString *appNo;

@@ -9,10 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-/**
- *	申请状态下的Cell
- */
-@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell
-<MSFReactiveView>
+@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell<MSFReactiveView>
 
 @end

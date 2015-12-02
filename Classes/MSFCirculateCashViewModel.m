@@ -84,14 +84,13 @@
 	RAC(self, overdueMoney) = RACObserve(self, infoModel.overdueMoney);
 	RAC(self, contractStatus) = RACObserve(self, infoModel.contractStatus);
 
-	@weakify(self)
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[[self.services.httpClient fetchCirculateCash:nil] subscribeNext:^(MSFCirculateCashModel *model) {
-			self.infoModel = model;
-		} error:^(NSError *error) {
-			NSLog(@"%@", error.localizedDescription);
-		}];
+	_executeRefrshCashHomeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self.services.httpClient fetchCirculateCash:@"2"];
+	}];
+	[_executeRefrshCashHomeCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		[self.infoModel mergeValuesForKeysFromModel:x];
+	} error:^(NSError *error) {
+		NSLog(@"%@", error.localizedDescription);
 	}];
 	
 	return self;

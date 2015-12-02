@@ -181,6 +181,7 @@
 			if (model.processing == 1) {
 				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"4102"];
 				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel loanType:loanType services:self.viewModel.services];
+				viewModel.applicationNo = @"";
 				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
 				userInfoVC.showNextStep = YES;
 				[self.navigationController pushViewController:userInfoVC animated:YES];

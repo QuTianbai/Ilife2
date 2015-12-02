@@ -10,6 +10,9 @@
 
 @interface MSFClient (MSFCheckAllowApply)
 
+// 通过接口判断是否允许贷款
+//
+// Returns a signal which will send a MSFCheckAllowApply
 - (RACSignal *)fetchCheckAllowApply;
 
 @end

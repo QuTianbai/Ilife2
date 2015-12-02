@@ -16,8 +16,10 @@
 // Returns an signal after fetch server timestamp
 + (RACSignal *)setupSignal;
 
-// 存储用户登录手机号
+// 存储用户登录手机号, 在登录/注册成功后更新
 + (void)setSignInMobile:(NSString *)phone;
+
+// 获取存储的用户登录手机号
 + (NSString *)signInMobile;
 
 // 获取一个有效的广告宣传图对象

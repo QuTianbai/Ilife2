@@ -10,6 +10,7 @@
 
 @interface MSFClient (MSFProductType)
 
+// 获取产品群类型ID, 返回一个信号发送产品群ID数组
 - (RACSignal *)fetchProductType;
 
 @end

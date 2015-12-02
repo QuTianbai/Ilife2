@@ -27,7 +27,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFBankCardListModel.h"
 #import "MSFUser.h"
-#import "MSFClient+MSFProductList.h"
 
 @interface MSFFormsViewModel ()
 
@@ -108,10 +107,6 @@
 - (void)setBankCardMasterDefult {
 	self.masterBankCardNO = @"";
 	self.master = NO;
-}
-
-- (RACSignal *)fetchProductListignal {
-	return [self.services.httpClient fetchProductList];
 }
 
 @end

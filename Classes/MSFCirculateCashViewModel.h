@@ -46,6 +46,8 @@ enum SHOWTYPES {
 
 @property (nonatomic, assign) id<MSFViewModelServices>services;
 
+@property (nonatomic, strong, readonly) RACCommand *executeRefrshCashHomeCommand;
+
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
 - (RACSignal *)fetchBankCardListSignal;
