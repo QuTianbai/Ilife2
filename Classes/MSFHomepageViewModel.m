@@ -37,6 +37,7 @@
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash:nil] map:^id(MSFCirculateCashModel *loan) {
 			if (loan) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMUPDATEMODEL" object:loan];
 				return [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
 			} else {
 				return nil;

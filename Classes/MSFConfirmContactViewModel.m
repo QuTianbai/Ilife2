@@ -53,6 +53,13 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 		@strongify(self)
 		[self.confirmCommand execute:nil];
 	}];
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMUPDATEMODEL" object:nil] subscribeNext:^(id x) {
+		NSLog(@"%@", [x object]);
+		self.circulateModel = [x object];
+		//@strongify(self)
+		//self.circulateModel = self.circulateModel;
+		//[self.confirmCommand execute:nil];
+	}];
 	
 	[self fetchContractist];
 		
