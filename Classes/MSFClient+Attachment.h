@@ -10,6 +10,11 @@
 
 @interface MSFClient (Attachment)
 
+// Upload attachment image data to server
+//
+// attachment - MSFAttachment instance which fileURL is a local file URL
+//
+// Returns a signal which sends a new attachment that has fileID/fileName
 - (RACSignal *)uploadAttachment:(MSFAttachment *)attachment;
 
 @end

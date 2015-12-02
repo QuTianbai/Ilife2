@@ -12,7 +12,10 @@
 
 @interface MSFClient (MSFApplyCash)
 
+// 获取用户马上贷申请表信息
 - (RACSignal *)fetchApplyCash;
+
+// 保存/提交用户马上贷申请表
 - (RACSignal *)applyInfoSubmit1:(MSFApplicationForms *)model;
 
 @end

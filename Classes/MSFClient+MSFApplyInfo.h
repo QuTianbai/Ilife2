@@ -12,9 +12,12 @@
 
 @interface MSFClient (MSFApplyInfo)
 
+// 获取用户申请表个人资料 MSFApplicationForms
 - (RACSignal *)fetchApplyInfo;
-- (RACSignal *)fetchApplyInfoSubmit1:(NSString *)moneyNum months:(NSString *)months moneyUsed:(NSString *)moneyUsed isInsurancePlane:(NSString *)InsurancePlane applyStatus:(NSString *)status loanID:(NSString *)loanID;
 
+// 保存用户申请表个人资料
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type;
+
+- (RACSignal *)fetchApplyInfoSubmit1:(NSString *)moneyNum months:(NSString *)months moneyUsed:(NSString *)moneyUsed isInsurancePlane:(NSString *)InsurancePlane applyStatus:(NSString *)status loanID:(NSString *)loanID __deprecated;
 
 @end
