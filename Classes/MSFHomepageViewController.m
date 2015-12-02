@@ -38,7 +38,6 @@ UICollectionViewDelegateFlowLayout>
 		[self.collectionView registerClass:MSFHomepageCollectionViewHeader.class
 						forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
 		[self.collectionView registerClass:MSFHomePageContentCollectionViewCell.class forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
-		//[self.collectionView registerNib:[UINib nibWithNibName:@"MSFHomePageContentCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFHomePageContentCollectionViewCell"];
 		[self.collectionView registerNib:[UINib nibWithNibName:@"MSFCirculateViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFCirculateViewCell"];
 	}
 	return self;

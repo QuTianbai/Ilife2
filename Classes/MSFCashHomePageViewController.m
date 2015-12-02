@@ -107,10 +107,12 @@
 		make.left.right.equalTo(self.view);
 		make.bottom.equalTo(ms.mas_top);
 	}];
-	@weakify(self)
-	[RACObserve(self, viewModel.usedLmt) subscribeNext:^(id x) {
-		@strongify(self)
-		[limit setAvailableCredit:self.viewModel.usableLmt usedCredit:self.viewModel.usedLmt];
+#warning merge
+//	[[RACSignal merge:@[RACObserve(self, viewModel.usableLmt), RACObserve(self, viewModel.usedLmt)]] subscribeNext:^(id x) {
+//		NSLog(@"%@", x);
+//	}];
+	[[RACSignal combineLatest:@[RACObserve(self, viewModel.usableLmt), RACObserve(self, viewModel.usedLmt)]] subscribeNext:^(RACTuple *x) {
+		[limit setAvailableCredit:x.first usedCredit:x.second];
 	}];
 }
 

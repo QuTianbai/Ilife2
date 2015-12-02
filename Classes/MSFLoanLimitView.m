@@ -115,6 +115,7 @@
 	if (!_animating) {
 		_angle = _startAngle;
 	}
+	[NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(circleAnimation) object:nil];
 	_usableLabel.text = ac;
 	_usedLabel.text = [NSString stringWithFormat:@"已用额度￥%@", uc];
 	_animating = YES;
