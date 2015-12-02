@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 还款期数
 @interface MSFInstallment : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *installmentID;

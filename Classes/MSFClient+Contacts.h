@@ -10,7 +10,15 @@
 
 @interface MSFClient (Contacts)
 
-- (RACSignal *)fetchContacts;
+- (RACSignal *)fetchContacts __deprecated;
+
+// Fetch user contract HTML Request
+//
+// appNO        - The applicaiton No.
+// productCode  - Loan Type code.
+// templateType - The HTML Template
+//
+// Returns a signal which sends a NSURLRequest.
 - (RACSignal *)fetchContactsInfoWithAppNO:(NSString *)appNO AndProductNO:(NSString *)productCode AndtemplateType:(NSString *)templateType;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 合同确认服务器返回信息
 @interface MSFConfirmContractModel : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *errorCode;

@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 联系人信息
 @interface MSFContactListModel : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *contactID;

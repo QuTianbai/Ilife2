@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 用户银行卡信息
 @interface MSFBankCardListModel : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *bankCardId;
@@ -17,7 +18,6 @@
 @property (nonatomic, copy, readonly) NSString *bankName;
 @property (nonatomic, copy, readonly) NSString *bankBranchCityCode;
 @property (nonatomic, copy, readonly) NSString *bankBranchProvinceCode;
-//@property (nonatomic, assign, readonly) BOOL isMaster;
 @property (nonatomic, assign, readonly) BOOL master;
 
 @end
