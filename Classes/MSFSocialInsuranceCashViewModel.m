@@ -234,12 +234,12 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return [self OldInsurancestartSignal:input withIndex:1];
 	}];
 	
-	_executeoldInsuranceDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeResidentInsuranceDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self OldInsurancestartSignal:input withIndex:2];
 	}];
 	
-	_executeoldMedicalDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeResidentMedicalDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self OldInsurancestartSignal:input withIndex:3];
 	}];

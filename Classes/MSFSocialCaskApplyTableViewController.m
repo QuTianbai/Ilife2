@@ -340,6 +340,10 @@
 					[self.viewModel.executeEmployeeOlderModeyCommand execute:nil];
 					break;
 				case 2:
+					if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
+						[self.viewModel.executeResidentInsuranceDateCommand execute:self.view];
+						break;
+					}
 					[self.viewModel.executeoldInsuranceDateCommand execute:self.view];
 					break;
 				default:
@@ -365,6 +369,10 @@
 					[self.viewModel.executeEmployeeMedicalMoneyCommand execute:nil];
 					break;
 				case 2:
+					if ([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] || [self.professional isEqualToString:@"SI06"]) {
+						[self.viewModel.executeResidentMedicalDateCommand execute:self.view];
+						break;
+					}
 					[self.viewModel.executeoldMedicalDateCommand execute:self.view];
 					break;
 				default:
