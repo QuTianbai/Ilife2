@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class MSFFormsViewModel;
+
 @protocol MSFReactiveView <NSObject>
 
+@optional
+
 - (void)bindViewModel:(id)viewModel;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
 @end

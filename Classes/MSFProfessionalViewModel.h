@@ -6,6 +6,7 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import "MSFReactiveView.h"
 
 @class RACCommand;
 @class MSFSelectKeyValues;
@@ -13,7 +14,7 @@
 @class MSFApplicationForms;
 @class MSFAddressViewModel;
 
-@interface MSFProfessionalViewModel : RVMViewModel
+@interface MSFProfessionalViewModel : RVMViewModel<MSFReactiveView>
 
 @property (nonatomic, strong) MSFSelectKeyValues *degrees;// 教育程度
 @property (nonatomic, strong) NSString *degreesTitle;
@@ -41,7 +42,5 @@
 
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
-
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel;
 
 @end

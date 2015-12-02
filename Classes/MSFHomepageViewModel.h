@@ -23,5 +23,6 @@
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath;
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath;
+- (void)pushInfo:(NSInteger)index;
 
 @end

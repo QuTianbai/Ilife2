@@ -35,13 +35,14 @@
 		status.layer.borderColor = UIColor.themeColorNew.CGColor;
 		status.layer.borderWidth = 1;
 		status.titleLabel.font = [UIFont systemFontOfSize:15];
-		[status setTitleColor:UIColor.themeColor forState:UIControlStateNormal];
+		[status setTitleColor:UIColor.themeColorNew forState:UIControlStateNormal];
 		status.tag = 101;
-		_statusCommand = status.rac_command;
+		_statusSignal = [status rac_signalForControlEvents:UIControlEventTouchUpInside];
 		
 		UILabel *unit = [[UILabel alloc] init];
 		unit.font = [UIFont boldSystemFontOfSize:25];
 		unit.textColor = UIColor.themeColorNew;
+		unit.text = @"￥";
 		unit.tag = 102;
 		
 		UILabel *amount = [[UILabel alloc] init];

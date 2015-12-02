@@ -251,12 +251,10 @@
 		10ACE5DA1C043AD400EE5044 /* icon-account-about@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ACE5D71C043AD400EE5044 /* icon-account-about@2x.png */; };
 		10ACE5DB1C043AD400EE5044 /* icon-account-about@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 10ACE5D81C043AD400EE5044 /* icon-account-about@3x.png */; };
 		10ACE5ED1C0459B200EE5044 /* MSFRelationMarriageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */; };
-		10AEFB071BC29AAC009486DF /* MSFTempForms.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AEFB061BC29AAC009486DF /* MSFTempForms.m */; };
 		10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */ = {isa = PBXBuildFile; fileRef = 10AEFB3D1BC53954009486DF /* familyMember_type1.json */; };
 		10AEFB4F1BC6141D009486DF /* btn-FamilyInformation-phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 10AEFB4E1BC6141D009486DF /* btn-FamilyInformation-phone.png */; };
 		10B1352A1BCD309600E8F1FE /* MSFUserInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B135291BCD309600E8F1FE /* MSFUserInformationViewController.xib */; };
 		10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C240791BBA8F5E006C23DC /* MSFUserContact.m */; };
-		10C2407D1BBA8F6F006C23DC /* MSFUserAdditional.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */; };
 		10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C83F811BBE19EA0086BF31 /* home-banner-pl.png */; };
 		10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */; };
 		10DAE1BD1BBBC971001BD017 /* MSFRelationSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */; };
@@ -290,7 +288,6 @@
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
 		10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */; };
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
-		10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */; };
 		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
 		10E546201BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E5461F1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m */; };
 		10E5464B1BFD644D00BBA827 /* MSFApplyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 10E5464A1BFD644D00BBA827 /* MSFApplyList.json */; };
@@ -1149,15 +1146,11 @@
 		10ACE5D81C043AD400EE5044 /* icon-account-about@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-about@3x.png"; sourceTree = "<group>"; };
 		10ACE5EB1C0459B200EE5044 /* MSFRelationMarriageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationMarriageCell.h; sourceTree = "<group>"; };
 		10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationMarriageCell.m; sourceTree = "<group>"; };
-		10AEFB051BC29AAC009486DF /* MSFTempForms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTempForms.h; sourceTree = "<group>"; };
-		10AEFB061BC29AAC009486DF /* MSFTempForms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTempForms.m; sourceTree = "<group>"; };
 		10AEFB3D1BC53954009486DF /* familyMember_type1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = familyMember_type1.json; sourceTree = "<group>"; };
 		10AEFB4E1BC6141D009486DF /* btn-FamilyInformation-phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-FamilyInformation-phone.png"; sourceTree = "<group>"; };
 		10B135291BCD309600E8F1FE /* MSFUserInformationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFUserInformationViewController.xib; sourceTree = "<group>"; };
 		10C240781BBA8F5E006C23DC /* MSFUserContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserContact.h; sourceTree = "<group>"; };
 		10C240791BBA8F5E006C23DC /* MSFUserContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserContact.m; sourceTree = "<group>"; };
-		10C2407B1BBA8F6F006C23DC /* MSFUserAdditional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserAdditional.h; sourceTree = "<group>"; };
-		10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserAdditional.m; sourceTree = "<group>"; };
 		10C83F811BBE19EA0086BF31 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
 		10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationTFCell.h; sourceTree = "<group>"; };
 		10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationTFCell.m; sourceTree = "<group>"; };
@@ -1207,7 +1200,6 @@
 		10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AttributeColor.m"; sourceTree = "<group>"; };
 		10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomePageContentCollectionViewCell.h; sourceTree = "<group>"; };
 		10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageContentCollectionViewCell.m; sourceTree = "<group>"; };
-		10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFHomePageContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		10DE899B1B69B882009025C4 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		10DE899C1B69B882009025C4 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		10DE899D1B69B882009025C4 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
@@ -2447,7 +2439,8 @@
 		07FE072B1B07245200484069 /* AppliInfo */ = {
 			isa = PBXGroup;
 			children = (
-				10C240711BBA8D50006C23DC /* 2.0 UserInfo */,
+				10C240781BBA8F5E006C23DC /* MSFUserContact.h */,
+				10C240791BBA8F5E006C23DC /* MSFUserContact.m */,
 				07FE072C1B07278800484069 /* MSFApplicationForms.h */,
 				07FE072D1B07278800484069 /* MSFApplicationForms.m */,
 				07FE072F1B07341500484069 /* MSFClient+MSFApplyInfo.h */,
@@ -2485,19 +2478,6 @@
 				1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */,
 			);
 			name = CounterLabel;
-			sourceTree = "<group>";
-		};
-		10C240711BBA8D50006C23DC /* 2.0 UserInfo */ = {
-			isa = PBXGroup;
-			children = (
-				10C240781BBA8F5E006C23DC /* MSFUserContact.h */,
-				10C240791BBA8F5E006C23DC /* MSFUserContact.m */,
-				10C2407B1BBA8F6F006C23DC /* MSFUserAdditional.h */,
-				10C2407C1BBA8F6F006C23DC /* MSFUserAdditional.m */,
-				10AEFB051BC29AAC009486DF /* MSFTempForms.h */,
-				10AEFB061BC29AAC009486DF /* MSFTempForms.m */,
-			);
-			name = "2.0 UserInfo";
 			sourceTree = "<group>";
 		};
 		10DAE1AA1BBBC8F9001BD017 /* RelationCells */ = {
@@ -3672,7 +3652,6 @@
 				4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */,
 				10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */,
 				10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */,
-				10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */,
 				108B0A941BBE7F01000EAEF8 /* MSFCirculateViewCell.h */,
 				108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */,
 				108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */,
@@ -4263,7 +4242,6 @@
 				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
 				07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */,
 				4944C0111B68A44A00805C0A /* icon-cloze-name.png in Resources */,
-				10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */,
 				077347EB1BBA338900D7A130 /* zhongxin.png in Resources */,
 				07C06C791B1347C200F2DFCC /* marital_status.json in Resources */,
 				49C0F1AB1B2C315100E92572 /* icon-phone@3x.png in Resources */,
@@ -4870,7 +4848,6 @@
 				074AC2301BBA8D790056BA22 /* MSFAddBankCardVIewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
-				10C2407D1BBA8F6F006C23DC /* MSFUserAdditional.m in Sources */,
 				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
 				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
@@ -5001,7 +4978,6 @@
 				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
-				10AEFB071BC29AAC009486DF /* MSFTempForms.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m in Sources */,
 				10ACE5ED1C0459B200EE5044 /* MSFRelationMarriageCell.m in Sources */,
 				0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */,

@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class RACCommand;
+@class RACSignal;
 
 @interface MSFHomePageContentView : UIView
 
-@property (nonatomic, weak, readonly) RACCommand *statusCommand;
+@property (nonatomic, strong, readonly) RACSignal *statusSignal;
 
 - (void)updateWithModel:(id)model;
 

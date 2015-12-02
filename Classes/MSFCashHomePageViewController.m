@@ -203,6 +203,9 @@
 	if (!show) {
 		return;
 	}
+	for (UIView *subview in self.view.subviews) {
+		[subview removeFromSuperview];
+	}
 	UIView *view = [[UIView alloc] init];
 	view.tag = 1000;
 	view.backgroundColor = UIColor.clearColor;
