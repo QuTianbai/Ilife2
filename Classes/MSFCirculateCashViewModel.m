@@ -21,36 +21,17 @@
 		return nil;
 	}
 	_services = services;
-	_totalLimit = @"";
-	_usedLimit = @"";
-	_usableLimit = @"";
-	_overdueMoney = @"";
-	_contractExpireDate = @"";
-	_latestDueMoney = @"";
-	_latestDueDate = @"";
-	_totalOverdueMoney = @"";
-	_contractNo = @"";
-	_contractStatus = @"";
-	_status = APPLYCASH;
-	
+	//_status = APPLYCASH;
 	_infoModel = [[MSFCirculateCashModel alloc] init];
 	
-	RAC(self, totalLimit) = [RACObserve(self, infoModel.totalLimit) map:^id(id value) {
-		return value;
-	}];
-	RAC(self, usedLimit) = [RACObserve(self, infoModel.usedLimit) map:^id(id value) {
-		return value;
-	}];
-	RAC(self, usableLimit) = [RACObserve(self, infoModel.usableLimit) map:^id(id value) {
-		return value;
-	}];
-	
+	RAC(self, totalLimit) = RACObserve(self, infoModel.totalLimit);
+	RAC(self, usedLimit) = RACObserve(self, infoModel.usedLimit);
+	RAC(self, usableLimit) = RACObserve(self, infoModel.usableLimit);
 	RAC(self, contractExpireDate) = [RACObserve(self,infoModel.contractExpireDate) map:^id(NSString *value) {
 		NSDateFormatter *inputFormatter = [[NSDateFormatter alloc] init];
 		[inputFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
 		[inputFormatter setDateFormat:@"yyyyMMdd"];
 		inputFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-
 		NSDate *inputDate = [inputFormatter dateFromString:value?:@""];
 		NSString *str = @"";
 		if (inputDate != nil) {
@@ -84,11 +65,15 @@
 	RAC(self, overdueMoney) = RACObserve(self, infoModel.overdueMoney);
 	RAC(self, contractStatus) = RACObserve(self, infoModel.contractStatus);
 
+	@weakify(self)
 	_executeRefrshCashHomeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return [self.services.httpClient fetchCirculateCash:@"2"];
 	}];
 	[_executeRefrshCashHomeCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		@strongify(self)
 		[self.infoModel mergeValuesForKeysFromModel:x];
+		NSLog(@"%@",self.infoModel);
 	} error:^(NSError *error) {
 		NSLog(@"%@", error.localizedDescription);
 	}];

@@ -43,9 +43,9 @@
 	_formViewModel = formViewModel;
 	_services = services;
 	_circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:services];
-	RAC(self, usedLmt) = RACObserve(self, circulateViewModel.usedLimit);
-	RAC(self, usableLmt) = RACObserve(self, circulateViewModel.usableLimit);
 	
+	RAC(self, usedLmt) = RACObserve(self, circulateViewModel.infoModel.usedLimit);
+	RAC(self, usableLmt) = RACObserve(self, circulateViewModel.infoModel.usableLimit);
 	@weakify(self)
 	_executeAllowMSCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
