@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 检查是否存在交易密码
 @interface MSFCheckHasTradePasswordModel : MSFObject
 
 @property (nonatomic, copy) NSString *hasTransPwd;

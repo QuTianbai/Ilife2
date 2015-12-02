@@ -10,6 +10,9 @@
 
 @interface MSFClient (MSFCheckTradePassword)
 
+// 调用API获取用户的交易密码是否设置
+//
+// Returns a signal which sends a MSFCheckHasTradePasswordModel
 - (RACSignal *)fetchCheckTradePassword;
 
 @end

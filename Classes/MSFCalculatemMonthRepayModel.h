@@ -8,10 +8,13 @@
 
 #import "MSFObject.h"
 
+// 通过接口计算的每月还款金额
 @interface MSFCalculatemMonthRepayModel : MSFObject
 
+// 固定贷款每月还款金额
 @property (nonatomic, copy, readonly) NSString *loanFixedAmt;
 
+// 寿险计划金额
 @property (nonatomic, copy, readonly) NSString *lifeInsuranceAmt;
 
 @end

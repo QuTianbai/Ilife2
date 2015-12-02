@@ -14,6 +14,9 @@
 
 @optional
 
+// MSFReactiveView protocol for viewModel send from previous view to next view
+//
+// viewModel - The viewModel use to pass to next view
 - (void)bindViewModel:(id)viewModel;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;

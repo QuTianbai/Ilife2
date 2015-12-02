@@ -9,6 +9,7 @@
 @implementation MSFClient (Inventory)
 
 - (RACSignal *)submitInventoryWithApplicaitonNo:(NSString *)applicationNo accessories:(NSDictionary *)accessories {
+	NSParameterAssert(applicationNo);
 	NSData *data = [NSJSONSerialization dataWithJSONObject:accessories options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *JSONString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/mendFile" parameters:@{

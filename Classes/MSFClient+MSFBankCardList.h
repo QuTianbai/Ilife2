@@ -10,6 +10,9 @@
 
 @interface MSFClient (MSFBankCardList)
 
+// 获取用户银行卡列表
+//
+// Returns a singal which sends zero or more MSFBankCardListModel objects
 - (RACSignal *)fetchBankCardList;
 
 @end

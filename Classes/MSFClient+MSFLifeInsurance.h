@@ -8,11 +8,15 @@
 
 #import "MSFClient.h"
 
+@class MSFLoanType;
+
 @interface MSFClient (MSFLifeInsurance)
+
+- (RACSignal *)fetchLifeInsuranceAgreementWithProductType:(NSString *)product __deprecated_msg("Use `-fetchLifeInsuranceAgreementWithLoanType:` instead");
 
 // 获取寿险协议.
 //
-// Returns HTML Request.
-- (RACSignal *)fetchLifeInsuranceAgreementWithProductType:(NSString *)product;
+// Returns a signal which will send a NSURLRequest
+- (RACSignal *)fetchLifeInsuranceAgreementWithLoanType:(MSFLoanType *)loanType;
 
 @end

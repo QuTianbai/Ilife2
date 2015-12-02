@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 还款计划详情
 @interface MSFPlanDetails : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *planID;

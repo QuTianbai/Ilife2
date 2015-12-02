@@ -8,6 +8,7 @@
 
 #import <Mantle/Mantle.h>
 
+// 用户联系人信息
 @interface MSFUserContact : MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, copy) NSString *contactRelation;

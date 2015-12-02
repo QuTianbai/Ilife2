@@ -8,6 +8,7 @@
 
 @interface UIWindow (PazLabs)
 
+// Return top/presented view controller if it exists.
 - (UIViewController *)visibleViewController;
 
 @end

@@ -9,6 +9,7 @@
 #import "MSFObject.h"
 #import <MTLFMDBAdapter/MTLFMDBAdapter.h>
 
+// 数据库银行卡信息
 @interface MSFBankInfoModel : MTLModel <MTLJSONSerializing, MTLFMDBSerializing>
 
 @property (nonatomic, copy, readonly) NSString *bin;

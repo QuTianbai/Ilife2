@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 马上贷申请资料
 @interface MSFApplyCashModel : MSFObject
 
 @property (nonatomic, copy) NSString *appNo;

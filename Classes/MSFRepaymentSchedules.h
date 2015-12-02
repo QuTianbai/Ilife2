@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 还款计划
 @interface MSFRepaymentSchedules : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *contractNum;

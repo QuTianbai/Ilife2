@@ -81,7 +81,7 @@ static NSDictionary *messages;
 		return nil;
 	}
 	self.reachabilityStatus = @"9";
-	self.contacts = @0;
+	self.contacts = @-1;
 	self.defaultHeaders = NSMutableDictionary.dictionary;
 	[self setDefaultHeader:@"deviceInfo" value:[self.class deviceInfoWithCoordinate:CLLocationCoordinate2DMake(0, 0) reachabilityStatus:self.reachabilityStatus contacts:self.contacts]];
 	
