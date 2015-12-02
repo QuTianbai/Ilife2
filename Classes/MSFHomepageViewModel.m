@@ -6,10 +6,15 @@
 
 #import "MSFHomepageViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+
 #import "MSFUser.h"
 #import "MSFFormsViewModel.h"
 #import "MSFHomePageCellModel.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFPersonalViewModel.h"
+#import "MSFRelationshipViewModel.h"
+#import "MSFProfessionalViewModel.h"
+
 #import "MSFClient+MSFCirculateCash.h"
 
 @interface MSFHomepageViewModel ()
@@ -67,6 +72,8 @@
 	return self;
 }
 
+#pragma mark - Public
+
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
 	return 1;
 }
@@ -85,6 +92,22 @@
 	} else {
 		return @"MSFHomePageContentCollectionViewCell";
 	}
+}
+
+- (void)pushInfo:(NSInteger)index {
+	id viewModel = nil;
+	switch (index) {
+		case 0:
+			viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel];
+			break;
+		case 1:
+			viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel];
+			break;
+		case 2:
+			viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel];
+			break;
+	}
+	[self.services pushViewModel:viewModel];
 }
 
 @end

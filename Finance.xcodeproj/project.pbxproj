@@ -278,7 +278,6 @@
 		10DE892A1B677690009025C4 /* home-fourStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 10DE89291B677690009025C4 /* home-fourStatus.png */; };
 		10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */; };
 		10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */; };
-		10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */; };
 		10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10DE899B1B69B882009025C4 /* libMobClickLibrary.a */; };
 		10E546201BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E5461F1BFB2A4B00BBA827 /* MSFPlanListSegmentBar.m */; };
 		10E546521BFF255A00BBA827 /* MSFApplyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E546511BFF255A00BBA827 /* MSFApplyView.m */; };
@@ -1181,7 +1180,6 @@
 		10DE89681B686C2A009025C4 /* UILabel+AttributeColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+AttributeColor.m"; sourceTree = "<group>"; };
 		10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomePageContentCollectionViewCell.h; sourceTree = "<group>"; };
 		10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageContentCollectionViewCell.m; sourceTree = "<group>"; };
-		10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFHomePageContentCollectionViewCell.xib; sourceTree = "<group>"; };
 		10DE899B1B69B882009025C4 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		10DE899C1B69B882009025C4 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		10DE899D1B69B882009025C4 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
@@ -3587,7 +3585,6 @@
 				4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */,
 				10DE896A1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.h */,
 				10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */,
-				10DE896C1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib */,
 				108B0A941BBE7F01000EAEF8 /* MSFCirculateViewCell.h */,
 				108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */,
 				108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */,
@@ -4234,7 +4231,6 @@
 				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
 				07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */,
 				4944C0111B68A44A00805C0A /* icon-cloze-name.png in Resources */,
-				10DE896E1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.xib in Resources */,
 				077347EB1BBA338900D7A130 /* zhongxin.png in Resources */,
 				07C06C791B1347C200F2DFCC /* marital_status.json in Resources */,
 				49C0F1AB1B2C315100E92572 /* icon-phone@3x.png in Resources */,

@@ -16,6 +16,8 @@
 @property (nonatomic, copy) void (^onClickBlock) (NSInteger index);
 //点击事件RACCommand
 @property (nonatomic, strong) RACCommand *clickCommand;
+//标记是否显示，只是一个标记值，并不改变view;
+@property (nonatomic, assign) BOOL show;
 
 - (void)setCompeltionStatus:(NSString *)status;
 

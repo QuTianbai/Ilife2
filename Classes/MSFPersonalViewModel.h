@@ -7,12 +7,13 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import "MSFReactiveView.h"
 
 @class MSFFormsViewModel;
 @class MSFAddressViewModel;
 @class RACCommand;
 
-@interface MSFPersonalViewModel : RVMViewModel
+@interface MSFPersonalViewModel : RVMViewModel<MSFReactiveView>
 
 @property (nonatomic, strong, readonly) NSString *address;//省市区
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
@@ -20,7 +21,5 @@
 @property (nonatomic, strong, readonly) RACCommand *executeAlterAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeHouseValuesCommand;
-
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
 
 @end
