@@ -38,6 +38,6 @@
 - (RACSignal *)submitUserInfoType:(int)infoType;//2.0上传用户信息
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 - (void)setBankCardMasterDefult;
-- (RACSignal *)fetchProductListignal;
+- (RACSignal *)fetchProductListignal __deprecated;
 
 @end

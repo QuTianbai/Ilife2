@@ -13,6 +13,6 @@
 // 获取产品列表
 //
 // Returns a signal will send instance of MSFProductListModel
-- (RACSignal *)fetchProductList;
+- (RACSignal *)fetchProductList __deprecated;
 
 @end
