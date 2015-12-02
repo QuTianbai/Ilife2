@@ -10,8 +10,10 @@
 
 @class RACCommand;
 
-@interface MSFHomePageCellContentView : UIView
+@interface MSFHomePageContentView : UIView
 
-@property (nonatomic, weak) RACCommand *statusCommand;
+@property (nonatomic, weak, readonly) RACCommand *statusCommand;
+
+- (void)updateWithModel:(id)model;
 
 @end

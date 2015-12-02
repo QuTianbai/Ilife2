@@ -409,6 +409,8 @@ ABPersonViewControllerDelegate>
 	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
 	CFIndex index = ABMultiValueGetIndexForIdentifier(phoneMulti, identifier);
 	NSString *phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, index);
+	NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"].invertedSet;
+	phone = [[phone componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
@@ -428,6 +430,8 @@ ABPersonViewControllerDelegate>
 	ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
 	CFIndex index = ABMultiValueGetIndexForIdentifier(phoneMulti, identifier);
 	NSString *phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, index);
+	NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"].invertedSet;
+	phone = [[phone componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
 	NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
 	MSFUserContact *contact = self.tempContactList[peoplePicker.view.tag];
 	contact.contactMobile = phone;
