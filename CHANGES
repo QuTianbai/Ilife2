@@ -1,3 +1,27 @@
+Version 2.1.0.5:
+ - Merge remote-tracking branch 'old-gitlab/zhaoyong'
+ - fix tab2首次进入无法刷新
+ - Merge remote-tracking branch 'old-gitlab/zhaoyong' into next
+ - merge code
+ - 整理代码：删除MSFTempForms、MSFUserAdditioal；梳理MSFHomePageContentCollectionViewCell代码，UI改用代码实现，删除xib文件
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 确认合同优化
+ - Refactor project
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - Merge remote-tracking branch 'origin/zhaoyong' into pu/v2.1
+ - 【IOS-2.1.0.2】社保信息页面，职工保险时，首次缴费日期不能更改
+ - Merge remote-tracking branch 'origin/xbmDev' into pu/v2.1
+ - Add comments
+ - 去除选择的联系人电话中的除数字外其他符号
+ - Deprecated MSFProductListModel
+ - Update comments
+ - commit
+ - commit
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into xbmDev
+ - 还款计划传参，修复bugs
+ - Merge branch 'master' of http://192.168.2.44/liang.zeng/finance into zhaoyong
+ - fix tab2 两次刷新的问题（传入的参数分别为空和2）
+
 Version 2.1.0.4:
  - Reset version 1.1.0
  - Fix 社保贷默认申请单号
