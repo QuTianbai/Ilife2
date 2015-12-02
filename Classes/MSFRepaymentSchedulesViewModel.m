@@ -27,9 +27,9 @@
   }
 	_model = model;
 	_services = services;
-	RAC(self, repaymentNumber) = RACObserve(self, model.contractNum);
-	RAC(self, status) = RACObserve(self, model.contractStatus);
-	RAC(self, amount) = RACObserve(self, model.repaymentTotalAmount);
+	RAC(self, repaymentNumber) = [RACObserve(self, model.contractNum) ignore:nil];
+	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
+	RAC(self, amount) = [RACObserve(self, model.repaymentTotalAmount) ignore:nil];
 	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];

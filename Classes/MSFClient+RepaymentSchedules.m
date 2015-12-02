@@ -26,7 +26,8 @@
 //	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
 	
 	NSString *path = @"append/schedules";
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:nil];
+	
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:@{@"type":@"2"}];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
