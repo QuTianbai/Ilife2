@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 申请单信息
 @interface MSFApplyCashInfo : MSFObject
 //申请时间
 @property (nonatomic, copy) NSString *applyTime;

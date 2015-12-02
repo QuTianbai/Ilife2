@@ -9,13 +9,14 @@
 #import "MSFClient+MSFLifeInsurance.h"
 #import "MSFUser.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFLoanType.h"
 
 @implementation MSFClient (MSFLifeInsurance)
 
-- (RACSignal *)fetchLifeInsuranceAgreement {
+- (RACSignal *)fetchLifeInsuranceAgreementWithProductType:(NSString *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-			@"productCode": @"",
+			@"productCode": product,
 			@"templateType": @"LIFE_INSURANCE_PROTOCOL"
 		}];
 		[subscriber sendNext:request];
@@ -24,10 +25,10 @@
 	}];
 }
 
-- (RACSignal *)fetchLifeInsuranceAgreementWithProductType:(NSString *)product {
+- (RACSignal *)fetchLifeInsuranceAgreementWithLoanType:(MSFLoanType *)loanType {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-			@"productCode": product,
+			@"productCode": loanType.typeID,
 			@"templateType": @"LIFE_INSURANCE_PROTOCOL"
 		}];
 		[subscriber sendNext:request];
