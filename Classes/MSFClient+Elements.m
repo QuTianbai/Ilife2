@@ -7,7 +7,6 @@
 #import "MSFClient+Elements.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFElement.h"
-#import "MSFProduct.h"
 #import "MSFUser.h"
 #import "MSFElement+Private.h"
 #import "MSFResponse.h"

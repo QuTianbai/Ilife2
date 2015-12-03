@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong, readonly) RACSignal *selectedSignal;
 
-+ (MSFSelectionViewModel *)monthsViewModelWithProducts:(MSFMarket *)products total:(NSInteger)amount;
 + (MSFSelectionViewModel *)selectKeyValuesViewModel:(NSArray *)items;
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items;
 + (MSFSelectionViewModel *)selectViewModelWithFilename:(NSString *)filename;

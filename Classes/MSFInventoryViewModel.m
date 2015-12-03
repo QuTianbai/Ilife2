@@ -10,7 +10,6 @@
 #import "MSFClient+Elements.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
-#import "MSFProduct.h"
 #import "MSFElement.h"
 #import "MSFElementViewModel.h"
 #import "MSFApplicationResponse.h"

@@ -5,7 +5,6 @@
 //
 
 #import "MSFLoanAgreementViewModel.h"
-#import "MSFProduct.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationResponse.h"
 #import "MSFApplyCashVIewModel.h"
