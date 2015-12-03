@@ -14,7 +14,7 @@
 @class MSFApplicationForms;
 @class MSFAddressViewModel;
 
-@interface MSFProfessionalViewModel : RVMViewModel<MSFReactiveView>
+@interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, strong) MSFSelectKeyValues *degrees;// 教育程度
 @property (nonatomic, strong) NSString *degreesTitle;

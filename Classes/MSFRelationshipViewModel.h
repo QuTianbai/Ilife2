@@ -13,7 +13,7 @@
 @class MSFFormsViewModel;
 @class RACCommand;
 
-@interface MSFRelationshipViewModel : RVMViewModel<MSFReactiveView>
+@interface MSFRelationshipViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
