@@ -12,6 +12,7 @@
 #import <Masonry/Masonry.h>
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "MSFCommandView.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #define REPAY_DARK_COLOR  @"464646"
 #define REPAY_LIGHT_COLOR @"878787"
@@ -203,6 +204,12 @@
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
 	//_contractNum.text = [NSString stringWithFormat:@"合同编号    %@", viewModel.repaymentNumber];
 	_contractStatusLabel.text = viewModel.overdueMoney;
+	RAC(self.contractStatusLabel, hidden) = [RACObserve(viewModel, status) map:^id(NSString *value) {
+		if (![value isEqualToString:@"已逾期"]) {
+			return @YES;
+		}
+		return @NO;
+	}];
 	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.amount];
 	_asOfDateLabel.text = viewModel.date;
 
