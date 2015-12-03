@@ -11,9 +11,9 @@
 // 资料重传提交
 //
 // applicationNo - 申请订单号
-// accessories   - 附件信息 NSArray<NDictionary>
+// accessories   - 附件信息 NSArray/NDictionary
 //
 // Returns a signal will send instance of MSFResponse
-- (RACSignal *)submitInventoryWithApplicaitonNo:(NSString *)applicationNo accessories:(NSDictionary *)accessories;
+- (RACSignal *)submitInventoryWithApplicaitonNo:(NSString *)applicationNo accessories:(id)accessories;
 
 @end
