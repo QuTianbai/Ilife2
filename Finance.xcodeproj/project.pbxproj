@@ -565,6 +565,7 @@
 		49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEB1B072EA4008A9CD1 /* MSFApplicationResponse.m */; };
 		49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */; };
 		49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF11B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m */; };
+		49D7ABD91C1024C800ED07E7 /* NSFileManager+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */; };
 		49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */ = {isa = PBXBuildFile; fileRef = 49DA1A451C0ED2A60052C056 /* circleCash.json */; };
 		49DA1A4D1C0ED2A60052C056 /* cirCulate.json in Resources */ = {isa = PBXBuildFile; fileRef = 49DA1A461C0ED2A60052C056 /* cirCulate.json */; };
 		49DA1A4E1C0ED2A60052C056 /* markets.json in Resources */ = {isa = PBXBuildFile; fileRef = 49DA1A471C0ED2A60052C056 /* markets.json */; };
@@ -1581,6 +1582,8 @@
 		49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyList.m; sourceTree = "<group>"; };
 		49CCFBF01B072EA4008A9CD1 /* MSFClient+MSFApplyCash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFApplyCash.h"; sourceTree = "<group>"; };
 		49CCFBF11B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyCash.m"; sourceTree = "<group>"; };
+		49D7ABD71C1024C800ED07E7 /* NSFileManager+Temporary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Temporary.h"; sourceTree = "<group>"; };
+		49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Temporary.m"; sourceTree = "<group>"; };
 		49DA1A451C0ED2A60052C056 /* circleCash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = circleCash.json; sourceTree = "<group>"; };
 		49DA1A461C0ED2A60052C056 /* cirCulate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cirCulate.json; sourceTree = "<group>"; };
 		49DA1A471C0ED2A60052C056 /* markets.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = markets.json; sourceTree = "<group>"; };
@@ -3432,6 +3435,8 @@
 				10028A6F1BD5DD3B00D36508 /* NSObject+MSFValidItem.m */,
 				10113E411BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.h */,
 				10113E421BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m */,
+				49D7ABD71C1024C800ED07E7 /* NSFileManager+Temporary.h */,
+				49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4699,6 +4704,7 @@
 				49F8C1001C0BF6500010D791 /* UIDevice+Versions.m in Sources */,
 				49CCFBD81B07233F008A9CD1 /* MSFAboutsViewController.m in Sources */,
 				C7B978081B08EC49005F247C /* MSFTradeTableViewCell.m in Sources */,
+				49D7ABD91C1024C800ED07E7 /* NSFileManager+Temporary.m in Sources */,
 				10ACE5AA1C040A7700EE5044 /* MSFApplyListViewModel.m in Sources */,
 				497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */,
 				4948E89C1B954F6E0048D125 /* MSFClient+Attachment.m in Sources */,
