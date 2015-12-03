@@ -29,6 +29,10 @@
 
 @implementation MSFLoanLimitView
 
+- (void)dealloc {
+	NSLog(@"dealloc : MSFLoanLimitView");
+}
+
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
@@ -71,7 +75,6 @@
 	@weakify(self)
 	[_usableLabel mas_makeConstraints:^(MASConstraintMaker *make) {
 		@strongify(self)
-		//make.width.equalTo(self).multipliedBy(0.9);
 		make.centerX.equalTo(self);
 		make.centerY.equalTo(self).offset(17);
 	}];

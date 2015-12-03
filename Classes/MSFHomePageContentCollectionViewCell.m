@@ -36,7 +36,7 @@
 		_content = [[MSFHomePageContentView alloc] init];
 		_circleView = [[MSFUserInfoCircleView alloc] init];
 		_circleView.show = YES;
-	
+		
 		[self.contentView addSubview:_content];
 		[self.contentView addSubview:_circleView];
 		
@@ -61,8 +61,8 @@
 		MSFUser *user = vm.services.httpClient.user;
 		[self.circleView setCompeltionStatus:user.complateCustInfo];
 		[[[_circleView.clickCommand.executionSignals switchToLatest] takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *x) {
-			 [vm pushInfo:x.integerValue];
-		 }];
+			[vm pushInfo:x.integerValue];
+		}];
 	}
 	if ([viewModel isKindOfClass:MSFHomePageCellModel.class]) {
 		MSFHomePageCellModel *vm = viewModel;
