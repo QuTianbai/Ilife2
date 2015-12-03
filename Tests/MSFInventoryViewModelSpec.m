@@ -26,7 +26,6 @@ __block MSFInventoryViewModel *viewModel;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
 __block MSFElement *mockRequiredElement;
-__block id <MSFApplicationViewModel> insuranceViewModel;
 
 beforeEach(^{
 	client = mock(MSFClient.class);
@@ -40,7 +39,9 @@ beforeEach(^{
 	stubProperty(mockRequiredElement, name, @"");
 	stubProperty(mockRequiredElement, type, @"");
 	stubProperty(mockRequiredElement, required, @YES);
+});
 
+afterEach(^{
 	[[NSFileManager defaultManager] cleanupTemporaryFiles];
 });
 
@@ -48,12 +49,6 @@ describe(@"re-upload attachments", ^{
 	beforeEach(^{
 		MSFLoanType *loanType = mock([MSFLoanType class]);
 		stubProperty(loanType, typeID, @"");
-
-		//TODO: Remove insuranceViewModel from this spec
-		insuranceViewModel = mock([MSFApplyCashVIewModel class]);
-		[given([insuranceViewModel services]) willReturn:services];
-		[given([insuranceViewModel applicationNo]) willReturn:@""];
-		[given([insuranceViewModel loanType]) willReturn:loanType];
 
 		viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:@"" productID:@"" services:services];
 		expect(viewModel).notTo(beNil());
