@@ -175,10 +175,6 @@
 					 @"additionalList" : jsonAdditionalList};
 }
 
-- (RACSignal *)fetchApplyInfoSubmit1:(NSString *)moneyNum months:(NSString *)months moneyUsed:(NSString *)moneyUsed isInsurancePlane:(NSString *)InsurancePlane applyStatus:(NSString *)status loanID:(NSString *)loanID {
-	return nil;
-}
-
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type {
 	NSMutableDictionary *uploadDic = [NSMutableDictionary dictionaryWithDictionary:[self convertToSubmit:model]];
 	[uploadDic setObject:self.user.uniqueId forKey:@"uniqueId"];
