@@ -102,7 +102,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 			subscribeNext:^(id x) {
 				index++;
 				if (index == 2) {
-					self.button.titleLabel.text = @"确定";
+					[self.button setTitle:@"确定" forState:UIControlStateNormal];
 				}
 			}];
 	}];
