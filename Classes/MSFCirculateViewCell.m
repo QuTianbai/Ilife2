@@ -7,18 +7,37 @@
 //
 
 #import "MSFCirculateViewCell.h"
-#import "MSFLoanLimitView.h"
+#import <Masonry/Masonry.h>
 #import "MSFHomePageCellModel.h"
+#import "MSFLoanLimitView.h"
 #import "UIColor+Utils.h"
 
 @interface MSFCirculateViewCell ()
 
-@property (weak, nonatomic) IBOutlet MSFLoanLimitView *loanLimitView;
+@property (nonatomic, strong) MSFLoanLimitView *loanLimitView;
 @property (nonatomic, strong) MSFHomePageCellModel *viewModel;
 
 @end
 
 @implementation MSFCirculateViewCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	if (self) {
+		self.backgroundColor = [UIColor whiteColor];
+		_loanLimitView = [[MSFLoanLimitView alloc] init];
+		[self.contentView addSubview:_loanLimitView];
+		[_loanLimitView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.greaterThanOrEqualTo(self.contentView).offset(5);
+			make.bottom.lessThanOrEqualTo(self.contentView).offset(-70);
+			make.centerX.equalTo(self.contentView);
+			make.centerY.equalTo(self.contentView).offset(-30).priorityMedium();
+			make.width.equalTo(self.contentView).multipliedBy(0.75).priorityMedium();
+			make.height.equalTo(self.loanLimitView.mas_width).multipliedBy(0.854);
+		}];
+	}
+	return self;
+}
 
 - (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
 	_viewModel = viewModel;

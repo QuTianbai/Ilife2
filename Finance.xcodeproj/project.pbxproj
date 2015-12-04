@@ -223,7 +223,6 @@
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
 		107A0D1F1BE203410076E08C /* MSFHomePageCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */; };
 		108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */; };
-		108B0A981BBE7F01000EAEF8 /* MSFCirculateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */; };
 		1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */; };
 		109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 109766FD1C098CB20097F656 /* MSFHomePageContentView.m */; };
 		10ACE5AA1C040A7700EE5044 /* MSFApplyListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10ACE5A91C040A7700EE5044 /* MSFApplyListViewModel.m */; };
@@ -1079,7 +1078,6 @@
 		107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageCellModel.m; sourceTree = "<group>"; };
 		108B0A941BBE7F01000EAEF8 /* MSFCirculateViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateViewCell.h; sourceTree = "<group>"; };
 		108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCirculateViewCell.m; sourceTree = "<group>"; };
-		108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFCirculateViewCell.xib; sourceTree = "<group>"; };
 		1092C8D11B6B23E900794EE9 /* MSFCounterLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCounterLabel.h; sourceTree = "<group>"; };
 		1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCounterLabel.m; sourceTree = "<group>"; };
 		109766FC1C098CB20097F656 /* MSFHomePageContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomePageContentView.h; sourceTree = "<group>"; };
@@ -3492,7 +3490,6 @@
 				10DE896B1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m */,
 				108B0A941BBE7F01000EAEF8 /* MSFCirculateViewCell.h */,
 				108B0A951BBE7F01000EAEF8 /* MSFCirculateViewCell.m */,
-				108B0A961BBE7F01000EAEF8 /* MSFCirculateViewCell.xib */,
 				10DBCD321BB8E08A000A23B7 /* MSFLoanLimitView.h */,
 				10DBCD331BB8E08A000A23B7 /* MSFLoanLimitView.m */,
 				1011A3901BB92F1B00CCADB5 /* MSFUserInfoCircleView.h */,
@@ -4210,7 +4207,6 @@
 				4975C98B1B46D6D400AA79EB /* Images.xcassets in Resources */,
 				C7D2D1211B67938C000F51ED /* icon-cloze-bankName@3x.png in Resources */,
 				49F6F7D41BBB72910052AB77 /* bg-send-captcha@2x.png in Resources */,
-				108B0A981BBE7F01000EAEF8 /* MSFCirculateViewCell.xib in Resources */,
 				49B37B591B608F39004EED47 /* bar-highlighted@3x.png in Resources */,
 				077347DE1BBA338900D7A130 /* guangda@3x.png in Resources */,
 				C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */,
@@ -5119,7 +5115,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "80a66166-a1e0-49a6-8bcf-d60fd5e0a0d8";
+				PROVISIONING_PROFILE = "5e3c0ce0-425e-4375-aa20-f64ad42559bf";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5152,7 +5148,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "80a66166-a1e0-49a6-8bcf-d60fd5e0a0d8";
+				PROVISIONING_PROFILE = "5e3c0ce0-425e-4375-aa20-f64ad42559bf";
 			};
 			name = Test;
 		};

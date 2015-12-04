@@ -13,7 +13,7 @@
 @class MSFAddressViewModel;
 @class RACCommand;
 
-@interface MSFPersonalViewModel : RVMViewModel<MSFReactiveView>
+@interface MSFPersonalViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, strong, readonly) NSString *address;//省市区
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;

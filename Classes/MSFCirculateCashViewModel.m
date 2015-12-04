@@ -73,7 +73,6 @@
 	[_executeRefrshCashHomeCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
 		@strongify(self)
 		[self.infoModel mergeValuesForKeysFromModel:x];
-		NSLog(@"%@",self.infoModel);
 	} error:^(NSError *error) {
 		NSLog(@"%@", error.localizedDescription);
 	}];
