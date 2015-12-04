@@ -15,7 +15,9 @@
 		return @{
 						 @"contractNum": @"contractNo",
 						 @"repaymentTime":@"latestDueDate",
-						 @"repaymentTotalAmount":@"latestDueMoney"
+						 @"repaymentTotalAmount":@"latestDueMoney",
+						 @"cashDueMoney":@"dueMoney",
+						 @"cashDueDate":@"dueDate"
 						 };
 }
 
