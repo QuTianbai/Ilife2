@@ -28,7 +28,7 @@
 	if (type == MSFCellTypeUnknown) {
 		return;
 	}
-	[self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+	[self.contentView.subviews enumerateObjectsUsingBlock:^(__kindof UIView *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 		[obj removeFromSuperview];
 	}];
 	switch (type) {

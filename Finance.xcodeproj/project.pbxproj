@@ -3892,7 +3892,7 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
-				C1F62E41DCBB5FD2018CEEBE /* Embed Pods Frameworks */,
+				42951A51E0A93B7D1D333639 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3912,7 +3912,7 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
-				9CBE1DBE0EC8AD8A73813BCE /* Embed Pods Frameworks */,
+				1FB66B7614C17BBA347AB45C /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4498,6 +4498,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		1FB66B7614C17BBA347AB45C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3DBA75A6089481CE9B0D7B2D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4511,6 +4526,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		42951A51E0A93B7D1D333639 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4912D7AB1B622E230014059D /* todo */ = {
@@ -5168,7 +5198,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "80a66166-a1e0-49a6-8bcf-d60fd5e0a0d8";
+				PROVISIONING_PROFILE = "5e3c0ce0-425e-4375-aa20-f64ad42559bf";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -5201,7 +5231,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "80a66166-a1e0-49a6-8bcf-d60fd5e0a0d8";
+				PROVISIONING_PROFILE = "5e3c0ce0-425e-4375-aa20-f64ad42559bf";
 			};
 			name = Test;
 		};

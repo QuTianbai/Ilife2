@@ -149,8 +149,8 @@
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
 	_contractNum.text = [NSString stringWithFormat:@"合同编号    %@", viewModel.repaymentNumber];
 	_contractStatusLabel.text = viewModel.status;
-	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.amount];
-	_asOfDateLabel.text = viewModel.date;
+	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.cashAmount];
+	_asOfDateLabel.text = viewModel.cashDate;
 }
 
 - (void)drawRect:(CGRect)rect {
