@@ -50,6 +50,11 @@
 		}
 		return [NSString stringWithFormat:@"已逾期:￥%@", value];
 	}];
+	
+	RAC(self, cashAmount) = [RACObserve(self, model.cashDueMoney) ignore:nil];
+	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
+		return value.length > 0 ? value : @"当天";
+	}];
 
 	
   return self;

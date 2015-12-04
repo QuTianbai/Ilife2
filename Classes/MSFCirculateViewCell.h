@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFCirculateViewCell : UICollectionViewCell
-<MSFReactiveView>
+@interface MSFCirculateViewCell : UICollectionViewCell <MSFReactiveView>
 
 @end

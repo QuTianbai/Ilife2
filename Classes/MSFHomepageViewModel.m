@@ -79,6 +79,9 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
+	if (self.cellModel.statusString.length == 0) {
+		return self;
+	}
 	return self.cellModel ?: self;
 }
 

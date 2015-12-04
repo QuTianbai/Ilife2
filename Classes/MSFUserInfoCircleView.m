@@ -225,14 +225,6 @@
 	return self;
 }
 
-- (instancetype)init {
-	self = [super init];
-	if (self) {
-		[self commonInit];
-	}
-	return self;
-}
-
 - (void)commonInit {
 	self.backgroundColor = [UIColor whiteColor];
 	_margin = 3.0f;

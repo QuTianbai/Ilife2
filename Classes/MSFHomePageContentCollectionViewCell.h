@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell<MSFReactiveView>
+@interface MSFHomePageContentCollectionViewCell : UICollectionViewCell <MSFReactiveView>
 
 @end

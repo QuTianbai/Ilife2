@@ -81,7 +81,7 @@
 		if (loan.totalLimit.doubleValue > 0) {
 			return @2;
 		} else {
-			if ([product containsObject:@"4101"] || [product containsObject:@"4102"]) {
+			if ([product containsObject:@"4102"]) {
 				return @1;
 			} else {
 				return @0;
