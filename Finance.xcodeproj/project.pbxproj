@@ -241,8 +241,6 @@
 		10B1352A1BCD309600E8F1FE /* MSFUserInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10B135291BCD309600E8F1FE /* MSFUserInformationViewController.xib */; };
 		10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 10C240791BBA8F5E006C23DC /* MSFUserContact.m */; };
 		10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */ = {isa = PBXBuildFile; fileRef = 10C83F811BBE19EA0086BF31 /* home-banner-pl.png */; };
-		10CDE9CE1C1023CD0037269B /* MSFApplyInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10CDE9CD1C1023CD0037269B /* MSFApplyInfoTableViewController.m */; };
-		10CDE9D21C1023F50037269B /* MSFApplyInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10CDE9D11C1023F50037269B /* MSFApplyInfoCell.m */; };
 		10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */; };
 		10DAE1BD1BBBC971001BD017 /* MSFRelationSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */; };
 		10DAE1C01BBBC989001BD017 /* MSFRelationPhoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */; };
@@ -1103,10 +1101,6 @@
 		10C240781BBA8F5E006C23DC /* MSFUserContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserContact.h; sourceTree = "<group>"; };
 		10C240791BBA8F5E006C23DC /* MSFUserContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserContact.m; sourceTree = "<group>"; };
 		10C83F811BBE19EA0086BF31 /* home-banner-pl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-banner-pl.png"; sourceTree = "<group>"; };
-		10CDE9CC1C1023CD0037269B /* MSFApplyInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyInfoTableViewController.h; sourceTree = "<group>"; };
-		10CDE9CD1C1023CD0037269B /* MSFApplyInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyInfoTableViewController.m; sourceTree = "<group>"; };
-		10CDE9D01C1023F50037269B /* MSFApplyInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyInfoCell.h; sourceTree = "<group>"; };
-		10CDE9D11C1023F50037269B /* MSFApplyInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyInfoCell.m; sourceTree = "<group>"; };
 		10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationTFCell.h; sourceTree = "<group>"; };
 		10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationTFCell.m; sourceTree = "<group>"; };
 		10DAE1BB1BBBC971001BD017 /* MSFRelationSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRelationSelectionCell.h; sourceTree = "<group>"; };
@@ -2159,7 +2153,6 @@
 		07C924CF1B0C22FD00FA73BD /* AppliesInfo */ = {
 			isa = PBXGroup;
 			children = (
-				10CDE9CF1C1023D70037269B /* next */,
 				07CB4C7A1B104572006C220E /* MSFPersonalViewController.h */,
 				07CB4C7B1B104572006C220E /* MSFPersonalViewController.m */,
 				07CB4C801B104AE8006C220E /* MSFRelationshipViewController.h */,
@@ -2361,17 +2354,6 @@
 				1092C8D21B6B23E900794EE9 /* MSFCounterLabel.m */,
 			);
 			name = CounterLabel;
-			sourceTree = "<group>";
-		};
-		10CDE9CF1C1023D70037269B /* next */ = {
-			isa = PBXGroup;
-			children = (
-				10CDE9CC1C1023CD0037269B /* MSFApplyInfoTableViewController.h */,
-				10CDE9CD1C1023CD0037269B /* MSFApplyInfoTableViewController.m */,
-				10CDE9D01C1023F50037269B /* MSFApplyInfoCell.h */,
-				10CDE9D11C1023F50037269B /* MSFApplyInfoCell.m */,
-			);
-			name = next;
 			sourceTree = "<group>";
 		};
 		10DAE1AA1BBBC8F9001BD017 /* RelationCells */ = {
@@ -4566,21 +4548,6 @@
 			shellPath = /bin/sh;
 			shellScript = "#${SRCROOT}/Script/brsp/xcode-build-bump.sh";
 		};
-		9CBE1DBE0EC8AD8A73813BCE /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4594,21 +4561,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C1F62E41DCBB5FD2018CEEBE /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4667,7 +4619,6 @@
 				10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
-				10CDE9D21C1023F50037269B /* MSFApplyInfoCell.m in Sources */,
 				074AC24C1BBB87740056BA22 /* MSFCheckHasTradePassword.m in Sources */,
 				07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */,
 				072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */,
@@ -4796,8 +4747,6 @@
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
 				0704EB6A1B6B52EB000F5369 /* MSFResultModel.m in Sources */,
 				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
-				10CDE9CE1C1023CD0037269B /* MSFApplyInfoTableViewController.m in Sources */,
-				C7B91FAB1B04BE4F0091B091 /* MSFClient+Trades.m in Sources */,
 				07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */,
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */,
