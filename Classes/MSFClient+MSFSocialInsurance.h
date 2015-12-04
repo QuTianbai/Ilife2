@@ -34,6 +34,6 @@
 // Returns a signal which will send a MSFSocialInsuranceModel
 - (RACSignal *)fetchGetSocialInsuranceInfo;
 
-- (RACSignal *)confirmInsuranceSignal __deprecated;
+- (RACSignal *)confirmInsuranceSignal __deprecated_msg("Replace this method with a empty signal");
 
 @end

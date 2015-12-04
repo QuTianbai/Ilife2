@@ -10,7 +10,6 @@
 #import "MSFClient+Elements.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
-#import "MSFProduct.h"
 #import "MSFElement.h"
 #import "MSFElementViewModel.h"
 #import "MSFApplicationResponse.h"
@@ -21,6 +20,7 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFClient+Inventory.h"
 #import "MSFLoanType.h"
+#import "NSFileManager+Temporary.h"
 
 @interface MSFInventoryViewModel ()
 
@@ -142,6 +142,12 @@
 	_executeUpdateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return self.updateSignal;
+	}];
+	
+	[self.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		[signal subscribeNext:^(id x) {
+			[NSFileManager.defaultManager cleanupTemporaryFiles];
+		}];
 	}];
 }
 
