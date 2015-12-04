@@ -10,8 +10,6 @@
 
 @interface MSFClient (Contacts)
 
-- (RACSignal *)fetchContacts __deprecated;
-
 // Fetch user contract HTML Request
 //
 // appNO        - The applicaiton No.

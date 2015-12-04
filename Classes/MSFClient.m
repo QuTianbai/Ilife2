@@ -24,7 +24,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "MSFDeviceGet.h"
 #import "UIDevice-Hardware.h"
-#import "RACSignal+MSFContactsAdditions.m"
+#import "RACSignal+MSFContactsAdditions.h"
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 

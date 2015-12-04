@@ -16,8 +16,6 @@
 #import "MSFClient+MSFApplyInfo.h"
 #import "MSFClient+MSFApplyCash.h"
 #import "MSFClient+Users.h"
-#import "MSFMarket.h"
-#import "MSFClient+MSFCheckEmploee.h"
 #import "MSFResponse.h"
 #import "MSFAddress.h"
 
