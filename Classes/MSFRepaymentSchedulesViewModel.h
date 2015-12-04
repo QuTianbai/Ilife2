@@ -34,7 +34,7 @@
 @property (nonatomic, readonly) NSString *overdueMoney;
 
 //马上贷
-@property (nonatomic, readonly) double *cashAmount;
+@property (nonatomic, readonly) double cashAmount;
 
 @property (nonatomic, readonly) NSString *cashDate;
 
