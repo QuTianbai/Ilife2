@@ -1,3 +1,18 @@
+Version 2.1.0.6:
+ - Merge branch 'master' into 'next'
+ - 规范代码
+ - Merge branch 'master' into 'next'
+ - Fix #569 马上贷合同确认提示“无效贷款产品”
+ - Remove unused class files
+ - 优化还款计划
+ - Refactor spec
+ - Add cleanup inventory temporary files
+ - Improve inventory re-upload method parameter type
+ - Add filemanager category for cleanup temporary files
+ - Fix category duplicate method warning
+ - Refactor Market related class duplicate files
+ - 562 【IOS-2.1.0.5】社保贷还款计划，最近应还款日期为“当天”，应显示还款日
+
 Version 2.1.0.5:
  - Merge remote-tracking branch 'old-gitlab/zhaoyong'
  - fix tab2首次进入无法刷新
