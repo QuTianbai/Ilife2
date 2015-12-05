@@ -111,6 +111,11 @@
 - (void)setUpMSFull {
 	self.backgroundColor = UIColor.msdFullBackgroundColor;
 	
+	UIImageView *bottom = [[UIImageView alloc] init];
+	bottom.contentMode = UIViewContentModeScaleAspectFill;
+	bottom.image = [UIImage imageNamed:@"ad_msdFull_bottom"];
+	[self addSubview:bottom];
+	
 	UIImageView *top = [[UIImageView alloc] init];
 	top.contentMode = UIViewContentModeScaleAspectFill;
 	top.image = [UIImage imageNamed:@"ad_msdFull_top"];
@@ -121,11 +126,6 @@
 	[button setBackgroundImage:[UIImage imageNamed:@"ad_msdFull_button"] forState:UIControlStateNormal];
 	[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
-	
-	UIImageView *bottom = [[UIImageView alloc] init];
-	bottom.contentMode = UIViewContentModeScaleAspectFill;
-	bottom.image = [UIImage imageNamed:@"ad_msdFull_bottom"];
-	[self addSubview:bottom];
 	
 	[top mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.equalTo(self);
