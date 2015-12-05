@@ -84,13 +84,10 @@
 	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
 		if ([_cellModel.type isEqualToString:@"APPLY"]) {
 			return self;
-		} else if (_cellModel.totalLimit.doubleValue > 0) {
-			return _cellModel;
 		}
+		return _cellModel;
 	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
-		if (_cellModel.totalLimit.doubleValue > 0) {
-			return _cellModel;
-		}
+		return _cellModel;
 	}
 	return self;
 }
@@ -99,13 +96,13 @@
 	if ([_cellModel.productType isEqualToString:@"1101"]) {
 		return @"MSFHomePageContentCollectionViewCell";
 	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
-		if ([_cellModel.type isEqualToString:@"APPLY"]) {
+		if ([_cellModel.type isEqualToString:@"APPLY"] || [_cellModel.statusString isEqualToString:@"已到期"]) {
 			return @"MSFHomePageContentCollectionViewCell";
 		} else if (_cellModel.totalLimit.doubleValue > 0) {
 			return @"MSFCirculateViewCell";
 		}
 	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
-		if (_cellModel.totalLimit.doubleValue > 0) {
+		if (_cellModel.totalLimit.doubleValue > 0 && ![_cellModel.statusString isEqualToString:@"已到期"]) {
 			return @"MSFCirculateViewCell";
 		}
 	}
