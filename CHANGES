@@ -1,3 +1,36 @@
+Version 2.1.0.7:
+ - Merge branch 'next'
+ - Merge branch 'master' into 'next'
+ - clean master branch
+ - Merge branch 'next' of git.apps.com:ios/Finance
+ - Merge branch 'next' of git.apps.com:ios/Finance
+ - 合并代码，调整格式
+ - Merge branch 'Water:master' into 'next'
+ - Merge branch 'next' of http://git.apps.com/ios/Finance
+ - update pods
+ - Merge branch `Water:master` into `next`
+ - Merge branch 'next' of http://git.apps.com/ios/Finance
+ - 还款计划，变量类型修正
+ - Merge branch 'master' into next
+ - Merge branch 'master' into 'next'
+ - fix #570 马上贷确认合同后成功放款跑批产生还款计划，还款计划中还款金额为0，截止日期为当天
+ - update tab2 广告图状态判断
+ - fix 首页状态为白名单申请时显示饼图
+ - merge code
+ - Update provisioning profile for new device
+ - Merge branch 'master' of git.apps.com:ios/Finance
+ - Merge branch 'master' of git.apps.com:YongZhao/Finance into next
+ - Merge branch 'master' of git.apps.com:YongZhao/Finance into next
+ - Edit MSFApplyInfoCell
+ - Merge branch 'next' of git.apps.com:YongZhao/Finance into next
+ - 整理代码 MSFCirculateViewCell 改用代码实现
+ - commit
+ - 新增 MSFApplyInfoCell、MSFApplyInfoTableViewController
+ - commit
+ - add applyInfoCell table
+ - sort code. MSFCirculateViewCell 改用代码实现
+ - remove warnings
+
 Version 2.1.0.6:
  - Merge branch 'master' into 'next'
  - 规范代码
