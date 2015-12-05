@@ -113,13 +113,7 @@
 	
 	self.viewModel.jionLifeInsurance = @"1";
 	RAC(self, viewModel.jionLifeInsurance) = [self.lifeInsuranceSwitch.rac_newOnChannel map:^id(NSNumber *value) {
-//		if (value.integerValue == 0) {
-//			self.moneyInsuranceLabel.hidden = YES;
-//			//self.moneyInsuranceLabel.text = @"";
-//		} else {
-//			self.moneyInsuranceLabel.hidden = NO;
-//		}
-		
+
 		return value.stringValue;
 	}];
 	
@@ -159,6 +153,7 @@
 		subscribeNext:^(UITextField *x) {
 			if (x.text.integerValue < 1) {
 				x.text = @"2";
+				[SVProgressHUD showErrorWithStatus:@"居民医疗保险实际缴费年数:请输入1-50之间的整数"];
 			}
 		}];
 		
@@ -173,6 +168,7 @@
 		 subscribeNext:^(UITextField *x) {
 			 if (x.text.integerValue < 1) {
 				 x.text = @"2";
+				 [SVProgressHUD showErrorWithStatus:@"居民医疗保险实际缴费年数:请输入1-50之间的整数"];
 			 }
 		 }];
 		
@@ -207,6 +203,7 @@
 		 subscribeNext:^(UITextField *x) {
 			 if (x.text.integerValue < 1) {
 				 x.text = @"12";
+				 [SVProgressHUD showErrorWithStatus:@"职工医疗保险实际缴费月数:请输入1-600之间的整数"];
 			 }
 		 }];
 		
@@ -221,6 +218,7 @@
 		 subscribeNext:^(UITextField *x) {
 			 if (x.text.integerValue < 1) {
 				 x.text = @"12";
+				 [SVProgressHUD showErrorWithStatus:@"职工养老保险实际缴费月数:请输入1-600之间的整数"];
 			 }
 		 }];
 		

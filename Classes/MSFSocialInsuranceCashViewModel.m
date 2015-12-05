@@ -657,31 +657,31 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return [RACSignal error:error];
 	}
 	if (!([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] ||[self.professional isEqualToString:@"SI06"])) {
-		if (self.employeeOlderMonths.intValue > 600 ) {
+		if (self.employeeOlderMonths.intValue > 600 || self.employeeOlderMonths.intValue < 1) {
 			self.employeeOlderMonths = @"12";
-			errorStr = @"职工养老保险实际缴费月数:请输入600以内整书";
+			errorStr = @"职工养老保险实际缴费月数:请输入1-600之间的整数";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
-		if (self.employeeMedicalMonths.intValue > 600) {
+		if (self.employeeMedicalMonths.intValue > 600 || self.employeeMedicalMonths.intValue < 1) {
 			self.employeeMedicalMonths = @"12";
-			errorStr = @"职工医疗保险实际缴费月数:请输入600以内整书";
+			errorStr = @"职工医疗保险实际缴费月数:请输入1-600之间的整数";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
 	} else {
-		if (self.residentOlderInsuranceYears.intValue > 50 ) {
+		if (self.residentOlderInsuranceYears.intValue > 50 || self.residentOlderInsuranceYears.intValue < 1) {
 			self.residentOlderInsuranceYears = @"2";
-			errorStr = @"居民养老保险实际缴费年数:请输入600以内整书";
+			errorStr = @"居民养老保险实际缴费年数:请输入1-50之间的整数";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
 		}
-		if (self.residentMedicalInsuranceYears.intValue > 50) {
+		if (self.residentMedicalInsuranceYears.intValue > 50 || self.residentMedicalInsuranceYears.intValue < 1) {
 			self.residentMedicalInsuranceYears = @"2";
-			errorStr = @"居民医疗保险实际缴费年数:请输入600以内整书";
+			errorStr = @"居民医疗保险实际缴费年数:请输入1-50之间的整数";
 			
 			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
 			return [RACSignal error:error];
