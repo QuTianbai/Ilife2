@@ -79,22 +79,37 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if (self.cellModel.statusString.length == 0) {
-		return self;
+	if ([_cellModel.productType isEqualToString:@"1101"]) {
+		return _cellModel;
+	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
+		if ([_cellModel.type isEqualToString:@"APPLY"]) {
+			return self;
+		} else if (_cellModel.totalLimit.doubleValue > 0) {
+			return _cellModel;
+		}
+	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
+		if (_cellModel.totalLimit.doubleValue > 0) {
+			return _cellModel;
+		}
 	}
-	return self.cellModel ?: self;
+	return self;
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if (_cellModel) {
-		if (([_cellModel.productType isEqualToString:@"4102"] || [_cellModel.productType isEqualToString:@"4101"]) && _cellModel.totalLimit.doubleValue > 0) {
-			return @"MSFCirculateViewCell";
-		} else {
-			return @"MSFHomePageContentCollectionViewCell";
-		}
-	} else {
+	if ([_cellModel.productType isEqualToString:@"1101"]) {
 		return @"MSFHomePageContentCollectionViewCell";
+	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
+		if ([_cellModel.type isEqualToString:@"APPLY"]) {
+			return @"MSFHomePageContentCollectionViewCell";
+		} else if (_cellModel.totalLimit.doubleValue > 0) {
+			return @"MSFCirculateViewCell";
+		}
+	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
+		if (_cellModel.totalLimit.doubleValue > 0) {
+			return @"MSFCirculateViewCell";
+		}
 	}
+	return @"MSFHomePageContentCollectionViewCell";
 }
 
 - (void)pushInfo:(NSInteger)index {

@@ -30,6 +30,7 @@ typedef NS_ENUM(NSInteger, MSFHomePageDateDisplayType) {
 
 //产品类型： 1101、4101、4102
 @property (nonatomic, strong) NSString *productType;
+@property (nonatomic, strong) NSString *type;
 
 /* 马上贷 */
 
