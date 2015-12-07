@@ -19,3 +19,7 @@
 "%ld Photos Selected" = "%ld 已选中";
 "Choose" = "确定";
 "Close" = "关闭";
+"Can’t access camera" = "无法使用相机";
+"To enable camera access, open\nSettings > Privacy and allow access." = "使用相机,\n打开设置>允许访问相机。";
+"OK" = "好的";
+"Open Settings" = "打开设置";
