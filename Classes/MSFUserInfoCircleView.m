@@ -7,9 +7,9 @@
 //
 
 #import "MSFUserInfoCircleView.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "UIColor+Utils.h"
 
 @interface MSFUserInfoTitleView : UIView
