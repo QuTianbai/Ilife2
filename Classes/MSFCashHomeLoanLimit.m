@@ -35,6 +35,7 @@
 		_withdrawButton.layer.borderWidth = 1;
 		[_withdrawButton setTitleColor:UIColor.borderColor forState:UIControlStateNormal];
 		[_withdrawButton setTitle:@"提款" forState:UIControlStateNormal];
+		_withdrawButton.titleLabel.font = [UIFont systemFontOfSize:15];
 		_withdrawButton.layer.cornerRadius = 5;
 		[self addSubview:_withdrawButton];
 		
@@ -44,27 +45,32 @@
 		_repayButton.layer.borderWidth = 1;
 		[_repayButton setTitleColor:UIColor.borderColor forState:UIControlStateNormal];
 		[_repayButton setTitle:@"还款" forState:UIControlStateNormal];
+		_repayButton.titleLabel.font = [UIFont systemFontOfSize:15];
 		_repayButton.layer.cornerRadius = 5;
 		[self addSubview:_repayButton];
 		
-		[_limitView mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.greaterThanOrEqualTo(self).offset(20);
-			make.centerX.equalTo(self);
-			make.centerY.equalTo(self).offset(-20);
-			make.width.equalTo(self).multipliedBy(0.6).priorityMedium();
-			make.height.equalTo(_limitView.mas_width).multipliedBy(0.854);
-		}];
 		[_withdrawButton mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(_limitView.mas_bottom).offset(20);
-			make.left.equalTo(self).offset(40);
-			make.height.equalTo(@40);
+			make.bottom.lessThanOrEqualTo(@(-5));
+			make.height.equalTo(@35);
+			make.left.equalTo(self).offset(40).priorityMedium();
+			make.right.equalTo(self.mas_centerX).offset(-20);
+			make.width.lessThanOrEqualTo(@120);
+			make.top.equalTo(_limitView.mas_bottom).offset(15);
 		}];
 		[_repayButton mas_makeConstraints:^(MASConstraintMaker *make) {
-			make.top.equalTo(_limitView.mas_bottom).offset(20);
-			make.left.equalTo(_withdrawButton.mas_right).offset(40);
-			make.right.equalTo(self).offset(-40);
-			make.height.equalTo(@40);
+			make.bottom.lessThanOrEqualTo(@(-5));
+			make.height.equalTo(@35);
+			make.left.equalTo(self.mas_centerX).offset(20);
+			make.right.equalTo(self).offset(-40).priorityMedium();
 			make.width.equalTo(_withdrawButton);
+			make.top.equalTo(_limitView.mas_bottom).offset(15);
+		}];
+		[_limitView mas_makeConstraints:^(MASConstraintMaker *make) {
+			make.top.greaterThanOrEqualTo(self).offset(5);
+			make.centerX.equalTo(self);
+			make.centerY.equalTo(self).offset(-10).priorityMedium();
+			make.width.equalTo(self).multipliedBy(0.6).priorityMedium();
+			make.height.equalTo(_limitView.mas_width).multipliedBy(0.854);
 		}];
 	}
 	return self;

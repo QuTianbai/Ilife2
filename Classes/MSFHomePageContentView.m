@@ -54,6 +54,7 @@
 		info.font = [UIFont systemFontOfSize:14];
 		info.textColor = UIColor.lightGrayColor;
 		info.textAlignment = NSTextAlignmentCenter;
+		info.numberOfLines = 0;
 		info.tag = 104;
 				
 		[self addSubview:title];
