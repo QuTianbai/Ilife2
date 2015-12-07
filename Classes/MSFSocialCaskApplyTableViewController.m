@@ -131,8 +131,6 @@
 		}];
 		RAC(self.medicalDate, text) = RACObserve(self, viewModel.residentMedicalInsuranceDate);
 		
-		//self.olderMonthsTF.text = @"2";
-		
 		RACChannelTerminal *residentOlderInsuranceYearsChannel = RACChannelTo(self, viewModel.residentOlderInsuranceYears);
 		RAC(self.olderMonthsTF, text) = residentOlderInsuranceYearsChannel;
 		[self.olderMonthsTF.rac_textSignal subscribe:residentOlderInsuranceYearsChannel];
@@ -147,7 +145,6 @@
 				 x.text = [x.text substringToIndex:2];
 			 }
 		 }];
-
 		
 		[[self.medicalMonths rac_signalForControlEvents:UIControlEventEditingDidEnd]
 		subscribeNext:^(UITextField *x) {
@@ -168,7 +165,7 @@
 		 subscribeNext:^(UITextField *x) {
 			 if (x.text.integerValue < 1) {
 				 x.text = @"2";
-				 [SVProgressHUD showErrorWithStatus:@"居民医疗保险实际缴费年数:请输入1-50之间的整数"];
+				 [SVProgressHUD showErrorWithStatus:@"居民养老保险实际缴费年数:请输入1-50之间的整数"];
 			 }
 		 }];
 		
@@ -221,7 +218,6 @@
 				 [SVProgressHUD showErrorWithStatus:@"职工养老保险实际缴费月数:请输入1-600之间的整数"];
 			 }
 		 }];
-		
 	}
 	
 	self.submitBT.rac_command = self.viewModel.executeSaveCommand;
@@ -233,7 +229,6 @@
 			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self.viewModel];
 			MSFLoanAgreementController *viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:viewController animated:YES];
-			//[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeSaveCommand.errors subscribeNext:^(NSError *error) {
@@ -244,7 +239,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source

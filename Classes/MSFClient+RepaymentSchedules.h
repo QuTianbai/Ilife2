@@ -10,8 +10,16 @@
 
 @interface MSFClient (RepaymentSchedules)
 
+//
+//请求马上贷还款计划
+//
+// Returns a signal will send a instance of <MSFRepaymentSchedules>
 - (RACSignal *)fetchRepaymentSchedules;
 
+//
+//请求社保贷还款计划
+//
+// Returns a signal will send a instance of <MSFRepaymentSchedules>
 - (RACSignal *)fetchCircleRepaymentSchedules;
 
 @end
