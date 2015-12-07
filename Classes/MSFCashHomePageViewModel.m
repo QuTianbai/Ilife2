@@ -78,7 +78,7 @@
 
 - (RACSignal *)fetchProductType {
 	return [RACSignal combineLatest:@[[self.services.httpClient fetchProductType], [self.services.httpClient fetchCirculateCash:@"2"]] reduce:^id(NSArray *product, MSFCirculateCashModel *loan){
-		if (loan.totalLimit.doubleValue > 0) {
+		if (loan.totalLimit.doubleValue > 0 && ![loan.contractStatus isEqualToString:@"B"]) {
 			return @2;
 		} else {
 			if ([product containsObject:@"4102"]) {

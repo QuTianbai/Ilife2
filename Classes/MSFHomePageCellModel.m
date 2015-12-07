@@ -37,7 +37,7 @@
 	//NSString *productType = model.produceType;
 	
 	RAC(self, productType) = RACObserve(self, model.productType);
-	
+	RAC(self, type) = RACObserve(self, model.type);
 	/*
 	 马上金融
 	 */
