@@ -54,16 +54,13 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_formViewModel = formsViewModel;
 	RAC(self, professional) = [RACObserve(self, formViewModel.model.socialStatus) map:^id(id value) {
 		self.professional = value;
-		//[self commonInit];
 		self.active = NO;
 		self.active = YES;
 		[self commonInitDefult];
 		return value;
 	}];
-	
 	RACChannelTo(self, productCd) = RACChannelTo(self, loanType.typeID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
-	
   return self;
 }
 
@@ -92,7 +89,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_status = @"0";
 	_productCd = @"";
 	_accessoryInfoVOArray = [[NSArray alloc] init];
-	
 	_model = [[MSFSocialInsuranceModel alloc] init];
 	
 	RAC(self, cashpurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
@@ -172,7 +168,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		}];
 	}];
 	
-	
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executePurposeSignal:@"moneyUse" index:0];
@@ -249,7 +244,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return [self saveSignal];
 	}];
 
-	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self submitSignal];
@@ -261,7 +255,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	}];
 	
 	return self;
-	
 }
 
 - (RACSignal *)executePurposeSignal:(NSString *)jsonFileName index:(NSInteger)index {
@@ -439,6 +432,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		self.residentMedicalInsuranceYears = self.model.rsdtMdcInsuYears?:@"2";
 
 	} else {
+		
 		//职工
 		if (self.model.empEdwExist == nil || [self.model.empEdwExist isEqualToString:@""]) {
 			[self setPostionDefultWithName:@"isInsurance" selectValuesType:EMPOLDSTATUS index:0];
@@ -488,7 +482,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 				}
 			}];
 	}
-	
 	
 	if (self.model.injuInsuExist == nil || [self.model.injuInsuExist isEqualToString:@""]) {
 		[self setPostionDefultWithName:@"isInsurance" selectValuesType:EMPINHUYRSTATUS index:0];
