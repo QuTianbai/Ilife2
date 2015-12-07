@@ -17,8 +17,10 @@
  */
 @property (nonatomic, strong) RACCommand *executeSelectionCommand;
 
+/*
+ * 当前选中的按钮编号，可以设置
+ */
 @property (nonatomic, assign) NSInteger selectedIndex;
-
 
 /*
  * 出入一组title，作为展示的名称。数目随意，但太多会造成不好点击和文字显示不全

@@ -22,15 +22,12 @@
 @interface MSFCirculateRepaymentTableViewCell()
 
 /** UI **/
-//@property (strong, nonatomic) UILabel *contractNum;//合同编号
-
-//@property (strong, nonatomic) UILabel *contractStatus;//合同状态
 @property (strong, nonatomic) UILabel *shouldAmount;//最近应还金额
 @property (strong, nonatomic) UILabel *asOfDate;//最近应还日期
 @property (strong, nonatomic) UILabel *ownerAllMoney;//总欠款金额
 @property (strong, nonatomic) UILabel *contractLineDate;//合同到期日期
 
-@property (strong, nonatomic) UILabel *contractStatusLabel;//合同状态value
+@property (strong, nonatomic) UILabel *contractStatusLabel;//逾期显示value
 @property (strong, nonatomic) UILabel *shouldAmountLabel;//应还金额value
 @property (strong, nonatomic) UILabel *asOfDateLabel;//截止日期Label
 @property (strong, nonatomic) UILabel *ownerAllMoneyVlaue;//总欠款金额value
@@ -56,8 +53,6 @@
 		_labelHeight = 30.f;
 		_topLineGuide = _topHeight + _topMargin;
 		
-		//_contractNum				 = [[UILabel alloc]init];
-		//_contractStatus			 = [[UILabel alloc]init];
 		_shouldAmount				 = [[UILabel alloc]init];
 		_asOfDate						 = [[UILabel alloc]init];
 		_contractStatusLabel = [[UILabel alloc]init];
@@ -67,14 +62,6 @@
 		_ownerAllMoneyVlaue  = [[UILabel alloc] init];
 		_contractLineDate    = [[UILabel alloc] init];
 		_contractLineDateValue = [[UILabel alloc] init];
-		
-		//[_contractNum setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
-		//_contractNum.font = [UIFont systemFontOfSize:15];
-		
-//		[_contractStatus setText:@"合同状态"];
-//		[_contractStatus setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
-//		_contractStatus.font = [UIFont systemFontOfSize:13];
-//		_contractStatus.textAlignment = NSTextAlignmentRight;
 		
 		[_shouldAmount setText:@"最近应还金额"];
 		[_shouldAmount setTextColor:[MSFCommandView getColorWithString:REPAY_LIGHT_COLOR]];
@@ -115,9 +102,6 @@
 		_contractLineDateValue.font = [UIFont systemFontOfSize:13];
 		_contractLineDateValue.textAlignment = NSTextAlignmentCenter;
 		
-		
-		//[self addSubview:_contractNum];
-		//[self addSubview:_contractStatus];
 		[self addSubview:_shouldAmount];
 		[self addSubview:_asOfDate];
 		[self addSubview:_contractStatusLabel];
@@ -202,7 +186,6 @@
 }
 
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
-	//_contractNum.text = [NSString stringWithFormat:@"合同编号    %@", viewModel.repaymentNumber];
 	_contractStatusLabel.text = viewModel.overdueMoney;
 	RAC(self.contractStatusLabel, hidden) = [RACObserve(viewModel, status) map:^id(NSString *value) {
 		if (![value isEqualToString:@"已逾期"]) {
@@ -230,9 +213,6 @@
 	
 	CGContextMoveToPoint(context, rect.size.width / 2, self.topLineGuide);
 	CGContextAddLineToPoint(context, rect.size.width / 2, rect.size.height - self.padding);
-	
-//	CGContextMoveToPoint(context, rect.size.width * 2 / 3, self.topLineGuide);
-//	CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding);
 	
 	CGContextStrokePath(context);
 }
