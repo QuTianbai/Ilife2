@@ -1,3 +1,18 @@
+Version 2.1.0.8:
+ - Merge branch 'next' into 'master'
+ - Merge branch 'Water/master' into 'next'
+ - Merge branch 'master' into 'next'
+ - 社保贷合同签约信息请求判断
+ - 状态B（已到期）时不显示额度
+ - 社保编辑页优化提示语
+ - Merge branch 'next' of http://git.apps.com/ios/Finance
+ - 添加社保医疗缴费基数的两个选择项
+ - 修复首页在有额度且f状态下崩溃的问题
+ - 修复首页还款中状态无法显示还款时间的bug
+ - 优化额度视图在各种分辨率屏幕上的显示比例
+ - Merge branch 'next' of git.apps.com:ios/Finance
+ - 修复我的马上页面展示全屏马上贷广告时的图片层次
+
 Version 2.1.0.7:
  - Merge branch 'next'
  - Merge branch 'master' into 'next'
