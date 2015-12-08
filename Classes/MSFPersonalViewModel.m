@@ -26,8 +26,9 @@
 
 @interface MSFPersonalViewModel ()
 
-@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
-@property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, strong) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, assign) NSUInteger modelHash;
 
 @end
 
@@ -83,7 +84,14 @@
 	}];
 	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
 	
+	_modelHash = viewModel.model.hash;
+	
 	return self;
+}
+
+- (BOOL)edited {
+	NSUInteger newHash = self.formsViewModel.model.hash;
+	return newHash != _modelHash;
 }
 
 - (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {

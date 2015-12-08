@@ -16,6 +16,8 @@
 
 @interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
+@property (nonatomic, assign, readonly) BOOL edited;
+
 @property (nonatomic, strong) MSFSelectKeyValues *degrees;// 教育程度
 @property (nonatomic, strong) NSString *degreesTitle;
 @property (nonatomic, strong) MSFSelectKeyValues *socialstatus;// 社会身份

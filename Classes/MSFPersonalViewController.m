@@ -47,7 +47,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
 @property (nonatomic, strong) MSFPersonalViewModel *viewModel;
-@property (nonatomic, assign) NSInteger statusHash;
 
 @end
 
@@ -57,7 +56,6 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
-	_statusHash = self.viewModel.formsViewModel.model.hash;
 }
 
 #pragma mark - Lifecycle
@@ -193,7 +191,7 @@
 #pragma mark - Private Method
 
 - (void)back {
-	if (_statusHash == self.viewModel.formsViewModel.model.hash) {
+	if (!self.viewModel.edited) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
 	}

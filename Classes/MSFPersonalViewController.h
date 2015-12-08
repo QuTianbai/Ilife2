@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFPersonalViewController : UITableViewController
-<MSFReactiveView>
+@interface MSFPersonalViewController : UITableViewController <MSFReactiveView>
 
 @end

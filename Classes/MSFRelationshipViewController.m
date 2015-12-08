@@ -37,8 +37,6 @@ ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
-@property (nonatomic, assign) NSInteger statusHash;
-
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
 @end
@@ -51,7 +49,6 @@ ABPersonViewControllerDelegate>
 	
 	_viewModel = viewModel;
 	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
-	_statusHash = forms.hash;
 	_tempContactList = [NSMutableArray array];
 	
 	//遍历获取的联系人列表，将第一个家庭联系人添加到第一位置
@@ -138,7 +135,7 @@ ABPersonViewControllerDelegate>
 #pragma mark - Private Method
 
 - (void)back {
-	if (_statusHash == self.viewModel.formsViewModel.model.hash) {
+	if (!self.viewModel.edited) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
 	}

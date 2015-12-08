@@ -30,6 +30,7 @@
 
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, assign) NSUInteger modelHash;
 
 @end
 
@@ -61,7 +62,14 @@
 	
 	[self initialize];
 	
+	_modelHash = formsViewModel.model.hash;
+	
 	return self;
+}
+
+- (BOOL)edited {
+	NSUInteger newHash = self.formsViewModel.model.hash;
+	return newHash != _modelHash;
 }
 
 #pragma mark - Private

@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong, readonly) NSString *address;//省市区
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, assign, readonly) BOOL edited;
 
 @property (nonatomic, strong, readonly) RACCommand *executeAlterAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;

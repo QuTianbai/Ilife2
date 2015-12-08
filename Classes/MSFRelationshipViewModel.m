@@ -18,7 +18,9 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectKeyValues.h"
 
-@implementation MSFRelationshipViewModel
+@implementation MSFRelationshipViewModel {
+	NSUInteger formsHash;
+}
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
 	self = [super init];
@@ -60,7 +62,15 @@
 		@strongify(self)
 		return [self commitSignal];
 	}];
+	
+	formsHash = viewModel.model.hash;
+	
 	return self;
+}
+
+- (BOOL)edited {
+	NSUInteger newHash = self.formsViewModel.model.hash;
+	return newHash != formsHash;
 }
 
 - (RACSignal *)marryValuesSignal {

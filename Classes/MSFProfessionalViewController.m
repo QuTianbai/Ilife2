@@ -78,7 +78,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
 
 @property (nonatomic, strong) MSFProfessionalViewModel *viewModel;
-@property (nonatomic, assign) NSInteger statusHash;
 
 @end
 
@@ -87,8 +86,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
-	self.viewModel = viewModel;
-	_statusHash = self.viewModel.formsViewModel.model.hash;
+	_viewModel = viewModel;
 }
 
 #pragma mark - Lifecycle
@@ -296,7 +294,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 }
 
 - (void)back {
-	if (_statusHash == self.viewModel.formsViewModel.model.hash) {
+	if (!self.viewModel.edited) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
 	}
