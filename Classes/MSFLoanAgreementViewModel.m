@@ -33,9 +33,6 @@
 		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"0"];
 		}
-		if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-			return [self.applicationViewModel.services.httpClient confirmInsuranceSignal];
-		}
 		return RACSignal.empty;
 	}];
 	

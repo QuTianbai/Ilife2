@@ -68,10 +68,10 @@
 	if (phone.length < 4) {
 		return nil;
 	}
-	if ([numbers containsObject:[phone substringToIndex:2]]) {
-		return @[[phone substringToIndex:2], [phone substringFromIndex:2]];
+	if ([numbers containsObject:[phone substringToIndex:3]]) {
+		return @[[phone substringToIndex:3], [phone substringFromIndex:3]];
 	}
-	return @[[phone substringToIndex:3], [phone substringFromIndex:3]];
+	return @[[phone substringToIndex:4], [phone substringFromIndex:4]];
 }
 
 @end
