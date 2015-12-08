@@ -1,3 +1,34 @@
+Version 2.1.0.10:
+ - Merge branch 'next'
+ - Merge branch 'Water/finance-master' into next
+ - Merge branch 'next' of http://git.msxf.local/ios/Finance
+ - fix #657请修改社保贷是否购买寿险的传入方式，目前传入均是null，导致目前的申请单都是没有购买寿险的
+
+Version 2.1.0.9:
+ - Merge branch 'next'
+ - Merge branch 'zl/master' into 'next'
+ - Update podfile to fix czphotopicker warning
+ - Merge branch 'master' into 'next'
+ - Fix refactor result warnings
+ - Refactor MSFLifeInsuranceViewModel
+ - add contactBookCommand
+ - Update provisioning profile
+ - 修复删除联系人崩溃问题，同样是由于新增了婚姻信息导致的数组越界，此页面代码比较久远，需重新整理来避免此类问题。
+ - 修复区号和座机号隔断错误
+ - Merge branch 'master' into 'next'
+ - Merge remote-tracking branch 'ios/next' into next
+ - Merge branch 'YongZhao/master' into 'next'
+ - Merge branch 'Water/master' into 'next'
+ - Merge branch 'master' of http://git.msxf.local/ios/Finance
+ - 优化代码，方法注释
+ - 添加注释
+ - 优化拍照提示用户权限.
+ - Merge branch 'master' of http://git.apps.com/ios/Finance
+ - Merge remote-tracking branch 'ios/master'
+ - Merge branch 'next' of http://git.apps.com/ios/Finance into next
+ - Merge branch 'master' of http://git.apps.com/ios/Finance
+ - Fix spec
+
 Version 2.1.0.8:
  - Merge branch 'next' into 'master'
  - Merge branch 'Water/master' into 'next'
