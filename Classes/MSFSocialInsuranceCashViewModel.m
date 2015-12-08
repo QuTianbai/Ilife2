@@ -636,7 +636,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (RACSignal *)submitSignal {
 	
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status JoininLifeInsurance:self.jionLifeInsurance];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code, @"jionLifeInsurance": self.jionLifeInsurance} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
 
 - (RACSignal *)saveSignal {
