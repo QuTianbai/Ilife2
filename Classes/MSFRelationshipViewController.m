@@ -235,7 +235,7 @@ ABPersonViewControllerDelegate>
 				 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定要删除该联系人？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 				 [alert.rac_buttonClickedSignal subscribeNext:^(id x) {
 					 if ([x integerValue] == 1) {
-						 [self.tempContactList removeObjectAtIndex:indexPath.section];
+						 [self.tempContactList removeObjectAtIndex:indexPath.section - 1];
 						 [UIView animateWithDuration:.3 animations:^{
 							 [tableView reloadData];
 						 }];
