@@ -1,6 +1,6 @@
 {
   "contractNo": "1dafds782nj8",
   "contractStatus": "B",
-  "dueDate": "2015-05-03T15:38:45Z",
-  "dueMoney": "0.99"
+  "latestDueDate": "2015-05-03T15:38:45Z",
+  "latestDueMoney": "0.99"
 }

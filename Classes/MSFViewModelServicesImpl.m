@@ -8,6 +8,8 @@
 #import <CZPhotoPickerController/CZPhotoPickerController.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CZPhotoPickerController/CZPhotoPickerPermissionAlert.h>
 
 #import "MSFClient.h"
 #import "MSFServer.h"
@@ -165,6 +167,12 @@
 
 - (RACSignal *)msf_takePictureSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
+			[[CZPhotoPickerPermissionAlert sharedInstance] showAlert];
+			[subscriber sendError:nil];
+			return nil;
+		}
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;

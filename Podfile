@@ -21,7 +21,7 @@ pod 'Masonry', '0.6.1'
 pod 'MSPageViewController', :head
 pod 'RMPickerViewController', '1.3.2'
 pod 'UIColor-Hex', '0.1.1'
-pod 'CZPhotoPickerController', '1.2.4'
+pod 'CZPhotoPickerController', :git => 'https://github.com/objczl/CZPhotoPickerController', :commit => '486dc83'
 pod 'SVPullToRefresh', '0.4.1'
 pod 'REFormattedNumberField', '1.1.5'
 pod 'SVProgressHUD', '1.1.3'

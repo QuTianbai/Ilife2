@@ -11,6 +11,7 @@
 
 @interface MSFLoanListViewController : UIViewController
 
+//初始化绑定MSFApplyListViewModel
 - (instancetype)initWithViewModel:(id)viewModel;
 
 @end
