@@ -24,8 +24,7 @@
 
 #import "NSString+Matches.h"
 
-@interface MSFPersonalViewController ()
-<MSFSegmentDelegate>
+@interface MSFPersonalViewController () <MSFSegmentDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *housingTF;
 @property (weak, nonatomic) IBOutlet UIButton *housingBT;
@@ -55,7 +54,7 @@
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
-	self.viewModel = viewModel;
+	_viewModel = viewModel;
 }
 
 #pragma mark - Lifecycle
@@ -76,7 +75,7 @@
 
 	@weakify(self)
 	//住房情况
-	RAC(self.housingTF, text) = RACObserve(self.viewModel.formsViewModel.model, houseTypeTitle);
+	RAC(self.housingTF, text) = RACObserve(self.viewModel.forms, houseTypeTitle);
 	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
 	//电子邮件
 	[[self.emailTF rac_signalForControlEvents:UIControlEventEditingChanged]
@@ -85,7 +84,7 @@
 			 textField.text = [textField.text substringToIndex:40];
 		 }
 	 }];
-	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.formsViewModel.model, email);
+	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel.forms, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
 	//住宅电话
@@ -101,11 +100,11 @@
 		 }
 	 }];
 	
-	RACChannelTerminal *homeTelCodeChannel = RACChannelTo(self.viewModel.formsViewModel.model, homeCode);
+	RACChannelTerminal *homeTelCodeChannel = RACChannelTo(self.viewModel.forms, homeCode);
 	RAC(self.homeTelCodeTF, text) = homeTelCodeChannel;
 	[self.homeTelCodeTF.rac_textSignal subscribe:homeTelCodeChannel];
 	
-	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel.formsViewModel.model, homeLine);
+	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel.forms, homeLine);
 	RAC(self.homeTelTF, text) = homeTelChannel;
 	[self.homeTelTF.rac_textSignal subscribe:homeTelChannel];
 	
@@ -119,7 +118,7 @@
 			 textField.text = [textField.text substringToIndex:80];
 		 }
 	 }];
-	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.formsViewModel.model, abodeDetail);
+	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel.forms, abodeDetail);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
 
@@ -130,7 +129,7 @@
 			 textField.text = [textField.text substringToIndex:15];
 		 }
 	 }];
-	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.formsViewModel.model, qq);
+	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.forms, qq);
 	RAC(self.tencentUsername, text) = tencentUsernameChannel;
 	[self.tencentUsername.rac_textSignal subscribe:tencentUsernameChannel];
 	
@@ -141,7 +140,7 @@
 			 textField.text = [textField.text substringToIndex:40];
 		 }
 	 }];
-	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.formsViewModel.model, taobao);
+	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.forms, taobao);
 	RAC(self.taobaoUsername, text) = taobaoUsernameChannel;
 	[self.taobaoUsername.rac_textSignal subscribe:taobaoUsernameChannel];
 
@@ -152,7 +151,7 @@
 			 textField.text = [textField.text substringToIndex:40];
 		 }
 	 }];
-	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.formsViewModel.model, jdAccount);
+	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.forms, jdAccount);
 	RAC(self.jdUsername, text) = jdUsernameChannel;
 	[self.jdUsername.rac_textSignal subscribe:jdUsernameChannel];
 

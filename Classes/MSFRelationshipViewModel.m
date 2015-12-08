@@ -8,7 +8,7 @@
 
 #import "MSFRelationshipViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 #import "MSFAddress.h"
 #import "MSFAddressViewModel.h"
 #import "MSFApplicationForms.h"
@@ -18,8 +18,14 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectKeyValues.h"
 
+@interface MSFRelationshipViewModel ()
+
+@property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, assign)	NSUInteger formsHash;
+
+@end
+
 @implementation MSFRelationshipViewModel {
-	NSUInteger formsHash;
 }
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
@@ -29,22 +35,23 @@
 	}
 	_formsViewModel = viewModel;
 	_services = viewModel.services;
-	MSFApplicationForms *forms = viewModel.model;
-	if (forms.abodeDetail.length > 0) {
-		NSDictionary *addr = @{@"province" : forms.currentProvinceCode ?: @"",
-													 @"city" : forms.currentCityCode ?: @"",
-													 @"area" : forms.currentCountryCode ?: @""};
+	_forms = viewModel.model.copy;
+	
+	if (_forms.abodeDetail.length > 0) {
+		NSDictionary *addr = @{@"province" : _forms.currentProvinceCode ?: @"",
+													 @"city" : _forms.currentCityCode ?: @"",
+													 @"area" : _forms.currentCountryCode ?: @""};
 		MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
 		MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
-		_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
+		_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, _forms.abodeDetail];
 	} else {
 		_fullAddress = nil;
 	}
 	
 	NSArray *marriageStatus = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
 	[marriageStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.maritalStatus]) {
-			self.formsViewModel.model.marriageTitle = obj.text;
+		if ([obj.code isEqualToString:_forms.maritalStatus]) {
+			_forms.marriageTitle = obj.text;
 			*stop = YES;
 		}
 	}];
@@ -63,14 +70,14 @@
 		return [self commitSignal];
 	}];
 	
-	formsHash = viewModel.model.hash;
+	_formsHash = _forms.hash;
 	
 	return self;
 }
 
 - (BOOL)edited {
-	NSUInteger newHash = self.formsViewModel.model.hash;
-	return newHash != formsHash;
+	NSUInteger newHash = _forms.hash;
+	return newHash != _formsHash;
 }
 
 - (RACSignal *)marryValuesSignal {
@@ -80,8 +87,8 @@
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
-			self.formsViewModel.model.marriageTitle = x.text;
-			self.formsViewModel.model.maritalStatus = x.code;
+			_forms.marriageTitle = x.text;
+			_forms.maritalStatus = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;
@@ -93,6 +100,7 @@
 	if (error) {
 		return [RACSignal error:[NSError errorWithDomain:@"MSFRelationShipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: error}]];
 	}
+	[self.formsViewModel.model mergeValuesForKeysFromModel:_forms];
 	return [self.formsViewModel submitUserInfoType:3];
 }
 
@@ -102,10 +110,10 @@
 }
 
 - (NSString *)checkForm {
-	if (self.formsViewModel.model.maritalStatus.length == 0) {
+	if (_forms.maritalStatus.length == 0) {
 		return @"请选择婚姻状况";
 	}
-	NSArray *contactList = self.formsViewModel.model.contrastList;
+	NSArray *contactList = _forms.contrastList;
 	if (contactList.count < 2) {
 		return [NSString stringWithFormat:@"请至少填写联系人1、2的信息"];
 	}
@@ -146,8 +154,8 @@
 }
 
 - (BOOL)marriageStatusChange:(NSString *)newStatus {
-	if (![self.formsViewModel.model.maritalStatus isEqualToString:newStatus]) {
-		if ([self.formsViewModel.model.maritalStatus isEqualToString:@"20"]) {
+	if (![_forms.maritalStatus isEqualToString:newStatus]) {
+		if ([_forms.maritalStatus isEqualToString:@"20"]) {
 			return YES;
 		} else if ([newStatus isEqualToString:@"20"]) {
 			return YES;

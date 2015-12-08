@@ -10,13 +10,13 @@
 #import "MSFViewModelServices.h"
 #import "MSFReactiveView.h"
 
-@class MSFFormsViewModel;
+@class MSFApplicationForms;
 @class RACCommand;
 
 @interface MSFRelationshipViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
-@property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong, readonly) MSFApplicationForms *forms;
 @property (nonatomic, strong, readonly) NSString *fullAddress;
 @property (nonatomic, assign, readonly) BOOL edited;
 

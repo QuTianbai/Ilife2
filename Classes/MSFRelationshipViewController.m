@@ -37,6 +37,7 @@ ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
+@property (nonatomic, assign) NSUInteger contactHash;
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
 @end
@@ -48,7 +49,7 @@ ABPersonViewControllerDelegate>
 - (void)bindViewModel:(MSFRelationshipViewModel *)viewModel {
 	
 	_viewModel = viewModel;
-	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
+	MSFApplicationForms *forms = self.viewModel.forms;
 	_tempContactList = [NSMutableArray array];
 	
 	//遍历获取的联系人列表，将第一个家庭联系人添加到第一位置
@@ -95,6 +96,8 @@ ABPersonViewControllerDelegate>
 			contact.openDetailAddress = YES;
 		}
 	}
+	
+	_contactHash = [self calculateHash:_tempContactList];
 }
 
 #pragma mark - Lifecycle
@@ -115,7 +118,7 @@ ABPersonViewControllerDelegate>
 	@weakify(self)
 	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		self.viewModel.formsViewModel.model.contrastList = [NSArray arrayWithArray:_tempContactList];
+		self.viewModel.forms.contrastList = [NSArray arrayWithArray:_tempContactList];
 		[self.viewModel.executeCommitCommand execute:nil];
 	}];
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
@@ -135,18 +138,36 @@ ABPersonViewControllerDelegate>
 #pragma mark - Private Method
 
 - (void)back {
-	if (!self.viewModel.edited) {
+	BOOL same = _contactHash == [self calculateHash:_tempContactList];
+	if (!self.viewModel.edited && same) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
 	}
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃联系人信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
 		if ([x integerValue] == 1) {
-			self.viewModel.formsViewModel.model.contrastList = [NSArray arrayWithArray:_tempContactList];
 			[self.navigationController popViewControllerAnimated:YES];
 		}
 	}];
 	[alert show];
+}
+
+- (NSUInteger)calculateHash:(id)obj {
+	NSUInteger value = 0;
+	if ([obj isKindOfClass:NSDictionary.class]) {
+		NSDictionary *dic = obj;
+		for (id item in dic.allValues) {
+			value ^= [self calculateHash:item];
+		}
+	} else if ([obj isKindOfClass:NSArray.class]) {
+		NSArray *arr = obj;
+		for (id item in arr) {
+			value ^= [self calculateHash:item];
+		}
+	} else {
+		value ^= [obj hash];
+	}
+	return value;
 }
 
 #pragma mark - UITableViewDataSource
@@ -193,7 +214,7 @@ ABPersonViewControllerDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
 		MSFRelationMarriageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationMarriageCell"];
-		cell.marriage = self.viewModel.formsViewModel.model.marriageTitle;
+		cell.marriage = self.viewModel.forms.marriageTitle;
 		return cell;
 	}
 	if (indexPath.section == _tempContactList.count + 1) {
@@ -227,7 +248,7 @@ ABPersonViewControllerDelegate>
 		}
 		case 1: {
 			MSFRelationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSelectionCell"];
-			if ([self.viewModel.formsViewModel.model.maritalStatus isEqualToString:@"20"] && indexPath.section == 1) {
+			if ([self.viewModel.forms.maritalStatus isEqualToString:@"20"] && indexPath.section == 1) {
 				cell.tfInput.text = @"配偶";
 				contact.contactRelation = @"RF01";
 			} else {
