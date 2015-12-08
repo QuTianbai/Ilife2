@@ -125,12 +125,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:80];
 			}
 		}];
-	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.formsViewModel.model, unitName);
+	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.forms, unitName);
 	RAC(self.universityName, text) = universityNameChannel;
 	[self.universityName.rac_textSignal subscribe:universityNameChannel];
 	
 	//入学时间
-	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
+	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel.forms, empStandFrom);
 	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.view endEditing:YES];
@@ -144,12 +144,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:1];
 			}
 		}];
-	RACChannelTerminal *eductionalLengthChannel = RACChannelTo(self.viewModel.formsViewModel.model, programLength);
+	RACChannelTerminal *eductionalLengthChannel = RACChannelTo(self.viewModel.forms, programLength);
 	RAC(self.programLength, text) = eductionalLengthChannel;
 	[self.programLength.rac_textSignal subscribe:eductionalLengthChannel];
 	
 	//参加工作日期
-	RAC(self.workingLength, text) = RACObserve(self.viewModel.formsViewModel.model, workStartDate);
+	RAC(self.workingLength, text) = RACObserve(self.viewModel.forms, workStartDate);
 	[[self.workingLengthButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.view endEditing:YES];
@@ -163,7 +163,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:80];
 			}
 		}];
-	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.formsViewModel.model, unitName);
+	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.forms, unitName);
 	RAC(self.company, text) = companyChannel;
 	[self.company.rac_textSignal subscribe:companyChannel];
 	
@@ -179,7 +179,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.address, text) = RACObserve(self.viewModel, address);
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
-	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.formsViewModel.model, empAdd);
+	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.forms, empAdd);
 	RAC(self.workTown, text) = workTownChannel;
 	[self.workTown.rac_textSignal subscribe:workTownChannel];
 	
@@ -198,7 +198,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:4];
 			}
 		}];
-	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.formsViewModel.model, unitAreaCode);
+	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.forms, unitAreaCode);
 	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
 	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
 	
@@ -208,7 +208,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:8];
 			}
 		}];
-	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.formsViewModel.model, unitTelephone);
+	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.forms, unitTelephone);
 	RAC(self.unitTelephone, text) = unitTelephoneChannel;
 	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
 	
@@ -218,7 +218,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:5];
 			}
 		}];
-	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.formsViewModel.model, unitExtensionTelephone);
+	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.forms, unitExtensionTelephone);
 	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
 	
@@ -229,7 +229,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:20];
 			}
 		}];
-	RACChannelTerminal *departmentChannel = RACChannelTo(self.viewModel.formsViewModel.model, department);
+	RACChannelTerminal *departmentChannel = RACChannelTo(self.viewModel.forms, department);
 	RAC(self.department, text) = departmentChannel;
 	[self.department.rac_textSignal subscribe:departmentChannel];
 	
@@ -238,7 +238,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	
 	//入职日期
-	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.formsViewModel.model, empStandFrom);
+	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.forms, empStandFrom);
 	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.view endEditing:YES];
@@ -252,7 +252,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:5];
 			}
 		}];
-	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.formsViewModel.model, income);
+	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.forms, income);
 	RAC(self.incomeTF, text) = incomeChannel;
 	[self.incomeTF.rac_textSignal subscribe:incomeChannel];
 	
@@ -263,7 +263,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:5];
 			}
 		}];
-	RACChannelTerminal *extraIncomeChannel = RACChannelTo(self.viewModel.formsViewModel.model, otherIncome);
+	RACChannelTerminal *extraIncomeChannel = RACChannelTo(self.viewModel.forms, otherIncome);
 	RAC(self.extraIncomeTF, text) = extraIncomeChannel;
 	[self.extraIncomeTF.rac_textSignal subscribe:extraIncomeChannel];
 	
@@ -274,7 +274,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 				textField.text = [textField.text substringToIndex:6];
 			}
 		}];
-	RACChannelTerminal *loanChannel = RACChannelTo(self.viewModel.formsViewModel.model, familyExpense);
+	RACChannelTerminal *loanChannel = RACChannelTo(self.viewModel.forms, familyExpense);
 	RAC(self.loanTF, text) = loanChannel;
 	[self.loanTF.rac_textSignal subscribe:loanChannel];
 	

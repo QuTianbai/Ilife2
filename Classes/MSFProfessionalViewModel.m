@@ -28,6 +28,7 @@
 
 @interface MSFProfessionalViewModel ( )
 
+@property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, assign) NSUInteger modelHash;
@@ -42,33 +43,31 @@
 	NSLog(@"MSFProfessionalViewModel `-dealloc`");
 }
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel {
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_services = formsViewModel.services;
-	_formsViewModel = formsViewModel;
+	_services = viewModel.services;
+	_formsViewModel = viewModel;
+	_forms = viewModel.model.copy;
 	
-	NSString *provinceCode = formsViewModel.model.workProvinceCode ?: @"";
-	NSString *cityCode = formsViewModel.model.workCityCode ?: @"";
-	NSString *areaCode = formsViewModel.model.workCountryCode ?: @"";
-	NSDictionary *addrDic = @{@"province" : provinceCode,
-														@"city" : cityCode,
-														@"area" : areaCode};
+	NSDictionary *addrDic = @{@"province" : _forms.workProvinceCode ?: @"",
+														@"city" : _forms.workCityCode ?: @"",
+														@"area" : _forms.workCountryCode ?: @""};
 	MSFAddress *addressModel = [MSFAddress modelWithDictionary:addrDic error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addressModel services:_services];
 	_address = _addressViewModel.address;
 	
 	[self initialize];
 	
-	_modelHash = formsViewModel.model.hash;
+	_modelHash = _forms.hash;
 	
 	return self;
 }
 
 - (BOOL)edited {
-	NSUInteger newHash = self.formsViewModel.model.hash;
+	NSUInteger newHash = _forms.hash;
 	return newHash != _modelHash;
 }
 
@@ -77,35 +76,35 @@
 - (void)commonInit {
 	NSArray *degress = [MSFSelectKeyValues getSelectKeys:@"edu_background"];
 	[degress enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.education]) {
+		if ([obj.code isEqualToString:_forms.education]) {
 			self.degrees = obj;
 			*stop = YES;
 		}
 	}];
 	NSArray *professions = [MSFSelectKeyValues getSelectKeys:@"social_status"];
 	[professions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.socialStatus]) {
+		if ([obj.code isEqualToString:_forms.socialStatus]) {
 			self.socialstatus = obj;
 			*stop = YES;
 		}
 	}];
 	NSArray *industries = [MSFSelectKeyValues getSelectKeys:@"industry_category"];
 	[industries enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.industry]) {
+		if ([obj.code isEqualToString:_forms.industry]) {
 			self.industry = obj;
 			*stop = YES;
 		}
 	}];
 	NSArray *positions = [MSFSelectKeyValues getSelectKeys:@"professional"];
 	[positions enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.professional]) {
+		if ([obj.code isEqualToString:_forms.professional]) {
 			self.professional = obj;
 			*stop = YES;
 		}
 	}];
 	NSArray *natures = [MSFSelectKeyValues getSelectKeys:@"unit_nature"];
 	[natures enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.formsViewModel.model.companyType]) {
+		if ([obj.code isEqualToString:_forms.companyType]) {
 			self.nature = obj;
 			*stop = YES;
 		}
@@ -117,27 +116,27 @@
 	BOOL reset = YES;
 	for (int i = 0; i < 3; i++) {
 		NSArray *arr = status[i];
-		if ([arr containsObject:self.formsViewModel.model.socialStatus] && [arr containsObject:newStatus]) {
+		if ([arr containsObject:_forms.socialStatus] && [arr containsObject:newStatus]) {
 			reset = NO;
 			break;
 		}
 	}
 	if (reset) {
-		self.formsViewModel.model.unitName = nil;
-		self.formsViewModel.model.empStandFrom = nil;
-		self.formsViewModel.model.programLength = nil;
-		self.formsViewModel.model.workStartDate = nil;
-		self.formsViewModel.model.department = nil;
-		self.formsViewModel.model.professional = nil;
-		self.formsViewModel.model.industry = nil;
-		self.formsViewModel.model.companyType = nil;
-		self.formsViewModel.model.workProvinceCode = nil;
-		self.formsViewModel.model.workCityCode = nil;
-		self.formsViewModel.model.workCountryCode = nil;
-		self.formsViewModel.model.empAdd = nil;
-		self.formsViewModel.model.unitAreaCode = nil;
-		self.formsViewModel.model.unitTelephone = nil;
-		self.formsViewModel.model.unitExtensionTelephone = nil;
+		_forms.unitName = nil;
+		_forms.empStandFrom = nil;
+		_forms.programLength = nil;
+		_forms.workStartDate = nil;
+		_forms.department = nil;
+		_forms.professional = nil;
+		_forms.industry = nil;
+		_forms.companyType = nil;
+		_forms.workProvinceCode = nil;
+		_forms.workCityCode = nil;
+		_forms.workCountryCode = nil;
+		_forms.empAdd = nil;
+		_forms.unitAreaCode = nil;
+		_forms.unitTelephone = nil;
+		_forms.unitExtensionTelephone = nil;
 		
 		self.industry = nil;
 		self.industryTitle = nil;
@@ -154,40 +153,40 @@
 	[self commonInit];
 	
 	RAC(self, address) = RACObserve(self, addressViewModel.address);
-	RAC(self, formsViewModel.model.workProvinceCode) = RACObserve(self, addressViewModel.provinceCode);
-	RAC(self, formsViewModel.model.workCityCode) = RACObserve(self, addressViewModel.cityCode);
-	RAC(self, formsViewModel.model.workCountryCode) = RACObserve(self, addressViewModel.areaCode);
+	RAC(self, forms.workProvinceCode) = RACObserve(self, addressViewModel.provinceCode);
+	RAC(self, forms.workCityCode) = RACObserve(self, addressViewModel.cityCode);
+	RAC(self, forms.workCountryCode) = RACObserve(self, addressViewModel.areaCode);
 	_executeAddressCommand = self.addressViewModel.selectCommand;
 	
 	@weakify(self)
 	[RACObserve(self, degrees) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
-		self.formsViewModel.model.education = object.code;
+		self.forms.education = object.code;
 		self.degreesTitle = object.text;
 	}];
 	
 	[RACObserve(self, socialstatus) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
 		[self resetProperties:object.code];
-		self.formsViewModel.model.socialStatus = object.code;
+		self.forms.socialStatus = object.code;
 		self.socialstatusTitle = object.text;
 	}];
 	
 	[RACObserve(self, industry) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
-		self.formsViewModel.model.industry = object.code;
+		self.forms.industry = object.code;
 		self.industryTitle = object.text;
 	}];
 	
 	[RACObserve(self, nature) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
-		self.formsViewModel.model.companyType = object.code;
+		self.forms.companyType = object.code;
 		self.natureTitle = object.text;
 	}];
 	
 	[RACObserve(self, professional) subscribeNext:^(MSFSelectKeyValues *object) {
 		@strongify(self)
-		self.formsViewModel.model.professional = object.code;
+		self.forms.professional = object.code;
 		self.professionalTitle = object.text;
 	}];
 	
@@ -255,7 +254,7 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.degrees = x;
-			self.formsViewModel.model.education = x.code;
+			self.forms.education = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;
@@ -272,7 +271,7 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.socialstatus = x;
-			self.formsViewModel.model.socialStatus = x.code;
+			self.forms.socialStatus = x.code;
 			if ([x.code isEqualToString:@"SI01"] && ([self.degrees.code isEqualToString:@"LE09"] || [self.degrees.code isEqualToString:@"LE10"] || [self.degrees.code isEqualToString:@"LE11"])) {
 				self.degrees = nil;
 				self.degreesTitle = nil;
@@ -293,7 +292,7 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.industry = x;
-			self.formsViewModel.model.industry = x.code;
+			self.forms.industry = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;
@@ -310,7 +309,7 @@
 			[subscriber sendNext:nil];
 			[subscriber sendCompleted];
 			self.nature = x;
-			self.formsViewModel.model.companyType = x.code;
+			self.forms.companyType = x.code;
 			[self.services popViewModel];
 		}];
 		return nil;
@@ -334,7 +333,7 @@
 }
 
 - (RACSignal *)commitSignal {
-	MSFApplicationForms *forms = self.formsViewModel.model;
+	MSFApplicationForms *forms = self.forms;
 	if (forms.education.length == 0) {
 		return [self errorSignal:@"请选择教育程度"];
 	}
@@ -412,6 +411,7 @@
 		}
 	}
 	
+	[self.formsViewModel.model mergeValuesForKeysFromModel:_forms];
 	return [self.formsViewModel submitUserInfoType:2];
 }
 
@@ -458,12 +458,12 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.workStartDate = [NSDateFormatter professional_stringFromDate:selectedDate];
+			 self.forms.workStartDate = [NSDateFormatter professional_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.formsViewModel.model.empStandFrom = nil;
+			 self.forms.empStandFrom = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -491,12 +491,12 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-			 self.formsViewModel.model.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
+			 self.forms.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.formsViewModel.model.empStandFrom = nil;
+			 self.forms.empStandFrom = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
@@ -524,12 +524,12 @@
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.formsViewModel.model.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
+				self.forms.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.formsViewModel.model.empStandFrom = nil;
+			 self.forms.empStandFrom = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }

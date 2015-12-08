@@ -5,17 +5,16 @@
 //
 
 #import "RVMViewModel.h"
-#import "MSFViewModelServices.h"
 #import "MSFReactiveView.h"
 
 @class RACCommand;
 @class MSFSelectKeyValues;
-@class MSFFormsViewModel;
 @class MSFApplicationForms;
-@class MSFAddressViewModel;
 
 @interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
+@property (nonatomic, strong, readonly) MSFApplicationForms *forms;
+@property (nonatomic, strong) NSString *address;// 详细地址
 @property (nonatomic, assign, readonly) BOOL edited;
 
 @property (nonatomic, strong) MSFSelectKeyValues *degrees;// 教育程度
@@ -40,9 +39,6 @@
 @property (nonatomic, readonly) RACCommand *executePositionCommand;// 选择部门信息
 
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand; //选择地址信息
-@property (nonatomic, strong) NSString *address;// 详细地址
-
-@property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 @end

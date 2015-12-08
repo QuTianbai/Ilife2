@@ -21,7 +21,7 @@
 @interface MSFRelationshipViewModel ()
 
 @property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
-@property (nonatomic, assign)	NSUInteger formsHash;
+@property (nonatomic, assign) NSUInteger formsHash;
 
 @end
 
