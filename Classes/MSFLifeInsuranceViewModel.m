@@ -9,12 +9,12 @@
 #import "MSFLifeInsuranceViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+MSFLifeInsurance.h"
+#import "MSFLoanType.h"
 
 @interface MSFLifeInsuranceViewModel ()
 
 @property (nonatomic, weak) id<MSFViewModelServices> services;
-
-@property (nonatomic, copy) NSString *productID;
+@property (nonatomic, strong) MSFLoanType *loanType;
 
 @end
 
@@ -26,13 +26,24 @@
 		return nil;
 	}
 	_services = services;
-	_productID = productID;
+	_loanType = [[MSFLoanType alloc] initWithTypeID:productID];
+	
+	return self;
+}
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services loanType:(MSFLoanType *)loanType {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_services = services;
+	_loanType = loanType;
 	
 	return self;
 }
 
 - (RACSignal *)lifeInsuranceHTMLSignal {
-	return [[self.services.httpClient fetchLifeInsuranceAgreementWithProductType:self.productID]
+	return [[self.services.httpClient fetchLifeInsuranceAgreementWithLoanType:self.loanType]
 		flattenMap:^RACStream *(id value) {
 			return [[NSURLConnection rac_sendAsynchronousRequest:value]
 				reduceEach:^id(NSURLResponse *responce, NSData *data){
