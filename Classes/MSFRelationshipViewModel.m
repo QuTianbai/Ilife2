@@ -36,18 +36,18 @@
 	}];
 
 	@weakify(self)
-  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self)
-    return [self commitSignal];
-  }];
-	
 	_executeMarriageCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(UITableView *input) {
 		@strongify(self);
 		return [self marryValuesSignal];
 	}];
 	_executeMarriageCommand.allowsConcurrentExecution = YES;
-
-	
+//	_executeContactBookCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+//		
+//	}];
+	_executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self commitSignal];
+	}];
 	return self;
 }
 
@@ -72,6 +72,11 @@
 		return [RACSignal error:[NSError errorWithDomain:@"MSFRelationShipViewModel" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: error}]];
 	}
 	return [self.formsViewModel submitUserInfoType:3];
+}
+
+- (RACSignal *)contactBookSignal {
+	
+	return nil;
 }
 
 - (NSString *)checkForm {
