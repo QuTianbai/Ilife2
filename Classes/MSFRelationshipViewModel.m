@@ -9,7 +9,8 @@
 #import "MSFRelationshipViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <UIKit/UIKit.h>
-
+#import "MSFAddress.h"
+#import "MSFAddressViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
 #import "MSFClient+MSFApplyCash.h"
@@ -26,6 +27,17 @@
 	}
 	_formsViewModel = viewModel;
 	_services = viewModel.services;
+	MSFApplicationForms *forms = viewModel.model;
+	if (forms.abodeDetail.length > 0) {
+		NSDictionary *addr = @{@"province" : forms.currentProvinceCode ?: @"",
+													 @"city" : forms.currentCityCode ?: @"",
+													 @"area" : forms.currentCountryCode ?: @""};
+		MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
+		MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
+		_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
+	} else {
+		_fullAddress = nil;
+	}
 	
 	NSArray *marriageStatus = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
 	[marriageStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {

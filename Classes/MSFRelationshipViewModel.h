@@ -17,6 +17,7 @@
 
 @property (nonatomic, readonly) MSFFormsViewModel *formsViewModel;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readonly) NSString *fullAddress;
 
 @property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeContactBookCommand;
