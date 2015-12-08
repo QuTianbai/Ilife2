@@ -15,7 +15,7 @@
 		@"name": @"area_name",
 		@"codeID": @"area_code",
 		@"parentCodeID": @"parent_area_code"
-		};
+	};
 }
 
 + (NSDictionary *)FMDBColumnsByPropertyKey {
@@ -23,11 +23,13 @@
 		@"name": @"area_name",
 		@"codeID": @"area_code",
 		@"parentCodeID": @"parent_area_code"
-		};
+	};
 }
 
 + (NSArray *)FMDBPrimaryKeys {
-	return @[@"area_code"];
+	return @[
+		@"area_code"
+	];
 }
 
 + (NSString *)FMDBTableName {

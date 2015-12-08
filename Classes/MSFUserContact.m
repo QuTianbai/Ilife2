@@ -23,7 +23,14 @@
 		@weakify(self)
 		[RACObserve(self, contactRelation) subscribeNext:^(id x) {
 			@strongify(self)
-			self.isFamily = [@[@"RF01", @"RF02", @"RF03", @"RF06", @"RF04", @"RF05"] containsObject:x];
+			self.isFamily = [@[
+				@"RF01",
+				@"RF02",
+				@"RF03",
+				@"RF06",
+				@"RF04",
+				@"RF05"
+			] containsObject:x];
 		}];
 	}
 	return self;

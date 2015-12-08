@@ -196,7 +196,6 @@
 		07E3ED791BBBF6C00010AAD2 /* blackpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED761BBBF6C00010AAD2 /* blackpoint.png */; };
 		07E3ED7A1BBBF6C00010AAD2 /* blackpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED771BBBF6C00010AAD2 /* blackpoint@2x.png */; };
 		07E3ED7B1BBBF6C00010AAD2 /* blackpoint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */; };
-		07E3ED7D1BBC12F90010AAD2 /* bankCardList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */; };
 		07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */; };
 		07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F61BBCFA360067C5BC /* MSFCirculateCashModel.m */; };
 		07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F91BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m */; };
@@ -1033,7 +1032,6 @@
 		07E3ED761BBBF6C00010AAD2 /* blackpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackpoint.png; sourceTree = "<group>"; };
 		07E3ED771BBBF6C00010AAD2 /* blackpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackpoint@2x.png"; sourceTree = "<group>"; };
 		07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackpoint@3x.png"; sourceTree = "<group>"; };
-		07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bankCardList.json; sourceTree = "<group>"; };
 		07E3ED8E1BBCD5200010AAD2 /* MSFGrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGrayButton.h; sourceTree = "<group>"; };
 		07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGrayButton.m; sourceTree = "<group>"; };
 		07F088F51BBCFA360067C5BC /* MSFCirculateCashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashModel.h; sourceTree = "<group>"; };
@@ -2005,7 +2003,6 @@
 				074AC21B1BBA791F0056BA22 /* MSFAddBankCardTableViewController.h */,
 				074AC21C1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m */,
 				074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */,
-				07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */,
 			);
 			name = BankCard;
 			sourceTree = "<group>";
@@ -4225,7 +4222,6 @@
 				07B6DA7D1BC6506E0025A849 /* bankdefult.png in Resources */,
 				4944C0141B68A44A00805C0A /* icon-cloze-normal.png in Resources */,
 				072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */,
-				07E3ED7D1BBC12F90010AAD2 /* bankCardList.json in Resources */,
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
 				10E5466A1C0011DD00BBA827 /* ad_msd.png in Resources */,
 				4944C04F1B68A5DA00805C0A /* nav-setting@3x.png in Resources */,

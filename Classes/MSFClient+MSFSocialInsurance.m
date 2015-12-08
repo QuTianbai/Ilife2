@@ -16,32 +16,34 @@
 
 - (RACSignal *)fetchSaveSocialInsuranceInfoWithModel:(MSFSocialInsuranceModel *)model {
 	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:model.dictionaryValue];
-	
 	[dict removeObjectForKey:@"server"];
 	[dict removeObjectForKey:@"objectID"];
+	
 	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"append/uploadAppendInfo" parameters:@{
-																																																 @"custSocialSecurity": jsonStr
-																																																 }];
+		@"custSocialSecurity": jsonStr
+	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFApplicationResponse.class] msf_parsedResults];
 }
 
 - (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status JoininLifeInsurance:(NSString *)jioninLifeInsurance {
-	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[dict mtl_dictionaryByAddingEntriesFromDictionary:@{@"appNo": @""}] options:NSJSONWritingPrettyPrinted error:nil];
+	NSData *jsonData = [NSJSONSerialization dataWithJSONObject:[dict mtl_dictionaryByAddingEntriesFromDictionary:@{
+		@"appNo": @""
+	}] options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonStr = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
 	
 	NSData *arrayData = [NSJSONSerialization dataWithJSONObject:AccessoryInfoVO options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *accesory = [[NSString alloc] initWithData:arrayData encoding:NSUTF8StringEncoding];
 	
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"append/apply" parameters:@{
-									@"applyVO": jsonStr,
-									@"accessoryInfoVO": accesory,
-									@"jionLifeInsurance":jioninLifeInsurance,
-									@"applyStatus": status
-									}];
+		@"applyVO": jsonStr,
+		@"accessoryInfoVO": accesory,
+		@"jionLifeInsurance":jioninLifeInsurance,
+		@"applyStatus": status
+	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFSubmitApplyModel.class] msf_parsedResults];
 }
@@ -52,7 +54,9 @@
 }
 
 - (RACSignal *)confirmInsuranceSignal {
-	return [RACSignal return:[[MSFSubmitApplyModel alloc] initWithDictionary:@{@"appNo": @""} error:nil]];
+	return [RACSignal return:[[MSFSubmitApplyModel alloc] initWithDictionary:@{
+		@"appNo": @""
+	} error:nil]];
 }
 
 @end

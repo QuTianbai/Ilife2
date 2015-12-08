@@ -10,8 +10,7 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 
-@interface MSFSegment()
-{
+@interface MSFSegment() {
   NSMutableArray *labelArray;
 }
 

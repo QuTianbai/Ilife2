@@ -12,13 +12,13 @@
 @implementation MSFRepaymentSchedules
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-		return @{
-						 @"contractNum": @"contractNo",
-						 @"repaymentTime":@"latestDueDate",
-						 @"repaymentTotalAmount":@"latestDueMoney",
-						 @"cashDueMoney":@"dueMoney",
-						 @"cashDueDate":@"dueDate"
-						 };
+	return @{
+		@"contractNum": @"contractNo",
+		@"repaymentTime": @"latestDueDate",
+		@"repaymentTotalAmount": @"latestDueMoney",
+		@"cashDueMoney": @"dueMoney",
+		@"cashDueDate": @"dueDate"
+	};
 }
 
 + (NSValueTransformer *)contractStatusJSONTransformer {
