@@ -144,6 +144,10 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (void)back {
+	if (self.optional) {
+		[self.navigationController popViewControllerAnimated:YES];
+		return;
+	}
 	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您确定取消申请？" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:@"确定", nil];
 	@weakify(self)
 	[alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
