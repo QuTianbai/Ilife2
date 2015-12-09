@@ -18,8 +18,6 @@
 #import "MSFRelationshipViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
-#import "MSFAddress.h"
-#import "MSFAddressViewModel.h"
 
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
@@ -39,10 +37,7 @@ ABPersonViewControllerDelegate>
 
 @property (nonatomic, strong) MSFRelationshipViewModel *viewModel;
 @property (nonatomic, strong) NSMutableArray *tempContactList;
-@property (nonatomic, assign) NSInteger statusHash;
-@property (nonatomic, strong) NSString *fullAddress;
-@property (nonatomic, assign) BOOL existAddr;
-
+@property (nonatomic, assign) NSUInteger contactHash;
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 
 @end
@@ -51,24 +46,10 @@ ABPersonViewControllerDelegate>
 
 #pragma mark - MSFReactiveView
 
-- (void)setUpFullAddress:(MSFApplicationForms *)forms {
-	self.existAddr = forms.abodeDetail.length > 0;
-	if (self.existAddr) {
-		MSFAddress *addrModel =
-		[MSFAddress modelWithDictionary:@{@"province" : forms.currentProvinceCode ?: @"", @"city" : forms.currentCityCode ?: @"", @"area" : forms.currentCountryCode ?: @""} error:nil];
-		MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:self.viewModel.services];
-		_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, forms.abodeDetail];
-	} else {
-		_fullAddress = nil;
-	}
-}
-
-- (void)bindViewModel:(id)viewModel {
+- (void)bindViewModel:(MSFRelationshipViewModel *)viewModel {
 	
-	self.viewModel = viewModel;
-	MSFApplicationForms *forms = self.viewModel.formsViewModel.model;
-	self.statusHash = forms.hash;
-	[self setUpFullAddress:forms];
+	_viewModel = viewModel;
+	MSFApplicationForms *forms = self.viewModel.forms;
 	_tempContactList = [NSMutableArray array];
 	
 	//遍历获取的联系人列表，将第一个家庭联系人添加到第一位置
@@ -84,7 +65,7 @@ ABPersonViewControllerDelegate>
 	//遍历无家庭联系人时，添加一个空联系人到第一位置
 	if (_tempContactList.count == 0) {
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
-		contact.contactAddress = _fullAddress;
+		contact.contactAddress = viewModel.fullAddress;
 		[_tempContactList addObject:contact];
 	}
 	//遍历获取的联系人列表，将第一个普通联系人添加到第二位置
@@ -106,7 +87,7 @@ ABPersonViewControllerDelegate>
 	//遍历新的联系人数组，初始化开关及地址信息
 	for (MSFUserContact *contact in _tempContactList) {
 		if (contact.contactAddress.length > 0) {
-			if ([contact.contactAddress isEqualToString:_fullAddress]) {
+			if ([contact.contactAddress isEqualToString:viewModel.fullAddress]) {
 				contact.openDetailAddress = NO;
 			} else {
 				contact.openDetailAddress = YES;
@@ -115,6 +96,8 @@ ABPersonViewControllerDelegate>
 			contact.openDetailAddress = YES;
 		}
 	}
+	
+	_contactHash = [self calculateHash:_tempContactList];
 }
 
 #pragma mark - Lifecycle
@@ -135,7 +118,7 @@ ABPersonViewControllerDelegate>
 	@weakify(self)
 	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		self.viewModel.formsViewModel.model.contrastList = [NSArray arrayWithArray:_tempContactList];
+		self.viewModel.forms.contrastList = [NSArray arrayWithArray:_tempContactList];
 		[self.viewModel.executeCommitCommand execute:nil];
 	}];
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;
@@ -155,18 +138,36 @@ ABPersonViewControllerDelegate>
 #pragma mark - Private Method
 
 - (void)back {
-	if (_statusHash == self.viewModel.formsViewModel.model.hash) {
+	BOOL same = _contactHash == [self calculateHash:_tempContactList];
+	if (!self.viewModel.edited && same) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
 	}
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃联系人信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
 		if ([x integerValue] == 1) {
-			self.viewModel.formsViewModel.model.contrastList = [NSArray arrayWithArray:_tempContactList];
 			[self.navigationController popViewControllerAnimated:YES];
 		}
 	}];
 	[alert show];
+}
+
+- (NSUInteger)calculateHash:(id)obj {
+	NSUInteger value = 0;
+	if ([obj isKindOfClass:NSDictionary.class]) {
+		NSDictionary *dic = obj;
+		for (id item in dic.allValues) {
+			value ^= [self calculateHash:item];
+		}
+	} else if ([obj isKindOfClass:NSArray.class]) {
+		NSArray *arr = obj;
+		for (id item in arr) {
+			value ^= [self calculateHash:item];
+		}
+	} else {
+		value ^= [obj hash];
+	}
+	return value;
 }
 
 #pragma mark - UITableViewDataSource
@@ -185,7 +186,7 @@ ABPersonViewControllerDelegate>
 	} else if (section == _tempContactList.count + 1) {
 		return 1;
 	} else {
-		if (!self.existAddr) {
+		if (self.viewModel.fullAddress.length == 0) {
 			return 5;
 		} else {
 			MSFUserContact *contact = _tempContactList[section - 1];
@@ -213,7 +214,7 @@ ABPersonViewControllerDelegate>
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 0) {
 		MSFRelationMarriageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationMarriageCell"];
-		cell.marriage = self.viewModel.formsViewModel.model.marriageTitle;
+		cell.marriage = self.viewModel.forms.marriageTitle;
 		return cell;
 	}
 	if (indexPath.section == _tempContactList.count + 1) {
@@ -247,7 +248,7 @@ ABPersonViewControllerDelegate>
 		}
 		case 1: {
 			MSFRelationSelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSelectionCell"];
-			if ([self.viewModel.formsViewModel.model.maritalStatus isEqualToString:@"20"] && indexPath.section == 1) {
+			if ([self.viewModel.forms.maritalStatus isEqualToString:@"20"] && indexPath.section == 1) {
 				cell.tfInput.text = @"配偶";
 				contact.contactRelation = @"RF01";
 			} else {
@@ -277,7 +278,7 @@ ABPersonViewControllerDelegate>
 						contact.contactRelation = x.code;
 						if (contact.isFamily) {
 							contact.openDetailAddress = NO;
-							contact.contactAddress = _fullAddress;
+							contact.contactAddress = self.viewModel.fullAddress;
 						} else {
 							contact.openDetailAddress = YES;
 							contact.contactAddress = nil;
@@ -322,7 +323,7 @@ ABPersonViewControllerDelegate>
 			return cell;
 		}
 		case 4: {
-			if (self.existAddr) {
+			if (self.viewModel.fullAddress.length > 0) {
 				MSFRelationSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFRelationSwitchCell"];
 				@weakify(self)
 				cell.switchButton.on = !contact.openDetailAddress;
@@ -330,7 +331,7 @@ ABPersonViewControllerDelegate>
 					@strongify(self)
 					if (x.boolValue) {
 						contact.openDetailAddress = NO;
-						contact.contactAddress = self.fullAddress;
+						contact.contactAddress = self.viewModel.fullAddress;
 					} else {
 						contact.openDetailAddress = YES;
 						contact.contactAddress = nil;
@@ -381,7 +382,7 @@ ABPersonViewControllerDelegate>
 		 }];
 	} else if (indexPath.section == _tempContactList.count + 1) {
 		MSFUserContact *contact = [[MSFUserContact alloc] init];
-		contact.contactAddress = _fullAddress;
+		contact.contactAddress = self.viewModel.fullAddress;
 		contact.openDetailAddress = NO;
 		[_tempContactList addObject:contact];
 		[UIView animateWithDuration:.3 animations:^{
