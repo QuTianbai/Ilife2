@@ -13,8 +13,8 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-					 @"statusString" : @"status"
-					 };
+		@"statusString": @"status"
+	};
 }
 
 + (NSValueTransformer *)loanTermJSONTransformer {

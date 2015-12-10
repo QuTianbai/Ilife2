@@ -21,23 +21,11 @@
 	return self;
 }
 
-//-(id)initWithFrame:(CGRect)frame
-//{
-//	if (self=[super initWithFrame:frame]) {
-//		//self.frame=frame;
-//		self.backgroundColor=[MSFCommandView getColorWithString:BOTTOMCOLOR];
-//	}
-//	
-//	return self;
-//}
 - (void)createHeaderViewWithPageNum:(NSInteger)pageNum {
 	NSArray *titleArray = @[@"收入信息", @"个人信息", @"家庭信息", @"提交申请"];
 	for (int i = 0;i<titleArray.count;i++) {
 		NSString *title = titleArray[i];
 		UILabel *label = [MSFCommandView createLabelWithTitle:title backgroundColor:[UIColor clearColor] titleColor:[MSFCommandView getColorWithString:POINTCOLOR] frame:CGRectMake(SCREENWIDTH / 4 * i, 10, SCREENWIDTH / 4, 30) tag:1000 + i];
-		
-		
-		
 		UILabel *circleLabel = [MSFCommandView createLabelWithTitle:@"" backgroundColor:[UIColor clearColor] titleColor:nil frame:CGRectMake(SCREENWIDTH / 4 * i + (SCREENWIDTH / 8) - 10, 40, 12, 12) tag:2000 + i];
 		
 		circleLabel.layer.cornerRadius = 6;

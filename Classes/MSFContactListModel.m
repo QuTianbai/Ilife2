@@ -11,7 +11,9 @@
 @implementation MSFContactListModel
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-	return @{@"contactID":@"id"};
+	return @{
+		@"contactID": @"id"
+	};
 }
 
 + (NSValueTransformer *)contactIDJSONTransformer {

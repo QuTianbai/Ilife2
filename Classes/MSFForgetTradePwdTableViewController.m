@@ -53,16 +53,13 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	if (!self) {
 		return nil;
 	}
-//	_viewModel = viewModel;
-//	_authviewModel = authViewModel;
 	
 	return self;
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	self.title = @"忘记交易密码";
-	//_viewModel = viewModel;
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_authviewModel = appdelegate.authorizeVewModel;
 	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithServices:self.authviewModel.services andIsFirstBankCard:NO];
@@ -96,7 +93,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
     
 	RAC(self.bankAddressTF, text) = RACObserve(self.viewModel, bankAddress);
-	//	 self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.bankWarningLB.numberOfLines = 0;
 	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
 	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
@@ -211,10 +207,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 			[SVProgressHUD showSuccessWithStatus:@"重置交易密码成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
-//		[authSignal subscribeCompleted:^{
-//			[SVProgressHUD showSuccessWithStatus:@"重置交易密码成功"];
-//			[self.navigationController popViewControllerAnimated:YES];
-//		}];
 	}];
 	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -225,7 +217,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		@strongify(self)
 		self.viewModel.bankNO = textField.text;
 	};
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -246,11 +237,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	if (indexPath.row == 0) {
 		[_viewModel.executeSelected execute:nil];
 	}
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

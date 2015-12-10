@@ -137,18 +137,18 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchaTradePwdSignal]
-						doNext:^(id x) {
-							@strongify(self)
-							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
-							__block int repetCount = kCounterLength;
-							[repetitiveEventSignal subscribeNext:^(id x) {
-								self.counter = [@(--repetCount) stringValue];
-							} completed:^{
-								self.counter = @"获取验证码";
-								self.counting = NO;
-							}];
-						}];
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				} completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
 	}];
 
 	_executeCaprchForgetTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
@@ -157,18 +157,19 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchForgetTradePwd]
-						doNext:^(id x) {
-							@strongify(self)
-							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
-							__block int repetCount = kCounterLength;
-							[repetitiveEventSignal subscribeNext:^(id x) {
-								self.counter = [@(--repetCount) stringValue];
-							} completed:^{
-								self.counter = @"获取验证码";
-								self.counting = NO;
-							}];
-						}];
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				}
+				completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
 	}];
 
 	_executeCaptchUpdateTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
@@ -177,18 +178,18 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchaUpdateTradePwdSignal]
-						doNext:^(id x) {
-							@strongify(self)
-							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
-							__block int repetCount = kCounterLength;
-							[repetitiveEventSignal subscribeNext:^(id x) {
-								self.counter = [@(--repetCount) stringValue];
-							} completed:^{
-								self.counter = @"获取验证码";
-								self.counting = NO;
-							}];
-						}];
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				} completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
 	}];
 
 	
@@ -493,7 +494,9 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 + (NSError *)errorWithFailureReason:(NSString *)string {
-	return [NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:string}];
+	return [NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
+		NSLocalizedFailureReasonErrorKey: string
+	}];
 }
 
 - (RACSignal *)executeSetTradepwdexecute {
@@ -502,37 +505,37 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		if (self.TradePassword.length == 0) {
 			NSString *str = @"请填写交易密码";
 			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																									NSLocalizedFailureReasonErrorKey: str,
-																																									}];
+				NSLocalizedFailureReasonErrorKey: str,
+			}];
 			return [RACSignal error:error];
 		}
 	if (self.smsCode.length == 0) {
 		NSString *str = @"请填写验证码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if (self.againTradePWD.length == 0) {
 		NSString *str = @"请填写确认交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
 		NSString *str = @"交易密码和确认交易密码不一致";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 
@@ -546,42 +549,41 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	if (self.oldTradePWD.length == 0) {
 		NSString *str = @"请填写旧交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.TradePassword.length == 0) {
 		NSString *str = @"请填写新交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.againTradePWD.length == 0) {
 		NSString *str = @"请填写确认新交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
 		NSString *str = @"新交易密码和确认新交易密码不一致";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 		
 	}
-
 	
 	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD.sha256 AndNewPwd:self.TradePassword.sha256 AndCaptch:self.smsCode];
 }

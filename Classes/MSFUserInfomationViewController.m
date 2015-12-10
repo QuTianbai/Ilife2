@@ -57,7 +57,9 @@
 }
 
 - (void)dealloc {
+#if DEBUG
 	NSLog(@"MSFUserInfomationViewController `-dealloc`");
+#endif
 }
 
 - (void)viewDidLoad {

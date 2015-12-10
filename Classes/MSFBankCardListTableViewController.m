@@ -30,11 +30,8 @@
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) NSArray *dataArray;
-
 @property (nonatomic, strong) MSFBankCardListViewModel *viewModel;
-
 @property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
-
 @property (nonatomic, copy) NSString *tradePwd;
 
 @end

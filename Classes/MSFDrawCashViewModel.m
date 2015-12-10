@@ -36,30 +36,21 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	_bankIcon = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
 	_bankName = model.bankName;
 	
-	
-	
-	
-	//_money = [NSString stringWithFormat:@"剩余可用额度%@元", viewModel.usableLimit];
-	//self.drawCash = viewModel.usableLimit;
-	
 	if (type == 1) {
-		RAC(self, money) = [RACSignal combineLatest:
-												@[
-													RACObserve(self, circulateViewModel.latestDueMoney),
-													RACObserve(self, circulateViewModel.totalOverdueMoney)]
-												reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
-													if (lastDueMoney == nil) {
-														lastDueMoney = @"0";
-													}
-													if (totaloverdueMoney == nil) {
-														totaloverdueMoney = @"0";
-													}
-													return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
-												}];
+		RAC(self, money) = [RACSignal combineLatest:@[
+				RACObserve(self, circulateViewModel.latestDueMoney),
+				RACObserve(self, circulateViewModel.totalOverdueMoney)]
+			reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
+				if (lastDueMoney == nil) {
+					lastDueMoney = @"0";
+				}
+				if (totaloverdueMoney == nil) {
+					totaloverdueMoney = @"0";
+				}
+				return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
+			}];
 		
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
-		//_money = [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];
-		//self.drawCash = viewModel.latestDueMoney;
 	} else {
 		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
 			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
@@ -67,15 +58,9 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
 	}
 	
-	RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
-	//_enablemoney = viewModel.usableLimit.intValue;
-	//RAC(self, bankCardNO) = RACObserve(self, <#KEYPATH#>)
 	_bankCardNO = [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4];
-	
+	RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
 	RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
-	//_contractNO = viewModel.contractNo;
-	
-	
 	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeDrawCash];
