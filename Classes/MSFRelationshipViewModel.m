@@ -41,9 +41,6 @@
 		return [self marryValuesSignal];
 	}];
 	_executeMarriageCommand.allowsConcurrentExecution = YES;
-//	_executeContactBookCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//		
-//	}];
 	_executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self commitSignal];
