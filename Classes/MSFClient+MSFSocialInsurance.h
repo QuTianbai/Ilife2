@@ -27,7 +27,7 @@
 // JoininLifeInsurance - 是否加入寿险计划
 //
 // Returns a signal which will send a MSFSubmitApplyModel
-- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status JoininLifeInsurance:(NSString *)jioninLifeInsurance;
+- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status;
 
 // 下载社保资料信息
 //

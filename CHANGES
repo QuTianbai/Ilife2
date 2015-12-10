@@ -1,3 +1,14 @@
+Version 2.1.0.11:
+ - Merge branch 'zl/finance-master'
+ - Merge remote-tracking branch 'ios/master'
+ - Fix 更多资料界面返回结束贷款流程
+
+Version 2.1.0.10:
+ - Merge branch 'next'
+ - Merge branch 'Water/finance-master' into next
+ - Merge branch 'next' of http://git.msxf.local/ios/Finance
+ - fix #657请修改社保贷是否购买寿险的传入方式，目前传入均是null，导致目前的申请单都是没有购买寿险的
+
 Version 2.1.0.9:
  - Merge branch 'next'
  - Merge branch 'zl/master' into 'next'
