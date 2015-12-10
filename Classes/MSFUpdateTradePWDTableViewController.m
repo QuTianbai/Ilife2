@@ -142,7 +142,6 @@
 }
 
 - (void)back {
-	
 	if (self.statusHash == 0) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
@@ -155,7 +154,6 @@
 		}
 	}];
 	[alertView show];
-	
 }
 
 @end

@@ -73,7 +73,6 @@
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];
-	//self.submitButton.rac_command = self.viewModel.executeRequest;
 	@weakify(self)
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
@@ -82,20 +81,6 @@
 		MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[self.navigationController pushViewController:viewController animated:YES];
 	}];
-//	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
-//		@strongify(self)
-//		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-//		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
-//			[SVProgressHUD dismiss];
-//			self.viewModel.applicationViewModel.applicationNo = applyCash.appNo;
-//			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
-//			MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-//			[self.navigationController pushViewController:viewController animated:YES];
-//		}];
-//	}];
-//	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
-//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//	}];
 	self.LoanAgreenmentWV.scrollView.delegate = self;
 	self.submitButton.enabled = NO;
 }

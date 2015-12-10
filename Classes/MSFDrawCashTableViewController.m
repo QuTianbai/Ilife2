@@ -54,8 +54,6 @@
 	RAC(self.bankNo, text) = RACObserve(self, viewModel.bankCardNO);
 	RAC(self.moneyLB, text) = RACObserve(self, viewModel.money);
 	
-	//RAC(self.inputMoneyTF, text) = RACObserve(self.viewModel, drawCash);
-	
 	RACChannelTerminal *drawCashChannel = RACChannelTo(self.viewModel, drawCash);
 	RAC(self.inputMoneyTF, text) = drawCashChannel;
 	[self.inputMoneyTF.rac_textSignal subscribe:drawCashChannel];
@@ -103,15 +101,10 @@
 	self.viewModel.tradePWd = pwd;
 	[[self.viewModel.executeSubmitCommand execute:nil]
 	 subscribeNext:^(MSFResponse *response) {
-		 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
-		 //		 NSDictionary *result = response.parsedResult;
-		 
-		 
 		 NSDictionary *result = response.parsedResult;
 		 NSString *str = result[@"message"];
 		 if (self.viewModel.type == 1) {
 			 str = @"恭喜你，还款已成功";
-			 //NSDictionary *result = response.parsedResult;
 			 MSFCirculateCashModel *mocel = [MTLJSONAdapter modelOfClass:[MSFCirculateCashModel class] fromJSONDictionary:response.parsedResult error:nil];
 			 self.viewModel.circulateViewModel.infoModel = mocel;
 		 }

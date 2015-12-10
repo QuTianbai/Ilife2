@@ -93,7 +93,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
     
 	RAC(self.bankAddressTF, text) = RACObserve(self.viewModel, bankAddress);
-	//	 self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.bankWarningLB.numberOfLines = 0;
 	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
 	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
