@@ -302,7 +302,6 @@
 		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */; };
 		491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */; };
-		491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */; };
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
 		491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */; };
@@ -389,7 +388,6 @@
 		4948E8B81B9578050048D125 /* MSFInventoryViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8B71B9578050048D125 /* MSFInventoryViewModelSpec.m */; };
 		4948E8BD1B959A410048D125 /* MSFAttachmentViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8BC1B959A410048D125 /* MSFAttachmentViewModelSpec.m */; };
 		4948E8C01B959A5E0048D125 /* MSFAttachmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8BF1B959A5E0048D125 /* MSFAttachmentViewModel.m */; };
-		494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 494ED8671B2D2798000AD8EA /* MSFWPTextField.m */; };
 		494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBE0D1B16B1BC005F0454 /* MSFCipher.m */; };
 		495021071B13103400605666 /* MSFUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495021061B13103400605666 /* MSFUserViewModel.m */; };
 		4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */; };
@@ -605,7 +603,6 @@
 		49FCBF891C0E92890035398E /* allow.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF881C0E92890035398E /* allow.json */; };
 		49FCBF991C0E92D90035398E /* repay.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF971C0E92D90035398E /* repay.json */; };
 		49FCBF9A1C0E92D90035398E /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF981C0E92D90035398E /* submit.json */; };
-		4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */; };
 		4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */; };
 		4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
@@ -1198,8 +1195,6 @@
 		491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		491B3E321B662D3000D28455 /* MSFLoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginPageViewController.h; sourceTree = "<group>"; };
 		491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginPageViewController.m; sourceTree = "<group>"; };
-		491C5FAD1B0F0F5E00CADF8E /* MSFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTextField.h; sourceTree = "<group>"; };
-		491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTextField.m; sourceTree = "<group>"; };
 		491C5FB11B0F17A900CADF8E /* MSFEdgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEdgeButton.h; sourceTree = "<group>"; };
 		491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEdgeButton.m; sourceTree = "<group>"; };
 		491C5FB41B0F1EC200CADF8E /* MSFCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCodeButton.h; sourceTree = "<group>"; };
@@ -1324,8 +1319,6 @@
 		4948E8BC1B959A410048D125 /* MSFAttachmentViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachmentViewModelSpec.m; sourceTree = "<group>"; };
 		4948E8BE1B959A5E0048D125 /* MSFAttachmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAttachmentViewModel.h; sourceTree = "<group>"; };
 		4948E8BF1B959A5E0048D125 /* MSFAttachmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachmentViewModel.m; sourceTree = "<group>"; };
-		494ED8661B2D2798000AD8EA /* MSFWPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWPTextField.h; sourceTree = "<group>"; };
-		494ED8671B2D2798000AD8EA /* MSFWPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWPTextField.m; sourceTree = "<group>"; };
 		494FBE0C1B16B1BC005F0454 /* MSFCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCipher.h; sourceTree = "<group>"; };
 		494FBE0D1B16B1BC005F0454 /* MSFCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCipher.m; sourceTree = "<group>"; };
 		495021051B13103400605666 /* MSFUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserViewModel.h; sourceTree = "<group>"; };
@@ -1621,8 +1614,6 @@
 		49FCBF881C0E92890035398E /* allow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allow.json; sourceTree = "<group>"; };
 		49FCBF971C0E92D90035398E /* repay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repay.json; sourceTree = "<group>"; };
 		49FCBF981C0E92D90035398E /* submit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submit.json; sourceTree = "<group>"; };
-		4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBPTextField.h; sourceTree = "<group>"; };
-		4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBPTextField.m; sourceTree = "<group>"; };
 		4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSubmitAlertView.h; sourceTree = "<group>"; };
 		4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSubmitAlertView.m; sourceTree = "<group>"; };
 		4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFSubmitAlertView.xib; sourceTree = "<group>"; };
@@ -2541,19 +2532,6 @@
 			path = "UIDevice-Hardware";
 			sourceTree = "<group>";
 		};
-		491C5F9C1B0F0EF400CADF8E /* TextView */ = {
-			isa = PBXGroup;
-			children = (
-				491C5FAD1B0F0F5E00CADF8E /* MSFTextField.h */,
-				491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */,
-				494ED8661B2D2798000AD8EA /* MSFWPTextField.h */,
-				494ED8671B2D2798000AD8EA /* MSFWPTextField.m */,
-				4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */,
-				4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */,
-			);
-			name = TextView;
-			sourceTree = "<group>";
-		};
 		491C5FB01B0F179C00CADF8E /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -2914,7 +2892,6 @@
 				499146F91B24484D00260E97 /* Selection */,
 				498BFC551B11FF7B00FFE88F /* WebView */,
 				491C5FB01B0F179C00CADF8E /* Button */,
-				491C5F9C1B0F0EF400CADF8E /* TextView */,
 				49CCFBE61B072509008A9CD1 /* Homepage */,
 				10E5464F1BFF24E800BBA827 /* MS */,
 				49CCFBE51B072501008A9CD1 /* User */,
@@ -4607,7 +4584,6 @@
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
 				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */,
 				496FE7731C06FE18004A5BAB /* MSFCashHomePageViewModel.m in Sources */,
-				491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */,
 				07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */,
 				07330B691BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m in Sources */,
 				078EEB981BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.m in Sources */,
@@ -4637,7 +4613,6 @@
 				0750AAFA1B969DED00AD67F3 /* MSFCustomAlertViewController.m in Sources */,
 				493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */,
 				10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */,
-				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
@@ -4665,7 +4640,6 @@
 				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
-				4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */,
 				07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */,
 				07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */,
 				077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */,
