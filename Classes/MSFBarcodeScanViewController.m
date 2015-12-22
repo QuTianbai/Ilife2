@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-#import <AudioToolbox/AudioToolbox.h>
 #import "MSFBarcodeScanViewController.h"
+#import <ZXingObjC/ZXingObjC.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFBarcodeScanViewController ()
 
@@ -25,7 +27,7 @@
 
 @end
 
-@implementation BarcodeScanViewController
+@implementation MSFBarcodeScanViewController
 
 #pragma mark - View Controller Methods
 
@@ -46,6 +48,16 @@
 
   [self.view bringSubviewToFront:self.scanRectView];
   [self.view bringSubviewToFront:self.decodedLabel];
+
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Cancel", nil) style:UIBarButtonItemStyleDone target:nil action:nil];
+	@weakify(self)
+	self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if ([self.delegate respondsToSelector:@selector(barcodeScanControllerDidCancel:)]) {
+			[self.delegate barcodeScanControllerDidCancel:self];
+		}
+		return [RACSignal empty];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -128,15 +140,13 @@
   NSString *formatString = [self barcodeFormatToString:result.barcodeFormat];
   NSString *display = [NSString stringWithFormat:@"Scanned!\n\nFormat: %@\n\nContents:\n%@", formatString, result.text];
   [self.decodedLabel performSelectorOnMainThread:@selector(setText:) withObject:display waitUntilDone:YES];
-
+	if ([self.delegate respondsToSelector:@selector(barcodeScanController:didFinishScanningMediaWithResult:)]) {
+		[self.delegate barcodeScanController:self didFinishScanningMediaWithResult:result];
+	}
+	
   // Vibrate
   AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-
   [self.capture stop];
-
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-    [self.capture start];
-  });
 }
 
 @end

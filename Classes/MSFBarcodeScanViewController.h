@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-#import <ZXingObjC/ZXingObjC.h>
 #import <UIKit/UIKit.h>
+#import <ZXingObjC/ZXCaptureDelegate.h>
+#import "MSFBarcodeScanViewControllerDelegate.h"
 
 @interface MSFBarcodeScanViewController : UIViewController <ZXCaptureDelegate>
+
+@property (nonatomic, weak) id <MSFBarcodeScanViewControllerDelegate> delegate;
 
 @end
