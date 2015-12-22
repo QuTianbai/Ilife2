@@ -220,6 +220,14 @@
 		102C7E6D1C28E6D50023172B /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */; };
 		102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E851C28F55E0023172B /* MSFAdverImage.m */; };
 		102C7E881C28F8DF0023172B /* MSFAdverJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E871C28F8DF0023172B /* MSFAdverJson.json */; };
+		102C7E8E1C2926E50023172B /* MSFOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */; };
+		102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E901C2926FE0023172B /* MSFOrderDetailViewController.m */; };
+		102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E951C29274B0023172B /* MSFOrderListViewModel.m */; };
+		102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E991C2927B10023172B /* MSFOrder.m */; };
+		102C7E9D1C2928060023172B /* MSFClient+MSFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */; };
+		102C7E9F1C2929320023172B /* MSFOrderJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E9E1C2929320023172B /* MSFOrderJson.json */; };
+		102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA11C292B310023172B /* MSFOrderDetail.m */; };
+		102C7EA51C292B460023172B /* MSFCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA41C292B460023172B /* MSFCommodity.m */; };
 		105542421BE4BE9100CF4C56 /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 105542411BE4BE9100CF4C56 /* dicareas.db */; };
 		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
@@ -1069,6 +1077,21 @@
 		102C7E841C28F55E0023172B /* MSFAdverImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAdverImage.h; sourceTree = "<group>"; };
 		102C7E851C28F55E0023172B /* MSFAdverImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAdverImage.m; sourceTree = "<group>"; };
 		102C7E871C28F8DF0023172B /* MSFAdverJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFAdverJson.json; sourceTree = "<group>"; };
+		102C7E8C1C2926E50023172B /* MSFOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListViewController.h; sourceTree = "<group>"; };
+		102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListViewController.m; sourceTree = "<group>"; };
+		102C7E8F1C2926FE0023172B /* MSFOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderDetailViewController.h; sourceTree = "<group>"; };
+		102C7E901C2926FE0023172B /* MSFOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetailViewController.m; sourceTree = "<group>"; };
+		102C7E941C29274B0023172B /* MSFOrderListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListViewModel.h; sourceTree = "<group>"; };
+		102C7E951C29274B0023172B /* MSFOrderListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListViewModel.m; sourceTree = "<group>"; };
+		102C7E981C2927B10023172B /* MSFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrder.h; sourceTree = "<group>"; };
+		102C7E991C2927B10023172B /* MSFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrder.m; sourceTree = "<group>"; };
+		102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFOrder.h"; sourceTree = "<group>"; };
+		102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFOrder.m"; sourceTree = "<group>"; };
+		102C7E9E1C2929320023172B /* MSFOrderJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFOrderJson.json; sourceTree = "<group>"; };
+		102C7EA01C292B310023172B /* MSFOrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderDetail.h; sourceTree = "<group>"; };
+		102C7EA11C292B310023172B /* MSFOrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetail.m; sourceTree = "<group>"; };
+		102C7EA31C292B460023172B /* MSFCommodity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommodity.h; sourceTree = "<group>"; };
+		102C7EA41C292B460023172B /* MSFCommodity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommodity.m; sourceTree = "<group>"; };
 		105542411BE4BE9100CF4C56 /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfomationViewController.h; sourceTree = "<group>"; };
 		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
@@ -2345,8 +2368,37 @@
 		102C7E8B1C29266C0023172B /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
+				102C7E8C1C2926E50023172B /* MSFOrderListViewController.h */,
+				102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */,
+				102C7E8F1C2926FE0023172B /* MSFOrderDetailViewController.h */,
+				102C7E901C2926FE0023172B /* MSFOrderDetailViewController.m */,
 			);
 			name = OrderList;
+			sourceTree = "<group>";
+		};
+		102C7E921C2927250023172B /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				102C7E941C29274B0023172B /* MSFOrderListViewModel.h */,
+				102C7E951C29274B0023172B /* MSFOrderListViewModel.m */,
+			);
+			name = Orders;
+			sourceTree = "<group>";
+		};
+		102C7E971C2927990023172B /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				102C7E981C2927B10023172B /* MSFOrder.h */,
+				102C7E991C2927B10023172B /* MSFOrder.m */,
+				102C7EA01C292B310023172B /* MSFOrderDetail.h */,
+				102C7EA11C292B310023172B /* MSFOrderDetail.m */,
+				102C7EA31C292B460023172B /* MSFCommodity.h */,
+				102C7EA41C292B460023172B /* MSFCommodity.m */,
+				102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */,
+				102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */,
+				102C7E9E1C2929320023172B /* MSFOrderJson.json */,
+			);
+			name = Orders;
 			sourceTree = "<group>";
 		};
 		105A0CA31BBA3E8F0046F927 /* UserInfo */ = {
@@ -2830,6 +2882,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				102C7E971C2927990023172B /* Orders */,
 				4919250E1C08511C00E6EAC5 /* LoanType */,
 				49614C881C03FF7E004D6208 /* Inventory */,
 				07472BE81BFF2820008A3890 /* SocialInsurance */,
@@ -2871,6 +2924,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				102C7E921C2927250023172B /* Orders */,
 				496FE7631C06FE0D004A5BAB /* CashHomePageView */,
 				49DA1A381C0ED1020052C056 /* Draw */,
 				07F088FE1BBD021A0067C5BC /* Circulate */,
@@ -4271,6 +4325,7 @@
 				4944C02B1B68A5A100805C0A /* icon-account-apply.png in Resources */,
 				074AC22C1BBA7A200056BA22 /* AddBankCard.storyboard in Resources */,
 				C7A351811B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@2x.png in Resources */,
+				102C7E9F1C2929320023172B /* MSFOrderJson.json in Resources */,
 				4944C0321B68A5A100805C0A /* icon-account-info@2x.png in Resources */,
 				07E3ED731BBBC3020010AAD2 /* tradepasswordimg.png in Resources */,
 				4944C02D1B68A5A100805C0A /* icon-account-apply@3x.png in Resources */,
@@ -4591,6 +4646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */,
+				102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */,
 				49614C871C03FD6C004D6208 /* MSFClient+MSFSocialInsurance.m in Sources */,
 				497253BF1BC3A6A30017CA76 /* MSFClient+MSFApplyInfo.m in Sources */,
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
@@ -4642,6 +4698,7 @@
 				074AC24C1BBB87740056BA22 /* MSFCheckHasTradePassword.m in Sources */,
 				07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */,
 				072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */,
+				102C7E9D1C2928060023172B /* MSFClient+MSFOrder.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
@@ -4650,6 +4707,8 @@
 				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
 				108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
+				102C7EA51C292B460023172B /* MSFCommodity.m in Sources */,
+				102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */,
 				10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
@@ -4690,6 +4749,7 @@
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
 				492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */,
 				074AC23A1BBAAAE00056BA22 /* MSFBankCardListModel.m in Sources */,
+				102C7E8E1C2926E50023172B /* MSFOrderListViewController.m in Sources */,
 				0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */,
 				074AC21D1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m in Sources */,
 				07472BE71BFF1A4B008A3890 /* MSFSocialInsuranceCashViewModel.m in Sources */,
@@ -4795,6 +4855,7 @@
 				498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */,
 				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
 				49E5B7891BD4D94C001995F8 /* MSFPoster.m in Sources */,
+				102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */,
 				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
@@ -4815,6 +4876,7 @@
 				1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
 				10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */,
+				102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,

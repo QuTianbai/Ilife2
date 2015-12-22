@@ -8,7 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFRepaymentSchedules.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-#import "msfclient+PlanPerodicTables.h"
+//#import "msfclient+PlanPerodicTables.h"
 
 @interface MSFRepaymentSchedulesViewModel ()
 
