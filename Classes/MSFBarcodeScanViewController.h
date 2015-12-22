@@ -17,6 +17,6 @@
 #import <ZXingObjC/ZXingObjC.h>
 #import <UIKit/UIKit.h>
 
-@interface BarcodeScanViewController : UIViewController <ZXCaptureDelegate>
+@interface MSFBarcodeScanViewController : UIViewController <ZXCaptureDelegate>
 
 @end

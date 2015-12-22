@@ -15,9 +15,9 @@
  */
 
 #import <AudioToolbox/AudioToolbox.h>
-#import "BarcodeScanViewController.h"
+#import "MSFBarcodeScanViewController.h"
 
-@interface BarcodeScanViewController ()
+@interface MSFBarcodeScanViewController ()
 
 @property (nonatomic, strong) ZXCapture *capture;
 @property (nonatomic, weak) IBOutlet UIView *scanRectView;
