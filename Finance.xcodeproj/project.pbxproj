@@ -228,6 +228,8 @@
 		102C7E9F1C2929320023172B /* MSFOrderJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E9E1C2929320023172B /* MSFOrderJson.json */; };
 		102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA11C292B310023172B /* MSFOrderDetail.m */; };
 		102C7EA51C292B460023172B /* MSFCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA41C292B460023172B /* MSFCommodity.m */; };
+		102C7ED01C2939570023172B /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */; };
+		102C7ED11C2939570023172B /* MSFPlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */; };
 		105542421BE4BE9100CF4C56 /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 105542411BE4BE9100CF4C56 /* dicareas.db */; };
 		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
@@ -1092,6 +1094,10 @@
 		102C7EA11C292B310023172B /* MSFOrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetail.m; sourceTree = "<group>"; };
 		102C7EA31C292B460023172B /* MSFCommodity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommodity.h; sourceTree = "<group>"; };
 		102C7EA41C292B460023172B /* MSFCommodity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommodity.m; sourceTree = "<group>"; };
+		102C7ECC1C2939570023172B /* MSFClient+PlanPerodicTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+PlanPerodicTables.h"; sourceTree = "<group>"; };
+		102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+PlanPerodicTables.m"; sourceTree = "<group>"; };
+		102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanPerodicTables.m; sourceTree = "<group>"; };
+		102C7ECF1C2939570023172B /* MSFPlanPerodicTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlanPerodicTables.h; sourceTree = "<group>"; };
 		105542411BE4BE9100CF4C56 /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfomationViewController.h; sourceTree = "<group>"; };
 		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
@@ -2401,6 +2407,17 @@
 			name = Orders;
 			sourceTree = "<group>";
 		};
+		102C7EBE1C29392C0023172B /* Plan the periodic table */ = {
+			isa = PBXGroup;
+			children = (
+				102C7ECC1C2939570023172B /* MSFClient+PlanPerodicTables.h */,
+				102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */,
+				102C7ECF1C2939570023172B /* MSFPlanPerodicTables.h */,
+				102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */,
+			);
+			name = "Plan the periodic table";
+			sourceTree = "<group>";
+		};
 		105A0CA31BBA3E8F0046F927 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -2913,6 +2930,7 @@
 				49DA226E1B062B2600DD4483 /* Agreement */,
 				49DA226C1B062B1100DD4483 /* Captcha */,
 				49DA226B1B062B0300DD4483 /* Users */,
+				102C7EBE1C29392C0023172B /* Plan the periodic table */,
 				C72149DB1B05A20D0045F919 /* RepaymentSchedule */,
 				49C7CB9A1B049CBD00EF5A68 /* ReleaseNote */,
 				4943C3881B0481A9000BBF5E /* Server */,
@@ -4757,6 +4775,7 @@
 				491DB1DE1BCCB543002C5C78 /* NSURLConnection+Locations.m in Sources */,
 				4948E8AF1B95522F0048D125 /* MSFElementViewModel.m in Sources */,
 				0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */,
+				102C7ED01C2939570023172B /* MSFClient+PlanPerodicTables.m in Sources */,
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
 				492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */,
 				074696961B9820780074E180 /* MSFClient+ConfirmContract.m in Sources */,
@@ -4879,6 +4898,7 @@
 				102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
+				102C7ED11C2939570023172B /* MSFPlanPerodicTables.m in Sources */,
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,
 				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
