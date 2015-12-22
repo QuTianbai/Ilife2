@@ -13,7 +13,6 @@
 #import "MSFCirculateRepaymentTableViewCell.h"
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#import "MSFContractDetailsTableViewController.h"
 #import "MSFRepaymentViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
