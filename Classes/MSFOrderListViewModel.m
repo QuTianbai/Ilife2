@@ -9,6 +9,8 @@
 #import "MSFOrderListViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+MSFOrder.h"
+#import "MSFOrder.h"
+#import "MSFOrderDetail.h"
 
 @interface MSFOrderListViewModel ()
 
@@ -37,9 +39,9 @@
 			[self.orders removeAllObjects];
 			self.pn = 0;
 		}];
-		[_executeRefreshCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		[_executeRefreshCommand.executionSignals.switchToLatest subscribeNext:^(MSFOrder *x) {
 			@strongify(self)
-			self.orders = [NSMutableArray arrayWithArray:x];
+			self.orders = [NSMutableArray arrayWithArray:x.orderList];
 			self.pn = 0;
 		}];
 		_executeInfinityCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -51,14 +53,34 @@
 			[self.orders removeAllObjects];
 			self.pn = 0;
 		}];
-		[_executeInfinityCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		[_executeInfinityCommand.executionSignals.switchToLatest subscribeNext:^(MSFOrder *x) {
 			@strongify(self);
-			[self.orders addObjectsFromArray:x];
+			[self.orders addObjectsFromArray:x.orderList];
 			self.pn ++;
 		}];
 		[_executeRefreshCommand execute:nil];
 	}
 	return self;
+}
+
+- (NSInteger)numberOfSections {
+	return self.orders.count;
+}
+
+- (NSInteger)numberOfRowsInSection:(NSInteger)section {
+	MSFOrderDetail *order = self.orders[section];
+	return order.cmdtyList.count + 2;
+}
+
+- (NSString *)identifierForCellAtIndexPath:(NSIndexPath *)indexPath {
+	MSFOrderDetail *order = self.orders[indexPath.section];
+	if (indexPath.row == 0) {
+		return @"MSFOrderListHeaderCell";
+	} else if (indexPath.row == order.cmdtyList.count + 1) {
+		return @"MSFOrderListFooterCell";
+	} else {
+		return @"MSFOrderListItemCell";
+	}
 }
 
 @end

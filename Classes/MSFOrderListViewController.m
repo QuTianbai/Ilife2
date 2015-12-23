@@ -7,92 +7,130 @@
 //
 
 #import "MSFOrderListViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVPullToRefresh/SVPullToRefresh.h>
+#import "MSFOrderDetailViewController.h"
+#import "MSFOrderListViewModel.h"
+#import "MSFOrderDetail.h"
+
+#import "MSFOrderListHeaderCell.h"
+#import "MSFOrderListFooterCell.h"
+#import "MSFOrderListItemCell.h"
+
+#import "UIColor+Utils.h"
 
 @interface MSFOrderListViewController ()
+
+@property (nonatomic, strong) MSFOrderListViewModel *viewModel;
 
 @end
 
 @implementation MSFOrderListViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services {
+	self = [super initWithStyle:UITableViewStyleGrouped];
+	if (self) {
+		self.edgesForExtendedLayout = UIRectEdgeNone;
+		_viewModel = [[MSFOrderListViewModel alloc] initWithServices:services];
+	}
+	return self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.navigationItem.title = @"订单列表";
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+	self.tableView.backgroundColor = UIColor.whiteColor;
+	[self.tableView registerClass:MSFOrderListHeaderCell.class forCellReuseIdentifier:@"MSFOrderListHeaderCell"];
+	[self.tableView registerClass:MSFOrderListFooterCell.class forCellReuseIdentifier:@"MSFOrderListFooterCell"];
+	[self.tableView registerClass:MSFOrderListItemCell.class forCellReuseIdentifier:@"MSFOrderListItemCell"];
+	@weakify(self)
+	[self.tableView addPullToRefreshWithActionHandler:^{
+		@strongify(self)
+		[self.viewModel.executeRefreshCommand execute:nil];
+	}];
+	[self.tableView addPullToRefreshWithActionHandler:^{
+		@strongify(self)
+		[self.viewModel.executeInfinityCommand execute:nil];
+	}];
+	[self.viewModel.executeRefreshCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		@strongify(self)
+		[self.tableView.pullToRefreshView stopAnimating];
+	} error:^(NSError *error) {
+		@strongify(self)
+		[self.tableView.pullToRefreshView stopAnimating];
+	}];
+	[self.viewModel.executeInfinityCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
+		@strongify(self)
+		[self.tableView.infiniteScrollingView stopAnimating];
+	} error:^(NSError *error) {
+		@strongify(self)
+		[self.tableView.infiniteScrollingView stopAnimating];
+	}];
+	[RACObserve(self, viewModel.orders) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.tableView reloadData];
+	}];
+}
+
+- (void)back {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+	return [self.viewModel numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+	return [self.viewModel numberOfRowsInSection:section];
 }
 
-/*
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.row == 0) {
+		return 64.f;
+	} else {
+		return 40.f;
+	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	return 0.1f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	if (section == [self.viewModel numberOfSections] - 1) {
+		return 0.1f;
+	}
+	return 20.f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	if (section == [self.viewModel numberOfSections] - 1) {
+		return nil;
+	}
+	UIView *reuse = [[UIView alloc] init];
+	reuse.backgroundColor = UIColor.darkBackgroundColor;
+	return reuse;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+	NSString *identifier = [self.viewModel identifierForCellAtIndexPath:indexPath];
+	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
+	UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+	if ([identifier isEqualToString:@"MSFOrderListItemCell"]) {
+		[cell bindViewModel:order.cmdtyList[indexPath.row - 1]];
+	} else {
+		[cell bindViewModel:order];
+	}
+	return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
+	MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithModel:order services:self.viewModel.services];
+	[self.navigationController pushViewController:vc animated:YES];
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -20,5 +20,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeInfinityCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+- (NSString *)identifierForCellAtIndexPath:(NSIndexPath *)indexPath;
+- (NSInteger)numberOfSections;
+- (NSInteger)numberOfRowsInSection:(NSInteger)section;
 
 @end

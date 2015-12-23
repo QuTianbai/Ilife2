@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFViewModelServices.h"
 
 @interface MSFOrderDetailViewController : UITableViewController
+
+- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
 
 @end

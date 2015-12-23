@@ -13,5 +13,6 @@
 @interface MSFClient(MSFOrder)
 
 - (RACSignal *)fetchOrderList:(NSString *)status pageNo:(NSInteger)pn;
+- (RACSignal *)fetchOrder:(NSString *)orderId;
 
 @end

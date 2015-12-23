@@ -11,7 +11,7 @@
 
 @implementation MSFOrder
 
-+ (NSValueTransformer *)cmdtyListJSONTransformer {
++ (NSValueTransformer *)orderListJSONTransformer {
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFOrderDetail.class];
 }
 
