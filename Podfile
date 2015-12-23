@@ -33,6 +33,7 @@ pod 'ZSWTaggedString', '1.1'
 pod 'MWPhotoBrowser', '2.1.1'
 #pod 'BugshotKit', :head
 pod 'SHSPhoneComponent', '2.15'
+pod 'ZXingObjC', '3.1.0'
 
 target 'Tests', :exclusive => true do
     pod 'OCMockito', '2.0.1'
