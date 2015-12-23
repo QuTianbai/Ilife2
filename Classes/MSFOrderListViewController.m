@@ -40,7 +40,8 @@
 	[super viewDidLoad];
 	self.navigationItem.title = @"订单列表";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-	self.tableView.backgroundColor = UIColor.whiteColor;
+	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	[self.tableView registerClass:MSFOrderListHeaderCell.class forCellReuseIdentifier:@"MSFOrderListHeaderCell"];
 	[self.tableView registerClass:MSFOrderListFooterCell.class forCellReuseIdentifier:@"MSFOrderListFooterCell"];
 	[self.tableView registerClass:MSFOrderListItemCell.class forCellReuseIdentifier:@"MSFOrderListItemCell"];

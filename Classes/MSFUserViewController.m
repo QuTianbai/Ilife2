@@ -70,7 +70,7 @@
 									 [UIImage imageNamed:@"icon-account-apply"],
 									 [UIImage imageNamed:@"icon-account-repay"],
 									 [UIImage imageNamed:@"icon-account-bankCard"],
-									 [UIImage imageNamed:@"icon-account-bankCard"]],
+									 [UIImage imageNamed:@"icon-account-order"]],
 								 @[[UIImage imageNamed:@"icon-account-settings"],
 									 [UIImage imageNamed:@"icon-account-about"]]];
 	NSLog(@"%@", self.icons);
