@@ -33,6 +33,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	}
 	if (type == 2) {
 		_repayFinanceViewModel = viewModel;
+		_repayFinanceViewModel.type = type;
 	} else {
 		_circulateViewModel = viewModel;
 	}
@@ -58,20 +59,20 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
 	} else if (type == 2) {
 		RAC(self, money) = [RACSignal combineLatest:@[
-																									RACObserve(self, repayFinanceViewModel.amount),
-																									RACObserve(self, repayFinanceViewModel.ownerAllMoney)]
-																				 reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
-																					 if (lastDueMoney == nil) {
-																						 lastDueMoney = @"0";
-																					 }
-																					 if (totaloverdueMoney == nil) {
-																						 totaloverdueMoney = @"0";
-																					 }
-																					 return [NSString stringWithFormat:@"本期应还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
-																				 }];
+				RACObserve(self, repayFinanceViewModel.amount),
+				RACObserve(self, repayFinanceViewModel.ownerAllMoney)]
+			reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
+					if (lastDueMoney == nil) {
+						lastDueMoney = @"0";
+					}
+					if (totaloverdueMoney == nil) {
+						totaloverdueMoney = @"0";
+					}
+					return [NSString stringWithFormat:@"本期应还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
+			}];
 		
 		RAC(self, drawCash) = RACObserve(self, repayFinanceViewModel.amount);
-	}else {
+	} else {
 		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
 			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
 		}];

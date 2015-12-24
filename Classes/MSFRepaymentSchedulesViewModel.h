@@ -38,6 +38,8 @@
 
 @property (nonatomic, strong) RACCommand *repayMoneyCommand;
 
+@property (nonatomic, assign) int type;
+
 //马上贷
 @property (nonatomic, readonly) double cashAmount;
 

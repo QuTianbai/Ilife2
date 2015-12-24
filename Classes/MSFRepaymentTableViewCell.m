@@ -183,7 +183,7 @@
 		subscribeNext:^(id x) {
 			self.services = viewModel.services;
 			
-			if ([self hasTransactionalCode]) {
+			//if ([self hasTransactionalCode]) {
 				[[[self.services.httpClient fetchBankCardList].collect replayLazily] subscribeNext:^(id x) {
 					[SVProgressHUD dismiss];
 					NSArray *dataArray = x;
@@ -192,7 +192,7 @@
 					} else {
 						[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 							if (obj.master) {
-								MSFDrawCashViewModel *drawViewModel = [[MSFDrawCashViewModel alloc] initWithModel:nil AndCirculateViewmodel:viewModel AndServices:viewModel.services AndType:2];
+								MSFDrawCashViewModel *drawViewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:viewModel AndServices:viewModel.services AndType:2];
 								drawViewModel.drawCash = [NSString stringWithFormat:@"%.2f", viewModel.amount];
 								[viewModel.services pushViewModel:viewModel];
 								*stop = YES;
@@ -200,10 +200,7 @@
 						}];
 					}
 				}];
-			}
-
-			
-		
+			//}
 		}];
 	} else {
 		_repayButton.hidden = YES;

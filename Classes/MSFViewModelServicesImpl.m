@@ -133,8 +133,8 @@
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
-		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	}else {
+		viewController = [[MSFDrawCashTableViewController alloc] initWithRepayViewModel:viewModel];
+	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }
   
