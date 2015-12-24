@@ -45,4 +45,7 @@ extern NSString *const MSFAgreementTypeInsurance;
 
 - (RACSignal *)fetchLifeLoanAgreement:(NSString *)productCode;
 
+// 加载商品贷协议
+- (RACSignal *)fetchCommodityLoanAgreement:(NSString *)productCode;
+
 @end

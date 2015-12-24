@@ -59,6 +59,15 @@
 #import "MSFBarcodeScanViewController.h"
 #import "MSFBarcodeScanViewController+MSFSignalSupport.h"
 
+#import "MSFCommoditesViewModel.h"
+#import "MSFCommoditesViewController.h"
+
+#import "MSFDistinguishViewModel.h"
+#import "MSFDistinguishViewController.h"
+
+#import "MSFCommodityCashViewModel.h"
+#import "MSFUserInfomationViewController.h"
+
 @interface MSFViewModelServicesImpl ()
 
 @property (nonatomic, strong) MSFClient *client;
@@ -133,6 +142,15 @@
 		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFCommoditesViewModel.class]) {
+		//TODO: 加载订单编辑界面
+		viewController = [[MSFCommoditesViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFDistinguishViewModel.class]) {
+		//TODO: 加载相机拍照界面
+		viewController = [[MSFDistinguishViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFCommodityCashViewModel.class]) {
+		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
+		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }
@@ -209,13 +227,16 @@
 		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
 		[vc.msf_barcodeScannedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:x];
-			[subscriber sendCompleted];
+			[navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendCompleted];
+			}];
 		} completed:^{
-			[subscriber sendCompleted];
+			[navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendCompleted];
+			}];
 		}];
 		
 		return [RACDisposable disposableWithBlock:^{
-			[navigationController dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}];
 }
