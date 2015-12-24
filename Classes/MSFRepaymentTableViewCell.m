@@ -26,6 +26,8 @@
 
 @interface MSFRepaymentTableViewCell ()
 
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *viewModel;
+
 @property (nonatomic, strong) id<MSFViewModelServices> services;
 
 /** UI **/
@@ -159,11 +161,10 @@
 		
 		[_repayButton mas_makeConstraints:^(MASConstraintMaker *make) {
 			@strongify(self)
-			make.top.equalTo(self.asOfDate.mas_bottom);
-			make.left.equalTo(self);
-			make.width.equalTo(@(60));
-			make.height.equalTo(@(30));
-			
+			make.top.equalTo(self.asOfDateLabel.mas_bottom).offset(30);
+			make.left.equalTo(self).offset(15);
+			make.right.equalTo(self).offset(-15);
+			make.height.equalTo(@(40));
 		}];
 	}
 	
@@ -171,6 +172,7 @@
 }
 
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
+	self.viewModel = viewModel;
 	_contractNum.text = [NSString stringWithFormat:@"合同编号    %@", viewModel.repaymentNumber];
 	_contractStatusLabel.text = viewModel.status;
 	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.cashAmount];
@@ -220,11 +222,18 @@
 	CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 0.5);
 	
 	CGContextMoveToPoint(context, rect.size.width / 3, self.topLineGuide);
-	CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding);
 	
+	if ([self.viewModel.status isEqualToString:@"已逾期"]) {
+		CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding - 70);
+	} else {
+		CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding);
+	}
 	CGContextMoveToPoint(context, rect.size.width * 2 / 3, self.topLineGuide);
-	CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding);
-	
+	if ([self.viewModel.status isEqualToString:@"已逾期"]) {
+		CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding - 70);
+	} else {
+		CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding);
+	}
 	CGContextStrokePath(context);
 }
 
@@ -243,6 +252,5 @@
 	}
 	return YES;
 }
-
 
 @end
