@@ -40,7 +40,8 @@
 	}
 	_viewModel = viewModel;
 	_services = services;
-	
+	_banners = @[[[MSFAdver alloc] init]];
+
 	@weakify(self)
 	_loanInfoRefreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -65,24 +66,8 @@
 			self.viewModel.active = YES;
 		}
 	}];
-	
-	RACCommand *bannerCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.services.httpClient fetchAdverWithCategory:@"0"];
-	}];
-	[bannerCommand.errors subscribeNext:^(id x) {
-		self.banners = @[[[MSFAdver alloc] init]];
-	}];
-	[bannerCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
-		if ([x count] > 0) {
-			self.banners = x;
-		} else {
-			self.banners = @[[[MSFAdver alloc] init]];
-		}
-	}];
-	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
-		[bannerCommand execute:nil];
 		if (self.services.httpClient.user.isAuthenticated) {
 			[_loanInfoRefreshCommand execute:nil];
 		}
