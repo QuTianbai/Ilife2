@@ -56,6 +56,9 @@
 #import "MSFDrawCashViewModel.h"
 #import "MSFDrawCashTableViewController.h"
 
+#import "MSFBarcodeScanViewController.h"
+#import "MSFBarcodeScanViewController+MSFSignalSupport.h"
+
 @interface MSFViewModelServicesImpl ()
 
 @property (nonatomic, strong) MSFClient *client;
@@ -189,6 +192,30 @@
 		}];
 		return [RACDisposable disposableWithBlock:^{
 			[imagePickerController dismissViewControllerAnimated:NO completion:nil];
+		}];
+	}];
+}
+
+- (RACSignal *)msf_barcodeScanSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
+			[[CZPhotoPickerPermissionAlert sharedInstance] showAlert];
+			[subscriber sendError:nil];
+			return nil;
+		}
+		MSFBarcodeScanViewController *vc = [[MSFBarcodeScanViewController alloc] init];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
+		[vc.msf_barcodeScannedSignal subscribeNext:^(id x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+		} completed:^{
+			[subscriber sendCompleted];
+		}];
+		
+		return [RACDisposable disposableWithBlock:^{
+			[navigationController dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}];
 }

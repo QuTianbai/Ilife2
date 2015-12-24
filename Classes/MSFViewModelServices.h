@@ -31,4 +31,6 @@
 // 调用相机拍照/模拟器的情况下直接获取相册图片
 - (RACSignal *)msf_takePictureSignal;
 
+- (RACSignal *)msf_barcodeScanSignal;
+
 @end

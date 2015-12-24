@@ -16,12 +16,13 @@ BUILD_DIR=$(pwd)/build
 XCWORKSPACE=$(find_pattern "*.xcworkspace")
 SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
 ARCHIVE_PATH=$BUILD_DIR/Archive/$SCHEME
+BUILD_VERSION=`cat VERSION`
 
 echo "========================================================================="
-echo "rm -rf ./build"
+echo "script cleaning"
 echo "========================================================================="
 
-rm -rf $BUILD_DIR
+sh $(pwd)/script/clean
 
 echo "========================================================================="
 echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphoneos clean archive -archivePath $ARCHIVE_PATH -derivedDataPath $BUILD_DIR"
@@ -34,3 +35,4 @@ echo "xcodebuild -exportArchive -archivePath $ARCHIVE_PATH.xcarchive -exportPath
 echo "========================================================================="
 
 xcodebuild -exportArchive -archivePath $ARCHIVE_PATH.xcarchive -exportPath $ARCHIVE_PATH.ipa -exportFormat ipa -exportProvisioningProfile $PROVISIONINGP_ROFILE  | xcpretty
+mv $BUILD_DIR/Archive/$SCHEME.ipa $BUILD_DIR/Archive/$SCHEME-$BUILD_VERSION.ipa

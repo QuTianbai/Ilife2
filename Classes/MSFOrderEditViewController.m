@@ -31,6 +31,7 @@
 											 services:(id<MSFViewModelServices>)services {
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
+		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = [[MSFOrderEditViewModel alloc] initWithOrderId:orderId services:services];
 	}
 	return self;
