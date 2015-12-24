@@ -10,6 +10,7 @@
 #import "MSFGetBankIcon.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+Users.h"
+#import "MSFRepaymentSchedulesViewModel.h"
 
 static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelErrorDomain";
 
@@ -19,18 +20,22 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 @property (nonatomic, copy) NSString *contractNO;
 @property (nonatomic, assign) NSString *enablemoney;
 @property (nonatomic, assign, readwrite) int type;
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 
 @end
 
 @implementation MSFDrawCashViewModel
 
-- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(MSFCirculateCashViewModel *)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type {
+- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type {
 	self = [super init];
 	if (!self) {
 		return  nil;
 	}
-	
-	_circulateViewModel = viewModel;
+	if (type == 2) {
+		_repayFinanceViewModel = viewModel;
+	} else {
+		_circulateViewModel = viewModel;
+	}
 	_type = type;
 	_services = services;
 	_bankIcon = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
@@ -51,7 +56,22 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 			}];
 		
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
-	} else {
+	} else if (type == 2) {
+		RAC(self, money) = [RACSignal combineLatest:@[
+																									RACObserve(self, repayFinanceViewModel.amount),
+																									RACObserve(self, repayFinanceViewModel.ownerAllMoney)]
+																				 reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
+																					 if (lastDueMoney == nil) {
+																						 lastDueMoney = @"0";
+																					 }
+																					 if (totaloverdueMoney == nil) {
+																						 totaloverdueMoney = @"0";
+																					 }
+																					 return [NSString stringWithFormat:@"本期应还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
+																				 }];
+		
+		RAC(self, drawCash) = RACObserve(self, repayFinanceViewModel.amount);
+	}else {
 		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
 			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
 		}];

@@ -56,6 +56,8 @@
 #import "MSFDrawCashViewModel.h"
 #import "MSFDrawCashTableViewController.h"
 
+#import "MSFRepaymentSchedulesViewModel.h"
+
 @interface MSFViewModelServicesImpl ()
 
 @property (nonatomic, strong) MSFClient *client;
@@ -130,7 +132,9 @@
 		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else {
+	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
+	}else {
     NSLog(@"an unknown ViewModel was pushed!");
   }
   

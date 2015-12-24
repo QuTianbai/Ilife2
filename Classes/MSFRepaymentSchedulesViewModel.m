@@ -12,8 +12,6 @@
 
 @interface MSFRepaymentSchedulesViewModel ()
 
-@property (nonatomic, weak) id <MSFViewModelServices> services;
-
 @property (nonatomic, readwrite) NSString *date;
 
 @end
@@ -55,6 +53,10 @@
 	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];
+	
+	self.repayMoneyCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self repayMoneySignal];
+	}];
 
 	
   return self;
@@ -62,6 +64,10 @@
 
 - (RACSignal *)fetchPlanPerodicTablesSignal {
 	return [self.services.httpClient fetchPlanPerodicTables:self.model];
+}
+
+- (RACSignal *)repayMoneySignal {
+	return nil;
 }
 
 @end

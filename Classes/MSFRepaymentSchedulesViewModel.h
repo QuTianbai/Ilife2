@@ -8,8 +8,11 @@
 #import "MSFViewModelServices.h"
 
 @class MSFRepaymentSchedules;
+@class RACCommand;
 
 @interface MSFRepaymentSchedulesViewModel : RVMViewModel
+
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @property (nonatomic, readonly) MSFRepaymentSchedules *model;
 
@@ -32,6 +35,8 @@
 @property (nonatomic, readonly) NSString *contractLineDate;
 
 @property (nonatomic, readonly) NSString *overdueMoney;
+
+@property (nonatomic, strong) RACCommand *repayMoneyCommand;
 
 //马上贷
 @property (nonatomic, readonly) double cashAmount;
