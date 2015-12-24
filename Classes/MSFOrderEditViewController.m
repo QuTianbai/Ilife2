@@ -44,6 +44,7 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.tableView.allowsSelection = NO;
+	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
 	[self.tableView registerClass:MSFOrderEditContentCell.class forCellReuseIdentifier:@"MSFOrderEditContentCell"];
 	[self.tableView registerClass:MSFOrderEditInputCell.class forCellReuseIdentifier:@"MSFOrderEditInputCell"];
 	[self.tableView registerClass:MSFOrderEditSelectionCell.class forCellReuseIdentifier:@"MSFOrderEditSelectionCell"];
@@ -62,10 +63,6 @@
 	self.tableView.tableFooterView = footer;
 	[[nextButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		NSLog(@"点击下一步");
-	}];
-	
-	[RACObserve(self, viewModel.downPmtAmt) subscribeNext:^(id x) {
-		NSLog(@"%@", x);
 	}];
 }
 

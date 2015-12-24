@@ -33,6 +33,7 @@
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
 		self.edgesForExtendedLayout = UIRectEdgeNone;
+		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = [[MSFOrderListViewModel alloc] initWithServices:services];
 	}
 	return self;
