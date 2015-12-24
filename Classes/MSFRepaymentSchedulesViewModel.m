@@ -23,6 +23,7 @@
   if (!self) {
     return nil;
   }
+	_smsCode = @"";
 	_model = model;
 	_services = services;
 	RAC(self, repaymentNumber) = [RACObserve(self, model.contractNum) ignore:nil];
@@ -53,11 +54,6 @@
 	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];
-	
-	self.repayMoneyCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self repayMoneySignal];
-	}];
-
 	
   return self;
 }

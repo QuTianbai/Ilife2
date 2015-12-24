@@ -12,6 +12,4 @@
 
 - (instancetype)initWithViewModel:(id)viewModel;
 
-- (instancetype)initWithRepayViewModel:(id)viewModel;
-
 @end

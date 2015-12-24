@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Sms Code Table View Controller-->
         <scene sceneID="CSR-gn-72u">
             <objects>
-                <tableViewController id="gIB-7D-yMA" sceneMemberID="viewController">
+                <tableViewController id="gIB-7D-yMA" customClass="MSFSmsCodeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="aR3-4v-WNh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="76z-Pd-NYu"/>
                                     </constraints>
-                                    <state key="normal" title="Button"/>
+                                    <state key="normal" title="确认"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +60,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y80-dt-q3A" customClass="MSFGroupTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y80-dt-q3A">
                                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y80-dt-q3A" id="U8t-Sn-9wt">
@@ -132,6 +132,13 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="countLB" destination="P8u-kB-CCO" id="9Bo-tG-Sbu"/>
+                        <outlet property="sendCaptchaView" destination="3H8-zf-Qrr" id="xPG-vG-Ht4"/>
+                        <outlet property="smsCodeBT" destination="tND-ZF-N2Z" id="0Kt-ZC-TXW"/>
+                        <outlet property="smsCodeTF" destination="6iJ-zT-EJq" id="R0S-1h-1Xi"/>
+                        <outlet property="submitBT" destination="Y2U-G8-a1c" id="lJe-07-JjW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mTW-Eu-LVx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

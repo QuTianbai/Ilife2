@@ -12,6 +12,8 @@
 
 @interface MSFRepaymentSchedulesViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *smsCode;
+
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @property (nonatomic, readonly) MSFRepaymentSchedules *model;
@@ -36,9 +38,9 @@
 
 @property (nonatomic, readonly) NSString *overdueMoney;
 
-@property (nonatomic, strong) RACCommand *repayMoneyCommand;
-
+//类型
 @property (nonatomic, assign) int type;
+//还款
 
 //马上贷
 @property (nonatomic, readonly) double cashAmount;

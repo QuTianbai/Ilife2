@@ -15,9 +15,9 @@
 - (RACSignal *)fetchRepaymentSchedules {
 	NSString *path = [[NSBundle mainBundle] pathForResource:@"repayment" ofType:@"json"];
 	
-	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
+	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
 	
-	//NSURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/schedules" parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/schedules" parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 

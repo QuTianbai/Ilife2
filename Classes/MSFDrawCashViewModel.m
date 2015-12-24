@@ -19,8 +19,6 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 @property (nonatomic, assign) id<MSFViewModelServices>services;
 @property (nonatomic, copy) NSString *contractNO;
 @property (nonatomic, assign) NSString *enablemoney;
-@property (nonatomic, assign, readwrite) int type;
-@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 
 @end
 
@@ -31,6 +29,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	if (!self) {
 		return  nil;
 	}
+	_smsCode = @"";
 	if (type == 2) {
 		_repayFinanceViewModel = viewModel;
 		_repayFinanceViewModel.type = type;
@@ -41,6 +40,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	_services = services;
 	_bankIcon = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
 	_bankName = model.bankName;
+	
 	
 	if (type == 1) {
 		RAC(self, money) = [RACSignal combineLatest:@[
@@ -57,6 +57,8 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 			}];
 		
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
+		RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
+		RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
 	} else if (type == 2) {
 		RAC(self, money) = [RACSignal combineLatest:@[
 				RACObserve(self, repayFinanceViewModel.amount),
@@ -72,6 +74,8 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 			}];
 		
 		RAC(self, drawCash) = RACObserve(self, repayFinanceViewModel.amount);
+		//RAC(self, enablemoney) = RACObserve(self, repayFinanceViewModel.usableLimit);
+		RAC(self, contractNO) = RACObserve(self, repayFinanceViewModel.repaymentNumber);
 	} else {
 		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
 			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
@@ -80,8 +84,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	}
 	
 	_bankCardNO = [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4];
-	RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
-	RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
+	
 	
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeDrawCash];
@@ -94,7 +97,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	NSError *error = nil;
 	if (self.drawCash.length == 0 || [self.drawCash isEqualToString:@"0"] ) {
 		NSString *errorStr = @"请输入提现金额";
-		if (self.type == 1) {
+		if (self.type == 1 || self.type == 2) {
 			errorStr = @"请输入还款金额";
 		}
 		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];

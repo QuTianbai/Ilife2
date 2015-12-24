@@ -99,7 +99,7 @@
 	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"dealPwd"] = pwd?:@"";
 	NSString *path = @"loan/drawings";
-	if (type == 1) {
+	if (type == 1 || type == 2) {
 		path = @"loan/repay";
 		parameters[@"money"] = count;
 	}

@@ -12,4 +12,6 @@
 
 - (instancetype)initWithViewModel:(id)viewModel;
 
+- (instancetype)initWithPayViewModel:(id)viewModel;
+
 @end
