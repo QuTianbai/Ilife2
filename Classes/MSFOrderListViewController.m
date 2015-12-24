@@ -19,6 +19,8 @@
 
 #import "UIColor+Utils.h"
 
+#import "MSFOrderEditViewController.h"
+
 @interface MSFOrderListViewController ()
 
 @property (nonatomic, strong) MSFOrderListViewModel *viewModel;
@@ -129,6 +131,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	MSFOrderEditViewController *vcb = [[MSFOrderEditViewController alloc] initWithOrderId:nil services:self.viewModel.services];
+	[self.navigationController pushViewController:vcb animated:YES];
+	return;
 	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
 	MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithModel:order services:self.viewModel.services];
 	[self.navigationController pushViewController:vc animated:YES];

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFViewModelServices.h"
 
 @interface MSFOrderEditViewController : UITableViewController
+
+- (instancetype)initWithOrderId:(NSString *)orderId
+											 services:(id<MSFViewModelServices>)services;
 
 @end

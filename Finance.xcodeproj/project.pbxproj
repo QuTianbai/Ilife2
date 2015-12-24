@@ -240,6 +240,12 @@
 		102C7EF71C2A7A4B0023172B /* icon-account-order@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 102C7EF41C2A7A4B0023172B /* icon-account-order@3x.png */; };
 		102C7EF81C2A7A4B0023172B /* icon-account-order@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 102C7EF51C2A7A4B0023172B /* icon-account-order@2x.png */; };
 		102C7F091C2A7B840023172B /* MSFOrderEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F081C2A7B840023172B /* MSFOrderEditViewController.m */; };
+		102C7F0C1C2A7C080023172B /* MSFOrderEditContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F0B1C2A7C080023172B /* MSFOrderEditContentCell.m */; };
+		102C7F101C2A7C570023172B /* MSFOrderEditInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F0F1C2A7C570023172B /* MSFOrderEditInputCell.m */; };
+		102C7F131C2A7C6C0023172B /* MSFOrderEditSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F121C2A7C6C0023172B /* MSFOrderEditSelectionCell.m */; };
+		102C7F161C2A7C990023172B /* MSFOrderEditLoanTermCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F151C2A7C990023172B /* MSFOrderEditLoanTermCell.m */; };
+		102C7F191C2A7CAF0023172B /* MSFOrderEditSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F181C2A7CAF0023172B /* MSFOrderEditSwitchCell.m */; };
+		102C7F1C1C2A8B330023172B /* MSFOrderEditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F1B1C2A8B330023172B /* MSFOrderEditViewModel.m */; };
 		105542421BE4BE9100CF4C56 /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 105542411BE4BE9100CF4C56 /* dicareas.db */; };
 		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
@@ -1124,6 +1130,18 @@
 		102C7EF51C2A7A4B0023172B /* icon-account-order@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-order@2x.png"; sourceTree = "<group>"; };
 		102C7F071C2A7B840023172B /* MSFOrderEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditViewController.h; sourceTree = "<group>"; };
 		102C7F081C2A7B840023172B /* MSFOrderEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditViewController.m; sourceTree = "<group>"; };
+		102C7F0A1C2A7C080023172B /* MSFOrderEditContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditContentCell.h; sourceTree = "<group>"; };
+		102C7F0B1C2A7C080023172B /* MSFOrderEditContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditContentCell.m; sourceTree = "<group>"; };
+		102C7F0E1C2A7C570023172B /* MSFOrderEditInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditInputCell.h; sourceTree = "<group>"; };
+		102C7F0F1C2A7C570023172B /* MSFOrderEditInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditInputCell.m; sourceTree = "<group>"; };
+		102C7F111C2A7C6C0023172B /* MSFOrderEditSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditSelectionCell.h; sourceTree = "<group>"; };
+		102C7F121C2A7C6C0023172B /* MSFOrderEditSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditSelectionCell.m; sourceTree = "<group>"; };
+		102C7F141C2A7C990023172B /* MSFOrderEditLoanTermCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditLoanTermCell.h; sourceTree = "<group>"; };
+		102C7F151C2A7C990023172B /* MSFOrderEditLoanTermCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditLoanTermCell.m; sourceTree = "<group>"; };
+		102C7F171C2A7CAF0023172B /* MSFOrderEditSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditSwitchCell.h; sourceTree = "<group>"; };
+		102C7F181C2A7CAF0023172B /* MSFOrderEditSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditSwitchCell.m; sourceTree = "<group>"; };
+		102C7F1A1C2A8B330023172B /* MSFOrderEditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditViewModel.h; sourceTree = "<group>"; };
+		102C7F1B1C2A8B330023172B /* MSFOrderEditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditViewModel.m; sourceTree = "<group>"; };
 		105542411BE4BE9100CF4C56 /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfomationViewController.h; sourceTree = "<group>"; };
 		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
@@ -2414,6 +2432,8 @@
 			children = (
 				102C7E941C29274B0023172B /* MSFOrderListViewModel.h */,
 				102C7E951C29274B0023172B /* MSFOrderListViewModel.m */,
+				102C7F1A1C2A8B330023172B /* MSFOrderEditViewModel.h */,
+				102C7F1B1C2A8B330023172B /* MSFOrderEditViewModel.m */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -2468,8 +2488,26 @@
 			children = (
 				102C7F071C2A7B840023172B /* MSFOrderEditViewController.h */,
 				102C7F081C2A7B840023172B /* MSFOrderEditViewController.m */,
+				102C7F0D1C2A7C0C0023172B /* cells */,
 			);
 			name = Order;
+			sourceTree = "<group>";
+		};
+		102C7F0D1C2A7C0C0023172B /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				102C7F0A1C2A7C080023172B /* MSFOrderEditContentCell.h */,
+				102C7F0B1C2A7C080023172B /* MSFOrderEditContentCell.m */,
+				102C7F0E1C2A7C570023172B /* MSFOrderEditInputCell.h */,
+				102C7F0F1C2A7C570023172B /* MSFOrderEditInputCell.m */,
+				102C7F111C2A7C6C0023172B /* MSFOrderEditSelectionCell.h */,
+				102C7F121C2A7C6C0023172B /* MSFOrderEditSelectionCell.m */,
+				102C7F141C2A7C990023172B /* MSFOrderEditLoanTermCell.h */,
+				102C7F151C2A7C990023172B /* MSFOrderEditLoanTermCell.m */,
+				102C7F171C2A7CAF0023172B /* MSFOrderEditSwitchCell.h */,
+				102C7F181C2A7CAF0023172B /* MSFOrderEditSwitchCell.m */,
+			);
+			name = cells;
 			sourceTree = "<group>";
 		};
 		105A0CA31BBA3E8F0046F927 /* UserInfo */ = {
@@ -4732,6 +4770,7 @@
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
 				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */,
 				496FE7731C06FE18004A5BAB /* MSFCashHomePageViewModel.m in Sources */,
+				102C7F131C2A7C6C0023172B /* MSFOrderEditSelectionCell.m in Sources */,
 				491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */,
 				07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */,
 				07330B691BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m in Sources */,
@@ -4746,6 +4785,7 @@
 				498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */,
 				4948E88A1B953FFB0048D125 /* MSFElement.m in Sources */,
 				10E546781C004B1800BBA827 /* MSFClient+MSFProductType.m in Sources */,
+				102C7F191C2A7CAF0023172B /* MSFOrderEditSwitchCell.m in Sources */,
 				49F8C1001C0BF6500010D791 /* UIDevice+Versions.m in Sources */,
 				49CCFBD81B07233F008A9CD1 /* MSFAboutsViewController.m in Sources */,
 				49D7ABD91C1024C800ED07E7 /* NSFileManager+Temporary.m in Sources */,
@@ -4791,6 +4831,7 @@
 				102C7EA51C292B460023172B /* MSFCommodity.m in Sources */,
 				102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */,
 				10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */,
+				102C7F161C2A7C990023172B /* MSFOrderEditLoanTermCell.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
 				102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */,
@@ -4803,6 +4844,7 @@
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
+				102C7F0C1C2A7C080023172B /* MSFOrderEditContentCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
@@ -4894,6 +4936,7 @@
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
 				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,
 				498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */,
+				102C7F101C2A7C570023172B /* MSFOrderEditInputCell.m in Sources */,
 				495021071B13103400605666 /* MSFUserViewModel.m in Sources */,
 				49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */,
 				49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */,
@@ -4906,6 +4949,7 @@
 				49DA22681B062AF200DD4483 /* MSFUser.m in Sources */,
 				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
+				102C7F1C1C2A8B330023172B /* MSFOrderEditViewModel.m in Sources */,
 				0704EB6A1B6B52EB000F5369 /* MSFResultModel.m in Sources */,
 				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
 				07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */,
