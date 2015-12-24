@@ -20,7 +20,9 @@
 @property (nonatomic, strong, readonly) NSString *loanAmt; // 分期总金额
 @property (nonatomic, strong, readonly) NSArray *loanTerms; // 贷款期数
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险计划
-@property (nonatomic, strong, readonly) NSArray *commodities;
+@property (nonatomic, strong, readonly) NSString *insurance; // 寿险金额
+@property (nonatomic, strong, readonly) NSString *trialAmt; // 试算每期还款金额
+@property (nonatomic, strong, readonly) NSArray *commodities; // 商品列表
 
 @property (nonatomic, strong, readonly) RACCommand *executeDownPmtPctCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand;

@@ -31,11 +31,17 @@
 									 @{@"price" : @"232",
 										 @"term" : @"6"}];
 		_joinInsurance = NO; // 是否加入寿险计划
-		_commodities = @[@{@"shop" : @"加上家",
+		_insurance = @"10.00";
+		_trialAmt = @"1312.32";
+		_commodities = @[@{@"cate1" : @"电器",
+											 @"cate2" : @"电视",
+											 @"shop" : @"加上家",
 											 @"name" : @"海尔",
 											 @"price" : @"2000",
 											 @"num" : @"1"},
-										 @{@"shop" : @"加上家",
+										 @{@"cate1" : @"电器",
+											 @"cate2" : @"空调",
+											 @"shop" : @"加上家",
 											 @"name" : @"格力",
 											 @"price" : @"2000",
 											 @"num" : @"1"}];
@@ -69,13 +75,16 @@
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == self.commodities.count) {
 		switch (indexPath.row) {
-			case 0: return @"MSFOrderEditSelectionCell";
-			case 1: return @"MSFOrderEditInputCell";
-			case 2: return @"MSFOrderEditContentCell";
-			case 3: return @"MSFOrderEditLoanTermCell";
-			case 4: return @"MSFOrderEditSwitchCell";
+			case 0: return @"MSFOrderEditInputCell";
+			case 1: return @"MSFOrderEditContentCell";
+			case 2: return @"MSFOrderEditLoanTermCell";
+			case 3: return @"MSFOrderEditSwitchCell";
+			case 4: return @"MSFOrderEditTrialCell";
 		}
 	} else {
+		if (indexPath.row == 0) {
+			return @"MSFOrderEditCategoryCell";
+		}
 		return @"MSFOrderEditContentCell";
 	}
 	return nil;

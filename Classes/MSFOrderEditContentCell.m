@@ -46,7 +46,7 @@
 	UILabel *label1 = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *label2 = (UILabel *)[self.contentView viewWithTag:101];
 	if ([viewModel isKindOfClass:MSFOrderEditViewModel.class]) {
-		if (indexPath.row != 2) {
+		if (indexPath.row != 1) {
 			return;
 		}
 		MSFOrderEditViewModel *order = (MSFOrderEditViewModel *)viewModel;
@@ -55,15 +55,15 @@
 	} else {
 		NSDictionary *commodity = (NSDictionary *)viewModel;
 		switch (indexPath.row) {
-			case 0:
+			case 1:
 				label1.text = @"商品名称";
 				label2.text = commodity[@"name"];
 				break;
-			case 1:
+			case 2:
 				label1.text = @"商品单价";
 				label2.text = commodity[@"price"];
 				break;
-			case 2:
+			case 3:
 				label1.text = @"商品数量";
 				label2.text = commodity[@"num"];
 				break;

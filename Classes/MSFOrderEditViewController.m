@@ -11,11 +11,12 @@
 
 #import "MSFOrderEditViewModel.h"
 
+#import "MSFOrderEditCategoryCell.h"
 #import "MSFOrderEditContentCell.h"
 #import "MSFOrderEditInputCell.h"
-#import "MSFOrderEditSelectionCell.h"
 #import "MSFOrderEditLoanTermCell.h"
 #import "MSFOrderEditSwitchCell.h"
+#import "MSFOrderEditTrialCell.h"
 
 #import "UIColor+Utils.h"
 
@@ -45,11 +46,12 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.tableView.allowsSelection = NO;
 	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
+	[self.tableView registerClass:MSFOrderEditCategoryCell.class forCellReuseIdentifier:@"MSFOrderEditCategoryCell"];
 	[self.tableView registerClass:MSFOrderEditContentCell.class forCellReuseIdentifier:@"MSFOrderEditContentCell"];
 	[self.tableView registerClass:MSFOrderEditInputCell.class forCellReuseIdentifier:@"MSFOrderEditInputCell"];
-	[self.tableView registerClass:MSFOrderEditSelectionCell.class forCellReuseIdentifier:@"MSFOrderEditSelectionCell"];
 	[self.tableView registerClass:MSFOrderEditLoanTermCell.class forCellReuseIdentifier:@"MSFOrderEditLoanTermCell"];
 	[self.tableView registerClass:MSFOrderEditSwitchCell.class forCellReuseIdentifier:@"MSFOrderEditSwitchCell"];
+	[self.tableView registerClass:MSFOrderEditTrialCell.class forCellReuseIdentifier:@"MSFOrderEditTrialCell"];
 	
 	UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
 	UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -80,7 +82,7 @@
 	if (section == self.viewModel.commodities.count) {
 		return 5;
 	} else {
-		return 3;
+		return 4;
 	}
 }
 
@@ -93,8 +95,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.viewModel.commodities.count && indexPath.row == 3) {
-		return 99.f;
+	if (indexPath.section == self.viewModel.commodities.count) {
+		if (indexPath.row == 2) {
+			return 99.f;
+		}
+		if (indexPath.row == 4) {
+			return 125.f;
+		}
 	}
 	return 44.f;
 }
