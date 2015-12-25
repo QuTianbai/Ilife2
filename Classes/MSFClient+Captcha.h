@@ -41,4 +41,5 @@
 
 //获取支付验证
 - (RACSignal *)fetchPaySmsCodeWithPhone:(NSString *)phone;
+
 @end

@@ -15,10 +15,6 @@
 @implementation MSFClient (MSFBankCardList)
 
 - (RACSignal *)fetchBankCardList {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"bankCardList" ofType:@"json"];
-	
-	//NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]];
-	
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/bindingList" parameters:@{
 		@"uniqueId": self.user.uniqueId
 	}];

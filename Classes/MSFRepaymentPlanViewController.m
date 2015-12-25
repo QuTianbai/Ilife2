@@ -166,7 +166,6 @@
 	if (tableView == self.circulateRepayMentTableView) {
 		return 200;
 	}
-	NSLog(@"%d", indexPath.row);
 	if (self.dataArray.count != 0) {
 		MSFRepaymentSchedulesViewModel *viewModel = self.dataArray[indexPath.row];
 		if ([viewModel.status isEqualToString:@"已逾期"]) {
