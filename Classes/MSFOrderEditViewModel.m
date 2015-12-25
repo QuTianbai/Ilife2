@@ -86,17 +86,17 @@
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == self.commodities.count) {
 		switch (indexPath.row) {
-			case 0: return @"MSFOrderEditInputCell";
-			case 1: return @"MSFOrderEditContentCell";
-			case 2: return @"MSFOrderEditLoanTermCell";
-			case 3: return @"MSFOrderEditSwitchCell";
-			case 4: return @"MSFOrderEditTrialCell";
+			case 0: return @"MSFCartInputCell";
+			case 1: return @"MSFCartContentCell";
+			case 2: return @"MSFCartLoanTermCell";
+			case 3: return @"MSFCartSwitchCell";
+			case 4: return @"MSFCartTrialCell";
 		}
 	} else {
 		if (indexPath.row == 0) {
-			return @"MSFOrderEditCategoryCell";
+			return @"MSFCartCategoryCell";
 		}
-		return @"MSFOrderEditContentCell";
+		return @"MSFCartContentCell";
 	}
 	return nil;
 }

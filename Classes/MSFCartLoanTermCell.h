@@ -1,5 +1,5 @@
 //
-//  MSFOrderEditContentCell.h
+//  MSFCartLoanTermCell.h
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFOrderEditContentCell : UITableViewCell
+@interface MSFCartLoanTermCell : UITableViewCell
 
 @end

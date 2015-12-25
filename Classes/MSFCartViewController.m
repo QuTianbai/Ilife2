@@ -1,32 +1,32 @@
 //
-//  MSFOrderEditViewController.m
+//  MSFCartViewController.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditViewController.h"
+#import "MSFCartViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "MSFOrderEditViewModel.h"
 
-#import "MSFOrderEditCategoryCell.h"
-#import "MSFOrderEditContentCell.h"
-#import "MSFOrderEditInputCell.h"
-#import "MSFOrderEditLoanTermCell.h"
-#import "MSFOrderEditSwitchCell.h"
-#import "MSFOrderEditTrialCell.h"
+#import "MSFCartCategoryCell.h"
+#import "MSFCartContentCell.h"
+#import "MSFCartInputCell.h"
+#import "MSFCartLoanTermCell.h"
+#import "MSFCartSwitchCell.h"
+#import "MSFCartTrialCell.h"
 
 #import "UIColor+Utils.h"
 
-@interface MSFOrderEditViewController ()
+@interface MSFCartViewController ()
 
 @property (nonatomic, strong) MSFOrderEditViewModel *viewModel;
 
 @end
 
-@implementation MSFOrderEditViewController
+@implementation MSFCartViewController
 
 - (instancetype)initWithOrderId:(NSString *)orderId
 											 services:(id<MSFViewModelServices>)services {
@@ -46,12 +46,12 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.tableView.allowsSelection = NO;
 	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
-	[self.tableView registerClass:MSFOrderEditCategoryCell.class forCellReuseIdentifier:@"MSFOrderEditCategoryCell"];
-	[self.tableView registerClass:MSFOrderEditContentCell.class forCellReuseIdentifier:@"MSFOrderEditContentCell"];
-	[self.tableView registerClass:MSFOrderEditInputCell.class forCellReuseIdentifier:@"MSFOrderEditInputCell"];
-	[self.tableView registerClass:MSFOrderEditLoanTermCell.class forCellReuseIdentifier:@"MSFOrderEditLoanTermCell"];
-	[self.tableView registerClass:MSFOrderEditSwitchCell.class forCellReuseIdentifier:@"MSFOrderEditSwitchCell"];
-	[self.tableView registerClass:MSFOrderEditTrialCell.class forCellReuseIdentifier:@"MSFOrderEditTrialCell"];
+	[self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFCartCategoryCell"];
+	[self.tableView registerClass:MSFCartContentCell.class forCellReuseIdentifier:@"MSFCartContentCell"];
+	[self.tableView registerClass:MSFCartInputCell.class forCellReuseIdentifier:@"MSFCartInputCell"];
+	[self.tableView registerClass:MSFCartLoanTermCell.class forCellReuseIdentifier:@"MSFCartLoanTermCell"];
+	[self.tableView registerClass:MSFCartSwitchCell.class forCellReuseIdentifier:@"MSFCartSwitchCell"];
+	[self.tableView registerClass:MSFCartTrialCell.class forCellReuseIdentifier:@"MSFCartTrialCell"];
 	
 	UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
 	UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];

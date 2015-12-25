@@ -1,16 +1,16 @@
 //
-//  MSFOrderEditCategoryCell.m
+//  MSFCartCategoryCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/24/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditCategoryCell.h"
+#import "MSFCartCategoryCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 
-@implementation MSFOrderEditCategoryCell
+@implementation MSFCartCategoryCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

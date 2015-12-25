@@ -1,23 +1,23 @@
 //
-//  MSFOrderEditLoanTermCell.m
+//  MSFCartLoanTermCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditLoanTermCell.h"
+#import "MSFCartLoanTermCell.h"
 #import <Masonry/Masonry.h>
 #import "MSFOrderEditViewModel.h"
 #import "UIColor+Utils.h"
 
-@interface MSFLoanTermCollectionViewCell : UICollectionViewCell
+@interface MSFCartCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) NSString *content;
 
 @end
 
-@implementation MSFLoanTermCollectionViewCell
+@implementation MSFCartCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
@@ -59,7 +59,7 @@
 
 @end
 
-@interface MSFOrderEditLoanTermCell ()
+@interface MSFCartLoanTermCell ()
 <UICollectionViewDataSource,
 UICollectionViewDelegate>
 
@@ -68,7 +68,7 @@ UICollectionViewDelegate>
 
 @end
 
-@implementation MSFOrderEditLoanTermCell
+@implementation MSFCartLoanTermCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -92,7 +92,7 @@ UICollectionViewDelegate>
 		collection.backgroundColor = UIColor.clearColor;
 		collection.delegate = self;
 		collection.dataSource = self;
-		[collection registerClass:MSFLoanTermCollectionViewCell.class forCellWithReuseIdentifier:@"MSFLoanTermCollectionViewCell"];
+		[collection registerClass:MSFCartCollectionViewCell.class forCellWithReuseIdentifier:@"MSFCartCollectionViewCell"];
 		[self.contentView addSubview:collection];
 		self.collection = collection;
 		
@@ -122,7 +122,7 @@ UICollectionViewDelegate>
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	MSFLoanTermCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFLoanTermCollectionViewCell" forIndexPath:indexPath];
+	MSFCartCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCartCollectionViewCell" forIndexPath:indexPath];
 	NSDictionary *term = self.viewModel.loanTerms[indexPath.row];
 	NSString *content = [NSString stringWithFormat:@"￥%@×%@期", term[@"price"], term[@"term"]];
 	cell.content = content;

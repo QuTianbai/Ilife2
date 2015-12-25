@@ -1,5 +1,5 @@
 //
-//  MSFOrderEditCategoryCell.h
+//  MSFCartCategoryCell.h
 //  Finance
 //
 //  Created by 赵勇 on 12/24/15.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFOrderEditCategoryCell : UITableViewCell
+@interface MSFCartCategoryCell : UITableViewCell
 
 @end

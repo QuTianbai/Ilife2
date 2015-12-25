@@ -19,7 +19,7 @@
 
 #import "UIColor+Utils.h"
 
-#import "MSFOrderEditViewController.h"
+#import "MSFCartViewController.h"
 
 @interface MSFOrderListViewController ()
 
@@ -132,7 +132,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	MSFOrderEditViewController *vcb = [[MSFOrderEditViewController alloc] initWithOrderId:nil services:self.viewModel.services];
+	MSFCartViewController *vcb = [[MSFCartViewController alloc] initWithOrderId:nil services:self.viewModel.services];
 	[self.navigationController pushViewController:vcb animated:YES];
 	return;
 	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];

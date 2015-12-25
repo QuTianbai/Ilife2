@@ -1,17 +1,17 @@
 //
-//  MSFOrderEditSwitchCell.m
+//  MSFCartSwitchCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditSwitchCell.h"
+#import "MSFCartSwitchCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "MSFOrderEditViewModel.h"
 
-@implementation MSFOrderEditSwitchCell
+@implementation MSFCartSwitchCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];

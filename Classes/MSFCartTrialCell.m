@@ -1,19 +1,19 @@
 //
-//  MSFOrderEditTrialCell.m
+//  MSFCartTrialCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/24/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditTrialCell.h"
+#import "MSFCartTrialCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "MSFCounterLabel.h"
 #import "MSFOrderEditViewModel.h"
 #import "UIColor+Utils.h"
 
-@implementation MSFOrderEditTrialCell
+@implementation MSFCartTrialCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
