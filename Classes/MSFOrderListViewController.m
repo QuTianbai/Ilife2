@@ -19,6 +19,8 @@
 
 #import "UIColor+Utils.h"
 
+#import "MSFOrderEditViewController.h"
+
 @interface MSFOrderListViewController ()
 
 @property (nonatomic, strong) MSFOrderListViewModel *viewModel;
@@ -31,6 +33,7 @@
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
 		self.edgesForExtendedLayout = UIRectEdgeNone;
+		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = [[MSFOrderListViewModel alloc] initWithServices:services];
 	}
 	return self;
@@ -40,7 +43,8 @@
 	[super viewDidLoad];
 	self.navigationItem.title = @"订单列表";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-	self.tableView.backgroundColor = UIColor.whiteColor;
+	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	[self.tableView registerClass:MSFOrderListHeaderCell.class forCellReuseIdentifier:@"MSFOrderListHeaderCell"];
 	[self.tableView registerClass:MSFOrderListFooterCell.class forCellReuseIdentifier:@"MSFOrderListFooterCell"];
 	[self.tableView registerClass:MSFOrderListItemCell.class forCellReuseIdentifier:@"MSFOrderListItemCell"];
@@ -128,6 +132,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	MSFOrderEditViewController *vcb = [[MSFOrderEditViewController alloc] initWithOrderId:nil services:self.viewModel.services];
+	[self.navigationController pushViewController:vcb animated:YES];
+	return;
 	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
 	MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithModel:order services:self.viewModel.services];
 	[self.navigationController pushViewController:vc animated:YES];
