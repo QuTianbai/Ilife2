@@ -73,14 +73,7 @@
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];
-	@weakify(self)
-	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		@strongify(self)
-		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
-		MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-		[self.navigationController pushViewController:viewController animated:YES];
-	}];
+	self.submitButton.rac_command = self.viewModel.executeAcceptCommand;
 	self.LoanAgreenmentWV.scrollView.delegate = self;
 	self.submitButton.enabled = NO;
 }
@@ -104,6 +97,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//!!!:
 	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
 			NSLog(@"BOTTOM REACHED");
 			self.submitButton.enabled = YES;
