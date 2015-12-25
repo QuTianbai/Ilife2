@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "MSFCartViewModel.h"
+#import "MSFCommodity.h"
 
 @implementation MSFCartContentCell
 
@@ -53,19 +54,19 @@
 		label1.text = @"贷款金额";
 		RAC(label2, text) = [RACObserve(order, loanAmt) takeUntil:self.rac_prepareForReuseSignal];
 	} else {
-		NSDictionary *commodity = (NSDictionary *)viewModel;
+		MSFCommodity *commodity = (MSFCommodity *)viewModel;
 		switch (indexPath.row) {
 			case 1:
 				label1.text = @"商品名称";
-				label2.text = commodity[@"name"];
+				label2.text = commodity.cmdtyName;
 				break;
 			case 2:
 				label1.text = @"商品单价";
-				label2.text = commodity[@"price"];
+				label2.text = commodity.cmdtyPrice;
 				break;
 			case 3:
 				label1.text = @"商品数量";
-				label2.text = commodity[@"num"];
+				label2.text = commodity.pcsCount;
 				break;
 		}
 	}

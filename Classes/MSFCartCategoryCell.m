@@ -9,6 +9,7 @@
 #import "MSFCartCategoryCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
+#import "MSFCommodity.h"
 
 @implementation MSFCartCategoryCell
 
@@ -51,11 +52,12 @@
 	return self;
 }
 
-- (void)bindViewModel:(NSDictionary *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCommodity *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UILabel *label2 = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *label3 = (UILabel *)[self.contentView viewWithTag:101];
-	label2.text = viewModel[@"cate1"];
-	label3.text = viewModel[@"cate2"];
+#warning mock data
+	label2.text = @"家电";
+	label3.text = @"冰箱";
 }
 
 @end

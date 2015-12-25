@@ -9,11 +9,11 @@
 #import "MSFClient.h"
 
 @class RACSignal;
-@class MSFCart;
+@class MSFCartViewModel;
 
 @interface MSFClient(MSFCart)
 
 - (RACSignal *)fetchCart:(NSString *)cartId;
-- (RACSignal *)fetchTrialAmount:(MSFCart *)cart;
+- (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel;
 
 @end

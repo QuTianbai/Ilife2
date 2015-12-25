@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "MSFCartViewModel.h"
+#import "MSFCommodity.h"
 
 #import "MSFCartCategoryCell.h"
 #import "MSFCartContentCell.h"
@@ -115,8 +116,8 @@
 	if (section == self.viewModel.commodities.count) {
 		label.text = @"分期";
 	} else {
-		NSDictionary *mock = self.viewModel.commodities[section];
-		label.text = mock[@"shop"];
+		MSFCommodity *commodity = self.viewModel.commodities[section];
+		label.text = commodity.brandName;
 	}
 	[reuse addSubview:label];
 	return reuse;

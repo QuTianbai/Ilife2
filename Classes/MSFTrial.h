@@ -10,7 +10,7 @@
 
 @interface MSFTrial : MSFObject
 
-@property (nonatomic, copy, readonly) NSString *loanFixedAmt;
-@property (nonatomic, copy, readonly) NSString *lifeInsuranceAmt;
+@property (nonatomic, copy) NSString *loanFixedAmt;
+@property (nonatomic, copy) NSString *lifeInsuranceAmt;
 
 @end

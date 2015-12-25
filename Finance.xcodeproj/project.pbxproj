@@ -225,6 +225,7 @@
 		101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C71C2BF9FA00842D36 /* MSFCart.m */; };
 		101BD3CB1C2CDCBF00842D36 /* MSFClient+MSFCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */; };
 		101BD3D11C2CE59700842D36 /* MSFTrial.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3D01C2CE59700842D36 /* MSFTrial.m */; };
+		101BD3E11C2D213E00842D36 /* MSFCartJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 101BD3E01C2D213E00842D36 /* MSFCartJson.json */; };
 		102C7E6D1C28E6D50023172B /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */; };
 		102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E851C28F55E0023172B /* MSFAdverImage.m */; };
 		102C7E881C28F8DF0023172B /* MSFAdverJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E871C28F8DF0023172B /* MSFAdverJson.json */; };
@@ -1117,6 +1118,7 @@
 		101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFCart.m"; sourceTree = "<group>"; };
 		101BD3CF1C2CE59700842D36 /* MSFTrial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTrial.h; sourceTree = "<group>"; };
 		101BD3D01C2CE59700842D36 /* MSFTrial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTrial.m; sourceTree = "<group>"; };
+		101BD3E01C2D213E00842D36 /* MSFCartJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFCartJson.json; sourceTree = "<group>"; };
 		102C7E6B1C28E6D50023172B /* MSFInfinityScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInfinityScroll.h; sourceTree = "<group>"; };
 		102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInfinityScroll.m; sourceTree = "<group>"; };
 		102C7E841C28F55E0023172B /* MSFAdverImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAdverImage.h; sourceTree = "<group>"; };
@@ -2443,6 +2445,7 @@
 				101BD3D01C2CE59700842D36 /* MSFTrial.m */,
 				101BD3C91C2CDCBF00842D36 /* MSFClient+MSFCart.h */,
 				101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */,
+				101BD3E01C2D213E00842D36 /* MSFCartJson.json */,
 			);
 			name = Cart;
 			sourceTree = "<group>";
@@ -4551,6 +4554,7 @@
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
 				49DA1A521C0ED2A60052C056 /* userInfoApply.json in Resources */,
+				101BD3E11C2D213E00842D36 /* MSFCartJson.json in Resources */,
 				105542421BE4BE9100CF4C56 /* dicareas.db in Resources */,
 				4944C00F1B68A44A00805C0A /* icon-cloze-idcarddate@2x.png in Resources */,
 				10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */,

@@ -13,6 +13,12 @@
 #import "MSFCartViewModel.h"
 #import "UIColor+Utils.h"
 
+@interface MSFCartTrialCell ()
+
+@property (nonatomic, strong) MSFCartViewModel *viewModel;
+
+@end
+
 @implementation MSFCartTrialCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -67,10 +73,14 @@
 	UILabel *label1 = (UILabel *)[self.contentView viewWithTag:100];
 	MSFCounterLabel *label4 = (MSFCounterLabel *)[self.contentView viewWithTag:101];
 	RAC(label1, text) = [[RACObserve(viewModel, insurance) takeUntil:self.rac_prepareForReuseSignal] map:^id(id value) {
-		return [NSString stringWithFormat:@"此服务为可选增值服务，请仔细阅读后选择  寿险金额：￥%@", value];
+		return [NSString stringWithFormat:@"此服务为可选增值服务，请仔细阅读后选择  寿险金额：￥%@", value ?: @"0"];
 	}];
-	[[RACObserve(viewModel, trialAmt) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id x) {
-		label4.valueText = x;
+	[[RACObserve(viewModel, trialAmt) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
+		if (x.doubleValue > 0) {
+			label4.valueText = x;
+		} else {
+			label4.valueText = @"未知";
+		}
 	}];
 }
 

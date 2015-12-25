@@ -11,7 +11,7 @@
 
 @implementation MSFCart
 
-- (NSValueTransformer *)cmdtyListJSONTransformer {
++ (NSValueTransformer *)cmdtyListJSONTransformer {
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFCommodity.class];
 }
 
