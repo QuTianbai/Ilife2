@@ -219,6 +219,8 @@
 		1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */; };
 		101BD3C11C2BE43300842D36 /* MSFOrderEditCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C01C2BE43300842D36 /* MSFOrderEditCategoryCell.m */; };
 		101BD3C41C2BE6DE00842D36 /* MSFOrderEditTrialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C31C2BE6DE00842D36 /* MSFOrderEditTrialCell.m */; };
+		101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C71C2BF9FA00842D36 /* MSFCart.m */; };
+		101BD3CB1C2CDCBF00842D36 /* MSFClient+MSFCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */; };
 		102C7E6D1C28E6D50023172B /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */; };
 		102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E851C28F55E0023172B /* MSFAdverImage.m */; };
 		102C7E881C28F8DF0023172B /* MSFAdverJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E871C28F8DF0023172B /* MSFAdverJson.json */; };
@@ -1095,6 +1097,10 @@
 		101BD3C01C2BE43300842D36 /* MSFOrderEditCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditCategoryCell.m; sourceTree = "<group>"; };
 		101BD3C21C2BE6DE00842D36 /* MSFOrderEditTrialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderEditTrialCell.h; sourceTree = "<group>"; };
 		101BD3C31C2BE6DE00842D36 /* MSFOrderEditTrialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderEditTrialCell.m; sourceTree = "<group>"; };
+		101BD3C61C2BF9FA00842D36 /* MSFCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCart.h; sourceTree = "<group>"; };
+		101BD3C71C2BF9FA00842D36 /* MSFCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCart.m; sourceTree = "<group>"; };
+		101BD3C91C2CDCBF00842D36 /* MSFClient+MSFCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFCart.h"; sourceTree = "<group>"; };
+		101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFCart.m"; sourceTree = "<group>"; };
 		102C7E6B1C28E6D50023172B /* MSFInfinityScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInfinityScroll.h; sourceTree = "<group>"; };
 		102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInfinityScroll.m; sourceTree = "<group>"; };
 		102C7E841C28F55E0023172B /* MSFAdverImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAdverImage.h; sourceTree = "<group>"; };
@@ -2395,6 +2401,17 @@
 			name = AppliInfo;
 			sourceTree = "<group>";
 		};
+		101BD3C51C2BF9DE00842D36 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				101BD3C61C2BF9FA00842D36 /* MSFCart.h */,
+				101BD3C71C2BF9FA00842D36 /* MSFCart.m */,
+				101BD3C91C2CDCBF00842D36 /* MSFClient+MSFCart.h */,
+				101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */,
+			);
+			name = Cart;
+			sourceTree = "<group>";
+		};
 		102C7E891C2925970023172B /* Repayment */ = {
 			isa = PBXGroup;
 			children = (
@@ -2996,6 +3013,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				101BD3C51C2BF9DE00842D36 /* Cart */,
 				102C7E971C2927990023172B /* Orders */,
 				4919250E1C08511C00E6EAC5 /* LoanType */,
 				49614C881C03FF7E004D6208 /* Inventory */,
@@ -4848,6 +4866,7 @@
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFOrderEditContentCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
+				101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
@@ -4870,6 +4889,7 @@
 				07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */,
 				077347FA1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m in Sources */,
 				102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */,
+				101BD3CB1C2CDCBF00842D36 /* MSFClient+MSFCart.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,

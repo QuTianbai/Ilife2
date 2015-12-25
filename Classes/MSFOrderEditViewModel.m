@@ -8,6 +8,9 @@
 
 #import "MSFOrderEditViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFClient+MSFOrder.h"
+#import "MSFClient+MSFCheckEmploee2.h"
+#import "MSFOrderDetail.h"
 
 @interface MSFOrderEditViewModel ()
 
@@ -23,7 +26,6 @@
 	if (self) {
 		_services = services;
 		
-		_downPmtPct = @"0.25";
 		_downPmtAmt = @"1000"; // 首付金额
 		_loanAmt = @"3000"; // 分期总金额
 		_loanTerms = @[@{@"price" : @"446",
@@ -48,26 +50,35 @@
 		
 		_totalAmt = _downPmtAmt.doubleValue + _loanAmt.doubleValue;
 		
-		RACChannelTerminal *percent = RACChannelTo(self, downPmtPct);
 		RACChannelTerminal *downPmt = RACChannelTo(self, downPmtAmt);
 		RACChannelTerminal *loanAmt = RACChannelTo(self, loanAmt);
-		
-		[[percent map:^id(NSString *value) {
-			double down = self.totalAmt * value.doubleValue;
-			return [NSString stringWithFormat:@"%.2f", down];
-		}] subscribe:downPmt];
-		[[percent map:^id(NSString *value) {
-			double loan = self.totalAmt * (1 - value.doubleValue);
-			return [NSString stringWithFormat:@"%.2f", loan];
-		}] subscribe:loanAmt];
-		[[downPmt map:^id(NSString *value) {
-			double per = value.doubleValue / self.totalAmt;
-			return [NSString stringWithFormat:@"%.3f", per];
-		}] subscribe:percent];
 		[[downPmt map:^id(NSString *value) {
 			double loan = self.totalAmt - value.doubleValue;
 			return [NSString stringWithFormat:@"%.2f", loan];
 		}] subscribe:loanAmt];
+		
+		RACSignal *orderValidSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+			BOOL valid = self.order.loanAmt && self.order.loanTerm && self.order.crProdId && self.commodities;
+			[subscriber sendNext:@(YES)];
+			[subscriber sendCompleted];
+			return [RACDisposable disposableWithBlock:^{}];
+		}];
+		RACCommand *trialCommand = [[RACCommand alloc] initWithEnabled:orderValidSignal signalBlock:^RACSignal *(id input) {
+			return [self.services.httpClient fetchTrialAmount:self.order];
+		}];
+		[trialCommand.executionSignals.switchToLatest subscribeNext:^(NSDictionary *x) {
+			_trialAmt = x[@"loanFixedAmt"];
+			_insurance = x[@"lifeInsuranceAmt"];
+		}];
+		[trialCommand.errors subscribeNext:^(id x) {
+			NSLog(@"试算失败");
+		}];
+		[RACObserve(self, term) subscribeNext:^(id x) {
+			[trialCommand execute:nil];
+		}];
+		[RACObserve(self, downPmtAmt) subscribeNext:^(id x) {
+			[trialCommand execute:nil];
+		}];
 	}
 	return self;
 }

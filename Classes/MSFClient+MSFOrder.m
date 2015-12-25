@@ -9,8 +9,9 @@
 #import "MSFClient+MSFOrder.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "RACSignal+MSFClientAdditions.h"
-#import "MSFOrder.h"
+#import "MSFOrderEditViewModel.h"
 #import "MSFOrderDetail.h"
+#import "MSFOrder.h"
 #import "MSFUser.h"
 
 @implementation MSFClient(MSFOrder)
@@ -46,6 +47,15 @@
 	 NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orders/%@", orderId] parameters:params];
 	 return [[self enqueueRequest:request resultClass:MSFOrderDetail.class] msf_parsedResults];
 	 */
+}
+
+- (RACSignal *)fetchTrialAmount:(MSFOrderDetail *)order {
+	return [RACSignal return:@{@"loanFixedAmt" : @"1900.00",
+														 @"lifeInsuranceAmt" : @"0.00"}];
+	
+	NSDictionary *params = [MTLJSONAdapter JSONDictionaryFromModel:order];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"product/trial" parameters:params];
+	return [self enqueueRequest:request resultClass:nil];
 }
 
 @end
