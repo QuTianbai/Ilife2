@@ -181,6 +181,9 @@
 		07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7F61B203AC00020116E /* MSFProductViewController.m */; };
 		07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD31091B09CC7600E0C2DF /* MSFCommandView.m */; };
 		07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */; };
+		07D051171C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */; };
+		07D051261C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */; };
+		07D051281C2BEAC1003220D7 /* bankCardList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07D051271C2BEAC1003220D7 /* bankCardList.json */; };
 		07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */; };
 		07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */; };
 		07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */; };
@@ -1040,6 +1043,10 @@
 		07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_MSFappliesViewControllerCatogery.h; sourceTree = "<group>"; };
 		07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAppliesHeaderView.h; sourceTree = "<group>"; };
 		07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAppliesHeaderView.m; sourceTree = "<group>"; };
+		07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSmsCodeTableViewController.h; sourceTree = "<group>"; };
+		07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSmsCodeTableViewController.m; sourceTree = "<group>"; };
+		07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = paySmsCodeStoryboard.storyboard; sourceTree = "<group>"; };
+		07D051271C2BEAC1003220D7 /* bankCardList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bankCardList.json; sourceTree = "<group>"; };
 		07D13DB21C03009700A46980 /* MSFClient+MSFSocialInsurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFSocialInsurance.h"; sourceTree = "<group>"; };
 		07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFSocialInsurance.m"; sourceTree = "<group>"; };
 		07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLifeInsuranceViewController.h; sourceTree = "<group>"; };
@@ -2191,6 +2198,7 @@
 				499D6A841C06B480004DA69F /* socialInsurance.json */,
 				49FCBF971C0E92D90035398E /* repay.json */,
 				49FCBF981C0E92D90035398E /* submit.json */,
+				07D051271C2BEAC1003220D7 /* bankCardList.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -2369,6 +2377,9 @@
 				07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */,
 				07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */,
 				07F089201BBD31E30067C5BC /* DrawCash.storyboard */,
+				07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */,
+				07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */,
+				07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */,
 			);
 			name = CirculateCash;
 			sourceTree = "<group>";
@@ -4113,7 +4124,6 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
-				2853397F5CF7E10C64F8BB62 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4133,7 +4143,6 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
-				A4AF228A1DCFFE71A641DC3F /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4325,6 +4334,7 @@
 				0738C48F1B944B54006D7177 /* bank.db in Resources */,
 				49FCBF991C0E92D90035398E /* repay.json in Resources */,
 				499D6A831C06B453004DA69F /* product.json in Resources */,
+				07D051281C2BEAC1003220D7 /* bankCardList.json in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
 				102C7E881C28F8DF0023172B /* MSFAdverJson.json in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
@@ -4648,6 +4658,7 @@
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
 				070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */,
 				07A7DAEF1BFDB65100916ADD /* applyCashButtonSelect.png in Resources */,
+				07D051261C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard in Resources */,
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				077347D21BBA338900D7A130 /* CBC@3x.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
@@ -4723,21 +4734,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2853397F5CF7E10C64F8BB62 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3DBA75A6089481CE9B0D7B2D /* Check Pods Manifest.lock */ = {
@@ -4823,21 +4819,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A4AF228A1DCFFE71A641DC3F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4990,6 +4971,7 @@
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
 				07F089241BBD37000067C5BC /* MSFDrawCashViewModel.m in Sources */,
 				49CA935D1BBA212A0032F5C2 /* MSFGroupTableViewController.m in Sources */,
+				07D051171C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m in Sources */,
 				074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */,
 				07330B6F1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m in Sources */,
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,

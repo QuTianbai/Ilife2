@@ -67,6 +67,7 @@
 
 #import "MSFCommodityCashViewModel.h"
 #import "MSFUserInfomationViewController.h"
+#import "MSFRepaymentSchedulesViewModel.h"
 
 @interface MSFViewModelServicesImpl ()
 
@@ -85,7 +86,7 @@
   }
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	_client = [MSFClient unauthenticatedClientWithUser:user];
-  
+
   return self;
 }
 
@@ -103,7 +104,7 @@
 
 - (void)pushViewModel:(id)viewModel {
 	id viewController;
-  
+
   if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
     viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
   } else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
@@ -151,10 +152,12 @@
 	} else if ([viewModel isKindOfClass:MSFCommodityCashViewModel.class]) {
 		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
 		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
+	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }
-  
+
   [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -173,14 +176,14 @@
 
 - (void)presentViewModel:(id)viewModel {
 	id viewController;
-  
+
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
 		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else {
     NSLog(@"an unknown ViewModel was present!");
   }
-  
+
   [self.navigationController presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -235,7 +238,7 @@
 				[subscriber sendCompleted];
 			}];
 		}];
-		
+
 		return [RACDisposable disposableWithBlock:^{
 		}];
 	}];

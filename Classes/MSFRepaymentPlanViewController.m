@@ -28,6 +28,8 @@
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
 @property (nonatomic, strong) MSFRepaymentViewModel *viewModel;
 
+@property (nonatomic, strong) NSArray *dataArray;
+
 @end
 
 @implementation MSFRepaymentPlanViewController
@@ -38,6 +40,7 @@
 		return nil;
 	}
 	_viewModel = viewModel;
+	_dataArray = [[NSArray alloc] init];
 	
 	return self;
 }
@@ -55,6 +58,7 @@
 		collect]
 		replayLazily];
 	[signal subscribeNext:^(id x) {
+		self.dataArray = x;
 		[SVProgressHUD dismiss];
 	} error:^(NSError *error) {
 		[SVProgressHUD dismiss];
@@ -80,6 +84,7 @@
 		[signal subscribeNext:^(NSArray *x) {
 			if (x.count != 0) {
 				self.myTableView.backgroundView.hidden = YES;
+				self.dataArray = x;
 			}
 			[SVProgressHUD dismiss];
 		} error:^(NSError *error) {
@@ -161,6 +166,14 @@
 	if (tableView == self.circulateRepayMentTableView) {
 		return 200;
 	}
+	NSLog(@"%d", indexPath.row);
+	if (self.dataArray.count != 0) {
+		MSFRepaymentSchedulesViewModel *viewModel = self.dataArray[indexPath.row];
+		if ([viewModel.status isEqualToString:@"已逾期"]) {
+			return 121 + 75;
+		}
+	}
+	
 	return 121;
 }
 

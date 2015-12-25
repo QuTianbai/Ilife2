@@ -168,11 +168,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		
 	}];
 	
-	[[self.checkCodeBT rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		NSLog(@"jfds");
-	}];
-	
 	self.checkCodeBT.rac_command = self.authviewModel.executeCaprchForgetTradePwd;
 	
 	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);

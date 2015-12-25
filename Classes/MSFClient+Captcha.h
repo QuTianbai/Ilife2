@@ -39,4 +39,6 @@
 // 获取用户忘记交易密码验证码
 - (RACSignal *)fetchLoginCaptchaForgetTradeWithPhone:(NSString *)phone;
 
+//获取支付验证
+- (RACSignal *)fetchPaySmsCodeWithPhone:(NSString *)phone;
 @end
