@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "MSFCounterLabel.h"
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 #import "UIColor+Utils.h"
 
 @implementation MSFCartTrialCell
@@ -63,7 +63,7 @@
 	return self;
 }
 
-- (void)bindViewModel:(MSFOrderEditViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UILabel *label1 = (UILabel *)[self.contentView viewWithTag:100];
 	MSFCounterLabel *label4 = (MSFCounterLabel *)[self.contentView viewWithTag:101];
 	RAC(label1, text) = [[RACObserve(viewModel, insurance) takeUntil:self.rac_prepareForReuseSignal] map:^id(id value) {

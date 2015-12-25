@@ -9,7 +9,7 @@
 #import "MSFCartContentCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 
 @implementation MSFCartContentCell
 
@@ -45,11 +45,11 @@
 - (void)bindViewModel:(id)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UILabel *label1 = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *label2 = (UILabel *)[self.contentView viewWithTag:101];
-	if ([viewModel isKindOfClass:MSFOrderEditViewModel.class]) {
+	if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
 		if (indexPath.row != 1) {
 			return;
 		}
-		MSFOrderEditViewModel *order = (MSFOrderEditViewModel *)viewModel;
+		MSFCartViewModel *order = (MSFCartViewModel *)viewModel;
 		label1.text = @"贷款金额";
 		RAC(label2, text) = [RACObserve(order, loanAmt) takeUntil:self.rac_prepareForReuseSignal];
 	} else {

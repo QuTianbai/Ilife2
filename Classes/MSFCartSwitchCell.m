@@ -9,7 +9,7 @@
 #import "MSFCartSwitchCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 
 @implementation MSFCartSwitchCell
 
@@ -50,7 +50,7 @@
 	return self;
 }
 
-- (void)bindViewModel:(MSFOrderEditViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UIButton *button = (UIButton *)[self.contentView viewWithTag:101];
 	UISwitch *switchInsurance = (UISwitch *)[self.contentView viewWithTag:102];
 	button.rac_command = viewModel.executeInsuranceCommand;

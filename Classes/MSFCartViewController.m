@@ -9,7 +9,7 @@
 #import "MSFCartViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 
 #import "MSFCartCategoryCell.h"
 #import "MSFCartContentCell.h"
@@ -22,7 +22,7 @@
 
 @interface MSFCartViewController ()
 
-@property (nonatomic, strong) MSFOrderEditViewModel *viewModel;
+@property (nonatomic, strong) MSFCartViewModel *viewModel;
 
 @end
 
@@ -33,7 +33,7 @@
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
 		self.hidesBottomBarWhenPushed = YES;
-		_viewModel = [[MSFOrderEditViewModel alloc] initWithOrderId:orderId services:services];
+		_viewModel = [[MSFCartViewModel alloc] initWithCartId:orderId services:services];
 	}
 	return self;
 }

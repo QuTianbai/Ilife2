@@ -1,30 +1,33 @@
 //
-//  MSFOrderEditViewModel.m
+//  MSFCartViewModel.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+MSFOrder.h"
 #import "MSFClient+MSFCheckEmploee2.h"
-#import "MSFOrderDetail.h"
+#import "MSFClient+MSFCart.h"
+#import "MSFCart.h"
 
-@interface MSFOrderEditViewModel ()
+@interface MSFCartViewModel ()
 
 @property (nonatomic, assign) double totalAmt;
 
 @end
 
-@implementation MSFOrderEditViewModel
+@implementation MSFCartViewModel
 
-- (instancetype)initWithOrderId:(NSString *)orderId
-											 services:(id<MSFViewModelServices>)services {
+- (instancetype)initWithCartId:(NSString *)cartId
+											services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (self) {
 		_services = services;
+		
+		RACSignal *cartSignal = [self.services.httpClient fetchCart:cartId];
+		//RACSignal *termSignal = [self.services.httpClient fetchCheckEmploeeWithProductCode:<#(NSString *)#>]
 		
 		_downPmtAmt = @"1000"; // 首付金额
 		_loanAmt = @"3000"; // 分期总金额
@@ -58,13 +61,13 @@
 		}] subscribe:loanAmt];
 		
 		RACSignal *orderValidSignal = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-			BOOL valid = self.order.loanAmt && self.order.loanTerm && self.order.crProdId && self.commodities;
+			//BOOL valid = self.cart.loanAmt && self.order.loanTerm && self.order.crProdId && self.commodities;
 			[subscriber sendNext:@(YES)];
 			[subscriber sendCompleted];
 			return [RACDisposable disposableWithBlock:^{}];
 		}];
 		RACCommand *trialCommand = [[RACCommand alloc] initWithEnabled:orderValidSignal signalBlock:^RACSignal *(id input) {
-			return [self.services.httpClient fetchTrialAmount:self.order];
+			return [self.services.httpClient fetchTrialAmount:self.cart];
 		}];
 		[trialCommand.executionSignals.switchToLatest subscribeNext:^(NSDictionary *x) {
 			_trialAmt = x[@"loanFixedAmt"];

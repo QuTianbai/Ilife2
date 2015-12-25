@@ -12,9 +12,11 @@
 #import "MSFCirculateCashViewModel.h"
 
 @class RACCommand;
+@class MSFRepaymentSchedulesViewModel;
 
 @interface MSFDrawCashViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *smsCode;
 
 @property (nonatomic, copy) NSString *bankIcon;
 
@@ -30,10 +32,12 @@
 
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
-@property (nonatomic, assign, readonly) int type;
+@property (nonatomic, assign) int type;
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
 
-- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(MSFCirculateCashViewModel *)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type;
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
+
+- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type;
 
 @end

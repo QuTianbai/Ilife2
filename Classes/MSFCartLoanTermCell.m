@@ -8,7 +8,7 @@
 
 #import "MSFCartLoanTermCell.h"
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 #import "UIColor+Utils.h"
 
 @interface MSFCartCollectionViewCell : UICollectionViewCell
@@ -64,7 +64,7 @@
 UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collection;
-@property (nonatomic, strong) MSFOrderEditViewModel *viewModel;
+@property (nonatomic, strong) MSFCartViewModel *viewModel;
 
 @end
 
@@ -110,7 +110,7 @@ UICollectionViewDelegate>
 	return self;
 }
 
-- (void)bindViewModel:(MSFOrderEditViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	_viewModel = viewModel;
 	[self.collection reloadData];
 }

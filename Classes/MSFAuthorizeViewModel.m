@@ -245,6 +245,26 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	self.signInInvalidSignal = [[RACSubject subject] setNameWithFormat:@"`MSFAuthorizeViewModel signIn captcha required signal`"];
 	
+	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.username isMobile]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
+		}
+		return [[self executePaySignal]
+						doNext:^(id x) {
+							@strongify(self)
+							self.counting = YES;
+							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+							__block int repetCount = kCounterLength;
+							[repetitiveEventSignal subscribeNext:^(id x) {
+								self.counter = [@(--repetCount) stringValue];
+							} completed:^{
+								self.counter = @"获取验证码";
+								self.counting = NO;
+							}];
+						}];
+	}];
+	
 	return self;
 }
 
@@ -459,6 +479,10 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 - (RACSignal *)executeCaptchForgetTradePwd {
 	return [self.services.httpClient fetchLoginCaptchaForgetTradeWithPhone:self.username];
+}
+
+- (RACSignal *)executePaySignal {
+	return [self.services.httpClient fetchLoginCaptchaTradeWithPhone:self.username];
 }
 
 - (RACSignal *)executeFindPasswordSignal {

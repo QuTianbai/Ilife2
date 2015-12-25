@@ -18,4 +18,12 @@
 	return [self enqueueRequest:request resultClass:MSFCart.class].msf_parsedResults;
 }
 
+- (RACSignal *)fetchTrialAmount:(MSFCart *)cart {
+	return [RACSignal return:@{@"loanFixedAmt" : @"1900.00",
+														 @"lifeInsuranceAmt" : @"0.00"}];
+	NSDictionary *params = [MTLJSONAdapter JSONDictionaryFromModel:cart];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"product/trial" parameters:params];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
 @end

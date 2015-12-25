@@ -9,7 +9,7 @@
 #import "MSFCartInputCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 
 @implementation MSFCartInputCell
 
@@ -47,7 +47,7 @@
 	return self;
 }
 
-- (void)bindViewModel:(MSFOrderEditViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UITextField *tf = (UITextField *)[self.contentView viewWithTag:100];
 	tf.placeholder = @"请填写首付金额";
 	RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);

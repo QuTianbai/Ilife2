@@ -9,12 +9,10 @@
 #import "MSFClient.h"
 
 @class RACSignal;
-@class MSFOrderDetail;
 
 @interface MSFClient(MSFOrder)
 
 - (RACSignal *)fetchOrderList:(NSString *)status pageNo:(NSInteger)pn;
 - (RACSignal *)fetchOrder:(NSString *)orderId;
-- (RACSignal *)fetchTrialAmount:(MSFOrderDetail *)order;
 
 @end

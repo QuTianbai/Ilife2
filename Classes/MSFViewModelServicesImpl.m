@@ -59,6 +59,16 @@
 #import "MSFBarcodeScanViewController.h"
 #import "MSFBarcodeScanViewController+MSFSignalSupport.h"
 
+#import "MSFCommoditesViewModel.h"
+#import "MSFCommoditesViewController.h"
+
+#import "MSFDistinguishViewModel.h"
+#import "MSFDistinguishViewController.h"
+
+#import "MSFCommodityCashViewModel.h"
+#import "MSFUserInfomationViewController.h"
+#import "MSFRepaymentSchedulesViewModel.h"
+
 @interface MSFViewModelServicesImpl ()
 
 @property (nonatomic, strong) MSFClient *client;
@@ -76,7 +86,7 @@
   }
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	_client = [MSFClient unauthenticatedClientWithUser:user];
-  
+
   return self;
 }
 
@@ -94,7 +104,7 @@
 
 - (void)pushViewModel:(id)viewModel {
 	id viewController;
-  
+
   if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
     viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
   } else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
@@ -133,10 +143,21 @@
 		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFCommoditesViewModel.class]) {
+		//TODO: 加载订单编辑界面
+		viewController = [[MSFCommoditesViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFDistinguishViewModel.class]) {
+		//TODO: 加载相机拍照界面
+		viewController = [[MSFDistinguishViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFCommodityCashViewModel.class]) {
+		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
+		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
+	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else {
     NSLog(@"an unknown ViewModel was pushed!");
   }
-  
+
   [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -155,14 +176,14 @@
 
 - (void)presentViewModel:(id)viewModel {
 	id viewController;
-  
+
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
 		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else {
     NSLog(@"an unknown ViewModel was present!");
   }
-  
+
   [self.navigationController presentViewController:viewController animated:YES completion:nil];
 }
 
@@ -209,13 +230,16 @@
 		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
 		[vc.msf_barcodeScannedSignal subscribeNext:^(id x) {
 			[subscriber sendNext:x];
-			[subscriber sendCompleted];
+			[navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendCompleted];
+			}];
 		} completed:^{
-			[subscriber sendCompleted];
+			[navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendCompleted];
+			}];
 		}];
-		
+
 		return [RACDisposable disposableWithBlock:^{
-			[navigationController dismissViewControllerAnimated:YES completion:nil];
 		}];
 	}];
 }
