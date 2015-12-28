@@ -25,8 +25,7 @@
 }
 
 - (RACSignal *)fetchOrder:(NSString *)orderId {
-	 NSDictionary *params = @{@"order_id" : orderId};
-	 NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orders/%@", orderId] parameters:params];
+	 NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orders/%@", orderId] parameters:nil];
 	 return [[self enqueueRequest:request resultClass:MSFOrderDetail.class] msf_parsedResults];
 }
 

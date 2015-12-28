@@ -132,7 +132,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
-	MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithModel:order services:self.viewModel.services];
+	MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithOrderId:order.inOrderId services:self.viewModel.services];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
