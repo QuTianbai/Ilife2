@@ -14,6 +14,8 @@
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFSmsCodeTableViewController.h"
+#import "MSFRepaymentSchedulesViewModel.h"
 
 @interface MSFDrawCashTableViewController () <MSFInputTradePasswordDelegate>
 
@@ -28,6 +30,10 @@
 
 @property (nonatomic, strong) MSFInputTradePasswordViewController *inputTradePassword;
 @property (nonatomic, strong) MSFDrawCashViewModel *viewModel;
+
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayViewModel;
+
+@property (nonatomic, assign) int type;
 
 @end
 
@@ -54,8 +60,6 @@
 	RAC(self.bankNo, text) = RACObserve(self, viewModel.bankCardNO);
 	RAC(self.moneyLB, text) = RACObserve(self, viewModel.money);
 	
-	//RAC(self.inputMoneyTF, text) = RACObserve(self.viewModel, drawCash);
-	
 	RACChannelTerminal *drawCashChannel = RACChannelTo(self.viewModel, drawCash);
 	RAC(self.inputMoneyTF, text) = drawCashChannel;
 	[self.inputMoneyTF.rac_textSignal subscribe:drawCashChannel];
@@ -68,7 +72,7 @@
 }
 
 - (void)setviewTitle {
-	if (self.viewModel.type == 1) {
+	if (self.viewModel.type == 1 || self.viewModel.type == 2) {
 		self.title = @"还款";
 		self.showInfoLB.text = @"还款金额从此银行账户代扣";
 		self.warningLB.text = @"";
@@ -94,27 +98,25 @@
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
 	NSString *str = @"正在提现...";
-	if (self.viewModel.type == 1) {
+	if (self.viewModel.type == 1 || self.viewModel.type == 2) {
 		str = @"正在还款";
 	}
 	
-	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
+	//[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
 	
 	self.viewModel.tradePWd = pwd;
+	
+	if (self.viewModel.type == 1 || self.viewModel.type == 2) {
+		MSFSmsCodeTableViewController *paySmsCodeVC = [[MSFSmsCodeTableViewController alloc] initWithViewModel:self.viewModel];
+		
+		[self.navigationController pushViewController:paySmsCodeVC animated:YES];
+		return;
+	}
+	
 	[[self.viewModel.executeSubmitCommand execute:nil]
 	 subscribeNext:^(MSFResponse *response) {
-		 //[SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
-		 //		 NSDictionary *result = response.parsedResult;
-		 
-		 
 		 NSDictionary *result = response.parsedResult;
 		 NSString *str = result[@"message"];
-		 if (self.viewModel.type == 1) {
-			 str = @"恭喜你，还款已成功";
-			 //NSDictionary *result = response.parsedResult;
-			 MSFCirculateCashModel *mocel = [MTLJSONAdapter modelOfClass:[MSFCirculateCashModel class] fromJSONDictionary:response.parsedResult error:nil];
-			 self.viewModel.circulateViewModel.infoModel = mocel;
-		 }
 		 [SVProgressHUD showSuccessWithStatus:str];
 		 [self.navigationController popViewControllerAnimated:YES];
 	 }];

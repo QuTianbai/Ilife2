@@ -149,7 +149,6 @@
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
 	CGPoint loc = [gestureRecognizer locationInView:self];
-	NSLog(@"---gesture：%f,%f", loc.x, loc.y);
 	BOOL tapIn = CGRectContainsPoint(CGRectMake(self.frame.size.width / 4, self.frame.size.height * 3 / 4, self.frame.size.width / 2, self.frame.size.height / 4), loc);
 	if (tapIn && _actionBlock) {
 		_actionBlock();

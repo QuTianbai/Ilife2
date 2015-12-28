@@ -33,4 +33,6 @@
 //人脸识别前置图片
 - (void)ImagePickerControllerWithImage:(id )iamge;
 
+- (RACSignal *)msf_barcodeScanSignal;
+
 @end

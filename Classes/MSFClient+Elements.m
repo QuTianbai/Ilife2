@@ -42,23 +42,6 @@
 	}];
 }
 
-- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms {
-	NSParameterAssert(applicaitonNo);
-	NSParameterAssert(amount);
-	NSParameterAssert(terms);
-	
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
-		@"productCode": @"",
-		@"amount": amount,
-		@"loanTerm": terms,
-	}];
-	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
-		MSFElement *element = response.parsedResult;
-		element.applicationNo = applicaitonNo;
-		return element;
-	}];
-}
-
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID {
 	NSParameterAssert(applicaitonNo);
 	NSParameterAssert(amount);

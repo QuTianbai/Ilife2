@@ -4,6 +4,8 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
+//TODO: merge pull request from !25 YongZhao/master
+/*
 #import "MSFBannersViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient.h"
@@ -31,3 +33,4 @@ it(@"should return number of section", ^{
 });
 
 QuickSpecEnd
+*/

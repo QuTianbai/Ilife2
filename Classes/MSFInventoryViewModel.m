@@ -82,6 +82,7 @@
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
 	}
+	//TODO: 增加商品贷提交申请
 	
 	[self initialize];
 	

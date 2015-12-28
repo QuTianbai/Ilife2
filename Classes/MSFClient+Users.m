@@ -64,7 +64,6 @@
 	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
 	parameters[@"bankBranchCityCode"] = bankBranchCityCode;
 	
-	//NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/bind" parameters:parameters];
 	[request setHTTPMethod:@"POST"];
 	
@@ -100,7 +99,7 @@
 	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"dealPwd"] = pwd?:@"";
 	NSString *path = @"loan/drawings";
-	if (type == 1) {
+	if (type == 1 || type == 2) {
 		path = @"loan/repay";
 		parameters[@"money"] = count;
 	}
@@ -108,21 +107,36 @@
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
 	
 	return [self enqueueRequest:request resultClass:nil];
-	
 }
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":capthch?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
+		@"uniqueId": self.user.uniqueId,
+		@"newTransPassword": pwd?:@"",
+		@"smsCode": capthch?:@""
+	}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)updateTradePwdWitholdPwd:(NSString *)oldpwd AndNewPwd:(NSString *)pwd AndCaptch:(NSString *)captch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":captch?:@"", @"oldTransPassword":oldpwd?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{
+		@"uniqueId": self.user.uniqueId,
+		@"newTransPassword": pwd?:@"",
+		@"smsCode": captch?:@"",
+		@"oldTransPassword": oldpwd?:@""
+	}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":newTransPassword?:@"", @"smsCode":smsCode?:@"", @"bankCardNo":bankCardNO?:@"", @"provinceCode":provinceCode?:@"", @"cityCode":cityCode?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{
+		@"uniqueId": self.user.uniqueId,
+		@"newTransPassword": newTransPassword?:@"",
+		@"smsCode": smsCode?:@"",
+		@"bankCardNo": bankCardNO?:@"",
+		@"provinceCode": provinceCode?:@"",
+		@"cityCode": cityCode?:@""
+	}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 

@@ -28,11 +28,6 @@
 // 还款总额 `¥1000.00`
 @property (nonatomic, strong, readonly) NSString *repaidAmount;
 
-
-//- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
-
-//- (void)pushRepaymentPlan;
-
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
 - (RACSignal *)fetchRepaymentSchedulesSignal;

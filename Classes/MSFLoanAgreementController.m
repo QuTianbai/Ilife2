@@ -101,6 +101,8 @@
 //	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
 //		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 //	}];
+
+//	self.submitButton.rac_command = self.viewModel.executeAcceptCommand;
 	self.LoanAgreenmentWV.scrollView.delegate = self;
 	self.submitButton.enabled = NO;
 }
@@ -124,6 +126,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//!!!:
 	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
 			NSLog(@"BOTTOM REACHED");
 			self.submitButton.enabled = YES;

@@ -140,7 +140,6 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
-		NSLog(@"BOTTOM REACHED");
 		self.button.enabled = YES;
 	}
 }

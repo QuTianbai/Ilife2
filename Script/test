@@ -9,7 +9,13 @@ XCWORKSPACE=$(find_pattern "*.xcworkspace")
 SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
 
 echo "========================================================================="
-echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator clean test"
+echo "script cleaning"
 echo "========================================================================="
 
-xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator clean test
+sh $(pwd)/script/clean
+
+echo "========================================================================="
+echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator test"
+echo "========================================================================="
+
+xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator test

@@ -1,0 +1,39 @@
+{
+	"inOrderId": "3131313131231223",
+	"orderStatus": "待付款",
+	"orderTime": "2015-12-15 22:22:11",
+	"txnTime": "2015-12-15 22:22:11",
+	"compId": "342",
+	"empId": "32",
+	"compName": "栗子",
+	"empName": "潇洒",
+	"outOrderId": "343",
+	"catId": "22",
+	"totalAmt": "2000",
+	"totalQuantity": "2",
+	"uniqueId": "31231231",
+	"custName": "小五",
+	"cellphone": "15833342521",
+	"appId": "2321131",
+	"contractId": "2131414",
+	"crProdId": "543534",
+	"crProdName": "浩瀚",
+	"curCode": "￥",
+	"loanAmt": "1000",
+	"loanTerm": "2",
+	"mthlyPmtAmt": "1012",
+	"isDownPmt": false,
+	"downPmtPct": "0",
+	"downPmt": "0",
+	"valueAddedSvc": true,
+	"cmdtyList": [
+        {
+								"catId": "34242",
+								"cmdtyId": "4534534",
+								"brandName": "海尔",
+								"cmdtyName": "洗衣机",
+								"pcsCount": "2",
+								"cmdtyPrice": "1000"
+        }
+								]
+}

@@ -39,11 +39,6 @@
 	
 	return YES;
 }
-//
-//- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
-//	NSLog(@"slder1");
-//	//[self sliderGragUp:self];
-//}
 
 - (void)customSlider {
   UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];

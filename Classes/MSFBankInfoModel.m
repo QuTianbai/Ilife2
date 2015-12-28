@@ -12,28 +12,30 @@
 
 + (NSDictionary *)FMDBColumnsByPropertyKey {
 	return @{
-					 @"bin": @"bank_bin",
-					 @"name": @"bank_name",
-					 @"type": @"bank_type",
-					 @"support": @"bank_support",
-					 @"code": @"bank_code",
-					 @"maxSize": @"bank_max_size"
-					 };
+		@"bin": @"bank_bin",
+		@"name": @"bank_name",
+		@"type": @"bank_type",
+		@"support": @"bank_support",
+		@"code": @"bank_code",
+		@"maxSize": @"bank_max_size"
+	};
 }
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-					 @"bin": @"bank_bin",
-					 @"name": @"bank_name",
-					 @"type": @"bank_type",
-					 @"support": @"bank_support",
-					 @"code": @"bank_code",
-					 @"maxSize": @"bank_max_size"
-					 };
+		@"bin": @"bank_bin",
+		@"name": @"bank_name",
+		@"type": @"bank_type",
+		@"support": @"bank_support",
+		@"code": @"bank_code",
+		@"maxSize": @"bank_max_size"
+	};
 }
 
 + (NSArray *)FMDBPrimaryKeys {
-	return @[@"bank_bin"];
+	return @[
+		@"bank_bin"
+	];
 }
 
 + (NSString *)FMDBTableName {

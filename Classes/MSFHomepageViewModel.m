@@ -16,10 +16,14 @@
 #import "MSFProfessionalViewModel.h"
 
 #import "MSFClient+MSFCirculateCash.h"
+#import "MSFClient+Advers.h"
+#import "MSFAdver.h"
 
 @interface MSFHomepageViewModel ()
 
+@property (nonatomic, strong) MSFFormsViewModel *viewModel;
 @property (nonatomic, strong, readwrite) MSFHomePageCellModel *cellModel;
+@property (nonatomic, strong, readwrite) NSArray *banners;
 
 @end
 
@@ -36,9 +40,10 @@
 	}
 	_viewModel = viewModel;
 	_services = services;
-	
+	_banners = @[[[MSFAdver alloc] init]];
+
 	@weakify(self)
-	_refreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_loanInfoRefreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient fetchCirculateCash:nil] map:^id(MSFCirculateCashModel *loan) {
 			if (loan) {
@@ -49,24 +54,22 @@
 			}
 		}];
 	}];
-	[[_refreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
-		@strongify(self)
+	[_loanInfoRefreshCommand.errors subscribeNext:^(id x) {
+		self.cellModel = nil;
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
+	}];
+	[[_loanInfoRefreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
 		self.cellModel = x;
 		if (!x) {
 			self.viewModel.active = NO;
 			self.viewModel.active = YES;
 		}
 	}];
-	[self.refreshCommand.errors subscribeNext:^(id x) {
-		@strongify(self)
-		self.cellModel = nil;
-		self.viewModel.active = NO;
-		self.viewModel.active = YES;
-	}];
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if (self.services.httpClient.user.isAuthenticated) {
-			[self.refreshCommand execute:nil];
+			[_loanInfoRefreshCommand execute:nil];
 		}
 	}];
 	return self;

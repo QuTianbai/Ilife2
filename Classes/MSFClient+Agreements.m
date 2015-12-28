@@ -90,4 +90,17 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 		}];
 }
 
+- (RACSignal *)fetchCommodityLoanAgreement:(NSString *)productCode {
+	//???: 缺少商品贷协议定义
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
+		@"templateType": @"LOAN_PROTOCOL",
+		@"productCode": productCode,
+	}];
+	request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://msxf.com"]];
+	return [[NSURLConnection rac_sendAsynchronousRequest:request]
+		reduceEach:^id(NSURLResponse *response, NSData *data){
+			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		}];
+}
+
 @end
