@@ -106,7 +106,10 @@
 		switch (indexPath.row) {
 			case 0: [cell setTitle:@"首付金额" content:self.order.downPmt isList:NO]; break;
 			case 1: [cell setTitle:@"贷款金额" content:self.order.loanAmt isList:NO]; break;
-			case 2: [cell setTitle:@"贷款期数" content:self.order.loanTerm isList:NO]; break;
+			case 2: {
+				NSString *content = [NSString stringWithFormat:@"￥%@×%@期", self.order.mthlyPmtAmt, self.order.loanTerm];
+				[cell setTitle:@"贷款期数" content:content isList:NO]; break;
+			}
 			case 3: [cell setTitle:[NSString stringWithFormat:@"%@加入首先计划", self.order.valueAddedSvc ? @"已" : @"未"] content:nil isList:NO]; break;
 		}
 	} else {

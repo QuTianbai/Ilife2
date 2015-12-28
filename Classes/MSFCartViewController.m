@@ -67,6 +67,13 @@
 	[[nextButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		NSLog(@"点击下一步");
 	}];
+	
+	@weakify(self)
+	[RACObserve(self, viewModel.cart) subscribeNext:^(id x) {
+		@strongify(self)
+		nextButton.hidden = !x;
+		[self.tableView reloadData];
+	}];
 }
 
 - (void)back {
@@ -76,6 +83,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if (!self.viewModel.commodities.count) {
+		return 0;
+	}
 	return self.viewModel.commodities.count + 1;
 }
 

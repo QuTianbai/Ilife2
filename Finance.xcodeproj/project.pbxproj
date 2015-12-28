@@ -234,14 +234,12 @@
 		102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E951C29274B0023172B /* MSFOrderListViewModel.m */; };
 		102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E991C2927B10023172B /* MSFOrder.m */; };
 		102C7E9D1C2928060023172B /* MSFClient+MSFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */; };
-		102C7E9F1C2929320023172B /* MSFOrderJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E9E1C2929320023172B /* MSFOrderJson.json */; };
 		102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA11C292B310023172B /* MSFOrderDetail.m */; };
 		102C7EA51C292B460023172B /* MSFCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA41C292B460023172B /* MSFCommodity.m */; };
 		102C7ED01C2939570023172B /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */; };
 		102C7ED11C2939570023172B /* MSFPlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */; };
 		102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ED41C293B830023172B /* MSFOrderListCell.m */; };
 		102C7ED81C2947380023172B /* MSFInsetsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ED71C2947380023172B /* MSFInsetsLabel.m */; };
-		102C7EDA1C294CCD0023172B /* MSFOrderDetailJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7ED91C294CCD0023172B /* MSFOrderDetailJson.json */; };
 		102C7EE11C2A389B0023172B /* MSFOrderListFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EDC1C2A389B0023172B /* MSFOrderListFooterCell.m */; };
 		102C7EE21C2A389B0023172B /* MSFOrderListHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EDE1C2A389B0023172B /* MSFOrderListHeaderCell.m */; };
 		102C7EE31C2A389B0023172B /* MSFOrderListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EE01C2A389B0023172B /* MSFOrderListItemCell.m */; };
@@ -1134,7 +1132,6 @@
 		102C7E991C2927B10023172B /* MSFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrder.m; sourceTree = "<group>"; };
 		102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFOrder.h"; sourceTree = "<group>"; };
 		102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFOrder.m"; sourceTree = "<group>"; };
-		102C7E9E1C2929320023172B /* MSFOrderJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFOrderJson.json; sourceTree = "<group>"; };
 		102C7EA01C292B310023172B /* MSFOrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderDetail.h; sourceTree = "<group>"; };
 		102C7EA11C292B310023172B /* MSFOrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetail.m; sourceTree = "<group>"; };
 		102C7EA31C292B460023172B /* MSFCommodity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommodity.h; sourceTree = "<group>"; };
@@ -1147,7 +1144,6 @@
 		102C7ED41C293B830023172B /* MSFOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListCell.m; sourceTree = "<group>"; };
 		102C7ED61C2947380023172B /* MSFInsetsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInsetsLabel.h; sourceTree = "<group>"; };
 		102C7ED71C2947380023172B /* MSFInsetsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInsetsLabel.m; sourceTree = "<group>"; };
-		102C7ED91C294CCD0023172B /* MSFOrderDetailJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFOrderDetailJson.json; sourceTree = "<group>"; };
 		102C7EDB1C2A389B0023172B /* MSFOrderListFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListFooterCell.h; sourceTree = "<group>"; };
 		102C7EDC1C2A389B0023172B /* MSFOrderListFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListFooterCell.m; sourceTree = "<group>"; };
 		102C7EDD1C2A389B0023172B /* MSFOrderListHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListHeaderCell.h; sourceTree = "<group>"; };
@@ -2514,8 +2510,6 @@
 				102C7EA41C292B460023172B /* MSFCommodity.m */,
 				102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */,
 				102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */,
-				102C7E9E1C2929320023172B /* MSFOrderJson.json */,
-				102C7ED91C294CCD0023172B /* MSFOrderDetailJson.json */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -4383,7 +4377,6 @@
 				C7A351781B217CB10001DF6A /* iconfont-chanpinjieshao@2x.png in Resources */,
 				C7B9780B1B099150005F247C /* MSFAboutsViewController.storyboard in Resources */,
 				070724A21B671A240089916B /* btnSlider.png in Resources */,
-				102C7EDA1C294CCD0023172B /* MSFOrderDetailJson.json in Resources */,
 				07CB4C4B1B1017AE006C220E /* right_arrow@3x.png in Resources */,
 				10E546BE1C02B03D00BBA827 /* ad_limit_ms.png in Resources */,
 				07A7DB011BFDC0F500916ADD /* applyCashBottomType@3x.png in Resources */,
@@ -4570,7 +4563,6 @@
 				4944C02B1B68A5A100805C0A /* icon-account-apply.png in Resources */,
 				074AC22C1BBA7A200056BA22 /* AddBankCard.storyboard in Resources */,
 				C7A351811B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin@2x.png in Resources */,
-				102C7E9F1C2929320023172B /* MSFOrderJson.json in Resources */,
 				4944C0321B68A5A100805C0A /* icon-account-info@2x.png in Resources */,
 				07E3ED731BBBC3020010AAD2 /* tradepasswordimg.png in Resources */,
 				4944C02D1B68A5A100805C0A /* icon-account-apply@3x.png in Resources */,

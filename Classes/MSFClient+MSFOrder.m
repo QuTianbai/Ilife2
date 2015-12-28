@@ -16,36 +16,18 @@
 @implementation MSFClient(MSFOrder)
 
 - (RACSignal *)fetchOrderList:(NSString *)status pageNo:(NSInteger)pn {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MSFOrderJson" ofType:@"json"]] options:kNilOptions error:nil];
-		MSFOrder *order = [MTLJSONAdapter modelOfClass:MSFOrder.class fromJSONDictionary:json error:nil];
-		[subscriber sendNext:order];
-		[subscriber sendCompleted];
-		return nil;
-	}];
-	/*
 	NSDictionary *params = @{@"uniqueId" : self.user.uniqueId,
 													 @"orderStatus" : status ?: @"",
 													 @"pageSize" : @10,
 													 @"pageNo" : @(pn)};
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"orders/list" parameters:params];
 	return [[self enqueueRequest:request resultClass:MSFOrder.class] msf_parsedResults];
-	*/
 }
 
 - (RACSignal *)fetchOrder:(NSString *)orderId {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MSFOrderDetailJson" ofType:@"json"]] options:kNilOptions error:nil];
-		MSFOrderDetail *order = [MTLJSONAdapter modelOfClass:MSFOrderDetail.class fromJSONDictionary:json error:nil];
-		[subscriber sendNext:order];
-		[subscriber sendCompleted];
-		return nil;
-	}];
-	/*
 	 NSDictionary *params = @{@"order_id" : orderId};
 	 NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orders/%@", orderId] parameters:params];
 	 return [[self enqueueRequest:request resultClass:MSFOrderDetail.class] msf_parsedResults];
-	 */
 }
 
 @end

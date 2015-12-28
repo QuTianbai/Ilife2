@@ -28,6 +28,7 @@
 
 @property (nonatomic, weak, readonly) id<MSFViewModelServices>services;
 @property (nonatomic, strong, readonly) MSFLoanType *loanType; // 产品群Id 3101
+@property (nonatomic, strong, readonly) MSFCart *cart;
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 
 - (instancetype)initWithCartId:(NSString *)cartId services:(id<MSFViewModelServices>)services;

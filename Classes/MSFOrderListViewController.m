@@ -19,8 +19,6 @@
 
 #import "UIColor+Utils.h"
 
-#import "MSFCartViewController.h"
-
 @interface MSFOrderListViewController ()
 
 @property (nonatomic, strong) MSFOrderListViewModel *viewModel;
@@ -53,13 +51,14 @@
 		@strongify(self)
 		[self.viewModel.executeRefreshCommand execute:nil];
 	}];
-	[self.tableView addPullToRefreshWithActionHandler:^{
+	[self.tableView addInfiniteScrollingWithActionHandler:^{
 		@strongify(self)
 		[self.viewModel.executeInfinityCommand execute:nil];
 	}];
 	[self.viewModel.executeRefreshCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
 		@strongify(self)
 		[self.tableView.pullToRefreshView stopAnimating];
+		self.tableView.infiniteScrollingView.enabled = [x count] == 10;
 	} error:^(NSError *error) {
 		@strongify(self)
 		[self.tableView.pullToRefreshView stopAnimating];
@@ -132,12 +131,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	MSFCartViewController *vcb = [[MSFCartViewController alloc] initWithOrderId:nil services:self.viewModel.services];
-	[self.navigationController pushViewController:vcb animated:YES];
-	return; //TODO: 模拟测试
-	//MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
-	//MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithModel:order services:self.viewModel.services];
-	//[self.navigationController pushViewController:vc animated:YES];
+	MSFOrderDetail *order = self.viewModel.orders[indexPath.section];
+	MSFOrderDetailViewController *vc = [[MSFOrderDetailViewController alloc] initWithModel:order services:self.viewModel.services];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

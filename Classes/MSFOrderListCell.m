@@ -49,9 +49,9 @@
 		validString = [NSString stringWithFormat:@"%@", content];
 	}
 	label1.text = title;
-	
+	label2.text = validString;
+
 	if (isList) {
-		label2.text = validString;
 		if ([title isEqualToString:@"商品信息"]) {
 			self.contentView.backgroundColor = UIColor.darkBackgroundColor;
 			label1.textColor = UIColor.themeColorNew;
@@ -62,10 +62,16 @@
 			label2.textColor = UIColor.blackColor;
 		}
 	} else {
-		label2.text = validString;
 		if ([title isEqualToString:@"订单状态"]) {
 			label2.textColor = [self colorWithStatus:content];
 			label2.backgroundColor = UIColor.clearColor;
+					NSDictionary *map = @{@"0" : @"审核中",
+																@"1" : @"审核已通过",
+																@"2" : @"审核未通过",
+																@"3" : @"待支付",
+																@"4" : @"已支付",
+																@"5" : @"已退货"};
+			label2.text = map[content];
 		} else if ([title isEqualToString:@"贷款期数"]) {
 			label2.backgroundColor = UIColor.lightGrayColor;
 			label2.textColor = UIColor.whiteColor;
@@ -79,8 +85,6 @@
 		} else if ([title isEqualToString:@"手机号"]) {
 			NSString *phone = [validString stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
 			label2.text = phone;
-		} else {
-			label2.text = validString;
 		}
 	}
 }

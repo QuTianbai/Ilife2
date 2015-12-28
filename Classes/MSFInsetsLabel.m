@@ -25,13 +25,26 @@
 		_label = [[UILabel alloc] init];
 		_label.font = [UIFont systemFontOfSize:15];
 		[self addSubview:_label];
-		[_label mas_makeConstraints:^(MASConstraintMaker *make) {
+		[_label mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
+	}
+	return self;
+}
+
+- (void)setBackgroundColor:(UIColor *)backgroundColor {
+	[super setBackgroundColor:backgroundColor];
+	if (backgroundColor == UIColor.clearColor) {
+		[_label mas_remakeConstraints:^(MASConstraintMaker *make) {
+			make.edges.equalTo(self);
+		}];
+	} else {
+		[_label mas_remakeConstraints:^(MASConstraintMaker *make) {
 			make.left.equalTo(self).offset(10);
 			make.right.equalTo(self).offset(-10);
 			make.top.bottom.equalTo(self);
 		}];
 	}
-	return self;
 }
 
 - (void)setTextColor:(UIColor *)textColor {

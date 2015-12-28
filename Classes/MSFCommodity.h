@@ -10,8 +10,6 @@
 
 @interface MSFCommodity : MSFObject
 
-//@property (nonatomic, copy, readonly) NSString *category1; // 一级分类
-//@property (nonatomic, copy, readonly) NSString *category2; // 二级分类
 @property (nonatomic, copy, readonly) NSString *catId; // 品类编号
 @property (nonatomic, copy, readonly) NSString *cmdtyId; // 商品编号
 @property (nonatomic, copy, readonly) NSString *brandName; // 品牌名称
