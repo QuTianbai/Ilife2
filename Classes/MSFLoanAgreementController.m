@@ -28,6 +28,9 @@
 #import "MSFInventoryViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 
+#import "MSFFaceMaskViewModel.h"
+#import "MSFFaceMaskPhtoViewController.h"
+
 @interface MSFLoanAgreementController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
@@ -78,8 +81,10 @@
 	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
 		@strongify(self)
-		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
-		MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
+		MSFFaceMaskViewModel *viewModel = [[MSFFaceMaskViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
+		MSFFaceMaskPhtoViewController *viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
+		//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
+//		MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[self.navigationController pushViewController:viewController animated:YES];
 	}];
 //	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {

@@ -30,19 +30,22 @@
 @property (nonatomic, strong) NSString *applicaitonNo;
 @property (nonatomic, strong) NSString *productID;
 
+@property (nonatomic, strong) MSFAttachment *attachment;
+
 @end
 
 @implementation MSFInventoryViewModel
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel {
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel AndAttachment:(MSFAttachment *)attachment {
   self = [super init];
   if (!self) {
     return nil;
   }
 	_applicationViewModel = applicaitonViewModel;
 	_services = applicaitonViewModel.services;
+	_attachment = attachment;
 	
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
@@ -193,6 +196,11 @@
 				@"name": obj.name,
 			}];
 		}];
+		[attachments addObject:@{
+														@"accessoryType": self.attachment.type,
+														@"fileId": self.attachment.fileID,
+														@"name": self.attachment.name,
+														}];
 		return [RACSignal return:attachments];
 	}];
 }

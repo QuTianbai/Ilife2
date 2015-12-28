@@ -35,4 +35,6 @@
 // Returns a signal will send element instance flow
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID;
 
+- (RACSignal *)fetchFaceMaskElements;
+
 @end
