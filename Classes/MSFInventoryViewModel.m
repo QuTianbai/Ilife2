@@ -38,6 +38,56 @@
 
 #pragma mark - Lifecycle
 
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_applicationViewModel = applicaitonViewModel;
+	_services = applicaitonViewModel.services;
+	
+	@weakify(self)
+	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
+		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
+			return [[[[self.services.httpClient
+				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.loanType.typeID]
+				catch:^RACSignal *(NSError *error) {
+					return RACSignal.empty;
+				}]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
+		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+			return [[[[self.services.httpClient
+				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.loanType.typeID]
+				catch:^RACSignal *(NSError *error) {
+					return RACSignal.empty;
+				}]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
+		}
+		return RACSignal.empty;
+	}];
+	
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
+		}];
+	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
+	}
+	//TODO: 增加商品贷提交申请
+	
+	[self initialize];
+	
+	return self;
+}
+
 - (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel AndAttachment:(MSFAttachment *)attachment {
   self = [super init];
   if (!self) {
@@ -82,6 +132,7 @@
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
 	}
+	//TODO: 增加商品贷提交申请
 	
 	[self initialize];
 	

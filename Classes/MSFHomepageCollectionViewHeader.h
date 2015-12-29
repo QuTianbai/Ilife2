@@ -8,4 +8,6 @@
 
 @interface MSFHomepageCollectionViewHeader : UICollectionReusableView
 
+- (void)bindViewModel:(id)viewModel;
+
 @end

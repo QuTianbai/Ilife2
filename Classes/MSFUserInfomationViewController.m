@@ -35,6 +35,11 @@
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFSocialCaskApplyTableViewController.h"
 
+#import "MSFCommodityCashViewModel.h"
+#import "MSFDistinguishViewController.h"
+#import "MSFDistinguishViewModel.h"
+#import "MSFCommoditesViewModel.h"
+
 @interface MSFUserInfomationViewController ()
 
 @property (nonatomic, strong) UIButton *nextStepButton;
@@ -57,7 +62,9 @@
 }
 
 - (void)dealloc {
+#if DEBUG
 	NSLog(@"MSFUserInfomationViewController `-dealloc`");
+#endif
 }
 
 - (void)viewDidLoad {
@@ -129,6 +136,10 @@
 				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:self.viewModel];
 				insuranceViewController.hidesBottomBarWhenPushed = YES;
 				[self.navigationController pushViewController:insuranceViewController animated:YES];
+			} else if ([self.viewModel isKindOfClass:MSFCommodityCashViewModel.class]) {
+				MSFDistinguishViewModel *viewModel = [[MSFDistinguishViewModel alloc] initWithApplicationViewModel:self.viewModel];
+				MSFDistinguishViewController *vc = [[MSFDistinguishViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
 			}
 	 }];
 	

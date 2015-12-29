@@ -11,10 +11,10 @@ XCWORKSPACE=$(find_pattern "*.xcworkspace")
 SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
 
 echo "========================================================================="
-echo "rm -rf $BUILD_DIR"
+echo "script cleaning"
 echo "========================================================================="
 
-rm -rf $BUILD_DIR
+sh $(pwd)/script/clean
 
 echo "========================================================================="
 echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator CONFIGURATION_BUILD_DIR=$BUILD_DIR clean build"
@@ -23,8 +23,8 @@ echo "========================================================================="
 xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator CONFIGURATION_BUILD_DIR=$BUILD_DIR clean build
 
 echo "========================================================================="
-echo "ios-sim launch build/$SCHEME.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5, 7.1' --exit"
+echo "ios-sim launch build/$SCHEME.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5s, 9.1' --exit"
 echo "========================================================================="
 
-# ios-sim launch build/Example.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5, 7.1'
-ios-sim launch $BUILD_DIR/$SCHEME.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5, 7.1' --exit
+# ios-sim launch build/Example.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5s, 9.1'
+ios-sim launch $BUILD_DIR/$SCHEME.app --devicetypeid 'com.apple.CoreSimulator.SimDeviceType.iPhone-5s, 9.1' --exit

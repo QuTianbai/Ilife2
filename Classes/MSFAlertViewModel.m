@@ -46,8 +46,6 @@
 		cashViewModel.formViewModel.active = YES;
 	}
 	
-	//_bankNumber = cashViewModel.formViewModel.masterBankCardNO;
-	
   return self;
 }
 

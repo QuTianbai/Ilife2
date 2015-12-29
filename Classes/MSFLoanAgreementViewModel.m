@@ -16,6 +16,9 @@
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFClient+MSFSocialInsurance.h"
 #import "MSFLoanType.h"
+#import "MSFCommodityCashViewModel.h"
+#import "MSFDistinguishViewModel.h"
+#import "MSFCommoditesViewModel.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -36,6 +39,10 @@
 		return RACSignal.empty;
 	}];
 	
+	_executeAcceptCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return self.executeAcceptSignal;
+	}];
+	
 	return self;
 }
 
@@ -46,7 +53,26 @@
 	if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
 	}
+	//!!!:
+	if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
+		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel.loanType.typeID];
+	}
 	return [RACSignal empty];
+}
+
+- (RACSignal *)executeAcceptSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
+			MSFCommodityCashViewModel *viewModel = [[MSFCommodityCashViewModel alloc] initWithViewModel:self.applicationViewModel.formViewModel loanType:self.applicationViewModel.loanType barcode:@""];
+			[self.services pushViewModel:viewModel];
+		} else {
+			MSFDistinguishViewModel *viewModel = [[MSFDistinguishViewModel alloc] initWithApplicationViewModel:self.applicationViewModel];
+			[self.services pushViewModel:viewModel];
+		}
+		[subscriber sendCompleted];
+		return [RACDisposable disposableWithBlock:^{
+		}];
+	}];
 }
 
 @end

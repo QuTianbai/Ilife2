@@ -47,18 +47,19 @@ UICollectionViewDelegateFlowLayout>
 	[super viewDidLoad];
 	
 	@weakify(self)
-	[RACObserve(self, viewModel.cellModel) subscribeNext:^(id x) {
-		@strongify(self)
+	[[RACSignal combineLatest:@[RACObserve(self, viewModel.cellModel), RACObserve(self, viewModel.banners)]] subscribeNext:^(id x) {
 		[self.collectionView reloadData];
+	}];
+	[[self.viewModel.loanInfoRefreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
+		[self.collectionView.pullToRefreshView stopAnimating];
+	} error:^(NSError *error) {
+		[self.collectionView.pullToRefreshView stopAnimating];
 	}];
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
-		[[self.viewModel.refreshCommand execute:nil] subscribeNext:^(id x) {
-			[self.collectionView.pullToRefreshView stopAnimating];
-		} error:^(NSError *error) {
-			[self.collectionView.pullToRefreshView stopAnimating];
-		}];
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
 	}];
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
@@ -80,6 +81,7 @@ UICollectionViewDelegateFlowLayout>
 		MSFHomepageCollectionViewHeader *header =
 		[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
 																			 withReuseIdentifier:@"header" forIndexPath:indexPath];
+		[header bindViewModel:self.viewModel];
 		return header;
 	}
 	return UICollectionReusableView.new;

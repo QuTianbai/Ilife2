@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFRelationshipViewController : UITableViewController
-<MSFReactiveView>
+@interface MSFRelationshipViewController : UITableViewController <MSFReactiveView>
 
 @end

@@ -13,7 +13,7 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"applyID":@"id"
-		};
+	};
 }
 
 - (BOOL)validateApplyID:(id *)applyID error:(NSError **)error {

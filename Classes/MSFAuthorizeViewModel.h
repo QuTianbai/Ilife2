@@ -107,6 +107,8 @@ extern NSString *const MSFAuthorizeErrorDomain;
 @property (nonatomic, strong) RACCommand *executeSetTradePwd;
 @property (nonatomic, strong) RACCommand *executeUpdateTradePwd;
 
+@property (nonatomic, strong) RACCommand *executePayCommand;
+
 
 - (RACSignal *)signInValidSignal;
 - (RACSignal *)signUpValidSignal;

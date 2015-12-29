@@ -54,7 +54,7 @@
     return nil;
   }
 	_viewModel = viewModel;
-  
+
   return self;
 }
 
@@ -76,31 +76,7 @@
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];
 	}];
-	//self.submitButton.rac_command = self.viewModel.executeRequest;
-	@weakify(self)
-	[[self.submitButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		@strongify(self)
-		MSFFaceMaskViewModel *viewModel = [[MSFFaceMaskViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
-		MSFFaceMaskPhtoViewController *viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
-		//MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
-//		MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-		[self.navigationController pushViewController:viewController animated:YES];
-	}];
-//	[self.viewModel.executeRequest.executionSignals subscribeNext:^(RACSignal *signal) {
-//		@strongify(self)
-//		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-//		[signal subscribeNext:^(MSFSubmitApplyModel *applyCash) {
-//			[SVProgressHUD dismiss];
-//			self.viewModel.applicationViewModel.applicationNo = applyCash.appNo;
-//			MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicationViewModel:self.viewModel.applicationViewModel];
-//			MSFInventoryViewController *viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
-//			[self.navigationController pushViewController:viewController animated:YES];
-//		}];
-//	}];
-//	[self.viewModel.executeRequest.errors subscribeNext:^(NSError *error) {
-//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//	}];
+	self.submitButton.rac_command = self.viewModel.executeAcceptCommand;
 	self.LoanAgreenmentWV.scrollView.delegate = self;
 	self.submitButton.enabled = NO;
 }
@@ -124,6 +100,7 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//!!!:
 	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
 			NSLog(@"BOTTOM REACHED");
 			self.submitButton.enabled = YES;

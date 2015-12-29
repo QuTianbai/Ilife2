@@ -6,17 +6,16 @@
 // 基本信息
 
 #import "RVMViewModel.h"
-#import "MSFViewModelServices.h"
 #import "MSFReactiveView.h"
 
-@class MSFFormsViewModel;
-@class MSFAddressViewModel;
+@class MSFApplicationForms;
 @class RACCommand;
 
 @interface MSFPersonalViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, strong, readonly) NSString *address;//省市区
-@property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong, readonly) MSFApplicationForms *forms;
+@property (nonatomic, assign, readonly) BOOL edited;
 
 @property (nonatomic, strong, readonly) RACCommand *executeAlterAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;

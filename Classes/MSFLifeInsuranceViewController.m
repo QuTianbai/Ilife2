@@ -49,7 +49,6 @@
 		error:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
-
 }
 
 @end

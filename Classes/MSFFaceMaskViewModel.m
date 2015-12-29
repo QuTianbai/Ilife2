@@ -23,7 +23,6 @@
 @property (nonatomic, assign) id<MSFViewModelServices> services;
 @property (nonatomic, strong) MSFElement *model;
 
-
 @end
 
 @implementation MSFFaceMaskViewModel
