@@ -49,12 +49,9 @@
 - (RACSignal *)loanAgreementSignal {
 	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
-	}
-	if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
-	}
-	//!!!:
-	if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
+	} else if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
 		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel.loanType.typeID];
 	}
 	return [RACSignal empty];

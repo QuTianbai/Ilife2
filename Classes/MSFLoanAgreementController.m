@@ -100,10 +100,8 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//!!!:
 	if (scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height)) {
-			NSLog(@"BOTTOM REACHED");
-			self.submitButton.enabled = YES;
+		self.submitButton.enabled = YES;
 	}
 }
 
