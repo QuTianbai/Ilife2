@@ -11,6 +11,7 @@
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFTransSmsSeqNOModel.h"
 
 @implementation MSFClient (Users)
 
@@ -138,6 +139,27 @@
 		@"cityCode": cityCode?:@""
 	}];
 	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)checkDataWithPwd:(NSString *)transpassword contractNO:(NSString *)contractNO {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/checkData" parameters:@{@"transPassword":transpassword, @"contractNo":contractNO}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)sendSmsCodeForTrans {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/checkSms" parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFTransSmsSeqNOModel.class] msf_parsedResults];
+}
+
+- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{
+																		@"amount": amount?:@"",
+																		@"smsCode": smsCode?:@"",
+																		@"smsSeqNo": smsSeqNo?:@"",
+																		@"contractNo": contractNo?:@"",
+																	}];
+	return [self enqueueRequest:request resultClass:nil];
+
 }
 
 @end

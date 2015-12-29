@@ -68,6 +68,7 @@
 		0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB051B96D39E00AD67F3 /* MSFConfirmContactViewModel.m */; };
 		0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */; };
 		0750AB121B96F77C00AD67F3 /* ConfirmContract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */; };
+		0756C1FA1C318265000730D5 /* MSFTransSmsSeqNOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C1F91C318265000730D5 /* MSFTransSmsSeqNOModel.m */; };
 		07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF01BBEAAEE002DFF62 /* MSFCheckAllowApply.m */; };
 		07667BF41BBEAB83002DFF62 /* MSFApplyCashInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF31BBEAB83002DFF62 /* MSFApplyCashInfo.m */; };
 		07667BF71BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF61BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m */; };
@@ -904,6 +905,8 @@
 		0750AB0A1B96F73700AD67F3 /* MSFConfirmContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFConfirmContractViewController.h; sourceTree = "<group>"; };
 		0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContractViewController.m; sourceTree = "<group>"; };
 		0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmContract.storyboard; sourceTree = "<group>"; };
+		0756C1F81C318265000730D5 /* MSFTransSmsSeqNOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTransSmsSeqNOModel.h; sourceTree = "<group>"; };
+		0756C1F91C318265000730D5 /* MSFTransSmsSeqNOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTransSmsSeqNOModel.m; sourceTree = "<group>"; };
 		07667BEF1BBEAAEE002DFF62 /* MSFCheckAllowApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCheckAllowApply.h; sourceTree = "<group>"; };
 		07667BF01BBEAAEE002DFF62 /* MSFCheckAllowApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCheckAllowApply.m; sourceTree = "<group>"; };
 		07667BF21BBEAB83002DFF62 /* MSFApplyCashInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyCashInfo.h; sourceTree = "<group>"; };
@@ -2061,6 +2064,15 @@
 			name = Contract;
 			sourceTree = "<group>";
 		};
+		0756C1EA1C31822B000730D5 /* ActivePay */ = {
+			isa = PBXGroup;
+			children = (
+				0756C1F81C318265000730D5 /* MSFTransSmsSeqNOModel.h */,
+				0756C1F91C318265000730D5 /* MSFTransSmsSeqNOModel.m */,
+			);
+			name = ActivePay;
+			sourceTree = "<group>";
+		};
 		07667BEE1BBEAAC2002DFF62 /* CheckIsAllowApplyCash */ = {
 			isa = PBXGroup;
 			children = (
@@ -3078,6 +3090,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0756C1EA1C31822B000730D5 /* ActivePay */,
 				493ED1581C2BDE24002B8EA6 /* Barcode */,
 				102C7E971C2927990023172B /* Orders */,
 				4919250E1C08511C00E6EAC5 /* LoanType */,
@@ -4170,6 +4183,7 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
+				4DEE54F2B1EC25B83BE23CF9 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4189,6 +4203,7 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
+				BD2CFE186C680BAE239F9071 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4856,6 +4871,21 @@
 			shellPath = /bin/sh;
 			shellScript = "#${SRCROOT}/Script/brsp/xcode-build-bump.sh";
 		};
+		4DEE54F2B1EC25B83BE23CF9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4869,6 +4899,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD2CFE186C680BAE239F9071 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -4959,7 +5004,6 @@
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
 				07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */,
-				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFOrderEditContentCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
@@ -4973,6 +5017,7 @@
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
 				07CB4C7C1B104572006C220E /* MSFPersonalViewController.m in Sources */,
 				07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */,
+				0756C1FA1C318265000730D5 /* MSFTransSmsSeqNOModel.m in Sources */,
 				07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */,
 				0750AAF91B969DED00AD67F3 /* MSFCustomAlertView.m in Sources */,
 				C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */,
