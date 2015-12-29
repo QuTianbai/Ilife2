@@ -30,6 +30,8 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		return  nil;
 	}
 	_smsCode = @"";
+	_smsCode = @"";
+	_smsSeqNo = @"";
 	if (type == 2) {
 		_repayFinanceViewModel = viewModel;
 		_repayFinanceViewModel.type = type;
@@ -89,6 +91,9 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeDrawCash];
 	}];
+	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executePaySignal];
+	}];
 	
 	return self;
 }
@@ -122,9 +127,15 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"超出最大额度限制，请重新填写", }];
 			return [RACSignal error:error];
 		}
+		return [self.services.httpClient drawCashWithDrawCount:self.drawCash AndContraceNO:self.contractNO AndPwd:self.tradePWd AndType:self.type];
 	}
 	
-	return [self.services.httpClient drawCashWithDrawCount:self.drawCash AndContraceNO:self.contractNO AndPwd:self.tradePWd AndType:self.type];
+	return [self.services.httpClient checkDataWithPwd:self.tradePWd contractNO:self.contractNO];
+	
+}
+
+- (RACSignal *)executePaySignal {
+	return [self.services.httpClient transActionWithAmount:self.drawCash smsCode:self.smsCode smsSeqNo:self.smsSeqNo contractNo:self.contractNO];
 }
 
 @end

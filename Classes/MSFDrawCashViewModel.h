@@ -18,6 +18,8 @@
 
 @property (nonatomic, copy) NSString *smsCode;
 
+@property (nonatomic, copy) NSString *smsSeqNo;
+
 @property (nonatomic, copy) NSString *bankIcon;
 
 @property (nonatomic, copy) NSString *bankName;
@@ -35,6 +37,7 @@
 @property (nonatomic, assign) int type;
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
+@property (nonatomic, strong) RACCommand *executePayCommand;
 
 @property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 

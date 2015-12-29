@@ -230,6 +230,7 @@
 	[img mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.center.mas_equalTo(self.imagePickerController.view);
 		make.size.mas_equalTo(CGSizeMake(297, 360));
+	}];
 }
 - (RACSignal *)msf_barcodeScanSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
