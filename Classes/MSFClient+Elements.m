@@ -59,4 +59,9 @@
 	}];
 }
 
+- (RACSignal *)fetchFaceMaskElements {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"picture/getFaceDocument" parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
+}
+
 @end

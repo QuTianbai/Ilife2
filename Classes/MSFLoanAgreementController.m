@@ -28,6 +28,9 @@
 #import "MSFInventoryViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 
+#import "MSFFaceMaskViewModel.h"
+#import "MSFFaceMaskPhtoViewController.h"
+
 @interface MSFLoanAgreementController ()<UIWebViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UIWebView *LoanAgreenmentWV;
@@ -51,7 +54,7 @@
     return nil;
   }
 	_viewModel = viewModel;
-  
+
   return self;
 }
 

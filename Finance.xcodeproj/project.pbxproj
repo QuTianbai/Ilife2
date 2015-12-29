@@ -18,6 +18,12 @@
 		070724A21B671A240089916B /* btnSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249F1B671A240089916B /* btnSlider.png */; };
 		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
+		07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F231C310EDF004AD0E2 /* faceMask_bg.png */; };
+		07122F271C310EDF004AD0E2 /* faceMask_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */; };
+		07122F281C310EDF004AD0E2 /* faceMask_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */; };
+		07122F2C1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */; };
+		07122F2E1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */; };
+		07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07122F311C31239A004AD0E2 /* MSFFaceMaskViewModel.m */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
 		072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072550C71BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m */; };
 		072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072550C91BFEC1F60053F51F /* SocialCashApply.storyboard */; };
@@ -817,6 +823,14 @@
 		070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPeriodsCollectionViewCell.h; sourceTree = "<group>"; };
 		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
 		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
+		07122F231C310EDF004AD0E2 /* faceMask_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceMask_bg.png; sourceTree = "<group>"; };
+		07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceMask_bg@2x.png"; sourceTree = "<group>"; };
+		07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceMask_bg@3x.png"; sourceTree = "<group>"; };
+		07122F2A1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFFaceMaskPhtoViewController.h; sourceTree = "<group>"; };
+		07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFFaceMaskPhtoViewController.m; sourceTree = "<group>"; };
+		07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = faceMaskStoryboard.storyboard; sourceTree = "<group>"; };
+		07122F301C31239A004AD0E2 /* MSFFaceMaskViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFFaceMaskViewModel.h; sourceTree = "<group>"; };
+		07122F311C31239A004AD0E2 /* MSFFaceMaskViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFFaceMaskViewModel.m; sourceTree = "<group>"; };
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		072550C61BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSocialCaskApplyTableViewController.h; sourceTree = "<group>"; };
 		072550C71BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSocialCaskApplyTableViewController.m; sourceTree = "<group>"; };
@@ -1858,6 +1872,35 @@
 				070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */,
 			);
 			name = CollectionView;
+			sourceTree = "<group>";
+		};
+		07122F221C310ED0004AD0E2 /* FaceMask */ = {
+			isa = PBXGroup;
+			children = (
+				07122F231C310EDF004AD0E2 /* faceMask_bg.png */,
+				07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */,
+				07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */,
+			);
+			name = FaceMask;
+			sourceTree = "<group>";
+		};
+		07122F291C3110E4004AD0E2 /* FaceMask */ = {
+			isa = PBXGroup;
+			children = (
+				07122F2A1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.h */,
+				07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */,
+				07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */,
+			);
+			name = FaceMask;
+			sourceTree = "<group>";
+		};
+		07122F2F1C312336004AD0E2 /* FaceMask */ = {
+			isa = PBXGroup;
+			children = (
+				07122F301C31239A004AD0E2 /* MSFFaceMaskViewModel.h */,
+				07122F311C31239A004AD0E2 /* MSFFaceMaskViewModel.m */,
+			);
+			name = FaceMask;
 			sourceTree = "<group>";
 		};
 		072550B81BFEBDF80053F51F /* SocialCashApply */ = {
@@ -3082,6 +3125,7 @@
 				498637D41C2BD3A900A11845 /* Commodites */,
 				498637CC1C2BC17C00A11845 /* Distinguish */,
 				102C7E921C2927250023172B /* Orders */,
+				07122F2F1C312336004AD0E2 /* FaceMask */,
 				496FE7631C06FE0D004A5BAB /* CashHomePageView */,
 				49DA1A381C0ED1020052C056 /* Draw */,
 				07F088FE1BBD021A0067C5BC /* Circulate */,
@@ -3116,6 +3160,7 @@
 				498637C41C2BB9C400A11845 /* Commodity */,
 				102C7F061C2A7B600023172B /* Order */,
 				49252BBA1C293D3800CC682B /* Barcode */,
+				07122F291C3110E4004AD0E2 /* FaceMask */,
 				491DB1EE1BCCDE04002C5C78 /* Alert */,
 				07E3ED631BBBB9F60010AAD2 /* TradePassword */,
 				077347EE1BBA379200D7A130 /* BankCard */,
@@ -3951,6 +3996,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				07122F221C310ED0004AD0E2 /* FaceMask */,
 				4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */,
 				4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */,
 				4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */,
@@ -4328,6 +4374,7 @@
 				102C7EF71C2A7A4B0023172B /* icon-account-order@3x.png in Resources */,
 				07C158DC1BC8E7E600127339 /* addver.jpg in Resources */,
 				49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */,
+				07122F281C310EDF004AD0E2 /* faceMask_bg@3x.png in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
 				07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */,
 				49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */,
@@ -4402,6 +4449,7 @@
 				49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				077347CA1BBA338900D7A130 /* ABC.png in Resources */,
+				07122F2E1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard in Resources */,
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49E07D491BBD25F0001F9E1A /* code-message.json in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
@@ -4427,6 +4475,7 @@
 				077347E21BBA338900D7A130 /* ICBC.png in Resources */,
 				492CBE991B8811740059B6C2 /* Alert.storyboard in Resources */,
 				077347D11BBA338900D7A130 /* CBC@2x.png in Resources */,
+				07122F271C310EDF004AD0E2 /* faceMask_bg@2x.png in Resources */,
 				49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
 				070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */,
@@ -4542,6 +4591,7 @@
 				10028A601BD4F28F00D36508 /* edu_background1.json in Resources */,
 				10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */,
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
+				07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */,
 				077347E31BBA338900D7A130 /* ICBC@2x.png in Resources */,
 				0750AA7D1B957E0800AD67F3 /* icon-confirm.png in Resources */,
 				077347D31BBA338900D7A130 /* china.png in Resources */,
@@ -4878,6 +4928,7 @@
 				10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
+				07122F2C1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m in Sources */,
 				074AC24C1BBB87740056BA22 /* MSFCheckHasTradePassword.m in Sources */,
 				07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */,
 				072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */,
@@ -4907,6 +4958,7 @@
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
+				07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFOrderEditContentCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,

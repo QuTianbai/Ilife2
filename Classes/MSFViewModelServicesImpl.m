@@ -10,6 +10,7 @@
 #import <Mantle/EXTScope.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CZPhotoPickerController/CZPhotoPickerPermissionAlert.h>
+#import <Masonry/Masonry.h>
 
 #import "MSFClient.h"
 #import "MSFServer.h"
@@ -72,6 +73,8 @@
 @interface MSFViewModelServicesImpl ()
 
 @property (nonatomic, strong) MSFClient *client;
+
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
 
 @end
 
@@ -197,14 +200,15 @@
 			[subscriber sendError:nil];
 			return nil;
 		}
-		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			_imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 		} else {
-			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+			_imagePickerController.sourceType =
+			UIImagePickerControllerSourceTypePhotoLibrary;
 		}
-		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];
-		[imagePickerController.rac_imageSelectedSignal subscribeNext:^(NSDictionary *imageInfoDict) {
+		[self.visibleViewController presentViewController:_imagePickerController animated:YES completion:nil];
+		[_imagePickerController.rac_imageSelectedSignal subscribeNext:^(NSDictionary *imageInfoDict) {
 			UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage] ?: imageInfoDict[UIImagePickerControllerOriginalImage];
 			[subscriber sendNext:image];
 			[subscriber sendCompleted];
@@ -212,8 +216,20 @@
 			[subscriber sendCompleted];
 		}];
 		return [RACDisposable disposableWithBlock:^{
-			[imagePickerController dismissViewControllerAnimated:NO completion:nil];
+			[_imagePickerController dismissViewControllerAnimated:NO completion:nil];
 		}];
+	}];
+}
+
+- (void)ImagePickerControllerWithImage:(id)iamge {
+	_imagePickerController = [[UIImagePickerController alloc] init];
+	UIImageView *img = [[UIImageView alloc] initWithImage:iamge];
+
+	//img.frame = CGRectMake(0, 0, 297, 360);
+	[self.imagePickerController.view addSubview:img];
+	[img mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.center.mas_equalTo(self.imagePickerController.view);
+		make.size.mas_equalTo(CGSizeMake(297, 360));
 	}];
 }
 
