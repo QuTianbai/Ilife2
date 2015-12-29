@@ -11,6 +11,7 @@
 
 @interface MSFOrderDetailViewController : UITableViewController
 
-- (instancetype)initWithModel:(id)model services:(id<MSFViewModelServices>)services;
+- (instancetype)initWithOrderId:(NSString *)orderId
+											 services:(id<MSFViewModelServices>)services;
 
 @end

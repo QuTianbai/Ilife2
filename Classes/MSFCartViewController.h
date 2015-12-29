@@ -1,5 +1,5 @@
 //
-//  MSFOrderEditViewController.h
+//  MSFCartViewController.h
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MSFViewModelServices.h"
 
-@interface MSFOrderEditViewController : UITableViewController
+@interface MSFCartViewController : UITableViewController
 
 - (instancetype)initWithOrderId:(NSString *)orderId
 											 services:(id<MSFViewModelServices>)services;

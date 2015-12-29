@@ -15,7 +15,6 @@
 @interface MSFOrderListViewModel ()
 
 @property (nonatomic, strong, readwrite) NSMutableArray *orders;
-//@property (nonatomic, strong) NSMutableArray *tempOrders;
 @property (nonatomic, assign) NSInteger pn;
 
 @end

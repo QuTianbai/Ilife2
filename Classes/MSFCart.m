@@ -1,20 +1,33 @@
 //
-//  MSFCommodity.m
+//  MSFCart.m
 //  Finance
 //
-//  Created by 赵勇 on 12/22/15.
+//  Created by 赵勇 on 12/24/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
+#import "MSFCart.h"
 #import "MSFCommodity.h"
 
-@implementation MSFCommodity
+@implementation MSFCart
 
-+ (NSValueTransformer *)pcsCountJSONTransformer {
++ (NSValueTransformer *)cmdtyListJSONTransformer {
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFCommodity.class];
+}
+
++ (NSValueTransformer *)totalAmtJSONTransformer {
 	return [self transformer];
 }
 
-+ (NSValueTransformer *)cmdtyPriceJSONTransformer {
++ (NSValueTransformer *)totalQuantityJSONTransformer {
+	return [self transformer];
+}
+
++ (NSValueTransformer *)minDownPmtJSONTransformer {
+	return [self transformer];
+}
+
++ (NSValueTransformer *)maxDownPmtJSONTransformer {
 	return [self transformer];
 }
 

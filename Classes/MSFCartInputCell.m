@@ -1,17 +1,17 @@
 //
-//  MSFOrderEditInputCell.m
+//  MSFCartInputCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditInputCell.h"
+#import "MSFCartInputCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 
-@implementation MSFOrderEditInputCell
+@implementation MSFCartInputCell
 
 - (void)dealloc {
 	NSLog(@"MSFOrderEditInputCell dealloc");
@@ -47,7 +47,7 @@
 	return self;
 }
 
-- (void)bindViewModel:(MSFOrderEditViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UITextField *tf = (UITextField *)[self.contentView viewWithTag:100];
 	tf.placeholder = @"请填写首付金额";
 	RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);

@@ -102,10 +102,10 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		self.password.text = @"";
 		self.viewModel.password = @"";
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-		MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.services];
-		MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
-		repayViewController.hidesBottomBarWhenPushed = YES;
-		[self.navigationController pushViewController:repayViewController animated:YES];
+//		MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.services];
+//		MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
+//		repayViewController.hidesBottomBarWhenPushed = YES;
+//		[self.navigationController pushViewController:repayViewController animated:YES];
 	}];
 	
 	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {

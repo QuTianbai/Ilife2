@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy, readonly) NSString *catId; // 品类编号
 @property (nonatomic, copy, readonly) NSString *cmdtyId; // 商品编号
-@property (nonatomic, copy, readonly) NSString *brandName; // 品牌编号
+@property (nonatomic, copy, readonly) NSString *brandName; // 品牌名称
 @property (nonatomic, copy, readonly) NSString *cmdtyName; // 商品名称
 @property (nonatomic, copy, readonly) NSString *pcsCount; // 件数
 @property (nonatomic, copy, readonly) NSString *cmdtyPrice; // 商品价格

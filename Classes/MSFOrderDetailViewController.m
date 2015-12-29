@@ -16,18 +16,18 @@
 @interface MSFOrderDetailViewController ()
 
 @property (nonatomic, weak) id<MSFViewModelServices>services;
-@property (nonatomic, strong) MSFOrderDetail *orderPartial;
+@property (nonatomic, strong) NSString *orderId;
 @property (nonatomic, strong) MSFOrderDetail *order;
 
 @end
 
 @implementation MSFOrderDetailViewController
 
-- (instancetype)initWithModel:(MSFOrderDetail *)model services:(id<MSFViewModelServices>)services {
+- (instancetype)initWithOrderId:(NSString *)orderId services:(id<MSFViewModelServices>)services {
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
 		_services = services;
-		_orderPartial = model;
+		_orderId = orderId;
 	}
 	return self;
 }
@@ -40,7 +40,7 @@
 	[self.tableView registerClass:MSFOrderListCell.class forCellReuseIdentifier:@"MSFOrderListCell"];
 	
 	@weakify(self)
-	[[self.services.httpClient fetchOrder:self.orderPartial.inOrderId] subscribeNext:^(id x) {
+	[[self.services.httpClient fetchOrder:self.orderId] subscribeNext:^(id x) {
 		@strongify(self)
 		self.order = x;
 		[self.tableView reloadData];
@@ -56,7 +56,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return self.order.cmdtyList.count + 2;
+	if (self.order.cmdtyList.count > 0) {
+		return self.order.cmdtyList.count + 2;
+	}
+	return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -106,7 +109,10 @@
 		switch (indexPath.row) {
 			case 0: [cell setTitle:@"首付金额" content:self.order.downPmt isList:NO]; break;
 			case 1: [cell setTitle:@"贷款金额" content:self.order.loanAmt isList:NO]; break;
-			case 2: [cell setTitle:@"贷款期数" content:self.order.loanTerm isList:NO]; break;
+			case 2: {
+				NSString *content = [NSString stringWithFormat:@"￥%@×%@期", self.order.mthlyPmtAmt, self.order.loanTerm];
+				[cell setTitle:@"贷款期数" content:content isList:NO]; break;
+			}
 			case 3: [cell setTitle:[NSString stringWithFormat:@"%@加入首先计划", self.order.valueAddedSvc ? @"已" : @"未"] content:nil isList:NO]; break;
 		}
 	} else {

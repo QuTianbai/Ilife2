@@ -1,17 +1,18 @@
 //
-//  MSFOrderEditContentCell.m
+//  MSFCartContentCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditContentCell.h"
+#import "MSFCartContentCell.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
+#import "MSFCommodity.h"
 
-@implementation MSFOrderEditContentCell
+@implementation MSFCartContentCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -45,27 +46,27 @@
 - (void)bindViewModel:(id)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UILabel *label1 = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *label2 = (UILabel *)[self.contentView viewWithTag:101];
-	if ([viewModel isKindOfClass:MSFOrderEditViewModel.class]) {
+	if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
 		if (indexPath.row != 1) {
 			return;
 		}
-		MSFOrderEditViewModel *order = (MSFOrderEditViewModel *)viewModel;
+		MSFCartViewModel *order = (MSFCartViewModel *)viewModel;
 		label1.text = @"贷款金额";
 		RAC(label2, text) = [RACObserve(order, loanAmt) takeUntil:self.rac_prepareForReuseSignal];
 	} else {
-		NSDictionary *commodity = (NSDictionary *)viewModel;
+		MSFCommodity *commodity = (MSFCommodity *)viewModel;
 		switch (indexPath.row) {
 			case 1:
 				label1.text = @"商品名称";
-				label2.text = commodity[@"name"];
+				label2.text = commodity.cmdtyName;
 				break;
 			case 2:
 				label1.text = @"商品单价";
-				label2.text = commodity[@"price"];
+				label2.text = commodity.cmdtyPrice;
 				break;
 			case 3:
 				label1.text = @"商品数量";
-				label2.text = commodity[@"num"];
+				label2.text = commodity.pcsCount;
 				break;
 		}
 	}

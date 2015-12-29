@@ -1,14 +1,14 @@
 //
-//  MSFOrderEditTrialCell.h
+//  MSFCartContentCell.h
 //  Finance
 //
-//  Created by 赵勇 on 12/24/15.
+//  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFOrderEditTrialCell : UITableViewCell
+@interface MSFCartContentCell : UITableViewCell
 
 @end

@@ -14,7 +14,7 @@
 
 // Create <MSFLoanType> instance with typeID
 //
-// 社保贷 1101 马上贷 4102 随借随还 4101
+// 社保贷 1101 马上贷 4102 随借随还 4101 商品贷 3101
 //
 // typeID - 贷款产品群ID
 //

@@ -1,23 +1,24 @@
 //
-//  MSFOrderEditLoanTermCell.m
+//  MSFCartLoanTermCell.m
 //  Finance
 //
 //  Created by 赵勇 on 12/23/15.
 //  Copyright © 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFOrderEditLoanTermCell.h"
+#import "MSFCartLoanTermCell.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
-#import "MSFOrderEditViewModel.h"
+#import "MSFCartViewModel.h"
 #import "UIColor+Utils.h"
 
-@interface MSFLoanTermCollectionViewCell : UICollectionViewCell
+@interface MSFCartCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) NSString *content;
 
 @end
 
-@implementation MSFLoanTermCollectionViewCell
+@implementation MSFCartCollectionViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
@@ -59,16 +60,16 @@
 
 @end
 
-@interface MSFOrderEditLoanTermCell ()
+@interface MSFCartLoanTermCell ()
 <UICollectionViewDataSource,
 UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collection;
-@property (nonatomic, strong) MSFOrderEditViewModel *viewModel;
+@property (nonatomic, strong) MSFCartViewModel *viewModel;
 
 @end
 
-@implementation MSFOrderEditLoanTermCell
+@implementation MSFCartLoanTermCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
 	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -92,7 +93,7 @@ UICollectionViewDelegate>
 		collection.backgroundColor = UIColor.clearColor;
 		collection.delegate = self;
 		collection.dataSource = self;
-		[collection registerClass:MSFLoanTermCollectionViewCell.class forCellWithReuseIdentifier:@"MSFLoanTermCollectionViewCell"];
+		[collection registerClass:MSFCartCollectionViewCell.class forCellWithReuseIdentifier:@"MSFCartCollectionViewCell"];
 		[self.contentView addSubview:collection];
 		self.collection = collection;
 		
@@ -110,27 +111,33 @@ UICollectionViewDelegate>
 	return self;
 }
 
-- (void)bindViewModel:(MSFOrderEditViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	_viewModel = viewModel;
-	[self.collection reloadData];
+	@weakify(self)
+	[[RACObserve(self, viewModel.terms) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+		@strongify(self)
+		[self.collection reloadData];
+		NSInteger index = [self.viewModel.terms indexOfObject:self.viewModel.term];
+		[self.collection selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+	}];
 }
 
 #pragma mark - UICollectionView
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.viewModel.loanTerms.count;
+	return self.viewModel.terms.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	MSFLoanTermCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFLoanTermCollectionViewCell" forIndexPath:indexPath];
-	NSDictionary *term = self.viewModel.loanTerms[indexPath.row];
-	NSString *content = [NSString stringWithFormat:@"￥%@×%@期", term[@"price"], term[@"term"]];
-	cell.content = content;
+	MSFCartCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCartCollectionViewCell" forIndexPath:indexPath];
+	NSString *term = self.viewModel.terms[indexPath.row];
+	cell.content = [NSString stringWithFormat:@"%@期", term];
 	return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	
+	NSString *term = self.viewModel.terms[indexPath.row];
+	self.viewModel.term = term;
 }
 
 @end
