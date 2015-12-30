@@ -45,6 +45,15 @@
 		
 		_trial = [[MSFTrial alloc] init];
 		_cart = [[MSFCart alloc] init];
+		_lifeInsuranceAmt = @"";
+		_loanFixedAmt = @"";
+		_downPmtScale = @"";
+		_totalAmt = @"";
+		
+		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
+			self.loanFixedAmt = x.loanFixedAmt;
+			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
+		}];
 	
 		RACChannelTerminal *downPmt = RACChannelTo(self, downPmtAmt);
 		RACChannelTerminal *loanAmt = RACChannelTo(self, loanAmt);
@@ -78,6 +87,8 @@
 			@strongify(self)
 			self.cart = x;
 			self.compId = self.cart.compId;
+			self.promId = self.cart.promId;
+			self.totalAmt = self.cart.totalAmt;
 		}];
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
 			@strongify(self)
@@ -104,9 +115,13 @@
 			if (self.terms.count > 0) {
 				self.term = [self.terms[0] loanTeam];
 			}
+			self.downPmtScale = [@(self.loanAmt.floatValue / self.totalAmt.floatValue) stringValue];
 		}];
 		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
 			return self.executeAgreementSignal;
+		}];
+		_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
+			return self.executeCompleteSignal;
 		}];
 	}
 	return self;
@@ -176,6 +191,10 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+- (RACSignal *)executeCompleteSignal {
+	return [self.services.httpClient submitTrialAmount:self];
 }
 
 @end

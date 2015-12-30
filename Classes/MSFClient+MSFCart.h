@@ -15,5 +15,6 @@
 
 - (RACSignal *)fetchCart:(NSString *)appNo;
 - (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel;
+- (RACSignal *)submitTrialAmount:(MSFCartViewModel *)viewModel;
 
 @end

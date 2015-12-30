@@ -69,6 +69,9 @@
 #import "MSFCommodityCashViewModel.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFRepaymentSchedulesViewModel.h"
+#import "MSFCartViewModel.h"
+#import "MSFFaceMaskViewModel.h"
+#import "MSFFaceMaskPhtoViewController.h"
 
 @interface MSFViewModelServicesImpl ()
 
@@ -149,10 +152,9 @@
 	} else if ([viewModel isKindOfClass:MSFCommoditesViewModel.class]) {
 		//TODO: 加载订单编辑界面
 		viewController = [[MSFCommoditesViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFDistinguishViewModel.class]) {
-		//TODO: 加载相机拍照界面
-		viewController = [[MSFDistinguishViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFCommodityCashViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
+		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
 		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
 		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
 	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {

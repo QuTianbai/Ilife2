@@ -20,6 +20,8 @@
 #import "MSFDistinguishViewModel.h"
 #import "MSFCommoditesViewModel.h"
 #import "MSFCartViewModel.h"
+#import "MSFFaceMaskViewModel.h"
+#import "MSFFaceMaskPhtoViewController.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -61,10 +63,9 @@
 - (RACSignal *)executeAcceptSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
-			MSFCommodityCashViewModel *viewModel = [[MSFCommodityCashViewModel alloc] initWithViewModel:self.applicationViewModel.formViewModel loanType:self.applicationViewModel.loanType barcode:@""];
-			[self.services pushViewModel:viewModel];
+			[self.services pushViewModel:self.applicationViewModel];
 		} else {
-			MSFDistinguishViewModel *viewModel = [[MSFDistinguishViewModel alloc] initWithApplicationViewModel:self.applicationViewModel];
+			MSFFaceMaskViewModel *viewModel = [[MSFFaceMaskViewModel alloc] initWithApplicationViewModel:self.applicationViewModel];
 			[self.services pushViewModel:viewModel];
 		}
 		[subscriber sendCompleted];
