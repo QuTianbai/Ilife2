@@ -137,16 +137,18 @@
   if (!result) return;
 
   // We got a result. Display information about the result onscreen.
+	NSLog(@"captureResult");
+	
+  [self.capture stop];
+	
   NSString *formatString = [self barcodeFormatToString:result.barcodeFormat];
   NSString *display = [NSString stringWithFormat:@"Scanned!\n\nFormat: %@\n\nContents:\n%@", formatString, result.text];
   [self.decodedLabel performSelectorOnMainThread:@selector(setText:) withObject:display waitUntilDone:YES];
+	
 	if ([self.delegate respondsToSelector:@selector(barcodeScanController:didFinishScanningMediaWithResult:)]) {
+		AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
 		[self.delegate barcodeScanController:self didFinishScanningMediaWithResult:result];
 	}
-	
-  // Vibrate
-  AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-  [self.capture stop];
 }
 
 @end

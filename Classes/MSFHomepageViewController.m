@@ -88,16 +88,10 @@ UICollectionViewDelegateFlowLayout>
 	}];
 	scanItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:@"200000152015123002500201320" services:self.viewModel.services];
+		return [[self.viewModel.services msf_barcodeScanSignal] doNext:^(id x) {
+			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
 			[self.navigationController pushViewController:vc animated:YES];
-//		[[self.viewModel.services msf_barcodeScanSignal] subscribeNext:^(id x) {
-//			NSLog(@"%@", [x description]);
-//			
-//		} completed:^{
-//			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:@"200000152015123002500201320" services:self.viewModel.services];
-//			[self.navigationController pushViewController:vc animated:YES];
-//		}];
-		return RACSignal.empty;
+		}];
 	}];
 }
 

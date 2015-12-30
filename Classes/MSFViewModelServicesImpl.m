@@ -11,6 +11,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CZPhotoPickerController/CZPhotoPickerPermissionAlert.h>
 #import <Masonry/Masonry.h>
+#import <ZXingObjC/ZXingObjC.h>
 
 #import "MSFClient.h"
 #import "MSFServer.h"
@@ -150,7 +151,6 @@
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFCommoditesViewModel.class]) {
-		//TODO: 加载订单编辑界面
 		viewController = [[MSFCommoditesViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
 		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
@@ -246,13 +246,15 @@
 		MSFBarcodeScanViewController *vc = [[MSFBarcodeScanViewController alloc] init];
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
 		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
-		[vc.msf_barcodeScannedSignal subscribeNext:^(id x) {
-			[subscriber sendNext:x];
-			[navigationController dismissViewControllerAnimated:YES completion:^{
+		@weakify(vc)
+		[vc.msf_barcodeScannedSignal subscribeNext:^(ZXResult *x) {
+			@strongify(vc)
+			[vc.navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendNext:x.text];
 				[subscriber sendCompleted];
 			}];
 		} completed:^{
-			[navigationController dismissViewControllerAnimated:YES completion:^{
+			[vc.navigationController dismissViewControllerAnimated:YES completion:^{
 				[subscriber sendCompleted];
 			}];
 		}];
