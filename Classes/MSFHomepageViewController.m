@@ -14,6 +14,7 @@
 
 #import "MSFHomepageViewModel.h"
 #import "MSFReactiveView.h"
+#import "MSFOrderListViewController.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -69,7 +70,24 @@ UICollectionViewDelegateFlowLayout>
 	
 	UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:nil action:nil];
 	UIBarButtonItem *payItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:nil action:nil];
-	self.navigationItem.rightBarButtonItems = @[scanItem, payItem];
+	[RACObserve(self, viewModel.hasOrders) subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x boolValue]) {
+			self.navigationItem.rightBarButtonItems = @[scanItem, payItem];
+		} else {
+			self.navigationItem.rightBarButtonItems = @[scanItem];
+		}
+	}];
+	
+	payItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.services];
+		[self.navigationController pushViewController:vc animated:YES];
+		return RACSignal.empty;
+	}];
+	scanItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return RACSignal.empty;
+	}];
 }
 
 #pragma mark - UICollectionViewDataSource

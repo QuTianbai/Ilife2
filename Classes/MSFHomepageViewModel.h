@@ -18,7 +18,8 @@
 @property (nonatomic, strong, readonly) MSFHomePageCellModel *cellModel;
 @property (nonatomic, strong, readonly) NSArray *banners;
 
-@property (nonatomic, assign, readonly) BOOL hasOrder;
+@property (nonatomic, strong, readonly) NSArray *orders;
+@property (nonatomic, assign, readonly) BOOL hasOrders;
 
 - (instancetype)initWithModel:(id)viewModel services:(id<MSFViewModelServices>)services;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;

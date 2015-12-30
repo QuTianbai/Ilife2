@@ -19,13 +19,15 @@
 #import "MSFClient+Advers.h"
 #import "MSFAdver.h"
 #import "MSFClient+MSFOrder.h"
+#import "MSFOrder.h"
 
 @interface MSFHomepageViewModel ()
 
 @property (nonatomic, strong) MSFFormsViewModel *viewModel;
 @property (nonatomic, strong, readwrite) MSFHomePageCellModel *cellModel;
 @property (nonatomic, strong, readwrite) NSArray *banners;
-@property (nonatomic, strong) NSArray *orders;
+@property (nonatomic, assign, readwrite) BOOL hasOrders;
+@property (nonatomic, strong, readwrite) NSArray *orders;
 
 @end
 
@@ -43,7 +45,6 @@
 	_viewModel = viewModel;
 	_services = services;
 	_banners = @[[[MSFAdver alloc] init]];
-	_hasOrder = YES;
 
 	@weakify(self)
 	_loanInfoRefreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -74,11 +75,15 @@
 		if (self.services.httpClient.user.isAuthenticated) {
 			[_loanInfoRefreshCommand execute:nil];
 		}
-		[[[[self.services.httpClient fetchOrderList:@"" pageNo:0]
+		// 获取待支付订单列表
+		[[[self.services.httpClient fetchOrderList:@"3" pageNo:0]
 			ignore:nil]
-			collect]
-			subscribeNext:^(id x) {
-				self.orders = x;
+			subscribeNext:^(MSFOrder *order) {
+				@strongify(self)
+				self.orders = order.orderList;
+				self.hasOrders = self.orders.count > 0;
+			} error:^(NSError *error) {
+				self.hasOrders = NO;
 			}];
 	}];
 	return self;

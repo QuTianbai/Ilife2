@@ -16,6 +16,8 @@
 #import "MSFClient+Users.h"
 #import "MSFResponse.h"
 #import "MSFClient.h"
+#import "MSFClient+MSFOrder.h"
+#import "MSFOrder.h"
 
 QuickSpecBegin(MSFHomePageViewModelSpec)
 
@@ -23,8 +25,31 @@ __block MSFHomepageViewModel *viewModel;
 __block id <MSFViewModelServices> services;
 __block MSFClient *client;
 
+NSDictionary *representation = @{
+	@"count" : @100,
+	@"pageSize" : @10,
+	@"pageNo" : @0,
+	@"orderList" : @[@{
+		@"inOrderId" : @"1111111",
+		@"totalAmt" : @10,
+		@"totalQuantity" : @11,
+		@"orderStatus" : @"11111",
+		@"orderTime" : @1450503185106LL,
+		@"cmdtyList" : @[@{
+			@"catId" : @"111111",
+			@"cmdtyId" : @"111111",
+			@"brandName" : @"111111",
+			@"cmdtyName" : @"111111",
+			@"pcsCount" : @1,
+			@"cmdtyPrice" : @1
+		}]
+	}]
+};
+
 beforeEach(^{
 	services = mockProtocol(@protocol(MSFViewModelServices));
+	client = mock([MSFClient class]);
+	[given([services httpClient]) willReturn:client];
   viewModel = [[MSFHomepageViewModel alloc] initWithModel:nil services:services];
 });
 
@@ -48,11 +73,14 @@ it(@"should not has viewmodel for placeholder", ^{
 
 it(@"should has order that waiting for pay", ^{
 	// given
+	MSFOrder *order = [MTLJSONAdapter modelOfClass:MSFOrder.class fromJSONDictionary:representation error:nil];
+	[given([client fetchOrderList:@"3" pageNo:0]) willReturn:[RACSignal return:order]];
 	
 	// when
+	viewModel.active = YES;
 	
 	// then
-	expect(@(viewModel.hasOrder)).to(beFalsy());
+	expect(@(viewModel.hasOrders)).to(beTruthy());
 });
 
 QuickSpecEnd
