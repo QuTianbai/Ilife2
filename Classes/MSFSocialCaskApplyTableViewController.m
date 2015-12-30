@@ -7,45 +7,53 @@
 //
 
 #import "MSFSocialCaskApplyTableViewController.h"
+#import <ZSWTappableLabel/ZSWTappableLabel.h>
+#import <ZSWTaggedString/ZSWTaggedString.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <KGModal/KGModal.h>
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFEdgeButton.h"
-#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 #import "MSFSocialInsuranceModel.h"
 #import "MSFApplicationForms.h"
 #import "UIColor+Utils.h"
-#import <ZSWTappableLabel/ZSWTappableLabel.h>
-#import <ZSWTaggedString/ZSWTaggedString.h>
-#import <KGModal/KGModal.h>
 
 @interface MSFSocialCaskApplyTableViewController ()<ZSWTappableLabelTapDelegate>
 
 @property (nonatomic, strong) MSFSocialInsuranceCashViewModel *viewModel;
-@property (weak, nonatomic) IBOutlet UITextField *cashPuposeTF;
-@property (weak, nonatomic) IBOutlet UITextField *olderStatusTF;
-@property (weak, nonatomic) IBOutlet UITextField *olderBaseTF;
-@property (weak, nonatomic) IBOutlet UITextField *olderDateTF;
-@property (weak, nonatomic) IBOutlet UITextField *olderMonthsTF;
-@property (weak, nonatomic) IBOutlet UITextField *medicalStatusTF;
-@property (weak, nonatomic) IBOutlet UITextField *medicalBaseTF;
-@property (weak, nonatomic) IBOutlet UITextField *medicalDate;
-@property (weak, nonatomic) IBOutlet UITextField *medicalMonths;
-@property (weak, nonatomic) IBOutlet UITextField *injuryStatusTF;
-@property (weak, nonatomic) IBOutlet UITextField *unEmployTF;
-@property (weak, nonatomic) IBOutlet UITextField *bearTF;
-@property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
-@property (weak, nonatomic) IBOutlet UILabel *monthsOrYeasLB;
-@property (weak, nonatomic) IBOutlet UILabel *oldMonthsOrYeasLB;
-@property (weak, nonatomic) IBOutlet UILabel *oldTypeLB;
-@property (weak, nonatomic) IBOutlet UILabel *medicalTypeLB;
 
-@property (nonatomic, copy) NSString *professional;
-@property (weak, nonatomic) IBOutlet UISwitch *lifeInsuranceSwitch;
-@property (weak, nonatomic) IBOutlet UIButton *isLifeInsuranceBT;
+@property (weak, nonatomic) IBOutlet UITextField *cashPuposeTF;
+@property (weak, nonatomic) IBOutlet UIButton *cashPurposeBT;
+
+@property (weak, nonatomic) IBOutlet UILabel *liveAreaTF;
+@property (weak, nonatomic) IBOutlet UIButton *liveAreaBT;
+
+@property (weak, nonatomic) IBOutlet UITextField *liveAddressTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *companyNameTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *companyAreaTF;
+@property (weak, nonatomic) IBOutlet UIButton *companyAreaBT;
+
+@property (weak, nonatomic) IBOutlet UITextField *companyAddressTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *relationTF;
+@property (weak, nonatomic) IBOutlet UIButton *relationBT;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *mobileTF;
+
+@property (weak, nonatomic) IBOutlet UITextField *basePayTF;
+@property (weak, nonatomic) IBOutlet UIButton *basePayBT;
+
+@property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
+
+//@property (nonatomic, strong) NSString *professional; // 社会身份状态码
 
 @end
 
@@ -64,6 +72,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+	
 	RAC(self, cashPuposeTF.text) = [RACObserve(self, viewModel.cashpurpose) ignore:nil];
 	@weakify(self)
 	[[self.isLifeInsuranceBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
