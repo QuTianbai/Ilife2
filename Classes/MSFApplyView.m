@@ -45,26 +45,37 @@
 - (void)setUpMS {
 	self.backgroundColor = UIColor.clearColor;
 	UIImageView *adImageView = [[UIImageView alloc] init];
+	adImageView.layer.cornerRadius = 10;
 	adImageView.clipsToBounds = YES;
-	adImageView.contentMode = UIViewContentModeScaleToFill;
+	adImageView.contentMode = UIViewContentModeScaleAspectFill;
 	adImageView.image = [UIImage imageNamed:@"ad_msd"];
 	adImageView.userInteractionEnabled = YES;
 	[self addSubview:adImageView];
+	
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+	button.backgroundColor = [UIColor clearColor];
+	[button setBackgroundImage:[UIImage imageNamed:@"ad_msd_bt"] forState:UIControlStateNormal];
+	[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:button];
+	
 	[adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.equalTo(self).offset(6);
 		make.left.equalTo(self).offset(12);
 		make.right.bottom.equalTo(self).offset(-12);
 	}];
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
-	tap.delegate = self;
-	[adImageView addGestureRecognizer:tap];
+	[button mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.bottom.equalTo(self).offset(-20);
+		make.centerX.equalTo(self);
+		make.width.equalTo(self).multipliedBy(0.5);
+		make.height.equalTo(button.mas_width).multipliedBy(0.224);
+	}];
 }
 
 - (void)setUpLimitMS {
 	self.backgroundColor = UIColor.clearColor;
 	UIImageView *adImageView = [[UIImageView alloc] init];
 	adImageView.clipsToBounds = YES;
-	adImageView.contentMode = UIViewContentModeScaleToFill;
+	adImageView.contentMode = UIViewContentModeScaleAspectFill;
 	adImageView.image = [UIImage imageNamed:@"ad_limit_ms"];
 	adImageView.userInteractionEnabled = YES;
 	[self addSubview:adImageView];
@@ -91,18 +102,33 @@
 - (void)setUpML {
 	self.backgroundColor = UIColor.clearColor;
 	UIImageView *adImageView = [[UIImageView alloc] init];
+	adImageView.layer.cornerRadius = 10;
 	adImageView.clipsToBounds = YES;
-	adImageView.contentMode = UIViewContentModeScaleToFill;
+	adImageView.contentMode = UIViewContentModeScaleAspectFill;
 	adImageView.image = [UIImage imageNamed:@"ad_mld"];
 	adImageView.userInteractionEnabled  = YES;
 	[self addSubview:adImageView];
+	
+	UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+	button.backgroundColor = [UIColor clearColor];
+	[button setBackgroundImage:[UIImage imageNamed:@"ad_mld_bt"] forState:UIControlStateNormal];
+	[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+	[self addSubview:button];
+	button.userInteractionEnabled = NO;
+	
 	[adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.left.equalTo(self).offset(12);
 		make.right.equalTo(self).offset(-12);
 		make.bottom.equalTo(self).offset(-6);
 	}];
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
-	tap.delegate = self;
+	[button mas_makeConstraints:^(MASConstraintMaker *make) {
+		make.bottom.equalTo(self).offset(-40);
+		make.centerX.equalTo(self);
+		make.width.equalTo(self).multipliedBy(0.5);
+		make.height.equalTo(button.mas_width).multipliedBy(0.224);
+	}];
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
 	[adImageView addGestureRecognizer:tap];
 }
 
@@ -141,15 +167,10 @@
 	}];
 }
 
-- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
-	CGPoint loc = [gestureRecognizer locationInView:self];
-	NSLog(@"---gesture：%f,%f", loc.x, loc.y);
-	BOOL tapIn = CGRectContainsPoint(CGRectMake(self.frame.size.width / 4, self.frame.size.height * 3 / 4, self.frame.size.width / 2, self.frame.size.height / 4), loc);
-	if (tapIn && _actionBlock) {
+- (void)tap {
+	if (_actionBlock) {
 		_actionBlock();
-		return YES;
 	}
-	return NO;
 }
 
 - (void)onClick:(UIButton *)sender {
