@@ -214,7 +214,7 @@
 		return nil;
 	}
 	UIView *reuse = [[UIView alloc] init];
-	reuse.backgroundColor = UIColor.clearColor;
+	reuse.backgroundColor = UIColor.darkBackgroundColor;
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, 30)];
 	label.font = [UIFont boldSystemFontOfSize:15];
 	label.textColor = UIColor.themeColorNew;
