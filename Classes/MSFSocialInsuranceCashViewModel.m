@@ -219,7 +219,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return @"请选择与联系人关系";
 	} else if (self.contact.contactName.length == 0) {
 		return @"请填写正确的联系人姓名";
-	} else if (self.contact.contactMobile.length == 0 || ![self.contact.contactMobile isMobile]) {
+	} else if (self.contact.contactMobile.length == 0 || self.contact.contactMobile.length !=11  || ![self.contact.contactMobile isMobile]) {
 		return @"请填写正确的手机号码";
 	} else if (self.paymentString.length == 0) {
 		return @"请选择社保缴费基数";
