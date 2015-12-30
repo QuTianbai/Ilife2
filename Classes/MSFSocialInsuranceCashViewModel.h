@@ -23,76 +23,36 @@
 
 @property (nonatomic, strong) MSFSocialInsuranceModel *model;
 
-@property (nonatomic, copy) NSString *jionLifeInsurance;
+// 贷款信息
+@property (nonatomic, strong, readonly) MSFSelectKeyValues *purpose; // 贷款用途
+// 身份信息
+@property (nonatomic, copy, readonly) NSString *liveArea; // 居住地区
+@property (nonatomic, copy, readonly) NSString *liveAddress; // 居住地址
+// 职业信息
+@property (nonatomic, copy, readonly) NSString *companyName; //公司名称
+@property (nonatomic, copy, readonly) NSString *companyArea; //公司地区
+@property (nonatomic, copy, readonly) NSString *companyAddress; //公司地址
+// 联系人信息
+@property (nonatomic, strong, readonly) MSFSelectKeyValues *relation; // 联系人关系
+@property (nonatomic, copy, readonly) NSString *name; //公司名称
+@property (nonatomic, copy, readonly) NSString *mobile; //公司名称
+// 社保信息
+@property (nonatomic, strong) MSFSelectKeyValues *basicPayment;
 
-//职工保险
-@property (nonatomic, strong) MSFSelectKeyValues *purpose;// 贷款用途
-@property (nonatomic, copy) NSString *cashpurpose;
-@property (nonatomic, strong) MSFSelectKeyValues *employeeInsuranceStatus;
-@property (nonatomic, copy) NSString *employeeOldInsuranceStatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *employeeOlderModey;
-@property (nonatomic, copy) NSString *employeeOlderModeyTitle;
-@property (nonatomic, copy) NSString *employeeOlderDate;
-@property (nonatomic, copy) NSString *employeeOlderMonths;
-@property (nonatomic, strong) MSFSelectKeyValues *employMedicalStatus;
-@property (nonatomic, copy) NSString *employMedicalStatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *employeeMedicalMoney;
-@property (nonatomic, copy) NSString *employeeMedicalMoneyTitle;
-@property (nonatomic, copy) NSString *employeeMedicalDate;
-@property (nonatomic, copy) NSString *employeeMedicalMonths;
-@property (nonatomic, strong) MSFSelectKeyValues *emplyoeeJuryStatus;
-@property (nonatomic, copy) NSString *emplyoeeJuryStatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *employeeOutJobStatus;
-@property (nonatomic, copy) NSString *employeeOutJobStatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *employeeBearStatus;
-@property (nonatomic, copy) NSString *employeeBearStatusTitle;
-
-//居民保险
-@property (nonatomic, strong) MSFSelectKeyValues *residentOlderInsuranceStatus;
-@property (nonatomic, copy) NSString *residentOlderInsuranceStatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *residentOlderInsuranceMoney;
-@property (nonatomic, copy) NSString *residentOlderInsuranceMoneyTitle;
-@property (nonatomic, copy) NSString *residentOlderInsuranceDate;
-@property (nonatomic, copy) NSString *residentOlderInsuranceYears;
-@property (nonatomic, strong) MSFSelectKeyValues *residentMedicalInsuranceStatus;
-@property (nonatomic, copy) NSString *residentMedicalInsuranceStatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *residentMedicalInsuranceMoney;
-@property (nonatomic, copy) NSString *residentMedicalInsuranceMoneyTitle;
-@property (nonatomic, copy) NSString *residentMedicalInsuranceDate;
-@property (nonatomic, copy) NSString *residentMedicalInsuranceYears;
-
-
+//RACCommand
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmployeeInsuranceStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmployeeOlderModeyCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmployMedicalStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmployeeMedicalMoneyCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmplyoeeJuryStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmployeeOutJobStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeEmployeeBearStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeoldInsuranceDateCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeoldMedicalDateCommand;
-
-@property (nonatomic, strong, readonly) RACCommand *executeResidentOlderInsuranceStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeResidentOlderInsuranceMoneyCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalInsuranceStatusCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalInsuranceMoneyCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeResidentInsuranceDateCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeResidentMedicalDateCommand;
-
-@property (nonatomic, strong, readonly) RACCommand *executeSaveCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeRelationCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeLiveAddressCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeCompAddressCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeBasicPaymentCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
-
-@property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 @property (nonatomic, strong) NSString *applicationNo;
-
 @property (nonatomic, strong) MSFLoanType *loanType;
-@property (nonatomic, strong) NSString *professional;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel loanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services;
 
