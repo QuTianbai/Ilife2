@@ -1,3 +1,31 @@
+Version 2.1.1.1:
+ - Fix 手机号验证
+ - Merge remote-tracking branch 'ios/temp2.2.0' into temp2.2.0
+ - Fix 自动更新地址信息
+ - Merge branch 'temp2.2.0' of git.msxf.local:ios/Finance into temp2.2.0
+ - 添加社保单校验
+ - Update 社保贷保存身份信息
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Update 社保贷提交
+ - 麻辣带全屏提交
+ - update tab2 UI
+ - update data binding
+ - Update headers background color
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Fix 时间戳异常
+ - commit
+ - commit
+ - prepare delete storyboard
+ - commit
+ - commit
+ - tempCommit
+ - update socialInsurance storyboard
+ - update support banks
+ - 银行卡绑定页面显示支持的银行
+ - update tab2 UI; update tab2 点击麻辣贷跳转
+ - 调整tab2申请入口广告UI比例
+ - 授权后，app直接进入tab2
+
 Version 2.1.0.12:
  - Merge pull request #24 from Water/2.1.0.11-dictionary
  - 社保信息数据字典定义
