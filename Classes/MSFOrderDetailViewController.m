@@ -12,6 +12,9 @@
 #import "MSFOrderDetail.h"
 #import "MSFClient+MSFOrder.h"
 #import "UIColor+Utils.h"
+#import "MSFDimensionalCodeViewModel.h"
+#import "MSFDimensionalCodeViewController.h"
+#import "MSFBlurButton.h"
 
 @interface MSFOrderDetailViewController ()
 
@@ -38,6 +41,7 @@
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	self.tableView.backgroundColor = UIColor.whiteColor;
 	[self.tableView registerClass:MSFOrderListCell.class forCellReuseIdentifier:@"MSFOrderListCell"];
+	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
 	
 	@weakify(self)
 	[[self.services.httpClient fetchOrder:self.orderId] subscribeNext:^(id x) {
@@ -57,7 +61,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (self.order.cmdtyList.count > 0) {
-		return self.order.cmdtyList.count + 2;
+		return self.order.cmdtyList.count + 2 + (([self.order.orderStatus isEqualToString:@"3"]) ? 1 : 0);
 	}
 	return 0;
 }
@@ -67,9 +71,10 @@
 		return 4;
 	} else if (section == 1) {
 		return 4;
-	} else {
+	} else if (section == 2) {
 		return 3;
 	}
+	return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -93,10 +98,27 @@
 		label.text = @"商品信息";
 	}
 	[reuse addSubview:label];
+	if (section == self.order.cmdtyList.count + 2) label.text = @"";
 	return reuse;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == self.order.cmdtyList.count + 2) {
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+		MSFBlurButton *button = [MSFBlurButton buttonWithType:UIButtonTypeCustom];
+		button.frame = CGRectMake(10, 5, CGRectGetWidth([UIScreen mainScreen].bounds) - 20, 34);
+		button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+		[button setTitle:@"确认支付" forState:UIControlStateNormal];
+		[[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
+			takeUntil:cell.rac_prepareForReuseSignal]
+			subscribeNext:^(id x) {
+				MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithModel:self.order];
+				MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
+			}];
+		[cell addSubview:button];
+		return cell;
+	}
 	MSFOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFOrderListCell" forIndexPath:indexPath];
 	if (indexPath.section == 0) {
 		switch (indexPath.row) {
