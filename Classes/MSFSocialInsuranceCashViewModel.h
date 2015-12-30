@@ -25,27 +25,12 @@
 
 @property (nonatomic, strong) MSFSocialInsuranceModel *model;
 
-// 贷款信息
 @property (nonatomic, strong, readonly) MSFSelectKeyValues *purpose; // 贷款用途
 @property (nonatomic, copy, readonly) NSString *purposeString;
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险
-// 身份信息
 @property (nonatomic, copy, readonly) NSString *liveArea; // 居住地区
-//@property (nonatomic, copy, readonly) NSString *liveAddress; // 居住地址
-// 职业信息
-//@property (nonatomic, copy, readonly) NSString *companyName; //公司名称
 @property (nonatomic, copy, readonly) NSString *companyArea; //公司地区
-//@property (nonatomic, copy, readonly) NSString *companyAddress; //公司地址
-
-
-
-// 联系人信息
 @property (nonatomic, strong, readonly) MSFUserContact *contact;
-
-//@property (nonatomic, copy, readonly) NSString *relationString;
-//@property (nonatomic, copy, readonly) NSString *name; //公司名称
-//@property (nonatomic, copy, readonly) NSString *mobile; //公司名称
-// 社保信息
 @property (nonatomic, strong, readonly) MSFSelectKeyValues *basicPayment;
 @property (nonatomic, copy, readonly) NSString *paymentString;
 
