@@ -11,8 +11,12 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Masonry/Masonry.h>
 
+#import "AppDelegate.h"
+
 #import "MSFCheckAllowApply.h"
 #import "MSFLoanType.h"
+#import "MSFClient.h"
+#import "MSFUser.h"
 
 #import "MSFApplyView.h"
 #import "MSFCashHomeLoanLimit.h"
@@ -24,12 +28,18 @@
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFSubmitApplyModel.h"
 
+#import "MSFSetTradePasswordTableViewController.h"
+#import "MSFAddBankCardTableViewController.h"
+#import "MSFSocialCaskApplyTableViewController.h"
+#import "MSFFormsViewModel.h"
+
 @implementation MSFCashHomePageViewController
 
 - (instancetype)initWithViewModel:(MSFCashHomePageViewModel *)viewModel {
 	self = [super init];
 	if (self) {
 		_viewModel = viewModel;
+		self.edgesForExtendedLayout = UIRectEdgeNone;
 	}
 	return self;
 }
@@ -47,9 +57,7 @@
 	}];
 	[self.view addSubview:ms];
 	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.view).offset(64);
-		make.bottom.equalTo(self.view).offset(-49);
-		make.left.right.equalTo(self.view);
+		make.edges.equalTo(self.view);
 	}];
 }
 
@@ -70,14 +78,12 @@
 	}];
 	[self.view addSubview:ml];
 	[ml mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.view).offset(64);
-		make.left.right.equalTo(self.view);
+		make.top.left.right.equalTo(self.view);
 	}];
 	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.equalTo(ml.mas_bottom);
-		make.bottom.equalTo(self.view).offset(-49);
-		make.left.right.equalTo(self.view);
-		make.height.equalTo(ml);
+		make.left.right.bottom.equalTo(self.view);
+		make.height.equalTo(ml).multipliedBy(0.33);
 	}];
 }
 
@@ -98,13 +104,11 @@
 	[self.view addSubview:limit];
 	[self.view addSubview:ms];
 	[ms mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.bottom.equalTo(self.view).offset(-49);
-		make.left.right.equalTo(self.view);
+		make.left.right.bottom.equalTo(self.view);
 		make.height.equalTo(ms.mas_width).multipliedBy(0.583);
 	}];
 	[limit mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self.view).offset(64);
-		make.left.right.equalTo(self.view);
+		make.top.left.right.equalTo(self.view);
 		make.bottom.equalTo(ms.mas_top);
 	}];
 	[[RACSignal combineLatest:@[RACObserve(self, viewModel.usableLmt), RACObserve(self, viewModel.usedLmt)]] subscribeNext:^(RACTuple *x) {
@@ -177,12 +181,43 @@
 		[signal subscribeNext:^(MSFCheckAllowApply *model) {
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
+				MSFUser *user = self.viewModel.services.httpClient.user;
+				/*
+				if (![user.complateCustInfo isEqualToString:@"111"]) {
+					[SVProgressHUD showErrorWithStatus:@"请先完善资料"];
+					return ;
+				}
+				if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class] && [self.viewModel.formViewModel.model.socialStatus isEqualToString:@"SI01"]) {
+					[[[UIAlertView alloc] initWithTitle:@"提示" message:@"此产品暂不支持学生申请" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+					return;
+				}*/
+				if (!user.hasTransactionalCode) {
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+					[alert show];
+					[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+						if (index.intValue == 1) {
+							AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+							MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+							MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+							[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+						}
+					}];
+					return ;
+				}
+				if (!self.viewModel.formViewModel.master) {
+					[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
+					MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+					BOOL isFirstBankCard = YES;
+					vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
+					[self.navigationController pushViewController:vc animated:YES];
+					return ;
+				}
 				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"4102"];
 				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel loanType:loanType services:self.viewModel.services];
 				viewModel.applicationNo = @"";
-				MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
-				userInfoVC.showNextStep = YES;
-				[self.navigationController pushViewController:userInfoVC animated:YES];
+				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+				insuranceViewController.hidesBottomBarWhenPushed = YES;
+				[self.navigationController pushViewController:insuranceViewController animated:YES];
 			} else {
 				[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
 			}
