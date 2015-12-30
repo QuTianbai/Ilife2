@@ -8,6 +8,7 @@
 
 #import "MSFOrderDetail.h"
 #import "MSFCommodity.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @implementation MSFOrderDetail
 
@@ -33,7 +34,8 @@
 
 + (NSValueTransformer *)orderTimeJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
-		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+		NSDate *date = [NSDate dateWithTimeIntervalSince1970:num.longLongValue / 1000.0];
+		return [NSDateFormatter msf_stringFromDate:date];
 	} reverseBlock:^ id (NSString *str) {
 		 return str;
 	 }];
