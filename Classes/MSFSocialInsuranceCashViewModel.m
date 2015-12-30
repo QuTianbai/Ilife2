@@ -27,6 +27,7 @@
 #import "MSFLoanType.h"
 #import "MSFAddress.h"
 #import "MSFUserContact.h"
+#import "MSFClient+MSFApplyInfo.h"
 
 static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialInsuranceCashViewModelErrorDomain";
 
@@ -177,6 +178,16 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (RACSignal *)submitSignal {
+	if (self.status.integerValue == 0) {
+		return [[[[self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model]
+			merge:[self.services.httpClient submitUserInfo:self.formViewModel.model infoType:4]]
+			catch:^RACSignal *(NSError *error) {
+				return [RACSignal return:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"提交失败, 请重新尝试"}]];
+			}]
+			map:^id(id value) {
+				return value;
+			}];
+	}
 	NSString *check = [self checkForm];
 	if (check.length > 0) {
 		[SVProgressHUD showErrorWithStatus:check];
