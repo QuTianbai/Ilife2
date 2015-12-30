@@ -52,9 +52,8 @@
 	[self addSubview:adImageView];
 	[adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.equalTo(self).offset(6);
-		make.bottom.equalTo(self).offset(-12);
-		make.centerX.equalTo(self);
-		make.width.equalTo(adImageView.mas_height).multipliedBy(1.379);
+		make.left.equalTo(self).offset(12);
+		make.right.bottom.equalTo(self).offset(-12);
 	}];
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
 	tap.delegate = self;
@@ -98,10 +97,9 @@
 	adImageView.userInteractionEnabled  = YES;
 	[self addSubview:adImageView];
 	[adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self).offset(12);
+		make.top.left.equalTo(self).offset(12);
+		make.right.equalTo(self).offset(-12);
 		make.bottom.equalTo(self).offset(-6);
-		make.centerX.equalTo(self);
-		make.width.equalTo(adImageView.mas_height).multipliedBy(1.379);
 	}];
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:nil];
 	tap.delegate = self;
@@ -128,9 +126,7 @@
 	[self addSubview:button];
 	
 	[top mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.top.equalTo(self);
-		make.left.equalTo(self);
-		make.right.equalTo(self);
+		make.top.left.right.equalTo(self);
 		make.height.equalTo(self.mas_width).multipliedBy(0.737);
 	}];
 	[button mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -140,9 +136,7 @@
 		make.height.equalTo(button.mas_width).multipliedBy(0.179);
 	}];
 	[bottom mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.left.equalTo(self);
-		make.right.equalTo(self);
-		make.bottom.equalTo(self);
+		make.left.right.bottom.equalTo(self);
 		make.height.equalTo(self.mas_width).multipliedBy(0.446);
 	}];
 }
