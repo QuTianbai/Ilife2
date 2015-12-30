@@ -178,25 +178,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	}
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	if (section == 0) {
-		return nil;
-	}
-	UIView *reuse = [[UIView alloc] init];
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
-	label.font = [UIFont boldSystemFontOfSize:15];
-	label.textColor = UIColor.themeColorNew;
-	switch (section) {
-		case 1: label.text = @"基本信息"; break;
-		case 2: label.text = @"职业信息"; break;
-		case 3: label.text = @"联系人信息"; break;
-		case 4: label.text = @"参保信息"; break;
-		default: break;
-	}
-	[reuse addSubview:label];
-	return reuse;
-}
-
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
 	[SVProgressHUD showWithStatus:@"正在绑定银行卡..." maskType:SVProgressHUDMaskTypeClear];
 	self.tradePwd = pwd;

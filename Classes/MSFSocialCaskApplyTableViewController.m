@@ -17,6 +17,7 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 #import "MSFSocialInsuranceModel.h"
+#import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "UIColor+Utils.h"
 
@@ -30,7 +31,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *insuranceBT;
 @property (weak, nonatomic) IBOutlet UISwitch *insuranceSwitch;
 
-@property (weak, nonatomic) IBOutlet UILabel *liveAreaTF;
+@property (weak, nonatomic) IBOutlet UITextField *liveAreaTF;
 @property (weak, nonatomic) IBOutlet UIButton *liveAreaBT;
 
 @property (weak, nonatomic) IBOutlet UITextField *liveAddressTF;
@@ -72,6 +73,7 @@
 	[super viewDidLoad];
 	
 	RAC(self, cashPuposeTF.text) = RACObserve(self, viewModel.purpose.text);
+	self.cashPurposeBT.rac_command = self.viewModel.executePurposeCommand;
 	
 	RACChannelTerminal *joinChannel = RACChannelTo(self, viewModel.joinInsurance);
 	[joinChannel subscribe:self.insuranceSwitch.rac_newOnChannel];
@@ -124,18 +126,18 @@
 	RAC(self, liveAreaTF.text) = RACObserve(self, viewModel.liveArea);
 	self.liveAreaBT.rac_command = self.viewModel.executeLiveAddressCommand;
 	
-	RACChannelTerminal *liveAddrChannel = RACChannelTo(self, viewModel.liveAddress);
+	RACChannelTerminal *liveAddrChannel = RACChannelTo(self, viewModel.formViewModel.model.abodeDetail);
 	RAC(self, liveAddressTF.text) = liveAddrChannel;
 	[self.liveAddressTF.rac_textSignal subscribe:liveAddrChannel];
 	
-	RACChannelTerminal *compNameChannel = RACChannelTo(self, viewModel.companyName);
+	RACChannelTerminal *compNameChannel = RACChannelTo(self, viewModel.formViewModel.model.unitName);
 	RAC(self, companyNameTF.text) = compNameChannel;
 	[self.companyNameTF.rac_textSignal subscribe:compNameChannel];
 	
 	RAC(self, companyAreaTF.text) = RACObserve(self, viewModel.companyArea);
 	self.companyAreaBT.rac_command = self.viewModel.executeCompAddressCommand;
 	
-	RACChannelTerminal *compAddrChannel = RACChannelTo(self, viewModel.companyAddress);
+	RACChannelTerminal *compAddrChannel = RACChannelTo(self, viewModel.formViewModel.model.empAdd);
 	RAC(self, companyAddressTF.text) = compAddrChannel;
 	[self.companyAddressTF.rac_textSignal subscribe:compAddrChannel];
 	
@@ -189,6 +191,33 @@
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return 0.1f;
+	}
+	return 30.f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return nil;
+	}
+	UIView *reuse = [[UIView alloc] init];
+	reuse.backgroundColor = UIColor.clearColor;
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, 30)];
+	label.font = [UIFont boldSystemFontOfSize:15];
+	label.textColor = UIColor.themeColorNew;
+	switch (section) {
+		case 1: label.text = @"基本信息"; break;
+		case 2: label.text = @"职业信息"; break;
+		case 3: label.text = @"联系人信息"; break;
+		case 4: label.text = @"参保信息"; break;
+		default: break;
+	}
+	[reuse addSubview:label];
+	return reuse;
 }
 
 #pragma mark - ZSWTappableLabelTapDelegate
