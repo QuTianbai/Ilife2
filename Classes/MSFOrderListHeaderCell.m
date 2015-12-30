@@ -19,17 +19,17 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		UILabel *orderNo = [[UILabel alloc] init];
-		orderNo.font = [UIFont systemFontOfSize:15];
+		orderNo.font = [UIFont systemFontOfSize:13];
 		orderNo.tag = 100;
 		[self.contentView addSubview:orderNo];
 		
 		UILabel *status = [[UILabel alloc] init];
-		status.font = [UIFont systemFontOfSize:15];
+		status.font = [UIFont systemFontOfSize:13];
 		status.tag = 101;
 		[self.contentView addSubview:status];
 		
 		UILabel *time = [[UILabel alloc] init];
-		time.font = [UIFont systemFontOfSize:15];
+		time.font = [UIFont systemFontOfSize:13];
 		time.tag = 102;
 		[self.contentView addSubview:time];
 
@@ -50,11 +50,19 @@
 }
 
 - (void)bindViewModel:(MSFOrderDetail *)model {
+	const NSDictionary *map = @{
+		@"0" : @"审核中",
+		@"1" : @"审核已通过",
+		@"2" : @"审核未通过",
+		@"3" : @"待支付",
+		@"4" : @"已支付",
+		@"5" : @"已退货"
+	};
 	UILabel *orderNo = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *status = (UILabel *)[self.contentView viewWithTag:101];
 	UILabel *time = (UILabel *)[self.contentView viewWithTag:102];
 	orderNo.text = [NSString stringWithFormat:@"订单%@", model.inOrderId];
-	status.text = @"已支付";//viewModel.status;
+	status.text = map[model.orderStatus];
 	time.text = model.orderTime;
 }
 

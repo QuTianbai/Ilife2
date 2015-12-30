@@ -21,6 +21,8 @@
 #import "MSFClient+Inventory.h"
 #import "MSFLoanType.h"
 #import "NSFileManager+Temporary.h"
+#import "MSFCommodityCashViewModel.h"
+#import "MSFCartViewModel.h"
 
 @interface MSFInventoryViewModel ()
 
@@ -80,8 +82,9 @@
 		}];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
+	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+		_executeSubmitCommand = ((MSFCartViewModel *)self.applicationViewModel).executeCompleteCommand;
 	}
-	//TODO: 增加商品贷提交申请
 	
 	[self initialize];
 	
@@ -111,6 +114,17 @@
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
 				collect];
+		} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+			MSFCartViewModel *viewModel = (MSFCartViewModel *)self.applicationViewModel;
+			return [[[[self.services.httpClient
+				fetchElementsApplicationNo:viewModel.applicationNo amount:viewModel.loanAmt terms:viewModel.term productGroupID:self.applicationViewModel.loanType.typeID]
+				catch:^RACSignal *(NSError *error) {
+					return RACSignal.empty;
+				}]
+				map:^id(id value) {
+					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
+				}]
+				collect];
 		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 			return [[[[self.services.httpClient
 				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.loanType.typeID]
@@ -131,8 +145,9 @@
 		}];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
+	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+		_executeSubmitCommand = ((MSFCartViewModel *)self.applicationViewModel).executeCompleteCommand;
 	}
-	//TODO: 增加商品贷提交申请
 	
 	[self initialize];
 	
@@ -247,11 +262,15 @@
 				@"name": obj.name,
 			}];
 		}];
-		[attachments addObject:@{
-														@"accessoryType": self.attachment.type,
-														@"fileId": self.attachment.fileID,
-														@"name": self.attachment.name,
-														}];
+		
+		if (self.attachment) {
+			// 人脸识别新增附件内容
+			[attachments addObject:@{
+				@"accessoryType": self.attachment.type,
+				@"fileId": self.attachment.fileID,
+				@"name": self.attachment.name,
+			}];
+		}
 		return [RACSignal return:attachments];
 	}];
 }

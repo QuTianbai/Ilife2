@@ -18,12 +18,16 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFClient+Advers.h"
 #import "MSFAdver.h"
+#import "MSFClient+MSFOrder.h"
+#import "MSFOrder.h"
 
 @interface MSFHomepageViewModel ()
 
 @property (nonatomic, strong) MSFFormsViewModel *viewModel;
 @property (nonatomic, strong, readwrite) MSFHomePageCellModel *cellModel;
 @property (nonatomic, strong, readwrite) NSArray *banners;
+@property (nonatomic, assign, readwrite) BOOL hasOrders;
+@property (nonatomic, strong, readwrite) NSArray *orders;
 
 @end
 
@@ -71,6 +75,16 @@
 		if (self.services.httpClient.user.isAuthenticated) {
 			[_loanInfoRefreshCommand execute:nil];
 		}
+		// 获取待支付订单列表
+		[[[self.services.httpClient fetchOrderList:@"3" pageNo:0]
+			ignore:nil]
+			subscribeNext:^(MSFOrder *order) {
+				@strongify(self)
+				self.orders = order.orderList;
+				self.hasOrders = self.orders.count > 0;
+			} error:^(NSError *error) {
+				self.hasOrders = NO;
+			}];
 	}];
 	return self;
 }

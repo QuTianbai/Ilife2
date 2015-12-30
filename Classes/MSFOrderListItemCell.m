@@ -18,12 +18,12 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		UILabel *title = [[UILabel alloc] init];
-		title.font = [UIFont systemFontOfSize:15];
+		title.font = [UIFont systemFontOfSize:13];
 		title.tag = 100;
 		[self.contentView addSubview:title];
 		
 		UILabel *content = [[UILabel alloc] init];
-		content.font = [UIFont systemFontOfSize:15];
+		content.font = [UIFont systemFontOfSize:13];
 		content.tag = 101;
 		[self.contentView addSubview:content];
 		

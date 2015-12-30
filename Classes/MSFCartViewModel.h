@@ -26,10 +26,17 @@
 @property (nonatomic, strong) NSArray *accessories; // null
 
 // 页面展示数据
+@property (nonatomic, strong, readonly) NSString *compId; // 商铺编号
 @property (nonatomic, strong, readonly) NSString *term; // 贷款期数, 外部可以修改
 @property (nonatomic, strong, readonly) NSString *downPmtAmt; // 首付金额
 @property (nonatomic, strong, readonly) NSString *loanAmt; // 贷款金额
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险计划
+
+@property (nonatomic, strong ) NSString *lifeInsuranceAmt; // 寿险金额
+@property (nonatomic, strong) NSString *loanFixedAmt; // 月还款额
+@property (nonatomic, strong) NSString *downPmtScale; // 首付比例
+@property (nonatomic, strong) NSString *totalAmt; // 总金额
+@property (nonatomic, strong) NSString *promId; // 活动ID
 
 @property (nonatomic, strong, readonly) MSFCart  *cart;
 @property (nonatomic, strong, readonly) MSFTrial *trial;
@@ -37,6 +44,7 @@
 
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
+@property (nonatomic, strong, readonly) RACCommand *executeCompleteCommand; //点击下一步
 
 - (instancetype)initWithApplicationNo:(NSString *)appNo
 														 services:(id<MSFViewModelServices>)services;

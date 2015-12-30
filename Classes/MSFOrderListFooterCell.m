@@ -17,7 +17,7 @@
 	if (self) {
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		UILabel *content = [[UILabel alloc] init];
-		content.font = [UIFont systemFontOfSize:15];
+		content.font = [UIFont systemFontOfSize:13];
 		content.tag = 100;
 		[self.contentView addSubview:content];
 

@@ -19,6 +19,9 @@
 #import "MSFCommodityCashViewModel.h"
 #import "MSFDistinguishViewModel.h"
 #import "MSFCommoditesViewModel.h"
+#import "MSFCartViewModel.h"
+#import "MSFFaceMaskViewModel.h"
+#import "MSFFaceMaskPhtoViewController.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -51,19 +54,18 @@
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
-	} else if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
-		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel.loanType.typeID];
+	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel];
 	}
 	return [RACSignal empty];
 }
 
 - (RACSignal *)executeAcceptSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
-			MSFCommodityCashViewModel *viewModel = [[MSFCommodityCashViewModel alloc] initWithViewModel:self.applicationViewModel.formViewModel loanType:self.applicationViewModel.loanType barcode:@""];
-			[self.services pushViewModel:viewModel];
+		if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+			[self.services pushViewModel:self.applicationViewModel];
 		} else {
-			MSFDistinguishViewModel *viewModel = [[MSFDistinguishViewModel alloc] initWithApplicationViewModel:self.applicationViewModel];
+			MSFFaceMaskViewModel *viewModel = [[MSFFaceMaskViewModel alloc] initWithApplicationViewModel:self.applicationViewModel];
 			[self.services pushViewModel:viewModel];
 		}
 		[subscriber sendCompleted];

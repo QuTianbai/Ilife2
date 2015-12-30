@@ -17,6 +17,8 @@
 #import "MSFTeam.h"
 #import "MSFLoanType.h"
 #import "MSFLifeInsuranceViewModel.h"
+#import "MSFLoanAgreementViewModel.h"
+#import "MSFFormsViewModel.h"
 
 @interface MSFCartViewModel ()
 
@@ -24,6 +26,8 @@
 @property (nonatomic, strong, readwrite) MSFCart *cart;
 @property (nonatomic, strong, readwrite) NSArray *terms;
 @property (nonatomic, strong, readwrite) NSString *term;
+@property (nonatomic, strong, readwrite) MSFMarkets *markets;
+@property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
 
 @end
 
@@ -36,9 +40,20 @@
 		_services = services;
 		_loanType = [[MSFLoanType alloc] initWithTypeID:@"3101"];
 		_applicationNo = appNo;
+		_formViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
+		_formViewModel.active = YES;
 		
 		_trial = [[MSFTrial alloc] init];
 		_cart = [[MSFCart alloc] init];
+		_lifeInsuranceAmt = @"";
+		_loanFixedAmt = @"";
+		_downPmtScale = @"";
+		_totalAmt = @"";
+		
+		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
+			self.loanFixedAmt = x.loanFixedAmt;
+			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
+		}];
 	
 		RACChannelTerminal *downPmt = RACChannelTo(self, downPmtAmt);
 		RACChannelTerminal *loanAmt = RACChannelTo(self, loanAmt);
@@ -71,35 +86,65 @@
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
 			@strongify(self)
 			self.cart = x;
+			self.compId = self.cart.compId;
+			self.promId = self.cart.promId;
+			self.totalAmt = self.cart.totalAmt;
 		}];
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
 			@strongify(self)
 			[self handleMarkets:x];
+		}];
+		
+		[RACObserve(self, loanAmt) subscribeNext:^(id x) {
+			@strongify(self)
+			self.terms = [[[self.markets.teams.rac_sequence
+				filter:^BOOL(MSFTeams2 *terms) {
+					return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
+				}]
+				flattenMap:^RACStream *(MSFTeams2 *value) {
+					return value.team.rac_sequence;
+				 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
+						 if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
+							 return NSOrderedAscending;
+						 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
+							 return NSOrderedDescending;
+						 }
+						 
+						 return NSOrderedSame;
+				 }];;
+			if (self.terms.count > 0) {
+				self.term = [self.terms[0] loanTeam];
+			}
+			self.downPmtScale = [@(self.loanAmt.floatValue / self.totalAmt.floatValue) stringValue];
+		}];
+		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
+			return self.executeAgreementSignal;
+		}];
+		_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
+			return self.executeCompleteSignal;
 		}];
 	}
 	return self;
 }
 
 - (void)handleMarkets:(MSFMarkets *)markets {
-	__block NSArray *terms = nil;
-	[markets.teams enumerateObjectsUsingBlock:^(MSFTeams2 *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-		NSMutableArray *temp = NSMutableArray.array;
-		[obj.team enumerateObjectsUsingBlock:^(MSFTeam *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-			[temp addObject:obj.loanTeam];
-		}];
-		terms = [NSArray arrayWithArray:terms];
-	}];
-	[terms sortedArrayUsingComparator:^NSComparisonResult(NSString *_Nonnull obj1, NSString *_Nonnull obj2) {
-		if (obj1.integerValue < obj2.integerValue) {
+	self.markets = markets;
+	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFTeams2 *terms) {
+		return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
+	}]
+	flattenMap:^RACStream *(MSFTeams2 *value) {
+			return value.team.rac_sequence;
+	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
+		if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
 			return NSOrderedAscending;
-		} else if (obj1.integerValue > obj2.integerValue) {
+		} else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
 			return NSOrderedDescending;
 		}
+	
 		return NSOrderedSame;
-	}];
-	self.terms = terms;
+	}];;
 	if (self.terms.count > 0) {
-		self.term = self.terms[0];
+		self.term = [self.terms[0] loanTeam];
 	}
 }
 
@@ -130,6 +175,26 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+#pragma mark - Private
+
+- (RACSignal *)agreementValidSignal {
+	//TODO: 需要判断条件，是否满足进入协议界面 `贷款每次还款金额是否计算出了
+	return [RACSignal return:@YES];
+}
+
+- (RACSignal *)executeAgreementSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)executeCompleteSignal {
+	return [self.services.httpClient submitTrialAmount:self];
 }
 
 @end
