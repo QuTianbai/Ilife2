@@ -26,6 +26,7 @@
 #import "MSFApplicationForms.h"
 #import "MSFLoanType.h"
 #import "MSFAddress.h"
+#import "MSFUserContact.h"
 
 static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialInsuranceCashViewModelErrorDomain";
 
@@ -34,8 +35,8 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 @property (nonatomic, strong) MSFAddressViewModel *liveAddrViewModel;
 @property (nonatomic, strong) MSFAddressViewModel *compAddrViewModel;
 @property (nonatomic, strong, readwrite) MSFSelectKeyValues *purpose;
-@property (nonatomic, strong, readwrite) MSFSelectKeyValues *relation;
 @property (nonatomic, strong, readwrite) MSFSelectKeyValues *basicPayment;
+@property (nonatomic, strong, readwrite) MSFUserContact *contact;
 
 @end
 
@@ -65,6 +66,10 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_joinInsurance = YES;
 	_accessoryInfoVOArray = [[NSArray alloc] init];
 	_model = [[MSFSocialInsuranceModel alloc] init];
+	_contact = [[MSFUserContact alloc] init];
+	if (self.formViewModel.model.contrastList.count > 0) {
+		_contact = self.formViewModel.model.contrastList[0];
+	}
 	
 	[self setUpAddress];
 
@@ -147,7 +152,10 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			switch (index) {
 				case 0: self.purpose = x; break;
-				case 1: self.relation = x; break;
+				case 1: {
+					self.contact.contactRelation = x.code;
+					break;
+				}
 				case 2: self.basicPayment = x; break;
 				default: break;
 			}

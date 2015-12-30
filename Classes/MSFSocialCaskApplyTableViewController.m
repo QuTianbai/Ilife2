@@ -141,14 +141,23 @@
 	RAC(self, companyAddressTF.text) = compAddrChannel;
 	[self.companyAddressTF.rac_textSignal subscribe:compAddrChannel];
 	
-	RAC(self, relationTF.text) = RACObserve(self, viewModel.relation.text);
+	RAC(self, relationTF.text) = [RACObserve(self, viewModel.contact.contactRelation) map:^id(id value) {
+		__block NSString *relationString = nil;
+		[[MSFSelectKeyValues getSelectKeys:@"employeeOlderInsurance"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+			if ([obj.code isEqualToString:value]) {
+				relationString = obj.text;
+				*stop = YES;
+			}
+		}];
+		return relationString;
+	}];
 	self.relationBT.rac_command = self.viewModel.executeRelationCommand;
 	
-	RACChannelTerminal *nameChannel = RACChannelTo(self, viewModel.name);
+	RACChannelTerminal *nameChannel = RACChannelTo(self, viewModel.contact.contactName);
 	RAC(self, nameTF.text) = nameChannel;
 	[self.nameTF.rac_textSignal subscribe:nameChannel];
 	
-	RACChannelTerminal *mobileChannel = RACChannelTo(self, viewModel.mobile);
+	RACChannelTerminal *mobileChannel = RACChannelTo(self, viewModel.contact.contactMobile);
 	RAC(self, mobileTF.text) = mobileChannel;
 	[self.mobileTF.rac_textSignal subscribe:mobileChannel];
 	
