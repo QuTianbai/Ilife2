@@ -44,11 +44,14 @@
 	if (!valid) {
 		return nil;
 	}
+	NSData *data = [NSJSONSerialization dataWithJSONObject:cmdtyList options:NSJSONWritingPrettyPrinted error:nil];
+	NSString *jsonValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return @{@"appLmt" : viewModel.loanAmt,
 					 @"loanTerm" : viewModel.term,
+					 @"compId": viewModel.compId,
 					 @"productCd" : viewModel.loanType.typeID,
 					 @"jionLifeInsurance" : @(viewModel.joinInsurance),
-					 @"cmdtyList" : cmdtyList};
+					 @"cmdtyList" : jsonValue};
 }
 
 @end

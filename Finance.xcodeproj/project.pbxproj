@@ -493,6 +493,8 @@
 		4983118F1C33C1CF00AC14AF /* order-details.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983118E1C33C1CF00AC14AF /* order-details.json */; };
 		498311961C33CD5800AC14AF /* MSFDimensionalCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498311951C33CD5800AC14AF /* MSFDimensionalCodeViewController.m */; };
 		4983119A1C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498311991C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m */; };
+		4983119C1C33DC6700AC14AF /* MSFCartSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983119B1C33DC6700AC14AF /* MSFCartSpec.m */; };
+		4983119E1C33DC8C00AC14AF /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983119D1C33DC8C00AC14AF /* cart.json */; };
 		4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58921B06E38600120D93 /* applycash.json */; };
 		4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983ED9F1B09CC0E00ADE3E5 /* applyList.json */; };
 		4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */; };
@@ -1530,6 +1532,8 @@
 		498311951C33CD5800AC14AF /* MSFDimensionalCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDimensionalCodeViewController.m; sourceTree = "<group>"; };
 		498311981C33CEC900AC14AF /* MSFDimensionalCodeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDimensionalCodeViewModel.h; sourceTree = "<group>"; };
 		498311991C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDimensionalCodeViewModel.m; sourceTree = "<group>"; };
+		4983119B1C33DC6700AC14AF /* MSFCartSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartSpec.m; sourceTree = "<group>"; };
+		4983119D1C33DC8C00AC14AF /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
 		4983ED9F1B09CC0E00ADE3E5 /* applyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyList.json; sourceTree = "<group>"; };
 		4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEditPasswordViewController.h; sourceTree = "<group>"; };
 		4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEditPasswordViewController.m; sourceTree = "<group>"; };
@@ -3276,6 +3280,7 @@
 				49CA32631C085732000E1DDB /* MSFApplyCashVIewModelSpec.m */,
 				497A059C1C1677B9007258A7 /* MSFLifeInsuranceViewModelSpec.m */,
 				4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */,
+				4983119B1C33DC6700AC14AF /* MSFCartSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -3283,6 +3288,7 @@
 		4943C36F1B047C39000BBF5E /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
+				4983119D1C33DC8C00AC14AF /* cart.json */,
 				4983118E1C33C1CF00AC14AF /* order-details.json */,
 				49386C141B8178D100B1282B /* check-user-credit.json */,
 				07B915861B22D42B00E0D1FF /* checkemployee.json */,
@@ -4813,6 +4819,7 @@
 				4983118F1C33C1CF00AC14AF /* order-details.json in Resources */,
 				07B915871B22D42B00E0D1FF /* checkemployee.json in Resources */,
 				C72149FC1B05C9140045F919 /* plandetails.json in Resources */,
+				4983119E1C33DC8C00AC14AF /* cart.json in Resources */,
 				4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */,
 				499146E41B24359A00260E97 /* apply_cash_response.json in Resources */,
 				498F3D4F1B0D894100ED0B20 /* message.json in Resources */,
@@ -5279,6 +5286,7 @@
 				496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */,
 				496A447A1B6A57BE00104215 /* MSFResponseSpec.m in Sources */,
 				4948E8B81B9578050048D125 /* MSFInventoryViewModelSpec.m in Sources */,
+				4983119C1C33DC6700AC14AF /* MSFCartSpec.m in Sources */,
 				49952F661B8AF84300CD9454 /* MSFProfessionalViewModelSpec.m in Sources */,
 				4948E88C1B95400A0048D125 /* MSFElementSpec.m in Sources */,
 				496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */,

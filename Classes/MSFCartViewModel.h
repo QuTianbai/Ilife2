@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSArray *accessories; // null
 
 // 页面展示数据
+@property (nonatomic, strong, readonly) NSString *compId; // 商铺编号
 @property (nonatomic, strong, readonly) NSString *term; // 贷款期数, 外部可以修改
 @property (nonatomic, strong, readonly) NSString *downPmtAmt; // 首付金额
 @property (nonatomic, strong, readonly) NSString *loanAmt; // 贷款金额

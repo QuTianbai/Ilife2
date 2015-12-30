@@ -15,6 +15,7 @@
 #import "MSFHomepageViewModel.h"
 #import "MSFReactiveView.h"
 #import "MSFOrderListViewController.h"
+#import "MSFCartViewController.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -86,6 +87,16 @@ UICollectionViewDelegateFlowLayout>
 		return RACSignal.empty;
 	}];
 	scanItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:@"200000152015123002500201320" services:self.viewModel.services];
+			[self.navigationController pushViewController:vc animated:YES];
+//		[[self.viewModel.services msf_barcodeScanSignal] subscribeNext:^(id x) {
+//			NSLog(@"%@", [x description]);
+//			
+//		} completed:^{
+//			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:@"200000152015123002500201320" services:self.viewModel.services];
+//			[self.navigationController pushViewController:vc animated:YES];
+//		}];
 		return RACSignal.empty;
 	}];
 }

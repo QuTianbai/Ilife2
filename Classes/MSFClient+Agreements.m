@@ -9,6 +9,7 @@
 #import "MSFApplyCashVIewModel.h"
 #import "MSFUser.h"
 #import "MSFLoanType.h"
+#import "MSFCartViewModel.h"
 
 NSString *const MSFAgreementTypeRegister = @"REGISTRATION_PROTOCOL";
 NSString *const MSFAgreementTypeAboutUs = @"ABOUT_US";
@@ -29,6 +30,19 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 			@"productCode": product.loanType.typeID,
 			@"appLmt": product.appLmt?:@"",
 			@"loanTerm": product.loanTerm
+		}];
+		[subscriber sendNext:request];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)fetchLoanAgreementWithCart:(MSFCartViewModel *)product {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{
+			@"productCode": product.loanType.typeID,
+			@"appLmt": product.loanAmt?:@"",
+			@"loanTerm": product.term?:@"",
 		}];
 		[subscriber sendNext:request];
 		[subscriber sendCompleted];
@@ -90,16 +104,14 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 		}];
 }
 
-- (RACSignal *)fetchCommodityLoanAgreement:(NSString *)productCode {
-	//???: 缺少商品贷协议定义
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-		@"templateType": @"LOAN_PROTOCOL",
-		@"productCode": productCode,
-	}];
-	request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://msxf.com"]];
-	return [[NSURLConnection rac_sendAsynchronousRequest:request]
-		reduceEach:^id(NSURLResponse *response, NSData *data){
-			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+- (RACSignal *)fetchCommodityLoanAgreement:(MSFCartViewModel *)productCode {
+	return [[self
+		fetchLoanAgreementWithCart:productCode]
+		flattenMap:^RACStream *(id value) {
+			return [[NSURLConnection rac_sendAsynchronousRequest:value]
+				reduceEach:^id(NSURLResponse *response, NSData *data){
+					return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+				}];
 		}];
 }
 

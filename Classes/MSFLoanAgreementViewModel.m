@@ -19,6 +19,7 @@
 #import "MSFCommodityCashViewModel.h"
 #import "MSFDistinguishViewModel.h"
 #import "MSFCommoditesViewModel.h"
+#import "MSFCartViewModel.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -51,15 +52,15 @@
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
-	} else if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
-		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel.loanType.typeID];
+	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel];
 	}
 	return [RACSignal empty];
 }
 
 - (RACSignal *)executeAcceptSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		if ([self.applicationViewModel isKindOfClass:MSFCommoditesViewModel.class]) {
+		if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
 			MSFCommodityCashViewModel *viewModel = [[MSFCommodityCashViewModel alloc] initWithViewModel:self.applicationViewModel.formViewModel loanType:self.applicationViewModel.loanType barcode:@""];
 			[self.services pushViewModel:viewModel];
 		} else {

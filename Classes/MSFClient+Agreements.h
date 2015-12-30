@@ -8,6 +8,7 @@
 
 @class MSFProduct;
 @class MSFApplyCashVIewModel;
+@class MSFCartViewModel;
 
 // 用户注册协议
 extern NSString *const MSFAgreementTypeRegister;
@@ -35,6 +36,7 @@ extern NSString *const MSFAgreementTypeInsurance;
 //
 // Returns agreement HTML
 - (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashVIewModel *)product;
+- (RACSignal *)fetchLoanAgreementWithCart:(MSFCartViewModel *)product;
 
 // fetch user agreement or static html
 //
@@ -46,6 +48,6 @@ extern NSString *const MSFAgreementTypeInsurance;
 - (RACSignal *)fetchLifeLoanAgreement:(NSString *)productCode;
 
 // 加载商品贷协议
-- (RACSignal *)fetchCommodityLoanAgreement:(NSString *)productCode;
+- (RACSignal *)fetchCommodityLoanAgreement:(MSFCartViewModel *)productCode;
 
 @end
