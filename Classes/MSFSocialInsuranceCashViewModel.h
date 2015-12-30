@@ -14,6 +14,7 @@
 @class RACCommand;
 @class MSFSocialInsuranceModel;
 @class MSFApplicationForms;
+@class MSFUserContact;
 
 @interface MSFSocialInsuranceCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
@@ -36,10 +37,11 @@
 @property (nonatomic, copy, readonly) NSString *companyArea; //公司地区
 //@property (nonatomic, copy, readonly) NSString *companyAddress; //公司地址
 
-@property (nonatomic, strong, readonly)
+
 
 // 联系人信息
-//@property (nonatomic, strong, readonly) MSFSelectKeyValues *relation; // 联系人关系
+@property (nonatomic, strong, readonly) MSFUserContact *contact;
+
 //@property (nonatomic, copy, readonly) NSString *relationString;
 //@property (nonatomic, copy, readonly) NSString *name; //公司名称
 //@property (nonatomic, copy, readonly) NSString *mobile; //公司名称
