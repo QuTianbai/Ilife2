@@ -53,6 +53,10 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_formViewModel = formsViewModel;
 	RACChannelTo(self, productCd) = RACChannelTo(self, loanType.typeID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
+	[self setUpAddress];
+	if (self.formViewModel.model.contrastList.count > 0) {
+		self.contact = self.formViewModel.model.contrastList[0];
+	}
   return self;
 }
 
@@ -71,8 +75,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	if (self.formViewModel.model.contrastList.count > 0) {
 		_contact = self.formViewModel.model.contrastList[0];
 	}
-	
-	[self setUpAddress];
 
 	[[MSFSelectKeyValues getSelectKeys:@"moneyUse"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 		if ([obj.code isEqualToString:@"PL99"]) {
