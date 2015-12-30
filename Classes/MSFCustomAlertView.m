@@ -16,9 +16,6 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 
 @interface MSFCustomAlertView ()
 
-//@property (nonatomic,strong) UIWindow *window;
-//@property (nonatomic,strong) UIView *view;
-//@property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) UIImage *image;
@@ -50,14 +47,10 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 	self.myRootViewController.viewModel = viewmodel;
 	[self.myRootViewController bindBTRACCommand];
 	[self makeKeyAndVisible];
-	
-	//[UIApplication sharedApplication];
 }
 
 - (void)dismiss {
 	[self removeFromSuperview];
-	//NSLog(@"%@",windowsArray);
-	//[self resignKeyWindow];
 }
 
 - (void)createView {

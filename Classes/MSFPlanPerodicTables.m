@@ -11,13 +11,13 @@
 @implementation MSFPlanPerodicTables
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-		return @{
-						 @"contractNum": @"contract_no",
-						 @"repaymentTime": @"repayment_time",
-						 @"repaymentAmount": @"repayment_amount",
-						 @"amountType":@"amount_type",
-						 @"contractStatus":@"contract_status",
-						 };
+	return @{
+		@"contractNum": @"contract_no",
+		@"repaymentTime": @"repayment_time",
+		@"repaymentAmount": @"repayment_amount",
+		@"amountType": @"amount_type",
+		@"contractStatus": @"contract_status",
+	};
 }
 
 @end

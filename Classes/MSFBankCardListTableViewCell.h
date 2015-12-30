@@ -10,6 +10,7 @@
 #import "MSFCellButton.h"
 
 @interface MSFBankCardListTableViewCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *bankIconImg;
 @property (weak, nonatomic) IBOutlet UILabel *bankName;
 @property (weak, nonatomic) IBOutlet UILabel *BankType;

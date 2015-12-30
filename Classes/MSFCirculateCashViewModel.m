@@ -21,7 +21,6 @@
 		return nil;
 	}
 	_services = services;
-	//_status = APPLYCASH;
 	_infoModel = [[MSFCirculateCashModel alloc] init];
 	
 	RAC(self, totalLimit) = RACObserve(self, infoModel.totalLimit);

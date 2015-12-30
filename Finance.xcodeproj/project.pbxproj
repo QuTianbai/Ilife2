@@ -18,6 +18,12 @@
 		070724A21B671A240089916B /* btnSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249F1B671A240089916B /* btnSlider.png */; };
 		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
+		07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F231C310EDF004AD0E2 /* faceMask_bg.png */; };
+		07122F271C310EDF004AD0E2 /* faceMask_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */; };
+		07122F281C310EDF004AD0E2 /* faceMask_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */; };
+		07122F2C1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */; };
+		07122F2E1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */; };
+		07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07122F311C31239A004AD0E2 /* MSFFaceMaskViewModel.m */; };
 		072328BC1B37B481008E9DF1 /* applyInfo.json in Resources */ = {isa = PBXBuildFile; fileRef = 072328BB1B37B481008E9DF1 /* applyInfo.json */; };
 		072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 072550C71BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m */; };
 		072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 072550C91BFEC1F60053F51F /* SocialCashApply.storyboard */; };
@@ -62,6 +68,7 @@
 		0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB051B96D39E00AD67F3 /* MSFConfirmContactViewModel.m */; };
 		0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */; };
 		0750AB121B96F77C00AD67F3 /* ConfirmContract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */; };
+		0756C1FA1C318265000730D5 /* MSFTransSmsSeqNOModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C1F91C318265000730D5 /* MSFTransSmsSeqNOModel.m */; };
 		07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF01BBEAAEE002DFF62 /* MSFCheckAllowApply.m */; };
 		07667BF41BBEAB83002DFF62 /* MSFApplyCashInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF31BBEAB83002DFF62 /* MSFApplyCashInfo.m */; };
 		07667BF71BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 07667BF61BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m */; };
@@ -181,6 +188,9 @@
 		07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CBA7F61B203AC00020116E /* MSFProductViewController.m */; };
 		07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD31091B09CC7600E0C2DF /* MSFCommandView.m */; };
 		07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */; };
+		07D051171C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */; };
+		07D051261C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */; };
+		07D051281C2BEAC1003220D7 /* bankCardList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07D051271C2BEAC1003220D7 /* bankCardList.json */; };
 		07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */; };
 		07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */; };
 		07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */; };
@@ -196,7 +206,6 @@
 		07E3ED791BBBF6C00010AAD2 /* blackpoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED761BBBF6C00010AAD2 /* blackpoint.png */; };
 		07E3ED7A1BBBF6C00010AAD2 /* blackpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED771BBBF6C00010AAD2 /* blackpoint@2x.png */; };
 		07E3ED7B1BBBF6C00010AAD2 /* blackpoint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */; };
-		07E3ED7D1BBC12F90010AAD2 /* bankCardList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */; };
 		07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */; };
 		07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F61BBCFA360067C5BC /* MSFCirculateCashModel.m */; };
 		07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F91BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m */; };
@@ -218,6 +227,38 @@
 		1011A3A81BB9702600CCADB5 /* icon_circle_basic_h.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */; };
 		1011A3A91BB9702600CCADB5 /* icon_circle_job_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */; };
 		1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */; };
+		101BD3C11C2BE43300842D36 /* MSFCartCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C01C2BE43300842D36 /* MSFCartCategoryCell.m */; };
+		101BD3C41C2BE6DE00842D36 /* MSFCartTrialCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C31C2BE6DE00842D36 /* MSFCartTrialCell.m */; };
+		101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3C71C2BF9FA00842D36 /* MSFCart.m */; };
+		101BD3CB1C2CDCBF00842D36 /* MSFClient+MSFCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */; };
+		101BD3D11C2CE59700842D36 /* MSFTrial.m in Sources */ = {isa = PBXBuildFile; fileRef = 101BD3D01C2CE59700842D36 /* MSFTrial.m */; };
+		101BD3E11C2D213E00842D36 /* MSFCartJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 101BD3E01C2D213E00842D36 /* MSFCartJson.json */; };
+		102C7E6D1C28E6D50023172B /* MSFInfinityScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */; };
+		102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E851C28F55E0023172B /* MSFAdverImage.m */; };
+		102C7E881C28F8DF0023172B /* MSFAdverJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 102C7E871C28F8DF0023172B /* MSFAdverJson.json */; };
+		102C7E8E1C2926E50023172B /* MSFOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */; };
+		102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E901C2926FE0023172B /* MSFOrderDetailViewController.m */; };
+		102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E951C29274B0023172B /* MSFOrderListViewModel.m */; };
+		102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E991C2927B10023172B /* MSFOrder.m */; };
+		102C7E9D1C2928060023172B /* MSFClient+MSFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */; };
+		102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA11C292B310023172B /* MSFOrderDetail.m */; };
+		102C7EA51C292B460023172B /* MSFCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EA41C292B460023172B /* MSFCommodity.m */; };
+		102C7ED01C2939570023172B /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */; };
+		102C7ED11C2939570023172B /* MSFPlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */; };
+		102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ED41C293B830023172B /* MSFOrderListCell.m */; };
+		102C7ED81C2947380023172B /* MSFInsetsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7ED71C2947380023172B /* MSFInsetsLabel.m */; };
+		102C7EE11C2A389B0023172B /* MSFOrderListFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EDC1C2A389B0023172B /* MSFOrderListFooterCell.m */; };
+		102C7EE21C2A389B0023172B /* MSFOrderListHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EDE1C2A389B0023172B /* MSFOrderListHeaderCell.m */; };
+		102C7EE31C2A389B0023172B /* MSFOrderListItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7EE01C2A389B0023172B /* MSFOrderListItemCell.m */; };
+		102C7EF61C2A7A4B0023172B /* icon-account-order.png in Resources */ = {isa = PBXBuildFile; fileRef = 102C7EF31C2A7A4A0023172B /* icon-account-order.png */; };
+		102C7EF71C2A7A4B0023172B /* icon-account-order@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 102C7EF41C2A7A4B0023172B /* icon-account-order@3x.png */; };
+		102C7EF81C2A7A4B0023172B /* icon-account-order@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 102C7EF51C2A7A4B0023172B /* icon-account-order@2x.png */; };
+		102C7F091C2A7B840023172B /* MSFCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F081C2A7B840023172B /* MSFCartViewController.m */; };
+		102C7F0C1C2A7C080023172B /* MSFCartContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F0B1C2A7C080023172B /* MSFCartContentCell.m */; };
+		102C7F101C2A7C570023172B /* MSFCartInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F0F1C2A7C570023172B /* MSFCartInputCell.m */; };
+		102C7F161C2A7C990023172B /* MSFCartLoanTermCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F151C2A7C990023172B /* MSFCartLoanTermCell.m */; };
+		102C7F191C2A7CAF0023172B /* MSFCartSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F181C2A7CAF0023172B /* MSFCartSwitchCell.m */; };
+		102C7F1C1C2A8B330023172B /* MSFCartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 102C7F1B1C2A8B330023172B /* MSFCartViewModel.m */; };
 		105542421BE4BE9100CF4C56 /* dicareas.db in Resources */ = {isa = PBXBuildFile; fileRef = 105542411BE4BE9100CF4C56 /* dicareas.db */; };
 		105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */; };
 		105E839C1B7E074500E821CB /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 105E839B1B7E074500E821CB /* MSFRepaymentViewModel.m */; };
@@ -303,7 +344,6 @@
 		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */; };
 		491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */; };
-		491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */; };
 		491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */; };
 		491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB51B0F1EC200CADF8E /* MSFCodeButton.m */; };
 		491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 491C5FB81B0F21D500CADF8E /* MSFCheckButton.m */; };
@@ -317,6 +357,8 @@
 		492007521BA00CCD00C0722C /* StandardPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 4920074C1BA00CCD00C0722C /* StandardPaths.m */; };
 		492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4920074E1BA00CCD00C0722C /* UIImage+Resize.m */; };
 		49216E091BC76D020090B784 /* MSFTabBarViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */; };
+		49252BCA1C293D4300CC682B /* MSFBarcodeScanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49252BC91C293D4300CC682B /* MSFBarcodeScanViewController.m */; };
+		49252BCC1C293E3D00CC682B /* MSFBarcodeScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49252BCB1C293E3D00CC682B /* MSFBarcodeScanViewController.xib */; };
 		4925AD581B2A786900872A8A /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 4925AD571B2A786900872A8A /* products.json */; };
 		4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925ADBD1B2AB92500872A8A /* MSFBlurView.m */; };
 		4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4925ADD31B2AC07300872A8A /* MSFBlurFieldView.m */; };
@@ -340,6 +382,7 @@
 		493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */; };
 		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
+		493ED1681C2BDE31002B8EA6 /* MSFBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 493ED1671C2BDE31002B8EA6 /* MSFBarcode.m */; };
 		4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3601B04782B000BBF5E /* SwiftSpec.swift */; };
 		4943C3681B04796B000BBF5E /* libOHHTTPStubs-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */; };
 		4943C3741B047C66000BBF5E /* MSFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4943C3731B047C66000BBF5E /* MSFObject.m */; };
@@ -379,7 +422,6 @@
 		4944C0551B68A60200805C0A /* icon-avatar-placeholder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4944C0521B68A60200805C0A /* icon-avatar-placeholder@3x.png */; };
 		4944C05E1B68A6CA00805C0A /* MSFClient+ApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 4944C05D1B68A6CA00805C0A /* MSFClient+ApplyList.m */; };
 		4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4944C0631B68AB6F00805C0A /* MSFClient+Advers.m */; };
-		4946ABE91B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */; };
 		4948E88A1B953FFB0048D125 /* MSFElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8891B953FFB0048D125 /* MSFElement.m */; };
 		4948E88C1B95400A0048D125 /* MSFElementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E88B1B95400A0048D125 /* MSFElementSpec.m */; };
 		4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E88E1B95473B0048D125 /* MSFClient+Elements.m */; };
@@ -390,7 +432,6 @@
 		4948E8B81B9578050048D125 /* MSFInventoryViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8B71B9578050048D125 /* MSFInventoryViewModelSpec.m */; };
 		4948E8BD1B959A410048D125 /* MSFAttachmentViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8BC1B959A410048D125 /* MSFAttachmentViewModelSpec.m */; };
 		4948E8C01B959A5E0048D125 /* MSFAttachmentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8BF1B959A5E0048D125 /* MSFAttachmentViewModel.m */; };
-		494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 494ED8671B2D2798000AD8EA /* MSFWPTextField.m */; };
 		494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = 494FBE0D1B16B1BC005F0454 /* MSFCipher.m */; };
 		495021071B13103400605666 /* MSFUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495021061B13103400605666 /* MSFUserViewModel.m */; };
 		4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */; };
@@ -423,7 +464,6 @@
 		496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444A1B6A57BE00104215 /* MSFClientSpec.m */; };
 		496A446F1B6A57BE00104215 /* MSFHomePageViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A444D1B6A57BE00104215 /* MSFHomePageViewModelSpec.m */; };
 		496A44721B6A57BE00104215 /* MSFObjectSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44501B6A57BE00104215 /* MSFObjectSpec.m */; };
-		496A44741B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44521B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m */; };
 		496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */; };
 		496A44771B6A57BE00104215 /* MSFReleaseNoteSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */; };
 		496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */; };
@@ -449,9 +489,21 @@
 		497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497F98381B2B0C4400DD6F2D /* MSFGuideViewController.m */; };
 		498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */; };
 		498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */; };
+		498311801C33C1A400AC14AF /* MSFOrderDetailSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */; };
+		4983118F1C33C1CF00AC14AF /* order-details.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983118E1C33C1CF00AC14AF /* order-details.json */; };
+		498311961C33CD5800AC14AF /* MSFDimensionalCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498311951C33CD5800AC14AF /* MSFDimensionalCodeViewController.m */; };
+		4983119A1C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498311991C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m */; };
+		4983119C1C33DC6700AC14AF /* MSFCartSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983119B1C33DC6700AC14AF /* MSFCartSpec.m */; };
+		4983119E1C33DC8C00AC14AF /* cart.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983119D1C33DC8C00AC14AF /* cart.json */; };
 		4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58921B06E38600120D93 /* applycash.json */; };
 		4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983ED9F1B09CC0E00ADE3E5 /* applyList.json */; };
 		4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */; };
+		498637C31C2BB6E400A11845 /* MSFCommodityCashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637C21C2BB6E400A11845 /* MSFCommodityCashViewModel.m */; };
+		498637C71C2BB9E200A11845 /* MSFCommoditesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637C61C2BB9E200A11845 /* MSFCommoditesViewController.m */; };
+		498637CB1C2BC15600A11845 /* MSFDistinguishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637CA1C2BC15600A11845 /* MSFDistinguishViewController.m */; };
+		498637CF1C2BC19300A11845 /* MSFDistinguishViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637CE1C2BC19300A11845 /* MSFDistinguishViewModel.m */; };
+		498637D71C2BD3B800A11845 /* MSFCommoditesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637D61C2BD3B800A11845 /* MSFCommoditesViewModel.m */; };
+		498B52351C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 498B52341C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m */; };
 		498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */; };
 		498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */; };
 		498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F3D491B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m */; };
@@ -551,7 +603,6 @@
 		49CA93821BBA3F7E0032F5C2 /* icon-name.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA937C1BBA3F7E0032F5C2 /* icon-name.png */; };
 		49CA93831BBA3F7E0032F5C2 /* icon-name@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA937D1BBA3F7E0032F5C2 /* icon-name@2x.png */; };
 		49CA93841BBA3F7E0032F5C2 /* icon-name@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CA937E1BBA3F7E0032F5C2 /* icon-name@3x.png */; };
-		49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */; };
 		49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */; };
 		49CCFBD81B07233F008A9CD1 /* MSFAboutsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBD71B07233F008A9CD1 /* MSFAboutsViewController.m */; };
 		49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBDA1B072359008A9CD1 /* MSFHomepageViewController.m */; };
@@ -606,7 +657,6 @@
 		49FCBF891C0E92890035398E /* allow.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF881C0E92890035398E /* allow.json */; };
 		49FCBF991C0E92D90035398E /* repay.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF971C0E92D90035398E /* repay.json */; };
 		49FCBF9A1C0E92D90035398E /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF981C0E92D90035398E /* submit.json */; };
-		4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */; };
 		4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */; };
 		4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
@@ -616,8 +666,6 @@
 		C72149FA1B05C9020045F919 /* repaymentschedules.json in Resources */ = {isa = PBXBuildFile; fileRef = C72149F91B05C9020045F919 /* repaymentschedules.json */; };
 		C72149FC1B05C9140045F919 /* plandetails.json in Resources */ = {isa = PBXBuildFile; fileRef = C72149FB1B05C9140045F919 /* plandetails.json */; };
 		C72149FE1B05C92C0045F919 /* planperodictables.json in Resources */ = {isa = PBXBuildFile; fileRef = C72149FD1B05C92C0045F919 /* planperodictables.json */; };
-		C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C75976B81B0A213700FB9B0C /* MSFContractDetailsTableViewController.m */; };
-		C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C75976BB1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m */; };
 		C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C79402401B1EFCB700898535 /* MSFCellButton.m */; };
 		C7A351471B2173020001DF6A /* MSFAboutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A351461B2173020001DF6A /* MSFAboutTableViewCell.m */; };
 		C7A351741B217CB10001DF6A /* iconfont-bangzhu.png in Resources */ = {isa = PBXBuildFile; fileRef = C7A351621B217CB10001DF6A /* iconfont-bangzhu.png */; };
@@ -663,8 +711,6 @@
 		C7D2D1331B67938C000F51ED /* icon-cloze-question@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D1181B67938C000F51ED /* icon-cloze-question@3x.png */; };
 		C7D2D1351B67938C000F51ED /* icon-cloze-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11A1B67938C000F51ED /* icon-cloze-selected@2x.png */; };
 		C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C7D2D11B1B67938C000F51ED /* icon-cloze-selected@3x.png */; };
-		C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149ED1B05C0620045F919 /* MSFClient+PlanPerodicTables.m */; };
-		C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149EA1B05C0490045F919 /* MSFPlanPerodicTables.m */; };
 		DAA51DE98E247EB6780DD44E /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF00CABE6E7013C6FAD9BA9 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -786,6 +832,14 @@
 		070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPeriodsCollectionViewCell.h; sourceTree = "<group>"; };
 		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
 		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
+		07122F231C310EDF004AD0E2 /* faceMask_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceMask_bg.png; sourceTree = "<group>"; };
+		07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceMask_bg@2x.png"; sourceTree = "<group>"; };
+		07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceMask_bg@3x.png"; sourceTree = "<group>"; };
+		07122F2A1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFFaceMaskPhtoViewController.h; sourceTree = "<group>"; };
+		07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFFaceMaskPhtoViewController.m; sourceTree = "<group>"; };
+		07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = faceMaskStoryboard.storyboard; sourceTree = "<group>"; };
+		07122F301C31239A004AD0E2 /* MSFFaceMaskViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFFaceMaskViewModel.h; sourceTree = "<group>"; };
+		07122F311C31239A004AD0E2 /* MSFFaceMaskViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFFaceMaskViewModel.m; sourceTree = "<group>"; };
 		072328BB1B37B481008E9DF1 /* applyInfo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyInfo.json; sourceTree = "<group>"; };
 		072550C61BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSocialCaskApplyTableViewController.h; sourceTree = "<group>"; };
 		072550C71BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSocialCaskApplyTableViewController.m; sourceTree = "<group>"; };
@@ -859,6 +913,8 @@
 		0750AB0A1B96F73700AD67F3 /* MSFConfirmContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFConfirmContractViewController.h; sourceTree = "<group>"; };
 		0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContractViewController.m; sourceTree = "<group>"; };
 		0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmContract.storyboard; sourceTree = "<group>"; };
+		0756C1F81C318265000730D5 /* MSFTransSmsSeqNOModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTransSmsSeqNOModel.h; sourceTree = "<group>"; };
+		0756C1F91C318265000730D5 /* MSFTransSmsSeqNOModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTransSmsSeqNOModel.m; sourceTree = "<group>"; };
 		07667BEF1BBEAAEE002DFF62 /* MSFCheckAllowApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCheckAllowApply.h; sourceTree = "<group>"; };
 		07667BF01BBEAAEE002DFF62 /* MSFCheckAllowApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCheckAllowApply.m; sourceTree = "<group>"; };
 		07667BF21BBEAB83002DFF62 /* MSFApplyCashInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyCashInfo.h; sourceTree = "<group>"; };
@@ -1012,6 +1068,10 @@
 		07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_MSFappliesViewControllerCatogery.h; sourceTree = "<group>"; };
 		07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAppliesHeaderView.h; sourceTree = "<group>"; };
 		07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAppliesHeaderView.m; sourceTree = "<group>"; };
+		07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSmsCodeTableViewController.h; sourceTree = "<group>"; };
+		07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSmsCodeTableViewController.m; sourceTree = "<group>"; };
+		07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = paySmsCodeStoryboard.storyboard; sourceTree = "<group>"; };
+		07D051271C2BEAC1003220D7 /* bankCardList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bankCardList.json; sourceTree = "<group>"; };
 		07D13DB21C03009700A46980 /* MSFClient+MSFSocialInsurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFSocialInsurance.h"; sourceTree = "<group>"; };
 		07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFSocialInsurance.m"; sourceTree = "<group>"; };
 		07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLifeInsuranceViewController.h; sourceTree = "<group>"; };
@@ -1033,7 +1093,6 @@
 		07E3ED761BBBF6C00010AAD2 /* blackpoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackpoint.png; sourceTree = "<group>"; };
 		07E3ED771BBBF6C00010AAD2 /* blackpoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackpoint@2x.png"; sourceTree = "<group>"; };
 		07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackpoint@3x.png"; sourceTree = "<group>"; };
-		07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bankCardList.json; sourceTree = "<group>"; };
 		07E3ED8E1BBCD5200010AAD2 /* MSFGrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGrayButton.h; sourceTree = "<group>"; };
 		07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGrayButton.m; sourceTree = "<group>"; };
 		07F088F51BBCFA360067C5BC /* MSFCirculateCashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashModel.h; sourceTree = "<group>"; };
@@ -1070,6 +1129,65 @@
 		1011A3A21BB9702600CCADB5 /* icon_circle_basic_h.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_basic_h.png; sourceTree = "<group>"; };
 		1011A3A31BB9702600CCADB5 /* icon_circle_job_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_job_n.png; sourceTree = "<group>"; };
 		1011A3A41BB9702600CCADB5 /* icon_circle_basic_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_circle_basic_n.png; sourceTree = "<group>"; };
+		101BD3BF1C2BE43300842D36 /* MSFCartCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartCategoryCell.h; sourceTree = "<group>"; };
+		101BD3C01C2BE43300842D36 /* MSFCartCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartCategoryCell.m; sourceTree = "<group>"; };
+		101BD3C21C2BE6DE00842D36 /* MSFCartTrialCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartTrialCell.h; sourceTree = "<group>"; };
+		101BD3C31C2BE6DE00842D36 /* MSFCartTrialCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartTrialCell.m; sourceTree = "<group>"; };
+		101BD3C61C2BF9FA00842D36 /* MSFCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCart.h; sourceTree = "<group>"; };
+		101BD3C71C2BF9FA00842D36 /* MSFCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCart.m; sourceTree = "<group>"; };
+		101BD3C91C2CDCBF00842D36 /* MSFClient+MSFCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFCart.h"; sourceTree = "<group>"; };
+		101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFCart.m"; sourceTree = "<group>"; };
+		101BD3CF1C2CE59700842D36 /* MSFTrial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTrial.h; sourceTree = "<group>"; };
+		101BD3D01C2CE59700842D36 /* MSFTrial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTrial.m; sourceTree = "<group>"; };
+		101BD3E01C2D213E00842D36 /* MSFCartJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFCartJson.json; sourceTree = "<group>"; };
+		102C7E6B1C28E6D50023172B /* MSFInfinityScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInfinityScroll.h; sourceTree = "<group>"; };
+		102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInfinityScroll.m; sourceTree = "<group>"; };
+		102C7E841C28F55E0023172B /* MSFAdverImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAdverImage.h; sourceTree = "<group>"; };
+		102C7E851C28F55E0023172B /* MSFAdverImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAdverImage.m; sourceTree = "<group>"; };
+		102C7E871C28F8DF0023172B /* MSFAdverJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MSFAdverJson.json; sourceTree = "<group>"; };
+		102C7E8C1C2926E50023172B /* MSFOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListViewController.h; sourceTree = "<group>"; };
+		102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListViewController.m; sourceTree = "<group>"; };
+		102C7E8F1C2926FE0023172B /* MSFOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderDetailViewController.h; sourceTree = "<group>"; };
+		102C7E901C2926FE0023172B /* MSFOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetailViewController.m; sourceTree = "<group>"; };
+		102C7E941C29274B0023172B /* MSFOrderListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListViewModel.h; sourceTree = "<group>"; };
+		102C7E951C29274B0023172B /* MSFOrderListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListViewModel.m; sourceTree = "<group>"; };
+		102C7E981C2927B10023172B /* MSFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrder.h; sourceTree = "<group>"; };
+		102C7E991C2927B10023172B /* MSFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrder.m; sourceTree = "<group>"; };
+		102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFOrder.h"; sourceTree = "<group>"; };
+		102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFOrder.m"; sourceTree = "<group>"; };
+		102C7EA01C292B310023172B /* MSFOrderDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderDetail.h; sourceTree = "<group>"; };
+		102C7EA11C292B310023172B /* MSFOrderDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetail.m; sourceTree = "<group>"; };
+		102C7EA31C292B460023172B /* MSFCommodity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommodity.h; sourceTree = "<group>"; };
+		102C7EA41C292B460023172B /* MSFCommodity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommodity.m; sourceTree = "<group>"; };
+		102C7ECC1C2939570023172B /* MSFClient+PlanPerodicTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+PlanPerodicTables.h"; sourceTree = "<group>"; };
+		102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+PlanPerodicTables.m"; sourceTree = "<group>"; };
+		102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanPerodicTables.m; sourceTree = "<group>"; };
+		102C7ECF1C2939570023172B /* MSFPlanPerodicTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlanPerodicTables.h; sourceTree = "<group>"; };
+		102C7ED31C293B830023172B /* MSFOrderListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListCell.h; sourceTree = "<group>"; };
+		102C7ED41C293B830023172B /* MSFOrderListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListCell.m; sourceTree = "<group>"; };
+		102C7ED61C2947380023172B /* MSFInsetsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInsetsLabel.h; sourceTree = "<group>"; };
+		102C7ED71C2947380023172B /* MSFInsetsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInsetsLabel.m; sourceTree = "<group>"; };
+		102C7EDB1C2A389B0023172B /* MSFOrderListFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListFooterCell.h; sourceTree = "<group>"; };
+		102C7EDC1C2A389B0023172B /* MSFOrderListFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListFooterCell.m; sourceTree = "<group>"; };
+		102C7EDD1C2A389B0023172B /* MSFOrderListHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListHeaderCell.h; sourceTree = "<group>"; };
+		102C7EDE1C2A389B0023172B /* MSFOrderListHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListHeaderCell.m; sourceTree = "<group>"; };
+		102C7EDF1C2A389B0023172B /* MSFOrderListItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOrderListItemCell.h; sourceTree = "<group>"; };
+		102C7EE01C2A389B0023172B /* MSFOrderListItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderListItemCell.m; sourceTree = "<group>"; };
+		102C7EF31C2A7A4A0023172B /* icon-account-order.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-order.png"; sourceTree = "<group>"; };
+		102C7EF41C2A7A4B0023172B /* icon-account-order@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-order@3x.png"; sourceTree = "<group>"; };
+		102C7EF51C2A7A4B0023172B /* icon-account-order@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-account-order@2x.png"; sourceTree = "<group>"; };
+		102C7F071C2A7B840023172B /* MSFCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartViewController.h; sourceTree = "<group>"; };
+		102C7F081C2A7B840023172B /* MSFCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartViewController.m; sourceTree = "<group>"; };
+		102C7F0A1C2A7C080023172B /* MSFCartContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartContentCell.h; sourceTree = "<group>"; };
+		102C7F0B1C2A7C080023172B /* MSFCartContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartContentCell.m; sourceTree = "<group>"; };
+		102C7F0E1C2A7C570023172B /* MSFCartInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartInputCell.h; sourceTree = "<group>"; };
+		102C7F0F1C2A7C570023172B /* MSFCartInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartInputCell.m; sourceTree = "<group>"; };
+		102C7F141C2A7C990023172B /* MSFCartLoanTermCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartLoanTermCell.h; sourceTree = "<group>"; };
+		102C7F151C2A7C990023172B /* MSFCartLoanTermCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartLoanTermCell.m; sourceTree = "<group>"; };
+		102C7F171C2A7CAF0023172B /* MSFCartSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartSwitchCell.h; sourceTree = "<group>"; };
+		102C7F181C2A7CAF0023172B /* MSFCartSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartSwitchCell.m; sourceTree = "<group>"; };
+		102C7F1A1C2A8B330023172B /* MSFCartViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCartViewModel.h; sourceTree = "<group>"; };
+		102C7F1B1C2A8B330023172B /* MSFCartViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartViewModel.m; sourceTree = "<group>"; };
 		105542411BE4BE9100CF4C56 /* dicareas.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = dicareas.db; sourceTree = "<group>"; };
 		105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfomationViewController.h; sourceTree = "<group>"; };
 		105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfomationViewController.m; sourceTree = "<group>"; };
@@ -1200,8 +1318,6 @@
 		491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
 		491B3E321B662D3000D28455 /* MSFLoginPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoginPageViewController.h; sourceTree = "<group>"; };
 		491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoginPageViewController.m; sourceTree = "<group>"; };
-		491C5FAD1B0F0F5E00CADF8E /* MSFTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTextField.h; sourceTree = "<group>"; };
-		491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTextField.m; sourceTree = "<group>"; };
 		491C5FB11B0F17A900CADF8E /* MSFEdgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEdgeButton.h; sourceTree = "<group>"; };
 		491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEdgeButton.m; sourceTree = "<group>"; };
 		491C5FB41B0F1EC200CADF8E /* MSFCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCodeButton.h; sourceTree = "<group>"; };
@@ -1227,6 +1343,9 @@
 		4920074D1BA00CCD00C0722C /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		4920074E1BA00CCD00C0722C /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		49216E081BC76D020090B784 /* MSFTabBarViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTabBarViewModelSpec.m; sourceTree = "<group>"; };
+		49252BC81C293D4300CC682B /* MSFBarcodeScanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBarcodeScanViewController.h; sourceTree = "<group>"; };
+		49252BC91C293D4300CC682B /* MSFBarcodeScanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBarcodeScanViewController.m; sourceTree = "<group>"; };
+		49252BCB1C293E3D00CC682B /* MSFBarcodeScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFBarcodeScanViewController.xib; sourceTree = "<group>"; };
 		4925AD571B2A786900872A8A /* products.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		4925ADBC1B2AB92500872A8A /* MSFBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBlurView.h; sourceTree = "<group>"; };
 		4925ADBD1B2AB92500872A8A /* MSFBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBlurView.m; sourceTree = "<group>"; };
@@ -1254,6 +1373,8 @@
 		493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsViewController.m; sourceTree = "<group>"; };
 		493E92101BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsDetailsViewController.h; sourceTree = "<group>"; };
 		493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsDetailsViewController.m; sourceTree = "<group>"; };
+		493ED1661C2BDE31002B8EA6 /* MSFBarcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBarcode.h; sourceTree = "<group>"; };
+		493ED1671C2BDE31002B8EA6 /* MSFBarcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBarcode.m; sourceTree = "<group>"; };
 		4943C32B1B047403000BBF5E /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3521B047437000BBF5E /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4943C3551B047437000BBF5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1308,8 +1429,6 @@
 		4944C05D1B68A6CA00805C0A /* MSFClient+ApplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+ApplyList.m"; sourceTree = "<group>"; };
 		4944C0621B68AB6F00805C0A /* MSFClient+Advers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Advers.h"; sourceTree = "<group>"; };
 		4944C0631B68AB6F00805C0A /* MSFClient+Advers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Advers.m"; sourceTree = "<group>"; };
-		4946ABE71B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserInfoTableViewCell.h; sourceTree = "<group>"; };
-		4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUserInfoTableViewCell.m; sourceTree = "<group>"; };
 		4948E8881B953FFB0048D125 /* MSFElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElement.h; sourceTree = "<group>"; };
 		4948E8891B953FFB0048D125 /* MSFElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElement.m; sourceTree = "<group>"; };
 		4948E88B1B95400A0048D125 /* MSFElementSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementSpec.m; sourceTree = "<group>"; };
@@ -1326,8 +1445,6 @@
 		4948E8BC1B959A410048D125 /* MSFAttachmentViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachmentViewModelSpec.m; sourceTree = "<group>"; };
 		4948E8BE1B959A5E0048D125 /* MSFAttachmentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAttachmentViewModel.h; sourceTree = "<group>"; };
 		4948E8BF1B959A5E0048D125 /* MSFAttachmentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachmentViewModel.m; sourceTree = "<group>"; };
-		494ED8661B2D2798000AD8EA /* MSFWPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWPTextField.h; sourceTree = "<group>"; };
-		494ED8671B2D2798000AD8EA /* MSFWPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWPTextField.m; sourceTree = "<group>"; };
 		494FBE0C1B16B1BC005F0454 /* MSFCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCipher.h; sourceTree = "<group>"; };
 		494FBE0D1B16B1BC005F0454 /* MSFCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCipher.m; sourceTree = "<group>"; };
 		495021051B13103400605666 /* MSFUserViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUserViewModel.h; sourceTree = "<group>"; };
@@ -1374,7 +1491,6 @@
 		496A444A1B6A57BE00104215 /* MSFClientSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFClientSpec.m; sourceTree = "<group>"; };
 		496A444D1B6A57BE00104215 /* MSFHomePageViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomePageViewModelSpec.m; sourceTree = "<group>"; };
 		496A44501B6A57BE00104215 /* MSFObjectSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFObjectSpec.m; sourceTree = "<group>"; };
-		496A44521B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanPerodicTablesSpec.m; sourceTree = "<group>"; };
 		496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRelationViewModelSpec.m; sourceTree = "<group>"; };
 		496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFReleaseNoteSpec.m; sourceTree = "<group>"; };
 		496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedulesSpec.m; sourceTree = "<group>"; };
@@ -1410,9 +1526,30 @@
 		498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageViewModel.m; sourceTree = "<group>"; };
 		498141041BBEA527006C7E8D /* MSFSignInSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInSegmentedView.h; sourceTree = "<group>"; };
 		498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInSegmentedView.m; sourceTree = "<group>"; };
+		4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetailSpec.m; sourceTree = "<group>"; };
+		4983118E1C33C1CF00AC14AF /* order-details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "order-details.json"; sourceTree = "<group>"; };
+		498311941C33CD5800AC14AF /* MSFDimensionalCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDimensionalCodeViewController.h; sourceTree = "<group>"; };
+		498311951C33CD5800AC14AF /* MSFDimensionalCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDimensionalCodeViewController.m; sourceTree = "<group>"; };
+		498311981C33CEC900AC14AF /* MSFDimensionalCodeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDimensionalCodeViewModel.h; sourceTree = "<group>"; };
+		498311991C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDimensionalCodeViewModel.m; sourceTree = "<group>"; };
+		4983119B1C33DC6700AC14AF /* MSFCartSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCartSpec.m; sourceTree = "<group>"; };
+		4983119D1C33DC8C00AC14AF /* cart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cart.json; sourceTree = "<group>"; };
 		4983ED9F1B09CC0E00ADE3E5 /* applyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyList.json; sourceTree = "<group>"; };
 		4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEditPasswordViewController.h; sourceTree = "<group>"; };
 		4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEditPasswordViewController.m; sourceTree = "<group>"; };
+		498637C11C2BB6E400A11845 /* MSFCommodityCashViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommodityCashViewModel.h; sourceTree = "<group>"; };
+		498637C21C2BB6E400A11845 /* MSFCommodityCashViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommodityCashViewModel.m; sourceTree = "<group>"; };
+		498637C51C2BB9E200A11845 /* MSFCommoditesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommoditesViewController.h; sourceTree = "<group>"; };
+		498637C61C2BB9E200A11845 /* MSFCommoditesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommoditesViewController.m; sourceTree = "<group>"; };
+		498637C91C2BC15600A11845 /* MSFDistinguishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDistinguishViewController.h; sourceTree = "<group>"; };
+		498637CA1C2BC15600A11845 /* MSFDistinguishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDistinguishViewController.m; sourceTree = "<group>"; };
+		498637CD1C2BC19300A11845 /* MSFDistinguishViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDistinguishViewModel.h; sourceTree = "<group>"; };
+		498637CE1C2BC19300A11845 /* MSFDistinguishViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDistinguishViewModel.m; sourceTree = "<group>"; };
+		498637D51C2BD3B800A11845 /* MSFCommoditesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommoditesViewModel.h; sourceTree = "<group>"; };
+		498637D61C2BD3B800A11845 /* MSFCommoditesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommoditesViewModel.m; sourceTree = "<group>"; };
+		498B52331C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFBarcodeScanViewController+MSFSignalSupport.h"; sourceTree = "<group>"; };
+		498B52341C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFBarcodeScanViewController+MSFSignalSupport.m"; sourceTree = "<group>"; };
+		498B52431C2A83E400AD97C1 /* MSFBarcodeScanViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFBarcodeScanViewControllerDelegate.h; sourceTree = "<group>"; };
 		498BFC561B11FF8A00FFE88F /* MSFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWebViewController.h; sourceTree = "<group>"; };
 		498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewController.m; sourceTree = "<group>"; };
 		498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
@@ -1543,8 +1680,6 @@
 		49CA937C1BBA3F7E0032F5C2 /* icon-name.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-name.png"; sourceTree = "<group>"; };
 		49CA937D1BBA3F7E0032F5C2 /* icon-name@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-name@2x.png"; sourceTree = "<group>"; };
 		49CA937E1BBA3F7E0032F5C2 /* icon-name@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-name@3x.png"; sourceTree = "<group>"; };
-		49CBDDA01B0DD9C3009EF662 /* MSFBannersViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBannersViewModel.h; sourceTree = "<group>"; };
-		49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBannersViewModel.m; sourceTree = "<group>"; };
 		49CCFBD31B072327008A9CD1 /* MSFSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInViewController.h; sourceTree = "<group>"; };
 		49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInViewController.m; sourceTree = "<group>"; };
 		49CCFBD61B07233F008A9CD1 /* MSFAboutsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAboutsViewController.h; sourceTree = "<group>"; };
@@ -1623,8 +1758,6 @@
 		49FCBF881C0E92890035398E /* allow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allow.json; sourceTree = "<group>"; };
 		49FCBF971C0E92D90035398E /* repay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repay.json; sourceTree = "<group>"; };
 		49FCBF981C0E92D90035398E /* submit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submit.json; sourceTree = "<group>"; };
-		4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBPTextField.h; sourceTree = "<group>"; };
-		4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBPTextField.m; sourceTree = "<group>"; };
 		4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSubmitAlertView.h; sourceTree = "<group>"; };
 		4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSubmitAlertView.m; sourceTree = "<group>"; };
 		4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFSubmitAlertView.xib; sourceTree = "<group>"; };
@@ -1637,18 +1770,10 @@
 		C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedules.m; sourceTree = "<group>"; };
 		C72149DC1B05A3640045F919 /* MSFClient+RepaymentSchedules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+RepaymentSchedules.h"; sourceTree = "<group>"; };
 		C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+RepaymentSchedules.m"; sourceTree = "<group>"; };
-		C72149E91B05C0490045F919 /* MSFPlanPerodicTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlanPerodicTables.h; sourceTree = "<group>"; };
-		C72149EA1B05C0490045F919 /* MSFPlanPerodicTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanPerodicTables.m; sourceTree = "<group>"; };
-		C72149EC1B05C0620045F919 /* MSFClient+PlanPerodicTables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+PlanPerodicTables.h"; sourceTree = "<group>"; };
-		C72149ED1B05C0620045F919 /* MSFClient+PlanPerodicTables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+PlanPerodicTables.m"; sourceTree = "<group>"; };
 		C72149F71B05C8E70045F919 /* repayment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repayment.json; sourceTree = "<group>"; };
 		C72149F91B05C9020045F919 /* repaymentschedules.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repaymentschedules.json; sourceTree = "<group>"; };
 		C72149FB1B05C9140045F919 /* plandetails.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = plandetails.json; sourceTree = "<group>"; };
 		C72149FD1B05C92C0045F919 /* planperodictables.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = planperodictables.json; sourceTree = "<group>"; };
-		C75976B71B0A213700FB9B0C /* MSFContractDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFContractDetailsTableViewController.h; sourceTree = "<group>"; };
-		C75976B81B0A213700FB9B0C /* MSFContractDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFContractDetailsTableViewController.m; sourceTree = "<group>"; };
-		C75976BA1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFContractDetailsTableViewCell.h; sourceTree = "<group>"; };
-		C75976BB1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFContractDetailsTableViewCell.m; sourceTree = "<group>"; };
 		C794023F1B1EFCB700898535 /* MSFCellButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCellButton.h; sourceTree = "<group>"; };
 		C79402401B1EFCB700898535 /* MSFCellButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCellButton.m; sourceTree = "<group>"; };
 		C7A351451B2173020001DF6A /* MSFAboutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAboutTableViewCell.h; sourceTree = "<group>"; };
@@ -1773,6 +1898,35 @@
 			name = CollectionView;
 			sourceTree = "<group>";
 		};
+		07122F221C310ED0004AD0E2 /* FaceMask */ = {
+			isa = PBXGroup;
+			children = (
+				07122F231C310EDF004AD0E2 /* faceMask_bg.png */,
+				07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */,
+				07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */,
+			);
+			name = FaceMask;
+			sourceTree = "<group>";
+		};
+		07122F291C3110E4004AD0E2 /* FaceMask */ = {
+			isa = PBXGroup;
+			children = (
+				07122F2A1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.h */,
+				07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */,
+				07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */,
+			);
+			name = FaceMask;
+			sourceTree = "<group>";
+		};
+		07122F2F1C312336004AD0E2 /* FaceMask */ = {
+			isa = PBXGroup;
+			children = (
+				07122F301C31239A004AD0E2 /* MSFFaceMaskViewModel.h */,
+				07122F311C31239A004AD0E2 /* MSFFaceMaskViewModel.m */,
+			);
+			name = FaceMask;
+			sourceTree = "<group>";
+		};
 		072550B81BFEBDF80053F51F /* SocialCashApply */ = {
 			isa = PBXGroup;
 			children = (
@@ -1820,6 +1974,7 @@
 			children = (
 				49DAE1F11C02FE9500DE93E5 /* MSFApplicationViewModel.h */,
 				49DA1A3E1C0ED2330052C056 /* Insurance */,
+				498637B31C2BB6A800A11845 /* Commodity */,
 				49DA1A3D1C0ED2300052C056 /* Cash */,
 			);
 			name = Applicaiton;
@@ -1930,6 +2085,15 @@
 			name = Contract;
 			sourceTree = "<group>";
 		};
+		0756C1EA1C31822B000730D5 /* ActivePay */ = {
+			isa = PBXGroup;
+			children = (
+				0756C1F81C318265000730D5 /* MSFTransSmsSeqNOModel.h */,
+				0756C1F91C318265000730D5 /* MSFTransSmsSeqNOModel.m */,
+			);
+			name = ActivePay;
+			sourceTree = "<group>";
+		};
 		07667BEE1BBEAAC2002DFF62 /* CheckIsAllowApplyCash */ = {
 			isa = PBXGroup;
 			children = (
@@ -2005,7 +2169,6 @@
 				074AC21B1BBA791F0056BA22 /* MSFAddBankCardTableViewController.h */,
 				074AC21C1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m */,
 				074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */,
-				07E3ED7C1BBC12F90010AAD2 /* bankCardList.json */,
 			);
 			name = BankCard;
 			sourceTree = "<group>";
@@ -2111,6 +2274,7 @@
 				499D6A841C06B480004DA69F /* socialInsurance.json */,
 				49FCBF971C0E92D90035398E /* repay.json */,
 				49FCBF981C0E92D90035398E /* submit.json */,
+				07D051271C2BEAC1003220D7 /* bankCardList.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -2289,6 +2453,9 @@
 				07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */,
 				07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */,
 				07F089201BBD31E30067C5BC /* DrawCash.storyboard */,
+				07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */,
+				07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */,
+				07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */,
 			);
 			name = CirculateCash;
 			sourceTree = "<group>";
@@ -2334,19 +2501,153 @@
 			name = AppliInfo;
 			sourceTree = "<group>";
 		};
-		105A0CA31BBA3E8F0046F927 /* 2.0 */ = {
+		101BD3C51C2BF9DE00842D36 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				101BD3C61C2BF9FA00842D36 /* MSFCart.h */,
+				101BD3C71C2BF9FA00842D36 /* MSFCart.m */,
+				101BD3CF1C2CE59700842D36 /* MSFTrial.h */,
+				101BD3D01C2CE59700842D36 /* MSFTrial.m */,
+				101BD3C91C2CDCBF00842D36 /* MSFClient+MSFCart.h */,
+				101BD3CA1C2CDCBF00842D36 /* MSFClient+MSFCart.m */,
+				101BD3E01C2D213E00842D36 /* MSFCartJson.json */,
+			);
+			name = Cart;
+			sourceTree = "<group>";
+		};
+		101BD3DF1C2CE60C00842D36 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				102C7F1A1C2A8B330023172B /* MSFCartViewModel.h */,
+				102C7F1B1C2A8B330023172B /* MSFCartViewModel.m */,
+			);
+			name = Cart;
+			sourceTree = "<group>";
+		};
+		102C7E891C2925970023172B /* Repayment */ = {
+			isa = PBXGroup;
+			children = (
+				C7B977FB1B08C568005F247C /* MSFRepaymentTableViewCell.h */,
+				C7B977FC1B08C568005F247C /* MSFRepaymentTableViewCell.m */,
+				07A7DAB91BFC1BC200916ADD /* MSFRepaymentPlanViewController.h */,
+				07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */,
+				07A7DACF1BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.h */,
+				07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */,
+				07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */,
+			);
+			name = Repayment;
+			sourceTree = "<group>";
+		};
+		102C7E8A1C29265B0023172B /* EditPassword */ = {
+			isa = PBXGroup;
+			children = (
+				4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */,
+				4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */,
+			);
+			name = EditPassword;
+			sourceTree = "<group>";
+		};
+		102C7E8B1C29266C0023172B /* OrderList */ = {
+			isa = PBXGroup;
+			children = (
+				102C7E8C1C2926E50023172B /* MSFOrderListViewController.h */,
+				102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */,
+				102C7E8F1C2926FE0023172B /* MSFOrderDetailViewController.h */,
+				102C7E901C2926FE0023172B /* MSFOrderDetailViewController.m */,
+				102C7ED21C293B650023172B /* cells */,
+			);
+			name = OrderList;
+			sourceTree = "<group>";
+		};
+		102C7E921C2927250023172B /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				102C7E941C29274B0023172B /* MSFOrderListViewModel.h */,
+				102C7E951C29274B0023172B /* MSFOrderListViewModel.m */,
+			);
+			name = Orders;
+			sourceTree = "<group>";
+		};
+		102C7E971C2927990023172B /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				102C7E981C2927B10023172B /* MSFOrder.h */,
+				102C7E991C2927B10023172B /* MSFOrder.m */,
+				102C7EA01C292B310023172B /* MSFOrderDetail.h */,
+				102C7EA11C292B310023172B /* MSFOrderDetail.m */,
+				102C7EA31C292B460023172B /* MSFCommodity.h */,
+				102C7EA41C292B460023172B /* MSFCommodity.m */,
+				102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */,
+				102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */,
+			);
+			name = Orders;
+			sourceTree = "<group>";
+		};
+		102C7EBE1C29392C0023172B /* Plan the periodic table */ = {
+			isa = PBXGroup;
+			children = (
+				102C7ECC1C2939570023172B /* MSFClient+PlanPerodicTables.h */,
+				102C7ECD1C2939570023172B /* MSFClient+PlanPerodicTables.m */,
+				102C7ECF1C2939570023172B /* MSFPlanPerodicTables.h */,
+				102C7ECE1C2939570023172B /* MSFPlanPerodicTables.m */,
+			);
+			name = "Plan the periodic table";
+			sourceTree = "<group>";
+		};
+		102C7ED21C293B650023172B /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				102C7EDD1C2A389B0023172B /* MSFOrderListHeaderCell.h */,
+				102C7EDE1C2A389B0023172B /* MSFOrderListHeaderCell.m */,
+				102C7EDB1C2A389B0023172B /* MSFOrderListFooterCell.h */,
+				102C7EDC1C2A389B0023172B /* MSFOrderListFooterCell.m */,
+				102C7EDF1C2A389B0023172B /* MSFOrderListItemCell.h */,
+				102C7EE01C2A389B0023172B /* MSFOrderListItemCell.m */,
+				102C7ED31C293B830023172B /* MSFOrderListCell.h */,
+				102C7ED41C293B830023172B /* MSFOrderListCell.m */,
+				102C7ED61C2947380023172B /* MSFInsetsLabel.h */,
+				102C7ED71C2947380023172B /* MSFInsetsLabel.m */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		102C7F061C2A7B600023172B /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				102C7F071C2A7B840023172B /* MSFCartViewController.h */,
+				102C7F081C2A7B840023172B /* MSFCartViewController.m */,
+				102C7F0D1C2A7C0C0023172B /* cells */,
+			);
+			name = Cart;
+			sourceTree = "<group>";
+		};
+		102C7F0D1C2A7C0C0023172B /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				102C7F0A1C2A7C080023172B /* MSFCartContentCell.h */,
+				102C7F0B1C2A7C080023172B /* MSFCartContentCell.m */,
+				102C7F0E1C2A7C570023172B /* MSFCartInputCell.h */,
+				102C7F0F1C2A7C570023172B /* MSFCartInputCell.m */,
+				102C7F141C2A7C990023172B /* MSFCartLoanTermCell.h */,
+				102C7F151C2A7C990023172B /* MSFCartLoanTermCell.m */,
+				102C7F171C2A7CAF0023172B /* MSFCartSwitchCell.h */,
+				102C7F181C2A7CAF0023172B /* MSFCartSwitchCell.m */,
+				101BD3BF1C2BE43300842D36 /* MSFCartCategoryCell.h */,
+				101BD3C01C2BE43300842D36 /* MSFCartCategoryCell.m */,
+				101BD3C21C2BE6DE00842D36 /* MSFCartTrialCell.h */,
+				101BD3C31C2BE6DE00842D36 /* MSFCartTrialCell.m */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
+		105A0CA31BBA3E8F0046F927 /* UserInfo */ = {
 			isa = PBXGroup;
 			children = (
 				105A0CB11BBA3EF10046F927 /* MSFUserInfomationViewController.h */,
 				105A0CB21BBA3EF10046F927 /* MSFUserInfomationViewController.m */,
 				10B135291BCD309600E8F1FE /* MSFUserInformationViewController.xib */,
-				07A7DAB91BFC1BC200916ADD /* MSFRepaymentPlanViewController.h */,
-				07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */,
-				07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */,
-				07A7DACF1BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.h */,
-				07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */,
 			);
-			name = 2.0;
+			name = UserInfo;
 			sourceTree = "<group>";
 		};
 		1092C8C31B6B237C00794EE9 /* CounterLabel */ = {
@@ -2544,19 +2845,6 @@
 			path = "UIDevice-Hardware";
 			sourceTree = "<group>";
 		};
-		491C5F9C1B0F0EF400CADF8E /* TextView */ = {
-			isa = PBXGroup;
-			children = (
-				491C5FAD1B0F0F5E00CADF8E /* MSFTextField.h */,
-				491C5FAE1B0F0F5E00CADF8E /* MSFTextField.m */,
-				494ED8661B2D2798000AD8EA /* MSFWPTextField.h */,
-				494ED8671B2D2798000AD8EA /* MSFWPTextField.m */,
-				4E5372C71B7C6F6F00711C10 /* MSFBPTextField.h */,
-				4E5372C81B7C6F6F00711C10 /* MSFBPTextField.m */,
-			);
-			name = TextView;
-			sourceTree = "<group>";
-		};
 		491C5FB01B0F179C00CADF8E /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -2612,6 +2900,19 @@
 				4920074C1BA00CCD00C0722C /* StandardPaths.m */,
 			);
 			path = StandardPaths;
+			sourceTree = "<group>";
+		};
+		49252BBA1C293D3800CC682B /* Barcode */ = {
+			isa = PBXGroup;
+			children = (
+				498B52331C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.h */,
+				498B52341C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m */,
+				498B52431C2A83E400AD97C1 /* MSFBarcodeScanViewControllerDelegate.h */,
+				49252BC81C293D4300CC682B /* MSFBarcodeScanViewController.h */,
+				49252BC91C293D4300CC682B /* MSFBarcodeScanViewController.m */,
+				49252BCB1C293E3D00CC682B /* MSFBarcodeScanViewController.xib */,
+			);
+			name = Barcode;
 			sourceTree = "<group>";
 		};
 		4925AD791B2A80A100872A8A /* Guide */ = {
@@ -2716,15 +3017,6 @@
 			name = Authorize;
 			sourceTree = "<group>";
 		};
-		492BB42C1B1BFE9F0024897C /* Banner */ = {
-			isa = PBXGroup;
-			children = (
-				49CBDDA01B0DD9C3009EF662 /* MSFBannersViewModel.h */,
-				49CBDDA11B0DD9C3009EF662 /* MSFBannersViewModel.m */,
-			);
-			name = Banner;
-			sourceTree = "<group>";
-		};
 		492BB42D1B1BFEA70024897C /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -2761,6 +3053,15 @@
 				492E62721B0EC18D00D34069 /* left_arrow@3x.png */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		493ED1581C2BDE24002B8EA6 /* Barcode */ = {
+			isa = PBXGroup;
+			children = (
+				493ED1661C2BDE31002B8EA6 /* MSFBarcode.h */,
+				493ED1671C2BDE31002B8EA6 /* MSFBarcode.m */,
+			);
+			name = Barcode;
 			sourceTree = "<group>";
 		};
 		4943C3221B047403000BBF5E = {
@@ -2829,6 +3130,10 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0756C1EA1C31822B000730D5 /* ActivePay */,
+				101BD3C51C2BF9DE00842D36 /* Cart */,
+				493ED1581C2BDE24002B8EA6 /* Barcode */,
+				102C7E971C2927990023172B /* Orders */,
 				4919250E1C08511C00E6EAC5 /* LoanType */,
 				49614C881C03FF7E004D6208 /* Inventory */,
 				07472BE81BFF2820008A3890 /* SocialInsurance */,
@@ -2859,8 +3164,8 @@
 				49DA226E1B062B2600DD4483 /* Agreement */,
 				49DA226C1B062B1100DD4483 /* Captcha */,
 				49DA226B1B062B0300DD4483 /* Users */,
+				102C7EBE1C29392C0023172B /* Plan the periodic table */,
 				C72149DB1B05A20D0045F919 /* RepaymentSchedule */,
-				C72149E81B05BFED0045F919 /* Plan the periodic table */,
 				49C7CB9A1B049CBD00EF5A68 /* ReleaseNote */,
 				4943C3881B0481A9000BBF5E /* Server */,
 				4943C3871B048120000BBF5E /* Base Model */,
@@ -2871,6 +3176,12 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				498311971C33CEBA00AC14AF /* DimensionalCode */,
+				101BD3DF1C2CE60C00842D36 /* Cart */,
+				498637D41C2BD3A900A11845 /* Commodites */,
+				498637CC1C2BC17C00A11845 /* Distinguish */,
+				102C7E921C2927250023172B /* Orders */,
+				07122F2F1C312336004AD0E2 /* FaceMask */,
 				496FE7631C06FE0D004A5BAB /* CashHomePageView */,
 				49DA1A381C0ED1020052C056 /* Draw */,
 				07F088FE1BBD021A0067C5BC /* Circulate */,
@@ -2889,7 +3200,6 @@
 				498113BD1B1C4231003D1B7A /* Home */,
 				49DA1A3A1C0ED1750052C056 /* ApplyList */,
 				492BB42D1B1BFEA70024897C /* User */,
-				492BB42C1B1BFE9F0024897C /* Banner */,
 				492BB41D1B1BFE870024897C /* Authorize */,
 				49DA1A3C1C0ED1AC0052C056 /* Agreement */,
 				49DA1A3B1C0ED18C0052C056 /* Information */,
@@ -2902,6 +3212,12 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				498311901C33CCE900AC14AF /* Dimensional code */,
+				498637C81C2BC13100A11845 /* Distinguish */,
+				498637C41C2BB9C400A11845 /* Commodity */,
+				102C7F061C2A7B600023172B /* Cart */,
+				49252BBA1C293D3800CC682B /* Barcode */,
+				07122F291C3110E4004AD0E2 /* FaceMask */,
 				491DB1EE1BCCDE04002C5C78 /* Alert */,
 				07E3ED631BBBB9F60010AAD2 /* TradePassword */,
 				077347EE1BBA379200D7A130 /* BankCard */,
@@ -2917,7 +3233,6 @@
 				499146F91B24484D00260E97 /* Selection */,
 				498BFC551B11FF7B00FFE88F /* WebView */,
 				491C5FB01B0F179C00CADF8E /* Button */,
-				491C5F9C1B0F0EF400CADF8E /* TextView */,
 				49CCFBE61B072509008A9CD1 /* Homepage */,
 				10E5464F1BFF24E800BBA827 /* MS */,
 				49CCFBE51B072501008A9CD1 /* User */,
@@ -2942,7 +3257,6 @@
 				496A444A1B6A57BE00104215 /* MSFClientSpec.m */,
 				496A444D1B6A57BE00104215 /* MSFHomePageViewModelSpec.m */,
 				496A44501B6A57BE00104215 /* MSFObjectSpec.m */,
-				496A44521B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m */,
 				496A44541B6A57BE00104215 /* MSFRelationViewModelSpec.m */,
 				496A44551B6A57BE00104215 /* MSFReleaseNoteSpec.m */,
 				496A44561B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m */,
@@ -2965,6 +3279,8 @@
 				491925221C08517B00E6EAC5 /* MSFLoanTypeSpec.m */,
 				49CA32631C085732000E1DDB /* MSFApplyCashVIewModelSpec.m */,
 				497A059C1C1677B9007258A7 /* MSFLifeInsuranceViewModelSpec.m */,
+				4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */,
+				4983119B1C33DC6700AC14AF /* MSFCartSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -2972,6 +3288,8 @@
 		4943C36F1B047C39000BBF5E /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
+				4983119D1C33DC8C00AC14AF /* cart.json */,
+				4983118E1C33C1CF00AC14AF /* order-details.json */,
 				49386C141B8178D100B1282B /* check-user-credit.json */,
 				07B915861B22D42B00E0D1FF /* checkemployee.json */,
 				07BC21F11B1C2C50001C12E2 /* loadinfo.json */,
@@ -3170,6 +3488,69 @@
 				107A0D1E1BE203410076E08C /* MSFHomePageCellModel.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		498311901C33CCE900AC14AF /* Dimensional code */ = {
+			isa = PBXGroup;
+			children = (
+				498311941C33CD5800AC14AF /* MSFDimensionalCodeViewController.h */,
+				498311951C33CD5800AC14AF /* MSFDimensionalCodeViewController.m */,
+			);
+			name = "Dimensional code";
+			sourceTree = "<group>";
+		};
+		498311971C33CEBA00AC14AF /* DimensionalCode */ = {
+			isa = PBXGroup;
+			children = (
+				498311981C33CEC900AC14AF /* MSFDimensionalCodeViewModel.h */,
+				498311991C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m */,
+			);
+			name = DimensionalCode;
+			sourceTree = "<group>";
+		};
+		498637B31C2BB6A800A11845 /* Commodity */ = {
+			isa = PBXGroup;
+			children = (
+				498637C11C2BB6E400A11845 /* MSFCommodityCashViewModel.h */,
+				498637C21C2BB6E400A11845 /* MSFCommodityCashViewModel.m */,
+			);
+			name = Commodity;
+			sourceTree = "<group>";
+		};
+		498637C41C2BB9C400A11845 /* Commodity */ = {
+			isa = PBXGroup;
+			children = (
+				498637C51C2BB9E200A11845 /* MSFCommoditesViewController.h */,
+				498637C61C2BB9E200A11845 /* MSFCommoditesViewController.m */,
+			);
+			name = Commodity;
+			sourceTree = "<group>";
+		};
+		498637C81C2BC13100A11845 /* Distinguish */ = {
+			isa = PBXGroup;
+			children = (
+				498637C91C2BC15600A11845 /* MSFDistinguishViewController.h */,
+				498637CA1C2BC15600A11845 /* MSFDistinguishViewController.m */,
+			);
+			name = Distinguish;
+			sourceTree = "<group>";
+		};
+		498637CC1C2BC17C00A11845 /* Distinguish */ = {
+			isa = PBXGroup;
+			children = (
+				498637CD1C2BC19300A11845 /* MSFDistinguishViewModel.h */,
+				498637CE1C2BC19300A11845 /* MSFDistinguishViewModel.m */,
+			);
+			name = Distinguish;
+			sourceTree = "<group>";
+		};
+		498637D41C2BD3A900A11845 /* Commodites */ = {
+			isa = PBXGroup;
+			children = (
+				498637D51C2BD3B800A11845 /* MSFCommoditesViewModel.h */,
+				498637D61C2BD3B800A11845 /* MSFCommoditesViewModel.m */,
+			);
+			name = Commodites;
 			sourceTree = "<group>";
 		};
 		498BFC551B11FF7B00FFE88F /* WebView */ = {
@@ -3464,20 +3845,13 @@
 		49CCFBE51B072501008A9CD1 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				10E5461D1BFB2A1E00BBA827 /* PlanListSegmentBar */,
-				105A0CA31BBA3E8F0046F927 /* 2.0 */,
 				49CCFBDF1B072397008A9CD1 /* MSFUserViewController.h */,
 				49CCFBE01B072397008A9CD1 /* MSFUserViewController.m */,
-				4946ABE71B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.h */,
-				4946ABE81B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m */,
-				4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */,
-				4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */,
-				C7B977FB1B08C568005F247C /* MSFRepaymentTableViewCell.h */,
-				C7B977FC1B08C568005F247C /* MSFRepaymentTableViewCell.m */,
-				C75976B71B0A213700FB9B0C /* MSFContractDetailsTableViewController.h */,
-				C75976B81B0A213700FB9B0C /* MSFContractDetailsTableViewController.m */,
-				C75976BA1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.h */,
-				C75976BB1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m */,
+				105A0CA31BBA3E8F0046F927 /* UserInfo */,
+				102C7E891C2925970023172B /* Repayment */,
+				10E5461D1BFB2A1E00BBA827 /* PlanListSegmentBar */,
+				102C7E8A1C29265B0023172B /* EditPassword */,
+				102C7E8B1C29266C0023172B /* OrderList */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -3499,6 +3873,8 @@
 				1011A3911BB92F1B00CCADB5 /* MSFUserInfoCircleView.m */,
 				109766FC1C098CB20097F656 /* MSFHomePageContentView.h */,
 				109766FD1C098CB20097F656 /* MSFHomePageContentView.m */,
+				102C7E6B1C28E6D50023172B /* MSFInfinityScroll.h */,
+				102C7E6C1C28E6D50023172B /* MSFInfinityScroll.m */,
 			);
 			name = Homepage;
 			sourceTree = "<group>";
@@ -3508,8 +3884,11 @@
 			children = (
 				49CCFBE81B072EA4008A9CD1 /* MSFAdver.h */,
 				49CCFBE91B072EA4008A9CD1 /* MSFAdver.m */,
+				102C7E841C28F55E0023172B /* MSFAdverImage.h */,
+				102C7E851C28F55E0023172B /* MSFAdverImage.m */,
 				4944C0621B68AB6F00805C0A /* MSFClient+Advers.h */,
 				4944C0631B68AB6F00805C0A /* MSFClient+Advers.m */,
+				102C7E871C28F8DF0023172B /* MSFAdverJson.json */,
 			);
 			name = Adver;
 			sourceTree = "<group>";
@@ -3696,6 +4075,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				07122F221C310ED0004AD0E2 /* FaceMask */,
 				4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */,
 				4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */,
 				4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */,
@@ -3739,17 +4119,6 @@
 			name = RepaymentSchedule;
 			sourceTree = "<group>";
 		};
-		C72149E81B05BFED0045F919 /* Plan the periodic table */ = {
-			isa = PBXGroup;
-			children = (
-				C72149E91B05C0490045F919 /* MSFPlanPerodicTables.h */,
-				C72149EA1B05C0490045F919 /* MSFPlanPerodicTables.m */,
-				C72149EC1B05C0620045F919 /* MSFClient+PlanPerodicTables.h */,
-				C72149ED1B05C0620045F919 /* MSFClient+PlanPerodicTables.m */,
-			);
-			name = "Plan the periodic table";
-			sourceTree = "<group>";
-		};
 		C7A351551B2175C60001DF6A /* setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -3778,6 +4147,9 @@
 		C7D2D1001B679346000F51ED /* perfectMeans */ = {
 			isa = PBXGroup;
 			children = (
+				102C7EF31C2A7A4A0023172B /* icon-account-order.png */,
+				102C7EF51C2A7A4B0023172B /* icon-account-order@2x.png */,
+				102C7EF41C2A7A4B0023172B /* icon-account-order@3x.png */,
 				4944C0501B68A60200805C0A /* icon-avatar-placeholder.png */,
 				4944C0511B68A60200805C0A /* icon-avatar-placeholder@2x.png */,
 				4944C0521B68A60200805C0A /* icon-avatar-placeholder@3x.png */,
@@ -3877,7 +4249,7 @@
 				49E4186F1B4CCF7600422C20 /* buildbump */,
 				4912D7AB1B622E230014059D /* todo */,
 				4975EDFD1BB3C71C00F63F1F /* ShellScript */,
-				2853397F5CF7E10C64F8BB62 /* Embed Pods Frameworks */,
+				4DEE54F2B1EC25B83BE23CF9 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3897,7 +4269,7 @@
 				4943C34F1B047437000BBF5E /* Frameworks */,
 				4943C3501B047437000BBF5E /* Resources */,
 				9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */,
-				A4AF228A1DCFFE71A641DC3F /* Embed Pods Frameworks */,
+				BD2CFE186C680BAE239F9071 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -4080,15 +4452,19 @@
 				07A7DAFF1BFDC0F500916ADD /* applyCashBottomType.png in Resources */,
 				49B37B5B1B608F39004EED47 /* bar-normal@2x.png in Resources */,
 				07E3ED721BBBC3020010AAD2 /* tradePassWordBG@3x.png in Resources */,
+				102C7EF71C2A7A4B0023172B /* icon-account-order@3x.png in Resources */,
 				07C158DC1BC8E7E600127339 /* addver.jpg in Resources */,
 				49E8B8F21B5FA02200680061 /* MSFHeaderView.xib in Resources */,
+				07122F281C310EDF004AD0E2 /* faceMask_bg@3x.png in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
 				07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */,
 				49B37B5C1B608F39004EED47 /* bar-normal@3x.png in Resources */,
 				0738C48F1B944B54006D7177 /* bank.db in Resources */,
 				49FCBF991C0E92D90035398E /* repay.json in Resources */,
 				499D6A831C06B453004DA69F /* product.json in Resources */,
+				07D051281C2BEAC1003220D7 /* bankCardList.json in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
+				102C7E881C28F8DF0023172B /* MSFAdverJson.json in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
 				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
@@ -4153,6 +4529,7 @@
 				49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				077347CA1BBA338900D7A130 /* ABC.png in Resources */,
+				07122F2E1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard in Resources */,
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49E07D491BBD25F0001F9E1A /* code-message.json in Resources */,
 				49C0F1AD1B2C315100E92572 /* icon-verify-code@2x.png in Resources */,
@@ -4178,6 +4555,7 @@
 				077347E21BBA338900D7A130 /* ICBC.png in Resources */,
 				492CBE991B8811740059B6C2 /* Alert.storyboard in Resources */,
 				077347D11BBA338900D7A130 /* CBC@2x.png in Resources */,
+				07122F271C310EDF004AD0E2 /* faceMask_bg@2x.png in Resources */,
 				49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
 				070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */,
@@ -4218,6 +4596,7 @@
 				07472BDD1BFF08A6008A3890 /* employeeOlderInsurance.json in Resources */,
 				4944C0101B68A44A00805C0A /* icon-cloze-idcarddate@3x.png in Resources */,
 				4944C04B1B68A5DA00805C0A /* nav-back@2x.png in Resources */,
+				102C7EF81C2A7A4B0023172B /* icon-account-order@2x.png in Resources */,
 				4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */,
 				49C0F1C81B2C341400E92572 /* tabbar-account-selected@2x.png in Resources */,
 				10E5466F1C0012CA00BBA827 /* ad_msdFull_button.png in Resources */,
@@ -4225,7 +4604,6 @@
 				07B6DA7D1BC6506E0025A849 /* bankdefult.png in Resources */,
 				4944C0141B68A44A00805C0A /* icon-cloze-normal.png in Resources */,
 				072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */,
-				07E3ED7D1BBC12F90010AAD2 /* bankCardList.json in Resources */,
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
 				10E5466A1C0011DD00BBA827 /* ad_msd.png in Resources */,
 				4944C04F1B68A5DA00805C0A /* nav-setting@3x.png in Resources */,
@@ -4271,6 +4649,7 @@
 				49C0F1D21B2C341400E92572 /* tabbar-home-normal@3x.png in Resources */,
 				49C0F1AC1B2C315100E92572 /* icon-verify-code.png in Resources */,
 				49DA1A521C0ED2A60052C056 /* userInfoApply.json in Resources */,
+				101BD3E11C2D213E00842D36 /* MSFCartJson.json in Resources */,
 				105542421BE4BE9100CF4C56 /* dicareas.db in Resources */,
 				4944C00F1B68A44A00805C0A /* icon-cloze-idcarddate@2x.png in Resources */,
 				10AEFB3E1BC53954009486DF /* familyMember_type1.json in Resources */,
@@ -4292,6 +4671,7 @@
 				10028A601BD4F28F00D36508 /* edu_background1.json in Resources */,
 				10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */,
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
+				07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */,
 				077347E31BBA338900D7A130 /* ICBC@2x.png in Resources */,
 				0750AA7D1B957E0800AD67F3 /* icon-confirm.png in Resources */,
 				077347D31BBA338900D7A130 /* china.png in Resources */,
@@ -4306,6 +4686,7 @@
 				49DA1A4F1C0ED2A60052C056 /* MSFApplyList.json in Resources */,
 				4944C00D1B68A44A00805C0A /* icon-cloze-idcard@3x.png in Resources */,
 				10DC2DA91B99C17F00A2AF9C /* icon_order4_n.png in Resources */,
+				102C7EF61C2A7A4B0023172B /* icon-account-order.png in Resources */,
 				49CA93841BBA3F7E0032F5C2 /* icon-name@3x.png in Resources */,
 				4944C0541B68A60200805C0A /* icon-avatar-placeholder@2x.png in Resources */,
 				10DC2D621B9982F600A2AF9C /* photoUpload_placeholder.png in Resources */,
@@ -4395,6 +4776,7 @@
 				C7A351791B217CB10001DF6A /* iconfont-chanpinjieshao@3x.png in Resources */,
 				07B6DA7F1BC6506E0025A849 /* bankdefult@3x.png in Resources */,
 				10E546701C0012CA00BBA827 /* ad_msdFull_bottom.png in Resources */,
+				49252BCC1C293E3D00CC682B /* MSFBarcodeScanViewController.xib in Resources */,
 				077347CD1BBA338900D7A130 /* add.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				10E546711C0012CA00BBA827 /* ad_msdFull_top.png in Resources */,
@@ -4406,6 +4788,7 @@
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
 				070724A01B671A240089916B /* 1242-2208-灰色.png in Resources */,
 				07A7DAEF1BFDB65100916ADD /* applyCashButtonSelect.png in Resources */,
+				07D051261C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard in Resources */,
 				49C0F1C71B2C341400E92572 /* tabbar-account-selected.png in Resources */,
 				077347D21BBA338900D7A130 /* CBC@3x.png in Resources */,
 				49E22AFF1B37ED9E00749717 /* btn-family-add@3x.png in Resources */,
@@ -4433,8 +4816,10 @@
 				4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */,
 				49386C151B8178D100B1282B /* check-user-credit.json in Resources */,
 				49C7CBAC1B04A4FC00EF5A68 /* releasenote.json in Resources */,
+				4983118F1C33C1CF00AC14AF /* order-details.json in Resources */,
 				07B915871B22D42B00E0D1FF /* checkemployee.json in Resources */,
 				C72149FC1B05C9140045F919 /* plandetails.json in Resources */,
+				4983119E1C33DC8C00AC14AF /* cart.json in Resources */,
 				4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */,
 				499146E41B24359A00260E97 /* apply_cash_response.json in Resources */,
 				498F3D4F1B0D894100ED0B20 /* message.json in Resources */,
@@ -4481,21 +4866,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2853397F5CF7E10C64F8BB62 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3DBA75A6089481CE9B0D7B2D /* Check Pods Manifest.lock */ = {
@@ -4568,6 +4938,21 @@
 			shellPath = /bin/sh;
 			shellScript = "#${SRCROOT}/Script/brsp/xcode-build-bump.sh";
 		};
+		4DEE54F2B1EC25B83BE23CF9 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9CD04B3885BB231D3B39B0D4 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4583,7 +4968,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A4AF228A1DCFFE71A641DC3F /* Embed Pods Frameworks */ = {
+		BD2CFE186C680BAE239F9071 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4606,19 +4991,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */,
+				101BD3D11C2CE59700842D36 /* MSFTrial.m in Sources */,
+				102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */,
 				49614C871C03FD6C004D6208 /* MSFClient+MSFSocialInsurance.m in Sources */,
 				497253BF1BC3A6A30017CA76 /* MSFClient+MSFApplyInfo.m in Sources */,
 				4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */,
 				07CBA7E81B1FE6FE0020116E /* MSFLoanAgreementController.m in Sources */,
 				496FE7731C06FE18004A5BAB /* MSFCashHomePageViewModel.m in Sources */,
-				491C5FAF1B0F0F5E00CADF8E /* MSFTextField.m in Sources */,
 				07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */,
 				07330B691BBE5B0D000EB8FD /* MSFApplyCashVIewModel.m in Sources */,
 				078EEB981BBF7AC700E7AB42 /* MSFSetTradePasswordViewModel.m in Sources */,
 				07C924D71B0C2D1C00FA73BD /* MSFLoanListViewController.m in Sources */,
 				07D2249F1BCCD16B00B00BEF /* MSFClient+MSFLifeInsurance.m in Sources */,
 				07CB4C7F1B104944006C220E /* MSFProfessionalViewController.m in Sources */,
-				49CBDDA21B0DD9C3009EF662 /* MSFBannersViewModel.m in Sources */,
 				07667BF71BBEACF3002DFF62 /* MSFClient+MSFCheckAllowApply.m in Sources */,
 				49C7CB9D1B049CDD00EF5A68 /* MSFReleaseNote.m in Sources */,
 				07BFC90A1B7D962D00F9A1BA /* MSFDeviceGet.m in Sources */,
@@ -4626,10 +5011,12 @@
 				498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */,
 				4948E88A1B953FFB0048D125 /* MSFElement.m in Sources */,
 				10E546781C004B1800BBA827 /* MSFClient+MSFProductType.m in Sources */,
+				102C7F191C2A7CAF0023172B /* MSFCartSwitchCell.m in Sources */,
 				49F8C1001C0BF6500010D791 /* UIDevice+Versions.m in Sources */,
 				49CCFBD81B07233F008A9CD1 /* MSFAboutsViewController.m in Sources */,
 				49D7ABD91C1024C800ED07E7 /* NSFileManager+Temporary.m in Sources */,
 				10ACE5AA1C040A7700EE5044 /* MSFApplyListViewModel.m in Sources */,
+				102C7E6D1C28E6D50023172B /* MSFInfinityScroll.m in Sources */,
 				497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */,
 				4948E89C1B954F6E0048D125 /* MSFClient+Attachment.m in Sources */,
 				07330B5E1BBE2C8F000EB8FD /* MSFTeam.m in Sources */,
@@ -4641,11 +5028,11 @@
 				0750AAFA1B969DED00AD67F3 /* MSFCustomAlertViewController.m in Sources */,
 				493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */,
 				10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */,
-				494ED8681B2D2798000AD8EA /* MSFWPTextField.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
 				0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */,
+				102C7EE21C2A389B0023172B /* MSFOrderListHeaderCell.m in Sources */,
 				494FBE0F1B16B1C3005F0454 /* MSFCipher.m in Sources */,
 				078EEBA41BBFCDEE00E7AB42 /* MSFUpdateTradePWDTableViewController.m in Sources */,
 				10DE89691B686C2A009025C4 /* UILabel+AttributeColor.m in Sources */,
@@ -4654,22 +5041,28 @@
 				10C2407A1BBA8F5E006C23DC /* MSFUserContact.m in Sources */,
 				4975C9881B46D6D400AA79EB /* AppDelegate.m in Sources */,
 				4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */,
+				07122F2C1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m in Sources */,
 				074AC24C1BBB87740056BA22 /* MSFCheckHasTradePassword.m in Sources */,
 				07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */,
 				072550C81BFEBE210053F51F /* MSFSocialCaskApplyTableViewController.m in Sources */,
+				102C7E9D1C2928060023172B /* MSFClient+MSFOrder.m in Sources */,
 				4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */,
 				49075CE21BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m in Sources */,
+				493ED1681C2BDE31002B8EA6 /* MSFBarcode.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				10E546C21C02B10400BBA827 /* MSFCashHomeLoanLimit.m in Sources */,
 				493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */,
 				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
+				498637C31C2BB6E400A11845 /* MSFCommodityCashViewModel.m in Sources */,
 				108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */,
 				491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */,
+				102C7EA51C292B460023172B /* MSFCommodity.m in Sources */,
+				102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */,
 				10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */,
-				C75976B91B0A213700FB9B0C /* MSFContractDetailsTableViewController.m in Sources */,
+				102C7F161C2A7C990023172B /* MSFCartLoanTermCell.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
-				4E5372C91B7C6F6F00711C10 /* MSFBPTextField.m in Sources */,
+				102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */,
 				07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */,
 				07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */,
 				077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */,
@@ -4678,8 +5071,10 @@
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
-				C7FCE8CB1B0AD7AE00ECCD45 /* MSFPlanPerodicTables.m in Sources */,
+				07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */,
+				102C7F0C1C2A7C080023172B /* MSFCartContentCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
+				101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
@@ -4691,23 +5086,25 @@
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
 				07CB4C7C1B104572006C220E /* MSFPersonalViewController.m in Sources */,
 				07CD79761B0B19BF004627F5 /* MSFAppliesHeaderView.m in Sources */,
+				0756C1FA1C318265000730D5 /* MSFTransSmsSeqNOModel.m in Sources */,
 				07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */,
 				0750AAF91B969DED00AD67F3 /* MSFCustomAlertView.m in Sources */,
 				C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */,
 				499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */,
-				4946ABE91B0EFEEB00E4FA90 /* MSFUserInfoTableViewCell.m in Sources */,
 				07C924DB1B0C603B00FA73BD /* MSLoanListTableViewCell.m in Sources */,
 				4943C3841B047FA8000BBF5E /* MSFClient.m in Sources */,
 				0788FF6E1B1F05D200880617 /* MSFPhoto.m in Sources */,
 				07F089121BBD31CD0067C5BC /* MSFDrawCashTableViewController.m in Sources */,
 				07FE072E1B07278800484069 /* MSFApplicationForms.m in Sources */,
 				077347FA1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m in Sources */,
+				102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */,
+				101BD3CB1C2CDCBF00842D36 /* MSFClient+MSFCart.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
-				C75976BD1B0A287D00FB9B0C /* MSFContractDetailsTableViewCell.m in Sources */,
 				492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */,
 				074AC23A1BBAAAE00056BA22 /* MSFBankCardListModel.m in Sources */,
+				102C7E8E1C2926E50023172B /* MSFOrderListViewController.m in Sources */,
 				0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */,
 				074AC21D1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m in Sources */,
 				07472BE71BFF1A4B008A3890 /* MSFSocialInsuranceCashViewModel.m in Sources */,
@@ -4715,14 +5112,18 @@
 				491DB1DE1BCCB543002C5C78 /* NSURLConnection+Locations.m in Sources */,
 				4948E8AF1B95522F0048D125 /* MSFElementViewModel.m in Sources */,
 				0738C48D1B943C98006D7177 /* MSFBankInfoModel.m in Sources */,
+				102C7ED01C2939570023172B /* MSFClient+PlanPerodicTables.m in Sources */,
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
 				492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */,
 				074696961B9820780074E180 /* MSFClient+ConfirmContract.m in Sources */,
+				102C7ED81C2947380023172B /* MSFInsetsLabel.m in Sources */,
+				498637C71C2BB9E200A11845 /* MSFCommoditesViewController.m in Sources */,
 				074AC2301BBA8D790056BA22 /* MSFAddBankCardVIewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
-				C7FCE8CA1B0AD79600ECCD45 /* MSFClient+PlanPerodicTables.m in Sources */,
+				49252BCA1C293D4300CC682B /* MSFBarcodeScanViewController.m in Sources */,
 				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
+				102C7EE11C2A389B0023172B /* MSFOrderListFooterCell.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
 				49614C8B1C03FF8F004D6208 /* MSFClient+Inventory.m in Sources */,
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
@@ -4738,6 +5139,7 @@
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
 				07F089241BBD37000067C5BC /* MSFDrawCashViewModel.m in Sources */,
 				49CA935D1BBA212A0032F5C2 /* MSFGroupTableViewController.m in Sources */,
+				07D051171C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m in Sources */,
 				074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */,
 				07330B6F1BBE5EA1000EB8FD /* MSFClient+MSFCalculateMonthRepay.m in Sources */,
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,
@@ -4760,6 +5162,7 @@
 				495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */,
 				491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
+				498311961C33CD5800AC14AF /* MSFDimensionalCodeViewController.m in Sources */,
 				07F089011BBD023E0067C5BC /* MSFCirculateCashViewModel.m in Sources */,
 				1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
@@ -4768,6 +5171,7 @@
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
 				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,
 				498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */,
+				102C7F101C2A7C570023172B /* MSFCartInputCell.m in Sources */,
 				495021071B13103400605666 /* MSFUserViewModel.m in Sources */,
 				49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */,
 				49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */,
@@ -4776,15 +5180,18 @@
 				491925211C08516600E6EAC5 /* MSFLoanType.m in Sources */,
 				07330B581BBE2C2C000EB8FD /* MSFMarkets.m in Sources */,
 				49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */,
+				498637CF1C2BC19300A11845 /* MSFDistinguishViewModel.m in Sources */,
 				498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */,
 				49DA22681B062AF200DD4483 /* MSFUser.m in Sources */,
 				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
+				102C7F1C1C2A8B330023172B /* MSFCartViewModel.m in Sources */,
 				0704EB6A1B6B52EB000F5369 /* MSFResultModel.m in Sources */,
 				497269E91B5F3A48000F1E82 /* MSFLoginViewController.m in Sources */,
 				07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */,
 				491C5FB31B0F17A900CADF8E /* MSFEdgeButton.m in Sources */,
 				07667C121BBF679C002DFF62 /* MSFClient+MSFSubmitAppyCash.m in Sources */,
+				102C7F091C2A7B840023172B /* MSFCartViewController.m in Sources */,
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
 				10DC2D1A1B969E1600A2AF9C /* MSFElementTableViewCell.m in Sources */,
 				491DDB441BBFF90000D62DEA /* MSFSignInPhoneViewController.m in Sources */,
@@ -4793,6 +5200,7 @@
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */,
+				101BD3C41C2BE6DE00842D36 /* MSFCartTrialCell.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				107A0D1F1BE203410076E08C /* MSFHomePageCellModel.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
@@ -4804,6 +5212,7 @@
 				078EEBB61BBFD53200E7AB42 /* MSFForgetTradePwdTableViewController.m in Sources */,
 				499B1B791B68DC73002D5ED7 /* MSFWebViewModel.m in Sources */,
 				4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */,
+				102C7EE31C2A389B0023172B /* MSFOrderListItemCell.m in Sources */,
 				07330B611BBE2D9E000EB8FD /* MSFClient+MSFCheckEmploee2.m in Sources */,
 				492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
@@ -4813,10 +5222,14 @@
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */,
 				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
+				498637D71C2BD3B800A11845 /* MSFCommoditesViewModel.m in Sources */,
 				49E5B7891BD4D94C001995F8 /* MSFPoster.m in Sources */,
+				102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */,
 				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
+				4983119A1C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
+				498637CB1C2BC15600A11845 /* MSFDistinguishViewController.m in Sources */,
 				4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
@@ -4833,13 +5246,17 @@
 				07330B5B1BBE2C63000EB8FD /* MSFTeams2.m in Sources */,
 				1092C8D31B6B23E900794EE9 /* MSFCounterLabel.m in Sources */,
 				4975C98D1B46D6D400AA79EB /* main.m in Sources */,
+				498B52351C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m in Sources */,
 				10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */,
+				102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
+				102C7ED11C2939570023172B /* MSFPlanPerodicTables.m in Sources */,
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,
 				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
+				101BD3C11C2BE43300842D36 /* MSFCartCategoryCell.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+MSFPhotoStatus.m in Sources */,
 				10ACE5ED1C0459B200EE5044 /* MSFRelationMarriageCell.m in Sources */,
 				0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */,
@@ -4860,15 +5277,16 @@
 				491925231C08517B00E6EAC5 /* MSFLoanTypeSpec.m in Sources */,
 				496A44661B6A57BE00104215 /* MSFApplyInfoSpec.m in Sources */,
 				49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */,
+				498311801C33C1A400AC14AF /* MSFOrderDetailSpec.m in Sources */,
 				496A446F1B6A57BE00104215 /* MSFHomePageViewModelSpec.m in Sources */,
 				4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */,
 				497A059D1C1677B9007258A7 /* MSFLifeInsuranceViewModelSpec.m in Sources */,
 				496A44771B6A57BE00104215 /* MSFReleaseNoteSpec.m in Sources */,
 				496A447F1B6A57BF00104215 /* MSFUserViewModelSpec.m in Sources */,
 				496A446C1B6A57BE00104215 /* MSFClientSpec.m in Sources */,
-				496A44741B6A57BE00104215 /* MSFPlanPerodicTablesSpec.m in Sources */,
 				496A447A1B6A57BE00104215 /* MSFResponseSpec.m in Sources */,
 				4948E8B81B9578050048D125 /* MSFInventoryViewModelSpec.m in Sources */,
+				4983119C1C33DC6700AC14AF /* MSFCartSpec.m in Sources */,
 				49952F661B8AF84300CD9454 /* MSFProfessionalViewModelSpec.m in Sources */,
 				4948E88C1B95400A0048D125 /* MSFElementSpec.m in Sources */,
 				496A44761B6A57BE00104215 /* MSFRelationViewModelSpec.m in Sources */,

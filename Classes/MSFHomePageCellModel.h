@@ -90,9 +90,6 @@ typedef NS_ENUM(NSInteger, MSFHomePageDateDisplayType) {
 // 合同号
 @property (nonatomic, strong) NSString *contractNo;
 
-// 合同状态
-//@property (nonatomic, strong) NSString *contractStatus;
-
 - (instancetype)initWithModel:(id)model
 										 services:(id<MSFViewModelServices>)services;
 

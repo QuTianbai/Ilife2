@@ -24,12 +24,12 @@
 @import Nimble;
 ```
 
-## Archive command
+## Archive command `Xcode7`
 
 xcodebuild -exportArchive -archivePath
-~/Developer/Finance/build/Archive/Finance.xcarchive -exportPath
-~/Developer/Finance/build/Archive/ -exportOptionsPlist
-exportPlist.plist   | xcpretty
+~/Developer/Example/build/Archive/Example.xcarchive -exportPath
+~/Developer/Example/build/Archive/ -exportOptionsPlist
+exportPlist.plist | xcpretty
 
 ## Updating 
 

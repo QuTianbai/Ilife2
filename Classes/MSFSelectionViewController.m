@@ -33,7 +33,9 @@
 #pragma mark - Lifecycle
 
 - (void)dealloc {
+#if DEBUG
 	NSLog(@"MSFSelectionViewController `-dealloc`");
+#endif
 }
 
 - (void)viewDidLoad {

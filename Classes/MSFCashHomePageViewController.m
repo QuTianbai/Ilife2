@@ -214,15 +214,6 @@
 		make.width.equalTo(self.view);
 		make.height.equalTo(@300);
 	}];
-	/*
-	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[view addSubview:activityIndicatorView];
-	
-	[activityIndicatorView startAnimating];
-	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.centerX.equalTo(view);
-		make.centerY.equalTo(view).offset(-40);
-	}];*/
 	
 	UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-empty"]];
 	[view addSubview:imgView];

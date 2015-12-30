@@ -42,7 +42,7 @@ static const CGFloat heightOfButton = 44;
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFProductViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
-//@property (weak, nonatomic) IBOutlet UILabel *warningLabel;
+
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *repayConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *footerVer;
@@ -57,8 +57,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
 
 @property (weak, nonatomic) IBOutlet MSFSlider *moneySlider;
-//@property (weak, nonatomic) IBOutlet UIButton *applyMonthsBT;
-//@property (weak, nonatomic) IBOutlet UITextField *applyMonthsTF;
 @property (weak, nonatomic) IBOutlet UIButton *moneyUsedBT;
 @property (weak, nonatomic) IBOutlet UITextField *moneyUsesTF;
 @property (weak, nonatomic) IBOutlet UISwitch *isInLifeInsurancePlaneSW;
@@ -103,8 +101,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.footerVer.constant = 0;
 		self.repayConstraint.constant = ([UIScreen mainScreen].bounds.size.height - heightOfAboveCell - heightOfPlace - heightOfButton - heightOfNavigationANDTabbar - heightOfRepayView ) / 2 ;
 	}
-	
-	//self.warningLabel.numberOfLines = 0;
 	
   [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
 		takeUntil:self.rac_willDeallocSignal]
@@ -159,7 +155,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.loanFixedAmt);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
-	//RAC(self.applyMonthsTF, text) = RACObserve(self, viewModel.loanTerm);
 	self.moneySlider.delegate = self;
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
@@ -168,7 +163,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.viewModel.appLmt = value;
     return value;
   }];
-	//self.moneySlider.maximumValue = 2999999999;
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
     if (!value) {
       return @0;
@@ -179,7 +173,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		self.viewModel.product = nil;
 		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
-	 //return [NSNumber numberWithInteger:value.integerValue / 100 * 100 ];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
@@ -316,7 +309,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   } else {
     [self setRepayMoneyBackgroundViewAniMation:YES];
   }
-  //self.selectViewModel = [MSFSelectionViewModel monthsViewModelWithProducts:self.viewModel.market total:stringvalue.integerValue];
 	
 	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.markets total:stringvalue.integerValue];
   [self.monthCollectionView reloadData];
@@ -325,8 +317,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
       [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
       self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-//		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-//		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
 }
 

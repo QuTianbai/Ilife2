@@ -14,6 +14,7 @@
 @class MSFApplicationResponse;
 @class MSFApplyCashVIewModel;
 @class MSFSocialInsuranceCashViewModel;
+@class MSFAttachment;
 
 @interface MSFInventoryViewModel : RVMViewModel
 
@@ -31,6 +32,7 @@
 - (RACSignal *)updateValidSignal;
 
 - (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel;
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel AndAttachment:(MSFAttachment *)attachment;
 // 重新提交附件信息
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;
 

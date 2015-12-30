@@ -34,13 +34,10 @@
 	
 	_services = services;
 	_model = model;
-	//NSString *productType = model.produceType;
 	
 	RAC(self, productType) = RACObserve(self, model.productType);
 	RAC(self, type) = RACObserve(self, model.type);
-	/*
-	 马上金融
-	 */
+	
 	RAC(self, money) = RACObserve(self, model.money);
 	RAC(self, loanTerm) = RACObserve(self, model.period);
 	RAC(self, title) = [RACObserve(self, model.type) map:^id(NSString *type) {
@@ -113,7 +110,9 @@
 		[[self.services.httpClient fetchCirculateCash:nil] subscribeNext:^(MSFCirculateCashModel *model) {
 			self.model = model;
 		} error:^(NSError *error) {
+		#if DEBUG
 			NSLog(@"%@", error.localizedDescription);
+		#endif
 		}];
 	}];
 	
