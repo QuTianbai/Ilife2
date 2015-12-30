@@ -41,4 +41,30 @@
 	 }];
 }
 
+- (BOOL)validateIsDownPmt:(id *)objectID error:(NSError **)error {
+	id object  = *objectID;
+	if ([object isKindOfClass:NSNumber.class]) {
+		return YES;
+	} else if ([object isKindOfClass:NSString.class]) {
+		*objectID = @([*objectID boolValue]);
+		return YES;
+	}
+	*objectID = @NO;
+	
+	return YES;
+}
+
+- (BOOL)validateValueAddedSvc:(id *)objectID error:(NSError **)error {
+	id object  = *objectID;
+	if ([object isKindOfClass:NSNumber.class]) {
+		return YES;
+	} else if ([object isKindOfClass:NSString.class]) {
+		*objectID = @([*objectID boolValue]);
+		return YES;
+	}
+	*objectID = @NO;
+	
+	return YES;
+}
+
 @end

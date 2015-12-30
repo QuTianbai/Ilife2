@@ -489,6 +489,8 @@
 		497F98391B2B0C4400DD6F2D /* MSFGuideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 497F98381B2B0C4400DD6F2D /* MSFGuideViewController.m */; };
 		498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */; };
 		498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */; };
+		498311801C33C1A400AC14AF /* MSFOrderDetailSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */; };
+		4983118F1C33C1CF00AC14AF /* order-details.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983118E1C33C1CF00AC14AF /* order-details.json */; };
 		4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58921B06E38600120D93 /* applycash.json */; };
 		4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 4983ED9F1B09CC0E00ADE3E5 /* applyList.json */; };
 		4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */; };
@@ -1520,6 +1522,8 @@
 		498113CC1B1C4242003D1B7A /* MSFHomepageViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageViewModel.m; sourceTree = "<group>"; };
 		498141041BBEA527006C7E8D /* MSFSignInSegmentedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInSegmentedView.h; sourceTree = "<group>"; };
 		498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInSegmentedView.m; sourceTree = "<group>"; };
+		4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOrderDetailSpec.m; sourceTree = "<group>"; };
+		4983118E1C33C1CF00AC14AF /* order-details.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "order-details.json"; sourceTree = "<group>"; };
 		4983ED9F1B09CC0E00ADE3E5 /* applyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applyList.json; sourceTree = "<group>"; };
 		4983EDA11B09D48500ADE3E5 /* MSFEditPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEditPasswordViewController.h; sourceTree = "<group>"; };
 		4983EDA21B09D48500ADE3E5 /* MSFEditPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEditPasswordViewController.m; sourceTree = "<group>"; };
@@ -3263,6 +3267,7 @@
 				491925221C08517B00E6EAC5 /* MSFLoanTypeSpec.m */,
 				49CA32631C085732000E1DDB /* MSFApplyCashVIewModelSpec.m */,
 				497A059C1C1677B9007258A7 /* MSFLifeInsuranceViewModelSpec.m */,
+				4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -3270,6 +3275,7 @@
 		4943C36F1B047C39000BBF5E /* Stubs */ = {
 			isa = PBXGroup;
 			children = (
+				4983118E1C33C1CF00AC14AF /* order-details.json */,
 				49386C141B8178D100B1282B /* check-user-credit.json */,
 				07B915861B22D42B00E0D1FF /* checkemployee.json */,
 				07BC21F11B1C2C50001C12E2 /* loadinfo.json */,
@@ -4778,6 +4784,7 @@
 				4983ED9E1B09CBCE00ADE3E5 /* applycash.json in Resources */,
 				49386C151B8178D100B1282B /* check-user-credit.json in Resources */,
 				49C7CBAC1B04A4FC00EF5A68 /* releasenote.json in Resources */,
+				4983118F1C33C1CF00AC14AF /* order-details.json in Resources */,
 				07B915871B22D42B00E0D1FF /* checkemployee.json in Resources */,
 				C72149FC1B05C9140045F919 /* plandetails.json in Resources */,
 				4983EDA01B09CC0E00ADE3E5 /* applyList.json in Resources */,
@@ -4798,21 +4805,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		111BC62240509519DA3575C2 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tests/Pods-Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1298C3C993B0F2579464D2A7 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5250,6 +5242,7 @@
 				491925231C08517B00E6EAC5 /* MSFLoanTypeSpec.m in Sources */,
 				496A44661B6A57BE00104215 /* MSFApplyInfoSpec.m in Sources */,
 				49C9DE571B171FC300399DFE /* MSFTestCipher.m in Sources */,
+				498311801C33C1A400AC14AF /* MSFOrderDetailSpec.m in Sources */,
 				496A446F1B6A57BE00104215 /* MSFHomePageViewModelSpec.m in Sources */,
 				4943C3611B04782B000BBF5E /* SwiftSpec.swift in Sources */,
 				497A059D1C1677B9007258A7 /* MSFLifeInsuranceViewModelSpec.m in Sources */,
