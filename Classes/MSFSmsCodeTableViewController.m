@@ -16,6 +16,7 @@
 #import "MSFEdgeButton.h"
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFTransSmsSeqNOModel.h"
 
 @interface MSFSmsCodeTableViewController ()
 
@@ -63,12 +64,12 @@
 			 textField.text = [textField.text substringToIndex:4];
 		 }
 	 }];
-	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
+	self.submitBT.rac_command = self.viewModel.executePayCommand;
 	if (self.viewModel.type == 1) {
-		[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(id x) {
+		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
-			MSFCirculateCashModel *mocel = x;
-			self.viewModel.circulateViewModel.infoModel = mocel;
+//			MSFCirculateCashModel *mocel = x;
+//			self.viewModel.circulateViewModel.infoModel = mocel;
 			 [self.navigationController popToRootViewControllerAnimated:YES];
 		}];
 		
@@ -88,13 +89,14 @@
 
 	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);
 	
-	self.smsCodeBT.rac_command = self.authviewModel.executePayCommand;
+	self.smsCodeBT.rac_command = self.viewModel.executeSubmitCommand;
 	@weakify(self)
 	[self.smsCodeBT.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
-		[captchaSignal subscribeNext:^(id x) {
+		[captchaSignal subscribeNext:^(MSFTransSmsSeqNOModel *model) {
+			self.viewModel.smsSeqNo = model.smsSeqNo;
 			[SVProgressHUD dismiss];
 		}];
 	}];
