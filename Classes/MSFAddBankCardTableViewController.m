@@ -19,7 +19,7 @@
 #import "MSFClient.h"
 
 
-static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
+static NSString *bankCardShowInfoStrA = @"目前只支持邮储银行、工商银行、中国银行、建设银行、中信银行、光大银行、民生银行、广发银行、兴业银行的借记卡。请换卡再试。";
 //static NSString *bankCardShowStrB = @"主卡不能为贷记卡。";
 static NSString *bankCardShowStrB = @"提示：主卡不能为贷记卡。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
