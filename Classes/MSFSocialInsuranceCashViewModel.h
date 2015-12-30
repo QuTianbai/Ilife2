@@ -35,6 +35,9 @@
 //@property (nonatomic, copy, readonly) NSString *companyName; //公司名称
 @property (nonatomic, copy, readonly) NSString *companyArea; //公司地区
 //@property (nonatomic, copy, readonly) NSString *companyAddress; //公司地址
+
+@property (nonatomic, strong, readonly)
+
 // 联系人信息
 //@property (nonatomic, strong, readonly) MSFSelectKeyValues *relation; // 联系人关系
 //@property (nonatomic, copy, readonly) NSString *relationString;
