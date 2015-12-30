@@ -14,7 +14,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="IAn-3x-mkB">
-                            <rect key="frame" x="0.0" y="552" width="320" height="80"/>
+                            <rect key="frame" x="0.0" y="596" width="320" height="80"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aec-X8-vfe" customClass="MSFEdgeButton">
@@ -82,12 +82,63 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="8dL-lv-tUa">
+                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8dL-lv-tUa" id="BVV-cT-ZVw">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否加入寿险计划" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8d-pm-yJn">
+                                                    <rect key="frame" x="15" y="11" width="120" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="cM8-Tx-uli"/>
+                                                        <constraint firstAttribute="width" constant="120" id="gVc-Dt-1rR"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="gHV-7f-vw0">
+                                                    <rect key="frame" x="140" y="12" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="HcG-SQ-8ql"/>
+                                                        <constraint firstAttribute="width" constant="20" id="nNG-02-dmY"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NFG-FE-QPL">
+                                                    <rect key="frame" x="251" y="6" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="JY4-Bx-vam"/>
+                                                        <constraint firstAttribute="width" constant="49" id="kH9-Fw-Iv7"/>
+                                                    </constraints>
+                                                </switch>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3Y-YG-Wsw">
+                                                    <rect key="frame" x="0.0" y="6" width="160" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="160" id="Pvw-Zd-cdv"/>
+                                                        <constraint firstAttribute="height" constant="32" id="aJb-EZ-NNH"/>
+                                                    </constraints>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="j3Y-YG-Wsw" firstAttribute="leading" secondItem="BVV-cT-ZVw" secondAttribute="leading" id="BPs-E9-l60"/>
+                                                <constraint firstItem="gHV-7f-vw0" firstAttribute="leading" secondItem="I8d-pm-yJn" secondAttribute="trailing" constant="5" id="R71-Mn-gaA"/>
+                                                <constraint firstItem="gHV-7f-vw0" firstAttribute="centerY" secondItem="BVV-cT-ZVw" secondAttribute="centerY" id="SoE-qh-tPv"/>
+                                                <constraint firstItem="NFG-FE-QPL" firstAttribute="centerY" secondItem="BVV-cT-ZVw" secondAttribute="centerY" id="Soh-Uf-MWx"/>
+                                                <constraint firstAttribute="trailing" secondItem="NFG-FE-QPL" secondAttribute="trailing" constant="20" id="gOp-AU-zDl"/>
+                                                <constraint firstItem="I8d-pm-yJn" firstAttribute="centerY" secondItem="BVV-cT-ZVw" secondAttribute="centerY" id="pFc-5g-GPL"/>
+                                                <constraint firstItem="I8d-pm-yJn" firstAttribute="leading" secondItem="BVV-cT-ZVw" secondAttribute="leading" constant="15" id="pyg-r2-8mB"/>
+                                                <constraint firstItem="j3Y-YG-Wsw" firstAttribute="centerY" secondItem="BVV-cT-ZVw" secondAttribute="centerY" id="wOc-wq-MgK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="基本信息" id="lNf-6m-KPR" userLabel="基本信息">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="2Ym-8f-ujk">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="116" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ym-8f-ujk" id="08E-Yo-Fb6">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -132,7 +183,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="gUW-Oh-wgD">
-                                        <rect key="frame" x="0.0" y="116" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="160" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gUW-Oh-wgD" id="u5q-14-NYx">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -169,7 +220,7 @@
                             <tableViewSection headerTitle="职业信息" id="jmC-nw-IF6" userLabel="职业信息">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="3hm-MO-I6h">
-                                        <rect key="frame" x="0.0" y="188" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="232" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hm-MO-I6h" id="pAI-Eu-wGf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -204,7 +255,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="CES-97-ZBe">
-                                        <rect key="frame" x="0.0" y="232" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="276" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CES-97-ZBe" id="gTx-qb-QCO">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -249,7 +300,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="86H-3Y-Cqb">
-                                        <rect key="frame" x="0.0" y="276" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="320" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="86H-3Y-Cqb" id="OR9-XH-F9b">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -286,7 +337,7 @@
                             <tableViewSection headerTitle="联系人信息" id="y04-qH-gXB" userLabel="联系人信息">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="cAL-m4-ydd">
-                                        <rect key="frame" x="0.0" y="348" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="392" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cAL-m4-ydd" id="tvF-s6-bAv">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -328,7 +379,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="5t5-xP-qtc">
-                                        <rect key="frame" x="0.0" y="392" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5t5-xP-qtc" id="QUc-fq-Nxb">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -361,7 +412,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="keH-99-sqF">
-                                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="480" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keH-99-sqF" id="18Z-GA-ukQ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -398,7 +449,7 @@
                             <tableViewSection headerTitle="参保信息" id="4PZ-hH-OUW" userLabel="参保信息">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="q8K-jJ-Y70">
-                                        <rect key="frame" x="0.0" y="508" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="552" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q8K-jJ-Y70" id="kub-eC-giO">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
@@ -455,6 +506,8 @@
                         <outlet property="companyAreaBT" destination="QhX-nq-SC1" id="4Ia-Yp-eNP"/>
                         <outlet property="companyAreaTF" destination="VDE-h7-MYo" id="Ewy-T4-EhL"/>
                         <outlet property="companyNameTF" destination="iH8-uD-oZW" id="NUz-1c-QTt"/>
+                        <outlet property="insuranceBT" destination="j3Y-YG-Wsw" id="Ckx-Zi-LkT"/>
+                        <outlet property="insuranceSwitch" destination="NFG-FE-QPL" id="iCP-eB-tHo"/>
                         <outlet property="liveAddressTF" destination="zjB-Y9-vhZ" id="WHw-Dh-z5u"/>
                         <outlet property="liveAreaBT" destination="1Ny-7w-H5T" id="iAw-2f-fWA"/>
                         <outlet property="liveAreaTF" destination="PRG-UX-g2x" id="6nH-kL-2Xj"/>
@@ -470,4 +523,7 @@
             <point key="canvasLocation" x="142.93333333333334" y="68.159999999999997"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon-cloze-question.png" width="20" height="20"/>
+    </resources>
 </document>

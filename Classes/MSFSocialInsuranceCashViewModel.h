@@ -25,6 +25,7 @@
 
 // 贷款信息
 @property (nonatomic, strong, readonly) MSFSelectKeyValues *purpose; // 贷款用途
+@property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险
 // 身份信息
 @property (nonatomic, copy, readonly) NSString *liveArea; // 居住地区
 @property (nonatomic, copy, readonly) NSString *liveAddress; // 居住地址
@@ -41,6 +42,7 @@
 
 //RACCommand
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeRelationCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeLiveAddressCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCompAddressCommand;

@@ -23,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *cashPuposeTF;
 @property (weak, nonatomic) IBOutlet UIButton *cashPurposeBT;
 
+@property (weak, nonatomic) IBOutlet UIButton *insuranceBT;
+@property (weak, nonatomic) IBOutlet UISwitch *insuranceSwitch;
+
 @property (weak, nonatomic) IBOutlet UILabel *liveAreaTF;
 @property (weak, nonatomic) IBOutlet UIButton *liveAreaBT;
 
@@ -65,6 +68,11 @@
 	[super viewDidLoad];
 	
 	RAC(self, cashPuposeTF.text) = RACObserve(self, viewModel.purpose.text);
+	
+	RACChannelTerminal *joinChannel = RACChannelTo(self, viewModel.joinInsurance);
+	[joinChannel subscribe:self.insuranceSwitch.rac_newOnChannel];
+	[self.insuranceSwitch.rac_newOnChannel subscribe:joinChannel];
+	self.insuranceBT.rac_command = self.viewModel.executeInsuranceCommand;
 	
 	RAC(self, liveAreaTF.text) = RACObserve(self, viewModel.liveArea);
 	self.liveAreaBT.rac_command = self.viewModel.executeLiveAddressCommand;

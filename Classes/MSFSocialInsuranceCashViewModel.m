@@ -58,6 +58,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_services = services;
 	_status = @"0";
 	_productCd = @"";
+	_joinInsurance = YES;
 	_accessoryInfoVOArray = [[NSArray alloc] init];
 	_model = [[MSFSocialInsuranceModel alloc] init];
 	
@@ -80,6 +81,10 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [self executePurposeSignal:@"moneyUse" index:0];
+	}];
+	_executeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self insuranceSignal];
 	}];
 	_executeRelationCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -141,6 +146,11 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		[subscriber sendCompleted];
 		return nil;
 	}];
+	return nil;
+}
+
+- (RACSignal *)insuranceSignal {
+	
 	return nil;
 }
 
