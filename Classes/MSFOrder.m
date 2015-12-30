@@ -15,4 +15,28 @@
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFOrderDetail.class];
 }
 
++ (NSValueTransformer *)countJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)pageSizeJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)pageNoJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
 @end

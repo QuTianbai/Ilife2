@@ -15,4 +15,28 @@
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFCommodity.class];
 }
 
++ (NSValueTransformer *)totalAmtJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)totalQuantityJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)orderTimeJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
 @end
