@@ -17,7 +17,11 @@
 #import "MSFGetBankIcon.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
+#import "UIColor+Utils.h"
 
+#import "MSFTabBarController.h"
+#import "MSFTabBarViewModel.h"
+#import "MSFFormsViewModel.h"
 
 static NSString *bankCardShowInfoStrA = @"目前只支持邮储银行、工商银行、中国银行、建设银行、中信银行、光大银行、民生银行、广发银行、兴业银行的借记卡。请换卡再试。";
 //static NSString *bankCardShowStrB = @"主卡不能为贷记卡。";
@@ -174,6 +178,25 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	}
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return nil;
+	}
+	UIView *reuse = [[UIView alloc] init];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+	label.font = [UIFont boldSystemFontOfSize:15];
+	label.textColor = UIColor.themeColorNew;
+	switch (section) {
+		case 1: label.text = @"基本信息"; break;
+		case 2: label.text = @"职业信息"; break;
+		case 3: label.text = @"联系人信息"; break;
+		case 4: label.text = @"参保信息"; break;
+		default: break;
+	}
+	[reuse addSubview:label];
+	return reuse;
+}
+
 - (void)getTradePassword:(NSString *)pwd type:(int)type {
 	[SVProgressHUD showWithStatus:@"正在绑定银行卡..." maskType:SVProgressHUDMaskTypeClear];
 	self.tradePwd = pwd;
@@ -182,6 +205,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[[self.viewModel.executeAddBankCard execute:nil]
 		subscribeCompleted:^{
 			@strongify(self)
+			[self refreshFormsViewModel];
 			[self.view endEditing:YES];
 			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
 			[self.navigationController popViewControllerAnimated:YES];
@@ -191,6 +215,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		}];
 
 	}
+}
+
+- (void)refreshFormsViewModel {
+	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
+	tabbar.viewModel.formsViewModel.active = NO;
+	tabbar.viewModel.formsViewModel.active = YES;
 }
 
 @end

@@ -9,14 +9,18 @@
 #import "MSFSocialCaskApplyTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <ZSWTappableLabel/ZSWTappableLabel.h>
+#import <ZSWTaggedString/ZSWTaggedString.h>
+#import <KGModal/KGModal.h>
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFEdgeButton.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 #import "MSFSocialInsuranceModel.h"
 #import "MSFApplicationForms.h"
+#import "UIColor+Utils.h"
 
-@interface MSFSocialCaskApplyTableViewController ()
+@interface MSFSocialCaskApplyTableViewController ()<ZSWTappableLabelTapDelegate>
 
 @property (nonatomic, strong) MSFSocialInsuranceCashViewModel *viewModel;
 
@@ -72,7 +76,50 @@
 	RACChannelTerminal *joinChannel = RACChannelTo(self, viewModel.joinInsurance);
 	[joinChannel subscribe:self.insuranceSwitch.rac_newOnChannel];
 	[self.insuranceSwitch.rac_newOnChannel subscribe:joinChannel];
-	self.insuranceBT.rac_command = self.viewModel.executeInsuranceCommand;
+	@weakify(self)
+	[[self.insuranceBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 390)];
+		contentView.backgroundColor = [UIColor whiteColor];
+		
+		UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(8, 10, 80, 20)];
+		titleLabel.textColor = [UIColor themeColorNew];
+		titleLabel.font = [UIFont boldSystemFontOfSize:18];
+		titleLabel.text = @"寿险条约";
+		[contentView addSubview:titleLabel];
+		
+		UIView *line = [[UIView alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-16, 1)];
+		line.backgroundColor = [UIColor themeColorNew];
+		[contentView addSubview:line];
+		
+		NSString *path = [[NSBundle mainBundle] pathForResource:@"life-insurance" ofType:nil];
+		NSString *string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+		ZSWTappableLabel *label = [[ZSWTappableLabel alloc] initWithFrame:CGRectMake(8, 40, contentView.frame.size.width-8, contentView.frame.size.height-40)];
+		label.numberOfLines = 0;
+		label.font = [UIFont systemFontOfSize:15];
+		label.tapDelegate = self;
+		
+		ZSWTaggedStringOptions *options = [ZSWTaggedStringOptions defaultOptions];
+		[options setAttributes:@{
+														 ZSWTappableLabelTappableRegionAttributeName: @YES,
+														 ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
+														 ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
+														 NSForegroundColorAttributeName: [UIColor themeColorNew],
+														 NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+														 @"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
+														 } forTagName:@"link"];
+		label.attributedText = [[ZSWTaggedString stringWithString:string] attributedStringWithOptions:options];
+		[contentView addSubview:label];
+		[[KGModal sharedInstance] setCloseButtonLocation:KGModalCloseButtonLocationRight];
+		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+		[[KGModal sharedInstance] showWithContentView:contentView andAnimated:YES];
+	}];
+	[[self rac_signalForSelector:@selector(tappableLabel:tappedAtIndex:withAttributes:) fromProtocol:@protocol(ZSWTappableLabelTapDelegate)] subscribeNext:^(id x) {
+		@strongify(self)
+		[[KGModal sharedInstance] hideWithCompletionBlock:^{
+			[self.viewModel.executeInsuranceCommand execute:nil];
+		}];
+	}];
 	
 	RAC(self, liveAreaTF.text) = RACObserve(self, viewModel.liveArea);
 	self.liveAreaBT.rac_command = self.viewModel.executeLiveAddressCommand;
@@ -105,9 +152,7 @@
 	
 	RAC(self, basePayTF.text) = RACObserve(self, viewModel.basicPayment.text);
 	self.basePayBT.rac_command = self.viewModel.executeBasicPaymentCommand;
-	
-	@weakify(self)
-	
+		
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -144,6 +189,11 @@
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
+}
+
+#pragma mark - ZSWTappableLabelTapDelegate
+
+- (void)tappableLabel:(ZSWTappableLabel *)tappableLabel tappedAtIndex:(NSInteger)idx withAttributes:(NSDictionary *)attributes {
 }
 
 @end

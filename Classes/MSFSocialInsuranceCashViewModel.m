@@ -13,6 +13,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "MSFClient+MSFSocialInsurance.h"
+#import "MSFClient+MSFApplyInfo.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSDate+UTC0800.h"
 
@@ -77,6 +78,25 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		}
 	}];
 	
+	
+	
+//	@property (nonatomic, strong, readonly) MSFSelectKeyValues *purpose; // 贷款用途
+//	@property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险
+//	// 身份信息
+//	@property (nonatomic, copy, readonly) NSString *liveArea; // 居住地区
+//	@property (nonatomic, copy, readonly) NSString *liveAddress; // 居住地址
+//	// 职业信息
+//	@property (nonatomic, copy, readonly) NSString *companyName; //公司名称
+//	@property (nonatomic, copy, readonly) NSString *companyArea; //公司地区
+//	@property (nonatomic, copy, readonly) NSString *companyAddress; //公司地址
+//	// 联系人信息
+//	@property (nonatomic, strong, readonly) MSFSelectKeyValues *relation; // 联系人关系
+//	@property (nonatomic, copy, readonly) NSString *name; //公司名称
+//	@property (nonatomic, copy, readonly) NSString *mobile; //公司名称
+//	// 社保信息
+//	@property (nonatomic, strong) MSFSelectKeyValues *basicPayment;
+//	
+//	
 	@weakify(self)
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -98,6 +118,16 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		@strongify(self)
 		return [self submitSignal];
 	}];
+	
+	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+		[[self.services.httpClient fetchGetSocialInsuranceInfo] subscribeNext:^(MSFSocialInsuranceModel *x) {
+			[_model mergeValuesForKeysFromModel:x];
+		} error:^(NSError *error) {
+			
+		}];
+	}];
+	self.active = NO;
+	self.active = YES;
 	
 	return self;
 }
@@ -150,26 +180,18 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (RACSignal *)insuranceSignal {
-	
-	return nil;
-}
-
-- (NSString *)setTime {
-	NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-	
-	NSDateComponents *comps = nil;
-	
-	comps = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
-	NSDateComponents *adcomps = [[NSDateComponents alloc] init];
- [adcomps setYear:-1];
- NSDate *newdate = [calendar dateByAddingComponents:adcomps toDate:[NSDate date] options:0];
-	return [NSDateFormatter insurance_stringFromDate:newdate];
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services loanType:self.loanType];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 - (RACSignal *)submitSignal {
-	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code, @"jionLifeInsurance": self.jionLifeInsurance} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
+	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code, @"jionLifeInsurance": self.joinInsurance ? @"1" : @"0"} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
-
+/*
 - (RACSignal *)saveSignal {
 	NSError *error = nil;
 	NSString *errorStr = @"";
@@ -213,15 +235,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	
 	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
 	
-}
-
-- (RACSignal *)executeLifeInsuranceSignal {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLifeInsuranceViewModel *viewModel = [[MSFLifeInsuranceViewModel alloc] initWithServices:self.services loanType:self.loanType];
-		[self.services pushViewModel:viewModel];
-		[subscriber sendCompleted];
-		return nil;
-	}];
-}
+}*/
 
 @end
