@@ -143,7 +143,7 @@
 	
 	RAC(self, relationTF.text) = [RACObserve(self, viewModel.contact.contactRelation) map:^id(id value) {
 		__block NSString *relationString = nil;
-		[[MSFSelectKeyValues getSelectKeys:@"employeeOlderInsurance"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+		[[MSFSelectKeyValues getSelectKeys:@"familyMember_type"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 			if ([obj.code isEqualToString:value]) {
 				relationString = obj.text;
 				*stop = YES;
