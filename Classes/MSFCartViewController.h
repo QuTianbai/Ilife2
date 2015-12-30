@@ -11,7 +11,7 @@
 
 @interface MSFCartViewController : UITableViewController
 
-- (instancetype)initWithOrderId:(NSString *)orderId
-											 services:(id<MSFViewModelServices>)services;
+- (instancetype)initWithApplicationNo:(NSString *)appNo
+														 services:(id<MSFViewModelServices>)services;
 
 @end

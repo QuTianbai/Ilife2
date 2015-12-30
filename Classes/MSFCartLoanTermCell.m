@@ -120,6 +120,9 @@ UICollectionViewDelegate>
 		NSInteger index = [self.viewModel.terms indexOfObject:self.viewModel.term];
 		[self.collection selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 	}];
+	RAC(self, viewModel.term) = [[RACObserve(self, collection.indexPathsForSelectedItems.firstObject) takeUntil:self.rac_prepareForReuseSignal] map:^id(NSIndexPath *value) {
+		return self.viewModel.terms[value.row];
+	}];
 }
 
 #pragma mark - UICollectionView
@@ -135,9 +138,9 @@ UICollectionViewDelegate>
 	return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *term = self.viewModel.terms[indexPath.row];
-	self.viewModel.term = term;
-}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//	NSString *term = self.viewModel.terms[indexPath.row];
+//	self.viewModel.term = term;
+//}
 
 @end

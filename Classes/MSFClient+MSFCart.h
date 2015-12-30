@@ -13,7 +13,7 @@
 
 @interface MSFClient(MSFCart)
 
-- (RACSignal *)fetchCart:(NSString *)cartId;
+- (RACSignal *)fetchCart:(NSString *)appNo;
 - (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel;
 
 @end

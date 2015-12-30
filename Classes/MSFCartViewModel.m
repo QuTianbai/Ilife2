@@ -20,33 +20,33 @@
 
 @interface MSFCartViewModel ()
 
-@property (nonatomic, copy) NSString *totalAmt;
+@property (nonatomic, strong, readwrite) MSFTrial *trial;
 @property (nonatomic, strong, readwrite) MSFCart *cart;
 @property (nonatomic, strong, readwrite) NSArray *terms;
-@property (nonatomic, strong) MSFTrial *trial;
+@property (nonatomic, strong, readwrite) NSString *term;
 
 @end
 
 @implementation MSFCartViewModel
 
-- (instancetype)initWithCartId:(NSString *)cartId
-											services:(id<MSFViewModelServices>)services {
+- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (self) {
+		
 		_services = services;
 		_loanType = [[MSFLoanType alloc] initWithTypeID:@"3101"];
+		_applicationNo = appNo;
+		
 		_trial = [[MSFTrial alloc] init];
+		_cart = [[MSFCart alloc] init];
 	
-		RAC(self, totalAmt) = RACObserve(self, cart.totalAmt);
-		RAC(self, commodities) = RACObserve(self, cart.cmdtyList);
-		RAC(self, trialAmt) = RACObserve(self, trial.loanFixedAmt);
-		RAC(self, insurance) = RACObserve(self, trial.lifeInsuranceAmt);
 		RACChannelTerminal *downPmt = RACChannelTo(self, downPmtAmt);
 		RACChannelTerminal *loanAmt = RACChannelTo(self, loanAmt);
 		[[downPmt map:^id(NSString *value) {
-			double loan = self.totalAmt.doubleValue - value.doubleValue;
+			double loan = self.cart.totalAmt.doubleValue - value.doubleValue;
 			return [NSString stringWithFormat:@"%.2f", loan];
 		}] subscribe:loanAmt];
+		
 		_downPmtAmt = @"0";
 		_joinInsurance = NO;
 		
@@ -68,26 +68,19 @@
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			[trialCommand execute:nil];
 		}];
-		[[self.services.httpClient fetchCart:cartId] subscribeNext:^(MSFCart *x) {
+		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
 			@strongify(self)
 			self.cart = x;
 		}];
-		[self handleMarkets:nil];
-/*
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
 			@strongify(self)
 			[self handleMarkets:x];
-		}];*/
+		}];
 	}
 	return self;
 }
 
 - (void)handleMarkets:(MSFMarkets *)markets {
-	
-	self.terms = @[@"3", @"6", @"9", @"12"];
-	self.term = self.terms[0];
-	return;
-	
 	__block NSArray *terms = nil;
 	[markets.teams enumerateObjectsUsingBlock:^(MSFTeams2 *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 		NSMutableArray *temp = NSMutableArray.array;
@@ -111,7 +104,7 @@
 }
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.commodities.count) {
+	if (indexPath.section == self.cart.cmdtyList.count) {
 		switch (indexPath.row) {
 			case 0: return @"MSFCartInputCell";
 			case 1: return @"MSFCartContentCell";
@@ -138,11 +131,5 @@
 		return nil;
 	}];
 }
-
-//- (RACSignal *)validSignal {
-//	return [RACSignal combineLatest:@[RACObserve(self, loanAmt), RACObserve(self, term), RACObserve(self, commodities)] reduce:^id(NSString *x1, NSString *x2, NSArray *x3) {
-//		return @(x1.doubleValue > 0 && x2.integerValue > 0 && x3.count > 0);
-//	}];
-//}
 
 @end

@@ -16,26 +16,12 @@
 
 @implementation MSFClient(MSFCart)
 
-- (RACSignal *)fetchCart:(NSString *)cartId {
-//	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-//		NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"MSFCartJson" ofType:@"json"]] options:kNilOptions error:nil];
-//		MSFCart *cart = [MTLJSONAdapter modelOfClass:MSFCart.class fromJSONDictionary:json error:nil];
-//		[subscriber sendNext:cart];
-//		[subscriber sendCompleted];
-//		return nil;
-//	}];
-	
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orders/product/%@", cartId] parameters:nil];
+- (RACSignal *)fetchCart:(NSString *)appNo {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:[NSString stringWithFormat:@"orders/product/%@", appNo] parameters:nil];
 	return [self enqueueRequest:request resultClass:MSFCart.class].msf_parsedResults;
 }
 
-//float mock = 2000.f;
 - (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel {
-//	mock += 135.f;
-//	MSFTrial *trial = [[MSFTrial alloc] init];
-//	trial.loanFixedAmt = [@(mock) stringValue];
-//	trial.lifeInsuranceAmt = @"8.00";
-//	return [RACSignal return:trial];
 	NSDictionary *params = [self trialParamsFromViewModel:viewModel];
 	if (!params) {
 		MSFTrial *trial = [[MSFTrial alloc] init];
@@ -47,11 +33,13 @@
 	return [self enqueueRequest:request resultClass:MSFTrial.class].msf_parsedResults;
 }
 
+#pragma mark - Private
+
 - (NSDictionary *)trialParamsFromViewModel:(MSFCartViewModel *)viewModel {
-	if (viewModel.commodities.count == 0) {
+	if (viewModel.cart.cmdtyList.count == 0) {
 		return nil;
 	}
-	NSArray *cmdtyList = [MTLJSONAdapter JSONArrayFromModels:viewModel.commodities];
+	NSArray *cmdtyList = [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList];
 	BOOL valid = viewModel.loanAmt.doubleValue > 0 && viewModel.term.integerValue > 0 && cmdtyList.count > 0;
 	if (!valid) {
 		return nil;
