@@ -15,11 +15,13 @@
 #import "MSFServer.h"
 #import "MSFClient+Users.h"
 #import "MSFResponse.h"
+#import "MSFClient.h"
 
 QuickSpecBegin(MSFHomePageViewModelSpec)
 
 __block MSFHomepageViewModel *viewModel;
 __block id <MSFViewModelServices> services;
+__block MSFClient *client;
 
 beforeEach(^{
 	services = mockProtocol(@protocol(MSFViewModelServices));
@@ -42,6 +44,15 @@ it(@"should not has viewmodel for placeholder", ^{
   // then
   expect(sub).to(beAKindOf([MSFHomepageViewModel class]));
   expect(reusableIdentifier).to(equal(@"MSFHomePageContentCollectionViewCell"));
+});
+
+it(@"should has order that waiting for pay", ^{
+	// given
+	
+	// when
+	
+	// then
+	expect(@(viewModel.hasOrder)).to(beFalsy());
 });
 
 QuickSpecEnd

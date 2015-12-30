@@ -66,6 +66,10 @@ UICollectionViewDelegateFlowLayout>
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
 	}];
+	
+	UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:nil action:nil];
+	UIBarButtonItem *payItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:nil action:nil];
+	self.navigationItem.rightBarButtonItems = @[scanItem, payItem];
 }
 
 #pragma mark - UICollectionViewDataSource

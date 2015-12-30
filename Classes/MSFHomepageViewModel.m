@@ -18,12 +18,14 @@
 #import "MSFClient+MSFCirculateCash.h"
 #import "MSFClient+Advers.h"
 #import "MSFAdver.h"
+#import "MSFClient+MSFOrder.h"
 
 @interface MSFHomepageViewModel ()
 
 @property (nonatomic, strong) MSFFormsViewModel *viewModel;
 @property (nonatomic, strong, readwrite) MSFHomePageCellModel *cellModel;
 @property (nonatomic, strong, readwrite) NSArray *banners;
+@property (nonatomic, strong) NSArray *orders;
 
 @end
 
@@ -41,6 +43,7 @@
 	_viewModel = viewModel;
 	_services = services;
 	_banners = @[[[MSFAdver alloc] init]];
+	_hasOrder = YES;
 
 	@weakify(self)
 	_loanInfoRefreshCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -71,6 +74,12 @@
 		if (self.services.httpClient.user.isAuthenticated) {
 			[_loanInfoRefreshCommand execute:nil];
 		}
+		[[[[self.services.httpClient fetchOrderList:@"" pageNo:0]
+			ignore:nil]
+			collect]
+			subscribeNext:^(id x) {
+				self.orders = x;
+			}];
 	}];
 	return self;
 }

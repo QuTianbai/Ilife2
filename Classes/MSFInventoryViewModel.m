@@ -247,11 +247,15 @@
 				@"name": obj.name,
 			}];
 		}];
-		[attachments addObject:@{
-														@"accessoryType": self.attachment.type,
-														@"fileId": self.attachment.fileID,
-														@"name": self.attachment.name,
-														}];
+		
+		if (self.attachment) {
+			// 人脸识别新增附件内容
+			[attachments addObject:@{
+				@"accessoryType": self.attachment.type,
+				@"fileId": self.attachment.fileID,
+				@"name": self.attachment.name,
+			}];
+		}
 		return [RACSignal return:attachments];
 	}];
 }
