@@ -11,6 +11,7 @@
 
 #import "MSFCartViewModel.h"
 #import "MSFCommodity.h"
+#import "MSFCart.h"
 
 #import "MSFCartCategoryCell.h"
 #import "MSFCartContentCell.h"
@@ -29,12 +30,12 @@
 
 @implementation MSFCartViewController
 
-- (instancetype)initWithOrderId:(NSString *)orderId
-											 services:(id<MSFViewModelServices>)services {
+- (instancetype)initWithApplicationNo:(NSString *)appNo
+											       services:(id<MSFViewModelServices>)services {
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
 		self.hidesBottomBarWhenPushed = YES;
-		_viewModel = [[MSFCartViewModel alloc] initWithCartId:orderId services:services];
+		_viewModel = [[MSFCartViewModel alloc] initWithApplicationNo:appNo services:services];
 	}
 	return self;
 }
@@ -64,10 +65,8 @@
 	nextButton.layer.cornerRadius = 5;
 	[footer addSubview:nextButton];
 	self.tableView.tableFooterView = footer;
-	[[nextButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		NSLog(@"点击下一步");
-	}];
-	
+	nextButton.rac_command = self.viewModel.executeNextCommand;
+
 	@weakify(self)
 	[RACObserve(self, viewModel.cart) subscribeNext:^(id x) {
 		@strongify(self)
@@ -83,14 +82,14 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (!self.viewModel.commodities.count) {
+	if (!self.viewModel.cart.cmdtyList.count) {
 		return 0;
 	}
-	return self.viewModel.commodities.count + 1;
+	return self.viewModel.cart.cmdtyList.count + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == self.viewModel.commodities.count) {
+	if (section == self.viewModel.cart.cmdtyList.count) {
 		return 5;
 	} else {
 		return 4;
@@ -106,7 +105,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.viewModel.commodities.count) {
+	if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
 		if (indexPath.row == 2) {
 			return 99.f;
 		}
@@ -123,10 +122,10 @@
 	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
 	label.font = [UIFont systemFontOfSize:15];
 	label.textColor = UIColor.themeColorNew;
-	if (section == self.viewModel.commodities.count) {
+	if (section == self.viewModel.cart.cmdtyList.count) {
 		label.text = @"分期";
 	} else {
-		MSFCommodity *commodity = self.viewModel.commodities[section];
+		MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
 		label.text = commodity.brandName;
 	}
 	[reuse addSubview:label];
@@ -136,10 +135,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
 	UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-	if (indexPath.section == self.viewModel.commodities.count) {
+	if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
 		[cell bindViewModel:self.viewModel atIndexPath:indexPath];
 	} else {
-		[cell bindViewModel:self.viewModel.commodities[indexPath.section] atIndexPath:indexPath];
+		[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
 	}
 	return cell;
 }
