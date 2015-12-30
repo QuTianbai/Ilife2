@@ -114,6 +114,7 @@
 	[button setBackgroundImage:[UIImage imageNamed:@"ad_mld_bt"] forState:UIControlStateNormal];
 	[button addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
 	[self addSubview:button];
+	button.userInteractionEnabled = NO;
 	
 	[adImageView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.top.left.equalTo(self).offset(12);
@@ -126,6 +127,9 @@
 		make.width.equalTo(self).multipliedBy(0.5);
 		make.height.equalTo(button.mas_width).multipliedBy(0.224);
 	}];
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+	[adImageView addGestureRecognizer:tap];
 }
 
 - (void)setUpMSFull {
@@ -161,6 +165,12 @@
 		make.left.right.bottom.equalTo(self);
 		make.height.equalTo(self.mas_width).multipliedBy(0.446);
 	}];
+}
+
+- (void)tap {
+	if (_actionBlock) {
+		_actionBlock();
+	}
 }
 
 - (void)onClick:(UIButton *)sender {
