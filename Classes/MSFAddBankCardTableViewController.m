@@ -30,7 +30,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankInfoCS;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bankIcon;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
@@ -81,28 +80,20 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
 		@strongify(self)
-		CGFloat alpha = 0;
+		CGFloat alpha = 1.0;
 		switch (support.intValue) {
 			case 1:
-				alpha = 1.0;
 				[self.bankWarningLB setAttributedText:bankCardShowInfoAttributeStr];
-				self.bankInfoCS.constant = 100;
 				break;
 			case 2:
 				if (!self.viewModel.isFirstBankCard) {
 					break;
 				}
-				alpha = 1.0;
 				self.bankWarningLB.text = bankCardShowStrB;
-				self.bankInfoCS.constant = 50;
-				break;
-			case 0:
-			case 3:
-				self.bankWarningLB.text = @"";
-				self.bankInfoCS.constant = 25;
 				break;
 			default:
-    break;
+				[self.bankWarningLB setAttributedText:[bankCardShowInfoAttributeStr attributedSubstringFromRange:NSMakeRange(0, bankCardShowInfoAttributeStr.length - 6)]];
+				break;
 		}
 		
 		[UIView beginAnimations:nil context:nil];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3ag-lx-VtT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3ag-lx-VtT">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +13,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9S2-NS-4xH">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="IAn-3x-mkB">
                             <rect key="frame" x="0.0" y="656" width="320" height="80"/>
@@ -21,14 +20,12 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aec-X8-vfe" customClass="MSFEdgeButton">
                                     <rect key="frame" x="20" y="20" width="280" height="40"/>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="T9M-mP-GNG"/>
                                     </constraints>
                                     <state key="normal" title="保存"/>
                                 </button>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="Aec-X8-vfe" firstAttribute="leading" secondItem="IAn-3x-mkB" secondAttribute="leading" constant="20" id="Rr0-jD-YcO"/>
@@ -48,7 +45,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款用途" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhy-OL-LT6">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="0jI-ui-xby"/>
                                                         <constraint firstAttribute="width" constant="95" id="ynk-1n-Vzc"/>
@@ -59,7 +55,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择贷款用途" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7VK-7e-4Wc">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="4f8-Ht-GyZ"/>
                                                     </constraints>
@@ -67,7 +62,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="7VK-7e-4Wc" firstAttribute="centerY" secondItem="6Ia-QH-CTJ" secondAttribute="centerY" id="Hxw-rO-NdC"/>
                                                 <constraint firstItem="fhy-OL-LT6" firstAttribute="centerY" secondItem="6Ia-QH-CTJ" secondAttribute="centerY" id="Rgu-Sy-efe"/>
@@ -76,7 +70,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="7VK-7e-4Wc" secondAttribute="trailing" constant="10" id="xgF-6x-EP1"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="G3h-UN-KCq">
                                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
@@ -87,7 +80,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否加入寿险计划" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ac-qe-qI0">
                                                     <rect key="frame" x="15" y="11" width="120" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="T3R-DL-nRC"/>
                                                         <constraint firstAttribute="height" constant="21" id="ozw-vQ-4x6"/>
@@ -98,7 +90,6 @@
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-cloze-question.png" translatesAutoresizingMaskIntoConstraints="NO" id="9lD-DU-BUJ">
                                                     <rect key="frame" x="140" y="12" width="20" height="20"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="3I4-BM-NMD"/>
                                                         <constraint firstAttribute="width" constant="20" id="TPe-b8-WL6"/>
@@ -106,7 +97,6 @@
                                                 </imageView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tQo-jG-0Ic">
                                                     <rect key="frame" x="251" y="6" width="51" height="31"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="49" id="NE5-GC-Hzw"/>
                                                         <constraint firstAttribute="height" constant="31" id="WQM-Cw-i0R"/>
@@ -114,14 +104,12 @@
                                                 </switch>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsz-H3-n7J">
                                                     <rect key="frame" x="0.0" y="6" width="160" height="32"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="Mj6-RF-ZgO"/>
                                                         <constraint firstAttribute="width" constant="160" id="q7r-RO-qVR"/>
                                                     </constraints>
                                                 </button>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="tQo-jG-0Ic" secondAttribute="trailing" constant="20" id="FVW-Wg-8PF"/>
                                                 <constraint firstItem="9lD-DU-BUJ" firstAttribute="centerY" secondItem="d6P-vc-Oqu" secondAttribute="centerY" id="HS0-iG-Pzh"/>
@@ -133,7 +121,6 @@
                                                 <constraint firstItem="rsz-H3-n7J" firstAttribute="leading" secondItem="d6P-vc-Oqu" secondAttribute="leading" id="tRG-mV-nvu"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -148,7 +135,6 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择是否参保" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AgQ-e8-deo">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="sL7-Uk-C2z"/>
                                                     </constraints>
@@ -157,7 +143,6 @@
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否参保" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFP-iY-fiw">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="95" id="qVJ-8X-Zd2"/>
                                                         <constraint firstAttribute="height" constant="21" id="ymV-Xo-C0r"/>
@@ -167,7 +152,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="AgQ-e8-deo" secondAttribute="trailing" constant="10" id="98B-7z-1lP"/>
                                                 <constraint firstItem="kFP-iY-fiw" firstAttribute="leading" secondItem="gOc-H1-qek" secondAttribute="leading" constant="15" id="C3w-20-Sk9"/>
@@ -176,7 +160,6 @@
                                                 <constraint firstItem="AgQ-e8-deo" firstAttribute="leading" secondItem="kFP-iY-fiw" secondAttribute="trailing" constant="40" id="tbz-5U-XZO"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="gFW-rI-ioo">
                                         <rect key="frame" x="0.0" y="160" width="320" height="44"/>
@@ -187,7 +170,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="缴费基数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uo1-ha-PxF">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="95" id="9ra-63-jUW"/>
                                                         <constraint firstAttribute="height" constant="21" id="RI3-OH-qyY"/>
@@ -198,7 +180,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择缴费基数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IyG-xT-OMI">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="W4p-en-Oyz"/>
                                                     </constraints>
@@ -206,7 +187,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="IyG-xT-OMI" firstAttribute="centerY" secondItem="s6k-tW-6FT" secondAttribute="centerY" id="7dr-EJ-5JQ"/>
                                                 <constraint firstItem="uo1-ha-PxF" firstAttribute="leading" secondItem="s6k-tW-6FT" secondAttribute="leading" constant="15" id="OyV-jQ-SZU"/>
@@ -215,7 +195,6 @@
                                                 <constraint firstItem="uo1-ha-PxF" firstAttribute="centerY" secondItem="s6k-tW-6FT" secondAttribute="centerY" id="k0Y-0r-IN9"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="eAH-Of-OVu">
                                         <rect key="frame" x="0.0" y="204" width="320" height="44"/>
@@ -226,7 +205,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首次缴费日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggE-sT-S3n">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Gf2-5D-Jhz"/>
                                                         <constraint firstAttribute="width" constant="95" id="yvh-xc-MNn"/>
@@ -237,7 +215,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择首次缴费日期" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zx7-12-KKb">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="zBz-f7-OIc"/>
                                                     </constraints>
@@ -245,7 +222,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="Zx7-12-KKb" firstAttribute="centerY" secondItem="sSG-tm-Xc1" secondAttribute="centerY" id="22C-5R-zVm"/>
                                                 <constraint firstItem="Zx7-12-KKb" firstAttribute="leading" secondItem="ggE-sT-S3n" secondAttribute="trailing" constant="40" id="2IK-CV-FJE"/>
@@ -254,7 +230,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="Zx7-12-KKb" secondAttribute="trailing" constant="10" id="YVc-yw-w3x"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="Dmd-o2-cXR">
                                         <rect key="frame" x="0.0" y="248" width="320" height="44"/>
@@ -265,7 +240,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际缴费月数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MSM-5T-Eiw">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="95" id="GIe-qd-jen"/>
                                                         <constraint firstAttribute="height" constant="21" id="yXQ-7m-FPr"/>
@@ -276,7 +250,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8P6-DG-RhU">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="IcG-io-J6P"/>
                                                     </constraints>
@@ -284,7 +257,6 @@
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="8P6-DG-RhU" firstAttribute="centerY" secondItem="KN1-0h-NmH" secondAttribute="centerY" id="7oq-e8-RLD"/>
                                                 <constraint firstItem="8P6-DG-RhU" firstAttribute="leading" secondItem="MSM-5T-Eiw" secondAttribute="trailing" constant="40" id="7rl-Z8-pFc"/>
@@ -293,7 +265,6 @@
                                                 <constraint firstItem="MSM-5T-Eiw" firstAttribute="leading" secondItem="KN1-0h-NmH" secondAttribute="leading" constant="15" id="i07-Gz-BBX"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -308,7 +279,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否参保" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upG-3R-0AF">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="95" id="2Sb-Gu-eJU"/>
                                                         <constraint firstAttribute="height" constant="21" id="c4l-2N-gnN"/>
@@ -319,7 +289,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择是否参保" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-uK-TZd">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="gfw-O4-Wsc"/>
                                                     </constraints>
@@ -327,7 +296,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="7IM-uK-TZd" secondAttribute="trailing" constant="10" id="FRh-1a-fzN"/>
                                                 <constraint firstItem="upG-3R-0AF" firstAttribute="leading" secondItem="VC6-QH-G99" secondAttribute="leading" constant="15" id="N0J-aX-uy9"/>
@@ -336,7 +304,6 @@
                                                 <constraint firstItem="upG-3R-0AF" firstAttribute="centerY" secondItem="VC6-QH-G99" secondAttribute="centerY" id="wYA-WT-qH7"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="sPA-Qm-Gs5">
                                         <rect key="frame" x="0.0" y="364" width="320" height="44"/>
@@ -347,7 +314,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="缴费基数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9a-UB-ua0">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="HIC-m3-d6Q"/>
                                                         <constraint firstAttribute="width" constant="95" id="KRH-NF-4HT"/>
@@ -358,7 +324,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择缴费基数" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fdk-a5-h5P">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="FnP-jY-EYv"/>
                                                     </constraints>
@@ -366,7 +331,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="J9a-UB-ua0" firstAttribute="centerY" secondItem="SWN-8x-7Wt" secondAttribute="centerY" id="ajA-hd-OzS"/>
                                                 <constraint firstItem="Fdk-a5-h5P" firstAttribute="leading" secondItem="J9a-UB-ua0" secondAttribute="trailing" constant="40" id="nLV-Qy-poW"/>
@@ -375,7 +339,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="Fdk-a5-h5P" secondAttribute="trailing" constant="10" id="yAM-Ti-1ni"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="IE7-Rp-dBU">
                                         <rect key="frame" x="0.0" y="408" width="320" height="44"/>
@@ -386,7 +349,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首次缴费日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7z-wc-ywO">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="95" id="ACa-bs-Avt"/>
                                                         <constraint firstAttribute="height" constant="21" id="qkT-ia-eGS"/>
@@ -397,7 +359,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择首次缴费日期" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RWL-iO-s47">
                                                     <rect key="frame" x="150" y="7" width="119" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="xAH-sK-mhS"/>
                                                     </constraints>
@@ -405,7 +366,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="d7z-wc-ywO" firstAttribute="leading" secondItem="1fZ-ki-Klc" secondAttribute="leading" constant="15" id="1Jh-WT-xtu"/>
                                                 <constraint firstItem="RWL-iO-s47" firstAttribute="leading" secondItem="d7z-wc-ywO" secondAttribute="trailing" constant="40" id="4Hh-pM-ki1"/>
@@ -414,7 +374,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="RWL-iO-s47" secondAttribute="trailing" constant="10" id="sNr-IR-0rP"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="3hm-MO-I6h">
                                         <rect key="frame" x="0.0" y="452" width="320" height="44"/>
@@ -425,7 +384,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="实际缴费月数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cp-6E-YFy">
                                                     <rect key="frame" x="15" y="11" width="95" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="95" id="Bqv-lS-Chl"/>
                                                         <constraint firstAttribute="height" constant="21" id="Pbk-zo-Mhr"/>
@@ -436,7 +394,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iH8-uD-oZW">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="JWE-go-EHU"/>
                                                     </constraints>
@@ -444,7 +401,6 @@
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="iH8-uD-oZW" firstAttribute="leading" secondItem="7cp-6E-YFy" secondAttribute="trailing" constant="40" id="CvA-vM-f3G"/>
                                                 <constraint firstItem="iH8-uD-oZW" firstAttribute="centerY" secondItem="pAI-Eu-wGf" secondAttribute="centerY" id="LON-7S-4yR"/>
@@ -453,7 +409,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="iH8-uD-oZW" secondAttribute="trailing" constant="10" id="l9e-8a-5KZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -468,7 +423,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="工伤保险是否参保" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1b-bY-Ras">
                                                     <rect key="frame" x="15" y="11" width="125" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="125" id="hXl-Gv-cv5"/>
                                                         <constraint firstAttribute="height" constant="21" id="t4P-H6-oUs"/>
@@ -479,7 +433,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YLZ-Gk-Ygo">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="J53-Tn-tPb"/>
                                                     </constraints>
@@ -487,7 +440,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="YLZ-Gk-Ygo" firstAttribute="leading" secondItem="s1b-bY-Ras" secondAttribute="trailing" constant="10" id="9Mo-cG-zdw"/>
                                                 <constraint firstItem="YLZ-Gk-Ygo" firstAttribute="centerY" secondItem="taq-7d-q9L" secondAttribute="centerY" id="fkM-To-umg"/>
@@ -496,7 +448,6 @@
                                                 <constraint firstItem="s1b-bY-Ras" firstAttribute="leading" secondItem="taq-7d-q9L" secondAttribute="leading" constant="15" id="uMr-sW-NPi"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="fQD-82-362">
                                         <rect key="frame" x="0.0" y="568" width="320" height="44"/>
@@ -507,7 +458,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="失业保险是否参保" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJp-Ot-Ihp">
                                                     <rect key="frame" x="15" y="11" width="125" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="125" id="3y5-sa-3yU"/>
                                                         <constraint firstAttribute="height" constant="21" id="bj1-Vm-7g4"/>
@@ -518,7 +468,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MJr-eu-n0t">
                                                     <rect key="frame" x="150" y="6" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="00O-rZ-M15"/>
                                                     </constraints>
@@ -526,7 +475,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="MJr-eu-n0t" firstAttribute="leading" secondItem="gJp-Ot-Ihp" secondAttribute="trailing" constant="10" id="18E-YD-RFh"/>
                                                 <constraint firstItem="gJp-Ot-Ihp" firstAttribute="leading" secondItem="2sx-GZ-T26" secondAttribute="leading" constant="15" id="52C-5v-FaA"/>
@@ -535,7 +483,6 @@
                                                 <constraint firstItem="gJp-Ot-Ihp" firstAttribute="centerY" secondItem="2sx-GZ-T26" secondAttribute="centerY" id="fW2-Q3-jxm"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="A95-ln-L6E">
                                         <rect key="frame" x="0.0" y="612" width="320" height="44"/>
@@ -546,7 +493,6 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6gp-An-ZuF">
                                                     <rect key="frame" x="150" y="7" width="127" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="kom-Lu-ND2"/>
                                                     </constraints>
@@ -555,7 +501,6 @@
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生育保险是否参保" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVA-RR-1Eb">
                                                     <rect key="frame" x="15" y="11" width="125" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="PEZ-RQ-4ek"/>
                                                         <constraint firstAttribute="width" constant="125" id="udc-4M-W6n"/>
@@ -565,7 +510,6 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="FVA-RR-1Eb" firstAttribute="centerY" secondItem="ASn-ZN-iMT" secondAttribute="centerY" id="4io-Jd-hBW"/>
                                                 <constraint firstItem="6gp-An-ZuF" firstAttribute="leading" secondItem="FVA-RR-1Eb" secondAttribute="trailing" constant="10" id="HHy-FJ-dns"/>
@@ -574,7 +518,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="6gp-An-ZuF" secondAttribute="trailing" constant="10" id="t72-Ie-mCJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
