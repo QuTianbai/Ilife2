@@ -122,8 +122,13 @@ UICollectionViewDelegate>
 		[self.collection selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 	}];
 	if (self.collection.indexPathsForVisibleItems.count == 0) return;
-	RAC(self, viewModel.term) = [[RACObserve(self, collection.indexPathsForSelectedItems.firstObject) takeUntil:self.rac_prepareForReuseSignal] map:^id(NSIndexPath *value) {
-		return self.viewModel.terms[value.row];
+//	RAC(self, viewModel.term) = [[RACObserve(self, collection.indexPathsForSelectedItems.firstObject) takeUntil:self.rac_prepareForReuseSignal] map:^id(NSIndexPath *value) {
+//		return [self.viewModel.terms[value.row] loanTeam];
+//	}];
+	
+	RAC(self, viewModel.term) = [[self rac_signalForSelector:@selector(collectionView:didSelectItemAtIndexPath:) fromProtocol:@protocol(UICollectionViewDelegate)] map:^id(id value) {
+		RACTupleUnpack(UICollectionView *view, NSIndexPath *indexPath) = value;
+		return [self.viewModel.terms[indexPath.item] loanTeam];
 	}];
 }
 

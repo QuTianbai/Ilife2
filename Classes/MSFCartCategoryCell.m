@@ -55,9 +55,8 @@
 - (void)bindViewModel:(MSFCommodity *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UILabel *label2 = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *label3 = (UILabel *)[self.contentView viewWithTag:101];
-#warning mock data
-	label2.text = @"家电";
-	label3.text = @"冰箱";
+	label2.text = viewModel.catLevel1Name;
+	label3.text = viewModel.catLevel2Name;
 }
 
 @end
