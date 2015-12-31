@@ -1,35 +1,82 @@
 diff --git a/Finance/AppDelegate.m b/Finance/AppDelegate.m
-index 0954060..036c96a 100644
+index 0954060..02555cb 100644
 --- a/Finance/AppDelegate.m
 +++ b/Finance/AppDelegate.m
-@@ -39,6 +39,8 @@
- 
- #import "MSFFormsViewModel.h"
- 
+@@ -7,6 +7,7 @@
+ #import "AppDelegate.h"
+ #import <Mantle/EXTScope.h>
+ #import <ReactiveCocoa/ReactiveCocoa.h>
 +#import <BugshotKit/BugshotKit.h>
-+
- @interface AppDelegate ()
  
- @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
-@@ -61,6 +63,8 @@
+ #import "MSFTabBarController.h"
+ #import "MSFGuideViewController.h"
+@@ -61,6 +62,8 @@
  	[self.window makeKeyAndVisible];
  	
  	[Fabric with:@[CrashlyticsKit]];
 +	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
-+ [[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
++	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
  	
  	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
  	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 diff --git a/Podfile b/Podfile
-index 0e2b75e..0e03eff 100644
+index d265a84..b1f5a9c 100644
 --- a/Podfile
 +++ b/Podfile
-@@ -31,7 +31,7 @@ pod 'KGModal', '1.1.0'
+@@ -7,7 +7,7 @@ inhibit_all_warnings!
+ pod 'AFNetworking', '2.5.0'
+ pod 'MTLFMDBAdapter', '0.1.8'
+ 
+-#pod 'libextobjc', '0.4.1' # Use Mantle
++pod 'BugshotKit', :head
+ pod 'ReactiveCocoa', '2.4.2'
+ pod 'ReactiveViewModel', '0.3'
+ pod 'Mantle', '1.5.1'
+@@ -31,7 +31,6 @@ pod 'KGModal', '1.1.0'
  pod 'ZSWTappableLabel', '1.1'
  pod 'ZSWTaggedString', '1.1'
  pod 'MWPhotoBrowser', '2.1.1'
 -#pod 'BugshotKit', :head
-+pod 'BugshotKit', :head
  pod 'SHSPhoneComponent', '2.15'
+ pod 'ZXingObjC', '3.1.0'
  
- target 'Tests', :exclusive => true do
+diff --git a/report.patch b/report.patch
+index b83f8ed..e69de29 100644
+--- a/report.patch
++++ b/report.patch
+@@ -1,35 +0,0 @@
+-diff --git a/Finance/AppDelegate.m b/Finance/AppDelegate.m
+-index 0954060..036c96a 100644
+---- a/Finance/AppDelegate.m
+-+++ b/Finance/AppDelegate.m
+-@@ -39,6 +39,8 @@
+- 
+- #import "MSFFormsViewModel.h"
+- 
+-+#import <BugshotKit/BugshotKit.h>
+-+
+- @interface AppDelegate ()
+- 
+- @property (nonatomic, strong) MSFTabBarViewModel *viewModel;
+-@@ -61,6 +63,8 @@
+- 	[self.window makeKeyAndVisible];
+- 	
+- 	[Fabric with:@[CrashlyticsKit]];
+-+	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"liang.zeng@msxf.com"];
+-+ [[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
+- 	
+- 	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
+- 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+-diff --git a/Podfile b/Podfile
+-index 0e2b75e..0e03eff 100644
+---- a/Podfile
+-+++ b/Podfile
+-@@ -31,7 +31,7 @@ pod 'KGModal', '1.1.0'
+- pod 'ZSWTappableLabel', '1.1'
+- pod 'ZSWTaggedString', '1.1'
+- pod 'MWPhotoBrowser', '2.1.1'
+--#pod 'BugshotKit', :head
+-+pod 'BugshotKit', :head
+- pod 'SHSPhoneComponent', '2.15'
+- 
+- target 'Tests', :exclusive => true do
