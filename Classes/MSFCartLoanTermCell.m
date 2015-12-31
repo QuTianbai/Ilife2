@@ -92,6 +92,7 @@ UICollectionViewDelegate>
 		layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 		UICollectionView *collection = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
 		collection.backgroundColor = UIColor.clearColor;
+		collection.showsHorizontalScrollIndicator = NO;
 		collection.delegate = self;
 		collection.dataSource = self;
 		[collection registerClass:MSFCartCollectionViewCell.class forCellWithReuseIdentifier:@"MSFCartCollectionViewCell"];
@@ -118,16 +119,10 @@ UICollectionViewDelegate>
 	[[RACObserve(self, viewModel.terms) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.collection reloadData];
-		NSInteger index = [self.viewModel.terms indexOfObject:self.viewModel.term];
-		[self.collection selectItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+		[self.collection selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 	}];
-	if (self.collection.indexPathsForVisibleItems.count == 0) return;
-//	RAC(self, viewModel.term) = [[RACObserve(self, collection.indexPathsForSelectedItems.firstObject) takeUntil:self.rac_prepareForReuseSignal] map:^id(NSIndexPath *value) {
-//		return [self.viewModel.terms[value.row] loanTeam];
-//	}];
-	
-	RAC(self, viewModel.term) = [[self rac_signalForSelector:@selector(collectionView:didSelectItemAtIndexPath:) fromProtocol:@protocol(UICollectionViewDelegate)] map:^id(id value) {
-		RACTupleUnpack(UICollectionView *view, NSIndexPath *indexPath) = value;
+	RAC(self, viewModel.term) = [[[self rac_signalForSelector:@selector(collectionView:didSelectItemAtIndexPath:) fromProtocol:@protocol(UICollectionViewDelegate)] takeUntil:self.rac_prepareForReuseSignal] map:^id(RACTuple *value) {
+		NSIndexPath *indexPath = value.second;
 		return [self.viewModel.terms[indexPath.item] loanTeam];
 	}];
 }
@@ -144,5 +139,7 @@ UICollectionViewDelegate>
 	cell.content = [NSString stringWithFormat:@"%@期", term.loanTeam];
 	return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {}
 
 @end
