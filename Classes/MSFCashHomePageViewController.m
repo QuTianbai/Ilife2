@@ -182,15 +182,6 @@
 			[SVProgressHUD dismiss];
 			if (model.processing == 1) {
 				MSFUser *user = self.viewModel.services.httpClient.user;
-				/*
-				if (![user.complateCustInfo isEqualToString:@"111"]) {
-					[SVProgressHUD showErrorWithStatus:@"请先完善资料"];
-					return ;
-				}
-				if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class] && [self.viewModel.formViewModel.model.socialStatus isEqualToString:@"SI01"]) {
-					[[[UIAlertView alloc] initWithTitle:@"提示" message:@"此产品暂不支持学生申请" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
-					return;
-				}*/
 				if (!user.hasTransactionalCode) {
 					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
 					[alert show];
@@ -250,14 +241,14 @@
 		make.height.equalTo(@300);
 	}];
 	/*
-	UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-	[view addSubview:activityIndicatorView];
-	
-	[activityIndicatorView startAnimating];
-	[activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
+	 UIActivityIndicatorView *activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+	 [view addSubview:activityIndicatorView];
+	 
+	 [activityIndicatorView startAnimating];
+	 [activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerX.equalTo(view);
 		make.centerY.equalTo(view).offset(-40);
-	}];*/
+	 }];*/
 	
 	UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-empty"]];
 	[view addSubview:imgView];
