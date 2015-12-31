@@ -52,7 +52,7 @@
 	tf.placeholder = @"请填写首付金额";
 	RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);
 	RAC(tf, text) = downPmtChannel;
-	[[tf.rac_textSignal takeUntil:self.rac_prepareForReuseSignal] subscribe:downPmtChannel];
+	[[[tf.rac_textSignal throttle:1.f] takeUntil:self.rac_prepareForReuseSignal] subscribe:downPmtChannel];
 }
 
 @end

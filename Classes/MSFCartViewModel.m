@@ -8,6 +8,7 @@
 
 #import "MSFCartViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClient+MSFCheckEmploee2.h"
 #import "MSFClient+MSFCart.h"
 #import "MSFCart.h"
@@ -63,7 +64,7 @@
 		}] subscribe:loanAmt];
 		
 		_downPmtAmt = @"0";
-		_joinInsurance = NO;
+		_joinInsurance = YES;
 		
 		@weakify(self)
 		_executeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -186,6 +187,16 @@
 
 - (RACSignal *)executeAgreementSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		double min = self.totalAmt.doubleValue * self.cart.minDownPmt.doubleValue;
+		double max = self.totalAmt.doubleValue * self.cart.maxDownPmt.doubleValue;
+		if (self.downPmtAmt.doubleValue < min) {
+			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额至少为%f", min]];
+			return nil;
+		}
+		if (self.downPmtAmt.doubleValue > max) {
+			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额最高为%f", max]];
+			return nil;
+		}
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
