@@ -216,7 +216,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return @"请填写公司地址，不少于3个字";
 	} else if (self.contact.contactRelation.length == 0) {
 		return @"请选择与联系人关系";
-	} else if (self.contact.contactName.length == 0 || self.contact.contactName.isChineseName) {
+	} else if (self.contact.contactName.length == 0 || !self.contact.contactName.isChineseName) {
 		return @"请填写正确的联系人姓名";
 	} else if (self.contact.contactMobile.length != 11 || ![self.contact.contactMobile isMobile]) {
 		return @"请填写正确的手机号码";
