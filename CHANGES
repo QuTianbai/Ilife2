@@ -1,3 +1,10 @@
+Version 2.1.1.2:
+ - Update ad-hoc provisioning profile
+ - 1、修复社保表单验证不可用 2、删除准备使用的动态社保表单cell
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - 限制输入字数
+ - fix socialCash keyboardType
+
 Version 2.1.1.1:
  - Fix 手机号验证
  - Merge remote-tracking branch 'ios/temp2.2.0' into temp2.2.0
