@@ -1,3 +1,7 @@
+Version 2.1.1.4:
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - commit
+
 Version 2.1.1.3:
  - Merge remote-tracking branch 'ios/v2.1.1' into v2.1.1
  - 社保贷表单有效性验证
