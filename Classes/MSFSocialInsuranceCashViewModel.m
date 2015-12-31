@@ -54,6 +54,10 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	_formViewModel = formsViewModel;
 	RACChannelTo(self, productCd) = RACChannelTo(self, loanType.typeID);
 	RACChannelTo(self, accessoryInfoVOArray) = RACChannelTo(self, accessories);
+	[self setUpAddress];
+	if (self.formViewModel.model.contrastList.count > 0) {
+		self.contact = self.formViewModel.model.contrastList[0];
+	}
   return self;
 }
 
@@ -72,8 +76,6 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	if (self.formViewModel.model.contrastList.count > 0) {
 		_contact = self.formViewModel.model.contrastList[0];
 	}
-	
-	[self setUpAddress];
 
 	[[MSFSelectKeyValues getSelectKeys:@"moneyUse"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 		if ([obj.code isEqualToString:@"PL99"]) {
@@ -217,7 +219,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return @"请选择与联系人关系";
 	} else if (self.contact.contactName.length == 0) {
 		return @"请填写正确的联系人姓名";
-	} else if (self.contact.contactMobile.length == 0 || ![self.contact.contactMobile isMobile]) {
+	} else if (self.contact.contactMobile.length == 0 || self.contact.contactMobile.length !=11  || ![self.contact.contactMobile isMobile]) {
 		return @"请填写正确的手机号码";
 	} else if (self.paymentString.length == 0) {
 		return @"请选择社保缴费基数";
