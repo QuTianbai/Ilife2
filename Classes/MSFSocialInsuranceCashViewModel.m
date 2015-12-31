@@ -191,14 +191,10 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 				return value;
 			}];
 	}
-	NSString *check = [self checkForm];
-	if (check.length > 0) {
-		[SVProgressHUD showErrorWithStatus:check];
-	}
 	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code, @"jionLifeInsurance": self.joinInsurance ? @"1" : @"0"} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
 
-- (NSString *)checkForm {
+- (NSString *)invalidString {
 	MSFApplicationForms *forms = self.formViewModel.model;
 	if (forms.contrastList.count == 0) {
 		forms.contrastList = @[self.contact];
@@ -226,6 +222,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	}
 	return nil;
 }
+
 /*
 - (RACSignal *)saveSignal {
 	NSError *error = nil;

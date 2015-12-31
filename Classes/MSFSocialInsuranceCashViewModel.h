@@ -43,12 +43,14 @@
 @property (nonatomic, strong, readonly) RACCommand *executeBasicPaymentCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services;
-
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFFormsViewModel *formViewModel;
 @property (nonatomic, strong) NSString *applicationNo;
 @property (nonatomic, strong) MSFLoanType *loanType;
+
+@property (nonatomic, strong, readonly) NSString *invalidString;
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel loanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services;
 

@@ -179,6 +179,11 @@
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		NSString *invalidString = self.viewModel.invalidString;
+		if (invalidString.length > 0) {
+			[SVProgressHUD showErrorWithStatus:invalidString];
+			return;
+		}
 		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
