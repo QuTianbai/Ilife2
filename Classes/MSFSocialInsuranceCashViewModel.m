@@ -109,6 +109,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	}];
 	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
+		[self prepareSubmit];
 		return [self submitSignal];
 	}];
 	
@@ -156,10 +157,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 			switch (index) {
 				case 0: self.purpose = x; break;
-				case 1: {
-					self.contact.contactRelation = x.code;
-					break;
-				}
+				case 1: self.contact.contactRelation = x.code; break;
 				case 2: self.basicPayment = x; break;
 				default: break;
 			}
@@ -194,18 +192,23 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	return [self.services.httpClient fetchSubmitSocialInsuranceInfoWithModel:@{@"productCd": self.productCd, @"loanPurpose":self.purpose.code, @"jionLifeInsurance": self.joinInsurance ? @"1" : @"0"} AndAcessory:self.accessoryInfoVOArray Andstatus:self.status];
 }
 
-- (NSString *)invalidString {
+- (void)prepareSubmit {
 	MSFApplicationForms *forms = self.formViewModel.model;
 	if (forms.contrastList.count == 0) {
 		forms.contrastList = @[self.contact];
 	}
+	self.model.empEdwBase = self.basicPayment.code;
+}
+
+- (NSString *)invalidString {
+	MSFApplicationForms *forms = self.formViewModel.model;
 	if (self.purpose.code.length == 0) {
 		return @"请选择贷款用途";
 	} else if (forms.currentProvinceCode.length == 0 || forms.currentCityCode.length == 0 || forms.currentProvinceCode.length == 0) {
 		return @"请选择居住地区";
 	} else if (forms.abodeDetail.length < 3) {
 		return @"请填写居住地址，不少于3个字";
-	} else if (forms.unitName.length < 4 || forms.unitName.length > 30 || ![forms.unitName isChineseName]) {
+	} else if (forms.unitName.length < 4 || forms.unitName.length > 30) {
 		return @"请填写单位名称，4~30个汉字";
 	} else if (forms.workProvinceCode.length == 0 || forms.workCityCode.length == 0 || forms.workCountryCode.length == 0) {
 		return @"请选择公司所在地区";
@@ -213,60 +216,14 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 		return @"请填写公司地址，不少于3个字";
 	} else if (self.contact.contactRelation.length == 0) {
 		return @"请选择与联系人关系";
-	} else if (self.contact.contactName.length == 0) {
+	} else if (self.contact.contactName.length == 0 || self.contact.contactName.isChineseName) {
 		return @"请填写正确的联系人姓名";
-	} else if (self.contact.contactMobile.length == 0 || self.contact.contactMobile.length !=11  || ![self.contact.contactMobile isMobile]) {
+	} else if (self.contact.contactMobile.length != 11 || ![self.contact.contactMobile isMobile]) {
 		return @"请填写正确的手机号码";
-	} else if (self.paymentString.length == 0) {
+	} else if (self.model.empEdwBase.length == 0) {
 		return @"请选择社保缴费基数";
 	}
 	return nil;
 }
-
-/*
-- (RACSignal *)saveSignal {
-	NSError *error = nil;
-	NSString *errorStr = @"";
-	if (self.cashpurpose.length == 0 ) {
-		errorStr = @"请选择贷款用途";
-		
-		error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-		return [RACSignal error:error];
-	}
-	if (!([self.professional isEqualToString:@"SI05"] || [self.professional isEqualToString:@"SI03"] ||[self.professional isEqualToString:@"SI06"])) {
-		if (self.employeeOlderMonths.intValue > 600 || self.employeeOlderMonths.intValue < 1) {
-			self.employeeOlderMonths = @"12";
-			errorStr = @"职工养老保险实际缴费月数:请输入1-600之间的整数";
-			
-			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-			return [RACSignal error:error];
-		}
-		if (self.employeeMedicalMonths.intValue > 600 || self.employeeMedicalMonths.intValue < 1) {
-			self.employeeMedicalMonths = @"12";
-			errorStr = @"职工医疗保险实际缴费月数:请输入1-600之间的整数";
-			
-			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-			return [RACSignal error:error];
-		}
-	} else {
-		if (self.residentOlderInsuranceYears.intValue > 50 || self.residentOlderInsuranceYears.intValue < 1) {
-			self.residentOlderInsuranceYears = @"2";
-			errorStr = @"居民养老保险实际缴费年数:请输入1-50之间的整数";
-			
-			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-			return [RACSignal error:error];
-		}
-		if (self.residentMedicalInsuranceYears.intValue > 50 || self.residentMedicalInsuranceYears.intValue < 1) {
-			self.residentMedicalInsuranceYears = @"2";
-			errorStr = @"居民医疗保险实际缴费年数:请输入1-50之间的整数";
-			
-			error = [NSError errorWithDomain:MSFSocialInsuranceCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-			return [RACSignal error:error];
-		}
-	}
-	
-	return [self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model];
-	
-}*/
 
 @end
