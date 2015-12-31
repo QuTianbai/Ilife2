@@ -1,3 +1,6 @@
+Version 2.2.0.2:
+ - Update ad-hoc provisioning profile
+
 Version 2.2.0.1:
  - Merge feature `commodity loan application`
  - Merge pull request from `zl/master`
