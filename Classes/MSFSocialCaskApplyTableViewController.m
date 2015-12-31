@@ -130,6 +130,12 @@
 	RAC(self, liveAddressTF.text) = liveAddrChannel;
 	[self.liveAddressTF.rac_textSignal subscribe:liveAddrChannel];
 	
+	[[self.companyNameTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 30) {
+			 textField.text = [textField.text substringToIndex:30];
+		 }
+	}];
 	RACChannelTerminal *compNameChannel = RACChannelTo(self, viewModel.formViewModel.model.unitName);
 	RAC(self, companyNameTF.text) = compNameChannel;
 	[self.companyNameTF.rac_textSignal subscribe:compNameChannel];
@@ -157,13 +163,19 @@
 	RAC(self, nameTF.text) = nameChannel;
 	[self.nameTF.rac_textSignal subscribe:nameChannel];
 	
+	[[self.mobileTF rac_signalForControlEvents:UIControlEventEditingChanged]
+	 subscribeNext:^(UITextField *textField) {
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
+		 }
+	}];
 	RACChannelTerminal *mobileChannel = RACChannelTo(self, viewModel.contact.contactMobile);
 	RAC(self, mobileTF.text) = mobileChannel;
 	[self.mobileTF.rac_textSignal subscribe:mobileChannel];
 	
 	RAC(self, basePayTF.text) = RACObserve(self, viewModel.basicPayment.text);
 	self.basePayBT.rac_command = self.viewModel.executeBasicPaymentCommand;
-		
+	
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
