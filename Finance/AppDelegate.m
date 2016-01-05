@@ -36,8 +36,11 @@
 #import "MSFConfirmContactViewModel.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtilsViewController.h"
-
 #import "MSFFormsViewModel.h"
+
+#if TEST
+#import <BugshotKit/BugshotKit.h>
+#endif
 
 @interface AppDelegate ()
 
@@ -61,6 +64,11 @@
 	[self.window makeKeyAndVisible];
 	
 	[Fabric with:@[CrashlyticsKit]];
+	
+#if TEST
+	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"ios@msxf.com"];
+	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
+#endif
 	
 	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {

@@ -120,7 +120,7 @@
 	if (forms.houseType.length == 0) {
 		return @"请选择住房状况";
 	}
-	if (forms.email.length > 0 && (![forms.email containsString:@"@"] || ![forms.email containsString:@"."])) {
+	if (forms.email.length > 0 && ([forms.email rangeOfString:@"@"].location == NSNotFound || [forms.email rangeOfString:@"."].location == NSNotFound)) {
 		return @"请填写正确的邮箱";
 	}
 	if (forms.homeCode.length > 0 || forms.homeLine.length > 0) {

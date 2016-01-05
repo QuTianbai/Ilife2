@@ -190,11 +190,13 @@
 		double min = self.totalAmt.doubleValue * self.cart.minDownPmt.doubleValue;
 		double max = self.totalAmt.doubleValue * self.cart.maxDownPmt.doubleValue;
 		if (self.downPmtAmt.doubleValue < min) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额至少为%f", min]];
+			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额至少为%.2f", min]];
+			[subscriber sendCompleted];
 			return nil;
 		}
 		if (self.downPmtAmt.doubleValue > max) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额最高为%f", max]];
+			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额最高为%.2f", max]];
+			[subscriber sendCompleted];
 			return nil;
 		}
 		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
