@@ -11,12 +11,24 @@
 #import <Masonry/Masonry.h>
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "MSFCommandView.h"
+#import "MSFEdgeButton.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFDrawCashViewModel.h"
+#import "MSFUser.h"
+#import "MSFClient+Users.h"
+#import "AppDelegate.h"
+#import "MSFClient+MSFBankCardList.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #define REPAY_DARK_COLOR  @"464646"
 #define REPAY_LIGHT_COLOR @"878787"
 #define REPAY_BORDER_COLOR @"DADADA"
 
 @interface MSFRepaymentTableViewCell ()
+
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *viewModel;
+
+@property (nonatomic, strong) id<MSFViewModelServices> services;
 
 /** UI **/
 @property (strong, nonatomic) UILabel *contractNum;//合同编号
@@ -56,6 +68,7 @@
 		_contractStatusLabel = [[UILabel alloc]init];
 		_shouldAmountLabel	 = [[UILabel alloc]init];
 		_asOfDateLabel			 = [[UILabel alloc]init];
+		_repayButton				 = [[MSFEdgeButton alloc] init];
 		
 		[_contractNum setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
 		_contractNum.font = [UIFont systemFontOfSize:15];
@@ -84,6 +97,10 @@
 		[_asOfDateLabel setTextColor:[MSFCommandView getColorWithString:REPAY_DARK_COLOR]];
 		_asOfDateLabel.font = [UIFont systemFontOfSize:13];
 		_asOfDateLabel.textAlignment = NSTextAlignmentCenter;
+		
+		[_repayButton setTitle:@"还款" forState:UIControlStateNormal];
+		
+		[self addSubview:_repayButton];
 		
 		[self addSubview:_contractNum];
 		[self addSubview:_contractStatus];
@@ -141,16 +158,54 @@
 			make.height.equalTo(@(self.labelHeight));
 			make.width.equalTo(@[_contractStatusLabel, _shouldAmountLabel]);
 		}];
+		
+		[_repayButton mas_makeConstraints:^(MASConstraintMaker *make) {
+			@strongify(self)
+			make.top.equalTo(self.asOfDateLabel.mas_bottom).offset(30);
+			make.left.equalTo(self).offset(15);
+			make.right.equalTo(self).offset(-15);
+			make.height.equalTo(@(40));
+		}];
 	}
 	
 	return self;
 }
 
 - (void)bindViewModel:(MSFRepaymentSchedulesViewModel *)viewModel {
+	self.viewModel = viewModel;
 	_contractNum.text = [NSString stringWithFormat:@"合同编号    %@", viewModel.repaymentNumber];
 	_contractStatusLabel.text = viewModel.status;
 	_shouldAmountLabel.text = [NSString stringWithFormat:@"%.2f", viewModel.cashAmount];
 	_asOfDateLabel.text = viewModel.cashDate;
+	if ([viewModel.status isEqualToString:@"已逾期"]) {
+		_repayButton.hidden = NO;
+		[[_repayButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			self.services = viewModel.services;
+			
+			if ([self hasTransactionalCode]) {
+				[[[self.services.httpClient fetchBankCardList].collect replayLazily] subscribeNext:^(id x) {
+					[SVProgressHUD dismiss];
+					NSArray *dataArray = x;
+					if (dataArray.count == 0) {
+						[[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
+					} else {
+						[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+							if (obj.master) {
+								MSFDrawCashViewModel *drawViewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:viewModel AndServices:viewModel.services AndType:2];
+								drawViewModel.type = 2;
+								drawViewModel.drawCash = [NSString stringWithFormat:@"%.2f", viewModel.amount];
+								[viewModel.services pushViewModel:drawViewModel];
+								*stop = YES;
+							}
+						}];
+					}
+				}];
+			}
+		}];
+	} else {
+		_repayButton.hidden = YES;
+	}
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -165,12 +220,35 @@
 	CGContextAddLineToPoint(context, rect.size.width, rect.size.height - 0.5);
 	
 	CGContextMoveToPoint(context, rect.size.width / 3, self.topLineGuide);
-	CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding);
 	
+	if ([self.viewModel.status isEqualToString:@"已逾期"]) {
+		CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding - 70);
+	} else {
+		CGContextAddLineToPoint(context, rect.size.width / 3, rect.size.height - self.padding);
+	}
 	CGContextMoveToPoint(context, rect.size.width * 2 / 3, self.topLineGuide);
-	CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding);
-	
+	if ([self.viewModel.status isEqualToString:@"已逾期"]) {
+		CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding - 70);
+	} else {
+		CGContextAddLineToPoint(context, rect.size.width * 2 / 3, rect.size.height - self.padding);
+	}
 	CGContextStrokePath(context);
+}
+
+- (BOOL)hasTransactionalCode {
+	MSFUser *user = self.services.httpClient.user;
+	if (!user.hasTransactionalCode) {
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+			if (index.intValue == 1) {
+				AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+				[self.services pushViewModel:delegate.authorizeVewModel];
+			}
+		}];
+		return NO;
+	}
+	return YES;
 }
 
 @end

@@ -152,8 +152,8 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	
 	if (self.addressViewModel.provinceCode.length == 0) {
 		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-																																										NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
-																																										}];
+			NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
@@ -169,8 +169,8 @@ NSLocalizedFailureReasonErrorKey: str,
 	
 	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
 		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-																																													NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
-																																													}];
+			NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
+		}];
 		return [RACSignal error:error];
 	}
 	
@@ -183,8 +183,8 @@ NSLocalizedFailureReasonErrorKey: str,
 	
 	if (self.addressViewModel.provinceCode.length == 0) {
 		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-																																													NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
-																																													}];
+			NSLocalizedFailureReasonErrorKey: @"请选择开户行地区",
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
@@ -193,8 +193,8 @@ NSLocalizedFailureReasonErrorKey: str,
 			str = @"你的银行卡号长度有误，请修改后再试";
 		}
 		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-																																													NSLocalizedFailureReasonErrorKey: str,
-																																													}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 
@@ -202,48 +202,47 @@ NSLocalizedFailureReasonErrorKey: str,
 	if (self.TradePassword.length == 0) {
 		NSString *str = @"请填写交易密码";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.smsCode.length == 0) {
 		NSString *str = @"请填写验证码";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if (self.againTradePWD.length == 0) {
 		NSString *str = @"请填写确认交易密码";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
 		NSString *str = @"交易密码和确认交易密码不一致";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
 		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-																																													NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
-																																													}];
+			NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
-
 	
 	return [self.services.httpClient resetTradepwdWithBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndprovinceCode:self.bankBranchProvinceCode AndcityCode:self.bankBranchCityCode AndsmsCode:self.smsCode AndnewTransPassword:self.TradePassword.sha256];
 }

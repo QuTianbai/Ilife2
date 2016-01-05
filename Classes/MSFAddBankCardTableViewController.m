@@ -17,14 +17,8 @@
 #import "MSFGetBankIcon.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
-#import "UIColor+Utils.h"
 
-#import "MSFTabBarController.h"
-#import "MSFTabBarViewModel.h"
-#import "MSFFormsViewModel.h"
-
-static NSString *bankCardShowInfoStrA = @"目前只支持邮储银行、工商银行、中国银行、建设银行、中信银行、光大银行、民生银行、广发银行、兴业银行的借记卡。请换卡再试。";
-//static NSString *bankCardShowStrB = @"主卡不能为贷记卡。";
+static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
 static NSString *bankCardShowStrB = @"提示：主卡不能为贷记卡。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
@@ -34,6 +28,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankInfoCS;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bankIcon;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
@@ -60,7 +55,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
 	RAC(self.bankAddressTF, text) = RACObserve(self.viewModel, bankAddress);
-//	 self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
 	self.bankWarningLB.numberOfLines = 0;
 	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
 	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
@@ -69,35 +63,38 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self.bankNameTF, text) = RACObserve(self.viewModel, bankName);
 	@weakify(self)
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
-		//if (bankName != nil && ![bankName isEqualToString:@""]) {
 		@strongify(self)
-			[UIView beginAnimations:nil context:nil];
-			[UIView setAnimationDuration:0.3];
-			self.bankNameTF.alpha = 1.0;
-			[UIView commitAnimations];
-//		} else {
-//			self.bankNameTF.alpha = 1.0;
-//		}
-		
+		[UIView beginAnimations:nil context:nil];
+		[UIView setAnimationDuration:0.3];
+		self.bankNameTF.alpha = 1.0;
+		[UIView commitAnimations];
 	}];
 	
 	
 	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
 		@strongify(self)
-		CGFloat alpha = 1.0;
+		CGFloat alpha = 0;
 		switch (support.intValue) {
 			case 1:
+				alpha = 1.0;
 				[self.bankWarningLB setAttributedText:bankCardShowInfoAttributeStr];
+				self.bankInfoCS.constant = 100;
 				break;
 			case 2:
 				if (!self.viewModel.isFirstBankCard) {
 					break;
 				}
+				alpha = 1.0;
 				self.bankWarningLB.text = bankCardShowStrB;
+				self.bankInfoCS.constant = 50;
+				break;
+			case 0:
+			case 3:
+				self.bankWarningLB.text = @"";
+				self.bankInfoCS.constant = 25;
 				break;
 			default:
-				[self.bankWarningLB setAttributedText:[bankCardShowInfoAttributeStr attributedSubstringFromRange:NSMakeRange(0, bankCardShowInfoAttributeStr.length - 6)]];
-				break;
+    break;
 		}
 		
 		[UIView beginAnimations:nil context:nil];
@@ -135,21 +132,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 			[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 		}
 	}];
-	
-//	self.submitBT.rac_command = self.viewModel.executeAddBankCard;
-//	@weakify(self)
-//	[self.submitBT.rac_command.executionSignals subscribeNext:^(RACSignal *authSignal) {
-//		@strongify(self)
-//		[self.view endEditing:YES];
-//		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-//		[authSignal subscribeNext:^(id x) {
-//			
-//			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
-//		}];
-//	}];
-//	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
-//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//	}];
 
 	[[(SHSPhoneTextField *)self.bankNOTF formatter] setDefaultOutputPattern:@"#### #### #### #### ###"];
 	((SHSPhoneTextField *)self.bankNOTF).textDidChangeBlock = ^(UITextField *textField){
@@ -186,7 +168,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[[self.viewModel.executeAddBankCard execute:nil]
 		subscribeCompleted:^{
 			@strongify(self)
-			[self refreshFormsViewModel];
 			[self.view endEditing:YES];
 			[SVProgressHUD showSuccessWithStatus:@"绑卡成功"];
 			[self.navigationController popViewControllerAnimated:YES];
@@ -194,14 +175,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		[self.viewModel.executeAddBankCard.errors subscribeNext:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
-
 	}
-}
-
-- (void)refreshFormsViewModel {
-	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
-	tabbar.viewModel.formsViewModel.active = NO;
-	tabbar.viewModel.formsViewModel.active = YES;
 }
 
 @end

@@ -29,8 +29,12 @@
 #import "MSFRepaymentPlanViewController.h"
 #import "MSFRepaymentViewModel.h"
 
+#import "MSFOrderListViewController.h"
+
 #import "MSFApplyListViewModel.h"
 #import "MSFLoanType.h"
+
+//#import "MSFCartViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -60,13 +64,15 @@
 	self.rowTitles = @[@[@"个人信息",
 											 @"申请记录",
 											 @"还款计划",
-											 @"银行卡"],
+											 @"银行卡",
+											 @"订单列表"],
 										 @[@"设置",
 											 @"关于"]];
 	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
 									 [UIImage imageNamed:@"icon-account-apply"],
 									 [UIImage imageNamed:@"icon-account-repay"],
-									 [UIImage imageNamed:@"icon-account-bankCard"]],
+									 [UIImage imageNamed:@"icon-account-bankCard"],
+									 [UIImage imageNamed:@"icon-account-order"]],
 								 @[[UIImage imageNamed:@"icon-account-settings"],
 									 [UIImage imageNamed:@"icon-account-about"]]];
 	NSLog(@"%@", self.icons);
@@ -123,10 +129,13 @@
 				case 3:
 					[self bankCardList];
 					break;
+				case 4:
+					[self orderList];
+					break;
 				default: break;
 			}
-		}
 			break;
+		}
 		case 1: {
 			switch (indexPath.row) {
 				case 0:
@@ -168,6 +177,14 @@
 	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)orderList {
+	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
+	[self.navigationController pushViewController:vc animated:YES];
+	
+//	MSFCartViewController *vcb = [[MSFCartViewController alloc] initWithOrderId:@"200000032015122408473723499" services:self.viewModel.servcies];
+//	[self.navigationController pushViewController:vcb animated:YES];
 }
 
 - (void)pushAbout {

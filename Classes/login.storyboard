@@ -96,11 +96,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zG-bkw">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zG-bkw">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="R6V-h1-s1x"/>
+                                                        <constraint firstAttribute="height" constant="17" id="SC1-8m-Zzn"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -560,11 +561,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="nkb-cq-ZtA">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="nkb-cq-ZtA">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="IBz-fX-ezF"/>
+                                                        <constraint firstAttribute="height" constant="17" id="nEp-4e-abj"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -1119,11 +1121,12 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="E9L-3J-aNa">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="E9L-3J-aNa">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="KHx-6P-apO"/>
+                                                        <constraint firstAttribute="height" constant="17" id="xzE-zL-n8W"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>

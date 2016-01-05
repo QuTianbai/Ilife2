@@ -17,15 +17,8 @@
 	NSMutableURLRequest *request =
 	[self requestWithMethod:@"POST" path:path parameters:nil
 	constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-		//NSString *fileName = [URL lastPathComponent];
-		//NSString *mimeType = @"image/*";
-	 // [formData appendPartWithFileData:[NSData dataWithContentsOfURL:URL] name:@"image" fileName:fileName			mimeType:nil];
 		[formData appendPartWithFormData:[NSData dataWithContentsOfURL:URL] name:@"idPhoto"];
 		[formData appendPartWithFormData:[NSData dataWithContentsOfURL:ownURL] name:@"ownerPhoto"];
-//		NSString *fileName = [URL lastPathComponent];
-//		NSString *mimeType = @"image/*";
-//		[formData appendPartWithFileData:[NSData dataWithContentsOfURL:URL] name:@"idPhoto" fileName:fileName mimeType:mimeType];
-//			[formData appendPartWithFileData:[NSData dataWithContentsOfURL:URL] name:@"ownerPhoto" fileName:fileName mimeType:mimeType];
 	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFPhoto.class] msf_parsedResults];

@@ -21,7 +21,6 @@
 	_bankName = @"";
 	_bankBranchCityCode = @"";
 	_bankBranchProvinceCode = @"";
-	//_services = servers;
 	
 	return self;
 }

@@ -33,9 +33,6 @@
 	_executeUnbind = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeUnbindSignal];
 	}];
-//	_executeBankList = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//		return [self executeBankListSignal];
-//	}];
 	_checkHasTrandPasswordViewModel = [[MSFCheckHasTradePassword alloc] initWithServices:self.services];
 	
 	return self;

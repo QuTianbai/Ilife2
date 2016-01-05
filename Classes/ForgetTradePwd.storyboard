@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ag-tW-ewZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9ag-tW-ewZ">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +13,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="lG7-TS-fPO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="zuk-eK-kDH">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
@@ -21,13 +20,11 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请绑定持卡人本人的银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQS-p5-pcs">
                                     <rect key="frame" x="20" y="14" width="156" height="16"/>
-                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="hQS-p5-pcs" firstAttribute="leading" secondItem="zuk-eK-kDH" secondAttribute="leading" constant="20" id="jDR-4y-TTy"/>
@@ -40,7 +37,6 @@
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpk-Oa-uuO" customClass="MSFEdgeButton">
                                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="95e-f8-2Bq"/>
                                     </constraints>
@@ -58,7 +54,6 @@
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaN-y4-Nje">
                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                    <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="0.5" id="N4M-l8-03i"/>
@@ -76,7 +71,6 @@
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vmS-RE-LOi">
                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="fdf-IW-z0u"/>
                                     </constraints>
@@ -95,7 +89,6 @@
                                     </variation>
                                 </label>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="vmS-RE-LOi" firstAttribute="top" secondItem="uaN-y4-Nje" secondAttribute="bottom" constant="10" id="DFb-Ha-wZB"/>
@@ -157,7 +150,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugv-X1-QOu">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="45" id="LIU-QG-I2c"/>
                                                         <constraint firstAttribute="height" constant="21" id="fdZ-El-6eU"/>
@@ -180,7 +172,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择开户行" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5P9-Ph-Z2O">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="uBX-QQ-Kmq"/>
                                                     </constraints>
@@ -197,12 +188,10 @@
                                                         </mask>
                                                     </variation>
                                                 </textField>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-O3-W3K">
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon-arrow-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="UUe-O3-W3K">
                                                     <rect key="frame" x="288" y="15.5" width="7" height="13"/>
-                                                    <animations/>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="5P9-Ph-Z2O" firstAttribute="centerY" secondItem="eaN-NB-JzL" secondAttribute="centerY" id="4gn-PK-gOP"/>
                                                 <constraint firstItem="Ugv-X1-QOu" firstAttribute="leading" secondItem="eaN-NB-JzL" secondAttribute="leading" constant="20" id="6bG-K2-fdE"/>
@@ -239,7 +228,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dfs-mq-niS" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="74" width="320" height="44"/>
@@ -250,7 +238,6 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行卡号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gES-lz-BO1">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="ee0-bU-AWf"/>
                                                         <constraint firstAttribute="width" constant="60" id="wYh-9w-8qr"/>
@@ -273,7 +260,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写银行卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ss9-cJ-F8k" customClass="SHSPhoneTextField">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="gzD-gG-QYT"/>
                                                     </constraints>
@@ -291,7 +277,6 @@
                                                     </variation>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="Ss9-cJ-F8k" firstAttribute="leading" secondItem="gES-lz-BO1" secondAttribute="trailing" constant="18" id="Kqy-kk-guT"/>
                                                 <constraint firstItem="gES-lz-BO1" firstAttribute="leading" secondItem="ZPA-8C-1hx" secondAttribute="leading" constant="20" id="YwI-Q0-WEy"/>
@@ -326,7 +311,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="fzw-M5-GkI" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="118" width="320" height="44"/>
@@ -337,7 +321,6 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FNI-ZS-JaC">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="4de-G7-kl5"/>
                                                         <constraint firstAttribute="width" constant="35" id="cCx-U3-86M"/>
@@ -357,7 +340,6 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预付费卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H8c-Cy-N5Z">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="57" id="ac8-eT-66x"/>
                                                         <constraint firstAttribute="height" constant="21" id="reP-Nk-XiE"/>
@@ -380,7 +362,6 @@
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入正确的银行卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-3j-ZZC">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Tlq-hQ-sSw"/>
                                                     </constraints>
@@ -398,7 +379,6 @@
                                                     </variation>
                                                 </textField>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="H8c-Cy-N5Z" firstAttribute="centerY" secondItem="b7m-4F-ahQ" secondAttribute="centerY" id="DPQ-Rm-mXy"/>
                                                 <constraint firstItem="Dlb-3j-ZZC" firstAttribute="top" secondItem="b7m-4F-ahQ" secondAttribute="top" constant="7" id="HRL-H6-rFk"/>
@@ -441,7 +421,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="EoY-gy-gZi" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="162" width="320" height="44"/>
@@ -452,16 +431,13 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写6位交易密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hZs-B9-PGs">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="fxs-bn-SU4">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
-                                                    <animations/>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="fxs-bn-SU4" firstAttribute="centerY" secondItem="M4C-fK-EAo" secondAttribute="centerY" id="Kfe-Of-Xu3"/>
                                                 <constraint firstItem="hZs-B9-PGs" firstAttribute="top" secondItem="M4C-fK-EAo" secondAttribute="topMargin" id="PHI-ee-bPU"/>
@@ -472,7 +448,6 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="hZs-B9-PGs" secondAttribute="trailing" constant="15" id="mqU-Cc-9I0"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2A7-ch-n6N" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="206" width="320" height="44"/>
@@ -483,16 +458,13 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次填写6位交易密码" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v3E-th-vVS">
                                                     <rect key="frame" x="52" y="8" width="245" height="27.5"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join" secureTextEntry="YES"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-password.png" translatesAutoresizingMaskIntoConstraints="NO" id="u4x-xL-oXx">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
-                                                    <animations/>
                                                 </imageView>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="v3E-th-vVS" secondAttribute="bottom" id="6Ed-rF-blg"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="v3E-th-vVS" secondAttribute="trailing" constant="15" id="Kij-G3-0e3"/>
@@ -503,7 +475,6 @@
                                                 <constraint firstItem="u4x-xL-oXx" firstAttribute="leading" secondItem="AcG-a9-xLH" secondAttribute="leading" constant="20" id="v3P-T4-qoc"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nbt-S8-LpT" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="250" width="320" height="44"/>
@@ -514,34 +485,28 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="xQE-IX-8d9">
                                                     <rect key="frame" x="52" y="8" width="145" height="27.5"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="join"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-verify-code.png" translatesAutoresizingMaskIntoConstraints="NO" id="64J-f2-ibb">
                                                     <rect key="frame" x="20" y="13" width="22" height="17"/>
-                                                    <animations/>
                                                 </imageView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zgQ-AH-SRQ">
                                                     <rect key="frame" x="207" y="0.0" width="99" height="43"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-send-captcha.png" translatesAutoresizingMaskIntoConstraints="NO" id="7Xp-Kb-Kcs">
                                                             <rect key="frame" x="0.0" y="0.0" width="99" height="43"/>
-                                                            <animations/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAS-cV-thp">
                                                             <rect key="frame" x="0.0" y="0.0" width="99" height="43"/>
-                                                            <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LzA-8Q-gzr">
                                                             <rect key="frame" x="0.0" y="0.0" width="99" height="43"/>
-                                                            <animations/>
                                                         </button>
                                                     </subviews>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="7Xp-Kb-Kcs" secondAttribute="bottom" id="5ZE-wL-Njx"/>
@@ -559,7 +524,6 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="zgQ-AH-SRQ" secondAttribute="bottom" constant="1" id="2gG-f5-QgA"/>
                                                 <constraint firstItem="zgQ-AH-SRQ" firstAttribute="leading" secondItem="xQE-IX-8d9" secondAttribute="trailing" constant="10" id="8oO-Aj-wJ1"/>
@@ -574,7 +538,6 @@
                                                 <constraint firstItem="64J-f2-ibb" firstAttribute="leading" secondItem="cnw-9e-JFg" secondAttribute="leading" constant="20" id="ydB-fc-dEG"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>

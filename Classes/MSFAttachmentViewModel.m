@@ -43,9 +43,9 @@
 	
 	_takePhotoCommand = [[RACCommand alloc] initWithEnabled:self.takePhotoValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [self takePhotoSignal];
+		return [self takePhotoSignalWith:nil];
 	}];
-	_takePhotoCommand.allowsConcurrentExecution = YES;
+		_takePhotoCommand.allowsConcurrentExecution = YES;
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient uploadAttachment:self.attachment] doNext:^(id x) {
@@ -79,7 +79,8 @@
 
 #pragma mark - Private
 
-- (RACSignal *)takePhotoSignal {
+- (RACSignal *)takePhotoSignalWith:(id)img {
+	[self.services ImagePickerControllerWithImage:img];
 	return [[self.services msf_takePictureSignal] map:^id(UIImage *image) {
 		NSString *name = [@([[NSDate date] timeIntervalSince1970]) stringValue].md5;
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];

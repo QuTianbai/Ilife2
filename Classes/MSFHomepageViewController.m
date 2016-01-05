@@ -14,6 +14,8 @@
 
 #import "MSFHomepageViewModel.h"
 #import "MSFReactiveView.h"
+#import "MSFOrderListViewController.h"
+#import "MSFCartViewController.h"
 
 @interface MSFHomepageViewController ()
 <UICollectionViewDataSource,
@@ -47,23 +49,49 @@ UICollectionViewDelegateFlowLayout>
 	[super viewDidLoad];
 	
 	@weakify(self)
-	[RACObserve(self, viewModel.cellModel) subscribeNext:^(id x) {
-		@strongify(self)
+	[[RACSignal combineLatest:@[RACObserve(self, viewModel.cellModel), RACObserve(self, viewModel.banners)]] subscribeNext:^(id x) {
 		[self.collectionView reloadData];
+	}];
+	[[self.viewModel.loanInfoRefreshCommand.executionSignals switchToLatest] subscribeNext:^(id x) {
+		[self.collectionView.pullToRefreshView stopAnimating];
+	} error:^(NSError *error) {
+		[self.collectionView.pullToRefreshView stopAnimating];
 	}];
 	[self.collectionView addPullToRefreshWithActionHandler:^{
 		@strongify(self)
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
-		[[self.viewModel.refreshCommand execute:nil] subscribeNext:^(id x) {
-			[self.collectionView.pullToRefreshView stopAnimating];
-		} error:^(NSError *error) {
-			[self.collectionView.pullToRefreshView stopAnimating];
-		}];
+		self.viewModel.active = NO;
+		self.viewModel.active = YES;
 	}];
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.active = NO;
 		self.viewModel.active = YES;
+	}];
+	
+	UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:nil action:nil];
+	UIBarButtonItem *payItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:nil action:nil];
+	[RACObserve(self, viewModel.hasOrders) subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x boolValue]) {
+			self.navigationItem.rightBarButtonItems = @[scanItem, payItem];
+		} else {
+			self.navigationItem.rightBarButtonItems = @[scanItem];
+		}
+	}];
+	
+	payItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.services];
+		[self.navigationController pushViewController:vc animated:YES];
+		return RACSignal.empty;
+	}];
+	scanItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [[self.viewModel.services msf_barcodeScanSignal] doNext:^(id x) {
+			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
+			[self.navigationController pushViewController:vc animated:YES];
+		}];
 	}];
 }
 
@@ -80,6 +108,7 @@ UICollectionViewDelegateFlowLayout>
 		MSFHomepageCollectionViewHeader *header =
 		[collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader
 																			 withReuseIdentifier:@"header" forIndexPath:indexPath];
+		[header bindViewModel:self.viewModel];
 		return header;
 	}
 	return UICollectionReusableView.new;

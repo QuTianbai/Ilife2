@@ -1,4 +1,91 @@
-Version 2.1.1.4:
+Version 2.2.0.3:
+ - Update ad-hoc provisioning profile
+ - Merge branch 'next'
+ - Merge branch 'YongZhao/master' into next
+ - update 试算商品贷款
+ - commit
+ - Update report path
+
+Version 2.2.0.2:
+ - Update ad-hoc provisioning profile
+
+Version 2.2.0.1:
+ - Merge feature `commodity loan application`
+ - Merge pull request from `zl/master`
+ - Update 二维码扫描
+ - Update 商品贷贷款流程
+ - Update 商品贷试算金额
+ - Update 订单生成支付条形码
+ - Fix 订单详情崩溃
+ - Improve 订单列表界面
+ - Fix 订单相关对象属性类型错误
+ - Update 根据首页条件判断订单支付/订单扫描按钮饿配置
+ - @wip home pay
+ - Update cipher timestamp fetch from response headers
+ - Merge pull request !33 from `Water/master`
+ - Merge pull request !34 from `YongZhao/master`
+ - update MSFCartViewModel Property
+ - Merge pull request !32 from `zl/master`
+ - Merge pull request !30 from `YongZhao/master`
+ - Format code style
+ - Fix @water test code in sign in view side effects
+ - Merge pull request branch 'Water/feature' into next
+ - Fix merge conflict from Water/featture branch
+ - Merge branch 'next' into Water/feature
+ - 主动支付
+ - 主动支付
+ - 合并
+ - 人脸识别照片
+ - 调试、整理订单相关代码
+ - 联调货单编辑
+ - 商品编辑 model绑定
+ - merged code from remote branch
+ - Rename OrderEdit in Cart
+ - Fix warnings
+ - Merge pull request !gitbrew from `Water/master`
+ - add MSFCart
+ - Merge pull request !29 from `zl/master`
+ - Add TODO tag for test code
+ - Merge pull request !28 from YongZhao/master
+ - 还款计划及支付
+ - 还款验证码页面
+ - update order edit UI
+ - Add 商品贷贷款流程
+ - 还款管理调整
+ - 还款管理
+ - 去掉拉去广告的功能
+ - hide bottom bar when pushed
+ - merge code form remote next branch
+ - 完成订单编辑UI ViewModel（尚未绑定api model）
+ - Merge pull request !25 from YongZhao/master
+ - Merge pull request !27 from zl/ra-master
+ - Merge remote-tracking branch 'ios/next'
+ - Update barcode scanner with reactivecocoa
+ - Add prefix to barcode scanner
+ - Add barcode scanner
+ - Remove textview/Textfeild custom class
+ - Update script
+ - add image icon-account-order add MSFOrderEditViewController
+ - 完成订单相关模块
+ - recover PlanPerodicTables
+ - add Orders
+ - delete MSFContractDetailsTableViewController MSFPlanPerodicTables MSFContractDetailsTableViewCell MSFUserInfoTableViewCell
+ - 添加首页广告
+ - Merge branch 'master' into next
+ - Merge branch 'zl/finance-master' into next
+ - Merge remote-tracking branch 'ios/next'
+ - Fix warnings
+ - Format view code style
+ - Format viewModel code style
+ - Merge branch 'master' into 'next'
+ - Merge branch 'next' of git.msxf.local:ios/Finance
+ - 1、职业信息页面使用的applicationViewModel改为copy，替代原来的直接引用。
+ - 1、基本信息、联系人信息页面使用的applicationViewModel改为copy，替代原来的直接引用。  2、更改退出页面时是否编辑信息的判断方法
+ - Format code style
+ - 优化代码，将用户信息三个页面是否被编辑的逻辑移至viewModel中
+ - 优化relationshipViewController代码，将fullAddress、existAddr逻辑移至viewModel
+
+ Version 2.1.1.4:
  - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
  - commit
 

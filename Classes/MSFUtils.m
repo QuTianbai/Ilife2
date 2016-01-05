@@ -20,8 +20,6 @@
 + (RACSignal *)setupSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
 	return [[client fetchReleaseNote] doNext:^(MSFReleaseNote *releasenote) {
-//		MSFCipher *cipher = [[MSFCipher alloc] initWithTimestamp:[releasenote.timestamp longLongValue]];
-//		[MSFClient setCipher:cipher];
 		[MSFUtils savePosters:releasenote.posters];
 	}];
 }

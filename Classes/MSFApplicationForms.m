@@ -13,7 +13,9 @@
 @implementation MSFApplicationForms
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-	return @{@"loanId":@"id"};
+	return @{
+		@"loanId": @"id"
+	};
 }
 
 + (NSValueTransformer *)whitePhotoJSONTransformer {

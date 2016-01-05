@@ -102,4 +102,24 @@
 // Returns MSFResponse.
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword;
 
+// 支付.验证数据交易密码
+//
+// transpassword			- 交易密码.
+// contractNO - `合同号`.
+//
+// Returns MSFResponse.
+- (RACSignal *)checkDataWithPwd:(NSString *)transpassword contractNO:(NSString *)contractNO;
+
+// 支付验证码
+//
+//
+// Returns MSFResponse.
+- (RACSignal *)sendSmsCodeForTrans;
+
+// 支付交易
+//
+//
+// Returns MSFResponse.
+- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo;
+
 @end

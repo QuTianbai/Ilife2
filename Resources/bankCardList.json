@@ -1,0 +1,22 @@
+ [
+	{
+	"bankCardId": "1dafds782nj2",
+	"bankCardNo": "8888",
+	"bankCardType": "",
+	"bankCode":"",
+	"bankName":"",
+	"bankBranchCityCode": "",
+	"bankBranchProvinceCode": "",
+	"master": true
+	},
+	{
+	"bankCardId": "1dafds782nj2",
+	"bankCardNo": "88******************888",
+	"bankCardType": "",
+	"bankCode":"",
+	"bankName":"",
+	"bankBranchCityCode": "",
+	"bankBranchProvinceCode": "",
+	"master":false
+	}
+	]

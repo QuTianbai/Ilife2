@@ -60,13 +60,12 @@ static const int kCounterLength = 60;
 }
 
 - (RACSignal *)captchaRequestValidSignal {
-	return [RACSignal
-					combineLatest:@[
-													RACObserve(self, counting)
-													]
-					reduce:^id( NSNumber *counting){
-						return @(!counting.boolValue);
-					}];
+	return [RACSignal combineLatest:@[
+		RACObserve(self, counting)
+		]
+	reduce:^id( NSNumber *counting){
+		return @(!counting.boolValue);
+	}];
 }
 
 @end

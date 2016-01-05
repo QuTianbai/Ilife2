@@ -1,0 +1,28 @@
+ [
+	{
+	"ad_id": "1dafds782nj2",
+	"title": "",
+	"link_type": "INTERNAL",
+	"description": "",
+	"url": "",
+	"image": {
+	"width": 100,
+	"height": 100,
+ "url": "http://img2.100bt.com/upload/ttq/20120831/1346406424571.jpg",
+	"type": ""
+	},
+ },
+ {
+	"ad_id": "1dafds782nj3",
+	"title": "",
+	"link_type": 0,
+	"description": "",
+	"url": "",
+	"image": {
+ "width": 100,
+ "height": 100,
+ "url": "http://img2.a0bi.com/upload/ttq/20140722/1405995619576_middle.jpg",
+ "type": ""
+ }
+ }
+	]

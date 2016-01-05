@@ -76,3 +76,30 @@ password: appserver111111
 3. LOG_API_RESPONSES 设置运行的时候输出网络调用日志
 
 ![](Resources/environment.png)
+
+# 模块调用
+
+## 二维码扫描测试调用代码
+
+```
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = UIColor.whiteColor;
+    [self.window makeKeyAndVisible];
+    
+    UIViewController *viewController = [[UIViewController alloc] init];
+    viewController.view.backgroundColor = UIColor.whiteColor;
+    self.window.rootViewController = viewController;
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 200, 200)];
+    [button setTitle:@"Open" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [viewController.view addSubview:button];
+    
+    self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+    [[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[self.viewModelServices msf_barcodeScanSignal] subscribeNext:^(id x) {
+            NSLog(@"%@", [x description]);
+        }];
+    }];
+```
+

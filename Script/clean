@@ -27,6 +27,6 @@ echo 'DerivedData Cleaning...'
 echo "========================================================================="
 
 rm -rf ~/Library/Developer/Xcode/DerivedData/*
+ls -l ~/Library/Developer/Xcode/DerivedData
 
 echo 'Done'
-ls -l ~/Library/Developer/Xcode/DerivedData

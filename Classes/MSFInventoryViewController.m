@@ -26,7 +26,7 @@
 #import "MSFClient.h"
 #import "MSFApplyCashVIewModel.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-
+#import "MSFCartViewModel.h"
 #import "MSFElementViewController.h"
 
 @interface MSFInventoryViewController ()
@@ -97,6 +97,11 @@ UICollectionViewDelegateFlowLayout>
 					}];
 				}];
 				
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFCartViewModel class]]) {
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					[(MSFCartViewModel *)self.viewModel.applicationViewModel setAccessories:x];
+					[self.viewModel.executeSubmitCommand execute:nil];
+				}];
 			} else {
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
 					[self.viewModel.executeSubmitCommand execute:nil];

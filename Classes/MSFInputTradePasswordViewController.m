@@ -31,19 +31,15 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
-	self.imgArray = @[self.firstimg, self.secondimg, self.thirdimg, self.forthimg, self.fifthimg, self.sixthimg];
-	
-//	for (UITextField *textField in siblings)
-//	{
-//		UIView *toolbar = [textField inputAccessoryView];
-//		
-//		//  (Bug ID: #78)
-//		if ([toolbar isKindOfClass:[IQToolbar class]] && (toolbar.tag == kIQDoneButtonToolbarTag || toolbar.tag == kIQPreviousNextButtonToolbarTag))
-//		{
-			[self.pwdTF setInputAccessoryView:nil];
-//		}
-//	}
+	self.imgArray = @[
+		self.firstimg,
+		self.secondimg,
+		self.thirdimg,
+		self.forthimg,
+		self.fifthimg,
+		self.sixthimg
+	];
+	[self.pwdTF setInputAccessoryView:nil];
 	[IQKeyboardManager sharedManager].enableAutoToolbar = NO;
 	[[self.cancelBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
@@ -88,11 +84,6 @@
 		[self.pwdTF becomeFirstResponder];
 		self.pwdTF.text = @"";
 	}];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
