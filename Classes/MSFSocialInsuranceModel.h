@@ -11,7 +11,7 @@
 @interface MSFSocialInsuranceModel : MSFObject
 //职工社保
 @property (nonatomic, copy, readonly) NSString *empEdwExist;//职工养老保险当前是否参保
-@property (nonatomic, copy, readonly) NSString *empEdwBase;//职工养老保险的缴费基数
+@property (nonatomic, copy) NSString *empEdwBase;//******职工养老保险的缴费基数
 @property (nonatomic, copy, readonly) NSString *empEdwStartDate;//职工养老保险首次缴费日期
 @property (nonatomic, copy, readonly) NSString *empEdwMonths;//职工养老保险实际缴费月数
 @property (nonatomic, copy, readonly) NSString *empMdcInsuExist;//职工医疗保险当前是否参保
