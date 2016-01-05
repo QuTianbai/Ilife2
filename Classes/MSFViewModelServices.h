@@ -29,7 +29,7 @@
 - (void)setHttpClient:(MSFClient *)client;
 
 // 调用相机拍照/模拟器的情况下直接获取相册图片
-- (RACSignal *)msf_takePictureSignal;
+- (RACSignal *)msf_takePictureSignal:(BOOL)frontOnly;
 //人脸识别前置图片
 - (void)ImagePickerControllerWithImage:(id )iamge;
 

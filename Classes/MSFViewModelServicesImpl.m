@@ -194,7 +194,7 @@
 
 #pragma mark - Signals
 
-- (RACSignal *)msf_takePictureSignal {
+- (RACSignal *)msf_takePictureSignal:(BOOL)frontOnly {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
@@ -204,11 +204,13 @@
 		}
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			_imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-			_imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
 			_imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
-			UIView *view = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 40)];
-			view.backgroundColor = UIColor.blackColor;
-			[_imagePickerController.view addSubview:view];
+			if (frontOnly) {
+				_imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+				UIView *view = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 40)];
+				view.backgroundColor = UIColor.blackColor;
+				[_imagePickerController.view addSubview:view];
+			}
 		} else {
 			_imagePickerController.sourceType =
 			UIImagePickerControllerSourceTypePhotoLibrary;
