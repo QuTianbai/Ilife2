@@ -30,6 +30,7 @@
 		UILabel *label1 = [[UILabel alloc] init];
 		label1.font = [UIFont systemFontOfSize:12];
 		label1.tag = 100;
+		label1.numberOfLines = 0;
 		[self.contentView addSubview:label1];
 		
 		UILabel *label2 = [[UILabel alloc] init];
@@ -53,6 +54,7 @@
 		[label1 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self.contentView).offset(5);
 			make.left.equalTo(self.contentView).offset(15);
+			make.right.equalTo(self.contentView).offset(-8);
 		}];
 		[label2 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.top.equalTo(self.contentView).offset(40);

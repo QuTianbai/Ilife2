@@ -87,14 +87,14 @@
 #pragma mark - Lifecycle
 
 - (instancetype)init {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	_client = [MSFClient unauthenticatedClientWithUser:user];
-
-  return self;
+	
+	return self;
 }
 
 #pragma mark - Private
@@ -111,16 +111,16 @@
 
 - (void)pushViewModel:(id)viewModel {
 	id viewController;
-
-  if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
-    viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-  } else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
-    viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
+	
+	if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
+		viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
+		viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-  } else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
 		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-  } else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
 		viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
@@ -160,10 +160,10 @@
 	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else {
-    NSLog(@"an unknown ViewModel was pushed!");
-  }
-
-  [self.navigationController pushViewController:viewController animated:YES];
+		NSLog(@"an unknown ViewModel was pushed!");
+	}
+	
+	[self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)popViewModel {
@@ -174,22 +174,22 @@
 				*stop = YES;
 			}
 		}];
-  } else {
-    NSLog(@"an unknown ViewModel was pop!");
-  }
+	} else {
+		NSLog(@"an unknown ViewModel was pop!");
+	}
 }
 
 - (void)presentViewModel:(id)viewModel {
 	id viewController;
-
+	
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
 		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else {
-    NSLog(@"an unknown ViewModel was present!");
-  }
-
-  [self.navigationController presentViewController:viewController animated:YES completion:nil];
+		NSLog(@"an unknown ViewModel was present!");
+	}
+	
+	[self.navigationController presentViewController:viewController animated:YES completion:nil];
 }
 
 #pragma mark - Signals
@@ -202,9 +202,12 @@
 			[subscriber sendError:nil];
 			return nil;
 		}
-
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			_imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			_imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 40)];
+			view.backgroundColor = UIColor.blackColor;
+			[_imagePickerController.cameraOverlayView addSubview:view];
 		} else {
 			_imagePickerController.sourceType =
 			UIImagePickerControllerSourceTypePhotoLibrary;
@@ -226,7 +229,7 @@
 - (void)ImagePickerControllerWithImage:(id)iamge {
 	_imagePickerController = [[UIImagePickerController alloc] init];
 	UIImageView *img = [[UIImageView alloc] initWithImage:iamge];
-
+	
 	//img.frame = CGRectMake(0, 0, 297, 360);
 	[self.imagePickerController.view addSubview:img];
 	[img mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -258,7 +261,7 @@
 				[subscriber sendCompleted];
 			}];
 		}];
-
+		
 		return [RACDisposable disposableWithBlock:^{
 		}];
 	}];
