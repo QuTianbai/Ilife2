@@ -84,7 +84,7 @@
 		@"minDownPmt": viewModel.cart.minDownPmt?:@"",
 		@"maxDownPmt": viewModel.cart.maxDownPmt?:@"",
 		@"internalCode": viewModel.cart.internalCode?:@"",
-		@"cmdtyList": cmdtyList,
+		@"cmdtyList": [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList],
 	};
 	
 	NSData *orderData = [NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil];
