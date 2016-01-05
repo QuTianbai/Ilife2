@@ -96,10 +96,17 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if ([_cellModel.productType isEqualToString:@"4101"] && [_cellModel.type isEqualToString:@"APPLY"]) {
-		return self;
+	if ([_cellModel.productType isEqualToString:@"1101"] || [_cellModel.productType isEqualToString:@"3101"]) {
+		return _cellModel;
+	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
+		if ([_cellModel.type isEqualToString:@"APPLY"]) {
+			return self;
+		}
+		return _cellModel;
+	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
+		return _cellModel;
 	}
-	return _cellModel;
+	return self;
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
