@@ -11,6 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClient+MSFCheckEmploee2.h"
 #import "MSFClient+MSFCart.h"
+#import "MSFClient+MSFCheckAllowApply.h"
 #import "MSFCart.h"
 #import "MSFTrial.h"
 #import "MSFMarkets.h"
@@ -19,6 +20,7 @@
 #import "MSFLoanType.h"
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
+#import "MSFCheckAllowApply.h"
 #import "MSFFormsViewModel.h"
 
 @interface MSFCartViewModel ()
@@ -119,6 +121,8 @@
 			self.downPmtScale = [@(self.loanAmt.floatValue / self.totalAmt.floatValue) stringValue];
 		}];
 		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
+			@strongify(self)
+			[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 			return self.executeAgreementSignal;
 		}];
 		_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
@@ -186,23 +190,27 @@
 }
 
 - (RACSignal *)executeAgreementSignal {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		double min = self.totalAmt.doubleValue * self.cart.minDownPmt.doubleValue;
-		double max = self.totalAmt.doubleValue * self.cart.maxDownPmt.doubleValue;
-		if (self.downPmtAmt.doubleValue < min) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额至少为%.2f", min]];
-			[subscriber sendCompleted];
+	return [[self.services.httpClient fetchCheckAllowApply] map:^id(MSFCheckAllowApply *model) {
+		if (model.processing == 1) {
+			double min = self.totalAmt.doubleValue * self.cart.minDownPmt.doubleValue;
+			double max = self.totalAmt.doubleValue * self.cart.maxDownPmt.doubleValue;
+			if (self.downPmtAmt.doubleValue < min) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额至少为%.2f", min]];
+				return nil;
+			}
+			if (self.downPmtAmt.doubleValue > max) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额最高为%.2f", max]];
+				return nil;
+			}
+			[SVProgressHUD dismiss];
+			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+			[self.services pushViewModel:viewModel];
+			return nil;
+		} else {
+			[SVProgressHUD dismiss];
+			[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
 			return nil;
 		}
-		if (self.downPmtAmt.doubleValue > max) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额最高为%.2f", max]];
-			[subscriber sendCompleted];
-			return nil;
-		}
-		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-		[self.services pushViewModel:viewModel];
-		[subscriber sendCompleted];
-		return nil;
 	}];
 }
 
