@@ -50,7 +50,7 @@
 					 @"loanTerm" : viewModel.term,
 					 @"compId": viewModel.compId,
 					 @"productCd" : viewModel.loanType.typeID,
-					 @"jionLifeInsurance" : @(viewModel.joinInsurance),
+					 @"jionLifeInsurance" : viewModel.joinInsurance? @"1":@"0",
 					 @"cmdtyList" : jsonValue};
 }
 
@@ -61,7 +61,7 @@
 		@"appLmt" : viewModel.loanAmt?:@"",
 		@"loanTerm" : viewModel.term?:@"",
 		@"compId": viewModel.compId?:@"",
-		@"jionLifeInsurance" : @(viewModel.joinInsurance),
+	  @"jionLifeInsurance" : viewModel.joinInsurance? @"1":@"0",
 		@"lifeInsuranceAmt" : viewModel.lifeInsuranceAmt?:@"",
 		@"loanFixedAmt" : viewModel.loanFixedAmt?:@"",
 		@"downPmtScale" : viewModel.downPmtScale?:@"",
