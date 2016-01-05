@@ -41,9 +41,18 @@
 	[super viewDidLoad];
 	self.updatePhotoBT.hidden = YES;
 	self.clickPhotoBT.rac_command = self.viewModel.takeFaceMaskPhotoCommand;
+	@weakify(self)
 	[self.viewModel.takeFaceMaskPhotoCommand.executionSignals subscribeNext:^(id x) {
-		self.updatePhotoBT.hidden = NO;
-		self.clickPhotoBT.hidden = YES;
+		@strongify(self)
+		[x subscribeCompleted:^{
+			if (self.viewModel.attachment) {
+				self.updatePhotoBT.hidden = NO;
+				self.clickPhotoBT.hidden = YES;
+			} else {
+				self.updatePhotoBT.hidden = YES;
+				self.clickPhotoBT.hidden = NO;
+			}
+		}];
 	}];
 	self.updatePhotoBT.rac_command = self.viewModel.updateImageCommand;
 	RAC(self, faceImagView.image) = [[RACObserve(self, viewModel.imgFilePath) ignore:nil] map:^id(id value) {

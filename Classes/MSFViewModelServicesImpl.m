@@ -205,9 +205,10 @@
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			_imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 			_imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+			_imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
 			UIView *view = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 40)];
 			view.backgroundColor = UIColor.blackColor;
-			[_imagePickerController.cameraOverlayView addSubview:view];
+			[_imagePickerController.view addSubview:view];
 		} else {
 			_imagePickerController.sourceType =
 			UIImagePickerControllerSourceTypePhotoLibrary;
