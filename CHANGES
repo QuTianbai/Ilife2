@@ -1,3 +1,20 @@
+Version 2.2.0.4:
+ - Merge branch 'next'
+ - Merge pull request !39 from `zl/master`
+ - Update 商品贷确认合同模版
+ - Fix 商品贷提交清单寿险计划字段错误
+ - Update bugshot in appdelegate
+ - Merge pull request !38 from `zl/master`
+ - Merge pull request !36 from `yongzhao/master`
+ - Merge pull request !37 from `zl/master`
+ - Merge branch from 'water/master'
+ - Fix 上传照片后无法自动返回清单界面
+ - Fix 商品贷提交数据格式
+ - 1、修改首付比例键盘格式 2、修复首付比例金额显示格式 3、修复货单编辑下一步无法点击的问题
+ - Update debug provisioning profile
+ - ios 方法不支持
+ - Update provisioning profile
+
 Version 2.2.0.3:
  - Update ad-hoc provisioning profile
  - Merge branch 'next'
