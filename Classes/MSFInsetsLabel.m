@@ -57,4 +57,9 @@
 	_label.text = text;
 }
 
+- (void)setFont:(UIFont *)font {
+	_font = font;
+	_label.font = font;
+}
+
 @end

@@ -69,8 +69,8 @@ UICollectionViewDelegateFlowLayout>
 		self.viewModel.active = YES;
 	}];
 	
-	UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera target:nil action:nil];
-	UIBarButtonItem *payItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:nil action:nil];
+	UIBarButtonItem *scanItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn-scan.png"] style:UIBarButtonItemStyleDone target:nil action:nil];
+	UIBarButtonItem *payItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn-pay.png"] style:UIBarButtonItemStyleDone target:nil action:nil];
 	[RACObserve(self, viewModel.hasOrders) subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x boolValue]) {

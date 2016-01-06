@@ -32,7 +32,7 @@ beforeEach(^{
 
 	services = mockProtocol(@protocol(MSFViewModelServices));
 	[given([services httpClient]) willReturn:client];
-	[given([services msf_takePictureSignal]) willReturn:RACSignal.empty];
+	[given([services msf_takePictureSignal:NO]) willReturn:RACSignal.empty];
 
 	mockRequiredElement = mock([MSFElement class]);
 	stubProperty(mockRequiredElement, applicationNo, @"");

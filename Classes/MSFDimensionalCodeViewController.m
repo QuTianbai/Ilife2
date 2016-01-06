@@ -39,6 +39,13 @@
 		@strongify(imageview)
 		[imageview setImageWithURL:x];
 	}];
+	
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight([UIScreen mainScreen].bounds)-120, CGRectGetWidth([UIScreen mainScreen].bounds), 30)];
+	label.text = self.viewModel.dismensionalCode;
+	label.font = [UIFont boldSystemFontOfSize:17];
+	label.textColor = UIColor.blackColor;
+	label.textAlignment = NSTextAlignmentCenter;
+	[self.view addSubview:label];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

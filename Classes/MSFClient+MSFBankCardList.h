@@ -15,4 +15,9 @@
 // Returns a singal which sends zero or more MSFBankCardListModel objects
 - (RACSignal *)fetchBankCardList;
 
+// 获取支持的银行
+//
+//
+- (RACSignal *)fetchSupportBankInfo;
+
 @end

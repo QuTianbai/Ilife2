@@ -7,8 +7,8 @@
 #import "MSFDimensionalCodeViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <ZXingObjC/ZXingObjC.h>
-#import "MSFOrderDetail.h"
 #import "NSString+Hashes.h"
+#import "MSFPayment.h"
 
 @interface MSFDimensionalCodeViewModel ()
 
@@ -18,19 +18,19 @@
 
 @implementation MSFDimensionalCodeViewModel
 
-- (instancetype)initWithModel:(MSFOrderDetail *)model {
+- (instancetype)initWithModel:(MSFPayment *)model {
   self = [super init];
   if (!self) {
     return nil;
   }
-	RAC(self, dismensionalCode) = RACObserve(model, inOrderId);
+	RAC(self, dismensionalCode) = RACObserve(model, authCode);
 	
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		NSError *error = nil;
 		ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-		ZXBitMatrix *result = [writer encode:@"A string to encode"
+		ZXBitMatrix *result = [writer encode:self.dismensionalCode
 																	format:kBarcodeFormatCode128
 																	 width:500
 																	height:180

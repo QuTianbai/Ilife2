@@ -47,6 +47,8 @@
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 @property (nonatomic, assign) BOOL isFirstBankCard;
+// 拉取支持的银行
+@property (nonatomic, copy, readonly) NSString *supportBanks;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard;
 
