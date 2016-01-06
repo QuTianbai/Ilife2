@@ -17,7 +17,6 @@
 #import "AppDelegate.h"
 #import "MSFGetBankIcon.h"
 
-static NSString *bankCardShowInfoStrA = @"目前只支持工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行的借记卡。请换卡再试。";
 static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
 
@@ -28,7 +27,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UILabel *bankWarningLB;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bankInfoCS;
 
 @property (weak, nonatomic) IBOutlet UIImageView *bankIcon;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
@@ -42,6 +40,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet UIImageView *sendCaptchaView;
 @property (nonatomic, strong) MSFAuthorizeViewModel *authviewModel;
 @property (nonatomic, strong) MSFAddBankCardVIewModel *viewModel;
+@property (nonatomic, strong) NSMutableAttributedString *supportBanks;
 
 @end
 
@@ -93,19 +92,26 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self, viewModel.smsCode) = self.checkCodeTF.rac_textSignal;
     
 	RAC(self.bankAddressTF, text) = RACObserve(self.viewModel, bankAddress);
-	self.bankWarningLB.numberOfLines = 0;
-	NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:bankCardShowInfoStrA];
-	NSRange redRange = [bankCardShowInfoStrA rangeOfString:@"工商银行、中国银行、建设银行、邮政储蓄银行、兴业银行、光大银行、民生银行、中信银行、广发银行"];
-	[bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
+	
+	
+	@weakify(self)
+	[RACObserve(self, viewModel.supportBanks) subscribeNext:^(id x) {
+		if ([x isKindOfClass:NSString.class]) {
+			self.supportBanks = [[NSMutableAttributedString alloc] initWithString:x];
+			//前5个字为“目前只支持”
+			NSRange redRange = NSMakeRange(5, self.supportBanks.length - 5);
+			[self.supportBanks addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
+		}
+		[self refreshInformation:self.viewModel.bankInfo.support];
+	}];
 	
 	RAC(self.bankNameTF, text) = [RACObserve(self.viewModel, bankName) map:^id(NSString *value) {
 		if ([value isEqualToString:@""]) {
 			return @"请输入正确的银行卡号";
 		}
-		
 		return value;
-		
 	}];
+	
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
 		if (bankName != nil && ![bankName isEqualToString:@""]) {
 			[UIView beginAnimations:nil context:nil];
@@ -122,37 +128,10 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	RAC(self.viewModel, bankNO) = self.bankNOTF.rac_textSignal;//银行卡号
 	
 	[RACObserve(self.viewModel, bankInfo.support) subscribeNext:^(NSString *support) {
-		CGFloat alpha = 0;
-		switch (support.intValue) {
-			case 1:
-				alpha = 1.0;
-				[self.bankWarningLB setAttributedText:bankCardShowInfoAttributeStr];
-				self.bankInfoCS.constant = 100;
-				break;
-			case 2:
-				if (!self.viewModel.isFirstBankCard) {
-					break;
-				}
-				alpha = 1.0;
-				self.bankWarningLB.text = bankCardShowStrB;
-				self.bankInfoCS.constant = 50;
-				break;
-			case 0:
-			case 3:
-				self.bankWarningLB.text = @"";
-				self.bankInfoCS.constant = 25;
-				break;
-			default:
-    break;
-		}
-		
-		[UIView beginAnimations:nil context:nil];
-		[UIView setAnimationDuration:0.3];
-		self.bankWarningLB.alpha = alpha;
-		[UIView commitAnimations];
-		
+		@strongify(self)
+		[self refreshInformation:support];
 	}];
-	
+		
 	RAC(self.bankCarTypeLB, text) = [[RACObserve(self.viewModel, bankType) ignore:nil] map:^id(id value) {
 		return value;
 	}];
@@ -165,14 +144,12 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		} else {
 			self.bankCarTypeLB.alpha = 0;
 		}
-		
 	}];
 	
 	self.checkCodeBT.rac_command = self.authviewModel.executeCaprchForgetTradePwd;
 	
 	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);
 	
-	@weakify(self)
 	[self.checkCodeBT.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
 		[self.view endEditing:YES];
@@ -212,6 +189,20 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		@strongify(self)
 		self.viewModel.bankNO = textField.text;
 	};
+}
+
+- (void)refreshInformation:(NSString *)support {
+	switch (support.intValue) {
+		case 2:
+			if (!self.viewModel.isFirstBankCard) {
+				break;
+			}
+			self.bankWarningLB.text = bankCardShowStrB;
+			break;
+		default:
+			[self.bankWarningLB setAttributedText:self.supportBanks];
+			break;
+	}
 }
 
 - (void)viewWillAppear:(BOOL)animated {

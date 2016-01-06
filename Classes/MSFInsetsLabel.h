@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) UIColor *textColor;
 @property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) UIFont *font;
 
 @end
