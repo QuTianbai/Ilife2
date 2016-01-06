@@ -108,7 +108,6 @@
 		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
 		MSFBlurButton *button = [MSFBlurButton buttonWithType:UIButtonTypeCustom];
 		button.frame = CGRectMake(10, 5, CGRectGetWidth([UIScreen mainScreen].bounds) - 20, 34);
-		button.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 		[button setTitle:@"确认支付" forState:UIControlStateNormal];
 		[[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 			takeUntil:cell.rac_prepareForReuseSignal]
