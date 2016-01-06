@@ -20,12 +20,13 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		UILabel *title = [[UILabel alloc] init];
-		title.font = [UIFont systemFontOfSize:15];
+		title.font = [UIFont systemFontOfSize:14.5];
 		title.tag = 100;
 		[self.contentView addSubview:title];
 		
 		MSFInsetsLabel *content = [[MSFInsetsLabel alloc] init];
 		content.tag = 101;
+		content.font = [UIFont systemFontOfSize:14.5];
 		[self.contentView addSubview:content];
 		
 		[title mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -34,7 +35,7 @@
 		}];
 		[content mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.centerY.equalTo(self.contentView);
-			make.right.equalTo(self.contentView).offset(-15);
+			make.right.equalTo(self.contentView).offset(-8);
 			make.height.equalTo(@30);
 		}];
 	}
