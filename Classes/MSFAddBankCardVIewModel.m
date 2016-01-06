@@ -16,6 +16,7 @@
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
+#import "MSFClient+MSFBankCardList.h"
 
 static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardViewModelErrorDomain";
 
@@ -102,8 +103,10 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 		@strongify(self)
 		return [self executeResetTrade];
 	}];
+	[[self.services.httpClient fetchSupportBankInfo] subscribeNext:^(NSString *x) {
+		_supportBanks = x;
+	}];
 
-	
 	return self;
 }
 

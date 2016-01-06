@@ -10,7 +10,7 @@
 #import "MSFBankCardListModel.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFUser.h"
-#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFResponse.h"
 
 @implementation MSFClient (MSFBankCardList)
 
@@ -19,6 +19,13 @@
 		@"uniqueId": self.user.uniqueId
 	}];
 	return [[self enqueueRequest:request resultClass:MSFBankCardListModel.class] msf_parsedResults];
+}
+
+- (RACSignal *)fetchSupportBankInfo {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/supportBank" parameters:nil];
+	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
+		return value.parsedResult[@"supportBank"];
+	}];
 }
 
 @end
