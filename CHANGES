@@ -1,3 +1,19 @@
+Version 2.2.0.8:
+ - Merge branch 'next'
+ - Merge pull request !46 from `yongzhao/maste`
+ - Merge pull request !47 from `zl/master`
+ - Update 首页支付增加交易密码
+ - 略微改小订单详情内容字体大小，解决小屏幕字体重叠的问题
+ - 修复订单详情确认支付按钮宽度屏幕适配问题
+ - 修改首页状态显示为空的问题
+ - 编辑订单信息，当最低最高首付比例为0时，禁止首付输入
+ - Update icons images
+ - 动态拉取支持银行的信息
+ - Update 条形码界面增加订单号显示
+ - Fix specs
+ - Update provisioning profile
+ - Update default test api
+
 Version 2.2.0.7:
  - Merge branch 'next'
  - Merge pull request !45 from `zl/master`
