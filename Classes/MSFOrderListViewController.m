@@ -58,7 +58,6 @@
 	[self.viewModel.executeRefreshCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
 		@strongify(self)
 		[self.tableView.pullToRefreshView stopAnimating];
-		self.tableView.infiniteScrollingView.enabled = [x count] == 10;
 	} error:^(NSError *error) {
 		@strongify(self)
 		[self.tableView.pullToRefreshView stopAnimating];
@@ -72,6 +71,7 @@
 	}];
 	[RACObserve(self, viewModel.orders) subscribeNext:^(id x) {
 		@strongify(self)
+		self.tableView.infiniteScrollingView.enabled = [x count] > 10;
 		[self.tableView reloadData];
 	}];
 }
