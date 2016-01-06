@@ -17,6 +17,12 @@
 		@"appNo":appNO
 	}];
 	
+	if ([productCode isEqualToString:@"3101"]) {
+		request = [self requestWithMethod:@"POST" path:@"loan/confirmOrder" parameters:@{
+			@"appNo":appNO
+		}];
+	}
+	
 	return [[self enqueueRequest:request resultClass:MSFConfirmContractModel.class] msf_parsedResults];
 }
 
