@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "MSFCartViewModel.h"
+#import "MSFCart.h"
 
 @implementation MSFCartInputCell
 
@@ -50,10 +51,16 @@
 
 - (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UITextField *tf = (UITextField *)[self.contentView viewWithTag:100];
-	tf.placeholder = @"请填写首付金额";
-	RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);
-	RAC(tf, text) = downPmtChannel;
-	[[[tf.rac_textSignal throttle:1.f] takeUntil:self.rac_prepareForReuseSignal] subscribe:downPmtChannel];
+	BOOL allow = viewModel.cart.minDownPmt.floatValue > 0 || viewModel.cart.minDownPmt.floatValue > 0;
+	if (allow) {
+		tf.userInteractionEnabled = YES;
+		tf.placeholder = @"请填写首付金额";
+		RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);
+		RAC(tf, text) = downPmtChannel;
+		[[[tf.rac_textSignal throttle:1.f] takeUntil:self.rac_prepareForReuseSignal] subscribe:downPmtChannel];
+	} else {
+		tf.userInteractionEnabled = NO;
+	}
 }
 
 @end
