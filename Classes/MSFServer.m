@@ -16,7 +16,7 @@ NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
 
 static NSString *URLString(void) {
 	NSString *url = [NSUserDefaults.standardUserDefaults stringForKey:@"test_url"];
-	return url ?: @"http://api4.msxf.test";
+	return url ?: @"http://api2.msxf.lotest";
 }
 
 #else
