@@ -16,8 +16,12 @@
 #import "MSFDimensionalCodeViewModel.h"
 #import "MSFDimensionalCodeViewController.h"
 #import "MSFBlurButton.h"
+#import "MSFInputTradePasswordViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFClient+Payment.h"
+#import "MSFPayment.h"
 
-@interface MSFOrderDetailViewController ()
+@interface MSFOrderDetailViewController () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, weak) id<MSFViewModelServices>services;
 @property (nonatomic, strong) NSString *orderId;
@@ -25,7 +29,9 @@
 
 @end
 
-@implementation MSFOrderDetailViewController
+@implementation MSFOrderDetailViewController {
+	MSFInputTradePasswordViewController *pvc;
+}
 
 - (instancetype)initWithOrderId:(NSString *)orderId services:(id<MSFViewModelServices>)services {
 	self = [super initWithStyle:UITableViewStyleGrouped];
@@ -49,9 +55,23 @@
 		@strongify(self)
 		self.order = x;
 		[self.tableView reloadData];
+		UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"支付" style:UIBarButtonItemStyleDone target:nil action:nil];
+		if ([self.order.orderStatus isEqualToString:@"3"]) {
+			self.navigationItem.rightBarButtonItem = item;
+			self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+				return self.paymentSignal;
+			}];
+		}
 	} error:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:@"获取订单详情失败"];
 	}];
+}
+
+- (RACSignal *)paymentSignal {
+	pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+	pvc.delegate = self;
+	[[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+	return RACSignal.empty;
 }
 
 - (void)back {
@@ -75,7 +95,7 @@
 	} else if (section == 2) {
 		return 3;
 	}
-	return 1;
+	return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -147,6 +167,18 @@
 		}
 	}
 	return cell;
+}
+
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type  {
+	[[self.services.httpClient paymentWithOrder:self.order password:pwd] subscribeNext:^(id x) {
+		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithModel:x];
+		MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+	} error:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 @end

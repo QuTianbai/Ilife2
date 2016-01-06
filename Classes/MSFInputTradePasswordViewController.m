@@ -29,6 +29,8 @@
 
 @implementation MSFInputTradePasswordViewController
 
+//!!!: 存在内存没有释放的问题
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.imgArray = @[
