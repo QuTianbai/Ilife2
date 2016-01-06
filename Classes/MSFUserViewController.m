@@ -34,8 +34,6 @@
 #import "MSFApplyListViewModel.h"
 #import "MSFLoanType.h"
 
-//#import "MSFCartViewController.h"
-
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *rowTitles;

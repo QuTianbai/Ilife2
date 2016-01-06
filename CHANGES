@@ -102,6 +102,49 @@ Version 2.2.0.1:
  - 优化代码，将用户信息三个页面是否被编辑的逻辑移至viewModel中
  - 优化relationshipViewController代码，将fullAddress、existAddr逻辑移至viewModel
 
+ Version 2.1.1.4:
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - commit
+
+Version 2.1.1.3:
+ - Merge remote-tracking branch 'ios/v2.1.1' into v2.1.1
+ - 社保贷表单有效性验证
+
+Version 2.1.1.2:
+ - Update ad-hoc provisioning profile
+ - 1、修复社保表单验证不可用 2、删除准备使用的动态社保表单cell
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - 限制输入字数
+ - fix socialCash keyboardType
+
+Version 2.1.1.1:
+ - Fix 手机号验证
+ - Merge remote-tracking branch 'ios/temp2.2.0' into temp2.2.0
+ - Fix 自动更新地址信息
+ - Merge branch 'temp2.2.0' of git.msxf.local:ios/Finance into temp2.2.0
+ - 添加社保单校验
+ - Update 社保贷保存身份信息
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Update 社保贷提交
+ - 麻辣带全屏提交
+ - update tab2 UI
+ - update data binding
+ - Update headers background color
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Fix 时间戳异常
+ - commit
+ - commit
+ - prepare delete storyboard
+ - commit
+ - commit
+ - tempCommit
+ - update socialInsurance storyboard
+ - update support banks
+ - 银行卡绑定页面显示支持的银行
+ - update tab2 UI; update tab2 点击麻辣贷跳转
+ - 调整tab2申请入口广告UI比例
+ - 授权后，app直接进入tab2
+
 Version 2.1.0.12:
  - Merge pull request #24 from Water/2.1.0.11-dictionary
  - 社保信息数据字典定义

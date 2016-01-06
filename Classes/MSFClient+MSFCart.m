@@ -70,8 +70,6 @@
 		@"promId" : viewModel.promId?:@"",
 	};
 	
-	NSData *data = [NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList] options:NSJSONWritingPrettyPrinted error:nil];
-	NSString *cmdtyList = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSDictionary *cart = @{
 		@"cartId": viewModel.cart.cartId?:@"",
 		@"compId": viewModel.cart.compId?:@"",

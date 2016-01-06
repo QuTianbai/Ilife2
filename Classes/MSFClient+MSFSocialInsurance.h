@@ -23,7 +23,7 @@
 //
 // dic - 社保贷资料信息 <NSDictionary>
 // AccessoryInfoVO - 社保贷附件信息 <NSDictionary>
-// status - 社保贷保存还是最后一步提交社保申请 0 - 保存 1 - 提交
+// status - 社保贷保存还是最后一步提交社保申请 0 - 保存 1 - 提交 (无效字段)
 // JoininLifeInsurance - 是否加入寿险计划
 //
 // Returns a signal which will send a MSFSubmitApplyModel

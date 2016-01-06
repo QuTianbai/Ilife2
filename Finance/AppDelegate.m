@@ -262,6 +262,7 @@
 
 - (void)authenticatedControllers {
 	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+	tabBarController.selectedIndex = 1;
 	self.window.rootViewController = tabBarController;
 }
 

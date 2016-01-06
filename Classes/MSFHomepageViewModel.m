@@ -96,7 +96,7 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if ([_cellModel.productType isEqualToString:@"1101"]) {
+	if ([_cellModel.productType isEqualToString:@"1101"] || [_cellModel.productType isEqualToString:@"3101"]) {
 		return _cellModel;
 	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
 		if ([_cellModel.type isEqualToString:@"APPLY"]) {
@@ -110,7 +110,7 @@
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if ([_cellModel.productType isEqualToString:@"1101"]) {
+	if ([_cellModel.productType isEqualToString:@"1101"] || [_cellModel.productType isEqualToString:@"3101"]) {
 		return @"MSFHomePageContentCollectionViewCell";
 	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
 		if ([_cellModel.type isEqualToString:@"APPLY"] || [_cellModel.statusString isEqualToString:@"已到期"]) {
