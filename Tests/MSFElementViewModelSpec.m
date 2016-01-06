@@ -27,7 +27,7 @@ beforeEach(^{
 	
 	client = mock([MSFClient class]);
 	[given([services httpClient]) willReturn:client];
-	[given([services msf_takePictureSignal]) willReturn:RACSignal.empty];
+	[given([services msf_takePictureSignal:NO]) willReturn:RACSignal.empty];
 	
 	element = mock(MSFElement.class);
 	
