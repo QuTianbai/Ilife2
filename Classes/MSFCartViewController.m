@@ -68,9 +68,9 @@
 	nextButton.rac_command = self.viewModel.executeNextCommand;
 
 	@weakify(self)
-	[RACObserve(self, viewModel.cart) subscribeNext:^(id x) {
+	[RACObserve(self, viewModel.cart) subscribeNext:^(MSFCart *x) {
 		@strongify(self)
-		nextButton.hidden = !x;
+		nextButton.hidden = x.cartId.length == 0;
 		[self.tableView reloadData];
 	}];
 }
@@ -126,7 +126,7 @@
 		label.text = @"分期";
 	} else {
 		MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
-		label.text = commodity.brandName;
+		label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
 	}
 	[reuse addSubview:label];
 	return reuse;

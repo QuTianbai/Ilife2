@@ -78,7 +78,6 @@
 		@"totalQuantity": viewModel.cart.totalQuantity?:@"",
 		@"riskMarkCode": viewModel.cart.riskMarkCode?:@"",
 		@"crProdId": viewModel.cart.crProdId?:@"",
-		@"promId": viewModel.cart.promId?:@"",
 		@"minDownPmt": viewModel.cart.minDownPmt?:@"",
 		@"maxDownPmt": viewModel.cart.maxDownPmt?:@"",
 		@"internalCode": viewModel.cart.internalCode?:@"",
