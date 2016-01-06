@@ -5462,7 +5462,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "acdb0a49-8e09-4a00-a344-7d34b82d08e0";
+				PROVISIONING_PROFILE = "2ebaf597-d2c6-471b-9293-23702d518265";
 			};
 			name = Debug;
 		};
@@ -5489,7 +5489,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "83ba9173-99fe-4540-8ffc-0db006f9c794";
+				PROVISIONING_PROFILE = "75f4674e-b8ec-4e01-924a-c73efdae8baa";
 			};
 			name = Release;
 		};
@@ -5610,7 +5610,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "75505727-715f-4b3a-a235-12422ae2258e";
+				PROVISIONING_PROFILE = "75f4674e-b8ec-4e01-924a-c73efdae8baa";
 			};
 			name = Test;
 		};
