@@ -31,6 +31,7 @@
 @property (nonatomic, strong, readwrite) NSString *term;
 @property (nonatomic, strong, readwrite) MSFMarkets *markets;
 @property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
+@property (nonatomic, assign, readwrite) BOOL barcodeInvalid; // 商铺编号
 
 @end
 
@@ -89,9 +90,12 @@
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
 			@strongify(self)
+			self.barcodeInvalid = NO;
 			self.cart = x;
 			self.compId = self.cart.compId;
 			self.totalAmt = self.cart.totalAmt;
+		} error:^(NSError *error) {
+			self.barcodeInvalid = YES;
 		}];
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
 			@strongify(self)
