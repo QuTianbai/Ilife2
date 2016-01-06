@@ -1,3 +1,10 @@
+Version 2.2.0.7:
+ - Merge branch 'next'
+ - Merge pull request !45 from `zl/master`
+ - Merge pull request !44 from `yongzhao/master`
+ - Update 增加无效二维码提示
+ - 修改订单详情文字错误，修改订单列表上拉加载
+
 Version 2.2.0.6:
  - Merge branch 'next'
  - Merge pull request !43 from `yongzhao/master`
