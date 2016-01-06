@@ -8,6 +8,7 @@
 
 #import "MSFOrderDetailViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFOrderListCell.h"
 #import "MSFOrderDetail.h"
 #import "MSFClient+MSFOrder.h"
@@ -49,7 +50,7 @@
 		self.order = x;
 		[self.tableView reloadData];
 	} error:^(NSError *error) {
-		
+		[SVProgressHUD showErrorWithStatus:@"获取订单详情失败"];
 	}];
 }
 
@@ -135,7 +136,7 @@
 				NSString *content = [NSString stringWithFormat:@"￥%@×%@期", self.order.mthlyPmtAmt, self.order.loanTerm];
 				[cell setTitle:@"贷款期数" content:content isList:NO]; break;
 			}
-			case 3: [cell setTitle:[NSString stringWithFormat:@"%@加入首先计划", self.order.valueAddedSvc ? @"已" : @"未"] content:nil isList:NO]; break;
+			case 3: [cell setTitle:[NSString stringWithFormat:@"%@加入寿险计划", self.order.valueAddedSvc ? @"已" : @"未"] content:nil isList:NO]; break;
 		}
 	} else {
 		MSFCommodity *commodity = self.order.cmdtyList[indexPath.section - 2];
