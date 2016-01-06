@@ -18,7 +18,7 @@
 @property (nonatomic, copy, readonly) NSString *riskMarkCode; // 风险标识码
 @property (nonatomic, strong, readonly) NSArray *cmdtyList; // 商品列表
 @property (nonatomic, copy, readonly) NSString *crProdId; // 信贷产品编号
-@property (nonatomic, copy, readonly) NSString *promId; // 活动编号
+//@property (nonatomic, copy, readonly) NSString *promId; // 活动编号
 @property (nonatomic, copy, readonly) NSString *minDownPmt; // 最低首付比例
 @property (nonatomic, copy, readonly) NSString *maxDownPmt; // 最高首付比例
 @property (nonatomic, copy, readonly) NSString *internalCode; // 内部代码
