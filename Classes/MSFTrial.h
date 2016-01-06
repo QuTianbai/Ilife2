@@ -12,5 +12,6 @@
 
 @property (nonatomic, copy) NSString *loanFixedAmt;
 @property (nonatomic, copy) NSString *lifeInsuranceAmt;
+@property (nonatomic, copy) NSString *promId;
 
 @end

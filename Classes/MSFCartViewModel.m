@@ -79,6 +79,7 @@
 		trialCommand.allowsConcurrentExecution = YES;
 		[trialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
 			self.trial = x;
+			self.promId = x.promId;
 		}];
 		[trialCommand.errors subscribeNext:^(id x) {
 			NSLog(@"试算失败");
@@ -90,7 +91,6 @@
 			@strongify(self)
 			self.cart = x;
 			self.compId = self.cart.compId;
-			self.promId = self.cart.promId;
 			self.totalAmt = self.cart.totalAmt;
 		}];
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
