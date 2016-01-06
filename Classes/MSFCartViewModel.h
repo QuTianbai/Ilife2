@@ -41,6 +41,7 @@
 @property (nonatomic, strong, readonly) MSFCart  *cart;
 @property (nonatomic, strong, readonly) MSFTrial *trial;
 @property (nonatomic, strong, readonly) NSArray  *terms; // 产品群信息
+@property (nonatomic, assign, readonly) BOOL barcodeInvalid;
 
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
