@@ -30,7 +30,7 @@
 		@strongify(self)
 		NSError *error = nil;
 		ZXMultiFormatWriter *writer = [ZXMultiFormatWriter writer];
-		ZXBitMatrix *result = [writer encode:@"A string to encode"
+		ZXBitMatrix *result = [writer encode:self.dismensionalCode
 																	format:kBarcodeFormatCode128
 																	 width:500
 																	height:180
