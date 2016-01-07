@@ -6,23 +6,14 @@
 
 #import "MSFPersonalViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <CoreLocation/CoreLocation.h>
 #import <FMDB/FMDB.h>
-
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFAddressViewModel.h"
-#import "MSFLocationModel.h"
-#import "MSFResultModel.h"
 #import "MSFSelectionViewModel.h"
-#import "RCLocationManager.h"
 #import "MSFSelectKeyValues.h"
-
-#import "MSFAreas.h"
 #import "MSFAddress.h"
-#import "MSFAddressInfo.h"
 #import "NSString+Matches.h"
-#import "NSURLConnection+Locations.h"
 
 @interface MSFPersonalViewModel ()
 
@@ -42,14 +33,13 @@
 	}
 	_services = viewModel.services;
 	_formsViewModel = viewModel;
-	MSFAddress *addressModel = [MSFAddress modelWithDictionary:@{@"province" : viewModel.model.currentProvinceCode, @"city" : viewModel.model.currentCityCode, @"area" : viewModel.model.currentCountryCode} error:nil];
+	NSDictionary *addrDic = @{@"province" : viewModel.model.currentProvinceCode ?: @"",
+														@"city" : viewModel.model.currentCityCode ?: @"",
+														@"area" : viewModel.model.currentCountryCode ?: @""};
+	MSFAddress *addressModel = [MSFAddress modelWithDictionary:addrDic error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addressModel services:_services];
 	_address = _addressViewModel.address;
-	
-	if (CLLocationCoordinate2DIsValid([RCLocationManager sharedManager].location.coordinate)) {
-		[self getLocationCoordinate:[RCLocationManager sharedManager].location.coordinate];
-	}
-	
+		
 	RAC(self, address) = RACObserve(self.addressViewModel, address);
 	RAC(self, formsViewModel.model.currentProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
 	RAC(self, formsViewModel.model.currentCityCode) = RACObserve(self.addressViewModel, cityCode);
@@ -85,7 +75,7 @@
 	
 	return self;
 }
-
+/*
 - (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
   [[NSURLConnection fetchLocationWithLatitude:coordinate.latitude longitude:coordinate.longitude]
    subscribeNext:^(MSFLocationModel *model) {
@@ -140,7 +130,7 @@
      NSLog(@"%@", error);
    }];
 }
-
+*/
 #pragma mark - Private
 
 - (RACSignal *)commitSignal {
@@ -202,7 +192,7 @@
 		return nil;
 	}];
 }
-
+/*
 - (void)setProvinceEmpty {
 	self.addressViewModel.province.name = @"";
 	self.addressViewModel.province.codeID = @"";
@@ -225,6 +215,6 @@
 	self.addressViewModel.area.parentCodeID = @"";
 	self.addressViewModel.areaCode = @"";
 	self.addressViewModel.areaName = @"";
-}
+}*/
 
 @end
