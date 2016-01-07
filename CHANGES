@@ -1,3 +1,15 @@
+Version 2.2.0.9:
+ - Merge branch 'next'
+ - Merge pull request !51 from `yongzhao/master`
+ - Merge pull request !50 from `zl/master`
+ - 更新订单状态映射、修复订单详情商品无法完全显示的问题
+ - Format code style
+ - Refactor iPhone4 size
+ - Fix #911 扫描支付页面未出现条形支付码有效时间
+ - 输入首付金额过大时禁止试算
+ - 试算添加loading
+ - Remove label from barcode scanner
+
 Version 2.2.0.8:
  - Merge branch 'next'
  - Merge pull request !46 from `yongzhao/maste`
