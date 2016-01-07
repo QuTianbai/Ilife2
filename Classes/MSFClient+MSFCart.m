@@ -40,10 +40,6 @@
 		return nil;
 	}
 	NSArray *cmdtyList = [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList];
-	BOOL valid = viewModel.loanAmt.doubleValue > 0 && viewModel.term.integerValue > 0 && cmdtyList.count > 0;
-	if (!valid) {
-		return nil;
-	}
 	NSData *data = [NSJSONSerialization dataWithJSONObject:cmdtyList options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *jsonValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	return @{@"appLmt" : viewModel.loanAmt,
