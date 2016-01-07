@@ -40,7 +40,7 @@
 		[imageview setImageWithURL:x];
 	}];
 	
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight([UIScreen mainScreen].bounds)-200, CGRectGetWidth([UIScreen mainScreen].bounds), 30)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetHeight([UIScreen mainScreen].bounds)-180, CGRectGetWidth([UIScreen mainScreen].bounds), 30)];
 	label.text = self.viewModel.dismensionalCode;
 	label.font = [UIFont boldSystemFontOfSize:17];
 	label.textColor = UIColor.blackColor;
