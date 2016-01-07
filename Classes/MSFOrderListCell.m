@@ -66,12 +66,13 @@
 		if ([title isEqualToString:@"订单状态"]) {
 			label2.textColor = [self colorWithStatus:content];
 			label2.backgroundColor = UIColor.clearColor;
-					NSDictionary *map = @{@"0" : @"审核中",
-																@"1" : @"审核已通过",
-																@"2" : @"审核未通过",
-																@"3" : @"待支付",
-																@"4" : @"已支付",
-																@"5" : @"已退货"};
+			NSDictionary *map = @{@"0" : @"待审批",
+														@"1" : @"审批通过",
+														@"2" : @"审批不通过",
+														@"3" : @"待支付",
+														@"4" : @"已支付",
+														@"5" : @"已取消",
+														@"6" : @"已退货"};
 			label2.text = map[content];
 		} else if ([title isEqualToString:@"贷款期数"]) {
 			label2.backgroundColor = UIColor.lightGrayColor;
