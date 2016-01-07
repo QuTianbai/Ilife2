@@ -92,10 +92,11 @@
 		return 4;
 	} else if (section == 1) {
 		return 4;
-	} else if (section == 2) {
+	} else if (section == self.order.cmdtyList.count + 2) {
+		return 0;
+	} else {
 		return 3;
 	}
-	return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -172,7 +173,7 @@
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type  {
 	[[self.services.httpClient paymentWithOrder:self.order password:pwd] subscribeNext:^(id x) {
-		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithModel:x];
+		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithPayment:x order:self.order];
 		MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
 		[self.navigationController pushViewController:vc animated:YES];
 	} error:^(NSError *error) {

@@ -32,7 +32,7 @@
 		time.font = [UIFont systemFontOfSize:13];
 		time.tag = 102;
 		[self.contentView addSubview:time];
-
+		
 		[orderNo mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.equalTo(self.contentView).offset(15);
 			make.top.equalTo(self.contentView).offset(10);
@@ -50,14 +50,13 @@
 }
 
 - (void)bindViewModel:(MSFOrderDetail *)model {
-	const NSDictionary *map = @{
-		@"0" : @"审核中",
-		@"1" : @"审核已通过",
-		@"2" : @"审核未通过",
-		@"3" : @"待支付",
-		@"4" : @"已支付",
-		@"5" : @"已退货"
-	};
+	NSDictionary *map = @{@"0" : @"待审批",
+												@"1" : @"审批通过",
+												@"2" : @"审批不通过",
+												@"3" : @"待支付",
+												@"4" : @"已支付",
+												@"5" : @"已取消",
+												@"6" : @"已退货"};
 	UILabel *orderNo = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *status = (UILabel *)[self.contentView viewWithTag:101];
 	UILabel *time = (UILabel *)[self.contentView viewWithTag:102];
