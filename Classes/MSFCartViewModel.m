@@ -75,7 +75,7 @@
 			return [self insuranceSignal];
 		}];
 		RACCommand *trialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			[SVProgressHUD show];
+			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
 			return [self.services.httpClient fetchTrialAmount:self];
 		}];
 		trialCommand.allowsConcurrentExecution = YES;
@@ -89,6 +89,10 @@
 			NSLog(@"试算失败");
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
+			@strongify(self)
+			if (self.downPmtAmt.doubleValue > self.totalAmt.doubleValue) {
+				return;
+			}
 			[trialCommand execute:nil];
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
