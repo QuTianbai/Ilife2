@@ -584,6 +584,7 @@
 		49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1C11B2C341400E92572 /* tabbar-home-selected.png */; };
 		49C0F1D41B2C341400E92572 /* tabbar-home-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1C21B2C341400E92572 /* tabbar-home-selected@2x.png */; };
 		49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C0F1C31B2C341400E92572 /* tabbar-home-selected@3x.png */; };
+		49C201FD1C3E540F004BFE12 /* MSFDimensionalCodeViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C201FC1C3E540F004BFE12 /* MSFDimensionalCodeViewModelSpec.m */; };
 		49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C2FE3D1B46530900B6B20A /* MSFEdgeView.m */; };
 		49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE3F1B4654D100B6B20A /* icon-arrow-down.png */; };
 		49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C2FE401B4654D100B6B20A /* icon-arrow-down@2x.png */; };
@@ -1659,6 +1660,7 @@
 		49C0F1C11B2C341400E92572 /* tabbar-home-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home-selected.png"; sourceTree = "<group>"; };
 		49C0F1C21B2C341400E92572 /* tabbar-home-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home-selected@2x.png"; sourceTree = "<group>"; };
 		49C0F1C31B2C341400E92572 /* tabbar-home-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-home-selected@3x.png"; sourceTree = "<group>"; };
+		49C201FC1C3E540F004BFE12 /* MSFDimensionalCodeViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDimensionalCodeViewModelSpec.m; sourceTree = "<group>"; };
 		49C2FE3C1B46530900B6B20A /* MSFEdgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEdgeView.h; sourceTree = "<group>"; };
 		49C2FE3D1B46530900B6B20A /* MSFEdgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEdgeView.m; sourceTree = "<group>"; };
 		49C2FE3F1B4654D100B6B20A /* icon-arrow-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-down.png"; sourceTree = "<group>"; };
@@ -3312,6 +3314,7 @@
 				497A059C1C1677B9007258A7 /* MSFLifeInsuranceViewModelSpec.m */,
 				4983117F1C33C1A400AC14AF /* MSFOrderDetailSpec.m */,
 				4983119B1C33DC6700AC14AF /* MSFCartSpec.m */,
+				49C201FC1C3E540F004BFE12 /* MSFDimensionalCodeViewModelSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -5345,6 +5348,7 @@
 				496A446B1B6A57BE00104215 /* MSFCipherSpec.m in Sources */,
 				496A44681B6A57BE00104215 /* MSFAuthorizeViewModelSpec.m in Sources */,
 				496A44781B6A57BE00104215 /* MSFRepaymentSchedulesSpec.m in Sources */,
+				49C201FD1C3E540F004BFE12 /* MSFDimensionalCodeViewModelSpec.m in Sources */,
 				49F21C591B8D635900CA96C1 /* MSFTestProfessionalViewModel.m in Sources */,
 				4917A42A1B943EAC00ADA6FC /* MSFAttachmentSpec.m in Sources */,
 				496A447E1B6A57BF00104215 /* MSFUserSpec.m in Sources */,

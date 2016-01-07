@@ -172,7 +172,7 @@
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type  {
 	[[self.services.httpClient paymentWithOrder:self.order password:pwd] subscribeNext:^(id x) {
-		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithModel:x];
+		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithPayment:x order:self.order];
 		MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
 		[self.navigationController pushViewController:vc animated:YES];
 	} error:^(NSError *error) {
