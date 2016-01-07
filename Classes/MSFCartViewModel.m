@@ -31,7 +31,7 @@
 @property (nonatomic, strong, readwrite) NSString *term;
 @property (nonatomic, strong, readwrite) MSFMarkets *markets;
 @property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
-@property (nonatomic, assign, readwrite) BOOL barcodeInvalid; // 商铺编号
+@property (nonatomic, assign, readwrite) BOOL barcodeInvalid;
 
 @end
 
@@ -75,17 +75,24 @@
 			return [self insuranceSignal];
 		}];
 		RACCommand *trialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
 			return [self.services.httpClient fetchTrialAmount:self];
 		}];
 		trialCommand.allowsConcurrentExecution = YES;
 		[trialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
+			[SVProgressHUD dismiss];
 			self.trial = x;
 			self.promId = x.promId;
 		}];
-		[trialCommand.errors subscribeNext:^(id x) {
+		[trialCommand.errors subscribeNext:^(NSError *x) {
+			[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
 			NSLog(@"试算失败");
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
+			@strongify(self)
+			if (self.downPmtAmt.doubleValue > self.totalAmt.doubleValue) {
+				return;
+			}
 			[trialCommand execute:nil];
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {

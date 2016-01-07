@@ -80,7 +80,7 @@
 	}];
 	[[RACObserve(viewModel, trial.loanFixedAmt) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
 		if (x.doubleValue > 0) {
-			label4.valueText = x;
+			label4.valueText = [NSString stringWithFormat:@"%.2f", x.floatValue];
 		} else {
 			label4.valueText = @"未知";
 		}

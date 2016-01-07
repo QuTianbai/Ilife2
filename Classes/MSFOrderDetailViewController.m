@@ -92,10 +92,11 @@
 		return 4;
 	} else if (section == 1) {
 		return 4;
-	} else if (section == 2) {
+	} else if (section == self.order.cmdtyList.count + 2) {
+		return 0;
+	} else {
 		return 3;
 	}
-	return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
