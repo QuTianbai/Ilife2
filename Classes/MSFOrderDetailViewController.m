@@ -172,7 +172,9 @@
 #pragma mark - MSFInputTradePasswordDelegate
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type  {
+	[SVProgressHUD showWithStatus:@"正在支付..."];
 	[[self.services.httpClient paymentWithOrder:self.order password:pwd] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
 		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithPayment:x order:self.order];
 		MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
 		[self.navigationController pushViewController:vc animated:YES];
