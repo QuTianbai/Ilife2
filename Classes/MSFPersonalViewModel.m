@@ -75,62 +75,7 @@
 	
 	return self;
 }
-/*
-- (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
-  [[NSURLConnection fetchLocationWithLatitude:coordinate.latitude longitude:coordinate.longitude]
-   subscribeNext:^(MSFLocationModel *model) {
-     if (self.addressViewModel.isStopAutoLocation) {
-       return;
-     }
-		 if (self.address.length > 0) {
-			return;
-		 }
-		 
-     NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
-     FMDatabase *fmdb = [FMDatabase databaseWithPath:path];
-     [fmdb open];
-     NSError *error ;
-     //NSMutableArray *regions = [NSMutableArray array];
-     FMResultSet *sProvince = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '000000'", model.result.addressComponent.province]];
-		 if ([sProvince next]) {
-			 MSFAreas *areaProvince = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sProvince error:&error];
-			 if (![self.formsViewModel.model.currentProvinceCode isEqualToString:areaProvince.codeID]) {
-				 self.addressViewModel.province  = areaProvince;
-			 }
-			 
-			 FMResultSet *sCity = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaProvince.codeID]];
-			 if ([sCity next]) {
-				 MSFAreas *areaCity = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sCity error:&error];
-				 if (![self.formsViewModel.model.currentCityCode isEqualToString:areaCity.codeID]) {
-					 self.addressViewModel.city = areaCity;
-				 }
-				 //self.addressViewModel.city = areaCity;
-				 FMResultSet *sArea = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaCity.codeID]];
-				 if ([sArea next]) {
-					 MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sArea error:&error];
-					 if (![self.formsViewModel.model.currentCountryCode isEqualToString:area.codeID]) {
-						 self.addressViewModel.area  = area;
-					 }
-					 
-				 } else {
-					 [self setAreaEmpty];
-				 }
-			 } else {
-				 [self setCityEmpty];
-				 [self setAreaEmpty];
-			 }
-		 } else {
-			 [self setProvinceEmpty];
-			 [self setCityEmpty];
-			 [self setAreaEmpty];
-		 }
-		 
-   }
-   error:^(NSError *error) {
-     NSLog(@"%@", error);
-   }];
-}
-*/
+
 #pragma mark - Private
 
 - (RACSignal *)commitSignal {
@@ -192,29 +137,5 @@
 		return nil;
 	}];
 }
-/*
-- (void)setProvinceEmpty {
-	self.addressViewModel.province.name = @"";
-	self.addressViewModel.province.codeID = @"";
-	self.addressViewModel.province.parentCodeID = @"";
-	self.addressViewModel.provinceName = @"";
-	self.addressViewModel.provinceCode = @"";
-}
-
-- (void)setCityEmpty {
-	self.addressViewModel.city.name = @"";
-	self.addressViewModel.city.codeID  = @"";
-	self.addressViewModel.city.parentCodeID = @"";
-	self.addressViewModel.cityName = @"";
-	self.addressViewModel.cityCode = @"";
-}
-
-- (void)setAreaEmpty {
-	self.addressViewModel.area.name  = @"";
-	self.addressViewModel.area.codeID = @"";
-	self.addressViewModel.area.parentCodeID = @"";
-	self.addressViewModel.areaCode = @"";
-	self.addressViewModel.areaName = @"";
-}*/
 
 @end
