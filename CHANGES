@@ -1,3 +1,12 @@
+Version 2.1.1.6:
+ - Bumping version to 1.1.2
+ - Clean warnings
+ - Fix server debug api
+ - Merge branch 'v2.1.1.5' of git.msxf.local:YongZhao/Finance into v2.1.1.5
+ - 移除选择地区的默认值
+ - 移除选择地区的默认值
+ - Bumping version to v1.1.1 for release
+
 Version 2.1.1.4:
  - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
  - commit
