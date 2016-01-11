@@ -103,7 +103,7 @@
 		str = @"正在验证";
 	}
 	
-	//[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
+	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
 	
 	self.viewModel.tradePWd = pwd;
 	
