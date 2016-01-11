@@ -112,6 +112,8 @@
 		[[self.viewModel.executeSubmitCommand execute:nil]
 		subscribeNext:^(id x) {
 			[self.navigationController pushViewController:paySmsCodeVC animated:YES];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 		[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
