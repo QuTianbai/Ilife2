@@ -28,6 +28,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *bankLabel;
 @property (weak, nonatomic) IBOutlet UIButton *smsCodeBT;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
+@property (nonatomic, assign) BOOL counting;
+@property (nonatomic, strong) NSString *counter;
 
 @property (nonatomic, strong) MSFAuthorizeViewModel *authviewModel;
 
@@ -87,8 +89,10 @@
 	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	
+	self.counter = @"获取验证吗";
 
-	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);
+	RAC(self, countLB.text) = RACObserve(self, counter);
 	
 	self.smsCodeBT.rac_command = self.viewModel.executSMSCommand;
 	@weakify(self)
@@ -99,18 +103,33 @@
 		[captchaSignal subscribeNext:^(MSFTransSmsSeqNOModel *model) {
 			self.viewModel.smsSeqNo = model.smsSeqNo;
 			[SVProgressHUD dismiss];
+			self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:60] takeUntil:[self rac_signalForSelector:@selector(viewWillDisappear:)]];
+				__block int repetCount = 60;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				} completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
 		}];
+	}];
+	
+	RAC(self, viewModel.sending) = RACObserve(self, counting);
+
+	UIImage *captchaHighlightedImage = [[UIImage imageNamed:@"bg-send-captcha-highlighted"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
+	UIImage *captchaNomalImage = [[UIImage imageNamed:@"bg-send-captcha"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
+	
+	[RACObserve(self, viewModel.sending) subscribeNext:^(NSNumber *value) {
+		@strongify(self)
+		self.countLB.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
+		self.sendCaptchaView.image = value.boolValue ? captchaHighlightedImage : captchaNomalImage;
 	}];
 	
 	[self.smsCodeBT.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	[self.authviewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
-		@strongify(self)
-		self.countLB.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.authviewModel.captchaNomalImage : self.authviewModel.captchaHighlightedImage;
-	}];
 	[RACObserve(self, viewModel) subscribeNext:^(MSFDrawCashViewModel *viewModel) {
 		@strongify(self)
 		self.bankLabel.text = [NSString stringWithFormat:@"尾号%@%@", viewModel.bankCardNO,viewModel.bankName];

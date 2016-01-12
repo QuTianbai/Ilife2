@@ -95,9 +95,15 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executePaySignal];
 	}];
-	_executSMSCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.services.httpClient sendSmsCodeForTrans];
-	}];
+	
+	_executSMSCommand = [[RACCommand alloc] initWithEnabled:
+	[RACObserve(self, sending)
+		map:^id(id value) {
+			return @(![value boolValue]);
+		}]
+		signalBlock:^RACSignal *(id input) {
+			return [self.services.httpClient sendSmsCodeForTrans];
+		}];
 	
 	return self;
 }
