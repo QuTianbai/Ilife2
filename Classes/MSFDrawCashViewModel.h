@@ -38,6 +38,7 @@
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
 @property (nonatomic, strong) RACCommand *executePayCommand;
+@property (nonatomic, strong) RACCommand *executSMSCommand;
 
 @property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 

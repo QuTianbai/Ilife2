@@ -58,29 +58,23 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[[self.smsCodeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 4) {
-			 textField.text = [textField.text substringToIndex:4];
-		 }
-	 }];
 	self.submitBT.rac_command = self.viewModel.executePayCommand;
+	RAC(self, viewModel.smsCode) = self.smsCodeTF.rac_textSignal;
 	if (self.viewModel.type == 1) {
 		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
-//			MSFCirculateCashModel *mocel = x;
-//			self.viewModel.circulateViewModel.infoModel = mocel;
-			 [self.navigationController popToRootViewControllerAnimated:YES];
+			[x subscribeNext:^(id x) {
+				[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			}];
 		}];
 		
-		RAC(self, viewModel.smsCode) = self.smsCodeTF.rac_textSignal;
 	} else {
 		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
-			[self.navigationController popToRootViewControllerAnimated:YES];
+			[x subscribeNext:^(id x) {
+				[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			}];
 		}];
-		
-		RAC(self, payViewModel.smsCode) = self.smsCodeTF.rac_textSignal;
 	}
 	
 	[self.submitBT.rac_command.errors subscribeNext:^(NSError *error) {
@@ -89,7 +83,7 @@
 
 	RAC(self, countLB.text) = RACObserve(self, authviewModel.counter);
 	
-	self.smsCodeBT.rac_command = self.viewModel.executeSubmitCommand;
+	self.smsCodeBT.rac_command = self.viewModel.executSMSCommand;
 	@weakify(self)
 	[self.smsCodeBT.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
@@ -110,10 +104,6 @@
 		self.countLB.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
 		self.sendCaptchaView.image = value.boolValue ? self.authviewModel.captchaNomalImage : self.authviewModel.captchaHighlightedImage;
 	}];
-	
-	
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {

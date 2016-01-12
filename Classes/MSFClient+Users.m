@@ -152,7 +152,7 @@
 }
 
 - (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/consume" parameters:@{
 																		@"amount": amount?:@"",
 																		@"smsCode": smsCode?:@"",
 																		@"smsSeqNo": smsSeqNo?:@"",
