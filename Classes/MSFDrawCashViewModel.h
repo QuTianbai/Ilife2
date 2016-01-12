@@ -35,9 +35,11 @@
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
 @property (nonatomic, assign) int type;
+@property (nonatomic, assign) BOOL sending;
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
 @property (nonatomic, strong) RACCommand *executePayCommand;
+@property (nonatomic, strong) RACCommand *executSMSCommand;
 
 @property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 
