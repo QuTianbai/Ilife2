@@ -123,6 +123,7 @@
 	}
 	
 	// 提现确认
+	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
 	[[self.viewModel.executeSubmitCommand execute:nil] subscribeNext:^(MSFResponse *response) {
 		@strongify(self)
 		 NSDictionary *result = response.parsedResult;
