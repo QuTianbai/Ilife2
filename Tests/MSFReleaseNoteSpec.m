@@ -7,6 +7,7 @@
 #import "MSFReleaseNote.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFPoster.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 QuickSpecBegin(MSFReleaseNoteSpec)
 
@@ -45,6 +46,26 @@ it(@"should has posters", ^{
 	// then
 	expect(releasenote.posters).to(beAKindOf([NSArray class]));
 	expect(releasenote.posters.firstObject).to(beAKindOf(MSFPoster.class));
+});
+
+it(@"should has builds number", ^{
+	// given
+	NSString *builds = @"1.0.0.1";
+	
+	// when
+	NSArray *buildsNumbers = [builds componentsSeparatedByString:@"."];
+	
+	//NSString *string = @"10010";
+	
+	__block NSInteger x = 0 ;
+	[buildsNumbers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+		x += (NSUInteger)pow(10, idx + 1) * [obj integerValue];
+	}];
+	
+	// then
+	NSInteger sum = 1 * 10000 + 0 * 1000 + 0 * 100 + 1 * 10;
+	expect(@(x)).to(equal(@(sum)));
+	expect(buildsNumbers).to(equal(@[@"1", @"0", @"0", @"1"]));
 });
 
 QuickSpecEnd

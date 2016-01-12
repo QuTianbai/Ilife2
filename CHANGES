@@ -1,3 +1,9 @@
+Version 2.2.0.11:
+
+
+Version 2.2.0.10:
+
+
 Version 2.2.0.9:
  - Merge branch 'next'
  - Merge pull request !51 from `yongzhao/master`
@@ -202,7 +208,14 @@ Version 2.2.0.1:
  - 优化代码，将用户信息三个页面是否被编辑的逻辑移至viewModel中
  - 优化relationshipViewController代码，将fullAddress、existAddr逻辑移至viewModel
 
- Version 2.1.1.4:
+Version 2.1.1.6:
+ - Bumping version to 1.1.2
+ - Clean warnings
+ - Fix server debug api
+ - Merge branch 'v2.1.1.5' of git.msxf.local:YongZhao/Finance into v2.1.1.5
+ - 移除选择地区的默认值
+ - 移除选择地区的默认值
+ - Bumping version to v1.1.1 for release
  - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
  - commit
 

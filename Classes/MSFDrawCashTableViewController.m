@@ -53,23 +53,22 @@
 	[self setviewTitle];
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
+	RAC(self.bankName, text) = RACObserve(self, viewModel.bankName);
+	RAC(self.bankNo, text) = RACObserve(self, viewModel.bankCardNO);
+	RAC(self.moneyLB, text) = RACObserve(self, viewModel.money);
+	
 	RAC(self.bankImg, image) = [RACObserve(self, viewModel.bankIcon) map:^id(NSString *value) {
 		UIImage *img = [UIImage imageNamed:value];
 		return img;
 	}];
-	RAC(self.bankName, text) = RACObserve(self, viewModel.bankName);
-	RAC(self.bankNo, text) = RACObserve(self, viewModel.bankCardNO);
-	RAC(self.moneyLB, text) = RACObserve(self, viewModel.money);
 	
 	RACChannelTerminal *drawCashChannel = RACChannelTo(self.viewModel, drawCash);
 	RAC(self.inputMoneyTF, text) = drawCashChannel;
 	[self.inputMoneyTF.rac_textSignal subscribe:drawCashChannel];
 	
-	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside]
-	 subscribeNext:^(id x) {
+	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		 [[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 	 }];
-	
 }
 
 - (void)setviewTitle {
@@ -103,15 +102,19 @@
 		str = @"正在验证";
 	}
 	
-	//[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
-	
 	self.viewModel.tradePWd = pwd;
 	
+	@weakify(self)
+	// 提现验证
 	if (self.viewModel.type == 1 || self.viewModel.type == 2) {
+		[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
 		MSFSmsCodeTableViewController *paySmsCodeVC = [[MSFSmsCodeTableViewController alloc] initWithViewModel:self.viewModel];
-		[[self.viewModel.executeSubmitCommand execute:nil]
-		subscribeNext:^(id x) {
+		[[self.viewModel.executeSubmitCommand execute:nil] subscribeNext:^(id x) {
+			@strongify(self)
+			[SVProgressHUD dismiss];
 			[self.navigationController pushViewController:paySmsCodeVC animated:YES];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 		[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -119,8 +122,10 @@
 		return;
 	}
 	
-	[[self.viewModel.executeSubmitCommand execute:nil]
-	 subscribeNext:^(MSFResponse *response) {
+	// 提现确认
+	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
+	[[self.viewModel.executeSubmitCommand execute:nil] subscribeNext:^(MSFResponse *response) {
+		@strongify(self)
 		 NSDictionary *result = response.parsedResult;
 		 NSString *str = result[@"message"];
 		 [SVProgressHUD showSuccessWithStatus:str];

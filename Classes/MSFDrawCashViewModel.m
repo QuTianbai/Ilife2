@@ -76,13 +76,14 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 			}];
 		
 		RAC(self, drawCash) = RACObserve(self, repayFinanceViewModel.amount);
-		//RAC(self, enablemoney) = RACObserve(self, repayFinanceViewModel.usableLimit);
 		RAC(self, contractNO) = RACObserve(self, repayFinanceViewModel.repaymentNumber);
 	} else {
 		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
 			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
 		}];
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
+		RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
+		RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
 	}
 	
 	_bankCardNO = [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4];
@@ -94,6 +95,15 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executePaySignal];
 	}];
+	
+	_executSMSCommand = [[RACCommand alloc] initWithEnabled:
+	[RACObserve(self, sending)
+		map:^id(id value) {
+			return @(![value boolValue]);
+		}]
+		signalBlock:^RACSignal *(id input) {
+			return [self.services.httpClient sendSmsCodeForTrans];
+		}];
 	
 	return self;
 }

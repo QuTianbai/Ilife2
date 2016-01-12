@@ -150,6 +150,8 @@
 			[self showPlaceholderView:YES];
 		}];
 	}];
+	
+	// 判断是否允马上贷
 	[self.viewModel.executeAllowMSCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
@@ -175,6 +177,8 @@
 	[self.viewModel.executeAllowMSCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	
+	// 判断是否允许麻辣贷
 	[self.viewModel.executeAllowMLCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
@@ -195,6 +199,7 @@
 					}];
 					return ;
 				}
+				//!!!: 判断是否存在银行卡，不不能再则需要绑定银行卡
 				if (!self.viewModel.formViewModel.master) {
 					[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
 					MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;

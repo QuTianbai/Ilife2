@@ -22,6 +22,7 @@
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFCheckAllowApply.h"
 #import "MSFFormsViewModel.h"
+#import "MSFMarkets.h"
 
 @interface MSFCartViewModel ()
 
@@ -32,6 +33,8 @@
 @property (nonatomic, strong, readwrite) MSFMarkets *markets;
 @property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
 @property (nonatomic, assign, readwrite) BOOL barcodeInvalid;
+@property (nonatomic, strong) NSString *maxLoan;
+@property (nonatomic, strong) NSString *minLoan;
 
 @end
 
@@ -53,6 +56,9 @@
 		_loanFixedAmt = @"";
 		_downPmtScale = @"";
 		_totalAmt = @"";
+		
+		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
+		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
 		
 		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
 			self.loanFixedAmt = x.loanFixedAmt;
@@ -203,16 +209,39 @@
 - (RACSignal *)executeAgreementSignal {
 	return [[self.services.httpClient fetchCheckAllowApply] map:^id(MSFCheckAllowApply *model) {
 		if (model.processing == 1) {
-			double min = self.totalAmt.doubleValue * self.cart.minDownPmt.doubleValue;
-			double max = self.totalAmt.doubleValue * self.cart.maxDownPmt.doubleValue;
-			if (self.downPmtAmt.doubleValue < min) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额至少为%.2f", min]];
+			double a = self.downPmtAmt.doubleValue;
+			double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+			double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
+			double b = self.loanAmt.doubleValue;
+			double f = self.minLoan.doubleValue;
+			double g = self.maxLoan.doubleValue;
+			double c = self.totalAmt.doubleValue;
+			
+			if (a <= d) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
 				return nil;
 			}
-			if (self.downPmtAmt.doubleValue > max) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"首付金额最高为%.2f", max]];
+			if (a >= e) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
 				return nil;
 			}
+			if (b <= f) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
+				return nil;
+			}
+			if (b >= g) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
+				return nil;
+			}
+			if (c < f + d) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
+				return nil;
+			}
+			if (c > e + g) {
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
+				return nil;
+			}
+			
 			[SVProgressHUD dismiss];
 			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
 			[self.services pushViewModel:viewModel];

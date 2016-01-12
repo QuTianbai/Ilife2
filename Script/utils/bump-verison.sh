@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This only work with project.xcworkspace
+# This git-flow work should set Xcode Version start with feature develop begin.
 
 # works with a file called VERSION in the current directory,
 # the contents of which should be a semantic version number
@@ -20,7 +20,13 @@ find_pattern () {
 }
 
 XCWORKSPACE=$(find_pattern "*.xcworkspace")
+XCODEPROJ=$(find_pattern "*.xcodeproj")
+
 SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+if [[ $XCWORKSPACE == '' ]]; then
+    #statements
+    SCHEME=`echo $XCODEPROJ | awk -F '.xcodeproj' '{print $1}'` 
+fi
 SCHEME_PLIST=$SCHEME/info.plist
 
 update_xcode_version() {
@@ -70,7 +76,9 @@ if [ -f VERSION ]; then
     # git add VERSION CHANGES $SCHEME_PLIST
     git add .
     git commit -m "Bumping version to $INPUT_STRING"
-    git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
+    
+    # Manual add tag
+    # git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
     # git push origin --tags
 else
     echo "Could not find a VERSION file"
@@ -94,7 +102,9 @@ else
         # git add VERSION CHANGES $SCHEME_PLIST
         git add .
         git commit -m "Added VERSION and CHANGES files, Bumping version to v0.1.0"
-        git tag -a -m "Tagging version 0.1.0" "v0.1.0"
+
+        # Manual add tag
+        # git tag -a -m "Tagging version 0.1.0" "v0.1.0"
         # git push origin --tags
     fi
 

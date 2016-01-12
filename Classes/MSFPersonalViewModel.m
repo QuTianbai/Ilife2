@@ -6,23 +6,14 @@
 
 #import "MSFPersonalViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <CoreLocation/CoreLocation.h>
 #import <FMDB/FMDB.h>
-
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFAddressViewModel.h"
-#import "MSFLocationModel.h"
-#import "MSFResultModel.h"
 #import "MSFSelectionViewModel.h"
-#import "RCLocationManager.h"
 #import "MSFSelectKeyValues.h"
-
-#import "MSFAreas.h"
 #import "MSFAddress.h"
-#import "MSFAddressInfo.h"
 #import "NSString+Matches.h"
-#import "NSURLConnection+Locations.h"
 
 @interface MSFPersonalViewModel ()
 
@@ -46,24 +37,18 @@
 	_services = viewModel.services;
 	_forms = viewModel.model.copy;
 	_formsViewModel = viewModel;
-	NSDictionary *addr = @{@"province" : viewModel.model.currentProvinceCode ?: @"",
-												 @"city" : viewModel.model.currentCityCode ?: @"",
-												 @"area" : viewModel.model.currentCountryCode ?: @""};
+	NSDictionary *addr = @{@"province" : _forms.currentProvinceCode ?: @"",
+												 @"city" : _forms.currentCityCode ?: @"",
+												 @"area" : _forms.currentCountryCode ?: @""};
 	MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
 	_addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
 	_address = _addrViewModel.address;
-	
-	BOOL validCoor = CLLocationCoordinate2DIsValid([RCLocationManager sharedManager].location.coordinate);
-	BOOL existAddr = _address.length > 0;
-	if (validCoor && !existAddr) {
-		[self getLocationCoordinate:[RCLocationManager sharedManager].location.coordinate];
-	}
-	
+
 	RAC(self, address) = RACObserve(self.addrViewModel, address);
 	RAC(self, forms.currentProvinceCode) = RACObserve(self.addrViewModel, provinceCode);
 	RAC(self, forms.currentCityCode) = RACObserve(self.addrViewModel, cityCode);
 	RAC(self, forms.currentCountryCode) = RACObserve(self.addrViewModel, areaCode);
-	
+
 	NSArray *houseTypes = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];
 	[houseTypes enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
 		if ([obj.code isEqualToString:self.forms.houseType]) {
@@ -78,7 +63,7 @@
 			*stop = YES;
 		}
 	}];
-	
+
 	@weakify(self)
 	_executeAlterAddressCommand = self.addrViewModel.selectCommand;
   _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -90,9 +75,9 @@
 		return [self houseValuesSignal];
 	}];
 	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
-	
+
 	_modelHash = _forms.hash;
-	
+
 	return self;
 }
 
@@ -116,7 +101,7 @@
 
 - (NSString *)checkForm {
 	MSFApplicationForms *forms = self.forms;
-	
+
 	if (forms.houseType.length == 0) {
 		return @"请选择住房状况";
 	}
@@ -162,82 +147,6 @@
 		}];
 		return nil;
 	}];
-}
-
-- (void)getLocationCoordinate:(CLLocationCoordinate2D)coordinate {
-	[[NSURLConnection fetchLocationWithLatitude:coordinate.latitude longitude:coordinate.longitude]
-	 subscribeNext:^(MSFLocationModel *model) {
-		 if (self.addrViewModel.isStopAutoLocation) {
-			 return;
-		 }
-		 if (self.address.length > 0) {
-			 return;
-		 }
-		 
-		 NSString *path = [[NSBundle mainBundle] pathForResource:@"dicareas" ofType:@"db"];
-		 FMDatabase *fmdb = [FMDatabase databaseWithPath:path];
-		 [fmdb open];
-		 NSError *error ;
-		 FMResultSet *sProvince = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '000000'", model.result.addressComponent.province]];
-		 if ([sProvince next]) {
-			 MSFAreas *areaProvince = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sProvince error:&error];
-			 if (![self.forms.currentProvinceCode isEqualToString:areaProvince.codeID]) {
-				 self.addrViewModel.province  = areaProvince;
-			 }
-			 
-			 FMResultSet *sCity = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaProvince.codeID]];
-			 if ([sCity next]) {
-				 MSFAreas *areaCity = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sCity error:&error];
-				 if (![self.formsViewModel.model.currentCityCode isEqualToString:areaCity.codeID]) {
-					 self.addrViewModel.city = areaCity;
-				 }
-				 FMResultSet *sArea = [fmdb executeQuery:[NSString stringWithFormat:@"select * from basic_dic_area where area_name = '%@' and parent_area_code = '%@'", model.result.addressComponent.city, areaCity.codeID]];
-				 if ([sArea next]) {
-					 MSFAreas *area = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:sArea error:&error];
-					 if (![self.formsViewModel.model.currentCountryCode isEqualToString:area.codeID]) {
-						 self.addrViewModel.area  = area;
-					 }
-				 } else {
-					 [self setAreaEmpty];
-				 }
-			 } else {
-				 [self setCityEmpty];
-				 [self setAreaEmpty];
-			 }
-		 } else {
-			 [self setProvinceEmpty];
-			 [self setCityEmpty];
-			 [self setAreaEmpty];
-		 }
-		 
-	 }
-	 error:^(NSError *error) {
-		 NSLog(@"%@", error);
-	 }];
-}
-
-- (void)setProvinceEmpty {
-	self.addrViewModel.province.name = @"";
-	self.addrViewModel.province.codeID = @"";
-	self.addrViewModel.province.parentCodeID = @"";
-	self.addrViewModel.provinceName = @"";
-	self.addrViewModel.provinceCode = @"";
-}
-
-- (void)setCityEmpty {
-	self.addrViewModel.city.name = @"";
-	self.addrViewModel.city.codeID  = @"";
-	self.addrViewModel.city.parentCodeID = @"";
-	self.addrViewModel.cityName = @"";
-	self.addrViewModel.cityCode = @"";
-}
-
-- (void)setAreaEmpty {
-	self.addrViewModel.area.name  = @"";
-	self.addrViewModel.area.codeID = @"";
-	self.addrViewModel.area.parentCodeID = @"";
-	self.addrViewModel.areaCode = @"";
-	self.addrViewModel.areaName = @"";
 }
 
 @end
