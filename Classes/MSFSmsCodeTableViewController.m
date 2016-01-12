@@ -63,17 +63,23 @@
 	RAC(self, viewModel.smsCode) = self.smsCodeTF.rac_textSignal;
 	if (self.viewModel.type == 1) {
 		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
+			[SVProgressHUD showWithStatus:@"正在提交..."];
 			[x subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
 				[self.navigationController popToRootViewControllerAnimated:YES];
+			} error:^(NSError *error) {
+				[SVProgressHUD dismiss];
 			}];
 		}];
 		
 	} else {
 		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
+			[SVProgressHUD showWithStatus:@"正在提交..."];
 			[x subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"恭喜你，还款已成功"];
 				[self.navigationController popToRootViewControllerAnimated:YES];
+			} error:^(NSError *error) {
+				[SVProgressHUD dismiss];
 			}];
 		}];
 	}
