@@ -18,9 +18,16 @@
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) MSFFormsViewModel *formViewModel;
 
+// 马上贷款
 @property (nonatomic, strong, readonly) RACCommand *executeAllowMSCommand;
+
+// 麻辣贷
 @property (nonatomic, strong, readonly) RACCommand *executeAllowMLCommand;
+
+// 提现
 @property (nonatomic, strong, readonly) RACCommand *executeWithdrawCommand;
+
+// 还款
 @property (nonatomic, strong, readonly) RACCommand *executeRepayCommand;
 
 - (void)refreshCirculate;
