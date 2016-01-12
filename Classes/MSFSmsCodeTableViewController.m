@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *smsCodeTF;
 @property (weak, nonatomic) IBOutlet UIImageView *sendCaptchaView;
 @property (weak, nonatomic) IBOutlet UILabel *countLB;
+@property (weak, nonatomic) IBOutlet UILabel *bankLabel;
 @property (weak, nonatomic) IBOutlet UIButton *smsCodeBT;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
 
@@ -103,6 +104,10 @@
 		@strongify(self)
 		self.countLB.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
 		self.sendCaptchaView.image = value.boolValue ? self.authviewModel.captchaNomalImage : self.authviewModel.captchaHighlightedImage;
+	}];
+	[RACObserve(self, viewModel) subscribeNext:^(MSFDrawCashViewModel *viewModel) {
+		@strongify(self)
+		self.bankLabel.text = [NSString stringWithFormat:@"尾号%@%@", viewModel.bankCardNO,viewModel.bankName];
 	}];
 }
 
