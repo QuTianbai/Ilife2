@@ -17,7 +17,7 @@
 #import <OCMockito/OCMockito.h>
 ```
 
-> 由于Objective-C++ 不支持@import只能才用上面的方式导入
+> Tips: Objective-C++ not support @import.
 
 ```
 @import Quick;
@@ -34,7 +34,12 @@ exportPlist.plist | xcpretty
 ## Updating 
 
 * ext 
-* podfile
+* Podfile
+
+## Recipes
+
+* Merges with Xcode is faster than scripts. `develop branch`
+* Recommend use scripts(test/archive/run) before release `master branch`
 
 ## Reference
 

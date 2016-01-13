@@ -1,5 +1,7 @@
 #! /bin/bash
 
+SUBMODULE="$1"
+
 if [[ ! -f "README.md" ]]; then
 	mkdir Vendor
 	mkdir Classes
@@ -9,14 +11,27 @@ if [[ ! -f "README.md" ]]; then
 	# Copy Configurations files
 	cp Script/config/Podfile Podfile
 	cp Script/config/gitignore .gitignore
+	
+	if [[ $SUBMODULE == 'submodule' ]]; then
+		sh Script/ext/github-quick-submodules.sh
+	elif [[ ! -n $SUBMODULE ]]; then
+		sh Script/ext/github-quick-dependencies.sh
+  else
+	  echo 'ERROR: Missing the required submodule argument.';
+	  exit
+	fi
 
-	sh Script/utils/github-quick-submodules.sh
+	echo "=============================================================================="
 	pod install --no-repo-update
 
+	echo "=============================================================================="
 	echo ""
-	echo "config Xcode Build Phases"
+	echo "Config Xcode Build Phases"
+	echo ""
 	echo "objclean \"\${SRCROOT}/Script/brsp/xcode-objclean-warnings.sh\""
 	echo "todo \"\${SRCROOT}/Script/brsp/xcode-todo-warnings.sh\""
+	echo ""
+	echo "=============================================================================="
 	exit
 fi
 

@@ -5,7 +5,7 @@ platform :ios, '7.0'
 inhibit_all_warnings!
 
 pod 'AFNetworking', '2.5.0'
-pod 'MTLFMDBAdapter', '0.1.7'
+pod 'MTLFMDBAdapter', '0.2.0'
 
 pod 'ReactiveCocoa', '2.4.2'
 pod 'Mantle', '1.5.1'

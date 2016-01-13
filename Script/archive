@@ -13,26 +13,24 @@ find_pattern () {
 }
 
 BUILD_DIR=$(pwd)/build
-XCWORKSPACE=$(find_pattern "*.xcworkspace")
-SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
-ARCHIVE_PATH=$BUILD_DIR/Archive/$SCHEME
 BUILD_VERSION=`cat VERSION`
 
-echo "========================================================================="
-echo "script cleaning"
-echo "========================================================================="
+XCWORKSPACE=$(find_pattern "*.xcworkspace")
+XCODEPROJ=$(find_pattern "*.xcodeproj")
 
 sh $(pwd)/script/clean
 
-echo "========================================================================="
-echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphoneos clean archive -archivePath $ARCHIVE_PATH -derivedDataPath $BUILD_DIR"
-echo "========================================================================="
+if [[ $XCWORKSPACE == '' ]]; then
+	SCHEME=`echo $XCODEPROJ | awk -F '.xcodeproj' '{print $1}'`
+	ARCHIVE_PATH=$BUILD_DIR/Archive/$SCHEME
+	xctool -project $XCODEPROJ -scheme $SCHEME -sdk iphoneos clean archive -archivePath $ARCHIVE_PATH -derivedDataPath $BUILD_DIR
+	xcodebuild -exportArchive -archivePath $ARCHIVE_PATH.xcarchive -exportPath $ARCHIVE_PATH.ipa -exportFormat ipa -exportProvisioningProfile $PROVISIONINGP_ROFILE  | xcpretty
+	mv $BUILD_DIR/Archive/$SCHEME.ipa $BUILD_DIR/Archive/$SCHEME-$BUILD_VERSION.ipa
+else
+	SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+	ARCHIVE_PATH=$BUILD_DIR/Archive/$SCHEME
+	xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphoneos clean archive -archivePath $ARCHIVE_PATH -derivedDataPath $BUILD_DIR
+	xcodebuild -exportArchive -archivePath $ARCHIVE_PATH.xcarchive -exportPath $ARCHIVE_PATH.ipa -exportFormat ipa -exportProvisioningProfile $PROVISIONINGP_ROFILE  | xcpretty
+	mv $BUILD_DIR/Archive/$SCHEME.ipa $BUILD_DIR/Archive/$SCHEME-$BUILD_VERSION.ipa
+fi
 
-xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphoneos clean archive -archivePath $ARCHIVE_PATH -derivedDataPath $BUILD_DIR
-
-echo "========================================================================="
-echo "xcodebuild -exportArchive -archivePath $ARCHIVE_PATH.xcarchive -exportPath $ARCHIVE_PATH.ipa -exportFormat ipa -exportProvisioningProfile $PROVISIONINGP_ROFILE  | xcpretty"
-echo "========================================================================="
-
-xcodebuild -exportArchive -archivePath $ARCHIVE_PATH.xcarchive -exportPath $ARCHIVE_PATH.ipa -exportFormat ipa -exportProvisioningProfile $PROVISIONINGP_ROFILE  | xcpretty
-mv $BUILD_DIR/Archive/$SCHEME.ipa $BUILD_DIR/Archive/$SCHEME-$BUILD_VERSION.ipa

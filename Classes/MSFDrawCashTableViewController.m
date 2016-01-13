@@ -66,7 +66,13 @@
 	RAC(self.inputMoneyTF, text) = drawCashChannel;
 	[self.inputMoneyTF.rac_textSignal subscribe:drawCashChannel];
 	
+	@weakify(self)
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		if (self.viewModel.drawCash.floatValue <= 0) {
+			[SVProgressHUD showInfoWithStatus:@"无欠款无需支付"];
+			return;
+		}
 		 [[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 	 }];
 }
