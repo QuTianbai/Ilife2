@@ -139,7 +139,9 @@
 		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
 			@strongify(self)
 			[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-			return self.executeAgreementSignal;
+			return [self.executeAgreementSignal doError:^(NSError *error) {
+				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+			}];
 		}];
 		_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
 			return self.executeCompleteSignal;
