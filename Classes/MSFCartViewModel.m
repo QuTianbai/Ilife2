@@ -197,8 +197,9 @@
 #pragma mark - Private
 
 - (RACSignal *)agreementValidSignal {
-	//TODO: 需要判断条件，是否满足进入协议界面 `贷款每次还款金额是否计算出了
-	return [RACSignal return:@YES];
+	return [self.executeTrialCommand.executing map:^id(id value) {
+		return @(![value boolValue]);
+	}];
 }
 
 - (RACSignal *)executeAgreementSignal {
