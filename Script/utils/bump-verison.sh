@@ -5,6 +5,7 @@
 # works with a file called VERSION in the current directory,
 # the contents of which should be a semantic version number
 # such as "1.2.3"
+# There git-tags change xcode buids version.
 
 # this script will display the current version, automatically
 # suggest a "minor" version update, and ask for input to use
@@ -78,7 +79,7 @@ if [ -f VERSION ]; then
     git commit -m "Bumping version to $INPUT_STRING"
     
     # Manual add tag
-    # git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
+    git tag -a -m "Tagging version $INPUT_STRING" "v$INPUT_STRING"
     # git push origin --tags
 else
     echo "Could not find a VERSION file"
@@ -104,7 +105,7 @@ else
         git commit -m "Added VERSION and CHANGES files, Bumping version to v0.1.0"
 
         # Manual add tag
-        # git tag -a -m "Tagging version 0.1.0" "v0.1.0"
+        git tag -a -m "Tagging version 0.1.0" "v0.1.0"
         # git push origin --tags
     fi
 
