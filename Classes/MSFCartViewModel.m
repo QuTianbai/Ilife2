@@ -82,7 +82,9 @@
 			return [self insuranceSignal];
 		}];
 		_executeTrialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			return [self.services.httpClient fetchTrialAmount:self];
+			return [[self.services.httpClient fetchTrialAmount:self] doError:^(NSError *error) {
+				[SVProgressHUD dismiss];
+			}];
 		}];
 		self.executeTrialCommand.allowsConcurrentExecution = YES;
 		[self.executeTrialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
@@ -108,6 +110,8 @@
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
 			@strongify(self)
 			[self handleMarkets:x];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:@"请输入相应的首付金额"];
 		}];
 		
 		[RACObserve(self, loanAmt) subscribeNext:^(id x) {
