@@ -56,6 +56,7 @@
 		_loanFixedAmt = @"";
 		_downPmtScale = @"";
 		_totalAmt = @"";
+		_term = @"";
 		
 		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
 		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
