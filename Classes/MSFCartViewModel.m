@@ -81,26 +81,20 @@
 			@strongify(self)
 			return [self insuranceSignal];
 		}];
-		RACCommand *trialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+		_executeTrialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 			return [self.services.httpClient fetchTrialAmount:self];
 		}];
-		trialCommand.allowsConcurrentExecution = YES;
-		[trialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
-			[SVProgressHUD dismiss];
+		self.executeTrialCommand.allowsConcurrentExecution = YES;
+		[self.executeTrialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
 			self.trial = x;
 			self.promId = x.promId;
-		}];
-		[trialCommand.errors subscribeNext:^(NSError *x) {
-			[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
-			NSLog(@"试算失败");
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			@strongify(self)
 			if (self.downPmtAmt.doubleValue > self.totalAmt.doubleValue) {
 				return;
 			}
-			[trialCommand execute:nil];
+			[self.executeTrialCommand execute:nil];
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
 			@strongify(self)

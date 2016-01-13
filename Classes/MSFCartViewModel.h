@@ -46,6 +46,7 @@
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeCompleteCommand; //点击下一步
+@property (nonatomic, strong, readonly) RACCommand *executeTrialCommand; // 商品试算
 
 - (instancetype)initWithApplicationNo:(NSString *)appNo
 														 services:(id<MSFViewModelServices>)services;

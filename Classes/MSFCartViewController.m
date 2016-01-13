@@ -8,6 +8,7 @@
 
 #import "MSFCartViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 #import "MSFCartViewModel.h"
 #import "MSFCommodity.h"
@@ -83,6 +84,15 @@
 				[self.navigationController popViewControllerAnimated:YES];
 			}];
 		}
+	}];
+	
+	[self.viewModel.executeTrialCommand.executionSignals subscribeNext:^(id x) {
+		[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
+		[x subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 	}];
 }
 
