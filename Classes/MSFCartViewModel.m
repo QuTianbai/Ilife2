@@ -60,6 +60,7 @@
 		
 		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
 		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
+		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
 		
 		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
 			self.loanFixedAmt = x.loanFixedAmt;

@@ -43,6 +43,9 @@
 @property (nonatomic, strong, readonly) NSArray  *terms; // 产品群信息
 @property (nonatomic, assign, readonly) BOOL barcodeInvalid;
 
+// 是否需要首付
+@property (nonatomic, assign, readonly) BOOL isDownPmt;
+
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeCompleteCommand; //点击下一步
