@@ -76,7 +76,8 @@
 #pragma mark - Custom Accessors
 
 - (BOOL)isCommodity {
-	return !self.travel.origin && !self.travel.destination;
+	return ([self.travel.origin isEqual:NSNull.null] && [self.travel.destination isEqual:NSNull.null]) ||
+	 (!self.travel.origin && !self.travel.destination);
 }
 
 @end

@@ -5,20 +5,33 @@
 //
 
 #import "MSFOrderDetail.h"
+#import "MSFTravel.h"
 
 QuickSpecBegin(MSFOrderDetailSpec)
 
 __block MSFOrderDetail *sut;
 
-beforeEach(^{
-	NSString *file = [[NSBundle bundleForClass:self.class] pathForResource:@"order-details" ofType:@"json"];
-	NSData *data = [NSData dataWithContentsOfFile:file];
-	NSDictionary *representation = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
-	sut = [MTLJSONAdapter modelOfClass:[MSFOrderDetail class] fromJSONDictionary:representation error:nil];
-});
-
-it(@"should initialize", ^{
-	expect(sut).notTo(beNil());
+describe(@"travel order", ^{
+	it(@"should be a travel order", ^{
+		// given
+		NSDictionary *representation = @{
+			@"isDownPmt": @1,
+			@"orderTravelDto": @{
+				@"origin": @"foo",
+				@"destination": @"bar"
+			},
+			@"travelCompanInfoList": @[]
+		};
+		
+		// when
+		sut = [MTLJSONAdapter modelOfClass:[MSFOrderDetail class] fromJSONDictionary:representation error:nil];
+		
+		// then
+		expect(sut.travel).to(beAKindOf([MSFTravel class]));
+		expect(@(sut.isCommodity)).to(beFalsy());
+		expect(sut.companions).notTo(beNil());
+		expect(@(sut.isDownPmt)).to(beTruthy());
+	});
 });
 
 QuickSpecEnd

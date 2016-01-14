@@ -52,6 +52,8 @@ describe(@"travel", ^{
 		// then
 		expect(@(sut.isCommodity)).to(beFalsy());
 		expect(sut.travel).to(beAKindOf([MSFTravel class]));
+		expect(sut.travel.origin).to(equal(@"foo"));
+		expect(sut.travel.destination).to(equal(@"bar"));
 	});
 	
 	it(@"should have companions", ^{
