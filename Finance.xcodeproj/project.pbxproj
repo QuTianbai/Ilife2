@@ -426,6 +426,8 @@
 		4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4944C0631B68AB6F00805C0A /* MSFClient+Advers.m */; };
 		4946749F1C4782F70065D7EE /* MSFTravelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4946749E1C4782F70065D7EE /* MSFTravelSpec.m */; };
 		494674B01C4783530065D7EE /* MSFTravel.m in Sources */ = {isa = PBXBuildFile; fileRef = 494674AE1C47833E0065D7EE /* MSFTravel.m */; };
+		494674B21C4786410065D7EE /* MSFCompanionSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 494674B11C4786410065D7EE /* MSFCompanionSpec.m */; };
+		494674B51C47879A0065D7EE /* MSFCompanion.m in Sources */ = {isa = PBXBuildFile; fileRef = 494674B41C47879A0065D7EE /* MSFCompanion.m */; };
 		4948E88A1B953FFB0048D125 /* MSFElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E8891B953FFB0048D125 /* MSFElement.m */; };
 		4948E88C1B95400A0048D125 /* MSFElementSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E88B1B95400A0048D125 /* MSFElementSpec.m */; };
 		4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */ = {isa = PBXBuildFile; fileRef = 4948E88E1B95473B0048D125 /* MSFClient+Elements.m */; };
@@ -1448,6 +1450,9 @@
 		4946749E1C4782F70065D7EE /* MSFTravelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTravelSpec.m; sourceTree = "<group>"; };
 		494674AD1C47833E0065D7EE /* MSFTravel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTravel.h; sourceTree = "<group>"; };
 		494674AE1C47833E0065D7EE /* MSFTravel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTravel.m; sourceTree = "<group>"; };
+		494674B11C4786410065D7EE /* MSFCompanionSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCompanionSpec.m; sourceTree = "<group>"; };
+		494674B31C47879A0065D7EE /* MSFCompanion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCompanion.h; sourceTree = "<group>"; };
+		494674B41C47879A0065D7EE /* MSFCompanion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCompanion.m; sourceTree = "<group>"; };
 		4948E8881B953FFB0048D125 /* MSFElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFElement.h; sourceTree = "<group>"; };
 		4948E8891B953FFB0048D125 /* MSFElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElement.m; sourceTree = "<group>"; };
 		4948E88B1B95400A0048D125 /* MSFElementSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFElementSpec.m; sourceTree = "<group>"; };
@@ -2612,6 +2617,8 @@
 				102C7EA41C292B460023172B /* MSFCommodity.m */,
 				102C7E9B1C2928060023172B /* MSFClient+MSFOrder.h */,
 				102C7E9C1C2928060023172B /* MSFClient+MSFOrder.m */,
+				494674B31C47879A0065D7EE /* MSFCompanion.h */,
+				494674B41C47879A0065D7EE /* MSFCompanion.m */,
 			);
 			name = Orders;
 			sourceTree = "<group>";
@@ -3326,6 +3333,7 @@
 				49C201FC1C3E540F004BFE12 /* MSFDimensionalCodeViewModelSpec.m */,
 				49C45F401C44AC3200B0F36C /* MSFCommoditySpec.m */,
 				4946749E1C4782F70065D7EE /* MSFTravelSpec.m */,
+				494674B11C4786410065D7EE /* MSFCompanionSpec.m */,
 			);
 			name = Specs;
 			sourceTree = "<group>";
@@ -5261,6 +5269,7 @@
 				074AC23D1BBAAF2A0056BA22 /* MSFClient+MSFBankCardList.m in Sources */,
 				10DC2D1A1B969E1600A2AF9C /* MSFElementTableViewCell.m in Sources */,
 				491DDB441BBFF90000D62DEA /* MSFSignInPhoneViewController.m in Sources */,
+				494674B51C47879A0065D7EE /* MSFCompanion.m in Sources */,
 				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
 				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
@@ -5366,6 +5375,7 @@
 				49F21C591B8D635900CA96C1 /* MSFTestProfessionalViewModel.m in Sources */,
 				4917A42A1B943EAC00ADA6FC /* MSFAttachmentSpec.m in Sources */,
 				496A447E1B6A57BF00104215 /* MSFUserSpec.m in Sources */,
+				494674B21C4786410065D7EE /* MSFCompanionSpec.m in Sources */,
 				496A447C1B6A57BF00104215 /* MSFServerSpec.m in Sources */,
 				49588DF61B87021800FCF171 /* MSFPersonalViewModelSpec.m in Sources */,
 				49588DEC1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m in Sources */,
