@@ -106,34 +106,23 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (!self.viewModel.cart.cmdtyList.count) {
-		return 0;
-	}
-	switch (self.viewModel.cartType) {
-		case MSFCartCommodity: return self.viewModel.cart.cmdtyList.count + 1;
-		case MSFCartTravel: return 3;
-	}
+	if (!self.viewModel.cart.cartType) return 0;
+	if ([self.viewModel.cart.cartType isEqualToString:@"goods"]) return self.viewModel.cart.cmdtyList.count + 1;
+	if ([self.viewModel.cart.cartType isEqualToString:@"travel"]) return 3;
 	return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	switch (self.viewModel.cartType) {
-		case MSFCartCommodity: {
-				if (section == self.viewModel.cart.cmdtyList.count) {
-					return 5;
-				} else {
-					return 4;
-				}
-			}
-			break;
-		case MSFCartTravel: {
-				if (section == 0) return 6; // 旅游信息
-				else if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
-				else if (section == 2) return 5; // 分期信息
-			}
-			break;
-		default:
-			break;
+	if ([self.viewModel.cart.cartType isEqualToString:@"goods"])  {
+		if (section == self.viewModel.cart.cmdtyList.count) {
+			return 5;
+		} else {
+			return 4;
+		}
+	} else if ([self.viewModel.cart.cartType isEqualToString:@"travel"]) {
+		if (section == 0) return 6; // 旅游信息
+		if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
+		if (section == 2) return 5; // 分期信息
 	}
 	return 0;
 }
@@ -237,7 +226,6 @@
 				if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
 					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
 				} else {
-					NSLog(@"%d %d", indexPath.row, indexPath.section);
 					[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
 				}
 				return cell;

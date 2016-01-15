@@ -6,8 +6,19 @@
 
 #import "MSFTravel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation MSFTravel
+
++ (NSSet *)propertyKeys {
+	NSMutableSet *keys = [super.propertyKeys mutableCopy];
+
+	// This is a derived property.
+	[keys removeObject:@keypath(MSFTravel.new, objectID)];
+	[keys removeObject:@keypath(MSFTravel.new, server)];
+
+	return keys;
+}
 
 + (NSValueTransformer *)departureTimeJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(NSNumber *number) {
