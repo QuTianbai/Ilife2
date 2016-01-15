@@ -7,11 +7,14 @@
 //
 
 #import "MSFObject.h"
-#import "MSFCommodity.h"
+
+@class MSFCommodity;
+@class MSFTravel;
 
 @interface MSFOrderDetail : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *inOrderId; // 订单id
+@property (nonatomic, copy, readonly) NSString *cartType; // 订单id
 @property (nonatomic, copy, readonly) NSString *orderStatus; // 订单状态
 @property (nonatomic, copy, readonly) NSString *orderTime; // 下单时间
 @property (nonatomic, copy, readonly) NSString *txnTime; // 交易时间
@@ -39,5 +42,10 @@
 @property (nonatomic, copy, readonly) NSString *downPmt; // 首付金额
 @property (nonatomic, assign, readonly) BOOL valueAddedSvc; // 是否增值服务项
 @property (nonatomic, strong, readonly) NSArray *cmdtyList; // 商品列表（MSFCommodity）
+
+// 判断商品还是旅行
+@property (nonatomic, assign, readonly) BOOL isCommodity;
+@property (nonatomic, strong, readonly) MSFTravel *travel;
+@property (nonatomic, strong, readonly) NSArray *companions;
 
 @end

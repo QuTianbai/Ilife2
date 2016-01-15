@@ -20,6 +20,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClient+Payment.h"
 #import "MSFPayment.h"
+#import "MSFCommodity.h"
 
 @interface MSFOrderDetailViewController () <MSFInputTradePasswordDelegate>
 

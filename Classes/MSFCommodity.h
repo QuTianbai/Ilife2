@@ -23,4 +23,7 @@
 @property (nonatomic, copy, readonly) NSString *pcsCount; // 件数
 @property (nonatomic, copy, readonly) NSString *cmdtyPrice; // 商品价格
 
+// 旅游相关信息
+@property (nonatomic, copy, readonly) NSString *departureTime;
+
 @end
