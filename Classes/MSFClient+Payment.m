@@ -33,7 +33,7 @@
 	return [[self enqueueRequest:request resultClass:MSFPayment.class] msf_parsedResults];
 }
 
-- (RACSignal *)downPaymentWithPayment:(MSFPayment *)payment order:(MSFOrderDetail *)order SMSCode:(NSString *)smsCode SMSSeqNo:(NSString *)seqNo {
+- (RACSignal *)downPaymentWithPayment:(MSFOrderDetail *)order SMSCode:(NSString *)smsCode SMSSeqNo:(NSString *)seqNo {
 	NSDictionary *parameters = @{
 		@"inOrderId": order.inOrderId,
 		@"smsCode": smsCode,

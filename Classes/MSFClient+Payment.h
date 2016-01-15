@@ -13,7 +13,7 @@
 
 - (RACSignal *)paymentWithOrder:(MSFOrderDetail *)order password:(NSString *)password;
 - (RACSignal *)fetchDownPayment:(MSFOrderDetail *)order password:(NSString *)password authType:(NSString *)auth;
-- (RACSignal *)downPaymentWithPayment:(MSFPayment *)payment order:(MSFOrderDetail *)order SMSCode:(NSString *)smsCode SMSSeqNo:(NSString *)seqNo;
+- (RACSignal *)downPaymentWithPayment:(MSFOrderDetail *)order SMSCode:(NSString *)smsCode SMSSeqNo:(NSString *)seqNo;
 - (RACSignal *)requestLoan:(MSFOrderDetail *)order;
 
 @end
