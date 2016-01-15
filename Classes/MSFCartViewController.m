@@ -20,6 +20,8 @@
 #import "MSFCartLoanTermCell.h"
 #import "MSFCartSwitchCell.h"
 #import "MSFCartTrialCell.h"
+#import "MSFTravel.h"
+#import "MSFCompanion.h"
 
 #import "UIColor+Utils.h"
 
@@ -103,22 +105,49 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if (!self.viewModel.cart.cmdtyList.count) {
-		return 0;
+	switch (self.viewModel.cartType) {
+		case MSFCartCommodity: {
+				if (!self.viewModel.cart.cmdtyList.count) {
+					return 0;
+				}
+				return self.viewModel.cart.cmdtyList.count + 1;
+			}
+			break;
+		case MSFCartTravel: {
+				if (!self.viewModel.cart.companions.count) return 0;
+				return 3;
+			}
+			break;
+		default:
+			break;
 	}
-	return self.viewModel.cart.cmdtyList.count + 1;
+	return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == self.viewModel.cart.cmdtyList.count) {
-		return 5;
-	} else {
-		return 4;
+	switch (self.viewModel.cartType) {
+		case MSFCartCommodity: {
+				if (section == self.viewModel.cart.cmdtyList.count) {
+					return 5;
+				} else {
+					return 4;
+				}
+			}
+			break;
+		case MSFCartTravel: {
+				if (section == 0) return 7; // 旅游信息
+				else if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
+				else if (section == 2) return 5; // 分期信息
+			}
+			break;
+		default:
+			break;
 	}
+	return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	return 30.f;
+		return 30.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -126,41 +155,105 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
-		if (indexPath.row == 2) {
-			return 99.f;
-		}
-		if (indexPath.row == 4) {
-			return 125.f;
-		}
+	switch (self.viewModel.cartType) {
+		case MSFCartCommodity: {
+				if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
+					if (indexPath.row == 2) {
+						return 99.f;
+					}
+					if (indexPath.row == 4) {
+						return 125.f;
+					}
+				}
+			}
+			break;
+		case MSFCartTravel: {
+				if (indexPath.section == self.viewModel.cart.companions.count) {
+					if (indexPath.row == 2) {
+						return 99.f;
+					}
+					if (indexPath.row == 4) {
+						return 125.f;
+					}
+				}
+			}
+			break;
+		default:
+			break;
 	}
 	return 44.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	UIView *reuse = [[UIView alloc] init];
-	reuse.backgroundColor = UIColor.darkBackgroundColor;
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
-	label.font = [UIFont systemFontOfSize:15];
-	label.textColor = UIColor.themeColorNew;
-	if (section == self.viewModel.cart.cmdtyList.count) {
-		label.text = @"分期";
-	} else {
-		MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
-		label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
+	switch (self.viewModel.cartType) {
+		case MSFCartCommodity: {
+				UIView *reuse = [[UIView alloc] init];
+				reuse.backgroundColor = UIColor.darkBackgroundColor;
+				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
+				label.font = [UIFont systemFontOfSize:15];
+				label.textColor = UIColor.themeColorNew;
+				if (section == self.viewModel.cart.cmdtyList.count) {
+					label.text = @"分期";
+				} else {
+					MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
+					label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
+				}
+				[reuse addSubview:label];
+				return reuse;
+			}
+			break;
+		case MSFCartTravel: {
+				UIView *reuse = [[UIView alloc] init];
+				reuse.backgroundColor = UIColor.darkBackgroundColor;
+				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
+				label.font = [UIFont systemFontOfSize:15];
+				label.textColor = UIColor.themeColorNew;
+				if (section == self.viewModel.cart.companions.count) {
+					label.text = @"分期";
+				} else {
+					MSFTravel *travel = self.viewModel.cart.travel;
+					label.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
+				}
+				[reuse addSubview:label];
+				return reuse;
+			}
+			break;
+		default:
+			break;
 	}
-	[reuse addSubview:label];
-	return reuse;
+	return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
-	UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-	if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
-		[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-	} else {
-		[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
+	switch (self.viewModel.cartType) {
+		case MSFCartCommodity: {
+				NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
+				UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+				if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
+					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
+				} else {
+					[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
+				}
+				return cell;
+			}
+			break;
+		case MSFCartTravel: {
+				NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
+				UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+				if (indexPath.section == self.viewModel.cart.companions.count) {
+					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
+				} else {
+					[cell bindViewModel:self.viewModel.cart.companions[indexPath.section] atIndexPath:indexPath];
+				}
+				return cell;
+			}
+			break;
+		default:
+			break;
 	}
+	
+	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@""];
+	cell.backgroundColor = [UIColor orangeColor];
 	return cell;
 }
 

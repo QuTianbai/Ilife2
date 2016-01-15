@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import "MSFCommodity.h"
+#import "MSFCompanion.h"
 
 @implementation MSFCartCategoryCell
 
@@ -52,11 +53,17 @@
 	return self;
 }
 
-- (void)bindViewModel:(MSFCommodity *)viewModel atIndexPath:(NSIndexPath *)indexPath {
+- (void)bindViewModel:(id)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UILabel *label2 = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *label3 = (UILabel *)[self.contentView viewWithTag:101];
-	label2.text = viewModel.catLevel1Name;
-	label3.text = viewModel.catLevel2Name;
+	if ([viewModel isKindOfClass:[MSFCommodity class]]) {
+		MSFCommodity *model = (MSFCommodity *)viewModel;
+		label2.text = model.catLevel1Name;
+		label3.text = model.catLevel2Name;
+	} else {
+		label2.text = @"临时类型标题";
+		label3.text = @"临时类型内容";
+	}
 }
 
 @end

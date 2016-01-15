@@ -11,6 +11,7 @@
 #import <Masonry/Masonry.h>
 #import "MSFCartViewModel.h"
 #import "MSFCommodity.h"
+#import "MSFCompanion.h"
 
 @implementation MSFCartContentCell
 
@@ -54,20 +55,25 @@
 		label1.text = @"贷款金额";
 		RAC(label2, text) = [RACObserve(order, loanAmt) takeUntil:self.rac_prepareForReuseSignal];
 	} else {
-		MSFCommodity *commodity = (MSFCommodity *)viewModel;
-		switch (indexPath.row) {
-			case 1:
-				label1.text = @"商品名称";
-				label2.text = commodity.cmdtyName;
-				break;
-			case 2:
-				label1.text = @"商品单价";
-				label2.text = commodity.cmdtyPrice;
-				break;
-			case 3:
-				label1.text = @"商品数量";
-				label2.text = commodity.pcsCount;
-				break;
+		if ([viewModel isKindOfClass:[MSFCommodity class]]) {
+			MSFCommodity *commodity = (MSFCommodity *)viewModel;
+			switch (indexPath.row) {
+				case 1:
+					label1.text = @"商品名称";
+					label2.text = commodity.cmdtyName;
+					break;
+				case 2:
+					label1.text = @"商品单价";
+					label2.text = commodity.cmdtyPrice;
+					break;
+				case 3:
+					label1.text = @"商品数量";
+					label2.text = commodity.pcsCount;
+					break;
+			}
+		} else {
+				label1.text = @"临时标题";
+				label2.text = @"临时内容";
 		}
 	}
 }

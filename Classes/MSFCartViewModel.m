@@ -62,6 +62,10 @@
 		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
 		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
 		
+		RAC(self, cartType) =  [RACObserve(self, cart.isCommodity) map:^id(id value) {
+			return [value boolValue] ? @(MSFCartCommodity) : @(MSFCartTravel);
+		}];
+		
 		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
 			self.loanFixedAmt = x.loanFixedAmt;
 			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
@@ -173,19 +177,44 @@
 }
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.cart.cmdtyList.count) {
-		switch (indexPath.row) {
-			case 0: return @"MSFCartInputCell";
-			case 1: return @"MSFCartContentCell";
-			case 2: return @"MSFCartLoanTermCell";
-			case 3: return @"MSFCartSwitchCell";
-			case 4: return @"MSFCartTrialCell";
-		}
-	} else {
-		if (indexPath.row == 0) {
-			return @"MSFCartCategoryCell";
-		}
-		return @"MSFCartContentCell";
+	switch (self.cartType) {
+		case MSFCartCommodity: {
+				if (indexPath.section == self.cart.cmdtyList.count) {
+					switch (indexPath.row) {
+						case 0: return @"MSFCartInputCell";
+						case 1: return @"MSFCartContentCell";
+						case 2: return @"MSFCartLoanTermCell";
+						case 3: return @"MSFCartSwitchCell";
+						case 4: return @"MSFCartTrialCell";
+					}
+				} else {
+					if (indexPath.row == 0) {
+						return @"MSFCartCategoryCell";
+					}
+					return @"MSFCartContentCell";
+				}
+			}
+			break;
+		case MSFCartTravel: {
+				if (indexPath.section == self.cart.companions.count) {
+					switch (indexPath.row) {
+						case 0: return @"MSFCartInputCell";
+						case 1: return @"MSFCartContentCell";
+						case 2: return @"MSFCartLoanTermCell";
+						case 3: return @"MSFCartSwitchCell";
+						case 4: return @"MSFCartTrialCell";
+					}
+				} else {
+					if (indexPath.row == 0) {
+						return @"MSFCartCategoryCell";
+					}
+					return @"MSFCartContentCell";
+				}
+			}
+			break;
+
+		default:
+			break;
 	}
 	return nil;
 }
