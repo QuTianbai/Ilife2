@@ -106,21 +106,12 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if (!self.viewModel.cart.cmdtyList.count) {
+		return 0;
+	}
 	switch (self.viewModel.cartType) {
-		case MSFCartCommodity: {
-				if (!self.viewModel.cart.cmdtyList.count) {
-					return 0;
-				}
-				return self.viewModel.cart.cmdtyList.count + 1;
-			}
-			break;
-		case MSFCartTravel: {
-				//if (!self.viewModel.cart.companions.count) return 0;
-				return 3;
-			}
-			break;
-		default:
-			break;
+		case MSFCartCommodity: return self.viewModel.cart.cmdtyList.count + 1;
+		case MSFCartTravel: return 3;
 	}
 	return 0;
 }
@@ -246,6 +237,7 @@
 				if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
 					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
 				} else {
+					NSLog(@"%d %d", indexPath.row, indexPath.section);
 					[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
 				}
 				return cell;
