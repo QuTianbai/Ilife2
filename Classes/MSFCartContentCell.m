@@ -34,7 +34,7 @@
 		[label1 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.equalTo(self.contentView).offset(15);
 			make.centerY.equalTo(self.contentView);
-			make.width.equalTo(@100);
+			make.width.equalTo(@90);
 		}];
 		[label2 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.mas_equalTo(label1.mas_right).offset(20);
