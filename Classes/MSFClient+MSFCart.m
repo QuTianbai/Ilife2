@@ -71,6 +71,7 @@
 	NSDictionary *cart = @{
 		@"cartId": viewModel.cart.cartId?:@"",
 		@"compId": viewModel.cart.compId?:@"",
+		@"cartType": viewModel.cart.cartType?:@"",
 		@"empId": viewModel.cart.empId?:@"",
 		@"totalAmt": viewModel.cart.totalAmt?:@"",
 		@"totalQuantity": viewModel.cart.totalQuantity?:@"",
