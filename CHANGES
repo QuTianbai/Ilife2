@@ -1,3 +1,32 @@
+Version 2.2.0.13:
+ - Merge branch 'next'
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'next'
+ - Merge branch 'todo/1.3' into next
+ - Update 购物类型
+ - Update 旅游贷申请
+ - Update 优化视图显示
+ - Update 更新商品贷，旅游类产品显示
+ - Update 商品种类显示
+ - Improve 旅游类型购物车显示
+ - Update 动态显示同行人
+ - Update 设计多种类商品显示，区分商品/旅游
+ - Fix 银行卡绑定成功没有更新银行卡状态
+ - @wip cart view
+ - Update 旅游贷提交数据
+ - Update order info for traveling loan
+ - Update cart model
+ - Add companion model
+ - add travel model
+ - Update 错误提示
+ - Improve 当前贷款金额无法获取期数的情况
+ - Fix 还款条件限制
+ - Improve 商品贷款预算中，限制进入贷款协议界面
+ - Improve 商品试算加载提示
+ - Merge branch 'pu/v1.3.0.11' into next
+ - Merge branch 'pu/v1.3.0.11'
+ - Update display version to 1.3.0
+
 Version 2.2.0.12:
  - Merge branch 'master' of http://git.msxf.local/zl/finance
  - Update script
