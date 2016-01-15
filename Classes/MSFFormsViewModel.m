@@ -68,6 +68,7 @@
 			}
 		} error:^(NSError *error) {
 			NSLog(@"");
+			[SVProgressHUD dismiss];
 		}];
 		// 申请单列表获取银行卡，如果存在多张银行卡在API返回的时候第一张就是主卡
 		RACSignal *signal = [[self.services.httpClient fetchBankCardList].collect replayLazily];
@@ -93,6 +94,8 @@
 		[[self.services.httpClient fetchApplyInfo]
 		 subscribeNext:^(MSFApplicationForms *forms) {
 			 [self.model mergeValuesForKeysFromModel:forms];
+		} error:^(NSError *error) {
+			[SVProgressHUD dismiss];
 		}];
 	}];
 	

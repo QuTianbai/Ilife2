@@ -8,9 +8,37 @@
 
 #import "MSFOrderDetail.h"
 #import "MSFCommodity.h"
+#import "MSFTravel.h"
+#import "MSFCompanion.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation MSFOrderDetail
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+		@"travel": @"orderTravelDto",
+		@"companions": @"travelCompanInfoList",
+	};
+}
+
++ (NSSet *)propertyKeys {
+	NSMutableSet *keys = [super.propertyKeys mutableCopy];
+
+	// This is a derived property.
+	[keys removeObject:@keypath(MSFOrderDetail.new, isCommodity)];
+	[keys removeObject:@keypath(MSFOrderDetail.new, server)];
+
+	return keys;
+}
+
++ (NSValueTransformer *)travelJSONTransformer {
+	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFTravel.class];
+}
+
++ (NSValueTransformer *)companionsJSONTransformer {
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFCompanion.class];
+}
 
 + (NSValueTransformer *)cmdtyListJSONTransformer {
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFCommodity.class];
@@ -65,6 +93,12 @@
 	*objectID = @NO;
 	
 	return YES;
+}
+
+#pragma mark - Custom Accessors
+
+- (BOOL)isCommodity {
+	return [self.cartType isEqualToString:@"goods"];
 }
 
 @end

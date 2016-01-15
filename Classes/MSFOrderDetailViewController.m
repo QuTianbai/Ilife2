@@ -20,6 +20,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClient+Payment.h"
 #import "MSFPayment.h"
+#import "MSFCommodity.h"
 
 @interface MSFOrderDetailViewController () <MSFInputTradePasswordDelegate>
 
@@ -125,21 +126,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.order.cmdtyList.count + 2) {
-		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-		MSFBlurButton *button = [MSFBlurButton buttonWithType:UIButtonTypeCustom];
-		button.frame = CGRectMake(10, 5, CGRectGetWidth([UIScreen mainScreen].bounds) - 20, 34);
-		[button setTitle:@"确认支付" forState:UIControlStateNormal];
-		[[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
-			takeUntil:cell.rac_prepareForReuseSignal]
-			subscribeNext:^(id x) {
-				MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithModel:self.order];
-				MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
-				[self.navigationController pushViewController:vc animated:YES];
-			}];
-		[cell addSubview:button];
-		return cell;
-	}
 	MSFOrderListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MSFOrderListCell" forIndexPath:indexPath];
 	if (indexPath.section == 0) {
 		switch (indexPath.row) {

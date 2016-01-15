@@ -11,6 +11,9 @@
 #import <Masonry/Masonry.h>
 #import "MSFCartViewModel.h"
 #import "MSFCommodity.h"
+#import "MSFCompanion.h"
+#import "MSFTravel.h"
+#import "MSFCart.h"
 
 @implementation MSFCartContentCell
 
@@ -32,7 +35,7 @@
 		[label1 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.equalTo(self.contentView).offset(15);
 			make.centerY.equalTo(self.contentView);
-			make.width.equalTo(@80);
+			make.width.equalTo(@90);
 		}];
 		[label2 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.mas_equalTo(label1.mas_right).offset(20);
@@ -54,20 +57,73 @@
 		label1.text = @"贷款金额";
 		RAC(label2, text) = [RACObserve(order, loanAmt) takeUntil:self.rac_prepareForReuseSignal];
 	} else {
-		MSFCommodity *commodity = (MSFCommodity *)viewModel;
-		switch (indexPath.row) {
-			case 1:
-				label1.text = @"商品名称";
-				label2.text = commodity.cmdtyName;
-				break;
-			case 2:
-				label1.text = @"商品单价";
-				label2.text = commodity.cmdtyPrice;
-				break;
-			case 3:
-				label1.text = @"商品数量";
-				label2.text = commodity.pcsCount;
-				break;
+		if ([viewModel isKindOfClass:[MSFCommodity class]]) {
+			MSFCommodity *commodity = (MSFCommodity *)viewModel;
+			switch (indexPath.row) {
+				case 1:
+					label1.text = @"商品名称";
+					label2.text = commodity.cmdtyName;
+					break;
+				case 2:
+					label1.text = @"商品单价";
+					label2.text = commodity.cmdtyPrice;
+					break;
+				case 3:
+					label1.text = @"商品数量";
+					label2.text = commodity.pcsCount;
+					break;
+			}
+		} else if ([viewModel isKindOfClass:[MSFCart class]]) {
+			MSFTravel *travel = [viewModel travel];
+			MSFCommodity *commodity = [viewModel cmdtyList].firstObject;
+			switch (indexPath.row) {
+				case 1:
+					label1.text = @"商品名称";
+					label2.text = commodity.cmdtyName;
+					break;
+				case 2:
+					label1.text = @"出发时间";
+					label2.text = travel.departureTime;
+					break;
+				case 3:
+					label1.text = @"返回时间";
+					label2.text = travel.returnTime;
+					break;
+				case 4:
+					label1.text = @"是否需要签证";
+					label2.text = [travel.isNeedVisa isEqualToString:@"1"] ? @"是" : @"否";
+					break;
+				case 5:
+					label1.text = @"商品单价";
+					label2.text = commodity.cmdtyPrice;
+					break;
+				default:
+					break;
+			}
+		} else if ([viewModel isKindOfClass:[NSArray class]]) {
+			NSArray *companions = viewModel;
+			[companions enumerateObjectsUsingBlock:^(MSFCompanion *obj, NSUInteger idx, BOOL *stop) {
+				switch (indexPath.row % 4) {
+					case 0:
+						label1.text = @"与申请人关系";
+						label2.text = obj.companRelationship;
+						break;
+					case 1:
+						label1.text = @"姓名";
+						label2.text = obj.companName;
+						break;
+					case 2:
+						label1.text = @"身份证号";
+						label2.text = obj.companCertId;
+						break;
+					case 3:
+						label1.text = @"手机号";
+						label2.text = obj.companCellphone;
+						break;
+					default:
+						break;
+				}
+			}];
 		}
 	}
 }

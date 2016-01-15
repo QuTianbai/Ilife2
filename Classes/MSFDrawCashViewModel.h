@@ -34,6 +34,8 @@
 
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
+// type = 1 或者 2 是还款
+// type = 0 是提现
 @property (nonatomic, assign) int type;
 @property (nonatomic, assign) BOOL sending;
 

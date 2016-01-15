@@ -12,6 +12,7 @@
 @class MSFAddressViewModel;
 @class MSFBankInfoModel;
 @class RACCommand;
+@class MSFFormsViewModel;
 
 @interface MSFAddBankCardVIewModel : RVMViewModel
 //忘记交易密码
@@ -50,6 +51,7 @@
 // 拉取支持的银行
 @property (nonatomic, copy, readonly) NSString *supportBanks;
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard __deprecated;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard;
 
 @end

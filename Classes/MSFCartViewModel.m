@@ -60,6 +60,11 @@
 		
 		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
 		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
+		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
+		
+		RAC(self, cartType) =  [RACObserve(self, cart.cartType) map:^id(NSString *value) {
+			return [value isEqualToString:@"goods"] ? @(MSFCartCommodity) : @(MSFCartTravel);
+		}];
 		
 		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
 			self.loanFixedAmt = x.loanFixedAmt;
@@ -81,26 +86,22 @@
 			@strongify(self)
 			return [self insuranceSignal];
 		}];
-		RACCommand *trialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
-			return [self.services.httpClient fetchTrialAmount:self];
+		_executeTrialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			return [[self.services.httpClient fetchTrialAmount:self] doError:^(NSError *error) {
+				[SVProgressHUD dismiss];
+			}];
 		}];
-		trialCommand.allowsConcurrentExecution = YES;
-		[trialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
-			[SVProgressHUD dismiss];
+		self.executeTrialCommand.allowsConcurrentExecution = YES;
+		[self.executeTrialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
 			self.trial = x;
 			self.promId = x.promId;
-		}];
-		[trialCommand.errors subscribeNext:^(NSError *x) {
-			[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
-			NSLog(@"试算失败");
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			@strongify(self)
 			if (self.downPmtAmt.doubleValue > self.totalAmt.doubleValue) {
 				return;
 			}
-			[trialCommand execute:nil];
+			[self.executeTrialCommand execute:nil];
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
 			@strongify(self)
@@ -114,6 +115,8 @@
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
 			@strongify(self)
 			[self handleMarkets:x];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:@"请输入相应的首付金额"];
 		}];
 		
 		[RACObserve(self, loanAmt) subscribeNext:^(id x) {
@@ -141,7 +144,9 @@
 		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
 			@strongify(self)
 			[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-			return self.executeAgreementSignal;
+			return [self.executeAgreementSignal doError:^(NSError *error) {
+				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+			}];
 		}];
 		_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
 			return self.executeCompleteSignal;
@@ -172,19 +177,44 @@
 }
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == self.cart.cmdtyList.count) {
-		switch (indexPath.row) {
-			case 0: return @"MSFCartInputCell";
-			case 1: return @"MSFCartContentCell";
-			case 2: return @"MSFCartLoanTermCell";
-			case 3: return @"MSFCartSwitchCell";
-			case 4: return @"MSFCartTrialCell";
-		}
-	} else {
-		if (indexPath.row == 0) {
-			return @"MSFCartCategoryCell";
-		}
-		return @"MSFCartContentCell";
+	switch (self.cartType) {
+		case MSFCartCommodity: {
+				if (indexPath.section == self.cart.cmdtyList.count) {
+					switch (indexPath.row) {
+						case 0: return @"MSFCartInputCell";
+						case 1: return @"MSFCartContentCell";
+						case 2: return @"MSFCartLoanTermCell";
+						case 3: return @"MSFCartSwitchCell";
+						case 4: return @"MSFCartTrialCell";
+					}
+				} else {
+					if (indexPath.row == 0) {
+						return @"MSFCartCategoryCell";
+					}
+					return @"MSFCartContentCell";
+				}
+			}
+			break;
+		case MSFCartTravel: {
+				if (indexPath.section == 2) { // 商品试算视图
+					switch (indexPath.row) {
+						case 0: return @"MSFCartInputCell";
+						case 1: return @"MSFCartContentCell";
+						case 2: return @"MSFCartLoanTermCell";
+						case 3: return @"MSFCartSwitchCell";
+						case 4: return @"MSFCartTrialCell";
+					}
+				} else {
+					if (indexPath.row == 0 && indexPath.section == 0) {
+						return @"MSFCartCategoryCell";
+					}
+					return @"MSFCartContentCell";
+				}
+			}
+			break;
+
+		default:
+			break;
 	}
 	return nil;
 }
@@ -203,8 +233,9 @@
 #pragma mark - Private
 
 - (RACSignal *)agreementValidSignal {
-	//TODO: 需要判断条件，是否满足进入协议界面 `贷款每次还款金额是否计算出了
-	return [RACSignal return:@YES];
+	return [self.executeTrialCommand.executing map:^id(id value) {
+		return @(![value boolValue]);
+	}];
 }
 
 - (RACSignal *)executeAgreementSignal {
