@@ -196,7 +196,7 @@
 			}
 			break;
 		case MSFCartTravel: {
-				if (indexPath.section == self.cart.companions.count) {
+				if (indexPath.section == 2) { // 商品试算视图
 					switch (indexPath.row) {
 						case 0: return @"MSFCartInputCell";
 						case 1: return @"MSFCartContentCell";
@@ -205,7 +205,7 @@
 						case 4: return @"MSFCartTrialCell";
 					}
 				} else {
-					if (indexPath.row == 0) {
+					if (indexPath.row == 0 && indexPath.section == 0) {
 						return @"MSFCartCategoryCell";
 					}
 					return @"MSFCartContentCell";

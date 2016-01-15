@@ -135,7 +135,7 @@
 			}
 			break;
 		case MSFCartTravel: {
-				if (section == 0) return 7; // 旅游信息
+				if (section == 0) return 6; // 旅游信息
 				else if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
 				else if (section == 2) return 5; // 分期信息
 			}
@@ -168,7 +168,7 @@
 			}
 			break;
 		case MSFCartTravel: {
-				if (indexPath.section == self.viewModel.cart.companions.count) {
+				if (indexPath.section == 2) { // 商品试算的section
 					if (indexPath.row == 2) {
 						return 99.f;
 					}
@@ -208,11 +208,13 @@
 				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
 				label.font = [UIFont systemFontOfSize:15];
 				label.textColor = UIColor.themeColorNew;
-				if (section == self.viewModel.cart.companions.count) {
+				if (section == 2) {
 					label.text = @"分期";
-				} else {
+				} else if (section == 0){
 					MSFTravel *travel = self.viewModel.cart.travel;
 					label.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
+				} else {
+					label.text = @"与申请人关系";
 				}
 				[reuse addSubview:label];
 				return reuse;
@@ -240,10 +242,12 @@
 		case MSFCartTravel: {
 				NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
 				UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-				if (indexPath.section == self.viewModel.cart.companions.count) {
+				if (indexPath.section == 2) { // 贷款试算视图
 					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-				} else {
-					[cell bindViewModel:self.viewModel.cart.companions[indexPath.section] atIndexPath:indexPath];
+				} else if (indexPath.section == 1) {
+					[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
+				} else if (indexPath.section == 0) {
+					[cell bindViewModel:self.viewModel.cart.travel atIndexPath:indexPath];
 				}
 				return cell;
 			}

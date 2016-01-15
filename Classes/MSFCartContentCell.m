@@ -12,6 +12,7 @@
 #import "MSFCartViewModel.h"
 #import "MSFCommodity.h"
 #import "MSFCompanion.h"
+#import "MSFTravel.h"
 
 @implementation MSFCartContentCell
 
@@ -33,7 +34,7 @@
 		[label1 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.equalTo(self.contentView).offset(15);
 			make.centerY.equalTo(self.contentView);
-			make.width.equalTo(@80);
+			make.width.equalTo(@100);
 		}];
 		[label2 mas_makeConstraints:^(MASConstraintMaker *make) {
 			make.left.mas_equalTo(label1.mas_right).offset(20);
@@ -71,9 +72,58 @@
 					label2.text = commodity.pcsCount;
 					break;
 			}
-		} else {
-				label1.text = @"临时标题";
-				label2.text = @"临时内容";
+		} else if ([viewModel isKindOfClass:[MSFTravel class]]) {
+			MSFTravel *travel = (MSFTravel *)viewModel;
+			switch (indexPath.row) {
+				case 1:
+					label1.text = @"商品名称";
+					label2.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
+					break;
+				case 2:
+					label1.text = @"出发时间";
+					label2.text = travel.departureTime;
+					break;
+				case 3:
+					label1.text = @"返回时间";
+					label2.text = travel.returnTime;
+					break;
+				case 4:
+					label1.text = @"是否需要签证";
+					label2.text = travel.isNeedVisa;
+					break;
+				case 5:
+					//TODO: 核对单价字段
+					label1.text = @"商品单价";
+					label2.text = @"显示商品单价";
+					break;
+				default:
+					break;
+			}
+		} else if ([viewModel isKindOfClass:[NSArray class]]) {
+			NSArray *companions = viewModel;
+//			NSArray *titles = @[@"与申请人关系", @"姓名", @"身份证号", @"手机号"];
+			[companions enumerateObjectsUsingBlock:^(MSFCompanion *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+				switch (indexPath.row % 4) {
+					case 0:
+						label1.text = @"与申请人关系";
+						label2.text = obj.companRelationship;
+						break;
+					case 1:
+						label1.text = @"姓名";
+						label2.text = obj.companName;
+						break;
+					case 2:
+						label1.text = @"身份证号";
+						label2.text = obj.companCertId;
+						break;
+					case 3:
+						label1.text = @"手机号";
+						label2.text = obj.companCellphone;
+						break;
+					default:
+						break;
+				}
+			}];
 		}
 	}
 }
