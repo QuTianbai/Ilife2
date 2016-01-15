@@ -1,3 +1,9 @@
+Version 2.2.0.14:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'todo/pay' into next
+ - Update 银行卡支付首付
+ - Update down payment api
+
 Version 2.2.0.13:
  - Merge branch 'next'
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
