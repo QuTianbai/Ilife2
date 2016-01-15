@@ -11,6 +11,7 @@
 #import <Masonry/Masonry.h>
 #import "MSFCommodity.h"
 #import "MSFCompanion.h"
+#import "MSFTravel.h"
 
 @implementation MSFCartCategoryCell
 
@@ -61,8 +62,8 @@
 		label2.text = model.catLevel1Name;
 		label3.text = model.catLevel2Name;
 	} else {
-		label2.text = @"临时类型标题";
-		label3.text = @"临时类型内容";
+		MSFTravel *travel = viewModel;
+		label2.text = travel.travelType;
 	}
 }
 
