@@ -21,6 +21,9 @@
 #import "MSFClient+Payment.h"
 #import "MSFPayment.h"
 #import "MSFCommodity.h"
+#import "MSFDrawCashViewModel.h"
+#import "MSFDrawCashTableViewController.h"
+#import "MSFSmsCodeTableViewController.h"
 
 @interface MSFOrderDetailViewController () <MSFInputTradePasswordDelegate>
 
@@ -158,6 +161,20 @@
 #pragma mark - MSFInputTradePasswordDelegate
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type  {
+	if (self.order.isDownPmt) {
+		[SVProgressHUD showWithStatus:@"正在请求支付信息" maskType:SVProgressHUDMaskTypeClear];
+		[[self.services.httpClient fetchDownPayment:self.order password:pwd authType:@"O"] subscribeNext:^(MSFPayment *x) {
+			[SVProgressHUD dismiss];
+			MSFBankCardListModel *model = [[MSFBankCardListModel alloc] init];
+			[model mergeValuesForKeysFromModel:x];
+			MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:model AndCirculateViewmodel:self.order AndServices:self.services AndType:4];
+			MSFSmsCodeTableViewController *paySmsCodeVC = [[MSFSmsCodeTableViewController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:paySmsCodeVC animated:YES];
+		} error:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+		return;
+	}
 	[SVProgressHUD showWithStatus:@"正在支付..."];
 	[[self.services.httpClient paymentWithOrder:self.order password:pwd] subscribeNext:^(id x) {
 		[SVProgressHUD dismiss];

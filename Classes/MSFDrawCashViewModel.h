@@ -13,6 +13,7 @@
 
 @class RACCommand;
 @class MSFRepaymentSchedulesViewModel;
+@class MSFOrderDetail;
 
 @interface MSFDrawCashViewModel : RVMViewModel
 
@@ -34,8 +35,8 @@
 
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
-// type = 1 或者 2 是还款
-// type = 0 是提现
+// type = 1 主动支付 或者 2 是还款
+// type = 0 是提现 type = 4 首付
 @property (nonatomic, assign) int type;
 @property (nonatomic, assign) BOOL sending;
 
