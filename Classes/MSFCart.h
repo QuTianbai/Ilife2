@@ -14,6 +14,7 @@
 @interface MSFCart : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *cartId; // 货单号
+@property (nonatomic, copy, readonly) NSString *cartType; // 货单号
 @property (nonatomic, copy, readonly) NSString *compId; // 商户编号
 @property (nonatomic, copy, readonly) NSString *empId; // 员工编号
 @property (nonatomic, copy, readonly) NSString *totalAmt; // 商品总金额

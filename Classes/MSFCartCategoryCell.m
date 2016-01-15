@@ -12,6 +12,7 @@
 #import "MSFCommodity.h"
 #import "MSFCompanion.h"
 #import "MSFTravel.h"
+#import "MSFCart.h"
 
 @implementation MSFCartCategoryCell
 
@@ -62,8 +63,9 @@
 		label2.text = model.catLevel1Name;
 		label3.text = model.catLevel2Name;
 	} else {
-		MSFTravel *travel = viewModel;
-		label2.text = travel.travelType;
+		MSFCommodity *model = [viewModel cmdtyList].firstObject;
+		label2.text = model.catLevel1Name;
+		label3.text = model.catLevel2Name;
 	}
 }
 

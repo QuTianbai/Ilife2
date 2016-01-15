@@ -13,6 +13,7 @@
 #import "MSFCommodity.h"
 #import "MSFCompanion.h"
 #import "MSFTravel.h"
+#import "MSFCart.h"
 
 @implementation MSFCartContentCell
 
@@ -72,12 +73,13 @@
 					label2.text = commodity.pcsCount;
 					break;
 			}
-		} else if ([viewModel isKindOfClass:[MSFTravel class]]) {
-			MSFTravel *travel = (MSFTravel *)viewModel;
+		} else if ([viewModel isKindOfClass:[MSFCart class]]) {
+			MSFTravel *travel = [viewModel travel];
+			MSFCommodity *commodity = [viewModel cmdtyList].firstObject;
 			switch (indexPath.row) {
 				case 1:
 					label1.text = @"商品名称";
-					label2.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
+					label2.text = commodity.cmdtyName;
 					break;
 				case 2:
 					label1.text = @"出发时间";
@@ -89,20 +91,18 @@
 					break;
 				case 4:
 					label1.text = @"是否需要签证";
-					label2.text = travel.isNeedVisa;
+					label2.text = [travel.isNeedVisa isEqualToString:@"1"] ? @"是" : @"否";
 					break;
 				case 5:
-					//TODO: 核对单价字段
 					label1.text = @"商品单价";
-					label2.text = @"显示商品单价";
+					label2.text = commodity.cmdtyPrice;
 					break;
 				default:
 					break;
 			}
 		} else if ([viewModel isKindOfClass:[NSArray class]]) {
 			NSArray *companions = viewModel;
-//			NSArray *titles = @[@"与申请人关系", @"姓名", @"身份证号", @"手机号"];
-			[companions enumerateObjectsUsingBlock:^(MSFCompanion *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+			[companions enumerateObjectsUsingBlock:^(MSFCompanion *obj, NSUInteger idx, BOOL *stop) {
 				switch (indexPath.row % 4) {
 					case 0:
 						label1.text = @"与申请人关系";

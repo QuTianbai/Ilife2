@@ -14,6 +14,7 @@
 @interface MSFOrderDetail : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *inOrderId; // 订单id
+@property (nonatomic, copy, readonly) NSString *cartType; // 订单id
 @property (nonatomic, copy, readonly) NSString *orderStatus; // 订单状态
 @property (nonatomic, copy, readonly) NSString *orderTime; // 下单时间
 @property (nonatomic, copy, readonly) NSString *txnTime; // 交易时间

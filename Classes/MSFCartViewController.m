@@ -115,7 +115,7 @@
 			}
 			break;
 		case MSFCartTravel: {
-				if (!self.viewModel.cart.companions.count) return 0;
+				//if (!self.viewModel.cart.companions.count) return 0;
 				return 3;
 			}
 			break;
@@ -259,7 +259,7 @@
 				} else if (indexPath.section == 1) {
 					[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
 				} else if (indexPath.section == 0) {
-					[cell bindViewModel:self.viewModel.cart.travel atIndexPath:indexPath];
+					[cell bindViewModel:self.viewModel.cart atIndexPath:indexPath];
 				}
 				return cell;
 			}
