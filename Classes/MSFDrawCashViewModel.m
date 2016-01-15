@@ -11,6 +11,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+Users.h"
 #import "MSFRepaymentSchedulesViewModel.h"
+#import "MSFClient+Payment.h"
+#import "MSFPayment.h"
+#import "MSFOrderDetail.h"
 
 static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelErrorDomain";
 
@@ -18,7 +21,9 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 @property (nonatomic, assign) id<MSFViewModelServices>services;
 @property (nonatomic, copy) NSString *contractNO;
-@property (nonatomic, assign) NSString *enablemoney;
+@property (nonatomic, strong) NSString *enablemoney;
+
+@property (nonatomic, strong) MSFOrderDetail *order;
 
 @end
 
@@ -35,6 +40,8 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 	if (type == 2) {
 		_repayFinanceViewModel = viewModel;
 		_repayFinanceViewModel.type = type;
+	} else if (type == 4) {
+		_order = viewModel;
 	} else {
 		_circulateViewModel = viewModel;
 	}
@@ -77,13 +84,17 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		
 		RAC(self, drawCash) = RACObserve(self, repayFinanceViewModel.amount);
 		RAC(self, contractNO) = RACObserve(self, repayFinanceViewModel.repaymentNumber);
-	} else {
+	} else if (type == 0) {
 		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
 			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
 		}];
 		RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
 		RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
 		RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
+	} else if (type == 4) {
+		self.money = [NSString stringWithFormat:@"请支付首付金额¥%@", self.order.downPmt];
+		self.drawCash = [NSString stringWithFormat:@"%@", self.order.downPmt];
+		self.contractNO = self.order.inOrderId;
 	}
 	
 	_bankCardNO = [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4];
@@ -145,6 +156,10 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 }
 
 - (RACSignal *)executePaySignal {
+	if (self.type == 4) {
+		return [[self.services.httpClient downPaymentWithPayment:self.order SMSCode:self.smsCode SMSSeqNo:self.smsSeqNo]
+			merge:[self.services.httpClient requestLoan:self.order]];
+	}
 	return [self.services.httpClient transActionWithAmount:self.drawCash smsCode:self.smsCode smsSeqNo:self.smsSeqNo contractNo:self.contractNO];
 }
 

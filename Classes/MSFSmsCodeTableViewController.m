@@ -74,6 +74,17 @@
 			}];
 		}];
 		
+	} else if (self.viewModel.type == 4) {
+		self.title = @"支付首付";
+		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
+			[SVProgressHUD showWithStatus:@"正在提交..."];
+			[x subscribeNext:^(id x) {
+				[SVProgressHUD showSuccessWithStatus:@"恭喜你，请支付首付"];
+				[self.navigationController popToRootViewControllerAnimated:YES];
+			} error:^(NSError *error) {
+				[SVProgressHUD dismiss];
+			}];
+		}];
 	} else {
 		[self.submitBT.rac_command.executionSignals subscribeNext:^(id x) {
 			[SVProgressHUD showWithStatus:@"正在提交..."];
@@ -132,7 +143,11 @@
 	
 	[RACObserve(self, viewModel) subscribeNext:^(MSFDrawCashViewModel *viewModel) {
 		@strongify(self)
-		self.bankLabel.text = [NSString stringWithFormat:@"尾号%@%@", viewModel.bankCardNO,viewModel.bankName];
+		if (self.viewModel.type == 4) {
+			self.bankLabel.text = [NSString stringWithFormat:@"尾号%@%@, 首付金额¥%@元", viewModel.bankCardNO,viewModel.bankName, viewModel.drawCash];
+		} else {
+			self.bankLabel.text = [NSString stringWithFormat:@"尾号%@%@", viewModel.bankCardNO,viewModel.bankName];
+		}
 	}];
 }
 
