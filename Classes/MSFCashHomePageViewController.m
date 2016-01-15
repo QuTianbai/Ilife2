@@ -204,7 +204,7 @@
 					[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
 					MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 					BOOL isFirstBankCard = YES;
-					vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
+					vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
 					[self.navigationController pushViewController:vc animated:YES];
 					return ;
 				}
