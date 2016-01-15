@@ -28,6 +28,7 @@
 @interface MSFCartViewController ()
 
 @property (nonatomic, strong) MSFCartViewModel *viewModel;
+@property (nonatomic, assign) BOOL hiddenCompanion;
 
 @end
 
@@ -176,6 +177,8 @@
 						return 125.f;
 					}
 				}
+				if (indexPath.section == 1 && self.hiddenCompanion) return 0.f;
+				if (indexPath.section == 1 && !self.hiddenCompanion) return 44.f;
 			}
 			break;
 		default:
@@ -217,6 +220,15 @@
 					label.text = @"与申请人关系";
 				}
 				[reuse addSubview:label];
+				if (section == 1)  {
+					UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX([UIScreen mainScreen].bounds) - 30, 0, 30, 30)];
+					[button setImage:[UIImage imageNamed:@"icon-arrow-down.png"] forState:UIControlStateNormal];
+					[[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+						self.hiddenCompanion = !self.hiddenCompanion;
+						[self.tableView reloadData];
+					}];
+					[reuse addSubview:button];
+				}
 				return reuse;
 			}
 			break;
