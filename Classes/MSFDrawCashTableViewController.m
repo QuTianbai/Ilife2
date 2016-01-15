@@ -69,11 +69,22 @@
 	@weakify(self)
 	[[self.submitBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		if (self.viewModel.drawCash.floatValue <= 0) {
-			[SVProgressHUD showInfoWithStatus:@"无欠款无需支付"];
-			return;
+		if (self.viewModel.type == 0) {
+			if (self.viewModel.circulateViewModel.usableLimit.floatValue < self.viewModel.drawCash.floatValue) {
+				[SVProgressHUD showInfoWithStatus:@"提现金额超出您的额度"];
+				return;
+			}
+		} else {
+			if (self.viewModel.drawCash.floatValue > self.viewModel.circulateViewModel.totalOverdueMoney.floatValue) {
+				[SVProgressHUD showInfoWithStatus:@"还款金额大于欠款金额"];
+				return;
+			}
+			if (self.viewModel.circulateViewModel.totalOverdueMoney <=0 ) {
+				[SVProgressHUD showInfoWithStatus:@"您无欠款金额"];
+				return;
+			}
 		}
-		 [[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
+		[[UIApplication sharedApplication].keyWindow addSubview:self.inputTradePassword.view];
 	 }];
 }
 

@@ -16,6 +16,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "AppDelegate.h"
 #import "MSFGetBankIcon.h"
+#import "MSFTabBarViewModel.h"
 
 static NSString *bankCardShowStrB = @"目前不支持非借记卡类型的银行卡，请换卡再试。";
 static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改后再试";
@@ -61,7 +62,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	self.title = @"忘记交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_authviewModel = appdelegate.authorizeVewModel;
-	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithServices:self.authviewModel.services andIsFirstBankCard:NO];
+	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:appdelegate.viewModel.formsViewModel andIsFirstBankCard:NO];
 	
 	RAC(self, bankIcon.image) = [RACObserve(self, viewModel.bankCode) map:^id(NSString *value) {
 		return [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:value]];

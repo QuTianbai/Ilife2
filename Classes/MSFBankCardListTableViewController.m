@@ -26,6 +26,8 @@
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFGetBankIcon.h"
 #import "MSFUser.h"
+#import "AppDelegate.h"
+#import "MSFTabBarViewModel.h"
 
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
@@ -315,7 +317,8 @@
 			if (self.dataArray.count == 0) {
 				isFirstBankCard = YES;
 			}
-			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
+			AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:delegate.viewModel.formsViewModel andIsFirstBankCard:isFirstBankCard];
 			[self.navigationController pushViewController:vc animated:YES];
 		}
 		

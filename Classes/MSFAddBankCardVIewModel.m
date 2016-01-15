@@ -17,6 +17,7 @@
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "MSFClient+MSFBankCardList.h"
+#import "MSFFormsViewModel.h"
 
 static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardViewModelErrorDomain";
 
@@ -25,12 +26,20 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 @property (nonatomic, strong) FMDatabase *fmdb;
 
 @property (nonatomic, strong, readwrite) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, weak) MSFFormsViewModel *formsViewModel;
 
 @property (nonatomic, copy) NSString *oldBankNo;
 
 @end
 
 @implementation MSFAddBankCardVIewModel
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard {
+	self = [self initWithServices:formsViewModel.services andIsFirstBankCard:isFirstBankCard];
+	if (!self) return nil;
+	_formsViewModel = formsViewModel;
+	return self;
+}
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard {
 	self = [super init];
@@ -177,7 +186,10 @@ NSLocalizedFailureReasonErrorKey: str,
 		return [RACSignal error:error];
 	}
 	
-	return [self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode];
+	return [[self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode] doNext:^(id x) {
+		 self.formsViewModel.active = NO;
+		 self.formsViewModel.active = YES;
+	}];
 }
 
 - (RACSignal *)executeResetTrade {
