@@ -201,7 +201,7 @@
 					MSFTravel *travel = self.viewModel.cart.travel;
 					label.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
 				} else {
-					label.text = @"与申请人关系";
+					label.text = @"同行人信息";
 				}
 				[reuse addSubview:label];
 				if (section == 1)  {
