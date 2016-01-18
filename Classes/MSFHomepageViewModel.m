@@ -96,12 +96,33 @@
 }
 
 - (id)viewModelForIndexPath:(NSIndexPath *)indexPath {
-	if (([_cellModel.productType isEqualToString:@"4101"] && [_cellModel.type isEqualToString:@"APPLY"]) || !_cellModel.productType) return self;
-	return _cellModel;
+	if ([_cellModel.productType isEqualToString:@"1101"] || [_cellModel.productType isEqualToString:@"3101"] || [_cellModel.productType isEqualToString:@"3103"]) {
+		return _cellModel;
+	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
+		if ([_cellModel.type isEqualToString:@"APPLY"]) {
+			return self;
+		}
+		return _cellModel;
+	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
+		return _cellModel;
+	}
+	return self;
 }
 
 - (NSString *)reusableIdentifierForIndexPath:(NSIndexPath *)indexPath {
-	if (([_cellModel.productType isEqualToString:@"4101"] && _cellModel.totalLimit.doubleValue > 0) || ([_cellModel.productType isEqualToString:@"3102"] && (_cellModel.totalLimit.doubleValue > 0 && ![_cellModel.statusString isEqualToString:@"已到期"]))) return @"MSFCirculateViewCell";
+	if ([_cellModel.productType isEqualToString:@"1101"] || [_cellModel.productType isEqualToString:@"3101"] || [_cellModel.productType isEqualToString:@"3103"]) {
+		return @"MSFHomePageContentCollectionViewCell";
+	} else if ([_cellModel.productType isEqualToString:@"4101"]) {
+		if ([_cellModel.type isEqualToString:@"APPLY"] || [_cellModel.statusString isEqualToString:@"已到期"]) {
+			return @"MSFHomePageContentCollectionViewCell";
+		} else if (_cellModel.totalLimit.doubleValue > 0) {
+			return @"MSFCirculateViewCell";
+		}
+	} else if ([_cellModel.productType isEqualToString:@"4102"]) {
+		if (_cellModel.totalLimit.doubleValue > 0 && ![_cellModel.statusString isEqualToString:@"已到期"]) {
+			return @"MSFCirculateViewCell";
+		}
+	}
 	return @"MSFHomePageContentCollectionViewCell";
 }
 

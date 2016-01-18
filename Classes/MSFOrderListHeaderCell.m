@@ -19,17 +19,17 @@
 		self.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		UILabel *orderNo = [[UILabel alloc] init];
-		orderNo.font = [UIFont systemFontOfSize:13];
+		orderNo.font = [UIFont systemFontOfSize:12];
 		orderNo.tag = 100;
 		[self.contentView addSubview:orderNo];
 		
 		UILabel *status = [[UILabel alloc] init];
-		status.font = [UIFont systemFontOfSize:13];
+		status.font = [UIFont systemFontOfSize:12];
 		status.tag = 101;
 		[self.contentView addSubview:status];
 		
 		UILabel *time = [[UILabel alloc] init];
-		time.font = [UIFont systemFontOfSize:13];
+		time.font = [UIFont systemFontOfSize:12];
 		time.tag = 102;
 		[self.contentView addSubview:time];
 		
@@ -56,7 +56,9 @@
 												@"3" : @"待支付",
 												@"4" : @"已支付",
 												@"5" : @"已取消",
-												@"6" : @"已退货"};
+												@"6" : @"已退货",
+												@"7" : @"已支付首付",
+												};
 	UILabel *orderNo = (UILabel *)[self.contentView viewWithTag:100];
 	UILabel *status = (UILabel *)[self.contentView viewWithTag:101];
 	UILabel *time = (UILabel *)[self.contentView viewWithTag:102];
