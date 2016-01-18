@@ -66,6 +66,10 @@
 			return [value isEqualToString:@"goods"] ? @(MSFCartCommodity) : @(MSFCartTravel);
 		}];
 		
+		RAC(self, loanType) = [[RACObserve(self, cart.crProdId) ignore:nil] map:^id(id value) {
+			return [[MSFLoanType alloc] initWithTypeID:value];
+		}];
+		
 		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
 			self.loanFixedAmt = x.loanFixedAmt;
 			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
