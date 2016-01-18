@@ -14,6 +14,7 @@
 #import "MSFCompanion.h"
 #import "MSFTravel.h"
 #import "MSFCart.h"
+#import "MSFSelectKeyValues.h"
 
 @implementation MSFCartContentCell
 
@@ -106,7 +107,7 @@
 				switch (indexPath.row % 4) {
 					case 0:
 						label1.text = @"与申请人关系";
-						label2.text = obj.companRelationship;
+						label2.text = [self relative:obj.companRelationship];
 						break;
 					case 1:
 						label1.text = @"姓名";
@@ -126,6 +127,17 @@
 			}];
 		}
 	}
+}
+
+- (NSString *)relative:(NSString *)code {
+	__block NSString *relationString = @"";
+	[[MSFSelectKeyValues getSelectKeys:@"familyMember_type"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+		if ([code isEqualToString:obj.code]) {
+			relationString = obj.text;
+			*stop = YES;
+		}
+	}];
+	return relationString;
 }
 
 @end

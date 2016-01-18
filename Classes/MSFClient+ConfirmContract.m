@@ -17,7 +17,7 @@
 		@"appNo":appNO
 	}];
 	
-	if ([productCode isEqualToString:@"3101"]) {
+	if ([productCode isEqualToString:@"3101"] || [productCode isEqualToString:@"3103"]) {
 		request = [self requestWithMethod:@"POST" path:@"loan/confirmOrder" parameters:@{
 			@"appNo":appNO
 		}];

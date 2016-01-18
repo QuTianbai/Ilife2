@@ -97,6 +97,10 @@
 			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 	}];
+	
+	[self.viewModel.executeTrialCommand.errors subscribeNext:^(NSError *error) {
+		[[[UIAlertView alloc] initWithTitle:@"提示" message:error.userInfo[NSLocalizedFailureReasonErrorKey] delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil] show];
+	}];
 }
 
 - (void)back {
