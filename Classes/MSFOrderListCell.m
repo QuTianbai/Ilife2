@@ -72,7 +72,9 @@
 														@"3" : @"待支付",
 														@"4" : @"已支付",
 														@"5" : @"已取消",
-														@"6" : @"已退货"};
+														@"6" : @"已退货",
+														@"7" : @"已支付首付",
+														};
 			label2.text = map[content];
 		} else if ([title isEqualToString:@"贷款期数"]) {
 			label2.backgroundColor = UIColor.lightGrayColor;

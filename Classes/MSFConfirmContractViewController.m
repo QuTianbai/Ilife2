@@ -13,9 +13,6 @@
 #import "MSFConfirmContractModel.h"
 #import "MSFCirculateCashModel.h"
 
-static NSString *kSocialInsuranceLoanTemplate = @"4102";
-static NSString *kCommoditiesLoanTemplate = @"3101";
-
 @interface MSFConfirmContractViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *confirmContractWebView;
 
@@ -43,7 +40,7 @@ static NSString *kCommoditiesLoanTemplate = @"3101";
 	self.confirmContractWebView.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal;
-	if ([self.viewModel.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate] || [self.viewModel.circulateModel.productType isEqualToString:kCommoditiesLoanTemplate]) {
+	if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"] || [self.viewModel.circulateModel.productType isEqualToString:@"3101"] || [self.viewModel.circulateModel.productType isEqualToString:@"3103"]) {
 		[self.button setTitle:@"确定" forState:UIControlStateNormal];
 		signal = [self.viewModel requestContactWithTemplate:@"CASH_CONTRACT" productType:self.viewModel.circulateModel.productType];
 	} else {
@@ -80,7 +77,7 @@ static NSString *kCommoditiesLoanTemplate = @"3101";
 	static int index = 0;
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		if ([self.viewModel.circulateModel.productType isEqualToString:kSocialInsuranceLoanTemplate] || [self.viewModel.circulateModel.productType isEqualToString:kCommoditiesLoanTemplate]) {
+		if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"] || [self.viewModel.circulateModel.productType isEqualToString:@"3101"] || [self.viewModel.circulateModel.productType isEqualToString:@"3103"]) {
 			// 社保贷合同确认提交按钮
 			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
 				[self.navigationController popToRootViewControllerAnimated:YES];

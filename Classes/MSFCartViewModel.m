@@ -116,11 +116,14 @@
 		} error:^(NSError *error) {
 			self.barcodeInvalid = YES;
 		}];
-		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"3101"] subscribeNext:^(MSFMarkets *x) {
-			@strongify(self)
-			[self handleMarkets:x];
-		} error:^(NSError *error) {
-			[SVProgressHUD showErrorWithStatus:@"请输入相应的首付金额"];
+		
+		[RACObserve(self, loanType.typeID) subscribeNext:^(id x) {
+			[[self.services.httpClient fetchCheckEmploeeWithProductCode:x] subscribeNext:^(MSFMarkets *x) {
+				@strongify(self)
+				[self handleMarkets:x];
+			} error:^(NSError *error) {
+				[SVProgressHUD showErrorWithStatus:@"请输入相应的首付金额"];
+			}];
 		}];
 		
 		[RACObserve(self, loanAmt) subscribeNext:^(id x) {
@@ -253,7 +256,7 @@
 			double g = self.maxLoan.doubleValue;
 			double c = self.totalAmt.doubleValue;
 			
-			if (a <= d) {
+			if (a < d) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
 				return nil;
 			}
