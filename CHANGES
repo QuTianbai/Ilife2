@@ -1,3 +1,11 @@
+Version 2.2.0.16:
+ - Merge branch 'next'
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 商品试算提示
+ - Update 同行人关系
+ - Update 首付支付的相关验证
+ - Update 首页状态值对界面的影响
+
 Version 2.2.0.15:
  - Merge branch 'next'
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
