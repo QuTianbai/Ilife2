@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong, readonly) RACCommand *executeCompleteCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeTrialCommand; // 商品试算
 
-@property (nonatomic, assign, readonly) MSFCartType cartType;
+@property (nonatomic, assign, readonly) MSFCartType cartType __deprecated;
 
 - (instancetype)initWithApplicationNo:(NSString *)appNo
 														 services:(id<MSFViewModelServices>)services;
