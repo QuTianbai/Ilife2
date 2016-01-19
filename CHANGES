@@ -1,3 +1,11 @@
+Version 2.2.0.18:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 合同确认流程
+ - Update 支付首付流程
+ - Fix #1132 限制个人信息中社交账号的长度为11位
+ - Fix #1138 提示客户支持哪些银行卡
+ - Fix #1141 去掉其他联系人的配偶关系选项
+
 Version 2.2.0.17:
  - Merge pull request !56 from 'zl/master'
  - Update 由于配置原因导致产品缺失，限制客户端最大贷款金额
