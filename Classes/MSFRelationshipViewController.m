@@ -271,7 +271,9 @@ ABPersonViewControllerDelegate>
 					} else if (indexPath.section == 2) {
 						familyKey = @"familyMember_type2";
 					}
-					MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:familyKey]];
+					NSArray *relatives = [MSFSelectKeyValues getSelectKeys:familyKey];
+					if (indexPath.section > 1) relatives = [relatives mtl_arrayByRemovingFirstObject];
+					MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:relatives];
 					[self.viewModel.services pushViewModel:viewModel];
 					[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
 						cell.tfInput.text = x.text;
