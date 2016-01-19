@@ -1,3 +1,8 @@
+Version 2.2.0.19:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 试算条件,不满足条件不给予试算
+ - Fix 旅游贷同行人/旅游信息传递接口
+
 Version 2.2.0.18:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update 合同确认流程
