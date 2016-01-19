@@ -77,8 +77,8 @@
 	static int index = 0;
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
+		// 社保贷合同确认提交按钮
 		if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"]) {
-			// 社保贷合同确认提交按钮
 			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
 				[self.navigationController popToRootViewControllerAnimated:YES];
 			}];
