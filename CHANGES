@@ -1,3 +1,9 @@
+Version 2.2.0.17:
+ - Merge pull request !56 from 'zl/master'
+ - Update 由于配置原因导致产品缺失，限制客户端最大贷款金额
+ - Update 商品贷／旅游贷合同确认流程
+ - Fix 同行人信息显示
+
 Version 2.2.0.16:
  - Merge branch 'next'
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
