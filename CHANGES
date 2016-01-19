@@ -1,3 +1,7 @@
+Version 2.2.0.21:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 接口默认数据格式再次更新
+
 Version 2.2.0.20:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Improve 相机内存管理
