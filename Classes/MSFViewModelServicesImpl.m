@@ -195,28 +195,39 @@
 #pragma mark - Signals
 
 - (RACSignal *)msf_takePictureSignal:(BOOL)frontOnly {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
 			[[CZPhotoPickerPermissionAlert sharedInstance] showAlert];
 			[subscriber sendError:nil];
 			return nil;
 		}
+		
+		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-			_imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-			_imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
 			if (frontOnly) {
-				_imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+				imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
 				UIView *view = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 40)];
 				view.backgroundColor = UIColor.blackColor;
-				[_imagePickerController.view addSubview:view];
+				[imagePickerController.view addSubview:view];
+				
+				UIImage *avatar = [UIImage imageNamed:@"faceMask_bg"];
+				UIImageView *img = [[UIImageView alloc] initWithImage:avatar];
+				[imagePickerController.view addSubview:img];
+				[img mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.center.mas_equalTo(imagePickerController.view);
+					make.size.mas_equalTo(CGSizeMake(297, 360));
+				}];
 			}
 		} else {
-			_imagePickerController.sourceType =
-			UIImagePickerControllerSourceTypePhotoLibrary;
+			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
-		[self.visibleViewController presentViewController:_imagePickerController animated:YES completion:nil];
-		[_imagePickerController.rac_imageSelectedSignal subscribeNext:^(NSDictionary *imageInfoDict) {
+		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];
+		[imagePickerController.rac_imageSelectedSignal subscribeNext:^(NSDictionary *imageInfoDict) {
 			UIImage *image = imageInfoDict[UIImagePickerControllerEditedImage] ?: imageInfoDict[UIImagePickerControllerOriginalImage];
 			[subscriber sendNext:image];
 			[subscriber sendCompleted];
@@ -224,25 +235,18 @@
 			[subscriber sendCompleted];
 		}];
 		return [RACDisposable disposableWithBlock:^{
-			[_imagePickerController dismissViewControllerAnimated:NO completion:nil];
+			[imagePickerController dismissViewControllerAnimated:NO completion:nil];
 		}];
 	}];
 }
 
 - (void)ImagePickerControllerWithImage:(id)iamge {
-	_imagePickerController = [[UIImagePickerController alloc] init];
-	UIImageView *img = [[UIImageView alloc] initWithImage:iamge];
-	
-	//img.frame = CGRectMake(0, 0, 297, 360);
-	[self.imagePickerController.view addSubview:img];
-	[img mas_makeConstraints:^(MASConstraintMaker *make) {
-		make.center.mas_equalTo(self.imagePickerController.view);
-		make.size.mas_equalTo(CGSizeMake(297, 360));
-	}];
 }
 
 - (RACSignal *)msf_barcodeScanSignal {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
 			[[CZPhotoPickerPermissionAlert sharedInstance] showAlert];
@@ -260,6 +264,7 @@
 				[subscriber sendCompleted];
 			}];
 		} completed:^{
+			@strongify(vc)
 			[vc.navigationController dismissViewControllerAnimated:YES completion:^{
 				[subscriber sendCompleted];
 			}];
