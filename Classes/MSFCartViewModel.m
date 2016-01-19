@@ -91,7 +91,7 @@
 			@strongify(self)
 			return [self insuranceSignal];
 		}];
-		_executeTrialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		_executeTrialCommand = [[RACCommand alloc] initWithEnabled:self.trialValidSignal signalBlock:^RACSignal *(id input) {
 			return [[self.services.httpClient fetchTrialAmount:self] doError:^(NSError *error) {
 				[SVProgressHUD dismiss];
 			}];
@@ -103,12 +103,6 @@
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			@strongify(self)
-			if (self.loanAmt.doubleValue >= self.maxLoan.doubleValue) {
-				double g = self.maxLoan.doubleValue;
-				double c = self.totalAmt.doubleValue;
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
-				return;
-			}
 			[self.executeTrialCommand execute:nil];
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
@@ -299,6 +293,12 @@
 
 - (RACSignal *)executeCompleteSignal {
 	return [self.services.httpClient submitTrialAmount:self];
+}
+
+- (RACSignal *)trialValidSignal {
+	return [RACObserve(self, terms) map:^id(id value) {
+		return @([value count] > 0);
+	}];
 }
 
 @end
