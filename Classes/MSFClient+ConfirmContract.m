@@ -17,7 +17,8 @@
 		@"appNo":appNO
 	}];
 	
-	if ([productCode isEqualToString:@"3101"] || [productCode isEqualToString:@"3103"]) {
+	//!!!: 以三开头的的逻辑合同确认流程
+	if ([productCode hasPrefix:@"3"]) {
 		request = [self requestWithMethod:@"POST" path:@"loan/confirmOrder" parameters:@{
 			@"appNo":appNO
 		}];

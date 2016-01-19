@@ -112,8 +112,9 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 		@strongify(self)
 		return [self executeResetTrade];
 	}];
-	[[self.services.httpClient fetchSupportBankInfo] subscribeNext:^(NSString *x) {
-		_supportBanks = x;
+	
+	RAC(self, supportBanks) = [[[self.services.httpClient fetchSupportBankInfo] ignore:nil] map:^id(id value) {
+		return value;
 	}];
 
 	return self;

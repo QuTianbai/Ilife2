@@ -125,8 +125,8 @@
 	//QQ
 	[[self.tencentUsername rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 15) {
-			 textField.text = [textField.text substringToIndex:15];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	RACChannelTerminal *tencentUsernameChannel = RACChannelTo(self.viewModel.forms, qq);
@@ -136,8 +136,8 @@
 	//TAOBAO
 	[[self.taobaoUsername rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 40) {
-			 textField.text = [textField.text substringToIndex:40];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	RACChannelTerminal *taobaoUsernameChannel = RACChannelTo(self.viewModel.forms, taobao);
@@ -147,8 +147,8 @@
 	//JD
 	[[self.jdUsername rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 40) {
-			 textField.text = [textField.text substringToIndex:40];
+		 if (textField.text.length > 11) {
+			 textField.text = [textField.text substringToIndex:11];
 		 }
 	 }];
 	RACChannelTerminal *jdUsernameChannel = RACChannelTo(self.viewModel.forms, jdAccount);

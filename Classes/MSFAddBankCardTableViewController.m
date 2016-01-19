@@ -59,9 +59,6 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	[RACObserve(self, viewModel.supportBanks) subscribeNext:^(id x) {
 		if ([x isKindOfClass:NSString.class]) {
 			self.supportBanks = [[NSMutableAttributedString alloc] initWithString:x];
-			//前5个字为“目前只支持”
-			NSRange redRange = NSMakeRange(5, self.supportBanks.length - 5);
-			[self.supportBanks addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 		}
 		[self refreshInformation:self.viewModel.bankInfo.support];
 	}];
