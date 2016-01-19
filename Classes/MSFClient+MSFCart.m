@@ -80,9 +80,9 @@
 		@"minDownPmt": viewModel.cart.minDownPmt?:@"",
 		@"maxDownPmt": viewModel.cart.maxDownPmt?:@"",
 		@"internalCode": viewModel.cart.internalCode?:@"",
-		@"cmdtyList": viewModel.cart.cmdtyList ? [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList] : @[],
-		@"travelCompanInfoList": viewModel.cart.companions ? [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.companions] : @[],
-		@"orderTravelDto": viewModel.cart.travel ? [MTLJSONAdapter JSONDictionaryFromModel:viewModel.cart.travel] : @{},
+		@"cmdtyList": viewModel.cart.cmdtyList ? [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList] : NSNull.null,
+		@"travelCompanInfoList": viewModel.cart.companions ? [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.companions] : NSNull.null,
+		@"orderTravelDto": viewModel.cart.travel ? [MTLJSONAdapter JSONDictionaryFromModel:viewModel.cart.travel] : NSNull.null,
 	};
 	
 	NSData *orderData = [NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil];
