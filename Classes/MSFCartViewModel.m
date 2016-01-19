@@ -103,7 +103,10 @@
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			@strongify(self)
-			if (self.downPmtAmt.doubleValue > self.totalAmt.doubleValue) {
+			if (self.loanAmt.doubleValue >= self.maxLoan.doubleValue) {
+				double g = self.maxLoan.doubleValue;
+				double c = self.totalAmt.doubleValue;
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
 				return;
 			}
 			[self.executeTrialCommand execute:nil];
