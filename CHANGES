@@ -1,3 +1,6 @@
+Version 2.2.0.23:
+ - Update 贷款首付金额计算
+
 Version 2.2.0.22:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update 首付标志数据类型
