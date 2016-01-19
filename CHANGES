@@ -1,3 +1,11 @@
+Version 2.2.0.22:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 首付标志数据类型
+ - Fix 附件清单视图内存释放
+ - Update 贷款金额验证
+ - Update 旅游贷申请时间格式
+ - Improve 增加支付验证码提示
+
 Version 2.2.0.21:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update 接口默认数据格式再次更新
