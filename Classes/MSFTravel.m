@@ -21,16 +21,22 @@
 }
 
 + (NSValueTransformer *)departureTimeJSONTransformer {
-	return [MTLValueTransformer transformerWithBlock:^id(NSNumber *number) {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *number) {
 		NSDate *date = [NSDate dateWithTimeIntervalSince1970:number.doubleValue / 1000.0];
 		return [NSDateFormatter msf_stringFromDate:date];
+	} reverseBlock:^id(NSString *string) {
+		NSDate *date = [NSDateFormatter msf_dateFromString:string];
+		return @((long long)([date timeIntervalSince1970] * 1000));
 	}];
 }
 
 + (NSValueTransformer *)returnTimeJSONTransformer {
-	return [MTLValueTransformer transformerWithBlock:^id(NSNumber *number) {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *number) {
 		NSDate *date = [NSDate dateWithTimeIntervalSince1970:number.doubleValue / 1000.0];
 		return [NSDateFormatter msf_stringFromDate:date];
+	} reverseBlock:^id(NSString *string) {
+		NSDate *date = [NSDateFormatter msf_dateFromString:string];
+		return @((long long)([date timeIntervalSince1970] * 1000));
 	}];
 }
 
