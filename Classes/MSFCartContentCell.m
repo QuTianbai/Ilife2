@@ -103,28 +103,26 @@
 			}
 		} else if ([viewModel isKindOfClass:[NSArray class]]) {
 			NSArray *companions = viewModel;
-			[companions enumerateObjectsUsingBlock:^(MSFCompanion *obj, NSUInteger idx, BOOL *stop) {
-				switch (indexPath.row % 4) {
+			switch (indexPath.row % 4) {
 					case 0:
 						label1.text = @"与申请人关系";
-						label2.text = [self relative:obj.companRelationship];
+						label2.text = [self relative:[companions[indexPath.row / 4] companRelationship]];
 						break;
 					case 1:
 						label1.text = @"姓名";
-						label2.text = obj.companName;
+						label2.text = [companions[indexPath.row / 4] companName];
 						break;
 					case 2:
 						label1.text = @"身份证号";
-						label2.text = obj.companCertId;
+						label2.text = [companions[indexPath.row / 4] companCertId];;
 						break;
 					case 3:
 						label1.text = @"手机号";
-						label2.text = obj.companCellphone;
+						label2.text = [companions[indexPath.row / 4] companCellphone];;
 						break;
 					default:
 						break;
 				}
-			}];
 		}
 	}
 }

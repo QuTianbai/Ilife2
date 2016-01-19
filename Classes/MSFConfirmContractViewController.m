@@ -40,7 +40,7 @@
 	self.confirmContractWebView.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal;
-	if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"] || [self.viewModel.circulateModel.productType isEqualToString:@"3101"] || [self.viewModel.circulateModel.productType isEqualToString:@"3103"]) {
+	if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"]) {
 		[self.button setTitle:@"确定" forState:UIControlStateNormal];
 		signal = [self.viewModel requestContactWithTemplate:@"CASH_CONTRACT" productType:self.viewModel.circulateModel.productType];
 	} else {
@@ -77,7 +77,7 @@
 	static int index = 0;
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"] || [self.viewModel.circulateModel.productType isEqualToString:@"3101"] || [self.viewModel.circulateModel.productType isEqualToString:@"3103"]) {
+		if ([self.viewModel.circulateModel.productType isEqualToString:@"4102"]) {
 			// 社保贷合同确认提交按钮
 			[[self.viewModel.requestConfirmCommand execute:nil] subscribeNext:^(id x) {
 				[self.navigationController popToRootViewControllerAnimated:YES];

@@ -57,6 +57,7 @@
 		_downPmtScale = @"";
 		_totalAmt = @"";
 		_term = @"";
+		_downPmtAmt = @"";
 		
 		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
 		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
@@ -102,7 +103,10 @@
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			@strongify(self)
-			if (self.downPmtAmt.doubleValue > self.totalAmt.doubleValue) {
+			if (self.loanAmt.doubleValue >= self.maxLoan.doubleValue) {
+				double g = self.maxLoan.doubleValue;
+				double c = self.totalAmt.doubleValue;
+				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
 				return;
 			}
 			[self.executeTrialCommand execute:nil];
@@ -122,7 +126,7 @@
 				@strongify(self)
 				[self handleMarkets:x];
 			} error:^(NSError *error) {
-				[SVProgressHUD showErrorWithStatus:@"请输入相应的首付金额"];
+				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			}];
 		}];
 		
