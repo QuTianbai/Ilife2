@@ -59,8 +59,8 @@
 		_term = @"";
 		_downPmtAmt = @"";
 		
-		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
-		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
+		RAC(self, maxLoan) = RACObserve(self, markets.allMaxAmount);
+		RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
 		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
 		
 		RAC(self, cartType) =  [RACObserve(self, cart.cartType) map:^id(NSString *value) {
@@ -138,13 +138,13 @@
 						 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
 							 return NSOrderedDescending;
 						 }
-						 
+					 
 						 return NSOrderedSame;
 				 }];;
 			if (self.terms.count > 0) {
 				self.term = [self.terms[0] loanTeam];
 			}
-			self.downPmtScale = [@(self.loanAmt.floatValue / self.totalAmt.floatValue) stringValue];
+			self.downPmtScale = [@(self.downPmtAmt.floatValue / self.totalAmt.floatValue) stringValue];
 		}];
 		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
 			@strongify(self)

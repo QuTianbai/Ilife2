@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) NSString *applicationNo;
 @property (nonatomic, strong) MSFLoanType *loanType;
-@property (nonatomic, strong) MSFFormsViewModel *formViewModel; // null
+@property (nonatomic, strong) MSFFormsViewModel *formViewModel __deprecated; // null
 @property (nonatomic, strong) NSArray *accessories; // null
 
 // 页面展示数据
