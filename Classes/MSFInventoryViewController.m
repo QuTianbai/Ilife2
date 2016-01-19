@@ -53,6 +53,10 @@ UICollectionViewDelegateFlowLayout>
   return self;
 }
 
+- (void)dealloc {
+	NSLog(@"MSFInventoryViewController `-dealloc`");
+}
+
 - (instancetype)init {
 	return [[UIStoryboard storyboardWithName:@"photosUpload" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFInventoryViewController.class)];
 }
@@ -124,6 +128,7 @@ UICollectionViewDelegateFlowLayout>
 
 	
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
