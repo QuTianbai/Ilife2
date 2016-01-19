@@ -104,6 +104,7 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 		return [self executeDrawCash];
 	}];
 	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		if (self.smsCode.length == 0 || self.smsSeqNo.length == 0) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的验证码"}]];
 		return [self executePaySignal];
 	}];
 	

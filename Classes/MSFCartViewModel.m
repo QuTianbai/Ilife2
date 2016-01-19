@@ -254,19 +254,20 @@
 			double g = self.maxLoan.doubleValue;
 			double c = self.totalAmt.doubleValue;
 			
+			// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
 			if (a < d) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
 				return nil;
 			}
-			if (a >= e) {
+			if (a > e) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
 				return nil;
 			}
-			if (b <= f) {
+			if (b < f) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
 				return nil;
 			}
-			if (b >= g) {
+			if (b > g) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
 				return nil;
 			}
