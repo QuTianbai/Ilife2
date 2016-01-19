@@ -57,6 +57,7 @@
 		_downPmtScale = @"";
 		_totalAmt = @"";
 		_term = @"";
+		_downPmtAmt = @"";
 		
 		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
 		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
@@ -122,7 +123,7 @@
 				@strongify(self)
 				[self handleMarkets:x];
 			} error:^(NSError *error) {
-				[SVProgressHUD showErrorWithStatus:@"请输入相应的首付金额"];
+				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			}];
 		}];
 		

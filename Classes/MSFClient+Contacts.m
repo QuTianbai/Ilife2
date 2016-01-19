@@ -20,7 +20,7 @@
 			@"templateType":templateType
 		}];
 		if ([templateType isEqualToString:@"CASH_CONTRACT"] && [productCode isEqualToString:@"4102"]) {
-			// 社保贷合同确认请求参数
+			// 仅社保贷合同确认网页接口
 			request = [self requestWithMethod:@"POST" path:@"append/showDetail" parameters:@{
 				@"appNo": appNO,
 				@"productCode": productCode,
