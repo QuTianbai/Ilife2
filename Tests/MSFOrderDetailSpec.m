@@ -28,7 +28,6 @@ describe(@"travel order", ^{
 		
 		// then
 		expect(sut.travel).to(beAKindOf([MSFTravel class]));
-		expect(@(sut.isCommodity)).to(beFalsy());
 		expect(sut.companions).notTo(beNil());
 		expect(@(sut.isDownPmt)).to(beTruthy());
 	});

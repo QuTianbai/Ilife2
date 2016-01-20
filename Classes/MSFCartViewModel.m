@@ -63,10 +63,6 @@
 		RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
 		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
 		
-		RAC(self, cartType) =  [RACObserve(self, cart.cartType) map:^id(NSString *value) {
-			return [value isEqualToString:@"goods"] ? @(MSFCartCommodity) : @(MSFCartTravel);
-		}];
-		
 		RAC(self, loanType) = [[RACObserve(self, cart.crProdId) ignore:nil] map:^id(id value) {
 			return [[MSFLoanType alloc] initWithTypeID:value];
 		}];
@@ -182,45 +178,38 @@
 }
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
-	switch (self.cartType) {
-		case MSFCartCommodity: {
-				if (indexPath.section == self.cart.cmdtyList.count) {
-					switch (indexPath.row) {
-						case 0: return @"MSFCartInputCell";
-						case 1: return @"MSFCartContentCell";
-						case 2: return @"MSFCartLoanTermCell";
-						case 3: return @"MSFCartSwitchCell";
-						case 4: return @"MSFCartTrialCell";
-					}
-				} else {
-					if (indexPath.row == 0) {
-						return @"MSFCartCategoryCell";
-					}
-					return @"MSFCartContentCell";
-				}
+	if ([self.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
+		if (indexPath.section == self.cart.cmdtyList.count) {
+			switch (indexPath.row) {
+				case 0: return @"MSFCartInputCell";
+				case 1: return @"MSFCartContentCell";
+				case 2: return @"MSFCartLoanTermCell";
+				case 3: return @"MSFCartSwitchCell";
+				case 4: return @"MSFCartTrialCell";
 			}
-			break;
-		case MSFCartTravel: {
-				if (indexPath.section == 2) { // 商品试算视图
-					switch (indexPath.row) {
-						case 0: return @"MSFCartInputCell";
-						case 1: return @"MSFCartContentCell";
-						case 2: return @"MSFCartLoanTermCell";
-						case 3: return @"MSFCartSwitchCell";
-						case 4: return @"MSFCartTrialCell";
-					}
-				} else {
-					if (indexPath.row == 0 && indexPath.section == 0) {
-						return @"MSFCartCategoryCell";
-					}
-					return @"MSFCartContentCell";
-				}
+		} else {
+			if (indexPath.row == 0) {
+				return @"MSFCartCategoryCell";
 			}
-			break;
-
-		default:
-			break;
+			return @"MSFCartContentCell";
+		}
+	} else if ([self.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
+		if (indexPath.section == 2) { // 商品试算视图
+			switch (indexPath.row) {
+				case 0: return @"MSFCartInputCell";
+				case 1: return @"MSFCartContentCell";
+				case 2: return @"MSFCartLoanTermCell";
+				case 3: return @"MSFCartSwitchCell";
+				case 4: return @"MSFCartTrialCell";
+			}
+		} else {
+			if (indexPath.row == 0 && indexPath.section == 0) {
+				return @"MSFCartCategoryCell";
+			}
+			return @"MSFCartContentCell";
+		}
 	}
+	
 	return nil;
 }
 

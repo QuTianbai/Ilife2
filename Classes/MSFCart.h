@@ -11,6 +11,9 @@
 @class MSFTravel;
 @class MSFCompanion;
 
+extern NSString *const MSFCartCommodityIdentifier;
+extern NSString *const MSFCartTravelIdentifier;
+
 @interface MSFCart : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *cartId; // 货单号
@@ -37,6 +40,6 @@
 @property (nonatomic, assign, readonly) BOOL isDownPmt;
 
 // 判断商品／旅行
-@property (nonatomic, assign, readonly) BOOL isCommodity;
+@property (nonatomic, assign, readonly) BOOL isCommodity __deprecated;
 
 @end
