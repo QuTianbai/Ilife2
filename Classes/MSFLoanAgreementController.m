@@ -64,7 +64,7 @@
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-	//TODO: 优化协议网页加载失败，返回错误的json信息的时候，处理统一按钮无法点击
+	//!!!: 优化协议网页加载失败，返回错误的json信息的时候，处理统一按钮无法点击
 	[[[self.LoanAgreenmentWV
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
 		withSignalOfArguments:[RACSignal combineLatest:@[self.viewModel.loanAgreementSignal, [RACSignal return:nil]]]]

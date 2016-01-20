@@ -29,7 +29,7 @@
 
 @implementation MSFInputTradePasswordViewController
 
-//TODO: 存在内存没有释放的问题
+//!!!: 存在内存没有释放的问题
 
 - (void)viewDidLoad {
 	[super viewDidLoad];

@@ -151,7 +151,7 @@
 		}];
 	}];
 	
-	//TODO: 重构贷款申请条件验证, 是否允许申请，是否绑定银行卡，是否设置交易密码
+	//!!!: 重构贷款申请条件验证, 是否允许申请，是否绑定银行卡，是否设置交易密码
 	// 判断是否允马上贷
 	[self.viewModel.executeAllowMSCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
