@@ -61,12 +61,6 @@
 #import "MSFBarcodeScanViewController.h"
 #import "MSFBarcodeScanViewController+MSFSignalSupport.h"
 
-#import "MSFCommoditesViewModel.h"
-#import "MSFCommoditesViewController.h"
-
-#import "MSFDistinguishViewModel.h"
-#import "MSFDistinguishViewController.h"
-
 #import "MSFCommodityCashViewModel.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFRepaymentSchedulesViewModel.h"
@@ -150,8 +144,6 @@
 		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFCommoditesViewModel.class]) {
-		viewController = [[MSFCommoditesViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
 		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
