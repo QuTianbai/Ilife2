@@ -34,3 +34,4 @@ else
 	mv $BUILD_DIR/Archive/$SCHEME.ipa $BUILD_DIR/Archive/$SCHEME-$BUILD_VERSION.ipa
 fi
 
+sh $(pwd)/script/ftp-upload.sh
