@@ -14,8 +14,9 @@ __block MSFCart *sut;
 describe(@"commodities", ^{
 	beforeEach(^{
 		sut = [MTLJSONAdapter modelOfClass:[MSFCart class] fromJSONDictionary:@{
-			@"isDownPmt": @1,
+			@"isDownPmt": @"1",
 			@"orderTravelDto": @{},
+			@"cartType": @"goods",
 			@"travelCompanInfoList": @[],
 		} error:nil];
 	});
@@ -34,7 +35,7 @@ describe(@"commodities", ^{
 describe(@"travel", ^{
 	beforeEach(^{
 		sut = [MTLJSONAdapter modelOfClass:[MSFCart class] fromJSONDictionary:@{
-			@"isDownPmt": @1,
+			@"isDownPmt": @"1",
 			@"orderTravelDto": @{
 				@"origin": @"foo",
 				@"destination": @"bar"
