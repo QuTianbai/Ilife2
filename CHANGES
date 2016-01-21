@@ -1,3 +1,10 @@
+Version 2.2.0.25:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 首付金额限制在整数
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update archive script append ftp upload script
+ - Add ftp upload to server script
+
 Version 2.2.0.24:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update 退货状态显示
