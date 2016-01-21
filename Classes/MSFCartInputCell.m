@@ -30,7 +30,7 @@
 		
 		UITextField *tf = [[UITextField alloc] init];
 		tf.font = [UIFont systemFontOfSize:15];
-		tf.keyboardType = UIKeyboardTypeDecimalPad;
+		tf.keyboardType = UIKeyboardTypeNumberPad;
 		tf.tag = 100;
 		[self.contentView addSubview:tf];
 		
