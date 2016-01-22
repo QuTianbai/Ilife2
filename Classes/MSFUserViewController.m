@@ -27,7 +27,7 @@
 
 #import "MSFBankCardListTableViewController.h"
 #import "MSFRepaymentPlanViewController.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 
 #import "MSFOrderListViewController.h"
 
@@ -165,7 +165,7 @@
 }
 
 - (void)repaymentPlan {
-	MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
 	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
 	repayViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:repayViewController animated:YES];

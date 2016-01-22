@@ -13,7 +13,7 @@
 #import "MSFCirculateRepaymentTableViewCell.h"
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "UITableView+MSFActivityIndicatorViewAdditions.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFRepaymentPlanViewController ()<UITableViewDelegate>
@@ -26,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) IBOutlet UITableView *circulateRepayMentTableView;
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
-@property (nonatomic, strong) MSFRepaymentViewModel *viewModel;
+@property (nonatomic, strong) MSFRepaymentPlanViewModel *viewModel;
 
 @property (nonatomic, strong) NSArray *dataArray;
 
@@ -34,7 +34,7 @@
 
 @implementation MSFRepaymentPlanViewController
 
-- (instancetype)initWithViewModel:(MSFRepaymentViewModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFRepaymentPlanViewModel *)viewModel {
 	self = [UIStoryboard storyboardWithName:@"MSFRepaymentPlanStoryboard" bundle:nil].instantiateInitialViewController;
 	if (self == nil) {
 		return nil;

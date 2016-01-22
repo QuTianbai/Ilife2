@@ -9,7 +9,7 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 
-@interface MSFRepaymentViewModel : RVMViewModel
+@interface MSFRepaymentPlanViewModel : RVMViewModel
 
 @property (nonatomic, assign) id<MSFViewModelServices> services;
 

@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 MSFINANCE. All rights reserved.
 //
 
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFClient+RepaymentSchedules.h"
 
-@interface MSFRepaymentViewModel ()
+@interface MSFRepaymentPlanViewModel ()
 
 @end
 
-@implementation MSFRepaymentViewModel
+@implementation MSFRepaymentPlanViewModel
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
 	self = [super init];

@@ -42,7 +42,7 @@
 #import "MSFConfirmContractViewController.h"
 
 #import "MSFApplyListViewModel.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
 #import "MSFLoanListViewController.h"
 
@@ -123,7 +123,7 @@
 	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
