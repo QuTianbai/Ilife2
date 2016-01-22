@@ -11,7 +11,7 @@
 
 @interface MSFPaymentViewController ()
 
-//@property (nonatomic, strong) MSFPaymentViewModel *viewModel;
+@property (nonatomic, strong) NSObject <MSFPaymentViewModel> *viewModel;
 
 @property (nonatomic, weak) IBOutlet UILabel *bankName;
 @property (nonatomic, weak) IBOutlet UILabel *bankNo;

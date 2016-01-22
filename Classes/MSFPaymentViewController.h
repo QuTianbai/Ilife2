@@ -5,9 +5,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFPaymentViewModel.h"
 
 @interface MSFPaymentViewController : UITableViewController
 
-- (instancetype)initWithViewModel:(id)viewModel;
+- (instancetype)initWithViewModel:(id <MSFPaymentViewModel>)viewModel;
 
 @end

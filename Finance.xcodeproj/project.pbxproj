@@ -1498,6 +1498,7 @@
 		495B071B1C520BAD002DDFAA /* MSFPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPaymentViewController.h; sourceTree = "<group>"; };
 		495B071C1C520BAD002DDFAA /* MSFPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPaymentViewController.m; sourceTree = "<group>"; };
 		495B071D1C520BAD002DDFAA /* MSFPaymentViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFPaymentViewController.storyboard; sourceTree = "<group>"; };
+		495B07331C5210FA002DDFAA /* MSFPaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPaymentViewModel.h; sourceTree = "<group>"; };
 		495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementViewModel.h; sourceTree = "<group>"; };
 		495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementViewModel.m; sourceTree = "<group>"; };
 		49614C891C03FF8F004D6208 /* MSFClient+Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Inventory.h"; sourceTree = "<group>"; };
@@ -3227,7 +3228,7 @@
 				102C7E921C2927250023172B /* Orders */,
 				07122F2F1C312336004AD0E2 /* FaceMask */,
 				496FE7631C06FE0D004A5BAB /* CashHomePageView */,
-				49DA1A381C0ED1020052C056 /* Draw */,
+				49DA1A381C0ED1020052C056 /* Payment */,
 				07F088FE1BBD021A0067C5BC /* Circulate */,
 				074AC2491BBB87500056BA22 /* TradePassword */,
 				074AC22D1BBA89680056BA22 /* BankCard */,
@@ -3945,13 +3946,14 @@
 			name = "Apply List";
 			sourceTree = "<group>";
 		};
-		49DA1A381C0ED1020052C056 /* Draw */ = {
+		49DA1A381C0ED1020052C056 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
 				07F089221BBD37000067C5BC /* MSFDrawCashViewModel.h */,
 				07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */,
+				495B07331C5210FA002DDFAA /* MSFPaymentViewModel.h */,
 			);
-			name = Draw;
+			name = Payment;
 			sourceTree = "<group>";
 		};
 		49DA1A391C0ED1620052C056 /* Repayment */ = {
