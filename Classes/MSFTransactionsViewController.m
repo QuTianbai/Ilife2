@@ -4,14 +4,13 @@
 // Copyright (c) 2016 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFPaymentViewController.h"
-//#import "MSFPaymentViewModel.h"
+#import "MSFTransactionsViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-@interface MSFPaymentViewController ()
+@interface MSFTransactionsViewController ()
 
-@property (nonatomic, strong) NSObject <MSFPaymentViewModel> *viewModel;
+@property (nonatomic, strong) NSObject <MSFTransactionsViewModel> *viewModel;
 
 @property (nonatomic, weak) IBOutlet UILabel *bankName;
 @property (nonatomic, weak) IBOutlet UILabel *bankNo;
@@ -26,10 +25,10 @@
 
 @end
 
-@implementation MSFPaymentViewController
+@implementation MSFTransactionsViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
-  self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFPaymentViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFPaymentViewController class])];
+  self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFTransactionsViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFTransactionsViewController class])];
   if (!self) {
     return nil;
   }

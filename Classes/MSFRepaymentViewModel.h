@@ -16,8 +16,8 @@
 @class MSFRepaymentSchedulesViewModel;
 @class MSFOrderDetail;
 
-//TODO: 主动支付/首付
-@interface MSFPaymentViewModel : RVMViewModel <MSFTransactionsViewModel>
+//TODO: 循环贷/马上贷(分期贷)还款
+@interface MSFRepaymentViewModel : RVMViewModel <MSFTransactionsViewModel>
 
 @property (nonatomic, copy) NSString *smsCode;
 

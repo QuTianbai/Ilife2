@@ -454,8 +454,10 @@
 		49588E051B87102F00FCF171 /* form.json in Resources */ = {isa = PBXBuildFile; fileRef = 49588E041B87102F00FCF171 /* form.json */; };
 		49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588E101B872BC700FCF171 /* NSDate+UTC0800.m */; };
 		4958FBEA1B1C35680090E663 /* MSFHomepageCollectionViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */; };
-		495B071E1C520BAD002DDFAA /* MSFPaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B071C1C520BAD002DDFAA /* MSFPaymentViewController.m */; };
-		495B071F1C520BAD002DDFAA /* MSFPaymentViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495B071D1C520BAD002DDFAA /* MSFPaymentViewController.storyboard */; };
+		495B071E1C520BAD002DDFAA /* MSFTransactionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B071C1C520BAD002DDFAA /* MSFTransactionsViewController.m */; };
+		495B071F1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495B071D1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard */; };
+		495B07361C522CFE002DDFAA /* MSFRepaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B07351C522CFE002DDFAA /* MSFRepaymentViewModel.m */; };
+		495B07391C522E6E002DDFAA /* MSFPaymentViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */; };
 		495B2E611B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */; };
 		49614C871C03FD6C004D6208 /* MSFClient+MSFSocialInsurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D13DB31C03009700A46980 /* MSFClient+MSFSocialInsurance.m */; };
 		49614C8B1C03FF8F004D6208 /* MSFClient+Inventory.m in Sources */ = {isa = PBXBuildFile; fileRef = 49614C8A1C03FF8F004D6208 /* MSFClient+Inventory.m */; };
@@ -1495,10 +1497,14 @@
 		49588E101B872BC700FCF171 /* NSDate+UTC0800.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+UTC0800.m"; sourceTree = "<group>"; };
 		4958FBE81B1C35680090E663 /* MSFHomepageCollectionViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFHomepageCollectionViewHeader.h; sourceTree = "<group>"; };
 		4958FBE91B1C35680090E663 /* MSFHomepageCollectionViewHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFHomepageCollectionViewHeader.m; sourceTree = "<group>"; };
-		495B071B1C520BAD002DDFAA /* MSFPaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPaymentViewController.h; sourceTree = "<group>"; };
-		495B071C1C520BAD002DDFAA /* MSFPaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPaymentViewController.m; sourceTree = "<group>"; };
-		495B071D1C520BAD002DDFAA /* MSFPaymentViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFPaymentViewController.storyboard; sourceTree = "<group>"; };
-		495B07331C5210FA002DDFAA /* MSFPaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPaymentViewModel.h; sourceTree = "<group>"; };
+		495B071B1C520BAD002DDFAA /* MSFTransactionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTransactionsViewController.h; sourceTree = "<group>"; };
+		495B071C1C520BAD002DDFAA /* MSFTransactionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFTransactionsViewController.m; sourceTree = "<group>"; };
+		495B071D1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFTransactionsViewController.storyboard; sourceTree = "<group>"; };
+		495B07331C5210FA002DDFAA /* MSFTransactionsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFTransactionsViewModel.h; sourceTree = "<group>"; };
+		495B07341C522CFE002DDFAA /* MSFRepaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentViewModel.h; sourceTree = "<group>"; };
+		495B07351C522CFE002DDFAA /* MSFRepaymentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentViewModel.m; sourceTree = "<group>"; };
+		495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPaymentViewModel.h; sourceTree = "<group>"; };
+		495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPaymentViewModel.m; sourceTree = "<group>"; };
 		495B2E5F1B4E5CCB006D4049 /* MSFLoanAgreementViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanAgreementViewModel.h; sourceTree = "<group>"; };
 		495B2E601B4E5CCB006D4049 /* MSFLoanAgreementViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementViewModel.m; sourceTree = "<group>"; };
 		49614C891C03FF8F004D6208 /* MSFClient+Inventory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Inventory.h"; sourceTree = "<group>"; };
@@ -3491,9 +3497,9 @@
 		495B070D1C520B9C002DDFAA /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				495B071B1C520BAD002DDFAA /* MSFPaymentViewController.h */,
-				495B071C1C520BAD002DDFAA /* MSFPaymentViewController.m */,
-				495B071D1C520BAD002DDFAA /* MSFPaymentViewController.storyboard */,
+				495B071B1C520BAD002DDFAA /* MSFTransactionsViewController.h */,
+				495B071C1C520BAD002DDFAA /* MSFTransactionsViewController.m */,
+				495B071D1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard */,
 			);
 			name = Payment;
 			sourceTree = "<group>";
@@ -3949,9 +3955,13 @@
 		49DA1A381C0ED1020052C056 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */,
+				495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */,
+				495B07341C522CFE002DDFAA /* MSFRepaymentViewModel.h */,
+				495B07351C522CFE002DDFAA /* MSFRepaymentViewModel.m */,
 				07F089221BBD37000067C5BC /* MSFDrawCashViewModel.h */,
 				07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */,
-				495B07331C5210FA002DDFAA /* MSFPaymentViewModel.h */,
+				495B07331C5210FA002DDFAA /* MSFTransactionsViewModel.h */,
 			);
 			name = Payment;
 			sourceTree = "<group>";
@@ -4610,7 +4620,7 @@
 				C7A351841B217CB10001DF6A /* iconfont-wangdian@2x.png in Resources */,
 				49FCBF891C0E92890035398E /* allow.json in Resources */,
 				07A7DB101BFDD65900916ADD /* lightApplyCash@3x.png in Resources */,
-				495B071F1C520BAD002DDFAA /* MSFPaymentViewController.storyboard in Resources */,
+				495B071F1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard in Resources */,
 				077347E11BBA338900D7A130 /* guangfa@3x.png in Resources */,
 				49C0F1C61B2C341400E92572 /* tabbar-account-normal@3x.png in Resources */,
 				49DAEE7C1B2E83D7009433C5 /* product.storyboard in Resources */,
@@ -5230,6 +5240,7 @@
 				491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */,
 				4948E8B61B9577D30048D125 /* MSFInventoryViewModel.m in Sources */,
 				491925211C08516600E6EAC5 /* MSFLoanType.m in Sources */,
+				495B07391C522E6E002DDFAA /* MSFPaymentViewModel.m in Sources */,
 				07330B581BBE2C2C000EB8FD /* MSFMarkets.m in Sources */,
 				49B5D7B21B08461700917D2C /* MSFAuthorization.m in Sources */,
 				498637CF1C2BC19300A11845 /* MSFDistinguishViewModel.m in Sources */,
@@ -5273,7 +5284,7 @@
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
 				07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */,
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
-				495B071E1C520BAD002DDFAA /* MSFPaymentViewController.m in Sources */,
+				495B071E1C520BAD002DDFAA /* MSFTransactionsViewController.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
 				498141061BBEA527006C7E8D /* MSFSignInSegmentedView.m in Sources */,
 				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
@@ -5281,6 +5292,7 @@
 				102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */,
 				10DAE1C91BBBDB1B001BD017 /* MSFRelationHeadCell.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,
+				495B07361C522CFE002DDFAA /* MSFRepaymentViewModel.m in Sources */,
 				4983119A1C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
 				49EB040E1C3D00F500177509 /* MSFPayment.m in Sources */,

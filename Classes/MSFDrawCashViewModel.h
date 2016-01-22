@@ -10,13 +10,14 @@
 #import "MSFBankCardListModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFCirculateCashViewModel.h"
-#import "MSFPaymentViewModel.h"
+#import "MSFTransactionsViewModel.h"
 
 @class RACCommand;
 @class MSFRepaymentSchedulesViewModel;
 @class MSFOrderDetail;
 
-@interface MSFDrawCashViewModel : RVMViewModel <MSFPaymentViewModel>
+//TODO: 提现
+@interface MSFDrawCashViewModel : RVMViewModel <MSFTransactionsViewModel>
 
 @property (nonatomic, copy) NSString *smsCode;
 
