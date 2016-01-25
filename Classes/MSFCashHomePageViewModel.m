@@ -27,6 +27,7 @@
 #import "MSFDrawCashTableViewController.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFRepaymentViewModel.h"
+#import "MSFDrawingsViewModel.h"
 
 @interface MSFCashHomePageViewModel ()
 
@@ -102,8 +103,7 @@
 				} else {
 					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 						if (obj.master) {
-							MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:self.circulateViewModel AndServices:self.services AndType:0];
-							viewModel.drawCash = self.circulateViewModel.usableLimit;
+							MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:self.circulateViewModel services:self.services];
 							[self.services pushViewModel:viewModel];
 							*stop = YES;
 						}

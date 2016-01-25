@@ -72,6 +72,7 @@
 
 #import "MSFPaymentViewModel.h"
 #import "MSFRepaymentViewModel.h"
+#import "MSFDrawingsViewModel.h"
 #import "MSFTransactionsViewController.h"
 
 #import "MSFInputTradePasswordViewController.h"
@@ -164,7 +165,7 @@
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");

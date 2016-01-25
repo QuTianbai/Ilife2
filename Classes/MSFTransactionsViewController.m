@@ -8,6 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "RVMViewModel.h"
+#import "MSFDrawingsViewModel.h"
 
 @interface MSFTransactionsViewController ()
 
@@ -40,21 +41,30 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	RAC(self, title) = RACObserve(self.viewModel, title);
 	RAC(self.bankName, text) = RACObserve(self.viewModel, bankName);
 	RAC(self.bankNo, text) = RACObserve(self.viewModel, bankNo);
 	RAC(self.bankIco, image) = [RACObserve(self.viewModel, bankIco) map:^id(id value) {
 		return [UIImage imageNamed:value];
 	}];
 	RAC(self.payment, text) = RACObserve(self.viewModel, summary);
-	RAC(self.amount, text) = RACObserve(self.viewModel, amounts);
 	RAC(self.supports, text) = RACObserve(self.viewModel, supports);
 	RAC(self.amount, userInteractionEnabled) = RACObserve(self.viewModel, editable);
 	
+	
 	RAC(self.viewModel, captcha) = self.authCode.rac_textSignal;
+	
+	RACChannelTerminal *modelTerminal = RACChannelTo(self.viewModel, amounts);
+	RAC(self.amount, text) = modelTerminal;
+	[self.amount.rac_textSignal subscribe:modelTerminal];
 	
 	self.fetchAuthcode.rac_command = self.viewModel.executeCaptchaCommand;
 	
 	@weakify(self)
+	[RACObserve(self, viewModel.editable) subscribeNext:^(id x) {
+		@strongify(self)
+		if ([x boolValue]) [self.amount becomeFirstResponder];
+	}];
 	[RACObserve(self.viewModel, captchaTitle) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.fetchAuthcode setTitle:x forState:UIControlStateNormal];
@@ -73,6 +83,7 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[self.viewModel.executePaymentCommand.executionSignals subscribeNext:^(id x) {
+		[SVProgressHUD showWithStatus:@"正在处理..."];
 		[x subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"交易成功"];
 			[self.navigationController popViewControllerAnimated:YES];
@@ -90,6 +101,13 @@
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.viewModel.active = NO;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if ([self.viewModel isKindOfClass:MSFDrawingsViewModel.class]) return 3;
+	return [super tableView:tableView numberOfRowsInSection:section];
 }
 
 @end

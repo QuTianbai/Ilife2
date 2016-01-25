@@ -627,6 +627,7 @@
 		49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBEB1B072EA4008A9CD1 /* MSFApplicationResponse.m */; };
 		49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */; };
 		49CCFBF81B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCFBF11B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m */; };
+		49CF3A7F1C55F5590050E04E /* MSFDrawingsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CF3A7E1C55F5590050E04E /* MSFDrawingsViewModel.m */; };
 		49D7ABD91C1024C800ED07E7 /* NSFileManager+Temporary.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */; };
 		49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */ = {isa = PBXBuildFile; fileRef = 49DA1A451C0ED2A60052C056 /* circleCash.json */; };
 		49DA1A4D1C0ED2A60052C056 /* cirCulate.json in Resources */ = {isa = PBXBuildFile; fileRef = 49DA1A461C0ED2A60052C056 /* cirCulate.json */; };
@@ -1733,6 +1734,8 @@
 		49CCFBED1B072EA4008A9CD1 /* MSFApplyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyList.m; sourceTree = "<group>"; };
 		49CCFBF01B072EA4008A9CD1 /* MSFClient+MSFApplyCash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+MSFApplyCash.h"; sourceTree = "<group>"; };
 		49CCFBF11B072EA4008A9CD1 /* MSFClient+MSFApplyCash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+MSFApplyCash.m"; sourceTree = "<group>"; };
+		49CF3A7D1C55F5590050E04E /* MSFDrawingsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDrawingsViewModel.h; sourceTree = "<group>"; };
+		49CF3A7E1C55F5590050E04E /* MSFDrawingsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDrawingsViewModel.m; sourceTree = "<group>"; };
 		49D7ABD71C1024C800ED07E7 /* NSFileManager+Temporary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+Temporary.h"; sourceTree = "<group>"; };
 		49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+Temporary.m"; sourceTree = "<group>"; };
 		49DA1A451C0ED2A60052C056 /* circleCash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = circleCash.json; sourceTree = "<group>"; };
@@ -3958,6 +3961,8 @@
 		49DA1A381C0ED1020052C056 /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				49CF3A7D1C55F5590050E04E /* MSFDrawingsViewModel.h */,
+				49CF3A7E1C55F5590050E04E /* MSFDrawingsViewModel.m */,
 				495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */,
 				495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */,
 				495B07341C522CFE002DDFAA /* MSFRepaymentViewModel.h */,
@@ -5185,6 +5190,7 @@
 				074AC2301BBA8D790056BA22 /* MSFAddBankCardVIewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
 				49C2FE501B466A6B00B6B20A /* MSFAddressViewModel.m in Sources */,
+				49CF3A7F1C55F5590050E04E /* MSFDrawingsViewModel.m in Sources */,
 				49252BCA1C293D4300CC682B /* MSFBarcodeScanViewController.m in Sources */,
 				492007531BA00CCD00C0722C /* UIImage+Resize.m in Sources */,
 				102C7EE11C2A389B0023172B /* MSFOrderListFooterCell.m in Sources */,
