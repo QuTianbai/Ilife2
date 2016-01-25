@@ -14,153 +14,155 @@
 #import "MSFClient+Payment.h"
 #import "MSFPayment.h"
 #import "MSFOrderDetail.h"
-
-static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelErrorDomain";
+#import "MSFGetBankIcon.h"
+#import "MSFClient+Users.h"
+#import "MSFClient+Payment.h"
+#import "MSFClient+MSFBankCardList.h"
+#import "MSFOrderDetail.h"
+#import "MSFBankCardListModel.h"
+#import "MSFTransSmsSeqNOModel.h"
+#import "MSFBankCardListViewModel.h"
+#import "MSFCirculateCashViewModel.h"
 
 @interface MSFRepaymentViewModel ()
 
-@property (nonatomic, assign) id<MSFViewModelServices>services;
-@property (nonatomic, copy) NSString *contractNO;
-@property (nonatomic, strong) NSString *enablemoney;
-
-@property (nonatomic, strong) MSFOrderDetail *order;
+@property (nonatomic, strong, readwrite) NSString *bankIco;
+@property (nonatomic, strong, readwrite) NSString *bankName;
+@property (nonatomic, strong, readwrite) NSString *bankNo;
+@property (nonatomic, strong, readwrite) NSString *uniqueTransactionID;
+@property (nonatomic, strong, readwrite) NSString *captchaTitle;
+@property (nonatomic, assign, readwrite) BOOL captchaWaiting;
 
 @end
 
 @implementation MSFRepaymentViewModel
 
-- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type {
-	self = [super init];
-	if (!self) {
-		return  nil;
-	}
-	_smsCode = @"";
-	_smsCode = @"";
-	_smsSeqNo = @"";
-	if (type == 2) {
-		_repayFinanceViewModel = viewModel;
-		_repayFinanceViewModel.type = type;
-	} else if (type == 4) {
-		_order = viewModel;
-	} else {
-		_circulateViewModel = viewModel;
-	}
-	_type = type;
+- (instancetype)initWithViewModel:(id)model services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_model = model;
 	_services = services;
-	_bankIcon = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
-	_bankName = model.bankName;
 	
+	_captcha = @"";
+	_title = @"还款";
+	_captchaWaiting = NO;
+	_captchaTitle = @"获取验证码";
 	
-	if (type == 1) {
-		RAC(self, money) = [RACSignal combineLatest:@[
-				RACObserve(self, circulateViewModel.latestDueMoney),
-				RACObserve(self, circulateViewModel.totalOverdueMoney)]
-			reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
-				if (lastDueMoney == nil) {
-					lastDueMoney = @"0";
-				}
-				if (totaloverdueMoney == nil) {
-					totaloverdueMoney = @"0";
-				}
-				return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
-			}];
-		
-		RAC(self, drawCash) = RACObserve(self, circulateViewModel.latestDueMoney);
-		RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
-		RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
-	} else if (type == 2) {
-		RAC(self, money) = [RACSignal combineLatest:@[
-				RACObserve(self, repayFinanceViewModel.amount),
-				RACObserve(self, repayFinanceViewModel.ownerAllMoney)]
-			reduce:^id(NSString *lastDueMoney, NSString *totaloverdueMoney){
-					if (lastDueMoney == nil) {
-						lastDueMoney = @"0";
-					}
-					if (totaloverdueMoney == nil) {
-						totaloverdueMoney = @"0";
-					}
-					return [NSString stringWithFormat:@"本期应还款金额￥%@,总欠款金额￥%@", lastDueMoney, totaloverdueMoney];
-			}];
-		
-		RAC(self, drawCash) = RACObserve(self, repayFinanceViewModel.amount);
-		RAC(self, contractNO) = RACObserve(self, repayFinanceViewModel.repaymentNumber);
-	} else if (type == 0) {
-		RAC(self, money) = [RACObserve(self, circulateViewModel.usableLimit) map:^id(NSString *value) {
-			return [NSString stringWithFormat:@"剩余可用额度%@元", value];
-		}];
-		RAC(self, drawCash) = RACObserve(self, circulateViewModel.usableLimit);
-		RAC(self, enablemoney) = RACObserve(self, circulateViewModel.usableLimit);
-		RAC(self, contractNO) = RACObserve(self, circulateViewModel.contractNo);
-	} else if (type == 4) {
-		self.money = [NSString stringWithFormat:@"请支付首付金额¥%@", self.order.downPmt];
-		self.drawCash = [NSString stringWithFormat:@"%@", self.order.downPmt];
-		self.contractNO = self.order.inOrderId;
-	}
+	_editable = NO;
 	
-	_bankCardNO = [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4];
-	
-	
-	_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self executeDrawCash];
+	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
+		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
+			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
+			return viewModel.latestDueMoney;
+		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
+			return [@(viewModel.amount) stringValue];
+		}
+		return @"";
 	}];
-	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		if (self.smsCode.length == 0 || self.smsSeqNo.length == 0) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的验证码"}]];
-		return [self executePaySignal];
+	RAC(self, summary) = [RACObserve(self, model) map:^id(id value) {
+		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
+			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
+			return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];;
+		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
+			return [NSString stringWithFormat:@"本期最小还款金额￥%.2f,总欠款金额￥%@", viewModel.amount, viewModel.ownerAllMoney];;
+		}
+		return @"";
 	}];
 	
-	_executSMSCommand = [[RACCommand alloc] initWithEnabled:
-	[RACObserve(self, sending)
-		map:^id(id value) {
-			return @(![value boolValue]);
-		}]
-		signalBlock:^RACSignal *(id input) {
-			return [self.services.httpClient sendSmsCodeForTrans];
+	@weakify(self)
+	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+		@strongify(self)
+		[[[self.services.httpClient fetchBankCardList]
+			filter:^BOOL(MSFBankCardListModel *value) {
+				return value.master;
+			}]
+			subscribeNext:^(MSFBankCardListModel *x) {
+				self.bankIco = [MSFGetBankIcon getIconNameWithBankCode:x.bankCode];
+				self.bankNo = x.bankCardNo;
+				self.bankName = x.bankName;
+			}];
+		RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
+	}];
+	
+	_executeCaptchaCommand = [[RACCommand alloc] initWithEnabled:self.captchaValidSignal signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [[self captchaSignal] doNext:^(id x) {
+			self.captchaWaiting = YES;
+			RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:60] takeUntil:self.didBecomeInactiveSignal];
+			__block int repetCount = 60;
+			[repetitiveEventSignal subscribeNext:^(id x) {
+				self.captchaTitle = [@(--repetCount) stringValue];
+			} completed:^{
+				self.captchaTitle = @"获取验证码";
+				self.captchaWaiting = NO;
+			}];
 		}];
+	}];
 	
-	return self;
+	_executeSwitchCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
+		return [self switchSignal];
+	}];
+	
+	_executePaymentCommand = [[RACCommand alloc] initWithEnabled:self.paymentValidSignal signalBlock:^RACSignal *(id input) {
+		return [self paymentSignal];
+	}];
+	
+  return self;
 }
 
-- (RACSignal *)executeDrawCash {
-	NSError *error = nil;
-	if (self.drawCash.length == 0 || [self.drawCash isEqualToString:@"0"] ) {
-		NSString *errorStr = @"请输入提现金额";
-		if (self.type == 1 || self.type == 2) {
-			errorStr = @"请输入还款金额";
-		}
-		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: errorStr, }];
-		return [RACSignal error:error];
-	}
-	
-	NSArray *moneyArray = [self.drawCash componentsSeparatedByString:@"."];
-	if (moneyArray.count >= 2) {
-		if (((NSString *)moneyArray[1]).length >2) {
-			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"金额小数不可超过2位，请重新填写", }];
-			return [RACSignal error:error];
-		}
-		
-	}
-	if ([(NSString *)moneyArray[0] isEqualToString:@""]) {
-		error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"金额输入错误，请重新填写", }];
-		return [RACSignal error:error];
-	}
-	
-	if (self.type == 0) {
-		if (self.drawCash.intValue > self.enablemoney.intValue) {
-			error = [NSError errorWithDomain:MSFDrawCashViewModelErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"超出最大额度限制，请重新填写", }];
-			return [RACSignal error:error];
-		}
-		return [self.services.httpClient drawCashWithDrawCount:self.drawCash AndContraceNO:self.contractNO AndPwd:self.tradePWd AndType:self.type];
-	}
-	
-	return [self.services.httpClient checkDataWithPwd:self.tradePWd contractNO:self.contractNO];
-	
+#pragma mark - Private
+
+- (RACSignal *)captchaValidSignal {
+	return [RACObserve(self, captchaWaiting) map:^id(id value) {
+		return @(![value boolValue]);
+	}];
 }
 
-- (RACSignal *)executePaySignal {
-	if (self.type == 4) {
-		return [self.services.httpClient downPaymentWithPayment:self.order SMSCode:self.smsCode SMSSeqNo:self.smsSeqNo];
+- (RACSignal *)captchaSignal {
+	@weakify(self)
+	return [[self.services.httpClient sendSmsCodeForTrans] doNext:^(MSFTransSmsSeqNOModel *x) {
+		@strongify(self)
+		self.uniqueTransactionID = x.smsSeqNo;
+	}];
+}
+
+- (RACSignal *)switchSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)paymentValidSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self, captcha),
+		RACObserve(self, uniqueTransactionID),
+		RACObserve(self, transactionPassword)
+	]
+	reduce:^id(NSString *captcha , NSString *uniqueid, NSString *password) {
+		return @(captcha.length > 0 && uniqueid.length > 0 && password.length > 0);
+	}];
+}
+
+- (NSString *)contractNO {
+	if ([self.model isKindOfClass:MSFCirculateCashViewModel.class]) {
+		MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)self.model;
+		return viewModel.contractNo;
+	} else if ([self.model isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+		MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)self.model;
+		return viewModel.repaymentNumber;
 	}
-	return [self.services.httpClient transActionWithAmount:self.drawCash smsCode:self.smsCode smsSeqNo:self.smsSeqNo contractNo:self.contractNO];
+	return @"";
+}
+
+- (RACSignal *)paymentSignal {
+	return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO];
 }
 
 @end
