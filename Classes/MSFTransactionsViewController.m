@@ -72,6 +72,12 @@
 	[self.viewModel.executePaymentCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+	[self.viewModel.executePaymentCommand.executionSignals subscribeNext:^(id x) {
+		[x subscribeNext:^(id x) {
+			[SVProgressHUD showSuccessWithStatus:@"交易成功"];
+			[self.navigationController popViewControllerAnimated:YES];
+		}];
+	}];
 	
 	self.changeCard.rac_command = self.viewModel.executeSwitchCommand;
 }

@@ -143,10 +143,9 @@
 	return [RACSignal combineLatest:@[
 		RACObserve(self, captcha),
 		RACObserve(self, uniqueTransactionID),
-		RACObserve(self, transactionPassword)
 	]
-	reduce:^id(NSString *captcha , NSString *uniqueid, NSString *password) {
-		return @(captcha.length > 0 && uniqueid.length > 0 && password.length > 0);
+	reduce:^id(NSString *captcha , NSString *uniqueid) {
+		return @(captcha.length > 0 && uniqueid.length > 0);
 	}];
 }
 
@@ -162,7 +161,13 @@
 }
 
 - (RACSignal *)paymentSignal {
-	return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO];
+	return [[self.services.msf_gainPasscodeSignal
+		flattenMap:^RACStream *(id value) {
+			return [self.services.httpClient checkDataWithPwd:value contractNO:self.contractNO];
+		}]
+		flattenMap:^RACStream *(id value) {
+			return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO];
+		}];
 }
 
 @end

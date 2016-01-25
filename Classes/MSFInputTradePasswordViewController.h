@@ -12,6 +12,9 @@
 
 - (void)getTradePassword:(NSString *)pwd type:(int)type;
 
+@optional
+- (void)cancel;
+
 @end
 
 @interface MSFInputTradePasswordViewController : UIViewController

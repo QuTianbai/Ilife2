@@ -74,11 +74,15 @@
 #import "MSFRepaymentViewModel.h"
 #import "MSFTransactionsViewController.h"
 
-@interface MSFViewModelServicesImpl ()
+#import "MSFInputTradePasswordViewController.h"
+
+@interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
 
-@property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) UIImagePickerController *imagePickerController DEPRECATED_ATTRIBUTE;
+
+@property (nonatomic, strong) MSFInputTradePasswordViewController *passcodeViewController;
 
 @end
 
@@ -93,6 +97,7 @@
 	}
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	_client = [MSFClient unauthenticatedClientWithUser:user];
+	_passcodeViewController = [[MSFInputTradePasswordViewController alloc] init];
 	
 	return self;
 }
@@ -277,6 +282,26 @@
 	}];
 }
 
+- (RACSignal *)msf_gainPasscodeSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		self.passcodeViewController = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+		self.passcodeViewController.delegate = self;
+		[[UIApplication sharedApplication].keyWindow addSubview:self.passcodeViewController.view];
+		
+		[[self rac_signalForSelector:@selector(getTradePassword:type:) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
+			[subscriber sendNext:[x first]];
+			[subscriber sendCompleted];
+		}];
+		[[self rac_signalForSelector:@selector(cancel) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
+			[subscriber sendNext:[x first]];
+			[subscriber sendCompleted];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+			[self.passcodeViewController.view removeFromSuperview];
+		}];
+	}];
+}
+
 #pragma mark - Custom Accessors
 
 - (MSFClient *)httpClient {
@@ -285,6 +310,14 @@
 
 - (void)setHttpClient:(MSFClient *)client {
 	self.client = client;
+}
+
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type {
+}
+
+- (void)cancel {
 }
 
 @end
