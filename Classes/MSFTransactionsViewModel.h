@@ -5,10 +5,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MSFViewModelServices.h"
 
 @class RACCommand;
 
 @protocol MSFTransactionsViewModel <NSObject>
+
+// 服务
+@property (nonatomic, assign, readonly) id<MSFViewModelServices>services;
+
+// 模型数据
+@property (nonatomic, strong, readonly) id model;
 
 // 银行卡图标
 @property (nonatomic, strong, readonly) NSString *bankIco;
@@ -30,9 +37,12 @@
 
 // 手机验证码
 @property (nonatomic, strong, readonly) NSString *captcha;
+@property (nonatomic, strong, readonly) NSString *captchaTitle;
+@property (nonatomic, assign, readonly) BOOL captchaWaiting;
+
 
 // 获取验证码
-@property (nonatomic, strong, readonly) NSString *executeCaptchaCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeCaptchaCommand;
 
 // 支持银行提示语
 @property (nonatomic, strong, readonly) NSString *supports;
@@ -40,6 +50,16 @@
 // 金额
 @property (nonatomic, strong, readonly) NSString *amounts;
 
+// 金额是否可编辑 (还款状态下不可编辑)
+@property (nonatomic, assign, readonly) BOOL editable;
+
+// 发起短信验证码的时候获取的交易流水唯一号
+@property (nonatomic, strong, readonly) NSString *uniqueTransactionID;
+
+// 交易密码，用户输入
+@property (nonatomic, strong) NSString *transactionPassword;
+
+@optional
 // 支付/还款
 @property (nonatomic, strong, readonly) RACCommand *executePaymentCommand;
 

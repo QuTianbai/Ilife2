@@ -67,6 +67,8 @@
 #import "MSFCartViewModel.h"
 #import "MSFFaceMaskViewModel.h"
 #import "MSFFaceMaskPhtoViewController.h"
+#import "MSFBankCardListViewModel.h"
+#import "MSFBankCardListTableViewController.h"
 
 @interface MSFViewModelServicesImpl ()
 
@@ -151,7 +153,10 @@
 		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
 	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else {
+	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
+		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
+	}
+	else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
 	

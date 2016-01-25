@@ -7,10 +7,11 @@
 #import "MSFTransactionsViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "RVMViewModel.h"
 
 @interface MSFTransactionsViewController ()
 
-@property (nonatomic, strong) NSObject <MSFTransactionsViewModel> *viewModel;
+@property (nonatomic, strong) RVMViewModel <MSFTransactionsViewModel> *viewModel;
 
 @property (nonatomic, weak) IBOutlet UILabel *bankName;
 @property (nonatomic, weak) IBOutlet UILabel *bankNo;
@@ -32,39 +33,38 @@
   if (!self) {
     return nil;
   }
-//	_viewModel = viewModel;
+	_viewModel = viewModel;
 	
   return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	/*
 	RAC(self.bankName, text) = RACObserve(self.viewModel, bankName);
-	RAC(self.bankNo, text) = RACObserve(self.viewModel, bankCardNO);
-	RAC(self.bankIco, image) = [RACObserve(self.viewModel, bankIcon) map:^id(id value) {
+	RAC(self.bankNo, text) = RACObserve(self.viewModel, bankNo);
+	RAC(self.bankIco, image) = [RACObserve(self.viewModel, bankIco) map:^id(id value) {
 		return [UIImage imageNamed:value];
 	}];
-	RAC(self.payment, text) = RACObserve(self.viewModel, money);
-	RAC(self.amount, text) = RACObserve(self.viewModel, drawCash);
+	RAC(self.payment, text) = RACObserve(self.viewModel, summary);
+	RAC(self.amount, text) = RACObserve(self.viewModel, amounts);
 	RAC(self.supports, text) = RACObserve(self.viewModel, supports);
 	RAC(self.amount, userInteractionEnabled) = RACObserve(self.viewModel, editable);
 	
-	RAC(self.viewModel, smsCode) = self.authCode.rac_textSignal;
+	RAC(self.viewModel, captcha) = self.authCode.rac_textSignal;
 	
-	self.fetchAuthcode.rac_command = self.viewModel.executeCaptchaComamnd;
+	self.fetchAuthcode.rac_command = self.viewModel.executeCaptchaCommand;
 	
 	@weakify(self)
-	[RACObserve(self.viewModel, captchaButtonTitle) subscribeNext:^(id x) {
+	[RACObserve(self.viewModel, captchaTitle) subscribeNext:^(id x) {
 		@strongify(self)
 		[self.fetchAuthcode setTitle:x forState:UIControlStateNormal];
 	}];
 	
-	[self.viewModel.executeCaptchaComamnd.executionSignals subscribeNext:^(id x) {
+	[self.viewModel.executeCaptchaCommand.executionSignals subscribeNext:^(id x) {
 		@strongify(self)
 		[self.authCode becomeFirstResponder];
 	}];
-	[self.viewModel.executeCaptchaComamnd.errors subscribeNext:^(NSError *error) {
+	[self.viewModel.executeCaptchaCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
@@ -72,16 +72,18 @@
 	[self.viewModel.executePaymentCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	*/
+	
+	self.changeCard.rac_command = self.viewModel.executeSwitchCommand;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-//	self.viewModel.active = YES;
+	self.viewModel.active = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
+	self.viewModel.active = NO;
 }
 
 @end
