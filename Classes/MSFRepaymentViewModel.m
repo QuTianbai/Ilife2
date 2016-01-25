@@ -50,7 +50,7 @@
 	_captchaWaiting = NO;
 	_captchaTitle = @"获取验证码";
 	
-	_editable = NO;
+	_editable = YES;
 	
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
 		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
