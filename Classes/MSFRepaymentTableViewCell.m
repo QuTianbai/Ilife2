@@ -18,6 +18,7 @@
 #import "MSFClient+Users.h"
 #import "AppDelegate.h"
 #import "MSFClient+MSFBankCardList.h"
+#import "MSFRepaymentViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #define REPAY_DARK_COLOR  @"464646"
@@ -192,10 +193,8 @@
 					} else {
 						[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 							if (obj.master) {
-								MSFDrawCashViewModel *drawViewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:viewModel AndServices:viewModel.services AndType:2];
-								drawViewModel.type = 2;
-								drawViewModel.drawCash = [NSString stringWithFormat:@"%.2f", viewModel.amount];
-								[viewModel.services pushViewModel:drawViewModel];
+								MSFRepaymentViewModel *repaypmentviewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:viewModel services:self.services];
+								[viewModel.services pushViewModel:repaypmentviewModel];
 								*stop = YES;
 							}
 						}];
