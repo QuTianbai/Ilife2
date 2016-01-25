@@ -46,6 +46,6 @@
 
 @property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 
-- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type;
+- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type __deprecated_msg("Use MSFTransacitonViewModel protocol");
 
 @end
