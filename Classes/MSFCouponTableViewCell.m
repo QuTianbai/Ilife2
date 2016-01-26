@@ -17,6 +17,10 @@
 	RAC(self, introLabel.text) = RACObserve(viewModel, intro);
 	RAC(self, timeRangeLabel.text) = RACObserve(viewModel, timeRange);
 	RAC(self, timeLeftLabel.text) = RACObserve(viewModel, timeLeft);
+	
+	RAC(self, statusView.image) = [RACObserve(viewModel, imageName) map:^id(id value) {
+		return [UIImage imageNamed:value];
+	}];
 }
 
 @end

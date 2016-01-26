@@ -50,6 +50,10 @@
 		return [value integerValue] < 4 ? @(0xff6c6c) : @(0xffc600);
 	}];
 	
+	RAC(self, imageName) = [RACObserve(self, model.status) map:^id(id value) {
+		return [value isEqualToString:@"B"] ? @"cell-icon-unused.png" : @"cell-icon-used.png";
+	}];
+	
   return self;
 }
 

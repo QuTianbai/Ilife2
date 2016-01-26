@@ -33,6 +33,7 @@
 @property (nonatomic, assign, readonly) NSInteger days;
 
 @property (nonatomic, assign, readonly) NSInteger colorHex;
+@property (nonatomic, strong, readonly) NSString *imageName;
 
 - (instancetype)initWithModel:(id)model;
 

@@ -27,4 +27,6 @@
 // 剩余时间 `2天后到期`
 @property (nonatomic, weak) IBOutlet UILabel *timeLeftLabel;
 
+@property (nonatomic, weak) IBOutlet UIImageView *statusView;
+
 @end
