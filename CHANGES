@@ -1,3 +1,40 @@
+Version 2.3.0.1:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'pu/v1.2.0' into next
+ - Merge branch 'todo/1.4' into next
+ - Add coupon product name
+ - Improve no coupons view
+ - Update indicator background view
+ - Update exchange coupon with code
+ - Improve coupons view display
+ - Update deadline value
+ - Add color hex for deadline coupons value
+ - Refactor coupons
+ - Update have no coupons display image
+ - Remove test code
+ - Update add coupons with code
+ - Improve category coupons
+ - Update coupons view
+ - Update deprecated methods
+ - Deprecate draw cash view model
+ - Reset draw cash view model
+ - Update drawings from accounts
+ - Update repayment with trade passcode
+ - Update 循环贷还款
+ - Update repayment view model
+ - Add first pay view model
+ - Rename transaction related classes
+ - Rename repyamentviewmodel to repaymentplanviewmodel
+ - Add payment protocol to draw cash view model
+ - Add payment view
+ - Replace todo with !!! tag
+ - Remove deprecated files
+ - Fix storyboard warnings
+ - Fix deprecated methods warnings
+ - Fix spec
+ - Remove BugshotKit
+ - Bumping Version to 1.2.0
+
 Version 2.2.0.25:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update 首付金额限制在整数
