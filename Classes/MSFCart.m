@@ -59,6 +59,14 @@
 	return [self transformer];
 }
 
++ (NSValueTransformer *)isDownPmtJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *string) {
+		return [string isEqualToString:@"1"] ? @YES : @NO;
+	} reverseBlock:^id(NSNumber *number) {
+		return number.boolValue ? @"1" : @"0";
+	}];
+}
+
 + (NSValueTransformer *)transformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(id x) {
 		if ([x isKindOfClass:NSString.class]) {

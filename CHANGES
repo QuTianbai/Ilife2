@@ -1,3 +1,39 @@
+Version 2.2.0.25:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 首付金额限制在整数
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update archive script append ftp upload script
+ - Add ftp upload to server script
+
+Version 2.2.0.24:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 退货状态显示
+
+Version 2.2.0.23:
+ - Update 贷款首付金额计算
+
+Version 2.2.0.22:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 首付标志数据类型
+ - Fix 附件清单视图内存释放
+ - Update 贷款金额验证
+ - Update 旅游贷申请时间格式
+ - Improve 增加支付验证码提示
+
+Version 2.2.0.21:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 接口默认数据格式再次更新
+
+Version 2.2.0.20:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Improve 相机内存管理
+ - Improve 商品贷/旅游贷提交接口
+
+Version 2.2.0.19:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 试算条件,不满足条件不给予试算
+ - Fix 旅游贷同行人/旅游信息传递接口
+
 Version 2.2.0.18:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update 合同确认流程

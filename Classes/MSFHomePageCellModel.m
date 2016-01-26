@@ -78,7 +78,7 @@
 		}
 		if ([self.model.productType isEqualToString:@"4102"]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeNone;
-		} else if ([@[@"G", @"H", @"J", @"K"] containsObject:x]) {
+		} else if ([@[@"G", @"H", @"J", @"K", @"N"] containsObject:x]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeApply;
 		} else if ([x isEqualToString:@"D"]) {
 			self.dateDisplay = MSFHomePageDateDisplayTypeRepay;

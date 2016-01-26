@@ -32,6 +32,7 @@
 #pragma mark - View Controller Methods
 
 - (void)dealloc {
+	NSLog(@"MSFBarcodeScanViewController -`dealloc`");
   [self.capture.layer removeFromSuperlayer];
 }
 

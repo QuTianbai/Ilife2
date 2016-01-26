@@ -80,11 +80,10 @@
 		@"minDownPmt": viewModel.cart.minDownPmt?:@"",
 		@"maxDownPmt": viewModel.cart.maxDownPmt?:@"",
 		@"internalCode": viewModel.cart.internalCode?:@"",
-		@"cmdtyList": [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList],
+		@"cmdtyList": viewModel.cart.cmdtyList ? [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.cmdtyList] : NSNull.null,
+		@"travelCompanInfoList": viewModel.cart.companions ? [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.companions] : NSNull.null,
+		@"orderTravelDto": viewModel.cart.travel ? [MTLJSONAdapter JSONDictionaryFromModel:viewModel.cart.travel] : NSNull.null,
 	};
-	
-	NSDictionary *travel = [MTLJSONAdapter JSONDictionaryFromModel:viewModel.cart.travel];
-	NSArray *companions = [MTLJSONAdapter JSONArrayFromModels:viewModel.cart.companions];
 	
 	NSData *orderData = [NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *orderValue = [[NSString alloc] initWithData:orderData encoding:NSUTF8StringEncoding];
@@ -95,20 +94,12 @@
 	NSData *cartData = [NSJSONSerialization dataWithJSONObject:cart options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *cartValue = [[NSString alloc] initWithData:cartData encoding:NSUTF8StringEncoding];
 	
-	NSData *travelData = [NSJSONSerialization dataWithJSONObject:travel options:NSJSONWritingPrettyPrinted error:nil];
-	NSString *travelValue = [[NSString alloc] initWithData:travelData encoding:NSUTF8StringEncoding];
-	
-	NSData *companionsData = [NSJSONSerialization dataWithJSONObject:companions options:NSJSONWritingPrettyPrinted error:nil];
-	NSString *companionsValue = [[NSString alloc] initWithData:companionsData encoding:NSUTF8StringEncoding];
-	
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	
 	[parameters setObject:accesory forKey:@"accessoryInfoVO"];
 	[parameters setObject:cartValue forKey:@"cartVO"];
 	[parameters setObject:@"1" forKey:@"applyStatus"];
 	[parameters setObject:orderValue forKey:@"orderVO"];
-	[parameters setObject:travelValue forKey:@"orderTravelDto"];
-	[parameters setObject:companionsValue forKey:@"travelCompanInfoList"];
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/createOrder" parameters:parameters];
 	return [self enqueueRequest:request resultClass:MSFTrial.class].msf_parsedResults;

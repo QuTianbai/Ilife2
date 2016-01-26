@@ -59,8 +59,8 @@
 		_term = @"";
 		_downPmtAmt = @"";
 		
-		RAC(self, maxLoan) = RACObserve(self, formViewModel.markets.allMaxAmount);
-		RAC(self, minLoan) = RACObserve(self, formViewModel.markets.allMinAmount);
+		RAC(self, maxLoan) = RACObserve(self, markets.allMaxAmount);
+		RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
 		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
 		
 		RAC(self, cartType) =  [RACObserve(self, cart.cartType) map:^id(NSString *value) {
@@ -91,7 +91,7 @@
 			@strongify(self)
 			return [self insuranceSignal];
 		}];
-		_executeTrialCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		_executeTrialCommand = [[RACCommand alloc] initWithEnabled:self.trialValidSignal signalBlock:^RACSignal *(id input) {
 			return [[self.services.httpClient fetchTrialAmount:self] doError:^(NSError *error) {
 				[SVProgressHUD dismiss];
 			}];
@@ -103,12 +103,6 @@
 		}];
 		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
 			@strongify(self)
-			if (self.loanAmt.doubleValue >= self.maxLoan.doubleValue) {
-				double g = self.maxLoan.doubleValue;
-				double c = self.totalAmt.doubleValue;
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
-				return;
-			}
 			[self.executeTrialCommand execute:nil];
 		}];
 		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
@@ -144,13 +138,13 @@
 						 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
 							 return NSOrderedDescending;
 						 }
-						 
+					 
 						 return NSOrderedSame;
 				 }];;
 			if (self.terms.count > 0) {
 				self.term = [self.terms[0] loanTeam];
 			}
-			self.downPmtScale = [@(self.loanAmt.floatValue / self.totalAmt.floatValue) stringValue];
+			self.downPmtScale = [@(self.downPmtAmt.floatValue / self.totalAmt.floatValue) stringValue];
 		}];
 		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
 			@strongify(self)
@@ -260,19 +254,20 @@
 			double g = self.maxLoan.doubleValue;
 			double c = self.totalAmt.doubleValue;
 			
+			// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
 			if (a < d) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
 				return nil;
 			}
-			if (a >= e) {
+			if (a > e) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
 				return nil;
 			}
-			if (b <= f) {
+			if (b < f) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
 				return nil;
 			}
-			if (b >= g) {
+			if (b > g) {
 				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
 				return nil;
 			}
@@ -299,6 +294,12 @@
 
 - (RACSignal *)executeCompleteSignal {
 	return [self.services.httpClient submitTrialAmount:self];
+}
+
+- (RACSignal *)trialValidSignal {
+	return [RACObserve(self, terms) map:^id(id value) {
+		return @([value count] > 0);
+	}];
 }
 
 @end
