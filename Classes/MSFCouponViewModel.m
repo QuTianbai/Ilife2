@@ -26,8 +26,7 @@
 	
 	RAC(self, title) = RACObserve(self, model.ticketName);
 	RAC(self, subtitle) = RACObserve(self, model.receiveChannel);
-	//TODO: 现在定义文档却少优惠券面额
-	//RAC(self, value) = RACObserve(self, model.value);
+	RAC(self, value) = RACObserve(self, model.value);
 	RAC(self, intro) = RACObserve(self, model.type);
 	RAC(self, timeRange) = [RACObserve(self, model) map:^id(MSFCoupon *value) {
 		return [NSString stringWithFormat:@"%@ 至 %@",

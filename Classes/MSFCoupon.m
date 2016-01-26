@@ -12,6 +12,9 @@
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
 		@"objectID": @"id",
+		@"ticketName": @"ticketRuleName",
+		@"type": @"ticketType",
+		@"value": @"faceValue",
 	};
 }
 
@@ -24,7 +27,11 @@
 }
 
 + (NSValueTransformer *)receiveTimeJSONTransformer {
-	return [MTLValueTransformer valueTransformerForName:MSFDateValueTransformerName];
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *number) {
+		return [NSDate dateWithTimeIntervalSince1970:number.doubleValue / 1000.0];
+	} reverseBlock:^id(NSDate *date) {
+		return @((long long)([date timeIntervalSince1970] * 1000.0));
+	}];
 }
 
 @end
