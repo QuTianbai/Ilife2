@@ -8,6 +8,7 @@
 #import "MSFCouponsViewModel.h"
 #import "MSFTableViewBindingHelper.h"
 #import "MSFCouponTableViewCell.h"
+#import "UITableView+MSFActivityIndicatorViewAdditions.h"
 
 @interface MSFCouponsViewController ()
 
@@ -38,6 +39,11 @@
 	UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
 	tableHeaderView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableHeaderView = tableHeaderView;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	self.tableView.backgroundView = [self.tableView viewWithSignal:RACObserve(self, viewModel.viewModels) message:@"暂无优惠券" AndImage:[UIImage imageNamed:@"cell-icon-normal.png"]];
 }
 
 #pragma mark - UITableViewDelegate
