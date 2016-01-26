@@ -41,11 +41,6 @@
 	self.tableView.tableHeaderView = tableHeaderView;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	self.tableView.backgroundView = [self.tableView viewWithSignal:RACObserve(self, viewModel.viewModels) message:@"暂无优惠券" AndImage:[UIImage imageNamed:@"cell-icon-normal.png"]];
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -66,6 +61,9 @@
 		}]
 		templateCell:[UINib nibWithNibName:NSStringFromClass([MSFCouponTableViewCell class]) bundle:nil]];
 	self.bindingHelper.delegate = self;
+	self.tableView.backgroundView = [self.tableView viewWithSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
+			return value;
+		}] message:@"暂无优惠券" AndImage:[UIImage imageNamed:@"cell-icon-normal.png"]];
 }
 
 @end

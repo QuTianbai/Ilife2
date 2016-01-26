@@ -32,8 +32,11 @@
 // 截止时间天数
 @property (nonatomic, assign, readonly) NSInteger days;
 
-@property (nonatomic, assign, readonly) NSInteger colorHex;
+// icon的名字
 @property (nonatomic, strong, readonly) NSString *imageName;
+
+// 剩余时间背景
+@property (nonatomic, strong, readonly) NSString *deadlineImageName;
 
 - (instancetype)initWithModel:(id)model;
 

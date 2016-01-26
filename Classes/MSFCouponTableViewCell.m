@@ -10,6 +10,10 @@
 
 @implementation MSFCouponTableViewCell
 
+- (void)awakeFromNib {
+	self.timeLeftLabel.transform = CGAffineTransformMakeRotation(45 * M_PI / 180);
+}
+
 - (void)bindViewModel:(MSFCouponViewModel *)viewModel {
 	RAC(self, titleLabel.text) = RACObserve(viewModel, title);
 	RAC(self, subtitleLabel.text) = RACObserve(viewModel, subtitle);
@@ -20,6 +24,15 @@
 	
 	RAC(self, statusView.image) = [RACObserve(viewModel, imageName) map:^id(id value) {
 		return [UIImage imageNamed:value];
+	}];
+	RAC(self, deadlineView.image) = [RACObserve(viewModel, deadlineImageName) map:^id(id value) {
+		return [UIImage imageNamed:value];
+	}];
+	RAC(self, deadlineView.hidden) = [RACObserve(viewModel, isWarning) map:^id(id value) {
+		return @(![value boolValue]);
+	}];
+	RAC(self, timeLeftLabel.hidden) = [RACObserve(viewModel, isWarning) map:^id(id value) {
+		return @(![value boolValue]);
 	}];
 }
 
