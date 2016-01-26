@@ -26,6 +26,8 @@
 
 #import "MSFDrawCashTableViewController.h"
 #import "MSFSetTradePasswordTableViewController.h"
+#import "MSFRepaymentViewModel.h"
+#import "MSFDrawingsViewModel.h"
 
 @interface MSFCashHomePageViewModel ()
 
@@ -101,8 +103,7 @@
 				} else {
 					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
 						if (obj.master) {
-							MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:self.circulateViewModel AndServices:self.services AndType:0];
-							viewModel.drawCash = self.circulateViewModel.usableLimit;
+							MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:self.circulateViewModel services:self.services];
 							[self.services pushViewModel:viewModel];
 							*stop = YES;
 						}
@@ -127,13 +128,8 @@
 				if (dataArray.count == 0) {
 					[[[UIAlertView alloc] initWithTitle:@"提示" message:@"请先添加银行卡" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
 				} else {
-					[dataArray enumerateObjectsUsingBlock:^(MSFBankCardListModel *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-						if (obj.master) {
-							MSFDrawCashViewModel *viewModel = [[MSFDrawCashViewModel alloc] initWithModel:obj AndCirculateViewmodel:self.circulateViewModel AndServices:self.services AndType:1];
-							viewModel.drawCash = self.circulateViewModel.usedLimit;
-							[self.services pushViewModel:viewModel];
-						}
-					}];
+					MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:self.circulateViewModel services:self.services];
+					[self.services pushViewModel:viewModel];
 				}
 			} completed:^{
 				[subscriber sendCompleted];

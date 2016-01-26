@@ -26,7 +26,6 @@
 	NSMutableSet *keys = [super.propertyKeys mutableCopy];
 
 	// This is a derived property.
-	[keys removeObject:@keypath(MSFOrderDetail.new, isCommodity)];
 	[keys removeObject:@keypath(MSFOrderDetail.new, server)];
 
 	return keys;

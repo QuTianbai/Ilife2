@@ -35,29 +35,23 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 @implementation MSFAddBankCardVIewModel
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard {
-	self = [self initWithServices:formsViewModel.services andIsFirstBankCard:isFirstBankCard];
-	if (!self) return nil;
-	_formsViewModel = formsViewModel;
-	return self;
-}
-
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard {
 	self = [super init];
 	
 	if (!self) {
 		return nil;
 	}
+	_formsViewModel = formsViewModel;
 	[self initialize];
 	_bankNO = @"";
 	_transPassword = @"";
 	_bankBranchCityCode = @"";
 	_bankBranchProvinceCode = @"";
 	_oldBankNo = @"";
-	_services = services;
+	_services = formsViewModel.services;
 	_bankAddress = @"";
 	_isFirstBankCard = isFirstBankCard;
 	
-	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:services];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:self.services];
 	_executeSelected = self.addressViewModel.selectCommand;
 	@weakify(self)
 	_executeAddBankCard = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {

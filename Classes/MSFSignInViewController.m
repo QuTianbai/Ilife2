@@ -13,7 +13,7 @@
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFUtils.h"
 
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";

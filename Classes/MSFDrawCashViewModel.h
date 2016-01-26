@@ -35,7 +35,7 @@
 
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
-// type = 1 主动支付 或者 2 是还款
+// type = 1 主动支付/循环贷还款 或者 2 是还款/马上贷还款
 // type = 0 是提现 type = 4 首付
 @property (nonatomic, assign) int type;
 @property (nonatomic, assign) BOOL sending;
@@ -46,6 +46,6 @@
 
 @property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
 
-- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type;
+- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type __deprecated_msg("Use MSFTransacitonViewModel protocol");
 
 @end

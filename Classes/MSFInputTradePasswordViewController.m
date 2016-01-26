@@ -47,6 +47,7 @@
 	subscribeNext:^(id x) {
 		[IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 		[self.view removeFromSuperview];
+		if ([self.delegate respondsToSelector:@selector(cancel)]) [self.delegate cancel];
 	}];
 	
 	[[self.pwdTF rac_signalForControlEvents:UIControlEventEditingChanged]

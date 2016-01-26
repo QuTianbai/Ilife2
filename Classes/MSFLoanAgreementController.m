@@ -64,6 +64,7 @@
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
+	//!!!: 优化协议网页加载失败，返回错误的json信息的时候，处理统一按钮无法点击
 	[[[self.LoanAgreenmentWV
 		rac_liftSelector:@selector(loadHTMLString:baseURL:)
 		withSignalOfArguments:[RACSignal combineLatest:@[self.viewModel.loanAgreementSignal, [RACSignal return:nil]]]]
@@ -83,18 +84,6 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
-}
-
-#pragma mark - UIWebViewDelegate
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-	NSString *urlString = [[request URL] absoluteString];
-	urlString = [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	if ([urlString rangeOfString:@"objc"].length != 0) {
-		[self.viewModel.executeRequest execute:nil];
-		return NO;
-	}
-	return YES;
 }
 
 #pragma mark - UIScrollViewDelegate

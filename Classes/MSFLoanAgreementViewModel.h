@@ -12,9 +12,6 @@
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
-//TODO: refactor executeRequest property name
-@property (nonatomic, strong, readonly) RACCommand *executeRequest;
-
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, weak, readonly) id <MSFApplicationViewModel> applicationViewModel;
 
