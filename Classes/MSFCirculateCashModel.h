@@ -8,6 +8,7 @@
 
 #import "MSFObject.h"
 
+// 贷款类型模版， 支持马上贷模版(分期类/商品类/旅游类)/循环贷模版(额度类)
 @interface MSFCirculateCashModel : MSFObject
 /*
  *

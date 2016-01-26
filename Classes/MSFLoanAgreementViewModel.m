@@ -18,7 +18,6 @@
 #import "MSFLoanType.h"
 #import "MSFCommodityCashViewModel.h"
 #import "MSFDistinguishViewModel.h"
-#import "MSFCommoditesViewModel.h"
 #import "MSFCartViewModel.h"
 #import "MSFFaceMaskViewModel.h"
 #import "MSFFaceMaskPhtoViewController.h"
@@ -34,15 +33,8 @@
 	_services = self.applicationViewModel.services;
 	
 	@weakify(self)
-	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
-			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"0"];
-		}
-		return RACSignal.empty;
-	}];
-	
 	_executeAcceptCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
 		return self.executeAcceptSignal;
 	}];
 	

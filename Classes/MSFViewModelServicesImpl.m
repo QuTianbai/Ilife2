@@ -42,7 +42,7 @@
 #import "MSFConfirmContractViewController.h"
 
 #import "MSFApplyListViewModel.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
 #import "MSFLoanListViewController.h"
 
@@ -61,24 +61,29 @@
 #import "MSFBarcodeScanViewController.h"
 #import "MSFBarcodeScanViewController+MSFSignalSupport.h"
 
-#import "MSFCommoditesViewModel.h"
-#import "MSFCommoditesViewController.h"
-
-#import "MSFDistinguishViewModel.h"
-#import "MSFDistinguishViewController.h"
-
 #import "MSFCommodityCashViewModel.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "MSFCartViewModel.h"
 #import "MSFFaceMaskViewModel.h"
 #import "MSFFaceMaskPhtoViewController.h"
+#import "MSFBankCardListViewModel.h"
+#import "MSFBankCardListTableViewController.h"
 
-@interface MSFViewModelServicesImpl ()
+#import "MSFPaymentViewModel.h"
+#import "MSFRepaymentViewModel.h"
+#import "MSFDrawingsViewModel.h"
+#import "MSFTransactionsViewController.h"
+
+#import "MSFInputTradePasswordViewController.h"
+
+@interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
 
-@property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) UIImagePickerController *imagePickerController DEPRECATED_ATTRIBUTE;
+
+@property (nonatomic, strong) MSFInputTradePasswordViewController *passcodeViewController;
 
 @end
 
@@ -93,6 +98,7 @@
 	}
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	_client = [MSFClient unauthenticatedClientWithUser:user];
+	_passcodeViewController = [[MSFInputTradePasswordViewController alloc] init];
 	
 	return self;
 }
@@ -129,7 +135,7 @@
 	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
@@ -150,8 +156,6 @@
 		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFCommoditesViewModel.class]) {
-		viewController = [[MSFCommoditesViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
 		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
@@ -159,6 +163,10 @@
 		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
 	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
+		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
+		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
@@ -275,6 +283,26 @@
 	}];
 }
 
+- (RACSignal *)msf_gainPasscodeSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		self.passcodeViewController = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+		self.passcodeViewController.delegate = self;
+		[[UIApplication sharedApplication].keyWindow addSubview:self.passcodeViewController.view];
+		
+		[[self rac_signalForSelector:@selector(getTradePassword:type:) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
+			[subscriber sendNext:[x first]];
+			[subscriber sendCompleted];
+		}];
+		[[self rac_signalForSelector:@selector(cancel) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
+			[subscriber sendNext:[x first]];
+			[subscriber sendCompleted];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+			[self.passcodeViewController.view removeFromSuperview];
+		}];
+	}];
+}
+
 #pragma mark - Custom Accessors
 
 - (MSFClient *)httpClient {
@@ -283,6 +311,14 @@
 
 - (void)setHttpClient:(MSFClient *)client {
 	self.client = client;
+}
+
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type {
+}
+
+- (void)cancel {
 }
 
 @end

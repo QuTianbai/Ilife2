@@ -36,9 +36,7 @@
 #import "MSFSocialCaskApplyTableViewController.h"
 
 #import "MSFCommodityCashViewModel.h"
-#import "MSFDistinguishViewController.h"
 #import "MSFDistinguishViewModel.h"
-#import "MSFCommoditesViewModel.h"
 #import "MSFFaceMaskViewModel.h"
 #import "MSFFaceMaskPhtoViewController.h"
 #import "MSFCartViewModel.h"

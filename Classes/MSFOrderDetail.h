@@ -44,7 +44,6 @@
 @property (nonatomic, strong, readonly) NSArray *cmdtyList; // 商品列表（MSFCommodity）
 
 // 判断商品还是旅行
-@property (nonatomic, assign, readonly) BOOL isCommodity;
 @property (nonatomic, strong, readonly) MSFTravel *travel;
 @property (nonatomic, strong, readonly) NSArray *companions;
 

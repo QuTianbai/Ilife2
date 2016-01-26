@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class MSFRepaymentViewModel;
+@class MSFRepaymentPlanViewModel;
 
 @interface MSFRepaymentPlanViewController : UIViewController
 
-- (instancetype)initWithViewModel:(MSFRepaymentViewModel *)viewModel;
+- (instancetype)initWithViewModel:(MSFRepaymentPlanViewModel *)viewModel;
 
 @end

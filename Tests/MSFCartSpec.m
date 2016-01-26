@@ -14,8 +14,9 @@ __block MSFCart *sut;
 describe(@"commodities", ^{
 	beforeEach(^{
 		sut = [MTLJSONAdapter modelOfClass:[MSFCart class] fromJSONDictionary:@{
-			@"isDownPmt": @1,
+			@"isDownPmt": @"1",
 			@"orderTravelDto": @{},
+			@"cartType": @"goods",
 			@"travelCompanInfoList": @[],
 		} error:nil];
 	});
@@ -24,17 +25,12 @@ describe(@"commodities", ^{
 		// then
 		expect(sut).notTo(beNil());
 	});
-	
-	it(@"should be commodites application", ^{
-		// then
-		expect(@(sut.isCommodity)).to(beTruthy());
-	});
 });
 
 describe(@"travel", ^{
 	beforeEach(^{
 		sut = [MTLJSONAdapter modelOfClass:[MSFCart class] fromJSONDictionary:@{
-			@"isDownPmt": @1,
+			@"isDownPmt": @"1",
 			@"orderTravelDto": @{
 				@"origin": @"foo",
 				@"destination": @"bar"
@@ -50,7 +46,6 @@ describe(@"travel", ^{
 
 	it(@"should separate commodity and travel", ^{
 		// then
-		expect(@(sut.isCommodity)).to(beFalsy());
 		expect(sut.travel).to(beAKindOf([MSFTravel class]));
 		expect(sut.travel.origin).to(equal(@"foo"));
 		expect(sut.travel.destination).to(equal(@"bar"));

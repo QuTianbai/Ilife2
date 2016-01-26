@@ -111,19 +111,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (!self.viewModel.cart.cartType) return 0;
-	if ([self.viewModel.cart.cartType isEqualToString:@"goods"]) return self.viewModel.cart.cmdtyList.count + 1;
-	if ([self.viewModel.cart.cartType isEqualToString:@"travel"]) return 3;
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) return self.viewModel.cart.cmdtyList.count + 1;
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) return 3;
 	return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if ([self.viewModel.cart.cartType isEqualToString:@"goods"])  {
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier])  {
 		if (section == self.viewModel.cart.cmdtyList.count) {
 			return 5;
 		} else {
 			return 4;
 		}
-	} else if ([self.viewModel.cart.cartType isEqualToString:@"travel"]) {
+	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		if (section == 0) return 6; // 旅游信息
 		if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
 		if (section == 2) return 5; // 分期信息
@@ -140,116 +140,96 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (self.viewModel.cartType) {
-		case MSFCartCommodity: {
-				if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
-					if (indexPath.row == 2) {
-						return 99.f;
-					}
-					if (indexPath.row == 4) {
-						return 125.f;
-					}
-				}
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
+		if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
+			if (indexPath.row == 2) {
+				return 99.f;
 			}
-			break;
-		case MSFCartTravel: {
-				if (indexPath.section == 2) { // 商品试算的section
-					if (indexPath.row == 2) {
-						return 99.f;
-					}
-					if (indexPath.row == 4) {
-						return 125.f;
-					}
-				}
-				if (indexPath.section == 1 && self.hiddenCompanion) return 0.f;
-				if (indexPath.section == 1 && !self.hiddenCompanion) return 44.f;
+			if (indexPath.row == 4) {
+				return 125.f;
 			}
-			break;
-		default:
-			break;
+		}
+	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
+		if (indexPath.section == 2) { // 商品试算的section
+			if (indexPath.row == 2) {
+				return 99.f;
+			}
+			if (indexPath.row == 4) {
+				return 125.f;
+			}
+		}
+		if (indexPath.section == 1 && self.hiddenCompanion) return 0.f;
+		if (indexPath.section == 1 && !self.hiddenCompanion) return 44.f;
 	}
 	return 44.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	switch (self.viewModel.cartType) {
-		case MSFCartCommodity: {
-				UIView *reuse = [[UIView alloc] init];
-				reuse.backgroundColor = UIColor.darkBackgroundColor;
-				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
-				label.font = [UIFont systemFontOfSize:15];
-				label.textColor = UIColor.themeColorNew;
-				if (section == self.viewModel.cart.cmdtyList.count) {
-					label.text = @"分期";
-				} else {
-					MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
-					label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
-				}
-				[reuse addSubview:label];
-				return reuse;
-			}
-			break;
-		case MSFCartTravel: {
-				UIView *reuse = [[UIView alloc] init];
-				reuse.backgroundColor = UIColor.darkBackgroundColor;
-				UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
-				label.font = [UIFont systemFontOfSize:15];
-				label.textColor = UIColor.themeColorNew;
-				if (section == 2) {
-					label.text = @"分期";
-				} else if (section == 0){
-					MSFTravel *travel = self.viewModel.cart.travel;
-					label.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
-				} else {
-					label.text = @"同行人信息";
-				}
-				[reuse addSubview:label];
-				if (section == 1)  {
-					UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX([UIScreen mainScreen].bounds) - 30, 0, 30, 30)];
-					[button setImage:[UIImage imageNamed:@"icon-arrow-down.png"] forState:UIControlStateNormal];
-					[[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-						self.hiddenCompanion = !self.hiddenCompanion;
-						[self.tableView reloadData];
-					}];
-					[reuse addSubview:button];
-				}
-				return reuse;
-			}
-			break;
-		default:
-			break;
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
+		UIView *reuse = [[UIView alloc] init];
+		reuse.backgroundColor = UIColor.darkBackgroundColor;
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
+		label.font = [UIFont systemFontOfSize:15];
+		label.textColor = UIColor.themeColorNew;
+		if (section == self.viewModel.cart.cmdtyList.count) {
+			label.text = @"分期";
+		} else {
+			MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
+			label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
+		}
+		[reuse addSubview:label];
+		return reuse;
+	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
+		UIView *reuse = [[UIView alloc] init];
+		reuse.backgroundColor = UIColor.darkBackgroundColor;
+		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
+		label.font = [UIFont systemFontOfSize:15];
+		label.textColor = UIColor.themeColorNew;
+		if (section == 2) {
+			label.text = @"分期";
+		} else if (section == 0){
+			MSFTravel *travel = self.viewModel.cart.travel;
+			label.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
+		} else {
+			label.text = @"同行人信息";
+		}
+		[reuse addSubview:label];
+		if (section == 1)  {
+			UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX([UIScreen mainScreen].bounds) - 30, 0, 30, 30)];
+			[button setImage:[UIImage imageNamed:@"icon-arrow-down.png"] forState:UIControlStateNormal];
+			[[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+				self.hiddenCompanion = !self.hiddenCompanion;
+				[self.tableView reloadData];
+			}];
+			[reuse addSubview:button];
+		}
+		return reuse;
 	}
+	
 	return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	switch (self.viewModel.cartType) {
-		case MSFCartCommodity: {
-				NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
-				UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-				if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
-					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-				} else {
-					[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
-				}
-				return cell;
-			}
-			break;
-		case MSFCartTravel: {
-				NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
-				UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-				if (indexPath.section == 2) { // 贷款试算视图
-					[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-				} else if (indexPath.section == 1) {
-					[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
-				} else if (indexPath.section == 0) {
-					[cell bindViewModel:self.viewModel.cart atIndexPath:indexPath];
-				}
-				return cell;
-			}
-			break;
-		default:
-			break;
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
+		NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
+		UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+		if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
+			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
+		} else {
+			[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
+		}
+		return cell;
+	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
+		NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
+		UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+		if (indexPath.section == 2) { // 贷款试算视图
+			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
+		} else if (indexPath.section == 1) {
+			[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
+		} else if (indexPath.section == 0) {
+			[cell bindViewModel:self.viewModel.cart atIndexPath:indexPath];
+		}
+		return cell;
 	}
 	
 	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@""];

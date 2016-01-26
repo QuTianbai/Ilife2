@@ -14,7 +14,7 @@
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFClient+ApplyList.h"
 #import "MSFApplyListViewModel.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import "MSFInventoryViewModel.h"
 
 @interface MSFHomePageCellModel ()
@@ -133,7 +133,7 @@
 			viewModel = [[MSFApplyListViewModel alloc] initWithProductType:self.productType services:self.services];
 			break;
 		case MSFHomePageDesRepayList:
-			viewModel = [[MSFRepaymentViewModel alloc] initWithServices:self.services];
+			viewModel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.services];
 			break;
 		case MSFHomePageDesUploadData: {
 			viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.model.applyNo productID:self.model.productType services:self.services];
