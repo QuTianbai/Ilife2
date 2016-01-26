@@ -33,6 +33,8 @@
 
 #import "MSFApplyListViewModel.h"
 #import "MSFLoanType.h"
+#import "MSFCouponsViewModel.h"
+#import "MSFCouponsViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -63,14 +65,18 @@
 											 @"申请记录",
 											 @"还款计划",
 											 @"银行卡",
-											 @"订单列表"],
+											 @"订单列表",
+											 @"优惠券",
+											 ],
 										 @[@"设置",
 											 @"关于"]];
 	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
 									 [UIImage imageNamed:@"icon-account-apply"],
 									 [UIImage imageNamed:@"icon-account-repay"],
 									 [UIImage imageNamed:@"icon-account-bankCard"],
-									 [UIImage imageNamed:@"icon-account-order"]],
+									 [UIImage imageNamed:@"icon-account-order"],
+									 [UIImage imageNamed:@"icon-account-order"]
+									 ],
 								 @[[UIImage imageNamed:@"icon-account-settings"],
 									 [UIImage imageNamed:@"icon-account-about"]]];
 	NSLog(@"%@", self.icons);
@@ -129,6 +135,9 @@
 					break;
 				case 4:
 					[self orderList];
+					break;
+				case 5:
+					[self couponsList];
 					break;
 				default: break;
 			}
@@ -197,6 +206,13 @@
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[(id <MSFReactiveView>)settingsViewController bindViewModel:self.viewModel.authorizeViewModel];
 	[self.navigationController pushViewController:settingsViewController animated:YES];
+}
+
+- (void)couponsList {
+	MSFCouponsViewModel *viewModel = [[MSFCouponsViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFCouponsViewController *vc = [[MSFCouponsViewController alloc] initWithViewModel:viewModel];
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
