@@ -35,6 +35,7 @@
 #import "MSFLoanType.h"
 #import "MSFCouponsViewModel.h"
 #import "MSFCouponsViewController.h"
+#import "MSFCouponsContainerViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -210,7 +211,7 @@
 
 - (void)couponsList {
 	MSFCouponsViewModel *viewModel = [[MSFCouponsViewModel alloc] initWithServices:self.viewModel.servcies];
-	MSFCouponsViewController *vc = [[MSFCouponsViewController alloc] initWithViewModel:viewModel];
+	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
 }

@@ -1,13 +1,12 @@
 //
-// MSFCouponsViewController.h
+// MSFCouponsContainerViewController.h
 //
 // Copyright (c) 2016 Zēng Liàng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFReactiveView.h"
 
-@interface MSFCouponsViewController : UITableViewController <MSFReactiveView>
+@interface MSFCouponsContainerViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
 

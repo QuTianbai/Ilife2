@@ -695,6 +695,8 @@
 		49FCBF891C0E92890035398E /* allow.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF881C0E92890035398E /* allow.json */; };
 		49FCBF991C0E92D90035398E /* repay.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF971C0E92D90035398E /* repay.json */; };
 		49FCBF9A1C0E92D90035398E /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF981C0E92D90035398E /* submit.json */; };
+		49FCC1911C572316004AFF13 /* MSFCouponsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */; };
+		49FCC1931C572332004AFF13 /* MSFCouponsContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */; };
 		4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */; };
 		4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
@@ -1846,6 +1848,9 @@
 		49FCBF881C0E92890035398E /* allow.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = allow.json; sourceTree = "<group>"; };
 		49FCBF971C0E92D90035398E /* repay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = repay.json; sourceTree = "<group>"; };
 		49FCBF981C0E92D90035398E /* submit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = submit.json; sourceTree = "<group>"; };
+		49FCC18F1C572316004AFF13 /* MSFCouponsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCouponsContainerViewController.h; sourceTree = "<group>"; };
+		49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCouponsContainerViewController.m; sourceTree = "<group>"; };
+		49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCouponsContainerViewController.storyboard; sourceTree = "<group>"; };
 		4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSubmitAlertView.h; sourceTree = "<group>"; };
 		4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSubmitAlertView.m; sourceTree = "<group>"; };
 		4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFSubmitAlertView.xib; sourceTree = "<group>"; };
@@ -3755,6 +3760,9 @@
 				49B186031C56206300409C6F /* MSFCouponTableViewCell.h */,
 				49B186041C56206300409C6F /* MSFCouponTableViewCell.m */,
 				49B186061C56207100409C6F /* MSFCouponTableViewCell.xib */,
+				49FCC18F1C572316004AFF13 /* MSFCouponsContainerViewController.h */,
+				49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */,
+				49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */,
 			);
 			name = Coupons;
 			sourceTree = "<group>";
@@ -4958,6 +4966,7 @@
 				494901B41C3CF8E100E9AD09 /* btn-pay@2x.png in Resources */,
 				49B186151C5626A600409C6F /* cell-icon-unused.png in Resources */,
 				49252BCC1C293E3D00CC682B /* MSFBarcodeScanViewController.xib in Resources */,
+				49FCC1931C572332004AFF13 /* MSFCouponsContainerViewController.storyboard in Resources */,
 				077347CD1BBA338900D7A130 /* add.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				10E546711C0012CA00BBA827 /* ad_msdFull_top.png in Resources */,
@@ -5310,6 +5319,7 @@
 				102C7EE11C2A389B0023172B /* MSFOrderListFooterCell.m in Sources */,
 				492CBEAF1B8815FB0059B6C2 /* MSFAlertContentViewController.m in Sources */,
 				49614C8B1C03FF8F004D6208 /* MSFClient+Inventory.m in Sources */,
+				49FCC1911C572316004AFF13 /* MSFCouponsContainerViewController.m in Sources */,
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
 				07330B351BBE2467000EB8FD /* MSFCashHomePageViewController.m in Sources */,
 				105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */,
