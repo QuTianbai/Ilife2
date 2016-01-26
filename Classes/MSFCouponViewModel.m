@@ -45,6 +45,11 @@
 		return @([value integerValue] <= 7);
 	}];
 	
+	RAC(self, colorHex) = [RACObserve(self, days) map:^id(id value) {
+		if ([value integerValue] < 0) return @(0xc1c1c1);
+		return [value integerValue] < 4 ? @(0xff6c6c) : @(0xffc600);
+	}];
+	
   return self;
 }
 

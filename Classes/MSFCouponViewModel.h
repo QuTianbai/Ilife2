@@ -32,6 +32,8 @@
 // 截止时间天数
 @property (nonatomic, assign, readonly) NSInteger days;
 
+@property (nonatomic, assign, readonly) NSInteger colorHex;
+
 - (instancetype)initWithModel:(id)model;
 
 @end
