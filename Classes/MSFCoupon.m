@@ -34,4 +34,16 @@
 	}];
 }
 
+- (BOOL)validateValue:(id *)objectID error:(NSError **)error {
+	id object  = *objectID;
+	if ([object isKindOfClass:NSString.class]) {
+		return YES;
+	} else if ([object isKindOfClass:NSNumber.class]) {
+		*objectID = [*objectID stringValue];
+		return YES;
+	}
+	
+	return *objectID == nil;
+}
+
 @end

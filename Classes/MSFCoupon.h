@@ -18,5 +18,6 @@
 @property (nonatomic, strong, readonly) NSDate *effectDateEnd;
 @property (nonatomic, copy, readonly) NSString *status;
 @property (nonatomic, copy, readonly) NSString *value;
+@property (nonatomic, copy, readonly) NSString *productName;
 
 @end
