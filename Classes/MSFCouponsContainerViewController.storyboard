@@ -103,6 +103,87 @@
             </objects>
             <point key="canvasLocation" x="358" y="-74"/>
         </scene>
+        <!--Exchange Coupon View Controller-->
+        <scene sceneID="B5A-Bh-m9g">
+            <objects>
+                <viewController storyboardIdentifier="MSFExchangeCouponViewController" id="diL-IQ-75I" customClass="MSFExchangeCouponViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Iee-hl-Ph1"/>
+                        <viewControllerLayoutGuide type="bottom" id="TIf-Xf-k8r"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4G8-ab-bfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKZ-Ch-Y9B">
+                                <rect key="frame" x="134" y="15" width="51" height="20.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="请输入兑换码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ciV-NH-M2m">
+                                <rect key="frame" x="5" y="55" width="310" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PhF-5e-xsf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此券不存在，请从新输入." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eL8-4Z-6yA">
+                                <rect key="frame" x="10" y="105" width="158.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.99215686274509807" green="0.50196078431372548" blue="0.082352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs4-wV-UeS">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.12941176470588237" green="0.67843137254901964" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6S3-1h-vqz"/>
+                                </constraints>
+                                <state key="normal" title="兑换">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="bs4-wV-UeS" secondAttribute="trailing" id="17e-7k-P3U"/>
+                            <constraint firstItem="TIf-Xf-k8r" firstAttribute="top" secondItem="bs4-wV-UeS" secondAttribute="bottom" id="8hr-es-Asb"/>
+                            <constraint firstAttribute="trailing" secondItem="ciV-NH-M2m" secondAttribute="trailing" constant="5" id="C4R-O8-iOb"/>
+                            <constraint firstItem="eL8-4Z-6yA" firstAttribute="leading" secondItem="4G8-ab-bfQ" secondAttribute="leading" constant="10" id="CY1-GX-HdT"/>
+                            <constraint firstItem="OKZ-Ch-Y9B" firstAttribute="top" secondItem="4G8-ab-bfQ" secondAttribute="top" constant="15" id="FPc-Iw-NUq"/>
+                            <constraint firstItem="OKZ-Ch-Y9B" firstAttribute="centerX" secondItem="4G8-ab-bfQ" secondAttribute="centerX" id="IAW-qC-U2j"/>
+                            <constraint firstItem="bs4-wV-UeS" firstAttribute="top" secondItem="eL8-4Z-6yA" secondAttribute="bottom" constant="20" id="Llh-IW-vjo"/>
+                            <constraint firstItem="ciV-NH-M2m" firstAttribute="top" secondItem="OKZ-Ch-Y9B" secondAttribute="bottom" constant="20" id="OBL-Iu-QN3"/>
+                            <constraint firstItem="OKZ-Ch-Y9B" firstAttribute="top" secondItem="Iee-hl-Ph1" secondAttribute="bottom" id="PyU-Zg-4KO"/>
+                            <constraint firstItem="eL8-4Z-6yA" firstAttribute="top" secondItem="ciV-NH-M2m" secondAttribute="bottom" constant="10" id="Y1y-Jj-I0q"/>
+                            <constraint firstItem="ciV-NH-M2m" firstAttribute="leading" secondItem="4G8-ab-bfQ" secondAttribute="leading" constant="5" id="hhL-C5-DPL"/>
+                            <constraint firstItem="bs4-wV-UeS" firstAttribute="leading" secondItem="4G8-ab-bfQ" secondAttribute="leading" id="vqO-En-hpy"/>
+                            <constraint firstItem="OKZ-Ch-Y9B" firstAttribute="top" secondItem="Iee-hl-Ph1" secondAttribute="bottom" constant="10" id="xzO-hI-KjR"/>
+                            <constraint firstAttribute="bottom" secondItem="bs4-wV-UeS" secondAttribute="bottom" id="yjX-DN-Gx8"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="PyU-Zg-4KO"/>
+                                <exclude reference="xzO-hI-KjR"/>
+                                <exclude reference="Llh-IW-vjo"/>
+                                <exclude reference="8hr-es-Asb"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="button" destination="bs4-wV-UeS" id="uXU-gk-gNu"/>
+                        <outlet property="errorLabel" destination="eL8-4Z-6yA" id="XkE-ll-8hd"/>
+                        <outlet property="textField" destination="ciV-NH-M2m" id="ZCd-LW-7o1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GSJ-GK-ebg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="205" y="392"/>
+        </scene>
         <!--Coupons View Controller-->
         <scene sceneID="e3r-Og-0Hp">
             <objects>

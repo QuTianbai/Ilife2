@@ -10,6 +10,8 @@
 #import "MSFCouponsViewModel.h"
 #import "MSFReactiveView.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <KGModal/KGModal.h>
+#import "MSFExchangeCouponViewController.h"
 
 @interface MSFCouponsContainerViewController ()
 
@@ -97,7 +99,7 @@
 		}
 	}];
 	
-	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
+	UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"兑换券" style:UIBarButtonItemStyleDone target:nil action:nil];
 	item.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self addCouponsSignal];
 	}];
@@ -114,33 +116,35 @@
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
-		UIAlertView *alert = [[UIAlertView alloc] init];
-		alert.title = @"兑换券";
-		alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-		[alert addButtonWithTitle:@"取消"];
-		[alert addButtonWithTitle:@"兑换"];
-		[alert show];
+		MSFExchangeCouponViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([MSFExchangeCouponViewController class])];
+		vc.view.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds) - 40, 180);
+		[[KGModal sharedInstance] setCloseButtonLocation:KGModalCloseButtonLocationRight];
+		[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
+		[[KGModal sharedInstance] showWithContentViewController:vc andAnimated:YES];
+		[[KGModal sharedInstance] setBackgroundDisplayStyle:KGModalBackgroundDisplayStyleSolid];
 		
-		@weakify(alert)
-		[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-			@strongify(alert)
-			if ([x integerValue] == 1) {
-				UITextField *textFeild = [alert textFieldAtIndex:0];
-				[SVProgressHUD showSuccessWithStatus:@"正在兑换..."];
-				[[self.viewModel.executeAdditionCommand execute:textFeild.text] subscribeNext:^(id x) {
-					[subscriber sendNext:x];
+		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:KGModalDidHideNotification object:nil] subscribeNext:^(id x) {
+			[subscriber sendCompleted];
+		}];
+		
+		[[vc.textField rac_signalForControlEvents:UIControlEventEditingDidBegin] subscribeNext:^(id x) {
+			vc.errorLabel.hidden = YES;
+		}];
+		
+		[[vc.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+			[SVProgressHUD showWithStatus:@"正在兑换..."];
+			[[self.viewModel.executeAdditionCommand execute:vc.textField.text] subscribeNext:^(id x) {
+				[[KGModal sharedInstance] hideAnimated:YES withCompletionBlock:^{
 					[subscriber sendCompleted];
 					[SVProgressHUD showSuccessWithStatus:@"兑换成功"];
-				} error:^(NSError *error) {
-					[subscriber sendError:error];
-					[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 				}];
-			} else {
-				[subscriber sendCompleted];
-			}
+			} error:^(NSError *error) {
+				[SVProgressHUD dismiss];
+				vc.errorLabel.hidden = NO;
+				vc.errorLabel.text = error.userInfo[NSLocalizedFailureReasonErrorKey];
+			}];
 		}];
 		return [RACDisposable disposableWithBlock:^{
-			
 		}];
 	}];
 }

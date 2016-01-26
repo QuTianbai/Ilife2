@@ -551,6 +551,7 @@
 		49A550C01C574B400029FC1A /* cell-icon-overdue.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BD1C574B400029FC1A /* cell-icon-overdue.png */; };
 		49A550C11C574B400029FC1A /* cell-icon-overdue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BE1C574B400029FC1A /* cell-icon-overdue@2x.png */; };
 		49A550C21C574B400029FC1A /* cell-icon-overdue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BF1C574B400029FC1A /* cell-icon-overdue@3x.png */; };
+		49A550C51C574EF10029FC1A /* MSFExchangeCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B185DC1C5605D400409C6F /* MSFCouponSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B185DB1C5605D400409C6F /* MSFCouponSpec.m */; };
 		49B185ED1C5605FD00409C6F /* MSFCoupon.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B185EC1C5605FD00409C6F /* MSFCoupon.m */; };
@@ -1663,6 +1664,8 @@
 		49A550BD1C574B400029FC1A /* cell-icon-overdue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-icon-overdue.png"; sourceTree = "<group>"; };
 		49A550BE1C574B400029FC1A /* cell-icon-overdue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-icon-overdue@2x.png"; sourceTree = "<group>"; };
 		49A550BF1C574B400029FC1A /* cell-icon-overdue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-icon-overdue@3x.png"; sourceTree = "<group>"; };
+		49A550C31C574EF10029FC1A /* MSFExchangeCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFExchangeCouponViewController.h; sourceTree = "<group>"; };
+		49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFExchangeCouponViewController.m; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B185DB1C5605D400409C6F /* MSFCouponSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCouponSpec.m; sourceTree = "<group>"; };
 		49B185EB1C5605FD00409C6F /* MSFCoupon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCoupon.h; sourceTree = "<group>"; };
@@ -3781,6 +3784,8 @@
 				49FCC18F1C572316004AFF13 /* MSFCouponsContainerViewController.h */,
 				49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */,
 				49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */,
+				49A550C31C574EF10029FC1A /* MSFExchangeCouponViewController.h */,
+				49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */,
 			);
 			name = Coupons;
 			sourceTree = "<group>";
@@ -5416,6 +5421,7 @@
 				498637CF1C2BC19300A11845 /* MSFDistinguishViewModel.m in Sources */,
 				498113CD1B1C4242003D1B7A /* MSFHomepageViewModel.m in Sources */,
 				49DA22681B062AF200DD4483 /* MSFUser.m in Sources */,
+				49A550C51C574EF10029FC1A /* MSFExchangeCouponViewController.m in Sources */,
 				499EA24A1B55F6550051AF66 /* MSFTabBarController.m in Sources */,
 				4943C3781B047E15000BBF5E /* MSFResponse.m in Sources */,
 				102C7F1C1C2A8B330023172B /* MSFCartViewModel.m in Sources */,
