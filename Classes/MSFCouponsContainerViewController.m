@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"我的优惠券";
+	self.title = @"优惠券";
 	self.index = 0;
 	self.button0.enabled = NO;
 	[self.viewModel.executeFetchCommand execute:@"B"];
