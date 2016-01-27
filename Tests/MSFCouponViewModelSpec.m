@@ -7,6 +7,8 @@
 #import "MSFCouponViewModel.h"
 #import "MSFCoupon.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFClient.h"
+#import "MSFCipher.h"
 
 QuickSpecBegin(MSFCouponViewModelSpec)
 
@@ -21,10 +23,11 @@ it(@"should initialize", ^{
 	stubProperty(model, ticketName, @"bar");
 	stubProperty(model, receiveChannel, @"ios");
 	stubProperty(model, type, @"foo");
+	stubProperty(model, productName, @"foo");
 	
   // when
 	sut = [[MSFCouponViewModel alloc] initWithModel:model];
-  
+	
   // then
 	expect(sut).notTo(beNil());
 	expect(sut.title).to(equal(@"bar"));
@@ -32,8 +35,8 @@ it(@"should initialize", ^{
 	expect(sut.value).to(beNil());
 	expect(sut.intro).to(equal(@"foo"));
 	expect(sut.timeRange).to(equal(@"2015-05-03 至 2015-05-07"));
-	expect(sut.timeLeft).to(equal(@"4天后到期"));
-	expect(@(sut.days)).to(equal(@(4)));
+	expect(sut.timeLeft).to(equal(@"已过期"));
+	expect(@(sut.days)).notTo(equal(0));
 	expect(@(sut.isWarning)).to(beTruthy());
 });
 

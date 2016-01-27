@@ -15,27 +15,30 @@ QuickSpecBegin(MSFCouponsViewModelSpec)
 
 __block MSFCouponsViewModel *sut;
 __block id <MSFViewModelServices> services;
+__block MSFCoupon *model;
+__block MSFClient *client;
 
-it(@"should initialize", ^{
-  // given
+beforeEach(^{
 	services = mockProtocol(@protocol(MSFViewModelServices));
-	MSFClient *client = mock([MSFClient class]);
+	client = mock([MSFClient class]);
 	[given([services httpClient]) willReturn:client];
 	
-	MSFCoupon *model = mock([MSFCoupon class]);
+	model = mock([MSFCoupon class]);
 	stubProperty(model, effectDateBegin, [NSDateFormatter msf_dateFromString:@"2015-05-03T15:38:45Z"]);
 	stubProperty(model, effectDateEnd, [NSDateFormatter msf_dateFromString:@"2015-05-07T15:38:45Z"]);
 	stubProperty(model, ticketName, @"bar");
 	stubProperty(model, receiveChannel, @"ios");
 	stubProperty(model, type, @"foo");
-	
+});
+
+it(@"should initialize", ^{
+  // given
 	[given([client fetchCouponsWithStatus:@""]) willReturn:[RACSignal return:model]];
 	
 	BOOL success;
 	NSError *error;
 	
   // when
-	
 	sut = [[MSFCouponsViewModel alloc] initWithServices:services];
 	NSArray *results = [[sut.executeFetchCommand execute:@""] asynchronousFirstOrDefault:nil success:&success error:&error];
 	
