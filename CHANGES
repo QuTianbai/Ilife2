@@ -1,3 +1,11 @@
+Version 2.3.0.3:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'next'
+ - Fix coupons GET API
+ - Improve 社保贷地址验证
+ - Update rac zipwith
+ - Improve coupons view
+
 Version 2.3.0.2:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Merge branch 'todo/improve' into next
