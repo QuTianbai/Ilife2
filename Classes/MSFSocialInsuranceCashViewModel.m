@@ -180,11 +180,8 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 
 - (RACSignal *)submitSignal {
 	if (self.status.integerValue == 0) {
-		return [[[[self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model]
+		return [[[self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model]
 			zipWith:[self.services.httpClient submitUserInfo:self.formViewModel.model infoType:4]]
-			catch:^RACSignal *(NSError *error) {
-				return [RACSignal return:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"提交失败, 请重新尝试"}]];
-			}]
 			map:^id(id value) {
 				return value;
 			}];
