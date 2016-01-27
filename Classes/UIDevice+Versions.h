@@ -17,4 +17,6 @@
 
 @interface UIDevice (Versions)
 
+- (NSString *)IPAddress;
+
 @end
