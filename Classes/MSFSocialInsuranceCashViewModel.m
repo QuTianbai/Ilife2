@@ -179,6 +179,11 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 }
 
 - (RACSignal *)submitSignal {
+	if (self.invalidString.length > 0) {
+		return [RACSignal error:[NSError errorWithDomain:@"MSFSocialInsuranceCashViewModelDomain" code:0 userInfo:@{
+			NSLocalizedFailureReasonErrorKey: self.invalidString
+		}]];
+	}
 	if (self.status.integerValue == 0) {
 		return [[[self.services.httpClient fetchSaveSocialInsuranceInfoWithModel:self.model]
 			zipWith:[self.services.httpClient submitUserInfo:self.formViewModel.model infoType:4]]
@@ -201,7 +206,7 @@ static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialI
 	MSFApplicationForms *forms = self.formViewModel.model;
 	if (self.purpose.code.length == 0) {
 		return @"请选择贷款用途";
-	} else if (forms.currentProvinceCode.length == 0 || forms.currentCityCode.length == 0 || forms.currentProvinceCode.length == 0) {
+	} else if (forms.currentProvinceCode.length == 0 || forms.currentCityCode.length == 0 || forms.currentCountryCode.length == 0) {
 		return @"请选择居住地区";
 	} else if (forms.abodeDetail.length < 3) {
 		return @"请填写居住地址，不少于3个字";
