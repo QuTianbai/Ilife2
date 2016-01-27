@@ -9,6 +9,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSDate+UTC0800.h"
+#import "MSFCipher.h"
+#import "MSFClient.h"
 
 @interface MSFCouponViewModel ()
 
@@ -34,7 +36,7 @@
 			[NSDateFormatter msf_stringFromDate:[NSDate msf_date:value.effectDateBegin]], [NSDateFormatter msf_stringFromDate:[NSDate msf_date: value.effectDateEnd]]];
 	}];
 	RAC(self, days) = [RACObserve(self, model) map:^id(MSFCoupon *value) {
-		double diff = [value.effectDateEnd timeIntervalSince1970] - [NSDate.msf_date timeIntervalSince1970];
+		double diff = [value.effectDateEnd timeIntervalSince1970] - [MSFClient cipher].internet / 1000.0;
 		int d = (int)(diff / (24 * 60 * 60));
 		return @(d);
 	}];
