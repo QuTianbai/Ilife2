@@ -28,9 +28,9 @@
 	_model = model;
 	
 	RAC(self, title) = RACObserve(self, model.ticketName);
-	RAC(self, subtitle) = RACObserve(self, model.receiveChannel);
+	RAC(self, subtitle) = RACObserve(self, model.productName);
 	RAC(self, value) = RACObserve(self, model.value);
-	RAC(self, intro) = RACObserve(self, model.productName);
+	RAC(self, intro) = RACObserve(self, model.type);
 	RAC(self, timeRange) = [RACObserve(self, model) map:^id(MSFCoupon *value) {
 		return [NSString stringWithFormat:@"%@ 至 %@",
 			[NSDateFormatter msf_stringFromDate:[NSDate msf_date:value.effectDateBegin]], [NSDateFormatter msf_stringFromDate:[NSDate msf_date: value.effectDateEnd]]];

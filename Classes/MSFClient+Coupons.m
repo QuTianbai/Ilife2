@@ -18,7 +18,7 @@
 }
 
 - (RACSignal *)addCouponWithCode:(NSString *)code {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"coupon/couponBind" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"coupon/couponBind" parameters:@{
 		@"code": code,
 	}];
 	return [[self enqueueRequest:request resultClass:MSFCoupon.class] msf_parsedResults];

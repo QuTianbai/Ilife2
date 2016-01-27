@@ -103,21 +103,12 @@
 			NSLog(@"`Address:`%@", x);
 		}];
 	
-	[[RACObserve(self, province) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.provinceName = x.name;
-		self.provinceCode = x.codeID;
-	}];
-	[[RACObserve(self, city) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.cityName = x.name;
-		self.cityCode = x.codeID;
-	}];
-	[[RACObserve(self, area) ignore:nil] subscribeNext:^(MSFAreas *x) {
-		@strongify(self)
-		self.areaName = x.name;
-		self.areaCode = x.codeID;
-	}];
+	RAC(self, provinceName) = RACObserve(self, province.name);
+	RAC(self, provinceCode) = RACObserve(self, province.codeID);
+	RAC(self, cityName) = RACObserve(self, city.name);
+	RAC(self, cityCode) = RACObserve(self, city.codeID);
+	RAC(self, areaName) = RACObserve(self, area.name);
+	RAC(self, areaCode) = RACObserve(self, area.codeID);
 }
 
 - (RACSignal *)fetchProvince {
