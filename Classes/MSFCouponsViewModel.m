@@ -27,9 +27,15 @@
 	@weakify(self)
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [[self.services.httpClient fetchCouponsWithStatus:input] map:^id(id value) {
-			return [[MSFCouponViewModel alloc] initWithModel:value];
-		}].collect;
+		return [[[[self.services.httpClient
+			fetchCouponsWithStatus:input]
+			catch:^RACSignal *(NSError *error) {
+				return RACSignal.empty;
+			}]
+			map:^id(id value) {
+				return [[MSFCouponViewModel alloc] initWithModel:value];
+			}]
+			collect];
 	}];
 	
 	_executeAdditionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {

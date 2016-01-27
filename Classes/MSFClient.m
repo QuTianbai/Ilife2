@@ -25,6 +25,7 @@
 #import "MSFDeviceGet.h"
 #import "UIDevice-Hardware.h"
 #import "RACSignal+MSFContactsAdditions.h"
+#import "UIDevice+Versions.h"
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
@@ -538,6 +539,9 @@ static NSDictionary *messages;
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	[devices addObject:status];
 	[devices addObject:contacts?:@""];
+	[devices addObject:[UIDevice currentDevice].IPAddress?:@""];
+	[devices addObject:@""];
+	[devices addObject:@""];
 	
 	return [[devices componentsJoinedByString:@"; "] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
