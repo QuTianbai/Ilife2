@@ -1,3 +1,12 @@
+Version 2.3.0.2:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'todo/improve' into next
+ - Improve request header information
+ - Improve coupons view model about error occur
+ - Fix specs
+ - Add URL Type scheme
+ - Improve coupons timestamp use server time
+
 Version 2.3.0.1:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Merge branch 'pu/v1.2.0' into next
