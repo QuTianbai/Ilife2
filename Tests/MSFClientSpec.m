@@ -19,6 +19,7 @@
 #import "MSFClient+ReleaseNote.h"
 
 #import "MSFClient+Cipher.h"
+#import "UIDevice+Versions.h"
 
 QuickSpecBegin(MSFClientSpec)
 
@@ -251,7 +252,6 @@ describe(@"without a user", ^{
 		}];
 		
 		// when
-		// when
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"post" parameters:nil];
 		RACSignal *signal = [client enqueueRequest:request resultClass:nil];
 		[signal asynchronousFirstOrDefault:nil success:&success error:&error];
@@ -261,6 +261,38 @@ describe(@"without a user", ^{
 		expect(@(error.code)).to(equal(@(MSFClientErrorBadRequest)));
 		expect(error.userInfo[MSFClientErrorMessageCodeKey]).to(equal(@4000));
 		expect(error.userInfo[MSFClientErrorMessageKey]).to(equal(@"foo"));
+	});
+	
+});
+
+describe(@"device information", ^{
+	__block NSArray *infos;
+	
+	beforeEach(^{
+		user = mock([MSFUser class]);
+		stubProperty(user, server, MSFServer.dotComServer);
+		client = [MSFClient unauthenticatedClientWithUser:user];
+		
+		NSURLRequest *request = [client requestWithMethod:@"GET" path:@"path" parameters:nil];
+		NSString *authinfo = [request.allHTTPHeaderFields[@"deviceInfo"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		
+		infos = [authinfo componentsSeparatedByString:@"; "];
+		expect(infos).notTo(beNil());
+	});
+	
+	it(@"should have IP Address in request header", ^{
+		// then
+		expect(infos[12]).to(equal([UIDevice currentDevice].IPAddress));
+	});
+	
+	it(@"should should have IMEI", ^{
+		// then
+		expect(infos[13]).to(equal(@""));
+	});
+	
+	it(@"should should have MAC", ^{
+		// then
+		expect(infos[14]).to(equal(@""));
 	});
 });
 
