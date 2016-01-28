@@ -12,6 +12,7 @@
 @interface MSFCouponsViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
+@property (nonatomic, strong, readwrite) NSString *identifer;
 
 @end
 
@@ -27,6 +28,7 @@
 	@weakify(self)
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
+		self.identifer = input;
 		return [[[[self.services.httpClient
 			fetchCouponsWithStatus:input]
 			catch:^RACSignal *(NSError *error) {

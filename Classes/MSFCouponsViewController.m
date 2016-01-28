@@ -8,9 +8,9 @@
 #import "MSFCouponsViewModel.h"
 #import "MSFTableViewBindingHelper.h"
 #import "MSFCouponTableViewCell.h"
-#import "UITableView+MSFActivityIndicatorViewAdditions.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface MSFCouponsViewController ()
+@interface MSFCouponsViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @property (nonatomic, strong) MSFCouponsViewModel *viewModel;
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
@@ -39,6 +39,8 @@
 	UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
 	tableHeaderView.backgroundColor = [UIColor clearColor];
 	self.tableView.tableHeaderView = tableHeaderView;
+	self.tableView.emptyDataSetSource = self;
+	self.tableView.emptyDataSetDelegate = self;
 }
 
 #pragma mark - UITableViewDelegate
@@ -61,7 +63,32 @@
 		}]
 		templateCell:[UINib nibWithNibName:NSStringFromClass([MSFCouponTableViewCell class]) bundle:nil]];
 	self.bindingHelper.delegate = self;
-	self.tableView.backgroundView = [self.tableView viewWithSignal:RACObserve(self, viewModel.viewModels) message:@"暂无优惠券" AndImage:[UIImage imageNamed:@"cell-icon-normal.png"]];
+}
+
+#pragma mark - ZNEmptyDataSetSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+	NSString *title = @"";
+	if ([self.viewModel.identifer isEqualToString:@"B"]) {
+		title = @"你还没有未使用的过优惠券";
+	} else if ([self.viewModel.identifer isEqualToString:@"C"]) {
+		title = @"你还没有已使用过的优惠券";
+	} else if ([self.viewModel.identifer isEqualToString:@"D"]) {
+		title = @"你还没有已过期的优惠券";
+	}
+	return [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}];
+}
+
+- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
+	NSString *subtitle = @"";
+	if ([self.viewModel.identifer isEqualToString:@"B"]) {
+		subtitle = @"你可以多多关注马上金融活动，惊喜连连！~";
+	}
+	return [[NSAttributedString alloc] initWithString:subtitle attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]}];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+	return [UIImage imageNamed:@"cell-icon-normal.png"];
 }
 
 @end

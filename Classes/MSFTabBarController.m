@@ -66,6 +66,7 @@
 	[super viewDidLoad];
   self.tabBar.selectedImageTintColor = UIColor.themeColor;
 	self.delegate = self;
+	self.tabBar.translucent = NO;
 }
 
 #pragma mark - Private
