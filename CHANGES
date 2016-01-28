@@ -1,3 +1,7 @@
+Version 2.3.0.4:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Fix #1248 没有优惠券时显示与产品提供的文案不一致
+
 Version 2.3.0.3:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Merge branch 'next'
