@@ -17,6 +17,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeFetchCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeAdditionCommand;
 
+@property (nonatomic, strong, readonly) NSString *identifer;
+
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end
