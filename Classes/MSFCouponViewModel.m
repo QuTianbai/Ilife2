@@ -42,6 +42,7 @@
 	}];
 	RAC(self, timeLeft) = [RACObserve(self, days) map:^id(NSNumber *value) {
 		if (value.integerValue < 0) return @"已过期";
+		if (value.integerValue == 0) return @"即将到期";
 		return [[value stringValue] stringByAppendingFormat:@"天后到期"];
 	}];
 	
