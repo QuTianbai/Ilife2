@@ -120,14 +120,18 @@
 	return [RACSignal combineLatest:@[
 		RACObserve(self, captcha),
 		RACObserve(self, uniqueTransactionID),
-		RACObserve(self, transactionPassword)]
-	reduce:^id(NSString *captcha , NSString *uniqueid, NSString *password) {
-		return @(captcha.length > 0 && uniqueid.length > 0 && password.length > 0);
+	]
+	reduce:^id(NSString *captcha , NSString *uniqueid) {
+		return @(captcha.length > 0 && uniqueid.length > 0);
 	}];
 }
 
 - (RACSignal *)paymentSignal {
-	return [self.services.httpClient downPaymentWithPayment:self.model SMSCode:self.captcha SMSSeqNo:self.uniqueTransactionID];
+	return [[[self.services msf_gainPasscodeSignal] flattenMap:^RACStream *(id value) {
+		return [self.services.httpClient checkDataWithPwd:value contractNO:self.model.inOrderId];
+	}] flattenMap:^RACStream *(id value) {
+		return [self.services.httpClient downPaymentWithPayment:self.model SMSCode:self.captcha SMSSeqNo:self.uniqueTransactionID];
+	}];
 }
 
 @end

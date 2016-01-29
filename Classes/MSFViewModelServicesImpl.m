@@ -294,8 +294,9 @@
 			[subscriber sendCompleted];
 		}];
 		[[self rac_signalForSelector:@selector(cancel) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
-			[subscriber sendNext:[x first]];
-			[subscriber sendCompleted];
+			[subscriber sendError:[NSError errorWithDomain:@"MSFViewModelServicesDomain" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入正确的交易密码",
+			}]];
 		}];
 		return [RACDisposable disposableWithBlock:^{
 			[self.passcodeViewController.view removeFromSuperview];
