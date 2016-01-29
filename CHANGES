@@ -1,3 +1,9 @@
+Version 2.3.0.5:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update coupon valid date left dates
+ - Update change bank card workflow
+ - Fix specs
+
 Version 2.3.0.4:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Fix #1248 没有优惠券时显示与产品提供的文案不一致
