@@ -1,3 +1,10 @@
+Version 2.3.0.6:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Improve 无贷款期数提示
+ - Update 首付增加交易密码验证
+ - Fix 取消交易密码输入状态
+ - Update 首付金额数据类型
+
 Version 2.3.0.5:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Update coupon valid date left dates
