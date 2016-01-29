@@ -119,9 +119,6 @@ UICollectionViewDelegate>
 	@weakify(self)
 	[[RACObserve(self, viewModel.terms) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		@strongify(self)
-		if ([x count] == 0) {
-			[SVProgressHUD showErrorWithStatus:@"贷款金额过少，没有贷款期数"];
-		}
 		[self.collection reloadData];
 		[self.collection selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
 	}];
