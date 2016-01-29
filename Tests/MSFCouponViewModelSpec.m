@@ -31,7 +31,7 @@ it(@"should initialize", ^{
   // then
 	expect(sut).notTo(beNil());
 	expect(sut.title).to(equal(@"bar"));
-	expect(sut.subtitle).to(equal(@"ios"));
+	expect(sut.subtitle).to(equal(@"foo"));
 	expect(sut.value).to(beNil());
 	expect(sut.intro).to(equal(@"foo"));
 	expect(sut.timeRange).to(equal(@"2015-05-03 至 2015-05-07"));
