@@ -35,6 +35,9 @@
 // icon的名字
 @property (nonatomic, strong, readonly) NSString *imageName;
 
+// 状态值
+@property (nonatomic, strong, readonly) NSString *status;
+
 // 剩余时间背景
 @property (nonatomic, strong, readonly) NSString *deadlineImageName;
 
