@@ -33,7 +33,6 @@
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
 
-@property (nonatomic, strong) NSString *debtAmounts;
 
 @end
 
