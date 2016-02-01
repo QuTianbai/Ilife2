@@ -70,13 +70,15 @@
 			self.loanFixedAmt = x.loanFixedAmt;
 			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
 		}];
-	
-		RACChannelTerminal *downPmt = RACChannelTo(self, downPmtAmt);
-		RACChannelTerminal *loanAmt = RACChannelTo(self, loanAmt);
-		[[downPmt map:^id(NSString *value) {
-			double loan = self.cart.totalAmt.doubleValue - value.doubleValue;
-			return [NSString stringWithFormat:@"%.2f", loan];
-		}] subscribe:loanAmt];
+		
+		RAC(self, loanAmt) = [RACSignal combineLatest:@[
+				RACObserve(self, downPmtAmt),
+				RACObserve(self, totalAmt)
+			]
+			reduce:^id(NSString *pmt, NSString *amt) {
+				double loan = amt.doubleValue - pmt.doubleValue;
+				return [NSString stringWithFormat:@"%.2f", loan];
+			}];
 		
 		_downPmtAmt = @"0";
 		_joinInsurance = YES;
