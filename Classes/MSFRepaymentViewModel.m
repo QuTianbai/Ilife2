@@ -33,6 +33,8 @@
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
 
+@property (nonatomic, strong) NSString *debtAmounts;
+
 @end
 
 @implementation MSFRepaymentViewModel
@@ -69,6 +71,17 @@
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return [NSString stringWithFormat:@"本期最小还款金额￥%.2f,总欠款金额￥%@", viewModel.amount, viewModel.ownerAllMoney];;
+		}
+		return @"";
+	}];
+	
+	RAC(self, debtAmounts) = [RACObserve(self, model) map:^id(id value) {
+		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
+			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
+			return viewModel.totalOverdueMoney;
+		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
+			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
+			return viewModel.overdueMoney;
 		}
 		return @"";
 	}];
@@ -143,9 +156,11 @@
 	return [RACSignal combineLatest:@[
 		RACObserve(self, captcha),
 		RACObserve(self, uniqueTransactionID),
+		RACObserve(self, amounts),
+		RACObserve(self, debtAmounts),
 	]
-	reduce:^id(NSString *captcha , NSString *uniqueid) {
-		return @(captcha.length > 0 && uniqueid.length > 0);
+	reduce:^id(NSString *captcha , NSString *uniqueid, NSString *amounts, NSString *debt) {
+		return @(captcha.length > 0 && uniqueid.length > 0 && (amounts.doubleValue <= debt.doubleValue));
 	}];
 }
 
