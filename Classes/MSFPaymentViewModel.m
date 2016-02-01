@@ -16,6 +16,7 @@
 #import "MSFBankCardListModel.h"
 #import "MSFTransSmsSeqNOModel.h"
 #import "MSFBankCardListViewModel.h"
+#import "MSFClient+Payment.h"
 
 @interface MSFPaymentViewModel ()
 
@@ -128,7 +129,7 @@
 
 - (RACSignal *)paymentSignal {
 	return [[[self.services msf_gainPasscodeSignal] flattenMap:^RACStream *(id value) {
-		return [self.services.httpClient checkDataWithPwd:value contractNO:self.model.inOrderId];
+		return [self.services.httpClient fetchDownPayment:self.model password:value];
 	}] flattenMap:^RACStream *(id value) {
 		return [self.services.httpClient downPaymentWithPayment:self.model SMSCode:self.captcha SMSSeqNo:self.uniqueTransactionID];
 	}];
