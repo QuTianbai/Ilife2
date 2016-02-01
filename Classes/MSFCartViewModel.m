@@ -45,7 +45,6 @@
 	if (self) {
 		
 		_services = services;
-		_loanType = [[MSFLoanType alloc] initWithTypeID:@"3101"];
 		_applicationNo = appNo;
 		_formViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
 		_formViewModel.active = YES;
@@ -111,7 +110,7 @@
 			self.barcodeInvalid = YES;
 		}];
 		
-		[RACObserve(self, loanType.typeID) subscribeNext:^(id x) {
+		[[RACObserve(self, loanType.typeID) ignore:nil] subscribeNext:^(id x) {
 			[[self.services.httpClient fetchCheckEmploeeWithProductCode:x] subscribeNext:^(MSFMarkets *x) {
 				@strongify(self)
 				[self handleMarkets:x];
@@ -174,6 +173,14 @@
 	}];;
 	if (self.terms.count > 0) {
 		self.term = [self.terms[0] loanTeam];
+	}
+	
+	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+	double a = self.minLoan.doubleValue;
+	double c = self.cart.totalAmt.doubleValue;
+	
+	if (c < d + a) {
+		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
 	}
 }
 
