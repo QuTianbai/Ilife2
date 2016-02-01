@@ -1,3 +1,9 @@
+Version 2.3.0.7:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Fix 首付验证交易密码
+ - Update 商品贷限制最低商品金额
+ - Update 最低带宽金额提示
+
 Version 2.3.0.6:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Improve 无贷款期数提示
