@@ -31,14 +31,15 @@
 	RAC(self, subtitle) = RACObserve(self, model.productName);
 	RAC(self, value) = RACObserve(self, model.value);
 	RAC(self, intro) = RACObserve(self, model.type);
+	RAC(self, status) = RACObserve(self, model.status);
 	RAC(self, timeRange) = [RACObserve(self, model) map:^id(MSFCoupon *value) {
 		return [NSString stringWithFormat:@"%@ 至 %@",
 			[NSDateFormatter msf_stringFromDate:[NSDate msf_date:value.effectDateBegin]], [NSDateFormatter msf_stringFromDate:[NSDate msf_date: value.effectDateEnd]]];
 	}];
 	RAC(self, days) = [RACObserve(self, model) map:^id(MSFCoupon *value) {
 		double diff = [value.effectDateEnd timeIntervalSince1970] - [MSFClient cipher].internet / 1000.0;
-		int d = (int)(diff / (24 * 60 * 60));
-		return @(d);
+		double d = (diff / (24 * 60 * 60));
+		return @(ceil(d));
 	}];
 	RAC(self, timeLeft) = [RACObserve(self, days) map:^id(NSNumber *value) {
 		if (value.integerValue < 0) return @"已过期";

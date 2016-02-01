@@ -120,6 +120,11 @@
 }
 
 - (RACSignal *)repaySignal {
+	MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:self.circulateViewModel services:self.services];
+	if (viewModel.debtAmounts.doubleValue == 0) {
+		[SVProgressHUD showErrorWithStatus:@"你暂不需要还款"];
+		return [RACSignal empty];
+	}
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		if ([self hasTransactionalCode]) {
 			[[[self.services.httpClient fetchBankCardList].collect replayLazily] subscribeNext:^(id x) {

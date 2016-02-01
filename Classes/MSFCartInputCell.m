@@ -31,6 +31,7 @@
 		UITextField *tf = [[UITextField alloc] init];
 		tf.font = [UIFont systemFontOfSize:15];
 		tf.keyboardType = UIKeyboardTypeNumberPad;
+		tf.text = @"0";
 		tf.tag = 100;
 		[self.contentView addSubview:tf];
 		
