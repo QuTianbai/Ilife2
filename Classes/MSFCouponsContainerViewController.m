@@ -42,7 +42,6 @@
 	self.title = @"优惠券";
 	self.index = 0;
 	self.button0.enabled = NO;
-	[self.viewModel.executeFetchCommand execute:@"B"];
 	@weakify(self)
 	[[self.button0 rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
