@@ -37,8 +37,8 @@
 	}];
 	RAC(self, days) = [RACObserve(self, model) map:^id(MSFCoupon *value) {
 		double diff = [value.effectDateEnd timeIntervalSince1970] - [MSFClient cipher].internet / 1000.0;
-		int d = (int)(diff / (24 * 60 * 60));
-		return @(d);
+		double d = (diff / (24 * 60 * 60));
+		return @(ceil(d));
 	}];
 	RAC(self, timeLeft) = [RACObserve(self, days) map:^id(NSNumber *value) {
 		if (value.integerValue < 0) return @"已过期";

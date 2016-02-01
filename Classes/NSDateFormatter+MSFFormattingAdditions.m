@@ -22,7 +22,7 @@
 	dispatch_once(&pred, ^{
 		dateParsingFormatter = [[ISO8601DateFormatter alloc] init];
 		[dateParsingFormatter setIncludeTime:YES];
-		[dateParsingFormatter setDefaultTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]]; // UTC
+		[dateParsingFormatter setDefaultTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]]; // UTC
 		dateParsingQueue = dispatch_queue_create("com.msfinance.NSDateFormatter", DISPATCH_QUEUE_SERIAL);
 	});
 	
