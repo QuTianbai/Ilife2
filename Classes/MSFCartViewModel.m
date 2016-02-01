@@ -45,7 +45,6 @@
 	if (self) {
 		
 		_services = services;
-		_loanType = [[MSFLoanType alloc] initWithTypeID:@"3101"];
 		_applicationNo = appNo;
 		_formViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
 		_formViewModel.active = YES;
@@ -111,7 +110,7 @@
 			self.barcodeInvalid = YES;
 		}];
 		
-		[RACObserve(self, loanType.typeID) subscribeNext:^(id x) {
+		[[RACObserve(self, loanType.typeID) ignore:nil] subscribeNext:^(id x) {
 			[[self.services.httpClient fetchCheckEmploeeWithProductCode:x] subscribeNext:^(MSFMarkets *x) {
 				@strongify(self)
 				[self handleMarkets:x];
@@ -176,32 +175,12 @@
 		self.term = [self.terms[0] loanTeam];
 	}
 	
-	double a = self.downPmtAmt.doubleValue;
 	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
-	double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
-	double b = self.loanAmt.doubleValue;
-	double f = self.minLoan.doubleValue;
-	double g = self.maxLoan.doubleValue;
-	double c = self.totalAmt.doubleValue;
-
-	// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
-	if (a < d) {
-		[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
-	}
-	if (a > e) {
-		[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
-	}
-	if (b < f) {
-		[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
-	}
-	if (b > g) {
-		[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
-	}
-	if (c < f + d) {
-		[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
-	}
-	if (c > e + g) {
-		[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
+	double a = self.minLoan.doubleValue;
+	double c = self.cart.totalAmt.doubleValue;
+	
+	if (c < d + a) {
+		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
 	}
 }
 
