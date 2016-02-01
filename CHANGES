@@ -1,3 +1,14 @@
+Version 2.3.0.9:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 0还款提示语
+ - Update coupons fetch rule
+ - Update coupon view model status
+ - Update 优惠券未使用重复调用
+ - Fix coupons cell crash
+ - Update 优惠券有效期
+ - Update 限制最大还款金额
+ - Update 首付金额为0的时候显示0切不可编辑
+
 Version 2.3.0.8:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into next
  - Fix 无首付金额计算错误
