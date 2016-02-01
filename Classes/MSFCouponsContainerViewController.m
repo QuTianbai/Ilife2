@@ -105,6 +105,16 @@
 	self.navigationItem.rightBarButtonItem = item;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	self.viewModel.active = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	self.viewModel.active = NO;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.destinationViewController isKindOfClass:[MSFCouponsViewController class]]) {
 		[(NSObject <MSFReactiveView> *)segue.destinationViewController bindViewModel:self.viewModel];
