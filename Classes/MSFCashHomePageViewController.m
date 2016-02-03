@@ -151,6 +151,7 @@
 		}];
 	}];
 	
+	//!!!: 重构贷款申请条件验证, 是否允许申请，是否绑定银行卡，是否设置交易密码
 	// 判断是否允马上贷
 	[self.viewModel.executeAllowMSCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
@@ -199,7 +200,6 @@
 					}];
 					return ;
 				}
-				//!!!: 判断是否存在银行卡，不不能再则需要绑定银行卡
 				if (!self.viewModel.formViewModel.master) {
 					[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
 					MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;

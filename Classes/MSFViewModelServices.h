@@ -30,9 +30,14 @@
 
 // 调用相机拍照/模拟器的情况下直接获取相册图片
 - (RACSignal *)msf_takePictureSignal:(BOOL)frontOnly;
-//人脸识别前置图片
+
+// 人脸识别前置图片
 - (void)ImagePickerControllerWithImage:(id )iamge __deprecated;
 
+// 扫描二维码
 - (RACSignal *)msf_barcodeScanSignal;
+
+// 获取交易密码
+- (RACSignal *)msf_gainPasscodeSignal;
 
 @end
