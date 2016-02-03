@@ -30,7 +30,7 @@ pod 'SHSPhoneComponent', '2.15'
 pod 'ZXingObjC', '3.1.0'
 pod 'CZPhotoPickerController', :git => 'https://github.com/objczl/CZPhotoPickerController', :commit => '486dc83'
 pod 'MSPageViewController', :git => 'https://github.com/mindsnacks/MSPageViewController', :commit => '0259bc2'
-pod 'BugshotKit', :git => 'https://github.com/marcoarment/BugshotKit', :commit => 'e982a2a'
+#pod 'BugshotKit', :git => 'https://github.com/marcoarment/BugshotKit', :commit => 'e982a2a'
 pod 'DZNEmptyDataSet', '1.7.3'
 
 target 'Tests', :exclusive => true do
