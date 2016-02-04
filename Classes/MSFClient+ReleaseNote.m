@@ -11,16 +11,15 @@
 @implementation MSFClient (ReleaseNote)
 
 - (RACSignal *)fetchReleaseNote {
+	NSArray *builds = [NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"] componentsSeparatedByString:@"."];
+	NSParameterAssert(builds.count != 3);
+	NSInteger index = 0;
+	index += [builds[0] integerValue] * 10000;
+	index += [builds[1] integerValue] * 1000;
+	index += [builds.lastObject integerValue];
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"versionType"] = @"iOS";
-	parameters[@"versionCode"] = ^{
-		NSArray *builds = [NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"] componentsSeparatedByString:@"."];
-		__block NSInteger x = 0 ;
-		[builds enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			x += (NSUInteger)pow(10, idx + 1) * [obj integerValue];
-		}];
-		return @(x);
-	}();
+	parameters[@"versionCode"] = @(index);
 	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"checkVersion" parameters:parameters];
 	
 	return [[self enqueueRequest:requset resultClass:MSFReleaseNote.class] msf_parsedResults];
