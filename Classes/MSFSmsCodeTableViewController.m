@@ -16,7 +16,7 @@
 #import "MSFEdgeButton.h"
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 
 @interface MSFSmsCodeTableViewController ()
 
@@ -111,7 +111,7 @@
 		@strongify(self)
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
-		[captchaSignal subscribeNext:^(MSFTransSmsSeqNOModel *model) {
+		[captchaSignal subscribeNext:^(MSFPaymentToken *model) {
 			self.viewModel.smsSeqNo = model.smsSeqNo;
 			[SVProgressHUD dismiss];
 			self.counting = YES;

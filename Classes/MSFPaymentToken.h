@@ -8,7 +8,7 @@
 
 #import "MSFObject.h"
 
-@interface MSFTransSmsSeqNOModel : MSFObject
+@interface MSFPaymentToken : MSFObject
 //主控流水号
 @property (nonatomic, copy) NSString *smsSeqNo;
 

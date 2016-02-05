@@ -20,7 +20,7 @@
 #import "MSFClient+MSFBankCardList.h"
 #import "MSFOrderDetail.h"
 #import "MSFBankCardListModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFCirculateCashViewModel.h"
 

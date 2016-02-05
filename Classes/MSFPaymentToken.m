@@ -6,8 +6,8 @@
 //  Copyright © 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 
-@implementation MSFTransSmsSeqNOModel
+@implementation MSFPaymentToken
 
 @end
