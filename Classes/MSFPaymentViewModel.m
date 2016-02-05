@@ -11,7 +11,7 @@
 #import "MSFGetBankIcon.h"
 #import "MSFClient+Users.h"
 #import "MSFClient+Payment.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFOrderDetail.h"
 #import "MSFBankCardListModel.h"
 #import "MSFPaymentToken.h"

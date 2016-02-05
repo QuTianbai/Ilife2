@@ -17,7 +17,7 @@
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
 #import "AppDelegate.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFRepaymentViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 

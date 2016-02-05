@@ -24,7 +24,7 @@
 #import "MSFViewModelServices.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFCartViewModel.h"
 #import "MSFElementViewController.h"
@@ -84,7 +84,7 @@ UICollectionViewDelegateFlowLayout>
 					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setStatus:@"1"];
 					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
-			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashViewModel class]]) {
 				[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
 				[[KGModal sharedInstance] setShowCloseButton:NO];
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {

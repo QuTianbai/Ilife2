@@ -18,7 +18,7 @@
 #import "UIColor+Utils.h"
 #import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFTabBarController.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
@@ -163,7 +163,7 @@
 - (void)userInfo {
 	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
 	MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
-	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
+	MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
 	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
 }

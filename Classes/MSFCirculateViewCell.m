@@ -8,14 +8,14 @@
 
 #import "MSFCirculateViewCell.h"
 #import <Masonry/Masonry.h>
-#import "MSFHomePageCellModel.h"
+#import "MSFHomePageItemViewModel.h"
 #import "MSFLoanLimitView.h"
 #import "UIColor+Utils.h"
 
 @interface MSFCirculateViewCell ()
 
 @property (nonatomic, strong) MSFLoanLimitView *loanLimitView;
-@property (nonatomic, strong) MSFHomePageCellModel *viewModel;
+@property (nonatomic, strong) MSFHomePageItemViewModel *viewModel;
 
 @end
 
@@ -39,7 +39,7 @@
 	return self;
 }
 
-- (void)bindViewModel:(MSFHomePageCellModel *)viewModel {
+- (void)bindViewModel:(MSFHomePageItemViewModel *)viewModel {
 	_viewModel = viewModel;
 	[_loanLimitView setAvailableCredit:viewModel.usableLimit
 													usedCredit:viewModel.usedLimit];

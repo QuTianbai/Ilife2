@@ -21,7 +21,7 @@
 #import "MSFApplyView.h"
 #import "MSFCashHomeLoanLimit.h"
 
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFCashHomePageViewModel.h"
 #import "MSFUserInfomationViewController.h"
 
@@ -161,7 +161,7 @@
 			if (model.processing == 1) {
 				
 				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"1101"];
-				MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:self.viewModel.formViewModel loanType:loanType];
+				MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:self.viewModel.formViewModel loanType:loanType];
 				[[viewModel submitSignalWithStatus:@"0"] subscribeNext:^(MSFSubmitApplyModel *applyCash) {
 					viewModel.applicationNo = applyCash.appNo;
 					MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
@@ -204,7 +204,7 @@
 					[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
 					MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 					BOOL isFirstBankCard = YES;
-					vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
+					vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
 					[self.navigationController pushViewController:vc animated:YES];
 					return ;
 				}

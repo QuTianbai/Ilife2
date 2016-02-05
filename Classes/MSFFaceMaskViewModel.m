@@ -14,7 +14,7 @@
 #import "MSFClient+Elements.h"
 #import "MSFElement.h"
 #import "MSFElement+Private.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFClient+Attachment.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 
@@ -43,8 +43,8 @@
 	
 	[[self.services.httpClient fetchFaceMaskElements]
 	subscribeNext:^(id x) {
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
-			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
+		if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
+			MSFApplyCashViewModel *viewModel = (MSFApplyCashViewModel *)self.applicationViewModel;
 			self.model.applicationNo = viewModel.appNO;
 		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 			self.model.applicationNo = self.applicationViewModel.applicationNo;

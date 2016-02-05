@@ -14,7 +14,7 @@
 #import "MSFClient+ConfirmContract.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCirculateCashModel.h"
-#import "MSFClient+MSFCirculateCash.h"
+#import "MSFClient+CirculateCash.h"
 #import "MSFUser.h"
 
 static NSString *kSocialInsuranceLoanTemplate = @"4102";

@@ -17,7 +17,7 @@
 #import "MSFApplicationForms.h"
 #import "MSFAreas.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-#import "MSFClient+MSFApplyCash.h"
+#import "MSFClient+ApplyCash.h"
 #import "NSString+Matches.h"
 #import "NSDate+UTC0800.h"
 

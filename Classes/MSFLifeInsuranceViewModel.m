@@ -8,7 +8,7 @@
 
 #import "MSFLifeInsuranceViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+MSFLifeInsurance.h"
+#import "MSFClient+LifeInsurance.h"
 #import "MSFLoanType.h"
 
 @interface MSFLifeInsuranceViewModel ()

@@ -13,7 +13,7 @@
 #import "UIColor+Utils.h"
 #import "UILabel+AttributeColor.h"
 
-#import "MSFHomePageCellModel.h"
+#import "MSFHomePageItemViewModel.h"
 
 @interface MSFHomePageContentView ()
 
@@ -91,7 +91,7 @@
 	return self;
 }
 
-- (void)updateWithModel:(MSFHomePageCellModel *)model {
+- (void)updateWithModel:(MSFHomePageItemViewModel *)model {
 	UILabel *title   = (UILabel *)[self viewWithTag:100];
 	UIButton *status = (UIButton *)[self viewWithTag:101];
 	UILabel *unit    = (UILabel *)[self viewWithTag:102];

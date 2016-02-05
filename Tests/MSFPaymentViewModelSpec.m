@@ -7,7 +7,7 @@
 #import "MSFPaymentViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFOrderDetail.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFBankCardListModel.h"
 #import "MSFPaymentToken.h"
 #import "MSFClient+Users.h"

@@ -16,12 +16,12 @@
 #import "MSFPersonalViewModel.h"
 #import "MSFRelationshipViewModel.h"
 #import "MSFProfessionalViewModel.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFAddressViewModel.h"
 
-#import "MSFClient+MSFApplyInfo.h"
+#import "MSFClient+ApplyInfo.h"
 #import "UIColor+Utils.h"
 
 #import "MSFUser.h"
@@ -125,12 +125,12 @@
 			 MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 			 BOOL isFirstBankCard = YES;
 			 
-			 vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
+			 vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
 			 [self.navigationController pushViewController:vc animated:YES];
 			 
 			 return ;
 		 }
-		 if ([self.viewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+		 if ([self.viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 				MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
 				[self.navigationController pushViewController:productViewController animated:YES];
 			} else if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
