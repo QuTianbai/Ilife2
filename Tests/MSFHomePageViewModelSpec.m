@@ -16,7 +16,7 @@
 #import "MSFClient+Users.h"
 #import "MSFResponse.h"
 #import "MSFClient.h"
-#import "MSFClient+MSFOrder.h"
+#import "MSFClient+Order.h"
 #import "MSFOrder.h"
 
 QuickSpecBegin(MSFHomePageViewModelSpec)

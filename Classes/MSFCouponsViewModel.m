@@ -28,12 +28,17 @@
 	_identifer = @"";
 	
 	@weakify(self)
-	[self.didBecomeInactiveSignal subscribeNext:^(id x) {
+	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		[[self fetchSingal] subscribeNext:^(id x) {
-			self.viewModels = x;
-			[self.executeFetchCommand execute:self.identifer];
-		}];
+		return [[self fetchSingal]
+			flattenMap:^RACStream *(NSArray *viewModels) {
+				return [[[viewModels.rac_sequence
+					filter:^BOOL(MSFCouponViewModel *viewModel) {
+						return [viewModel.status isEqualToString:self.identifer];
+					}]
+					signal]
+					collect];
+			}];
 	}];
 	
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -55,7 +60,7 @@
 	return [[[[self.services.httpClient
 		fetchCouponsWithStatus:status]
 		catch:^RACSignal *(NSError *error) {
-			return [RACSignal return:@[]];
+			return [RACSignal empty];
 		}]
 		map:^id(id value) {
 			return [[MSFCouponViewModel alloc] initWithModel:value];
