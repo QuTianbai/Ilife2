@@ -79,7 +79,7 @@
 		return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
 		#if !DEBUG
-		if (MSFUtils.poster) {
+		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
@@ -277,7 +277,7 @@
 }
 
 - (void)statusBarTouchedAction {
-	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]] animated:YES completion:nil];
+	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]] animated:YES completion:nil];
 }
 
 #endif
