@@ -4,12 +4,12 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFUtilsDetailsViewController.h"
+#import "MSFEnvironmentViewController.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-@implementation MSFUtilsDetailsViewController
+@implementation MSFEnvironmentViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];

@@ -6,6 +6,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MSFUtilsDetailsViewController : UIViewController
+@interface MSFEnvironmentViewController : UIViewController
 
 @end

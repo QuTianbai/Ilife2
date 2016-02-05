@@ -4,12 +4,12 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFUtilsViewController.h"
+#import "MSFEnvironmentsViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
-#import "MSFUtilsDetailsViewController.h"
+#import "MSFEnvironmentViewController.h"
 
-@implementation MSFUtilsViewController
+@implementation MSFEnvironmentsViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -25,7 +25,7 @@
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:nil action:nil];
 	self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		MSFUtilsDetailsViewController *detailsViewController = [[MSFUtilsDetailsViewController alloc] init];
+		MSFEnvironmentViewController *detailsViewController = [[MSFEnvironmentViewController alloc] init];
 		[self.navigationController pushViewController:detailsViewController animated:YES];
 		return RACSignal.empty;
 	}];

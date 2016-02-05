@@ -35,7 +35,7 @@
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtilsViewController.h"
+#import "MSFEnvironmentsViewController.h"
 #import "MSFFormsViewModel.h"
 
 #if TEST
@@ -253,7 +253,7 @@
 	
 	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
 	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
-		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]];
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]];
 		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
 		[vc dismissViewControllerAnimated:NO completion:nil];
 	}

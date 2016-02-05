@@ -380,8 +380,8 @@
 		492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492E62721B0EC18D00D34069 /* left_arrow@3x.png */; };
 		49386C151B8178D100B1282B /* check-user-credit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49386C141B8178D100B1282B /* check-user-credit.json */; };
 		4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8C0EF1C0BF60A0010D791 /* RACSignal+MSFContactsAdditions.m */; };
-		493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */; };
-		493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */; };
+		493E92021BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92011BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m */; };
+		493E92121BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92111BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.m */; };
 		493ECC321B20533100A40DDB /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBC01B0DF40000582A69 /* Nimble.framework */; };
 		493ECC3C1B20533600A40DDB /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955DBE31B0DF40E00582A69 /* Quick.framework */; };
 		493ED1681C2BDE31002B8EA6 /* MSFBarcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 493ED1671C2BDE31002B8EA6 /* MSFBarcode.m */; };
@@ -1421,10 +1421,10 @@
 		492E62711B0EC18D00D34069 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
 		492E62721B0EC18D00D34069 /* left_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@3x.png"; sourceTree = "<group>"; };
 		49386C141B8178D100B1282B /* check-user-credit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-user-credit.json"; sourceTree = "<group>"; };
-		493E92001BD0D6F700C4BFC6 /* MSFUtilsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsViewController.h; sourceTree = "<group>"; };
-		493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsViewController.m; sourceTree = "<group>"; };
-		493E92101BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtilsDetailsViewController.h; sourceTree = "<group>"; };
-		493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtilsDetailsViewController.m; sourceTree = "<group>"; };
+		493E92001BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEnvironmentsViewController.h; sourceTree = "<group>"; };
+		493E92011BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEnvironmentsViewController.m; sourceTree = "<group>"; };
+		493E92101BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEnvironmentViewController.h; sourceTree = "<group>"; };
+		493E92111BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEnvironmentViewController.m; sourceTree = "<group>"; };
 		493ED1661C2BDE31002B8EA6 /* MSFBarcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBarcode.h; sourceTree = "<group>"; };
 		493ED1671C2BDE31002B8EA6 /* MSFBarcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBarcode.m; sourceTree = "<group>"; };
 		4943C32B1B047403000BBF5E /* Finance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Finance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -4185,10 +4185,10 @@
 				4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */,
 				4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */,
 				4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */,
-				493E92001BD0D6F700C4BFC6 /* MSFUtilsViewController.h */,
-				493E92011BD0D6F700C4BFC6 /* MSFUtilsViewController.m */,
-				493E92101BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.h */,
-				493E92111BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m */,
+				493E92001BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.h */,
+				493E92011BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m */,
+				493E92101BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.h */,
+				493E92111BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -5257,7 +5257,7 @@
 				4917A4451B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m in Sources */,
 				49CA93781BBA36090032F5C2 /* MSFIDSignInViewController.m in Sources */,
 				0750AAFA1B969DED00AD67F3 /* MSFCustomAlertViewController.m in Sources */,
-				493E92021BD0D6F700C4BFC6 /* MSFUtilsViewController.m in Sources */,
+				493E92021BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m in Sources */,
 				10028A701BD5DD3B00D36508 /* NSObject+MSFValidItem.m in Sources */,
 				07BA6CE51B5F5BD7001D6CFA /* MSFSegment.m in Sources */,
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
@@ -5282,7 +5282,7 @@
 				493ED1681C2BDE31002B8EA6 /* MSFBarcode.m in Sources */,
 				07CD310A1B09CC7600E0C2DF /* MSFCommandView.m in Sources */,
 				10E546C21C02B10400BBA827 /* MSFCashHomeLoanLimit.m in Sources */,
-				493E92121BD0D8AA00C4BFC6 /* MSFUtilsDetailsViewController.m in Sources */,
+				493E92121BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.m in Sources */,
 				07F089271BBD39250067C5BC /* MSFGetBankIcon.m in Sources */,
 				498637C31C2BB6E400A11845 /* MSFCommodityCashViewModel.m in Sources */,
 				108B0A971BBE7F01000EAEF8 /* MSFCirculateViewCell.m in Sources */,

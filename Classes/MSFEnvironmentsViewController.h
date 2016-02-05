@@ -7,6 +7,6 @@
 #import <UIKit/UIKit.h>
 
 // Use for test users change API address
-@interface MSFUtilsViewController : UITableViewController
+@interface MSFEnvironmentsViewController : UITableViewController
 
 @end
