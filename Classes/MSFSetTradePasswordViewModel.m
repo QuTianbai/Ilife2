@@ -12,7 +12,7 @@
 #import "MSFClient+Captcha.h"
 #import "MSFClient.h"
 #import "MSFServer.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 
 static const int kCounterLength = 60;
 
@@ -56,7 +56,7 @@ static const int kCounterLength = 60;
 
 - (RACSignal *)executeCaptchaSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
-	return [client fetchSignUpCaptchaWithPhone:MSFUtils.signInMobile];
+	return [client fetchSignUpCaptchaWithPhone:MSFActivate.signInMobile];
 }
 
 - (RACSignal *)captchaRequestValidSignal {

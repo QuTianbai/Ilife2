@@ -12,7 +12,7 @@
 #import "MSFGuideViewController.h"
 #import "MSFLoginViewController.h"
 
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "MSFUser.h"
 #import "MSFReleaseNote.h"
 #import "MSFClient+ReleaseNote.h"
@@ -74,7 +74,7 @@
 		[manager startUpdatingLocation];
 	}];
 
-	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
+	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
 		[self setup];
 		return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {

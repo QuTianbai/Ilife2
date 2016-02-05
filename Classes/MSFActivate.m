@@ -4,7 +4,7 @@
 // Copyright (c) 2015 Zēng Liàng. All rights reserved.
 //
 
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFServer.h"
 #import "MSFCipher.h"
@@ -13,14 +13,14 @@
 #import "MSFPoster.h"
 #import "NSDate+UTC0800.h"
 
-@implementation MSFUtils
+@implementation MSFActivate
 
 #pragma mark - Custom Accessors
 
 + (RACSignal *)setupSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
 	return [[client fetchReleaseNote] doNext:^(MSFReleaseNote *releasenote) {
-		[MSFUtils savePosters:releasenote.posters];
+		[MSFActivate savePosters:releasenote.posters];
 	}];
 }
 

@@ -671,7 +671,7 @@
 		49DA22651B062AF200DD4483 /* MSFClient+Captcha.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225B1B062AF200DD4483 /* MSFClient+Captcha.m */; };
 		49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA225D1B062AF200DD4483 /* MSFClient+Users.m */; };
 		49DA22681B062AF200DD4483 /* MSFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22611B062AF200DD4483 /* MSFUser.m */; };
-		49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22631B062AF200DD4483 /* MSFUtils.m */; };
+		49DA22691B062AF200DD4483 /* MSFActivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49DA22631B062AF200DD4483 /* MSFActivate.m */; };
 		49DAEE7C1B2E83D7009433C5 /* product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7B1B2E83D7009433C5 /* product.storyboard */; };
 		49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7D1B2E83E4009433C5 /* personal.storyboard */; };
 		49DAEE801B2E83F9009433C5 /* professional.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49DAEE7F1B2E83F9009433C5 /* professional.storyboard */; };
@@ -1821,8 +1821,8 @@
 		49DA225D1B062AF200DD4483 /* MSFClient+Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Users.m"; sourceTree = "<group>"; };
 		49DA22601B062AF200DD4483 /* MSFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUser.h; sourceTree = "<group>"; };
 		49DA22611B062AF200DD4483 /* MSFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUser.m; sourceTree = "<group>"; };
-		49DA22621B062AF200DD4483 /* MSFUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFUtils.h; sourceTree = "<group>"; };
-		49DA22631B062AF200DD4483 /* MSFUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFUtils.m; sourceTree = "<group>"; };
+		49DA22621B062AF200DD4483 /* MSFActivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFActivate.h; sourceTree = "<group>"; };
+		49DA22631B062AF200DD4483 /* MSFActivate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFActivate.m; sourceTree = "<group>"; };
 		49DAE1F11C02FE9500DE93E5 /* MSFApplicationViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplicationViewModel.h; sourceTree = "<group>"; };
 		49DAEE7B1B2E83D7009433C5 /* product.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = product.storyboard; sourceTree = "<group>"; };
 		49DAEE7D1B2E83E4009433C5 /* personal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = personal.storyboard; sourceTree = "<group>"; };
@@ -4179,8 +4179,8 @@
 			children = (
 				49075CA51BA91326006F63FF /* MSFTableViewBindingHelper.h */,
 				49075CA61BA91326006F63FF /* MSFTableViewBindingHelper.m */,
-				49DA22621B062AF200DD4483 /* MSFUtils.h */,
-				49DA22631B062AF200DD4483 /* MSFUtils.m */,
+				49DA22621B062AF200DD4483 /* MSFActivate.h */,
+				49DA22631B062AF200DD4483 /* MSFActivate.m */,
 				07C2E0731B1AE9FE00C7FEDE /* MSFReactiveView.h */,
 				4952ADF11B60C2C40007C0FC /* MSFViewModelServices.h */,
 				4952AE0B1B60D7590007C0FC /* MSFViewModelServicesImpl.h */,
@@ -5404,7 +5404,7 @@
 				1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
 				07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */,
-				49DA22691B062AF200DD4483 /* MSFUtils.m in Sources */,
+				49DA22691B062AF200DD4483 /* MSFActivate.m in Sources */,
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
 				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,
 				498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */,

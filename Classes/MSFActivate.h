@@ -9,7 +9,7 @@
 @class RACSignal;
 @class MSFPoster;
 
-@interface MSFUtils : NSObject
+@interface MSFActivate : NSObject
 
 // 设置数据请求，启动程序需要服务器最新的时间戳，然后再载入界面
 //
