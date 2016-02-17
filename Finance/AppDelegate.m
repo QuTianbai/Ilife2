@@ -76,8 +76,10 @@
 
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
 		[self setup];
+		[MSFGuideViewController.guide show];
 		return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
+		[MSFGuideViewController.guide show];
 		#if !DEBUG
 		if (MSFUtils.poster) {
 			[NSThread sleepForTimeInterval:3];

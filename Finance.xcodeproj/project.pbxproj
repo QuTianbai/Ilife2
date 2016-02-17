@@ -113,6 +113,16 @@
 		077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 077347F31BBA380800D7A130 /* MSFBankCardListTableViewController.m */; };
 		077347FA1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 077347F81BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m */; };
 		077347FB1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 077347F91BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.xib */; };
+		077460F21C733D1900F46ABD /* guide in Resources */ = {isa = PBXBuildFile; fileRef = 077460F11C733D1900F46ABD /* guide */; };
+		077460FD1C7420A000F46ABD /* icon-start-signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 077460F71C7420A000F46ABD /* icon-start-signin.png */; };
+		077460FE1C7420A000F46ABD /* icon-start-signin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077460F81C7420A000F46ABD /* icon-start-signin@2x.png */; };
+		077460FF1C7420A000F46ABD /* icon-start-signin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077460F91C7420A000F46ABD /* icon-start-signin@3x.png */; };
+		077461001C7420A000F46ABD /* icon-start-signup.png in Resources */ = {isa = PBXBuildFile; fileRef = 077460FA1C7420A000F46ABD /* icon-start-signup.png */; };
+		077461011C7420A000F46ABD /* icon-start-signup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077460FB1C7420A000F46ABD /* icon-start-signup@2x.png */; };
+		077461021C7420A000F46ABD /* icon-start-signup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077460FC1C7420A000F46ABD /* icon-start-signup@3x.png */; };
+		077461061C74329900F46ABD /* icon-start-title.png in Resources */ = {isa = PBXBuildFile; fileRef = 077461031C74329900F46ABD /* icon-start-title.png */; };
+		077461071C74329900F46ABD /* icon-start-title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077461041C74329900F46ABD /* icon-start-title@2x.png */; };
+		077461081C74329900F46ABD /* icon-start-title@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077461051C74329900F46ABD /* icon-start-title@3x.png */; };
 		0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0780104D1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m */; };
 		078010501BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0780104E1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib */; };
 		0788FF5E1B1F046E00880617 /* MSFPhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */; };
@@ -1016,6 +1026,16 @@
 		077347F71BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddBankCardTableViewCell.h; sourceTree = "<group>"; };
 		077347F81BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddBankCardTableViewCell.m; sourceTree = "<group>"; };
 		077347F91BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFAddBankCardTableViewCell.xib; sourceTree = "<group>"; };
+		077460F11C733D1900F46ABD /* guide */ = {isa = PBXFileReference; lastKnownFileType = folder; path = guide; sourceTree = "<group>"; };
+		077460F71C7420A000F46ABD /* icon-start-signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-signin.png"; sourceTree = "<group>"; };
+		077460F81C7420A000F46ABD /* icon-start-signin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-signin@2x.png"; sourceTree = "<group>"; };
+		077460F91C7420A000F46ABD /* icon-start-signin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-signin@3x.png"; sourceTree = "<group>"; };
+		077460FA1C7420A000F46ABD /* icon-start-signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-signup.png"; sourceTree = "<group>"; };
+		077460FB1C7420A000F46ABD /* icon-start-signup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-signup@2x.png"; sourceTree = "<group>"; };
+		077460FC1C7420A000F46ABD /* icon-start-signup@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-signup@3x.png"; sourceTree = "<group>"; };
+		077461031C74329900F46ABD /* icon-start-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-title.png"; sourceTree = "<group>"; };
+		077461041C74329900F46ABD /* icon-start-title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-title@2x.png"; sourceTree = "<group>"; };
+		077461051C74329900F46ABD /* icon-start-title@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-title@3x.png"; sourceTree = "<group>"; };
 		0780104C1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBankCardListTableViewCell.h; sourceTree = "<group>"; };
 		0780104D1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBankCardListTableViewCell.m; sourceTree = "<group>"; };
 		0780104E1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFBankCardListTableViewCell.xib; sourceTree = "<group>"; };
@@ -2285,6 +2305,38 @@
 				074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */,
 			);
 			name = BankCard;
+			sourceTree = "<group>";
+		};
+		077460F61C74208100F46ABD /* newversionimg */ = {
+			isa = PBXGroup;
+			children = (
+				0774610A1C744E2400F46ABD /* Sign */,
+				077461091C744E0C00F46ABD /* guideIcon */,
+			);
+			name = newversionimg;
+			sourceTree = "<group>";
+		};
+		077461091C744E0C00F46ABD /* guideIcon */ = {
+			isa = PBXGroup;
+			children = (
+				077461031C74329900F46ABD /* icon-start-title.png */,
+				077461041C74329900F46ABD /* icon-start-title@2x.png */,
+				077461051C74329900F46ABD /* icon-start-title@3x.png */,
+				077460F71C7420A000F46ABD /* icon-start-signin.png */,
+				077460F81C7420A000F46ABD /* icon-start-signin@2x.png */,
+				077460F91C7420A000F46ABD /* icon-start-signin@3x.png */,
+				077460FA1C7420A000F46ABD /* icon-start-signup.png */,
+				077460FB1C7420A000F46ABD /* icon-start-signup@2x.png */,
+				077460FC1C7420A000F46ABD /* icon-start-signup@3x.png */,
+			);
+			name = guideIcon;
+			sourceTree = "<group>";
+		};
+		0774610A1C744E2400F46ABD /* Sign */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sign;
 			sourceTree = "<group>";
 		};
 		07A7DAD31BFDB65100916ADD /* applyCash */ = {
@@ -4265,6 +4317,8 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				077460F61C74208100F46ABD /* newversionimg */,
+				077460F11C733D1900F46ABD /* guide */,
 				49B186081C56269600409C6F /* icon */,
 				07122F221C310ED0004AD0E2 /* FaceMask */,
 				4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */,
@@ -4735,6 +4789,8 @@
 				10ACE5CD1C0439B700EE5044 /* icon-account-repay@3x.png in Resources */,
 				C7A3517A1B217CB10001DF6A /* iconfont-guanyuwomen.png in Resources */,
 				49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */,
+				077460FD1C7420A000F46ABD /* icon-start-signin.png in Resources */,
+				077460F21C733D1900F46ABD /* guide in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				077347CA1BBA338900D7A130 /* ABC.png in Resources */,
 				07122F2E1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard in Resources */,
@@ -4745,6 +4801,7 @@
 				4944C0131B68A44A00805C0A /* icon-cloze-name@3x.png in Resources */,
 				07B368841B7ED86400574A81 /* basic-information-prompt-1242@3x.png in Resources */,
 				4944C0531B68A60200805C0A /* icon-avatar-placeholder.png in Resources */,
+				077461021C7420A000F46ABD /* icon-start-signup@3x.png in Resources */,
 				07A7DAF41BFDB65100916ADD /* applyCashBottom@2x.png in Resources */,
 				49CA93611BBA212A0032F5C2 /* groupedTableViewCell_topRow@2x.png in Resources */,
 				C7A351801B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin.png in Resources */,
@@ -4757,6 +4814,7 @@
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				077347D41BBA338900D7A130 /* china@2x.png in Resources */,
 				4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */,
+				077460FE1C7420A000F46ABD /* icon-start-signin@2x.png in Resources */,
 				07A7DAEB1BFDB65100916ADD /* applyCashtop@3x.png in Resources */,
 				49DA1A4E1C0ED2A60052C056 /* markets.json in Resources */,
 				49B37B5A1B608F39004EED47 /* bar-normal.png in Resources */,
@@ -4766,6 +4824,7 @@
 				07122F271C310EDF004AD0E2 /* faceMask_bg@2x.png in Resources */,
 				49EA18B41B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib in Resources */,
 				49E22B011B37ED9E00749717 /* btn-family-reduce@2x.png in Resources */,
+				077461081C74329900F46ABD /* icon-start-title@3x.png in Resources */,
 				070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */,
 				49E22B001B37ED9E00749717 /* btn-family-reduce.png in Resources */,
 				07A7DAF01BFDB65100916ADD /* applyCashButton@2x.png in Resources */,
@@ -4809,6 +4868,7 @@
 				07472BDD1BFF08A6008A3890 /* employeeOlderInsurance.json in Resources */,
 				4944C0101B68A44A00805C0A /* icon-cloze-idcarddate@3x.png in Resources */,
 				49A550C01C574B400029FC1A /* cell-icon-overdue.png in Resources */,
+				077461001C7420A000F46ABD /* icon-start-signup.png in Resources */,
 				4944C04B1B68A5DA00805C0A /* nav-back@2x.png in Resources */,
 				102C7EF81C2A7A4B0023172B /* icon-account-order@2x.png in Resources */,
 				4EDB52681B6A20B200388306 /* MSFSubmitAlertView.xib in Resources */,
@@ -4893,6 +4953,7 @@
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
 				07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */,
 				077347E31BBA338900D7A130 /* ICBC@2x.png in Resources */,
+				077461061C74329900F46ABD /* icon-start-title.png in Resources */,
 				0750AA7D1B957E0800AD67F3 /* icon-confirm.png in Resources */,
 				077347D31BBA338900D7A130 /* china.png in Resources */,
 				07A7DAE91BFDB65100916ADD /* applyCashButtonSelect@3x.png in Resources */,
@@ -4936,6 +4997,7 @@
 				C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */,
 				07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */,
 				C7D2D12F1B67938C000F51ED /* icon-cloze-normal@2x.png in Resources */,
+				077461071C74329900F46ABD /* icon-start-title@2x.png in Resources */,
 				077347D71BBA338900D7A130 /* CMBC@2x.png in Resources */,
 				10DC2DA41B99C17F00A2AF9C /* icon_order2_h.png in Resources */,
 				07A7DAF61BFDB65100916ADD /* applyCashButton.png in Resources */,
@@ -4994,6 +5056,7 @@
 				C7A3517C1B217CB10001DF6A /* iconfont-guanyuwomen@3x.png in Resources */,
 				077347D51BBA338900D7A130 /* china@3x.png in Resources */,
 				49B37B581B608F39004EED47 /* bar-highlighted@2x.png in Resources */,
+				077461011C7420A000F46ABD /* icon-start-signup@2x.png in Resources */,
 				496444871B69BA77001FB1BE /* btn-showpwd-normal.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				07A7DAEA1BFDB65100916ADD /* applyCashButton@3x.png in Resources */,
@@ -5014,6 +5077,7 @@
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
 				C7D2D11C1B67938C000F51ED /* icon-cloze-bankAddress.png in Resources */,
 				1011A3A51BB9702600CCADB5 /* icon_circle_job_h.png in Resources */,
+				077460FF1C7420A000F46ABD /* icon-start-signin@3x.png in Resources */,
 				10ACE5D91C043AD400EE5044 /* icon-account-about.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
