@@ -15,6 +15,7 @@
 
 #import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
+#import "UIColor+Utils.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -46,9 +47,8 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-
 	// 登录用户名/密码
 	self.username.text = MSFUtils.signInMobile;
 	self.viewModel.username = MSFUtils.signInMobile;

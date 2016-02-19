@@ -49,6 +49,8 @@
 		0747E2601BC3CD5100B4E572 /* ForgetTradePwd.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25D1BC3CD5100B4E572 /* ForgetTradePwd.storyboard */; };
 		0747E2611BC3CD5100B4E572 /* SetTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25E1BC3CD5100B4E572 /* SetTradePassword.storyboard */; };
 		0747E2621BC3CD5100B4E572 /* UpdateTradePWD.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0747E25F1BC3CD5100B4E572 /* UpdateTradePWD.storyboard */; };
+		07481F5E1C75D19B006ADE2B /* MSFSignInButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07481F5D1C75D19B006ADE2B /* MSFSignInButton.m */; };
+		07481F6E1C75DD4F006ADE2B /* MSFSignUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07481F6D1C75DD4F006ADE2B /* MSFSignUpButton.m */; };
 		074AC21D1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 074AC21C1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m */; };
 		074AC22C1BBA7A200056BA22 /* AddBankCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */; };
 		074AC2301BBA8D790056BA22 /* MSFAddBankCardVIewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 074AC22F1BBA8D790056BA22 /* MSFAddBankCardVIewModel.m */; };
@@ -939,6 +941,10 @@
 		0747E25D1BC3CD5100B4E572 /* ForgetTradePwd.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgetTradePwd.storyboard; sourceTree = "<group>"; };
 		0747E25E1BC3CD5100B4E572 /* SetTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetTradePassword.storyboard; sourceTree = "<group>"; };
 		0747E25F1BC3CD5100B4E572 /* UpdateTradePWD.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UpdateTradePWD.storyboard; sourceTree = "<group>"; };
+		07481F5C1C75D19B006ADE2B /* MSFSignInButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignInButton.h; sourceTree = "<group>"; };
+		07481F5D1C75D19B006ADE2B /* MSFSignInButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignInButton.m; sourceTree = "<group>"; };
+		07481F6C1C75DD4F006ADE2B /* MSFSignUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSignUpButton.h; sourceTree = "<group>"; };
+		07481F6D1C75DD4F006ADE2B /* MSFSignUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSignUpButton.m; sourceTree = "<group>"; };
 		074AC21B1BBA791F0056BA22 /* MSFAddBankCardTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddBankCardTableViewController.h; sourceTree = "<group>"; };
 		074AC21C1BBA791F0056BA22 /* MSFAddBankCardTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddBankCardTableViewController.m; sourceTree = "<group>"; };
 		074AC22B1BBA7A200056BA22 /* AddBankCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AddBankCard.storyboard; sourceTree = "<group>"; };
@@ -3148,6 +3154,10 @@
 				4925ADD31B2AC07300872A8A /* MSFBlurFieldView.m */,
 				4993E0C61B2DA20700090F26 /* MSFBlurButton.h */,
 				4993E0C71B2DA20700090F26 /* MSFBlurButton.m */,
+				07481F5C1C75D19B006ADE2B /* MSFSignInButton.h */,
+				07481F5D1C75D19B006ADE2B /* MSFSignInButton.m */,
+				07481F6C1C75DD4F006ADE2B /* MSFSignUpButton.h */,
+				07481F6D1C75DD4F006ADE2B /* MSFSignUpButton.m */,
 			);
 			name = Blur;
 			sourceTree = "<group>";
@@ -5359,6 +5369,7 @@
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
 				102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */,
 				07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */,
+				07481F6E1C75DD4F006ADE2B /* MSFSignUpButton.m in Sources */,
 				07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */,
 				077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */,
 				490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */,
@@ -5452,6 +5463,7 @@
 				492007521BA00CCD00C0722C /* StandardPaths.m in Sources */,
 				0750AAFF1B96A4C500AD67F3 /* MSFContactListModel.m in Sources */,
 				07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */,
+				07481F5E1C75D19B006ADE2B /* MSFSignInButton.m in Sources */,
 				499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */,
 				105E839C1B7E074500E821CB /* MSFRepaymentPlanViewModel.m in Sources */,
 				074AC2481BBB83CC0056BA22 /* MSFClient+MSFCheckTradePassword.m in Sources */,

@@ -111,4 +111,20 @@
 	return [UIColor colorWithHex:0x1ab5f5];
 }
 
++ (UIColor *)signInBgClolr {
+	return [MSFCommandView getColorWithString:@"#0077ba"];
+}
+
++ (UIColor *)buttonBgColor {
+	return [MSFCommandView getColorWithString:@"#0ea5fd"];
+}
+
++ (UIColor *)buttonBorderColor {
+	return [MSFCommandView getColorWithString:@"#74cdff"];
+}
+
++ (UIColor *)navigationBgColor {
+	return [MSFCommandView getColorWithString:@"#12a6fb"];
+}
+
 @end

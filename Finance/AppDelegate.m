@@ -148,9 +148,9 @@
 
 - (void)setup {
 	// 通用颜色配置
-	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
+	[[UINavigationBar appearance] setBarTintColor:UIColor.navigationBgColor];
+	[[UINavigationBar appearance] setTintColor:UIColor.whiteColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// ViewModels
