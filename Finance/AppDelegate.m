@@ -70,9 +70,9 @@
 #endif
 	
 	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
-	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
-		[manager startUpdatingLocation];
-	}];
+//	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+//		[manager startUpdatingLocation];
+//	}];
 
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
 		[self setup];

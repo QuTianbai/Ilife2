@@ -124,7 +124,7 @@
 }
 
 + (UIColor *)navigationBgColor {
-	return [MSFCommandView getColorWithString:@"#12a6fb"];
+	return [MSFCommandView getColorWithString:@"#12A6FB"];
 }
 
 @end

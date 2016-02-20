@@ -33,7 +33,8 @@
 
 - (instancetype)initWithViewModel:(id)viewModel {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
-	self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
+	self = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignInViewController"];
+	//self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
   if (!self) {
     return nil;
   }

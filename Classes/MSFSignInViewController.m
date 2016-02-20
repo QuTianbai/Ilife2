@@ -47,6 +47,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
+	self.navigationController.navigationBar.alpha = 1;
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	// 登录用户名/密码
