@@ -219,6 +219,7 @@
 		07E3ED7A1BBBF6C00010AAD2 /* blackpoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED771BBBF6C00010AAD2 /* blackpoint@2x.png */; };
 		07E3ED7B1BBBF6C00010AAD2 /* blackpoint@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */; };
 		07E3ED901BBCD5200010AAD2 /* MSFGrayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */; };
+		07E943111C7873FC00A3316B /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E943101C7873FC00A3316B /* UIImage+Color.m */; };
 		07F088F71BBCFA360067C5BC /* MSFCirculateCashModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F61BBCFA360067C5BC /* MSFCirculateCashModel.m */; };
 		07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088F91BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m */; };
 		07F088FD1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m in Sources */ = {isa = PBXBuildFile; fileRef = 07F088FC1BBD01560067C5BC /* MSFClient+MSFCirculateCash.m */; };
@@ -1171,6 +1172,8 @@
 		07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackpoint@3x.png"; sourceTree = "<group>"; };
 		07E3ED8E1BBCD5200010AAD2 /* MSFGrayButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFGrayButton.h; sourceTree = "<group>"; };
 		07E3ED8F1BBCD5200010AAD2 /* MSFGrayButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFGrayButton.m; sourceTree = "<group>"; };
+		07E9430F1C7873FC00A3316B /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		07E943101C7873FC00A3316B /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
 		07F088F51BBCFA360067C5BC /* MSFCirculateCashModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashModel.h; sourceTree = "<group>"; };
 		07F088F61BBCFA360067C5BC /* MSFCirculateCashModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCirculateCashModel.m; sourceTree = "<group>"; };
 		07F088F81BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCirculateCashInfoModel.h; sourceTree = "<group>"; };
@@ -4006,6 +4009,8 @@
 				10113E421BDB2C6D00717FDA /* NSDictionary+MSFKeyValue.m */,
 				49D7ABD71C1024C800ED07E7 /* NSFileManager+Temporary.h */,
 				49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */,
+				07E9430F1C7873FC00A3316B /* UIImage+Color.h */,
+				07E943101C7873FC00A3316B /* UIImage+Color.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -5409,6 +5414,7 @@
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
+				07E943111C7873FC00A3316B /* UIImage+Color.m in Sources */,
 				492007511BA00CCD00C0722C /* NSData+Storage.m in Sources */,
 				074AC23A1BBAAAE00056BA22 /* MSFBankCardListModel.m in Sources */,
 				102C7E8E1C2926E50023172B /* MSFOrderListViewController.m in Sources */,

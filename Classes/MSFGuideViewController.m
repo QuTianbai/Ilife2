@@ -45,7 +45,7 @@
 	NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
 	NSString *local = [[NSUserDefaults standardUserDefaults] stringForKey:@"CFBundleVersion"];
 	NSString *remote = info[@"CFBundleVersion"];
-	if (!([remote compare:local options:NSNumericSearch] == NSOrderedDescending)) {
+	if (([remote compare:local options:NSNumericSearch] == NSOrderedDescending)) {
 		[[NSUserDefaults standardUserDefaults] setObject:remote forKey:@"CFBundleVersion"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	} else {

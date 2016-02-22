@@ -20,11 +20,11 @@
                             <color key="backgroundColor" red="0.070588235289999995" green="0.65098039220000004" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="JxN-2M-z7W">
-                            <rect key="frame" x="0.0" y="211" width="320" height="232"/>
+                            <rect key="frame" x="0.0" y="211" width="320" height="204"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qp-Gb-kxz" customClass="MSFSignInButton">
-                                    <rect key="frame" x="20" y="76" width="280" height="44"/>
+                                    <rect key="frame" x="20" y="48" width="280" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="280" id="9qM-Sl-w9e"/>
                                         <constraint firstAttribute="height" constant="44" id="t7P-Hv-eCm"/>
@@ -50,7 +50,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUG-CP-YFm" customClass="MSFSignUpButton">
-                                    <rect key="frame" x="20" y="140" width="280" height="44"/>
+                                    <rect key="frame" x="20" y="112" width="280" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="Rnt-Wt-LP6"/>
                                     </constraints>
@@ -80,11 +80,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="m3n-Ye-3Uj">
-                                                    <rect key="frame" x="52" y="8" width="245" height="27.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-zG-bkw">
                                                     <rect key="frame" x="20" y="13.5" width="22" height="17"/>
                                                     <constraints>
@@ -92,8 +87,13 @@
                                                         <constraint firstAttribute="height" constant="17" id="SC1-8m-Zzn"/>
                                                     </constraints>
                                                 </imageView>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="m3n-Ye-3Uj">
+                                                    <rect key="frame" x="50" y="8" width="245" height="27.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                </textField>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.070588235294117646" green="0.65098039215686276" blue="0.98431372549019602" alpha="0.0" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.070588235289999995" green="0.65098039220000004" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="m3n-Ye-3Uj" firstAttribute="top" secondItem="ZYk-8X-DSe" secondAttribute="topMargin" id="KE2-pi-XtL"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="m3n-Ye-3Uj" secondAttribute="bottom" id="TsA-e6-sI8"/>

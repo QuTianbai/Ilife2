@@ -37,6 +37,8 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUtilsViewController.h"
 #import "MSFFormsViewModel.h"
+#import "UIImage+Color.h"
+#import "MSFSignInViewController.h"
 
 #if TEST
 #import <BugshotKit/BugshotKit.h>
@@ -148,9 +150,12 @@
 
 - (void)setup {
 	// 通用颜色配置
-	[[UINavigationBar appearance] setBarTintColor:UIColor.navigationBgColor];
+	CGRect frame = [UIScreen mainScreen].bounds;
+	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor navigationBgColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+	  [[UINavigationBar appearance] setShadowImage:[UIImage new]];
 	[[UINavigationBar appearance] setTintColor:UIColor.whiteColor];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// ViewModels

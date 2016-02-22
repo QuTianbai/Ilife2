@@ -33,12 +33,18 @@
 
 - (instancetype)initWithViewModel:(id)viewModel {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
+	MSFAuthorizeViewModel *tempViewModel = viewModel;
 	self = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignInViewController"];
+	if (tempViewModel.loginType == MSFLoginSignUp) {
+		self = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignUpViewController"];
+	}
 	//self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
   if (!self) {
     return nil;
   }
+	self.viewModel = viewModel;
 	_viewModel = viewModel;
+	
 	
   return self;
 }
