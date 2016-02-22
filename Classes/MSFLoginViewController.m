@@ -35,7 +35,7 @@
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"login" bundle:nil];
 	MSFAuthorizeViewModel *tempViewModel = viewModel;
 	self = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignInViewController"];
-	if (tempViewModel.loginType == MSFLoginSignUp) {
+	if (tempViewModel.loginType != MSFLoginSignUp) {
 		self = [storyboard instantiateViewControllerWithIdentifier:@"MSFSignUpViewController"];
 	}
 	//self = [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];

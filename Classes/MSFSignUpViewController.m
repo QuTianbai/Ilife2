@@ -121,7 +121,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		//self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
 	
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
