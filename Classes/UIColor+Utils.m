@@ -127,4 +127,8 @@
 	return [MSFCommandView getColorWithString:@"#12A6FB"];
 }
 
++ (UIColor *)captchButtonBgColor {
+	return [MSFCommandView getColorWithString:@"#dddddd"];
+}
+
 @end
