@@ -16,6 +16,8 @@
 #import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
 #import "UIColor+Utils.h"
+#import "MSFSignUpButton.h"
+#import "UIImage+Color.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -24,6 +26,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 @interface MSFSignInViewController ()
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet MSFSignUpButton *signUpBt;
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *password;
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
@@ -31,6 +34,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 @property (nonatomic, weak) IBOutlet UIButton *sendCaptchaButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBt;
 
 @end
 
@@ -47,7 +51,9 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
+	
 	self.navigationController.navigationBar.alpha = 1;
+	self.navigationController.navigationBar.backgroundColor = [UIColor navigationBgColor];
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	// 登录用户名/密码
@@ -60,11 +66,16 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	}
 
 	@weakify(self)
+	self.signUpBt.rac_command = self.viewModel.executeSignUpCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignIn;
+		CGRect frame = [UIScreen mainScreen].bounds;
+		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor navigationBgColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+		[[UINavigationBar appearance] setShadowImage:[UIImage new]];
+		[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 	}];
 
 	[self.username.rac_textSignal subscribeNext:^(id x) {
@@ -123,7 +134,8 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+			self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
+//		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
 	}];
 
 	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
@@ -146,6 +158,11 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
 		[self.tableView reloadData];
 	}];
+	
+	[[self.forgetPasswordBt rac_signalForControlEvents:UIControlEventTouchUpInside]
+	subscribeNext:^(id x) {
+		
+	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -158,9 +175,9 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	self.viewModel.active = NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	[segue.destinationViewController bindViewModel:self.viewModel];
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//	[segue.destinationViewController bindViewModel:self.viewModel];
+//}
 
 #pragma mark - UITableViewDelegate
 

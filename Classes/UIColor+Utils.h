@@ -67,4 +67,7 @@
 //captchbutton bg gray
 + (UIColor *)captchButtonBgColor;
 
+//signUp BG Color
++ (UIColor *)signUpBgcolor;
+
 @end

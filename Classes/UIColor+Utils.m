@@ -131,4 +131,8 @@
 	return [MSFCommandView getColorWithString:@"#dddddd"];
 }
 
++ (UIColor *)signUpBgcolor {
+	return [MSFCommandView getColorWithString:@"EEEEEE"];
+}
+
 @end

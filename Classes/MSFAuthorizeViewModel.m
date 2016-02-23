@@ -265,6 +265,17 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 						}];
 	}];
 	
+	_executeSignInCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		self.loginType = MSFLoginSignIn;
+		[self.services presentViewModel:self];
+		return [RACSignal return:nil];
+	}];
+	_executeSignUpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		self.loginType = MSFLoginSignUp;
+		[self.services presentViewModel:self];
+		return [RACSignal return:nil];
+	}];
+	
 	return self;
 }
 

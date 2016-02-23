@@ -18,11 +18,13 @@
 #import "NSDate+UTC0800.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
+#import "UIImage+Color.h"
 
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFSignUpViewController () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *signInBt;
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
@@ -56,16 +58,21 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	
+	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 	self.name.delegate = self;
 	self.card.delegate = self;
 	
 	@weakify(self)
+	self.signInBt.rac_command = self.viewModel.executeSignInCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignUp;
+		CGRect frame = [UIScreen mainScreen].bounds;
+		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor navigationBgColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+		[[UINavigationBar appearance] setShadowImage:[UIImage new]];
 	}];
 	
 	self.iAgreeButton.rac_command = self.viewModel.executeAgreeOnLicense;

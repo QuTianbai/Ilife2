@@ -10,6 +10,8 @@
 
 #define FORCE_DISPLAY 0
 
+NSString *const SETUPHOMEPAGE = @"SETUPHOMEPAGE";
+
 @interface MSFGuideViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *paths;
@@ -49,6 +51,7 @@
 		[[NSUserDefaults standardUserDefaults] setObject:remote forKey:@"CFBundleVersion"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	} else {
+		 [[NSNotificationCenter defaultCenter] postNotificationName:SETUPHOMEPAGE object:@"1"];
 #if !FORCE_DISPLAY
 		return;
 #endif
@@ -89,6 +92,7 @@
 			[imageView addSubview:signinButton];
 			[[signinButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 			 subscribeNext:^(id x) {
+				 [[NSNotificationCenter defaultCenter] postNotificationName:SETUPHOMEPAGE object:@"1"];
 				 [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
 					 scrollView.transform = CGAffineTransformMakeScale(1.5, 1.5);
 					 scrollView.alpha = 0;
@@ -106,6 +110,7 @@
 			[imageView addSubview:button];
 			[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 			subscribeNext:^(id x) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:SETUPHOMEPAGE object:@"2"];
 				[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
 					scrollView.transform = CGAffineTransformMakeScale(1.5, 1.5);
 					scrollView.alpha = 0;
@@ -116,8 +121,6 @@
 					}];
 				}];
 			}];
-			
-			
 			
 //			[imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)]];
 		}

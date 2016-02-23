@@ -8,7 +8,7 @@
 #import "UIView+Sizes.h"
 
 #define kGroupedTableViewCellSingleRowImageCapInset		UIEdgeInsetsMake(3.0, 20.0, 3.0, 20.0)
-#define kGroupedTableViewCellTopRowImageCapInset			UIEdgeInsetsMake(5.0, 20.0, 1.0, 20.0)
+#define kGroupedTableViewCellTopRowImageCapInset			UIEdgeInsetsMake(3.0, 20.0, 1.0, 20.0)
 #define kGroupedTableViewCellBottomRowImageCapInset		UIEdgeInsetsMake(1.0, 20.0, 5.0, 20.0)
 #define kGroupedTableViewCellMiddleRowImageCapInset		UIEdgeInsetsMake(1.0, 20.0, 1.0, 20.0)
 

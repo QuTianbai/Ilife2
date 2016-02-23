@@ -70,17 +70,34 @@
 	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"ios@msxf.com"];
 	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
 #endif
+	// ViewModels
+	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	self.authorizeVewModel = self.viewModel.authorizeViewModel;
 	
-	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
-//	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
-//		[manager startUpdatingLocation];
-//	}];
+	 //由于取消首页引导图, 定位地址信息权限获取重写到程序启动
+	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+		[manager startUpdatingLocation];
+	}];
 
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-		[self setup];
+		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+		 subscribeNext:^(id x) {
+			 NSString *str = [x object];
+			 if ([str isEqualToString:@"1"]) {
+				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
+			 }
+			 [self setup];
+		 }];
+
 		[MSFGuideViewController.guide show];
-		return [RACSignal empty];
+				return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
+		
+		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+		 subscribeNext:^(id x) {
+			 [self setup];
+		 }];
 		[MSFGuideViewController.guide show];
 		#if !DEBUG
 		if (MSFUtils.poster) {
@@ -150,18 +167,11 @@
 
 - (void)setup {
 	// 通用颜色配置
-	CGRect frame = [UIScreen mainScreen].bounds;
-	[[UINavigationBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor navigationBgColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-	  [[UINavigationBar appearance] setShadowImage:[UIImage new]];
-	[[UINavigationBar appearance] setTintColor:UIColor.whiteColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
+	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.navigationBgColor}];
 	
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
-	
-	// ViewModels
-	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
-	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
-	self.authorizeVewModel = self.viewModel.authorizeViewModel;
 	
 	// 启动到登录的过渡动画
 	CATransition *transition = [CATransition animation];
@@ -255,8 +265,8 @@
 	[self.viewModel.formsViewModel setBankCardMasterDefult];
 	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
-	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-	self.window.rootViewController = navigationController;
+	//UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	self.window.rootViewController = viewController;
 	
 	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
 	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
