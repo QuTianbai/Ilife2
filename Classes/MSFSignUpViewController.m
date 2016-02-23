@@ -62,6 +62,12 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 	self.name.delegate = self;
 	self.card.delegate = self;
+	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
+	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	
+	[self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont systemFontOfSize:15]} forState:UIControlStateNormal ];
+	//self.navigationController.navigationBar.backgroundColor = [UIColor navigationBgColor];
 	
 	@weakify(self)
 	self.signInBt.rac_command = self.viewModel.executeSignInCommand;
@@ -70,9 +76,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignUp;
-		CGRect frame = [UIScreen mainScreen].bounds;
-		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor navigationBgColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-		[[UINavigationBar appearance] setShadowImage:[UIImage new]];
 	}];
 	
 	self.iAgreeButton.rac_command = self.viewModel.executeAgreeOnLicense;

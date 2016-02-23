@@ -48,6 +48,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"忘记密码";
+	self.navigationController.navigationBarHidden = NO;
 	
 
 	self.username.text = MSFUtils.signInMobile;
@@ -142,10 +143,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	//self.navigationController.navigationBarHidden = NO;
+
 	self.viewModel.active = YES;
-	CGRect frame = [UIScreen mainScreen].bounds;
-	[self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-	[[UINavigationBar appearance] setShadowImage:[UIImage new]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

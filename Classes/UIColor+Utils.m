@@ -36,7 +36,8 @@
 }
 
 + (UIColor *)tintColor {
-  return [MSFCommandView getColorWithString:@"#0babed"];
+	return [UIColor blackColor];
+  //return [MSFCommandView getColorWithString:@"#0babed"];
 }
 
 + (UIColor *)buttonNormalColor {

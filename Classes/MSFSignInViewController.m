@@ -18,6 +18,7 @@
 #import "UIColor+Utils.h"
 #import "MSFSignUpButton.h"
 #import "UIImage+Color.h"
+#import "MSFFindPasswordViewController.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -52,8 +53,10 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[super viewDidLoad];
 	self.title = @"登录";
 	
-	self.navigationController.navigationBar.alpha = 1;
-	self.navigationController.navigationBar.backgroundColor = [UIColor navigationBgColor];
+	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
+	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
+	
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	// 登录用户名/密码
@@ -69,13 +72,10 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	self.signUpBt.rac_command = self.viewModel.executeSignUpCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
+		self.navigationController.navigationBarHidden = YES;
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignIn;
-		CGRect frame = [UIScreen mainScreen].bounds;
-		[self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor navigationBgColor] size:CGSizeMake(frame.size.width, 64) ]forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-		[[UINavigationBar appearance] setShadowImage:[UIImage new]];
-		[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 	}];
 
 	[self.username.rac_textSignal subscribeNext:^(id x) {
@@ -159,10 +159,13 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		[self.tableView reloadData];
 	}];
 	
-	[[self.forgetPasswordBt rac_signalForControlEvents:UIControlEventTouchUpInside]
-	subscribeNext:^(id x) {
-		
-	}];
+//	[[self.forgetPasswordBt rac_signalForControlEvents:UIControlEventTouchUpInside]
+//	subscribeNext:^(id x) {
+//		MSFFindPasswordViewController *findPasswordVC = [[MSFFindPasswordViewController alloc] initWithModel:self.viewModel];
+//		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:findPasswordVC];
+//		[self presentModalViewController:navigationController animated:YES];
+//		
+//	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--登录-->
+        <!--Sign In View Controller-->
         <scene sceneID="eSg-Iq-TFA">
             <objects>
                 <tableViewController storyboardIdentifier="MSFSignInViewController" id="xFo-OI-4wy" customClass="MSFSignInViewController" sceneMemberID="viewController">
@@ -60,6 +60,9 @@
                                     <state key="normal" title="忘记密码">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <segue destination="8P2-Mp-wfs" kind="push" id="MFI-si-LB0"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUG-CP-YFm" customClass="MSFSignUpButton">
                                     <rect key="frame" x="10" y="112" width="300" height="44"/>
@@ -199,7 +202,7 @@
                             <outlet property="delegate" destination="xFo-OI-4wy" id="i05-x4-C5r"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="登录" id="OQw-od-8Ei">
+                    <navigationItem key="navigationItem" id="OQw-od-8Ei">
                         <barButtonItem key="rightBarButtonItem" id="dlX-nY-Q2U"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -387,7 +390,7 @@
         <!--重置密码-->
         <scene sceneID="xjU-Yo-MP8">
             <objects>
-                <tableViewController title="重置密码" id="8P2-Mp-wfs" customClass="MSFFindPasswordViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFFindPasswordViewController" title="重置密码" id="8P2-Mp-wfs" customClass="MSFFindPasswordViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="5" sectionFooterHeight="5" id="SaQ-EN-oZw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -541,7 +544,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdx-Vx-ALi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379" y="388"/>
+            <point key="canvasLocation" x="466" y="406"/>
         </scene>
         <!--Findword Last Table View Controller-->
         <scene sceneID="L8H-QK-hUp">
