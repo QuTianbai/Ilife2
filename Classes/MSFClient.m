@@ -424,9 +424,7 @@ static NSDictionary *messages;
 }
 
 - (RACSignal *)signOut {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:@{
-		@"uniqueId": self.user.uniqueId
-	}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:nil];
 	
 	@weakify(self)
 	return [[[[self enqueueRequest:request resultClass:nil]
