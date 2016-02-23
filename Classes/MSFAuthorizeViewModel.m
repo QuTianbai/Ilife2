@@ -390,28 +390,28 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 - (RACSignal *)executeSignUpSignal {
 	NSError *error = nil;
 	// 另外支持输入"."、"。"、"·"和"▪"。但是第一位和最后一位必须是汉字。
-  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
-    NSString *str = @"请填写真实的姓名";
-    if (self.name.length == 0) {
-      str = @"请填写真实的姓名";
-    }
-    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: str,
-      }];
-    return [RACSignal error:error];
-  }
-	if (self.card.length != 18) {
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
-		}];
-    return [RACSignal error:error];
-	}
-  if (!self.expired && !self.permanent ) {
-    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证有效期",
-                                                                                    }];
-    return [RACSignal error:error];
-  }
+//  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
+//    NSString *str = @"请填写真实的姓名";
+//    if (self.name.length == 0) {
+//      str = @"请填写真实的姓名";
+//    }
+//    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+//      NSLocalizedFailureReasonErrorKey: str,
+//      }];
+//    return [RACSignal error:error];
+//  }
+//	if (self.card.length != 18) {
+//		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+//			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
+//		}];
+//    return [RACSignal error:error];
+//	}
+//  if (!self.expired && !self.permanent ) {
+//    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
+//      NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证有效期",
+//                                                                                    }];
+//    return [RACSignal error:error];
+//  }
 	
 	if (![self.username isMobile]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
@@ -429,7 +429,7 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	return [[MSFClient
-		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:expiredDate]
+		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
 		doNext:^(id x) {
 			_signInValid = YES;
 			[self.services setHttpClient:x];
