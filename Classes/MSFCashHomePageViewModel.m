@@ -9,10 +9,10 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Mantle/EXTScope.h>
 
-#import "MSFClient+MSFCheckAllowApply.h"
-#import "MSFClient+MSFProductType.h"
-#import "MSFClient+MSFCirculateCash.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+CheckAllowApply.h"
+#import "MSFClient+ProductType.h"
+#import "MSFClient+CirculateCash.h"
+#import "MSFClient+BankCardList.h"
 
 #import "MSFUser.h"
 #import "MSFCirculateCashModel.h"

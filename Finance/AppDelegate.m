@@ -12,7 +12,7 @@
 #import "MSFGuideViewController.h"
 #import "MSFLoginViewController.h"
 
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "MSFUser.h"
 #import "MSFReleaseNote.h"
 #import "MSFClient+ReleaseNote.h"
@@ -35,7 +35,7 @@
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtilsViewController.h"
+#import "MSFEnvironmentsViewController.h"
 #import "MSFFormsViewModel.h"
 #import "UIImage+Color.h"
 #import "MSFSignInViewController.h"
@@ -80,6 +80,7 @@
 		[manager startUpdatingLocation];
 	}];
 
+<<<<<<< HEAD
 	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
 		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
 		 subscribeNext:^(id x) {
@@ -92,6 +93,11 @@
 
 		[MSFGuideViewController.guide show];
 				return [RACSignal empty];
+=======
+	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
+		[self setup];
+		return [RACSignal empty];
+>>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
 		
 		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
@@ -100,26 +106,13 @@
 		 }];
 		[MSFGuideViewController.guide show];
 		#if !DEBUG
-		if (MSFUtils.poster) {
+		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
 		[self setup];
 		self.releaseNote = releasenote;
-		if (releasenote.status == 1) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		} else if (releasenote.status == 2) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		}
-		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+		[self updateCheck];
 	}];
 	
 	return YES;
@@ -270,7 +263,7 @@
 	
 	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
 	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
-		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]];
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]];
 		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
 		[vc dismissViewControllerAnimated:NO completion:nil];
 	}
@@ -294,7 +287,7 @@
 }
 
 - (void)statusBarTouchedAction {
-	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]] animated:YES completion:nil];
+	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]] animated:YES completion:nil];
 }
 
 #endif

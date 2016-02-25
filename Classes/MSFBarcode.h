@@ -6,6 +6,8 @@
 
 #import "MSFObject.h"
 
+__attribute__((unavailable("Prepare to remove")))
+
 @interface MSFBarcode : MSFObject
 
 @end

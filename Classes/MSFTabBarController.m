@@ -30,7 +30,7 @@
 
 #import "MSFCirculateCashViewModel.h"
 
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFMarkets.h"
 #import "MSFCashHomePageViewController.h"
 #import "MSFCashHomePageViewModel.h"

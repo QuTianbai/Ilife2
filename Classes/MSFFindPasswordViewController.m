@@ -13,7 +13,7 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "UIColor+Utils.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 #import "UIImage+Color.h"
 
@@ -50,9 +50,14 @@
 	self.title = @"忘记密码";
 	self.navigationController.navigationBarHidden = NO;
 	
+<<<<<<< HEAD
 
 	self.username.text = MSFUtils.signInMobile;
 	self.viewModel.username = MSFUtils.signInMobile;
+=======
+	self.username.text = MSFActivate.signInMobile;
+	self.viewModel.username = MSFActivate.signInMobile;
+>>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 	
 	self.name.delegate = self;
 	self.card.delegate = self;
@@ -112,7 +117,7 @@
 	self.commitButton.rac_command = self.viewModel.executeFindPassword;
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
 		@strongify(self)
-		[MSFUtils setSignInMobile:self.username.text];
+		[MSFActivate setSignInMobile:self.username.text];
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signUpSignal subscribeCompleted:^{

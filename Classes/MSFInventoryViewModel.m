@@ -17,7 +17,7 @@
 #import "MSFAttachment.h"
 #import "MSFApplicationForms.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFClient+Inventory.h"
 #import "MSFLoanType.h"
 #import "NSFileManager+Temporary.h"
@@ -51,8 +51,8 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
-			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
+		if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
+			MSFApplyCashViewModel *viewModel = (MSFApplyCashViewModel *)self.applicationViewModel;
 			return [[[[self.services.httpClient
 				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.loanType.typeID]
 				catch:^RACSignal *(NSError *error) {
@@ -76,9 +76,9 @@
 		return RACSignal.empty;
 	}];
 	
-	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
+			return [(MSFApplyCashViewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
 		}];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
@@ -103,8 +103,8 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
-			MSFApplyCashVIewModel *viewModel = (MSFApplyCashVIewModel *)self.applicationViewModel;
+		if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
+			MSFApplyCashViewModel *viewModel = (MSFApplyCashViewModel *)self.applicationViewModel;
 			return [[[[self.services.httpClient
 				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.loanType.typeID]
 				catch:^RACSignal *(NSError *error) {
@@ -139,9 +139,9 @@
 		return RACSignal.empty;
 	}];
 	
-	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
+			return [(MSFApplyCashViewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
 		}];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;

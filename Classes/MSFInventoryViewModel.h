@@ -12,7 +12,7 @@
 @class RACCommand;
 @class MSFProduct;
 @class MSFApplicationResponse;
-@class MSFApplyCashVIewModel;
+@class MSFApplyCashViewModel;
 @class MSFSocialInsuranceCashViewModel;
 @class MSFAttachment;
 

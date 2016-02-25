@@ -10,7 +10,7 @@
 #import <Mantle/EXTScope.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"

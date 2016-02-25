@@ -31,7 +31,7 @@
 #import <ZSWTaggedString/ZSWTaggedString.h>
 #import "MSFDeviceGet.h"
 
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 
 static const CGFloat heightOfAboveCell = 303;//上面cell总高度259
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
@@ -67,7 +67,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @property (nonatomic, assign) BOOL master;
 
-@property (nonatomic, strong, readwrite) MSFApplyCashVIewModel *viewModel;
+@property (nonatomic, strong, readwrite) MSFApplyCashViewModel *viewModel;
 
 @end
 
@@ -79,7 +79,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	NSLog(@"MSFProductViewController `-dealloc`");
 }
 
-- (instancetype)initWithViewModel:(MSFApplyCashVIewModel *)viewModel {
+- (instancetype)initWithViewModel:(MSFApplyCashViewModel *)viewModel {
 	self = [UIStoryboard storyboardWithName:@"product" bundle:nil].instantiateInitialViewController;
   if (!self) {
     return nil;

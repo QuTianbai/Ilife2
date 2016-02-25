@@ -11,10 +11,10 @@
 #import "MSFGetBankIcon.h"
 #import "MSFClient+Users.h"
 #import "MSFClient+Payment.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFOrderDetail.h"
 #import "MSFBankCardListModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFClient+Payment.h"
 
@@ -102,7 +102,7 @@
 
 - (RACSignal *)captchaSignal {
 	@weakify(self)
-	return [[self.services.httpClient sendSmsCodeForTrans] doNext:^(MSFTransSmsSeqNOModel *x) {
+	return [[self.services.httpClient sendSmsCodeForTrans] doNext:^(MSFPaymentToken *x) {
 		@strongify(self)
 		self.uniqueTransactionID = x.smsSeqNo;
 	}];

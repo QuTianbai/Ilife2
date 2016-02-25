@@ -9,9 +9,9 @@
 #import "MSFCartViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFClient+MSFCheckEmploee2.h"
-#import "MSFClient+MSFCart.h"
-#import "MSFClient+MSFCheckAllowApply.h"
+#import "MSFClient+CheckEmploee2.h"
+#import "MSFClient+Cart.h"
+#import "MSFClient+CheckAllowApply.h"
 #import "MSFCart.h"
 #import "MSFTrial.h"
 #import "MSFMarkets.h"

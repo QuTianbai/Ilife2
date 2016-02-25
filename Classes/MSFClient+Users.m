@@ -11,7 +11,7 @@
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 
 @implementation MSFClient (Users)
 
@@ -148,7 +148,7 @@
 
 - (RACSignal *)sendSmsCodeForTrans {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/checkSms" parameters:nil];
-	return [[self enqueueRequest:request resultClass:MSFTransSmsSeqNOModel.class] msf_parsedResults];
+	return [[self enqueueRequest:request resultClass:MSFPaymentToken.class] msf_parsedResults];
 }
 
 - (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo {

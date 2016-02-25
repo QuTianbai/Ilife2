@@ -7,7 +7,7 @@
 #import "MSFClient.h"
 
 @class MSFProduct;
-@class MSFApplyCashVIewModel;
+@class MSFApplyCashViewModel;
 @class MSFCartViewModel;
 
 // 用户注册协议
@@ -35,7 +35,7 @@ extern NSString *const MSFAgreementTypeInsurance;
 // product - The apply product.
 //
 // Returns agreement HTML
-- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashVIewModel *)product;
+- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashViewModel *)product;
 - (RACSignal *)fetchLoanAgreementWithCart:(MSFCartViewModel *)product;
 
 // fetch user agreement or static html

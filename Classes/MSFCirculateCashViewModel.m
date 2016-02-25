@@ -8,10 +8,10 @@
 
 #import "MSFCirculateCashViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+MSFCirculateCash.h"
+#import "MSFClient+CirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 
 @implementation MSFCirculateCashViewModel
 

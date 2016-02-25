@@ -13,15 +13,15 @@
 #import "MSFRelationshipViewModel.h"
 
 #import "MSFApplicationForms.h"
-#import "MSFClient+MSFApplyInfo.h"
-#import "MSFClient+MSFApplyCash.h"
+#import "MSFClient+ApplyInfo.h"
+#import "MSFClient+ApplyCash.h"
 #import "MSFClient+Users.h"
 #import "MSFResponse.h"
 #import "MSFAddress.h"
 
 #import "MSFMarkets.h"
-#import "MSFClient+MSFCheckEmploee2.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+CheckEmploee2.h"
+#import "MSFClient+BankCardList.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFBankCardListModel.h"
 #import "MSFUser.h"

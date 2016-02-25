@@ -96,8 +96,7 @@
 	if (!self) {
 		return nil;
 	}
-	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
-	_client = [MSFClient unauthenticatedClientWithUser:user];
+	[self setHttpClient:[MSFClient unauthenticatedClientWithUser:[MSFUser userWithServer:MSFServer.dotComServer]]];
 	_passcodeViewController = [[MSFInputTradePasswordViewController alloc] init];
 	
 	return self;
