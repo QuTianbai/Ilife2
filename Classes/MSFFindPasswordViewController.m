@@ -50,14 +50,11 @@
 	self.title = @"忘记密码";
 	self.navigationController.navigationBarHidden = NO;
 	
-<<<<<<< HEAD
 
-	self.username.text = MSFUtils.signInMobile;
-	self.viewModel.username = MSFUtils.signInMobile;
-=======
+//	self.username.text = MSFUtils.signInMobile;
+//	self.viewModel.username = MSFUtils.signInMobile;
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 	
 	self.name.delegate = self;
 	self.card.delegate = self;
