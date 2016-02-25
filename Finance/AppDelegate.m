@@ -80,8 +80,19 @@
 		[manager startUpdatingLocation];
 	}];
 
-<<<<<<< HEAD
-	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
+	//[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
+//		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+//		 subscribeNext:^(id x) {
+//			 NSString *str = [x object];
+//			 if ([str isEqualToString:@"1"]) {
+//				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
+//			 }
+//			 [self setup];
+//		 }];
+//
+//		[MSFGuideViewController.guide show];
+				//return [RACSignal empty];
+	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
 		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
 		 subscribeNext:^(id x) {
 			 NSString *str = [x object];
@@ -90,21 +101,27 @@
 			 }
 			 [self setup];
 		 }];
-
+		
 		[MSFGuideViewController.guide show];
-				return [RACSignal empty];
-=======
-	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
-		[self setup];
+		//[self setup];
 		return [RACSignal empty];
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
 		
 		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
 		 subscribeNext:^(id x) {
-			 [self setup];
+			 [[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+				subscribeNext:^(id x) {
+					NSString *str = [x object];
+					if ([str isEqualToString:@"1"]) {
+						self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
+					}
+					[self setup];
+				}];
+			 
+			 [MSFGuideViewController.guide show];
+			// [self setup];
 		 }];
-		[MSFGuideViewController.guide show];
+		//[MSFGuideViewController.guide show];
 		#if !DEBUG
 		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];

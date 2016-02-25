@@ -2302,7 +2302,7 @@
 			name = BankCard;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
+
 		077460F61C74208100F46ABD /* newversionimg */ = {
 			isa = PBXGroup;
 			children = (
@@ -2379,8 +2379,6 @@
 			path = applyCashAll;
 			sourceTree = "<group>";
 		};
-=======
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
 			isa = PBXGroup;
 			children = (
@@ -4379,7 +4377,6 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				077460F61C74208100F46ABD /* newversionimg */,
 				077460F11C733D1900F46ABD /* guide */,
 				49B186081C56269600409C6F /* icon */,
@@ -4404,11 +4401,9 @@
 				07C497FF1B1420BE00069F74 /* loan */,
 				07C06C411B13431300F2DFCC /* json */,
 				49EAABA51B0DC66E00E5FF32 /* launch */,
-=======
 				4912C6BC1C6475D800550A6C /* Common */,
 				4912C6BB1C6475D500550A6C /* JSON */,
 				4912C6AD1C6475D000550A6C /* Image */,
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -4769,11 +4764,8 @@
 				4944C0131B68A44A00805C0A /* icon-cloze-name@3x.png in Resources */,
 				07B368841B7ED86400574A81 /* basic-information-prompt-1242@3x.png in Resources */,
 				4944C0531B68A60200805C0A /* icon-avatar-placeholder.png in Resources */,
-<<<<<<< HEAD
 				077461021C7420A000F46ABD /* icon-start-signup@3x.png in Resources */,
 				07A7DAF41BFDB65100916ADD /* applyCashBottom@2x.png in Resources */,
-=======
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 				49CA93611BBA212A0032F5C2 /* groupedTableViewCell_topRow@2x.png in Resources */,
 				C7A351801B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin.png in Resources */,
 				4975C98E1B46D6D400AA79EB /* StyleSettings.plist in Resources */,
@@ -4784,12 +4776,9 @@
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				077347D41BBA338900D7A130 /* china@2x.png in Resources */,
 				4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */,
-<<<<<<< HEAD
 				077460FE1C7420A000F46ABD /* icon-start-signin@2x.png in Resources */,
 				07A7DAEB1BFDB65100916ADD /* applyCashtop@3x.png in Resources */,
-=======
 				4912C6E71C6477AA00550A6C /* icon_order1_h.png in Resources */,
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
 				49DA1A4E1C0ED2A60052C056 /* markets.json in Resources */,
 				077347E21BBA338900D7A130 /* ICBC.png in Resources */,
 				492CBE991B8811740059B6C2 /* Alert.storyboard in Resources */,
@@ -5035,11 +5024,11 @@
 				C7A3517C1B217CB10001DF6A /* iconfont-guanyuwomen@3x.png in Resources */,
 				4912C6DB1C64778900550A6C /* applyCashtop@2x.png in Resources */,
 				077347D51BBA338900D7A130 /* china@3x.png in Resources */,
-<<<<<<< HEAD
+
 				49B37B581B608F39004EED47 /* bar-highlighted@2x.png in Resources */,
 				077461011C7420A000F46ABD /* icon-start-signup@2x.png in Resources */,
-=======
->>>>>>> 149fcd287b84976e618cbb9226b1003e5d6c6748
+
+
 				496444871B69BA77001FB1BE /* btn-showpwd-normal.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
