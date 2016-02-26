@@ -334,11 +334,10 @@ static NSDictionary *messages;
 	RACSignal *(^registeringSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
 		MSFClient *client = [self unauthenticatedClientWithUser:user];
 		NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-		parameters[@"action"] = @"register";
 		parameters[@"phoneNumber"] = phone;
 		parameters[@"password"] = password.sha256;
 		parameters[@"captcha"] = captcha;
-		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"authenticate" parameters:parameters];
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
 			flattenMap:^RACStream *(RACTuple *responseAndResponseObject) {
@@ -383,9 +382,9 @@ static NSDictionary *messages;
 		parameters[@"mobile"] = phone;
 		parameters[@"password"] = password.sha256;
 		parameters[@"smsCode"] = captcha;
-		parameters[@"name"] = realname;
-		parameters[@"ident"] = citizenID;
-		parameters[@"identLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
+//		parameters[@"name"] = realname;
+//		parameters[@"ident"] = citizenID;
+//		parameters[@"identLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
@@ -425,9 +424,7 @@ static NSDictionary *messages;
 }
 
 - (RACSignal *)signOut {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:@{
-		@"uniqueId": self.user.uniqueId
-	}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:nil];
 	
 	@weakify(self)
 	return [[[[self enqueueRequest:request resultClass:nil]

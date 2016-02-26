@@ -1,19 +1,21 @@
 //
-// MSFBlurButton.m
+//  MSFSignInButton.m
+//  Finance
 //
-// Copyright (c) 2015 Zēng Liàng. All rights reserved.
+//  Created by xbm on 16/2/18.
+//  Copyright © 2016年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFBlurButton.h"
+#import "MSFSignInButton.h"
 #import "UIColor+Utils.h"
 
-@implementation MSFBlurButton
+@implementation MSFSignInButton
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
 	if (!(self = [super initWithCoder:aDecoder])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor navigationBgColor];
+	self.backgroundColor = [UIColor signInBgClolr];
 	self.tintColor = [UIColor fontColor];
 	self.layer.cornerRadius = 5;
 	
@@ -24,7 +26,7 @@
 	if (!(self = [super initWithFrame:frame])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor navigationBgColor];
+	self.backgroundColor = [UIColor signInBgClolr];
 	self.tintColor = [UIColor fontColor];
 	self.layer.cornerRadius = 5;
 	

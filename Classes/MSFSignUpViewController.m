@@ -18,11 +18,13 @@
 #import "NSDate+UTC0800.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
+#import "UIImage+Color.h"
 
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFSignUpViewController () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *signInBt;
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
@@ -56,11 +58,19 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	
+	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 	self.name.delegate = self;
 	self.card.delegate = self;
+	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
+	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	
+	[self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont systemFontOfSize:15]} forState:UIControlStateNormal ];
+	//self.navigationController.navigationBar.backgroundColor = [UIColor navigationBgColor];
 	
 	@weakify(self)
+	self.signInBt.rac_command = self.viewModel.executeSignInCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = self.username.text;
@@ -121,7 +131,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		//self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
 	
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {

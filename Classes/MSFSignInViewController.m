@@ -15,6 +15,10 @@
 
 #import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
+#import "UIColor+Utils.h"
+#import "MSFSignUpButton.h"
+#import "UIImage+Color.h"
+#import "MSFFindPasswordViewController.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -23,6 +27,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 @interface MSFSignInViewController ()
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet MSFSignUpButton *signUpBt;
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *password;
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
@@ -30,6 +35,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 @property (nonatomic, weak) IBOutlet UIButton *sendCaptchaButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBt;
 
 @end
 
@@ -46,9 +52,13 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	
+	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
+	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
+	
+	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
-
 	// 登录用户名/密码
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
@@ -59,8 +69,10 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	}
 
 	@weakify(self)
+	self.signUpBt.rac_command = self.viewModel.executeSignUpCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
+		self.navigationController.navigationBarHidden = YES;
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignIn;
@@ -122,7 +134,8 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+			self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
+//		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
 	}];
 
 	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
@@ -145,6 +158,14 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
 		[self.tableView reloadData];
 	}];
+	
+//	[[self.forgetPasswordBt rac_signalForControlEvents:UIControlEventTouchUpInside]
+//	subscribeNext:^(id x) {
+//		MSFFindPasswordViewController *findPasswordVC = [[MSFFindPasswordViewController alloc] initWithModel:self.viewModel];
+//		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:findPasswordVC];
+//		[self presentModalViewController:navigationController animated:YES];
+//		
+//	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -157,9 +178,9 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	self.viewModel.active = NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	[segue.destinationViewController bindViewModel:self.viewModel];
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//	[segue.destinationViewController bindViewModel:self.viewModel];
+//}
 
 #pragma mark - UITableViewDelegate
 

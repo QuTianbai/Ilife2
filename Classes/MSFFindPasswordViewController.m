@@ -15,6 +15,7 @@
 #import "UIColor+Utils.h"
 #import "MSFActivate.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
+#import "UIImage+Color.h"
 
 @interface MSFFindPasswordViewController () <UITextFieldDelegate>
 
@@ -35,10 +36,23 @@
 
 @implementation MSFFindPasswordViewController
 
+- (instancetype)initWithModel:(id)viewModel {
+	self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
+	if (!self) {
+		return nil;
+	}
+	
+	return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"忘记密码";
+	self.navigationController.navigationBarHidden = NO;
 	
+
+//	self.username.text = MSFUtils.signInMobile;
+//	self.viewModel.username = MSFUtils.signInMobile;
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
 	
@@ -81,7 +95,7 @@
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
 	
 	self.captchaButton.rac_command = self.viewModel.executeFindPasswordCaptcha;
@@ -131,12 +145,23 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+	//self.navigationController.navigationBarHidden = NO;
+
 	self.viewModel.active = YES;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.viewModel.active = NO;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[segue.destinationViewController bindViewModel:self.viewModel];
 }
 
 #pragma mark - MSFReactiveView
