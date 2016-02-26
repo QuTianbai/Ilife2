@@ -33,7 +33,7 @@
 
 /** UI **/
 @property (strong, nonatomic) UILabel *contractTitle;//期数
-//@property (strong, nonatomic) UILabel *contractMoney; // 合同金额
+@property (strong, nonatomic) UILabel *contractMoney; // 合同金额
 @property (strong, nonatomic) UILabel *contractName;//合同名称
 @property (strong, nonatomic) UILabel *shouldAmount;//本期应还
 @property (strong, nonatomic) UILabel *asOfDate;//还款日期

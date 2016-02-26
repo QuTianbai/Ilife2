@@ -16,6 +16,7 @@
 		@"contractNum": @"contractNo",
 		@"repaymentTime": @"latestDueDate",
 		@"repaymentTotalAmount": @"latestDueMoney",
+		@"contractType": @"type"
 	};
 }
 
