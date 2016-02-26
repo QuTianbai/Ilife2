@@ -33,27 +33,27 @@
 		return value.length > 0 ? value : @"当天";
 	}];
 	
-	RAC(self, ownerAllMoney) = [RACObserve(self, model.totalOverdueMoney) map:^id(id value) {
+	RAC(self, ownerAllMoney) = [RACObserve(self, model.applmt) map:^id(id value) {
 		if (value == nil) {
 			return @"";
 		}
 		return value;
 	}];
-	RAC(self, contractLineDate) = [RACObserve(self, model.contractExpireDate) map:^id(NSString *value) {
+	RAC(self, contractLineDate) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
 		return value.length > 0 ? value : @"当天";
 	}];
 	
-	RAC(self, overdueMoney) = [RACObserve(self, model.overdueMoney) map:^id(id value) {
-		if (value == nil || [value isEqualToString:@"0.00"] ||[value isEqualToString:@"0"] || [value isEqualToString:@""]) {
-			return @"";
-		}
-		return [NSString stringWithFormat:@"已逾期:￥%@", value];
-	}];
-	
-	RAC(self, cashAmount) = [RACObserve(self, model.cashDueMoney) ignore:nil];
-	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
-		return value.length > 0 ? value : @"当天";
-	}];
+//	RAC(self, overdueMoney) = [RACObserve(self, model.rep) map:^id(id value) {
+//		if (value == nil || [value isEqualToString:@"0.00"] ||[value isEqualToString:@"0"] || [value isEqualToString:@""]) {
+//			return @"";
+//		}
+//		return [NSString stringWithFormat:@"已逾期:￥%@", value];
+//	}];
+//	
+//	RAC(self, cashAmount) = [RACObserve(self, model.cashDueMoney) ignore:nil];
+//	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
+//		return value.length > 0 ? value : @"当天";
+//	}];
 	
   return self;
 }

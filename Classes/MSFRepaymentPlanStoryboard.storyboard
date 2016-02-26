@@ -25,7 +25,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FPu-kI-Wxm">
-                                <rect key="frame" x="0.0" y="59" width="320" height="509"/>
+                                <rect key="frame" x="0.0" y="54" width="320" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <tableView key="tableFooterView" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="XUu-k9-6Nl">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
@@ -40,7 +40,7 @@
                             <constraint firstAttribute="bottom" secondItem="FPu-kI-Wxm" secondAttribute="bottom" id="Jiy-Hi-8O2"/>
                             <constraint firstAttribute="trailing" secondItem="gtj-M9-udv" secondAttribute="trailing" id="NNF-PR-O8f"/>
                             <constraint firstItem="gtj-M9-udv" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="R3s-9X-mv0"/>
-                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" constant="15" id="nGD-T2-DOl"/>
+                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" constant="10" id="nGD-T2-DOl"/>
                             <constraint firstItem="gtj-M9-udv" firstAttribute="top" secondItem="En0-6F-9Rb" secondAttribute="top" id="uoR-Ut-QEX"/>
                             <constraint firstAttribute="trailing" secondItem="FPu-kI-Wxm" secondAttribute="trailing" id="xNj-SX-bao"/>
                         </constraints>

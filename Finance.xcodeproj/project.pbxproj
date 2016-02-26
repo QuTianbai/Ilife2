@@ -2302,7 +2302,6 @@
 			name = BankCard;
 			sourceTree = "<group>";
 		};
-
 		077460F61C74208100F46ABD /* newversionimg */ = {
 			isa = PBXGroup;
 			children = (
@@ -2342,41 +2341,6 @@
 				078789AF1C7C89C5008C39A6 /* MSFButtonSlidersView.m */,
 			);
 			name = ButtonSlider;
-			sourceTree = "<group>";
-		};
-		07A7DAD31BFDB65100916ADD /* applyCash */ = {
-			isa = PBXGroup;
-			children = (
-				07A7DAD61BFDB65100916ADD /* applyCashBottom@3x.png */,
-				07A7DAD71BFDB65100916ADD /* applyCashButtonSelect@3x.png */,
-				07A7DAD81BFDB65100916ADD /* applyCashButton@3x.png */,
-				07A7DAD91BFDB65100916ADD /* applyCashtop@3x.png */,
-				07A7DADC1BFDB65100916ADD /* applyCashBottom.png */,
-				07A7DADD1BFDB65100916ADD /* applyCashButtonSelect.png */,
-				07A7DADE1BFDB65100916ADD /* applyCashButton@2x.png */,
-				07A7DADF1BFDB65100916ADD /* applyCashtop.png */,
-				07A7DAE21BFDB65100916ADD /* applyCashBottom@2x.png */,
-				07A7DAE31BFDB65100916ADD /* applyCashButtonSelect@2x.png */,
-				07A7DAE41BFDB65100916ADD /* applyCashButton.png */,
-				07A7DAE51BFDB65100916ADD /* applyCashtop@2x.png */,
-			);
-			path = applyCash;
-			sourceTree = "<group>";
-		};
-		07A7DAF81BFDC0F500916ADD /* applyCashAll */ = {
-			isa = PBXGroup;
-			children = (
-				07A7DB0B1BFDD65900916ADD /* lightApplyCash.png */,
-				07A7DB0C1BFDD65900916ADD /* lightApplyCash@2x.png */,
-				07A7DB0D1BFDD65900916ADD /* lightApplyCash@3x.png */,
-				07A7DAF91BFDC0F500916ADD /* applyCashBottomType.png */,
-				07A7DAFA1BFDC0F500916ADD /* applyCashBottomType@2x.png */,
-				07A7DAFB1BFDC0F500916ADD /* applyCashBottomType@3x.png */,
-				07A7DAFC1BFDC0F500916ADD /* socialSecurityApply.png */,
-				07A7DAFD1BFDC0F500916ADD /* socialSecurityApply@2x.png */,
-				07A7DAFE1BFDC0F500916ADD /* socialSecurityApply@3x.png */,
-			);
-			path = applyCashAll;
 			sourceTree = "<group>";
 		};
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
@@ -3085,9 +3049,6 @@
 				07122F231C310EDF004AD0E2 /* faceMask_bg.png */,
 				07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */,
 				07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */,
-				4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */,
-				4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */,
-				4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */,
 				07E3ED761BBBF6C00010AAD2 /* blackpoint.png */,
 				07E3ED771BBBF6C00010AAD2 /* blackpoint@2x.png */,
 				07E3ED781BBBF6C00010AAD2 /* blackpoint@3x.png */,
@@ -3191,8 +3152,6 @@
 				49B7A25E1BEC7DCA001E8C97 /* launch.png */,
 				105542411BE4BE9100CF4C56 /* dicareas.db */,
 				0738C48E1B944B54006D7177 /* bank.db */,
-				10E546591C0011C500BBA827 /* Ads */,
-				077347981BBA333B00D7A130 /* bank */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -4379,28 +4338,11 @@
 			children = (
 				077460F61C74208100F46ABD /* newversionimg */,
 				077460F11C733D1900F46ABD /* guide */,
-				49B186081C56269600409C6F /* icon */,
-				07122F221C310ED0004AD0E2 /* FaceMask */,
 				4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */,
 				4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */,
 				4902E41E1BC4C56F0087FA1E /* icon-arrow-right@3x.png */,
-				07E3ED691BBBC2DB0010AAD2 /* TradePassword */,
-				077347981BBA333B00D7A130 /* Bank */,
-				0707249C1B671A080089916B /* ApplyProduct */,
-				C7D2D1001B679346000F51ED /* perfectMeans */,
-				491B3DF11B65D68C00D28455 /* stubs */,
-				49B37B3E1B608F39004EED47 /* progressbar */,
-				49A954FB1B574B09000852E3 /* homepage */,
-				10E546591C0011C500BBA827 /* ms */,
-				492D13111B2EAEAA0094699A /* common */,
-				492D13101B2EAEA10094699A /* db */,
-				49C0F1631B2C30B700E92572 /* tabbar */,
-				4925ADDE1B2AFD7A00872A8A /* button */,
-				4925AD951B2A8F1500872A8A /* login */,
-				C7A351551B2175C60001DF6A /* setting */,
-				07C497FF1B1420BE00069F74 /* loan */,
-				07C06C411B13431300F2DFCC /* json */,
-				49EAABA51B0DC66E00E5FF32 /* launch */,
+				077347981BBA333B00D7A130 /* bank */,
+				10E546591C0011C500BBA827 /* Ads */,
 				4912C6BC1C6475D800550A6C /* Common */,
 				4912C6BB1C6475D500550A6C /* JSON */,
 				4912C6AD1C6475D000550A6C /* Image */,
@@ -4765,7 +4707,6 @@
 				07B368841B7ED86400574A81 /* basic-information-prompt-1242@3x.png in Resources */,
 				4944C0531B68A60200805C0A /* icon-avatar-placeholder.png in Resources */,
 				077461021C7420A000F46ABD /* icon-start-signup@3x.png in Resources */,
-				07A7DAF41BFDB65100916ADD /* applyCashBottom@2x.png in Resources */,
 				49CA93611BBA212A0032F5C2 /* groupedTableViewCell_topRow@2x.png in Resources */,
 				C7A351801B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin.png in Resources */,
 				4975C98E1B46D6D400AA79EB /* StyleSettings.plist in Resources */,
@@ -4777,7 +4718,6 @@
 				077347D41BBA338900D7A130 /* china@2x.png in Resources */,
 				4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */,
 				077460FE1C7420A000F46ABD /* icon-start-signin@2x.png in Resources */,
-				07A7DAEB1BFDB65100916ADD /* applyCashtop@3x.png in Resources */,
 				4912C6E71C6477AA00550A6C /* icon_order1_h.png in Resources */,
 				49DA1A4E1C0ED2A60052C056 /* markets.json in Resources */,
 				077347E21BBA338900D7A130 /* ICBC.png in Resources */,
@@ -5024,11 +4964,7 @@
 				C7A3517C1B217CB10001DF6A /* iconfont-guanyuwomen@3x.png in Resources */,
 				4912C6DB1C64778900550A6C /* applyCashtop@2x.png in Resources */,
 				077347D51BBA338900D7A130 /* china@3x.png in Resources */,
-
-				49B37B581B608F39004EED47 /* bar-highlighted@2x.png in Resources */,
 				077461011C7420A000F46ABD /* icon-start-signup@2x.png in Resources */,
-
-
 				496444871B69BA77001FB1BE /* btn-showpwd-normal.png in Resources */,
 				4925ADF31B2AFD8800872A8A /* btn_checked@2x.png in Resources */,
 				49C0F1D31B2C341400E92572 /* tabbar-home-selected.png in Resources */,
@@ -5748,7 +5684,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "acdb0a49-8e09-4a00-a344-7d34b82d08e0";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
