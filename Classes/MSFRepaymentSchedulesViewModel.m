@@ -28,7 +28,7 @@
 	_services = services;
 	RAC(self, loanCurrTerm) = RACObserve(self, model.loanCurrTerm);
 	RAC(self, loanTerm) = RACObserve(self, model.loanTerm);
-	RAC(self, applyType) = RAC(<#TARGET, ...#>)
+	//RAC(self, applyType) = RAC(<#TARGET, ...#>)
 //	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
 //	RAC(self, amount) = [RACObserve(self, model.repaymentTotalAmount) ignore:nil];
 //	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
