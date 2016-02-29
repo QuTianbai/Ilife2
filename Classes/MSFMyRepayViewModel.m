@@ -11,48 +11,54 @@
 #import "MSFRepaymentSchedules.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "msfclient+PlanPerodicTables.h"
+#import "NSDictionary+MSFKeyValue.h"
+
+@interface MSFMyRepayViewModel ()
+
+@property (nonatomic, strong) MSFRepaymentSchedules *model;
+@property (nonatomic, readwrite) NSMutableAttributedString *repayMoney;
+
+@end
 
 @implementation MSFMyRepayViewModel
 
-- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithModel:(id)model {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_model = model;
-	_services = services;
-	RAC(self, loanCurrTerm) = RACObserve(self, model.loanCurrTerm);
-	RAC(self, loanTerm) = RACObserve(self, model.loanTerm);
-	//RAC(self, applyType) = RAC(<#TARGET, ...#>)
-	//	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
-	//	RAC(self, amount) = [RACObserve(self, model.repaymentTotalAmount) ignore:nil];
-	//	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
-	//		return value.length > 0 ? value : @"当天";
-	//	}];
-	//
-	//	RAC(self, ownerAllMoney) = [RACObserve(self, model.applmt) map:^id(id value) {
-	//		if (value == nil) {
-	//			return @"";
-	//		}
-	//		return value;
-	//	}];
-	//	RAC(self, contractLineDate) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
-	//		return value.length > 0 ? value : @"当天";
-	//	}];
+	_contractTitle = @"";
+	_repayMoney = [[NSMutableAttributedString alloc] initWithString:@""];
+	_repayTime = @"";
+	_applyType = @"";
+	_status = @"";
 	
-	//	RAC(self, overdueMoney) = [RACObserve(self, model.rep) map:^id(id value) {
-	//		if (value == nil || [value isEqualToString:@"0.00"] ||[value isEqualToString:@"0"] || [value isEqualToString:@""]) {
-	//			return @"";
-	//		}
-	//		return [NSString stringWithFormat:@"已逾期:￥%@", value];
-	//	}];
-	//
-	//	RAC(self, cashAmount) = [RACObserve(self, model.cashDueMoney) ignore:nil];
-	//	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
-	//		return value.length > 0 ? value : @"当天";
-	//	}];
+	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
+		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
+	}];
+	RAC(self, repayTime) = [RACObserve(self, model.repaymentTime) ignore:nil];
+	RAC(self, applyType) = [RACObserve(self, model.contractType) ignore:nil];
+	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
+	[RACObserve(self, model)
+	 subscribeNext:^(MSFRepaymentSchedules *model) {
+		 NSString *str = [NSString stringWithFormat:@"本期应还：¥%@", model.repaymentTotalAmount];
+		 NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:str];
+		 NSRange redRange = [str rangeOfString:[NSString stringWithFormat:@"¥%@", model.repaymentTotalAmount]];
+		 
+		 if ([model.contractStatus isEqualToString:@"已还款"]) {
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:redRange];
+		 } else {
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:redRange];
+		 }
+		 self.repayMoney = bankCardShowInfoAttributeStr;
+	 }];
 	
 	return self;
+}
+
+- (RACSignal *)fetchMyRepayListSignal {
+	return nil;
 }
 
 - (RACSignal *)fetchPlanPerodicTablesSignal {

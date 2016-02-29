@@ -140,6 +140,11 @@
 		07A1458D1C80444D00C32F0B /* MSFMyRepayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A1458B1C80444D00C32F0B /* MSFMyRepayTableViewCell.m */; };
 		07A1458E1C80444D00C32F0B /* MSFMyRepayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07A1458C1C80444D00C32F0B /* MSFMyRepayTableViewCell.xib */; };
 		07A145A71C81509500C32F0B /* MSFMyRepayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145A61C81509500C32F0B /* MSFMyRepayViewModel.m */; };
+		07A145F41C83E93F00C32F0B /* MSFMyRepayContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145F31C83E93F00C32F0B /* MSFMyRepayContainerViewController.m */; };
+		07A145F61C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A145F51C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard */; };
+		07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145F81C83F12800C32F0B /* MSFMyRepayTableViewController.m */; };
+		07A145FC1C84017600C32F0B /* MSFMyRepaysViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */; };
+		07A146001C84254B00C32F0B /* myRepayList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A145FF1C84254B00C32F0B /* myRepayList.json */; };
 		07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */; };
 		07A7DACA1BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */; };
 		07A7DAD11BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */; };
@@ -1131,6 +1136,14 @@
 		07A1458C1C80444D00C32F0B /* MSFMyRepayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyRepayTableViewCell.xib; sourceTree = "<group>"; };
 		07A145A51C81509500C32F0B /* MSFMyRepayViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepayViewModel.h; sourceTree = "<group>"; };
 		07A145A61C81509500C32F0B /* MSFMyRepayViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepayViewModel.m; sourceTree = "<group>"; };
+		07A145F21C83E93F00C32F0B /* MSFMyRepayContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepayContainerViewController.h; sourceTree = "<group>"; };
+		07A145F31C83E93F00C32F0B /* MSFMyRepayContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepayContainerViewController.m; sourceTree = "<group>"; };
+		07A145F51C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFMyRepayContainerViewController.storyboard; sourceTree = "<group>"; };
+		07A145F71C83F12800C32F0B /* MSFMyRepayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepayTableViewController.h; sourceTree = "<group>"; };
+		07A145F81C83F12800C32F0B /* MSFMyRepayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepayTableViewController.m; sourceTree = "<group>"; };
+		07A145FA1C84017600C32F0B /* MSFMyRepaysViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepaysViewModel.h; sourceTree = "<group>"; };
+		07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepaysViewModel.m; sourceTree = "<group>"; };
+		07A145FF1C84254B00C32F0B /* myRepayList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = myRepayList.json; sourceTree = "<group>"; };
 		07A7DAB91BFC1BC200916ADD /* MSFRepaymentPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentPlanViewController.h; sourceTree = "<group>"; };
 		07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentPlanViewController.m; sourceTree = "<group>"; };
 		07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFRepaymentPlanStoryboard.storyboard; sourceTree = "<group>"; };
@@ -2474,6 +2487,21 @@
 			name = ButtonSlider;
 			sourceTree = "<group>";
 		};
+		07A145E41C83E8FB00C32F0B /* MyRepay */ = {
+			isa = PBXGroup;
+			children = (
+				07A1458A1C80444D00C32F0B /* MSFMyRepayTableViewCell.h */,
+				07A1458B1C80444D00C32F0B /* MSFMyRepayTableViewCell.m */,
+				07A1458C1C80444D00C32F0B /* MSFMyRepayTableViewCell.xib */,
+				07A145F21C83E93F00C32F0B /* MSFMyRepayContainerViewController.h */,
+				07A145F31C83E93F00C32F0B /* MSFMyRepayContainerViewController.m */,
+				07A145F51C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard */,
+				07A145F71C83F12800C32F0B /* MSFMyRepayTableViewController.h */,
+				07A145F81C83F12800C32F0B /* MSFMyRepayTableViewController.m */,
+			);
+			name = MyRepay;
+			sourceTree = "<group>";
+		};
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
 			isa = PBXGroup;
 			children = (
@@ -2706,6 +2734,7 @@
 		102C7E891C2925970023172B /* Repayment */ = {
 			isa = PBXGroup;
 			children = (
+				07A145E41C83E8FB00C32F0B /* MyRepay */,
 				C7B977FB1B08C568005F247C /* MSFRepaymentTableViewCell.h */,
 				C7B977FC1B08C568005F247C /* MSFRepaymentTableViewCell.m */,
 				07A7DAB91BFC1BC200916ADD /* MSFRepaymentPlanViewController.h */,
@@ -2713,9 +2742,6 @@
 				07A7DACF1BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.h */,
 				07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */,
 				07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */,
-				07A1458A1C80444D00C32F0B /* MSFMyRepayTableViewCell.h */,
-				07A1458B1C80444D00C32F0B /* MSFMyRepayTableViewCell.m */,
-				07A1458C1C80444D00C32F0B /* MSFMyRepayTableViewCell.xib */,
 			);
 			name = Repayment;
 			sourceTree = "<group>";
@@ -2973,6 +2999,8 @@
 				49075CE11BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m */,
 				07A145A51C81509500C32F0B /* MSFMyRepayViewModel.h */,
 				07A145A61C81509500C32F0B /* MSFMyRepayViewModel.m */,
+				07A145FA1C84017600C32F0B /* MSFMyRepaysViewModel.h */,
+				07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */,
 			);
 			name = RepaymentSchedules;
 			sourceTree = "<group>";
@@ -4626,6 +4654,7 @@
 				C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */,
 				C72149DC1B05A3640045F919 /* MSFClient+RepaymentSchedules.h */,
 				C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */,
+				07A145FF1C84254B00C32F0B /* myRepayList.json */,
 			);
 			name = RepaymentSchedule;
 			sourceTree = "<group>";
@@ -5176,6 +5205,7 @@
 				07B368831B7ED86400574A81 /* basic-information-prompt-1242@2x.png in Resources */,
 				4912C6F51C6477BB00550A6C /* lightApplyCash@2x.png in Resources */,
 				4912C6F31C6477BB00550A6C /* environment.png in Resources */,
+				07A145F61C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard in Resources */,
 				07B6DA7E1BC6506E0025A849 /* bankdefult@2x.png in Resources */,
 				497827AD1C83F5E100F2D1D8 /* bg-view-header@2x.jpg in Resources */,
 				07E3ED711BBBC3020010AAD2 /* tradePassWordBG@2x.png in Resources */,
@@ -5284,6 +5314,7 @@
 				077347CD1BBA338900D7A130 /* add.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
 				491FD41B1C84A4D40026928F /* tab-wallet-highlighted.png in Resources */,
+				07A146001C84254B00C32F0B /* myRepayList.json in Resources */,
 				497827D71C84145400F2D1D8 /* btn-apply-normal@3x.png in Resources */,
 				10E546711C0012CA00BBA827 /* ad_msdFull_top.png in Resources */,
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
@@ -5748,8 +5779,10 @@
 				4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */,
 				102C7EE31C2A389B0023172B /* MSFOrderListItemCell.m in Sources */,
 				07330B611BBE2D9E000EB8FD /* MSFClient+CheckEmploee2.m in Sources */,
+				07A145FC1C84017600C32F0B /* MSFMyRepaysViewModel.m in Sources */,
 				492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
+				07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
 				07D224891BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m in Sources */,
 				49B186021C561F8000409C6F /* MSFCouponsViewController.m in Sources */,
@@ -5795,6 +5828,7 @@
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,
 				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,
+				07A145F41C83E93F00C32F0B /* MSFMyRepayContainerViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
 				101BD3C11C2BE43300842D36 /* MSFCartCategoryCell.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+PhotoStatus.m in Sources */,

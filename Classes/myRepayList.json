@@ -1,0 +1,35 @@
+[
+ {
+	"contractNo" : "10000",
+	"contractStatus" : "A",
+	"latestDueMoney" : "1000",
+	"latestDueDate" : "20160215",
+	"type" : "1",
+	"appLmt" : "3000",
+	"loanTerm" : "6",
+	"loanCurrTerm" : "3",
+	"loanExpireDate" : "2015"
+ },
+ {
+	"contractNo" : "10000",
+	"contractStatus" : "B",
+	"latestDueMoney" : "1200",
+	"latestDueDate" : "20160215",
+	"type" : "3",
+	"appLmt" : "3000",
+	"loanTerm" : "6",
+	"loanCurrTerm" : "3",
+	"loanExpireDate" : "2015"
+ },
+ {
+	"contractNo" : "10000",
+	"contractStatus" : "A",
+	"latestDueMoney" : "100",
+	"latestDueDate" : "20160215",
+	"type" : "4",
+	"appLmt" : "3000",
+	"loanTerm" : "6",
+	"loanCurrTerm" : "3",
+	"loanExpireDate" : "2015"
+ }
+]

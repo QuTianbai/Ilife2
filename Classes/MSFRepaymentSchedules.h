@@ -21,9 +21,9 @@
 //类型
 @property (nonatomic, copy, readonly) NSString *contractType;
 //贷款金额
-@property (nonatomic, assign, readonly) NSString *applmt;
+@property (nonatomic, assign, readonly) NSString *appLmt;
 //贷款期数
-@property (nonatomic, assign, readonly) NSInteger loanTerm;
+@property (nonatomic, assign, readonly) NSString *loanTerm;
 //当前期数
 @property (nonatomic, copy, readonly) NSString *loanCurrTerm;
 //账期

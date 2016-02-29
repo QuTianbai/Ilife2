@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="KGk-i7-Jjw" customClass="MSFMyRepayTableViewCell">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MSFMyRepayTableViewCell" rowHeight="57" id="KGk-i7-Jjw" customClass="MSFMyRepayTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -47,29 +47,66 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oi2-Sy-Jqr">
+                        <rect key="frame" x="15" y="55" width="305" height="1"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="UHH-Y5-RPr"/>
+                        </constraints>
+                    </view>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cell-icon-overdue.png" translatesAutoresizingMaskIntoConstraints="NO" id="kTJ-iM-OEj">
+                        <rect key="frame" x="264" y="0.0" width="56" height="56.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="56" id="3Jb-Pi-9QK"/>
+                            <constraint firstAttribute="width" constant="56" id="Msx-1Z-fsP"/>
+                        </constraints>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已还款" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01Q-hQ-4aC">
+                        <rect key="frame" x="290" y="2" width="35" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="gel-1Z-5sk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Oi2-Sy-Jqr" secondAttribute="trailing" id="4F2-HM-SVC"/>
                     <constraint firstAttribute="trailing" secondItem="kQY-0D-fPe" secondAttribute="trailing" constant="15" id="B30-3q-nyL"/>
+                    <constraint firstItem="kQY-0D-fPe" firstAttribute="top" secondItem="01Q-hQ-4aC" secondAttribute="bottom" constant="4" id="DEg-CZ-GFB"/>
+                    <constraint firstItem="Oi2-Sy-Jqr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Dmv-Nl-ZuJ"/>
+                    <constraint firstAttribute="trailing" secondItem="kTJ-iM-OEj" secondAttribute="trailing" id="ELQ-Dk-VCE"/>
                     <constraint firstAttribute="bottom" secondItem="Wjq-zu-gVW" secondAttribute="bottom" constant="5" id="Fld-1q-aw6"/>
                     <constraint firstItem="suZ-q8-ZLD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Kog-qM-rDh"/>
                     <constraint firstItem="TLZ-A9-Lag" firstAttribute="leading" secondItem="Wjq-zu-gVW" secondAttribute="trailing" constant="10" id="SwP-3T-dgh"/>
+                    <constraint firstAttribute="bottom" secondItem="Oi2-Sy-Jqr" secondAttribute="bottom" id="UQJ-ON-Odc"/>
                     <constraint firstItem="kQY-0D-fPe" firstAttribute="leading" secondItem="TLZ-A9-Lag" secondAttribute="trailing" constant="15" id="VIx-9a-NUF"/>
                     <constraint firstItem="Wjq-zu-gVW" firstAttribute="top" secondItem="suZ-q8-ZLD" secondAttribute="bottom" constant="5" id="Wor-Wd-F9M"/>
                     <constraint firstItem="TLZ-A9-Lag" firstAttribute="top" secondItem="suZ-q8-ZLD" secondAttribute="bottom" constant="5" id="aGN-UG-MFj"/>
+                    <constraint firstItem="01Q-hQ-4aC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="bQD-d7-yRI"/>
                     <constraint firstAttribute="trailing" secondItem="suZ-q8-ZLD" secondAttribute="trailing" constant="15" id="dBk-EE-76P"/>
                     <constraint firstAttribute="bottom" secondItem="TLZ-A9-Lag" secondAttribute="bottom" constant="5" id="dMA-cB-sNQ"/>
                     <constraint firstItem="suZ-q8-ZLD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="e3h-W2-aUn"/>
                     <constraint firstAttribute="bottom" secondItem="kQY-0D-fPe" secondAttribute="bottom" constant="5" id="eY7-ge-7gP"/>
                     <constraint firstItem="Wjq-zu-gVW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="in0-px-h1n"/>
                     <constraint firstItem="kQY-0D-fPe" firstAttribute="top" secondItem="suZ-q8-ZLD" secondAttribute="bottom" constant="5" id="oXP-wg-nEJ"/>
+                    <constraint firstAttribute="trailing" secondItem="01Q-hQ-4aC" secondAttribute="trailing" constant="-5" id="pLk-pw-96o"/>
+                    <constraint firstItem="kTJ-iM-OEj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pYs-uK-SmO"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="contractTitle" destination="suZ-q8-ZLD" id="1Dz-6M-woh"/>
+                <outlet property="imgBg" destination="kTJ-iM-OEj" id="z7T-2u-GKq"/>
                 <outlet property="repayMoney" destination="kQY-0D-fPe" id="Zot-bL-lyS"/>
                 <outlet property="repayTime" destination="TLZ-A9-Lag" id="YFQ-Z9-ctr"/>
+                <outlet property="repayTimeTitleLB" destination="Wjq-zu-gVW" id="yai-Vm-keq"/>
+                <outlet property="repayedLB" destination="01Q-hQ-4aC" id="xI1-Pm-Xbb"/>
             </connections>
             <point key="canvasLocation" x="208" y="240.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="cell-icon-overdue.png" width="117" height="117"/>
+    </resources>
 </document>
