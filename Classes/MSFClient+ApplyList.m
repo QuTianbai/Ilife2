@@ -31,4 +31,11 @@
 	}];
 }
 
+- (RACSignal *)fetchRecentApplicaiton:(NSString *)type {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/apply" parameters:@{
+		@"type" : type
+	}];
+	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
+}
+
 @end

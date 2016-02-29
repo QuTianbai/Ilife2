@@ -12,5 +12,6 @@
 @interface MSFOrderListViewController : UITableViewController
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

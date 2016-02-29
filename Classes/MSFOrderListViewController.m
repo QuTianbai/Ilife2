@@ -27,6 +27,16 @@
 
 @implementation MSFOrderListViewController
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [super initWithStyle:UITableViewStyleGrouped];
+	if (self) {
+		self.edgesForExtendedLayout = UIRectEdgeNone;
+		self.hidesBottomBarWhenPushed = YES;
+		_viewModel = viewModel;
+	}
+	return self;
+}
+
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {

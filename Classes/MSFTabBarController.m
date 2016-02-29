@@ -35,6 +35,11 @@
 #import "MSFCashHomePageViewController.h"
 #import "MSFCashHomePageViewModel.h"
 
+#import "MSFCreditViewController.h"
+#import "MSFWalletViewController.h"
+#import "MSFCommodityViewController.h"
+#import "MSFWalletViewModel.h"
+
 @interface MSFTabBarController () 
 
 @property (nonatomic, weak, readwrite) MSFTabBarViewModel *viewModel;
@@ -73,28 +78,38 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
+	//TODO: 更新马上贷控制器
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
-	MSFHomepageViewController *homePageViewController = [[MSFHomepageViewController alloc] initWithViewModel:homepageViewModel];
-	homePageViewController.title = @"首页";
+	
+	MSFCreditViewController *homePageViewController = [[MSFCreditViewController alloc] initWithViewModel:homepageViewModel];
+	homePageViewController.title = @"马上贷";
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
-	homepage.tabBarItem = [self itemWithNormal:@"首页" nomalImage:@"tabbar-home-normal.png" selected:@"tabbar-home-selected.png"];
+	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tab-msd-normal.png" selected:@"tab-msd-highlighted.png"];
 
 	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 	self.circulateViewModel = circulateViewModel;
 	
-	MSFCashHomePageViewModel *cashHomePageViewModel = [[MSFCashHomePageViewModel alloc] initWithFormViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
-	MSFCashHomePageViewController *cashViewController = [[MSFCashHomePageViewController alloc] initWithViewModel:cashHomePageViewModel];
-	cashViewController.title = @"马上";
-	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
-	productpage.tabBarItem = [self itemWithNormal:@"马上" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	MSFWalletViewModel *walletViewModel = [[MSFWalletViewModel alloc] initWithServices:self.viewModel.services];
+	MSFWalletViewController *walletViewController = [[MSFWalletViewController alloc] initWithViewModel:walletViewModel];
+	walletViewController.title = @"信用钱包";
+	UINavigationController *wallet = [[UINavigationController alloc] initWithRootViewController:walletViewController];
+	wallet.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tab-wallet-normal.png" selected:@"tab-wallet-highlighted.png"];
 	
+	//TODO: 更新商品贷控制器
+	MSFCommodityViewController *commodityViewController = [[MSFCommodityViewController alloc] initWithViewModel:circulateViewModel];
+	commodityViewController.title = @"商品贷";
+	UINavigationController *commodity = [[UINavigationController alloc] initWithRootViewController:commodityViewController];
+	commodityViewController.tabBarItem = [self itemWithNormal:@"商品贷" nomalImage:@"tab-commodity-normal.png" selected:@"tab-commodity-highlighted.png"];
+	
+	//TODO: 更新个人中心控制器
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
+	
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	userViewController.title = @"我的";
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
-	userpage.tabBarItem =  [self itemWithNormal:@"我的" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
+	userpage.tabBarItem =  [self itemWithNormal:@"我的" nomalImage:@"tab-me-normal.png" selected:@"tab-me-hightlighted.png"];
 	
-	self.viewControllers = @[homepage, productpage, userpage];
+	self.viewControllers = @[homepage, wallet, commodity, userpage];
 }
 
 - (UITabBarItem *)itemWithNormal:(NSString *)title nomalImage:(NSString *)normalName selected:(NSString *)selectedName {
