@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.tableView.allowsSelection = YES;
+	//self.tableView.
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];

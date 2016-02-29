@@ -47,7 +47,7 @@
 		 NSRange redRange = [str rangeOfString:[NSString stringWithFormat:@"¥%@", model.repaymentTotalAmount]];
 		 
 		 if ([model.contractStatus isEqualToString:@"已还款"]) {
-			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:redRange];
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, 6 + model.repaymentTotalAmount.length)];
 		 } else {
 			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:redRange];
 		 }

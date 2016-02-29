@@ -88,5 +88,89 @@
             </objects>
             <point key="canvasLocation" x="102" y="158"/>
         </scene>
+        <!--My Repay Detal View Controller-->
+        <scene sceneID="awS-BR-QLE">
+            <objects>
+                <viewController storyboardIdentifier="MSFMyRepayDetalViewController" id="Ecf-bs-LBz" customClass="MSFMyRepayDetalViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UqN-WX-nOZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="B8R-d0-Z1t"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RP0-NR-7U8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PTI-HK-dzF">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="应还款金额：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lm-jp-oxX">
+                                        <rect key="frame" x="15" y="15" width="84" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="84" id="azC-RF-8Hg"/>
+                                            <constraint firstAttribute="height" constant="21" id="bVk-KB-l85"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥823.98（含寿险金¥0.00）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0E9-0n-w2c">
+                                        <rect key="frame" x="40" y="50" width="240" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="gKk-Pi-bYz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[商品贷]1/3期账单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkv-C6-uOC">
+                                        <rect key="frame" x="15" y="72" width="290" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="PbF-uA-dao"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CYV-vq-Ih6">
+                                        <rect key="frame" x="295" y="50" width="15" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="XsZ-fb-5fR"/>
+                                            <constraint firstAttribute="height" constant="17" id="otQ-Cy-a1S"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="right-arrow-gray.png"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="fkv-C6-uOC" firstAttribute="top" secondItem="CYV-vq-Ih6" secondAttribute="bottom" constant="5" id="B4h-fC-2ad"/>
+                                    <constraint firstItem="0E9-0n-w2c" firstAttribute="top" secondItem="PTI-HK-dzF" secondAttribute="top" constant="50" id="ITn-xW-76z"/>
+                                    <constraint firstAttribute="height" constant="90" id="M0A-7x-1dP"/>
+                                    <constraint firstItem="9Lm-jp-oxX" firstAttribute="leading" secondItem="PTI-HK-dzF" secondAttribute="leading" constant="15" id="PeO-ov-xko"/>
+                                    <constraint firstItem="fkv-C6-uOC" firstAttribute="top" secondItem="9Lm-jp-oxX" secondAttribute="bottom" constant="36" id="Snj-c6-Ktl"/>
+                                    <constraint firstAttribute="trailing" secondItem="CYV-vq-Ih6" secondAttribute="trailing" constant="10" id="fag-CC-0m0"/>
+                                    <constraint firstAttribute="trailing" secondItem="fkv-C6-uOC" secondAttribute="trailing" constant="15" id="iBy-7c-Cr8"/>
+                                    <constraint firstAttribute="trailing" secondItem="0E9-0n-w2c" secondAttribute="trailing" constant="40" id="jhj-12-aaE"/>
+                                    <constraint firstItem="9Lm-jp-oxX" firstAttribute="top" secondItem="PTI-HK-dzF" secondAttribute="top" constant="15" id="quS-8r-LCq"/>
+                                    <constraint firstItem="0E9-0n-w2c" firstAttribute="leading" secondItem="PTI-HK-dzF" secondAttribute="leading" constant="40" id="tOU-1K-6y9"/>
+                                    <constraint firstItem="fkv-C6-uOC" firstAttribute="leading" secondItem="PTI-HK-dzF" secondAttribute="leading" constant="15" id="znA-wg-lHT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PTI-HK-dzF" secondAttribute="trailing" id="5lY-Jy-kMh"/>
+                            <constraint firstItem="PTI-HK-dzF" firstAttribute="top" secondItem="RP0-NR-7U8" secondAttribute="top" id="DoM-9Z-aVb"/>
+                            <constraint firstItem="PTI-HK-dzF" firstAttribute="leading" secondItem="RP0-NR-7U8" secondAttribute="leading" id="wSG-pN-HYE"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nzz-gU-bPP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="482" y="171"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="right-arrow-gray.png" width="16" height="32"/>
+    </resources>
 </document>
