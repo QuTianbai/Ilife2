@@ -9,11 +9,8 @@
 
 #if DEBUG
 
-//NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
-//NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
-NSString *const MSFServerDotComAPIEndpoint = @"https://mapi.msxf.com";
-NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
-
+NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
+NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
 
 #elif TEST
 
