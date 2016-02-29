@@ -370,6 +370,7 @@
                     </view>
                     <connections>
                         <outlet property="applyView" destination="IXZ-3O-FDR" id="dkT-at-87Y"/>
+                        <outlet property="button" destination="JUp-Pt-5cG" id="YIf-QL-c8g"/>
                         <outlet property="dateLabel" destination="M2O-3U-oKY" id="V4P-s6-pfz"/>
                         <outlet property="ratesLabel" destination="yla-Ky-nT6" id="du3-Pn-TJa"/>
                         <outlet property="repayView" destination="I9g-9T-nMv" id="rAB-H4-D9K"/>

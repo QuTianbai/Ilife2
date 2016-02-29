@@ -22,10 +22,10 @@
 	[super viewDidLoad];
 	
 	RAC(self.imageView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(status.integerValue == MSFWalletRepaying);
+		return @(status.integerValue == MSFWalletActivated);
 	}];
 	RAC(self.contentView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(status.integerValue != MSFWalletRepaying);
+		return @(status.integerValue != MSFWalletActivated);
 	}];
 	
 	RAC(self.amountLabel, text) = RACObserve(self, viewModel.repayAmounts);

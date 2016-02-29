@@ -89,14 +89,11 @@
 	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
 	self.circulateViewModel = circulateViewModel;
 	
-	//TODO:
-	MSFCashHomePageViewModel *cashHomePageViewModel = [[MSFCashHomePageViewModel alloc] initWithFormViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
-	
-	MSFWalletViewModel *walletViewModel = [[MSFWalletViewModel alloc] init];
-	MSFWalletViewController *cashViewController = [[MSFWalletViewController alloc] initWithViewModel:walletViewModel];
-	cashViewController.title = @"信用钱包";
-	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
-	productpage.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
+	MSFWalletViewModel *walletViewModel = [[MSFWalletViewModel alloc] initWithServices:self.viewModel.services];
+	MSFWalletViewController *walletViewController = [[MSFWalletViewController alloc] initWithViewModel:walletViewModel];
+	walletViewController.title = @"信用钱包";
+	UINavigationController *wallet = [[UINavigationController alloc] initWithRootViewController:walletViewController];
+	wallet.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];
 	
 	//TODO:
 	MSFCommodityViewController *commodityViewController = [[MSFCommodityViewController alloc] initWithViewModel:circulateViewModel];
@@ -112,7 +109,7 @@
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];
 	userpage.tabBarItem =  [self itemWithNormal:@"我的" nomalImage:@"tabbar-account-normal.png" selected:@"tabbar-account-selected.png"];
 	
-	self.viewControllers = @[homepage, productpage, commodity, userpage];
+	self.viewControllers = @[homepage, wallet, commodity, userpage];
 }
 
 - (UITabBarItem *)itemWithNormal:(NSString *)title nomalImage:(NSString *)normalName selected:(NSString *)selectedName {

@@ -27,11 +27,18 @@
 	RAC(self.usedLabel, text) = RACObserve(self, viewModel.usedAmounts);
 	RAC(self.ratesLabel, text) = RACObserve(self, viewModel.loanRates);
 	RAC(self.dateLabel, text) = RACObserve(self, viewModel.repayDate);
+	
 	RAC(self.applyView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(status.integerValue == MSFWalletRepaying);
+		return @(!(status.integerValue < MSFWalletActivated));
 	}];
 	RAC(self.repayView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(status.integerValue != MSFWalletRepaying);
+		return @(!(status.integerValue == MSFWalletActivated));
+	}];
+	
+	@weakify(self)
+	[RACObserve(self, viewModel.action) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.button setTitle:x forState:UIControlStateNormal];
 	}];
 }
 

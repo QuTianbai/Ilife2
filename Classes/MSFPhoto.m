@@ -17,4 +17,8 @@
 	return [super initWithDictionary:@{@keypath(self.URL): URL} error:nil];
 }
 
+- (instancetype)initWithURLString:(NSString *)URL {
+	return [self initWithURL:[NSURL URLWithString:URL]];
+}
+
 @end

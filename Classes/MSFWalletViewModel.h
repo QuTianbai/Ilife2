@@ -5,14 +5,20 @@
 //
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
+#import "MSFViewModelServices.h"
 
 typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
-	MSFWalletNone,
-	MSFWalletVerifying,
-	MSFWalletRepaying,
+	MSFWalletNone,        // 未激活的状态
+	MSFWalletInReview,    // 审核中
+	MSFWalletWaitConfirm, // 等待合同确认
+	MSFWalletResubmit,    // 资料重传
+	MSFWalletRelease,     // 放款中
+	MSFWalletRejected,    // 审核失败需要重新提交
+	MSFWalletActivated,   // 已激活
 };
 
 @interface MSFWalletViewModel : RVMViewModel
+
 
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSString *subtitle;
@@ -29,5 +35,10 @@ typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
 @property (nonatomic, strong, readonly) NSString *usedAmounts;
 @property (nonatomic, strong, readonly) NSString *loanRates;
 @property (nonatomic, strong, readonly) NSString *repayDate;
+
+// 申请视图中的按钮名称
+@property (nonatomic, strong, readonly) NSString *action;
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
 @end

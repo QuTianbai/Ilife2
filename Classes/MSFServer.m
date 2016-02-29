@@ -26,8 +26,8 @@ NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #endif
 
-NSString *const MSFServerAPIEndpointPathComponent = @"api/app/V1";
-NSString *const MSFServerAPIBaseWebPathComponent = @"api/app/V1";
+NSString *const MSFServerAPIEndpointPathComponent = @"mapi/V4";
+NSString *const MSFServerAPIBaseWebPathComponent = @"mapi/V4";
 
 @implementation MSFServer
 

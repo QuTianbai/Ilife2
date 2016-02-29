@@ -21,4 +21,6 @@
 @property (nonatomic, weak) IBOutlet UILabel *ratesLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dateLabel;
 
+@property (nonatomic, weak) IBOutlet UIButton *button;
+
 @end
