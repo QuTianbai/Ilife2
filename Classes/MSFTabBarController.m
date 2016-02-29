@@ -38,6 +38,7 @@
 #import "MSFCreditViewController.h"
 #import "MSFWalletViewController.h"
 #import "MSFCommodityViewController.h"
+#import "MSFWalletViewModel.h"
 
 @interface MSFTabBarController () 
 
@@ -91,7 +92,8 @@
 	//TODO:
 	MSFCashHomePageViewModel *cashHomePageViewModel = [[MSFCashHomePageViewModel alloc] initWithFormViewModel:self.viewModel.formsViewModel services:self.viewModel.services];
 	
-	MSFWalletViewController *cashViewController = [[MSFWalletViewController alloc] initWithViewModel:cashHomePageViewModel];
+	MSFWalletViewModel *walletViewModel = [[MSFWalletViewModel alloc] init];
+	MSFWalletViewController *cashViewController = [[MSFWalletViewController alloc] initWithViewModel:walletViewModel];
 	cashViewController.title = @"信用钱包";
 	UINavigationController *productpage = [[UINavigationController alloc] initWithRootViewController:cashViewController];
 	productpage.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tabbar-apply-normal.png" selected:@"tabbar-apply-selected.png"];

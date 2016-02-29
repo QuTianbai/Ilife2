@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 // 信用钱包首页
-@interface MSFWalletViewController : UITableViewController
+@interface MSFWalletViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
 

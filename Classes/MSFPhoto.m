@@ -7,7 +7,14 @@
 //
 
 #import "MSFPhoto.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @implementation MSFPhoto
+
+#pragma mark - Lifecycle
+
+- (instancetype)initWithURL:(NSURL *)URL {
+	return [super initWithDictionary:@{@keypath(self.URL): URL} error:nil];
+}
 
 @end
