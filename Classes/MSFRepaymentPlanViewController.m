@@ -17,6 +17,8 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFButtonSlidersView.h"
 #import "UIColor+Utils.h"
+#import "MSFMyRepayTableViewCell.h"
+#import "MSFMyRepayViewModel.h"
 
 @interface MSFRepaymentPlanViewController ()<UITableViewDelegate, MSFButtonSlidersDelegate>
 
@@ -26,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet MSFButtonSlidersView *segmentView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *width;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (weak, nonatomic) IBOutlet UITableView *circulateRepayMentTableView;
+//@property (weak, nonatomic) IBOutlet UITableView *circulateRepayMentTableView;
 @property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
 @property (nonatomic, strong) MSFRepaymentPlanViewModel *viewModel;
 
@@ -70,12 +72,12 @@
 	}];
 	self.myTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	
-	self.circulateRepayMentTableView.hidden = YES;
+	//self.circulateRepayMentTableView.hidden = YES;
 	
 	@weakify(self)
 	[[self.leftBarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		self.circulateRepayMentTableView.hidden = YES;
+		//self.circulateRepayMentTableView.hidden = YES;
 		self.myTableView.hidden = NO;
 		self.myTableView.backgroundView = [self.myTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 
@@ -103,8 +105,8 @@
 	[[self.rightBarButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		self.myTableView.hidden = YES;
-		self.circulateRepayMentTableView.hidden = NO;
-		self.circulateRepayMentTableView.backgroundView = [self.circulateRepayMentTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
+//		self.circulateRepayMentTableView.hidden = NO;
+//		self.circulateRepayMentTableView.backgroundView = [self.circulateRepayMentTableView viewWithSignal:signal message:@"您还没有还款计划哦......" AndImage:[UIImage imageNamed:@"icon-empty"]];
 		[SVProgressHUD showWithStatus:@"正在加载..."];
 		RACSignal *signal = [[[[self.viewModel fetchCircleRepaymentSchrdulesSignal] map:^id(id value) {
 			return [[MSFRepaymentSchedulesViewModel alloc] initWithModel:value services:self.viewModel.services];
@@ -112,18 +114,18 @@
 		collect] replayLazily];
 		[signal subscribeNext:^(NSArray *x) {
 			if (x.count != 0) {
-				self.circulateRepayMentTableView.backgroundView.hidden = YES;
+				//self.circulateRepayMentTableView.backgroundView.hidden = YES;
 			}
 			[SVProgressHUD dismiss];
 		} error:^(NSError *error) {
 			[SVProgressHUD dismiss];
 		}];
-		self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.circulateRepayMentTableView sourceSignal:signal selectionCommand:nil registerClass:MSFCirculateRepaymentTableViewCell.class];
+		//self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.circulateRepayMentTableView sourceSignal:signal selectionCommand:nil registerClass:MSFCirculateRepaymentTableViewCell.class];
 		self.bindingHelper.delegate = self;
 		[self updateIndicatorViewWithButton:self.rightBarButton];
 	}];
 	self.myTableView.tableFooterView = UIView.new;
-	self.circulateRepayMentTableView.tableFooterView = UIView.new;
+	//self.circulateRepayMentTableView.tableFooterView = UIView.new;
 	self.bindingHelper = [[MSFTableViewBindingHelper alloc] initWithTableView:self.myTableView sourceSignal:signal selectionCommand:nil registerClass:MSFRepaymentTableViewCell.class];
 	self.bindingHelper.delegate = self;
 	[[self rac_signalForSelector:@selector(viewWillDisappear:)]
@@ -159,18 +161,18 @@
 		[self.myTableView setLayoutMargins:UIEdgeInsetsZero];
 	}
 	
-	if ([self.circulateRepayMentTableView respondsToSelector:@selector(setSeparatorInset:)]) {
-		[self.circulateRepayMentTableView setSeparatorInset:UIEdgeInsetsZero];
-	}
-	if ([self.circulateRepayMentTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-		[self.circulateRepayMentTableView setLayoutMargins:UIEdgeInsetsZero];
-	}
+//	if ([self.circulateRepayMentTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+//		[self.circulateRepayMentTableView setSeparatorInset:UIEdgeInsetsZero];
+//	}
+//	if ([self.circulateRepayMentTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+//		[self.circulateRepayMentTableView setLayoutMargins:UIEdgeInsetsZero];
+//	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (tableView == self.circulateRepayMentTableView) {
-		return 200;
-	}
+//	if (tableView == self.circulateRepayMentTableView) {
+//		return 200;
+//	}
 	if (self.dataArray.count != 0) {
 		MSFRepaymentSchedulesViewModel *viewModel = self.dataArray[indexPath.row];
 		if ([viewModel.status isEqualToString:@"已逾期"]) {
