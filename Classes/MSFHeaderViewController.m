@@ -7,6 +7,7 @@
 #import "MSFHeaderViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFWalletViewModel.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFHeaderViewController ()
 
@@ -40,12 +41,17 @@
 		@strongify(self)
 		[self.button setTitle:x forState:UIControlStateNormal];
 	}];
+	
+	RAC(self.button, rac_command) = RACObserve(self, viewModel.excuteActionCommand);
 }
 
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	[self.viewModel.excuteActionCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 @end

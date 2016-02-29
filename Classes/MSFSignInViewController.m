@@ -43,6 +43,17 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 
 @synthesize pageIndex;
 
+#pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel {
+ self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignInViewController class])];
+   if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+	return self;
+}
+
 #pragma mark - Lifecycle
 
 - (void)dealloc {

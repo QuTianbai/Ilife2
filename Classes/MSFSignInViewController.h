@@ -11,4 +11,6 @@
 
 @interface MSFSignInViewController : MSFGroupTableViewController <MSFReactiveView, MSPageViewControllerChild>
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

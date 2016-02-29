@@ -10,12 +10,14 @@
 typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
 	MSFWalletNone,        // 未激活的状态
 	MSFWalletInReview,    // 审核中
-	MSFWalletWaitConfirm, // 等待合同确认
+	MSFWalletConfirmation, // 等待合同确认
 	MSFWalletResubmit,    // 资料重传
 	MSFWalletRelease,     // 放款中
 	MSFWalletRejected,    // 审核失败需要重新提交
 	MSFWalletActivated,   // 已激活
 };
+
+@class RACCommand;
 
 @interface MSFWalletViewModel : RVMViewModel
 
@@ -38,6 +40,8 @@ typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
 
 // 申请视图中的按钮名称
 @property (nonatomic, strong, readonly) NSString *action;
+
+@property (nonatomic, strong, readonly) RACCommand *excuteActionCommand;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
