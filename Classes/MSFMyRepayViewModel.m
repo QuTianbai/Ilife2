@@ -14,18 +14,24 @@
 
 @implementation MSFMyRepayViewModel
 
-- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithservices:(id<MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_model = model;
 	_services = services;
 	RAC(self, loanCurrTerm) = RACObserve(self, model.loanCurrTerm);
 	RAC(self, loanTerm) = RACObserve(self, model.loanTerm);
 	
+	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [RACSignal return:nil];
+	}];
+	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		//[self fetchMyRepayListSignal].collect;
+		[[[self fetchMyRepayListSignal].collect replayLazily]
+		subscribeNext:^(id x) {
+			
+		}];
 	}];
 	
 	return self;

@@ -18,6 +18,6 @@
 
 @property (nonatomic, assign) id<MSFButtonSlidersDelegate> delegate;
 
-- (void)buildButtonSliders:(NSArray *)titleArray;
+- (void)buildButtonSliders:(NSArray *)titleArray WithFrame:(CGRect)frame;
 
 @end

@@ -36,6 +36,8 @@
 #import "MSFCouponsViewModel.h"
 #import "MSFCouponsViewController.h"
 #import "MSFCouponsContainerViewController.h"
+#import "MSFMyRepayContainerViewController.h"
+#import "MSFMyRepayViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -175,10 +177,12 @@
 }
 
 - (void)repaymentPlan {
-	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
-	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
-	repayViewController.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:repayViewController animated:YES];
+//	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
+//	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
+//	repayViewController.hidesBottomBarWhenPushed = YES;
+	MSFMyRepayViewModel *viewmodel = [[MSFMyRepayViewModel alloc] initWithservices:self.viewModel.servcies];
+	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)bankCardList {

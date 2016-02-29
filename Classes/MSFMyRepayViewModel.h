@@ -31,7 +31,9 @@
 // 本期应还款金额
 @property (nonatomic, readonly) NSString *repayMoney;
 
-- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;;
+@property (nonatomic, strong) RACCommand *executeFetchCommand;
+
+- (instancetype)initWithservices:(id <MSFViewModelServices>)services;;
 
 - (RACSignal *)fetchPlanPerodicTablesSignal;
 

@@ -18,8 +18,8 @@
 
 @implementation MSFButtonSlidersView
 
-- (void)buildButtonSliders:(NSArray *)titleArray {
-	CGFloat screenWidth = self.frame.size.width;
+- (void)buildButtonSliders:(NSArray *)titleArray WithFrame:(CGRect)frame {
+	CGFloat screenWidth = frame.size.width;
 	CGFloat screenHeight = self.frame.size.height;
 	CGFloat lineBottomHeight = 1;
 	for (int i = 0; i < titleArray.count; i++) {

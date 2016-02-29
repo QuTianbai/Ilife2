@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="oyY-7Y-SH5">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="AaW-wr-QJP">
+            <objects>
+                <navigationController id="oyY-7Y-SH5" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bj2-4F-a7u">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7QW-WR-OAd" kind="relationship" relationship="rootViewController" id="DDR-1M-Nee"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zoz-99-Q1U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-681" y="169"/>
+        </scene>
+        <!--My Repay Container View Controller-->
+        <scene sceneID="HRs-4I-N8B">
+            <objects>
+                <viewController storyboardIdentifier="MSFMyRepayContainerViewController" id="7QW-WR-OAd" customClass="MSFMyRepayContainerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mOq-Z8-aKF"/>
+                        <viewControllerLayoutGuide type="bottom" id="IR8-Bs-pD1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1SV-YG-8A7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bPs-fK-mT9" customClass="MSFButtonSlidersView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="40"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Ihk-yl-Z0B"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1x-ih-mfA">
+                                <rect key="frame" x="0.0" y="104" width="320" height="464"/>
+                                <connections>
+                                    <segue destination="xUF-V2-CQf" kind="embed" id="eFW-vO-ssQ"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="w1x-ih-mfA" secondAttribute="trailing" id="T53-og-Z8A"/>
+                            <constraint firstItem="bPs-fK-mT9" firstAttribute="top" secondItem="mOq-Z8-aKF" secondAttribute="bottom" id="X8l-da-pug"/>
+                            <constraint firstItem="IR8-Bs-pD1" firstAttribute="top" secondItem="w1x-ih-mfA" secondAttribute="bottom" id="elD-an-VuJ"/>
+                            <constraint firstAttribute="trailing" secondItem="bPs-fK-mT9" secondAttribute="trailing" id="kH1-vH-FGv"/>
+                            <constraint firstItem="w1x-ih-mfA" firstAttribute="leading" secondItem="1SV-YG-8A7" secondAttribute="leading" id="nqs-oi-rVJ"/>
+                            <constraint firstItem="w1x-ih-mfA" firstAttribute="top" secondItem="bPs-fK-mT9" secondAttribute="bottom" id="o4h-Qk-sfD"/>
+                            <constraint firstItem="bPs-fK-mT9" firstAttribute="leading" secondItem="1SV-YG-8A7" secondAttribute="leading" id="uc2-Ci-WaS"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Orf-3G-4QF"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="buttonSliderView" destination="bPs-fK-mT9" id="rat-PO-wPP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jvc-Pj-ibm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-306" y="169"/>
+        </scene>
+        <!--My Repay Table View Controller-->
+        <scene sceneID="eqE-w3-sHe">
+            <objects>
+                <tableViewController id="xUF-V2-CQf" customClass="MSFMyRepayTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="92P-cR-eCp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="xUF-V2-CQf" id="QZ4-nJ-Ek3"/>
+                            <outlet property="delegate" destination="xUF-V2-CQf" id="V0m-Yq-vKE"/>
+                        </connections>
+                    </tableView>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hL4-Lg-8ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="102" y="158"/>
+        </scene>
+    </scenes>
+</document>

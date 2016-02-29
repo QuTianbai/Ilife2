@@ -54,7 +54,7 @@
 	self.title = @"我的还款";
 	self.view.backgroundColor = [UIColor darkBackgroundColor];
 	self.segmentView.delegate = self;
-	[self.segmentView buildButtonSliders:@[@"全部", @"马上贷", @"信用钱包", @"商品贷"]];
+	//[self.segmentView buildButtonSliders:@[@"全部", @"马上贷", @"信用钱包", @"商品贷"]];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.width.constant = CGRectGetWidth([UIScreen mainScreen].bounds) / 2;
 	[SVProgressHUD showWithStatus:@"正在加载..."];
