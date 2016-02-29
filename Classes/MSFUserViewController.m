@@ -37,7 +37,7 @@
 #import "MSFCouponsViewController.h"
 #import "MSFCouponsContainerViewController.h"
 #import "MSFMyRepayContainerViewController.h"
-#import "MSFMyRepayViewModel.h"
+#import "MSFMyRepaysViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -180,8 +180,9 @@
 //	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
 //	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
 //	repayViewController.hidesBottomBarWhenPushed = YES;
-	MSFMyRepayViewModel *viewmodel = [[MSFMyRepayViewModel alloc] initWithservices:self.viewModel.servcies];
+	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.servcies];
 	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];
+	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -31,4 +31,13 @@
 	return dic[key];
 }
 
++ (NSString *)typeStringForKey:(NSString *)key {
+	NSDictionary *dict = @{
+		@"1" : @"马上贷",
+		@"3" : @"商品贷",
+		@"4" : @"社保贷"
+	};
+	return dict[key];
+}
+
 @end

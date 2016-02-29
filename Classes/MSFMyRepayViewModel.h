@@ -14,6 +14,8 @@
 
 @interface MSFMyRepayViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *type;
+
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @property (nonatomic, readonly) MSFRepaymentSchedules *model;
@@ -30,11 +32,13 @@
 @property (nonatomic, readonly) NSString *repayTime;
 // 本期应还款金额
 @property (nonatomic, readonly) NSString *repayMoney;
+//合同状态
+@property (nonatomic, readonly) NSString *status;
 
-@property (nonatomic, strong) RACCommand *executeFetchCommand;
+- (instancetype)initWithModel:(id)model;
 
-- (instancetype)initWithservices:(id <MSFViewModelServices>)services;;
+//- (instancetype)initWithservices:(id <MSFViewModelServices>)services;;
 
-- (RACSignal *)fetchPlanPerodicTablesSignal;
+//- (RACSignal *)fetchPlanPerodicTablesSignal;
 
 @end

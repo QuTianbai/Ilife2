@@ -12,5 +12,7 @@
 
 //申请、还款状态code码映射 Code to String
 + (NSString *)statusStringForKey:(NSString *)key;
+//产品类型
++ (NSString *)typeStringForKey:(NSString *)key;
 
 @end

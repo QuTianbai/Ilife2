@@ -11,28 +11,37 @@
 #import "MSFRepaymentSchedules.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "msfclient+PlanPerodicTables.h"
+#import "NSDictionary+MSFKeyValue.h"
+
+@interface MSFMyRepayViewModel ()
+
+@property (nonatomic, strong) MSFRepaymentSchedules *model;
+
+@end
 
 @implementation MSFMyRepayViewModel
 
-- (instancetype)initWithservices:(id<MSFViewModelServices>)services {
+- (instancetype)initWithModel:(id)model {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_services = services;
-	RAC(self, loanCurrTerm) = RACObserve(self, model.loanCurrTerm);
-	RAC(self, loanTerm) = RACObserve(self, model.loanTerm);
+	_model = model;
+	_contractTitle = @"";
+	_repayMoney = @"";
+	_repayTime = @"";
+	_applyType = @"";
+	_status = @"";
 	
-	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [RACSignal return:nil];
+	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
+		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];
-	
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		[[[self fetchMyRepayListSignal].collect replayLazily]
-		subscribeNext:^(id x) {
-			
-		}];
+	RAC(self, repayMoney) = [[RACObserve(self, model.repaymentTotalAmount) ignore:nil] map:^id(NSString *value) {
+		return [NSString stringWithFormat:@"本期应还：%@", value];
 	}];
+	RAC(self, repayTime) = [RACObserve(self, model.repaymentTime) ignore:nil];
+	RAC(self, applyType) = [RACObserve(self, model.contractType) ignore:nil];
+	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
 	
 	return self;
 }

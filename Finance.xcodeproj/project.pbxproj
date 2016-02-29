@@ -143,6 +143,8 @@
 		07A145F41C83E93F00C32F0B /* MSFMyRepayContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145F31C83E93F00C32F0B /* MSFMyRepayContainerViewController.m */; };
 		07A145F61C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A145F51C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard */; };
 		07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145F81C83F12800C32F0B /* MSFMyRepayTableViewController.m */; };
+		07A145FC1C84017600C32F0B /* MSFMyRepaysViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */; };
+		07A146001C84254B00C32F0B /* myRepayList.json in Resources */ = {isa = PBXBuildFile; fileRef = 07A145FF1C84254B00C32F0B /* myRepayList.json */; };
 		07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */; };
 		07A7DACA1BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */; };
 		07A7DAD11BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A7DAD01BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m */; };
@@ -1083,6 +1085,9 @@
 		07A145F51C83E95800C32F0B /* MSFMyRepayContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFMyRepayContainerViewController.storyboard; sourceTree = "<group>"; };
 		07A145F71C83F12800C32F0B /* MSFMyRepayTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepayTableViewController.h; sourceTree = "<group>"; };
 		07A145F81C83F12800C32F0B /* MSFMyRepayTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepayTableViewController.m; sourceTree = "<group>"; };
+		07A145FA1C84017600C32F0B /* MSFMyRepaysViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepaysViewModel.h; sourceTree = "<group>"; };
+		07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepaysViewModel.m; sourceTree = "<group>"; };
+		07A145FF1C84254B00C32F0B /* myRepayList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = myRepayList.json; sourceTree = "<group>"; };
 		07A7DAB91BFC1BC200916ADD /* MSFRepaymentPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentPlanViewController.h; sourceTree = "<group>"; };
 		07A7DABA1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentPlanViewController.m; sourceTree = "<group>"; };
 		07A7DAC91BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFRepaymentPlanStoryboard.storyboard; sourceTree = "<group>"; };
@@ -2870,6 +2875,8 @@
 				49075CE11BA95B20006F63FF /* MSFRepaymentSchedulesViewModel.m */,
 				07A145A51C81509500C32F0B /* MSFMyRepayViewModel.h */,
 				07A145A61C81509500C32F0B /* MSFMyRepayViewModel.m */,
+				07A145FA1C84017600C32F0B /* MSFMyRepaysViewModel.h */,
+				07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */,
 			);
 			name = RepaymentSchedules;
 			sourceTree = "<group>";
@@ -4403,6 +4410,7 @@
 				C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */,
 				C72149DC1B05A3640045F919 /* MSFClient+RepaymentSchedules.h */,
 				C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */,
+				07A145FF1C84254B00C32F0B /* myRepayList.json */,
 			);
 			name = RepaymentSchedule;
 			sourceTree = "<group>";
@@ -5019,6 +5027,7 @@
 				49FCC1931C572332004AFF13 /* MSFCouponsContainerViewController.storyboard in Resources */,
 				077347CD1BBA338900D7A130 /* add.png in Resources */,
 				C7A351751B217CB10001DF6A /* iconfont-bangzhu@2x.png in Resources */,
+				07A146001C84254B00C32F0B /* myRepayList.json in Resources */,
 				10E546711C0012CA00BBA827 /* ad_msdFull_top.png in Resources */,
 				49C0F1A91B2C315100E92572 /* icon-phone.png in Resources */,
 				C7D2D11C1B67938C000F51ED /* icon-cloze-bankAddress.png in Resources */,
@@ -5473,6 +5482,7 @@
 				4948E8901B95473F0048D125 /* MSFClient+Elements.m in Sources */,
 				102C7EE31C2A389B0023172B /* MSFOrderListItemCell.m in Sources */,
 				07330B611BBE2D9E000EB8FD /* MSFClient+CheckEmploee2.m in Sources */,
+				07A145FC1C84017600C32F0B /* MSFMyRepaysViewModel.m in Sources */,
 				492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */,
