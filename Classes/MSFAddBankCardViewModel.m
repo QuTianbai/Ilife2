@@ -107,10 +107,10 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 		@strongify(self)
 		return [self executeResetTrade];
 	}];
-//TODO: 未登录用户在这里存在绑定错误
-//	RAC(self, supportBanks) = [[[self.services.httpClient fetchSupportBankInfo] ignore:nil] map:^id(id value) {
-//		return value;
-//	}];
+	//TODO: 没有登录，直接在信用钱包中进入还款会导致崩溃
+	//RAC(self, supportBanks) = [[[self.services.httpClient fetchSupportBankInfo] ignore:nil] map:^id(id value) {
+	//	return value;
+	//}];
 
 	return self;
 }

@@ -70,8 +70,6 @@ static NSString *const kWalletIdentifier = @"4102";
 		[self.fetchWalletStatus subscribeNext:^(RACTuple *statusAndApplication) {
 			RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
 			self.status = status.integerValue;
-			//TODO:
-			self.status = MSFWalletActivated;
 			self.application = application;
 		}];
 		[self.fetchPhotos subscribeNext:^(id x) {

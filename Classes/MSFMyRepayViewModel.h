@@ -35,5 +35,4 @@
 
 - (RACSignal *)fetchPlanPerodicTablesSignal;
 
-
 @end

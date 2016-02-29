@@ -78,7 +78,7 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
-	//TODO:
+	//TODO: 更新马上贷控制器
 	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
 	
 	MSFCreditViewController *homePageViewController = [[MSFCreditViewController alloc] initWithViewModel:homepageViewModel];
@@ -95,13 +95,13 @@
 	UINavigationController *wallet = [[UINavigationController alloc] initWithRootViewController:walletViewController];
 	wallet.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tab-wallet-normal.png" selected:@"tab-wallet-highlighted.png"];
 	
-	//TODO:
+	//TODO: 更新商品贷控制器
 	MSFCommodityViewController *commodityViewController = [[MSFCommodityViewController alloc] initWithViewModel:circulateViewModel];
 	commodityViewController.title = @"商品贷";
 	UINavigationController *commodity = [[UINavigationController alloc] initWithRootViewController:commodityViewController];
 	commodityViewController.tabBarItem = [self itemWithNormal:@"商品贷" nomalImage:@"tab-commodity-normal.png" selected:@"tab-commodity-highlighted.png"];
 	
-	//TODO:
+	//TODO: 更新个人中心控制器
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
 	
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];

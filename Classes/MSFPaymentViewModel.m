@@ -63,7 +63,7 @@
 				self.bankNo = x.bankCardNo;
 				self.bankName = x.bankName;
 			}];
-			//TODO: 
+			//TODO: 没有登录，直接在信用钱包中进入还款会导致崩溃
 //		RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
 	

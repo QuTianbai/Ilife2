@@ -169,14 +169,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
 		[self.tableView reloadData];
 	}];
-	
-//	[[self.forgetPasswordBt rac_signalForControlEvents:UIControlEventTouchUpInside]
-//	subscribeNext:^(id x) {
-//		MSFFindPasswordViewController *findPasswordVC = [[MSFFindPasswordViewController alloc] initWithModel:self.viewModel];
-//		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:findPasswordVC];
-//		[self presentModalViewController:navigationController animated:YES];
-//		
-//	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -188,10 +180,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[super viewWillDisappear:animated];
 	self.viewModel.active = NO;
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//	[segue.destinationViewController bindViewModel:self.viewModel];
-//}
 
 #pragma mark - UITableViewDelegate
 
