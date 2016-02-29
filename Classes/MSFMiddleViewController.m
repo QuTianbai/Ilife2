@@ -6,6 +6,7 @@
 
 #import "MSFMiddleViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFWalletViewModel.h"
 
 @interface MSFMiddleViewController ()
@@ -30,12 +31,21 @@
 	
 	RAC(self.amountLabel, text) = RACObserve(self, viewModel.repayAmounts);
 	RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.repayDates);
+	
+	RAC(self.applyButton, rac_command) = RACObserve(self, viewModel.executeDrawCommand);
+	RAC(self.repayButton, rac_command) = RACObserve(self, viewModel.executeRepayCommand);
 }
 
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	[self.viewModel.executeDrawCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	[self.viewModel.executeRepayCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 @end

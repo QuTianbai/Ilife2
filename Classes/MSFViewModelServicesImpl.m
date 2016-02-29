@@ -85,6 +85,9 @@
 #import "MSFAddBankCardViewModel.h"
 #import "MSFAddBankCardTableViewController.h"
 
+#import "MSFOrderListViewModel.h"
+#import "MSFOrderListViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -176,6 +179,9 @@
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {
+		viewController = [[MSFOrderListViewController alloc] initWithViewModel:viewModel];
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFAddBankCardViewModel.class]) {
 		viewController = [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;

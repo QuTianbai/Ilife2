@@ -17,6 +17,7 @@
 #import "MSFWallet.h"
 #import "MSFBankCardListModel.h"
 #import "MSFLoanType.h"
+#import "MSFCirculateCashModel.h"
 
 #import "MSFAuthorizeViewModel.h"
 #import "MSFFormsViewModel.h"
@@ -24,6 +25,9 @@
 #import "MSFAddBankCardViewModel.h"
 #import "MSFApplyListViewModel.h"
 #import "MSFInventoryViewModel.h"
+#import "MSFDrawingsViewModel.h"
+#import "MSFRepaymentViewModel.h"
+#import "MSFOrderListViewModel.h"
 
 static NSString *const kWalletIdentifier = @"4102";
 
@@ -66,6 +70,8 @@ static NSString *const kWalletIdentifier = @"4102";
 		[self.fetchWalletStatus subscribeNext:^(RACTuple *statusAndApplication) {
 			RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
 			self.status = status.integerValue;
+			//TODO:
+			self.status = MSFWalletActivated;
 			self.application = application;
 		}];
 		[self.fetchPhotos subscribeNext:^(id x) {
@@ -131,6 +137,15 @@ static NSString *const kWalletIdentifier = @"4102";
 	
 	_excuteActionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return self.actionSignal;
+	}];
+	_executeDrawCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return self.drawSignal;
+	}];
+	_executeRepayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return self.repaySignal;
+	}];
+	_executeBillsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return self.billsSignal;
 	}];
 	
   return self;
@@ -198,6 +213,8 @@ static NSString *const kWalletIdentifier = @"4102";
 	}];
 }
 
+#pragma mark - Custom Accessors
+
 - (RACSignal *)actionSignal {
 	if (!self.services.httpClient.isAuthenticated) {
 		return self.authenticateSignal;
@@ -224,6 +241,35 @@ static NSString *const kWalletIdentifier = @"4102";
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 	}
 	return RACSignal.empty;
+}
+
+- (RACSignal *)drawSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] initWithDictionary:self.model.dictionaryValue error:nil];
+		MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:model services:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)repaySignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] initWithDictionary:self.model.dictionaryValue error:nil];
+		MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:model services:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)billsSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFOrderListViewModel *viewModel = [[MSFOrderListViewModel alloc] initWithServices:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end

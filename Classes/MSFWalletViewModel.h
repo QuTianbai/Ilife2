@@ -42,6 +42,9 @@ typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
 @property (nonatomic, strong, readonly) NSString *action;
 
 @property (nonatomic, strong, readonly) RACCommand *excuteActionCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeDrawCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeRepayCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeBillsCommand;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
