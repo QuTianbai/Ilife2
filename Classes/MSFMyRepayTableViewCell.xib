@@ -100,6 +100,7 @@
                 <outlet property="imgBg" destination="kTJ-iM-OEj" id="z7T-2u-GKq"/>
                 <outlet property="repayMoney" destination="kQY-0D-fPe" id="Zot-bL-lyS"/>
                 <outlet property="repayTime" destination="TLZ-A9-Lag" id="YFQ-Z9-ctr"/>
+                <outlet property="repayTimeTitleLB" destination="Wjq-zu-gVW" id="yai-Vm-keq"/>
                 <outlet property="repayedLB" destination="01Q-hQ-4aC" id="xI1-Pm-Xbb"/>
             </connections>
             <point key="canvasLocation" x="208" y="240.5"/>

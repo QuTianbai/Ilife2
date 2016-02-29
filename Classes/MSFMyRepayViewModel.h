@@ -31,7 +31,7 @@
 // 还款日
 @property (nonatomic, readonly) NSString *repayTime;
 // 本期应还款金额
-@property (nonatomic, readonly) NSString *repayMoney;
+@property (nonatomic, readonly) NSMutableAttributedString *repayMoney;
 //合同状态
 @property (nonatomic, readonly) NSString *status;
 

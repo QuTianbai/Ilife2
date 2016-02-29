@@ -16,6 +16,7 @@
 @interface MSFMyRepayViewModel ()
 
 @property (nonatomic, strong) MSFRepaymentSchedules *model;
+@property (nonatomic, readwrite) NSMutableAttributedString *repayMoney;
 
 @end
 
@@ -28,7 +29,7 @@
 	}
 	_model = model;
 	_contractTitle = @"";
-	_repayMoney = @"";
+	_repayMoney = [[NSMutableAttributedString alloc] initWithString:@""];
 	_repayTime = @"";
 	_applyType = @"";
 	_status = @"";
@@ -36,12 +37,22 @@
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
 		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];
-	RAC(self, repayMoney) = [[RACObserve(self, model.repaymentTotalAmount) ignore:nil] map:^id(NSString *value) {
-		return [NSString stringWithFormat:@"本期应还：%@", value];
-	}];
 	RAC(self, repayTime) = [RACObserve(self, model.repaymentTime) ignore:nil];
 	RAC(self, applyType) = [RACObserve(self, model.contractType) ignore:nil];
 	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
+	[RACObserve(self, model)
+	 subscribeNext:^(MSFRepaymentSchedules *model) {
+		 NSString *str = [NSString stringWithFormat:@"本期应还：¥%@", model.repaymentTotalAmount];
+		 NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:str];
+		 NSRange redRange = [str rangeOfString:[NSString stringWithFormat:@"¥%@", model.repaymentTotalAmount]];
+		 
+		 if ([model.contractStatus isEqualToString:@"已还款"]) {
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:redRange];
+		 } else {
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:redRange];
+		 }
+		 self.repayMoney = bankCardShowInfoAttributeStr;
+	 }];
 	
 	return self;
 }
