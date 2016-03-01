@@ -396,6 +396,9 @@
                         <outlet property="liveAreaTF" destination="3hG-vc-cU0" id="g82-1f-P3w"/>
                         <outlet property="mobileTF" destination="QwZ-7o-3Wr" id="PMg-rq-AcP"/>
                         <outlet property="nameTF" destination="e2t-aG-goZ" id="ccf-7l-6C3"/>
+                        <outlet property="readProtocalButton" destination="rNM-Rk-0rw" id="ats-c4-zEb"/>
+                        <outlet property="readProtocalView" destination="i8J-ag-A46" id="A3Z-mq-Kie"/>
+                        <outlet property="showProtocalButton" destination="xj2-w2-pHR" id="l0H-0U-dbW"/>
                         <outlet property="submitBT" destination="Aec-X8-vfe" id="zQ1-jO-niR"/>
                     </connections>
                 </tableViewController>
