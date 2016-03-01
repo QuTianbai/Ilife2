@@ -672,8 +672,7 @@ static NSDictionary *messages;
 			}
 			
 			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
-				//TODO: cancel auth error
-				//[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
 			}
 			
 			[self reportFabric:operation error:error];
