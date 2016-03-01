@@ -63,10 +63,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	
-	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
-	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	// 登录用户名/密码
 	self.username.text = MSFActivate.signInMobile;
