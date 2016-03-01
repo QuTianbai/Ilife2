@@ -84,7 +84,6 @@
 		_contractLineDate.textAlignment = NSTextAlignmentCenter;
 		
 		
-		
 		[_contractStatusLabel setTextColor:[MSFCommandView getColorWithString:REPAY_ORANGR_COLOR]];
 		_contractStatusLabel.font = [UIFont systemFontOfSize:13];
 		_contractStatusLabel.textAlignment = NSTextAlignmentRight;

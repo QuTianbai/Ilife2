@@ -12,7 +12,7 @@
 #import "MSFGuideViewController.h"
 #import "MSFLoginViewController.h"
 
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "MSFUser.h"
 #import "MSFReleaseNote.h"
 #import "MSFClient+ReleaseNote.h"
@@ -35,8 +35,10 @@
 #import "MSFCustomAlertView.h"
 #import "MSFConfirmContactViewModel.h"
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtilsViewController.h"
+#import "MSFEnvironmentsViewController.h"
 #import "MSFFormsViewModel.h"
+#import "UIImage+Color.h"
+#import "MSFSignInViewController.h"
 
 #if TEST
 #import <BugshotKit/BugshotKit.h>
@@ -68,37 +70,66 @@
 	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"ios@msxf.com"];
 	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
 #endif
+	// ViewModels
+	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	self.authorizeVewModel = self.viewModel.authorizeViewModel;
 	
-	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
+	 //由于取消首页引导图, 定位地址信息权限获取重写到程序启动
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 		[manager startUpdatingLocation];
 	}];
 
-	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-		[self setup];
+	//[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
+//		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+//		 subscribeNext:^(id x) {
+//			 NSString *str = [x object];
+//			 if ([str isEqualToString:@"1"]) {
+//				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
+//			 }
+//			 [self setup];
+//		 }];
+//
+//		[MSFGuideViewController.guide show];
+				//return [RACSignal empty];
+	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
+		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+		 subscribeNext:^(id x) {
+			 NSString *str = [x object];
+			 if ([str isEqualToString:@"1"]) {
+				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
+			 }
+			 [self setup];
+		 }];
+		
+		[MSFGuideViewController.guide show];
+		//[self setup];
 		return [RACSignal empty];
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
+		
+		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+		 subscribeNext:^(id x) {
+			 [[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
+				subscribeNext:^(id x) {
+					NSString *str = [x object];
+					if ([str isEqualToString:@"1"]) {
+						self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
+					}
+					[self setup];
+				}];
+			 
+			 [MSFGuideViewController.guide show];
+			// [self setup];
+		 }];
+		//[MSFGuideViewController.guide show];
 		#if !DEBUG
-		if (MSFUtils.poster) {
+		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
 		[self setup];
 		self.releaseNote = releasenote;
-		if (releasenote.status == 1) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		} else if (releasenote.status == 2) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		}
-		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+		[self updateCheck];
 	}];
 	
 	return YES;
@@ -149,12 +180,8 @@
 	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
 	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
 	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
-  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
-	// ViewModels
-	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
-	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
-	self.authorizeVewModel = self.viewModel.authorizeViewModel;
+  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// 启动到登录的过渡动画
 	CATransition *transition = [CATransition animation];
@@ -253,7 +280,7 @@
 	
 	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
 	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
-		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]];
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]];
 		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
 		[vc dismissViewControllerAnimated:NO completion:nil];
 	}
@@ -277,7 +304,7 @@
 }
 
 - (void)statusBarTouchedAction {
-	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]] animated:YES completion:nil];
+	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]] animated:YES completion:nil];
 }
 
 #endif

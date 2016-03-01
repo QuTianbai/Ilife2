@@ -8,14 +8,14 @@
 #import "MSFViewModelServices.h"
 
 @class RACCommand;
-@class MSFHomePageCellModel;
+@class MSFHomePageItemViewModel;
 
 @interface MSFHomepageViewModel : RVMViewModel
 
 @property (nonatomic, weak, readonly) id<MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) RACCommand *loanInfoRefreshCommand;
 
-@property (nonatomic, strong, readonly) MSFHomePageCellModel *cellModel;
+@property (nonatomic, strong, readonly) MSFHomePageItemViewModel *cellModel;
 @property (nonatomic, strong, readonly) NSArray *banners;
 
 @property (nonatomic, strong, readonly) NSArray *orders;

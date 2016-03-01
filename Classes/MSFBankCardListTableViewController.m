@@ -12,9 +12,9 @@
 #import "MSFCommandView.h"
 #import "MSFAddBankCardTableViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFBankCardListModel.h"
-#import "MSFCheckHasTradePassword.h"
+#import "MSFCheckTradePasswordViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFInputTradePasswordViewController.h"
 #import "MSFBankCardListViewModel.h"
@@ -319,7 +319,7 @@
 				isFirstBankCard = YES;
 			}
 			AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-			vc.viewModel =  [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:delegate.viewModel.formsViewModel andIsFirstBankCard:isFirstBankCard];
+			vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:delegate.viewModel.formsViewModel andIsFirstBankCard:isFirstBankCard];
 			[self.navigationController pushViewController:vc animated:YES];
 		}
 		

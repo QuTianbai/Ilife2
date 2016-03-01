@@ -8,7 +8,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "MSFClient.h"
-#import "MSFClient+MSFLifeInsurance.h"
+#import "MSFClient+LifeInsurance.h"
 #import "MSFLoanType.h"
 
 QuickSpecBegin(MSFLifeInsuranceViewModelSpec)

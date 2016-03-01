@@ -11,7 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFOrderListCell.h"
 #import "MSFOrderDetail.h"
-#import "MSFClient+MSFOrder.h"
+#import "MSFClient+Order.h"
 #import "UIColor+Utils.h"
 #import "MSFDimensionalCodeViewModel.h"
 #import "MSFDimensionalCodeViewController.h"

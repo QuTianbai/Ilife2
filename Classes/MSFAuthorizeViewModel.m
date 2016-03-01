@@ -265,6 +265,17 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 						}];
 	}];
 	
+	_executeSignInCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		self.loginType = MSFLoginSignIn;
+		[self.services presentViewModel:self];
+		return [RACSignal return:nil];
+	}];
+	_executeSignUpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		self.loginType = MSFLoginSignUp;
+		[self.services presentViewModel:self];
+		return [RACSignal return:nil];
+	}];
+	
 	return self;
 }
 
@@ -319,6 +330,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 #pragma mark - Private
 
 - (RACSignal *)executeSignInSignal {
+	MSFUser *mock = [[MSFUser alloc] initWithDictionary:@{
+		@"server": MSFServer.dotComServer,
+		@"uniqueId": @"",
+		@"objectID": @"",
+	} error:nil];
+	MSFClient *client = [MSFClient authenticatedClientWithUser:mock token:@""];
+	[self.services setHttpClient:client];
+	return [RACSignal return:client];
+	
 	NSError *error;
 	if (self.loginType == MSFLoginIDSignIn) {
 	  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
@@ -377,31 +397,6 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 - (RACSignal *)executeSignUpSignal {
-	NSError *error = nil;
-	// 另外支持输入"."、"。"、"·"和"▪"。但是第一位和最后一位必须是汉字。
-  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
-    NSString *str = @"请填写真实的姓名";
-    if (self.name.length == 0) {
-      str = @"请填写真实的姓名";
-    }
-    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: str,
-      }];
-    return [RACSignal error:error];
-  }
-	if (self.card.length != 18) {
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
-		}];
-    return [RACSignal error:error];
-	}
-  if (!self.expired && !self.permanent ) {
-    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证有效期",
-                                                                                    }];
-    return [RACSignal error:error];
-  }
-	
 	if (![self.username isMobile]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
 	} else if (![self.password isPassword]) {
@@ -412,13 +407,9 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:[self.class errorWithFailureReason:@"请阅读注册协议"]];
 	}
 	
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = @"yyyy-MM-dd";
-	NSDate *expiredDate = self.permanent ? [NSDate msf_date:[dateFormatter dateFromString:@"2099-12-31"]]: self.expired;
-	
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	return [[MSFClient
-		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:expiredDate]
+		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
 		doNext:^(id x) {
 			_signInValid = YES;
 			[self.services setHttpClient:x];

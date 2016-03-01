@@ -22,7 +22,7 @@
 #import "MSFUserInfomationViewController.h"
 
 #import "MSFEdgeButton.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"

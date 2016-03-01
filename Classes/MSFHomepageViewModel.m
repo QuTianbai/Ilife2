@@ -9,22 +9,22 @@
 
 #import "MSFUser.h"
 #import "MSFFormsViewModel.h"
-#import "MSFHomePageCellModel.h"
+#import "MSFHomePageItemViewModel.h"
 #import "MSFCirculateCashModel.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFRelationshipViewModel.h"
 #import "MSFProfessionalViewModel.h"
 
-#import "MSFClient+MSFCirculateCash.h"
+#import "MSFClient+CirculateCash.h"
 #import "MSFClient+Advers.h"
 #import "MSFAdver.h"
-#import "MSFClient+MSFOrder.h"
+#import "MSFClient+Order.h"
 #import "MSFOrder.h"
 
 @interface MSFHomepageViewModel ()
 
 @property (nonatomic, strong) MSFFormsViewModel *viewModel;
-@property (nonatomic, strong, readwrite) MSFHomePageCellModel *cellModel;
+@property (nonatomic, strong, readwrite) MSFHomePageItemViewModel *cellModel;
 @property (nonatomic, strong, readwrite) NSArray *banners;
 @property (nonatomic, assign, readwrite) BOOL hasOrders;
 @property (nonatomic, strong, readwrite) NSArray *orders;
@@ -52,7 +52,7 @@
 		return [[self.services.httpClient fetchCirculateCash:nil] map:^id(MSFCirculateCashModel *loan) {
 			if (loan) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMUPDATEMODEL" object:loan];
-				return [[MSFHomePageCellModel alloc] initWithModel:loan services:services];
+				return [[MSFHomePageItemViewModel alloc] initWithModel:loan services:services];
 			} else {
 				return nil;
 			}

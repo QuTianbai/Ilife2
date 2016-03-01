@@ -12,8 +12,8 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-#import "MSFClient+MSFSocialInsurance.h"
-#import "MSFClient+MSFApplyInfo.h"
+#import "MSFClient+SocialInsurance.h"
+#import "MSFClient+ApplyInfo.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSDate+UTC0800.h"
 
@@ -27,7 +27,7 @@
 #import "MSFLoanType.h"
 #import "MSFAddress.h"
 #import "MSFUserContact.h"
-#import "MSFClient+MSFApplyInfo.h"
+#import "MSFClient+ApplyInfo.h"
 #import "NSString+Matches.h"
 
 static NSString *const MSFSocialInsuranceCashViewModelErrorDomain = @"MSFSocialInsuranceCashViewModelErrorDomain";

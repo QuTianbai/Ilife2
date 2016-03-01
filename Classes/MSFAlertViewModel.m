@@ -12,7 +12,7 @@
 #import "MSFApplicationForms.h"
 #import "MSFSelectKeyValues.h"
 
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 
 @interface MSFAlertViewModel ()
 
@@ -22,7 +22,7 @@
 
 @implementation MSFAlertViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)cashViewModel user:(MSFUser *)user {
+- (instancetype)initWithFormsViewModel:(MSFApplyCashViewModel *)cashViewModel user:(MSFUser *)user {
   self = [super init];
   if (!self) {
     return nil;

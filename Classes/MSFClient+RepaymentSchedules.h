@@ -22,4 +22,6 @@
 // Returns a signal will send a instance of <MSFRepaymentSchedules>
 - (RACSignal *)fetchCircleRepaymentSchedules;
 
+- (RACSignal *)fetchMyRepayWithType:(NSString *)type;
+
 @end

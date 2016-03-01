@@ -16,7 +16,7 @@
 #import "MSFCirculateCashModel.h"
 #import "MSFSmsCodeTableViewController.h"
 #import "MSFRepaymentSchedulesViewModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 
 @interface MSFDrawCashTableViewController () <MSFInputTradePasswordDelegate>
 

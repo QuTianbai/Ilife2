@@ -9,7 +9,7 @@
 #import "MSFForgetTradePwdTableViewController.h"
 #import "MSFEdgeButton.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFAddBankCardVIewModel.h"
+#import "MSFAddBankCardViewModel.h"
 #import "MSFBankInfoModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SHSPhoneComponent/SHSPhoneTextField.h>
@@ -40,7 +40,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 @property (weak, nonatomic) IBOutlet UILabel *countLB;
 @property (weak, nonatomic) IBOutlet UIImageView *sendCaptchaView;
 @property (nonatomic, strong) MSFAuthorizeViewModel *authviewModel;
-@property (nonatomic, strong) MSFAddBankCardVIewModel *viewModel;
+@property (nonatomic, strong) MSFAddBankCardViewModel *viewModel;
 @property (nonatomic, strong) NSMutableAttributedString *supportBanks;
 
 @end
@@ -62,7 +62,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	self.title = @"忘记交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_authviewModel = appdelegate.authorizeVewModel;
-	_viewModel = [[MSFAddBankCardVIewModel alloc] initWithFormsViewModel:appdelegate.viewModel.formsViewModel andIsFirstBankCard:NO];
+	_viewModel = [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:appdelegate.viewModel.formsViewModel andIsFirstBankCard:NO];
 	
 	RAC(self, bankIcon.image) = [RACObserve(self, viewModel.bankCode) map:^id(NSString *value) {
 		return [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:value]];

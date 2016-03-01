@@ -22,4 +22,13 @@
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
+- (RACSignal *)fetchMyRepayWithType:(NSString *)type {
+//	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentList" parameters:@{
+//									@"type": type,
+//								}];
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayList" ofType:@"json"];
+	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
+	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
+}
+
 @end

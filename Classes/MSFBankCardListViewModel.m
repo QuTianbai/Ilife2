@@ -7,11 +7,11 @@
 //
 
 #import "MSFBankCardListViewModel.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+Users.h"
-#import "MSFClient+MSFBankCardList.h"
-#import "MSFCheckHasTradePassword.h"
+#import "MSFClient+BankCardList.h"
+#import "MSFCheckTradePasswordViewModel.h"
 
 @interface MSFBankCardListViewModel ()
 
@@ -33,7 +33,7 @@
 	_executeUnbind = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeUnbindSignal];
 	}];
-	_checkHasTrandPasswordViewModel = [[MSFCheckHasTradePassword alloc] initWithServices:self.services];
+	_checkHasTrandPasswordViewModel = [[MSFCheckTradePasswordViewModel alloc] initWithServices:self.services];
 	
 	return self;
 }

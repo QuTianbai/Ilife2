@@ -11,10 +11,10 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFAddress.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-#import "MSFClient+MSFSocialInsurance.h"
+#import "MSFClient+SocialInsurance.h"
 #import "MSFLoanType.h"
 #import "MSFCommodityCashViewModel.h"
 #import "MSFDistinguishViewModel.h"
@@ -42,7 +42,7 @@
 }
 
 - (RACSignal *)loanAgreementSignal {
-	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];

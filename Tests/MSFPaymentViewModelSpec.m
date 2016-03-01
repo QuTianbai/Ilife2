@@ -7,9 +7,9 @@
 #import "MSFPaymentViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFOrderDetail.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFBankCardListModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 #import "MSFClient+Users.h"
 
 QuickSpecBegin(MSFPaymentViewModelSpec)
@@ -73,7 +73,7 @@ it(@"should have support banks description", ^{
 
 it(@"should request for captcha", ^{
 	// given
-	MSFTransSmsSeqNOModel *mockModel = mock([MSFTransSmsSeqNOModel class]);
+	MSFPaymentToken *mockModel = mock([MSFPaymentToken class]);
 	stubProperty(mockModel, smsSeqNo, @"foo");
 	[given([client sendSmsCodeForTrans]) willReturn:[RACSignal return:mockModel]];
 	

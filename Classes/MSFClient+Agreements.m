@@ -6,7 +6,7 @@
 
 #import "MSFClient+Agreements.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFUser.h"
 #import "MSFLoanType.h"
 #import "MSFCartViewModel.h"
@@ -24,7 +24,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 
 #pragma mark - Private
 
-- (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashVIewModel *)product {
+- (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashViewModel *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{
 			@"productCode": product.loanType.typeID,
@@ -82,7 +82,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 		}];
 }
 
-- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashVIewModel *)product {
+- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashViewModel *)product {
 	return [[self
 		fetchLoanAgreementRequestWithProduct:product]
 		flattenMap:^RACStream *(id value) {

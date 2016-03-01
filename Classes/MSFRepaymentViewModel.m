@@ -17,10 +17,10 @@
 #import "MSFGetBankIcon.h"
 #import "MSFClient+Users.h"
 #import "MSFClient+Payment.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import "MSFOrderDetail.h"
 #import "MSFBankCardListModel.h"
-#import "MSFTransSmsSeqNOModel.h"
+#import "MSFPaymentToken.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFCirculateCashViewModel.h"
 
@@ -32,7 +32,6 @@
 @property (nonatomic, strong, readwrite) NSString *uniqueTransactionID;
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
-
 
 @end
 
@@ -97,7 +96,8 @@
 				self.bankNo = x.bankCardNo;
 				self.bankName = x.bankName;
 			}];
-		RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
+			//TODO: 没有登录，直接在信用钱包中进入还款会导致崩溃
+			//RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
 	
 	_executeCaptchaCommand = [[RACCommand alloc] initWithEnabled:self.captchaValidSignal signalBlock:^RACSignal *(id input) {
@@ -136,7 +136,7 @@
 
 - (RACSignal *)captchaSignal {
 	@weakify(self)
-	return [[self.services.httpClient sendSmsCodeForTrans] doNext:^(MSFTransSmsSeqNOModel *x) {
+	return [[self.services.httpClient sendSmsCodeForTrans] doNext:^(MSFPaymentToken *x) {
 		@strongify(self)
 		self.uniqueTransactionID = x.smsSeqNo;
 	}];

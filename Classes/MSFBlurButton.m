@@ -13,7 +13,7 @@
 	if (!(self = [super initWithCoder:aDecoder])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor tintColor];
+	self.backgroundColor = [UIColor navigationBgColor];
 	self.tintColor = [UIColor fontColor];
 	self.layer.cornerRadius = 5;
 	
@@ -24,7 +24,7 @@
 	if (!(self = [super initWithFrame:frame])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor tintColor];
+	self.backgroundColor = [UIColor navigationBgColor];
 	self.tintColor = [UIColor fontColor];
 	self.layer.cornerRadius = 5;
 	

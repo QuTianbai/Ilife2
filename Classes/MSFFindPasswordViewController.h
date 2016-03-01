@@ -10,4 +10,6 @@
 
 @interface MSFFindPasswordViewController : MSFGroupTableViewController <MSFReactiveView>
 
+- (instancetype)initWithModel:(id)viewModel;
+
 @end

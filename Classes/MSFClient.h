@@ -142,7 +142,7 @@ extern const NSInteger MSFClientResponseWithoutContent;
 // expiredDate - The User citizen ID number expired date, The Max value is 2099-12-31
 //
 // Returns authenticated client with user and token
-+ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha realname:(NSString *)realname citizenID:(NSString *)citizenID citizenIDExpiredDate:(NSDate *)expiredDate;
++ (RACSignal *)signUpAsUser:(MSFUser *)user password:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha;
 
 // 退出登录
 //

@@ -12,7 +12,7 @@
 #import "MSFClient+Attachment.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "UIImage+Resize.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 
 @interface MSFAttachmentViewModel ()
 

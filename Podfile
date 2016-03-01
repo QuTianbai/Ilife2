@@ -3,6 +3,8 @@ platform :ios, '7.0'
 
 inhibit_all_warnings!
 
+target 'Finance' do
+
 pod 'AFNetworking', '2.5.0'
 pod 'MTLFMDBAdapter', '0.1.8'
 pod 'ReactiveCocoa', '2.4.2'
@@ -33,6 +35,8 @@ pod 'MSPageViewController', :git => 'https://github.com/mindsnacks/MSPageViewCon
 #pod 'BugshotKit', :git => 'https://github.com/marcoarment/BugshotKit', :commit => 'e982a2a'
 pod 'DZNEmptyDataSet', '1.7.3'
 
-target 'Tests', :exclusive => true do
+end
+
+target 'Tests' do
     pod 'OCMockito', '2.0.1'
 end

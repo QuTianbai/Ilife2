@@ -8,7 +8,7 @@
 
 #import "MSFOrderListViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+MSFOrder.h"
+#import "MSFClient+Order.h"
 #import "MSFOrder.h"
 #import "MSFOrderDetail.h"
 

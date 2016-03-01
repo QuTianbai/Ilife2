@@ -13,7 +13,7 @@
 #import "MSFAddressViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
-#import "MSFClient+MSFApplyCash.h"
+#import "MSFClient+ApplyCash.h"
 #import "NSString+Matches.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectKeyValues.h"

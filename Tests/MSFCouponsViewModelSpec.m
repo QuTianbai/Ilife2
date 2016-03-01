@@ -17,6 +17,8 @@ __block MSFCouponsViewModel *sut;
 __block id <MSFViewModelServices> services;
 __block MSFCoupon *model;
 __block MSFClient *client;
+__block BOOL success;
+__block NSError *error;
 
 beforeEach(^{
 	model = mock([MSFCoupon class]);
@@ -25,21 +27,27 @@ beforeEach(^{
 	stubProperty(model, ticketName, @"bar");
 	stubProperty(model, receiveChannel, @"ios");
 	stubProperty(model, type, @"foo");
+	stubProperty(model, status, @"");
 	
 	services = mockProtocol(@protocol(MSFViewModelServices));
 	client = mock([MSFClient class]);
 	[given([services httpClient]) willReturn:client];
 	
 	sut = [[MSFCouponsViewModel alloc] initWithServices:services];
+	expect(@(sut.active)).to(beFalsy());
+	
+	success = NO;
+	error = nil;
 });
 
 it(@"should initialize", ^{
   // given
-	[given([client fetchCouponsWithStatus:@""]) willReturn:[RACSignal return:model]];
+	[given([client fetchCouponsWithStatus:@"B"]) willReturn:[RACSignal return:model]];
+	[given([client fetchCouponsWithStatus:@"C"]) willReturn:[RACSignal return:model]];
+	[given([client fetchCouponsWithStatus:@"D"]) willReturn:[RACSignal return:model]];
 	
-	BOOL success;
-	NSError *error;
-	
+	// when
+	sut.active = YES;
 	NSArray *results = [[sut.executeFetchCommand execute:@""] asynchronousFirstOrDefault:nil success:&success error:&error];
 	
   // then
@@ -56,17 +64,20 @@ it(@"should initialize", ^{
 });
 
 
-it(@"should get nil view models when an error occur", ^{
+fit(@"should get nil view models when an error occur", ^{
 	// given
-	[given([client fetchCouponsWithStatus:@""]) willReturn:[RACSignal return:model]];
-	[[sut.executeFetchCommand execute:@""] asynchronousFirstOrDefault:nil success:nil error:nil];
+	[given([client fetchCouponsWithStatus:@"B"]) willReturn:[RACSignal error:[NSError errorWithDomain:@"" code:10 userInfo:@{}]]];
+	[given([client fetchCouponsWithStatus:@"C"]) willReturn:[RACSignal return:model]];
+	[given([client fetchCouponsWithStatus:@"D"]) willReturn:[RACSignal return:model]];
 	
 	// when
-	[given([client fetchCouponsWithStatus:@""]) willReturn:[RACSignal error:[NSError errorWithDomain:@"" code:10 userInfo:@{}]]];
-	[[sut.executeFetchCommand execute:@""] asynchronousFirstOrDefault:nil success:nil error:nil];
+	sut.active = YES;
+	[[sut.executeFetchCommand execute:@""] asynchronousFirstOrDefault:nil success:&success error:&error];
 	
 	// then
-	expect(@(sut.viewModels.count)).to(equal(@0));
+	expect(error).to(beNil());
+	expect(@(success)).to(beTruthy());
+	expect(@(sut.viewModels.count)).to(equal(@2));
 });
 
 QuickSpecEnd

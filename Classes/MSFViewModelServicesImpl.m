@@ -77,6 +77,17 @@
 
 #import "MSFInputTradePasswordViewController.h"
 
+#import "MSFSignInViewController.h"
+
+#import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFSocialCaskApplyTableViewController.h"
+
+#import "MSFAddBankCardViewModel.h"
+#import "MSFAddBankCardTableViewController.h"
+
+#import "MSFOrderListViewModel.h"
+#import "MSFOrderListViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -96,8 +107,7 @@
 	if (!self) {
 		return nil;
 	}
-	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
-	_client = [MSFClient unauthenticatedClientWithUser:user];
+	[self setHttpClient:[MSFClient unauthenticatedClientWithUser:[MSFUser userWithServer:MSFServer.dotComServer]]];
 	_passcodeViewController = [[MSFInputTradePasswordViewController alloc] init];
 	
 	return self;
@@ -167,6 +177,16 @@
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {
+		viewController = [[MSFOrderListViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFAddBankCardViewModel.class]) {
+		viewController = [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+		((MSFAddBankCardTableViewController *)viewController).viewModel = viewModel;
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
@@ -191,7 +211,7 @@
 	id viewController;
 	
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
-		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
+		MSFSignInViewController *loginViewController = [[MSFSignInViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else {
 		NSLog(@"an unknown ViewModel was present!");

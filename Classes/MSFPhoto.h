@@ -14,4 +14,9 @@
 @property (nonatomic, copy) NSString *type;
 @property (nonatomic, copy) NSString *name;
 
+@property (nonatomic, strong, readonly) NSURL *URL;
+
+- (instancetype)initWithURL:(NSURL *)URL;
+- (instancetype)initWithURLString:(NSString *)URL;
+
 @end

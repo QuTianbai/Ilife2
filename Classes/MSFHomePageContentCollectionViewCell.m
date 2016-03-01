@@ -13,7 +13,7 @@
 #import "MSFUserInfoCircleView.h"
 #import "MSFHomePageContentView.h"
 
-#import "MSFHomePageCellModel.h"
+#import "MSFHomePageItemViewModel.h"
 #import "MSFHomepageViewModel.h"
 
 #import "UILabel+AttributeColor.h"
@@ -64,8 +64,8 @@
 			[vm pushInfo:x.integerValue];
 		}];
 	}
-	if ([viewModel isKindOfClass:MSFHomePageCellModel.class]) {
-		MSFHomePageCellModel *vm = viewModel;
+	if ([viewModel isKindOfClass:MSFHomePageItemViewModel.class]) {
+		MSFHomePageItemViewModel *vm = viewModel;
 		[self placeholderShow:NO];
 		[_content updateWithModel:vm];
 		[[_content.statusSignal takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(id x) {

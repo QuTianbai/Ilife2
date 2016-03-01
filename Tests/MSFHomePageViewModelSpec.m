@@ -6,7 +6,7 @@
 
 #import "MSFHomepageViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFHomePageCellModel.h"
+#import "MSFHomePageItemViewModel.h"
 #import "MSFClient.h"
 #import "MSFApplyList.h"
 #import "MSFClient+ApplyList.h"
@@ -16,7 +16,7 @@
 #import "MSFClient+Users.h"
 #import "MSFResponse.h"
 #import "MSFClient.h"
-#import "MSFClient+MSFOrder.h"
+#import "MSFClient+Order.h"
 #import "MSFOrder.h"
 
 QuickSpecBegin(MSFHomePageViewModelSpec)
@@ -63,7 +63,7 @@ it(@"should not has viewmodel for placeholder", ^{
   NSIndexPath *indexPath = mock(NSIndexPath.class);
   
   // when
-  MSFHomePageCellModel *sub = [viewModel viewModelForIndexPath:indexPath];
+  MSFHomePageItemViewModel *sub = [viewModel viewModelForIndexPath:indexPath];
   NSString *reusableIdentifier = [viewModel reusableIdentifierForIndexPath:indexPath];
   
   // then

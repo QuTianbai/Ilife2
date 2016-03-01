@@ -32,6 +32,10 @@
 
 // 判断用户是否已设置交易密码
 @property (nonatomic, assign, readonly) BOOL hasTransactionalCode;
+//客户分类
+@property (nonatomic, copy, readonly) NSString *custType;
+//是否经过实名认证
+@property (nonatomic, copy, readonly) NSString *hasChecked;
 
 /**
  *	Create The user instance

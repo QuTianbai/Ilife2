@@ -12,13 +12,13 @@
 QuickSpecBegin(MSFLoanAgreementViewModelSpec)
 
 __block MSFLoanAgreementViewModel *viewModel;
-__block MSFApplyCashVIewModel *product;
+__block MSFApplyCashViewModel *product;
 __block id <MSFViewModelServices> services;
 
 beforeEach(^{
 	services = mockProtocol(@protocol(MSFViewModelServices));
 	
-	product = mock([MSFApplyCashVIewModel class]);
+	product = mock([MSFApplyCashViewModel class]);
 	stubProperty(product, services, services);
 	
 	viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:product];
