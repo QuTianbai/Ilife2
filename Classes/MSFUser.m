@@ -13,10 +13,7 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"objectID": @"uniqueId",
-		@"userID": @"userId",
-		@"name": @"name",
-		@"mobile": @"mobile",
+		@"objectID": @"userId",
 		@"hasTransactionalCode": @"hasTransPwd"
 	};
 }
@@ -41,7 +38,7 @@
 #pragma mark - Custom Accessors
 
 - (BOOL)isAuthenticated {
-	return self.objectID != nil;
+	return self.hasChecked.integerValue != 0;
 }
 
 @end

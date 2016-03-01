@@ -14,7 +14,7 @@
 @implementation MSFClient (CheckTradePassword)
 
 - (RACSignal *)fetchCheckTradePassword {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"transPassword/checkset" parameters:@{@"uniqueId":self.user.uniqueId}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"transPassword/checkset" parameters:@{@"uniqueId":self.user.objectID}];
 	return [[self enqueueRequest:request resultClass:MSFCheckHasTradePasswordModel.class] msf_parsedResults];
 }
 

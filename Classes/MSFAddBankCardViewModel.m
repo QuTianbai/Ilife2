@@ -45,6 +45,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	_bankNO = @"";
 	_transPassword = @"";
 	_bankBranchCityCode = @"";
+	_supportBanks = @"";
 	_bankBranchProvinceCode = @"";
 	_oldBankNo = @"";
 	_services = formsViewModel.services;
@@ -106,7 +107,6 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 		@strongify(self)
 		return [self executeResetTrade];
 	}];
-	
 	RAC(self, supportBanks) = [[[self.services.httpClient fetchSupportBankInfo] ignore:nil] map:^id(id value) {
 		return value;
 	}];

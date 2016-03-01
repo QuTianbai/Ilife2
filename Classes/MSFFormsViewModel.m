@@ -61,6 +61,7 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
+		if (!self.services.httpClient.isAuthenticated) return;
 		// 获取申请的产品线信息
 		[[self.services.httpClient fetchCheckEmploeeWithProductCode:@"1101"] subscribeNext:^(MSFMarkets *markets) {
 			if (self.markets.teams.count == 0) {

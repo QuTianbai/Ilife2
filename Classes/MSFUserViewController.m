@@ -43,6 +43,13 @@
 
 @property (nonatomic, strong) NSArray *rowTitles;
 @property (nonatomic, strong) NSArray *icons;
+@property (nonatomic, strong) UIImage *shadowImage;
+@property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *userphoneLabel;
+@property (nonatomic, weak) IBOutlet UILabel *perentLabel;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton1;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton2;
 
 @end
 
@@ -51,7 +58,7 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel {
-	self = [super initWithStyle:UITableViewStyleGrouped];
+	self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFUserViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFUserViewController class])];
 	if (!self) {
 		return nil;
 	}
@@ -62,59 +69,53 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
-	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
-	self.rowTitles = @[@[@"个人信息",
-											 @"申请记录",
-											 @"还款计划",
-											 @"银行卡",
-											 @"订单列表",
-											 @"优惠券",
-											 ],
-										 @[@"设置",
-											 @"关于"]];
-	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
-									 [UIImage imageNamed:@"icon-account-apply"],
-									 [UIImage imageNamed:@"icon-account-repay"],
-									 [UIImage imageNamed:@"icon-account-bankCard"],
-									 [UIImage imageNamed:@"icon-account-order"],
-									 [UIImage imageNamed:@"icon-account-order"]
-									 ],
-								 @[[UIImage imageNamed:@"icon-account-settings"],
-									 [UIImage imageNamed:@"icon-account-about"]]];
-	NSLog(@"%@", self.icons);
+	self.edgesForExtendedLayout = UIRectEdgeTop;
+	self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+	self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 44)];
+	self.tableView.bounces = NO;
+	
+	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.servcies.httpClient.user.name) map:^id(id value) {
+		return [NSString stringWithFormat:@"%@, 您好", value];
+	}];
+	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.servcies.httpClient.user.mobile) map:^id(id value) {
+		return [NSString stringWithFormat:@"手机号: %@", value];
+	}];
+	@weakify(self)
+	RAC(self, perentLabel.text) = [RACObserve(self, viewModel.percent) doNext:^(id x) {
+		@strongify(self)
+		if ([x isEqualToString:@"100%"]) {
+			[self.infoButton1 setTitle:@"更新信息" forState:UIControlStateNormal];
+		}
+	}];
+	self.infoButton1.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self updateUserSignal];
+	}];
+	self.infoButton2.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self updateUserSignal];
+	}];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return self.rowTitles.count;
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  UINavigationBar *navigationBar = self.navigationController.navigationBar;
+  navigationBar.tintColor = UIColor.whiteColor;
+  self.shadowImage = navigationBar.shadowImage;
+  self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+  [navigationBar setBackgroundImage:[UIImage new]
+                     forBarPosition:UIBarPositionAny
+                         barMetrics:UIBarMetricsDefault];
+  [navigationBar setShadowImage:[UIImage new]];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.rowTitles[section] count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	switch (section) {
-		case 0: return 0.1;
-		case 1: return 32;
-		case 2: return 10;
-		default:return 0;
-	}
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	return 0.1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-	cell.textLabel.font = [UIFont systemFontOfSize:16];
-	cell.textLabel.text	 = self.rowTitles[indexPath.section][indexPath.row];
-	cell.imageView.image = self.icons[indexPath.section][indexPath.row];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	return cell;
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  UINavigationBar *navigationBar = self.navigationController.navigationBar;
+  [navigationBar setBackgroundImage:self.backgroundImage
+                     forBarPosition:UIBarPositionAny
+                         barMetrics:UIBarMetricsDefault];
+  [navigationBar setShadowImage:self.shadowImage];
 }
 
 #pragma mark - UITableViewDelegate
@@ -125,22 +126,19 @@
 		case 0: {
 			switch (indexPath.row) {
 				case 0:
-					[self userInfo];
-					break;
-				case 1:
-					[self applyList];
-					break;
-				case 2:
-					[self repaymentPlan];
-					break;
-				case 3:
-					[self bankCardList];
-					break;
-				case 4:
 					[self orderList];
 					break;
-				case 5:
+				case 1:
+					[self repaymentPlan];
+					break;
+				case 2:
+					[self bankCardList];
+					break;
+				case 3:
 					[self couponsList];
+					break;
+				case 4:
+				//TODO: 缺少扫一扫
 					break;
 				default: break;
 			}
@@ -149,10 +147,10 @@
 		case 1: {
 			switch (indexPath.row) {
 				case 0:
-					[self settings];
+					[self pushAbout];
 					break;
 				case 1:
-					[self pushAbout];
+					[self settings];
 					break;
 			}
 			break;
@@ -177,9 +175,6 @@
 }
 
 - (void)repaymentPlan {
-//	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
-//	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
-//	repayViewController.hidesBottomBarWhenPushed = YES;
 	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.servcies];
 	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];
 	vc.hidesBottomBarWhenPushed = YES;
@@ -195,9 +190,6 @@
 - (void)orderList {
 	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
-	
-//	MSFCartViewController *vcb = [[MSFCartViewController alloc] initWithOrderId:@"200000032015122408473723499" services:self.viewModel.servcies];
-//	[self.navigationController pushViewController:vcb animated:YES];
 }
 
 - (void)pushAbout {
@@ -219,6 +211,18 @@
 	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (RACSignal *)updateUserSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
+		MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
+		MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
+		MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
+		[self.navigationController pushViewController:vc animated:YES];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end

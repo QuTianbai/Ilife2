@@ -334,9 +334,9 @@ static NSDictionary *messages;
 	RACSignal *(^registeringSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
 		MSFClient *client = [self unauthenticatedClientWithUser:user];
 		NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-		parameters[@"phoneNumber"] = phone;
+		parameters[@"mobile"] = phone;
 		parameters[@"password"] = password.sha256;
-		parameters[@"captcha"] = captcha;
+		parameters[@"smsCode"] = captcha;
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
@@ -574,6 +574,12 @@ static NSDictionary *messages;
 		MSFClientErrorMessageCodeKey: code ?: @"",
 	}];
 	
+	if (operation.response.statusCode == MSFClientErrorUnprocessableEntry) {
+		userinfo = @{
+			NSLocalizedFailureReasonErrorKey: [operation.responseObject[@"fields"] allValues].firstObject?:@""
+		};
+	}
+	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
 }
 
@@ -669,10 +675,6 @@ static NSDictionary *messages;
 			if (operation.response.allHeaderFields[@"Date"]) {
 				NSDate *date = [NSDateFormatter gmt_dateFromString:operation.response.allHeaderFields[@"Date"]];
 				cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[date timeIntervalSince1970] * 1000];
-			}
-			
-			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
 			}
 			
 			[self reportFabric:operation error:error];

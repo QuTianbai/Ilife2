@@ -54,6 +54,18 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @synthesize pageIndex;
 
+#pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel {
+  self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignUpViewController class])];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
@@ -62,10 +74,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 	self.name.delegate = self;
 	self.card.delegate = self;
-	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-	
 	[self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont systemFontOfSize:15]} forState:UIControlStateNormal ];
 	//self.navigationController.navigationBar.backgroundColor = [UIColor navigationBgColor];
 	

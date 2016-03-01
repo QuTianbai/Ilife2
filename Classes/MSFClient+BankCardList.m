@@ -16,7 +16,7 @@
 
 - (RACSignal *)fetchBankCardList {
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/bindingList" parameters:@{
-		@"uniqueId": self.user.uniqueId
+		@"uniqueId": self.user.objectID
 	}];
 	return [[self enqueueRequest:request resultClass:MSFBankCardListModel.class] msf_parsedResults];
 }

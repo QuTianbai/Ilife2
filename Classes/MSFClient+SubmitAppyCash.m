@@ -32,7 +32,7 @@
 		@"ApplyVO": jsonStr,
 		@"AccessoryInfoVO": accesory,
 		@"applyStatus": status,
-		@"uniqueId":self.user.uniqueId
+		@"uniqueId":self.user.objectID
 	}];
 	
 	return [[self enqueueRequest:request resultClass:MSFSubmitApplyModel.class] msf_parsedResults];

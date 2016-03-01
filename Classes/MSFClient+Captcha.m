@@ -12,7 +12,7 @@
 @implementation MSFClient (Captcha)
 
 - (RACSignal *)fetchSignUpCaptchaWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters:@{
 		@"codeType": @"REG",
 		@"mobile": phone
 	}];
@@ -30,7 +30,7 @@
 }
 
 - (RACSignal *)fetchLoginCaptchaWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters:@{
 		@"codeType": @"LOGIN",
 		@"mobile": phone
 	}];

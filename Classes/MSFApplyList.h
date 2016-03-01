@@ -14,6 +14,8 @@
 @property (nonatomic, copy, readonly) NSString *appLmt;//申请金额
 @property (nonatomic, copy, readonly) NSString *loanTerm;//总期数
 @property (nonatomic, copy ,readonly) NSString *statusString;//状态描述
+@property (nonatomic, copy ,readonly) NSString *status;//状态描述
 @property (nonatomic, copy, readonly) NSString *appNo;//申请单号
+@property (nonatomic, copy, readonly) NSString *type; //类型
 
 @end

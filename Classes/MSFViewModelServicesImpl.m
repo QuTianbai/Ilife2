@@ -77,6 +77,20 @@
 
 #import "MSFInputTradePasswordViewController.h"
 
+#import "MSFSignInViewController.h"
+
+#import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFSocialCaskApplyTableViewController.h"
+
+#import "MSFAddBankCardViewModel.h"
+#import "MSFAddBankCardTableViewController.h"
+
+#import "MSFOrderListViewModel.h"
+#import "MSFOrderListViewController.h"
+
+#import "MSFSignUpViewController.h"
+#import "MSFAuthenticateViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -152,7 +166,11 @@
 	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
 		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFAuthorizeViewModel class]]) {
-		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+		if ([(MSFAuthorizeViewModel *)viewModel loginType] == MSFLoginSignUp) {
+			viewController = [[MSFSignUpViewController alloc] initWithViewModel:viewModel];
+		} else {
+			viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+		}
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
@@ -166,6 +184,16 @@
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {
+		viewController = [[MSFOrderListViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFAddBankCardViewModel.class]) {
+		viewController = [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+		((MSFAddBankCardTableViewController *)viewController).viewModel = viewModel;
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
@@ -190,7 +218,7 @@
 	id viewController;
 	
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
-		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
+		MSFAuthenticateViewController *loginViewController = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else {
 		NSLog(@"an unknown ViewModel was present!");

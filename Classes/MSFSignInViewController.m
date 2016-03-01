@@ -43,6 +43,17 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 
 @synthesize pageIndex;
 
+#pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel {
+ self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignInViewController class])];
+   if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+	return self;
+}
+
 #pragma mark - Lifecycle
 
 - (void)dealloc {
@@ -52,13 +63,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	
-	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
-	
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
 	// 登录用户名/密码
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
@@ -72,7 +77,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	self.signUpBt.rac_command = self.viewModel.executeSignUpCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
-		self.navigationController.navigationBarHidden = YES;
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignIn;
@@ -134,8 +138,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-			self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
-//		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
 
 	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
@@ -158,14 +161,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
 		[self.tableView reloadData];
 	}];
-	
-//	[[self.forgetPasswordBt rac_signalForControlEvents:UIControlEventTouchUpInside]
-//	subscribeNext:^(id x) {
-//		MSFFindPasswordViewController *findPasswordVC = [[MSFFindPasswordViewController alloc] initWithModel:self.viewModel];
-//		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:findPasswordVC];
-//		[self presentModalViewController:navigationController animated:YES];
-//		
-//	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -177,10 +172,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[super viewWillDisappear:animated];
 	self.viewModel.active = NO;
 }
-
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//	[segue.destinationViewController bindViewModel:self.viewModel];
-//}
 
 #pragma mark - UITableViewDelegate
 

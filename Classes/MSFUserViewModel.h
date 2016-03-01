@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *mobile;
 @property (nonatomic, strong) NSString *identifyCard;
+@property (nonatomic, strong) NSString *percent;
 
 @property (nonatomic, strong) RACCommand *executeUpdatePassword;
 
