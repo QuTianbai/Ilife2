@@ -330,15 +330,6 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 #pragma mark - Private
 
 - (RACSignal *)executeSignInSignal {
-	MSFUser *mock = [[MSFUser alloc] initWithDictionary:@{
-		@"server": MSFServer.dotComServer,
-		@"uniqueId": @"",
-		@"objectID": @"",
-	} error:nil];
-	MSFClient *client = [MSFClient authenticatedClientWithUser:mock token:@""];
-	[self.services setHttpClient:client];
-	return [RACSignal return:client];
-	
 	NSError *error;
 	if (self.loginType == MSFLoginIDSignIn) {
 	  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
