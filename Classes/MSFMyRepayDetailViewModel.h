@@ -9,8 +9,10 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
 
-@interface MSFMyRepayDetailViewModel : RVMViewModel
+@class RACCommand;
 
+@interface MSFMyRepayDetailViewModel : RVMViewModel
+@property (nonatomic, copy, readonly) NSString *contractTitle;
 @property (nonatomic, copy, readonly) NSString *contractNo;
 @property (nonatomic, copy, readonly) NSString *latestDueMoney;
 @property (nonatomic, copy, readonly) NSString *latestDueDate;
@@ -24,6 +26,8 @@
 @property (nonatomic, copy, readonly) NSString *applyDate;
 @property (nonatomic, strong, readonly) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
+
+@property (nonatomic, strong) RACCommand *executeFetchCommand;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 

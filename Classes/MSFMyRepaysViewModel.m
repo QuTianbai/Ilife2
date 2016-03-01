@@ -53,7 +53,8 @@
 				return YES;
 			}
 			return [viewModel.applyType isEqualToString:self.identifer];
-		}].array];	}];
+		}].array];
+	}];
 
 	return self;
 }

@@ -193,11 +193,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4y0-9Q-nJ8"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="立即还款"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xuq-F5-rNx">
                                 <rect key="frame" x="0.0" y="110" width="320" height="388"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
@@ -220,6 +220,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="contractTitle" destination="fkv-C6-uOC" id="eyN-Q2-GzD"/>
+                        <outlet property="monthDay" destination="mtv-6R-P3m" id="NUI-hf-1Eq"/>
                         <outlet property="repayBT" destination="CYV-vq-Ih6" id="sbr-my-GRF"/>
                         <outlet property="repayDay" destination="lBP-Hl-TE2" id="Wtn-no-Uxf"/>
                         <outlet property="repayDetalTableView" destination="xuq-F5-rNx" id="IGh-Lb-aLF"/>

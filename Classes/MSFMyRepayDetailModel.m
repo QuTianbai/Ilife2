@@ -9,6 +9,7 @@
 #import "MSFMyRepayDetailModel.h"
 #import "MSFCmdtyModel.h"
 #import "MSFDrawModel.h"
+#import "NSDictionary+MSFKeyValue.h"
 
 @implementation MSFMyRepayDetailModel
 
@@ -57,6 +58,12 @@
 		return [num isKindOfClass:NSNumber.class] ? num.stringValue :num;
 	} reverseBlock:^id(NSString *str) {
 		return str;
+	}];
+}
+
++ (NSValueTransformer *)typeJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^id(NSString *value) {
+		return [NSDictionary typeStringForKey:value?:@""];
 	}];
 }
 

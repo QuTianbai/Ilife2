@@ -12,6 +12,7 @@
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "MSFMyRepayTableViewCell.h"
 #import "MSFMyRepayDetalViewController.h"
+#import "MSFMyRepayDetailViewModel.h"
 
 @interface MSFMyRepayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -25,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.tableView.allowsSelection = YES;
-	//self.tableView.
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
@@ -48,9 +48,10 @@
 		return value;
 	}]
 	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:nil];
 		@strongify(self)
-		[self.navigationController pushViewController:vc animated:YES];
+		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services];
+		MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
 		return [RACSignal empty];
 	}]
 	templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyRepayTableViewCell class]) bundle:nil]];
@@ -70,14 +71,6 @@
 		title = @"你还没有商品贷还款订单";
 	}
 	return [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-	NSString *subtitle = @"";
-//	if ([self.viewModel.identifer isEqualToString:@"B"]) {
-//		subtitle = @"你可以多多关注马上金融活动，惊喜连连！~";
-//	}
-	return [[NSAttributedString alloc] initWithString:subtitle attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]}];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
