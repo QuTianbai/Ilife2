@@ -28,6 +28,7 @@
 #import "MSFDrawingsViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFOrderListViewModel.h"
+#import "MSFUser.h"
 
 static NSString *const kWalletIdentifier = @"4102";
 
@@ -52,6 +53,8 @@ static NSString *const kWalletIdentifier = @"4102";
 @property (nonatomic, strong, readwrite) NSString *action;
 @property (nonatomic, strong) MSFWallet *model;
 @property (nonatomic, strong) MSFApplyList *application;
+@property (nonatomic, strong, readwrite) MSFPhoto *photo;
+@property (nonatomic, strong, readwrite) NSString *groundTitle;
 
 @end
 
@@ -65,17 +68,22 @@ static NSString *const kWalletIdentifier = @"4102";
 	
 	_services = services;
 	@weakify(self)
-	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+	[[self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		[self.fetchWalletStatus subscribeNext:^(RACTuple *statusAndApplication) {
-			RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
-			self.status = status.integerValue;
-			self.application = application;
-		}];
 		[self.fetchPhotos subscribeNext:^(id x) {
 			self.photos = x;
 		}];
-	}];
+		[self.fetchShow subscribeNext:^(id x) {
+			self.groundTitle = x;
+		}];
+		return [self.fetchWalletStatus doNext:^(id x) {
+			[self.fetchWalletStatus subscribeNext:^(RACTuple *statusAndApplication) {
+				RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
+				self.status = status.integerValue;
+				self.application = application;
+			}];
+		}];
+	}] replayLast];
 	
 	[RACObserve(self, status) subscribeNext:^(NSNumber *status) {
 		@strongify(self)
@@ -159,15 +167,15 @@ static NSString *const kWalletIdentifier = @"4102";
 			MSFWalletStatus status = MSFWalletNone;
 			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
 				status  = MSFWalletNone;
-			} else if ([application.statusString isEqualToString:@"G"]) {
+			} else if ([application.status isEqualToString:@"G"]) {
 				status = MSFWalletInReview;
-			} else if ([application.statusString isEqualToString:@"I"]) {
+			} else if ([application.status isEqualToString:@"I"]) {
 				status = MSFWalletConfirmation;
-			} else if ([application.statusString isEqualToString:@"L"]) {
+			} else if ([application.status isEqualToString:@"L"]) {
 				status = MSFWalletResubmit;
-			} else if ([application.statusString isEqualToString:@"E"]) {
+			} else if ([application.status isEqualToString:@"E"]) {
 				status = MSFWalletRelease;
-			} else if ([application.statusString isEqualToString:@"H"]) {
+			} else if ([application.status isEqualToString:@"H"] || [application.status isEqualToString:@"K"]) {
 				status = MSFWalletRejected;
 			} else {
 				status = MSFWalletActivated;
@@ -178,6 +186,10 @@ static NSString *const kWalletIdentifier = @"4102";
 
 - (RACSignal *)fetchPhotos {
 	return [[self.services.httpClient fetchAdv:@"A"] collect];
+}
+
+- (RACSignal *)fetchShow {
+	return [self.services.httpClient fetchShow:@"A"];
 }
 
 - (RACSignal *)applicationSignal {
@@ -214,7 +226,7 @@ static NSString *const kWalletIdentifier = @"4102";
 #pragma mark - Custom Accessors
 
 - (RACSignal *)actionSignal {
-	if (!self.services.httpClient.isAuthenticated) {
+	if (![self.services.httpClient.user isAuthenticated]) {
 		return self.authenticateSignal;
 	}
 	

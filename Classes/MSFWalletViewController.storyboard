@@ -74,9 +74,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log-wallet-second.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-Jh-twP">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hy-XD-mXS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-wallet-show.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-Jh-twP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="BOf-6w-5QU">
+                                        <rect key="frame" x="20" y="0.0" width="260" height="122"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="BOf-6w-5QU" secondAttribute="trailing" constant="40" id="0be-ye-lMq"/>
+                                    <constraint firstItem="uFB-Jh-twP" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="top" id="D6e-LT-2QV"/>
+                                    <constraint firstItem="BOf-6w-5QU" firstAttribute="leading" secondItem="9hy-XD-mXS" secondAttribute="leading" constant="20" id="LHI-hs-evj"/>
+                                    <constraint firstItem="BOf-6w-5QU" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="top" id="TaO-ha-juG"/>
+                                    <constraint firstItem="uFB-Jh-twP" firstAttribute="leading" secondItem="9hy-XD-mXS" secondAttribute="leading" id="n0e-rC-JbI"/>
+                                    <constraint firstAttribute="trailing" secondItem="uFB-Jh-twP" secondAttribute="trailing" id="nBR-Hf-EDl"/>
+                                    <constraint firstAttribute="bottom" secondItem="uFB-Jh-twP" secondAttribute="bottom" id="rpY-Wf-2QT"/>
+                                    <constraint firstAttribute="bottom" secondItem="BOf-6w-5QU" secondAttribute="bottom" constant="40" id="tqG-bn-hSF"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcF-cK-xcp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                 <subviews>
@@ -107,7 +129,7 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余8天,可随时还款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neg-eL-PsP">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余8天,可随时还款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="107.5" translatesAutoresizingMaskIntoConstraints="NO" id="neg-eL-PsP">
                                                 <rect key="frame" x="16" y="43" width="107.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -118,7 +140,7 @@
                                                 <state key="normal" image="btn-repay-highlighted.png"/>
                                                 <state key="highlighted" image="btn-repay-normal.png"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-j0-pos">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="62" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-j0-pos">
                                                 <rect key="frame" x="90" y="15" width="62" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.99215686270000003" green="0.50196078430000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
@@ -162,21 +184,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9hy-XD-mXS" secondAttribute="trailing" id="7Lt-1F-wOG"/>
+                            <constraint firstItem="9hy-XD-mXS" firstAttribute="top" secondItem="mN5-Pw-OK0" secondAttribute="bottom" id="AEa-MO-SAw"/>
                             <constraint firstItem="kcF-cK-xcp" firstAttribute="leading" secondItem="14a-09-Epy" secondAttribute="leading" id="Ckf-ai-SXO"/>
                             <constraint firstAttribute="bottom" secondItem="kcF-cK-xcp" secondAttribute="bottom" id="DXv-Uv-wBN"/>
-                            <constraint firstAttribute="trailing" secondItem="uFB-Jh-twP" secondAttribute="trailing" id="IxI-F7-UQ9"/>
-                            <constraint firstAttribute="bottom" secondItem="uFB-Jh-twP" secondAttribute="bottom" id="KjB-uM-xJM"/>
-                            <constraint firstItem="uFB-Jh-twP" firstAttribute="leading" secondItem="14a-09-Epy" secondAttribute="leading" id="Md4-4h-GiV"/>
+                            <constraint firstItem="9hy-XD-mXS" firstAttribute="leading" secondItem="14a-09-Epy" secondAttribute="leading" id="FAK-0M-XeP"/>
                             <constraint firstAttribute="trailing" secondItem="kcF-cK-xcp" secondAttribute="trailing" id="REc-9Q-ZRH"/>
                             <constraint firstItem="kcF-cK-xcp" firstAttribute="top" secondItem="14a-09-Epy" secondAttribute="top" id="cw4-hu-4ob"/>
-                            <constraint firstItem="uFB-Jh-twP" firstAttribute="top" secondItem="14a-09-Epy" secondAttribute="top" id="ht0-BR-Kbq"/>
+                            <constraint firstItem="CxW-k0-V9S" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="bottom" id="kcY-F9-Ibo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="xpF-j0-pos" id="cMP-6L-hL0"/>
                         <outlet property="applyButton" destination="NbK-gn-b68" id="qyn-CH-9pQ"/>
                         <outlet property="contentView" destination="kcF-cK-xcp" id="Yk5-9p-f6x"/>
-                        <outlet property="imageView" destination="uFB-Jh-twP" id="8vp-I1-hAb"/>
+                        <outlet property="groundLabel" destination="BOf-6w-5QU" id="74D-s9-rjk"/>
+                        <outlet property="groundView" destination="9hy-XD-mXS" id="46i-CJ-CHX"/>
                         <outlet property="repayButton" destination="jOE-OQ-YGp" id="NzM-W0-KxI"/>
                         <outlet property="subtitleLabel" destination="neg-eL-PsP" id="FQk-DF-6gZ"/>
                     </connections>
@@ -215,13 +238,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="立即激活" backgroundImage="btn-active-normal.png"/>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未激活" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-Fq-qoE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未激活" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="48" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-Fq-qoE">
                                         <rect key="frame" x="136" y="74" width="48" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.99215686270000003" green="0.50196078430000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可借现金额度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-UB-cIc">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可借现金额度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="84" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-UB-cIc">
                                         <rect key="frame" x="118" y="45" width="84" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -273,31 +296,31 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-Fi-RiU">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="65" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-Fi-RiU">
                                         <rect key="frame" x="23" y="214" width="65" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.05%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yla-Ky-nT6">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.05%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="47.5" translatesAutoresizingMaskIntoConstraints="NO" id="yla-Ky-nT6">
                                         <rect key="frame" x="136" y="214" width="47.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每月8日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2O-3U-oKY">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每月8日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="61.5" translatesAutoresizingMaskIntoConstraints="NO" id="M2O-3U-oKY">
                                         <rect key="frame" x="238" y="214" width="61.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6J-eB-X1s">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="118" translatesAutoresizingMaskIntoConstraints="NO" id="D6J-eB-X1s">
                                         <rect key="frame" x="101" y="76" width="118" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wsf-CF-BMg">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="118" translatesAutoresizingMaskIntoConstraints="NO" id="Wsf-CF-BMg">
                                         <rect key="frame" x="101" y="30" width="118" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -435,11 +458,11 @@
     </scenes>
     <resources>
         <image name="bg-view-header.jpg" width="414" height="314"/>
+        <image name="bg-wallet-show.jpg" width="414" height="211"/>
         <image name="bg-wallet-status.png" width="186" height="186"/>
         <image name="btn-active-normal.png" width="140" height="36"/>
         <image name="btn-apply-normal.png" width="311" height="56"/>
         <image name="btn-repay-highlighted.png" width="119" height="37"/>
         <image name="btn-repay-normal.png" width="119" height="37"/>
-        <image name="log-wallet-second.jpg" width="414" height="211"/>
     </resources>
 </document>

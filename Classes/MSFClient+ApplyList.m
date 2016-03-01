@@ -35,7 +35,7 @@
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/apply" parameters:@{
 		@"type" : type
 	}];
-	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
+	return [[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults];
 }
 
 @end

@@ -26,6 +26,7 @@ extern NSString *const MSFAuthorizeCaptchaModifyMobile;
 
 @class MSFServer;
 @class RACCommand;
+@class MSFAddress;
 
 extern const NSInteger MSFAuthorizeUsernameMaxLength;
 extern const NSInteger MSFAuthorizePasswordMaxLength;
@@ -111,6 +112,11 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 @property (nonatomic, strong) RACCommand *executeSignInCommand;
 @property (nonatomic, strong) RACCommand *executeSignUpCommand;
+
+@property (nonatomic, strong, readonly) RACCommand *executeAuthenticateCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeAlterAddressCommand;
+@property (nonatomic, strong, readonly) NSString *address;
+@property (nonatomic, strong) NSString *banknumber;
 
 
 - (RACSignal *)signInValidSignal;

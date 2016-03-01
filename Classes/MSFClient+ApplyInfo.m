@@ -177,7 +177,7 @@
 
 - (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type {
 	NSMutableDictionary *uploadDic = [NSMutableDictionary dictionaryWithDictionary:[self convertToSubmit:model]];
-	[uploadDic setObject:self.user.uniqueId forKey:@"uniqueId"];
+	[uploadDic setObject:self.user.objectID forKey:@"uniqueId"];
 	[uploadDic setObject:@(type) forKey:@"infoType"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"append/saveInfo" parameters:uploadDic];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {

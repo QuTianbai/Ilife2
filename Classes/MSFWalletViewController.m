@@ -43,7 +43,6 @@
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
   UINavigationBar *navigationBar = self.navigationController.navigationBar;
-  navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
   navigationBar.tintColor = UIColor.whiteColor;
   self.shadowImage = navigationBar.shadowImage;
   self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
@@ -57,7 +56,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   UINavigationBar *navigationBar = self.navigationController.navigationBar;
-  navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor colorWithRed:0.770 green:0.258 blue:0.110 alpha:1.000]};
   [navigationBar setBackgroundImage:self.backgroundImage
                      forBarPosition:UIBarPositionAny
                          barMetrics:UIBarMetricsDefault];

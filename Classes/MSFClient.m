@@ -334,9 +334,9 @@ static NSDictionary *messages;
 	RACSignal *(^registeringSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
 		MSFClient *client = [self unauthenticatedClientWithUser:user];
 		NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-		parameters[@"phoneNumber"] = phone;
+		parameters[@"mobile"] = phone;
 		parameters[@"password"] = password.sha256;
-		parameters[@"captcha"] = captcha;
+		parameters[@"smsCode"] = captcha;
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
@@ -573,6 +573,12 @@ static NSDictionary *messages;
 	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
 		MSFClientErrorMessageCodeKey: code ?: @"",
 	}];
+	
+	if (operation.response.statusCode == MSFClientErrorUnprocessableEntry) {
+		userinfo = @{
+			NSLocalizedFailureReasonErrorKey: [operation.responseObject[@"fields"] allValues].firstObject?:@""
+		};
+	}
 	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
 }

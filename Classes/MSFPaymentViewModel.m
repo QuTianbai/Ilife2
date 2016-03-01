@@ -63,8 +63,7 @@
 				self.bankNo = x.bankCardNo;
 				self.bankName = x.bankName;
 			}];
-			//TODO: 没有登录，直接在信用钱包中进入还款会导致崩溃
-//		RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
+			RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
 	
 	_executeCaptchaCommand = [[RACCommand alloc] initWithEnabled:self.captchaValidSignal signalBlock:^RACSignal *(id input) {

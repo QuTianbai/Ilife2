@@ -18,4 +18,11 @@
 	}];
 }
 
+- (RACSignal *)fetchShow:(NSString *)type {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"pro/detail" parameters:@{@"type": type}];
+	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *response) {
+		return response.parsedResult[@"content"];
+	}];
+}
+
 @end

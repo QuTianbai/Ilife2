@@ -14,7 +14,7 @@
 @property (nonatomic, copy, readonly) NSString *hasTransPwd;
 
 // 用户uniqueId
-@property (nonatomic, copy, readonly) NSString *uniqueId;
+@property (nonatomic, copy, readonly) NSString *uniqueId __deprecated;
 
 @property (nonatomic, copy) NSString *complateCustInfo;
 
@@ -22,7 +22,7 @@
 @property (nonatomic, copy, readonly) NSString *ident;
 
 // 用户userid
-@property (nonatomic, copy, readonly) NSString *userID;
+@property (nonatomic, copy, readonly) NSString *userID __deprecated;
 
 // 用户姓名
 @property (nonatomic, copy, readonly) NSString *name;

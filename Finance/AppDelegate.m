@@ -177,10 +177,9 @@
 
 - (void)setup {
 	// 通用颜色配置
-	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
-	
+	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
+	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// 启动到登录的过渡动画
@@ -269,13 +268,27 @@
 #pragma mark - Authenticated
 
 - (void)unAuthenticatedControllers {
-	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
-	tabBarController.selectedIndex = 1;
-	self.window.rootViewController = tabBarController;
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
+	[self.viewModel.formsViewModel setBankCardMasterDefult];
+	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
+	MSFSignInViewController *viewController = [[MSFSignInViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	self.window.rootViewController = navigationController;
+
+	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
+	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]];
+		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
+		[vc dismissViewControllerAnimated:NO completion:nil];
+	}
 }
 
 - (void)authenticatedControllers {
-	[self unAuthenticatedControllers];
+	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+	tabBarController.selectedIndex = 1;
+	self.window.rootViewController = tabBarController;
 }
 
 #if TEST

@@ -63,10 +63,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	
-	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
-	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	// 登录用户名/密码
 	self.username.text = MSFActivate.signInMobile;
@@ -164,13 +160,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		@strongify(self)
 		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
 		[self.tableView reloadData];
-	}];
-	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:nil action:nil];
-	self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		[self dismissViewControllerAnimated:YES completion:nil];
-		return [RACSignal empty];
 	}];
 }
 
