@@ -28,6 +28,7 @@
 #import "MSFUser.h"
 #import "AppDelegate.h"
 #import "MSFTabBarViewModel.h"
+#import "MSFUserViewController.h"
 
 @interface MSFBankCardListTableViewController ()<MSFInputTradePasswordDelegate>
 
@@ -334,15 +335,21 @@
 	}
 	[SVProgressHUD showWithStatus:str maskType:SVProgressHUDMaskTypeClear];
 	self.tradePwd = pwd;
+	@weakify(self)
 	if (type == 0) {
 		[[self.viewModel.executeSetMaster execute:nil]
 		 subscribeNext:^(id x) {
+			 @strongify(self)
 			 [SVProgressHUD showSuccessWithStatus:@"主卡设置成功"];
 			 RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 			 [signal subscribeNext:^(id x) {
 				 [SVProgressHUD dismiss];
 				 self.dataArray = x;
 				 [self.tableView reloadData];
+				 NSInteger index = self.navigationController.viewControllers.count - 2;
+				 if (index >=0 && ![self.navigationController.viewControllers[index] isKindOfClass:MSFUserViewController.class]) {
+					 [self.navigationController popViewControllerAnimated:YES];
+				 }
 			 }error:^(NSError *error) {
 				 [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			 }];
@@ -352,6 +359,7 @@
 	} else if (type == 1) {
 		[[self.viewModel.executeUnbind execute:nil]
 		 subscribeNext:^(id x) {
+			 @strongify(self)
 			 [SVProgressHUD showSuccessWithStatus:@"银行卡解绑成功"];
 			 RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
 			 [signal subscribeNext:^(id x) {

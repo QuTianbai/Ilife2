@@ -26,7 +26,6 @@
 	NSMutableSet *keys = [super.propertyKeys mutableCopy];
 
 	// This is a derived property.
-	[keys removeObject:@keypath(MSFOrderDetail.new, isCommodity)];
 	[keys removeObject:@keypath(MSFOrderDetail.new, server)];
 
 	return keys;
@@ -45,6 +44,14 @@
 }
 
 + (NSValueTransformer *)totalAmtJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)downPmtJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
 		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
 	} reverseBlock:^ id (NSString *str) {

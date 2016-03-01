@@ -108,6 +108,7 @@
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交" maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			//!!!: 设置交易密码后应该再次获取用户信息，以确保服务器是否更新了用户的交易密码
 			MSFUser *user = [[MSFUser alloc] initWithDictionary:@{@"hasTransactionalCode": @YES} error:nil];
 			[[self.viewModel.services httpClient].user mergeValueForKey:@"hasTransactionalCode" fromModel:user];
 			[SVProgressHUD showSuccessWithStatus:@"设置交易密码成功"];

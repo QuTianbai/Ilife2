@@ -364,11 +364,18 @@
                                             <constraint firstAttribute="height" constant="40" id="B6l-Rm-IR5"/>
                                         </constraints>
                                         <state key="normal" title="同意"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="6J1-Ub-xIL"/>
+                                            </mask>
+                                        </variation>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="d49-NZ-BQ1" firstAttribute="leading" secondItem="zI0-mX-Jg8" secondAttribute="leading" constant="10" id="EOz-eU-30f"/>
                                     <constraint firstItem="d49-NZ-BQ1" firstAttribute="centerX" secondItem="zI0-mX-Jg8" secondAttribute="centerX" id="FPZ-ge-cdH"/>
+                                    <constraint firstAttribute="trailing" secondItem="d49-NZ-BQ1" secondAttribute="trailing" constant="10" id="Pel-c2-J4P"/>
                                     <constraint firstItem="d49-NZ-BQ1" firstAttribute="centerY" secondItem="zI0-mX-Jg8" secondAttribute="centerY" id="RyV-cx-kYH"/>
                                     <constraint firstAttribute="height" constant="44" id="yO7-GG-icx"/>
                                 </constraints>

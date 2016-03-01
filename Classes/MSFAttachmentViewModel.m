@@ -80,7 +80,6 @@
 #pragma mark - Private
 
 - (RACSignal *)takePhotoSignalWith:(id)img {
-	[self.services ImagePickerControllerWithImage:img];
 	return [[self.services msf_takePictureSignal:NO] map:^id(UIImage *image) {
 		NSString *name = [@([[NSDate date] timeIntervalSince1970]) stringValue].md5;
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];

@@ -45,7 +45,6 @@
 	if (self) {
 		
 		_services = services;
-		_loanType = [[MSFLoanType alloc] initWithTypeID:@"3101"];
 		_applicationNo = appNo;
 		_formViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
 		_formViewModel.active = YES;
@@ -63,10 +62,6 @@
 		RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
 		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
 		
-		RAC(self, cartType) =  [RACObserve(self, cart.cartType) map:^id(NSString *value) {
-			return [value isEqualToString:@"goods"] ? @(MSFCartCommodity) : @(MSFCartTravel);
-		}];
-		
 		RAC(self, loanType) = [[RACObserve(self, cart.crProdId) ignore:nil] map:^id(id value) {
 			return [[MSFLoanType alloc] initWithTypeID:value];
 		}];
@@ -75,13 +70,15 @@
 			self.loanFixedAmt = x.loanFixedAmt;
 			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
 		}];
-	
-		RACChannelTerminal *downPmt = RACChannelTo(self, downPmtAmt);
-		RACChannelTerminal *loanAmt = RACChannelTo(self, loanAmt);
-		[[downPmt map:^id(NSString *value) {
-			double loan = self.cart.totalAmt.doubleValue - value.doubleValue;
-			return [NSString stringWithFormat:@"%.2f", loan];
-		}] subscribe:loanAmt];
+		
+		RAC(self, loanAmt) = [RACSignal combineLatest:@[
+				RACObserve(self, downPmtAmt),
+				RACObserve(self, totalAmt)
+			]
+			reduce:^id(NSString *pmt, NSString *amt) {
+				double loan = amt.doubleValue - pmt.doubleValue;
+				return [NSString stringWithFormat:@"%.2f", loan];
+			}];
 		
 		_downPmtAmt = @"0";
 		_joinInsurance = YES;
@@ -115,7 +112,7 @@
 			self.barcodeInvalid = YES;
 		}];
 		
-		[RACObserve(self, loanType.typeID) subscribeNext:^(id x) {
+		[[RACObserve(self, loanType.typeID) ignore:nil] subscribeNext:^(id x) {
 			[[self.services.httpClient fetchCheckEmploeeWithProductCode:x] subscribeNext:^(MSFMarkets *x) {
 				@strongify(self)
 				[self handleMarkets:x];
@@ -179,48 +176,49 @@
 	if (self.terms.count > 0) {
 		self.term = [self.terms[0] loanTeam];
 	}
+	
+	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+	double a = self.minLoan.doubleValue;
+	double c = self.cart.totalAmt.doubleValue;
+	
+	if (c < d + a) {
+		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
+	}
 }
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
-	switch (self.cartType) {
-		case MSFCartCommodity: {
-				if (indexPath.section == self.cart.cmdtyList.count) {
-					switch (indexPath.row) {
-						case 0: return @"MSFCartInputCell";
-						case 1: return @"MSFCartContentCell";
-						case 2: return @"MSFCartLoanTermCell";
-						case 3: return @"MSFCartSwitchCell";
-						case 4: return @"MSFCartTrialCell";
-					}
-				} else {
-					if (indexPath.row == 0) {
-						return @"MSFCartCategoryCell";
-					}
-					return @"MSFCartContentCell";
-				}
+	if ([self.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
+		if (indexPath.section == self.cart.cmdtyList.count) {
+			switch (indexPath.row) {
+				case 0: return @"MSFCartInputCell";
+				case 1: return @"MSFCartContentCell";
+				case 2: return @"MSFCartLoanTermCell";
+				case 3: return @"MSFCartSwitchCell";
+				case 4: return @"MSFCartTrialCell";
 			}
-			break;
-		case MSFCartTravel: {
-				if (indexPath.section == 2) { // 商品试算视图
-					switch (indexPath.row) {
-						case 0: return @"MSFCartInputCell";
-						case 1: return @"MSFCartContentCell";
-						case 2: return @"MSFCartLoanTermCell";
-						case 3: return @"MSFCartSwitchCell";
-						case 4: return @"MSFCartTrialCell";
-					}
-				} else {
-					if (indexPath.row == 0 && indexPath.section == 0) {
-						return @"MSFCartCategoryCell";
-					}
-					return @"MSFCartContentCell";
-				}
+		} else {
+			if (indexPath.row == 0) {
+				return @"MSFCartCategoryCell";
 			}
-			break;
-
-		default:
-			break;
+			return @"MSFCartContentCell";
+		}
+	} else if ([self.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
+		if (indexPath.section == 2) { // 商品试算视图
+			switch (indexPath.row) {
+				case 0: return @"MSFCartInputCell";
+				case 1: return @"MSFCartContentCell";
+				case 2: return @"MSFCartLoanTermCell";
+				case 3: return @"MSFCartSwitchCell";
+				case 4: return @"MSFCartTrialCell";
+			}
+		} else {
+			if (indexPath.row == 0 && indexPath.section == 0) {
+				return @"MSFCartCategoryCell";
+			}
+			return @"MSFCartContentCell";
+		}
 	}
+	
 	return nil;
 }
 

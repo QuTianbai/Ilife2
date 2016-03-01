@@ -122,4 +122,13 @@
 // Returns MSFResponse.
 - (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo;
 
+// 提款.
+//
+// amounts    - 提款金额.
+// contractNO - 提款合同号.
+// passcode   - 交易密码.
+//
+// Returns MSFResponse.
+- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode;
+
 @end

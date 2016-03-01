@@ -159,7 +159,17 @@
 																		@"contractNo": contractNo?:@"",
 																	}];
 	return [self enqueueRequest:request resultClass:nil];
+}
 
+- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"drawingAmount"] = amounts;
+	parameters[@"contractNo"] = contractNo;
+	parameters[@"dealPwd"] = passcode;
+	
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/drawings" parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
 }
 
 @end

@@ -27,12 +27,15 @@
 
 #import "MSFBankCardListTableViewController.h"
 #import "MSFRepaymentPlanViewController.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 
 #import "MSFOrderListViewController.h"
 
 #import "MSFApplyListViewModel.h"
 #import "MSFLoanType.h"
+#import "MSFCouponsViewModel.h"
+#import "MSFCouponsViewController.h"
+#import "MSFCouponsContainerViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -63,14 +66,18 @@
 											 @"申请记录",
 											 @"还款计划",
 											 @"银行卡",
-											 @"订单列表"],
+											 @"订单列表",
+											 @"优惠券",
+											 ],
 										 @[@"设置",
 											 @"关于"]];
 	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
 									 [UIImage imageNamed:@"icon-account-apply"],
 									 [UIImage imageNamed:@"icon-account-repay"],
 									 [UIImage imageNamed:@"icon-account-bankCard"],
-									 [UIImage imageNamed:@"icon-account-order"]],
+									 [UIImage imageNamed:@"icon-account-order"],
+									 [UIImage imageNamed:@"icon-account-order"]
+									 ],
 								 @[[UIImage imageNamed:@"icon-account-settings"],
 									 [UIImage imageNamed:@"icon-account-about"]]];
 	NSLog(@"%@", self.icons);
@@ -130,6 +137,9 @@
 				case 4:
 					[self orderList];
 					break;
+				case 5:
+					[self couponsList];
+					break;
 				default: break;
 			}
 			break;
@@ -165,7 +175,7 @@
 }
 
 - (void)repaymentPlan {
-	MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
 	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
 	repayViewController.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:repayViewController animated:YES];
@@ -197,6 +207,13 @@
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[(id <MSFReactiveView>)settingsViewController bindViewModel:self.viewModel.authorizeViewModel];
 	[self.navigationController pushViewController:settingsViewController animated:YES];
+}
+
+- (void)couponsList {
+	MSFCouponsViewModel *viewModel = [[MSFCouponsViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

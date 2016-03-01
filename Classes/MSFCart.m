@@ -12,6 +12,9 @@
 #import "MSFCompanion.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
+NSString *const MSFCartCommodityIdentifier = @"goods";
+NSString *const MSFCartTravelIdentifier = @"travel";
+
 @implementation MSFCart
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
@@ -25,7 +28,6 @@
 	NSMutableSet *keys = [super.propertyKeys mutableCopy];
 
 	// This is a derived property.
-	[keys removeObject:@keypath(MSFCart.new, isCommodity)];
 	[keys removeObject:@keypath(MSFCart.new, server)];
 
 	return keys;

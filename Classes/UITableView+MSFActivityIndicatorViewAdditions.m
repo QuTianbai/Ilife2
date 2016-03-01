@@ -30,8 +30,7 @@ static UIColor *backupColor;
 	[view addSubview:imgView];
 	[imgView mas_makeConstraints:^(MASConstraintMaker *make) {
 		make.centerX.equalTo(view);
-		make.centerY.equalTo(view).offset(-40);
-		make.size.mas_equalTo(CGSizeMake(69, 69));
+		make.top.equalTo(view.mas_top).with.offset(CGRectGetMidY([UIScreen mainScreen].bounds) / 2);
 	}];
 	
 	UILabel *label = UILabel.new;

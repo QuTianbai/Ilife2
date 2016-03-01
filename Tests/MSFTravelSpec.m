@@ -27,8 +27,8 @@ beforeEach(^{
 it(@"should initialize", ^{
   // then
 	expect(sut).notTo(beNil());
-	expect(sut.departureTime).to(equal(@"212132112893"));
-	expect(sut.returnTime).to(equal(@"1278321837821738"));
+	expect(sut.departureTime).to(equal(@"1976-09-21"));
+	expect(sut.returnTime).to(equal(@"42478-05-28"));
 	expect(sut.isNeedVisa).to(equal(@"YES"));
 	expect(sut.origin).to(equal(@"Chongqing"));
 	expect(sut.destination).to(equal(@"Beijing"));

@@ -22,7 +22,7 @@
 	return [[self enqueueRequest:request resultClass:MSFPayment.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchDownPayment:(MSFOrderDetail *)order password:(NSString *)password authType:(NSString *)auth {
+- (RACSignal *)fetchDownPayment:(MSFOrderDetail *)order password:(NSString *)password {
 	NSDictionary *parameters = @{
 		@"transPassword": password,
 		@"authType": @"O",
