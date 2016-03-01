@@ -64,12 +64,10 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[super viewDidLoad];
 	self.title = @"登录";
 	
-	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
-	
+	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
+	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 	self.tableView.backgroundColor = [UIColor navigationBgColor];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
 	// 登录用户名/密码
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
@@ -83,7 +81,6 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	self.signUpBt.rac_command = self.viewModel.executeSignUpCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
-		self.navigationController.navigationBarHidden = YES;
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignIn;
@@ -145,8 +142,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-			self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
-//		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
 
 	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
@@ -168,6 +164,13 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		@strongify(self)
 		self.password.returnKeyType = self.viewModel.signInValid ? UIReturnKeyJoin : UIReturnKeyDefault;
 		[self.tableView reloadData];
+	}];
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		[self dismissViewControllerAnimated:YES completion:nil];
+		return [RACSignal empty];
 	}];
 }
 
