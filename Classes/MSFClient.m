@@ -574,6 +574,12 @@ static NSDictionary *messages;
 		MSFClientErrorMessageCodeKey: code ?: @"",
 	}];
 	
+	if (operation.response.statusCode == MSFClientErrorUnprocessableEntry) {
+		userinfo = @{
+			NSLocalizedFailureReasonErrorKey: [operation.responseObject[@"fields"] allValues].firstObject?:@""
+		};
+	}
+	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
 }
 

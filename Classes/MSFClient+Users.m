@@ -15,6 +15,18 @@
 
 @implementation MSFClient (Users)
 
+- (RACSignal *)authenticateUsername:(NSString *)username userident:(NSString *)userident city:(NSString *)city province:(NSString *)province banknumber:(NSString *)number {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"name"] = username;
+	parameters[@"idCard"] = userident;
+	parameters[@"bankCardNo"] = number;
+	parameters[@"bankBranchProvinceCode"] = province;
+	parameters[@"bankBranchCityCode"] = city;
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/authentication" parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
 - (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"mobile"] = phone;

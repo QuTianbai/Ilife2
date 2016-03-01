@@ -8,6 +8,8 @@
 
 @interface MSFClient (Users)
 
+- (RACSignal *)authenticateUsername:(NSString *)username userident:(NSString *)userident city:(NSString *)city province:(NSString *)province banknumber:(NSString *)number;
+
 // 找回登录密码.
 //
 // password  - 新的登录密码.

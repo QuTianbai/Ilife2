@@ -89,6 +89,7 @@
 #import "MSFOrderListViewController.h"
 
 #import "MSFSignUpViewController.h"
+#import "MSFAuthenticateViewController.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
@@ -217,7 +218,7 @@
 	id viewController;
 	
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
-		MSFSignInViewController *loginViewController = [[MSFSignInViewController alloc] initWithViewModel:viewModel];
+		MSFAuthenticateViewController *loginViewController = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
 	} else {
 		NSLog(@"an unknown ViewModel was present!");

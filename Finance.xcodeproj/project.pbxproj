@@ -602,6 +602,7 @@
 		498B7BC41C85693800C1DD68 /* bg-wallet-show.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498B7BC11C85693800C1DD68 /* bg-wallet-show.jpg */; };
 		498B7BC51C85693800C1DD68 /* bg-wallet-show@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498B7BC21C85693800C1DD68 /* bg-wallet-show@2x.jpg */; };
 		498B7BC61C85693800C1DD68 /* bg-wallet-show@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498B7BC31C85693800C1DD68 /* bg-wallet-show@3x.jpg */; };
+		498B7BD61C85729500C1DD68 /* MSFAuthenticateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498B7BD51C85729500C1DD68 /* MSFAuthenticateViewController.m */; };
 		498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */; };
 		498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */; };
 		498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F3D491B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m */; };
@@ -1797,6 +1798,8 @@
 		498B7BC11C85693800C1DD68 /* bg-wallet-show.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-wallet-show.jpg"; sourceTree = "<group>"; };
 		498B7BC21C85693800C1DD68 /* bg-wallet-show@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-wallet-show@2x.jpg"; sourceTree = "<group>"; };
 		498B7BC31C85693800C1DD68 /* bg-wallet-show@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-wallet-show@3x.jpg"; sourceTree = "<group>"; };
+		498B7BD41C85729500C1DD68 /* MSFAuthenticateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthenticateViewController.h; sourceTree = "<group>"; };
+		498B7BD51C85729500C1DD68 /* MSFAuthenticateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthenticateViewController.m; sourceTree = "<group>"; };
 		498BFC561B11FF8A00FFE88F /* MSFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWebViewController.h; sourceTree = "<group>"; };
 		498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewController.m; sourceTree = "<group>"; };
 		498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
@@ -4321,6 +4324,8 @@
 				49AFD9A41B073F5600438183 /* login.storyboard */,
 				498141041BBEA527006C7E8D /* MSFSignInSegmentedView.h */,
 				498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */,
+				498B7BD41C85729500C1DD68 /* MSFAuthenticateViewController.h */,
+				498B7BD51C85729500C1DD68 /* MSFAuthenticateViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -5837,6 +5842,7 @@
 				497827CA1C840D2100F2D1D8 /* MSFFooterViewController.m in Sources */,
 				49CCFBF51B072EA4008A9CD1 /* MSFApplicationResponse.m in Sources */,
 				102C7ED11C2939570023172B /* MSFPlanPerodicTables.m in Sources */,
+				498B7BD61C85729500C1DD68 /* MSFAuthenticateViewController.m in Sources */,
 				0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */,
 				4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */,
 				49CCFBDB1B072359008A9CD1 /* MSFHomepageViewController.m in Sources */,

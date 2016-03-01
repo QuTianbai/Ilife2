@@ -38,7 +38,7 @@
 #pragma mark - Custom Accessors
 
 - (BOOL)isAuthenticated {
-	return self.objectID != nil;
+	return self.hasChecked.integerValue != 0;
 }
 
 @end

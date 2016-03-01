@@ -28,6 +28,7 @@
 #import "MSFDrawingsViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFOrderListViewModel.h"
+#import "MSFUser.h"
 
 static NSString *const kWalletIdentifier = @"4102";
 
@@ -225,7 +226,7 @@ static NSString *const kWalletIdentifier = @"4102";
 #pragma mark - Custom Accessors
 
 - (RACSignal *)actionSignal {
-	if (!self.services.httpClient.isAuthenticated) {
+	if (![self.services.httpClient.user isAuthenticated]) {
 		return self.authenticateSignal;
 	}
 	

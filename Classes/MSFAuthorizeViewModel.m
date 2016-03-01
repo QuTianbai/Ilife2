@@ -16,6 +16,8 @@
 #import "NSDate+UTC0800.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFServer.h"
+#import "MSFAddress.h"
+#import "MSFAddressViewModel.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -40,6 +42,8 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 @property (nonatomic, assign) BOOL counting;
 @property (nonatomic, strong, readwrite) RACSubject *signInInvalidSignal;
+@property (nonatomic, strong) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, strong, readwrite) RACCommand *executeAlterAddressCommand;
 
 @end
 
@@ -276,6 +280,14 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal return:nil];
 	}];
 	
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:self.services];
+	RAC(self, address) = RACObserve(self, addressViewModel.address);
+	self.executeAlterAddressCommand = self.addressViewModel.selectCommand;
+	
+	_executeAuthenticateCommand = [[RACCommand alloc] initWithEnabled:[self authenticateValidSignal] signalBlock:^RACSignal *(id input) {
+		return [self authenticateSignal];
+	}];
+	
 	return self;
 }
 
@@ -328,6 +340,16 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 #pragma mark - Private
+
+- (RACSignal *)authenticateValidSignal {
+	return [RACSignal combineLatest:@[RACObserve(self.addressViewModel, provinceCode), RACObserve(self.addressViewModel, cityCode), RACObserve(self, username), RACObserve(self, card), RACObserve(self, banknumber)] reduce:^id (NSString *province, NSString *city, NSString *username, NSString *card, NSString *number) {
+		return @(province.length > 0 && city.length > 0 && username.length > 0 && card.length > 0 && number.length > 0);
+	}];
+}
+
+- (RACSignal *)authenticateSignal {
+	return [self.services.httpClient authenticateUsername:self.username userident:self.card city:self.addressViewModel.cityCode province:self.addressViewModel.provinceCode banknumber:self.banknumber];
+}
 
 - (RACSignal *)executeSignInSignal {
 	NSError *error;
