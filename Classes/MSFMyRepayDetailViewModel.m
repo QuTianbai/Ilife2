@@ -8,6 +8,7 @@
 
 #import "MSFMyRepayDetailViewModel.h"
 #import "MSFMyRepayDetailModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFMyRepayDetailViewModel ()
 
@@ -37,7 +38,7 @@
 	_applyDate = @"";
 	_cmdtyList = @[];
 	_withdrawList = @[];
-	
+	self.didBecomeActiveSignal
 	
 	
 	return self;
