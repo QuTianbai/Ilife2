@@ -10,7 +10,7 @@
 #import "MSFViewModelServices.h"
 #import "MSFApplicationViewModel.h"
 
-@interface MSFUserInfomationViewController : UIViewController
+@interface MSFUserInfomationViewController : UITableViewController
 
 @property (nonatomic, assign) BOOL showNextStep;
 

@@ -40,6 +40,9 @@
 #import "MSFFaceMaskViewModel.h"
 #import "MSFFaceMaskPhtoViewController.h"
 #import "MSFCartViewModel.h"
+#import "MSFAuthorizeViewModel.h"
+#import "MSFAuthenticateViewController.h"
+#import "MSFAuxiliaryViewController.h"
 
 @interface MSFUserInfomationViewController ()
 
@@ -53,7 +56,7 @@
 @implementation MSFUserInfomationViewController
 
 - (instancetype)initWithViewModel:(id)viewModel services:(id<MSFViewModelServices>)services {
-	self = [super initWithNibName:@"MSFUserInformationViewController" bundle:nil];
+	self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFUserInfomationViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFUserInfomationViewController class])];
 	if (self) {
 		self.hidesBottomBarWhenPushed = YES;
 		_services = services;
@@ -70,8 +73,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
-	
 	self.navigationItem.title = @"个人信息";
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
@@ -188,6 +189,38 @@
 - (void)setShowNextStep:(BOOL)showNextStep {
 	_showNextStep = showNextStep;
 	_nextStepButton.hidden = !showNextStep;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		MSFAuthorizeViewModel *viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
+		MSFAuthenticateViewController *vc = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+		return;
+	}
+	if (indexPath.section == 1) {
+		switch (indexPath.row) {
+			case 0: {
+				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
+				[self.services pushViewModel:viewModel];
+				break;
+			}
+			case 1: {
+				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
+				MSFAuxiliaryViewController *vc = [[MSFAuxiliaryViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
+				break;
+			}
+			case 2: {
+				//TODO: 联系人需要同职业信息合并在一起
+				MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
+				[self.services pushViewModel:viewModel];
+				break;
+			}
+		}
+	}
 }
 
 @end
