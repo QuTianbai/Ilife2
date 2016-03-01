@@ -11,6 +11,7 @@
 #import "MSFTableViewBindingHelper.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "MSFMyRepayTableViewCell.h"
+#import "MSFMyRepayDetalViewController.h"
 
 @interface MSFMyRepayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -41,15 +42,18 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	@weakify(self)
 	self.bindingHelper = [[MSFTableViewBindingHelper alloc]
-												initWithTableView:self.tableView
-												sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
+		initWithTableView:self.tableView sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
 		return value;
 	}]
-												selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:nil];
+		@strongify(self)
+		[self.navigationController pushViewController:vc animated:YES];
 		return [RACSignal empty];
 	}]
-												templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyRepayTableViewCell class]) bundle:nil]];
+	templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyRepayTableViewCell class]) bundle:nil]];
 	self.bindingHelper.delegate = self;
 
 }

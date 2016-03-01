@@ -7,8 +7,15 @@
 //
 
 #import "MSFMyRepayDetalViewController.h"
+#import "MSFBlurButton.h"
 
 @interface MSFMyRepayDetalViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *repayMoneyCountLB;
+@property (weak, nonatomic) IBOutlet UIButton *repayBT;
+@property (weak, nonatomic) IBOutlet UILabel *contractTitle;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *repayDay;
+@property (weak, nonatomic) IBOutlet UITableView *repayDetalTableView;
+@property (weak, nonatomic) IBOutlet MSFBlurButton *repayMoneyBT;
 
 @end
 
@@ -24,13 +31,13 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	
 }
 
 @end

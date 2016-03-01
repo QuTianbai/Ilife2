@@ -200,6 +200,10 @@
 		07D224981BCCB80A00B00BEF /* LifeInsurance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */; };
 		07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */; };
 		07D2249F1BCCD16B00B00BEF /* MSFClient+LifeInsurance.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D2249E1BCCD16B00B00BEF /* MSFClient+LifeInsurance.m */; };
+		07E14B7B1C847B9A00589164 /* MSFMyRepayDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14B7A1C847B9A00589164 /* MSFMyRepayDetailModel.m */; };
+		07E14B8B1C847C5C00589164 /* MSFDrawModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14B8A1C847C5C00589164 /* MSFDrawModel.m */; };
+		07E14B8E1C847CD800589164 /* MSFCmdtyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14B8D1C847CD800589164 /* MSFCmdtyModel.m */; };
+		07E14B911C85990E00589164 /* MSFMyRepayDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14B901C85990E00589164 /* MSFMyRepayDetailViewModel.m */; };
 		07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */; };
 		07E3ED621BBBB8B40010AAD2 /* InputTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */; };
 		07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6A1BBBC3020010AAD2 /* tradePassWordBG.png */; };
@@ -1174,6 +1178,14 @@
 		07D2249A1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLifeInsuranceViewModel.m; sourceTree = "<group>"; };
 		07D2249D1BCCD16B00B00BEF /* MSFClient+LifeInsurance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+LifeInsurance.h"; sourceTree = "<group>"; };
 		07D2249E1BCCD16B00B00BEF /* MSFClient+LifeInsurance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+LifeInsurance.m"; sourceTree = "<group>"; };
+		07E14B791C847B9A00589164 /* MSFMyRepayDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepayDetailModel.h; sourceTree = "<group>"; };
+		07E14B7A1C847B9A00589164 /* MSFMyRepayDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepayDetailModel.m; sourceTree = "<group>"; };
+		07E14B891C847C5C00589164 /* MSFDrawModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDrawModel.h; sourceTree = "<group>"; };
+		07E14B8A1C847C5C00589164 /* MSFDrawModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDrawModel.m; sourceTree = "<group>"; };
+		07E14B8C1C847CD800589164 /* MSFCmdtyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCmdtyModel.h; sourceTree = "<group>"; };
+		07E14B8D1C847CD800589164 /* MSFCmdtyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCmdtyModel.m; sourceTree = "<group>"; };
+		07E14B8F1C85990E00589164 /* MSFMyRepayDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyRepayDetailViewModel.h; sourceTree = "<group>"; };
+		07E14B901C85990E00589164 /* MSFMyRepayDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyRepayDetailViewModel.m; sourceTree = "<group>"; };
 		07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputTradePasswordViewController.h; sourceTree = "<group>"; };
 		07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputTradePasswordViewController.m; sourceTree = "<group>"; };
 		07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InputTradePassword.storyboard; sourceTree = "<group>"; };
@@ -2899,6 +2911,8 @@
 				07A145A61C81509500C32F0B /* MSFMyRepayViewModel.m */,
 				07A145FA1C84017600C32F0B /* MSFMyRepaysViewModel.h */,
 				07A145FB1C84017600C32F0B /* MSFMyRepaysViewModel.m */,
+				07E14B8F1C85990E00589164 /* MSFMyRepayDetailViewModel.h */,
+				07E14B901C85990E00589164 /* MSFMyRepayDetailViewModel.m */,
 			);
 			name = RepaymentSchedules;
 			sourceTree = "<group>";
@@ -4433,6 +4447,12 @@
 				C72149DC1B05A3640045F919 /* MSFClient+RepaymentSchedules.h */,
 				C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */,
 				07A145FF1C84254B00C32F0B /* myRepayList.json */,
+				07E14B791C847B9A00589164 /* MSFMyRepayDetailModel.h */,
+				07E14B7A1C847B9A00589164 /* MSFMyRepayDetailModel.m */,
+				07E14B891C847C5C00589164 /* MSFDrawModel.h */,
+				07E14B8A1C847C5C00589164 /* MSFDrawModel.m */,
+				07E14B8C1C847CD800589164 /* MSFCmdtyModel.h */,
+				07E14B8D1C847CD800589164 /* MSFCmdtyModel.m */,
 			);
 			name = RepaymentSchedule;
 			sourceTree = "<group>";
@@ -5345,6 +5365,7 @@
 				07481F6E1C75DD4F006ADE2B /* MSFSignUpButton.m in Sources */,
 				07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */,
 				077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */,
+				07E14B911C85990E00589164 /* MSFMyRepayDetailViewModel.m in Sources */,
 				490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */,
 				49B185FC1C56114200409C6F /* MSFClient+Coupons.m in Sources */,
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
@@ -5498,6 +5519,7 @@
 				107A0D1F1BE203410076E08C /* MSFHomePageItemViewModel.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
 				4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */,
+				07E14B8E1C847CD800589164 /* MSFCmdtyModel.m in Sources */,
 				07A145A71C81509500C32F0B /* MSFMyRepayViewModel.m in Sources */,
 				07667BF41BBEAB83002DFF62 /* MSFApplyCashInfo.m in Sources */,
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,
@@ -5532,6 +5554,7 @@
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
 				49CCFBF81B072EA4008A9CD1 /* MSFClient+ApplyCash.m in Sources */,
+				07E14B8B1C847C5C00589164 /* MSFDrawModel.m in Sources */,
 				4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */,
 				4944C05E1B68A6CA00805C0A /* MSFClient+ApplyList.m in Sources */,
 				C7B978111B099CAC005F247C /* MSFProductIntroductionCell.m in Sources */,
@@ -5557,6 +5580,7 @@
 				07A145F41C83E93F00C32F0B /* MSFMyRepayContainerViewController.m in Sources */,
 				49DA22661B062AF200DD4483 /* MSFClient+Users.m in Sources */,
 				101BD3C11C2BE43300842D36 /* MSFCartCategoryCell.m in Sources */,
+				07E14B7B1C847B9A00589164 /* MSFMyRepayDetailModel.m in Sources */,
 				07BDE4CC1B296DFA005A01EE /* MSFClient+PhotoStatus.m in Sources */,
 				10ACE5ED1C0459B200EE5044 /* MSFRelationMarriageCell.m in Sources */,
 				0704EB6D1B6B5327000F5369 /* MSFAddressInfo.m in Sources */,
