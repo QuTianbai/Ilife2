@@ -80,6 +80,21 @@
 	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.servcies.httpClient.user.mobile) map:^id(id value) {
 		return [NSString stringWithFormat:@"手机号: %@", value];
 	}];
+	@weakify(self)
+	RAC(self, perentLabel.text) = [RACObserve(self, viewModel.percent) doNext:^(id x) {
+		@strongify(self)
+		if ([x isEqualToString:@"100%"]) {
+			[self.infoButton1 setTitle:@"更新信息" forState:UIControlStateNormal];
+		}
+	}];
+	self.infoButton1.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self updateUserSignal];
+	}];
+	self.infoButton2.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self updateUserSignal];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -160,9 +175,6 @@
 }
 
 - (void)repaymentPlan {
-//	MSFRepaymentPlanViewModel *viewmodel = [[MSFRepaymentPlanViewModel alloc] initWithServices:self.viewModel.servcies];
-//	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
-//	repayViewController.hidesBottomBarWhenPushed = YES;
 	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.servcies];
 	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];
 	vc.hidesBottomBarWhenPushed = YES;
@@ -178,9 +190,6 @@
 - (void)orderList {
 	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
 	[self.navigationController pushViewController:vc animated:YES];
-	
-//	MSFCartViewController *vcb = [[MSFCartViewController alloc] initWithOrderId:@"200000032015122408473723499" services:self.viewModel.servcies];
-//	[self.navigationController pushViewController:vcb animated:YES];
 }
 
 - (void)pushAbout {
@@ -202,6 +211,18 @@
 	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (RACSignal *)updateUserSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
+		MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
+		MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
+		MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
+		[self.navigationController pushViewController:vc animated:YES];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end

@@ -51,6 +51,28 @@ static const int kPasswordMinLength = 8;
 	
 	_bankCardListViewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.servcies];
 	
+	NSString *status = [self.servcies.httpClient user].complateCustInfo;
+	BOOL b0 = [status substringWithRange:NSMakeRange(0, 1)].integerValue == 1;
+	BOOL b1 = [status substringWithRange:NSMakeRange(2, 1)].integerValue == 1;
+	BOOL b2 = [status substringWithRange:NSMakeRange(1, 1)].integerValue == 1;
+	
+	NSInteger completion = 0;
+	if (b0) {
+		completion ++;
+	}
+	if (b1) {
+		completion ++;
+	}
+	if (b2) {
+		completion ++;
+	}
+	
+	if (completion == 3) {
+		self.percent = @"100%";
+	} else {
+		self.percent = [NSString stringWithFormat:@"%ld%%", (long)completion * 33];
+	}
+	
 	return self;
 }
 
