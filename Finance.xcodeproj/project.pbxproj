@@ -599,6 +599,9 @@
 		498637C31C2BB6E400A11845 /* MSFCommodityCashViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637C21C2BB6E400A11845 /* MSFCommodityCashViewModel.m */; };
 		498637CF1C2BC19300A11845 /* MSFDistinguishViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 498637CE1C2BC19300A11845 /* MSFDistinguishViewModel.m */; };
 		498B52351C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 498B52341C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m */; };
+		498B7BC41C85693800C1DD68 /* bg-wallet-show.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498B7BC11C85693800C1DD68 /* bg-wallet-show.jpg */; };
+		498B7BC51C85693800C1DD68 /* bg-wallet-show@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498B7BC21C85693800C1DD68 /* bg-wallet-show@2x.jpg */; };
+		498B7BC61C85693800C1DD68 /* bg-wallet-show@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 498B7BC31C85693800C1DD68 /* bg-wallet-show@3x.jpg */; };
 		498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */; };
 		498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */; };
 		498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F3D491B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m */; };
@@ -1791,6 +1794,9 @@
 		498B52331C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFBarcodeScanViewController+MSFSignalSupport.h"; sourceTree = "<group>"; };
 		498B52341C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFBarcodeScanViewController+MSFSignalSupport.m"; sourceTree = "<group>"; };
 		498B52431C2A83E400AD97C1 /* MSFBarcodeScanViewControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFBarcodeScanViewControllerDelegate.h; sourceTree = "<group>"; };
+		498B7BC11C85693800C1DD68 /* bg-wallet-show.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-wallet-show.jpg"; sourceTree = "<group>"; };
+		498B7BC21C85693800C1DD68 /* bg-wallet-show@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-wallet-show@2x.jpg"; sourceTree = "<group>"; };
+		498B7BC31C85693800C1DD68 /* bg-wallet-show@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-wallet-show@3x.jpg"; sourceTree = "<group>"; };
 		498BFC561B11FF8A00FFE88F /* MSFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWebViewController.h; sourceTree = "<group>"; };
 		498BFC571B11FF8A00FFE88F /* MSFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWebViewController.m; sourceTree = "<group>"; };
 		498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
@@ -3943,6 +3949,9 @@
 		497827A51C83F5D300F2D1D8 /* 3.0 */ = {
 			isa = PBXGroup;
 			children = (
+				498B7BC11C85693800C1DD68 /* bg-wallet-show.jpg */,
+				498B7BC21C85693800C1DD68 /* bg-wallet-show@2x.jpg */,
+				498B7BC31C85693800C1DD68 /* bg-wallet-show@3x.jpg */,
 				491FD3F11C84A4D40026928F /* tab-commodity-highlighted.png */,
 				491FD3F21C84A4D40026928F /* tab-commodity-highlighted@2x.png */,
 				491FD3F31C84A4D40026928F /* tab-commodity-highlighted@3x.png */,
@@ -5111,6 +5120,7 @@
 				491FD4121C84A4D40026928F /* tab-me-normal.png in Resources */,
 				497827B11C83F5E100F2D1D8 /* bg-wallet-status@3x.png in Resources */,
 				10B1352A1BCD309600E8F1FE /* MSFUserInformationViewController.xib in Resources */,
+				498B7BC61C85693800C1DD68 /* bg-wallet-show@3x.jpg in Resources */,
 				497827D51C84145400F2D1D8 /* btn-apply-normal.png in Resources */,
 				49C0F1CA1B2C341400E92572 /* tabbar-apply-normal.png in Resources */,
 				C7A351851B217CB10001DF6A /* iconfont-wangdian@3x.png in Resources */,
@@ -5164,6 +5174,7 @@
 				07E3ED731BBBC3020010AAD2 /* tradepasswordimg.png in Resources */,
 				4944C02D1B68A5A100805C0A /* icon-account-apply@3x.png in Resources */,
 				10028A601BD4F28F00D36508 /* edu_background1.json in Resources */,
+				498B7BC41C85693800C1DD68 /* bg-wallet-show.jpg in Resources */,
 				10C83F821BBE19EA0086BF31 /* home-banner-pl.png in Resources */,
 				49C2FE461B4654D100B6B20A /* icon-arrow-down@2x.png in Resources */,
 				07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */,
@@ -5174,6 +5185,7 @@
 				077347D31BBA338900D7A130 /* china.png in Resources */,
 				49C0F1AF1B2C315100E92572 /* logo.png in Resources */,
 				10DC2E511BA0209400A2AF9C /* btn-attachment-take-photo@2x.png in Resources */,
+				498B7BC51C85693800C1DD68 /* bg-wallet-show@2x.jpg in Resources */,
 				10ACE5CB1C0439B700EE5044 /* icon-account-repay.png in Resources */,
 				49C0F1D11B2C341400E92572 /* tabbar-home-normal@2x.png in Resources */,
 				07C06C781B1347C200F2DFCC /* json_banks.json in Resources */,

@@ -19,5 +19,6 @@
 //
 // Returns a singal which sends MSFPhoto with image URL or nil
 - (RACSignal *)fetchAdv:(NSString *)type;
+- (RACSignal *)fetchShow:(NSString *)type;
 
 @end

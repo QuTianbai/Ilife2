@@ -74,9 +74,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="log-wallet-second.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-Jh-twP">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hy-XD-mXS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-wallet-show.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-Jh-twP">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BOf-6w-5QU">
+                                        <rect key="frame" x="20" y="0.0" width="260" height="122"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="BOf-6w-5QU" secondAttribute="trailing" constant="40" id="0be-ye-lMq"/>
+                                    <constraint firstItem="uFB-Jh-twP" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="top" id="D6e-LT-2QV"/>
+                                    <constraint firstItem="BOf-6w-5QU" firstAttribute="leading" secondItem="9hy-XD-mXS" secondAttribute="leading" constant="20" id="LHI-hs-evj"/>
+                                    <constraint firstItem="BOf-6w-5QU" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="top" id="TaO-ha-juG"/>
+                                    <constraint firstItem="uFB-Jh-twP" firstAttribute="leading" secondItem="9hy-XD-mXS" secondAttribute="leading" id="n0e-rC-JbI"/>
+                                    <constraint firstAttribute="trailing" secondItem="uFB-Jh-twP" secondAttribute="trailing" id="nBR-Hf-EDl"/>
+                                    <constraint firstAttribute="bottom" secondItem="uFB-Jh-twP" secondAttribute="bottom" id="rpY-Wf-2QT"/>
+                                    <constraint firstAttribute="bottom" secondItem="BOf-6w-5QU" secondAttribute="bottom" constant="40" id="tqG-bn-hSF"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcF-cK-xcp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                 <subviews>
@@ -162,21 +184,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9hy-XD-mXS" secondAttribute="trailing" id="7Lt-1F-wOG"/>
+                            <constraint firstItem="9hy-XD-mXS" firstAttribute="top" secondItem="mN5-Pw-OK0" secondAttribute="bottom" id="AEa-MO-SAw"/>
                             <constraint firstItem="kcF-cK-xcp" firstAttribute="leading" secondItem="14a-09-Epy" secondAttribute="leading" id="Ckf-ai-SXO"/>
                             <constraint firstAttribute="bottom" secondItem="kcF-cK-xcp" secondAttribute="bottom" id="DXv-Uv-wBN"/>
-                            <constraint firstAttribute="trailing" secondItem="uFB-Jh-twP" secondAttribute="trailing" id="IxI-F7-UQ9"/>
-                            <constraint firstAttribute="bottom" secondItem="uFB-Jh-twP" secondAttribute="bottom" id="KjB-uM-xJM"/>
-                            <constraint firstItem="uFB-Jh-twP" firstAttribute="leading" secondItem="14a-09-Epy" secondAttribute="leading" id="Md4-4h-GiV"/>
+                            <constraint firstItem="9hy-XD-mXS" firstAttribute="leading" secondItem="14a-09-Epy" secondAttribute="leading" id="FAK-0M-XeP"/>
                             <constraint firstAttribute="trailing" secondItem="kcF-cK-xcp" secondAttribute="trailing" id="REc-9Q-ZRH"/>
                             <constraint firstItem="kcF-cK-xcp" firstAttribute="top" secondItem="14a-09-Epy" secondAttribute="top" id="cw4-hu-4ob"/>
-                            <constraint firstItem="uFB-Jh-twP" firstAttribute="top" secondItem="14a-09-Epy" secondAttribute="top" id="ht0-BR-Kbq"/>
+                            <constraint firstItem="CxW-k0-V9S" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="bottom" id="kcY-F9-Ibo"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="xpF-j0-pos" id="cMP-6L-hL0"/>
                         <outlet property="applyButton" destination="NbK-gn-b68" id="qyn-CH-9pQ"/>
                         <outlet property="contentView" destination="kcF-cK-xcp" id="Yk5-9p-f6x"/>
-                        <outlet property="imageView" destination="uFB-Jh-twP" id="8vp-I1-hAb"/>
+                        <outlet property="groundLabel" destination="BOf-6w-5QU" id="74D-s9-rjk"/>
+                        <outlet property="groundView" destination="9hy-XD-mXS" id="46i-CJ-CHX"/>
                         <outlet property="repayButton" destination="jOE-OQ-YGp" id="NzM-W0-KxI"/>
                         <outlet property="subtitleLabel" destination="neg-eL-PsP" id="FQk-DF-6gZ"/>
                     </connections>
@@ -435,11 +458,11 @@
     </scenes>
     <resources>
         <image name="bg-view-header.jpg" width="414" height="314"/>
+        <image name="bg-wallet-show.jpg" width="414" height="211"/>
         <image name="bg-wallet-status.png" width="186" height="186"/>
         <image name="btn-active-normal.png" width="140" height="36"/>
         <image name="btn-apply-normal.png" width="311" height="56"/>
         <image name="btn-repay-highlighted.png" width="119" height="37"/>
         <image name="btn-repay-normal.png" width="119" height="37"/>
-        <image name="log-wallet-second.jpg" width="414" height="211"/>
     </resources>
 </document>

@@ -7,7 +7,9 @@
 #import "MSFMiddleViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MSFWalletViewModel.h"
+#import "MSFPhoto.h"
 
 @interface MSFMiddleViewController ()
 
@@ -22,7 +24,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	RAC(self.imageView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
+	RAC(self.groundView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
 		return @(status.integerValue == MSFWalletActivated);
 	}];
 	RAC(self.contentView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
@@ -34,6 +36,7 @@
 	
 	RAC(self.applyButton, rac_command) = RACObserve(self, viewModel.executeDrawCommand);
 	RAC(self.repayButton, rac_command) = RACObserve(self, viewModel.executeRepayCommand);
+	RAC(self.groundLabel, text) = RACObserve(self, viewModel.groundTitle);
 }
 
 #pragma mark - MSFReactiveView

@@ -269,13 +269,30 @@
 #pragma mark - Authenticated
 
 - (void)unAuthenticatedControllers {
-	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
-	tabBarController.selectedIndex = 1;
-	self.window.rootViewController = tabBarController;
+	if (self.timer != nil) {
+		[self.timer setFireDate:[NSDate distantFuture]];
+	}
+	[self.viewModel.formsViewModel setBankCardMasterDefult];
+	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
+	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
+	MSFSignInViewController *viewController = [[MSFSignInViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
+	self.window.rootViewController = navigationController;
+
+	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
+	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]];
+		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
+		[vc dismissViewControllerAnimated:NO completion:nil];
+	}
 }
 
 - (void)authenticatedControllers {
-	[self unAuthenticatedControllers];
+	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+	tabBarController.selectedIndex = 1;
+	self.window.rootViewController = tabBarController;
 }
 
 #if TEST
