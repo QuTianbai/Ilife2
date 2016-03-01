@@ -16,7 +16,7 @@
 @implementation MSFClient(Order)
 
 - (RACSignal *)fetchOrderList:(NSString *)status pageNo:(NSInteger)pn {
-	NSDictionary *params = @{@"uniqueId" : self.user.uniqueId,
+	NSDictionary *params = @{@"uniqueId" : self.user.objectID,
 													 @"orderStatus" : status ?: @"",
 													 @"pageSize" : @10,
 													 @"pageNo" : @(pn)};

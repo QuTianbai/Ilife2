@@ -27,7 +27,7 @@
 		@"loanTerm": loanTerm,
 		@"productCode": productCode,
 		@"jionLifeInsurance": jionLifeInsurance.boolValue ? @"1" : @"0",
-		@"uniqueId":self.user.uniqueId
+		@"uniqueId":self.user.objectID
 	}];
 
 	return [[[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class]

@@ -59,7 +59,7 @@
 
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = self.user.uniqueId;
+	parameters[@"uniqueId"] = self.user.objectID;
 	parameters[@"transPassword"] = transPassword;
 	parameters[@"bankCardNo"] = bankCardNo;
 	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
@@ -73,7 +73,7 @@
 
 - (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = self.user.uniqueId;
+	parameters[@"uniqueId"] = self.user.objectID;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
@@ -84,7 +84,7 @@
 
 - (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = self.user.uniqueId;
+	parameters[@"uniqueId"] = self.user.objectID;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
@@ -97,7 +97,7 @@
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 	parameters[@"drawingAmount"] = count;
 	parameters[@"contractNo"] = contractNO;
-	parameters[@"uniqueId"] = self.user.uniqueId;
+	parameters[@"uniqueId"] = self.user.objectID;
 	parameters[@"dealPwd"] = pwd?:@"";
 	NSString *path = @"loan/drawings";
 	if (type == 1 || type == 2) {
@@ -112,7 +112,7 @@
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
-		@"uniqueId": self.user.uniqueId,
+		@"uniqueId": self.user.objectID,
 		@"newTransPassword": pwd?:@"",
 		@"smsCode": capthch?:@""
 	}];
@@ -121,7 +121,7 @@
 
 - (RACSignal *)updateTradePwdWitholdPwd:(NSString *)oldpwd AndNewPwd:(NSString *)pwd AndCaptch:(NSString *)captch {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{
-		@"uniqueId": self.user.uniqueId,
+		@"uniqueId": self.user.objectID,
 		@"newTransPassword": pwd?:@"",
 		@"smsCode": captch?:@"",
 		@"oldTransPassword": oldpwd?:@""
@@ -131,7 +131,7 @@
 
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{
-		@"uniqueId": self.user.uniqueId,
+		@"uniqueId": self.user.objectID,
 		@"newTransPassword": newTransPassword?:@"",
 		@"smsCode": smsCode?:@"",
 		@"bankCardNo": bankCardNO?:@"",
