@@ -231,8 +231,8 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-J0-3LZ" customClass="MSFBlurButton">
-                                    <rect key="frame" x="20" y="71" width="280" height="44"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pch-J0-3LZ" customClass="MSFBlurButton">
+                                    <rect key="frame" x="20" y="76" width="280" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="280" id="JkK-y6-2c8"/>
                                         <constraint firstAttribute="height" constant="44" id="KA3-g4-sBo"/>
