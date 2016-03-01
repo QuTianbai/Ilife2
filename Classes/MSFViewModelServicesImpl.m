@@ -88,6 +88,8 @@
 #import "MSFOrderListViewModel.h"
 #import "MSFOrderListViewController.h"
 
+#import "MSFSignUpViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -163,7 +165,11 @@
 	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
 		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFAuthorizeViewModel class]]) {
-		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+		if ([(MSFAuthorizeViewModel *)viewModel loginType] == MSFLoginSignUp) {
+			viewController = [[MSFSignUpViewController alloc] initWithViewModel:viewModel];
+		} else {
+			viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+		}
 	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {

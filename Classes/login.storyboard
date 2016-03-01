@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IDU-zp-Uah">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IDU-zp-Uah">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -14,26 +14,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.070588235289999995" green="0.65098039220000004" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="nsX-e7-wUx">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="BEE-AZ-ELE">
+                            <rect key="frame" x="0.0" y="64" width="320" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aBX-8a-Ohc">
-                                    <rect key="frame" x="133" y="31" width="54" height="21"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="21" id="vGc-xc-bzE"/>
-                                        <constraint firstAttribute="width" constant="54" id="zOV-V5-ma6"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.070588235289999995" green="0.65098039220000004" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="aBX-8a-Ohc" firstAttribute="centerY" secondItem="nsX-e7-wUx" secondAttribute="centerY" id="BhV-Gx-yYy"/>
-                                <constraint firstItem="aBX-8a-Ohc" firstAttribute="centerX" secondItem="nsX-e7-wUx" secondAttribute="centerX" id="wzx-jo-epR"/>
-                            </constraints>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="JxN-2M-z7W">
                             <rect key="frame" x="0.0" y="216" width="320" height="204"/>
@@ -61,7 +45,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="8P2-Mp-wfs" kind="push" id="MFI-si-LB0"/>
+                                        <segue destination="8P2-Mp-wfs" kind="show" id="MFI-si-LB0"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yUG-CP-YFm" customClass="MSFSignUpButton">
@@ -225,7 +209,7 @@
         <!--身份证登录-->
         <scene sceneID="D7P-Ae-p1E">
             <objects>
-                <tableViewController title="身份证登录" id="zkt-bw-mRe" customClass="MSFIDSignInViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="idsign" title="身份证登录" id="zkt-bw-mRe" customClass="MSFIDSignInViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="B89-7K-AOS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -385,7 +369,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lek-Qh-y7d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="618" y="854"/>
+            <point key="canvasLocation" x="576" y="1084"/>
         </scene>
         <!--重置密码-->
         <scene sceneID="xjU-Yo-MP8">
@@ -396,12 +380,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="xaU-kf-Atz">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="15"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="15"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="8uG-RT-gZh">
-                            <rect key="frame" x="0.0" y="108" width="320" height="60"/>
+                            <rect key="frame" x="0.0" y="172" width="320" height="60"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgs-qz-BSd" customClass="MSFBlurButton">
@@ -411,7 +395,7 @@
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="f5g-A2-UIb" kind="push" id="xI7-1e-SW0"/>
+                                        <segue destination="f5g-A2-UIb" kind="show" id="xI7-1e-SW0"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -427,7 +411,7 @@
                             <tableViewSection id="Df9-Xd-stp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="j9m-Ph-98Y" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="15" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j9m-Ph-98Y" id="Rnm-p8-EJL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -458,7 +442,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YyX-bq-lpq" customClass="MSFGroupTableViewCell">
-                                        <rect key="frame" x="0.0" y="59" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="123" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YyX-bq-lpq" id="WUX-LM-MNz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -555,7 +539,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="cUz-Kl-DyM">
-                            <rect key="frame" x="0.0" y="88" width="320" height="114"/>
+                            <rect key="frame" x="0.0" y="152" width="320" height="114"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WNb-ly-GxU" customClass="MSFBlurButton">
@@ -580,7 +564,7 @@
                             <tableViewSection id="kyo-Ve-ObB">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="A8g-hf-qp7">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A8g-hf-qp7" id="jvA-iS-u07">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -593,7 +577,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="ysQ-vi-c9O"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PeW-3a-YCV">
@@ -615,7 +599,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FhR-W9-LNU">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FhR-W9-LNU" id="jwR-47-4mf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -628,7 +612,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="hYz-Ml-tHr"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请再次输入新密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqX-kY-d48">
@@ -892,7 +876,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="wkX-hO-wt8" secondAttribute="trailing" constant="15" id="uVZ-rH-NvS"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="id9-1x-vik" customClass="MSFGroupTableViewCell">
                                         <rect key="frame" x="0.0" y="123" width="320" height="44"/>
@@ -997,9 +981,7 @@
                             <outlet property="delegate" destination="CgY-uc-PJc" id="uXH-tF-amu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="注册" id="G6i-Ts-F0z">
-                        <barButtonItem key="rightBarButtonItem" title="登录" id="cBc-jo-0iE"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="注册" id="G6i-Ts-F0z"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="agreeButton" destination="NMa-oD-Bfz" id="Anf-pr-6hA"/>
@@ -1011,7 +993,6 @@
                         <outlet property="sendCaptchaButton" destination="bKx-67-Mkl" id="bdj-BS-waa"/>
                         <outlet property="sendCaptchaView" destination="Dqh-LE-ehb" id="jrR-OG-gnp"/>
                         <outlet property="showPasswordButton" destination="d1L-zi-E8F" id="u5x-1T-jMK"/>
-                        <outlet property="signInBt" destination="cBc-jo-0iE" id="4Gw-I7-wha"/>
                         <outlet property="username" destination="wkX-hO-wt8" id="8Va-Zb-k58"/>
                     </connections>
                 </tableViewController>
@@ -1074,6 +1055,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <connections>
+                        <segue destination="xFo-OI-4wy" kind="relationship" relationship="rootViewController" id="gvz-zU-kCK"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IPM-fI-D1m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

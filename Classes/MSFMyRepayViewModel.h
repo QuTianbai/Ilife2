@@ -37,8 +37,4 @@
 
 - (instancetype)initWithModel:(id)model;
 
-//- (instancetype)initWithservices:(id <MSFViewModelServices>)services;;
-
-//- (RACSignal *)fetchPlanPerodicTablesSignal;
-
 @end
