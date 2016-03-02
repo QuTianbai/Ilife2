@@ -1,7 +1,7 @@
 {
 	"contractNo" : "242143214321",
-	"latestDueMoney" : "343",
-	"latestDueDate" : "2015",
+	"latestDueMoney" : 343.10,
+	"latestDueDate" : "20",
 	"type" : "1",
 	"appLmt" : "3453",
 	"loanTerm" : "6",
@@ -13,7 +13,7 @@
 	"cmdtyList" :[
 								{
 	 "cmdtyName" : "iphone",
-	 "cmdtyPrice" : "14231",
+	 "cmdtyPrice" : 14231.01,
 	 "orderTime" : "2016"
 								}
 	],
