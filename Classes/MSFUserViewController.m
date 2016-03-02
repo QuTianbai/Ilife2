@@ -38,6 +38,8 @@
 #import "MSFCouponsContainerViewController.h"
 #import "MSFMyRepayContainerViewController.h"
 #import "MSFMyRepaysViewModel.h"
+#import "MSFMyOrderListContainerViewController.h"
+#import "MSFMyOderListsViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -188,7 +190,9 @@
 }
 
 - (void)orderList {
-	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
+//	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
+	MSFMyOderListsViewModel *viewModel = [[MSFMyOderListsViewModel alloc] initWithservices:self.viewModel.servcies];
+	MSFMyOrderListContainerViewController *vc = [[MSFMyOrderListContainerViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -7,21 +7,85 @@
 //
 
 #import "MSFMyOrderListViewController.h"
+#import "MSFTableViewBindingHelper.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
+#import "MSFMyOderListsViewModel.h"
+#import "MSFMyOrderListViewModel.h"
+#import "MSFMyOrderListTableViewCell.h"
 
-@interface MSFMyOrderListViewController ()
+@interface MSFMyOrderListViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
+
+@property (nonatomic, strong) MSFMyOderListsViewModel *viewModel;
+@property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
 
 @end
 
 @implementation MSFMyOrderListViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	
+	self.tableView.allowsSelection = YES;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	
+	UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
+	tableHeaderView.backgroundColor = [UIColor clearColor];
+	self.tableView.tableHeaderView = tableHeaderView;
+	self.tableView.emptyDataSetSource = self;
+	self.tableView.emptyDataSetDelegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)bindViewModel:(id)viewModel {
+	
+	self.viewModel = viewModel;
+	@weakify(self)
+	self.bindingHelper = [[MSFTableViewBindingHelper alloc]
+												initWithTableView:self.tableView sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
+		return value;
+	}]
+												selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFMyOrderListViewModel *input) {
+		@strongify(self)
+//		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services type:input.applyType contractNO:input.contractNo];
+//		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"2"]) {
+//			MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
+//			[self.navigationController pushViewController:vc animated:YES];
+//			return [RACSignal empty];
+//		}
+//		MSFMyRepayListWalletDetailViewController *vc = [[MSFMyRepayListWalletDetailViewController alloc] initWithViewModel:viewModel];
+//		[self.navigationController pushViewController:vc animated:YES];
+		return [RACSignal empty];
+	}]
+												templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyOrderListTableViewCell class]) bundle:nil]];
+	self.bindingHelper.delegate = self;
+	
+}
+
+#pragma mark - ZNEmptyDataSetSource
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+	NSString *title = @"您还没有申请订单";
+	if ([self.viewModel.identifer isEqualToString:@"1"]) {
+		title = @"你还没有马上贷申请订单";
+	} else if ([self.viewModel.identifer isEqualToString:@"2"]) {
+		title = @"你还没有信用钱包申请订单";
+	} else if ([self.viewModel.identifer isEqualToString:@"3"]) {
+		title = @"你还没有商品贷申请订单";
+	}
+	return [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+	return [UIImage imageNamed:@"cell-icon-normal.png"];
+}
+
+#pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 57;
 }
 
 @end
