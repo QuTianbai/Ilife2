@@ -44,6 +44,8 @@
 #import "MSFAuthenticateViewController.h"
 #import "MSFAuxiliaryViewController.h"
 #import "MSFUserViewModel.h"
+#import "MSFPersonal.h"
+#import "MSFProfessional.h"
 
 @interface MSFUserInfomationViewController ()
 
@@ -79,16 +81,16 @@
 	RAC(self.authenticatedLabel, text) = [RACObserve(self.viewModel, isAuthenticated) map:^id(id value) {
 		return [value boolValue] ? @"已完成" : @"未完成";
 	}];
-	RAC(self.personalLabel, textColor) = [RACObserve(self.viewModel, model.personal) map:^id(id value) {
+	RAC(self.personalLabel, textColor) = [RACObserve(self.viewModel, model.personal.houseCondition) map:^id(id value) {
 		return value ? [UIColor colorWithRed:0.251 green:0.714 blue:0.941 alpha:1.000] : [UIColor orangeColor];
 	}];
-	RAC(self.personalLabel, text) = [RACObserve(self.viewModel, model.personal) map:^id(id value) {
+	RAC(self.personalLabel, text) = [RACObserve(self.viewModel, model.personal.houseCondition) map:^id(id value) {
 		return value ? @"已完成" : @"未完成";
 	}];
-	RAC(self.professionalLabel, textColor) = [RACObserve(self.viewModel, model.professional) map:^id(id value) {
+	RAC(self.professionalLabel, textColor) = [RACObserve(self.viewModel, model.professional.socialIdentity) map:^id(id value) {
 		return value ? [UIColor colorWithRed:0.251 green:0.714 blue:0.941 alpha:1.000] : [UIColor orangeColor];
 	}];
-	RAC(self.professionalLabel, text) = [RACObserve(self.viewModel, model.professional) map:^id(id value) {
+	RAC(self.professionalLabel, text) = [RACObserve(self.viewModel, model.professional.socialIdentity) map:^id(id value) {
 		return value ? @"已完成" : @"未完成";
 	}];
 	RAC(self.profilesLabel, textColor) = [RACObserve(self.viewModel, model.profiles) map:^id(id value) {
