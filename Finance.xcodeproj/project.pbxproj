@@ -2698,6 +2698,9 @@
 				07CB4C811B104AE8006C220E /* MSFRelationshipViewController.m */,
 				07CB4C7D1B104944006C220E /* MSFProfessionalViewController.h */,
 				07CB4C7E1B104944006C220E /* MSFProfessionalViewController.m */,
+				49DAEE7D1B2E83E4009433C5 /* personal.storyboard */,
+				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
+				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
 				10DAE1AA1BBBC8F9001BD017 /* RelationCells */,
 				10DC2CF31B96919D00A2AF9C /* PhotosUpload */,
 				4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */,
@@ -4798,9 +4801,6 @@
 			isa = PBXGroup;
 			children = (
 				49DAEE7B1B2E83D7009433C5 /* product.storyboard */,
-				49DAEE7D1B2E83E4009433C5 /* personal.storyboard */,
-				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
-				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";

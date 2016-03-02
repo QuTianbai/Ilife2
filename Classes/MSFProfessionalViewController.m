@@ -314,6 +314,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [super tableView:tableView numberOfRowsInSection:section];
 	if (!self.viewModel.socialstatus && section == 0) {
 		return 2;
 	}
