@@ -135,5 +135,6 @@
 
 - (RACSignal *)fetchUserInfo;
 - (RACSignal *)updateUserInfo;
+- (RACSignal *)updateUser:(MSFUser *)user;
 
 @end

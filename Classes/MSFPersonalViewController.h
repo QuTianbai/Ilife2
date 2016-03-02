@@ -12,4 +12,6 @@
 
 @interface MSFPersonalViewController : UITableViewController <MSFReactiveView>
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

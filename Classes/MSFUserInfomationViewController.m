@@ -126,7 +126,7 @@
 	if (indexPath.section == 1) {
 		switch (indexPath.row) {
 			case 0: {
-				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:nil];
+				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithServices:self.viewModel.services];
 				[self.viewModel.services pushViewModel:viewModel];
 				break;
 			}

@@ -152,9 +152,7 @@
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
-		viewController = [[MSFPersonalViewController alloc] init];
-		[viewController bindViewModel:viewModel];
-		[viewController setHidesBottomBarWhenPushed:YES];
+		viewController = [[MSFPersonalViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFRelationshipViewModel class]]) {
 		viewController = [[MSFRelationshipViewController alloc] init];
 		[viewController bindViewModel:viewModel];
