@@ -14,7 +14,7 @@
 @interface MSFMyOderListsViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
-@property (nonatomic, strong, readwrite) NSString *identifer;
+//@property (nonatomic, strong,) NSString *identifer;
 
 @end
 

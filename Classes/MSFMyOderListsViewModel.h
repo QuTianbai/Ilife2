@@ -16,7 +16,7 @@
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) NSArray *viewModels;
-@property (nonatomic, strong, readonly) NSString *identifer;
+@property (nonatomic, copy) NSString *identifer;
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
 
 - (instancetype)initWithservices:(id <MSFViewModelServices>)services;

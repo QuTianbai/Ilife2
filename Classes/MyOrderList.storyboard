@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="-306" y="169"/>
         </scene>
-        <!--My Repay Table View Controller-->
+        <!--My Order List View Controller-->
         <scene sceneID="nxU-ZW-5AZ">
             <objects>
-                <tableViewController storyboardIdentifier="MSFMyOrderListViewController" id="lNQ-zp-Sl3" customClass="MSFMyRepayTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MSFMyOrderListViewController" id="lNQ-zp-Sl3" customClass="MSFMyOrderListViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="qpk-YR-f7W">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
