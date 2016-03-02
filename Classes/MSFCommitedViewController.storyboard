@@ -40,7 +40,7 @@
                                         <color key="textColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资料审核(非特殊情况)最快将在2分钟内完 请耐心等待！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLs-aX-niw">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资料审核(非特殊情况)最快将在2分钟内完 请耐心等待！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="cLs-aX-niw">
                                         <rect key="frame" x="10" y="190" width="300" height="54"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="El6-Bx-TQt"/>
