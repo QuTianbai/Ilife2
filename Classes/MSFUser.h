@@ -10,19 +10,7 @@
 
 @interface MSFUser : MSFObject
 
-// 用户是否已设置交易密码, String `YES` or `NO`
-@property (nonatomic, copy, readonly) NSString *hasTransPwd;
-
-// 用户uniqueId
-@property (nonatomic, copy, readonly) NSString *uniqueId __deprecated;
-
-@property (nonatomic, copy) NSString *complateCustInfo;
-
-// 用户身份证号
-@property (nonatomic, copy, readonly) NSString *ident;
-
-// 用户userid
-@property (nonatomic, copy, readonly) NSString *userID __deprecated;
+@property (nonatomic, copy) NSString *complateCustInfo __deprecated_msg("Waiting update ");
 
 // 用户姓名
 @property (nonatomic, copy, readonly) NSString *name;
@@ -32,8 +20,10 @@
 
 // 判断用户是否已设置交易密码
 @property (nonatomic, assign, readonly) BOOL hasTransactionalCode;
+
 //客户分类
 @property (nonatomic, copy, readonly) NSString *custType;
+
 //是否经过实名认证
 @property (nonatomic, copy, readonly) NSString *hasChecked;
 
