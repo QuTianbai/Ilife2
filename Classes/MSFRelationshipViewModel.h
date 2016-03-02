@@ -13,6 +13,8 @@
 @class MSFApplicationForms;
 @class RACCommand;
 
+__attribute__((deprecated("This class is unavailable. Please use the MSFProfessionalViewController class instead")))
+
 @interface MSFRelationshipViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;

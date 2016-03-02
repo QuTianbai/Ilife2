@@ -293,54 +293,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 #pragma mark - UITableViewDataSource
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (!self.viewModel.socialstatus && section == 0) {
-		return [super tableView:tableView titleForHeaderInSection:section];
-	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI01"]) {
-		if (section == 0 || section == MSFProfessionalViewSectionSchool || section == MSFProfessionalViewSectionIncome) {
-			return [super tableView:tableView titleForHeaderInSection:section];
-		}
-	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"] || [self.viewModel.socialstatus.code isEqualToString:@"SI04"]) {
-		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionIncome || section == MSFProfessionalViewSectionDepartment) {
-			return [super tableView:tableView titleForHeaderInSection:section];
-		}
-	}
-	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && (section == 0 || section == MSFProfessionalViewSectionIncome)) {
-		return [super tableView:tableView titleForHeaderInSection:section];
-	}
-	return nil;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [super tableView:tableView numberOfRowsInSection:section];
-	if (!self.viewModel.socialstatus && section == 0) {
-		return 2;
-	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI01"]) {
-		if (section == 0) {
-			return 2;
-		}
-		if (section == MSFProfessionalViewSectionSchool || section == MSFProfessionalViewSectionIncome) {
-			return [super tableView:tableView numberOfRowsInSection:section];
-		}
-	}
-	if ([self.viewModel.socialstatus.code isEqualToString:@"SI02"] || [self.viewModel.socialstatus.code isEqualToString:@"SI04"]) {
-		if (section == 0 || section == MSFProfessionalViewSectionCompany || section == MSFProfessionalViewSectionContact || section == MSFProfessionalViewSectionIncome || section == MSFProfessionalViewSectionDepartment) {
-			return [super tableView:tableView numberOfRowsInSection:section];
-		}
-	}
-	if (([self.viewModel.socialstatus.code isEqualToString:@"SI03"] || [self.viewModel.socialstatus.code isEqualToString:@"SI05"] || [self.viewModel.socialstatus.code isEqualToString:@"SI06"]) && (section == 0 || section == MSFProfessionalViewSectionIncome)) {
-		if (section == 0) {
-			return 2;
-		} else if (section == MSFProfessionalViewSectionIncome) {
-			return [super tableView:tableView numberOfRowsInSection:section];
-		}
-	}
-	return 0;
-}
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 		[cell setSeparatorInset:UIEdgeInsetsZero];
@@ -359,28 +311,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
 		[self.tableView setLayoutMargins:UIEdgeInsetsZero];
 	}
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-	
-	NSString *sectionTitle = [super tableView:tableView titleForHeaderInSection:section];
-	if (sectionTitle == nil) {
-		return  nil;
-	}
-	
-	UIView *sectionView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, self.view.frame.size.height)];
-	sectionView.backgroundColor = [MSFCommandView getColorWithString:@"#f8f8f8"];
-	
-	UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 110, 22)];
-	
-	titleLabel.text = sectionTitle;
-	titleLabel.font = [UIFont systemFontOfSize:14];
-	titleLabel.textColor = [MSFCommandView getColorWithString:POINTCOLOR];
-	titleLabel.backgroundColor = [UIColor clearColor];
-	
-	[sectionView addSubview:titleLabel];
-	
-	return sectionView;
 }
 
 @end

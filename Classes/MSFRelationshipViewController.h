@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
+__attribute__((deprecated("This class is unavailable. Please use the MSFProfessionalViewController class instead")))
+
 @interface MSFRelationshipViewController : UITableViewController <MSFReactiveView>
 
 @end
