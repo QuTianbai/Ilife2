@@ -8,11 +8,13 @@
 
 #import "MSFMyRepayTableViewController.h"
 #import "MSFMyRepaysViewModel.h"
+#import "MSFMyRepayViewModel.h"
 #import "MSFTableViewBindingHelper.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "MSFMyRepayTableViewCell.h"
 #import "MSFMyRepayDetalViewController.h"
 #import "MSFMyRepayDetailViewModel.h"
+#import "MSFMyRepayListWalletDetailViewController.h"
 
 @interface MSFMyRepayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -47,10 +49,15 @@
 		initWithTableView:self.tableView sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
 		return value;
 	}]
-	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFMyRepayViewModel *input) {
 		@strongify(self)
-		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services];
-		MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
+		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services type:input.applyType contractNO:input.contractNo];
+		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"2"]) {
+			MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
+			return [RACSignal empty];
+		}
+		MSFMyRepayListWalletDetailViewController *vc = [[MSFMyRepayListWalletDetailViewController alloc] initWithViewModel:viewModel];
 				[self.navigationController pushViewController:vc animated:YES];
 		return [RACSignal empty];
 	}]

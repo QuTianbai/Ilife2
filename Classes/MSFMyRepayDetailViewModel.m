@@ -24,16 +24,16 @@
 
 @implementation MSFMyRepayDetailViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
 	_services = services;
-	_contractNo = @"";
+	_contractNo = contractNo;
 	_latestDueMoney = @"";
 	_latestDueDate = @"";
-	_type = @"";
+	_type = type;
 	_appLmt = @"";
 	_loanTerm = @"";
 	_loanCurrTerm = @"";
@@ -87,16 +87,16 @@
 	}];
 	@weakify(self)
 	[RACObserve(self, cmdtyList) subscribeNext:^(id x) {
-		[_executeFetchCommand execute:@"1"];
+		[_executeFetchCommand execute:nil];
 	}];
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
 		@strongify(self)
-		if ([input isEqualToString:@"1"] || [input isEqualToString:@"3"]) {
+		if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"3"]) {
 			return [RACSignal return:[self.cmdtyList.rac_sequence filter:^BOOL(MSFCmdDetailViewModel *viewModel) {
 				return YES;
 			}].array];
 		}
-		return [RACSignal return:[self.cmdtyList.rac_sequence filter:^BOOL(MSFCmdDetailViewModel *viewModel) {
+		return [RACSignal return:[self.withdrawList.rac_sequence filter:^BOOL(MSFWithDrawViewModel *viewModel) {
 			return YES;
 		}].array];
 		

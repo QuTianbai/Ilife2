@@ -28,12 +28,13 @@
 		return nil;
 	}
 	_model = model;
+	_contractNo = @"";
 	_contractTitle = @"";
 	_repayMoney = [[NSMutableAttributedString alloc] initWithString:@""];
 	_repayTime = @"";
 	_applyType = @"";
 	_status = @"";
-	
+	RAC(self, contractNo) = [RACObserve(self, model.contractNum) ignore:nil];
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
 		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];

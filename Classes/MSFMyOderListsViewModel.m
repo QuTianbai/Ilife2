@@ -1,24 +1,24 @@
 //
-//  MSFMyRepaysViewModel.m
+//  MSFMyOderListViewModel.m
 //  Finance
 //
-//  Created by xbm on 16/2/29.
+//  Created by xbm on 16/3/2.
 //  Copyright © 2016年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFMyRepaysViewModel.h"
+#import "MSFMyOderListsViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+RepaymentSchedules.h"
-#import "MSFMyRepayViewModel.h"
+#import "MSFMyOrderListViewModel.h"
+#import "MSFClient+Order.h"
 
-@interface MSFMyRepaysViewModel ()
+@interface MSFMyOderListsViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, strong, readwrite) NSString *identifer;
 
 @end
 
-@implementation MSFMyRepaysViewModel
+@implementation MSFMyOderListsViewModel
 
 - (instancetype)initWithservices:(id<MSFViewModelServices>)services {
 	self = [super init];
@@ -35,7 +35,7 @@
 		return [[self fetchSingal]
 						flattenMap:^RACStream *(NSArray *viewModels) {
 							return [[[viewModels.rac_sequence
-												filter:^BOOL(MSFMyRepayViewModel *viewModel) {
+												filter:^BOOL(MSFMyOrderListViewModel *viewModel) {
 													return YES;
 												}]
 											 signal]
@@ -49,25 +49,25 @@
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		self.identifer = input;
-		return [RACSignal return:[self.viewModels.rac_sequence filter:^BOOL(MSFMyRepayViewModel *viewModel) {
+		return [RACSignal return:[self.viewModels.rac_sequence filter:^BOOL(MSFMyOrderListViewModel *viewModel) {
 			if ([self.identifer isEqualToString:@"0"]) {
 				return YES;
 			}
 			return [viewModel.applyType isEqualToString:self.identifer];
 		}].array];
 	}];
-
+	
 	return self;
 }
 
 - (RACSignal *)fetchStatus:(NSString *)status {
 	return [[[[self.services.httpClient
-						 fetchMyRepayWithType:status]
+						 fetchMyOrderListWithType:status]
 						catch:^RACSignal *(NSError *error) {
 							return [RACSignal empty];
 						}]
 					 map:^id(id value) {
-						 return [[MSFMyRepayViewModel alloc] initWithModel:value];
+						 return [[MSFMyOrderListViewModel alloc] initWithModel:value];
 					 }]
 					collect];
 }
@@ -84,5 +84,6 @@
 		return [RACSignal return:b];
 	}];
 }
+
 
 @end

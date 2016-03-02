@@ -29,6 +29,6 @@
 
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo;
 
 @end
