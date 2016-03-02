@@ -200,17 +200,6 @@
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSLog(@"%ld", (long)self.selectQQorJDSegment.selectedSegmentIndex);
-	if (section == 0 || section == self.selectQQorJDSegment.selectedSegmentIndex + 1) {
-		return [super tableView:tableView numberOfRowsInSection:section];
-	}
-	if (section == 1 && self.selectQQorJDSegment.selectedSegmentIndex == -1) {
-		return [super tableView:tableView numberOfRowsInSection:1];
-	}
-	return 0;
-}
-
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
 		[cell setSeparatorInset:UIEdgeInsetsZero];
