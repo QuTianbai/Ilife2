@@ -133,4 +133,7 @@
 // Returns MSFResponse.
 - (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode;
 
+- (RACSignal *)fetchUserInfo;
+- (RACSignal *)updateUserInfo;
+
 @end

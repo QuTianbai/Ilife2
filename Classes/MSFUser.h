@@ -7,10 +7,13 @@
 #import "MSFObject.h"
 
 @class MSFServer;
+@class MSFPersonal;
+@class MSFProfessional;
+@class MSFSocialInsurance;
+@class MSFSocialProfile;
+@class MSFContact;
 
 @interface MSFUser : MSFObject
-
-@property (nonatomic, copy) NSString *complateCustInfo __deprecated_msg("Waiting update ");
 
 // 用户姓名
 @property (nonatomic, copy, readonly) NSString *name;
@@ -42,5 +45,13 @@
  *	@return 已经通过实名，认证则返回YES
  */
 - (BOOL)isAuthenticated;
+
+// 用户信息
+@property (nonatomic, strong, readonly) NSString *maritalStatus;
+@property (nonatomic, strong, readonly) MSFPersonal *personal;
+@property (nonatomic, strong, readonly) MSFProfessional *professional;
+@property (nonatomic, strong, readonly) MSFSocialInsurance *insurance;
+@property (nonatomic, strong, readonly) NSArray *profiles;
+@property (nonatomic, strong, readonly) NSArray *contacts;
 
 @end

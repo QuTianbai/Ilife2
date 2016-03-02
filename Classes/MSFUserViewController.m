@@ -38,6 +38,7 @@
 #import "MSFCouponsContainerViewController.h"
 #import "MSFMyRepayContainerViewController.h"
 #import "MSFMyRepaysViewModel.h"
+#import "MSFBankCardListViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -74,10 +75,10 @@
 	self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 44)];
 	self.tableView.bounces = NO;
 	
-	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.servcies.httpClient.user.name) map:^id(id value) {
+	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.name) map:^id(id value) {
 		return [NSString stringWithFormat:@"%@, 您好", value];
 	}];
-	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.servcies.httpClient.user.mobile) map:^id(id value) {
+	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.mobile) map:^id(id value) {
 		return [NSString stringWithFormat:@"手机号: %@", value];
 	}];
 	@weakify(self)
@@ -161,34 +162,33 @@
 #pragma mark - IBActions
 
 - (void)userInfo {
-	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
-	MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
-	MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
-	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
+	MSFUserViewModel *viewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
+	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)applyList {
-	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.viewModel.servcies];
+	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.viewModel.services];
 	MSFLoanListViewController *applyList = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:applyList animated:YES];
 }
 
 - (void)repaymentPlan {
-	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.servcies];
+	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.services];
 	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)bankCardList {
-	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
+	MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.viewModel.services];
+	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)orderList {
-	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
+	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.services];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -207,7 +207,7 @@
 }
 
 - (void)couponsList {
-	MSFCouponsViewModel *viewModel = [[MSFCouponsViewModel alloc] initWithServices:self.viewModel.servcies];
+	MSFCouponsViewModel *viewModel = [[MSFCouponsViewModel alloc] initWithServices:self.viewModel.services];
 	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
@@ -215,10 +215,8 @@
 
 - (RACSignal *)updateUserSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
-		MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
-		MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
-		MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
+		MSFUserViewModel *viewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
+		MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel];
 		[self.navigationController pushViewController:vc animated:YES];
 		[subscriber sendCompleted];
 		return nil;

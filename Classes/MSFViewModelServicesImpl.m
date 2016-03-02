@@ -176,8 +176,8 @@
 	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
 		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
-		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
-		((MSFUserInfomationViewController *)viewController).showNextStep = YES;
+	//TODO: 更新内容方式
+//		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
 	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {

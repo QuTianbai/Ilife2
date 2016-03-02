@@ -161,6 +161,12 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="authenticatedLabel" destination="FwZ-Cq-mlM" id="d4a-CO-KF1"/>
+                        <outlet property="personalLabel" destination="EHl-tg-G6s" id="Mqw-7R-DzK"/>
+                        <outlet property="professionalLabel" destination="UGM-rN-zTL" id="zuY-1p-mCq"/>
+                        <outlet property="profilesLabel" destination="zrV-U7-Wbf" id="YTE-zF-Bx1"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHB-N3-HlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

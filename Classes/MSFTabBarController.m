@@ -102,7 +102,7 @@
 	commodityViewController.tabBarItem = [self itemWithNormal:@"商品贷" nomalImage:@"tab-commodity-normal.png" selected:@"tab-commodity-highlighted.png"];
 	
 	//TODO: 更新个人中心控制器
-	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithAuthorizeViewModel:self.viewModel.authorizeViewModel services:self.viewModel.services];
+	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
 	
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	userViewController.title = @"我的";

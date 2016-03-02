@@ -13,9 +13,9 @@
 @interface MSFClient (ApplyInfo)
 
 // 获取用户申请表个人资料 MSFApplicationForms
-- (RACSignal *)fetchApplyInfo;
+- (RACSignal *)fetchApplyInfo __deprecated_msg("Use fetch User info");
 
 // 保存用户申请表个人资料
-- (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type;
+- (RACSignal *)submitUserInfo:(MSFApplicationForms *)model infoType:(int)type __deprecated;
 
 @end
