@@ -70,9 +70,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	self.navigationItem.title = @"基本信息";
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-
+	self.title = @"基本信息";
 	@weakify(self)
 	//住房情况
 	RAC(self.housingTF, text) = RACObserve(self.viewModel.forms, houseTypeTitle);
@@ -188,20 +186,6 @@
 }
 
 #pragma mark - Private Method
-
-- (void)back {
-	if (!self.viewModel.edited) {
-		[self.navigationController popViewControllerAnimated:YES];
-		return;
-	}
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃基本信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-		if ([x integerValue] == 1) {
-			[self.navigationController popViewControllerAnimated:YES];
-		}
-	}];
-	[alert show];
-}
 
 - (void)checkTelCode:(UITextField *)textField {
 	if (textField.text.length == 3) {

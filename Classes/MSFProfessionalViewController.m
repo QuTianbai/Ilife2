@@ -102,9 +102,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	self.navigationItem.title = @"职业信息";
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-	
+	self.title = @"其它信息";
 	@weakify(self)
 	//教育程度
 	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
@@ -291,20 +289,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-}
-
-- (void)back {
-	if (!self.viewModel.edited) {
-		[self.navigationController popViewControllerAnimated:YES];
-		return;
-	}
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您确定放弃职业信息编辑？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-	[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-		if ([x integerValue] == 1) {
-			[self.navigationController popViewControllerAnimated:YES];
-		}
-	}];
-	[alert show];
 }
 
 #pragma mark - UITableViewDataSource
