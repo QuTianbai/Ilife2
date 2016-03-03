@@ -40,4 +40,7 @@
 // 获取交易密码
 - (RACSignal *)msf_gainPasscodeSignal;
 
+- (RACSignal *)msf_selectKeyValuesWithContent:(NSString *)content;
+- (RACSignal *)msf_selectValuesWithContent:(NSString *)content keycode:(NSString *)keycode;
+
 @end

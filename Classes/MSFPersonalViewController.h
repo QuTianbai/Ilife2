@@ -8,9 +8,8 @@
 //  基本信息
 
 #import <UIKit/UIKit.h>
-#import "MSFReactiveView.h"
 
-@interface MSFPersonalViewController : UITableViewController <MSFReactiveView>
+@interface MSFPersonalViewController : UITableViewController 
 
 - (instancetype)initWithViewModel:(id)viewModel;
 

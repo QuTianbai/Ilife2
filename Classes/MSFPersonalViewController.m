@@ -24,14 +24,13 @@
 
 #import "NSString+Matches.h"
 
-@interface MSFPersonalViewController () <MSFSegmentDelegate>
+@interface MSFPersonalViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *housingTF;
 @property (weak, nonatomic) IBOutlet UIButton *housingBT;
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *homeTelCodeTF;
 @property (weak, nonatomic) IBOutlet UITextField *homeTelTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *provinceTF;
@@ -55,19 +54,7 @@
 	return self;
 }
 
-- (void)bindViewModel:(id)viewModel {
-	_viewModel = viewModel;
-}
-
 #pragma mark - Lifecycle
-
-- (void)dealloc {
-	NSLog(@"MSFPersonalViewController `-dealloc`");
-}
-
-- (instancetype)init {
-	return [UIStoryboard storyboardWithName:@"personal" bundle:nil].instantiateInitialViewController;
-}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -91,12 +78,6 @@
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
 	
 	//详细地址
-	[[self.detailAddressTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 80) {
-			 textField.text = [textField.text substringToIndex:80];
-		 }
-	 }];
 	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel, detailAddress);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
@@ -106,7 +87,6 @@
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD showSuccessWithStatus:@"提交成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];

@@ -212,9 +212,9 @@
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 	parameters[@"baseInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.personal] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
 	parameters[@"occupationInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.professional] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-	parameters[@"additionalList"] = user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"";
-	parameters[@"contrastList"] = user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"";
-	parameters[@"custSocialSecurity"] = user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"";
+	parameters[@"additionalList"] = user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
+	parameters[@"contactList"] = user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
+	parameters[@"custSocialSecurity"] = user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"{}";
 	parameters[@"infoType"] = @"1";
 	
 	NSLog(@"%@", parameters.description);

@@ -46,6 +46,7 @@
 #import "MSFUserViewModel.h"
 #import "MSFPersonal.h"
 #import "MSFProfessional.h"
+#import "MSFAuxiliaryViewModel.h"
 
 @interface MSFUserInfomationViewController ()
 
@@ -133,7 +134,7 @@
 				break;
 			}
 			case 1: {
-				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:nil];
+				MSFAuxiliaryViewModel *viewModel = [[MSFAuxiliaryViewModel alloc] init];
 				MSFAuxiliaryViewController *vc = [[MSFAuxiliaryViewController alloc] initWithViewModel:viewModel];
 				[self.navigationController pushViewController:vc animated:YES];
 				break;

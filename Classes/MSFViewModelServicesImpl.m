@@ -329,6 +329,36 @@
 	}];
 }
 
+- (RACSignal *)msf_selectKeyValuesWithContent:(NSString *)content {
+	@weakify(self)
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:content]];
+		[self pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+			[self popViewModel];
+		}];
+		[viewModel.cancelSignal subscribeNext:^(id x) {
+			[subscriber sendCompleted];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+		}];
+	}];
+}
+
+- (RACSignal *)msf_selectValuesWithContent:(NSString *)content keycode:(NSString *)keycode {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSArray *keyvalues = [MSFSelectKeyValues getSelectKeys:content];
+		[keyvalues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+			if ([obj.code isEqualToString:keycode]) [subscriber sendNext:obj.text];
+		}];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
 #pragma mark - Custom Accessors
 
 - (MSFClient *)httpClient {

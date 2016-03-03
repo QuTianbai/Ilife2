@@ -134,7 +134,7 @@
 - (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode;
 
 - (RACSignal *)fetchUserInfo;
-- (RACSignal *)updateUserInfo;
+- (RACSignal *)updateUserInfo __deprecated_msg("Use -updateUser:");
 - (RACSignal *)updateUser:(MSFUser *)user;
 
 @end

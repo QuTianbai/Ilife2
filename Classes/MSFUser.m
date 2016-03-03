@@ -23,7 +23,7 @@
 		@keypath(MSFUser.new, personal): @"baseInfo",
 		@keypath(MSFUser.new, professional): @"occupationInfo",
 		@keypath(MSFUser.new, profiles): @"additionalList",
-		@keypath(MSFUser.new, contacts): @"contrastList",
+		@keypath(MSFUser.new, contacts): @"contactList",
 	};
 }
 
