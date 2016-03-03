@@ -230,6 +230,7 @@
 		07E14C151C88108A00589164 /* icon-myorder-wallet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C0C1C88108A00589164 /* icon-myorder-wallet@2x.png */; };
 		07E14C161C88108A00589164 /* icon-myorder-wallet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C0D1C88108A00589164 /* icon-myorder-wallet@3x.png */; };
 		07E14C191C882B7C00589164 /* MSFMyOrderListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */; };
+		07E14C1F1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */; };
 		07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */; };
 		07E3ED621BBBB8B40010AAD2 /* InputTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */; };
 		07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6A1BBBC3020010AAD2 /* tradePassWordBG.png */; };
@@ -1338,6 +1339,8 @@
 		07E14C0D1C88108A00589164 /* icon-myorder-wallet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-myorder-wallet@3x.png"; sourceTree = "<group>"; };
 		07E14C171C882B7C00589164 /* MSFMyOrderListDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderListDetailViewController.h; sourceTree = "<group>"; };
 		07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderListDetailViewController.m; sourceTree = "<group>"; };
+		07E14C1D1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderListProductsDetailViewController.h; sourceTree = "<group>"; };
+		07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderListProductsDetailViewController.m; sourceTree = "<group>"; };
 		07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputTradePasswordViewController.h; sourceTree = "<group>"; };
 		07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputTradePasswordViewController.m; sourceTree = "<group>"; };
 		07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InputTradePassword.storyboard; sourceTree = "<group>"; };
@@ -2809,16 +2812,18 @@
 		07E14BDD1C8703CA00589164 /* MyOrderList */ = {
 			isa = PBXGroup;
 			children = (
+				07E14BE11C87046600589164 /* MyOrderList.storyboard */,
 				07E14BE31C8704B600589164 /* MSFMyOrderListContainerViewController.h */,
 				07E14BE41C8704B600589164 /* MSFMyOrderListContainerViewController.m */,
 				07E14BDE1C8703F600589164 /* MSFMyOrderListViewController.h */,
 				07E14BDF1C8703F600589164 /* MSFMyOrderListViewController.m */,
-				07E14BE11C87046600589164 /* MyOrderList.storyboard */,
 				07E14BED1C8710C300589164 /* MSFMyOrderListTableViewCell.h */,
 				07E14BEE1C8710C300589164 /* MSFMyOrderListTableViewCell.m */,
 				07E14BEF1C8710C300589164 /* MSFMyOrderListTableViewCell.xib */,
 				07E14C171C882B7C00589164 /* MSFMyOrderListDetailViewController.h */,
 				07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */,
+				07E14C1D1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.h */,
+				07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */,
 			);
 			name = MyOrderList;
 			sourceTree = "<group>";
@@ -5935,6 +5940,7 @@
 				497827D11C840ECE00F2D1D8 /* MSFWalletViewModel.m in Sources */,
 				077347F41BBA380800D7A130 /* MSFBankCardListTableViewController.m in Sources */,
 				07E14B911C85990E00589164 /* MSFMyRepayDetailViewModel.m in Sources */,
+				07E14C1F1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m in Sources */,
 				490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */,
 				49B185FC1C56114200409C6F /* MSFClient+Coupons.m in Sources */,
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
