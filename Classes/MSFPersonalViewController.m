@@ -87,6 +87,7 @@
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];

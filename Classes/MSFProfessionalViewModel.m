@@ -25,6 +25,9 @@
 #import "MSFAddressViewModel.h"
 #import "MSFFormsViewModel.h"
 #import "MSFAddress.h"
+#import "MSFProfessional.h"
+#import "MSFUser.h"
+#import "MSFClient+Users.h"
 
 @interface MSFProfessionalViewModel ( )
 
@@ -32,6 +35,8 @@
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, assign) NSUInteger modelHash;
+
+@property (nonatomic, strong) MSFProfessional *model;
 
 @end
 
@@ -41,6 +46,52 @@
 
 - (void)dealloc {
 	NSLog(@"MSFProfessionalViewModel `-dealloc`");
+}
+
+#pragma mark - NSObject
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_services = services;
+	_model = [self.services.httpClient user].professional.copy;
+	
+	RACChannelTo(self, normalIncome) = RACChannelTo(self.model, monthIncome);
+	RACChannelTo(self, surplusIncome) = RACChannelTo(self.model, otherIncome);
+	RACChannelTo(self, loan) = RACChannelTo(self.model, otherLoan);
+	
+	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:[self updateValidSignal] signalBlock:^RACSignal *(id input) {
+		return [self updateSignal];
+	}];
+	
+	RAC(self, code) = RACObserve(self.model, socialIdentity);
+	RAC(self, identifier) = [RACObserve(self.model, socialIdentity) flattenMap:^RACStream *(id value) {
+		return [self.services msf_selectValuesWithContent:@"social_status" keycode:value];
+	}];
+	_executeSocialStatusCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self.services msf_selectKeyValuesWithContent:@"social_status"];
+	}];
+	RAC(self.model, socialIdentity) = [[self.executeSocialStatusCommand.executionSignals
+		switchToLatest]
+		map:^id(MSFSelectKeyValues *x) {
+				return x.code;
+		}];
+	@weakify(self)
+	RAC(self, marriage) = [RACObserve(self.services.httpClient.user, maritalStatus) flattenMap:^RACStream *(id value) {
+		return [self.services msf_selectValuesWithContent:@"marital_status" keycode:value];
+	}];
+	_executeMarriageCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self.services msf_selectKeyValuesWithContent:@"marital_status"];
+	}];
+	RAC(self.services.httpClient.user, maritalStatus) = [[self.executeMarriageCommand.executionSignals
+		switchToLatest]
+		map:^id(MSFSelectKeyValues *x) {
+				return x.code;
+		}];
+	
+  return self;
 }
 
 - (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
@@ -536,6 +587,31 @@
 		 origin:aView];
 		return nil;
 	}] replay];
+}
+
+
+#pragma mark - Private
+
+- (RACSignal *)updateValidSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self, identifier),
+		RACObserve(self, normalIncome),
+		RACObserve(self, surplusIncome),
+		RACObserve(self, marriage),
+	]
+	reduce:^id(NSString *condition, NSString *email, NSString *phone, NSString *address, NSString *detail){
+		return @(condition.length > 0 && email.length > 0 && address.length > 0 && detail.length > 0);
+	}];
+}
+
+- (RACSignal *)updateSignal {
+	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *value) {
+		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, professional): self.model} error:nil];
+		[value mergeValueForKey:@keypath(MSFUser.new, professional) fromModel:model];
+		return [[self.services.httpClient updateUser:value] doNext:^(id x) {
+			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, professional) fromModel:model];
+		}];
+	}];
 }
 
 @end

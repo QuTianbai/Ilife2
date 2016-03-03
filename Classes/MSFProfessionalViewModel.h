@@ -6,6 +6,7 @@
 
 #import "RVMViewModel.h"
 #import "MSFReactiveView.h"
+#import "MSFViewModelServices.h"
 
 @class RACCommand;
 @class MSFSelectKeyValues;
@@ -40,5 +41,18 @@
 
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand; //选择地址信息
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+
+@property (nonatomic, copy, readonly) NSString *identifier;
+@property (nonatomic, copy, readonly) NSString *normalIncome;
+@property (nonatomic, copy, readonly) NSString *surplusIncome;
+@property (nonatomic, copy, readonly) NSString *loan;
+@property (nonatomic, copy, readonly) NSString *marriage;
+@property (nonatomic, copy, readonly) NSArray *contacts;
+
+@property (nonatomic, readonly) RACCommand *executeMarriageCommand;
+
+@property (nonatomic, copy, readonly) NSString *code;
 
 @end

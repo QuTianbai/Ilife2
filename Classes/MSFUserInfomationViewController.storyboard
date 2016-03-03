@@ -86,41 +86,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="KuX-iu-XJN">
-                                        <rect key="frame" x="0.0" y="174" width="320" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KuX-iu-XJN" id="5pw-er-Uiy">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-complete-contact.png" translatesAutoresizingMaskIntoConstraints="NO" id="CdD-vv-Rcl">
-                                                    <rect key="frame" x="15" y="5" width="50" height="50"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="辅助信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRZ-uK-eTY">
-                                                    <rect key="frame" x="80" y="20" width="68" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已完成" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrV-U7-Wbf">
-                                                    <rect key="frame" x="231" y="19" width="51" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="RRZ-uK-eTY" firstAttribute="leading" secondItem="CdD-vv-Rcl" secondAttribute="trailing" constant="15" id="BE4-L2-L8Y"/>
-                                                <constraint firstItem="RRZ-uK-eTY" firstAttribute="centerY" secondItem="5pw-er-Uiy" secondAttribute="centerY" id="IAk-JL-vER"/>
-                                                <constraint firstItem="CdD-vv-Rcl" firstAttribute="leading" secondItem="5pw-er-Uiy" secondAttribute="leading" constant="15" id="WzY-Ms-oO9"/>
-                                                <constraint firstItem="CdD-vv-Rcl" firstAttribute="centerY" secondItem="5pw-er-Uiy" secondAttribute="centerY" id="ZEo-XU-K2M"/>
-                                                <constraint firstAttribute="trailing" secondItem="zrV-U7-Wbf" secondAttribute="trailing" constant="5" id="Zym-VB-wfN"/>
-                                                <constraint firstItem="zrV-U7-Wbf" firstAttribute="centerY" secondItem="5pw-er-Uiy" secondAttribute="centerY" id="lfD-R8-cSu"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="60" id="rBe-a9-wTI">
-                                        <rect key="frame" x="0.0" y="234" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="174" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rBe-a9-wTI" id="KAa-fJ-XcE">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="59.5"/>
@@ -165,7 +132,6 @@
                         <outlet property="authenticatedLabel" destination="FwZ-Cq-mlM" id="d4a-CO-KF1"/>
                         <outlet property="personalLabel" destination="EHl-tg-G6s" id="Mqw-7R-DzK"/>
                         <outlet property="professionalLabel" destination="UGM-rN-zTL" id="zuY-1p-mCq"/>
-                        <outlet property="profilesLabel" destination="zrV-U7-Wbf" id="YTE-zF-Bx1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eHB-N3-HlP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,7 +142,6 @@
     <resources>
         <image name="icon-complete-authenticate.png" width="50" height="50"/>
         <image name="icon-complete-basic.png" width="50" height="50"/>
-        <image name="icon-complete-contact.png" width="50" height="50"/>
         <image name="icon-complete-professional.png" width="50" height="50"/>
     </resources>
 </document>

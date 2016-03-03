@@ -352,7 +352,10 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSArray *keyvalues = [MSFSelectKeyValues getSelectKeys:content];
 		[keyvalues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-			if ([obj.code isEqualToString:keycode]) [subscriber sendNext:obj.text];
+			if ([obj.code isEqualToString:keycode]) {
+				[subscriber sendNext:obj.text];
+				*stop = YES;
+			}
 		}];
 		[subscriber sendCompleted];
 		return nil;

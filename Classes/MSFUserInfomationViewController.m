@@ -134,13 +134,7 @@
 				break;
 			}
 			case 1: {
-				MSFAuxiliaryViewModel *viewModel = [[MSFAuxiliaryViewModel alloc] init];
-				MSFAuxiliaryViewController *vc = [[MSFAuxiliaryViewController alloc] initWithViewModel:viewModel];
-				[self.navigationController pushViewController:vc animated:YES];
-				break;
-			}
-			case 2: {
-				MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:nil];
+				MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithServices:self.viewModel.services];
 				[self.viewModel.services pushViewModel:viewModel];
 				break;
 			}

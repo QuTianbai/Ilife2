@@ -99,7 +99,7 @@
 		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, personal): self.model} error:nil];
 		[value mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
 		return [[self.services.httpClient updateUser:value] doNext:^(id x) {
-			[self.services.httpClient.user mergeValueForKey:@keypath(value.personal) fromModel:model];
+			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
 		}];
 	}];
 }
