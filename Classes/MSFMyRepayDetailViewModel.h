@@ -26,6 +26,7 @@
 @property (nonatomic, copy, readonly) NSString *applyDate;
 @property (nonatomic, strong, readonly) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
+@property (nonatomic, copy, readonly) NSString *contratStatus;
 
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
 

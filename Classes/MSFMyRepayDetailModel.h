@@ -23,5 +23,6 @@
 @property (nonatomic, copy, readonly) NSString *applyDate;
 @property (nonatomic, strong, readonly) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
+@property (nonatomic, copy, readwrite) NSString *contractStatus;
 
 @end

@@ -41,9 +41,10 @@
 	_totalOverdueMoney = @"";
 	_interest = @"";
 	_applyDate = @"";
+	_contratStatus = @"";
 //	_cmdtyList = @[];
 //	_withdrawList = @[];
-	
+	@weakify(self)
 	RAC(self, contractNo) = [RACObserve(self, model.contractNo) ignore:nil];
 	RAC(self, latestDueMoney) = [RACObserve(self, model.latestDueMoney) ignore:nil];
 	RAC(self, latestDueDate) = [[RACObserve(self, model.latestDueDate) ignore:nil] map:^id(NSString *value) {
@@ -85,10 +86,13 @@
 			 NSLog(@"error:%@", error);
 		 }];
 	}];
-	@weakify(self)
+	
 	[RACObserve(self, cmdtyList) subscribeNext:^(id x) {
 		[_executeFetchCommand execute:nil];
 	}];
+	
+	RAC(self, contratStatus) = RACObserve(self, model.contractStatus);
+	
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
 		@strongify(self)
 		if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"3"]) {

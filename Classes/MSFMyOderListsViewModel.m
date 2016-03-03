@@ -14,7 +14,7 @@
 @interface MSFMyOderListsViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
-//@property (nonatomic, strong,) NSString *identifer;
+@property (nonatomic, copy, readwrite) NSString *identifer;
 
 @end
 
@@ -32,14 +32,12 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		return [[self fetchSingal]
-						flattenMap:^RACStream *(NSArray *viewModels) {
-							return [[[viewModels.rac_sequence
-												filter:^BOOL(MSFMyOrderListViewModel *viewModel) {
-													return YES;
-												}]
-											 signal]
-											collect];
+		return [[self fetchSingal] flattenMap:^RACStream *(NSArray *viewModels) {
+			return [[[viewModels.rac_sequence filter:^BOOL(MSFMyOrderListViewModel *viewModel) {
+				return YES;
+			}]
+				signal]
+					 collect];
 						}];
 	}];
 	[RACObserve(self, viewModels) subscribeNext:^(id x) {

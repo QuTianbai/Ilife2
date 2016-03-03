@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface NSDictionary(MSFKeyValue)
 
@@ -14,5 +15,7 @@
 + (NSString *)statusStringForKey:(NSString *)key;
 //产品类型
 + (NSString *)typeStringForKey:(NSString *)key;
+//订单类型图标
++ (UIImage *)imageForContractKey:(NSString *)type;
 
 @end

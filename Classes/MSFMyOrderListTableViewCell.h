@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
-@interface MSFMyOrderListTableViewCell : UITableViewCell
+@interface MSFMyOrderListTableViewCell : UITableViewCell <MSFReactiveView>
 
 @end

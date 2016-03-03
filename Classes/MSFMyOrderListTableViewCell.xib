@@ -7,13 +7,95 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MSFMyOrderListTableViewCell" id="KGk-i7-Jjw" customClass="MSFMyOrderListTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MSFMyOrderListTableViewCell" rowHeight="60" id="KGk-i7-Jjw" customClass="MSFMyOrderListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="287" height="59.5"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-myorder-app.png" translatesAutoresizingMaskIntoConstraints="NO" id="pbc-ff-XMv">
+                        <rect key="frame" x="15" y="13" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="34" id="tuW-YZ-Zoa"/>
+                            <constraint firstAttribute="height" constant="34" id="vE6-FI-P3K"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-10-05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaW-5X-bbh">
+                        <rect key="frame" x="59" y="31" width="77" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="77" id="HdN-Kf-BAC"/>
+                            <constraint firstAttribute="height" constant="21" id="piP-cl-rMb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认合同" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAX-Pz-SPE">
+                        <rect key="frame" x="151" y="19" width="131" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="p2j-O4-O2S"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1567分9期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhn-Io-z37">
+                        <rect key="frame" x="125" y="5" width="147" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="spY-73-Pz1"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q4e-y4-wng">
+                        <rect key="frame" x="0.0" y="59" width="327" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="zwX-VB-6t2"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品贷款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1z-Ek-9O7">
+                        <rect key="frame" x="59" y="5" width="56" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="M4H-k8-oF6"/>
+                            <constraint firstAttribute="width" constant="56" id="Ow6-Xt-QyI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kaW-5X-bbh" firstAttribute="leading" secondItem="pbc-ff-XMv" secondAttribute="trailing" constant="10" id="09A-jS-tjA"/>
+                    <constraint firstItem="dAX-Pz-SPE" firstAttribute="leading" secondItem="kaW-5X-bbh" secondAttribute="trailing" constant="15" id="2hm-dU-S89"/>
+                    <constraint firstItem="zhn-Io-z37" firstAttribute="leading" secondItem="J1z-Ek-9O7" secondAttribute="trailing" constant="10" id="5ZE-gZ-X53"/>
+                    <constraint firstItem="J1z-Ek-9O7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Cxb-cG-VTx"/>
+                    <constraint firstItem="dAX-Pz-SPE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fgd-Kq-bXE"/>
+                    <constraint firstItem="Q4e-y4-wng" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Kbx-h0-nKe"/>
+                    <constraint firstItem="pbc-ff-XMv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KkO-SJ-qJ2"/>
+                    <constraint firstItem="kaW-5X-bbh" firstAttribute="top" secondItem="J1z-Ek-9O7" secondAttribute="bottom" constant="5" id="T9h-8r-7Vm"/>
+                    <constraint firstAttribute="trailing" secondItem="dAX-Pz-SPE" secondAttribute="trailing" constant="5" id="Ujq-LC-IPD"/>
+                    <constraint firstItem="zhn-Io-z37" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ayT-9m-7mj"/>
+                    <constraint firstAttribute="bottom" secondItem="Q4e-y4-wng" secondAttribute="bottom" id="c6M-kw-7az"/>
+                    <constraint firstAttribute="trailing" secondItem="zhn-Io-z37" secondAttribute="trailing" constant="15" id="dW0-qF-aL4"/>
+                    <constraint firstAttribute="trailing" secondItem="Q4e-y4-wng" secondAttribute="trailing" constant="-40" id="eVu-Qo-nvG"/>
+                    <constraint firstItem="J1z-Ek-9O7" firstAttribute="leading" secondItem="pbc-ff-XMv" secondAttribute="trailing" constant="10" id="hOQ-iP-uxJ"/>
+                    <constraint firstItem="pbc-ff-XMv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="sCK-Lt-nex"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="cintractSubTitle" destination="zhn-Io-z37" id="m3a-Rz-jas"/>
+                <outlet property="contractStatus" destination="dAX-Pz-SPE" id="yAj-HW-Wg6"/>
+                <outlet property="contractTime" destination="kaW-5X-bbh" id="0JO-5s-dgM"/>
+                <outlet property="contractTitle" destination="J1z-Ek-9O7" id="s80-fg-kcc"/>
+                <outlet property="imgView" destination="pbc-ff-XMv" id="JD8-oO-BMH"/>
+            </connections>
+            <point key="canvasLocation" x="273" y="154"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon-myorder-app.png" width="34" height="34"/>
+    </resources>
 </document>

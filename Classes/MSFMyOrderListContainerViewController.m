@@ -59,14 +59,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.destinationViewController isKindOfClass:[MSFMyOrderListViewController class]]) {
-		[(NSObject <MSFReactiveView> *)segue.destinationViewController bindViewModel:nil];
+		[(NSObject <MSFReactiveView> *)segue.destinationViewController bindViewModel:self.viewModel];
 	}
 }
 
 #pragma mark msfButtonSliderDelegate
 
 - (void)didSelectButtonForIndex:(NSInteger)buttonIndex {
-	self.viewModel.identifer = [NSString stringWithFormat:@"%ld", buttonIndex - 1000];
 	switch (buttonIndex - 1000) {
 		case 0:
 			[self.viewModel.executeFetchCommand execute:@"0"];
@@ -75,10 +74,10 @@
 			[self.viewModel.executeFetchCommand execute:@"1"];
 			break;
 		case 2:
-			[self.viewModel.executeFetchCommand execute:@"3"];
+			[self.viewModel.executeFetchCommand execute:@"4"];
 			break;
 		case 3:
-			[self.viewModel.executeFetchCommand execute:@"4"];
+			[self.viewModel.executeFetchCommand execute:@"3"];
 			break;
 		default:
 			break;

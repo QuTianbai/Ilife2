@@ -11,12 +11,11 @@
 
 @class RACCommand;
 
-
 @interface MSFMyOderListsViewModel : RVMViewModel
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) NSArray *viewModels;
-@property (nonatomic, copy) NSString *identifer;
+@property (nonatomic, copy, readonly) NSString *identifer;
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
 
 - (instancetype)initWithservices:(id <MSFViewModelServices>)services;

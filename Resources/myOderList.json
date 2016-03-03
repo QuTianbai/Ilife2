@@ -1,0 +1,39 @@
+[
+ {
+ "applyTime" : "2016",
+ "appLmt" : "1333.00",
+ "loanTerm" : "6",
+ "status" : "A",
+ "appNo" : "43214231",
+ "type" : "1",
+ "loanFixedAmt" : "423",
+ "loanPurpose" : "gfgfd",
+ "bankCardNo" : "42154215421423143",
+ "jionLifeInsurance" : "1"
+ },
+ {
+ "applyTime" : "2016",
+ "appLmt" : "1333.00",
+ "loanTerm" : "6",
+ "status" : "A",
+ "appNo" : "43214231",
+ "type" : "3",
+ "loanFixedAmt" : "423",
+ "loanPurpose" : "gfgfd",
+ "bankCardNo" : "42154215421423143",
+ "jionLifeInsurance" : "1"
+ },
+ {
+ "applyTime" : "2016",
+ "appLmt" : "1333.00",
+ "loanTerm" : "6",
+ "status" : "A",
+ "appNo" : "43214231",
+ "type" : "4",
+ "loanFixedAmt" : "423",
+ "loanPurpose" : "gfgfd",
+ "bankCardNo" : "42154215421423143",
+ "jionLifeInsurance" : "1"
+ }
+
+ ]

@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFRepaymentSchedules.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-#import "msfclient+PlanPerodicTables.h"
+//#import "msfclient+PlanPerodicTables.h"
 #import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFMyRepayViewModel ()
@@ -56,14 +56,6 @@
 	 }];
 	
 	return self;
-}
-
-- (RACSignal *)fetchMyRepayListSignal {
-	return nil;
-}
-
-- (RACSignal *)fetchPlanPerodicTablesSignal {
-	return [self.services.httpClient fetchPlanPerodicTables:self.model];
 }
 
 @end

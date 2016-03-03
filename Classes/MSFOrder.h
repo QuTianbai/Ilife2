@@ -15,4 +15,16 @@
 @property (nonatomic, copy, readonly) NSString *pageNo; // 当前页
 @property (nonatomic, strong, readonly) NSArray *orderList; // 订单列表
 
+//new version
+@property (nonatomic, copy, readonly) NSString *applyTime;
+@property (nonatomic, copy, readonly) NSString *appLmt;
+@property (nonatomic, copy, readonly) NSString *loanTerm;
+@property (nonatomic, copy, readonly) NSString *status;
+@property (nonatomic, copy, readonly) NSString *appNo;
+@property (nonatomic, copy, readonly) NSString *type;
+@property (nonatomic, copy, readonly) NSString *loanFixedAmt;
+@property (nonatomic, copy, readonly) NSString *loanPurpose;
+@property (nonatomic, copy, readonly) NSString *bankCardNo;
+@property (nonatomic, copy, readonly) NSString *jionLifeInsurance;
+
 @end

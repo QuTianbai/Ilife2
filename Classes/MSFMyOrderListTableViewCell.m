@@ -7,17 +7,40 @@
 //
 
 #import "MSFMyOrderListTableViewCell.h"
+#import "MSFMyOrderListViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+@interface MSFMyOrderListTableViewCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *contractTitle;
+@property (weak, nonatomic) IBOutlet UILabel *contractTime;
+@property (weak, nonatomic) IBOutlet UILabel *contractStatus;
+@property (weak, nonatomic) IBOutlet UILabel *cintractSubTitle;
+
+@property (nonatomic, strong) MSFMyOrderListViewModel *viewModel;
+
+@end
 
 @implementation MSFMyOrderListTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+	
+	RAC(self, imgView.image) = RACObserve(self, viewModel.contractImg);
+	RAC(self, contractTitle.text) = RACObserve(self, viewModel.contractTitile);
+	RAC(self, contractTime.text) = RACObserve(self, viewModel.applyTime);
+	RAC(self, cintractSubTitle.text) = RACObserve(self, viewModel.contractSubTitile);
+	RAC(self, contractStatus.text) = RACObserve(self, viewModel.status);
+	
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
+}
 
-    // Configure the view for the selected state
+- (void)bindViewModel:(id)viewModel {
+	if ([viewModel isKindOfClass:MSFMyOrderListViewModel.class]) {
+		self.viewModel = viewModel;
+	}
 }
 
 @end

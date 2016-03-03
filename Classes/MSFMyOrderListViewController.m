@@ -12,6 +12,7 @@
 #import "MSFMyOderListsViewModel.h"
 #import "MSFMyOrderListViewModel.h"
 #import "MSFMyOrderListTableViewCell.h"
+#import "MSFMyOrderListDetailViewController.h"
 
 @interface MSFMyOrderListViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -49,14 +50,11 @@
 	}]
 												selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFMyOrderListViewModel *input) {
 		@strongify(self)
-//		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services type:input.applyType contractNO:input.contractNo];
-//		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"2"]) {
-//			MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
-//			[self.navigationController pushViewController:vc animated:YES];
-//			return [RACSignal empty];
-//		}
-//		MSFMyRepayListWalletDetailViewController *vc = [[MSFMyRepayListWalletDetailViewController alloc] initWithViewModel:viewModel];
-//		[self.navigationController pushViewController:vc animated:YES];
+		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"4"]) {
+			MSFMyOrderListDetailViewController *vc = [[MSFMyOrderListDetailViewController alloc] initWithViewModel:input];
+			[self.navigationController pushViewController:vc animated:YES];
+			return [RACSignal empty];
+		}
 		return [RACSignal empty];
 	}]
 												templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyOrderListTableViewCell class]) bundle:nil]];
@@ -70,7 +68,7 @@
 	NSString *title = @"您还没有申请订单";
 	if ([self.viewModel.identifer isEqualToString:@"1"]) {
 		title = @"你还没有马上贷申请订单";
-	} else if ([self.viewModel.identifer isEqualToString:@"2"]) {
+	} else if ([self.viewModel.identifer isEqualToString:@"4"]) {
 		title = @"你还没有信用钱包申请订单";
 	} else if ([self.viewModel.identifer isEqualToString:@"3"]) {
 		title = @"你还没有商品贷申请订单";
@@ -85,7 +83,9 @@
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 57;
+	return 60;
 }
+
+
 
 @end

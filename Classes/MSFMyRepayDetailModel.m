@@ -67,4 +67,10 @@
 	}];
 }
 
++ (NSValueTransformer *)contractStatusJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^id(NSString *value) {
+		return [NSDictionary statusStringForKey:value?:@""];
+	}];
+}
+
 @end
