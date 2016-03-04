@@ -13,6 +13,11 @@
 @class MSFApplicationForms;
 @class MSFContact;
 
+extern const NSInteger MSFProfessionalContactCellAdditionButton;
+extern const NSInteger MSFProfessionalContactCellRemoveButton;
+extern const NSInteger MSFProfessionalContactCellRelationshipButton;
+extern const NSInteger MSFProfessionalContactCellRelationshipTextFeild;
+
 @interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
 @property (nonatomic, strong, readonly) MSFApplicationForms *forms;
@@ -52,9 +57,15 @@
 @property (nonatomic, copy, readonly) NSString *marriage;
 @property (nonatomic, copy, readonly) NSArray *contacts;
 
+
 @property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeRemoveContact;
 @property (nonatomic, strong, readonly) RACCommand *executeAddContact;
+
+@property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;
+
+// 联系人MSFContactViewModel
+@property (nonatomic, strong, readonly) NSArray *viewModels;
 
 @property (nonatomic, copy, readonly) NSString *code;
 

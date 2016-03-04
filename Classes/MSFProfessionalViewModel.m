@@ -29,6 +29,12 @@
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
 #import "MSFContact.h"
+#import "MSFContactViewModel.h"
+
+const NSInteger MSFProfessionalContactCellAdditionButton = 700;
+const NSInteger MSFProfessionalContactCellRemoveButton  = 800;
+const NSInteger MSFProfessionalContactCellRelationshipButton = 900;
+const NSInteger MSFProfessionalContactCellRelationshipTextFeild  = 600;
 
 @interface MSFProfessionalViewModel ( )
 
@@ -39,6 +45,7 @@
 
 @property (nonatomic, strong) MSFProfessional *model;
 @property (nonatomic, strong, readwrite) NSArray *contacts;
+@property (nonatomic, strong, readwrite) NSArray *viewModels;
 
 @end
 
@@ -60,6 +67,15 @@
 	_services = services;
 	_model = [self.services.httpClient user].professional.copy;
 	_contacts = [self.services.httpClient user].contacts ?: @[[[MSFContact alloc] init]];
+	_viewModels = [[NSArray alloc] init];
+	NSArray *contacts = [self.services.httpClient.user contacts];
+	if (!contacts) {
+		self.viewModels = [self.viewModels arrayByAddingObject:[[MSFContactViewModel alloc] initWithModel:[[MSFContact alloc] init] Services:self.services]];
+	} else {
+		[contacts enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			self.viewModels = [self.viewModels arrayByAddingObject:[[MSFContactViewModel alloc] initWithModel:obj Services:self.services]];
+		}];
+	}
 	
 	RACChannelTo(self, normalIncome) = RACChannelTo(self.model, monthIncome);
 	RACChannelTo(self, surplusIncome) = RACChannelTo(self.model, otherIncome);
@@ -98,7 +114,13 @@
 	}];
 	_executeRemoveContact = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = (UIButton *)input;
-		return [self removeContact:self.contacts[button.tag - 800]];
+		return [self removeContact:self.contacts[button.tag - MSFProfessionalContactCellRemoveButton]];
+	}];
+	
+	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		UIButton *button = input;
+		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
+		return [viewModel.executeRelationshipCommand execute:nil];
 	}];
 	
   return self;
@@ -633,6 +655,7 @@
 - (RACSignal *)removeContact:(MSFContact *)contact {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		self.contacts = [self.contacts mtl_arrayByRemovingObject:contact];
+		self.viewModels = [self.viewModels mtl_arrayByRemovingObject:[[MSFContactViewModel alloc] initWithModel:contact Services:self.services]];
 		[subscriber sendCompleted];
 		return nil;
 	}];
@@ -641,6 +664,7 @@
 - (RACSignal *)AddContact:(MSFContact *)contact {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		self.contacts = [self.contacts arrayByAddingObject:contact];
+		self.viewModels = [self.viewModels arrayByAddingObject:[[MSFContactViewModel alloc] initWithModel:contact Services:self.services]];
 		[subscriber sendCompleted];
 		return nil;
 	}];

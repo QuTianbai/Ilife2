@@ -567,6 +567,7 @@
 		4964448A1B69BA77001FB1BE /* btn-showpwd-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444841B69BA77001FB1BE /* btn-showpwd-selected.png */; };
 		4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444851B69BA77001FB1BE /* btn-showpwd-selected@2x.png */; };
 		4964448C1B69BA77001FB1BE /* btn-showpwd-selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 496444861B69BA77001FB1BE /* btn-showpwd-selected@3x.png */; };
+		49678B921C8955D100549595 /* MSFContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49678B911C8955D100549595 /* MSFContactViewModel.m */; };
 		49679CBB1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 49679CBA1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m */; };
 		4967EE6E1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */; };
 		496A44611B6A57BE00104215 /* MSFAddressViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496A443F1B6A57BE00104215 /* MSFAddressViewModelSpec.m */; };
@@ -1822,6 +1823,8 @@
 		496444841B69BA77001FB1BE /* btn-showpwd-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-selected.png"; sourceTree = "<group>"; };
 		496444851B69BA77001FB1BE /* btn-showpwd-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-selected@2x.png"; sourceTree = "<group>"; };
 		496444861B69BA77001FB1BE /* btn-showpwd-selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-showpwd-selected@3x.png"; sourceTree = "<group>"; };
+		49678B901C8955D100549595 /* MSFContactViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFContactViewModel.h; sourceTree = "<group>"; };
+		49678B911C8955D100549595 /* MSFContactViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFContactViewModel.m; sourceTree = "<group>"; };
 		49679CB91B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+RequestWithIgnoreSSL.h"; sourceTree = "<group>"; };
 		49679CBA1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+RequestWithIgnoreSSL.m"; sourceTree = "<group>"; };
 		4967EE6C1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRegisterAgreementViewController.h; sourceTree = "<group>"; };
@@ -4753,6 +4756,8 @@
 				C7B9FF621B2C1BD100FEF72F /* MSFRelationshipViewModel.m */,
 				49E418821B4CD18400422C20 /* MSFPersonalViewModel.h */,
 				49E418831B4CD18400422C20 /* MSFPersonalViewModel.m */,
+				49678B901C8955D100549595 /* MSFContactViewModel.h */,
+				49678B911C8955D100549595 /* MSFContactViewModel.m */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -5986,6 +5991,7 @@
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
+				49678B921C8955D100549595 /* MSFContactViewModel.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
 				07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFCartContentCell.m in Sources */,

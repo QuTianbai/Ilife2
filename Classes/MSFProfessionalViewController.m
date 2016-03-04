@@ -22,6 +22,7 @@
 #import "MSFXBMCustomHeader.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFContact.h"
+#import "MSFContactViewModel.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionIncome = 1,
@@ -136,6 +137,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	[RACObserve(self.viewModel, contacts) subscribeNext:^(id x) {
 		@strongify(self);
 		[self.tableView reloadData];
+	}];
+	[self.viewModel.executeRelationshipCommand.executionSignals subscribeNext:^(RACSignal *x) {
+		@strongify(self);
+		[x subscribeNext:^(id x) {
+			[self.tableView reloadData];
+		}];
 	}];
 	
 //	return;
@@ -402,20 +409,23 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-	if (indexPath.section == 5) {
-		UIButton *button = [cell viewWithTag:700];
-		button.rac_command = self.viewModel.executeAddContact;
-	}
-	if (indexPath.section == 6) {
-		UIButton *button = [cell viewWithTag:701];
-		button.rac_command = self.viewModel.executeAddContact;
-		button = [cell viewWithTag:801];
-		button.rac_command = self.viewModel.executeRemoveContact;
-	}
-	if (indexPath.section == 7) {
-		UIButton *button = [cell viewWithTag:802];
-		button.rac_command = self.viewModel.executeRemoveContact;
-	}
+	if (indexPath.section < 5) return cell;
+	NSInteger index  = indexPath.section - 5;
+	MSFContactViewModel *viewModel = self.viewModel.viewModels[index];
+	UIButton *button;
+	UITextField *textFeild;
+	
+	button = [cell viewWithTag:MSFProfessionalContactCellAdditionButton + index];
+	button.rac_command = self.viewModel.executeAddContact;
+	
+	button = [cell viewWithTag:MSFProfessionalContactCellRemoveButton + index];
+	button.rac_command = self.viewModel.executeRemoveContact;
+	
+	button = [cell viewWithTag:MSFProfessionalContactCellRelationshipButton + index];
+	button.rac_command = self.viewModel.executeRelationshipCommand;
+	textFeild = [cell viewWithTag:MSFProfessionalContactCellRelationshipTextFeild + index];
+	textFeild.text = viewModel.relationship;
+	
 	return cell;
 }
 
