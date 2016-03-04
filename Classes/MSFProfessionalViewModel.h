@@ -11,6 +11,7 @@
 @class RACCommand;
 @class MSFSelectKeyValues;
 @class MSFApplicationForms;
+@class MSFContact;
 
 @interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
@@ -51,8 +52,12 @@
 @property (nonatomic, copy, readonly) NSString *marriage;
 @property (nonatomic, copy, readonly) NSArray *contacts;
 
-@property (nonatomic, readonly) RACCommand *executeMarriageCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeRemoveContact;
+@property (nonatomic, strong, readonly) RACCommand *executeAddContact;
 
 @property (nonatomic, copy, readonly) NSString *code;
+
+- (NSInteger)numberOfSections;
 
 @end

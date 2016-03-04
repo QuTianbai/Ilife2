@@ -28,6 +28,7 @@
 #import "MSFProfessional.h"
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
+#import "MSFContact.h"
 
 @interface MSFProfessionalViewModel ( )
 
@@ -37,6 +38,7 @@
 @property (nonatomic, assign) NSUInteger modelHash;
 
 @property (nonatomic, strong) MSFProfessional *model;
+@property (nonatomic, strong, readwrite) NSArray *contacts;
 
 @end
 
@@ -57,6 +59,7 @@
   }
 	_services = services;
 	_model = [self.services.httpClient user].professional.copy;
+	_contacts = [self.services.httpClient user].contacts ?: @[[[MSFContact alloc] init]];
 	
 	RACChannelTo(self, normalIncome) = RACChannelTo(self.model, monthIncome);
 	RACChannelTo(self, surplusIncome) = RACChannelTo(self.model, otherIncome);
@@ -78,7 +81,6 @@
 		map:^id(MSFSelectKeyValues *x) {
 				return x.code;
 		}];
-	@weakify(self)
 	RAC(self, marriage) = [RACObserve(self.services.httpClient.user, maritalStatus) flattenMap:^RACStream *(id value) {
 		return [self.services msf_selectValuesWithContent:@"marital_status" keycode:value];
 	}];
@@ -90,6 +92,14 @@
 		map:^id(MSFSelectKeyValues *x) {
 				return x.code;
 		}];
+	
+	_executeAddContact = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self AddContact:[[MSFContact alloc] init]];
+	}];
+	_executeRemoveContact = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		UIButton *button = (UIButton *)input;
+		return [self removeContact:self.contacts[button.tag - 800]];
+	}];
 	
   return self;
 }
@@ -611,6 +621,28 @@
 		return [[self.services.httpClient updateUser:value] doNext:^(id x) {
 			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, professional) fromModel:model];
 		}];
+	}];
+}
+
+#pragma mark - Public
+
+- (NSInteger)numberOfSections {
+	return  5 + self.contacts.count;
+}
+
+- (RACSignal *)removeContact:(MSFContact *)contact {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		self.contacts = [self.contacts mtl_arrayByRemovingObject:contact];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)AddContact:(MSFContact *)contact {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		self.contacts = [self.contacts arrayByAddingObject:contact];
+		[subscriber sendCompleted];
+		return nil;
 	}];
 }
 

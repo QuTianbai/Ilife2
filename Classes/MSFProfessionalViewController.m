@@ -21,6 +21,7 @@
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "MSFContact.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionIncome = 1,
@@ -129,6 +130,10 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		}];
 	}];
 	[RACObserve(self.viewModel, code) subscribeNext:^(id x) {
+		@strongify(self);
+		[self.tableView reloadData];
+	}];
+	[RACObserve(self.viewModel, contacts) subscribeNext:^(id x) {
 		@strongify(self);
 		[self.tableView reloadData];
 	}];
@@ -345,15 +350,16 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 #pragma mark - 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [super numberOfSectionsInTableView:tableView];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (section == 2) {
+	if (section == 2) { // 教育信息相关内容
 		if (![self.viewModel.code isEqualToString:@"SI01"]) return 0;
-	} else if (section == 3) {
+	} else if (section == 3) { // 职业相关内容
 		if (!([self.viewModel.code isEqualToString:@"SI02"] || [self.viewModel.code isEqualToString:@"SI04"])) return 0;
+	} else if (section == 7) { // 最大联系人数量为3
+		return [super tableView:tableView numberOfRowsInSection:section] - 1;
+	}
+	if (section > 4) { // 新增联系人按钮cell变化
+		if (self.viewModel.numberOfSections - 1 != section) return [super tableView:tableView numberOfRowsInSection:section] - 1;
 	}
 	return [super tableView:tableView numberOfRowsInSection:section];
 }
@@ -384,10 +390,33 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		if (![self.viewModel.code isEqualToString:@"SI01"]) return 0;
 	} else if (section == 3) {
 		if (!([self.viewModel.code isEqualToString:@"SI02"] || [self.viewModel.code isEqualToString:@"SI04"])) return 0;
-	} else if (section == [super numberOfSectionsInTableView:tableView] - 1) {
+	} else if (section == self.viewModel.numberOfSections - 1) {
 		return 0;
 	}
 	return 18;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return self.viewModel.numberOfSections;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+	if (indexPath.section == 5) {
+		UIButton *button = [cell viewWithTag:700];
+		button.rac_command = self.viewModel.executeAddContact;
+	}
+	if (indexPath.section == 6) {
+		UIButton *button = [cell viewWithTag:701];
+		button.rac_command = self.viewModel.executeAddContact;
+		button = [cell viewWithTag:801];
+		button.rac_command = self.viewModel.executeRemoveContact;
+	}
+	if (indexPath.section == 7) {
+		UIButton *button = [cell viewWithTag:802];
+		button.rac_command = self.viewModel.executeRemoveContact;
+	}
+	return cell;
 }
 
 @end
