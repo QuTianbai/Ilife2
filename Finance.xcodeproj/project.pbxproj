@@ -231,6 +231,17 @@
 		07E14C161C88108A00589164 /* icon-myorder-wallet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C0D1C88108A00589164 /* icon-myorder-wallet@3x.png */; };
 		07E14C191C882B7C00589164 /* MSFMyOrderListDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */; };
 		07E14C1F1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */; };
+		07E14C291C89382400589164 /* MSFMyOrderProductDetailNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C271C89382400589164 /* MSFMyOrderProductDetailNameCell.m */; };
+		07E14C2A1C89382400589164 /* MSFMyOrderProductDetailNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C281C89382400589164 /* MSFMyOrderProductDetailNameCell.xib */; };
+		07E14C2E1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C2C1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m */; };
+		07E14C2F1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C2D1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.xib */; };
+		07E14C341C89409400589164 /* MSFMyOrderProductsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C321C89409400589164 /* MSFMyOrderProductsCell.m */; };
+		07E14C351C89409400589164 /* MSFMyOrderProductsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C331C89409400589164 /* MSFMyOrderProductsCell.xib */; };
+		07E14C431C89648800589164 /* MSFMyOrderProdutBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C411C89648800589164 /* MSFMyOrderProdutBottomCell.m */; };
+		07E14C441C89648800589164 /* MSFMyOrderProdutBottomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07E14C421C89648800589164 /* MSFMyOrderProdutBottomCell.xib */; };
+		07E14C4C1C896A9C00589164 /* MSFMyOrderListProductsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C4B1C896A9C00589164 /* MSFMyOrderListProductsViewModel.m */; };
+		07E14C4F1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C4E1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m */; };
+		07E14C521C8994DF00589164 /* MSFMyOrderCmdViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E14C511C8994DF00589164 /* MSFMyOrderCmdViewModel.m */; };
 		07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */; };
 		07E3ED621BBBB8B40010AAD2 /* InputTradePassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */; };
 		07E3ED701BBBC3020010AAD2 /* tradePassWordBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 07E3ED6A1BBBC3020010AAD2 /* tradePassWordBG.png */; };
@@ -1341,6 +1352,24 @@
 		07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderListDetailViewController.m; sourceTree = "<group>"; };
 		07E14C1D1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderListProductsDetailViewController.h; sourceTree = "<group>"; };
 		07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderListProductsDetailViewController.m; sourceTree = "<group>"; };
+		07E14C261C89382400589164 /* MSFMyOrderProductDetailNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderProductDetailNameCell.h; sourceTree = "<group>"; };
+		07E14C271C89382400589164 /* MSFMyOrderProductDetailNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderProductDetailNameCell.m; sourceTree = "<group>"; };
+		07E14C281C89382400589164 /* MSFMyOrderProductDetailNameCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyOrderProductDetailNameCell.xib; sourceTree = "<group>"; };
+		07E14C2B1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderProductDetailContrractNoCell.h; sourceTree = "<group>"; };
+		07E14C2C1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderProductDetailContrractNoCell.m; sourceTree = "<group>"; };
+		07E14C2D1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyOrderProductDetailContrractNoCell.xib; sourceTree = "<group>"; };
+		07E14C311C89409400589164 /* MSFMyOrderProductsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderProductsCell.h; sourceTree = "<group>"; };
+		07E14C321C89409400589164 /* MSFMyOrderProductsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderProductsCell.m; sourceTree = "<group>"; };
+		07E14C331C89409400589164 /* MSFMyOrderProductsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyOrderProductsCell.xib; sourceTree = "<group>"; };
+		07E14C401C89648800589164 /* MSFMyOrderProdutBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderProdutBottomCell.h; sourceTree = "<group>"; };
+		07E14C411C89648800589164 /* MSFMyOrderProdutBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderProdutBottomCell.m; sourceTree = "<group>"; };
+		07E14C421C89648800589164 /* MSFMyOrderProdutBottomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyOrderProdutBottomCell.xib; sourceTree = "<group>"; };
+		07E14C4A1C896A9C00589164 /* MSFMyOrderListProductsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderListProductsViewModel.h; sourceTree = "<group>"; };
+		07E14C4B1C896A9C00589164 /* MSFMyOrderListProductsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderListProductsViewModel.m; sourceTree = "<group>"; };
+		07E14C4D1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderDetailTravelViewModel.h; sourceTree = "<group>"; };
+		07E14C4E1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderDetailTravelViewModel.m; sourceTree = "<group>"; };
+		07E14C501C8994DF00589164 /* MSFMyOrderCmdViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderCmdViewModel.h; sourceTree = "<group>"; };
+		07E14C511C8994DF00589164 /* MSFMyOrderCmdViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderCmdViewModel.m; sourceTree = "<group>"; };
 		07E3ED511BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputTradePasswordViewController.h; sourceTree = "<group>"; };
 		07E3ED521BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputTradePasswordViewController.m; sourceTree = "<group>"; };
 		07E3ED611BBBB8B40010AAD2 /* InputTradePassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InputTradePassword.storyboard; sourceTree = "<group>"; };
@@ -2820,10 +2849,6 @@
 				07E14BED1C8710C300589164 /* MSFMyOrderListTableViewCell.h */,
 				07E14BEE1C8710C300589164 /* MSFMyOrderListTableViewCell.m */,
 				07E14BEF1C8710C300589164 /* MSFMyOrderListTableViewCell.xib */,
-				07E14C171C882B7C00589164 /* MSFMyOrderListDetailViewController.h */,
-				07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */,
-				07E14C1D1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.h */,
-				07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */,
 			);
 			name = MyOrderList;
 			sourceTree = "<group>";
@@ -2835,6 +2860,12 @@
 				07E14BE81C870A6300589164 /* MSFMyOderListsViewModel.m */,
 				07E14BEA1C870C8D00589164 /* MSFMyOrderListViewModel.h */,
 				07E14BEB1C870C8D00589164 /* MSFMyOrderListViewModel.m */,
+				07E14C4A1C896A9C00589164 /* MSFMyOrderListProductsViewModel.h */,
+				07E14C4B1C896A9C00589164 /* MSFMyOrderListProductsViewModel.m */,
+				07E14C4D1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.h */,
+				07E14C4E1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m */,
+				07E14C501C8994DF00589164 /* MSFMyOrderCmdViewModel.h */,
+				07E14C511C8994DF00589164 /* MSFMyOrderCmdViewModel.m */,
 			);
 			name = MyOderList;
 			sourceTree = "<group>";
@@ -2853,6 +2884,29 @@
 				07E14C0D1C88108A00589164 /* icon-myorder-wallet@3x.png */,
 			);
 			name = usericon;
+			sourceTree = "<group>";
+		};
+		07E14C531C8995F500589164 /* MyOrderDetail */ = {
+			isa = PBXGroup;
+			children = (
+				07E14C171C882B7C00589164 /* MSFMyOrderListDetailViewController.h */,
+				07E14C181C882B7C00589164 /* MSFMyOrderListDetailViewController.m */,
+				07E14C1D1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.h */,
+				07E14C1E1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m */,
+				07E14C261C89382400589164 /* MSFMyOrderProductDetailNameCell.h */,
+				07E14C271C89382400589164 /* MSFMyOrderProductDetailNameCell.m */,
+				07E14C281C89382400589164 /* MSFMyOrderProductDetailNameCell.xib */,
+				07E14C2B1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.h */,
+				07E14C2C1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m */,
+				07E14C2D1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.xib */,
+				07E14C311C89409400589164 /* MSFMyOrderProductsCell.h */,
+				07E14C321C89409400589164 /* MSFMyOrderProductsCell.m */,
+				07E14C331C89409400589164 /* MSFMyOrderProductsCell.xib */,
+				07E14C401C89648800589164 /* MSFMyOrderProdutBottomCell.h */,
+				07E14C411C89648800589164 /* MSFMyOrderProdutBottomCell.m */,
+				07E14C421C89648800589164 /* MSFMyOrderProdutBottomCell.xib */,
+			);
+			name = MyOrderDetail;
 			sourceTree = "<group>";
 		};
 		07E3ED631BBBB9F60010AAD2 /* TradePassword */ = {
@@ -2979,6 +3033,7 @@
 		102C7E8B1C29266C0023172B /* OrderList */ = {
 			isa = PBXGroup;
 			children = (
+				07E14C531C8995F500589164 /* MyOrderDetail */,
 				07E14BDD1C8703CA00589164 /* MyOrderList */,
 				102C7E8C1C2926E50023172B /* MSFOrderListViewController.h */,
 				102C7E8D1C2926E50023172B /* MSFOrderListViewController.m */,
@@ -5170,6 +5225,7 @@
 				49C0F1C51B2C341400E92572 /* tabbar-account-normal@2x.png in Resources */,
 				49A550AD1C5743600029FC1A /* cell-icon-low-warning.png in Resources */,
 				4944C02A1B68A5A100805C0A /* icon-account-settings@3x.png in Resources */,
+				07E14C441C89648800589164 /* MSFMyOrderProdutBottomCell.xib in Resources */,
 				4902E4201BC4C56F0087FA1E /* icon-arrow-right@2x.png in Resources */,
 				49C0F1AE1B2C315100E92572 /* icon-verify-code@3x.png in Resources */,
 				077347CC1BBA338900D7A130 /* ABC@3x.png in Resources */,
@@ -5276,6 +5332,7 @@
 				07122F2E1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard in Resources */,
 				49B7A7891C85915F00471168 /* icon-user-avatar.png in Resources */,
 				491FD4151C84A4D40026928F /* tab-msd-highlighted.png in Resources */,
+				07E14C2A1C89382400589164 /* MSFMyOrderProductDetailNameCell.xib in Resources */,
 				49C0F1D51B2C341400E92572 /* tabbar-home-selected@3x.png in Resources */,
 				49E07D491BBD25F0001F9E1A /* code-message.json in Resources */,
 				07A1460A1C84627900C32F0B /* right-arrow-gray@3x.png in Resources */,
@@ -5537,12 +5594,14 @@
 				07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */,
 				491FD4201C84A4D40026928F /* tab-wallet-normal@3x.png in Resources */,
 				C7D2D12F1B67938C000F51ED /* icon-cloze-normal@2x.png in Resources */,
+				07E14C2F1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.xib in Resources */,
 				077461071C74329900F46ABD /* icon-start-title@2x.png in Resources */,
 				077347D71BBA338900D7A130 /* CMBC@2x.png in Resources */,
 				07472BDF1BFF0975008A3890 /* employeeMedicalInsurance.json in Resources */,
 				49B7A78C1C85915F00471168 /* icon-user-bank.png in Resources */,
 				1011A3A91BB9702600CCADB5 /* icon_circle_job_n.png in Resources */,
 				10DC2E501BA0209400A2AF9C /* btn-attachment-take-photo.png in Resources */,
+				07E14C351C89409400589164 /* MSFMyOrderProductsCell.xib in Resources */,
 				494901B71C3CF8E100E9AD09 /* btn-scan@2x.png in Resources */,
 				49C0F1CB1B2C341400E92572 /* tabbar-apply-normal@2x.png in Resources */,
 				49C0F1C41B2C341400E92572 /* tabbar-account-normal.png in Resources */,
@@ -5947,6 +6006,7 @@
 				0704EB181B69CDCF000F5369 /* MSFLocationModel.m in Sources */,
 				C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */,
 				10DC2D071B969D1000A2AF9C /* MSFInventoryViewController.m in Sources */,
+				07E14C431C89648800589164 /* MSFMyOrderProdutBottomCell.m in Sources */,
 				07122F321C31239A004AD0E2 /* MSFFaceMaskViewModel.m in Sources */,
 				07E14BA91C85C27F00589164 /* MSFCmdDetailViewModel.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFCartContentCell.m in Sources */,
@@ -5977,6 +6037,7 @@
 				102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */,
 				101BD3CB1C2CDCBF00842D36 /* MSFClient+Cart.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
+				07E14C2E1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m in Sources */,
 				07E14BE51C8704B600589164 /* MSFMyOrderListContainerViewController.m in Sources */,
 				109766FE1C098CB20097F656 /* MSFHomePageContentView.m in Sources */,
 				C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */,
@@ -6018,6 +6079,7 @@
 				10E546521BFF255A00BBA827 /* MSFApplyView.m in Sources */,
 				49CA93751BBA22CF0032F5C2 /* UIView+Sizes.m in Sources */,
 				4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */,
+				07E14C521C8994DF00589164 /* MSFMyOrderCmdViewModel.m in Sources */,
 				49679CBB1B745ACA00E7FAD1 /* NSURLRequest+RequestWithIgnoreSSL.m in Sources */,
 				49B5D7AA1B0830DD00917D2C /* MSFSignUpViewController.m in Sources */,
 				07CB4C821B104AE8006C220E /* MSFRelationshipViewController.m in Sources */,
@@ -6026,7 +6088,9 @@
 				07D051171C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m in Sources */,
 				074696901B98200C0074E180 /* MSFConfirmContractModel.m in Sources */,
 				07330B6F1BBE5EA1000EB8FD /* MSFClient+CalculateMonthRepay.m in Sources */,
+				07E14C341C89409400589164 /* MSFMyOrderProductsCell.m in Sources */,
 				498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */,
+				07E14C4C1C896A9C00589164 /* MSFMyOrderListProductsViewModel.m in Sources */,
 				C7B978141B099CD9005F247C /* MSFUserHelpCell.m in Sources */,
 				4948E8C01B959A5E0048D125 /* MSFAttachmentViewModel.m in Sources */,
 				0787898F1C7B0F75008C39A6 /* MSFFindwordLastTableViewController.m in Sources */,
@@ -6052,6 +6116,7 @@
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
 				498311961C33CD5800AC14AF /* MSFDimensionalCodeViewController.m in Sources */,
 				07F089011BBD023E0067C5BC /* MSFCirculateCashViewModel.m in Sources */,
+				07E14C4F1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m in Sources */,
 				1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */,
 				07E14BEC1C870C8D00589164 /* MSFMyOrderListViewModel.m in Sources */,
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
@@ -6136,6 +6201,7 @@
 				4983119A1C33CEC900AC14AF /* MSFDimensionalCodeViewModel.m in Sources */,
 				490BDE7F1B08265700D53391 /* NSString+Matches.m in Sources */,
 				49EB040E1C3D00F500177509 /* MSFPayment.m in Sources */,
+				07E14C291C89382400589164 /* MSFMyOrderProductDetailNameCell.m in Sources */,
 				4EDB52671B6A20B200388306 /* MSFSubmitAlertView.m in Sources */,
 				C7B9780E1B099C7E005F247C /* MSFAboutUsCell.m in Sources */,
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
