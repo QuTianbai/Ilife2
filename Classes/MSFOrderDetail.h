@@ -14,19 +14,21 @@
 @interface MSFOrderDetail : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *inOrderId; // 订单id
-@property (nonatomic, copy, readonly) NSString *cartType; // 订单id
 @property (nonatomic, copy, readonly) NSString *orderStatus; // 订单状态
 @property (nonatomic, copy, readonly) NSString *orderTime; // 下单时间
 @property (nonatomic, copy, readonly) NSString *txnTime; // 交易时间
 @property (nonatomic, copy, readonly) NSString *compId; // 商户编号
 @property (nonatomic, copy, readonly) NSString *empId; // 员工编号
 @property (nonatomic, copy, readonly) NSString *compName; // 商户名称
+@property (nonatomic, copy, readonly) NSString *compOfficePhone;//商户办公电话
 @property (nonatomic, copy, readonly) NSString *empName; // 员工姓名
 @property (nonatomic, copy, readonly) NSString *outOrderId; // 商户订单号
+
 @property (nonatomic, copy, readonly) NSString *catId; // 品类编号
+@property (nonatomic, copy, readonly) NSString *cartType; // 货单类型
 @property (nonatomic, copy, readonly) NSString *totalAmt; // 总金额
 @property (nonatomic, copy, readonly) NSString *totalQuantity; // 总件数
-@property (nonatomic, copy, readonly) NSString *uniqueId; // 商户编号
+@property (nonatomic, copy, readonly) NSString *uniqueId; // 员工UUID
 @property (nonatomic, copy, readonly) NSString *custName; // 客户姓名
 @property (nonatomic, copy, readonly) NSString *cellphone; // 客户手机号
 @property (nonatomic, copy, readonly) NSString *appId; // 申请单编号

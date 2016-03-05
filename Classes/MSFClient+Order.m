@@ -33,7 +33,7 @@
 	//	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentList" parameters:@{
 	//									@"type": type,
 	//								}];
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"myOderList" ofType:@"json"];
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"myOrderListProductDetail" ofType:@"json"];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
 	return [[self enqueueRequest:request resultClass:MSFOrder.class] msf_parsedResults];
 }
