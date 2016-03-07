@@ -14,23 +14,25 @@
 #import "Masonry.h"
 
 @interface MSFCreditViewController ()
+
 @property (nonatomic, strong) UIImage *shadowImage;
 @property (nonatomic, strong) UIImage *backgroundImage;
+
 @end
 
 @implementation MSFCreditViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
-  //self = [super init];
-    self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFCreditViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFCreditViewController class])];
+  self = [super init];
+//    self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFCreditViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFCreditViewController class])];
   if (!self) {
     return nil;
   }
   
   return self;
 }
--(void)viewWillAppear:(BOOL)animated
-{
+
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
@@ -44,8 +46,7 @@
 
     }
 
--(void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     //self.edgesForExtendedLayout = UIRectEdgeNone;
     self.title = @"马上贷";
@@ -57,8 +58,8 @@
      //UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MSFCreditViewController" bundle:nil];
    // [self.storyboard instantiateViewControllerWithIdentifier:@"MSFCreditViewController"];
 }
--(void)viewDidDisappear:(BOOL)animated
-{
+
+- (void)viewDidDisappear:(BOOL)animated {
     
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     [navigationBar setBackgroundImage:self.backgroundImage
