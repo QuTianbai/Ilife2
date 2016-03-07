@@ -68,11 +68,14 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone target:nil action:nil];
-	self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		[self dismissViewControllerAnimated:YES completion:nil];
-		return [RACSignal empty];
-	}];
+	if (self.navigationController.viewControllers.count == 1) {
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭" style:UIBarButtonItemStyleDone target:nil action:nil];
+		self.navigationItem.rightBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+			@strongify(self)
+			[self dismissViewControllerAnimated:YES completion:nil];
+			return [RACSignal empty];
+		}];
+	}
 }
 
 @end

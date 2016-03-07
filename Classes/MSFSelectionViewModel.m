@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) NSArray *models;
 @property (nonatomic, strong, readwrite) RACSubject *selectedSignal;
+@property (nonatomic, strong, readwrite) RACSignal *cancelSignal;
 
 @end
 
@@ -31,6 +32,7 @@
   }
 	
 	self.selectedSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewModel -selectedSignal"];
+	self.cancelSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewModel -cancelSignal"];
 	
   return self;
 }

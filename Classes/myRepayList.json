@@ -15,7 +15,7 @@
 	"contractStatus" : "B",
 	"latestDueMoney" : "1200",
 	"latestDueDate" : "20160215",
-	"type" : "3",
+	"type" : "1",
 	"appLmt" : "3000",
 	"loanTerm" : "6",
 	"loanCurrTerm" : "3",

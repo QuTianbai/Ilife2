@@ -12,4 +12,6 @@
 // 职业信息
 @interface MSFProfessionalViewController : UITableViewController <MSFReactiveView>
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

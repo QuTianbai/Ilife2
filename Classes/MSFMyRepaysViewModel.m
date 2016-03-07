@@ -27,7 +27,7 @@
 	}
 	_services = services;
 	_viewModels = @[];
-	_identifer = @"1";
+	_identifer = @"0";
 	
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
@@ -43,7 +43,8 @@
 						}];
 	}];
 	[RACObserve(self, viewModels) subscribeNext:^(id x) {
-		[_executeFetchCommand execute:@"0"];
+		@strongify(self)
+		[_executeFetchCommand execute:self.identifer];
 	}];
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -53,7 +54,8 @@
 				return YES;
 			}
 			return [viewModel.applyType isEqualToString:self.identifer];
-		}].array];	}];
+		}].array];
+	}];
 
 	return self;
 }

@@ -29,25 +29,15 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQF-dA-ZV7">
-                                    <rect key="frame" x="246" y="35" width="44" height="26.5"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BEi-3L-bJf">
-                                    <rect key="frame" x="230" y="61" width="60" height="20"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="60" id="ERd-nM-3bU"/>
-                                        <constraint firstAttribute="height" constant="20" id="neU-gG-GNi"/>
-                                    </constraints>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <state key="normal" title="完善信息">
+                                    <state key="normal">
                                         <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="291-Ha-JGu">
-                                    <rect key="frame" x="304" y="52.5" width="8" height="15"/>
+                                    <rect key="frame" x="304" y="52" width="8" height="15"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="esf-rk-bR5"/>
                                         <constraint firstAttribute="width" constant="8" id="vYl-Fm-oUi"/>
@@ -65,20 +55,20 @@
                             <constraints>
                                 <constraint firstItem="638-xK-6cf" firstAttribute="leading" secondItem="NV9-rr-KPZ" secondAttribute="trailing" constant="8" id="0AB-Jh-wCy"/>
                                 <constraint firstAttribute="trailing" secondItem="291-Ha-JGu" secondAttribute="trailing" constant="8" id="5ph-h2-tGN"/>
+                                <constraint firstItem="BEi-3L-bJf" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" id="6VA-fM-4BC"/>
+                                <constraint firstAttribute="trailing" secondItem="BEi-3L-bJf" secondAttribute="trailing" id="DfH-OW-T8U"/>
                                 <constraint firstItem="vin-S9-BJd" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" id="EJp-sj-qyD"/>
                                 <constraint firstItem="UYQ-iw-JgI" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" constant="38" id="F0v-4C-n2c"/>
                                 <constraint firstItem="vin-S9-BJd" firstAttribute="leading" secondItem="yP1-83-qgL" secondAttribute="leading" id="H4q-sr-IYG"/>
                                 <constraint firstItem="NV9-rr-KPZ" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" id="JPK-Sf-H2j"/>
-                                <constraint firstAttribute="trailing" secondItem="pQF-dA-ZV7" secondAttribute="trailing" constant="30" id="Jeo-hZ-yc8"/>
-                                <constraint firstItem="BEi-3L-bJf" firstAttribute="top" secondItem="pQF-dA-ZV7" secondAttribute="bottom" id="TZd-uS-DZH"/>
                                 <constraint firstItem="638-xK-6cf" firstAttribute="top" secondItem="UYQ-iw-JgI" secondAttribute="bottom" constant="8" id="UdX-XO-UXh"/>
-                                <constraint firstAttribute="trailing" secondItem="BEi-3L-bJf" secondAttribute="trailing" constant="30" id="YEa-8D-fGf"/>
                                 <constraint firstItem="291-Ha-JGu" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" id="dZ8-kR-DCh"/>
                                 <constraint firstAttribute="trailing" secondItem="vin-S9-BJd" secondAttribute="trailing" id="dq3-Ak-PL6"/>
+                                <constraint firstAttribute="bottom" secondItem="BEi-3L-bJf" secondAttribute="bottom" id="e2k-U8-kMH"/>
                                 <constraint firstItem="UYQ-iw-JgI" firstAttribute="leading" secondItem="NV9-rr-KPZ" secondAttribute="trailing" constant="8" id="f5d-tp-8Eo"/>
                                 <constraint firstItem="NV9-rr-KPZ" firstAttribute="leading" secondItem="yP1-83-qgL" secondAttribute="leading" constant="20" id="gBo-ps-FTW"/>
                                 <constraint firstAttribute="bottom" secondItem="vin-S9-BJd" secondAttribute="bottom" id="ghb-Mh-eZY"/>
-                                <constraint firstItem="pQF-dA-ZV7" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" constant="35" id="jSA-BY-0Us"/>
+                                <constraint firstItem="BEi-3L-bJf" firstAttribute="leading" secondItem="yP1-83-qgL" secondAttribute="leading" id="hlu-34-Tda"/>
                             </constraints>
                         </view>
                         <sections>
@@ -248,7 +238,6 @@
                     <connections>
                         <outlet property="infoButton1" destination="BEi-3L-bJf" id="aNL-re-dbv"/>
                         <outlet property="infoButton2" destination="291-Ha-JGu" id="2Cq-Vk-FDN"/>
-                        <outlet property="perentLabel" destination="pQF-dA-ZV7" id="IqK-11-jRo"/>
                         <outlet property="usernameLabel" destination="UYQ-iw-JgI" id="e9b-Ag-N3W"/>
                         <outlet property="userphoneLabel" destination="638-xK-6cf" id="r0w-NT-Zbu"/>
                     </connections>

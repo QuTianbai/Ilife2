@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 // 马上贷款首页
-@interface MSFCreditViewController : UITableViewController
+@interface MSFCreditViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
 
