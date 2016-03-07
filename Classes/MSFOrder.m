@@ -8,6 +8,7 @@
 
 #import "MSFOrder.h"
 #import "MSFOrderDetail.h"
+#import "NSDictionary+MSFKeyValue.h"
 
 @implementation MSFOrder
 
@@ -37,6 +38,22 @@
 	} reverseBlock:^ id (NSString *str) {
 		 return str;
 	 }];
+}
+
+#pragma mark new version
+
++ (NSValueTransformer *)loanFixedAmtJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		return str;
+	}];
+}
+
++ (NSValueTransformer *)statusJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithBlock:^id(NSString *key) {
+		return [NSDictionary statusStringForKey:key];
+	}];
 }
 
 @end
