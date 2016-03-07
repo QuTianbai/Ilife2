@@ -96,17 +96,17 @@
                                 <rect key="frame" x="0.0" y="220" width="320" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近1笔进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeB-sk-v9r">
-                                        <rect key="frame" x="15" y="9" width="77" height="21"/>
+                                        <rect key="frame" x="15" y="9" width="85" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="oG2-0L-BDe"/>
-                                            <constraint firstAttribute="width" constant="77" id="seY-x4-q6O"/>
+                                            <constraint firstAttribute="width" constant="85" id="seY-x4-q6O"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合同已确认" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUy-Pb-aZa">
-                                        <rect key="frame" x="92" y="9" width="70" height="21"/>
+                                        <rect key="frame" x="100" y="9" width="70" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="cL0-rm-n0b"/>
                                         </constraints>
@@ -122,9 +122,8 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwv-PE-PWv">
-                                        <rect key="frame" x="242" y="5" width="60" height="30"/>
+                                        <rect key="frame" x="246" y="5" width="56" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="835-jP-kGU"/>
                                             <constraint firstAttribute="height" constant="30" id="nhB-OQ-SMZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -160,6 +159,14 @@
                             <constraint firstItem="jfN-hu-DAM" firstAttribute="top" secondItem="Mey-V4-5bL" secondAttribute="top" id="zPD-mA-Tk6"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="barCoderBT" destination="MYx-4O-EqO" id="hKL-yJ-8vk"/>
+                        <outlet property="contractStatusLB" destination="mUy-Pb-aZa" id="4hq-qV-zxO"/>
+                        <outlet property="lastOrderLB" destination="QeB-sk-v9r" id="7Lr-Ad-cf8"/>
+                        <outlet property="nextBT" destination="hwv-PE-PWv" id="4Sm-Kv-yJ7"/>
+                        <outlet property="nextImg" destination="HVD-Di-Jlk" id="DkY-6e-oE2"/>
+                        <outlet property="saosaoBT" destination="eHY-cg-fl6" id="y5a-hv-dEU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y99-Nr-L8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -7,6 +7,7 @@
 #import "MSFCommodityViewController.h"
 #import "MSFCommodityViewModel.h"
 #import "MSFReactiveView.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFCommodityViewController ()
 
@@ -34,7 +35,7 @@
 	self.title = @"信用钱包";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单"
 																																						style:UIBarButtonItemStyleDone target:nil action:nil];
-	//self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
+	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
