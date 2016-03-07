@@ -43,4 +43,6 @@
 - (RACSignal *)msf_selectKeyValuesWithContent:(NSString *)content;
 - (RACSignal *)msf_selectValuesWithContent:(NSString *)content keycode:(NSString *)keycode;
 
+- (RACSignal *)msf_selectContactSignal;
+
 @end

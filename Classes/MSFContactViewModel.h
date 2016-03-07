@@ -11,12 +11,14 @@
 
 @interface MSFContactViewModel : RVMViewModel
 
-@property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *phone;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *phone;
+@property (nonatomic, copy) NSString *address;
+@property (nonatomic, assign) BOOL on;
 @property (nonatomic, copy, readonly) NSString *relationship;
-@property (nonatomic, copy, readonly) NSString *adress;
 
 @property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeSelectContactCommand;
 
 - (instancetype)initWithModel:(id)model Services:(id <MSFViewModelServices>)services;
 

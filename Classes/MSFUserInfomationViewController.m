@@ -47,6 +47,7 @@
 #import "MSFPersonal.h"
 #import "MSFProfessional.h"
 #import "MSFAuxiliaryViewModel.h"
+#import "MSFProfessionalViewController.h"
 
 @interface MSFUserInfomationViewController ()
 

@@ -682,6 +682,7 @@
 		49A550C11C574B400029FC1A /* cell-icon-overdue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BE1C574B400029FC1A /* cell-icon-overdue@2x.png */; };
 		49A550C21C574B400029FC1A /* cell-icon-overdue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BF1C574B400029FC1A /* cell-icon-overdue@3x.png */; };
 		49A550C51C574EF10029FC1A /* MSFExchangeCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */; };
+		49A999F41C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A999F31C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m */; };
 		49AA2C291C8449D500A05FB6 /* MSFWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2C281C8449D500A05FB6 /* MSFWallet.m */; };
 		49AA2C2C1C844AB000A05FB6 /* MSFClient+Wallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2C2B1C844AB000A05FB6 /* MSFClient+Wallet.m */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
@@ -1977,6 +1978,8 @@
 		49A550BF1C574B400029FC1A /* cell-icon-overdue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-icon-overdue@3x.png"; sourceTree = "<group>"; };
 		49A550C31C574EF10029FC1A /* MSFExchangeCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFExchangeCouponViewController.h; sourceTree = "<group>"; };
 		49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFExchangeCouponViewController.m; sourceTree = "<group>"; };
+		49A999F21C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPeoplePickerNavigationController+RACSignalSupport.h"; sourceTree = "<group>"; };
+		49A999F31C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABPeoplePickerNavigationController+RACSignalSupport.m"; sourceTree = "<group>"; };
 		49AA2C271C8449D500A05FB6 /* MSFWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWallet.h; sourceTree = "<group>"; };
 		49AA2C281C8449D500A05FB6 /* MSFWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWallet.m; sourceTree = "<group>"; };
 		49AA2C2A1C844AB000A05FB6 /* MSFClient+Wallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Wallet.h"; sourceTree = "<group>"; };
@@ -4555,6 +4558,8 @@
 				49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */,
 				07E9430F1C7873FC00A3316B /* UIImage+Color.h */,
 				07E943101C7873FC00A3316B /* UIImage+Color.m */,
+				49A999F21C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.h */,
+				49A999F31C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6085,6 +6090,7 @@
 				0750AAFF1B96A4C500AD67F3 /* MSFContactListModel.m in Sources */,
 				07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */,
 				07481F5E1C75D19B006ADE2B /* MSFSignInButton.m in Sources */,
+				49A999F41C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m in Sources */,
 				499147291B25C2F700260E97 /* MSFFormsViewModel.m in Sources */,
 				105E839C1B7E074500E821CB /* MSFRepaymentPlanViewModel.m in Sources */,
 				074AC2481BBB83CC0056BA22 /* MSFClient+CheckTradePassword.m in Sources */,

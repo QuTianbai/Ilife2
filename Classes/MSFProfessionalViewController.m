@@ -88,6 +88,14 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 @implementation MSFProfessionalViewController
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [UIStoryboard storyboardWithName:@"professional" bundle:nil].instantiateInitialViewController;
+	if (!self) return nil;
+	_viewModel = viewModel;
+	
+	return self;
+}
+
 #pragma mark - MSFReactiveView
 
 - (void)bindViewModel:(id)viewModel {
@@ -98,10 +106,6 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 
 - (void)dealloc {
 	NSLog(@"MSFProfessionalViewController `-dealloc`");
-}
-
-- (instancetype)init {
-	return [UIStoryboard storyboardWithName:@"professional" bundle:nil].instantiateInitialViewController;
 }
 
 - (void)viewDidLoad {
@@ -144,193 +148,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			[self.tableView reloadData];
 		}];
 	}];
-	
-//	return;
-//	//教育程度
-//	RAC(self.education, text) = RACObserve(self.viewModel, degreesTitle);
-//	self.educationButton.rac_command = self.viewModel.executeEducationCommand;
-//	
-//	//社会身份
-//	RAC(self.socialStatus, text) = RACObserve(self.viewModel, socialstatusTitle);
-//	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
-//	[RACObserve(self.viewModel, socialstatus) subscribeNext:^(id x) {
-//		@strongify(self)
-//		[self.tableView reloadData];
-//	}];
-//
-//	//学校名称
-//	[[self.universityName rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 80) {
-//				textField.text = [textField.text substringToIndex:80];
-//			}
-//		}];
-//	RACChannelTerminal *universityNameChannel = RACChannelTo(self.viewModel.forms, unitName);
-//	RAC(self.universityName, text) = universityNameChannel;
-//	[self.universityName.rac_textSignal subscribe:universityNameChannel];
-//	
-//	//入学时间
-//	RAC(self.enrollmentYear, text) = RACObserve(self.viewModel.forms, empStandFrom);
-//	[[self.enrollmentYearButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//		@strongify(self)
-//		[self.view endEditing:YES];
-//		[self.viewModel.enrollmentYearCommand execute:self.view];
-//	}];
-//	
-//	//学制
-//	[[self.programLength rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 1) {
-//				textField.text = [textField.text substringToIndex:1];
-//			}
-//		}];
-//	RACChannelTerminal *eductionalLengthChannel = RACChannelTo(self.viewModel.forms, programLength);
-//	RAC(self.programLength, text) = eductionalLengthChannel;
-//	[self.programLength.rac_textSignal subscribe:eductionalLengthChannel];
-//	
-//	//参加工作日期
-//	RAC(self.workingLength, text) = RACObserve(self.viewModel.forms, workStartDate);
-//	[[self.workingLengthButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//		@strongify(self)
-//		[self.view endEditing:YES];
-//		[self.viewModel.startedWorkDateCommand execute:self.view];
-//	}];
-//	
-//	//单位全称
-//	[[self.company rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 80) {
-//				textField.text = [textField.text substringToIndex:80];
-//			}
-//		}];
-//	RACChannelTerminal *companyChannel = RACChannelTo(self.viewModel.forms, unitName);
-//	RAC(self.company, text) = companyChannel;
-//	[self.company.rac_textSignal subscribe:companyChannel];
-//	
-//	//行业类别
-//	RAC(self.industry, text) = RACObserve(self.viewModel, industryTitle);
-//	self.industryButton.rac_command = self.viewModel.executeIndustryCommand;
-//	
-//	//单位性质
-//	RAC(self.companyType, text) = RACObserve(self.viewModel, natureTitle);
-//	self.companyTypeButton.rac_command = self.viewModel.executeNatureCommand;
-//	
-//	//单位地址
-//	RAC(self.address, text) = RACObserve(self.viewModel, address);
-//	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
-//	
-//	RACChannelTerminal *workTownChannel = RACChannelTo(self.viewModel.forms, empAdd);
-//	RAC(self.workTown, text) = workTownChannel;
-//	[self.workTown.rac_textSignal subscribe:workTownChannel];
-//	
-//	//单位电话
-//	[[self.unitAreaCode rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			@strongify(self)
-//			if (textField.text.length == 3) {
-//				NSArray *validArea = @[@"010", @"020", @"021" ,@"022" ,@"023" ,@"024" ,@"025" ,@"027" ,@"028", @"029"];
-//				if ([validArea containsObject:textField.text]) {
-//					[self.unitTelephone becomeFirstResponder];
-//				}
-//			} else if (textField.text.length == 4) {
-//				[self.unitTelephone becomeFirstResponder];
-//			} else if (textField.text.length > 4) {
-//				textField.text = [textField.text substringToIndex:4];
-//			}
-//		}];
-//	RACChannelTerminal *unitAreaCodeChannel = RACChannelTo(self.viewModel.forms, unitAreaCode);
-//	RAC(self.unitAreaCode, text) = unitAreaCodeChannel;
-//	[self.unitAreaCode.rac_textSignal subscribe:unitAreaCodeChannel];
-//	
-//	[[self.unitTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length>8) {
-//				textField.text = [textField.text substringToIndex:8];
-//			}
-//		}];
-//	RACChannelTerminal *unitTelephoneChannel = RACChannelTo(self.viewModel.forms, unitTelephone);
-//	RAC(self.unitTelephone, text) = unitTelephoneChannel;
-//	[self.unitTelephone.rac_textSignal subscribe:unitTelephoneChannel];
-//	
-//	[[self.unitExtensionTelephone rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 5) {
-//				textField.text = [textField.text substringToIndex:5];
-//			}
-//		}];
-//	RACChannelTerminal *unitExtensionTelephoneChannel = RACChannelTo(self.viewModel.forms, unitExtensionTelephone);
-//	RAC(self.unitExtensionTelephone, text) = unitExtensionTelephoneChannel;
-//	[self.unitExtensionTelephone.rac_textSignal subscribe:unitExtensionTelephoneChannel];
-//	
-//	//部门
-//	[[self.department rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 20) {
-//				textField.text = [textField.text substringToIndex:20];
-//			}
-//		}];
-//	RACChannelTerminal *departmentChannel = RACChannelTo(self.viewModel.forms, department);
-//	RAC(self.department, text) = departmentChannel;
-//	[self.department.rac_textSignal subscribe:departmentChannel];
-//	
-//	//职位
-//	RAC(self.position, text) = RACObserve(self.viewModel, professionalTitle);
-//	self.positionButton.rac_command = self.viewModel.executePositionCommand;
-//	
-//	//入职日期
-//	RAC(self.currentJobDate, text) = RACObserve(self.viewModel.forms, empStandFrom);
-//	[[self.currentJobDateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-//		@strongify(self)
-//		[self.view endEditing:YES];
-//		[self.viewModel.startedDateCommand execute:self.view];
-//	}];
-//	
-//	//工作收入
-//	[[self.incomeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 5) {
-//				textField.text = [textField.text substringToIndex:5];
-//			}
-//		}];
-//	RACChannelTerminal *incomeChannel = RACChannelTo(self.viewModel.forms, income);
-//	RAC(self.incomeTF, text) = incomeChannel;
-//	[self.incomeTF.rac_textSignal subscribe:incomeChannel];
-//	
-//	//其他收入
-//	[[self.extraIncomeTF rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 5) {
-//				textField.text = [textField.text substringToIndex:5];
-//			}
-//		}];
-//	RACChannelTerminal *extraIncomeChannel = RACChannelTo(self.viewModel.forms, otherIncome);
-//	RAC(self.extraIncomeTF, text) = extraIncomeChannel;
-//	[self.extraIncomeTF.rac_textSignal subscribe:extraIncomeChannel];
-//	
-//	//其他贷额
-//	[[self.loanTF rac_signalForControlEvents:UIControlEventEditingChanged]
-//		subscribeNext:^(UITextField *textField) {
-//			if (textField.text.length > 6) {
-//				textField.text = [textField.text substringToIndex:6];
-//			}
-//		}];
-//	RACChannelTerminal *loanChannel = RACChannelTo(self.viewModel.forms, familyExpense);
-//	RAC(self.loanTF, text) = loanChannel;
-//	[self.loanTF.rac_textSignal subscribe:loanChannel];
-//	
-//	//提交
-//	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
-//	[self.viewModel.executeCommitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
-//		@strongify(self)
-//		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-//		[signal subscribeNext:^(id x) {
-//			[SVProgressHUD dismiss];
-//			[self.navigationController popViewControllerAnimated:YES];
-//		}];
-//	}];
-//	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
-//		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-//	}];
+	[self.viewModel.executeContactCommand.executionSignals subscribeNext:^(RACSignal *x) {
+		@strongify(self);
+		[x subscribeNext:^(id x) {
+			[self.tableView reloadData];
+		}];
+	}];
 }
 
 #pragma mark - UITableViewDataSource
@@ -407,24 +230,62 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	return self.viewModel.numberOfSections;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section > 4 && indexPath.row == 5) {
+		if (self.viewModel.viewModels.count > indexPath.section - 5) {
+			MSFContactViewModel *viewModel = self.viewModel.viewModels[indexPath.section - 5];
+			return viewModel.on ? 0 : 44;
+		}
+	}
+	return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
 	if (indexPath.section < 5) return cell;
 	NSInteger index  = indexPath.section - 5;
 	MSFContactViewModel *viewModel = self.viewModel.viewModels[index];
 	UIButton *button;
-	UITextField *textFeild;
+	UITextField *textField;
 	
 	button = [cell viewWithTag:MSFProfessionalContactCellAdditionButton + index];
-	button.rac_command = self.viewModel.executeAddContact;
+	button.rac_command = self.viewModel.executeAddContactCommand;
 	
 	button = [cell viewWithTag:MSFProfessionalContactCellRemoveButton + index];
-	button.rac_command = self.viewModel.executeRemoveContact;
+	button.rac_command = self.viewModel.executeRemoveContactCommand;
 	
 	button = [cell viewWithTag:MSFProfessionalContactCellRelationshipButton + index];
 	button.rac_command = self.viewModel.executeRelationshipCommand;
-	textFeild = [cell viewWithTag:MSFProfessionalContactCellRelationshipTextFeild + index];
-	textFeild.text = viewModel.relationship;
+	textField = [cell viewWithTag:MSFProfessionalContactCellRelationshipTextFeild + index];
+	textField.text = viewModel.relationship;
+	
+	button = [cell viewWithTag:MSFProfessionalContactCellPhoneButton + index];
+	button.rac_command = self.viewModel.executeContactCommand;
+	textField = [cell viewWithTag:MSFProfessionalContactCellNameTextFeild + index];
+	textField.text = viewModel.name;
+	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+		viewModel.name = x;
+	}];
+	
+	textField = [cell viewWithTag:MSFProfessionalContactCellPhoneTextFeild + index];
+	textField.text = viewModel.phone;
+	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+		viewModel.phone = x;
+	}];
+	
+	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
+	textField.text = viewModel.address;
+	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+		viewModel.address = x;
+	}];
+	
+	UISwitch *sw = [cell viewWithTag:MSFProfessionalContactCellAddressSwitch + index];
+	@weakify(self)
+	[sw.rac_newOnChannel subscribeNext:^(id x) {
+		viewModel.on = [x boolValue];
+		@strongify(self)
+		[self.tableView reloadData];
+	}];
 	
 	return cell;
 }

@@ -12,6 +12,8 @@
 #import <CZPhotoPickerController/CZPhotoPickerPermissionAlert.h>
 #import <Masonry/Masonry.h>
 #import <ZXingObjC/ZXingObjC.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import "ABPeoplePickerNavigationController+RACSignalSupport.h"
 
 #import "MSFClient.h"
 #import "MSFServer.h"
@@ -91,7 +93,7 @@
 #import "MSFSignUpViewController.h"
 #import "MSFAuthenticateViewController.h"
 
-@interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate>
+@interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
 
@@ -158,8 +160,7 @@
 		[viewController bindViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFProfessionalViewModel class]]) {
-		viewController = [[MSFProfessionalViewController alloc] init];
-		[viewController bindViewModel:viewModel];
+		viewController = [[MSFProfessionalViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
 		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
@@ -359,6 +360,38 @@
 		}];
 		[subscriber sendCompleted];
 		return nil;
+	}];
+}
+
+- (RACSignal *)msf_selectContactSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+		picker.peoplePickerDelegate = self;
+		picker.displayedProperties = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
+		[self.visibleViewController presentViewController:picker animated:YES completion:nil];
+		if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+			picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];
+		}
+		[[[self rac_signalForSelector:@selector(peoplePickerNavigationControllerDidCancel:)
+			fromProtocol:@protocol(ABPeoplePickerNavigationControllerDelegate)] takeUntil:picker.rac_willDeallocSignal]
+			subscribeNext:^(id x) {
+				[subscriber sendCompleted];
+		}];
+		
+		[[[self rac_signalForSelector:@selector(peoplePickerNavigationController:didSelectPerson:property:identifier:)
+			fromProtocol:@protocol(ABPeoplePickerNavigationControllerDelegate)] takeUntil:picker.rac_willDeallocSignal]
+			subscribeNext:^(RACTuple *x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+		}];
+		
+		[[[self rac_signalForSelector:@selector(peoplePickerNavigationController:shouldContinueAfterSelectingPerson:property:identifier:) fromProtocol:@protocol(ABPeoplePickerNavigationControllerDelegate)] takeUntil:picker.rac_willDeallocSignal]
+			subscribeNext:^(RACTuple *x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+		}];
 	}];
 }
 

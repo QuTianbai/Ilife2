@@ -35,6 +35,11 @@ const NSInteger MSFProfessionalContactCellAdditionButton = 700;
 const NSInteger MSFProfessionalContactCellRemoveButton  = 800;
 const NSInteger MSFProfessionalContactCellRelationshipButton = 900;
 const NSInteger MSFProfessionalContactCellRelationshipTextFeild  = 600;
+const NSInteger MSFProfessionalContactCellNameTextFeild = 500;
+const NSInteger MSFProfessionalContactCellPhoneTextFeild = 400;
+const NSInteger MSFProfessionalContactCellPhoneButton = 300;
+const NSInteger MSFProfessionalContactCellAddressTextFeild = 200;
+const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 
 @interface MSFProfessionalViewModel ( )
 
@@ -46,6 +51,7 @@ const NSInteger MSFProfessionalContactCellRelationshipTextFeild  = 600;
 @property (nonatomic, strong) MSFProfessional *model;
 @property (nonatomic, strong, readwrite) NSArray *contacts;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
+@property (nonatomic, strong) NSString *maritalStatus;
 
 @end
 
@@ -97,22 +103,23 @@ const NSInteger MSFProfessionalContactCellRelationshipTextFeild  = 600;
 		map:^id(MSFSelectKeyValues *x) {
 				return x.code;
 		}];
-	RAC(self, marriage) = [RACObserve(self.services.httpClient.user, maritalStatus) flattenMap:^RACStream *(id value) {
+	
+	RAC(self, marriage) = [RACObserve(self, maritalStatus) flattenMap:^RACStream *(id value) {
 		return [self.services msf_selectValuesWithContent:@"marital_status" keycode:value];
 	}];
 	_executeMarriageCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self.services msf_selectKeyValuesWithContent:@"marital_status"];
 	}];
-	RAC(self.services.httpClient.user, maritalStatus) = [[self.executeMarriageCommand.executionSignals
+	RAC(self, maritalStatus) = [[self.executeMarriageCommand.executionSignals
 		switchToLatest]
 		map:^id(MSFSelectKeyValues *x) {
 				return x.code;
 		}];
 	
-	_executeAddContact = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeAddContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self AddContact:[[MSFContact alloc] init]];
 	}];
-	_executeRemoveContact = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeRemoveContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = (UIButton *)input;
 		return [self removeContact:self.contacts[button.tag - MSFProfessionalContactCellRemoveButton]];
 	}];
@@ -121,6 +128,11 @@ const NSInteger MSFProfessionalContactCellRelationshipTextFeild  = 600;
 		UIButton *button = input;
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
 		return [viewModel.executeRelationshipCommand execute:nil];
+	}];
+	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		UIButton *button = input;
+		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellPhoneButton];
+		return [viewModel.executeSelectContactCommand execute:nil];
 	}];
 	
   return self;

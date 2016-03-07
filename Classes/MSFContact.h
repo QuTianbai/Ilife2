@@ -13,9 +13,9 @@
 @property (nonatomic, copy, readonly) NSString *timeUpd;
 @property (nonatomic, copy, readonly) NSString *uniqueId;
 
-@property (nonatomic, copy) NSString *contactRelation;
-@property (nonatomic, copy) NSString *contactAddress;
-@property (nonatomic, copy) NSString *contactName;
-@property (nonatomic, copy) NSString *contactMobile;
+@property (nonatomic, copy, readonly) NSString *contactRelation;
+@property (nonatomic, copy, readonly) NSString *contactAddress;
+@property (nonatomic, copy, readonly) NSString *contactName;
+@property (nonatomic, copy, readonly) NSString *contactMobile;
 
 @end

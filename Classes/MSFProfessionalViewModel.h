@@ -17,6 +17,11 @@ extern const NSInteger MSFProfessionalContactCellAdditionButton;
 extern const NSInteger MSFProfessionalContactCellRemoveButton;
 extern const NSInteger MSFProfessionalContactCellRelationshipButton;
 extern const NSInteger MSFProfessionalContactCellRelationshipTextFeild;
+extern const NSInteger MSFProfessionalContactCellNameTextFeild;
+extern const NSInteger MSFProfessionalContactCellPhoneTextFeild;
+extern const NSInteger MSFProfessionalContactCellPhoneButton;
+extern const NSInteger MSFProfessionalContactCellAddressTextFeild;
+extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 
 @interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
@@ -59,10 +64,11 @@ extern const NSInteger MSFProfessionalContactCellRelationshipTextFeild;
 
 
 @property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
-@property (nonatomic, strong, readonly) RACCommand *executeRemoveContact;
-@property (nonatomic, strong, readonly) RACCommand *executeAddContact;
+@property (nonatomic, strong, readonly) RACCommand *executeRemoveContactCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeAddContactCommand;
 
 @property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeContactCommand;
 
 // 联系人MSFContactViewModel
 @property (nonatomic, strong, readonly) NSArray *viewModels;

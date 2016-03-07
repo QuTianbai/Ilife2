@@ -912,7 +912,7 @@
                             </tableViewSection>
                             <tableViewSection id="AJh-ig-VI0" userLabel="婚姻状态">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MSFRelationMarriageCell" rowHeight="44" id="iUk-Ou-wXC" userLabel="MSFRelationMarriageCell" customClass="MSFRelationMarriageCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="iUk-Ou-wXC">
                                         <rect key="frame" x="0.0" y="1034" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iUk-Ou-wXC" id="bKw-Rd-vkg">
@@ -951,15 +951,12 @@
                                                 <constraint firstAttribute="bottom" secondItem="I65-tF-mba" secondAttribute="bottom" constant="7" id="vKK-gh-75Q"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="marriageLabel" destination="I65-tF-mba" id="O7F-Km-E9f"/>
-                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="GQ8-AB-exb" userLabel="联系人">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationHeadCell" rowHeight="40" id="6RP-g3-enf" customClass="MSFRelationHeadCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="6RP-g3-enf">
                                         <rect key="frame" x="0.0" y="1078" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6RP-g3-enf" id="Jqk-qT-s7c">
@@ -979,11 +976,8 @@
                                                 <constraint firstItem="8vJ-2l-hFf" firstAttribute="top" secondItem="Jqk-qT-s7c" secondAttribute="top" constant="7" id="sOE-QI-IWQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="titleLabel" destination="8vJ-2l-hFf" id="TAx-AA-0Jf"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MSFRelationSelectionCell" rowHeight="44" id="twl-A4-sGB" customClass="MSFRelationSelectionCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="twl-A4-sGB">
                                         <rect key="frame" x="0.0" y="1118" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="twl-A4-sGB" id="ZmM-ES-0vH">
@@ -1025,12 +1019,8 @@
                                                 <constraint firstItem="wU8-MM-WnX" firstAttribute="top" secondItem="ZmM-ES-0vH" secondAttribute="top" constant="7" id="yqn-X7-v4n"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="selectionButton" destination="wU8-MM-WnX" id="JTC-7B-UiX"/>
-                                            <outlet property="tfInput" destination="9Ns-lr-MzP" id="7y1-Z1-5kZ"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationPhoneCell" rowHeight="44" id="sWK-FL-e6c" customClass="MSFRelationPhoneCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="sWK-FL-e6c">
                                         <rect key="frame" x="0.0" y="1162" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sWK-FL-e6c" id="098-FQ-mqA">
@@ -1046,7 +1036,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1De-Li-56V">
+                                                <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1De-Li-56V">
                                                     <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="7ab-Nt-3rG"/>
@@ -1056,7 +1046,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-N8-nF7">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-N8-nF7">
                                                     <rect key="frame" x="132" y="7" width="130" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1074,12 +1064,8 @@
                                                 <constraint firstItem="ltQ-N8-nF7" firstAttribute="leading" secondItem="QwB-qn-VYA" secondAttribute="trailing" id="ubC-7B-KvC"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="onContactBook" destination="1De-Li-56V" id="2uM-qj-ThN"/>
-                                            <outlet property="tfInput" destination="ltQ-N8-nF7" id="V3t-zP-5tm"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationTFCell" rowHeight="44" id="lWD-64-pAC" customClass="MSFRelationTFCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="lWD-64-pAC">
                                         <rect key="frame" x="0.0" y="1206" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lWD-64-pAC" id="5SS-DF-mec">
@@ -1095,7 +1081,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-sl-avc">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="500" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-sl-avc">
                                                     <rect key="frame" x="132" y="7" width="178" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
@@ -1111,12 +1097,8 @@
                                                 <constraint firstItem="jfB-sl-avc" firstAttribute="leading" secondItem="xiw-k3-fkQ" secondAttribute="trailing" id="tFU-pW-KNY"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="tfInput" destination="jfB-sl-avc" id="y7j-v7-pGw"/>
-                                            <outlet property="titleLabel" destination="xiw-k3-fkQ" id="Dx9-Jn-77T"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationSwitchCell" rowHeight="44" id="5yy-k3-YCT" customClass="MSFRelationSwitchCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="5yy-k3-YCT">
                                         <rect key="frame" x="0.0" y="1250" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5yy-k3-YCT" id="REX-mX-lj4">
@@ -1132,7 +1114,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9n-Yd-Nqk">
+                                                <switch opaque="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9n-Yd-Nqk">
                                                     <rect key="frame" x="261" y="7" width="51" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="DeK-ZQ-3yC"/>
@@ -1148,9 +1130,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="z1P-we-Kyl" secondAttribute="bottom" constant="7" id="wjT-ya-Wnq"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="switchButton" destination="k9n-Yd-Nqk" id="pvX-Op-S4I"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Dfy-8A-cXq">
                                         <rect key="frame" x="0.0" y="1294" width="320" height="44"/>
@@ -1159,7 +1138,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxZ-yc-xc8">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxZ-yc-xc8">
                                                     <rect key="frame" x="15" y="5" width="290" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1173,7 +1152,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell tag="100" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="hrc-he-7Z7">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="hrc-he-7Z7">
                                         <rect key="frame" x="0.0" y="1338" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hrc-he-7Z7" id="hRa-Xf-7Fd">
@@ -1204,7 +1183,7 @@
                             </tableViewSection>
                             <tableViewSection id="WZG-iJ-EuQ" userLabel="其它联系人1">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationHeadCell" rowHeight="40" id="zSF-NB-hvq" customClass="MSFRelationHeadCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="zSF-NB-hvq">
                                         <rect key="frame" x="0.0" y="1382" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zSF-NB-hvq" id="t7T-e9-ug5">
@@ -1236,12 +1215,8 @@
                                                 <constraint firstItem="6R4-pB-VyQ" firstAttribute="top" secondItem="t7T-e9-ug5" secondAttribute="top" constant="7" id="ud9-gL-WPL"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="deleteButton" destination="6R4-pB-VyQ" id="064-2S-lUN"/>
-                                            <outlet property="titleLabel" destination="Ub3-X8-FYw" id="fwV-ng-QeP"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MSFRelationSelectionCell" rowHeight="44" id="rgM-5h-BKx" customClass="MSFRelationSelectionCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="rgM-5h-BKx">
                                         <rect key="frame" x="0.0" y="1422" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rgM-5h-BKx" id="IZZ-HB-QRA">
@@ -1257,12 +1232,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择联系人和你的关系" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1LB-ru-jnt">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="601" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择联系人和你的关系" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1LB-ru-jnt">
                                                     <rect key="frame" x="132" y="7" width="147" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-58-hUp">
+                                                <button opaque="NO" tag="901" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-58-hUp">
                                                     <rect key="frame" x="132" y="7" width="147" height="29.5"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1283,12 +1258,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="1LB-ru-jnt" secondAttribute="bottom" constant="7" id="xLK-TK-yj9"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="selectionButton" destination="OdA-58-hUp" id="lwZ-By-mIn"/>
-                                            <outlet property="tfInput" destination="1LB-ru-jnt" id="rY7-Zt-XrF"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationPhoneCell" rowHeight="44" id="Ije-dw-sI8" customClass="MSFRelationPhoneCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Ije-dw-sI8">
                                         <rect key="frame" x="0.0" y="1466" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ije-dw-sI8" id="SiU-PH-LWK">
@@ -1304,7 +1275,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S3-6l-KXQ">
+                                                <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S3-6l-KXQ">
                                                     <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="RXT-1y-5Kh"/>
@@ -1314,7 +1285,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dR-H0-Hri">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="401" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dR-H0-Hri">
                                                     <rect key="frame" x="132" y="7" width="130" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1332,12 +1303,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="SUF-ws-oiT" secondAttribute="bottom" constant="7" id="ncp-WE-fJn"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="onContactBook" destination="7S3-6l-KXQ" id="vbk-xF-DED"/>
-                                            <outlet property="tfInput" destination="2dR-H0-Hri" id="Fl5-m0-a7h"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationTFCell" rowHeight="44" id="O1L-3o-Z0v" customClass="MSFRelationTFCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="O1L-3o-Z0v">
                                         <rect key="frame" x="0.0" y="1510" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O1L-3o-Z0v" id="rJn-uk-Pow">
@@ -1353,7 +1320,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lxt-oW-Ij0">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="501" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lxt-oW-Ij0">
                                                     <rect key="frame" x="132" y="7" width="178" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
@@ -1369,12 +1336,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="Lxt-oW-Ij0" secondAttribute="bottom" constant="7" id="sRL-6F-aEd"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="tfInput" destination="Lxt-oW-Ij0" id="4kH-H8-Jky"/>
-                                            <outlet property="titleLabel" destination="5UM-3M-uG2" id="H43-mG-xNo"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationSwitchCell" rowHeight="44" id="Tfg-cC-TzH" customClass="MSFRelationSwitchCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="Tfg-cC-TzH">
                                         <rect key="frame" x="0.0" y="1554" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tfg-cC-TzH" id="VQ0-Sp-oAV">
@@ -1390,7 +1353,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5WO-o2-ZrK">
+                                                <switch opaque="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5WO-o2-ZrK">
                                                     <rect key="frame" x="261" y="7" width="51" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="49" id="CAs-RC-s52"/>
@@ -1406,9 +1369,6 @@
                                                 <constraint firstItem="5WO-o2-ZrK" firstAttribute="top" secondItem="VQ0-Sp-oAV" secondAttribute="top" constant="7" id="p3X-gv-5dE"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="switchButton" destination="5WO-o2-ZrK" id="oqH-30-aun"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="0KP-HQ-GB1">
                                         <rect key="frame" x="0.0" y="1598" width="320" height="44"/>
@@ -1417,7 +1377,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-5V-bvk">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-5V-bvk">
                                                     <rect key="frame" x="15" y="5" width="290" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1431,7 +1391,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationAddCell" rowHeight="44" id="bdz-0I-Izs" customClass="MSFRelationAddCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="bdz-0I-Izs">
                                         <rect key="frame" x="0.0" y="1642" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bdz-0I-Izs" id="3k0-3a-fQc">
@@ -1462,7 +1422,7 @@
                             </tableViewSection>
                             <tableViewSection id="NCg-lz-1vY" userLabel="其它联系人2">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationHeadCell" rowHeight="40" id="cvW-YA-p79" customClass="MSFRelationHeadCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="cvW-YA-p79">
                                         <rect key="frame" x="0.0" y="1686" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cvW-YA-p79" id="lM9-Cc-tKG">
@@ -1494,12 +1454,8 @@
                                                 <constraint firstAttribute="bottom" secondItem="LnS-FG-a9k" secondAttribute="bottom" constant="7" id="zIx-fi-fJK"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="deleteButton" destination="5eB-Hk-5QW" id="8FS-lY-qWY"/>
-                                            <outlet property="titleLabel" destination="LnS-FG-a9k" id="Qxz-22-SVK"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MSFRelationSelectionCell" rowHeight="44" id="ggN-3S-FSD" customClass="MSFRelationSelectionCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="ggN-3S-FSD">
                                         <rect key="frame" x="0.0" y="1726" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ggN-3S-FSD" id="5wo-ID-c7x">
@@ -1515,12 +1471,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择联系人和你的关系" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="35U-SE-Lgt">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="602" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择联系人和你的关系" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="35U-SE-Lgt">
                                                     <rect key="frame" x="132" y="7" width="147" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIA-Va-tUA">
+                                                <button opaque="NO" tag="902" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIA-Va-tUA">
                                                     <rect key="frame" x="132" y="7" width="147" height="29.5"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1541,12 +1497,8 @@
                                                 <constraint firstItem="35U-SE-Lgt" firstAttribute="top" secondItem="5wo-ID-c7x" secondAttribute="top" constant="7" id="qx3-DV-38o"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="selectionButton" destination="JIA-Va-tUA" id="QsP-Pt-uUE"/>
-                                            <outlet property="tfInput" destination="35U-SE-Lgt" id="vGZ-jF-0bP"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationPhoneCell" rowHeight="44" id="zDG-lK-auS" customClass="MSFRelationPhoneCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="zDG-lK-auS">
                                         <rect key="frame" x="0.0" y="1770" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zDG-lK-auS" id="q9G-zq-qEB">
@@ -1562,7 +1514,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-m6-WDp">
+                                                <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-m6-WDp">
                                                     <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="SDk-Go-Dps"/>
@@ -1572,7 +1524,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="10000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cmx-d0-Gw5">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="402" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cmx-d0-Gw5">
                                                     <rect key="frame" x="132" y="7" width="130" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1590,12 +1542,8 @@
                                                 <constraint firstItem="NXa-m6-WDp" firstAttribute="centerY" secondItem="q9G-zq-qEB" secondAttribute="centerY" id="rL8-eO-mCS"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="onContactBook" destination="NXa-m6-WDp" id="V35-0c-kOV"/>
-                                            <outlet property="tfInput" destination="Cmx-d0-Gw5" id="OPF-jm-EDq"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationTFCell" rowHeight="44" id="U9c-3R-nNN" customClass="MSFRelationTFCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="U9c-3R-nNN">
                                         <rect key="frame" x="0.0" y="1814" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U9c-3R-nNN" id="HsW-a8-GDr">
@@ -1611,7 +1559,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bl3-cE-p8H">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="502" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bl3-cE-p8H">
                                                     <rect key="frame" x="132" y="7" width="178" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
@@ -1627,12 +1575,8 @@
                                                 <constraint firstItem="gzt-3O-6Se" firstAttribute="top" secondItem="HsW-a8-GDr" secondAttribute="top" constant="7" id="zZE-D5-Tx4"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="tfInput" destination="bl3-cE-p8H" id="1bv-Nf-CmK"/>
-                                            <outlet property="titleLabel" destination="gzt-3O-6Se" id="wA3-Ab-ZX0"/>
-                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationSwitchCell" rowHeight="44" id="2gz-yS-YGp" customClass="MSFRelationSwitchCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="2gz-yS-YGp">
                                         <rect key="frame" x="0.0" y="1858" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gz-yS-YGp" id="vbW-au-4tA">
@@ -1648,7 +1592,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXk-gO-Tyd">
+                                                <switch opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXk-gO-Tyd">
                                                     <rect key="frame" x="261" y="7" width="51" height="31"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="31" id="ajR-RH-yt7"/>
@@ -1664,9 +1608,6 @@
                                                 <constraint firstItem="SbI-H2-6YG" firstAttribute="top" secondItem="vbW-au-4tA" secondAttribute="top" constant="7" id="uDV-JN-ZWM"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="switchButton" destination="RXk-gO-Tyd" id="Fh1-1g-fon"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="seL-yb-yRG">
                                         <rect key="frame" x="0.0" y="1902" width="320" height="44"/>
@@ -1675,7 +1616,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDg-r1-r31">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDg-r1-r31">
                                                     <rect key="frame" x="15" y="5" width="290" height="33.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1689,7 +1630,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MSFRelationAddCell" rowHeight="44" id="mEN-e4-i6x" customClass="MSFRelationAddCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="44" id="mEN-e4-i6x">
                                         <rect key="frame" x="0.0" y="1946" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mEN-e4-i6x" id="fpl-Wc-RYB">

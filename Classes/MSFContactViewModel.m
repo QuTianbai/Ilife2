@@ -6,6 +6,7 @@
 
 #import "MSFContactViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <AddressBookUI/AddressBookUI.h>
 #import "MSFContact.h"
 #import "MSFProfessionalViewController.h"
 #import "MSFSelectKeyValues.h"
@@ -25,6 +26,7 @@
     return nil;
   }
 	_model = model;
+	_on = YES;
 	_services = services;
 	
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -38,6 +40,31 @@
 		map:^id(MSFSelectKeyValues *x) {
 				return x.code;
 		}];
+	
+	_executeSelectContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self.services msf_selectContactSignal];
+	}];
+	RACChannelTo(self, name) = RACChannelTo(self, model.contactName);
+	RACChannelTo(self, phone) = RACChannelTo(self, model.contactMobile);
+	@weakify(self)
+	[self.executeSelectContactCommand.executionSignals subscribeNext:^(id x) {
+		@strongify(self)
+		[x subscribeNext:^(RACTuple *x) {
+			id obj;
+			[x.second getValue:&obj];
+			ABRecordRef person = (__bridge  ABRecordRef)obj;
+			ABMultiValueIdentifier identifier = [x.last intValue];
+
+			ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
+			CFIndex index = ABMultiValueGetIndexForIdentifier(phoneMulti, identifier);
+			NSString *phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, index);
+			NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"].invertedSet;
+			phone = [[phone componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+			NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
+			self.name = fullName;
+			self.phone = phone;
+		}];
+	}];
 	
   return self;
 }
