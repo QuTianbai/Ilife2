@@ -16,6 +16,8 @@
 @class MSFApplicationForms;
 @class MSFAddress;
 
+__attribute__((deprecated("This class is unavailable. Please use the MSFProfessionalViewController class instead")))
+
 @interface MSFFormsViewModel : RVMViewModel
 
 @property (nonatomic, assign) BOOL master;

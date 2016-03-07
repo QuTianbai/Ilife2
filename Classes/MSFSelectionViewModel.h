@@ -13,6 +13,7 @@
 @interface MSFSelectionViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) RACSignal *selectedSignal;
+@property (nonatomic, strong, readonly) RACSignal *cancelSignal;
 
 + (MSFSelectionViewModel *)selectKeyValuesViewModel:(NSArray *)items;
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items;

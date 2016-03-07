@@ -40,154 +40,107 @@
 #import "MSFFaceMaskViewModel.h"
 #import "MSFFaceMaskPhtoViewController.h"
 #import "MSFCartViewModel.h"
+#import "MSFAuthorizeViewModel.h"
+#import "MSFAuthenticateViewController.h"
+#import "MSFAuxiliaryViewController.h"
+#import "MSFUserViewModel.h"
+#import "MSFPersonal.h"
+#import "MSFProfessional.h"
+#import "MSFAuxiliaryViewModel.h"
+#import "MSFProfessionalViewController.h"
 
 @interface MSFUserInfomationViewController ()
 
-@property (nonatomic, strong) UIButton *nextStepButton;
-@property (nonatomic, strong) IBOutlet MSFUserInfoCircleView *circleView;
-@property (nonatomic, weak) id<MSFViewModelServices>services;
-@property (nonatomic, strong) id <MSFApplicationViewModel> viewModel;
+@property (nonatomic, strong) MSFUserViewModel *viewModel;
+@property (nonatomic, weak) IBOutlet UILabel *authenticatedLabel;
+@property (nonatomic, weak) IBOutlet UILabel *personalLabel;
+@property (nonatomic, weak) IBOutlet UILabel *professionalLabel;
+@property (nonatomic, weak) IBOutlet UILabel *profilesLabel;
 
 @end
 
 @implementation MSFUserInfomationViewController
 
-- (instancetype)initWithViewModel:(id)viewModel services:(id<MSFViewModelServices>)services {
-	self = [super initWithNibName:@"MSFUserInformationViewController" bundle:nil];
+#pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFUserInfomationViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFUserInfomationViewController class])];
 	if (self) {
 		self.hidesBottomBarWhenPushed = YES;
-		_services = services;
 		_viewModel = viewModel;
 	}
 	return self;
 }
 
-- (void)dealloc {
-#if DEBUG
-	NSLog(@"MSFUserInfomationViewController `-dealloc`");
-#endif
-}
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
-	
-	self.navigationItem.title = @"个人信息";
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-	
-	@weakify(self)
-	[[_circleView.clickCommand.executionSignals
-		switchToLatest]
-	 subscribeNext:^(NSNumber *x) {
-		 @strongify(self)
-		 [self onClickCircle:x.integerValue];
-	 }];
-	
-	[RACObserve(self.services.httpClient.user, complateCustInfo) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.circleView setCompeltionStatus:x];
+	self.title = @"完善信息";
+	RAC(self.authenticatedLabel, textColor) = [RACObserve(self.viewModel, isAuthenticated) map:^id(id value) {
+		return [value boolValue] ? [UIColor colorWithRed:0.251 green:0.714 blue:0.941 alpha:1.000] : [UIColor orangeColor];
 	}];
-	
-	_nextStepButton = [UIButton buttonWithType:UIButtonTypeSystem];
-	_nextStepButton.backgroundColor = [UIColor themeColorNew];
-	[_nextStepButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[_nextStepButton setTitle:@"下一步" forState:UIControlStateNormal];
-	_nextStepButton.hidden = !_showNextStep;
-	_nextStepButton.layer.cornerRadius = 5;
-	[self.view addSubview:_nextStepButton];
-	[[self.nextStepButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-	 subscribeNext:^(id x) {
-		 @strongify(self)
-		 MSFUser *user = [self.viewModel.services httpClient].user;
-		 if (![[self.viewModel.services httpClient].user.complateCustInfo isEqualToString:@"111"]) {
-			 [SVProgressHUD showErrorWithStatus:@"请先完善资料"];
-			 return ;
-		 }
-		 if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class] && [self.viewModel.formViewModel.model.socialStatus isEqualToString:@"SI01"]) {
-			 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"此产品暂不支持学生申请" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil] show];
-			 return;
-		 }
-		 if (!user.hasTransactionalCode) {
-			 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			 [alert show];
-			 [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-				 if (index.intValue == 1) {
-					 AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-					 MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
-					 MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
-					 [self.navigationController pushViewController:setTradePasswordVC animated:YES];
-				 }
-			 }];
-			 return ;
-		 }
-		 if (!self.viewModel.formViewModel.master) {
-			 [SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
-			 MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
-			 BOOL isFirstBankCard = YES;
-			 
-			 vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
-			 [self.navigationController pushViewController:vc animated:YES];
-			 
-			 return ;
-		 }
-		 if ([self.viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-				MSFProductViewController *productViewController = [[MSFProductViewController alloc] initWithViewModel:self.viewModel];
-				[self.navigationController pushViewController:productViewController animated:YES];
-			} else if ([self.viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:self.viewModel];
-				insuranceViewController.hidesBottomBarWhenPushed = YES;
-				[self.navigationController pushViewController:insuranceViewController animated:YES];
-			} else if ([self.viewModel isKindOfClass:MSFCartViewModel.class]) {
-				MSFFaceMaskViewModel *viewModel = [[MSFFaceMaskViewModel alloc] initWithApplicationViewModel:self.viewModel];
-				MSFFaceMaskPhtoViewController *viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
-				[self.navigationController pushViewController:viewController animated:YES];
-			}
-	 }];
-	
-	[_nextStepButton mas_makeConstraints:^(MASConstraintMaker *make) {
-		@strongify(self)
-		make.bottom.equalTo(self.view).offset(-10);
-		make.left.equalTo(self.view).offset(20);
-		make.right.equalTo(self.view).offset(-20);
-		make.height.equalTo(@40);
+	RAC(self.authenticatedLabel, text) = [RACObserve(self.viewModel, isAuthenticated) map:^id(id value) {
+		return [value boolValue] ? @"已完成" : @"未完成";
+	}];
+	RAC(self.personalLabel, textColor) = [RACObserve(self.viewModel, model.personal.houseCondition) map:^id(id value) {
+		return value ? [UIColor colorWithRed:0.251 green:0.714 blue:0.941 alpha:1.000] : [UIColor orangeColor];
+	}];
+	RAC(self.personalLabel, text) = [RACObserve(self.viewModel, model.personal.houseCondition) map:^id(id value) {
+		return value ? @"已完成" : @"未完成";
+	}];
+	RAC(self.professionalLabel, textColor) = [RACObserve(self.viewModel, model.professional.socialIdentity) map:^id(id value) {
+		return value ? [UIColor colorWithRed:0.251 green:0.714 blue:0.941 alpha:1.000] : [UIColor orangeColor];
+	}];
+	RAC(self.professionalLabel, text) = [RACObserve(self.viewModel, model.professional.socialIdentity) map:^id(id value) {
+		return value ? @"已完成" : @"未完成";
+	}];
+	RAC(self.profilesLabel, textColor) = [RACObserve(self.viewModel, model.profiles) map:^id(id value) {
+		return value ? [UIColor colorWithRed:0.251 green:0.714 blue:0.941 alpha:1.000] : [UIColor orangeColor];
+	}];
+	RAC(self.profilesLabel, text) = [RACObserve(self.viewModel, model.profiles) map:^id(id value) {
+		return value ? @"已完成" : @"未完成";
 	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.viewModel.formViewModel.active = NO;
-	self.viewModel.formViewModel.active = YES;
+	self.viewModel.active = YES;
 }
 
-- (void)back {
-	[self.navigationController popViewControllerAnimated:YES];
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	self.viewModel.active = NO;
 }
 
-- (void)onClickCircle:(NSInteger)index {
-	switch (index) {
-		case 0: {
-			MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
-			[self.services pushViewModel:viewModel];
-			break;
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
+	if (indexPath.section == 0) {
+		if (self.viewModel.isAuthenticated) {
+			[SVProgressHUD showSuccessWithStatus:@"已完善实名认证"];
+			return;
 		}
-		case 1: {
-			MSFRelationshipViewModel *viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
-			[self.services pushViewModel:viewModel];
-			break;
-		}
-		case 2: {
-			MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel];
-			[self.services pushViewModel:viewModel];
-			break;
+		MSFAuthorizeViewModel *viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.viewModel.services];
+		MSFAuthenticateViewController *vc = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+		return;
+	}
+	if (indexPath.section == 1) {
+		switch (indexPath.row) {
+			case 0: {
+				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithServices:self.viewModel.services];
+				[self.viewModel.services pushViewModel:viewModel];
+				break;
+			}
+			case 1: {
+				MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithServices:self.viewModel.services];
+				[self.viewModel.services pushViewModel:viewModel];
+				break;
+			}
 		}
 	}
-}
-
-#pragma mark - Setter
-
-- (void)setShowNextStep:(BOOL)showNextStep {
-	_showNextStep = showNextStep;
-	_nextStepButton.hidden = !showNextStep;
 }
 
 @end

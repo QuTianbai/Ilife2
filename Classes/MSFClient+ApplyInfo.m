@@ -181,8 +181,6 @@
 	[uploadDic setObject:@(type) forKey:@"infoType"];
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"append/saveInfo" parameters:uploadDic];
 	return [[self enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
-		NSLog(@"%@", value.parsedResult);
-		self.user.complateCustInfo = value.parsedResult[@"complateCustInfo"];
 		return value.parsedResult[@"complateCustInfo"];
 	}];
 }

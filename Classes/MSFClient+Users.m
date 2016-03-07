@@ -12,6 +12,11 @@
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
 #import "MSFPaymentToken.h"
+#import "MSFPersonal.h"
+#import "MSFProfessional.h"
+#import "MSFSocialProfile.h"
+#import "MSFSocialInsurance.h"
+#import "MSFContact.h"
 
 @implementation MSFClient (Users)
 
@@ -181,6 +186,39 @@
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/drawings" parameters:parameters];
 	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)fetchUserInfo {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/getInfo" parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFUser.class] msf_parsedResults];
+}
+
+- (RACSignal *)updateUserInfo {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"baseInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:self.user.personal] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"occupationInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:self.user.professional] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"additionalList"] = self.user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : [NSNull null];
+	parameters[@"contrastList"] = self.user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : [NSNull null];
+	parameters[@"custSocialSecurity"] = self.user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:self.user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : [NSNull null];
+	parameters[@"infoType"] = @"1";
+	
+	NSLog(@"%@", parameters.description);
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/saveInfo" parameters:parameters];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)updateUser:(MSFUser *)user {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"baseInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.personal] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"occupationInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.professional] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"additionalList"] = user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
+	parameters[@"contactList"] = user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
+	parameters[@"custSocialSecurity"] = user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"{}";
+	parameters[@"infoType"] = @"1";
+	
+	NSLog(@"%@", parameters.description);
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/saveInfo" parameters:parameters];
 	return [self enqueueRequest:request resultClass:nil];
 }
 

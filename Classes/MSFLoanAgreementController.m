@@ -80,6 +80,7 @@
 	self.submitButton.rac_command = self.viewModel.executeAcceptCommand;
 	self.LoanAgreenmentWV.scrollView.delegate = self;
 	self.submitButton.enabled = NO;
+	self.submitButton.hidden = YES;
 }
 
 - (void)bindViewModel:(id)viewModel {

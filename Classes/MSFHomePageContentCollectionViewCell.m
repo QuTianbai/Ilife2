@@ -58,8 +58,6 @@
 	if ([viewModel isKindOfClass:MSFHomepageViewModel.class]) {
 		MSFHomepageViewModel *vm = viewModel;
 		[self placeholderShow:YES];
-		MSFUser *user = vm.services.httpClient.user;
-		[self.circleView setCompeltionStatus:user.complateCustInfo];
 		[[[_circleView.clickCommand.executionSignals switchToLatest] takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *x) {
 			[vm pushInfo:x.integerValue];
 		}];
