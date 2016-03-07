@@ -333,10 +333,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	}];
 	
 	UISwitch *sw = [cell viewWithTag:MSFProfessionalContactCellAddressSwitch + index];
+	sw.on = viewModel.on;
 	@weakify(self)
 	[sw.rac_newOnChannel subscribeNext:^(id x) {
-		viewModel.on = [x boolValue];
 		@strongify(self)
+		viewModel.on = [x boolValue];
+		if ([x boolValue]) viewModel.address = @"";
 		[self.tableView reloadData];
 	}];
 	
