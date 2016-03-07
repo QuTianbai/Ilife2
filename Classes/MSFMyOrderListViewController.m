@@ -13,6 +13,8 @@
 #import "MSFMyOrderListViewModel.h"
 #import "MSFMyOrderListTableViewCell.h"
 #import "MSFMyOrderListDetailViewController.h"
+#import "MSFMyOrderListProductsViewModel.h"
+#import "MSFMyOrderListProductsDetailViewController.h"
 
 @interface MSFMyOrderListViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -25,7 +27,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+	self.title = @"订单详情";
 	self.tableView.allowsSelection = YES;
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
@@ -55,6 +57,9 @@
 			[self.navigationController pushViewController:vc animated:YES];
 			return [RACSignal empty];
 		}
+		MSFMyOrderListProductsViewModel *viewModel = [[MSFMyOrderListProductsViewModel alloc] initWithServices:self.viewModel.services appNo:input.appNo];
+		MSFMyOrderListProductsDetailViewController *vc = [[MSFMyOrderListProductsDetailViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
 		return [RACSignal empty];
 	}]
 												templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyOrderListTableViewCell class]) bundle:nil]];
@@ -85,7 +90,5 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 60;
 }
-
-
 
 @end

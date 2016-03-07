@@ -12,6 +12,7 @@
 #import "MSFMyOrderProductsCell.h"
 #import "MSFMyOrderProdutBottomCell.h"
 #import "MSFMyOrderListProductsViewModel.h"
+#import "UIColor+Utils.h"
 
 @interface MSFMyOrderListProductsDetailViewController ()
 
@@ -21,13 +22,30 @@
 
 @implementation MSFMyOrderListProductsDetailViewController
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_viewModel = viewModel;
+	return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.navigationItem.title = @"订单详情";
+	self.tableView.separatorStyle = UITableViewCellAccessoryNone;
+	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 }
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	self.viewModel.active = YES;
+	self.viewModel.active = NO;
 }
 
 #pragma mark - Table view data source
@@ -40,12 +58,14 @@
 			if (cell == nil) {
 				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductDetailNameCell class]) owner:nil options:nil].firstObject;
 				}
+			[(MSFMyOrderProductDetailNameCell *)cell bindViewModel:self.viewModel];
 			return cell;
 		} else if (indexPath.row == 1) {
 			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductDetailContrractNoCell class])];
 			if (cell == nil) {
 				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductDetailContrractNoCell class]) owner:nil options:nil].firstObject ;
 			}
+			[(MSFMyOrderProductDetailContrractNoCell *)cell bindViewModel:self.viewModel];
 			return cell;
 		}
 	} else if (indexPath.section == 1) {
@@ -60,7 +80,7 @@
 	if (cell == nil) {
 		cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProdutBottomCell class]) owner:nil options:nil].firstObject ;
 	}
-	
+	[(MSFMyOrderProdutBottomCell *)cell bindViewModel:self.viewModel];
 	return cell;
 }
 
@@ -74,7 +94,14 @@
 	} else if (section == 2) {
 		return 1;
 	}
-    return 0;
+    return self.viewModel.cmdtyList.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 2) {
+		return 72;
+	}
+	return 44;
 }
 
 @end

@@ -12,6 +12,8 @@
 
 @interface MSFMyOrderListProductsViewModel : RVMViewModel
 
+@property (nonatomic, copy, readonly) NSString *months;
+
 @property (nonatomic, copy, readonly) NSString *inOrderId;
 @property (nonatomic, copy, readonly) NSString *orderStatus;
 @property (nonatomic, copy, readonly) NSString *orderTime;

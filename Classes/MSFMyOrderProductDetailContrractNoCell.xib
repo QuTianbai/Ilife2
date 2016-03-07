@@ -25,12 +25,12 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6288345678421" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DFa-Ld-EO4">
-                        <rect key="frame" x="71" y="11.5" width="169" height="21"/>
+                        <rect key="frame" x="71" y="11" width="169" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="RlS-XO-nBB"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单编号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8s6-L1-WGh">
@@ -40,16 +40,26 @@
                             <constraint firstAttribute="width" constant="56" id="VNM-fq-zp6"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-RW-QAQ">
+                        <rect key="frame" x="0.0" y="43" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="ELr-5Q-Nbo"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="VK8-RW-QAQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="3ZG-wL-c0b"/>
                     <constraint firstAttribute="trailing" secondItem="tqh-08-s5m" secondAttribute="trailing" constant="10" id="4Sq-6c-coj"/>
                     <constraint firstItem="tqh-08-s5m" firstAttribute="leading" secondItem="DFa-Ld-EO4" secondAttribute="trailing" id="PLo-Bq-caz"/>
                     <constraint firstItem="8s6-L1-WGh" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XTX-7i-j3S"/>
                     <constraint firstItem="tqh-08-s5m" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="de8-Zx-8bC"/>
                     <constraint firstItem="8s6-L1-WGh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="g8D-KM-1NP"/>
+                    <constraint firstAttribute="bottom" secondItem="VK8-RW-QAQ" secondAttribute="bottom" id="ooj-MH-huA"/>
+                    <constraint firstAttribute="trailing" secondItem="VK8-RW-QAQ" secondAttribute="trailing" id="q3W-so-9d4"/>
                     <constraint firstItem="DFa-Ld-EO4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="yR1-dA-FRA"/>
                     <constraint firstItem="DFa-Ld-EO4" firstAttribute="leading" secondItem="8s6-L1-WGh" secondAttribute="trailing" id="zGw-Cm-hL0"/>
                 </constraints>

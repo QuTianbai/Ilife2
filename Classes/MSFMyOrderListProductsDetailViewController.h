@@ -10,4 +10,6 @@
 
 @interface MSFMyOrderListProductsDetailViewController : UITableViewController
 
+- (instancetype)initWithViewModel:(id)viewModel;
+
 @end

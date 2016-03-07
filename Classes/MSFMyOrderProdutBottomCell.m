@@ -24,7 +24,7 @@
 
 - (void)awakeFromNib {
 	RAC(self, pay.text) = RACObserve(self, viewModel.downPmt);
-	RAC(self, months.text) = RACObserve(self, viewModel.mthlyPmtAmt);
+	RAC(self, months.text) = RACObserve(self, viewModel.months);
 	RAC(self, money.text) = RACObserve(self, viewModel.loanAmt);
 	RAC(self, isJionInsurance.hidden) = [RACObserve(self, viewModel.valueAddedSvc) map:^id(NSString *value) {
 		return @([value isEqualToString:@"0"]);

@@ -1,59 +1,59 @@
 {
-	"inOrderId": "4214321", //商户订单号
-	"orderStatus": "A", //订单状态  参照4.订单状态
-	"orderTime": "2016", //下单时间
-	"txnTime": "2015", //交易时间
-	"compId": "5432542", //商户编号
-	"empId": "4321", //员工编号
-	"compName": "新世纪", //商户名称
-	"compOfficePhone ": "0531234565", //商户办公电话
-	"empName": "王能", //员工姓名
-	"outOrderId": "452452424231", //商户订单号
-	"catId": "5432424532", //品类编号
-	"cartType": "goods",   //货单类型  goods / travel
-	"totalAmt": "234",  //商品总金额   Double
-	"totalQuantity": "6", //商品件数
-	"uniqueId": "54325423", //员工UUID
-	"custName": "王小仙", //客户姓名
-	"cellphone": "15102173456", //客户手机号
-	"appId": "42421",  //申请单编号
-	"contractId": "54242", //合同编号
-	"crProdId": "653532", //产品编号
-	"crProdName": "苹果手机", //产品名称
-	"curCode": "1", //币种
-	"loanAmt": "32143", //贷款金额
-	"loanTerm": "6",  //贷款期数
-	"mthlyPmtAmt": "23", //月还款额     Double
-	"isDownPmt": 1,  //是否代收首付    Int
-	"downPmtPct": "0.5",  //首付比例	    Double
-	"downPmt": "1432", //首付金额         Double
-	"valueAddedSvc": 1,  //是否增值服务项	int
+	"inOrderId": "4214321",
+	"orderStatus": "A",
+	"orderTime": "2016",
+	"txnTime": "2015",
+	"compId": "5432542",
+	"empId": "4321",
+	"compName": "新世纪",
+	"compOfficePhone ": "0531234565",
+	"empName": "王能",
+	"outOrderId": "452452424231",
+	"catId": "5432424532",
+	"cartType": "goods",
+	"totalAmt": "234",
+	"totalQuantity": "6",
+	"uniqueId": "54325423",
+	"custName": "王小仙",
+	"cellphone": "15102173456",
+	"appId": "42421",
+	"contractId": "54242",
+	"crProdId": "653532",
+	"crProdName": "苹果手机",
+	"curCode": "1",
+	"loanAmt": "32143",
+	"loanTerm": "6",
+	"mthlyPmtAmt": "23",
+	"isDownPmt": "1",
+	"downPmtPct": "0.5",
+	"downPmt": "1432",
+	"valueAddedSvc": "1",
 	"cmdtyList": [
         {
-								"catId": "1", //品类编号
-								"cmdtyId": "42314",  //商品编号
-								"brandName": "电信",  //品牌名称
-								"cmdtyName": "手机",  //商品名称
-								"pcsCount": "3",  //件数
-								"cmdtyPrice": "2300"  //商品价格  Double
+								"catId": "1",
+								"cmdtyId": "42314",
+								"brandName": "电信",
+								"cmdtyName": "手机",
+								"pcsCount": "3",
+								"cmdtyPrice": "2300"
         }
-								]
+								],
 	"orderTravelDto": {
-		    "departureTime":"2016",// 出发时间
-		    "returnTime":"2017",	// 返回时间
-		    "isNeedVisa":1,	// 是否需要签证
-		    "origin":"中国",		// 出发地
-		    "destination":"你的心里",	// 目的地
-		    "travelNum":1,		// 出行人数     Int
-		    "travelKidsNum":0,	// 出行小孩个数 Int
-		    "travelType":"飞机"	//旅行方式
+		"departureTime": "2016",
+		"returnTime": "2017",
+		"isNeedVisa": "1",
+		"origin": "中国",
+		"destination": "你的心里",
+		"travelNum": "1",
+		"travelKidsNum": "0",
+		"travelType": "飞机"
 	},
 	"travelCompanInfoList": [
 													 {
-													     "companName":"王能",// 同行人姓名
-													     "companCellphone":"143214432",// 同行人手机号码
-													     "companCertId":"213432143214321",// 同行人证件号码
-													     "companRelationship":"01"//与申请人关系
+													 "companName": "王能",
+													 "companCellphone": "143214432",
+													 "companCertId": "213432143214321",
+													 "companRelationship": "01"
 													 }
-		]
+													 ]
 }

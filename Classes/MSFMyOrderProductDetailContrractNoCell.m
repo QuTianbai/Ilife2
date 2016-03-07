@@ -21,7 +21,7 @@
 @implementation MSFMyOrderProductDetailContrractNoCell
 
 - (void)awakeFromNib {
-	RAC(self, contractNoLB.text) = RACObserve(self, viewModel.inOrderId);
+	RAC(self, contractNoLB.text) = RACObserve(self, viewModel.contractId);
 	RAC(self, contractStatusLB.text) = RACObserve(self, viewModel.orderStatus);
 }
 

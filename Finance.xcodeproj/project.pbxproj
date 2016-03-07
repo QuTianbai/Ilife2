@@ -18,6 +18,7 @@
 		070724A21B671A240089916B /* btnSlider.png in Resources */ = {isa = PBXBuildFile; fileRef = 0707249F1B671A240089916B /* btnSlider.png */; };
 		070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */; };
 		070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */; };
+		07090F2D1C8D79F7007879B6 /* MSFCompanInfoListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07090F2C1C8D79F7007879B6 /* MSFCompanInfoListViewModel.m */; };
 		07122F261C310EDF004AD0E2 /* faceMask_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F231C310EDF004AD0E2 /* faceMask_bg.png */; };
 		07122F271C310EDF004AD0E2 /* faceMask_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */; };
 		07122F281C310EDF004AD0E2 /* faceMask_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */; };
@@ -1042,6 +1043,8 @@
 		070724B41B6762730089916B /* MSFPeriodsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPeriodsCollectionViewCell.h; sourceTree = "<group>"; };
 		070724B51B6762730089916B /* MSFPeriodsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeriodsCollectionViewCell.m; sourceTree = "<group>"; };
 		070724B61B6762730089916B /* MSFPeriodsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFPeriodsCollectionViewCell.xib; sourceTree = "<group>"; };
+		07090F2B1C8D79F7007879B6 /* MSFCompanInfoListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCompanInfoListViewModel.h; sourceTree = "<group>"; };
+		07090F2C1C8D79F7007879B6 /* MSFCompanInfoListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCompanInfoListViewModel.m; sourceTree = "<group>"; };
 		07122F231C310EDF004AD0E2 /* faceMask_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = faceMask_bg.png; sourceTree = "<group>"; };
 		07122F241C310EDF004AD0E2 /* faceMask_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceMask_bg@2x.png"; sourceTree = "<group>"; };
 		07122F251C310EDF004AD0E2 /* faceMask_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceMask_bg@3x.png"; sourceTree = "<group>"; };
@@ -2868,6 +2871,8 @@
 				07E14C4E1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m */,
 				07E14C501C8994DF00589164 /* MSFMyOrderCmdViewModel.h */,
 				07E14C511C8994DF00589164 /* MSFMyOrderCmdViewModel.m */,
+				07090F2B1C8D79F7007879B6 /* MSFCompanInfoListViewModel.h */,
+				07090F2C1C8D79F7007879B6 /* MSFCompanInfoListViewModel.m */,
 			);
 			name = MyOderList;
 			sourceTree = "<group>";
@@ -5991,6 +5996,7 @@
 				102C7EA51C292B460023172B /* MSFCommodity.m in Sources */,
 				102C7E961C29274B0023172B /* MSFOrderListViewModel.m in Sources */,
 				49AA2C2C1C844AB000A05FB6 /* MSFClient+Wallet.m in Sources */,
+				07090F2D1C8D79F7007879B6 /* MSFCompanInfoListViewModel.m in Sources */,
 				10DC2D0E1B969D9400A2AF9C /* MSFInventoryTableViewCell.m in Sources */,
 				102C7F161C2A7C990023172B /* MSFCartLoanTermCell.m in Sources */,
 				07CBA7F71B203AC00020116E /* MSFProductViewController.m in Sources */,
