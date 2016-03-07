@@ -17,4 +17,6 @@
 
 - (RACSignal *)fetchMyOrderListWithType:(NSString *)type;
 
+- (RACSignal *)fetchMyOrderProductWithInOrderId:(NSString *)inOrderId appNo:(NSString *)appNo;
+
 @end

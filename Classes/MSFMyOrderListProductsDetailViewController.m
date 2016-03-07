@@ -7,87 +7,101 @@
 //
 
 #import "MSFMyOrderListProductsDetailViewController.h"
+#import "MSFMyOrderProductDetailNameCell.h"
+#import "MSFMyOrderProductDetailContrractNoCell.h"
+#import "MSFMyOrderProductsCell.h"
+#import "MSFMyOrderProdutBottomCell.h"
+#import "MSFMyOrderListProductsViewModel.h"
+#import "UIColor+Utils.h"
 
 @interface MSFMyOrderListProductsDetailViewController ()
+
+@property (nonatomic, strong) MSFMyOrderListProductsViewModel *viewModel;
 
 @end
 
 @implementation MSFMyOrderListProductsDetailViewController
 
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	_viewModel = viewModel;
+	return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.navigationItem.title = @"订单详情";
+	self.tableView.separatorStyle = UITableViewCellAccessoryNone;
+	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	self.viewModel.active = YES;
+	self.viewModel.active = NO;
 }
 
 #pragma mark - Table view data source
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	UITableViewCell *cell = nil;
+	if (indexPath.section == 0) {
+		if (indexPath.row == 0) {
+			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductDetailNameCell class])];
+			if (cell == nil) {
+				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductDetailNameCell class]) owner:nil options:nil].firstObject;
+				}
+			[(MSFMyOrderProductDetailNameCell *)cell bindViewModel:self.viewModel];
+			return cell;
+		} else if (indexPath.row == 1) {
+			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductDetailContrractNoCell class])];
+			if (cell == nil) {
+				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductDetailContrractNoCell class]) owner:nil options:nil].firstObject ;
+			}
+			[(MSFMyOrderProductDetailContrractNoCell *)cell bindViewModel:self.viewModel];
+			return cell;
+		}
+	} else if (indexPath.section == 1) {
+		cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductsCell class])];
+		if (cell == nil) {
+			cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductsCell class]) owner:nil options:nil].firstObject ;
+		}
+		
+		return cell;
+	}
+	cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProdutBottomCell class])];
+	if (cell == nil) {
+		cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProdutBottomCell class]) owner:nil options:nil].firstObject ;
+	}
+	[(MSFMyOrderProdutBottomCell *)cell bindViewModel:self.viewModel];
+	return cell;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+	if (section == 0) {
+		return 2;
+	} else if (section == 2) {
+		return 1;
+	}
+    return self.viewModel.cmdtyList.count;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 2) {
+		return 72;
+	}
+	return 44;
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

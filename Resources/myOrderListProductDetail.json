@@ -1,0 +1,59 @@
+{
+	"inOrderId": "4214321",
+	"orderStatus": "A",
+	"orderTime": "2016",
+	"txnTime": "2015",
+	"compId": "5432542",
+	"empId": "4321",
+	"compName": "新世纪",
+	"compOfficePhone ": "0531234565",
+	"empName": "王能",
+	"outOrderId": "452452424231",
+	"catId": "5432424532",
+	"cartType": "goods",
+	"totalAmt": "234",
+	"totalQuantity": "6",
+	"uniqueId": "54325423",
+	"custName": "王小仙",
+	"cellphone": "15102173456",
+	"appId": "42421",
+	"contractId": "54242",
+	"crProdId": "653532",
+	"crProdName": "苹果手机",
+	"curCode": "1",
+	"loanAmt": "32143",
+	"loanTerm": "6",
+	"mthlyPmtAmt": "23",
+	"isDownPmt": "1",
+	"downPmtPct": "0.5",
+	"downPmt": "1432",
+	"valueAddedSvc": "1",
+	"cmdtyList": [
+        {
+								"catId": "1",
+								"cmdtyId": "42314",
+								"brandName": "电信",
+								"cmdtyName": "手机",
+								"pcsCount": "3",
+								"cmdtyPrice": "2300"
+        }
+								],
+	"orderTravelDto": {
+		"departureTime": "2016",
+		"returnTime": "2017",
+		"isNeedVisa": "1",
+		"origin": "中国",
+		"destination": "你的心里",
+		"travelNum": "1",
+		"travelKidsNum": "0",
+		"travelType": "飞机"
+	},
+	"travelCompanInfoList": [
+													 {
+													 "companName": "王能",
+													 "companCellphone": "143214432",
+													 "companCertId": "213432143214321",
+													 "companRelationship": "01"
+													 }
+													 ]
+}

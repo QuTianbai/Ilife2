@@ -16,6 +16,8 @@
 @property (nonatomic, copy, readonly) NSString *catLevel2Id; // 分类2
 @property (nonatomic, copy, readonly) NSString *catLevel3Name; // 分类3
 @property (nonatomic, copy, readonly) NSString *catLevel3Id; // 分类3
+
+//new version
 @property (nonatomic, copy, readonly) NSString *catId; // 品类编号
 @property (nonatomic, copy, readonly) NSString *cmdtyId; // 商品编号
 @property (nonatomic, copy, readonly) NSString *brandName; // 品牌名称
