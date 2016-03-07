@@ -27,22 +27,21 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 
 @property (nonatomic, strong, readonly) MSFApplicationForms *forms;
 @property (nonatomic, strong) NSString *address;// 详细地址
-@property (nonatomic, assign, readonly) BOOL edited;
 
-@property (nonatomic, strong) MSFSelectKeyValues *degrees;// 教育程度
-@property (nonatomic, strong) NSString *degreesTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *socialstatus;// 社会身份
-@property (nonatomic, strong) NSString *socialstatusTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *industry; // 行业类别
-@property (nonatomic, strong) NSString *industryTitle;
-@property (nonatomic, strong) MSFSelectKeyValues *nature; // 单位性质
-@property (nonatomic, strong) NSString *natureTitle; // 单位性质
-@property (nonatomic, strong) MSFSelectKeyValues *professional; // 职业
-@property (nonatomic, strong) NSString *professionalTitle; // 职业
-
-@property (nonatomic, readonly) RACCommand *startedWorkDateCommand;
-@property (nonatomic, readonly) RACCommand *startedDateCommand;
-@property (nonatomic, readonly) RACCommand *enrollmentYearCommand;
+@property (nonatomic, assign, readonly) BOOL edited __deprecated;
+@property (nonatomic, strong) MSFSelectKeyValues *degrees __deprecated;// 教育程度
+@property (nonatomic, strong) NSString *degreesTitle __deprecated;
+@property (nonatomic, strong) MSFSelectKeyValues *socialstatus __deprecated;// 社会身份
+@property (nonatomic, strong) NSString *socialstatusTitle __deprecated;
+@property (nonatomic, strong) MSFSelectKeyValues *industry __deprecated; // 行业类别
+@property (nonatomic, strong) NSString *industryTitle __deprecated;
+@property (nonatomic, strong) MSFSelectKeyValues *nature __deprecated; // 单位性质
+@property (nonatomic, strong) NSString *natureTitle __deprecated; // 单位性质
+@property (nonatomic, strong) MSFSelectKeyValues *professional __deprecated; // 职业
+@property (nonatomic, strong) NSString *professionalTitle __deprecated; // 职业
+@property (nonatomic, readonly) RACCommand *startedWorkDateCommand __deprecated;
+@property (nonatomic, readonly) RACCommand *startedDateCommand __deprecated;
+@property (nonatomic, readonly) RACCommand *enrollmentYearCommand __deprecated;
 
 @property (nonatomic, readonly) RACCommand *executeEducationCommand;// 选择教育程度
 @property (nonatomic, readonly) RACCommand *executeSocialStatusCommand;// 选择社会身份
@@ -61,7 +60,6 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 @property (nonatomic, copy, readonly) NSString *surplusIncome;
 @property (nonatomic, copy, readonly) NSString *loan;
 @property (nonatomic, copy, readonly) NSString *marriage;
-@property (nonatomic, copy, readonly) NSArray *contacts;
 
 @property (nonatomic, copy, readonly) NSString *schoolName;
 @property (nonatomic, copy, readonly) NSString *schoolDate;
@@ -103,7 +101,6 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 
 // 联系人MSFContactViewModel
 @property (nonatomic, strong, readonly) NSArray *viewModels;
-
 
 - (NSInteger)numberOfSections;
 

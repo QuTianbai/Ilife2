@@ -191,7 +191,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		@strongify(self);
 		[self.tableView reloadData];
 	}];
-	[RACObserve(self.viewModel, contacts) subscribeNext:^(id x) {
+	[RACObserve(self.viewModel, viewModels) subscribeNext:^(id x) {
 		@strongify(self);
 		[self.tableView reloadData];
 	}];
