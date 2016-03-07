@@ -30,6 +30,7 @@
 #import "MSFClient+Users.h"
 #import "MSFContact.h"
 #import "MSFContactViewModel.h"
+#import "MSFPersonal.h"
 
 const NSInteger MSFProfessionalContactCellAdditionButton = 700;
 const NSInteger MSFProfessionalContactCellRemoveButton  = 800;
@@ -52,6 +53,10 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 @property (nonatomic, strong, readwrite) NSArray *contacts;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
 @property (nonatomic, strong) NSString *maritalStatus;
+@property (nonatomic, strong) NSString *jobCategoryCode;
+@property (nonatomic, strong) NSString *jobNatureCode;
+@property (nonatomic, strong) NSString *jobPositionCode;
+@property (nonatomic, strong) NSString *qualificationCode;
 
 @end
 
@@ -74,6 +79,9 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	_model = [self.services.httpClient user].professional.copy;
 	_contacts = [self.services.httpClient user].contacts ?: @[[[MSFContact alloc] init]];
 	_viewModels = [[NSArray alloc] init];
+	
+	self.maritalStatus = [self.services.httpClient user].personal.maritalStatus;
+	
 	NSArray *contacts = [self.services.httpClient.user contacts];
 	if (!contacts) {
 		self.viewModels = [self.viewModels arrayByAddingObject:[[MSFContactViewModel alloc] initWithModel:[[MSFContact alloc] init] Services:self.services]];
@@ -87,10 +95,27 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	RACChannelTo(self, surplusIncome) = RACChannelTo(self.model, otherIncome);
 	RACChannelTo(self, loan) = RACChannelTo(self.model, otherLoan);
 	
+	RACChannelTo(self, schoolName) = RACChannelTo(self.model, unitName);
+	RACChannelTo(self, schoolDate) = RACChannelTo(self.model, empStandFrom);
+	RACChannelTo(self, schoolLength) = RACChannelTo(self.model, lengthOfSchooling);
+	
+	RACChannelTo(self, jobName) = RACChannelTo(self.model, unitName);
+	RACChannelTo(self, jobCategoryCode) = RACChannelTo(self.model, empType);
+	RACChannelTo(self, jobNatureCode) = RACChannelTo(self.model, empStructure);
+	RACChannelTo(self, jobDate) = RACChannelTo(self.model, workStartDate);
+	
+	RACChannelTo(self, jobPhone) = RACChannelTo(self.model, empPhone);
+	RACChannelTo(self, jobExtPhone) = RACChannelTo(self.model, empPhoneExtNum);
+	RACChannelTo(self, jobDetailAddress) = RACChannelTo(self.model, empAddr);
+	RACChannelTo(self, jobPositionCode) = RACChannelTo(self.model, empPost);
+	RACChannelTo(self, jobPositionDate) = RACChannelTo(self.model, empStandFrom);
+	RACChannelTo(self, jobPositionDepartment) = RACChannelTo(self.model, empDepartment);
+	
 	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:[self updateValidSignal] signalBlock:^RACSignal *(id input) {
 		return [self updateSignal];
 	}];
 	
+	// 社会身份
 	RAC(self, code) = RACObserve(self.model, socialIdentity);
 	RAC(self, identifier) = [RACObserve(self.model, socialIdentity) flattenMap:^RACStream *(id value) {
 		return [self.services msf_selectValuesWithContent:@"social_status" keycode:value];
@@ -104,6 +129,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 				return x.code;
 		}];
 	
+	// 婚姻状态
 	RAC(self, marriage) = [RACObserve(self, maritalStatus) flattenMap:^RACStream *(id value) {
 		return [self.services msf_selectValuesWithContent:@"marital_status" keycode:value];
 	}];
@@ -116,6 +142,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 				return x.code;
 		}];
 	
+	// 联系人信息
 	_executeAddContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self AddContact:[[MSFContact alloc] init]];
 	}];
@@ -123,7 +150,6 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		UIButton *button = (UIButton *)input;
 		return [self removeContact:self.contacts[button.tag - MSFProfessionalContactCellRemoveButton]];
 	}];
-	
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
@@ -134,6 +160,67 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellPhoneButton];
 		return [viewModel.executeSelectContactCommand execute:nil];
 	}];
+	
+	// 教育信息
+	_executeSchoolDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self enrollmentYearSignal:input];
+	}];
+	RAC(self, schoolDate) = [self.executeSchoolDateCommand.executionSignals switchToLatest];
+	
+	// 工作信息
+	_executeJobDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self enrollmentYearSignal:input];
+	}];
+	RAC(self, jobDate) = [self.executeJobDateCommand.executionSignals switchToLatest];
+	
+	_executeIndustryCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [[self.services msf_selectKeyValuesWithContent:@"industry_category"] doNext:^(MSFSelectKeyValues *x) {
+			self.jobCategoryCode = x.code;
+		}];
+	}];
+	RAC(self, jobCategory) = [RACObserve(self, jobCategoryCode) flattenMap:^id(id value) {
+		return [self.services msf_selectValuesWithContent:@"industry_category" keycode:value];
+	}];
+	_executeNatureCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [[self.services msf_selectKeyValuesWithContent:@"unit_nature"] doNext:^(MSFSelectKeyValues *x) {
+			self.jobNatureCode = x.code;
+		}];
+	}];
+	RAC(self, jobNature) = [RACObserve(self, jobNatureCode) flattenMap:^id(id value) {
+		return [self.services msf_selectValuesWithContent:@"unit_nature" keycode:value];
+	}];
+	RAC(self, jobPosition) = [RACObserve(self, jobPositionCode) flattenMap:^RACStream *(id value) {
+		return [self.services msf_selectValuesWithContent:@"professional" keycode:value];
+	}];
+	_executePositionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [[self.services msf_selectKeyValuesWithContent:@"professional"] doNext:^(MSFSelectKeyValues *x) {
+			self.jobPositionCode = x.code;
+		}];
+	}];
+	_executeJobPositionDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self enrollmentYearSignal:input];
+	}];
+	RAC(self, jobPositionDate) = [self.executeJobPositionDateCommand.executionSignals switchToLatest];
+	
+		NSDictionary *addr = @{
+		@"province" : self.model.empProvinceCode ?: @"",
+		@"city" : self.model.empCityCode ?: @"",
+		@"area" : self.model.empZoneCode ?: @""
+	};
+	MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
+	_address = _addressViewModel.address;
+	RAC(self, model.empProvinceCode) = RACObserve(self.addressViewModel, provinceCode);
+	RAC(self, model.empCityCode) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self, model.empZoneCode) = RACObserve(self.addressViewModel, areaCode);
+	RAC(self, model.empProvince) = RACObserve(self.addressViewModel, provinceName);
+	RAC(self, model.empCity) = RACObserve(self.addressViewModel, cityName);
+	RAC(self, model.empZone) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self, jobAddress) = RACObserve(self.addressViewModel, address);
+	_executeAddressCommand = self.addressViewModel.selectCommand;
+	
+	self.qualificationCode = @"LE06";
+	RACChannelTo(self, qualificationCode) = RACChannelTo(self.model, qualification);
 	
   return self;
 }
@@ -601,10 +688,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)enrollmentYearSignal:(UIView *)aView {
-	@weakify(self)
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate msf_date];
 		NSDateComponents *comps = [[NSDateComponents alloc] init];
@@ -619,20 +703,18 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		 minimumDate:minDate
 		 maximumDate:maxDate
 		 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-				self.forms.empStandFrom = [NSDateFormatter professional_stringFromDate:selectedDate];
-			 [subscriber sendNext:nil];
+			 [subscriber sendNext:[NSDateFormatter professional_stringFromDate:selectedDate]];
 			 [subscriber sendCompleted];
 		 }
 		 cancelBlock:^(ActionSheetDatePicker *picker) {
-			 self.forms.empStandFrom = nil;
 			 [subscriber sendNext:nil];
 			 [subscriber sendCompleted];
 		 }
 		 origin:aView];
 		return nil;
-	}] replay];
+	}]
+	replay];
 }
-
 
 #pragma mark - Private
 
@@ -649,11 +731,27 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
-	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *value) {
-		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, professional): self.model} error:nil];
-		[value mergeValueForKey:@keypath(MSFUser.new, professional) fromModel:model];
-		return [[self.services.httpClient updateUser:value] doNext:^(id x) {
+	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *user) {
+		MSFPersonal *personal = [[MSFPersonal alloc] initWithDictionary:@{@keypath(MSFPersonal.new, maritalStatus): self.maritalStatus} error:nil];
+		[user.personal mergeValueForKey:@keypath(MSFPersonal.new, maritalStatus) fromModel:personal];
+		
+		NSArray *contacts = [self.viewModels.rac_sequence map:^id(MSFContactViewModel *value) {
+			return value.model;
+		}].array;
+		
+		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{
+			@keypath(MSFUser.new, professional): self.model,
+			@keypath(MSFUser.new, personal): user.personal,
+			@keypath(MSFUser.new, contacts): contacts
+		} error:nil];
+		[user mergeValueForKey:@keypath(MSFUser.new, professional) fromModel:model];
+		[user mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
+		[user mergeValueForKey:@keypath(MSFUser.new, contacts) fromModel:model];
+		
+		return [[self.services.httpClient updateUser:user] doNext:^(id x) {
 			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, professional) fromModel:model];
+			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
+			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, contacts) fromModel:model];
 		}];
 	}];
 }

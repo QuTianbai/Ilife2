@@ -15,7 +15,7 @@
 @property (nonatomic, copy, readonly) NSString *socialIdentity;
 @property (nonatomic, copy, readonly) NSString *empProvinceCode;
 @property (nonatomic, copy, readonly) NSString *empCity;
-@property (nonatomic, copy, readonly) NSString *empAdd;
+@property (nonatomic, copy, readonly) NSString *empAddr;
 @property (nonatomic, copy, readonly) NSString *qualification;
 @property (nonatomic, copy, readonly) NSString *empZone;
 @property (nonatomic, copy, readonly) NSString *empType;
@@ -29,6 +29,6 @@
 @property (nonatomic, copy, readonly) NSString *workStartDate;
 @property (nonatomic, copy, readonly) NSString *empZoneCode;
 @property (nonatomic, copy, readonly) NSString *empPhone;
-@property (nonatomic, copy, readonly) NSString *empDepapment;
+@property (nonatomic, copy, readonly) NSString *empDepartment;
 
 @end

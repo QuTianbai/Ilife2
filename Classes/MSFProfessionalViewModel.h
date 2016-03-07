@@ -46,15 +46,16 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 
 @property (nonatomic, readonly) RACCommand *executeEducationCommand;// 选择教育程度
 @property (nonatomic, readonly) RACCommand *executeSocialStatusCommand;// 选择社会身份
-@property (nonatomic, readonly) RACCommand *executeIndustryCommand;// 选择行业信息
-@property (nonatomic, readonly) RACCommand *executeNatureCommand;// 选择单位性质
-@property (nonatomic, readonly) RACCommand *executePositionCommand;// 选择部门信息
+
 
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand; //选择地址信息
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 
+// 社会身份编码
+@property (nonatomic, copy, readonly) NSString *code;
+// 社会身份文字
 @property (nonatomic, copy, readonly) NSString *identifier;
 @property (nonatomic, copy, readonly) NSString *normalIncome;
 @property (nonatomic, copy, readonly) NSString *surplusIncome;
@@ -62,6 +63,24 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 @property (nonatomic, copy, readonly) NSString *marriage;
 @property (nonatomic, copy, readonly) NSArray *contacts;
 
+@property (nonatomic, copy, readonly) NSString *schoolName;
+@property (nonatomic, copy, readonly) NSString *schoolDate;
+@property (nonatomic, copy, readonly) NSString *schoolLength;
+
+@property (nonatomic, copy, readonly) NSString *jobName;
+@property (nonatomic, copy, readonly) NSString *jobCategory;
+@property (nonatomic, copy, readonly) NSString *jobNature;
+@property (nonatomic, copy, readonly) NSString *jobDate;
+
+@property (nonatomic, copy, readonly) NSString *jobPhone;
+@property (nonatomic, copy, readonly) NSString *jobExtPhone;
+@property (nonatomic, copy, readonly) NSString *jobAddress;
+@property (nonatomic, copy, readonly) NSString *jobDetailAddress;
+@property (nonatomic, copy, readonly) NSString *jobPositionDepartment;
+@property (nonatomic, copy, readonly) NSString *jobPosition;
+@property (nonatomic, copy, readonly) NSString *jobPositionDate;
+
+@property (nonatomic, copy, readonly) NSString *qualification;
 
 @property (nonatomic, strong, readonly) RACCommand *executeMarriageCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeRemoveContactCommand;
@@ -69,11 +88,22 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 
 @property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeContactCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeSchoolDateCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeJobDateCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeJobPositionDateCommand;
+
+// 选择行业信息
+@property (nonatomic, strong, readonly) RACCommand *executeIndustryCommand;
+
+// 选择单位性质
+@property (nonatomic, strong, readonly) RACCommand *executeNatureCommand;
+
+// 选择部门信息
+@property (nonatomic, strong, readonly) RACCommand *executePositionCommand;
 
 // 联系人MSFContactViewModel
 @property (nonatomic, strong, readonly) NSArray *viewModels;
 
-@property (nonatomic, copy, readonly) NSString *code;
 
 - (NSInteger)numberOfSections;
 

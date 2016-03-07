@@ -12,11 +12,11 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="BDJ-Po-BBQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="2100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="URd-UH-wCv">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="10"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         </view>
                         <view key="tableFooterView" contentMode="scaleToFill" id="OIA-nD-KhU">
                             <rect key="frame" x="0.0" y="1990" width="320" height="64"/>
@@ -604,7 +604,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="F1B-pn-zEv" rowHeight="40" style="IBUITableViewCellStyleDefault" id="07e-N3-ZQY">
                                         <rect key="frame" x="0.0" y="672" width="320" height="40"/>
@@ -639,40 +639,34 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="区号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qt6-3n-2Aq">
-                                                    <rect key="frame" x="120" y="7" width="40" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="40" id="AwL-Hy-Yvq"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分机号(选填)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvN-OO-7Q8">
-                                                    <rect key="frame" x="236" y="7" width="84" height="29.5"/>
+                                                    <rect key="frame" x="241.5" y="7" width="78.5" height="29.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="座机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zkP-BA-X7C">
-                                                    <rect key="frame" x="163" y="7" width="70" height="29.5"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="区号      座机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zkP-BA-X7C">
+                                                    <rect key="frame" x="120" y="7" width="118.5" height="29.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="iBH-QY-RVF"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="iBH-QY-RVF"/>
+                                                        </mask>
+                                                    </variation>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zkP-BA-X7C" firstAttribute="leading" secondItem="qt6-3n-2Aq" secondAttribute="trailing" constant="3" id="1C4-n8-Cjh"/>
                                                 <constraint firstItem="V5D-VJ-IEZ" firstAttribute="top" secondItem="BQ7-Hk-JEL" secondAttribute="top" constant="11" id="2GQ-KJ-tNO"/>
                                                 <constraint firstItem="bvN-OO-7Q8" firstAttribute="top" secondItem="BQ7-Hk-JEL" secondAttribute="top" constant="7" id="8Ol-yQ-BFS"/>
                                                 <constraint firstAttribute="trailing" secondItem="bvN-OO-7Q8" secondAttribute="trailing" id="Bgz-at-qOb"/>
                                                 <constraint firstAttribute="bottom" secondItem="V5D-VJ-IEZ" secondAttribute="bottom" constant="11.5" id="GPI-xX-bk9"/>
-                                                <constraint firstItem="qt6-3n-2Aq" firstAttribute="leading" secondItem="V5D-VJ-IEZ" secondAttribute="trailing" constant="20" id="Rey-Fb-Lwc"/>
                                                 <constraint firstAttribute="bottom" secondItem="bvN-OO-7Q8" secondAttribute="bottom" constant="7" id="SfA-BS-neA"/>
                                                 <constraint firstItem="bvN-OO-7Q8" firstAttribute="leading" secondItem="zkP-BA-X7C" secondAttribute="trailing" constant="3" id="VmS-CN-bAO"/>
                                                 <constraint firstAttribute="bottom" secondItem="zkP-BA-X7C" secondAttribute="bottom" constant="7" id="b2v-Lc-NHF"/>
-                                                <constraint firstAttribute="bottom" secondItem="qt6-3n-2Aq" secondAttribute="bottom" constant="7" id="fQs-Yx-vi1"/>
-                                                <constraint firstItem="qt6-3n-2Aq" firstAttribute="top" secondItem="BQ7-Hk-JEL" secondAttribute="top" constant="7" id="hwB-9G-Afd"/>
+                                                <constraint firstItem="zkP-BA-X7C" firstAttribute="leading" secondItem="V5D-VJ-IEZ" secondAttribute="trailing" constant="20" id="g8r-7x-Daq"/>
                                                 <constraint firstItem="zkP-BA-X7C" firstAttribute="top" secondItem="BQ7-Hk-JEL" secondAttribute="top" constant="7" id="q3X-iU-Aoa"/>
                                                 <constraint firstItem="V5D-VJ-IEZ" firstAttribute="leading" secondItem="BQ7-Hk-JEL" secondAttribute="leading" constant="15" id="yvL-Kz-WnJ"/>
                                             </constraints>
@@ -770,7 +764,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="Lcd-i5-Au8" rowHeight="40" style="IBUITableViewCellStyleDefault" id="PUG-A5-OOp">
                                         <rect key="frame" x="0.0" y="862" width="320" height="40"/>
@@ -1669,16 +1663,35 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="2100"/>
                     <connections>
+                        <outlet property="address" destination="kkJ-Ao-IKY" id="Z1a-TE-Gwp"/>
+                        <outlet property="addressButton" destination="rUA-xh-Q2b" id="sLL-Bn-EZB"/>
+                        <outlet property="company" destination="Gaa-8F-peG" id="v4q-KE-xTQ"/>
+                        <outlet property="companyType" destination="Jd8-z6-vLe" id="6Du-N3-L3D"/>
+                        <outlet property="companyTypeButton" destination="xys-7K-kWA" id="DRX-ut-ZM9"/>
+                        <outlet property="currentJobDate" destination="NKj-Jf-2k4" id="wg5-BY-dLV"/>
+                        <outlet property="currentJobDateButton" destination="QX5-sK-mZ0" id="tqR-U0-o6r"/>
+                        <outlet property="department" destination="91V-hR-e4w" id="qWd-ic-92r"/>
+                        <outlet property="detailAddressTextField" destination="nD8-5n-xtk" id="wJd-5e-mwa"/>
+                        <outlet property="enrollmentYear" destination="F9l-iO-lP7" id="pFe-eC-PVs"/>
+                        <outlet property="enrollmentYearButton" destination="85k-fB-OBi" id="XXF-y5-cpf"/>
                         <outlet property="extraIncomeTF" destination="QJJ-GX-XVv" id="utE-gh-kw8"/>
                         <outlet property="incomeTF" destination="v1S-gw-tZn" id="8us-op-11y"/>
+                        <outlet property="industry" destination="qeu-GC-nQP" id="M9M-9g-zNv"/>
+                        <outlet property="industryButton" destination="MpM-J1-S1v" id="hIf-kX-k92"/>
                         <outlet property="loanTF" destination="R76-fM-cxH" id="3Dk-25-Fkj"/>
                         <outlet property="marriageButton" destination="pMS-AN-eeC" id="VQH-RQ-cEo"/>
                         <outlet property="marriageTextField" destination="I65-tF-mba" id="a1l-fz-mMT"/>
                         <outlet property="nextButton" destination="8Wz-kg-ezK" id="2Cy-yW-bwq"/>
-                        <outlet property="position" destination="5xr-wt-Pes" id="eDM-pl-MEJ"/>
-                        <outlet property="positionButton" destination="b1y-jc-JEJ" id="lmj-47-kYb"/>
-                        <outlet property="socialStatus" destination="5xr-wt-Pes" id="NAc-N0-wEv"/>
-                        <outlet property="socialStatusButton" destination="b1y-jc-JEJ" id="EAT-mj-DsI"/>
+                        <outlet property="position" destination="Gd9-Zz-LiJ" id="XBg-8E-Z0N"/>
+                        <outlet property="positionButton" destination="Y6p-nd-fJs" id="ySr-nC-dVa"/>
+                        <outlet property="programLength" destination="VGg-Uh-VDE" id="IHL-YB-D0U"/>
+                        <outlet property="socialStatus" destination="5xr-wt-Pes" id="enG-dG-yfr"/>
+                        <outlet property="socialStatusButton" destination="b1y-jc-JEJ" id="ybO-ul-tVt"/>
+                        <outlet property="unitExtensionTelephone" destination="bvN-OO-7Q8" id="GHr-ZO-EmH"/>
+                        <outlet property="unitTelephone" destination="zkP-BA-X7C" id="G9M-Hu-I7l"/>
+                        <outlet property="universityName" destination="vGb-EF-BB7" id="Ec6-Aj-fdC"/>
+                        <outlet property="workingLength" destination="h3T-LI-f45" id="HVg-IY-sQi"/>
+                        <outlet property="workingLengthButton" destination="YCv-Px-e4K" id="F9a-Hj-lfN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oTE-nI-qqw" userLabel="First Responder" sceneMemberID="firstResponder"/>

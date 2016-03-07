@@ -13,7 +13,7 @@
 
 @interface MSFContactViewModel ()
 
-@property (nonatomic, strong) MSFContact *model;
+@property (nonatomic, strong, readwrite) MSFContact *model;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end

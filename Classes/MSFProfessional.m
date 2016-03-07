@@ -18,4 +18,28 @@
 	return keys;
 }
 
++ (NSValueTransformer *)otherLoanJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
+}
+
++ (NSValueTransformer *)otherIncomeJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
+}
+
++ (NSValueTransformer *)monthIncomeJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
+}
+
++ (NSValueTransformer *)lengthOfSchoolingJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [object isKindOfClass:NSNumber.class]?[object stringValue]:object;
+	}];
+}
+
 @end

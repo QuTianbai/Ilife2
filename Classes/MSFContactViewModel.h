@@ -8,6 +8,7 @@
 #import "MSFViewModelServices.h"
 
 @class RACCommand;
+@class MSFContact;
 
 @interface MSFContactViewModel : RVMViewModel
 
@@ -16,6 +17,7 @@
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, assign) BOOL on;
 @property (nonatomic, copy, readonly) NSString *relationship;
+@property (nonatomic, strong, readonly) MSFContact *model;
 
 @property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSelectContactCommand;

@@ -35,10 +35,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 @interface MSFProfessionalViewController ()
 
 // 社会身份
-@property (nonatomic, weak) IBOutlet UITextField *education;//教育程度code
 @property (nonatomic, weak) IBOutlet UITextField *socialStatus;//社会身份
 @property (nonatomic, weak) IBOutlet UITextField *workingLength;//工作年限
-@property (nonatomic, weak) IBOutlet UIButton *educationButton;
 @property (nonatomic, weak) IBOutlet UIButton *socialStatusButton;
 @property (nonatomic, weak) IBOutlet UIButton *workingLengthButton;
 
@@ -68,21 +66,20 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 @property (nonatomic, weak) IBOutlet UIButton *currentJobDateButton;//现工作开始时间
 
 // 单位联系方式
-@property (nonatomic, weak) IBOutlet UITextField *unitAreaCode;//办公/个体电话区号
 @property (nonatomic, weak) IBOutlet UITextField *unitTelephone;//办公/个体电话
 @property (nonatomic, weak) IBOutlet UITextField *unitExtensionTelephone;//办公/个体电话分机号
 
 //地址
 @property (nonatomic, weak) IBOutlet UITextField *address;
 @property (nonatomic, weak) IBOutlet UIButton *addressButton;
-@property (nonatomic, weak) IBOutlet UITextField *workTown;//单位所在镇
+@property (nonatomic, weak) IBOutlet UITextField *detailAddressTextField;//单位所在镇
 
 @property (nonatomic, weak) IBOutlet UIButton *nextButton;
 
-@property (nonatomic, strong) MSFProfessionalViewModel *viewModel;
-
 @property (nonatomic, weak) IBOutlet UIButton *marriageButton;
 @property (nonatomic, weak) IBOutlet UITextField *marriageTextField;
+
+@property (nonatomic, strong) MSFProfessionalViewModel *viewModel;
 
 @end
 
@@ -121,6 +118,62 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RACChannelTerminal *channel = RACChannelTo(self.viewModel, normalIncome);
 	RAC(self.incomeTF, text) = channel;
 	[self.incomeTF.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, surplusIncome);
+	RAC(self.extraIncomeTF, text) = channel;
+	[self.extraIncomeTF.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, loan);
+	RAC(self.loanTF, text) = channel;
+	[self.loanTF.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, schoolName);
+	RAC(self.universityName, text) = channel;
+	[self.universityName.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, schoolLength);
+	RAC(self.programLength, text) = channel;
+	[self.programLength.rac_textSignal subscribe:channel];
+	
+	self.enrollmentYearButton.rac_command = self.viewModel.executeSchoolDateCommand;
+	RAC(self, enrollmentYear.text) = RACObserve(self.viewModel, schoolDate);
+	
+	self.industryButton.rac_command = self.viewModel.executeIndustryCommand;
+	RAC(self.industry, text) = RACObserve(self.viewModel, jobCategory);
+	
+	self.companyTypeButton.rac_command = self.viewModel.executeNatureCommand;
+	RAC(self, companyType.text) = RACObserve(self.viewModel, jobNature);
+	
+	self.currentJobDateButton.rac_command = self.viewModel.executeJobPositionDateCommand;
+	RAC(self, currentJobDate.text) = RACObserve(self.viewModel, jobPositionDate);
+	
+	self.workingLengthButton.rac_command = self.viewModel.executeJobDateCommand;
+	RAC(self, workingLength.text) = RACObserve(self.viewModel, jobDate);
+	
+	self.positionButton.rac_command = self.viewModel.executePositionCommand;
+	RAC(self, position.text) = RACObserve(self.viewModel, jobPosition);
+	
+	channel = RACChannelTo(self.viewModel, jobName);
+	RAC(self.company, text) = channel;
+	[self.company.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, jobPhone);
+	RAC(self.unitTelephone, text) = channel;
+	[self.unitTelephone.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, jobExtPhone);
+	RAC(self.unitExtensionTelephone, text) = channel;
+	[self.unitExtensionTelephone.rac_textSignal subscribe:channel];
+	
+	channel = RACChannelTo(self.viewModel, jobDetailAddress);
+	RAC(self.detailAddressTextField, text) = channel;
+	[self.detailAddressTextField.rac_textSignal subscribe:channel];
+	RAC(self, address.text) = RACObserve(self.viewModel, jobAddress);
+	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
+	
+	channel = RACChannelTo(self.viewModel, jobPositionDepartment);
+	RAC(self.department, text) = channel;
+	[self.department.rac_textSignal subscribe:channel];
 	
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *x) {
