@@ -40,6 +40,7 @@
 #import "MSFCommodityViewController.h"
 #import "MSFWalletViewModel.h"
 #import "MSFCommodityViewModel.h"
+#import "MSFCreditViewModel.h"
 
 @interface MSFTabBarController () 
 
@@ -79,9 +80,7 @@
 
 - (void)authenticatedControllers {
 	self.viewModel.formsViewModel.active = YES;
-	//TODO: 更新马上贷控制器
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
-	
+	MSFCreditViewModel *homepageViewModel = [[MSFCreditViewModel alloc] initWithServices:self.viewModel.services];
 	MSFCreditViewController *homePageViewController = [[MSFCreditViewController alloc] initWithViewModel:homepageViewModel];
 	homePageViewController.title = @"马上贷";
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
