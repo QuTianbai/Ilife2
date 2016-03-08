@@ -25,18 +25,61 @@
 @implementation MSFCreditViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
-  //self = [super init];
+ 
     self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFCreditViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFCreditViewController class])];
   if (!self) {
     return nil;
   }
-  
+    _viewModel = viewModel;
   return self;
 }
--(void)viewWillAppear:(BOOL)animated
+//-(void)viewWillAppear:(BOOL)animated
+//{
+//    [super viewWillAppear:animated];
+//    
+//    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+//    navigationBar.tintColor = UIColor.whiteColor;
+//    self.shadowImage = navigationBar.shadowImage;
+//    self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+//    [navigationBar setBackgroundImage:[UIImage new]
+//                       forBarPosition:UIBarPositionAny
+//                           barMetrics:UIBarMetricsDefault];
+//    [navigationBar setShadowImage:[UIImage new]];
+//     self.viewModel.active = YES;
+//
+//    }
+
+-(void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
+   
+//    self.title = @"马上贷";
+//    
+//    UIButton * butt = [[UIButton alloc]init];;
+//    butt.frame = CGRectMake(0, 0, 50, 20);
+//    butt.layer.cornerRadius=10;
+//    [butt setTitle:@"账单" forState:UIControlStateNormal];
+//    [butt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    butt.titleLabel.font =[UIFont systemFontOfSize:17];
+//    butt.layer.masksToBounds=YES;
+//    butt.layer.borderWidth=1;
+//    CGColorSpaceRef coloespace = CGColorSpaceCreateDeviceRGB();
+//    CGColorRef colorref = CGColorCreate(coloespace, (CGFloat[]){255,255,255,255});
+//    butt.layer.borderColor=colorref;
+//    [butt addTarget:self action:@selector(BackToPrevious) forControlEvents:UIControlEventTouchUpInside];
+//    UIBarButtonItem * barbutton = [[UIBarButtonItem alloc]initWithCustomView:butt];
+//    self.navigationItem.rightBarButtonItem = barbutton;
+//    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
+    self.title = @"信用钱包";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单"
+                                                                              style:UIBarButtonItemStyleDone target:nil action:nil];
+    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
+//    
     
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     navigationBar.tintColor = UIColor.whiteColor;
     self.shadowImage = navigationBar.shadowImage;
@@ -45,53 +88,25 @@
                        forBarPosition:UIBarPositionAny
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
-     //self.viewModel.active = YES;
-
-    }
-
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-   
-    self.title = @"马上贷";
-    
-    UIButton * butt = [[UIButton alloc]init];;
-    butt.frame = CGRectMake(0, 0, 50, 20);
-    butt.layer.cornerRadius=10;
-    [butt setTitle:@"账单" forState:UIControlStateNormal];
-    [butt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    butt.titleLabel.font =[UIFont systemFontOfSize:17];
-    butt.layer.masksToBounds=YES;
-    butt.layer.borderWidth=1;
-    CGColorSpaceRef coloespace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(coloespace, (CGFloat[]){255,255,255,255});
-    butt.layer.borderColor=colorref;
-    [butt addTarget:self action:@selector(BackToPrevious) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem * barbutton = [[UIBarButtonItem alloc]initWithCustomView:butt];
-    self.navigationItem.rightBarButtonItem = barbutton;
-    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
-    
-    
-    
+    self.viewModel.active = YES;
 }
--(void)viewWillDisappear:(BOOL)animated
-{
+
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     [navigationBar setBackgroundImage:self.backgroundImage
                        forBarPosition:UIBarPositionAny
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:self.shadowImage];
-    
     self.viewModel.active = NO;
-
 }
+
 
 -(void)BackToPrevious
 {
     MSFCreditOrderDetailsViewController *OrderDetails=[[MSFCreditOrderDetailsViewController alloc]init];
 
-    [self.navigationController pushViewController:OrderDetails animated:NO];
+    [self.navigationController pushViewController:OrderDetails animated:YES];
     
     
 }

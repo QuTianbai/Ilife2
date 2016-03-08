@@ -38,7 +38,10 @@
     }
     return self;
 }
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    self.hidesBottomBarWhenPushed = YES;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"订单详情";

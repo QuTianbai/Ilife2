@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MSFCreditFooterViewController : UIViewController
+#import "MSFReactiveView.h"
+@interface MSFCreditFooterViewController : UIViewController<MSFReactiveView>
 
 @end
