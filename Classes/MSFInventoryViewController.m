@@ -80,8 +80,6 @@ UICollectionViewDelegateFlowLayout>
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
 			if ([self.viewModel.applicationViewModel isKindOfClass:[MSFSocialInsuranceCashViewModel class]]) {
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
-					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setAccessoryInfoVOArray:x];
-					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setStatus:@"1"];
 					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
 			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashViewModel class]]) {

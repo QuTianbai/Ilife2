@@ -208,9 +208,7 @@
 					[self.navigationController pushViewController:vc animated:YES];
 					return ;
 				}
-				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"4102"];
-				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel loanType:loanType services:self.viewModel.services];
-				viewModel.applicationNo = @"";
+				MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.viewModel.services];
 				MSFSocialCaskApplyTableViewController *insuranceViewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
 				insuranceViewController.hidesBottomBarWhenPushed = YES;
 				[self.navigationController pushViewController:insuranceViewController animated:YES];

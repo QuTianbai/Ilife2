@@ -20,6 +20,7 @@
 #import "MSFUser.h"
 #import "UIWindow+PazLabs.h"
 
+#import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
