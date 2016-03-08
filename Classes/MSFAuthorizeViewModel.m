@@ -406,6 +406,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		doNext:^(MSFClient *client) {
 			_signInValid = YES;
 			[self.services setHttpClient:client];
+			[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
 		}];
 }
 

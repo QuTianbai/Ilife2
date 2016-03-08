@@ -8,33 +8,22 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
-#import "MSFSelectKeyValues.h"
-#import "MSFApplicationViewModel.h"
 
 @class RACCommand;
-@class MSFSocialInsuranceModel;
-@class MSFApplicationForms;
-@class MSFUserContact;
+@class MSFLoanType;
 
-@interface MSFSocialInsuranceCashViewModel : RVMViewModel <MSFApplicationViewModel>
+@interface MSFSocialInsuranceCashViewModel : RVMViewModel
 
-@property (nonatomic, copy) NSString *productCd;
-@property (nonatomic, strong) NSArray *accessoryInfoVOArray;
-@property (nonatomic, strong) NSArray *accessories;
-@property (nonatomic, copy) NSString *status;
-
-@property (nonatomic, strong) MSFSocialInsuranceModel *model;
-
-@property (nonatomic, strong, readonly) MSFSelectKeyValues *purpose; // 贷款用途
-//@property (nonatomic, copy, readonly) NSString *purposeString;
+@property (nonatomic, strong, readonly) NSString *purposeTitle; // 贷款用途
+@property (nonatomic, strong, readonly) NSString *address; // 地址
+@property (nonatomic, strong, readonly) NSString *detailAddress; // 详细地址
+@property (nonatomic, strong, readonly) NSString *radixTitle; // 保险基数
+@property (nonatomic, strong, readonly) NSString *contactName; // 联系人名字
+@property (nonatomic, strong, readonly) NSString *contactPhone; // 联系人手机号
+@property (nonatomic, strong, readonly) NSString *liveArea; // 居住地区
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险
-@property (nonatomic, copy, readonly) NSString *liveArea; // 居住地区
-@property (nonatomic, copy, readonly) NSString *companyArea; //公司地区
-@property (nonatomic, strong, readonly) MSFUserContact *contact;
-@property (nonatomic, strong, readonly) MSFSelectKeyValues *basicPayment;
-//@property (nonatomic, copy, readonly) NSString *paymentString;
 
-//RACCommand
+// RACCommand
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeRelationCommand;
@@ -43,15 +32,10 @@
 @property (nonatomic, strong, readonly) RACCommand *executeBasicPaymentCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
-@property (nonatomic, weak) id <MSFViewModelServices> services;
-@property (nonatomic, strong) MSFFormsViewModel *formViewModel;
-@property (nonatomic, strong) NSString *applicationNo;
-@property (nonatomic, strong) MSFLoanType *loanType;
-
-@property (nonatomic, strong, readonly) NSString *invalidString;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel loanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services;
+- (MSFLoanType *)loanType;
 
 @end
