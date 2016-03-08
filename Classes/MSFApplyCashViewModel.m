@@ -7,7 +7,6 @@
 //
 
 #import "MSFApplyCashViewModel.h"
-#import "MSFFormsViewModel.h"
 #import "MSFApplyCashModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCalculatemMonthRepayModel.h"
@@ -40,13 +39,22 @@
 
 @implementation MSFApplyCashViewModel
 
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(MSFLoanType *)loanType {
+- (instancetype)initWithViewModel:(id)viewModel loanType:(MSFLoanType *)loanType  {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+  
+  return self;
+}
+
+- (instancetype)initWithLoanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_formViewModel = viewModel;
 	_loanType = loanType;
+	_services = services;
 	[self initialize];
 	
 	return self;
@@ -56,7 +64,6 @@
 
 - (void)initialize {
 	_model = [[MSFApplyCashModel alloc] init];
-	_services = self.formViewModel.services;
 	_model.productCd = self.loanType.typeID;
 	_jionLifeInsurance = @"";
 	_appNO = @"";
@@ -66,7 +73,8 @@
 	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
 	
-	RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
+	//TODO: 更新银行卡号的获取方式
+	//RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
 	
@@ -79,8 +87,8 @@
 	}];
 	RAC(self, model.loanFixedAmt) = RACObserve(self, loanFixedAmt);
 	
-	RAC(self, minMoney) = RACObserve(self, formViewModel.markets.allMinAmount);
-	RAC(self, maxMoney) = RACObserve(self, formViewModel.markets.allMaxAmount);
+	//RAC(self, minMoney) = RACObserve(self, formViewModel.markets.allMinAmount);
+	//RAC(self, maxMoney) = RACObserve(self, formViewModel.markets.allMaxAmount);
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		self.loanPurpose = value.code;
@@ -91,9 +99,9 @@
 		return [value text];
 	}];
 	
-	RAC(self, markets) = [RACObserve(self, formViewModel.markets) map:^id(id value) {
-		return value;
-	}];
+	//RAC(self, markets) = [RACObserve(self, formViewModel.markets) map:^id(id value) {
+	//	return value;
+	//}];
 	@weakify(self)
 	[RACObserve(self, product) subscribeNext:^(MSFTeam *product) {
 		@strongify(self)

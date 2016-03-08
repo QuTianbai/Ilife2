@@ -69,7 +69,7 @@
                        forBarPosition:UIBarPositionAny
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
-   
+   self.viewModel.active = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -79,6 +79,7 @@
                        forBarPosition:UIBarPositionAny
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:self.shadowImage];
+    self.viewModel.active = NO;
   
 }
 

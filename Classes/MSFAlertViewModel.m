@@ -7,9 +7,7 @@
 #import "MSFAlertViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
-#import "MSFFormsViewModel.h"
 #import "MSFUser.h"
-#import "MSFApplicationForms.h"
 #import "MSFSelectKeyValues.h"
 
 #import "MSFApplyCashViewModel.h"
@@ -40,11 +38,12 @@
 	_amount = [NSString stringWithFormat:@"%@元", cashViewModel.appLmt];
 	_repayment = [NSString stringWithFormat:@"%@元", cashViewModel.loanFixedAmt];
 	
-	RAC(self, bankNumber) = RACObserve(cashViewModel, formViewModel.masterBankCardNO);
-	if (cashViewModel.formViewModel.masterBankCardNO.length == 0) {
-		cashViewModel.formViewModel.active = NO;
-		cashViewModel.formViewModel.active = YES;
-	}
+	//TODO: 获取银行卡号，并显示
+	//RAC(self, bankNumber) = RACObserve(cashViewModel, formViewModel.masterBankCardNO);
+	//if (cashViewModel.formViewModel.masterBankCardNO.length == 0) {
+	//	cashViewModel.formViewModel.active = NO;
+	//	cashViewModel.formViewModel.active = YES;
+	//}
 	
   return self;
 }

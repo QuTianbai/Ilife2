@@ -7,16 +7,16 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 
-@class MSFAreas;
+@class MSFAddress;
 @class RACCommand;
 @class MSFApplicationForms;
-@class MSFAddress;
+@class MSFAddressCodes;
 
 @interface MSFAddressViewModel : RVMViewModel
 
-@property (nonatomic, strong) MSFAreas *province;
-@property (nonatomic, strong) MSFAreas *city;
-@property (nonatomic, strong) MSFAreas *area;
+@property (nonatomic, strong) MSFAddress *province;
+@property (nonatomic, strong) MSFAddress *city;
+@property (nonatomic, strong) MSFAddress *area;
 
 @property (nonatomic, strong) NSString *provinceName;
 @property (nonatomic, strong) NSString *provinceCode;
@@ -44,6 +44,6 @@
 // services - 服务用于加载城市选择控制器
 //
 // return new viewModel
-- (instancetype)initWithAddress:(MSFAddress *)address services:(id <MSFViewModelServices>)services;
+- (instancetype)initWithAddress:(MSFAddressCodes *)address services:(id <MSFViewModelServices>)services;
 
 @end

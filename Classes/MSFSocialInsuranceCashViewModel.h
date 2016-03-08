@@ -8,11 +8,12 @@
 
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @class RACCommand;
 @class MSFLoanType;
 
-@interface MSFSocialInsuranceCashViewModel : RVMViewModel
+@interface MSFSocialInsuranceCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
 @property (nonatomic, strong, readonly) NSString *purposeTitle; // 贷款用途
 @property (nonatomic, strong, readonly) NSString *address; // 地址
@@ -32,7 +33,7 @@
 @property (nonatomic, strong, readonly) RACCommand *executeBasicPaymentCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
-@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, weak) id <MSFViewModelServices> services;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 

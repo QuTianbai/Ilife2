@@ -8,7 +8,7 @@
 
 #import "MSFObject.h"
 
-// 联系人信息
+//TODO: Rename contact to contract
 @interface MSFContactListModel : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *contactID;

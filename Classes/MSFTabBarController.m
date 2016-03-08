@@ -9,15 +9,10 @@
 #import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 
-#import "MSFHomepageViewController.h"
 #import "MSFUserViewController.h"
-#import "MSFProductViewController.h"
-#import "MSFLoginViewController.h"
 
 #import "MSFTabBarViewModel.h"
-#import "MSFHomepageViewModel.h"
 #import "MSFUserViewModel.h"
-#import "MSFFormsViewModel.h"
 
 #import "MSFClient.h"
 #import "MSFUser.h"
@@ -32,14 +27,13 @@
 
 #import "MSFApplyCashViewModel.h"
 #import "MSFMarkets.h"
-#import "MSFCashHomePageViewController.h"
-#import "MSFCashHomePageViewModel.h"
 
 #import "MSFCreditViewController.h"
 #import "MSFWalletViewController.h"
 #import "MSFCommodityViewController.h"
 #import "MSFWalletViewModel.h"
 #import "MSFCommodityViewModel.h"
+#import "MSFCreditViewModel.h"
 
 @interface MSFTabBarController () 
 
@@ -78,10 +72,7 @@
 #pragma mark - Private
 
 - (void)authenticatedControllers {
-	self.viewModel.formsViewModel.active = YES;
-	//TODO: 更新马上贷控制器
-	MSFHomepageViewModel *homepageViewModel = [[MSFHomepageViewModel alloc] initWithModel:self.viewModel.formsViewModel services:self.viewModel.services];
-	
+	MSFCreditViewModel *homepageViewModel = [[MSFCreditViewModel alloc] initWithServices:self.viewModel.services];
 	MSFCreditViewController *homePageViewController = [[MSFCreditViewController alloc] initWithViewModel:homepageViewModel];
 	homePageViewController.title = @"马上贷";
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
