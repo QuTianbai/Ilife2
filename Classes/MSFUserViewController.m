@@ -169,12 +169,6 @@
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)applyList {
-	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.viewModel.services];
-	MSFLoanListViewController *applyList = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-	[self.navigationController pushViewController:applyList animated:YES];
-}
-
 - (void)repaymentPlan {
 	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.services];
 	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];

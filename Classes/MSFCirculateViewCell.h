@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFCirculateViewCell : UICollectionViewCell <MSFReactiveView>
 
 @end

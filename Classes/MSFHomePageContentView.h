@@ -11,6 +11,8 @@
 
 @class RACSignal;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFHomePageContentView : UIView
 
 //监听此信号来回去状态按钮的点击事件

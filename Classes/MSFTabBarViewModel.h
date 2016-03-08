@@ -17,7 +17,7 @@
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 // Global application forms information.
-@property (nonatomic, strong, readonly) MSFFormsViewModel *formsViewModel;
+@property (nonatomic, strong, readonly) id formsViewModel __deprecated_msg("User MSFUser");
 
 // Global authorize ViewModel.
 @property (nonatomic, strong, readonly) MSFAuthorizeViewModel *authorizeViewModel;

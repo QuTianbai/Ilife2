@@ -10,6 +10,8 @@
 
 @class MSFAddressInfo;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFResultModel : MSFObject
 
 @property (nonatomic, copy) NSString *formatted_address;

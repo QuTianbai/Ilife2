@@ -18,18 +18,6 @@
 	};
 }
 
-+ (NSValueTransformer *)whitePhotoJSONTransformer {
-	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(id photo) {
-		if (![photo isKindOfClass:NSDictionary.class]) {
-			return nil;
-		}
-		
-		return [MTLJSONAdapter modelOfClass:MSFPhotoStatus.class fromJSONDictionary:photo error:nil];
-	} reverseBlock:^id(MSFPhotoStatus *whitePhoto) {
-		return whitePhoto.dictionaryValue;
-	}];
-}
-
 + (NSValueTransformer *)contrastListJSONTransformer {
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFUserContact.class];
 }

@@ -17,7 +17,7 @@
 // model - 社保贷 <MSFSocialInsuranceModel> instance
 //
 // Returns a signal will send a instance of <MSFApplicationResponse>
-- (RACSignal *)fetchSaveSocialInsuranceInfoWithModel:(MSFSocialInsuranceModel *)model;
+- (RACSignal *)fetchSaveSocialInsuranceInfoWithModel:(MSFSocialInsuranceModel *)model __deprecated;
 
 // 提交社保贷资料到服务器
 //
@@ -27,7 +27,7 @@
 // JoininLifeInsurance - 是否加入寿险计划
 //
 // Returns a signal which will send a MSFSubmitApplyModel
-- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status;
+- (RACSignal *)fetchSubmitSocialInsuranceInfoWithModel:(NSDictionary *)dict AndAcessory:(NSArray *)AccessoryInfoVO Andstatus:(NSString *)status __deprecated_msg("Use fetchUserInfo");
 
 // 下载社保资料信息
 //

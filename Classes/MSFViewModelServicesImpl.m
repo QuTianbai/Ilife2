@@ -153,9 +153,6 @@
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
-		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
@@ -164,23 +161,12 @@
 	} else if ([viewModel isKindOfClass:[MSFProfessionalViewModel class]]) {
 		viewController = [[MSFProfessionalViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
-		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFAuthorizeViewModel class]]) {
 		if ([(MSFAuthorizeViewModel *)viewModel loginType] == MSFLoginSignUp) {
 			viewController = [[MSFSignUpViewController alloc] initWithViewModel:viewModel];
 		} else {
 			viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 		}
-	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
-		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
-		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
-	//TODO: 更新内容方式
-//		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
-	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
-		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {

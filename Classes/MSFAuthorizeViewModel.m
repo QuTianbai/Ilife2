@@ -16,7 +16,7 @@
 #import "NSDate+UTC0800.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFServer.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 #import "MSFAddressViewModel.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";

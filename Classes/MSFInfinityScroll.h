@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFInfinityScroll : UIView
 
 //传入页数

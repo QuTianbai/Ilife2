@@ -13,6 +13,8 @@
 @class RACCommand;
 @class MSFAttachment;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFFaceMaskViewModel : RVMViewModel
 
 @property (nonatomic, copy) NSString *imgFilePath;

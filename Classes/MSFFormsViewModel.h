@@ -14,9 +14,9 @@
 @class MSFMarket;
 @class MSFMarkets;
 @class MSFApplicationForms;
-@class MSFAddress;
+@class MSFAddressCodes;
 
-__attribute__((deprecated("This class is unavailable. Please use the MSFProfessionalViewController class instead")))
+__attribute__((deprecated("This class is unavailable. Please use the MSFCreaditViewModel/MSFWalletViewModel/MSFCommodityViewModel class instead")))
 
 @interface MSFFormsViewModel : RVMViewModel
 
@@ -31,8 +31,8 @@ __attribute__((deprecated("This class is unavailable. Please use the MSFProfessi
 @property (nonatomic, strong, readonly) MSFMarket *market __deprecated;
 @property (nonatomic, strong, readonly) MSFMarkets *markets;
 @property (nonatomic, strong, readonly) RACSignal *updatedContentSignal;
-@property (nonatomic, strong, readonly) MSFAddress *currentAddress;
-@property (nonatomic, strong, readonly) MSFAddress *workAddress;
+@property (nonatomic, strong, readonly) MSFAddressCodes *currentAddress;
+@property (nonatomic, strong, readonly) MSFAddressCodes *workAddress;
 
 @property (nonatomic, assign, readonly) BOOL pending;
 @property (nonatomic, assign) BOOL isHaveProduct;//是否请求到贷款信息和贷款期数

@@ -6,6 +6,8 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFLoginViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;

@@ -37,12 +37,20 @@
 
 @implementation MSFCashHomePageViewModel
 
-- (instancetype)initWithFormViewModel:(MSFFormsViewModel *)formViewModel services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithFormViewModel:(id)formViewModel services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+  
+  return self;
+}
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_formViewModel = formViewModel;
 	_services = services;
 	_circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:services];
 	

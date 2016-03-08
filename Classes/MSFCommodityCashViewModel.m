@@ -18,10 +18,18 @@
   if (!self) {
     return nil;
   }
+  
+  return self;
+}
+
+- (instancetype)initWithLoanType:(MSFLoanType *)loanType barcode:(NSString *)barcode services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
 	_barcode = barcode;
-	_services = viewModel.services;
+	_services = services;
 	_loanType = loanType;
-	_formViewModel = viewModel;
 	
   return self;
 }

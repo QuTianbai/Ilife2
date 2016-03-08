@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
-@interface MSFMyOrderProductsCell : UITableViewCell<MSFReactiveView>
+@interface MSFMyOrderProductsCell : UITableViewCell <MSFReactiveView>
 
 @end

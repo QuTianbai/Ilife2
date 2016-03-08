@@ -15,7 +15,7 @@
 
 #import "MSFSelectKeyValues.h"
 #import "MSFApplicationForms.h"
-#import "MSFAreas.h"
+#import "MSFAddress.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFClient+ApplyCash.h"
 #import "NSString+Matches.h"
@@ -24,7 +24,7 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFAddressViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 #import "MSFProfessional.h"
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
@@ -207,7 +207,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		@"city" : self.model.empCityCode ?: @"",
 		@"area" : self.model.empZoneCode ?: @""
 	};
-	MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
+	MSFAddressCodes *addrModel = [MSFAddressCodes modelWithDictionary:addr error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
 	_address = _addressViewModel.address;
 	RAC(self, model.empProvinceCode) = RACObserve(self.addressViewModel, provinceCode);

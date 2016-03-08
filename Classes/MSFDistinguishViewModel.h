@@ -9,6 +9,8 @@
 
 @class RACCommand;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFDistinguishViewModel : RVMViewModel
 
 @property (nonatomic, strong) RACCommand *executeInventoryCommand;

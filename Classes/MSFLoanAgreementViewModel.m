@@ -10,7 +10,7 @@
 #import "MSFApplicationResponse.h"
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 #import "MSFApplyCashViewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFSocialInsuranceCashViewModel.h"
@@ -56,9 +56,6 @@
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
 			[self.services pushViewModel:self.applicationViewModel];
-		} else {
-			MSFFaceMaskViewModel *viewModel = [[MSFFaceMaskViewModel alloc] initWithApplicationViewModel:self.applicationViewModel];
-			[self.services pushViewModel:viewModel];
 		}
 		[subscriber sendCompleted];
 		return [RACDisposable disposableWithBlock:^{

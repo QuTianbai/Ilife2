@@ -46,8 +46,6 @@
 		
 		_services = services;
 		_applicationNo = appNo;
-		_formViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
-		_formViewModel.active = YES;
 		
 		_trial = [[MSFTrial alloc] init];
 		_cart = [[MSFCart alloc] init];

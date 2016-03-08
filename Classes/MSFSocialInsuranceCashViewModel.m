@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFSocialInsuranceModel.h"
 #import "MSFAddressViewModel.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 #import "MSFContact.h"
 #import "MSFUser.h"
 #import "MSFPersonal.h"
@@ -44,7 +44,7 @@
 	self.contacts = user.contacts;
 	self.firstContact = user.contacts.firstObject;
 	
-	MSFAddress *addressModel = [MSFAddress modelWithDictionary:@{
+	MSFAddressCodes *addressModel = [MSFAddressCodes modelWithDictionary:@{
 		@"province" : self.personal.abodeStateCode ?: @"",
 		@"city" : self.personal.abodeCityCode ?: @"",
 		@"area" : self.personal.abodeZoneCode ?: @""

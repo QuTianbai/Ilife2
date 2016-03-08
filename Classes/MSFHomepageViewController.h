@@ -8,6 +8,8 @@
 
 @class MSFHomepageViewModel;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFHomepageViewController : UICollectionViewController
 
 // 主页的viewModel

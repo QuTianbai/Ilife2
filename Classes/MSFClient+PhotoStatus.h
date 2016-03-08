@@ -10,6 +10,6 @@
 
 @interface MSFClient (PhotoStatus)
 
-- (RACSignal *)updateBankCardAvatarWithFileURL:(NSURL *)URL ownURL:(NSURL *)ownURL;
+- (RACSignal *)updateBankCardAvatarWithFileURL:(NSURL *)URL ownURL:(NSURL *)ownURL __deprecated;
 
 @end

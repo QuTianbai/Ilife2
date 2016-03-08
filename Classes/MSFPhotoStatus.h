@@ -10,6 +10,8 @@
 
 @class MSFPhoto;
 
+__attribute__((deprecated("This class is unavailable.")))
+
 @interface MSFPhotoStatus : MSFObject
 
 @property (nonatomic, copy) MSFPhoto *id_photo;

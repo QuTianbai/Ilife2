@@ -9,7 +9,7 @@
 #import "MSFRelationshipViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 //#import <UIKit/UIKit.h>
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 #import "MSFAddressViewModel.h"
 #import "MSFApplicationForms.h"
 #import "MSFFormsViewModel.h"
@@ -41,7 +41,7 @@
 		NSDictionary *addr = @{@"province" : _forms.currentProvinceCode ?: @"",
 													 @"city" : _forms.currentCityCode ?: @"",
 													 @"area" : _forms.currentCountryCode ?: @""};
-		MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
+		MSFAddressCodes *addrModel = [MSFAddressCodes modelWithDictionary:addr error:nil];
 		MSFAddressViewModel *addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
 		_fullAddress = [NSString stringWithFormat:@"%@%@", addrViewModel.address, _forms.abodeDetail];
 	} else {

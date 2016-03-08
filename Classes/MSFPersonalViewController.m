@@ -12,14 +12,13 @@
 
 #import "MSFSelectionViewController.h"
 
-#import "MSFSegment.h"
 #import "MSFCommandView.h"
 
 #import "MSFSelectionViewModel.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFFormsViewModel.h"
 
-#import "MSFAreas.h"
+#import "MSFAddress.h"
 #import "MSFApplicationForms.h"
 
 #import "NSString+Matches.h"

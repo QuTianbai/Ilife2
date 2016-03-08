@@ -18,6 +18,6 @@
 // longitude - The longitude
 //
 // Returns a signal will send <MSFLocationModel> instance
-+ (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude;
++ (RACSignal *)fetchLocationWithLatitude:(double)latitude longitude:(double)longitude __deprecated;
 
 @end

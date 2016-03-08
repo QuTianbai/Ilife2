@@ -7,6 +7,8 @@
 #import "MSFGroupTableViewController.h"
 #import "MSFReactiveView.h"
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFIDSignInViewController : MSFGroupTableViewController
 
 @end

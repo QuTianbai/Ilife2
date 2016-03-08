@@ -378,8 +378,8 @@ ABPersonViewControllerDelegate>
 	if (indexPath.section == 0) {
 		[[self.viewModel.executeMarriageCommand execute:nil]
 		 subscribeNext:^(id x) {
-			 MSFUserContact *contact = _tempContactList[0];
-			 contact.contactRelation = nil;
+			 //MSFUserContact *contact = _tempContactList[0];
+			 //contact.contactRelation = nil;
 			 [tableView reloadData];
 		 }];
 	} else if (indexPath.section == _tempContactList.count + 1) {

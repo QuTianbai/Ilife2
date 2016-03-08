@@ -25,7 +25,7 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 
 @interface MSFProfessionalViewModel : RVMViewModel <MSFReactiveView>
 
-@property (nonatomic, strong, readonly) MSFApplicationForms *forms;
+@property (nonatomic, strong, readonly) id forms __deprecated_msg("Use MSFUser intead");
 @property (nonatomic, strong) NSString *address;// 详细地址
 
 @property (nonatomic, assign, readonly) BOOL edited __deprecated;

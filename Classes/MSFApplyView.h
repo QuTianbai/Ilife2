@@ -15,6 +15,8 @@ typedef NS_ENUM(NSInteger, MSFApplyViewType) {
 	MSFApplyViewTypeMSFull
 };
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFApplyView : UIView
 
 @property (nonatomic, assign, readonly) MSFApplyViewType type;

@@ -9,6 +9,8 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSLoanListTableViewCell : UITableViewCell
 
 /*

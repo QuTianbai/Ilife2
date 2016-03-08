@@ -24,6 +24,8 @@ typedef NS_ENUM(NSInteger, MSFHomePageDateDisplayType) {
 	MSFHomePageDateDisplayTypeProcessing
 };
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFHomePageItemViewModel : RVMViewModel
 
 @property (nonatomic, weak) id<MSFViewModelServices>services;

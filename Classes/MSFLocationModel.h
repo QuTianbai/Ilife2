@@ -10,6 +10,8 @@
 
 @class MSFResultModel;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFLocationModel : MSFObject
 
 @property (nonatomic, strong) MSFResultModel *result;
