@@ -23,6 +23,7 @@
 #import "MSFPaymentToken.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFCirculateCashViewModel.h"
+#import "MSFMyRepayDetailViewModel.h"
 
 @interface MSFRepaymentViewModel ()
 
@@ -69,6 +70,9 @@
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return [NSString stringWithFormat:@"本期最小还款金额￥%.2f,总欠款金额￥%@", viewModel.amount, viewModel.ownerAllMoney];;
+		} else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+			MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+			return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];;
 		}
 		return @"";
 	}];

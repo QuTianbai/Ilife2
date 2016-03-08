@@ -9,7 +9,7 @@
 #import "MSFMyOrderListProductsViewModel.h"
 #import <objc/runtime.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFOrderDetail.h"
+
 #import "MSFClient+Order.h"
 #import "MSFMyOrderCmdViewModel.h"
 #import "MSFMyOrderDetailTravelViewModel.h"
@@ -18,9 +18,7 @@
 
 @interface MSFMyOrderListProductsViewModel ()
 
-@property (nonatomic, assign) id<MSFViewModelServices> services;
 @property (nonatomic, copy) NSString *appNo;
-@property (nonatomic, strong) MSFOrderDetail *model;
 @property (nonatomic, copy, readwrite) NSString *isReload;
 
 @end

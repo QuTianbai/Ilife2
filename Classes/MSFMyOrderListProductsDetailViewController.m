@@ -17,6 +17,8 @@
 #import "MSFMyOrderListTravalDetailCell.h"
 #import "MSFMyOrderTravalMemebersCell.h"
 #import "MSFBlurButton.h"
+#import "MSFPaymentViewModel.h"
+#import "MSFTransactionsViewController.h"
 
 @interface MSFMyOrderListProductsDetailViewController ()
 
@@ -161,7 +163,14 @@
 		//[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
-			
+			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+				MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
+				MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
+			} else {
+				
+			}
+		
 		}];
 		[view addSubview:button];
 	}
