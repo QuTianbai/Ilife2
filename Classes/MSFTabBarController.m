@@ -39,6 +39,7 @@
 #import "MSFWalletViewController.h"
 #import "MSFCommodityViewController.h"
 #import "MSFWalletViewModel.h"
+#import "MSFCommodityViewModel.h"
 
 @interface MSFTabBarController () 
 
@@ -96,7 +97,8 @@
 	wallet.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tab-wallet-normal.png" selected:@"tab-wallet-highlighted.png"];
 	
 	//TODO: 更新商品贷控制器
-	MSFCommodityViewController *commodityViewController = [[MSFCommodityViewController alloc] initWithViewModel:circulateViewModel];
+	MSFCommodityViewModel *commodityViewModel = [[MSFCommodityViewModel alloc] initWithServices:self.viewModel.services];
+	MSFCommodityViewController *commodityViewController = [[MSFCommodityViewController alloc] initWithViewModel:commodityViewModel];
 	commodityViewController.title = @"商品贷";
 	UINavigationController *commodity = [[UINavigationController alloc] initWithRootViewController:commodityViewController];
 	commodityViewController.tabBarItem = [self itemWithNormal:@"商品贷" nomalImage:@"tab-commodity-normal.png" selected:@"tab-commodity-highlighted.png"];
