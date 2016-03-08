@@ -10,10 +10,15 @@
 
 @interface MSFMyOrderDetailTravelViewModel : RVMViewModel
 
-@property (nonatomic, copy, readonly) NSString *companName;
-@property (nonatomic, copy, readonly) NSString *companCellphone;
-@property (nonatomic, copy, readonly) NSString *companCertId;
-@property (nonatomic, copy ,readonly) NSString *companRelationship;
+@property (nonatomic, copy, readonly) NSString *title;
+@property (nonatomic, copy, readonly) NSString *departureTime;
+@property (nonatomic, copy, readonly) NSString *returnTime;
+@property (nonatomic, copy, readonly) NSString *isNeedVisa;
+@property (nonatomic, copy, readonly) NSString *origin;
+@property (nonatomic, copy, readonly) NSString *destination;
+@property (nonatomic, assign, readonly) int travelNum;
+@property (nonatomic, assign, readonly) int travelKidsNum;
+@property (nonatomic, copy, readonly) NSString *travelType;
 
 - (instancetype)initWithModel:(id)model;
 

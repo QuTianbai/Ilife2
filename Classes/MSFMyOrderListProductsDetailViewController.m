@@ -14,6 +14,8 @@
 #import "MSFMyOrderListProductsViewModel.h"
 #import "UIColor+Utils.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFMyOrderListTravalDetailCell.h"
+#import "MSFMyOrderTravalMemebersCell.h"
 
 @interface MSFMyOrderListProductsDetailViewController ()
 
@@ -82,6 +84,21 @@
 		[(MSFMyOrderProductsCell *)cell bindViewModel:self.viewModel.cmdtyList[indexPath.row]];
 		return cell;
 	} else if (indexPath.section == 2) {
+		if (indexPath.row == 0) {
+			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderListTravalDetailCell class])];
+			if (cell == nil) {
+				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
+			}
+			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel];
+			return cell;
+		} else {
+			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
+			if (cell == nil) {
+				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderTravalMemebersCell class]) owner:nil options:nil].firstObject ;
+			}
+			[(MSFMyOrderTravalMemebersCell *)cell bindViewModel:self.viewModel.cmdtyList[indexPath.row] atIndexPath:indexPath] ;
+			return cell;
+		}
 		
 	}
 	cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProdutBottomCell class])];
@@ -102,9 +119,15 @@
 	} else if (section == 3) {
 		return 1;
 	} else if (section == 2) {
-		return self.viewModel.travelCompanInfoList.count;
+		if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+			return 0;
+		}
+		return self.viewModel.travelCompanInfoList.count + 1;
 	}
-    return self.viewModel.cmdtyList.count;
+	if ([self.viewModel.cartType isEqualToString:@"travel"]) {
+		return 0;
+	}
+	return self.viewModel.cmdtyList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
