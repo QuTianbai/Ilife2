@@ -7,7 +7,6 @@
 //
 
 #import "MSFApplyCashViewModel.h"
-#import "MSFFormsViewModel.h"
 #import "MSFApplyCashModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCalculatemMonthRepayModel.h"

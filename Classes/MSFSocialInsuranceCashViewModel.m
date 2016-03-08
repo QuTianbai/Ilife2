@@ -8,7 +8,6 @@
 
 #import "MSFSocialInsuranceCashViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFSocialInsuranceModel.h"
 #import "MSFAddressViewModel.h"
 #import "MSFAddressCodes.h"
 #import "MSFContact.h"

@@ -10,14 +10,12 @@
 #import "MSFBankInfoModel.h"
 #import <FMDB/FMDB.h>
 #import "MSFAddressViewModel.h"
-#import "MSFAddressInfo.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFClient+Users.h"
 #import "NSString+Matches.h"
 #import "MSFClient+BankCardList.h"
-#import "MSFFormsViewModel.h"
 
 static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardViewModelErrorDomain";
 

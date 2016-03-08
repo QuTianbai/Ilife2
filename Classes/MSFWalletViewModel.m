@@ -20,7 +20,6 @@
 #import "MSFCirculateCashModel.h"
 
 #import "MSFAuthorizeViewModel.h"
-#import "MSFFormsViewModel.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFAddBankCardViewModel.h"
 #import "MSFApplyListViewModel.h"

@@ -14,7 +14,6 @@
 #import "MSFClient.h"
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
-#import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"

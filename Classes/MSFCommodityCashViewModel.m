@@ -6,14 +6,13 @@
 
 #import "MSFCommodityCashViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFFormsViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
 
 @implementation MSFCommodityCashViewModel
 
 #pragma mark - NSObject
 
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(MSFLoanType *)loanType barcode:(NSString *)barcode {
+- (instancetype)initWithViewModel:(id)viewModel loanType:(MSFLoanType *)loanType barcode:(NSString *)barcode {
   self = [super init];
   if (!self) {
     return nil;

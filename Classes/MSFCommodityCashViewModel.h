@@ -6,7 +6,6 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFApplicationViewModel.h"
-#import "MSFFormsViewModel.h"
 
 @class RACCommand;
 

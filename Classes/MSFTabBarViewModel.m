@@ -9,7 +9,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
 #import "MSFAuthorizeViewModel.h"
-#import "MSFFormsViewModel.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
 

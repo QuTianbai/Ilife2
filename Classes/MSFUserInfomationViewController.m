@@ -11,17 +11,11 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <Masonry/Masonry.h>
 
-#import "MSFUserInfoCircleView.h"
-
 #import "MSFPersonalViewModel.h"
-#import "MSFRelationshipViewModel.h"
 #import "MSFProfessionalViewModel.h"
 #import "MSFApplyCashViewModel.h"
-#import "MSFFormsViewModel.h"
-#import "MSFApplicationForms.h"
 #import "MSFAddressViewModel.h"
 
-#import "MSFClient+ApplyInfo.h"
 #import "UIColor+Utils.h"
 
 #import "MSFUser.h"
@@ -31,14 +25,10 @@
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFAddBankCardTableViewController.h"
 
-#import "MSFProductViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFSocialCaskApplyTableViewController.h"
 
 #import "MSFCommodityCashViewModel.h"
-#import "MSFDistinguishViewModel.h"
-#import "MSFFaceMaskViewModel.h"
-#import "MSFFaceMaskPhtoViewController.h"
 #import "MSFCartViewModel.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFAuthenticateViewController.h"
