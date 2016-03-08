@@ -20,6 +20,7 @@
 #import "MSFUser.h"
 #import "UIWindow+PazLabs.h"
 
+#import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
@@ -92,6 +93,11 @@
 
 #import "MSFSignUpViewController.h"
 #import "MSFAuthenticateViewController.h"
+#import "MSFMyOderListsViewModel.h"
+#import "MSFMyOrderListContainerViewController.h"
+#import "MSFMyRepaysViewModel.h"
+#import "MSFMyRepayContainerViewController.h"
+#import "MSFCommodityViewModel.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -188,6 +194,12 @@
 	} else if ([viewModel isKindOfClass:MSFAddBankCardViewModel.class]) {
 		viewController = [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 		((MSFAddBankCardTableViewController *)viewController).viewModel = viewModel;
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFMyOderListsViewModel.class]) {
+		viewController = [[MSFMyOrderListContainerViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFMyRepaysViewModel.class]) {
+		viewController = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewModel];
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");

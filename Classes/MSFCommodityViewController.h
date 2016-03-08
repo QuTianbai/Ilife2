@@ -7,7 +7,7 @@
 #import <UIKit/UIKit.h>
 
 // 商品贷首页
-@interface MSFCommodityViewController : UITableViewController
+@interface MSFCommodityViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
 
