@@ -7,12 +7,10 @@
 #import "MSFPersonalViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <FMDB/FMDB.h>
-#import "MSFFormsViewModel.h"
-#import "MSFApplicationForms.h"
 #import "MSFAddressViewModel.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectKeyValues.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 #import "NSString+Matches.h"
 #import "MSFUserViewModel.h"
 #import "MSFUser.h"
@@ -45,7 +43,7 @@
 		@"city" : self.model.abodeCityCode ?: @"",
 		@"area" : self.model.abodeZoneCode ?: @""
 	};
-	MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
+	MSFAddressCodes *addrModel = [MSFAddressCodes modelWithDictionary:addr error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
 	_address = _addressViewModel.address;
 	RAC(self, model.abodeStateCode) = RACObserve(self.addressViewModel, provinceCode);

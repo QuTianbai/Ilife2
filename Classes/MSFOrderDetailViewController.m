@@ -21,9 +21,6 @@
 #import "MSFClient+Payment.h"
 #import "MSFPayment.h"
 #import "MSFCommodity.h"
-#import "MSFDrawCashViewModel.h"
-#import "MSFDrawCashTableViewController.h"
-#import "MSFSmsCodeTableViewController.h"
 #import "MSFPaymentViewModel.h"
 #import "MSFTransactionsViewController.h"
 

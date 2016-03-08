@@ -21,7 +21,6 @@
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFCheckAllowApply.h"
-#import "MSFFormsViewModel.h"
 #import "MSFMarkets.h"
 
 @interface MSFCartViewModel ()
@@ -46,8 +45,6 @@
 		
 		_services = services;
 		_applicationNo = appNo;
-		_formViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
-		_formViewModel.active = YES;
 		
 		_trial = [[MSFTrial alloc] init];
 		_cart = [[MSFCart alloc] init];

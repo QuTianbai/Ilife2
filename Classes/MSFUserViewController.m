@@ -14,7 +14,6 @@
 #import "MSFClient.h"
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
-#import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"
@@ -167,12 +166,6 @@
 	MSFUserViewModel *viewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
 	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)applyList {
-	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.viewModel.services];
-	MSFLoanListViewController *applyList = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-	[self.navigationController pushViewController:applyList animated:YES];
 }
 
 - (void)repaymentPlan {

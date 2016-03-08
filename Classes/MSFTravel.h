@@ -13,8 +13,8 @@
 @property (nonatomic, copy, readonly) NSString *isNeedVisa;
 @property (nonatomic, copy, readonly) NSString *origin;
 @property (nonatomic, copy, readonly) NSString *destination;
-@property (nonatomic, assign, readonly) int travelNum;
-@property (nonatomic, assign, readonly) int travelKidsNum;
+@property (nonatomic, assign, readonly) NSString *travelNum;
+@property (nonatomic, assign, readonly) NSString *travelKidsNum;
 @property (nonatomic, copy, readonly) NSString *travelType;
 
 @end

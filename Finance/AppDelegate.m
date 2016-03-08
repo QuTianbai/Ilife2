@@ -10,7 +10,6 @@
 
 #import "MSFTabBarController.h"
 #import "MSFGuideViewController.h"
-#import "MSFLoginViewController.h"
 
 #import "MSFActivate.h"
 #import "MSFUser.h"
@@ -36,7 +35,6 @@
 #import "MSFConfirmContactViewModel.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFEnvironmentsViewController.h"
-#import "MSFFormsViewModel.h"
 #import "UIImage+Color.h"
 #import "MSFSignInViewController.h"
 
@@ -271,7 +269,6 @@
 	if (self.timer != nil) {
 		[self.timer setFireDate:[NSDate distantFuture]];
 	}
-	[self.viewModel.formsViewModel setBankCardMasterDefult];
 	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
 	MSFSignInViewController *viewController = [[MSFSignInViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];

@@ -8,14 +8,10 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
 #import "MSFClient+Elements.h"
-#import "MSFFormsViewModel.h"
-#import "MSFApplicationForms.h"
 #import "MSFElement.h"
 #import "MSFElementViewModel.h"
-#import "MSFApplicationResponse.h"
 #import "MSFAttachmentViewModel.h"
 #import "MSFAttachment.h"
-#import "MSFApplicationForms.h"
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFApplyCashViewModel.h"
 #import "MSFClient+Inventory.h"

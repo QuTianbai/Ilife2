@@ -21,8 +21,8 @@
 @implementation MSFMyOrderProductDetailNameCell
 
 - (void)awakeFromNib {
-	RAC(self, nameLB.text) = RACObserve(self, viewModel.custName);
-	RAC(self, mobleLB.text) = RACObserve(self, viewModel.cellphone);
+	RAC(self, nameLB.text) = [RACObserve(self, viewModel.custName) takeUntil:self.rac_prepareForReuseSignal];
+	RAC(self, mobleLB.text) = [RACObserve(self, viewModel.cellphone) takeUntil:self.rac_prepareForReuseSignal];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

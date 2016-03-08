@@ -40,4 +40,20 @@
 	}];
 }
 
++ (NSValueTransformer *)travelNumJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *number) {
+		return [number isKindOfClass:[NSNumber class]]? number.stringValue : number;
+	} reverseBlock:^id(NSString *str) {
+		return str;
+	}];
+}
+
++ (NSValueTransformer *)travelKidsNumJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *number) {
+		return [number isKindOfClass:[NSNumber class]]? number.stringValue : number;
+	} reverseBlock:^id(NSString *str) {
+		return str;
+	}];
+}
+
 @end

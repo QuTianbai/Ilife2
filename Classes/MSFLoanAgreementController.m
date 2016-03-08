@@ -10,13 +10,10 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFApplicationResponse.h"
-#import "MSFApplicationForms.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFAddressViewModel.h"
-#import "MSFFormsViewModel.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 
 #import "MSFSubmitApplyModel.h"
 #import "MSFUserInfomationViewController.h"
@@ -27,9 +24,6 @@
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-
-#import "MSFFaceMaskViewModel.h"
-#import "MSFFaceMaskPhtoViewController.h"
 
 @interface MSFLoanAgreementController ()<UIWebViewDelegate, UIScrollViewDelegate>
 

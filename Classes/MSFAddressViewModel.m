@@ -10,14 +10,13 @@
 #import <Mantle/EXTScope.h>
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
-#import "MSFAreas.h"
-#import "MSFApplicationForms.h"
 #import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 
 @interface MSFAddressViewModel ()
 
 @property (nonatomic, strong) FMDatabase *fmdb;
-@property (nonatomic, strong) MSFApplicationForms *form;
+@property (nonatomic, strong) id form DEPRECATED_ATTRIBUTE;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end
@@ -41,7 +40,7 @@
   return self;
 }
 
-- (instancetype)initWithAddress:(MSFAddress *)address services:(id <MSFViewModelServices>)services {
+- (instancetype)initWithAddress:(MSFAddressCodes *)address services:(id <MSFViewModelServices>)services {
   self = [super init];
   if (!self) {
     return nil;
@@ -91,7 +90,7 @@
 			RACObserve(self, city),
 			RACObserve(self, area),
 		]
-		reduce:^id(MSFAreas *province, MSFAreas *city, MSFAreas *area) {
+		reduce:^id(MSFAddress *province, MSFAddress *city, MSFAddress *area) {
 			NSMutableString *address = NSMutableString.string;
 			[address appendString:province.name ?: @""];
 			[address appendString:city.name ?: @""];
@@ -116,8 +115,8 @@
 	[self.services pushViewModel:provinceViewModel];
 	return [provinceViewModel.selectedSignal doNext:^(id x) {
 		self.province = x;
-		[self.city mergeValuesForKeysFromModel:[[MSFAreas alloc] initWithDictionary:@{} error:nil]];
-		[self.area mergeValuesForKeysFromModel:[[MSFAreas alloc] initWithDictionary:@{} error:nil]];
+		[self.city mergeValuesForKeysFromModel:[[MSFAddress alloc] initWithDictionary:@{} error:nil]];
+		[self.area mergeValuesForKeysFromModel:[[MSFAddress alloc] initWithDictionary:@{} error:nil]];
 	}];
 }
 
@@ -127,7 +126,7 @@
 	[self.services pushViewModel:citiesViewModel];
 	return [citiesViewModel.selectedSignal doNext:^(id x) {
 		self.city = x;
-		[self.area mergeValuesForKeysFromModel:[[MSFAreas alloc] initWithDictionary:@{} error:nil]];
+		[self.area mergeValuesForKeysFromModel:[[MSFAddress alloc] initWithDictionary:@{} error:nil]];
 		if (!self.needArea) {
 			[self.services popViewModel];
 		}
@@ -152,14 +151,14 @@
 	NSMutableArray *regions = [NSMutableArray array];
 	FMResultSet *s = [self.fmdb executeQuery:@"select * from basic_dic_area where parent_area_code='000000'"];
 	while ([s next]) {
-		MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:s error:&error];
+		MSFAddress *areas = [MTLFMDBAdapter modelOfClass:MSFAddress.class fromFMResultSet:s error:&error];
 		[regions addObject:areas];
 		
 	}
 	NSMutableArray *temp = regions.mutableCopy;
-	for (MSFAreas *area in regions) {
+	for (MSFAddress *area in regions) {
 		if ([area.codeID isEqualToString:@"500000"]) {
-			MSFAreas *tempArea = [[MSFAreas alloc] init];
+			MSFAddress *tempArea = [[MSFAddress alloc] init];
 			tempArea.name = area.name;
 			tempArea.codeID = area.codeID;
 			tempArea.parentCodeID = area.parentCodeID;
@@ -173,13 +172,13 @@
 	return temp;
 }
 
-- (NSArray *)citiesWithProvince:(MSFAreas *)province {
+- (NSArray *)citiesWithProvince:(MSFAddress *)province {
 	[self.fmdb open];
 	NSMutableArray *regions = [NSMutableArray array];
 	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'", province.codeID];
 	FMResultSet *rs = [self.fmdb executeQuery:sql];
 	while ([rs next]) {
-	MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
+	MSFAddress *areas = [MTLFMDBAdapter modelOfClass:MSFAddress.class fromFMResultSet:rs error:nil];
 		[regions addObject:areas];
 	}
 	[self.fmdb close];
@@ -187,13 +186,13 @@
 	return regions;
 }
 
-- (NSArray *)areasWitchCity:(MSFAreas *)city {
+- (NSArray *)areasWitchCity:(MSFAddress *)city {
 	[self.fmdb open];
 	NSMutableArray *regions = [NSMutableArray array];
 	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where parent_area_code='%@'", city.codeID];
 	FMResultSet *rs = [self.fmdb executeQuery:sql];
 	while ([rs next]) {
-	MSFAreas *areas = [MTLFMDBAdapter modelOfClass:MSFAreas.class fromFMResultSet:rs error:nil];
+	MSFAddress *areas = [MTLFMDBAdapter modelOfClass:MSFAddress.class fromFMResultSet:rs error:nil];
 		[regions addObject:areas];
 	}
 	[self.fmdb close];
@@ -201,13 +200,13 @@
 	return regions;
 }
 
-- (MSFAreas *)regionWithCode:(NSString *)code {
+- (MSFAddress *)regionWithCode:(NSString *)code {
 	[self.fmdb open];
 	NSString *sql = [NSString stringWithFormat:@"select * from basic_dic_area where area_code='%@'", code];
 	FMResultSet *rs = [self.fmdb executeQuery:sql];
-	MSFAreas *region;
+	MSFAddress *region;
 	if (rs.next) {
-		region = [MTLFMDBAdapter modelOfClass:[MSFAreas class] fromFMResultSet:rs error:nil];
+		region = [MTLFMDBAdapter modelOfClass:[MSFAddress class] fromFMResultSet:rs error:nil];
 	}
 	[self.fmdb close];
 	

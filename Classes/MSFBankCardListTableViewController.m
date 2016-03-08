@@ -318,8 +318,7 @@
 			if (self.dataArray.count == 0) {
 				isFirstBankCard = YES;
 			}
-			AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-			vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:delegate.viewModel.formsViewModel andIsFirstBankCard:isFirstBankCard];
+			vc.viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
 			[self.navigationController pushViewController:vc animated:YES];
 		}
 		

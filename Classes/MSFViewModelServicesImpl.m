@@ -25,19 +25,13 @@
 #import "MSFSelectionViewController.h"
 
 #import "MSFAuthorizeViewModel.h"
-#import "MSFLoginViewController.h"
 #import "MSFSetTradePasswordTableViewController.h"
 
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 
-#import "MSFLifeInsuranceViewModel.h"
-#import "MSFLifeInsuranceViewController.h"
-
 #import "MSFWebViewModel.h"
 #import "MSFWebViewController.h"
-
-#import "MSFLocationModel.h"
 
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
@@ -47,19 +41,12 @@
 #import "MSFApplyListViewModel.h"
 #import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
-#import "MSFLoanListViewController.h"
-
-#import "MSFRelationshipViewModel.h"
-#import "MSFRelationshipViewController.h"
 
 #import "MSFPersonalViewModel.h"
 #import "MSFPersonalViewController.h"
 
 #import "MSFProfessionalViewModel.h"
 #import "MSFProfessionalViewController.h"
-
-#import "MSFDrawCashViewModel.h"
-#import "MSFDrawCashTableViewController.h"
 
 #import "MSFBarcodeScanViewController.h"
 #import "MSFBarcodeScanViewController+MSFSignalSupport.h"
@@ -68,8 +55,6 @@
 #import "MSFUserInfomationViewController.h"
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "MSFCartViewModel.h"
-#import "MSFFaceMaskViewModel.h"
-#import "MSFFaceMaskPhtoViewController.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFBankCardListTableViewController.h"
 
@@ -153,9 +138,6 @@
 	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
-		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
@@ -164,23 +146,12 @@
 	} else if ([viewModel isKindOfClass:[MSFProfessionalViewModel class]]) {
 		viewController = [[MSFProfessionalViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
-		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFAuthorizeViewModel class]]) {
 		if ([(MSFAuthorizeViewModel *)viewModel loginType] == MSFLoginSignUp) {
 			viewController = [[MSFSignUpViewController alloc] initWithViewModel:viewModel];
 		} else {
 			viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
 		}
-	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
-		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFFaceMaskViewModel.class]) {
-		viewController = [[MSFFaceMaskPhtoViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFCartViewModel.class]) {
-	//TODO: 更新内容方式
-//		viewController = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:[(id <MSFApplicationViewModel>)viewModel services]];
-	} else if ([viewModel isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
-		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {

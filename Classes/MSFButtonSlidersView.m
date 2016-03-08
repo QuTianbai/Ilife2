@@ -30,7 +30,6 @@
 			self.oldButton = button;
 		}
 		button.tag = 1000 + i;
-		NSLog(@"%@", titleArray[i]);
 		[button setTitle:titleArray[i] forState:UIControlStateNormal];
 		[button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 		[button setTitleColor:[UIColor navigationBgColor] forState:UIControlStateSelected];
