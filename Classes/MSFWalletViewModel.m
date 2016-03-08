@@ -195,9 +195,7 @@ static NSString *const kWalletIdentifier = @"4102";
 - (RACSignal *)applicationSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:kWalletIdentifier];
-		MSFFormsViewModel *formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
-		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithFormsViewModel:formsViewModel loanType:loanType services:self.services];
-		viewModel.applicationNo = @"";
+		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;

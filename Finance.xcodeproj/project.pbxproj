@@ -390,6 +390,18 @@
 		10E546781C004B1800BBA827 /* MSFClient+ProductType.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E546771C004B1800BBA827 /* MSFClient+ProductType.m */; };
 		10E546BE1C02B03D00BBA827 /* ad_limit_ms.png in Resources */ = {isa = PBXBuildFile; fileRef = 10E546BD1C02B03D00BBA827 /* ad_limit_ms.png */; };
 		10E546C21C02B10400BBA827 /* MSFCashHomeLoanLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E546C11C02B10400BBA827 /* MSFCashHomeLoanLimit.m */; };
+		1D17E2F31C87DDE800E08B59 /* applyCredit--bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F01C87DDE800E08B59 /* applyCredit--bg.jpg */; };
+		1D17E2F41C87DDE800E08B59 /* applyCredit--bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F11C87DDE800E08B59 /* applyCredit--bg@2x.jpg */; };
+		1D17E2F51C87DDE800E08B59 /* applyCredit--bg@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F21C87DDE800E08B59 /* applyCredit--bg@3x.jpg */; };
+		1D17E2F91C87E9B300E08B59 /* applyCredit-Cloud.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */; };
+		1D17E2FA1C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */; };
+		1D17E2FB1C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */; };
+		1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */; };
+		1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */; };
+		1DF17E421C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF17E411C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m */; };
+		1DFB3A041C8E76D600E2E43C /* MSFCreditHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB3A031C8E76D600E2E43C /* MSFCreditHeaderViewController.m */; };
+		1DFB3A071C8E775600E2E43C /* MSFCreditMiddleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB3A061C8E775600E2E43C /* MSFCreditMiddleViewController.m */; };
+		1DFB3A0A1C8E776A00E2E43C /* MSFCreditFooterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB3A091C8E776A00E2E43C /* MSFCreditFooterViewController.m */; };
 		29A5396E9C581154C85D681B /* libPods-Finance.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D030E4C93F68A5C993E95371 /* libPods-Finance.a */; };
 		4902E4081BC4B4640087FA1E /* mock-elements.json in Resources */ = {isa = PBXBuildFile; fileRef = 4902E4071BC4B4640087FA1E /* mock-elements.json */; };
 		4902E41F1BC4C56F0087FA1E /* icon-arrow-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */; };
@@ -1676,6 +1688,23 @@
 		10E546BD1C02B03D00BBA827 /* ad_limit_ms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad_limit_ms.png; sourceTree = "<group>"; };
 		10E546C01C02B10400BBA827 /* MSFCashHomeLoanLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCashHomeLoanLimit.h; sourceTree = "<group>"; };
 		10E546C11C02B10400BBA827 /* MSFCashHomeLoanLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCashHomeLoanLimit.m; sourceTree = "<group>"; };
+		1D17E2F01C87DDE800E08B59 /* applyCredit--bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit--bg.jpg"; sourceTree = "<group>"; };
+		1D17E2F11C87DDE800E08B59 /* applyCredit--bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit--bg@2x.jpg"; sourceTree = "<group>"; };
+		1D17E2F21C87DDE800E08B59 /* applyCredit--bg@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit--bg@3x.jpg"; sourceTree = "<group>"; };
+		1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud.jpg"; sourceTree = "<group>"; };
+		1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@2x.jpg"; sourceTree = "<group>"; };
+		1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@3x.jpg"; sourceTree = "<group>"; };
+		1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
+		1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditViewModel.h; sourceTree = "<group>"; };
+		1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditViewModel.m; sourceTree = "<group>"; };
+		1DF17E401C897A470006ADA4 /* MSFCreditOrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditOrderDetailsViewController.h; sourceTree = "<group>"; };
+		1DF17E411C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditOrderDetailsViewController.m; sourceTree = "<group>"; };
+		1DFB3A021C8E76D600E2E43C /* MSFCreditHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditHeaderViewController.h; sourceTree = "<group>"; };
+		1DFB3A031C8E76D600E2E43C /* MSFCreditHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditHeaderViewController.m; sourceTree = "<group>"; };
+		1DFB3A051C8E775600E2E43C /* MSFCreditMiddleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditMiddleViewController.h; sourceTree = "<group>"; };
+		1DFB3A061C8E775600E2E43C /* MSFCreditMiddleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditMiddleViewController.m; sourceTree = "<group>"; };
+		1DFB3A081C8E776A00E2E43C /* MSFCreditFooterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditFooterViewController.h; sourceTree = "<group>"; };
+		1DFB3A091C8E776A00E2E43C /* MSFCreditFooterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditFooterViewController.m; sourceTree = "<group>"; };
 		4902E4071BC4B4640087FA1E /* mock-elements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "mock-elements.json"; sourceTree = "<group>"; };
 		4902E41C1BC4C56F0087FA1E /* icon-arrow-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-right.png"; sourceTree = "<group>"; };
 		4902E41D1BC4C56F0087FA1E /* icon-arrow-right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-arrow-right@2x.png"; sourceTree = "<group>"; };
@@ -3479,6 +3508,37 @@
 			name = MSFCashHomeLoanLimit;
 			sourceTree = "<group>";
 		};
+		1D907A041C8D1A4800DF9A24 /* Credit */ = {
+			isa = PBXGroup;
+			children = (
+				1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */,
+				1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */,
+			);
+			name = Credit;
+			sourceTree = "<group>";
+		};
+		1DF17E321C8979E30006ADA4 /* OrderDetails */ = {
+			isa = PBXGroup;
+			children = (
+				1DF17E401C897A470006ADA4 /* MSFCreditOrderDetailsViewController.h */,
+				1DF17E411C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m */,
+			);
+			name = OrderDetails;
+			sourceTree = "<group>";
+		};
+		1DFB39F31C8E764000E2E43C /* CreditCommon */ = {
+			isa = PBXGroup;
+			children = (
+				1DFB3A021C8E76D600E2E43C /* MSFCreditHeaderViewController.h */,
+				1DFB3A031C8E76D600E2E43C /* MSFCreditHeaderViewController.m */,
+				1DFB3A051C8E775600E2E43C /* MSFCreditMiddleViewController.h */,
+				1DFB3A061C8E775600E2E43C /* MSFCreditMiddleViewController.m */,
+				1DFB3A081C8E776A00E2E43C /* MSFCreditFooterViewController.h */,
+				1DFB3A091C8E776A00E2E43C /* MSFCreditFooterViewController.m */,
+			);
+			name = CreditCommon;
+			sourceTree = "<group>";
+		};
 		49075CD21BA95B12006F63FF /* RepaymentSchedules */ = {
 			isa = PBXGroup;
 			children = (
@@ -3501,6 +3561,12 @@
 		4912C6AD1C6475D000550A6C /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */,
+				1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */,
+				1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */,
+				1D17E2F01C87DDE800E08B59 /* applyCredit--bg.jpg */,
+				1D17E2F11C87DDE800E08B59 /* applyCredit--bg@2x.jpg */,
+				1D17E2F21C87DDE800E08B59 /* applyCredit--bg@3x.jpg */,
 				07C158D91BC8E7E600127339 /* addver.jpg */,
 				07C158DA1BC8E7E600127339 /* addver@2x.jpg */,
 				07C158DB1BC8E7E600127339 /* addver@3x.jpg */,
@@ -4139,6 +4205,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1D907A041C8D1A4800DF9A24 /* Credit */,
 				07CB1B7A1C8DAE010031CEE8 /* Commodity */,
 				49C3DFFA1C87DFAA00E4BBD2 /* Auxiliary */,
 				497827CE1C840EBF00F2D1D8 /* Wallet */,
@@ -4178,6 +4245,8 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1DFB39F31C8E764000E2E43C /* CreditCommon */,
+				1DF17E321C8979E30006ADA4 /* OrderDetails */,
 				4922E1581C85E85900E20C2C /* Auxiliary */,
 				4922E1261C85DAB700E20C2C /* Commit */,
 				497827C41C840CF000F2D1D8 /* Common */,
@@ -5264,6 +5333,7 @@
 			children = (
 				49F37CD81C83ED4700C5DCB8 /* MSFCreditViewController.h */,
 				49F37CD91C83ED4700C5DCB8 /* MSFCreditViewController.m */,
+				1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */,
 			);
 			name = Credit;
 			sourceTree = "<group>";
@@ -5552,6 +5622,7 @@
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
 				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
 				07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */,
+				1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */,
 				4944C0111B68A44A00805C0A /* icon-cloze-name.png in Resources */,
 				491FD40D1C84A4D40026928F /* tab-commodity-normal@2x.png in Resources */,
 				077347EB1BBA338900D7A130 /* zhongxin.png in Resources */,
@@ -5617,6 +5688,7 @@
 				497827DE1C8415B300F2D1D8 /* btn-repay-highlighted.png in Resources */,
 				4922E1161C85D33600E20C2C /* icon-protocol-selected.png in Resources */,
 				497827E11C8415B300F2D1D8 /* btn-repay-normal.png in Resources */,
+				1D17E2F41C87DDE800E08B59 /* applyCredit--bg@2x.jpg in Resources */,
 				49CA93811BBA3F7E0032F5C2 /* icon-id@3x.png in Resources */,
 				4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */,
 				103609871C342865009BBDEE /* ad_mld.png in Resources */,
@@ -5732,6 +5804,7 @@
 				C7D2D1221B67938C000F51ED /* icon-cloze-bankNO.png in Resources */,
 				49C0F1A11B2C315100E92572 /* icon-check-normal@2x.png in Resources */,
 				4975C98B1B46D6D400AA79EB /* Images.xcassets in Resources */,
+				1D17E2F91C87E9B300E08B59 /* applyCredit-Cloud.jpg in Resources */,
 				491FD4161C84A4D40026928F /* tab-msd-highlighted@2x.png in Resources */,
 				C7D2D1211B67938C000F51ED /* icon-cloze-bankName@3x.png in Resources */,
 				4912C7071C6477C800550A6C /* bar-normal@2x.png in Resources */,
@@ -5762,6 +5835,7 @@
 				07B6DA7D1BC6506E0025A849 /* bankdefult.png in Resources */,
 				4944C0141B68A44A00805C0A /* icon-cloze-normal.png in Resources */,
 				072550CA1BFEC1F60053F51F /* SocialCashApply.storyboard in Resources */,
+				1D17E2FB1C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg in Resources */,
 				4993E0D91B2DA65B00090F26 /* bg-loan-installment.png in Resources */,
 				4944C04F1B68A5DA00805C0A /* nav-setting@3x.png in Resources */,
 				49C0F1A81B2C315100E92572 /* icon-password@3x.png in Resources */,
@@ -5769,6 +5843,7 @@
 				07C06C501B1344AA00F2DFCC /* moneyUse.json in Resources */,
 				07E14C551C8AC13000589164 /* myOrderListProductDetail.json in Resources */,
 				07E3ED621BBBB8B40010AAD2 /* InputTradePassword.storyboard in Resources */,
+				1D17E2F31C87DDE800E08B59 /* applyCredit--bg.jpg in Resources */,
 				077347FB1BBA3AC200D7A130 /* MSFAddBankCardTableViewCell.xib in Resources */,
 				07CB1B6F1C8D9DE50031CEE8 /* img-commidity-bg-top@2x.jpg in Resources */,
 				07E14C141C88108A00589164 /* icon-myorder-wallet.png in Resources */,
@@ -5843,6 +5918,7 @@
 				49C0F1A51B2C315100E92572 /* icon-check-selected@3x.png in Resources */,
 				4922E1571C85E1EF00E20C2C /* icon-complete-professional@3x.png in Resources */,
 				C7D2D1321B67938C000F51ED /* icon-cloze-question@2x.png in Resources */,
+				1D17E2F51C87DDE800E08B59 /* applyCredit--bg@3x.jpg in Resources */,
 				49CA935E1BBA212A0032F5C2 /* groupedTableViewCell_bottomRow@2x.png in Resources */,
 				07CB1B681C8D9DE50031CEE8 /* img-commdity-sao-Nomal.png in Resources */,
 				4944C00E1B68A44A00805C0A /* icon-cloze-idcarddate.png in Resources */,
@@ -6065,6 +6141,7 @@
 				077460FF1C7420A000F46ABD /* icon-start-signin@3x.png in Resources */,
 				10ACE5D91C043AD400EE5044 /* icon-account-about.png in Resources */,
 				C7A3517F1B217CB10001DF6A /* iconfont-jiantouyou@3x.png in Resources */,
+				1D17E2FA1C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg in Resources */,
 				49E22B081B37EDF700749717 /* icon-loan-question@3x.png in Resources */,
 				4922E1311C85DBA500E20C2C /* bg-commited-sep@3x.png in Resources */,
 				491FD41A1C84A4D40026928F /* tab-msd-normal@3x.png in Resources */,
@@ -6278,6 +6355,7 @@
 				4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */,
 				49C3A7CB1C86C64C008750AE /* MSFContact.m in Sources */,
 				101BD3D11C2CE59700842D36 /* MSFTrial.m in Sources */,
+				1DF17E421C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m in Sources */,
 				102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */,
 				49614C871C03FD6C004D6208 /* MSFClient+SocialInsurance.m in Sources */,
 				497253BF1BC3A6A30017CA76 /* MSFClient+ApplyInfo.m in Sources */,
@@ -6320,6 +6398,7 @@
 				4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */,
 				078789B01C7C89C5008C39A6 /* MSFButtonSlidersView.m in Sources */,
 				10DAE1BA1BBBC949001BD017 /* MSFRelationTFCell.m in Sources */,
+				1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */,
 				0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */,
 				07E14BE91C870A6300589164 /* MSFMyOderListsViewModel.m in Sources */,
 				102C7EE21C2A389B0023172B /* MSFOrderListHeaderCell.m in Sources */,
@@ -6490,6 +6569,7 @@
 				491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */,
 				491C5FB61B0F1EC200CADF8E /* MSFCodeButton.m in Sources */,
 				498311961C33CD5800AC14AF /* MSFDimensionalCodeViewController.m in Sources */,
+				1DFB3A041C8E76D600E2E43C /* MSFCreditHeaderViewController.m in Sources */,
 				07F089011BBD023E0067C5BC /* MSFCirculateCashViewModel.m in Sources */,
 				07E14C4F1C8977B600589164 /* MSFMyOrderDetailTravelViewModel.m in Sources */,
 				1011A3921BB92F1B00CCADB5 /* MSFUserInfoCircleView.m in Sources */,
@@ -6541,6 +6621,7 @@
 				101BD3C41C2BE6DE00842D36 /* MSFCartTrialCell.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				107A0D1F1BE203410076E08C /* MSFHomePageItemViewModel.m in Sources */,
+				1DFB3A071C8E775600E2E43C /* MSFCreditMiddleViewController.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
 				07E14C191C882B7C00589164 /* MSFMyOrderListDetailViewController.m in Sources */,
 				4920074F1BA00CCD00C0722C /* EIImagePickerDelegate.m in Sources */,
@@ -6561,6 +6642,7 @@
 				07330B611BBE2D9E000EB8FD /* MSFClient+CheckEmploee2.m in Sources */,
 				07A145FC1C84017600C32F0B /* MSFMyRepaysViewModel.m in Sources */,
 				492CBEA91B8814EF0059B6C2 /* MSFAlertViewController.m in Sources */,
+				1DFB3A0A1C8E776A00E2E43C /* MSFCreditFooterViewController.m in Sources */,
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,

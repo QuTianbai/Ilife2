@@ -26,9 +26,8 @@
     return nil;
   }
 	_model = model;
-	_on = YES;
+	_on = self.model.contactAddress.length == 0;
 	_services = services;
-	
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
 	}];
@@ -46,6 +45,7 @@
 	}];
 	RACChannelTo(self, name) = RACChannelTo(self, model.contactName);
 	RACChannelTo(self, phone) = RACChannelTo(self, model.contactMobile);
+	RACChannelTo(self, address) = RACChannelTo(self, model.contactAddress);
 	@weakify(self)
 	[self.executeSelectContactCommand.executionSignals subscribeNext:^(id x) {
 		@strongify(self)
@@ -72,15 +72,9 @@
 - (BOOL)isEqual:(id)other {
 	if (other == self) {
 		return YES;
-	} else if (![super isEqual:other]) {
-		return NO;
 	} else {
-		return [self.model.uniqueId isEqual:[(MSFContactViewModel *)other model].uniqueId];
+		return [self.model isEqual:[(MSFContactViewModel *)other model]];
 	}
-}
-
-- (NSUInteger)hash {
-	return self.model.uniqueId.integerValue ^ self.model.custId.integerValue;
 }
 
 @end

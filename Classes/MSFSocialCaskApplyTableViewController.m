@@ -34,27 +34,16 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *liveAreaTF;
 @property (weak, nonatomic) IBOutlet UIButton *liveAreaBT;
-
 @property (weak, nonatomic) IBOutlet UITextField *liveAddressTF;
 
-@property (weak, nonatomic) IBOutlet UITextField *companyNameTF;
-
-@property (weak, nonatomic) IBOutlet UITextField *companyAreaTF;
-@property (weak, nonatomic) IBOutlet UIButton *companyAreaBT;
-
-@property (weak, nonatomic) IBOutlet UITextField *companyAddressTF;
-
-@property (weak, nonatomic) IBOutlet UITextField *relationTF;
-@property (weak, nonatomic) IBOutlet UIButton *relationBT;
-
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *mobileTF;
 
 @property (weak, nonatomic) IBOutlet UITextField *basePayTF;
 @property (weak, nonatomic) IBOutlet UIButton *basePayBT;
 
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
+
 @property (nonatomic, weak) IBOutlet UIButton *showProtocalButton;
 @property (nonatomic, weak) IBOutlet UIButton *readProtocalButton;
 @property (nonatomic, weak) IBOutlet UIImageView *readProtocalView;
@@ -76,7 +65,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	RAC(self, cashPuposeTF.text) = RACObserve(self, viewModel.purpose.text);
+	RAC(self, cashPuposeTF.text) = RACObserve(self, viewModel.purposeTitle);
 	self.cashPurposeBT.rac_command = self.viewModel.executePurposeCommand;
 	
 	RACChannelTerminal *joinChannel = RACChannelTo(self, viewModel.joinInsurance);
@@ -107,13 +96,13 @@
 		
 		ZSWTaggedStringOptions *options = [ZSWTaggedStringOptions defaultOptions];
 		[options setAttributes:@{
-														 ZSWTappableLabelTappableRegionAttributeName: @YES,
-														 ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
-														 ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
-														 NSForegroundColorAttributeName: [UIColor themeColorNew],
-														 NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
-														 @"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
-														 } forTagName:@"link"];
+			ZSWTappableLabelTappableRegionAttributeName: @YES,
+			ZSWTappableLabelHighlightedBackgroundAttributeName: [UIColor lightGrayColor],
+			ZSWTappableLabelHighlightedForegroundAttributeName: [UIColor whiteColor],
+			NSForegroundColorAttributeName: [UIColor themeColorNew],
+			NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+			@"URL": [NSURL URLWithString:@"http://www.msxf.com/msfinance/page/about/insuranceInfo.htm"],
+		} forTagName:@"link"];
 		label.attributedText = [[ZSWTaggedString stringWithString:string] attributedStringWithOptions:options];
 		[contentView addSubview:label];
 		[[KGModal sharedInstance] setCloseButtonLocation:KGModalCloseButtonLocationRight];
@@ -127,57 +116,22 @@
 		}];
 	}];
 	
-	RAC(self, liveAreaTF.text) = RACObserve(self, viewModel.liveArea);
+	RAC(self, liveAreaTF.text) = RACObserve(self, viewModel.address);
 	self.liveAreaBT.rac_command = self.viewModel.executeLiveAddressCommand;
 	
-	RACChannelTerminal *liveAddrChannel = RACChannelTo(self, viewModel.formViewModel.model.abodeDetail);
+	RACChannelTerminal *liveAddrChannel = RACChannelTo(self, viewModel.detailAddress);
 	RAC(self, liveAddressTF.text) = liveAddrChannel;
 	[self.liveAddressTF.rac_textSignal subscribe:liveAddrChannel];
 	
-	[[self.companyNameTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 30) {
-			 textField.text = [textField.text substringToIndex:30];
-		 }
-	}];
-	RACChannelTerminal *compNameChannel = RACChannelTo(self, viewModel.formViewModel.model.unitName);
-	RAC(self, companyNameTF.text) = compNameChannel;
-	[self.companyNameTF.rac_textSignal subscribe:compNameChannel];
-	
-	RAC(self, companyAreaTF.text) = RACObserve(self, viewModel.companyArea);
-	self.companyAreaBT.rac_command = self.viewModel.executeCompAddressCommand;
-	
-	RACChannelTerminal *compAddrChannel = RACChannelTo(self, viewModel.formViewModel.model.empAdd);
-	RAC(self, companyAddressTF.text) = compAddrChannel;
-	[self.companyAddressTF.rac_textSignal subscribe:compAddrChannel];
-	
-	RAC(self, relationTF.text) = [RACObserve(self, viewModel.contact.contactRelation) map:^id(id value) {
-		__block NSString *relationString = nil;
-		[[MSFSelectKeyValues getSelectKeys:@"familyMember_type"] enumerateObjectsUsingBlock:^(MSFSelectKeyValues *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-			if ([obj.code isEqualToString:value]) {
-				relationString = obj.text;
-				*stop = YES;
-			}
-		}];
-		return relationString;
-	}];
-	self.relationBT.rac_command = self.viewModel.executeRelationCommand;
-	
-	RACChannelTerminal *nameChannel = RACChannelTo(self, viewModel.contact.contactName);
+	RACChannelTerminal *nameChannel = RACChannelTo(self, viewModel.contactName);
 	RAC(self, nameTF.text) = nameChannel;
 	[self.nameTF.rac_textSignal subscribe:nameChannel];
+
+	RACChannelTerminal *phoneChannel = RACChannelTo(self, viewModel.contactPhone);
+	RAC(self, mobileTF.text) = phoneChannel;
+	[self.mobileTF.rac_textSignal subscribe:phoneChannel];
 	
-	[[self.mobileTF rac_signalForControlEvents:UIControlEventEditingChanged]
-	 subscribeNext:^(UITextField *textField) {
-		 if (textField.text.length > 11) {
-			 textField.text = [textField.text substringToIndex:11];
-		 }
-	}];
-	RACChannelTerminal *mobileChannel = RACChannelTo(self, viewModel.contact.contactMobile);
-	RAC(self, mobileTF.text) = mobileChannel;
-	[self.mobileTF.rac_textSignal subscribe:mobileChannel];
-	
-	RAC(self, basePayTF.text) = RACObserve(self, viewModel.basicPayment.text);
+	RAC(self, basePayTF.text) = RACObserve(self, viewModel.radixTitle);
 	self.basePayBT.rac_command = self.viewModel.executeBasicPaymentCommand;
 	
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
@@ -249,9 +203,8 @@
 	label.textColor = UIColor.themeColorNew;
 	switch (section) {
 		case 1: label.text = @"基本信息"; break;
-		case 2: label.text = @"职业信息"; break;
-		case 3: label.text = @"联系人信息"; break;
-		case 4: label.text = @"参保信息"; break;
+		case 2: label.text = @"联系人信息"; break;
+		case 3: label.text = @"参保信息"; break;
 		default: break;
 	}
 	[reuse addSubview:label];
