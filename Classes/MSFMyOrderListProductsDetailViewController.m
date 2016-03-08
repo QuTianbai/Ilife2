@@ -81,6 +81,8 @@
 		}
 		[(MSFMyOrderProductsCell *)cell bindViewModel:self.viewModel.cmdtyList[indexPath.row]];
 		return cell;
+	} else if (indexPath.section == 2) {
+		
 	}
 	cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProdutBottomCell class])];
 	if (cell == nil) {
@@ -91,20 +93,22 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
 		return 2;
-	} else if (section == 2) {
+	} else if (section == 3) {
 		return 1;
+	} else if (section == 2) {
+		return self.viewModel.travelCompanInfoList.count;
 	}
     return self.viewModel.cmdtyList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 2) {
+	if (indexPath.section == 3) {
 		return 72;
 	} if (indexPath.section == 1) {
 		return 69;
