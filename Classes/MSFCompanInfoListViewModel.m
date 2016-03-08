@@ -7,6 +7,14 @@
 //
 
 #import "MSFCompanInfoListViewModel.h"
+#import "MSFCompanion.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+
+@interface MSFCompanInfoListViewModel ()
+
+@property (nonatomic, strong) MSFCompanion *model;
+
+@end
 
 @implementation MSFCompanInfoListViewModel
 
@@ -15,7 +23,11 @@
 	if (!self) {
 		return nil;
 	}
-	
+	_model = model;
+	RAC(self, companName) = RACObserve(self, model.companName);
+	RAC(self, companCellphone) = RACObserve(self, model.companCellphone);
+	RAC(self, companCertId) = RACObserve(self, model.companCertId);
+	RAC(self, companRelationship) = RACObserve(self, model.companRelationship);
 	return self;
 }
 

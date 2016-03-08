@@ -23,15 +23,21 @@
 @implementation MSFMyOrderProductsCell
 
 - (void)awakeFromNib {
-	RAC(self, productNameLB.text) = RACObserve(self, viewModel.cmdtyName);
+	RAC(self, productNameLB.text) = [RACObserve(self, viewModel.cmdtyName) map:^id(id value) {
+		return value;
+	}];
 	RAC(self, priceLB.text) = RACObserve(self, viewModel.cmdtyPrice);
-	RAC(self, productDescribLB) = RACObserve(self, viewModel.brandName);
-	RAC(self, productNumsLB) = RACObserve(self, viewModel.pcsCount);
+	RAC(self, productDescribLB.text) = RACObserve(self, viewModel.brandName);
+	RAC(self, productNumsLB.text) = RACObserve(self, viewModel.pcsCount);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
 	[super setSelected:selected animated:animated];
 
+}
+
+- (void)bindViewModel:(id)viewModel {
+	self.viewModel = viewModel;
 }
 
 @end

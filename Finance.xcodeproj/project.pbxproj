@@ -208,6 +208,10 @@
 		07CB1B761C8DAA3B0031CEE8 /* MSFCommodityMiddleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB1B751C8DAA3B0031CEE8 /* MSFCommodityMiddleViewController.m */; };
 		07CB1B791C8DAA560031CEE8 /* MSFCommodityFooterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB1B781C8DAA560031CEE8 /* MSFCommodityFooterViewController.m */; };
 		07CB1B7D1C8DAE130031CEE8 /* MSFCommodityViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB1B7C1C8DAE130031CEE8 /* MSFCommodityViewModel.m */; };
+		07CB1B8D1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB1B8B1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.m */; };
+		07CB1B8E1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CB1B8C1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.xib */; };
+		07CB1B9F1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB1B9D1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.m */; };
+		07CB1BA01C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07CB1B9E1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.xib */; };
 		07CB4C4A1B1017AE006C220E /* right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CB4C481B1017AE006C220E /* right_arrow@2x.png */; };
 		07CB4C4B1B1017AE006C220E /* right_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07CB4C491B1017AE006C220E /* right_arrow@3x.png */; };
 		07CB4C7C1B104572006C220E /* MSFPersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07CB4C7B1B104572006C220E /* MSFPersonalViewController.m */; };
@@ -1393,6 +1397,12 @@
 		07CB1B781C8DAA560031CEE8 /* MSFCommodityFooterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommodityFooterViewController.m; sourceTree = "<group>"; };
 		07CB1B7B1C8DAE130031CEE8 /* MSFCommodityViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommodityViewModel.h; sourceTree = "<group>"; };
 		07CB1B7C1C8DAE130031CEE8 /* MSFCommodityViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommodityViewModel.m; sourceTree = "<group>"; };
+		07CB1B8A1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderListTravalDetailCell.h; sourceTree = "<group>"; };
+		07CB1B8B1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderListTravalDetailCell.m; sourceTree = "<group>"; };
+		07CB1B8C1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyOrderListTravalDetailCell.xib; sourceTree = "<group>"; };
+		07CB1B9C1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMyOrderTravalMemebersCell.h; sourceTree = "<group>"; };
+		07CB1B9D1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMyOrderTravalMemebersCell.m; sourceTree = "<group>"; };
+		07CB1B9E1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFMyOrderTravalMemebersCell.xib; sourceTree = "<group>"; };
 		07CB4C481B1017AE006C220E /* right_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow@2x.png"; sourceTree = "<group>"; };
 		07CB4C491B1017AE006C220E /* right_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow@3x.png"; sourceTree = "<group>"; };
 		07CB4C7A1B104572006C220E /* MSFPersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPersonalViewController.h; sourceTree = "<group>"; };
@@ -3067,6 +3077,12 @@
 				07E14C401C89648800589164 /* MSFMyOrderProdutBottomCell.h */,
 				07E14C411C89648800589164 /* MSFMyOrderProdutBottomCell.m */,
 				07E14C421C89648800589164 /* MSFMyOrderProdutBottomCell.xib */,
+				07CB1B8A1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.h */,
+				07CB1B8B1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.m */,
+				07CB1B8C1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.xib */,
+				07CB1B9C1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.h */,
+				07CB1B9D1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.m */,
+				07CB1B9E1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.xib */,
 			);
 			name = MyOrderDetail;
 			sourceTree = "<group>";
@@ -5659,6 +5675,7 @@
 				4944C00C1B68A44A00805C0A /* icon-cloze-idcard@2x.png in Resources */,
 				C7D2D11D1B67938C000F51ED /* icon-cloze-bankAddress@2x.png in Resources */,
 				C7A3517D1B217CB10001DF6A /* iconfont-jiantouyou.png in Resources */,
+				07CB1BA01C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.xib in Resources */,
 				497827DE1C8415B300F2D1D8 /* btn-repay-highlighted.png in Resources */,
 				4922E1161C85D33600E20C2C /* icon-protocol-selected.png in Resources */,
 				497827E11C8415B300F2D1D8 /* btn-repay-normal.png in Resources */,
@@ -6058,6 +6075,7 @@
 				4922E1181C85D33600E20C2C /* icon-protocol-selected@3x.png in Resources */,
 				4944C0311B68A5A100805C0A /* icon-account-info.png in Resources */,
 				49B7A7971C85915F00471168 /* icon-user-repay@2x.png in Resources */,
+				07CB1B8E1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.xib in Resources */,
 				077347E81BBA338900D7A130 /* youzheng.png in Resources */,
 				49B7A7941C85915F00471168 /* icon-user-order@2x.png in Resources */,
 				491FD40A1C84A4D40026928F /* tab-commodity-highlighted@2x.png in Resources */,
@@ -6438,6 +6456,7 @@
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
+				07CB1B8D1C8EBF510031CEE8 /* MSFMyOrderListTravalDetailCell.m in Sources */,
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				10DAE1C31BBBC99F001BD017 /* MSFRelationSwitchCell.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
@@ -6641,6 +6660,7 @@
 				10DE896D1B686E6F009025C4 /* MSFHomePageContentCollectionViewCell.m in Sources */,
 				49CCFBF81B072EA4008A9CD1 /* MSFClient+ApplyCash.m in Sources */,
 				07E14B8B1C847C5C00589164 /* MSFDrawModel.m in Sources */,
+				07CB1B9F1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.m in Sources */,
 				4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */,
 				4944C05E1B68A6CA00805C0A /* MSFClient+ApplyList.m in Sources */,
 				C7B978111B099CAC005F247C /* MSFProductIntroductionCell.m in Sources */,
