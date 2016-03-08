@@ -89,14 +89,15 @@
 	RAC(self, travelCompanInfoList) = [[RACObserve(self, model.companions) ignore:nil] map:^id(NSArray *value) {
 		NSMutableArray *resutArray = [[NSMutableArray alloc] init];
 		for (NSObject *model in value) {
-			MSFMyOrderDetailTravelViewModel *viewModel = [[MSFMyOrderDetailTravelViewModel alloc] initWithModel:model];
+			MSFCompanInfoListViewModel *viewModel = [[MSFCompanInfoListViewModel alloc] initWithModel:model];
 			[resutArray addObject:viewModel];
 		}
 		return [NSArray arrayWithArray:resutArray];
 	}];
 	
 	RAC(self, orderTravelDto) = [[RACObserve(self, model.travel) ignore:nil] map:^id(id value) {
-		MSFCompanInfoListViewModel *viewModel = [[MSFCompanInfoListViewModel alloc] initWithModel:value];
+		
+		MSFMyOrderDetailTravelViewModel *viewModel = [[MSFMyOrderDetailTravelViewModel alloc] initWithModel:value];
 		return viewModel;
 	}];
 	

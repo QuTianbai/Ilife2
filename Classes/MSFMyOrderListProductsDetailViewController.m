@@ -16,6 +16,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFMyOrderListTravalDetailCell.h"
 #import "MSFMyOrderTravalMemebersCell.h"
+#import "MSFBlurButton.h"
 
 @interface MSFMyOrderListProductsDetailViewController ()
 
@@ -119,7 +120,7 @@
 	} else if (section == 3) {
 		return 1;
 	} else if (section == 2) {
-		if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+		if ([self.viewModel.cartType isEqualToString:@"goods"] || self.viewModel.cartType.length == 0) {
 			return 0;
 		}
 		return self.viewModel.travelCompanInfoList.count + 1;
@@ -137,6 +138,23 @@
 		return 69;
 	}
 	return 44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	UIView *view = [[UIView alloc] init];
+	if (section == 3) {
+		view.frame = CGRectMake(0, 0, self.view.bounds.size.width, 60);
+		MSFBlurButton *button = [[MSFBlurButton alloc] initWithFrame:CGRectMake(10, 10, self.view.bounds.size.width - 20, 40)];
+		[button setTitle:@"支付首付" forState:UIControlStateNormal];
+		//[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			
+		}];
+		[view addSubview:button];
+	}
+	
+	return view;
 }
 
 @end
