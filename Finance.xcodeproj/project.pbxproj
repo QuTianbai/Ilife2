@@ -390,13 +390,13 @@
 		10E546781C004B1800BBA827 /* MSFClient+ProductType.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E546771C004B1800BBA827 /* MSFClient+ProductType.m */; };
 		10E546BE1C02B03D00BBA827 /* ad_limit_ms.png in Resources */ = {isa = PBXBuildFile; fileRef = 10E546BD1C02B03D00BBA827 /* ad_limit_ms.png */; };
 		10E546C21C02B10400BBA827 /* MSFCashHomeLoanLimit.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E546C11C02B10400BBA827 /* MSFCashHomeLoanLimit.m */; };
-		1D17E2EF1C87D4C100E08B59 /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2EE1C87D4C100E08B59 /* MSFCreditViewController.storyboard */; };
 		1D17E2F31C87DDE800E08B59 /* applyCredit--bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F01C87DDE800E08B59 /* applyCredit--bg.jpg */; };
 		1D17E2F41C87DDE800E08B59 /* applyCredit--bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F11C87DDE800E08B59 /* applyCredit--bg@2x.jpg */; };
 		1D17E2F51C87DDE800E08B59 /* applyCredit--bg@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F21C87DDE800E08B59 /* applyCredit--bg@3x.jpg */; };
 		1D17E2F91C87E9B300E08B59 /* applyCredit-Cloud.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */; };
 		1D17E2FA1C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */; };
 		1D17E2FB1C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */; };
+		1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */; };
 		1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */; };
 		1DF17E421C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF17E411C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m */; };
 		1DFB3A041C8E76D600E2E43C /* MSFCreditHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB3A031C8E76D600E2E43C /* MSFCreditHeaderViewController.m */; };
@@ -1688,13 +1688,13 @@
 		10E546BD1C02B03D00BBA827 /* ad_limit_ms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad_limit_ms.png; sourceTree = "<group>"; };
 		10E546C01C02B10400BBA827 /* MSFCashHomeLoanLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCashHomeLoanLimit.h; sourceTree = "<group>"; };
 		10E546C11C02B10400BBA827 /* MSFCashHomeLoanLimit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCashHomeLoanLimit.m; sourceTree = "<group>"; };
-		1D17E2EE1C87D4C100E08B59 /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
 		1D17E2F01C87DDE800E08B59 /* applyCredit--bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit--bg.jpg"; sourceTree = "<group>"; };
 		1D17E2F11C87DDE800E08B59 /* applyCredit--bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit--bg@2x.jpg"; sourceTree = "<group>"; };
 		1D17E2F21C87DDE800E08B59 /* applyCredit--bg@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit--bg@3x.jpg"; sourceTree = "<group>"; };
 		1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud.jpg"; sourceTree = "<group>"; };
 		1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@2x.jpg"; sourceTree = "<group>"; };
 		1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@3x.jpg"; sourceTree = "<group>"; };
+		1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
 		1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditViewModel.h; sourceTree = "<group>"; };
 		1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditViewModel.m; sourceTree = "<group>"; };
 		1DF17E401C897A470006ADA4 /* MSFCreditOrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditOrderDetailsViewController.h; sourceTree = "<group>"; };
@@ -5333,7 +5333,7 @@
 			children = (
 				49F37CD81C83ED4700C5DCB8 /* MSFCreditViewController.h */,
 				49F37CD91C83ED4700C5DCB8 /* MSFCreditViewController.m */,
-				1D17E2EE1C87D4C100E08B59 /* MSFCreditViewController.storyboard */,
+				1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */,
 			);
 			name = Credit;
 			sourceTree = "<group>";
@@ -5622,6 +5622,7 @@
 				49C0F1CF1B2C341400E92572 /* tabbar-apply-selected@3x.png in Resources */,
 				07F089211BBD31E30067C5BC /* DrawCash.storyboard in Resources */,
 				07997AAD1BA01C2000E3E4DD /* icon-confirm@3x.png in Resources */,
+				1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */,
 				4944C0111B68A44A00805C0A /* icon-cloze-name.png in Resources */,
 				491FD40D1C84A4D40026928F /* tab-commodity-normal@2x.png in Resources */,
 				077347EB1BBA338900D7A130 /* zhongxin.png in Resources */,
@@ -5710,7 +5711,6 @@
 				4912C7081C6477C800550A6C /* bar-normal@3x.png in Resources */,
 				49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */,
 				077460FD1C7420A000F46ABD /* icon-start-signin.png in Resources */,
-				1D17E2EF1C87D4C100E08B59 /* MSFCreditViewController.storyboard in Resources */,
 				077460F21C733D1900F46ABD /* guide in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				077347CA1BBA338900D7A130 /* ABC.png in Resources */,

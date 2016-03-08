@@ -10,15 +10,16 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "MSFClient+Photos.h"
+
 @interface MSFCreditViewModel ()
 
-@property (nonatomic,weak)id <MSFViewModelServices>services;
+@property (nonatomic, weak) id <MSFViewModelServices>services;
 
 @end
+
 @implementation MSFCreditViewModel
--(instancetype)initWithServices:(id<MSFViewModelServices>)services
-{
-    
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services {
     self = [super init];
     if (!self) {
         return nil;
@@ -26,5 +27,7 @@
     
     _services = services;
     return self;
+    
 }
+
 @end

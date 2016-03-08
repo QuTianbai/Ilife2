@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFViewModelServices.h"
+
 @interface MSFCreditOrderDetailsViewController : UIViewController
+
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 - (instancetype)initWithViewModel:(id)viewModel;
+
 @end

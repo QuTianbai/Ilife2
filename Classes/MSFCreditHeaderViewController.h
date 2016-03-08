@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
-@interface MSFCreditHeaderViewController : UIViewController<MSFReactiveView>
+
+@interface MSFCreditHeaderViewController : UIViewController <MSFReactiveView>
 
 @end
