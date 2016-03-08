@@ -4248,8 +4248,6 @@
 				1DFB39F31C8E764000E2E43C /* CreditCommon */,
 				1DF17E321C8979E30006ADA4 /* OrderDetails */,
 				4922E1581C85E85900E20C2C /* Auxiliary */,
-				4922E1261C85DAB700E20C2C /* Commit */,
-				497827C41C840CF000F2D1D8 /* Common */,
 				49F37CD71C83ED3C00C5DCB8 /* Credit */,
 				49F37CD31C83EC9800C5DCB8 /* Commodity */,
 				49F37CC21C83EC5F00C5DCB8 /* Wallet */,
@@ -5305,6 +5303,8 @@
 		49F37CC21C83EC5F00C5DCB8 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				4922E1261C85DAB700E20C2C /* Commit */,
+				497827C41C840CF000F2D1D8 /* Common */,
 				49F37CD01C83EC8300C5DCB8 /* MSFWalletViewController.h */,
 				49F37CD11C83EC8300C5DCB8 /* MSFWalletViewController.m */,
 				497827941C83F18800F2D1D8 /* MSFWalletViewController.storyboard */,
