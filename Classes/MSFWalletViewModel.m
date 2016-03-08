@@ -76,12 +76,10 @@ static NSString *const kWalletIdentifier = @"4102";
 		[self.fetchShow subscribeNext:^(id x) {
 			self.groundTitle = x;
 		}];
-		return [self.fetchWalletStatus doNext:^(id x) {
-			[self.fetchWalletStatus subscribeNext:^(RACTuple *statusAndApplication) {
-				RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
-				self.status = status.integerValue;
-				self.application = application;
-			}];
+		return [self.fetchWalletStatus doNext:^(RACTuple *statusAndApplication) {
+			RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
+			self.status = status.integerValue;
+			self.application = application;
 		}];
 	}] replayLast];
 	
