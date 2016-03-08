@@ -15,11 +15,12 @@
 //define this constant if you want to enable auto-boxing for default syntax
 #define MAS_SHORTHAND_GLOBALS
 #import "Masonry.h"
+#import "MSFCreditViewModel.h"
 
 @interface MSFCreditViewController ()
 @property (nonatomic, strong) UIImage *shadowImage;
 @property (nonatomic, strong) UIImage *backgroundImage;
-@property (nonatomic, strong) MSFWalletViewModel *viewModel;
+@property (nonatomic, strong) MSFCreditViewModel *viewModel;
 
 @end
 

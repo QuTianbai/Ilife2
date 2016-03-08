@@ -13,6 +13,7 @@
 
 @interface MSFCreditViewModel ()
 
+@property (nonatomic, strong, readwrite) NSString *action;
 @property (nonatomic, weak) id <MSFViewModelServices>services;
 
 @end

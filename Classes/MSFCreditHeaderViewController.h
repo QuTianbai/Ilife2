@@ -10,5 +10,7 @@
 #import "MSFReactiveView.h"
 
 @interface MSFCreditHeaderViewController : UIViewController <MSFReactiveView>
+@property (weak, nonatomic) IBOutlet UIView *applyView;
+@property (weak, nonatomic) IBOutlet UIView *BeforeApplyView;
 
 @end
