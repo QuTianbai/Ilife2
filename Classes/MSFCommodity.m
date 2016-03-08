@@ -11,14 +11,14 @@
 
 @implementation MSFCommodity
 
-+ (NSSet *)propertyKeys {
-	NSMutableSet *keys = [super.propertyKeys mutableCopy];
-
-	// This is a derived property.
-	[keys removeObject:@keypath(MSFCommodity.new, server)];
-
-	return keys;
-}
+//+ (NSSet *)propertyKeys {
+//	NSMutableSet *keys = [super.propertyKeys mutableCopy];
+//
+//	// This is a derived property.
+//	[keys removeObject:@keypath(MSFCommodity.new, server)];
+//
+//	return keys;
+//}
 
 + (NSValueTransformer *)pcsCountJSONTransformer {
 	return [self transformer];

@@ -22,14 +22,14 @@
 	};
 }
 
-+ (NSSet *)propertyKeys {
-	NSMutableSet *keys = [super.propertyKeys mutableCopy];
-
-	// This is a derived property.
-	[keys removeObject:@keypath(MSFOrderDetail.new, server)];
-
-	return keys;
-}
+//+ (NSSet *)propertyKeys {
+//	NSMutableSet *keys = [super.propertyKeys mutableCopy];
+//
+//	// This is a derived property.
+//	[keys removeObject:@keypath(MSFOrderDetail.new, server)];
+//
+//	return keys;
+//}
 
 + (NSValueTransformer *)travelJSONTransformer {
 	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFTravel.class];

@@ -14,13 +14,14 @@
 #import "MSFMyOrderCmdViewModel.h"
 #import "MSFMyOrderDetailTravelViewModel.h"
 #import "MSFCompanInfoListViewModel.h"
-
+#import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFMyOrderListProductsViewModel ()
 
 @property (nonatomic, assign) id<MSFViewModelServices> services;
 @property (nonatomic, copy) NSString *appNo;
 @property (nonatomic, strong) MSFOrderDetail *model;
+@property (nonatomic, copy, readwrite) NSString *isReload;
 
 @end
 
@@ -51,8 +52,10 @@
 		[[self.services.httpClient fetchMyOrderProductWithInOrderId:self.inOrderId appNo:self.appNo]
 		subscribeNext:^(id x) {
 			self.model = x;
+			self.isReload = @"1";
 		} error:^(NSError *error) {
 			NSLog(@"error:%@", error);
+			self.isReload = @"0";
 		}];
 	}];
 	
@@ -62,7 +65,9 @@
 		return [NSString stringWithFormat:@"手机号：%@", str];
 	}];
 	RAC(self, contractId) = [RACObserve(self, model.contractId) ignore:nil];
-	RAC(self, orderStatus) = [RACObserve(self, model.orderStatus) ignore:nil];
+	RAC(self, orderStatus) = [[RACObserve(self, model.orderStatus) ignore:nil] map:^id(id value) {
+		return [NSDictionary statusStringForKey:value];
+	}];
 	RAC(self, cmdtyList) = [[RACObserve(self, model.cmdtyList) ignore:nil] map:^id(NSArray *value) {
 		NSMutableArray *resutArray = [[NSMutableArray alloc] init];
 		for (NSObject *model in value) {

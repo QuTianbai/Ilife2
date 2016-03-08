@@ -12,6 +12,7 @@
 
 @interface MSFMyOrderListProductsViewModel : RVMViewModel
 
+@property (nonatomic, copy, readonly) NSString *isReload;
 @property (nonatomic, copy, readonly) NSString *months;
 
 @property (nonatomic, copy, readonly) NSString *inOrderId;

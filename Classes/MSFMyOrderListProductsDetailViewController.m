@@ -13,6 +13,7 @@
 #import "MSFMyOrderProdutBottomCell.h"
 #import "MSFMyOrderListProductsViewModel.h"
 #import "UIColor+Utils.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFMyOrderListProductsDetailViewController ()
 
@@ -36,6 +37,11 @@
 	self.navigationItem.title = @"订单详情";
 	self.tableView.separatorStyle = UITableViewCellAccessoryNone;
 	self.tableView.backgroundColor = [UIColor signUpBgcolor];
+	@weakify(self)
+	[RACObserve(self, viewModel.cmdtyList) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.tableView reloadData];
+	}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +79,7 @@
 		if (cell == nil) {
 			cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductsCell class]) owner:nil options:nil].firstObject ;
 		}
-		
+		[(MSFMyOrderProductsCell *)cell bindViewModel:self.viewModel.cmdtyList[indexPath.row]];
 		return cell;
 	}
 	cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProdutBottomCell class])];
@@ -100,6 +106,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 2) {
 		return 72;
+	} if (indexPath.section == 1) {
+		return 69;
 	}
 	return 44;
 }
