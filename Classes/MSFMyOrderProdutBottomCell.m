@@ -40,5 +40,4 @@
 	self.viewModel = viewModel;
 }
 
-
 @end
