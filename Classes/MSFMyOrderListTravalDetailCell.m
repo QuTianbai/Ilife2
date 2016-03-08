@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *backTimeLB;
 @property (nonatomic, strong) MSFMyOrderListProductsViewModel *viewModel;
 
-
 @end
 
 @implementation MSFMyOrderListTravalDetailCell
