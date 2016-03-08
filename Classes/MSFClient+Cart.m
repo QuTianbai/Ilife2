@@ -22,6 +22,11 @@
 	return [self enqueueRequest:request resultClass:MSFCart.class].msf_parsedResults;
 }
 
+- (RACSignal *)fetchCartInfoForCart:(MSFCart *)cart {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"orders/shopDetail" parameters:@{@"cartId": cart.cartId?:@""}];
+	return [self enqueueRequest:request resultClass:MSFCart.class].msf_parsedResults;
+}
+
 - (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel {
 	NSDictionary *params = [self trialParamsFromViewModel:viewModel];
 	if (!params) {

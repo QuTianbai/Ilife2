@@ -55,6 +55,7 @@
 #import "MSFUserInfomationViewController.h"
 #import "MSFRepaymentSchedulesViewModel.h"
 #import "MSFCartViewModel.h"
+#import "MSFCartViewController.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFBankCardListTableViewController.h"
 
@@ -172,6 +173,8 @@
 	} else if ([viewModel isKindOfClass:MSFMyRepaysViewModel.class]) {
 		viewController = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewModel];
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFCartViewModel class]]) {
+		viewController = [[MSFCartViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}

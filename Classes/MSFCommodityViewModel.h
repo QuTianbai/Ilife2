@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, MSFCommodityStatus) {
 @property (nonatomic, strong, readonly) RACCommand *excuteActionCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeBillsCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeBarCodeCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeCartCommand;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
 

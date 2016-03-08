@@ -34,8 +34,16 @@
 
 @implementation MSFCartViewController
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo
-											       services:(id<MSFViewModelServices>)services {
+- (instancetype)initWithViewModel:(id)viewModel {
+	self = [super initWithStyle:UITableViewStyleGrouped];
+	if (self) {
+		self.hidesBottomBarWhenPushed = YES;
+		_viewModel = viewModel;
+	}
+	return self;
+}
+
+- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services {
 	self = [super initWithStyle:UITableViewStyleGrouped];
 	if (self) {
 		self.hidesBottomBarWhenPushed = YES;
@@ -98,8 +106,11 @@
 		}];
 	}];
 	
+	__block UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:nil delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
 	[self.viewModel.executeTrialCommand.errors subscribeNext:^(NSError *error) {
-		[[[UIAlertView alloc] initWithTitle:@"提示" message:error.userInfo[NSLocalizedFailureReasonErrorKey] delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil] show];
+		[SVProgressHUD dismiss];
+		alertView.message = error.userInfo[NSLocalizedFailureReasonErrorKey];
+		if (!alertView.isVisible)  [alertView show];
 	}];
 }
 

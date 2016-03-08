@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-__attribute__((deprecated("This class is unavailable")))
-
 @interface MSFCounterLabel : UILabel
 
 @property (nonatomic, strong) NSString *valueText;

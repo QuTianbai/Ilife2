@@ -58,8 +58,8 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 
 @property (nonatomic, assign, readonly) MSFCartType cartType __deprecated;
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo
-														 services:(id<MSFViewModelServices>)services;
+- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services __deprecated_msg("Use -initWithModel:services:");
+- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
