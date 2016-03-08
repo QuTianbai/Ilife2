@@ -8,9 +8,13 @@
 
 #import "MSFMyRepayTableViewController.h"
 #import "MSFMyRepaysViewModel.h"
+#import "MSFMyRepayViewModel.h"
 #import "MSFTableViewBindingHelper.h"
 #import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 #import "MSFMyRepayTableViewCell.h"
+#import "MSFMyRepayDetalViewController.h"
+#import "MSFMyRepayDetailViewModel.h"
+#import "MSFMyRepayListWalletDetailViewController.h"
 
 @interface MSFMyRepayTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
@@ -40,15 +44,24 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
+	@weakify(self)
 	self.bindingHelper = [[MSFTableViewBindingHelper alloc]
-												initWithTableView:self.tableView
-												sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
+		initWithTableView:self.tableView sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
 		return value;
 	}]
-												selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFMyRepayViewModel *input) {
+		@strongify(self)
+		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services type:input.applyType contractNO:input.contractNo];
+		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"2"]) {
+			MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
+			[self.navigationController pushViewController:vc animated:YES];
+			return [RACSignal empty];
+		}
+		MSFMyRepayListWalletDetailViewController *vc = [[MSFMyRepayListWalletDetailViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
 		return [RACSignal empty];
 	}]
-												templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyRepayTableViewCell class]) bundle:nil]];
+	templateCell:[UINib nibWithNibName:NSStringFromClass([MSFMyRepayTableViewCell class]) bundle:nil]];
 	self.bindingHelper.delegate = self;
 
 }
@@ -65,14 +78,6 @@
 		title = @"你还没有商品贷还款订单";
 	}
 	return [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}];
-}
-
-- (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
-	NSString *subtitle = @"";
-//	if ([self.viewModel.identifer isEqualToString:@"B"]) {
-//		subtitle = @"你可以多多关注马上金融活动，惊喜连连！~";
-//	}
-	return [[NSAttributedString alloc] initWithString:subtitle attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]}];
 }
 
 - (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {

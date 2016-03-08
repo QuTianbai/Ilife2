@@ -10,7 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFRepaymentSchedules.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-#import "msfclient+PlanPerodicTables.h"
+//#import "msfclient+PlanPerodicTables.h"
 #import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFMyRepayViewModel ()
@@ -28,12 +28,13 @@
 		return nil;
 	}
 	_model = model;
+	_contractNo = @"";
 	_contractTitle = @"";
 	_repayMoney = [[NSMutableAttributedString alloc] initWithString:@""];
 	_repayTime = @"";
 	_applyType = @"";
 	_status = @"";
-	
+	RAC(self, contractNo) = [RACObserve(self, model.contractNum) ignore:nil];
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
 		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];
@@ -47,7 +48,7 @@
 		 NSRange redRange = [str rangeOfString:[NSString stringWithFormat:@"¥%@", model.repaymentTotalAmount]];
 		 
 		 if ([model.contractStatus isEqualToString:@"已还款"]) {
-			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:redRange];
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, 6 + model.repaymentTotalAmount.length)];
 		 } else {
 			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:redRange];
 		 }
@@ -55,14 +56,6 @@
 	 }];
 	
 	return self;
-}
-
-- (RACSignal *)fetchMyRepayListSignal {
-	return nil;
-}
-
-- (RACSignal *)fetchPlanPerodicTablesSignal {
-	return [self.services.httpClient fetchPlanPerodicTables:self.model];
 }
 
 @end

@@ -163,10 +163,10 @@
 				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"1101"];
 				MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:self.viewModel.formViewModel loanType:loanType];
 				[[viewModel submitSignalWithStatus:@"0"] subscribeNext:^(MSFSubmitApplyModel *applyCash) {
-					viewModel.applicationNo = applyCash.appNo;
-					MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
-					userInfoVC.showNextStep = YES;
-					[self.navigationController pushViewController:userInfoVC animated:YES];
+				//TODO: 
+//					viewModel.applicationNo = applyCash.appNo;
+//					MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
+//					[self.navigationController pushViewController:userInfoVC animated:YES];
 					
 				}];
 				

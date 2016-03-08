@@ -130,7 +130,7 @@
 	id viewModel = nil;
 	switch (index) {
 		case 0:
-			viewModel = [[MSFPersonalViewModel alloc] initWithFormsViewModel:self.viewModel];
+			viewModel = [[MSFPersonalViewModel alloc] init];
 			break;
 		case 1:
 			viewModel = [[MSFRelationshipViewModel alloc] initWithFormsViewModel:self.viewModel];

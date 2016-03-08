@@ -15,4 +15,8 @@
 - (RACSignal *)fetchOrderList:(NSString *)status pageNo:(NSInteger)pn;
 - (RACSignal *)fetchOrder:(NSString *)orderId;
 
+- (RACSignal *)fetchMyOrderListWithType:(NSString *)type;
+
+- (RACSignal *)fetchMyOrderProductWithInOrderId:(NSString *)inOrderId appNo:(NSString *)appNo;
+
 @end

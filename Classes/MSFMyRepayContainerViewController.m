@@ -73,10 +73,10 @@
 			[self.viewModel.executeFetchCommand execute:@"1"];
 			break;
 		case 2:
-			[self.viewModel.executeFetchCommand execute:@"3"];
+			[self.viewModel.executeFetchCommand execute:@"4"];
 			break;
 		case 3:
-			[self.viewModel.executeFetchCommand execute:@"4"];
+			[self.viewModel.executeFetchCommand execute:@"3"];
 			break;
 		default:
 			break;

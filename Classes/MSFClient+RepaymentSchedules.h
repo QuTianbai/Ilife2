@@ -24,4 +24,6 @@
 
 - (RACSignal *)fetchMyRepayWithType:(NSString *)type;
 
+- (RACSignal *)fetchMyDetailWithContractNo:(NSString *)contractNo type:(NSString *)type;
+
 @end

@@ -14,14 +14,17 @@
 #import "MSFSelectKeyValues.h"
 #import "MSFAddress.h"
 #import "NSString+Matches.h"
+#import "MSFUserViewModel.h"
+#import "MSFUser.h"
+#import "MSFClient+Users.h"
+#import "MSFClient.h"
+#import "MSFPersonal.h"
 
 @interface MSFPersonalViewModel ()
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
-@property (nonatomic, strong) MSFFormsViewModel *formsViewModel;
-@property (nonatomic, strong, readwrite) MSFApplicationForms *forms;
-@property (nonatomic, strong) MSFAddressViewModel *addrViewModel;
-@property (nonatomic, assign) NSUInteger modelHash;
+@property (nonatomic, strong) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, strong) MSFPersonal *model;
 
 @end
 
@@ -29,123 +32,75 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel {
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
-	_services = viewModel.services;
-	_forms = viewModel.model.copy;
-	_formsViewModel = viewModel;
-	NSDictionary *addr = @{@"province" : _forms.currentProvinceCode ?: @"",
-												 @"city" : _forms.currentCityCode ?: @"",
-												 @"area" : _forms.currentCountryCode ?: @""};
+	_services = services;
+	_model = [[services httpClient].user.personal copy];
+	
+	NSDictionary *addr = @{
+		@"province" : self.model.abodeStateCode ?: @"",
+		@"city" : self.model.abodeCityCode ?: @"",
+		@"area" : self.model.abodeZoneCode ?: @""
+	};
 	MSFAddress *addrModel = [MSFAddress modelWithDictionary:addr error:nil];
-	_addrViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
-	_address = _addrViewModel.address;
-
-	RAC(self, address) = RACObserve(self.addrViewModel, address);
-	RAC(self, forms.currentProvinceCode) = RACObserve(self.addrViewModel, provinceCode);
-	RAC(self, forms.currentCityCode) = RACObserve(self.addrViewModel, cityCode);
-	RAC(self, forms.currentCountryCode) = RACObserve(self.addrViewModel, areaCode);
-
-	NSArray *houseTypes = [MSFSelectKeyValues getSelectKeys:@"housing_conditions"];
-	[houseTypes enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.forms.houseType]) {
-			self.forms.houseTypeTitle = obj.text;
-			*stop = YES;
-		}
-	}];
-	NSArray *marriageStatus = [MSFSelectKeyValues getSelectKeys:@"marital_status"];
-	[marriageStatus enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
-		if ([obj.code isEqualToString:self.forms.maritalStatus]) {
-			self.forms.marriageTitle = obj.text;
-			*stop = YES;
-		}
-	}];
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
+	_address = _addressViewModel.address;
+	RAC(self, model.abodeStateCode) = RACObserve(self.addressViewModel, provinceCode);
+	RAC(self, model.abodeCityCode) = RACObserve(self.addressViewModel, cityCode);
+	RAC(self, model.abodeZoneCode) = RACObserve(self.addressViewModel, areaCode);
+	
+	RAC(self, address) = RACObserve(self.addressViewModel, address);
+	RACChannelTo(self, detailAddress) = RACChannelTo(self.model, abodeDetail);
+	RACChannelTo(self, email) = RACChannelTo(self.model, email);
+	RACChannelTo(self, phone) = RACChannelTo(self.model, homePhone);
 
 	@weakify(self)
-	_executeAlterAddressCommand = self.addrViewModel.selectCommand;
-  _executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-    @strongify(self);
-    return [self commitSignal];
-  }];
+	_executeAlterAddressCommand = self.addressViewModel.selectCommand;
+	
 	_executeHouseValuesCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self);
-		return [self houseValuesSignal];
+		return [self.services msf_selectKeyValuesWithContent:@"housing_conditions"];
 	}];
-	_executeHouseValuesCommand.allowsConcurrentExecution = YES;
-
-	_modelHash = _forms.hash;
-
+	RAC(self, house) = [RACObserve(self, model.houseCondition) flattenMap:^id(NSString *code) {
+		return [self.services msf_selectValuesWithContent:@"housing_conditions" keycode:code];
+	}];
+	RAC(self, model.houseCondition) = [[self.executeHouseValuesCommand.executionSignals
+		switchToLatest]
+		map:^id(MSFSelectKeyValues *x) {
+				return x.code;
+		}];
+	
+	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:[self updateValidSignal] signalBlock:^RACSignal *(id input) {
+		return [self updateSignal];
+	}];
+	
 	return self;
-}
-
-- (BOOL)edited {
-	NSUInteger newHash = _forms.hash;
-	return newHash != _modelHash;
 }
 
 #pragma mark - Private
 
-- (RACSignal *)commitSignal {
-	NSString *error = [self checkForm];
-	if (error) {
-		return [RACSignal error:[NSError errorWithDomain:@"MSFPersonalViewModel" code:0 userInfo:@{
-				NSLocalizedFailureReasonErrorKey: error,
-		}]];
-	}
-	[self.formsViewModel.model mergeValuesForKeysFromModel:self.forms];
-	return [self.formsViewModel submitUserInfoType:1];
+- (RACSignal *)updateValidSignal {
+	return [RACSignal combineLatest:@[
+		RACObserve(self, house),
+		RACObserve(self, email),
+		RACObserve(self, address),
+		RACObserve(self, detailAddress),
+	]
+	reduce:^id(NSString *condition, NSString *email, NSString *phone, NSString *address, NSString *detail){
+		return @(condition.length > 0 && email.length > 0 && address.length > 0 && detail.length > 0);
+	}];
 }
 
-- (NSString *)checkForm {
-	MSFApplicationForms *forms = self.forms;
-
-	if (forms.houseType.length == 0) {
-		return @"请选择住房状况";
-	}
-	if (forms.email.length > 0 && ([forms.email rangeOfString:@"@"].location == NSNotFound || [forms.email rangeOfString:@"."].location == NSNotFound)) {
-		return @"请填写正确的邮箱";
-	}
-	if (forms.homeCode.length > 0 || forms.homeLine.length > 0) {
-		if (forms.homeCode.length < 3 || ![forms.homeCode isScalar]) {
-			return @"请填写正确的住宅座机号";
-		}
-		if (forms.homeLine.length < 7 || ![forms.homeCode isScalar]) {
-			return @"请填写正确的住宅座机号";
-		}
-	}
-	if (forms.currentProvinceCode.length == 0) {
-		return @"请选择完整的现居地址";
-	}
-	if (forms.currentCityCode.length == 0) {
-		return @"请选择完整的现居地址";
-	}
-	if (forms.currentCountryCode.length == 0) {
-		return @"请选择完整的现居地址";
-	}
-	if (forms.abodeDetail.length < 3) {
-		return @"请填写完整的详细地址";
-	}
-	if (forms.qq.length > 0 && (forms.qq.length < 5 || forms.qq.length > 10)) {
-		return @"请输入正确的QQ号";
-	}
-	return nil;
-}
-
-- (RACSignal *)houseValuesSignal {
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:@"housing_conditions"]];
-		[self.services pushViewModel:viewModel];
-		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
-			[subscriber sendNext:nil];
-			[subscriber sendCompleted];
-			self.forms.houseTypeTitle = x.text;
-			self.forms.houseType = x.code;
-			[self.services popViewModel];
+- (RACSignal *)updateSignal {
+	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *value) {
+		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, personal): self.model} error:nil];
+		[value mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
+		return [[self.services.httpClient updateUser:value] doNext:^(id x) {
+			[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
 		}];
-		return nil;
 	}];
 }
 

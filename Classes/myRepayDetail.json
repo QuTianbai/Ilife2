@@ -1,0 +1,29 @@
+{
+	"contractNo" : "242143214321",
+	"latestDueMoney" : 343.10,
+	"latestDueDate" : "20",
+	"type" : "1",
+	"appLmt" : "3453",
+	"loanTerm" : "6",
+	"loanCurrTerm" : "3",
+	"loanExpireDate" : "2016",
+	"totalOverdueMoney" : "4453",
+	"interest" : "34",
+	"applyDate" : "2017",
+	"cmdtyList" :[
+								{
+	 "cmdtyName" : "iphone",
+	 "cmdtyPrice" : 14231.01,
+	 "orderTime" : "2016"
+								}
+	],
+	"withdrawList" : [
+										{
+	 "bankCode" : "4321",
+	 "bankName" : "中国银行",
+	 "bankCardNo" : "2354325423542342",
+	 "withdrawDate" : "2018",
+	 "withdrawMoney" : "4564"
+										}
+	]
+}

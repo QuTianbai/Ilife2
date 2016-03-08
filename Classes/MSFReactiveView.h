@@ -21,6 +21,6 @@
 
 - (void)bindViewModel:(id)viewModel atIndexPath:(NSIndexPath *)indexPath;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel __deprecated;
 
 @end

@@ -20,6 +20,7 @@
 #import "MSFFormsViewModel.h"
 #import "MSFApplicationForms.h"
 #import "UIColor+Utils.h"
+#import "MSFCommitedViewController.h"
 
 @interface MSFSocialCaskApplyTableViewController ()<ZSWTappableLabelTapDelegate>
 
@@ -54,6 +55,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *basePayBT;
 
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *submitBT;
+@property (nonatomic, weak) IBOutlet UIButton *showProtocalButton;
+@property (nonatomic, weak) IBOutlet UIButton *readProtocalButton;
+@property (nonatomic, weak) IBOutlet UIImageView *readProtocalView;
 
 @end
 
@@ -179,16 +183,30 @@
 	self.submitBT.rac_command = self.viewModel.executeSubmitCommand;
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
+		if (!self.readProtocalView.highlighted) {
+			[SVProgressHUD showInfoWithStatus:@"请阅读贷款协议"];
+			return;
+		}
 		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self.viewModel];
-			MSFLoanAgreementController *viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
-			[self.navigationController pushViewController:viewController animated:YES];
+			MSFCommitedViewController *vc = [[MSFCommitedViewController alloc] init];
+			[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
 	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+	
+	[[self.showProtocalButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self.viewModel];
+		MSFLoanAgreementController *viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:viewController animated:YES];
+	}];
+	[[self.readProtocalButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		self.readProtocalView.highlighted = !self.readProtocalView.highlighted;
 	}];
 }
 

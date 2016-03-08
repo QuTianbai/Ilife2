@@ -14,12 +14,13 @@
 
 @interface MSFMyRepayViewModel : RVMViewModel
 
-@property (nonatomic, copy) NSString *type;
+//@property (nonatomic, copy) NSString *type;
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @property (nonatomic, readonly) MSFRepaymentSchedules *model;
 
+@property (nonatomic, readonly) NSString *contractNo;
 // 合同商品title
 @property (nonatomic, readonly) NSString *contractTitle;
 //当前期数

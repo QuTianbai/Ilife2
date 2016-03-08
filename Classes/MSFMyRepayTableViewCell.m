@@ -35,7 +35,6 @@
 			 self.imgBg.hidden = NO;
 			 self.contractTitle.textColor = [UIColor lightGrayColor];
 			 self.repayTime.textColor = [UIColor lightGrayColor];
-			 //self.repayMoney.textColor = [UIColor lightGrayColor];
 			 self.repayedLB.textColor = [UIColor whiteColor];
 			 self.repayTimeTitleLB.textColor = [UIColor lightGrayColor];
 			 self.imgBg.alpha = 0.7;
@@ -44,7 +43,6 @@
 			 self.imgBg.hidden = YES;
 			 self.contractTitle.textColor = [UIColor blackColor];
 			 self.repayTime.textColor = [UIColor blackColor];
-			 //self.repayMoney.textColor = [UIColor blackColor];
 			 self.repayTimeTitleLB.textColor = [UIColor blackColor];
 		 }
 	 }];
