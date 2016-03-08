@@ -19,14 +19,22 @@
 #import "MSFBlurButton.h"
 #import "MSFPaymentViewModel.h"
 #import "MSFTransactionsViewController.h"
+#import "MSFInputTradePasswordViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFClient+Payment.h"
+#import "MSFPayment.h"
+#import "MSFDimensionalCodeViewModel.h"
+#import "MSFDimensionalCodeViewController.h"
 
-@interface MSFMyOrderListProductsDetailViewController ()
+@interface MSFMyOrderListProductsDetailViewController () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFMyOrderListProductsViewModel *viewModel;
 
 @end
 
 @implementation MSFMyOrderListProductsDetailViewController
+
+MSFInputTradePasswordViewController *pvc;
 
 - (instancetype)initWithViewModel:(id)viewModel {
 	self = [super init];
@@ -168,7 +176,9 @@
 				MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
 				[self.navigationController pushViewController:vc animated:YES];
 			} else {
-				
+				pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+				pvc.delegate = self;
+				[[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
 			}
 		
 		}];
@@ -176,6 +186,20 @@
 	}
 	
 	return view;
+}
+
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type  {
+	[SVProgressHUD showWithStatus:@"正在支付..."];
+	[[self.viewModel.services.httpClient paymentWithOrder:self.viewModel.model password:pwd] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithPayment:x order:self.viewModel.model];
+		MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+	} error:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 @end
