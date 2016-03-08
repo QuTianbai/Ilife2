@@ -8,6 +8,8 @@
 
 #import "MSFObject.h"
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFSocialInsuranceModel : MSFObject
 //职工社保
 @property (nonatomic, copy, readonly) NSString *empEdwExist;//职工养老保险当前是否参保

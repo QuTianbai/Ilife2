@@ -16,7 +16,7 @@
 #import "MSFPersonalViewModel.h"
 #import "MSFAddressViewModel.h"
 #import "MSFFormsViewModel.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 
 #import "MSFSubmitApplyModel.h"
 #import "MSFUserInfomationViewController.h"

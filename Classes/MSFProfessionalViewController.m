@@ -16,7 +16,7 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectKeyValues.h"
-#import "MSFAreas.h"
+#import "MSFAddress.h"
 
 #import "MSFCommandView.h"
 #import "MSFXBMCustomHeader.h"

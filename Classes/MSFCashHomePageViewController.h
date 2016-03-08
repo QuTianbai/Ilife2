@@ -10,6 +10,8 @@
 
 @class MSFCashHomePageViewModel;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFCashHomePageViewController : UIViewController
 
 @property (nonatomic, strong, readonly) MSFCashHomePageViewModel *viewModel;

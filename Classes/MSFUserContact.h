@@ -8,6 +8,8 @@
 
 #import <Mantle/Mantle.h>
 
+__attribute__((deprecated("This class is unavailable.")))
+
 // 用户联系人信息
 @interface MSFUserContact : MTLModel <MTLJSONSerializing>
 

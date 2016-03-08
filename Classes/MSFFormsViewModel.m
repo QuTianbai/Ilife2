@@ -17,7 +17,7 @@
 #import "MSFClient+ApplyCash.h"
 #import "MSFClient+Users.h"
 #import "MSFResponse.h"
-#import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 
 #import "MSFMarkets.h"
 #import "MSFClient+CheckEmploee2.h"
@@ -33,8 +33,8 @@
 @property (nonatomic, strong, readwrite) MSFApplicationForms *model;
 @property (nonatomic, strong, readwrite) MSFMarket *market;
 @property (nonatomic, strong, readwrite) MSFMarkets *markets;
-@property (nonatomic, strong, readwrite) MSFAddress *currentAddress;
-@property (nonatomic, strong, readwrite) MSFAddress *workAddress;
+@property (nonatomic, strong, readwrite) MSFAddressCodes *currentAddress;
+@property (nonatomic, strong, readwrite) MSFAddressCodes *workAddress;
 @property (nonatomic, assign, readwrite) BOOL pending;
 @property (nonatomic, weak, readwrite) id <MSFViewModelServices> services;
 

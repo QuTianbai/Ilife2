@@ -166,7 +166,7 @@
 		07BDE4CC1B296DFA005A01EE /* MSFClient+PhotoStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BDE4CB1B296DFA005A01EE /* MSFClient+PhotoStatus.m */; };
 		07BF58861B06DECF00120D93 /* adver.json in Resources */ = {isa = PBXBuildFile; fileRef = 07BF58851B06DECF00120D93 /* adver.json */; };
 		07BFC90A1B7D962D00F9A1BA /* MSFDeviceGet.m in Sources */ = {isa = PBXBuildFile; fileRef = 07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */; };
-		07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C06C3C1B121D2E00F2DFCC /* MSFAreas.m */; };
+		07C06C3D1B121D2E00F2DFCC /* MSFAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 07C06C3C1B121D2E00F2DFCC /* MSFAddress.m */; };
 		07C06C501B1344AA00F2DFCC /* moneyUse.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C4F1B1344AA00F2DFCC /* moneyUse.json */; };
 		07C06C521B1345A300F2DFCC /* installments.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C511B1345A300F2DFCC /* installments.json */; };
 		07C06C541B1345C300F2DFCC /* unit_nature.json in Resources */ = {isa = PBXBuildFile; fileRef = 07C06C531B1345C300F2DFCC /* unit_nature.json */; };
@@ -455,7 +455,7 @@
 		491925211C08516600E6EAC5 /* MSFLoanType.m in Sources */ = {isa = PBXBuildFile; fileRef = 491925201C08516600E6EAC5 /* MSFLoanType.m */; };
 		491925231C08517B00E6EAC5 /* MSFLoanTypeSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 491925221C08517B00E6EAC5 /* MSFLoanTypeSpec.m */; };
 		491925261C0852B300E6EAC5 /* MSFClient+LoanTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 491925251C0852B300E6EAC5 /* MSFClient+LoanTypes.m */; };
-		491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E011B65E1B200D28455 /* MSFAddress.m */; };
+		491B3E021B65E1B200D28455 /* MSFAddressCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E011B65E1B200D28455 /* MSFAddressCodes.m */; };
 		491B3E2D1B662CCE00D28455 /* RCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E2C1B662CCE00D28455 /* RCLocationManager.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		491B3E311B662CEC00D28455 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E301B662CEC00D28455 /* UIDevice-Hardware.m */; };
 		491B3E341B662D3000D28455 /* MSFLoginPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */; };
@@ -1342,8 +1342,8 @@
 		07BF58921B06E38600120D93 /* applycash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = applycash.json; sourceTree = "<group>"; };
 		07BFC9081B7D962D00F9A1BA /* MSFDeviceGet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFDeviceGet.h; sourceTree = "<group>"; };
 		07BFC9091B7D962D00F9A1BA /* MSFDeviceGet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFDeviceGet.m; sourceTree = "<group>"; };
-		07C06C3B1B121D2E00F2DFCC /* MSFAreas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAreas.h; sourceTree = "<group>"; };
-		07C06C3C1B121D2E00F2DFCC /* MSFAreas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAreas.m; sourceTree = "<group>"; };
+		07C06C3B1B121D2E00F2DFCC /* MSFAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddress.h; sourceTree = "<group>"; };
+		07C06C3C1B121D2E00F2DFCC /* MSFAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddress.m; sourceTree = "<group>"; };
 		07C06C4F1B1344AA00F2DFCC /* moneyUse.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moneyUse.json; sourceTree = "<group>"; };
 		07C06C511B1345A300F2DFCC /* installments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = installments.json; sourceTree = "<group>"; };
 		07C06C531B1345C300F2DFCC /* unit_nature.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = unit_nature.json; sourceTree = "<group>"; };
@@ -1407,7 +1407,6 @@
 		07CD31081B09CC7600E0C2DF /* MSFCommandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCommandView.h; sourceTree = "<group>"; };
 		07CD31091B09CC7600E0C2DF /* MSFCommandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCommandView.m; sourceTree = "<group>"; };
 		07CD310C1B09D08B00E0C2DF /* MSFXBMCustomHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSFXBMCustomHeader.h; sourceTree = "<group>"; };
-		07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_MSFappliesViewControllerCatogery.h; sourceTree = "<group>"; };
 		07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAppliesHeaderView.h; sourceTree = "<group>"; };
 		07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAppliesHeaderView.m; sourceTree = "<group>"; };
 		07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSmsCodeTableViewController.h; sourceTree = "<group>"; };
@@ -1765,8 +1764,8 @@
 		491925221C08517B00E6EAC5 /* MSFLoanTypeSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanTypeSpec.m; sourceTree = "<group>"; };
 		491925241C0852B300E6EAC5 /* MSFClient+LoanTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+LoanTypes.h"; sourceTree = "<group>"; };
 		491925251C0852B300E6EAC5 /* MSFClient+LoanTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+LoanTypes.m"; sourceTree = "<group>"; };
-		491B3E001B65E1B200D28455 /* MSFAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddress.h; sourceTree = "<group>"; };
-		491B3E011B65E1B200D28455 /* MSFAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddress.m; sourceTree = "<group>"; };
+		491B3E001B65E1B200D28455 /* MSFAddressCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAddressCodes.h; sourceTree = "<group>"; };
+		491B3E011B65E1B200D28455 /* MSFAddressCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAddressCodes.m; sourceTree = "<group>"; };
 		491B3E2B1B662CCE00D28455 /* RCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCLocationManager.h; sourceTree = "<group>"; };
 		491B3E2C1B662CCE00D28455 /* RCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCLocationManager.m; sourceTree = "<group>"; };
 		491B3E2F1B662CEC00D28455 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
@@ -2530,19 +2529,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0704EB151B69CDBD000F5369 /* Location */ = {
-			isa = PBXGroup;
-			children = (
-				0704EB161B69CDCF000F5369 /* MSFLocationModel.h */,
-				0704EB171B69CDCF000F5369 /* MSFLocationModel.m */,
-				0704EB681B6B52EB000F5369 /* MSFResultModel.h */,
-				0704EB691B6B52EB000F5369 /* MSFResultModel.m */,
-				0704EB6B1B6B5327000F5369 /* MSFAddressInfo.h */,
-				0704EB6C1B6B5327000F5369 /* MSFAddressInfo.m */,
-			);
-			name = Location;
-			sourceTree = "<group>";
-		};
 		0707249B1B6718BE0089916B /* MSFSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -2565,9 +2551,6 @@
 		07122F291C3110E4004AD0E2 /* FaceMask */ = {
 			isa = PBXGroup;
 			children = (
-				07122F2A1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.h */,
-				07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */,
-				07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */,
 			);
 			name = FaceMask;
 			sourceTree = "<group>";
@@ -2656,17 +2639,6 @@
 				074696951B9820780074E180 /* MSFClient+ConfirmContract.m */,
 			);
 			name = ConfirmContract;
-			sourceTree = "<group>";
-		};
-		07472BE81BFF2820008A3890 /* SocialInsurance */ = {
-			isa = PBXGroup;
-			children = (
-				07472BE91BFF2860008A3890 /* MSFSocialInsuranceModel.h */,
-				07472BEA1BFF2860008A3890 /* MSFSocialInsuranceModel.m */,
-				07D13DB21C03009700A46980 /* MSFClient+SocialInsurance.h */,
-				07D13DB31C03009700A46980 /* MSFClient+SocialInsurance.m */,
-			);
-			name = SocialInsurance;
 			sourceTree = "<group>";
 		};
 		074AC22D1BBA89680056BA22 /* BankCard */ = {
@@ -2907,8 +2879,6 @@
 		07BA6CD51B5F5BBE001D6CFA /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				07BA6CE31B5F5BD7001D6CFA /* MSFSegment.h */,
-				07BA6CE41B5F5BD7001D6CFA /* MSFSegment.m */,
 			);
 			name = Segment;
 			sourceTree = "<group>";
@@ -2922,15 +2892,6 @@
 			name = Forms;
 			sourceTree = "<group>";
 		};
-		07C06C2D1B121D1100F2DFCC /* Areas */ = {
-			isa = PBXGroup;
-			children = (
-				07C06C3B1B121D2E00F2DFCC /* MSFAreas.h */,
-				07C06C3C1B121D2E00F2DFCC /* MSFAreas.m */,
-			);
-			name = Areas;
-			sourceTree = "<group>";
-		};
 		07C06C7E1B134ED300F2DFCC /* SelectKeyValues */ = {
 			isa = PBXGroup;
 			children = (
@@ -2940,7 +2901,7 @@
 			name = SelectKeyValues;
 			sourceTree = "<group>";
 		};
-		07C924CF1B0C22FD00FA73BD /* AppliesInfo */ = {
+		07C924CF1B0C22FD00FA73BD /* User */ = {
 			isa = PBXGroup;
 			children = (
 				07CB4C7A1B104572006C220E /* MSFPersonalViewController.h */,
@@ -2952,32 +2913,15 @@
 				49DAEE7D1B2E83E4009433C5 /* personal.storyboard */,
 				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
 				49DAEE811B2E840A009433C5 /* relationship.storyboard */,
-				10DAE1AA1BBBC8F9001BD017 /* RelationCells */,
-				10DC2CF31B96919D00A2AF9C /* PhotosUpload */,
-				4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */,
-				4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */,
-				4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */,
-				07BD841E1B15B73E00D731BF /* MSFProductViewController.h */,
-				07CBA7F61B203AC00020116E /* MSFProductViewController.m */,
 				07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementController.h */,
 				07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */,
-				07330B331BBE2467000EB8FD /* MSFCashHomePageViewController.h */,
-				07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */,
-				10E546BF1C02B0CF00BBA827 /* MSFCashHomeLoanLimit */,
-				07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */,
-				07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */,
-				07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */,
 			);
-			name = AppliesInfo;
+			name = User;
 			sourceTree = "<group>";
 		};
 		07C924D11B0C2CB700FA73BD /* LoanList */ = {
 			isa = PBXGroup;
 			children = (
-				07C924D51B0C2D1C00FA73BD /* MSFLoanListViewController.h */,
-				07C924D61B0C2D1C00FA73BD /* MSFLoanListViewController.m */,
-				07C924D81B0C603B00FA73BD /* MSLoanListTableViewCell.h */,
-				07C924D91B0C603B00FA73BD /* MSLoanListTableViewCell.m */,
 			);
 			name = LoanList;
 			sourceTree = "<group>";
@@ -3022,19 +2966,10 @@
 				1092C8C31B6B237C00794EE9 /* CounterLabel */,
 				070724A61B67625A0089916B /* CollectionView */,
 				0707249B1B6718BE0089916B /* MSFSlider */,
-				07CD79721B0B0B1C004627F5 /* ClassCatory */,
 				07CD310B1B09D06D00E0C2DF /* DefineHeader */,
 				07CD31071B09CAF600E0C2DF /* CommandView */,
-				07CD31001B09839700E0C2DF /* ASValueTrackingSlider */,
 			);
 			name = CommandClass;
-			sourceTree = "<group>";
-		};
-		07CD31001B09839700E0C2DF /* ASValueTrackingSlider */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ASValueTrackingSlider;
 			sourceTree = "<group>";
 		};
 		07CD31071B09CAF600E0C2DF /* CommandView */ = {
@@ -3042,8 +2977,6 @@
 			children = (
 				07CD31081B09CC7600E0C2DF /* MSFCommandView.h */,
 				07CD31091B09CC7600E0C2DF /* MSFCommandView.m */,
-				07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */,
-				07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */,
 			);
 			name = CommandView;
 			sourceTree = "<group>";
@@ -3054,14 +2987,6 @@
 				07CD310C1B09D08B00E0C2DF /* MSFXBMCustomHeader.h */,
 			);
 			name = DefineHeader;
-			sourceTree = "<group>";
-		};
-		07CD79721B0B0B1C004627F5 /* ClassCatory */ = {
-			isa = PBXGroup;
-			children = (
-				07CD79731B0B0B6A004627F5 /* UIViewController_MSFappliesViewControllerCatogery.h */,
-			);
-			name = ClassCatory;
 			sourceTree = "<group>";
 		};
 		07D2249C1BCCD11B00B00BEF /* LifeInsurance */ = {
@@ -3168,12 +3093,6 @@
 		07E3ED911BBCDBC50010AAD2 /* CirculateCash */ = {
 			isa = PBXGroup;
 			children = (
-				07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */,
-				07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */,
-				07F089201BBD31E30067C5BC /* DrawCash.storyboard */,
-				07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */,
-				07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */,
-				07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */,
 			);
 			name = CirculateCash;
 			sourceTree = "<group>";
@@ -3200,25 +3119,15 @@
 			name = Circulate;
 			sourceTree = "<group>";
 		};
-		07FE072B1B07245200484069 /* AppliInfo */ = {
+		07FE072B1B07245200484069 /* Photo */ = {
 			isa = PBXGroup;
 			children = (
-				10C240781BBA8F5E006C23DC /* MSFUserContact.h */,
-				10C240791BBA8F5E006C23DC /* MSFUserContact.m */,
-				07FE072C1B07278800484069 /* MSFApplicationForms.h */,
-				07FE072D1B07278800484069 /* MSFApplicationForms.m */,
-				07FE072F1B07341500484069 /* MSFClient+ApplyInfo.h */,
-				07FE07301B07341500484069 /* MSFClient+ApplyInfo.m */,
-				0788FF5C1B1F046E00880617 /* MSFPhotoStatus.h */,
-				0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */,
-				07BDE4CA1B296DFA005A01EE /* MSFClient+PhotoStatus.h */,
-				07BDE4CB1B296DFA005A01EE /* MSFClient+PhotoStatus.m */,
 				0788FF6C1B1F05D200880617 /* MSFPhoto.h */,
 				0788FF6D1B1F05D200880617 /* MSFPhoto.m */,
 				491FD3DB1C849E460026928F /* MSFClient+Photos.h */,
 				491FD3DC1C849E460026928F /* MSFClient+Photos.m */,
 			);
-			name = AppliInfo;
+			name = Photo;
 			sourceTree = "<group>";
 		};
 		101BD3C51C2BF9DE00842D36 /* Cart */ = {
@@ -3390,25 +3299,11 @@
 		10DAE1AA1BBBC8F9001BD017 /* RelationCells */ = {
 			isa = PBXGroup;
 			children = (
-				10DAE1C71BBBDB1B001BD017 /* MSFRelationHeadCell.h */,
-				10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */,
-				10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */,
-				10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */,
-				10DAE1BB1BBBC971001BD017 /* MSFRelationSelectionCell.h */,
-				10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */,
-				10DAE1BE1BBBC989001BD017 /* MSFRelationPhoneCell.h */,
-				10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */,
-				10DAE1C11BBBC99F001BD017 /* MSFRelationSwitchCell.h */,
-				10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */,
-				10DAE1C41BBBC9B3001BD017 /* MSFRelationAddCell.h */,
-				10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */,
-				10ACE5EB1C0459B200EE5044 /* MSFRelationMarriageCell.h */,
-				10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */,
 			);
 			name = RelationCells;
 			sourceTree = "<group>";
 		};
-		10DC2CF31B96919D00A2AF9C /* PhotosUpload */ = {
+		10DC2CF31B96919D00A2AF9C /* Inventories */ = {
 			isa = PBXGroup;
 			children = (
 				10DC2D031B96924E00A2AF9C /* photosUpload.storyboard */,
@@ -3418,7 +3313,7 @@
 				10DC2D091B969D4300A2AF9C /* MSFElementViewController.m */,
 				10DC2D0B1B969D7300A2AF9C /* cells */,
 			);
-			name = PhotosUpload;
+			name = Inventories;
 			sourceTree = "<group>";
 		};
 		10DC2D0B1B969D7300A2AF9C /* cells */ = {
@@ -3502,8 +3397,6 @@
 		10E546BF1C02B0CF00BBA827 /* MSFCashHomeLoanLimit */ = {
 			isa = PBXGroup;
 			children = (
-				10E546C01C02B10400BBA827 /* MSFCashHomeLoanLimit.h */,
-				10E546C11C02B10400BBA827 /* MSFCashHomeLoanLimit.m */,
 			);
 			name = MSFCashHomeLoanLimit;
 			sourceTree = "<group>";
@@ -3908,8 +3801,10 @@
 		491B3DFF1B65E1A600D28455 /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				491B3E001B65E1B200D28455 /* MSFAddress.h */,
-				491B3E011B65E1B200D28455 /* MSFAddress.m */,
+				491B3E001B65E1B200D28455 /* MSFAddressCodes.h */,
+				491B3E011B65E1B200D28455 /* MSFAddressCodes.m */,
+				07C06C3B1B121D2E00F2DFCC /* MSFAddress.h */,
+				07C06C3C1B121D2E00F2DFCC /* MSFAddress.m */,
 			);
 			name = Address;
 			sourceTree = "<group>";
@@ -4144,6 +4039,7 @@
 		4943C3691B047A8C000BBF5E /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				49EAA8D61C8ED34B00CA89F3 /* Deprecated */,
 				49DA226A1B062AF700DD4483 /* Utils */,
 				49C7CBAA1B04A3B600EF5A68 /* Extensions */,
 				4943C36B1B047A90000BBF5E /* Model */,
@@ -4165,7 +4061,6 @@
 				102C7E971C2927990023172B /* Orders */,
 				4919250E1C08511C00E6EAC5 /* LoanType */,
 				49614C881C03FF7E004D6208 /* Inventory */,
-				07472BE81BFF2820008A3890 /* SocialInsurance */,
 				10E546721C004AD000BBA827 /* ProductType */,
 				49E5B7861BD4D930001995F8 /* Poster */,
 				07D2249C1BCCD11B00B00BEF /* LifeInsurance */,
@@ -4179,14 +4074,12 @@
 				074696801B981FE40074E180 /* ConfirmContract */,
 				0750AAFC1B96A49300AD67F3 /* ContactList */,
 				0738C47D1B9436F3006D7177 /* BankInfo */,
-				0704EB151B69CDBD000F5369 /* Location */,
 				491B3DFF1B65E1A600D28455 /* Address */,
 				4991471B1B246B5D00260E97 /* Selection */,
 				494FBE0B1B16B1AE005F0454 /* Cipher */,
 				07C06C7E1B134ED300F2DFCC /* SelectKeyValues */,
-				07C06C2D1B121D1100F2DFCC /* Areas */,
 				49B5D7AF1B08460800917D2C /* Authorization */,
-				07FE072B1B07245200484069 /* AppliInfo */,
+				07FE072B1B07245200484069 /* Photo */,
 				49CCFBFC1B072EBD008A9CD1 /* Apply List */,
 				49CCFBFB1B072EAF008A9CD1 /* Cash */,
 				49CCFBFA1B072EA6008A9CD1 /* Adver */,
@@ -4212,10 +4105,7 @@
 				49B185F01C5609EC00409C6F /* Coupon */,
 				498311971C33CEBA00AC14AF /* DimensionalCode */,
 				101BD3DF1C2CE60C00842D36 /* Cart */,
-				498637CC1C2BC17C00A11845 /* Distinguish */,
 				102C7E921C2927250023172B /* Orders */,
-				07122F2F1C312336004AD0E2 /* FaceMask */,
-				496FE7631C06FE0D004A5BAB /* CashHomePageView */,
 				49DA1A381C0ED1020052C056 /* Payment */,
 				07F088FE1BBD021A0067C5BC /* Circulate */,
 				074AC2491BBB87500056BA22 /* TradePassword */,
@@ -4230,14 +4120,12 @@
 				49C2FE4B1B466A2300B6B20A /* Address */,
 				4991470A1B24489800260E97 /* Selection */,
 				49DA1A391C0ED1620052C056 /* Repayment */,
-				498113BD1B1C4231003D1B7A /* Home */,
 				49DA1A3A1C0ED1750052C056 /* ApplyList */,
 				492BB42D1B1BFEA70024897C /* User */,
 				492BB41D1B1BFE870024897C /* Authorize */,
 				49DA1A3C1C0ED1AC0052C056 /* Agreement */,
 				49DA1A3B1C0ED18C0052C056 /* Information */,
 				07330B661BBE5AE6000EB8FD /* Applicaiton */,
-				07BD841D1B15B3CD00D731BF /* Forms */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -4245,7 +4133,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				1DFB39F31C8E764000E2E43C /* CreditCommon */,
+				102C7F061C2A7B600023172B /* Cart */,
 				1DF17E321C8979E30006ADA4 /* OrderDetails */,
 				4922E1581C85E85900E20C2C /* Auxiliary */,
 				49F37CD71C83ED3C00C5DCB8 /* Credit */,
@@ -4255,17 +4143,14 @@
 				49B185FF1C561F6900409C6F /* Coupons */,
 				495B070D1C520B9C002DDFAA /* Payment */,
 				498311901C33CCE900AC14AF /* Dimensional code */,
-				102C7F061C2A7B600023172B /* Cart */,
 				49252BBA1C293D3800CC682B /* Barcode */,
-				07122F291C3110E4004AD0E2 /* FaceMask */,
 				491DB1EE1BCCDE04002C5C78 /* Alert */,
 				07E3ED631BBBB9F60010AAD2 /* TradePassword */,
 				077347EE1BBA379200D7A130 /* BankCard */,
-				49CA93471BBA21120032F5C2 /* Group */,
+				49CA93471BBA21120032F5C2 /* GroupTableView */,
 				0750AAE61B969DC800AD67F3 /* ConfirmContract */,
 				49EA18AF1B6A4496006EEB9F /* ActivityIndicatorView */,
-				49E8B8E01B5FA00400680061 /* Header */,
-				07BA6CD51B5F5BBE001D6CFA /* Segment */,
+				49E8B8E01B5FA00400680061 /* ApplicationIndicatorHeader */,
 				499EA23A1B55F6400051AF66 /* TabBarController */,
 				49C2FE2E1B4652FA00B6B20A /* View */,
 				4925ADBB1B2AB91500872A8A /* Blur */,
@@ -4273,8 +4158,6 @@
 				499146F91B24484D00260E97 /* Selection */,
 				498BFC551B11FF7B00FFE88F /* WebView */,
 				491C5FB01B0F179C00CADF8E /* Button */,
-				49CCFBE61B072509008A9CD1 /* Homepage */,
-				10E5464F1BFF24E800BBA827 /* MS */,
 				49CCFBE51B072501008A9CD1 /* User */,
 				49CCFBE41B0724FA008A9CD1 /* Forms */,
 				49CCFBE31B0724F3008A9CD1 /* Settings */,
@@ -4896,8 +4779,6 @@
 			children = (
 				498BFC5C1B12BB0100FFE88F /* UIColor+Utils.h */,
 				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
-				491DB1DC1BCCB543002C5C78 /* NSURLConnection+Locations.h */,
-				491DB1DD1BCCB543002C5C78 /* NSURLConnection+Locations.m */,
 				49CA93731BBA22CF0032F5C2 /* UIView+Sizes.h */,
 				49CA93741BBA22CF0032F5C2 /* UIView+Sizes.m */,
 				49F8C0FE1C0BF6500010D791 /* UIDevice+Versions.h */,
@@ -4944,7 +4825,7 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
-		49CA93471BBA21120032F5C2 /* Group */ = {
+		49CA93471BBA21120032F5C2 /* GroupTableView */ = {
 			isa = PBXGroup;
 			children = (
 				49CA93551BBA212A0032F5C2 /* MSFGroupTableViewController.h */,
@@ -4956,31 +4837,21 @@
 				49CA935B1BBA212A0032F5C2 /* MSFGroupTableViewCell.h */,
 				49CA935C1BBA212A0032F5C2 /* MSFGroupTableViewCell.m */,
 			);
-			name = Group;
+			name = GroupTableView;
 			sourceTree = "<group>";
 		};
 		49CCFBE21B0724EA008A9CD1 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				49CA93761BBA36090032F5C2 /* MSFIDSignInViewController.h */,
-				49CA93771BBA36090032F5C2 /* MSFIDSignInViewController.m */,
-				491B3E321B662D3000D28455 /* MSFLoginPageViewController.h */,
-				491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */,
-				497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */,
-				497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */,
 				49B5D7A81B0830DD00917D2C /* MSFSignUpViewController.h */,
 				49B5D7A91B0830DD00917D2C /* MSFSignUpViewController.m */,
 				49CCFBD31B072327008A9CD1 /* MSFSignInViewController.h */,
 				49CCFBD41B072327008A9CD1 /* MSFSignInViewController.m */,
 				498F3D4B1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.h */,
 				498F3D4C1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m */,
-				0787898D1C7B0F75008C39A6 /* MSFFindwordLastTableViewController.h */,
-				0787898E1C7B0F75008C39A6 /* MSFFindwordLastTableViewController.m */,
 				4967EE6C1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.h */,
 				4967EE6D1B1A9E5B001A8F27 /* MSFRegisterAgreementViewController.m */,
 				49AFD9A41B073F5600438183 /* login.storyboard */,
-				498141041BBEA527006C7E8D /* MSFSignInSegmentedView.h */,
-				498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */,
 				498B7BD41C85729500C1DD68 /* MSFAuthenticateViewController.h */,
 				498B7BD51C85729500C1DD68 /* MSFAuthenticateViewController.m */,
 			);
@@ -5016,10 +4887,9 @@
 			isa = PBXGroup;
 			children = (
 				072550B81BFEBDF80053F51F /* SocialCashApply */,
-				07E3ED911BBCDBC50010AAD2 /* CirculateCash */,
 				49DAEE6D1B2E8370009433C5 /* Storyboard */,
-				07C924D11B0C2CB700FA73BD /* LoanList */,
-				07C924CF1B0C22FD00FA73BD /* AppliesInfo */,
+				10DC2CF31B96919D00A2AF9C /* Inventories */,
+				07C924CF1B0C22FD00FA73BD /* User */,
 				07CD30FD1B0981A000E0C2DF /* CommandClass */,
 			);
 			name = Forms;
@@ -5079,10 +4949,6 @@
 		49CCFBFB1B072EAF008A9CD1 /* Cash */ = {
 			isa = PBXGroup;
 			children = (
-				49CCFBEA1B072EA4008A9CD1 /* MSFApplicationResponse.h */,
-				49CCFBEB1B072EA4008A9CD1 /* MSFApplicationResponse.m */,
-				49CCFBF01B072EA4008A9CD1 /* MSFClient+ApplyCash.h */,
-				49CCFBF11B072EA4008A9CD1 /* MSFClient+ApplyCash.m */,
 			);
 			name = Cash;
 			sourceTree = "<group>";
@@ -5251,14 +5117,14 @@
 			name = Poster;
 			sourceTree = "<group>";
 		};
-		49E8B8E01B5FA00400680061 /* Header */ = {
+		49E8B8E01B5FA00400680061 /* ApplicationIndicatorHeader */ = {
 			isa = PBXGroup;
 			children = (
 				49E8B8EE1B5FA01300680061 /* MSFHeaderView.h */,
 				49E8B8EF1B5FA01300680061 /* MSFHeaderView.m */,
 				49E8B8F11B5FA02200680061 /* MSFHeaderView.xib */,
 			);
-			name = Header;
+			name = ApplicationIndicatorHeader;
 			sourceTree = "<group>";
 		};
 		49EA18AF1B6A4496006EEB9F /* ActivityIndicatorView */ = {
@@ -5269,6 +5135,113 @@
 				49EA18B31B6A44B4006EEB9F /* MSFActivityIndicatorViewController.xib */,
 			);
 			name = ActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+		49EAA8D51C8ECB1E00CA89F3 /* CashHome */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = CashHome;
+			sourceTree = "<group>";
+		};
+		49EAA8D61C8ED34B00CA89F3 /* Deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				07122F291C3110E4004AD0E2 /* FaceMask */,
+				07122F2A1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.h */,
+				07122F2B1C311169004AD0E2 /* MSFFaceMaskPhtoViewController.m */,
+				07122F2D1C3111BC004AD0E2 /* faceMaskStoryboard.storyboard */,
+				49EAA8D51C8ECB1E00CA89F3 /* CashHome */,
+				07330B331BBE2467000EB8FD /* MSFCashHomePageViewController.h */,
+				07330B341BBE2467000EB8FD /* MSFCashHomePageViewController.m */,
+				07E3ED911BBCDBC50010AAD2 /* CirculateCash */,
+				07F089101BBD31CD0067C5BC /* MSFDrawCashTableViewController.h */,
+				07F089111BBD31CD0067C5BC /* MSFDrawCashTableViewController.m */,
+				07F089201BBD31E30067C5BC /* DrawCash.storyboard */,
+				07D051151C2BE1F4003220D7 /* MSFSmsCodeTableViewController.h */,
+				07D051161C2BE1F4003220D7 /* MSFSmsCodeTableViewController.m */,
+				07D051251C2BE21C003220D7 /* paySmsCodeStoryboard.storyboard */,
+				07C924D11B0C2CB700FA73BD /* LoanList */,
+				07C924D51B0C2D1C00FA73BD /* MSFLoanListViewController.h */,
+				07C924D61B0C2D1C00FA73BD /* MSFLoanListViewController.m */,
+				07C924D81B0C603B00FA73BD /* MSLoanListTableViewCell.h */,
+				07C924D91B0C603B00FA73BD /* MSLoanListTableViewCell.m */,
+				10DAE1AA1BBBC8F9001BD017 /* RelationCells */,
+				10DAE1C71BBBDB1B001BD017 /* MSFRelationHeadCell.h */,
+				10DAE1C81BBBDB1B001BD017 /* MSFRelationHeadCell.m */,
+				10DAE1B81BBBC949001BD017 /* MSFRelationTFCell.h */,
+				10DAE1B91BBBC949001BD017 /* MSFRelationTFCell.m */,
+				10DAE1BB1BBBC971001BD017 /* MSFRelationSelectionCell.h */,
+				10DAE1BC1BBBC971001BD017 /* MSFRelationSelectionCell.m */,
+				10DAE1BE1BBBC989001BD017 /* MSFRelationPhoneCell.h */,
+				10DAE1BF1BBBC989001BD017 /* MSFRelationPhoneCell.m */,
+				10DAE1C11BBBC99F001BD017 /* MSFRelationSwitchCell.h */,
+				10DAE1C21BBBC99F001BD017 /* MSFRelationSwitchCell.m */,
+				10DAE1C41BBBC9B3001BD017 /* MSFRelationAddCell.h */,
+				10DAE1C51BBBC9B3001BD017 /* MSFRelationAddCell.m */,
+				10ACE5EB1C0459B200EE5044 /* MSFRelationMarriageCell.h */,
+				10ACE5EC1C0459B200EE5044 /* MSFRelationMarriageCell.m */,
+				4EDB52641B6A20B200388306 /* MSFSubmitAlertView.h */,
+				4EDB52651B6A20B200388306 /* MSFSubmitAlertView.m */,
+				4EDB52661B6A20B200388306 /* MSFSubmitAlertView.xib */,
+				07BD841E1B15B73E00D731BF /* MSFProductViewController.h */,
+				07CBA7F61B203AC00020116E /* MSFProductViewController.m */,
+				10E546BF1C02B0CF00BBA827 /* MSFCashHomeLoanLimit */,
+				10E546C01C02B10400BBA827 /* MSFCashHomeLoanLimit.h */,
+				10E546C11C02B10400BBA827 /* MSFCashHomeLoanLimit.m */,
+				07D224871BCCB7F900B00BEF /* MSFLifeInsuranceViewController.h */,
+				07D224881BCCB7F900B00BEF /* MSFLifeInsuranceViewController.m */,
+				07D224971BCCB80A00B00BEF /* LifeInsurance.storyboard */,
+				07CD79741B0B19BF004627F5 /* MSFAppliesHeaderView.h */,
+				07CD79751B0B19BF004627F5 /* MSFAppliesHeaderView.m */,
+				49CA93761BBA36090032F5C2 /* MSFIDSignInViewController.h */,
+				49CA93771BBA36090032F5C2 /* MSFIDSignInViewController.m */,
+				491B3E321B662D3000D28455 /* MSFLoginPageViewController.h */,
+				491B3E331B662D3000D28455 /* MSFLoginPageViewController.m */,
+				497269E71B5F3A48000F1E82 /* MSFLoginViewController.h */,
+				497269E81B5F3A48000F1E82 /* MSFLoginViewController.m */,
+				0787898D1C7B0F75008C39A6 /* MSFFindwordLastTableViewController.h */,
+				0787898E1C7B0F75008C39A6 /* MSFFindwordLastTableViewController.m */,
+				498141041BBEA527006C7E8D /* MSFSignInSegmentedView.h */,
+				498141051BBEA527006C7E8D /* MSFSignInSegmentedView.m */,
+				498637CC1C2BC17C00A11845 /* Distinguish */,
+				07BD841D1B15B3CD00D731BF /* Forms */,
+				496FE7631C06FE0D004A5BAB /* CashHomePageView */,
+				07122F2F1C312336004AD0E2 /* FaceMask */,
+				10E5464F1BFF24E800BBA827 /* MS */,
+				498113BD1B1C4231003D1B7A /* Home */,
+				49CCFBE61B072509008A9CD1 /* Homepage */,
+				07BA6CD51B5F5BBE001D6CFA /* Segment */,
+				07BA6CE31B5F5BD7001D6CFA /* MSFSegment.h */,
+				07BA6CE41B5F5BD7001D6CFA /* MSFSegment.m */,
+				49CCFBEA1B072EA4008A9CD1 /* MSFApplicationResponse.h */,
+				49CCFBEB1B072EA4008A9CD1 /* MSFApplicationResponse.m */,
+				49CCFBF01B072EA4008A9CD1 /* MSFClient+ApplyCash.h */,
+				49CCFBF11B072EA4008A9CD1 /* MSFClient+ApplyCash.m */,
+				10C240781BBA8F5E006C23DC /* MSFUserContact.h */,
+				10C240791BBA8F5E006C23DC /* MSFUserContact.m */,
+				07FE072C1B07278800484069 /* MSFApplicationForms.h */,
+				07FE072D1B07278800484069 /* MSFApplicationForms.m */,
+				07FE072F1B07341500484069 /* MSFClient+ApplyInfo.h */,
+				07FE07301B07341500484069 /* MSFClient+ApplyInfo.m */,
+				0788FF5C1B1F046E00880617 /* MSFPhotoStatus.h */,
+				0788FF5D1B1F046E00880617 /* MSFPhotoStatus.m */,
+				07BDE4CA1B296DFA005A01EE /* MSFClient+PhotoStatus.h */,
+				07BDE4CB1B296DFA005A01EE /* MSFClient+PhotoStatus.m */,
+				491DB1DC1BCCB543002C5C78 /* NSURLConnection+Locations.h */,
+				491DB1DD1BCCB543002C5C78 /* NSURLConnection+Locations.m */,
+				07472BE91BFF2860008A3890 /* MSFSocialInsuranceModel.h */,
+				07472BEA1BFF2860008A3890 /* MSFSocialInsuranceModel.m */,
+				07D13DB21C03009700A46980 /* MSFClient+SocialInsurance.h */,
+				07D13DB31C03009700A46980 /* MSFClient+SocialInsurance.m */,
+				0704EB161B69CDCF000F5369 /* MSFLocationModel.h */,
+				0704EB171B69CDCF000F5369 /* MSFLocationModel.m */,
+				0704EB681B6B52EB000F5369 /* MSFResultModel.h */,
+				0704EB691B6B52EB000F5369 /* MSFResultModel.m */,
+				0704EB6B1B6B5327000F5369 /* MSFAddressInfo.h */,
+				0704EB6C1B6B5327000F5369 /* MSFAddressInfo.m */,
+			);
+			name = Deprecated;
 			sourceTree = "<group>";
 		};
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
@@ -5331,6 +5304,7 @@
 		49F37CD71C83ED3C00C5DCB8 /* Credit */ = {
 			isa = PBXGroup;
 			children = (
+				1DFB39F31C8E764000E2E43C /* CreditCommon */,
 				49F37CD81C83ED4700C5DCB8 /* MSFCreditViewController.h */,
 				49F37CD91C83ED4700C5DCB8 /* MSFCreditViewController.m */,
 				1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */,
@@ -6586,7 +6560,7 @@
 				495021071B13103400605666 /* MSFUserViewModel.m in Sources */,
 				49C2FE3E1B46530900B6B20A /* MSFEdgeView.m in Sources */,
 				49E418841B4CD18400422C20 /* MSFPersonalViewModel.m in Sources */,
-				491B3E021B65E1B200D28455 /* MSFAddress.m in Sources */,
+				491B3E021B65E1B200D28455 /* MSFAddressCodes.m in Sources */,
 				4948E8B61B9577D30048D125 /* MSFInventoryViewModel.m in Sources */,
 				491925211C08516600E6EAC5 /* MSFLoanType.m in Sources */,
 				495B07391C522E6E002DDFAA /* MSFPaymentViewModel.m in Sources */,
@@ -6615,7 +6589,7 @@
 				494674B51C47879A0065D7EE /* MSFCompanion.m in Sources */,
 				10DAE1C61BBBC9B3001BD017 /* MSFRelationAddCell.m in Sources */,
 				494417F81B672C2200FF964D /* MSFClient+Agreements.m in Sources */,
-				07C06C3D1B121D2E00F2DFCC /* MSFAreas.m in Sources */,
+				07C06C3D1B121D2E00F2DFCC /* MSFAddress.m in Sources */,
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */,
 				101BD3C41C2BE6DE00842D36 /* MSFCartTrialCell.m in Sources */,

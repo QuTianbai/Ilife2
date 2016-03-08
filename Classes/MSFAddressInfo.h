@@ -8,6 +8,8 @@
 
 #import "MSFObject.h"
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFAddressInfo : MSFObject
 
 @property (nonatomic, copy) NSString *province;

@@ -10,6 +10,8 @@
 @class RACCommand;
 @class MSFFormsViewModel;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFCashHomePageViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) NSString *usableLmt;

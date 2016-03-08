@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFFaceMaskPhtoViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;

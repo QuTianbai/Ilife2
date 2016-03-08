@@ -9,6 +9,8 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFLoanLimitView : UIView
 
 //设置可用额度及已用额度

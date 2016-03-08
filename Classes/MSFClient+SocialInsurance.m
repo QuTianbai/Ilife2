@@ -35,8 +35,7 @@
 }
 
 - (RACSignal *)fetchGetSocialInsuranceInfo {
-	NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:@"append/loadAppendInfo" parameters:nil];
-	return [[self enqueueRequest:request resultClass:MSFSocialInsuranceModel.class] msf_parsedResults];
+	return RACSignal.empty;
 }
 
 - (RACSignal *)confirmInsuranceSignal {

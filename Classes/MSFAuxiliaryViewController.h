@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
+// 附加信息界面
 @interface MSFAuxiliaryViewController : UITableViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;

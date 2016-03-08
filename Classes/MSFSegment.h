@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+__attribute__((deprecated("This class is unavailable")))
+
 @protocol MSFSegmentDelegate <NSObject>
 
 - (void)setLineColor:(NSMutableArray *)array;
 
 @end
+
+__attribute__((deprecated("This class is unavailable")))
 
 @interface MSFSegment : UISegmentedControl
 

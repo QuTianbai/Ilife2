@@ -10,6 +10,8 @@
 @class RACCommand;
 @class MSFHomePageItemViewModel;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFHomepageViewModel : RVMViewModel
 
 @property (nonatomic, weak, readonly) id<MSFViewModelServices> services;

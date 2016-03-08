@@ -89,8 +89,9 @@ UICollectionViewDelegateFlowLayout>
 	scanItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.viewModel.services msf_barcodeScanSignal] doNext:^(id x) {
-			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
-			[self.navigationController pushViewController:vc animated:YES];
+			//TODO: 旧的二维码扫描进入商品贷界面的调用方式
+			//MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
+			//[self.navigationController pushViewController:vc animated:YES];
 		}];
 	}];
 }

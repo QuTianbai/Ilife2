@@ -7,8 +7,8 @@
 #import "MSFTestAddressViewModel.h"
 #import <UIKit/UIKit.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFAreas.h"
 #import "MSFAddress.h"
+#import "MSFAddressCodes.h"
 
 QuickSpecBegin(MSFAddressViewModelSpec)
 
@@ -27,7 +27,7 @@ it(@"should initialize", ^{
 
 it(@"should has province", ^{
   // given
-	MSFAreas *province = mock(MSFAreas.class);
+	MSFAddress *province = mock(MSFAddress.class);
 	
   // when
 	viewModel.province = province;
@@ -38,7 +38,7 @@ it(@"should has province", ^{
 
 it(@"should has city", ^{
   // given
-	MSFAreas *city = mock(MSFAreas.class);
+	MSFAddress *city = mock(MSFAddress.class);
 	
   // when
 	viewModel.city = city;
@@ -49,7 +49,7 @@ it(@"should has city", ^{
 
 it(@"should has area", ^{
   // given
-	MSFAreas *area = mock(MSFAreas.class);
+	MSFAddress *area = mock(MSFAddress.class);
 	
   // when
 	viewModel.area = area;
@@ -84,7 +84,7 @@ it(@"should has right address", ^{
 
 it(@"should create viewmodel with initialize address", ^{
 	// given
-	MSFAddress *address = mock([MSFAddress class]);
+	MSFAddressCodes *address = mock([MSFAddressCodes class]);
 	stubProperty(address, province, @"0");
 	stubProperty(address, city, @"1");
 	stubProperty(address, area, @"2");

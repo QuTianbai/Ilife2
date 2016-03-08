@@ -8,6 +8,8 @@
 
 @class MSFApplyCashViewModel;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFProductViewController : UITableViewController
 
 @property (nonatomic, strong, readonly) MSFApplyCashViewModel *viewModel;

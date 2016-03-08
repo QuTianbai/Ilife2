@@ -26,7 +26,7 @@ extern NSString *const MSFAuthorizeCaptchaModifyMobile;
 
 @class MSFServer;
 @class RACCommand;
-@class MSFAddress;
+@class MSFAddressCodes;
 
 extern const NSInteger MSFAuthorizeUsernameMaxLength;
 extern const NSInteger MSFAuthorizePasswordMaxLength;

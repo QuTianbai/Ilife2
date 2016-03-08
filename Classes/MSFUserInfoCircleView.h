@@ -10,6 +10,8 @@
 
 @class RACCommand;
 
+__attribute__((deprecated("This class is unavailable")))
+
 @interface MSFUserInfoCircleView : UIView
 
 //点击事件Block

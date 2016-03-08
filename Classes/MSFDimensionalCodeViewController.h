@@ -6,6 +6,7 @@
 
 #import <UIKit/UIKit.h>
 
+// 扫描支付界面
 @interface MSFDimensionalCodeViewController : UIViewController
 
 - (instancetype)initWithViewModel:(id)viewModel;
