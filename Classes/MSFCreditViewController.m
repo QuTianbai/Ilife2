@@ -5,8 +5,11 @@
 //
 
 #import "MSFCreditViewController.h"
-//#import <Masonry.h>
-
+#import <Masonry.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFReactiveView.h"
+#import "MSFCreditOrderDetailsViewController.h"
+#import "MSFWalletViewModel.h"
 //define this constant if you want to use Masonry without the 'mas_' prefix
 #define MAS_SHORTHAND
 //define this constant if you want to enable auto-boxing for default syntax
@@ -16,6 +19,7 @@
 @interface MSFCreditViewController ()
 @property (nonatomic, strong) UIImage *shadowImage;
 @property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, strong) MSFWalletViewModel *viewModel;
 @end
 
 @implementation MSFCreditViewController
@@ -41,31 +45,53 @@
                        forBarPosition:UIBarPositionAny
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
+     //self.viewModel.active = YES;
 
     }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.edgesForExtendedLayout = UIRectEdgeNone;
+   
     self.title = @"马上贷";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单"
-                                                                              style:UIBarButtonItemStyleDone target:nil action:nil];
     
-   // self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
-
-     //UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"MSFCreditViewController" bundle:nil];
-   // [self.storyboard instantiateViewControllerWithIdentifier:@"MSFCreditViewController"];
+    UIButton * butt = [[UIButton alloc]init];;
+    butt.frame = CGRectMake(0, 0, 50, 20);
+    butt.layer.cornerRadius=10;
+    [butt setTitle:@"账单" forState:UIControlStateNormal];
+    [butt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    butt.titleLabel.font =[UIFont systemFontOfSize:17];
+    butt.layer.masksToBounds=YES;
+    butt.layer.borderWidth=1;
+    CGColorSpaceRef coloespace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(coloespace, (CGFloat[]){255,255,255,255});
+    butt.layer.borderColor=colorref;
+    [butt addTarget:self action:@selector(BackToPrevious) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * barbutton = [[UIBarButtonItem alloc]initWithCustomView:butt];
+    self.navigationItem.rightBarButtonItem = barbutton;
+    self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;
+    
+    
+    
 }
--(void)viewDidDisappear:(BOOL)animated
+-(void)viewWillDisappear:(BOOL)animated
 {
-    
+    [super viewWillDisappear:animated];
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     [navigationBar setBackgroundImage:self.backgroundImage
                        forBarPosition:UIBarPositionAny
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:self.shadowImage];
+    
+    self.viewModel.active = NO;
 
+}
+
+-(void)BackToPrevious
+{
+    MSFCreditOrderDetailsViewController *OrderDetails=[[MSFCreditOrderDetailsViewController alloc]init];
+
+    [self.navigationController pushViewController:OrderDetails animated:NO];
     
     
 }
