@@ -41,7 +41,7 @@
 	self.tableView.separatorStyle = UITableViewCellAccessoryNone;
 	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 	@weakify(self)
-	[RACObserve(self, viewModel.cmdtyList) subscribeNext:^(id x) {
+	[[RACSignal combineLatest:@[RACObserve(self, viewModel.cmdtyList), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
 		@strongify(self)
 		[self.tableView reloadData];
 	}];
@@ -138,6 +138,18 @@
 		return 69;
 	}
 	return 44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	
+	return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	if (section == 3 && [self.viewModel.orderStatus isEqualToString:@"待支付"]) {
+		return 60;
+	}
+	return 0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
