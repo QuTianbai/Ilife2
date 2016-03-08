@@ -16,6 +16,6 @@
 - (RACSignal *)fetchApplyCash;
 
 // 保存/提交用户马上贷申请表
-- (RACSignal *)applyInfoSubmit1:(MSFApplicationForms *)model;
+- (RACSignal *)applyInfoSubmit1:(id)model __deprecated;
 
 @end

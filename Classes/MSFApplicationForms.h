@@ -11,6 +11,8 @@
 
 @class MSFPhotoStatus;
 
+__attribute__((deprecated("This class is unavailable. Please use the MSFUser class instead")))
+
 // 用户申请表个人资料
 @interface MSFApplicationForms : MSFObject
 

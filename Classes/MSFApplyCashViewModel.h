@@ -66,14 +66,15 @@
 // loanType  - 贷款产品群  社保贷/马上贷 etc.
 //
 // Returns a instance of `MSFApplyCashModel`
-- (instancetype)initWithViewModel:(MSFFormsViewModel *)viewModel loanType:(MSFLoanType *)loanType;
+- (instancetype)initWithViewModel:(id)viewModel loanType:(MSFLoanType *)loanType __deprecated_msg("Use initWithLoanType: services: intead");
+- (instancetype)initWithLoanType:(MSFLoanType *)loanType services:(id <MSFViewModelServices>)services;
 
 
 // <MSFApplicationViewModel>
 @property (nonatomic, strong) NSArray *accessories;
 @property (nonatomic, strong) MSFLoanType *loanType;
 @property (nonatomic, strong) NSString *applicationNo;
-@property (nonatomic, strong) MSFFormsViewModel *formViewModel;
+@property (nonatomic, strong) id formViewModel __deprecated_msg("Use MSFUser intead");
 @property (nonatomic, weak) id<MSFViewModelServices> services;
 
 @end

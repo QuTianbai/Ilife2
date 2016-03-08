@@ -24,23 +24,28 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 @interface MSFAddBankCardViewModel ()
 
 @property (nonatomic, strong) FMDatabase *fmdb;
-
 @property (nonatomic, strong, readwrite) MSFAddressViewModel *addressViewModel;
-@property (nonatomic, weak) MSFFormsViewModel *formsViewModel;
-
 @property (nonatomic, copy) NSString *oldBankNo;
 
 @end
 
 @implementation MSFAddBankCardViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard {
+- (instancetype)initWithFormsViewModel:(id)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+  
+  return self;
+}
+
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard {
 	self = [super init];
 	
 	if (!self) {
 		return nil;
 	}
-	_formsViewModel = formsViewModel;
 	[self initialize];
 	_bankNO = @"";
 	_transPassword = @"";
@@ -48,7 +53,7 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 	_supportBanks = @"";
 	_bankBranchProvinceCode = @"";
 	_oldBankNo = @"";
-	_services = formsViewModel.services;
+	_services = services;
 	_bankAddress = @"";
 	_isFirstBankCard = isFirstBankCard;
 	
@@ -182,8 +187,7 @@ NSLocalizedFailureReasonErrorKey: str,
 	}
 	
 	return [[self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode] doNext:^(id x) {
-		 self.formsViewModel.active = NO;
-		 self.formsViewModel.active = YES;
+		[self.services.httpClient updateUser:self.services.httpClient.user];
 	}];
 }
 

@@ -161,13 +161,8 @@
 			if (model.processing == 1) {
 				
 				MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@"1101"];
-				MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithViewModel:self.viewModel.formViewModel loanType:loanType];
+				MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:loanType services:self.viewModel.services];
 				[[viewModel submitSignalWithStatus:@"0"] subscribeNext:^(MSFSubmitApplyModel *applyCash) {
-				//TODO: 
-//					viewModel.applicationNo = applyCash.appNo;
-//					MSFUserInfomationViewController *userInfoVC = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.services];
-//					[self.navigationController pushViewController:userInfoVC animated:YES];
-					
 				}];
 				
 			} else {
@@ -200,11 +195,11 @@
 					}];
 					return ;
 				}
-				if (!self.viewModel.formViewModel.master) {
+				if (!self.viewModel.hasMasterCard) {
 					[SVProgressHUD showErrorWithStatus:@"请先添加银行卡"];
 					MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
 					BOOL isFirstBankCard = YES;
-					vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:self.viewModel.formViewModel andIsFirstBankCard:isFirstBankCard];
+					vc.viewModel =  [[MSFAddBankCardViewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
 					[self.navigationController pushViewController:vc animated:YES];
 					return ;
 				}

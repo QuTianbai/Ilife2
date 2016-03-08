@@ -8,6 +8,8 @@
 
 #import "MSFObject.h"
 
+__attribute__((deprecated("This class is unavailable.")))
+
 @interface MSFApplicationResponse : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *applyID;

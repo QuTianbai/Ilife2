@@ -79,7 +79,6 @@
 #pragma mark - Private
 
 - (void)authenticatedControllers {
-	self.viewModel.formsViewModel.active = YES;
 	MSFCreditViewModel *homepageViewModel = [[MSFCreditViewModel alloc] initWithServices:self.viewModel.services];
 	MSFCreditViewController *homePageViewController = [[MSFCreditViewController alloc] initWithViewModel:homepageViewModel];
 	homePageViewController.title = @"马上贷";

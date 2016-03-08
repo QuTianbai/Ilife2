@@ -16,7 +16,7 @@
 @class MSFApplicationForms;
 @class MSFAddress;
 
-__attribute__((deprecated("This class is unavailable. Please use the MSFProfessionalViewController class instead")))
+__attribute__((deprecated("This class is unavailable. Please use the MSFCreaditViewModel/MSFWalletViewModel/MSFCommodityViewModel class instead")))
 
 @interface MSFFormsViewModel : RVMViewModel
 

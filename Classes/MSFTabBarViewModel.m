@@ -37,7 +37,6 @@
 #pragma mark - Private
 
 - (void)initialize {
-	_formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
 	_authorizeViewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
 	_authorizationUpdatedSignal = [[RACSubject subject] setNameWithFormat:@"MSFTabBarViewModel `authorizationUpdatedSignal`"];
 	
@@ -45,21 +44,18 @@
 	[self.authorizeViewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
-			self.formsViewModel.active = NO;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
 	[self.authorizeViewModel.executeSignUp.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
-			self.formsViewModel.active = NO;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:x];
 		}];
 	}];
 	[self.authorizeViewModel.executeSignOut.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[signal subscribeNext:^(id x) {
-			self.formsViewModel.active = NO;
 			[(RACSubject *)self.authorizationUpdatedSignal sendNext:self.services.httpClient];
 		}];
 	}];

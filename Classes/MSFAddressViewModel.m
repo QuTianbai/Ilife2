@@ -17,7 +17,7 @@
 @interface MSFAddressViewModel ()
 
 @property (nonatomic, strong) FMDatabase *fmdb;
-@property (nonatomic, strong) MSFApplicationForms *form;
+@property (nonatomic, strong) id form DEPRECATED_ATTRIBUTE;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 
 @end

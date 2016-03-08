@@ -51,6 +51,7 @@
 // 拉取支持的银行
 @property (nonatomic, copy, readonly) NSString *supportBanks;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard;
+- (instancetype)initWithFormsViewModel:(id)formsViewModel andIsFirstBankCard:(BOOL)isFirstBankCard __deprecated_msg("Use -initWithServices: andIsFirstBankCard instead");
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services andIsFirstBankCard:(BOOL)isFirstBankCard;
 
 @end

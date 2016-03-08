@@ -192,7 +192,6 @@ static NSString *const kWalletIdentifier = @"4102";
 
 - (RACSignal *)applicationSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:kWalletIdentifier];
 		MSFSocialInsuranceCashViewModel *viewModel = [[MSFSocialInsuranceCashViewModel alloc] initWithServices:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
@@ -211,8 +210,7 @@ static NSString *const kWalletIdentifier = @"4102";
 
 - (RACSignal *)bindBankcardSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFFormsViewModel *formsViewModel = [[MSFFormsViewModel alloc] initWithServices:self.services];
-		MSFAddBankCardViewModel *viewModel = [[MSFAddBankCardViewModel alloc] initWithFormsViewModel:formsViewModel andIsFirstBankCard:YES];
+		MSFAddBankCardViewModel *viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.services andIsFirstBankCard:YES];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
