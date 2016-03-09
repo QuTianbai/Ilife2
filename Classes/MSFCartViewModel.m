@@ -110,7 +110,6 @@
 	]]
 	subscribeNext:^(id x) {
 		@strongify(self)
-		NSLog(@"xxxx %@", [x description]);
 		[self.executeTrialCommand execute:nil];
 	}];
 	
