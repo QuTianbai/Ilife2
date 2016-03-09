@@ -14,8 +14,8 @@
 @class MSFFormsViewModel;
 @class RACCommand;
 @class MSFApplyCashModel;
-@class MSFMarkets;
-@class MSFTeam;
+@class MSFAmortize;
+@class MSFPlan;
 @class MSFLoanType;
 
 @interface MSFApplyCashViewModel : RVMViewModel <MSFApplicationViewModel>
@@ -40,10 +40,10 @@
 @property (nonatomic, copy) NSString *maxMoney;
 
 // 贷款期数对应的产品
-@property (nonatomic, strong) MSFTeam *product;
+@property (nonatomic, strong) MSFPlan *product;
 
 @property (nonatomic, strong) MSFApplyCashModel *model;
-@property (nonatomic, strong) MSFMarkets *markets;
+@property (nonatomic, strong) MSFAmortize *markets;
 
 @property (nonatomic, strong, readonly) RACCommand *executeLifeInsuranceCommand;
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;

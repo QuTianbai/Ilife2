@@ -11,7 +11,7 @@
 #import <Masonry/Masonry.h>
 #import "MSFCartViewModel.h"
 #import "UIColor+Utils.h"
-#import "MSFTeam.h"
+#import "MSFPlan.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFCartCollectionViewCell : UICollectionViewCell
@@ -136,7 +136,7 @@ UICollectionViewDelegate>
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	MSFCartCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFCartCollectionViewCell" forIndexPath:indexPath];
-	MSFTeam *term = self.viewModel.terms[indexPath.row];
+	MSFPlan *term = self.viewModel.terms[indexPath.row];
 	cell.content = [NSString stringWithFormat:@"%@期", term.loanTeam];
 	return cell;
 }

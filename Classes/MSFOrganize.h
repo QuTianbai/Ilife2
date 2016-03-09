@@ -8,13 +8,13 @@
 
 #import "MSFObject.h"
 
-// 产品集
-@interface MSFTeams2 : MSFObject
+// 金额段计划集
+@interface MSFOrganize : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *maxAmount;
 @property (nonatomic, copy, readonly) NSString *minAmount;
 
-// MSFTeam array
+// MSFPlan
 @property (nonatomic, strong, readonly) NSArray *team;
 
 @end

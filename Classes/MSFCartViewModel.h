@@ -12,7 +12,7 @@
 
 @class RACCommand;
 @class MSFCart;
-@class MSFMarkets;
+@class MSFAmortize;
 @class MSFLoanType;
 @class MSFFormsViewModel;
 @class MSFTrial;

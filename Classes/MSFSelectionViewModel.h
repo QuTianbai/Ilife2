@@ -8,7 +8,7 @@
 
 @class MSFMarket;
 @class RACCommand;
-@class MSFMarkets;
+@class MSFAmortize;
 
 @interface MSFSelectionViewModel : RVMViewModel
 
@@ -25,6 +25,6 @@
 - (NSString *)subtitleForIndexPath:(NSIndexPath *)indexPath;
 - (id)modelForIndexPath:(NSIndexPath *)indexPath;
 
-+ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFMarkets *)markts total:(NSInteger)amount;
++ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFAmortize *)markts total:(NSInteger)amount;
 
 @end

@@ -9,20 +9,20 @@
 #import "MSFCartViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFClient+CheckEmploee2.h"
 #import "MSFClient+Cart.h"
 #import "MSFClient+CheckAllowApply.h"
 #import "MSFCart.h"
 #import "MSFTrial.h"
-#import "MSFMarkets.h"
-#import "MSFTeams2.h"
-#import "MSFTeam.h"
+#import "MSFAmortize.h"
+#import "MSFOrganize.h"
+#import "MSFPlan.h"
 #import "MSFLoanType.h"
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFCheckAllowApply.h"
-#import "MSFMarkets.h"
+#import "MSFAmortize.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import "MSFClient+Amortize.h"
 
 @interface MSFCartViewModel ()
 
@@ -30,7 +30,7 @@
 @property (nonatomic, strong, readwrite) MSFCart *cart;
 @property (nonatomic, strong, readwrite) NSArray *terms;
 @property (nonatomic, strong, readwrite) NSString *term;
-@property (nonatomic, strong, readwrite) MSFMarkets *markets;
+@property (nonatomic, strong, readwrite) MSFAmortize *markets;
 @property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
 @property (nonatomic, assign, readwrite) BOOL barcodeInvalid;
 @property (nonatomic, strong) NSString *maxLoan;
@@ -115,7 +115,7 @@
 	
 	// 根据贷款产品获取贷款资料
 	[[RACObserve(self, loanType.typeID) ignore:nil] subscribeNext:^(id x) {
-		[[self.services.httpClient fetchCheckEmploeeWithProductCode:x] subscribeNext:^(MSFMarkets *x) {
+		[[self.services.httpClient fetchAmortizeWithProductCode:x] subscribeNext:^(MSFAmortize *x) {
 			@strongify(self)
 			[self handleMarkets:x];
 		} error:^(NSError *error) {
@@ -127,12 +127,12 @@
 	[RACObserve(self, loanAmt) subscribeNext:^(id x) {
 		@strongify(self)
 		self.terms = [[[self.markets.teams.rac_sequence
-			filter:^BOOL(MSFTeams2 *terms) {
+			filter:^BOOL(MSFOrganize *terms) {
 				return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
 			}]
-			flattenMap:^RACStream *(MSFTeams2 *value) {
+			flattenMap:^RACStream *(MSFOrganize *value) {
 				return value.team.rac_sequence;
-			 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
+			 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
 					 if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
 						 return NSOrderedAscending;
 					 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
@@ -168,14 +168,14 @@
 	return self;
 }
 
-- (void)handleMarkets:(MSFMarkets *)markets {
+- (void)handleMarkets:(MSFAmortize *)markets {
 	self.markets = markets;
-	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFTeams2 *terms) {
+	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFOrganize *terms) {
 		return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
 	}]
-	flattenMap:^RACStream *(MSFTeams2 *value) {
+	flattenMap:^RACStream *(MSFOrganize *value) {
 			return value.team.rac_sequence;
-	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
+	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
 		if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
 			return NSOrderedAscending;
 		} else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {

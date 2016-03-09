@@ -8,9 +8,10 @@
 
 #import "MSFObject.h"
 
-// 贷款期数
-@interface MSFTeam : MSFObject
+// 计划
+@interface MSFPlan : MSFObject
 
+// 期数
 @property (nonatomic, copy) NSString *loanTeam;
 
 @end
