@@ -37,31 +37,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKl-HA-CxE">
-                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZF-Gt-0Bt">
-                                        <rect key="frame" x="20" y="10" width="280" height="40"/>
-                                        <color key="backgroundColor" red="0.086274509799999996" green="0.59999999999999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="FLC-tA-aL8"/>
-                                        </constraints>
-                                        <state key="normal" title="提交">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhL-a2-n6v">
+                                <rect key="frame" x="0.0" y="64" width="320" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="centerY" secondItem="sZF-Gt-0Bt" secondAttribute="centerY" id="6w2-R3-iSO"/>
-                                    <constraint firstAttribute="trailing" secondItem="sZF-Gt-0Bt" secondAttribute="trailing" constant="20" id="JGL-Hb-8ta"/>
-                                    <constraint firstItem="sZF-Gt-0Bt" firstAttribute="leading" secondItem="VKl-HA-CxE" secondAttribute="leading" constant="20" id="RSf-vd-ErL"/>
-                                    <constraint firstAttribute="height" constant="60" id="vYD-K8-ezY"/>
+                                    <constraint firstAttribute="height" constant="88" id="6TM-e7-25X"/>
                                 </constraints>
                             </view>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l5S-fv-hAN">
-                                <rect key="frame" x="0.0" y="64" width="320" height="444"/>
+                                <rect key="frame" x="0.0" y="152" width="320" height="356"/>
                                 <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c7p-DR-FCE">
@@ -94,7 +78,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_attachment_full.png" translatesAutoresizingMaskIntoConstraints="NO" id="ch3-pz-Ls8">
-                                                            <rect key="frame" x="106.5" y="66" width="16" height="16"/>
+                                                            <rect key="frame" x="106" y="66" width="16" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="IAK-kr-zsK"/>
                                                                 <constraint firstAttribute="width" constant="16" id="RK0-Dd-cCU"/>
@@ -168,17 +152,49 @@
                                     <outlet property="delegate" destination="y1b-jP-7vn" id="po0-J4-oxc"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VKl-HA-CxE">
+                                <rect key="frame" x="0.0" y="508" width="320" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sZF-Gt-0Bt">
+                                        <rect key="frame" x="20" y="10" width="280" height="40"/>
+                                        <color key="backgroundColor" red="0.086274509799999996" green="0.59999999999999998" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="FLC-tA-aL8"/>
+                                        </constraints>
+                                        <state key="normal" title="提交">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="sZF-Gt-0Bt" secondAttribute="centerY" id="6w2-R3-iSO"/>
+                                    <constraint firstAttribute="trailing" secondItem="sZF-Gt-0Bt" secondAttribute="trailing" constant="20" id="JGL-Hb-8ta"/>
+                                    <constraint firstItem="sZF-Gt-0Bt" firstAttribute="leading" secondItem="VKl-HA-CxE" secondAttribute="leading" constant="20" id="RSf-vd-ErL"/>
+                                    <constraint firstAttribute="height" constant="60" id="vYD-K8-ezY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="l5S-fv-hAN" firstAttribute="top" secondItem="yhL-a2-n6v" secondAttribute="bottom" id="0Yl-cY-lUL"/>
                             <constraint firstItem="l5S-fv-hAN" firstAttribute="top" secondItem="LEe-hs-haB" secondAttribute="bottom" id="2Jr-Tu-aTM"/>
+                            <constraint firstItem="yhL-a2-n6v" firstAttribute="leading" secondItem="4EG-EH-atG" secondAttribute="leading" id="5Ag-2b-FDu"/>
                             <constraint firstAttribute="trailing" secondItem="VKl-HA-CxE" secondAttribute="trailing" id="RyW-Lz-JRP"/>
+                            <constraint firstItem="yhL-a2-n6v" firstAttribute="top" secondItem="LEe-hs-haB" secondAttribute="bottom" id="U57-EP-gd9"/>
                             <constraint firstAttribute="bottom" secondItem="l5S-fv-hAN" secondAttribute="bottom" constant="60" id="Vnq-Qd-PNU"/>
                             <constraint firstAttribute="trailing" secondItem="l5S-fv-hAN" secondAttribute="trailing" id="eZh-DU-7vx"/>
                             <constraint firstItem="VKl-HA-CxE" firstAttribute="leading" secondItem="4EG-EH-atG" secondAttribute="leading" id="g3x-ab-beW"/>
                             <constraint firstItem="VKl-HA-CxE" firstAttribute="bottom" secondItem="4EG-EH-atG" secondAttribute="bottomMargin" id="jMN-bj-UwS"/>
                             <constraint firstItem="l5S-fv-hAN" firstAttribute="leading" secondItem="4EG-EH-atG" secondAttribute="leading" id="nY5-T0-uPJ"/>
+                            <constraint firstAttribute="trailing" secondItem="yhL-a2-n6v" secondAttribute="trailing" id="pqW-k4-3U1"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2Jr-Tu-aTM"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="上传资料" id="Znl-vk-xdZ"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -186,6 +202,7 @@
                     <connections>
                         <outlet property="collectionView" destination="l5S-fv-hAN" id="FxI-uq-DXm"/>
                         <outlet property="constraint" destination="Vnq-Qd-PNU" id="4kU-Ab-NDw"/>
+                        <outlet property="headerView" destination="yhL-a2-n6v" id="5CE-sd-l9M"/>
                         <outlet property="submitButton" destination="sZF-Gt-0Bt" id="HyA-6H-V9B"/>
                         <segue destination="3aB-XV-yFa" kind="show" identifier="photosUploadSegue" id="GUb-3N-L8r"/>
                     </connections>

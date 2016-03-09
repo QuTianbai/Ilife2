@@ -32,6 +32,7 @@
 - (RACSignal *)updateValidSignal;
 
 - (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel;
+- (instancetype)initWitViewModel:(id)viewModel services:(id)services;
 - (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel AndAttachment:(MSFAttachment *)attachment;
 // 重新提交附件信息
 - (instancetype)initWithApplicaitonNo:(NSString *)applicaitonNo productID:(NSString *)productID services:(id <MSFViewModelServices>)services;

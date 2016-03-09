@@ -36,13 +36,13 @@
 
 #pragma mark - Lifecycle
 
-- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel {
+- (instancetype)initWitViewModel:(id)viewModel services:(id)services {
   self = [super init];
   if (!self) {
     return nil;
   }
-	_applicationViewModel = applicaitonViewModel;
-	_services = applicaitonViewModel.services;
+	_applicationViewModel = viewModel;
+	_services = services;
 	
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
@@ -83,6 +83,15 @@
 	}
 	
 	[self initialize];
+  
+  return self;
+}
+
+- (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicaitonViewModel {
+  self = [self initWitViewModel:applicaitonViewModel services:applicaitonViewModel.services];
+  if (!self) {
+    return nil;
+  }
 	
 	return self;
 }

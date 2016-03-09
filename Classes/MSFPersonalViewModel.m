@@ -20,7 +20,6 @@
 
 @interface MSFPersonalViewModel ()
 
-@property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, strong) MSFPersonal *model;
 
@@ -29,6 +28,16 @@
 @implementation MSFPersonalViewModel
 
 #pragma mark - Lifecycle
+
+- (instancetype)initWithViewModel:(id)viewModel services:(id <MSFViewModelServices>)services {
+  self = [self initWithServices:services];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services {
 	self = [super init];

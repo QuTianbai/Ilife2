@@ -30,8 +30,13 @@
 + (instancetype)headerViewWithIndex:(NSInteger)index {
 	 NSArray *bundles = [[NSBundle mainBundle] loadNibNamed:@"MSFHeaderView" owner:nil options:nil];
 	 MSFHeaderView *view = bundles.firstObject;
-	 view.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 100);
+	 view.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 88);
 	 [view updateIndex:index];
+		view.bar1.image = [[UIImage imageNamed:@"bar-normal.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2, 5, 2, 5) resizingMode:UIImageResizingModeTile];
+		view.bar1.highlightedImage = [[UIImage imageNamed:@"bar-highlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 11, 0, 11) resizingMode:UIImageResizingModeTile];
+		view.bar2.image = [[UIImage imageNamed:@"bar-normal.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 11, 0, 11) resizingMode:UIImageResizingModeTile];
+		view.bar2.highlightedImage = [[UIImage imageNamed:@"bar-highlighted.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 11, 0, 11) resizingMode:UIImageResizingModeTile];
+	
 	 return view;
 }
 
@@ -92,15 +97,6 @@
 		default:
 			break;
 	}
-}
-
-- (void)drawRect:(CGRect)rect {
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextMoveToPoint(context, 0, rect.size.height);
-	CGContextAddLineToPoint(context, rect.size.width, rect.size.height);
-	CGContextSetLineWidth(context, 0.5);
-	[[UIColor borderColor] setStroke];
-	CGContextStrokePath(context);
 }
 
 @end

@@ -45,7 +45,6 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 @property (nonatomic, assign) NSUInteger modelHash DEPRECATED_ATTRIBUTE;
 
 @property (nonatomic, readonly) MSFAddressViewModel *addressViewModel;
-@property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong) MSFProfessional *model;
 @property (nonatomic, strong) NSArray *contacts;
 @property (nonatomic, strong, readwrite) NSArray *viewModels;
@@ -66,6 +65,16 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 #pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel services:(id <MSFViewModelServices>)services {
+  self = [self initWithServices:services];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services {
   self = [super init];
