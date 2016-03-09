@@ -6,24 +6,30 @@
 
 #import <Foundation/Foundation.h>
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @class MSFLoanType;
+@class RACCommand;
 
 // 贷款申请
 @protocol MSFApplicationViewModel <NSObject>
 
-//TODO: Refacotor MSFApplicationViewModel
-@optional
 // 申请API调用服务
-@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
-// 申请订单号，社保贷默认申请流程中申请订单号为空字符串
-@property (nonatomic, strong) NSString *applicationNo;
+@optional
+
+// 资料重传的时候用到
+@property (nonatomic, strong, readonly) NSString *applicationNo;
+
+// 完成申请流程中, 个人信息编辑的时候，需要提供申请单的ViewModel
+@property (nonatomic, weak, readonly) id <MSFApplicationViewModel> viewModel;
 
 // 申请的产品类型: 社保贷/马上贷款/随借随还
-@property (nonatomic, strong) MSFLoanType *loanType;
+@property (nonatomic, strong, readonly) MSFLoanType *loanType;
 
 // 附件列表 <NSDictionary>
-@property (nonatomic, strong) NSArray *accessories;
+@property (nonatomic, strong, readwrite) NSArray *accessories;
 
 @end

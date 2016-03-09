@@ -152,8 +152,8 @@
 		@strongify(self)
 		return [self nextSignal];
 	}];
-	_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
-		return self.executeCompleteSignal;
+	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:[self commitValidSignal] signalBlock:^RACSignal *(id input) {
+		return [self commitSignal];
 	}];
 	_executeProtocolCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeAgreementSignal];
@@ -162,40 +162,7 @@
   return self;
 }
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services {
-	self = [super init];
-	if (!self) return nil;
-	return self;
-}
-
-- (void)handleMarkets:(MSFAmortize *)markets {
-	self.markets = markets;
-	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFOrganize *terms) {
-		return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
-	}]
-	flattenMap:^RACStream *(MSFOrganize *value) {
-			return value.team.rac_sequence;
-	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
-		if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
-			return NSOrderedAscending;
-		} else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
-			return NSOrderedDescending;
-		}
-	
-		return NSOrderedSame;
-	}];;
-	if (self.terms.count > 0) {
-		self.term = [self.terms[0] loanTeam];
-	}
-	
-	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
-	double a = self.minLoan.doubleValue;
-	double c = self.cart.totalAmt.doubleValue;
-	
-	if (c < d + a) {
-		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
-	}
-}
+#pragma mark - Custom Accessors
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
@@ -245,6 +212,35 @@
 }
 
 #pragma mark - Private
+
+- (void)handleMarkets:(MSFAmortize *)markets {
+	self.markets = markets;
+	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFOrganize *terms) {
+		return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
+	}]
+	flattenMap:^RACStream *(MSFOrganize *value) {
+			return value.team.rac_sequence;
+	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
+		if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
+			return NSOrderedAscending;
+		} else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
+			return NSOrderedDescending;
+		}
+	
+		return NSOrderedSame;
+	}];;
+	if (self.terms.count > 0) {
+		self.term = [self.terms[0] loanTeam];
+	}
+	
+	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+	double a = self.minLoan.doubleValue;
+	double c = self.cart.totalAmt.doubleValue;
+	
+	if (c < d + a) {
+		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
+	}
+}
 
 - (RACSignal *)nextValidSignal {
 	return [self.executeTrialCommand.executing map:^id(id value) {
@@ -319,19 +315,6 @@
 
 }
 
-- (RACSignal *)executeCompleteSignal {
-//TODO: Fix
-//	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-//	parameters[@"appLmt"] = self.loanAmt;
-//	parameters[@"productCode"] = self.cart.crProdId;
-//	parameters[@"jionLifeInsurance"] = @(self.joinInsurance);
-//	parameters[@"compId"] = self.cart.compId;
-//	parameters[@"cmdtyList"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.cart.cmdtyList] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
-//	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"orders/trial" parameters:parameters];
-//	return [[self.services.httpClient enqueueRequest:request resultClass:MSFTrial.class] msf_parsedResults];
-	return [self.services.httpClient submitTrialAmount:self];
-}
-
 - (RACSignal *)trialSignal {
 	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
 	parameters[@"appLmt"] = self.loanAmt;
@@ -350,6 +333,14 @@
 	reduce:^id(NSArray *terms){
 		return @(terms.count > 0);
 	}];
+}
+
+- (RACSignal *)commitSignal {
+	return nil;
+}
+
+- (RACSignal *)commitValidSignal {
+	return nil;
 }
 
 @end

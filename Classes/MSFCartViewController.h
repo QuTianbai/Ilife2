@@ -12,7 +12,6 @@
 // 商品贷下单界面
 @interface MSFCartViewController : UITableViewController
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services __deprecated_msg("Use -initWithViewModel:");
 - (instancetype)initWithViewModel:(id)viewModel;
 
 @end

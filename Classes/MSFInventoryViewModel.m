@@ -72,15 +72,7 @@
 		return RACSignal.empty;
 	}];
 	
-	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			return [(MSFApplyCashViewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
-		}];
-	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
-	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
-		_executeSubmitCommand = ((MSFCartViewModel *)self.applicationViewModel).executeCompleteCommand;
-	}
+	_executeSubmitCommand = self.applicationViewModel.executeCommitCommand;
 	
 	[self initialize];
   
@@ -144,15 +136,7 @@
 		return RACSignal.empty;
 	}];
 	
-	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-		_executeSubmitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-			return [(MSFApplyCashViewModel *)self.applicationViewModel submitSignalWithStatus:@"1"];
-		}];
-	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		_executeSubmitCommand = ((MSFSocialInsuranceCashViewModel *)self.applicationViewModel).executeSubmitCommand;
-	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
-		_executeSubmitCommand = ((MSFCartViewModel *)self.applicationViewModel).executeCompleteCommand;
-	}
+	_executeSubmitCommand = self.applicationViewModel.executeCommitCommand;
 	
 	[self initialize];
 	

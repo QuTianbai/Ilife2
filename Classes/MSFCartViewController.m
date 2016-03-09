@@ -43,15 +43,6 @@
 	return self;
 }
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services {
-	self = [super initWithStyle:UITableViewStyleGrouped];
-	if (self) {
-		self.hidesBottomBarWhenPushed = YES;
-		_viewModel = [[MSFCartViewModel alloc] initWithApplicationNo:appNo services:services];
-	}
-	return self;
-}
-
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
