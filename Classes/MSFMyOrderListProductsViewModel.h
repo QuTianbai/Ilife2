@@ -9,12 +9,14 @@
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
 #import "MSFMyOrderDetailTravelViewModel.h"
+#import "MSFOrderDetail.h"
 
 @interface MSFMyOrderListProductsViewModel : RVMViewModel
 
+@property (nonatomic, assign) id<MSFViewModelServices> services;
+@property (nonatomic, strong) MSFOrderDetail *model;
 @property (nonatomic, copy, readonly) NSString *isReload;
 @property (nonatomic, copy, readonly) NSString *months;
-
 @property (nonatomic, copy, readonly) NSString *inOrderId;
 @property (nonatomic, copy, readonly) NSString *orderStatus;
 @property (nonatomic, copy, readonly) NSString *orderTime;

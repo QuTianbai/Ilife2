@@ -36,7 +36,13 @@
 	
 	RAC(self.applyButton, rac_command) = RACObserve(self, viewModel.executeDrawCommand);
 	RAC(self.repayButton, rac_command) = RACObserve(self, viewModel.executeRepayCommand);
-	RAC(self.groundLabel, text) = RACObserve(self, viewModel.groundTitle);
+	@weakify(self)
+	[RACObserve(self, viewModel.groundContent) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.webView loadHTMLString:x baseURL:nil];
+	}];
+	self.webView.backgroundColor = [UIColor whiteColor];
+	self.webView.opaque = NO;
 }
 
 #pragma mark - MSFReactiveView

@@ -8,10 +8,10 @@
 
 #import "MSFObject.h"
 
-// 马上贷产品集
-@interface MSFMarkets : MSFObject
+// 总金额度限制
+@interface MSFAmortize : MSFObject
 
-// 产品列表 <MSFTeams2>
+// 分金额上下限集MSFOrganize
 @property (nonatomic, copy, readonly) NSArray *teams;
 
 // 可贷最小金额

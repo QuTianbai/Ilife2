@@ -12,10 +12,10 @@
 #import "MSFCalculatemMonthRepayModel.h"
 #import "MSFClient+CalculateMonthRepay.h"
 #import "MSFResponse.h"
-#import "MSFMarkets.h"
+#import "MSFAmortize.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFWebViewModel.h"
-#import "MSFTeam.h"
+#import "MSFPlan.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFClient+CheckAllowApply.h"
 #import "MSFCheckAllowApply.h"
@@ -103,7 +103,7 @@
 	//	return value;
 	//}];
 	@weakify(self)
-	[RACObserve(self, product) subscribeNext:^(MSFTeam *product) {
+	[RACObserve(self, product) subscribeNext:^(MSFPlan *product) {
 		@strongify(self)
 		self.loanTerm = self.product.loanTeam;
 		self.model.loanTerm = product.loanTeam;

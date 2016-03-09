@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MSFViewModelServices.h"
 
+// 商品贷下单界面
 @interface MSFCartViewController : UITableViewController
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo
-														 services:(id<MSFViewModelServices>)services;
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

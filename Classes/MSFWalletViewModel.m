@@ -54,6 +54,7 @@ static NSString *const kWalletIdentifier = @"4102";
 @property (nonatomic, strong) MSFApplyList *application;
 @property (nonatomic, strong, readwrite) MSFPhoto *photo;
 @property (nonatomic, strong, readwrite) NSString *groundTitle;
+@property (nonatomic, strong, readwrite) NSString *groundContent;
 
 @end
 
@@ -73,7 +74,7 @@ static NSString *const kWalletIdentifier = @"4102";
 			self.photos = x;
 		}];
 		[self.fetchShow subscribeNext:^(id x) {
-			self.groundTitle = x;
+			self.groundContent = x;
 		}];
 		return [self.fetchWalletStatus doNext:^(RACTuple *statusAndApplication) {
 			RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;

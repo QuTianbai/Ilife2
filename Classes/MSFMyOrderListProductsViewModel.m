@@ -9,7 +9,7 @@
 #import "MSFMyOrderListProductsViewModel.h"
 #import <objc/runtime.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFOrderDetail.h"
+
 #import "MSFClient+Order.h"
 #import "MSFMyOrderCmdViewModel.h"
 #import "MSFMyOrderDetailTravelViewModel.h"
@@ -18,9 +18,7 @@
 
 @interface MSFMyOrderListProductsViewModel ()
 
-@property (nonatomic, assign) id<MSFViewModelServices> services;
 @property (nonatomic, copy) NSString *appNo;
-@property (nonatomic, strong) MSFOrderDetail *model;
 @property (nonatomic, copy, readwrite) NSString *isReload;
 
 @end
@@ -89,14 +87,15 @@
 	RAC(self, travelCompanInfoList) = [[RACObserve(self, model.companions) ignore:nil] map:^id(NSArray *value) {
 		NSMutableArray *resutArray = [[NSMutableArray alloc] init];
 		for (NSObject *model in value) {
-			MSFMyOrderDetailTravelViewModel *viewModel = [[MSFMyOrderDetailTravelViewModel alloc] initWithModel:model];
+			MSFCompanInfoListViewModel *viewModel = [[MSFCompanInfoListViewModel alloc] initWithModel:model];
 			[resutArray addObject:viewModel];
 		}
 		return [NSArray arrayWithArray:resutArray];
 	}];
 	
 	RAC(self, orderTravelDto) = [[RACObserve(self, model.travel) ignore:nil] map:^id(id value) {
-		MSFCompanInfoListViewModel *viewModel = [[MSFCompanInfoListViewModel alloc] initWithModel:value];
+		
+		MSFMyOrderDetailTravelViewModel *viewModel = [[MSFMyOrderDetailTravelViewModel alloc] initWithModel:value];
 		return viewModel;
 	}];
 	

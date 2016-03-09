@@ -12,7 +12,7 @@
 
 @class RACCommand;
 @class MSFCart;
-@class MSFMarkets;
+@class MSFAmortize;
 @class MSFLoanType;
 @class MSFFormsViewModel;
 @class MSFTrial;
@@ -24,11 +24,11 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 
 @interface MSFCartViewModel : RVMViewModel <MSFApplicationViewModel>
 
-@property (nonatomic, weak) id <MSFViewModelServices> services;
-@property (nonatomic, strong) NSString *applicationNo;
-@property (nonatomic, strong) MSFLoanType *loanType;
-@property (nonatomic, strong) MSFFormsViewModel *formViewModel __deprecated; // null
-@property (nonatomic, strong) NSArray *accessories; // null
+// MSFApplicationViewModel
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readonly) MSFLoanType *loanType;
+@property (nonatomic, strong, readwrite) NSArray *accessories;
+@property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 // 页面展示数据
 @property (nonatomic, strong, readonly) NSString *compId; // 商铺编号
@@ -37,7 +37,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong, readonly) NSString *loanAmt; // 贷款金额
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险计划
 
-@property (nonatomic, strong ) NSString *lifeInsuranceAmt; // 寿险金额
+@property (nonatomic, strong) NSString *lifeInsuranceAmt; // 寿险金额
 @property (nonatomic, strong) NSString *loanFixedAmt; // 月还款额
 @property (nonatomic, strong) NSString *downPmtScale; // 首付比例
 @property (nonatomic, strong) NSString *totalAmt; // 总金额
@@ -48,18 +48,17 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong, readonly) NSArray  *terms; // 产品群信息
 @property (nonatomic, assign, readonly) BOOL barcodeInvalid;
 
-// 是否需要首付
-@property (nonatomic, assign, readonly) BOOL isDownPmt;
+@property (nonatomic, assign, readonly) BOOL isDownPmt; // 是否需要首付
+@property (nonatomic, assign, readonly) BOOL hasAgreeProtocol; // 是否同意贷款协议
 
+// 页面命令
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
-@property (nonatomic, strong, readonly) RACCommand *executeCompleteCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeTrialCommand; // 商品试算
+@property (nonatomic, strong, readonly) RACCommand *executeProtocolCommand; // 商品试算
 
-@property (nonatomic, assign, readonly) MSFCartType cartType __deprecated;
+- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo
-														 services:(id<MSFViewModelServices>)services;
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

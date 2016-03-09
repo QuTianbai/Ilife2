@@ -21,6 +21,10 @@
 
 #import "NSString+Matches.h"
 
+#import "MSFProfessionalViewModel.h"
+#import "MSFProfessionalViewController.h"
+#import "MSFHeaderView.h"
+
 @interface MSFPersonalViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *housingTF;
@@ -85,9 +89,21 @@
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[self.navigationController popViewControllerAnimated:YES];
+			if (self.viewModel.viewModel) {
+				MSFProfessionalViewModel *viewModel = [[MSFProfessionalViewModel alloc] initWithViewModel:self.viewModel.viewModel services:self.viewModel.services];
+				[self.viewModel.services pushViewModel:viewModel];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}];
 	}];
+	
+	if (self.viewModel.viewModel) {
+		self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:0];
+		[self.nextPageBT setTitle:@"下一步" forState:UIControlStateNormal];
+	} else {
+		[self.nextPageBT setTitle:@"提交" forState:UIControlStateNormal];
+	}
 	
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];

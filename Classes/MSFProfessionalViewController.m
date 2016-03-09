@@ -21,6 +21,9 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "MSFContact.h"
 #import "MSFContactViewModel.h"
+#import "MSFInventoryViewModel.h"
+#import "MSFInventoryViewController.h"
+#import "MSFHeaderView.h"
 
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionIncome = 1,
@@ -182,9 +185,21 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[SVProgressHUD showWithStatus:@"正在提交..."];
 		[x subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[self.navigationController popViewControllerAnimated:YES];
+			if (self.viewModel.viewModel) {
+				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWitViewModel:self.viewModel.viewModel services:self.viewModel.services];
+				[self.viewModel.services pushViewModel:viewModel];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}];
 	}];
+	if (self.viewModel.viewModel) {
+		self.tableView.tableHeaderView = [MSFHeaderView headerViewWithIndex:1];
+		[self.nextButton setTitle:@"下一步" forState:UIControlStateNormal];
+	} else {
+		[self.nextButton setTitle:@"提交" forState:UIControlStateNormal];
+	}
+	
 	[RACObserve(self.viewModel, code) subscribeNext:^(id x) {
 		@strongify(self);
 		[self.tableView reloadData];

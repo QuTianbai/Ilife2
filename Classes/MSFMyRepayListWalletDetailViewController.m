@@ -55,7 +55,7 @@
 	self.listTableView.emptyDataSetDelegate = self;
 	self.listTableView.allowsSelection = NO;
 	self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-	
+	self.payMasteBT.rac_command = self.viewModel.executeFetchRepayCommand;
 }
 
 - (void)didReceiveMemoryWarning {

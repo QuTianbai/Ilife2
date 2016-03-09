@@ -6,9 +6,9 @@
 //  Copyright © 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFTeam.h"
+#import "MSFPlan.h"
 
-@implementation MSFTeam
+@implementation MSFPlan
 
 #pragma mark - MSFSelectionItem
 

@@ -26,7 +26,7 @@
 #import "MSFCirculateCashViewModel.h"
 
 #import "MSFApplyCashViewModel.h"
-#import "MSFMarkets.h"
+#import "MSFAmortize.h"
 
 #import "MSFCreditViewController.h"
 #import "MSFWalletViewController.h"

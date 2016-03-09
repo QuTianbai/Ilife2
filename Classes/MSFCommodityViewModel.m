@@ -22,6 +22,10 @@
 #import "MSFAddBankCardViewModel.h"
 #import "MSFMyRepaysViewModel.h"
 #import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFCartViewModel.h"
+#import "MSFCartViewController.h"
+#import "MSFCart.h"
+#import "MSFClient+Cart.h"
 
 static NSString *const kWalletIdentifier = @"3101";
 
@@ -64,11 +68,10 @@ static NSString *const kWalletIdentifier = @"3101";
 	
 	_executeBarCodeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [[self.services msf_barcodeScanSignal] doNext:^(id x) {
-			[self.services pushViewModel:self];
-//			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
-//			[self.navigationController pushViewController:vc animated:YES];
-		}];
+		return [self.services msf_barcodeScanSignal];
+	}];
+	_executeCartCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self cartSignal];
 	}];
 	
 	[RACObserve(self, status) subscribeNext:^(NSNumber *status) {
@@ -213,6 +216,18 @@ static NSString *const kWalletIdentifier = @"3101";
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+- (RACSignal *)cartSignal {
+	return [[[self.services msf_barcodeScanSignal]
+		flattenMap:^RACStream *(NSString *value) {
+			MSFCart *cart = [[MSFCart alloc] initWithDictionary:@{@keypath(MSFCart.new, cartId): value?:@""} error:nil];
+			return [self.services.httpClient fetchCartInfoForCart:cart];
+		}]
+		doNext:^(id x) {
+			MSFCartViewModel *viewModel = [[MSFCartViewModel alloc] initWithModel:x services:self.services];
+			[self.services pushViewModel:viewModel];
+		}];
 }
 
 @end

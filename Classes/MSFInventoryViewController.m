@@ -27,6 +27,7 @@
 #import "MSFSocialInsuranceCashViewModel.h"
 #import "MSFCartViewModel.h"
 #import "MSFElementViewController.h"
+#import "MSFHeaderView.h"
 
 @interface MSFInventoryViewController ()
 <UICollectionViewDataSource,
@@ -37,6 +38,7 @@ UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
 
@@ -143,6 +145,7 @@ UICollectionViewDelegateFlowLayout>
 	} else {
 		self.constraint.constant = 0;
 	}
+	[self.headerView addSubview:[MSFHeaderView headerViewWithIndex:2]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -7,6 +7,7 @@
 #import "RVMViewModel.h"
 #import "MSFReactiveView.h"
 #import "MSFViewModelServices.h"
+#import "MSFApplicationViewModel.h"
 
 @class RACCommand;
 @class MSFSelectKeyValues;
@@ -50,7 +51,11 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 @property (nonatomic, strong, readonly) RACCommand *executeAddressCommand; //选择地址信息
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
+@property (nonatomic, weak, readonly) id <MSFApplicationViewModel> viewModel;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services;
+- (instancetype)initWithViewModel:(id)viewModel services:(id <MSFViewModelServices>)services;
 
 // 社会身份编码
 @property (nonatomic, copy, readonly) NSString *code;

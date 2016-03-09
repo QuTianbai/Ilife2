@@ -9,19 +9,22 @@
 #import "MSFCartViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-#import "MSFClient+CheckEmploee2.h"
 #import "MSFClient+Cart.h"
 #import "MSFClient+CheckAllowApply.h"
 #import "MSFCart.h"
 #import "MSFTrial.h"
-#import "MSFMarkets.h"
-#import "MSFTeams2.h"
-#import "MSFTeam.h"
+#import "MSFAmortize.h"
+#import "MSFOrganize.h"
+#import "MSFPlan.h"
 #import "MSFLoanType.h"
 #import "MSFLifeInsuranceViewModel.h"
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFCheckAllowApply.h"
-#import "MSFMarkets.h"
+#import "MSFAmortize.h"
+#import "RACSignal+MSFClientAdditions.h"
+#import "MSFClient+Amortize.h"
+#import "MSFPersonalViewModel.h"
+#import "MSFResponse.h"
 
 @interface MSFCartViewModel ()
 
@@ -29,7 +32,7 @@
 @property (nonatomic, strong, readwrite) MSFCart *cart;
 @property (nonatomic, strong, readwrite) NSArray *terms;
 @property (nonatomic, strong, readwrite) NSString *term;
-@property (nonatomic, strong, readwrite) MSFMarkets *markets;
+@property (nonatomic, strong, readwrite) MSFAmortize *markets;
 @property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
 @property (nonatomic, assign, readwrite) BOOL barcodeInvalid;
 @property (nonatomic, strong) NSString *maxLoan;
@@ -39,149 +42,128 @@
 
 @implementation MSFCartViewModel
 
-- (instancetype)initWithApplicationNo:(NSString *)appNo services:(id<MSFViewModelServices>)services {
-	self = [super init];
-	if (self) {
-		
-		_services = services;
-		_applicationNo = appNo;
-		
-		_trial = [[MSFTrial alloc] init];
-		_cart = [[MSFCart alloc] init];
-		_lifeInsuranceAmt = @"";
-		_loanFixedAmt = @"";
-		_downPmtScale = @"";
-		_totalAmt = @"";
-		_term = @"";
-		_downPmtAmt = @"";
-		
-		RAC(self, maxLoan) = RACObserve(self, markets.allMaxAmount);
-		RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
-		RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
-		
-		RAC(self, loanType) = [[RACObserve(self, cart.crProdId) ignore:nil] map:^id(id value) {
-			return [[MSFLoanType alloc] initWithTypeID:value];
-		}];
-		
-		[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
-			self.loanFixedAmt = x.loanFixedAmt;
-			self.lifeInsuranceAmt = x.lifeInsuranceAmt;
-		}];
-		
-		RAC(self, loanAmt) = [RACSignal combineLatest:@[
-				RACObserve(self, downPmtAmt),
-				RACObserve(self, totalAmt)
-			]
-			reduce:^id(NSString *pmt, NSString *amt) {
-				double loan = amt.doubleValue - pmt.doubleValue;
-				return [NSString stringWithFormat:@"%.2f", loan];
-			}];
-		
-		_downPmtAmt = @"0";
-		_joinInsurance = YES;
-		
-		@weakify(self)
-		_executeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+- (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services {
+  self = [super init];
+  if (!self) {
+    return nil;
+  }
+	_cart = model;
+	_services = services;
+			
+	_services = services;
+	
+	_trial = [[MSFTrial alloc] init];
+	_lifeInsuranceAmt = @"";
+	_loanFixedAmt = @"";
+	_downPmtScale = @"";
+	_totalAmt = @"";
+	_term = @"";
+	_downPmtAmt = @"";
+	self.compId = self.cart.compId;
+	self.totalAmt = self.cart.totalAmt;
+	self.barcodeInvalid = NO;
+	
+	RAC(self, maxLoan) = RACObserve(self, markets.allMaxAmount);
+	RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
+	RAC(self, isDownPmt) = RACObserve(self, cart.isDownPmt);
+	
+	RAC(self, loanType) = [[RACObserve(self, cart.crProdId) ignore:nil] map:^id(id value) {
+		return [[MSFLoanType alloc] initWithTypeID:value];
+	}];
+	
+	[RACObserve(self, trial) subscribeNext:^(MSFTrial *x) {
+		self.loanFixedAmt = x.loanFixedAmt;
+		self.lifeInsuranceAmt = x.lifeInsuranceAmt;
+	}];
+	
+	RAC(self, loanAmt) = [RACSignal combineLatest:@[
+		RACObserve(self, downPmtAmt),
+		RACObserve(self, totalAmt)
+	]
+	reduce:^id(NSString *pmt, NSString *amt) {
+		double loan = amt.doubleValue - pmt.doubleValue;
+		return [NSString stringWithFormat:@"%.2f", loan];
+	}];
+	
+	_downPmtAmt = @"0";
+	_joinInsurance = YES;
+	
+	@weakify(self)
+	_executeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self insuranceSignal];
+	}];
+	
+	// 试算更新
+	_executeTrialCommand = [[RACCommand alloc] initWithEnabled:self.trialValidSignal signalBlock:^RACSignal *(id input) {
+		return self.trialSignal;
+	}];
+	[self.executeTrialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
+		self.trial = x;
+		self.promId = x.promId;
+	}];
+	
+	// 更新商品试算
+	[[RACSignal combineLatest:@[
+		RACObserve(self, term),
+		RACObserve(self, loanAmt),
+		RACObserve(self, joinInsurance)
+	]]
+	subscribeNext:^(id x) {
+		@strongify(self)
+		[self.executeTrialCommand execute:nil];
+	}];
+	
+	// 根据贷款产品获取贷款资料
+	[[RACObserve(self, loanType.typeID) ignore:nil] subscribeNext:^(id x) {
+		[[self.services.httpClient fetchAmortizeWithProductCode:x] subscribeNext:^(MSFAmortize *x) {
 			@strongify(self)
-			return [self insuranceSignal];
-		}];
-		_executeTrialCommand = [[RACCommand alloc] initWithEnabled:self.trialValidSignal signalBlock:^RACSignal *(id input) {
-			return [[self.services.httpClient fetchTrialAmount:self] doError:^(NSError *error) {
-				[SVProgressHUD dismiss];
-			}];
-		}];
-		self.executeTrialCommand.allowsConcurrentExecution = YES;
-		[self.executeTrialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
-			self.trial = x;
-			self.promId = x.promId;
-		}];
-		[[RACSignal combineLatest:@[RACObserve(self, term), RACObserve(self, loanAmt), RACObserve(self, joinInsurance)]] subscribeNext:^(id x) {
-			@strongify(self)
-			[self.executeTrialCommand execute:nil];
-		}];
-		[[self.services.httpClient fetchCart:appNo] subscribeNext:^(MSFCart *x) {
-			@strongify(self)
-			self.barcodeInvalid = NO;
-			self.cart = x;
-			self.compId = self.cart.compId;
-			self.totalAmt = self.cart.totalAmt;
+			[self handleMarkets:x];
 		} error:^(NSError *error) {
-			self.barcodeInvalid = YES;
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
-		
-		[[RACObserve(self, loanType.typeID) ignore:nil] subscribeNext:^(id x) {
-			[[self.services.httpClient fetchCheckEmploeeWithProductCode:x] subscribeNext:^(MSFMarkets *x) {
-				@strongify(self)
-				[self handleMarkets:x];
-			} error:^(NSError *error) {
-				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-			}];
-		}];
-		
-		[RACObserve(self, loanAmt) subscribeNext:^(id x) {
-			@strongify(self)
-			self.terms = [[[self.markets.teams.rac_sequence
-				filter:^BOOL(MSFTeams2 *terms) {
-					return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
-				}]
-				flattenMap:^RACStream *(MSFTeams2 *value) {
-					return value.team.rac_sequence;
-				 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
-						 if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
-							 return NSOrderedAscending;
-						 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
-							 return NSOrderedDescending;
-						 }
-					 
-						 return NSOrderedSame;
-				 }];;
-			if (self.terms.count > 0) {
-				self.term = [self.terms[0] loanTeam];
-			}
-			self.downPmtScale = [@(self.downPmtAmt.floatValue / self.totalAmt.floatValue) stringValue];
-		}];
-		_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
-			@strongify(self)
-			[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-			return [self.executeAgreementSignal doError:^(NSError *error) {
-				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-			}];
-		}];
-		_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
-			return self.executeCompleteSignal;
-		}];
-	}
-	return self;
+	}];
+	
+	// 根据贷款金额更新贷款期数
+	[RACObserve(self, loanAmt) subscribeNext:^(id x) {
+		@strongify(self)
+		self.terms = [[[self.markets.teams.rac_sequence
+			filter:^BOOL(MSFOrganize *terms) {
+				return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
+			}]
+			flattenMap:^RACStream *(MSFOrganize *value) {
+				return value.team.rac_sequence;
+			 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
+					 if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
+						 return NSOrderedAscending;
+					 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
+						 return NSOrderedDescending;
+					 }
+				 
+					 return NSOrderedSame;
+			 }];;
+		if (self.terms.count > 0) {
+			self.term = [self.terms[0] loanTeam];
+		}
+		self.downPmtScale = [@(self.downPmtAmt.floatValue / self.totalAmt.floatValue) stringValue];
+	}];
+	
+	// 执行下一步操作
+	_executeNextCommand = [[RACCommand alloc] initWithEnabled:[self nextValidSignal] signalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self nextSignal];
+	}];
+	_executeCommitCommand = [[RACCommand alloc] initWithEnabled:[self commitValidSignal] signalBlock:^RACSignal *(id input) {
+		return [self commitSignal];
+	}];
+	_executeProtocolCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeAgreementSignal];
+	}];
+  
+  return self;
 }
 
-- (void)handleMarkets:(MSFMarkets *)markets {
-	self.markets = markets;
-	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFTeams2 *terms) {
-		return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
-	}]
-	flattenMap:^RACStream *(MSFTeams2 *value) {
-			return value.team.rac_sequence;
-	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
-		if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
-			return NSOrderedAscending;
-		} else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
-			return NSOrderedDescending;
-		}
-	
-		return NSOrderedSame;
-	}];;
-	if (self.terms.count > 0) {
-		self.term = [self.terms[0] loanTeam];
-	}
-	
-	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
-	double a = self.minLoan.doubleValue;
-	double c = self.cart.totalAmt.doubleValue;
-	
-	if (c < d + a) {
-		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
-	}
-}
+#pragma mark - Custom Accessors
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
@@ -232,69 +214,159 @@
 
 #pragma mark - Private
 
-- (RACSignal *)agreementValidSignal {
+- (void)handleMarkets:(MSFAmortize *)markets {
+	self.markets = markets;
+	self.terms = [[[markets.teams.rac_sequence filter:^BOOL(MSFOrganize *terms) {
+		return (terms.minAmount.integerValue <= self.loanAmt.integerValue) && (terms.maxAmount.integerValue >=	 self.loanAmt.integerValue);
+	}]
+	flattenMap:^RACStream *(MSFOrganize *value) {
+			return value.team.rac_sequence;
+	}].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
+		if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
+			return NSOrderedAscending;
+		} else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
+			return NSOrderedDescending;
+		}
+	
+		return NSOrderedSame;
+	}];;
+	if (self.terms.count > 0) {
+		self.term = [self.terms[0] loanTeam];
+	}
+	
+	double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+	double a = self.minLoan.doubleValue;
+	double c = self.cart.totalAmt.doubleValue;
+	
+	if (c < d + a) {
+		[SVProgressHUD showErrorWithStatus:@"商品金额低于申请最低金额"];
+	}
+}
+
+- (RACSignal *)nextValidSignal {
 	return [self.executeTrialCommand.executing map:^id(id value) {
 		return @(![value boolValue]);
 	}];
 }
 
-- (RACSignal *)executeAgreementSignal {
-	return [[self.services.httpClient fetchCheckAllowApply] map:^id(MSFCheckAllowApply *model) {
-		if (model.processing == 1) {
-			double a = self.downPmtAmt.doubleValue;
-			double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
-			double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
-			double b = self.loanAmt.doubleValue;
-			double f = self.minLoan.doubleValue;
-			double g = self.maxLoan.doubleValue;
-			double c = self.totalAmt.doubleValue;
-			
-			// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
-			if (a < d) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
+- (RACSignal *)nextSignal {
+	if (!self.hasAgreeProtocol) {
+		[SVProgressHUD showInfoWithStatus:@"请同意申请协议"];
+		return RACSignal.empty;
+	}
+	[SVProgressHUD showWithStatus:@"正在提交..."];
+	return [[[self.services.httpClient fetchCheckAllowApply]
+		map:^id(MSFCheckAllowApply *model) {
+			if (model.processing == 1) {
+				double a = self.downPmtAmt.doubleValue;
+				double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+				double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
+				double b = self.loanAmt.doubleValue;
+				double f = self.minLoan.doubleValue;
+				double g = self.maxLoan.doubleValue;
+				double c = self.totalAmt.doubleValue;
+				
+				// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
+				if (a < d) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
+					return nil;
+				}
+				if (a > e) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
+					return nil;
+				}
+				if (b < f) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
+					return nil;
+				}
+				if (b > g) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
+					return nil;
+				}
+				if (c < f + d) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
+					return nil;
+				}
+				if (c > e + g) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
+					return nil;
+				}
+				
+				[SVProgressHUD dismiss];
+				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithServices:self.services];
+				[self.services pushViewModel:viewModel];
+				return nil;
+			} else {
+				[SVProgressHUD dismiss];
+				[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
 				return nil;
 			}
-			if (a > e) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
-				return nil;
-			}
-			if (b < f) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
-				return nil;
-			}
-			if (b > g) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
-				return nil;
-			}
-			if (c < f + d) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
-				return nil;
-			}
-			if (c > e + g) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
-				return nil;
-			}
-			
-			[SVProgressHUD dismiss];
-			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-			[self.services pushViewModel:viewModel];
-			return nil;
-		} else {
-			[SVProgressHUD dismiss];
-			[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
-			return nil;
-		}
-	}];
+		}] doError:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
 }
 
-- (RACSignal *)executeCompleteSignal {
-	return [self.services.httpClient submitTrialAmount:self];
+- (RACSignal *)executeAgreementSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+
+}
+
+- (RACSignal *)trialSignal {
+	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	parameters[@"appLmt"] = self.loanAmt;
+	parameters[@"productCode"] = self.cart.crProdId;
+	parameters[@"jionLifeInsurance"] = @(self.joinInsurance);
+	parameters[@"compId"] = self.cart.compId;
+	parameters[@"cmdtyList"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.cart.cmdtyList] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"orders/trial" parameters:parameters];
+	return [[self.services.httpClient enqueueRequest:request resultClass:MSFTrial.class] msf_parsedResults];
 }
 
 - (RACSignal *)trialValidSignal {
-	return [RACObserve(self, terms) map:^id(id value) {
-		return @([value count] > 0);
+	return [RACSignal combineLatest:@[
+		RACObserve(self, terms),
+	]
+	reduce:^id(NSArray *terms){
+		return @(terms.count > 0);
 	}];
+}
+
+- (RACSignal *)commitSignal {
+	NSDictionary *order = @{
+		@"productCd": self.cart.crProdId,
+		@"appLmt": self.loanAmt,
+		@"loanTerm": self.term,
+		@"jionLifeInsurance": @(self.joinInsurance),
+		@"lifeInsuranceAmt": self.lifeInsuranceAmt,
+		@"loanFixedAmt": self.loanFixedAmt,
+		@"downPmtScale": self.downPmtScale,
+		@"downPmtAmt": self.downPmtAmt,
+		@"totalAmt": self.totalAmt,
+		@"isDownPmt": @(self.isDownPmt),
+		@"promId": self.trial.promId,
+	};
+	NSArray *accessories = self.accessories;
+	NSDictionary *cart = [MTLJSONAdapter JSONDictionaryFromModel:self.cart];
+	
+	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	parameters[@"applyStatus"] = @"1";
+	parameters[@"orderVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"accessoryInfoVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:accessories options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"cartVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:cart options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"orders/createOrder" parameters:parameters];
+	return [[self.services.httpClient enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
+		return value.parsedResult[@"appNo"];
+	}];
+}
+
+- (RACSignal *)commitValidSignal {
+	//TODO: 增加商品贷可以申请贷款进入基本信息编辑状态的条件
+	return [RACSignal return:@YES];
 }
 
 @end

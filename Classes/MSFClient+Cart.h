@@ -10,11 +10,13 @@
 
 @class RACSignal;
 @class MSFCartViewModel;
+@class MSFCart;
 
 @interface MSFClient(Cart)
 
-- (RACSignal *)fetchCart:(NSString *)appNo;
-- (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel;
-- (RACSignal *)submitTrialAmount:(MSFCartViewModel *)viewModel;
+- (RACSignal *)fetchCart:(NSString *)appNo __deprecated_msg("Use -fetchCartInfoForCart:");
+- (RACSignal *)fetchCartInfoForCart:(MSFCart *)cart;
+- (RACSignal *)fetchTrialAmount:(MSFCartViewModel *)viewModel __deprecated;
+- (RACSignal *)submitTrialAmount:(MSFCartViewModel *)viewModel __deprecated;
 
 @end

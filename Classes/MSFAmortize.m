@@ -6,13 +6,13 @@
 //  Copyright © 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFMarkets.h"
-#import "MSFTeams2.h"
+#import "MSFAmortize.h"
+#import "MSFOrganize.h"
 
-@implementation MSFMarkets
+@implementation MSFAmortize
 
 + (NSValueTransformer *)teamsJSONTransformer {
-	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFTeams2.class];
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFOrganize.class];
 }
 
 @end
