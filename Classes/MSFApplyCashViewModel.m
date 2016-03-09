@@ -30,6 +30,7 @@
 #import "MSFClient+CirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "MSFLoanType.h"
+#import "MSFPersonalViewModel.h"
 
 @interface MSFApplyCashViewModel ()
 
@@ -182,6 +183,13 @@
 }
 
 - (RACSignal *)executeNextSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithViewModel:self services:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+//TODO: 进入基本信息编辑界面
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
@@ -219,5 +227,8 @@
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
 }
-
+//TODO: 需要增加查看协议界面
+//MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+//[self.services pushViewModel:viewModel];
+t
 @end

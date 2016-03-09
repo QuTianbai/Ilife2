@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, MSFCreditStatus) {
 @property (nonatomic, strong, readonly) RACCommand *excuteDrawCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeRepayCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeBillCommand;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices>services;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 

@@ -15,6 +15,9 @@
 #define MAS_SHORTHAND_GLOBALS
 #import "Masonry.h"
 #import "MSFCreditViewModel.h"
+#import "MSFApplyCashViewModel.h"
+#import "MSFMSFApplyCashViewController.h"
+#import "MSFLoanType.h"
 
 @interface MSFCreditViewController ()
 @property (nonatomic, strong) UIImage *shadowImage;
@@ -84,14 +87,16 @@
 }
 
 - (void)BackToPrevious {
-    MSFCreditOrderDetailsViewController *OrderDetails = [[MSFCreditOrderDetailsViewController alloc]init];
-
-    [self.navigationController pushViewController:OrderDetails animated:YES];
-    
-    
+	MSFCreditOrderDetailsViewController *OrderDetails = [[MSFCreditOrderDetailsViewController alloc]init];
+	[self.navigationController pushViewController:OrderDetails animated:YES];
 }
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    [(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
-//}
+
+//TODO: 加载马上贷申请界面方法，注意调用，在你的申请按钮点击后调用
+- (void)apply {
+	MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:[[MSFLoanType alloc] initWithTypeID:@"4102"] services:self.viewModel.services];
+	MSFMSFApplyCashViewController *vc = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
+}
 
 @end
