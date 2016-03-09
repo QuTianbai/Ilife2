@@ -33,7 +33,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeBasicPaymentCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSubmitCommand;
 
-@property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 

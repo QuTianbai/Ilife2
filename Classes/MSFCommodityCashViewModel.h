@@ -15,6 +15,7 @@ __attribute__((deprecated("This class is unavailable. Please use the MSFCartView
 @interface MSFCommodityCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 // 申请订单号，社保贷默认申请流程中申请订单号为空字符串
 @property (nonatomic, strong) NSString *applicationNo;

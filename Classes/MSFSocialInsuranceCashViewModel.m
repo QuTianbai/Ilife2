@@ -78,6 +78,7 @@
 	_executeSubmitCommand = [[RACCommand alloc] initWithEnabled:[self submitValidSignal] signalBlock:^RACSignal *(id input) {
 		return [self submitSignal];
 	}];
+	_executeCommitCommand = _executeSubmitCommand;
 	
 	return self;
 }
