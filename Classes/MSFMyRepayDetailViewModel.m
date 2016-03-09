@@ -14,6 +14,7 @@
 #import "MSFDrawModel.h"
 #import "MSFCmdDetailViewModel.h"
 #import "MSFWithDrawViewModel.h"
+#import "MSFRepaymentViewModel.h"
 
 @interface MSFMyRepayDetailViewModel ()
 
@@ -104,6 +105,11 @@
 			return YES;
 		}].array];
 		
+	}];
+	_executeFetchRepayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		MSFRepaymentViewModel *repaypmentviewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:self services:self.services];
+		[self.services pushViewModel:repaypmentviewModel];
+		return [RACSignal empty];
 	}];
 	
 	return self;

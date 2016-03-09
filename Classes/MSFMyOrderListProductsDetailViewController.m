@@ -16,14 +16,25 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFMyOrderListTravalDetailCell.h"
 #import "MSFMyOrderTravalMemebersCell.h"
+#import "MSFBlurButton.h"
+#import "MSFPaymentViewModel.h"
+#import "MSFTransactionsViewController.h"
+#import "MSFInputTradePasswordViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFClient+Payment.h"
+#import "MSFPayment.h"
+#import "MSFDimensionalCodeViewModel.h"
+#import "MSFDimensionalCodeViewController.h"
 
-@interface MSFMyOrderListProductsDetailViewController ()
+@interface MSFMyOrderListProductsDetailViewController () <MSFInputTradePasswordDelegate>
 
 @property (nonatomic, strong) MSFMyOrderListProductsViewModel *viewModel;
 
 @end
 
 @implementation MSFMyOrderListProductsDetailViewController
+
+MSFInputTradePasswordViewController *pvc;
 
 - (instancetype)initWithViewModel:(id)viewModel {
 	self = [super init];
@@ -40,7 +51,7 @@
 	self.tableView.separatorStyle = UITableViewCellAccessoryNone;
 	self.tableView.backgroundColor = [UIColor signUpBgcolor];
 	@weakify(self)
-	[RACObserve(self, viewModel.cmdtyList) subscribeNext:^(id x) {
+	[[RACSignal combineLatest:@[RACObserve(self, viewModel.cmdtyList), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
 		@strongify(self)
 		[self.tableView reloadData];
 	}];
@@ -119,7 +130,7 @@
 	} else if (section == 3) {
 		return 1;
 	} else if (section == 2) {
-		if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+		if ([self.viewModel.cartType isEqualToString:@"goods"] || self.viewModel.cartType.length == 0) {
 			return 0;
 		}
 		return self.viewModel.travelCompanInfoList.count + 1;
@@ -137,6 +148,58 @@
 		return 69;
 	}
 	return 44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+	
+	return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	if (section == 3 && [self.viewModel.orderStatus isEqualToString:@"待支付"]) {
+		return 60;
+	}
+	return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+	UIView *view = [[UIView alloc] init];
+	if (section == 3) {
+		view.frame = CGRectMake(0, 0, self.view.bounds.size.width, 60);
+		MSFBlurButton *button = [[MSFBlurButton alloc] initWithFrame:CGRectMake(10, 10, self.view.bounds.size.width - 20, 40)];
+		[button setTitle:@"支付首付" forState:UIControlStateNormal];
+		//[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+				MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
+				MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
+			} else {
+				pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+				pvc.delegate = self;
+				[[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+			}
+		
+		}];
+		[view addSubview:button];
+	}
+	
+	return view;
+}
+
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type  {
+	[SVProgressHUD showWithStatus:@"正在支付..."];
+	[[self.viewModel.services.httpClient paymentWithOrder:self.viewModel.model password:pwd] subscribeNext:^(id x) {
+		[SVProgressHUD dismiss];
+		MSFDimensionalCodeViewModel *viewModel = [[MSFDimensionalCodeViewModel alloc] initWithPayment:x order:self.viewModel.model];
+		MSFDimensionalCodeViewController *vc = [[MSFDimensionalCodeViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+	} error:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 @end

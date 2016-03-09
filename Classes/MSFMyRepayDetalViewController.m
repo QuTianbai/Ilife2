@@ -55,6 +55,7 @@
 	self.repayDetalTableView.emptyDataSetDelegate = self;
 	self.repayDetalTableView.allowsSelection = NO;
 	self.repayDetalTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	self.repayMoneyBT.rac_command = self.viewModel.executeFetchRepayCommand;
 	
 }
 

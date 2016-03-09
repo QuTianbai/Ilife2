@@ -20,7 +20,7 @@
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"versionType"] = @"iOS";
 	parameters[@"versionCode"] = @(index);
-	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"checkVersion" parameters:parameters];
+	NSURLRequest *requset = [self requestWithMethod:@"GET" path:@"system/checkVersion" parameters:parameters];
 	
 	return [[self enqueueRequest:requset resultClass:MSFReleaseNote.class] msf_parsedResults];
 }
