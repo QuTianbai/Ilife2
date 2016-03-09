@@ -9,6 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFEditPasswordViewController.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFClient.h"
@@ -41,6 +42,9 @@
 #import "MSFBankCardListViewModel.h"
 #import "MSFMyOderListsViewModel.h"
 #import "MSFCartViewController.h"
+#import "MSFCart.h"
+#import "MSFClient+Cart.h"
+#import "MSFCartViewModel.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -213,15 +217,9 @@
 }
 
 - (void)scaning {
-	@weakify(self)
-	[[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [[self.viewModel.services msf_barcodeScanSignal] doNext:^(id x) {
-			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
-			[self.navigationController pushViewController:vc animated:YES];
-		}];
-	}] execute:nil];
-	
+	[[self cartSignal].replay doError:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 - (RACSignal *)updateUserSignal {
@@ -232,6 +230,20 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
+}
+
+#pragma mark - <#None#>
+
+- (RACSignal *)cartSignal {
+	return [[[self.viewModel.services msf_barcodeScanSignal]
+		flattenMap:^RACStream *(NSString *value) {
+			MSFCart *cart = [[MSFCart alloc] initWithDictionary:@{@keypath(MSFCart.new, cartId): value?:@""} error:nil];
+			return [self.viewModel.services.httpClient fetchCartInfoForCart:cart];
+		}]
+		doNext:^(id x) {
+			MSFCartViewModel *viewModel = [[MSFCartViewModel alloc] initWithModel:x services:self.viewModel.services];
+			[self.viewModel.services pushViewModel:viewModel];
+		}];
 }
 
 @end
