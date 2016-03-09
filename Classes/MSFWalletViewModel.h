@@ -29,7 +29,8 @@ typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
 @property (nonatomic, strong, readonly) NSString *repayDates;
 
 @property (nonatomic, strong, readonly) NSArray *photos;
-@property (nonatomic, strong, readonly) NSString *groundTitle;
+@property (nonatomic, strong, readonly) NSString *groundTitle __deprecated;
+@property (nonatomic, strong, readonly) NSString *groundContent;
 
 @property (nonatomic, assign, readonly) MSFWalletStatus status;
 

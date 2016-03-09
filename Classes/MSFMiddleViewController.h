@@ -10,6 +10,7 @@
 @interface MSFMiddleViewController : UIViewController <MSFReactiveView>
 
 @property (nonatomic, weak) IBOutlet UILabel *groundLabel;
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
 @property (nonatomic, weak) IBOutlet UIView *groundView;
 @property (nonatomic, weak) IBOutlet UIView *contentView;
 
