@@ -40,6 +40,7 @@
 #import "MSFMyOrderListContainerViewController.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFMyOderListsViewModel.h"
+#import "MSFCartViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -141,6 +142,7 @@
 					break;
 				case 4:
 				//TODO: 缺少扫一扫
+					[self scaning];
 					break;
 				default: break;
 			}
@@ -208,6 +210,18 @@
 	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)scaning {
+	@weakify(self)
+	[[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [[self.viewModel.services msf_barcodeScanSignal] doNext:^(id x) {
+			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
+			[self.navigationController pushViewController:vc animated:YES];
+		}];
+	}] execute:nil];
+	
 }
 
 - (RACSignal *)updateUserSignal {
