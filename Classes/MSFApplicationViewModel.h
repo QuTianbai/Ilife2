@@ -11,11 +11,13 @@
 @class MSFLoanType;
 @class RACCommand;
 
-// 贷款申请
+// 贷款申请, 需遵循的协议
 @protocol MSFApplicationViewModel <NSObject>
 
 // 申请API调用服务
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
+// 申请数据提交，提交完成后，进入提交广告界面
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 @optional

@@ -75,7 +75,10 @@
 @property (nonatomic, strong) MSFLoanType *loanType;
 @property (nonatomic, strong) NSString *applicationNo;
 @property (nonatomic, strong) id formViewModel __deprecated_msg("Use MSFUser intead");
-@property (nonatomic, weak) id<MSFViewModelServices> services;
+@property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
+
+//TODO: 完成马上贷数据提交
+@property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 @end
 
