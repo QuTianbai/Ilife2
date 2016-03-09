@@ -24,6 +24,19 @@ typedef NS_ENUM(NSUInteger, MSFCreditStatus) {
 
 @interface MSFCreditViewModel : RVMViewModel
 
+@property (nonatomic, strong, readonly) NSString *title;
+@property (nonatomic, strong, readonly) NSString *subtitle;
+
+@property (nonatomic, strong, readonly) NSString *repayAmmounts;
+@property (nonatomic, strong, readonly) NSString *applyAmounts;
+@property (nonatomic, strong, readonly) NSString *repayDates;
+
+@property (nonatomic, strong, readonly) NSArray *photos;
+@property (nonatomic, strong, readonly) NSString *groundTitle;
+
+@property (nonatomic, assign, readonly) MSFCreditStatus status;
+
+//申请视图中的按钮
 @property (nonatomic, strong, readonly) NSString  *action;
 @property (nonatomic, strong, readonly) RACCommand *excuteActionCommand;
 @property (nonatomic, strong, readonly) RACCommand *excuteDrawCommand;

@@ -9,7 +9,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFReactiveView.h"
 #import "MSFCreditOrderDetailsViewController.h"
-#import "MSFWalletViewModel.h"
 //define this constant if you want to use Masonry without the 'mas_' prefix
 #define MAS_SHORTHAND
 //define this constant if you want to enable auto-boxing for default syntax
@@ -56,7 +55,7 @@
     UIBarButtonItem *barbutton = [[UIBarButtonItem alloc]initWithCustomView:butt];
     self.navigationItem.rightBarButtonItem = barbutton;
     
-    
+    self.viewModel.active = YES;
     
 }
 
@@ -91,5 +90,8 @@
     
     
 }
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//    [(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
+//}
 
 @end

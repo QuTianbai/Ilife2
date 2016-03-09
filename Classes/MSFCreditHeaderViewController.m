@@ -7,8 +7,13 @@
 //
 
 #import "MSFCreditHeaderViewController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFCreditViewModel.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFCreditHeaderViewController ()
+
+@property (nonatomic, weak) MSFCreditViewModel *viewModel;
 
 @end
 
@@ -16,12 +21,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    RAC(self.titleLabel, text) = RACObserve(self, viewModel.title);
+    RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.subtitle);
+    RAC(self.repayLabel, text) = RACObserve(self, viewModel.repayAmmounts);
+    RAC(self.applyLabel, text) = RACObserve(self, viewModel.applyAmounts);
+    RAC(self.applyMonthLabel, text) = RACObserve(self, viewModel.repayDates);
+    
+    RAC(self.applyView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber  *status) {
+        return @(!(status.integerValue < MSFCreditActivated));
+    }];
+//    RAC(self.beforeApplyView, hidden)
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
     
 }
 
