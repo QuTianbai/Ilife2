@@ -24,6 +24,7 @@
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFClient+Amortize.h"
 #import "MSFPersonalViewModel.h"
+#import "MSFResponse.h"
 
 @interface MSFCartViewModel ()
 
@@ -336,11 +337,36 @@
 }
 
 - (RACSignal *)commitSignal {
-	return nil;
+	NSDictionary *order = @{
+		@"productCd": self.cart.crProdId,
+		@"appLmt": self.loanAmt,
+		@"loanTerm": self.term,
+		@"jionLifeInsurance": @(self.joinInsurance),
+		@"lifeInsuranceAmt": self.lifeInsuranceAmt,
+		@"loanFixedAmt": self.loanFixedAmt,
+		@"downPmtScale": self.downPmtScale,
+		@"downPmtAmt": self.downPmtAmt,
+		@"totalAmt": self.totalAmt,
+		@"isDownPmt": @(self.isDownPmt),
+		@"promId": self.trial.promId,
+	};
+	NSArray *accessories = self.accessories;
+	NSDictionary *cart = [MTLJSONAdapter JSONDictionaryFromModel:self.cart];
+	
+	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	parameters[@"applyStatus"] = @"1";
+	parameters[@"orderVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"accessoryInfoVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:accessories options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"cartVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:cart options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"orders/createOrder" parameters:parameters];
+	return [[self.services.httpClient enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
+		return value.parsedResult[@"appNo"];
+	}];
 }
 
 - (RACSignal *)commitValidSignal {
-	return nil;
+	//TODO: 增加商品贷可以申请贷款进入基本信息编辑状态的条件
+	return [RACSignal return:@YES];
 }
 
 @end
