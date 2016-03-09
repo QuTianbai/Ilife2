@@ -23,6 +23,7 @@
 #import "MSFAmortize.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFClient+Amortize.h"
+#import "MSFPersonalViewModel.h"
 
 @interface MSFCartViewModel ()
 
@@ -148,15 +149,15 @@
 	}];
 	
 	// 执行下一步操作
-	_executeNextCommand = [[RACCommand alloc] initWithEnabled:self.agreementValidSignal signalBlock:^RACSignal *(id input) {
+	_executeNextCommand = [[RACCommand alloc] initWithEnabled:[self nextValidSignal] signalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-		return [self.executeAgreementSignal doError:^(NSError *error) {
-			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-		}];
+		return [self nextSignal];
 	}];
 	_executeCompleteCommand = [[RACCommand alloc] initWithEnabled:[RACSignal return:@YES] signalBlock:^RACSignal *(id input) {
 		return self.executeCompleteSignal;
+	}];
+	_executeProtocolCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeAgreementSignal];
 	}];
   
   return self;
@@ -246,59 +247,77 @@
 
 #pragma mark - Private
 
-- (RACSignal *)agreementValidSignal {
+- (RACSignal *)nextValidSignal {
 	return [self.executeTrialCommand.executing map:^id(id value) {
 		return @(![value boolValue]);
 	}];
 }
 
+- (RACSignal *)nextSignal {
+	if (!self.hasAgreeProtocol) {
+		[SVProgressHUD showInfoWithStatus:@"请同意申请协议"];
+		return RACSignal.empty;
+	}
+	[SVProgressHUD showWithStatus:@"正在提交..."];
+	return [[[self.services.httpClient fetchCheckAllowApply]
+		map:^id(MSFCheckAllowApply *model) {
+			if (model.processing == 1) {
+				double a = self.downPmtAmt.doubleValue;
+				double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+				double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
+				double b = self.loanAmt.doubleValue;
+				double f = self.minLoan.doubleValue;
+				double g = self.maxLoan.doubleValue;
+				double c = self.totalAmt.doubleValue;
+				
+				// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
+				if (a < d) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
+					return nil;
+				}
+				if (a > e) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
+					return nil;
+				}
+				if (b < f) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
+					return nil;
+				}
+				if (b > g) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
+					return nil;
+				}
+				if (c < f + d) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
+					return nil;
+				}
+				if (c > e + g) {
+					[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
+					return nil;
+				}
+				
+				[SVProgressHUD dismiss];
+				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithServices:self.services];
+				[self.services pushViewModel:viewModel];
+				return nil;
+			} else {
+				[SVProgressHUD dismiss];
+				[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
+				return nil;
+			}
+		}] doError:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+		}];
+}
+
 - (RACSignal *)executeAgreementSignal {
-	return [[self.services.httpClient fetchCheckAllowApply] map:^id(MSFCheckAllowApply *model) {
-		if (model.processing == 1) {
-			double a = self.downPmtAmt.doubleValue;
-			double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
-			double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
-			double b = self.loanAmt.doubleValue;
-			double f = self.minLoan.doubleValue;
-			double g = self.maxLoan.doubleValue;
-			double c = self.totalAmt.doubleValue;
-			
-			// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
-			if (a < d) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
-				return nil;
-			}
-			if (a > e) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
-				return nil;
-			}
-			if (b < f) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
-				return nil;
-			}
-			if (b > g) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
-				return nil;
-			}
-			if (c < f + d) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
-				return nil;
-			}
-			if (c > e + g) {
-				[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
-				return nil;
-			}
-			
-			[SVProgressHUD dismiss];
-			MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-			[self.services pushViewModel:viewModel];
-			return nil;
-		} else {
-			[SVProgressHUD dismiss];
-			[[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
-			return nil;
-		}
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
 	}];
+
 }
 
 - (RACSignal *)executeCompleteSignal {

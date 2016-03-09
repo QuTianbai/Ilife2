@@ -67,15 +67,44 @@
 	[self.tableView registerClass:MSFCartSwitchCell.class forCellReuseIdentifier:@"MSFCartSwitchCell"];
 	[self.tableView registerClass:MSFCartTrialCell.class forCellReuseIdentifier:@"MSFCartTrialCell"];
 	
-	UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
+	UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
 	UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-	nextButton.frame = CGRectMake(20, 10, footer.frame.size.width - 40, 40);
+	nextButton.frame = CGRectMake(20, 50, footer.frame.size.width - 40, 40);
 	nextButton.backgroundColor = UIColor.themeColorNew;
 	[nextButton setTitle:@"下一步" forState:UIControlStateNormal];
 	[nextButton setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
 	nextButton.titleLabel.font = [UIFont systemFontOfSize:15];
 	nextButton.layer.cornerRadius = 5;
 	[footer addSubview:nextButton];
+	
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 5, CGRectGetWidth([UIScreen mainScreen].bounds), 30)];
+	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 110, 30)];
+	label.font = [UIFont systemFontOfSize:13];
+	label.text = @"我已经阅读且同意";
+	label.textColor = [UIColor darkGrayColor];
+	[view addSubview:label];
+	
+	UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7.5, 15, 15)];
+	imageView.image = [UIImage imageNamed:@"icon-protocol-normal.png"];
+	imageView.highlightedImage = [UIImage imageNamed:@"icon-protocol-selected.png"];
+	[view addSubview:imageView];
+	
+	UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(140, 0, 160, 30)];
+	[button setTitle:@"《个人消费信贷申请协议》" forState:UIControlStateNormal];
+	[button setTitleColor:[UIColor colorWithRed:0.086 green:0.565 blue:0.980 alpha:1.000] forState:UIControlStateNormal];
+	[button.titleLabel setFont:[UIFont systemFontOfSize:13]];
+	[view addSubview:button];
+	button.rac_command = self.viewModel.executeProtocolCommand;
+	
+	UIButton *button1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 140, 30)];
+	[view addSubview:button1];
+	RAC(imageView, highlighted) = RACObserve(button1, selected);
+	RAC(self, viewModel.hasAgreeProtocol) = RACObserve(button1, selected);
+	[[button1 rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
+		x.selected = !x.selected;
+	}];
+	
+	[footer addSubview:view];
 	self.tableView.tableFooterView = footer;
 	nextButton.rac_command = self.viewModel.executeNextCommand;
 

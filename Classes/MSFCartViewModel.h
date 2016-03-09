@@ -51,10 +51,13 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 // 是否需要首付
 @property (nonatomic, assign, readonly) BOOL isDownPmt;
 
+@property (nonatomic, assign, readonly) BOOL hasAgreeProtocol;
+
 @property (nonatomic, strong, readonly) RACCommand *executeInsuranceCommand; //查看保险协议
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeCompleteCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeTrialCommand; // 商品试算
+@property (nonatomic, strong, readonly) RACCommand *executeProtocolCommand; // 商品试算
 
 @property (nonatomic, assign, readonly) MSFCartType cartType __deprecated;
 
