@@ -10,6 +10,7 @@
 #import "MSFCommodityViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCartViewController.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFCommodityHeaderViewController ()
 
@@ -42,14 +43,11 @@
 		return @NO;
 	}];
 	
-	self.barCoderBT.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		@strongify(self)
-		return [[self.viewModel.services msf_barcodeScanSignal] doNext:^(id x) {
-			MSFCartViewController *vc = [[MSFCartViewController alloc] initWithApplicationNo:x services:self.viewModel.services];
-			[self.navigationController pushViewController:vc animated:YES];
-		}];
-	}];
+	self.barCoderBT.rac_command = self.viewModel.executeCartCommand;
 	
+	[self.viewModel.executeCartCommand.errors subscribeNext:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
 }
 
 - (void)didReceiveMemoryWarning {
