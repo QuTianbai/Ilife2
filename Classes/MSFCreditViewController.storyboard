@@ -319,8 +319,8 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（月供¥800.00 X 9期）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2d-wx-aWk">
-                                        <rect key="frame" x="144" y="63" width="151.5" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="（月供¥800.00 X 9期）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M2d-wx-aWk">
+                                        <rect key="frame" x="144" y="62" width="151.5" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -377,6 +377,15 @@
                             <constraint firstItem="lD8-a7-ZGR" firstAttribute="centerY" secondItem="SVW-DR-uwW" secondAttribute="centerY" id="uLF-Yk-HNp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="BeforeApply" destination="34e-rt-gsf" id="LsL-sr-AIm"/>
+                        <outlet property="applyAmount" destination="tu3-Cn-9WV" id="746-E4-wWX"/>
+                        <outlet property="applyReason" destination="5Nq-Gp-HIL" id="foh-hG-bZ4"/>
+                        <outlet property="applyView" destination="lD8-a7-ZGR" id="4Jo-Cv-bgM"/>
+                        <outlet property="beforeApply" destination="34e-rt-gsf" id="iGf-Sa-cie"/>
+                        <outlet property="dayLimit" destination="M2d-wx-aWk" id="hdK-Iz-qEb"/>
+                        <outlet property="orderNum" destination="L6C-jc-DYU" id="8dN-RB-tgl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I5Y-sU-XxW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -411,6 +420,10 @@
                             <constraint firstItem="fWY-72-6ZP" firstAttribute="top" secondItem="MQl-Td-6Zh" secondAttribute="bottom" id="jfK-Eb-hX2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pageControl" destination="NIy-Pj-4P6" id="Mua-q5-bFJ"/>
+                        <outlet property="scrollVIew" destination="MQl-Td-6Zh" id="l5D-dn-Hu4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AKF-bu-fOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

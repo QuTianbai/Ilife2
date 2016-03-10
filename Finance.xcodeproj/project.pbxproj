@@ -360,6 +360,9 @@
 		1D17E2FB1C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */; };
 		1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */; };
 		1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */; };
+		1D9D54511C91727D00858B5E /* credit-btn-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D544E1C91727D00858B5E /* credit-btn-active.png */; };
+		1D9D54521C91727D00858B5E /* credit-btn-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D544F1C91727D00858B5E /* credit-btn-active@2x.png */; };
+		1D9D54531C91727D00858B5E /* credit-btn-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D54501C91727D00858B5E /* credit-btn-active@3x.png */; };
 		1DF17E421C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DF17E411C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m */; };
 		1DFB3A041C8E76D600E2E43C /* MSFCreditHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB3A031C8E76D600E2E43C /* MSFCreditHeaderViewController.m */; };
 		1DFB3A071C8E775600E2E43C /* MSFCreditMiddleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB3A061C8E775600E2E43C /* MSFCreditMiddleViewController.m */; };
@@ -1594,6 +1597,9 @@
 		1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
 		1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditViewModel.h; sourceTree = "<group>"; };
 		1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditViewModel.m; sourceTree = "<group>"; };
+		1D9D544E1C91727D00858B5E /* credit-btn-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-btn-active.png"; sourceTree = "<group>"; };
+		1D9D544F1C91727D00858B5E /* credit-btn-active@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-btn-active@2x.png"; sourceTree = "<group>"; };
+		1D9D54501C91727D00858B5E /* credit-btn-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-btn-active@3x.png"; sourceTree = "<group>"; };
 		1DF17E401C897A470006ADA4 /* MSFCreditOrderDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditOrderDetailsViewController.h; sourceTree = "<group>"; };
 		1DF17E411C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditOrderDetailsViewController.m; sourceTree = "<group>"; };
 		1DFB3A021C8E76D600E2E43C /* MSFCreditHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditHeaderViewController.h; sourceTree = "<group>"; };
@@ -3289,6 +3295,9 @@
 		4912C6AD1C6475D000550A6C /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1D9D544E1C91727D00858B5E /* credit-btn-active.png */,
+				1D9D544F1C91727D00858B5E /* credit-btn-active@2x.png */,
+				1D9D54501C91727D00858B5E /* credit-btn-active@3x.png */,
 				1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */,
 				1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */,
 				1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */,
@@ -5300,6 +5309,7 @@
 				49B7A7921C85915F00471168 /* icon-user-coupon@3x.png in Resources */,
 				07122F281C310EDF004AD0E2 /* faceMask_bg@3x.png in Resources */,
 				49C0F1B01B2C315100E92572 /* logo@2x.png in Resources */,
+				1D9D54521C91727D00858B5E /* credit-btn-active@2x.png in Resources */,
 				07B368821B7ED86400574A81 /* basic-information-prompt-1242.png in Resources */,
 				0738C48F1B944B54006D7177 /* bank.db in Resources */,
 				491FD40C1C84A4D40026928F /* tab-commodity-normal.png in Resources */,
@@ -5461,6 +5471,7 @@
 				49339FC01C904CEC008A26E3 /* groupedTableViewCell_bottomRow@3x.png in Resources */,
 				4922E1301C85DBA500E20C2C /* bg-commited-sep@2x.png in Resources */,
 				4922E1671C85EA2B00E20C2C /* icon-jd.png in Resources */,
+				1D9D54511C91727D00858B5E /* credit-btn-active.png in Resources */,
 				49FCBF891C0E92890035398E /* allow.json in Resources */,
 				49FAEF321C9013A600F3BC44 /* icon_order2_n@2x.png in Resources */,
 				495B071F1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard in Resources */,
@@ -5793,6 +5804,7 @@
 				1011A3AA1BB9702600CCADB5 /* icon_circle_basic_n.png in Resources */,
 				4993E0DB1B2DA65B00090F26 /* bg-loan-installment@3x.png in Resources */,
 				07A146091C84627900C32F0B /* right-arrow-gray@2x.png in Resources */,
+				1D9D54531C91727D00858B5E /* credit-btn-active@3x.png in Resources */,
 				4912C6D91C64778900550A6C /* applyCashButtonSelect@3x.png in Resources */,
 				078010501BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib in Resources */,
 				4922E1181C85D33600E20C2C /* icon-protocol-selected@3x.png in Resources */,

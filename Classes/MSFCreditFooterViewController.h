@@ -10,5 +10,7 @@
 #import "MSFReactiveView.h"
 
 @interface MSFCreditFooterViewController : UIViewController <MSFReactiveView>
+@property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollVIew;
 
 @end

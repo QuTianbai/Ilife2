@@ -43,6 +43,11 @@
     
     _services = services;
     return self;
+//    @weakify (self)
+//    [[self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+//        @strongify(self)
+//        [self]
+//    }];
     
 }
 
