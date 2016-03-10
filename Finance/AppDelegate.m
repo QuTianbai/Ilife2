@@ -97,54 +97,18 @@
 		[manager startUpdatingLocation];
 	}];
 
-	//[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-//		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-//		 subscribeNext:^(id x) {
-//			 NSString *str = [x object];
-//			 if ([str isEqualToString:@"1"]) {
-//				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-//			 }
-//			 [self setup];
-//		 }];
-//
-//		[MSFGuideViewController.guide show];
-				//return [RACSignal empty];
 	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
-		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-		 subscribeNext:^(id x) {
-			 NSString *str = [x object];
-			 if ([str isEqualToString:@"1"]) {
-				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-			 }
-			 [self setup];
-		 }];
-		
+		[self setup];
 		[MSFGuideViewController.guide show];
-		//[self setup];
-		return [RACSignal empty];
+		return RACSignal.empty;
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
-		
-		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-		 subscribeNext:^(id x) {
-			 [[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-				subscribeNext:^(id x) {
-					NSString *str = [x object];
-					if ([str isEqualToString:@"1"]) {
-						self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-					}
-					[self setup];
-				}];
-			 
-			 [MSFGuideViewController.guide show];
-			// [self setup];
-		 }];
-		//[MSFGuideViewController.guide show];
+		[self setup];
+		[MSFGuideViewController.guide show];
 		#if !DEBUG
 		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
-		[self setup];
 		self.releaseNote = releasenote;
 		[self updateCheck];
 	}];
