@@ -101,8 +101,6 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 // Request server find password
 @property (nonatomic, strong) RACCommand *executeFindPassword;
-
-// Request server send find password capcha command
 @property (nonatomic, strong) RACCommand *executeFindPasswordCaptcha;
 
 @property (nonatomic, strong) RACCommand *executeSetTradePwd;
