@@ -25,7 +25,7 @@
                                 </constraints>
                                 <state key="normal" title="返回首页"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg-commited-sep.png" translatesAutoresizingMaskIntoConstraints="NO" id="EVJ-gL-as1">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg-commited-sep.png" translatesAutoresizingMaskIntoConstraints="NO" id="EVJ-gL-as1">
                                 <rect key="frame" x="0.0" y="264" width="320" height="6"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZh-gg-f1U">

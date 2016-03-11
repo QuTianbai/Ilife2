@@ -52,7 +52,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 
 - (RACSignal *)fetchUserAgreementRequestWithType:(NSString *)type {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/article" parameters:@{
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"treaty/static" parameters:@{
 			@"templateType" :type,
 		}];
 		[subscriber sendNext:request];

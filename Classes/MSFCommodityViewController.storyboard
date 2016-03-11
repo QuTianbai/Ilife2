@@ -66,6 +66,10 @@
         <scene sceneID="Zeq-Zh-TPz">
             <objects>
                 <viewController id="3Qg-53-fsz" customClass="MSFCommodityHeaderViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zCm-zH-Wh3"/>
+                        <viewControllerLayoutGuide type="bottom" id="pXS-y7-2Jl"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Mey-V4-5bL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,13 +133,23 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="确认合同"/>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNq-iO-KxY">
+                                        <rect key="frame" x="0.0" y="39.5" width="320" height="0.5"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="4gb-CV-IF7"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="mUy-Pb-aZa" firstAttribute="leading" secondItem="QeB-sk-v9r" secondAttribute="trailing" id="0vr-ln-Ncn"/>
                                     <constraint firstItem="HVD-Di-Jlk" firstAttribute="centerY" secondItem="bDM-k7-zDV" secondAttribute="centerY" id="6tS-nE-6yF"/>
+                                    <constraint firstAttribute="bottom" secondItem="iNq-iO-KxY" secondAttribute="bottom" id="J5Z-zp-m5n"/>
                                     <constraint firstItem="QeB-sk-v9r" firstAttribute="centerY" secondItem="bDM-k7-zDV" secondAttribute="centerY" id="S84-kO-ffD"/>
+                                    <constraint firstItem="iNq-iO-KxY" firstAttribute="leading" secondItem="bDM-k7-zDV" secondAttribute="leading" id="TRY-VS-ge1"/>
                                     <constraint firstItem="QeB-sk-v9r" firstAttribute="leading" secondItem="bDM-k7-zDV" secondAttribute="leading" constant="15" id="YFT-eB-yjj"/>
+                                    <constraint firstAttribute="trailing" secondItem="iNq-iO-KxY" secondAttribute="trailing" id="ZlJ-2N-sMh"/>
                                     <constraint firstItem="hwv-PE-PWv" firstAttribute="centerY" secondItem="bDM-k7-zDV" secondAttribute="centerY" id="bJ3-Nf-Oag"/>
                                     <constraint firstItem="HVD-Di-Jlk" firstAttribute="leading" secondItem="hwv-PE-PWv" secondAttribute="trailing" constant="5" id="q0N-kS-kmY"/>
                                     <constraint firstAttribute="trailing" secondItem="HVD-Di-Jlk" secondAttribute="trailing" constant="5" id="ukj-XJ-R2E"/>
@@ -170,28 +184,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y99-Nr-L8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="-71.5"/>
+            <point key="canvasLocation" x="554" y="-72"/>
         </scene>
         <!--Commodity Middle View Controller-->
         <scene sceneID="DZP-QS-JKt">
             <objects>
                 <viewController id="veC-5b-pUu" customClass="MSFCommodityMiddleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qlA-99-a4N"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ny4-EU-ZWL"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yh4-Dx-mlO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-commidity-bg-middle.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="9Hu-7P-CXY">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8AQ-rz-2DQ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
-                            </imageView>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Hu-7P-CXY" firstAttribute="leading" secondItem="yh4-Dx-mlO" secondAttribute="leading" id="30a-eg-pQf"/>
-                            <constraint firstItem="9Hu-7P-CXY" firstAttribute="top" secondItem="yh4-Dx-mlO" secondAttribute="top" id="KPH-fT-Aot"/>
-                            <constraint firstAttribute="bottom" secondItem="9Hu-7P-CXY" secondAttribute="bottom" id="Mvs-q1-dMl"/>
-                            <constraint firstAttribute="trailing" secondItem="9Hu-7P-CXY" secondAttribute="trailing" id="Xua-GF-4K0"/>
+                            <constraint firstAttribute="trailing" secondItem="8AQ-rz-2DQ" secondAttribute="trailing" id="MuJ-fV-X2r"/>
+                            <constraint firstItem="8AQ-rz-2DQ" firstAttribute="top" secondItem="qlA-99-a4N" secondAttribute="bottom" id="Sfa-nS-vmw"/>
+                            <constraint firstItem="8AQ-rz-2DQ" firstAttribute="leading" secondItem="yh4-Dx-mlO" secondAttribute="leading" id="ix2-Ah-7IO"/>
+                            <constraint firstItem="Ny4-EU-ZWL" firstAttribute="top" secondItem="8AQ-rz-2DQ" secondAttribute="bottom" id="luo-ZX-BtJ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myWebView" destination="8AQ-rz-2DQ" id="H2q-jx-nXJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1h-xi-Hju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -201,6 +223,10 @@
         <scene sceneID="LHb-Pd-tRC">
             <objects>
                 <viewController id="per-0b-KLq" customClass="MSFCommodityFooterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GdS-n6-Cko"/>
+                        <viewControllerLayoutGuide type="bottom" id="O86-NZ-Gui"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MEm-YB-pdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -240,7 +266,6 @@
         <image name="img-arrow-right.png" width="8" height="14"/>
         <image name="img-commdity-sao-H.png" width="111" height="147"/>
         <image name="img-commdity-sao-Nomal.png" width="111" height="147"/>
-        <image name="img-commidity-bg-middle.jpg" width="414" height="153"/>
         <image name="img-commidity-bg-top.jpg" width="414" height="317"/>
     </resources>
 </document>

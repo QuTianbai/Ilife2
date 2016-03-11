@@ -7,16 +7,26 @@
 //
 
 #import "MSFCommodityMiddleViewController.h"
+#import "MSFCommodityViewModel.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFCommodityMiddleViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
+@property (nonatomic, weak) MSFCommodityViewModel *viewModel;
 
 @end
 
 @implementation MSFCommodityMiddleViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	@weakify(self)
+	[RACObserve(self, viewModel.groundContent) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.myWebView loadHTMLString:x baseURL:nil];
+	}];
+	self.myWebView.backgroundColor = [UIColor whiteColor];
+	self.myWebView.opaque = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,7 +35,7 @@
 }
 
 - (void)bindViewModel:(id)viewModel {
-	
+	self.viewModel = viewModel;
 }
 
 @end
