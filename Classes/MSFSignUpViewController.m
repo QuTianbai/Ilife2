@@ -19,7 +19,7 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 #import "UIImage+Color.h"
-
+#import "MSFbackgroundLogoView.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
@@ -71,11 +71,16 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	self.tableView.backgroundColor = [UIColor signUpBgcolor];
+	self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor;
 	self.name.delegate = self;
 	self.card.delegate = self;
 	[self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont systemFontOfSize:15]} forState:UIControlStateNormal ];
-	//self.navigationController.navigationBar.backgroundColor = [UIColor navigationBgColor];
+	MSFbackgroundLogoView *view = [NSBundle.mainBundle loadNibNamed:NSStringFromClass(MSFbackgroundLogoView.class) owner:nil options:nil].firstObject;
+	view.frame = UIScreen.mainScreen.bounds;
+	view.imageView.image = [UIImage imageNamed:@"logo-msfinance-co.png"];
+	view.label.textColor = UIColor.grayColor;
+	self.tableView.backgroundView = view;
+
 	
 	@weakify(self)
 	self.signInBt.rac_command = self.viewModel.executeSignInCommand;

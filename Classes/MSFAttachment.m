@@ -19,6 +19,7 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithFileURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type elementName:(NSString *)name {
+	NSParameterAssert(applicaitonNo);
 	return [self initWithDictionary:@{
 		@keypath(MSFAttachment.new, fileURL): URL,
 		@keypath(MSFAttachment.new, thumbURL): URL,
@@ -30,6 +31,7 @@
 }
 
 - (instancetype)initWithAssetsURL:(NSURL *)URL applicationNo:(NSString *)applicaitonNo elementType:(NSString *)type elementName:(NSString *)name {
+	NSParameterAssert(applicaitonNo);
 	return [self initWithDictionary:@{
 		@keypath(MSFAttachment.new, thumbURL): URL,
 		@keypath(MSFAttachment.new, applicationNo): applicaitonNo,

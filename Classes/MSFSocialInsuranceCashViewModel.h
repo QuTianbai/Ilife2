@@ -23,6 +23,10 @@
 @property (nonatomic, strong, readonly) NSString *contactPhone; // 联系人手机号
 @property (nonatomic, strong, readonly) NSString *liveArea; // 居住地区
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险
+@property (nonatomic, strong, readwrite) NSString *applicationNo;
+@property (nonatomic, strong, readwrite) NSString *amount;
+@property (nonatomic, strong, readwrite) NSString *loanTerm;
+@property (nonatomic, strong, readwrite) NSArray *accessories;
 
 // RACCommand
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;

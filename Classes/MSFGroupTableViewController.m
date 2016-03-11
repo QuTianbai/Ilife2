@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

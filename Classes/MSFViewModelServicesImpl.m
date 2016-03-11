@@ -222,6 +222,9 @@
 		}
 		
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[imagePickerController.view addSubview:view];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 			imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
@@ -272,6 +275,9 @@
 		MSFBarcodeScanViewController *vc = [[MSFBarcodeScanViewController alloc] init];
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
 		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[navigationController.view addSubview:view];
 		@weakify(vc)
 		[vc.msf_barcodeScannedSignal subscribeNext:^(ZXResult *x) {
 			@strongify(vc)

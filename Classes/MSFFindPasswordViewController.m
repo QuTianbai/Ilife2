@@ -16,6 +16,7 @@
 #import "MSFActivate.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
 #import "UIImage+Color.h"
+#import "MSFResetPasswordViewController.h"
 
 @interface MSFFindPasswordViewController () <UITextFieldDelegate>
 
@@ -23,12 +24,8 @@
 
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *captcha;
-@property (nonatomic, weak) IBOutlet UITextField *password;
-@property (nonatomic, weak) IBOutlet UITextField *name;
-@property (nonatomic, weak) IBOutlet UITextField *card;
 @property (nonatomic, weak) IBOutlet UIButton *captchaButton;
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
-@property (nonatomic, weak) IBOutlet UIButton *showPasswordButton;
 @property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 
@@ -37,10 +34,11 @@
 @implementation MSFFindPasswordViewController
 
 - (instancetype)initWithModel:(id)viewModel {
-	self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(self.class)];
+	self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass(MSFFindPasswordViewController.class)];
 	if (!self) {
 		return nil;
 	}
+	_viewModel = viewModel;
 	
 	return self;
 }
@@ -49,39 +47,16 @@
 	[super viewDidLoad];
 	self.title = @"忘记密码";
 	self.navigationController.navigationBarHidden = NO;
+	self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor;
 	
-
-//	self.username.text = MSFUtils.signInMobile;
-//	self.viewModel.username = MSFUtils.signInMobile;
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
 	
-	self.name.delegate = self;
-	self.card.delegate = self;
-	
 	@weakify(self)
-	[self.name.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x length] > MSFAuthorizeNameMaxLength) self.name.text = [x substringToIndex:MSFAuthorizeNameMaxLength];
-		self.viewModel.name = self.name.text;
-	}];
-	
-	[self.card.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x length] > MSFAuthorizeIdentifierMaxLength) self.card.text = [x substringToIndex:MSFAuthorizeIdentifierMaxLength];
-		self.viewModel.card = self.card.text;
-	}];
-	
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x length] > MSFAuthorizeUsernameMaxLength) self.username.text = [x substringToIndex:MSFAuthorizeUsernameMaxLength];
 		self.viewModel.username = self.username.text;
-	}];
-	
-	[self.password.rac_textSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x length] > MSFAuthorizePasswordMaxLength) self.password.text = [x substringToIndex:MSFAuthorizePasswordMaxLength];
-		self.viewModel.password = self.password.text;
 	}];
 	
 	[self.captcha.rac_textSignal subscribeNext:^(id x) {
@@ -111,48 +86,20 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	self.commitButton.rac_command = self.viewModel.executeFindPassword;
-	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {
+	[[self.commitButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
-		[MSFActivate setSignInMobile:self.username.text];
-		[self.view endEditing:YES];
-		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
-		[signUpSignal subscribeCompleted:^{
-			[SVProgressHUD showSuccessWithStatus:@"重置密码成功，请重新登录"];
-			[self.navigationController popViewControllerAnimated:YES];
-		}];
-	}];
-	[self.commitButton.rac_command.errors subscribeNext:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-	
-	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
-		@strongify(self)
-		[self.viewModel.executeFindPassword execute:nil];
-	}];
-	
-	[[self.showPasswordButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		@strongify(self)
-		self.showPasswordButton.selected = !self.showPasswordButton.selected;
-		NSString *text = self.password.text;
-		self.password.text = text;
-		self.password.enabled = NO;
-		[self.password setSecureTextEntry:!self.showPasswordButton.selected];
-		self.password.enabled = YES;
-		[self.password becomeFirstResponder];
+		if (self.captcha.text.length != 4) {
+			[SVProgressHUD showErrorWithStatus:@"请输入正确的验证码"];
+			return;
+		}
+		MSFResetPasswordViewController *vc = [[MSFResetPasswordViewController alloc] initWithViewModel:self.viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
 	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	//self.navigationController.navigationBarHidden = NO;
-
 	self.viewModel.active = YES;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -168,28 +115,6 @@
 
 - (void)bindViewModel:(id)viewModel {
 	self.viewModel = viewModel;
-}
-
-#pragma mark - UITextFieldDelegate
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-	if ([textField isEqual:self.card]) {
-		textField.text = [textField.text uppercaseString];
-	}
-}
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-	if ([textField isEqual:self.card]) {
-		if (range.location > 17) return NO;
-		if (range.location == 17) {
-			NSCharacterSet *blockedCharacters = [[NSCharacterSet identifyCardCharacterSet] invertedSet];
-			return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
-		}
-		NSCharacterSet *blockedCharacters = [[NSCharacterSet numberCharacterSet] invertedSet];
-		return ([string rangeOfCharacterFromSet:blockedCharacters].location == NSNotFound);
-	}
-	
-	return YES;
 }
 
 @end
