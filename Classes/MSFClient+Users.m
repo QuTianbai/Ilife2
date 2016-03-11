@@ -127,7 +127,7 @@
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
-		@"uniqueId": self.user.objectID,
+		@"uniqueId": self.user.uniqueId,
 		@"newTransPassword": pwd?:@"",
 		@"smsCode": capthch?:@""
 	}];

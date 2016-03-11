@@ -82,15 +82,6 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
-	[[self.viewModel.checkHasTrandPasswordViewModel.executeChenkTradePassword execute:nil] subscribeNext:^(MSFCheckHasTradePasswordModel *model) {
-		MSFUser *user = [[MSFUser alloc] initWithDictionary:@{
-			@"hasTransactionalCode": [model.hasTransPwd isEqualToString:@"YES"] ? @YES : @NO
-		} error:nil];
-		[[self.viewModel.services httpClient].user mergeValueForKey:@"hasTransactionalCode" fromModel:user];
-	} error:^(NSError *error) {
-		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-	}];
-	
 	[[self rac_signalForSelector:@selector(viewWillAppear:)]
 	subscribeNext:^(id x) {
 		@strongify(self)

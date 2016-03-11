@@ -39,7 +39,7 @@
 }
 
 - (RACSignal *)fetchLoginCaptchaTradeWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters: @{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters: @{
 		@"codeType": @"INIT_TRANS_PASSWORD",
 		@"mobile": phone
 	}];
@@ -48,7 +48,7 @@
 }
 
 - (RACSignal *)fetchLoginCaptchaForgetTradeWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters: @{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters: @{
 		@"codeType": @"FORGET_TRANS_PASSWORD",
 		@"mobile": phone
 	}];
@@ -57,7 +57,7 @@
 }
 
 - (RACSignal *)fetchCapthchaUpdateTradeWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters:@{
 		@"codeType": @"MODIFY_TRANS_PASSWORD",
 		@"mobile": phone
 	}];
@@ -66,7 +66,7 @@
 }
 
 - (RACSignal *)fetchAlertMobileCaptchaWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters:@{
 		@"codeType": @"MODIFY_MOBILE",
 		@"mobile": phone
 	}];
@@ -75,7 +75,7 @@
 }
 
 - (RACSignal *)fetchPaySmsCodeWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters: @{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters: @{
 																																																 @"codeType": @"INIT_TRANS_PASSWORD",
 																																																 @"mobile": phone
 																																																 }];
