@@ -9,8 +9,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #define FORCE_DISPLAY 0
-
-NSString *const SETUPHOMEPAGE = @"SETUPHOMEPAGE";
+#define SETUPHOMEPAGE @"SETUPHOMEPAGE"
 
 @interface MSFGuideViewController ()<UIScrollViewDelegate>
 
@@ -90,26 +89,26 @@ NSString *const SETUPHOMEPAGE = @"SETUPHOMEPAGE";
 			UIButton *signinButton = [[UIButton alloc] initWithFrame:CGRectMake(frame.size.width - signinImg.size.width - 5, 35, 52, 52 * signinImg.size.height / signinImg.size.width)];
 			[signinButton setBackgroundImage:signinImg forState:UIControlStateNormal];
 			[imageView addSubview:signinButton];
-			[[signinButton rac_signalForControlEvents:UIControlEventTouchUpInside]
-			 subscribeNext:^(id x) {
-				 [[NSNotificationCenter defaultCenter] postNotificationName:SETUPHOMEPAGE object:@"1"];
-				 [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-					 scrollView.transform = CGAffineTransformMakeScale(1.5, 1.5);
-					 scrollView.alpha = 0;
-				 } completion:^(BOOL finished) {
-					 [scrollView removeFromSuperview];
-					 [[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
-						 [manager startUpdatingLocation];
-					 }];
-				 }];
+			[[signinButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+				[self.pageControl removeFromSuperview];
+				[[NSNotificationCenter defaultCenter] postNotificationName:SETUPHOMEPAGE object:@"1"];
+				[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+					scrollView.transform = CGAffineTransformMakeScale(1.5, 1.5);
+					scrollView.alpha = 0;
+				} completion:^(BOOL finished) {
+					[scrollView removeFromSuperview];
+					[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
+						[manager startUpdatingLocation];
+					}];
+				}];
 			 }];
 			
 			UIImage *img = [UIImage imageNamed:@"icon-start-signup"];
 			UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(20, frame.size.height - 70, frame.size.width - 40, (frame.size.width - 40) * img.size.height / img.size.width)];
 			[button setBackgroundImage:img forState:UIControlStateNormal];
 			[imageView addSubview:button];
-			[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
-			subscribeNext:^(id x) {
+			[[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+				[self.pageControl removeFromSuperview];
 				[[NSNotificationCenter defaultCenter] postNotificationName:SETUPHOMEPAGE object:@"2"];
 				[UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
 					scrollView.transform = CGAffineTransformMakeScale(1.5, 1.5);
@@ -121,8 +120,6 @@ NSString *const SETUPHOMEPAGE = @"SETUPHOMEPAGE";
 					}];
 				}];
 			}];
-			
-//			[imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss:)]];
 		}
 	}
 	[[UIApplication sharedApplication].keyWindow addSubview:scrollView];

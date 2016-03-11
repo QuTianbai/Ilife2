@@ -20,18 +20,13 @@
 // 申请数据提交，提交完成后，进入提交广告界面
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
-@optional
-
-// 资料重传的时候用到
-@property (nonatomic, strong, readonly) NSString *applicationNo;
-
-// 完成申请流程中, 个人信息编辑的时候，需要提供申请单的ViewModel
-@property (nonatomic, weak, readonly) id <MSFApplicationViewModel> viewModel;
-
 // 申请的产品类型: 社保贷/马上贷款/随借随还
 @property (nonatomic, strong, readonly) MSFLoanType *loanType;
 
-// 附件列表 <NSDictionary>
+// 上传附件的时候需要
+@property (nonatomic, strong, readwrite) NSString *applicationNo;
+@property (nonatomic, strong, readwrite) NSString *amount;
+@property (nonatomic, strong, readwrite) NSString *loanTerm;
 @property (nonatomic, strong, readwrite) NSArray *accessories;
 
 @end

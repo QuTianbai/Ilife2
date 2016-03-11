@@ -37,9 +37,7 @@
 	parameters[@"mobile"] = phone;
 	parameters[@"newPassword"] = password.sha256;
 	parameters[@"smsCode"] = captcha;
-	parameters[@"name"] = name;
-	parameters[@"ident"] = citizenID;
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"password/forgetPassword" parameters:parameters];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/forgetPassword" parameters:parameters];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }

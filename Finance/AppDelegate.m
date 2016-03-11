@@ -62,6 +62,25 @@
 	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
 	
+	[UIApplication.sharedApplication setStatusBarHidden:NO];
+	[UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent];
+	[UINavigationBar.appearance setTintColor:UIColor.whiteColor];
+	[UINavigationBar.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	[UINavigationBar.appearance setBarTintColor:UIColor.navigationBarColor];
+	[UINavigationBar.appearance setClipsToBounds:YES];
+	[UINavigationBar.appearance setTranslucent:YES];
+	[UINavigationBar.appearance setShadowImage:UIImage.new];
+	[UINavigationBar.appearance setBackIndicatorImage:[UIImage imageWithColor:UIColor.navigationBarColor size:CGSizeMake(1, 44)]];
+
+	
+	@weakify(self)
+	[RACObserve(self.window, rootViewController) subscribeNext:^(id x) {
+		@strongify(self)
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[self.window.rootViewController.view addSubview:view];
+	}];
+	
 	[Fabric with:@[CrashlyticsKit]];
 	
 #if TEST
@@ -78,54 +97,18 @@
 		[manager startUpdatingLocation];
 	}];
 
-	//[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-//		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-//		 subscribeNext:^(id x) {
-//			 NSString *str = [x object];
-//			 if ([str isEqualToString:@"1"]) {
-//				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-//			 }
-//			 [self setup];
-//		 }];
-//
-//		[MSFGuideViewController.guide show];
-				//return [RACSignal empty];
 	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
-		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-		 subscribeNext:^(id x) {
-			 NSString *str = [x object];
-			 if ([str isEqualToString:@"1"]) {
-				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-			 }
-			 [self setup];
-		 }];
-		
+		[self setup];
 		[MSFGuideViewController.guide show];
-		//[self setup];
-		return [RACSignal empty];
+		return RACSignal.empty;
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
-		
-		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-		 subscribeNext:^(id x) {
-			 [[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-				subscribeNext:^(id x) {
-					NSString *str = [x object];
-					if ([str isEqualToString:@"1"]) {
-						self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-					}
-					[self setup];
-				}];
-			 
-			 [MSFGuideViewController.guide show];
-			// [self setup];
-		 }];
-		//[MSFGuideViewController.guide show];
+		[self setup];
+		[MSFGuideViewController.guide show];
 		#if !DEBUG
 		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
-		[self setup];
 		self.releaseNote = releasenote;
 		[self updateCheck];
 	}];
@@ -175,9 +158,7 @@
 
 - (void)setup {
 	// 通用颜色配置
-	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
-	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// 启动到登录的过渡动画

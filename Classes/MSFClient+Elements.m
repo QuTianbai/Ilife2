@@ -42,6 +42,22 @@
 	}];
 }
 
+- (RACSignal *)fetchElementsProductCode:(NSString *)prodcutCode amount:(NSString *)amount loanTerm:(NSString *)loanTerm {
+	NSParameterAssert(prodcutCode);
+	
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
+		@"productCode": prodcutCode,
+		@"amount": amount?:@"",
+		@"loanTerm": loanTerm?:@"",
+	}];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
+		MSFElement *element = response.parsedResult;
+		//TODO: 判断element需要的参数
+//		element.applicationNo = applicaitonNo;
+		return element;
+	}];
+}
+
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID {
 	NSParameterAssert(applicaitonNo);
 	NSParameterAssert(amount);

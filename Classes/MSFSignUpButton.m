@@ -8,6 +8,7 @@
 
 #import "MSFSignUpButton.h"
 #import "UIColor+Utils.h"
+#import <UIColor-Hex/UIColor+Hex.h>
 
 @implementation MSFSignUpButton
 
@@ -15,10 +16,10 @@
 	if (!(self = [super initWithCoder:aDecoder])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor buttonBgColor];
+	self.backgroundColor = [UIColor colorWithHex:0x0ea5fb];
 	self.tintColor = [UIColor fontColor];
 	self.layer.cornerRadius = 5;
-	self.layer.borderWidth = 3;
+	self.layer.borderWidth = 1.5;
 	self.layer.borderColor = [UIColor buttonBorderColor].CGColor;
 	
 	return self;
@@ -28,10 +29,10 @@
 	if (!(self = [super initWithFrame:frame])) {
 		return nil;
 	}
-	self.backgroundColor = [UIColor buttonBgColor];
+	self.backgroundColor = [UIColor colorWithHex:0x0ea5fb];
 	self.tintColor = [UIColor fontColor];
 	self.layer.cornerRadius = 5;
-	self.layer.borderWidth = 3;
+	self.layer.borderWidth = 1.5;
 	self.layer.borderColor = [UIColor buttonBorderColor].CGColor;
 	
 	return self;
