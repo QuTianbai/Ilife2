@@ -23,7 +23,7 @@
 @property (nonatomic, copy) NSString *appNO;
 @property (nonatomic, copy) NSString *appLmt; // 贷款金额
 @property (nonatomic, copy) NSString *applyStatus;
-@property (nonatomic, copy) NSString *loanTerm; // 贷款期数
+@property (nonatomic, strong, readwrite) NSString *loanTerm; // 贷款期数
 @property (nonatomic, copy) NSString *loanPurpose;
 @property (nonatomic, copy) NSString *jionLifeInsurance;
 @property (nonatomic, copy) NSString *lifeInsuranceAmt;
@@ -73,7 +73,8 @@
 // <MSFApplicationViewModel>
 @property (nonatomic, strong) NSArray *accessories;
 @property (nonatomic, strong) MSFLoanType *loanType;
-@property (nonatomic, strong) NSString *applicationNo;
+@property (nonatomic, strong, readwrite) NSString *applicationNo;
+@property (nonatomic, strong, readwrite) NSString *amount;
 @property (nonatomic, strong) id formViewModel __deprecated_msg("Use MSFUser intead");
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 

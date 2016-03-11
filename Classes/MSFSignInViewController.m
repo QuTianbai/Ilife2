@@ -19,6 +19,7 @@
 #import "MSFSignUpButton.h"
 #import "UIImage+Color.h"
 #import "MSFFindPasswordViewController.h"
+#import "MSFbackgroundLogoView.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -67,6 +68,12 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 	// 登录用户名/密码
 	self.username.text = MSFActivate.signInMobile;
 	self.viewModel.username = MSFActivate.signInMobile;
+	
+	MSFbackgroundLogoView *view = [NSBundle.mainBundle loadNibNamed:NSStringFromClass(MSFbackgroundLogoView.class) owner:nil options:nil].firstObject;
+	view.frame = UIScreen.mainScreen.bounds;
+	view.imageView.image = [UIImage imageNamed:@"logo-msfinance-co2.png"];
+	view.label.textColor = UIColor.whiteColor;
+	self.tableView.backgroundView = view;
 
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingUsernameEnvironmentKey];
@@ -171,6 +178,12 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	self.viewModel.active = NO;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.destinationViewController conformsToProtocol:@protocol(MSFReactiveView)]) {
+		[(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
+	}
 }
 
 #pragma mark - UITableViewDelegate

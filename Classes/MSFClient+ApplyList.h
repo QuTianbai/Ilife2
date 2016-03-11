@@ -12,7 +12,7 @@
 
 @interface MSFClient (ApplyList)
 
-- (RACSignal *)fetchSpicyApplyList:(NSInteger)type;
+- (RACSignal *)fetchSpicyApplyList:(NSString *)type;
 - (RACSignal *)fetchRepayURLWithAppliList:(MSFApplyList *)applylist;
 
 // 获取最近一笔贷款信息

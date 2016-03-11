@@ -29,6 +29,9 @@ __attribute__((deprecated("This class is unavailable. Please use the MSFCartView
 // 传入的二维码编码信息
 @property (nonatomic, strong, readonly) NSString *barcode;
 
+@property (nonatomic, strong, readwrite) NSString *amount;
+@property (nonatomic, strong, readwrite) NSString *loanTerm;
+
 - (instancetype)initWithViewModel:(id)viewModel loanType:(MSFLoanType *)loanType barcode:(NSString *)barcode __deprecated_msg("Use initWithLoanType: barcode: services: intead");
 - (instancetype)initWithLoanType:(MSFLoanType *)loanType barcode:(NSString *)barcode services:(id <MSFViewModelServices>)services;
 

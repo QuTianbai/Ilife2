@@ -85,6 +85,9 @@
 #import "MSFMyRepayContainerViewController.h"
 #import "MSFCommodityViewModel.h"
 
+#import "MSFApplyListViewModel.h"
+#import "MSFLoanListViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -175,6 +178,8 @@
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFCartViewModel class]]) {
 		viewController = [[MSFCartViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
+		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
@@ -222,6 +227,9 @@
 		}
 		
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[imagePickerController.view addSubview:view];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 			imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
@@ -272,6 +280,9 @@
 		MSFBarcodeScanViewController *vc = [[MSFBarcodeScanViewController alloc] init];
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
 		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[navigationController.view addSubview:view];
 		@weakify(vc)
 		[vc.msf_barcodeScannedSignal subscribeNext:^(ZXResult *x) {
 			@strongify(vc)

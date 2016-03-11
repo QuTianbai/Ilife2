@@ -21,7 +21,7 @@
 }
 
 - (RACSignal *)fetchResetPasswordCaptchaWithPhone:(NSString *)phone {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"smssecurity/send" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"system/smssecurity" parameters:@{
 		@"codeType": @"FORGET_PASSWORD",
 		@"mobile": phone
 	}];

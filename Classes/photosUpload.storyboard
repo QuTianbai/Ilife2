@@ -202,6 +202,7 @@
                     <connections>
                         <outlet property="collectionView" destination="l5S-fv-hAN" id="FxI-uq-DXm"/>
                         <outlet property="constraint" destination="Vnq-Qd-PNU" id="4kU-Ab-NDw"/>
+                        <outlet property="headLayoutHeight" destination="6TM-e7-25X" id="OeI-vM-nt6"/>
                         <outlet property="headerView" destination="yhL-a2-n6v" id="5CE-sd-l9M"/>
                         <outlet property="submitButton" destination="sZF-Gt-0Bt" id="HyA-6H-V9B"/>
                         <segue destination="3aB-XV-yFa" kind="show" identifier="photosUploadSegue" id="GUb-3N-L8r"/>
@@ -275,7 +276,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9mU-Ju-gOF">
-                                            <rect key="frame" x="84.5" y="20" width="150" height="150"/>
+                                            <rect key="frame" x="85" y="20" width="150" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="YCe-q1-hJt"/>
                                                 <constraint firstAttribute="width" constant="150" id="gX4-Qc-IAL"/>
@@ -288,7 +289,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iu-hA-Rhv">
-                                            <rect key="frame" x="84.5" y="20" width="150" height="150"/>
+                                            <rect key="frame" x="85" y="20" width="150" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="haI-0q-jqR"/>
                                                 <constraint firstAttribute="height" constant="150" id="orz-PF-0Wo"/>
@@ -298,7 +299,7 @@
                                             </state>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="220" translatesAutoresizingMaskIntoConstraints="NO" id="aEz-ih-mAb">
-                                            <rect key="frame" x="50" y="201" width="220" height="14.5"/>
+                                            <rect key="frame" x="50" y="201" width="220" height="15"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
