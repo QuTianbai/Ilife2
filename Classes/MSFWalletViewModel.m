@@ -30,6 +30,7 @@
 #import "MSFUser.h"
 
 static NSString *const kWalletIdentifier = @"4102";
+static NSString *const kWalletType = @"4";
 
 @interface MSFWalletViewModel ()
 
@@ -236,7 +237,7 @@ static NSString *const kWalletIdentifier = @"4102";
 	}
 	
 	if (self.status == MSFWalletInReview || self.status == MSFWalletRelease) {
-		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.services];
+		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:kWalletType services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFWalletResubmit) {
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kWalletIdentifier services:self.services];

@@ -85,6 +85,9 @@
 #import "MSFMyRepayContainerViewController.h"
 #import "MSFCommodityViewModel.h"
 
+#import "MSFApplyListViewModel.h"
+#import "MSFLoanListViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -175,6 +178,8 @@
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFCartViewModel class]]) {
 		viewController = [[MSFCartViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
+		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}

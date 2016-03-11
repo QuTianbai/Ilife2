@@ -580,6 +580,8 @@
 		495021071B13103400605666 /* MSFUserViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 495021061B13103400605666 /* MSFUserViewModel.m */; };
 		4952AE0D1B60D7590007C0FC /* MSFViewModelServicesImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */; };
 		4952E5911B0B6D490036A6ED /* MSFAuthorizeViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4952E5901B0B6D490036A6ED /* MSFAuthorizeViewModel.m */; };
+		49537E1C1C92894B00F3A44D /* MSFLoanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49537E191C92894B00F3A44D /* MSFLoanListViewController.m */; };
+		49537E1D1C92894B00F3A44D /* MSLoanListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49537E1B1C92894B00F3A44D /* MSLoanListTableViewCell.m */; };
 		4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4955B1C61B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m */; };
 		49588DEC1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */; };
 		49588DF61B87021800FCF171 /* MSFPersonalViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */; };
@@ -1886,6 +1888,10 @@
 		4952AE0C1B60D7590007C0FC /* MSFViewModelServicesImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFViewModelServicesImpl.m; sourceTree = "<group>"; };
 		4952E58F1B0B6D490036A6ED /* MSFAuthorizeViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorizeViewModel.h; sourceTree = "<group>"; };
 		4952E5901B0B6D490036A6ED /* MSFAuthorizeViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthorizeViewModel.m; sourceTree = "<group>"; };
+		49537E181C92894B00F3A44D /* MSFLoanListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFLoanListViewController.h; sourceTree = "<group>"; };
+		49537E191C92894B00F3A44D /* MSFLoanListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanListViewController.m; sourceTree = "<group>"; };
+		49537E1A1C92894B00F3A44D /* MSLoanListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSLoanListTableViewCell.h; sourceTree = "<group>"; };
+		49537E1B1C92894B00F3A44D /* MSLoanListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSLoanListTableViewCell.m; sourceTree = "<group>"; };
 		4955B1C51B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCharacterSet+MSFCharacterSetAdditions.h"; sourceTree = "<group>"; };
 		4955B1C61B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCharacterSet+MSFCharacterSetAdditions.m"; sourceTree = "<group>"; };
 		4955DBB81B0DF40000582A69 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Externals/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -3982,6 +3988,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				49537E0A1C92894200F3A44D /* List */,
 				49339FA81C904C84008A26E3 /* Cash */,
 				102C7F061C2A7B600023172B /* Cart */,
 				1DF17E321C8979E30006ADA4 /* OrderDetails */,
@@ -4175,6 +4182,17 @@
 				490DB83B1B1FF10100EEA5C9 /* MSFSignature.m */,
 			);
 			name = Cipher;
+			sourceTree = "<group>";
+		};
+		49537E0A1C92894200F3A44D /* List */ = {
+			isa = PBXGroup;
+			children = (
+				49537E181C92894B00F3A44D /* MSFLoanListViewController.h */,
+				49537E191C92894B00F3A44D /* MSFLoanListViewController.m */,
+				49537E1A1C92894B00F3A44D /* MSLoanListTableViewCell.h */,
+				49537E1B1C92894B00F3A44D /* MSLoanListTableViewCell.m */,
+			);
+			name = List;
 			sourceTree = "<group>";
 		};
 		4955DBB71B0DF3E600582A69 /* Frameworks */ = {
@@ -6178,6 +6196,7 @@
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
 				07E14BA51C85B88D00589164 /* MSFMyRepayDetailTableViewCell.m in Sources */,
 				102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */,
+				49537E1D1C92894B00F3A44D /* MSLoanListTableViewCell.m in Sources */,
 				07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */,
 				07481F6E1C75DD4F006ADE2B /* MSFSignUpButton.m in Sources */,
 				07667BF11BBEAAEE002DFF62 /* MSFCheckAllowApply.m in Sources */,
@@ -6346,6 +6365,7 @@
 				49C3E00A1C87DFC200E4BBD2 /* MSFAuxiliaryViewModel.m in Sources */,
 				07A145A71C81509500C32F0B /* MSFMyRepayViewModel.m in Sources */,
 				07667BF41BBEAB83002DFF62 /* MSFApplyCashInfo.m in Sources */,
+				49537E1C1C92894B00F3A44D /* MSFLoanListViewController.m in Sources */,
 				49F37CDA1C83ED4700C5DCB8 /* MSFCreditViewController.m in Sources */,
 				07E14BF01C8710C300589164 /* MSFMyOrderListTableViewCell.m in Sources */,
 				494417E81B671B5000FF964D /* UIWindow+PazLabs.m in Sources */,

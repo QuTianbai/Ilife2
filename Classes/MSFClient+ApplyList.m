@@ -13,9 +13,9 @@
 
 @implementation MSFClient (ApplyList)
 
-- (RACSignal *)fetchSpicyApplyList:(NSInteger)type {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/applyList" parameters:@{
-		@"type" : [@(type) stringValue]
+- (RACSignal *)fetchSpicyApplyList:(NSString *)type {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"query/applyList" parameters:@{
+		@"type" : type?:@""
 	}];
 	return [[[self enqueueRequest:request resultClass:MSFApplyList.class] msf_parsedResults] collect];
 }
