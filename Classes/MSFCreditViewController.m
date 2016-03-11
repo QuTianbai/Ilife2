@@ -46,36 +46,33 @@
 	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillCommand;
 	
 	self.viewModel.active = YES;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    navigationBar.tintColor = UIColor.whiteColor;
-    self.shadowImage = navigationBar.shadowImage;
-    self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [navigationBar setBackgroundImage:[UIImage new]
-                       forBarPosition:UIBarPositionAny
-                           barMetrics:UIBarMetricsDefault];
-    [navigationBar setShadowImage:[UIImage new]];
-   self.viewModel.active = YES;
+	[super viewWillAppear:animated];
+	UINavigationBar *navigationBar = self.navigationController.navigationBar;
+	navigationBar.tintColor = UIColor.whiteColor;
+	self.shadowImage = navigationBar.shadowImage;
+	self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+	[navigationBar setBackgroundImage:[UIImage new]
+										 forBarPosition:UIBarPositionAny
+												 barMetrics:UIBarMetricsDefault];
+	[navigationBar setShadowImage:[UIImage new]];
+  self.viewModel.active = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    [navigationBar setBackgroundImage:self.backgroundImage
-                       forBarPosition:UIBarPositionAny
-                           barMetrics:UIBarMetricsDefault];
-    [navigationBar setShadowImage:self.shadowImage];
-    self.viewModel.active = NO;
-  
+	[super viewWillDisappear:animated];
+	UINavigationBar *navigationBar = self.navigationController.navigationBar;
+	[navigationBar setBackgroundImage:self.backgroundImage
+										 forBarPosition:UIBarPositionAny
+												 barMetrics:UIBarMetricsDefault];
+	[navigationBar setShadowImage:self.shadowImage];
+	self.viewModel.active = NO;
 }
 
-- (void)BackToPrevious {
-	MSFCreditOrderDetailsViewController *OrderDetails = [[MSFCreditOrderDetailsViewController alloc]init];
-	[self.navigationController pushViewController:OrderDetails animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
 }
 
 //TODO: 加载马上贷申请界面方法，注意调用，在你的申请按钮点击后调用
