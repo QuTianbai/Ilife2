@@ -28,6 +28,7 @@
 #import "MSFCartViewModel.h"
 #import "MSFElementViewController.h"
 #import "MSFHeaderView.h"
+#import "MSFCommitedViewController.h"
 
 @interface MSFInventoryViewController ()
 <UICollectionViewDataSource,
@@ -38,6 +39,7 @@ UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headLayoutHeight;
 @property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
@@ -131,8 +133,10 @@ UICollectionViewDelegateFlowLayout>
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
-				[self.tabBarController setSelectedIndex:0];
-				[self.navigationController popToRootViewControllerAnimated:NO];
+				[self.navigationController setViewControllers:@[
+					self.navigationController.viewControllers.firstObject,
+					[[MSFCommitedViewController alloc] init]
+				] animated:YES];
 		}];
 	}];
 	
@@ -142,10 +146,11 @@ UICollectionViewDelegateFlowLayout>
 	
 	if (!self.optional) {
 		self.viewModel.active = YES;
+		[self.headerView addSubview:[MSFHeaderView headerViewWithIndex:2]];
 	} else {
 		self.constraint.constant = 0;
+		self.headLayoutHeight.constant = 0;
 	}
-	[self.headerView addSubview:[MSFHeaderView headerViewWithIndex:2]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

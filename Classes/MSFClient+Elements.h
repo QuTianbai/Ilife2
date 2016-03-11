@@ -16,7 +16,7 @@
 // productID - 申请的产品
 //
 // Returns a signal will send element instance flow
-- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID;
+- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID __deprecated;
 
 // 获取资料重传清单
 //
@@ -24,6 +24,7 @@
 // productID     - 申请的产品
 //
 // Returns a signal will send element instance flow
+//TODO: 需要更新接口
 - (RACSignal *)fetchSupplementalElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID;
 
 // 获取马上贷资料清单
@@ -33,8 +34,10 @@
 // terms         - 申请期数
 //
 // Returns a signal will send element instance flow
-- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID;
+- (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID __deprecated;
 
-- (RACSignal *)fetchFaceMaskElements;
+- (RACSignal *)fetchFaceMaskElements __deprecated;
+
+- (RACSignal *)fetchElementsProductCode:(NSString *)prodcutCode amount:(NSString *)amount loanTerm:(NSString *)loanTerm;
 
 @end

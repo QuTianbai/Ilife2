@@ -19,6 +19,7 @@
 #import "NSFileManager+Temporary.h"
 #import "MSFCommodityCashViewModel.h"
 #import "MSFCartViewModel.h"
+#import "MSFElement+Private.h"
 
 @interface MSFInventoryViewModel ()
 
@@ -47,29 +48,16 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-			MSFApplyCashViewModel *viewModel = (MSFApplyCashViewModel *)self.applicationViewModel;
-			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.loanType.typeID]
+		return [[[[self.services.httpClient
+				fetchElementsProductCode:self.applicationViewModel.loanType.typeID amount:self.applicationViewModel.amount loanTerm:self.applicationViewModel.loanTerm]
 				catch:^RACSignal *(NSError *error) {
 					return RACSignal.empty;
 				}]
-				map:^id(id value) {
+				map:^id(MSFElement *value) {
+					value.applicationNo = self.applicationViewModel.applicationNo;
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
 				collect];
-		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.loanType.typeID]
-				catch:^RACSignal *(NSError *error) {
-					return RACSignal.empty;
-				}]
-				map:^id(id value) {
-					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-				}]
-				collect];
-		}
-		return RACSignal.empty;
 	}];
 	
 	_executeSubmitCommand = self.applicationViewModel.executeCommitCommand;
@@ -100,41 +88,18 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-			MSFApplyCashViewModel *viewModel = (MSFApplyCashViewModel *)self.applicationViewModel;
-			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:viewModel.appNO amount:viewModel.appLmt terms:viewModel.loanTerm productGroupID:self.applicationViewModel.loanType.typeID]
+		return [[[[self.services.httpClient
+				fetchElementsProductCode:self.applicationViewModel.loanType.typeID amount:self.applicationViewModel.amount loanTerm:self.applicationViewModel.loanTerm]
 				catch:^RACSignal *(NSError *error) {
 					return RACSignal.empty;
 				}]
-				map:^id(id value) {
+				map:^id(MSFElement *value) {
+					value.applicationNo = self.applicationViewModel.applicationNo;
 					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
 				}]
 				collect];
-		} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
-			MSFCartViewModel *viewModel = (MSFCartViewModel *)self.applicationViewModel;
-			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:viewModel.applicationNo amount:viewModel.loanAmt terms:viewModel.term productGroupID:self.applicationViewModel.loanType.typeID]
-				catch:^RACSignal *(NSError *error) {
-					return RACSignal.empty;
-				}]
-				map:^id(id value) {
-					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-				}]
-				collect];
-		} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-			return [[[[self.services.httpClient
-				fetchElementsApplicationNo:self.applicationViewModel.applicationNo productID:self.applicationViewModel.loanType.typeID]
-				catch:^RACSignal *(NSError *error) {
-					return RACSignal.empty;
-				}]
-				map:^id(id value) {
-					return [[MSFElementViewModel alloc] initWithElement:value services:self.services];
-				}]
-				collect];
-		}
-		return RACSignal.empty;
 	}];
+	
 	
 	_executeSubmitCommand = self.applicationViewModel.executeCommitCommand;
 	
