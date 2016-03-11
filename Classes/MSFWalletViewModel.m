@@ -27,6 +27,7 @@
 #import "MSFDrawingsViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFOrderListViewModel.h"
+#import "MSFMyRepaysViewModel.h"
 #import "MSFUser.h"
 
 static NSString *const kWalletIdentifier = @"4102";
@@ -270,7 +271,7 @@ static NSString *const kWalletType = @"4";
 
 - (RACSignal *)billsSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFOrderListViewModel *viewModel = [[MSFOrderListViewModel alloc] initWithServices:self.services];
+		MSFMyRepaysViewModel *viewModel = [[MSFMyRepaysViewModel alloc] initWithservices:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;

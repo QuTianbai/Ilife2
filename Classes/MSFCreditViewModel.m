@@ -12,6 +12,7 @@
 
 #import "MSFPhoto.h"
 #import "MSFClient+Photos.h"
+#import "MSFMyRepaysViewModel.h"
 
 @interface MSFCreditViewModel ()
 
@@ -36,14 +37,26 @@
 @implementation MSFCreditViewModel
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services {
-    self = [super init];
-    if (!self) {
-        return nil;
-    }
-    
-    _services = services;
-    return self;
-    
+	self = [super init];
+	if (!self) {
+			return nil;
+	}
+	
+	_services = services;
+	_executeBillCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self billsSignal];
+	}];
+	return self;
+	
+}
+
+- (RACSignal *)billsSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFMyRepaysViewModel *viewModel = [[MSFMyRepaysViewModel alloc] initWithservices:self.services];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end

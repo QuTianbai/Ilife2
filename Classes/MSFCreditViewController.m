@@ -39,26 +39,13 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
    
-    self.title = @"马上贷";
-    
-    UIButton *butt = [[UIButton alloc]init];;
-    butt.frame = CGRectMake(0, 0, 50, 20);
-    butt.layer.cornerRadius = 10;
-    [butt setTitle:@"账单" forState:UIControlStateNormal];
-    [butt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    butt.titleLabel.font = [UIFont systemFontOfSize:17];
-    butt.layer.masksToBounds = YES;
-    butt.layer.borderWidth = 1;
-    CGColorSpaceRef coloespace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(coloespace, (CGFloat[]){255,255,255,255});
-    butt.layer.borderColor = colorref;
-    [butt addTarget:self action:@selector(BackToPrevious) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barbutton = [[UIBarButtonItem alloc]initWithCustomView:butt];
-    self.navigationItem.rightBarButtonItem = barbutton;
-    
-    self.viewModel.active = YES;
+	self.title = @"马上贷";
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单" style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillCommand;
+	
+	self.viewModel.active = YES;
     
 }
 
