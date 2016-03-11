@@ -10,7 +10,6 @@
 #import "MSFViewModelServices.h"
 
 typedef NS_ENUM(NSUInteger, MSFCreditStatus) {
-    MSFCreditNone,         //未激活状态
     MSFCreditInReview,     //审核中
     MSFCreditConfirmation, //等待合同确认
     MSFCreditResubmit,     //资料重传

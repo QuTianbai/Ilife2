@@ -43,11 +43,33 @@
     
     _services = services;
     return self;
-//    @weakify (self)
+    @weakify (self)
 //    [[self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 //        @strongify(self)
-//        [self]
+//        //[self.]
 //    }];
+//
+    
+    [RACObserve(self, status) subscribeNext:^(NSNumber *status) {
+        @strongify(self)
+        self.applyAmounts = @"10000";
+        self.repayAmmounts = @"2000";
+        self.repayDates = @"";
+        switch (status.integerValue) {
+            case MSFCreditInReview: {
+                self.title = @"审核中";
+                self.subtitle = @"审核已提交";
+            } break;
+            case MSFCreditConfirmation:{
+                self.title = @"等待确认合同";
+                self.subtitle = @"";
+                self.action = @"确认合同";
+            } break;
+            default:
+                break;
+        }
+        
+    }];
     
 }
 
