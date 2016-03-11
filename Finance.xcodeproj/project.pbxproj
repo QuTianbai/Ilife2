@@ -408,6 +408,7 @@
 		4912C7001C6477C800550A6C /* socialSecurityApply.png in Resources */ = {isa = PBXBuildFile; fileRef = 4912C6F71C6477C800550A6C /* socialSecurityApply.png */; };
 		4912C7011C6477C800550A6C /* socialSecurityApply@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4912C6F81C6477C800550A6C /* socialSecurityApply@2x.png */; };
 		4912C7021C6477C800550A6C /* socialSecurityApply@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4912C6F91C6477C800550A6C /* socialSecurityApply@3x.png */; };
+		4913E4E91C93161100F56C06 /* MSFApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4913E4E81C93161100F56C06 /* MSFApplication.m */; };
 		4917A42A1B943EAC00ADA6FC /* MSFAttachmentSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */; };
 		4917A43B1B943EC100ADA6FC /* MSFAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A43A1B943EC100ADA6FC /* MSFAttachment.m */; };
 		4917A4451B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4917A4441B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.m */; };
@@ -1672,6 +1673,8 @@
 		4912C6F71C6477C800550A6C /* socialSecurityApply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = socialSecurityApply.png; sourceTree = "<group>"; };
 		4912C6F81C6477C800550A6C /* socialSecurityApply@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socialSecurityApply@2x.png"; sourceTree = "<group>"; };
 		4912C6F91C6477C800550A6C /* socialSecurityApply@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "socialSecurityApply@3x.png"; sourceTree = "<group>"; };
+		4913E4E71C93161100F56C06 /* MSFApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplication.h; sourceTree = "<group>"; };
+		4913E4E81C93161100F56C06 /* MSFApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplication.m; sourceTree = "<group>"; };
 		4917A4291B943EAC00ADA6FC /* MSFAttachmentSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachmentSpec.m; sourceTree = "<group>"; };
 		4917A4391B943EC100ADA6FC /* MSFAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAttachment.h; sourceTree = "<group>"; };
 		4917A43A1B943EC100ADA6FC /* MSFAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAttachment.m; sourceTree = "<group>"; };
@@ -3662,6 +3665,15 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
+		4913E4D91C93160200F56C06 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4913E4E71C93161100F56C06 /* MSFApplication.h */,
+				4913E4E81C93161100F56C06 /* MSFApplication.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		4917A4381B943EB400ADA6FC /* Attachment */ = {
 			isa = PBXGroup;
 			children = (
@@ -3946,6 +3958,7 @@
 		4943C36B1B047A90000BBF5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4913E4D91C93160200F56C06 /* Application */,
 				49AA2C191C8449CA00A05FB6 /* Wallet */,
 				49B185EA1C5605ED00409C6F /* Coupon */,
 				49EB03FE1C3D00E100177509 /* Pay */,
@@ -6453,6 +6466,7 @@
 				07E14B8B1C847C5C00589164 /* MSFDrawModel.m in Sources */,
 				07CB1B9F1C8EC0710031CEE8 /* MSFMyOrderTravalMemebersCell.m in Sources */,
 				4977BFEB1B16BDA100A259F6 /* MSFClient+Cipher.m in Sources */,
+				4913E4E91C93161100F56C06 /* MSFApplication.m in Sources */,
 				4944C05E1B68A6CA00805C0A /* MSFClient+ApplyList.m in Sources */,
 				C7B978111B099CAC005F247C /* MSFProductIntroductionCell.m in Sources */,
 				07A7DAD11BFC60C100916ADD /* MSFCirculateRepaymentTableViewCell.m in Sources */,
