@@ -41,16 +41,15 @@
 }
 
 - (void)customSlider {
-//  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];
-//  titleLabel.font = [UIFont systemFontOfSize:15];
-//  titleLabel.text = @"贷款金额";
-//  titleLabel.textColor = [UIColor blackColor];
-//  [self addSubview:titleLabel];
-//  
-//  self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 200, 20)];
-//  self.moneyNumLabel.textColor = [UIColor blackColor];
-
-//  self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];
+  titleLabel.font = [UIFont systemFontOfSize:15];
+  titleLabel.text = @"贷款金额";
+  titleLabel.textColor = [UIColor blackColor];
+  [self addSubview:titleLabel];
+  
+  self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 200, 20)];
+  self.moneyNumLabel.textColor = [UIColor blackColor];
+  self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
   //self.moneyNumLabel.text = @"0元";
   RAC(self.moneyNumLabel, text) = [RACObserve(self, minimumValue) map:^id(NSString *value) {
     if (!value) {
@@ -61,12 +60,11 @@
   }];
   [self addSubview:self.moneyNumLabel];
   
-	self.minimumTrackTintColor = [UIColor colorWithRed:0.059 green:0.525 blue:1.000 alpha:1.000];
-  [self setMaximumTrackImage:[UIImage imageNamed:@"slider-max-track.png"] forState:UIControlStateNormal];
-	
-	
+  [self setMinimumTrackImage:[UIImage imageNamed:@"bar-highlighted"] forState:UIControlStateNormal];
+  [self setMaximumTrackImage:[UIImage imageNamed:@"1242-2208-灰色"] forState:UIControlStateNormal];
   UIImage *thumbImage = [UIImage imageNamed:@"btnSlider"];
   [self setThumbImage:thumbImage forState:UIControlStateHighlighted];
+  
   [self setThumbImage:thumbImage forState:UIControlStateNormal];
   
   [self addTarget:self action:@selector(slideerValueChanged:) forControlEvents:UIControlEventValueChanged];
