@@ -46,6 +46,8 @@
 		@strongify(self)
 		[self.button setTitle:x forState:UIControlStateNormal];
 	}];
+	
+	self.button.rac_command = self.viewModel.excuteActionCommand;
 }
 
 - (void)didReceiveMemoryWarning {

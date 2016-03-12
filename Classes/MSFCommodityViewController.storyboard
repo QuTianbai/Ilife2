@@ -18,24 +18,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6XT-bM-B0r">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="245" id="5Ng-X0-IYP"/>
+                                    <constraint firstAttribute="height" constant="250" id="5Ng-X0-IYP"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="3Qg-53-fsz" kind="embed" id="bFQ-BU-EBV"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSX-zc-Cng">
-                                <rect key="frame" x="0.0" y="407" width="320" height="161"/>
+                                <rect key="frame" x="0.0" y="400" width="320" height="168"/>
                                 <connections>
                                     <segue destination="per-0b-KLq" kind="embed" id="7yg-So-pmY"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHI-IX-1iS">
-                                <rect key="frame" x="0.0" y="245" width="320" height="162"/>
+                                <rect key="frame" x="0.0" y="250" width="320" height="150"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="162" id="gc5-GG-WSH"/>
+                                    <constraint firstAttribute="height" constant="150" id="gc5-GG-WSH"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="veC-5b-pUu" kind="embed" id="XxI-Ik-ku7"/>
@@ -71,17 +71,17 @@
                         <viewControllerLayoutGuide type="bottom" id="pXS-y7-2Jl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Mey-V4-5bL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-commidity-bg-top.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-hu-DAM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHY-cg-fl6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYx-4O-EqO">
-                                        <rect key="frame" x="105" y="54" width="111" height="147"/>
+                                        <rect key="frame" x="105" y="56" width="111" height="147"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="147" id="Brf-Es-Wn8"/>
                                             <constraint firstAttribute="width" constant="111" id="xmX-X6-8ux"/>
@@ -97,7 +97,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-k7-zDV">
-                                <rect key="frame" x="0.0" y="205" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="210" width="320" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近1笔进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeB-sk-v9r">
                                         <rect key="frame" x="15" y="9" width="85" height="21"/>
@@ -195,11 +195,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Ny4-EU-ZWL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yh4-Dx-mlO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8AQ-rz-2DQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
@@ -228,18 +228,18 @@
                         <viewControllerLayoutGuide type="bottom" id="O86-NZ-Gui"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MEm-YB-pdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="FDp-xF-qzc">
-                                <rect key="frame" x="110" y="84" width="100" height="37"/>
+                                <rect key="frame" x="110" y="91" width="100" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="8S5-gf-FlK"/>
                                     <constraint firstAttribute="height" constant="37" id="ckE-jz-LDK"/>
                                 </constraints>
                             </pageControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glF-Bd-HCM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -24,7 +24,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel *numberLabel;
 @property (nonatomic, weak) IBOutlet UILabel *amountLabel;
-@property (nonatomic, weak) IBOutlet UILabel *cardLabel;
+@property (nonatomic, weak) IBOutlet UILabel *logLabel;
 @property (nonatomic, weak) IBOutlet UILabel *reasonLabel;
 @property (nonatomic, weak) IBOutlet UILabel *termLabel;
 
@@ -49,17 +49,11 @@
 		return @((status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
 	}];
 	
-	RAC(self, numberLabel.text) = RACObserve(self, viewModel.applyNumber);
-	RAC(self, amountLabel.text) = RACObserve(self, viewModel.applyAmouts);
-	RAC(self, termLabel.text) = RACObserve(self, viewModel.applyTerms);
-	RAC(self, cardLabel.text) = RACObserve(self, viewModel.applyCard);
-	RAC(self, reasonLabel.text) = RACObserve(self, viewModel.applyReason);
-	
-//	RAC(self.amountLabel, text) = RACObserve(self, viewModel.repayAmounts);
-//	RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.repayDates);
-//	
-//	RAC(self.applyButton, rac_command) = RACObserve(self, viewModel.executeDrawCommand);
-//	RAC(self.repayButton, rac_command) = RACObserve(self, viewModel.executeRepayCommand);
+	RAC(self, numberLabel.text) = RACObserve(self, viewModel.reportNumber);
+	RAC(self, amountLabel.text) = RACObserve(self, viewModel.reportAmounts);
+	RAC(self, termLabel.text) = RACObserve(self, viewModel.reportTerms);
+	RAC(self, logLabel.text) = RACObserve(self, viewModel.reportMessage);
+	RAC(self, reasonLabel.text) = RACObserve(self, viewModel.reportReason);
 
 	self.moneySlider.delegate = self;
 	self.moneySlider.hiddenAmount = YES;

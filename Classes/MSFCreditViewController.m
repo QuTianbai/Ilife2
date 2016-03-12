@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UIImage *shadowImage;
 @property (nonatomic, strong) UIImage *backgroundImage;
 @property (nonatomic, strong) MSFCreditViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHeight;
 
 @end
 
@@ -37,6 +39,14 @@
 	self.title = @"马上贷";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单" style:UIBarButtonItemStyleDone target:nil action:nil];
 	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillCommand;
+	
+	@weakify(self)
+	[RACObserve(self, viewModel.status) subscribeNext:^(NSNumber *status) {
+		@strongify(self)
+		self.topHeight.constant = (status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone) ? 180 : 250;
+		self.middleHeight.constant = (status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone) ? 220 : 150;
+		[self updateViewConstraints];
+	}];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

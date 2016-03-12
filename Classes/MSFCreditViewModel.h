@@ -37,6 +37,12 @@
 // 每月还款额
 @property (nonatomic, strong, readonly) NSString *monthRepayAmounts;
 
+@property (nonatomic, strong, readonly) NSString *reportNumber;
+@property (nonatomic, strong, readonly) NSString *reportReason;
+@property (nonatomic, strong, readonly) NSString *reportAmounts;
+@property (nonatomic, strong, readonly) NSString *reportTerms;
+@property (nonatomic, strong, readonly) NSString *reportMessage;
+
 // 申请总期数
 @property (nonatomic, strong, readonly) NSString *loanMonthes __deprecated;
 

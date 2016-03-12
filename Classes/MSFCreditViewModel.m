@@ -16,6 +16,14 @@
 #import "MSFApplyList.h"
 #import "MSFApplyCashViewModel.h"
 #import "MSFLoanType.h"
+#import "MSFClient+ApplyList.h"
+#import "MSFUser.h"
+#import "MSFAuthorizeViewModel.h"
+#import "MSFAddBankCardViewModel.h"
+#import "MSFApplyListViewModel.h"
+#import "MSFInventoryViewModel.h"
+#import "MSFClient+BankCardList.h"
+#import "MSFBankCardListModel.h"
 
 static NSString *const kApplicationCreditIdentifier = @"1101";
 static NSString *const kApplicationCreditType = @"1";
@@ -52,6 +60,9 @@ static NSString *const kApplicationCreditType = @"1";
 	}
 	@weakify(self)
 	_services = services;
+	_monthRepayAmounts = @"0";
+	_applyTerms = @"0";
+	_applyAmouts = @"0";
 	_viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:[[MSFLoanType alloc] initWithTypeID:kApplicationCreditIdentifier] services:self.services];
 	
 	RAC(self, viewModel.active) = RACObserve(self, active);
@@ -78,6 +89,26 @@ static NSString *const kApplicationCreditType = @"1";
 		}];
 	}] replayLast];
 	
+	// Report
+	RAC(self, reportNumber) = RACObserve(self, application.appNo);
+	RAC(self, reportReason) = [RACObserve(self, application.loanPurpose) flattenMap:^RACStream *(id value) {
+		return [[self.services msf_selectValuesWithContent:@"moneyUse" keycode:value] map:^id(id value) {
+			return [NSString stringWithFormat:@"贷款用途：%@", value];
+		}];
+	}];
+	RAC(self, reportAmounts) = [RACObserve(self, application.appLmt) map:^id(id value) {
+		return [NSString stringWithFormat:@"%.2f", [value floatValue]];
+	}];
+	RAC(self, reportTerms) =
+		[RACSignal combineLatest:@[
+			RACObserve(self, application.loanTerm),
+			RACObserve(self, application.loanFixedAmt)
+		]
+		reduce:^id (NSString *term, NSString *amt){
+			return [NSString stringWithFormat:@"(月供 ¥%@ X %@期)", amt, term];
+		}];
+	RAC(self, reportMessage) = RACObserve(self, application.failInfo);
+	
 	_executeBillCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self billsSignal];
 	}];
@@ -85,9 +116,6 @@ static NSString *const kApplicationCreditType = @"1";
 	
 	[RACObserve(self, status) subscribeNext:^(NSNumber *status) {
 		@strongify(self)
-		self.monthRepayAmounts = @"0";
-		self.applyTerms = @"0";
-		self.applyAmouts = @"0";
 		switch (status.integerValue) {
 			case MSFApplicationNone: {
 				self.title = @"";
@@ -134,6 +162,10 @@ static NSString *const kApplicationCreditType = @"1";
 		}
 	}];
 	
+	_excuteActionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self actionSingal];
+	}];
+	
 	return self;
 	
 }
@@ -154,30 +186,83 @@ static NSString *const kApplicationCreditType = @"1";
 }
 
 - (RACSignal *)fetchCreditStatus {
-	return [RACSignal empty];
-//TODO: 获取马上贷的状态
-//	return [[[self.services.httpClient fetchRecentApplicaiton:@"4"]
-//		catch:^RACSignal *(NSError *error) {
-//			return [RACSignal return:NSNull.null];
-//		}] map:^id(MSFApplyList *application) {
-//			MSFApplicationStatus status = MSFApplicationNone;
-//			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
-//				status  = MSFApplicationNone;
-//			} else if ([application.status isEqualToString:@"G"]) {
-//				status = MSFApplicationInReview;
-//			} else if ([application.status isEqualToString:@"I"]) {
-//				status = MSFApplicationConfirmation;
-//			} else if ([application.status isEqualToString:@"L"]) {
-//				status = MSFApplicationResubmit;
-//			} else if ([application.status isEqualToString:@"E"]) {
-//				status = MSFApplicationRelease;
-//			} else if ([application.status isEqualToString:@"H"] || [application.status isEqualToString:@"K"]) {
-//				status = MSFApplicationRejected;
-//			} else {
-//				status = MSFApplicationActivated;
-//			}
-//			return RACTuplePack(@(status), application);
-//		}];
+	return [[[self.services.httpClient fetchRecentApplicaiton:kApplicationCreditType]
+		catch:^RACSignal *(NSError *error) {
+			return [RACSignal return:NSNull.null];
+		}]
+		map:^id(MSFApplyList *application) {
+			MSFApplicationStatus status = MSFApplicationNone;
+			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
+				status  = MSFApplicationNone;
+			} else if ([application.status isEqualToString:@"G"]) {
+				status = MSFApplicationInReview;
+			} else if ([application.status isEqualToString:@"I"]) {
+				status = MSFApplicationConfirmation;
+			} else if ([application.status isEqualToString:@"L"]) {
+				status = MSFApplicationResubmit;
+			} else if ([application.status isEqualToString:@"E"]) {
+				status = MSFApplicationRelease;
+			} else if ([application.status isEqualToString:@"H"] || [application.status isEqualToString:@"K"]) {
+				status = MSFApplicationRejected;
+			} else {
+				status = MSFApplicationActivated;
+			}
+			return RACTuplePack(@(MSFApplicationNone), application);
+		}];
+}
+
+- (RACSignal *)actionSingal {
+	if (![self.services.httpClient.user isAuthenticated]) {
+		return self.authenticateSignal;
+	}
+	
+	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected) {
+		return [[self.services.httpClient fetchBankCardList]
+			flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
+				if (bankcard.bankCardNo.length > 0) {
+					return self.applicationSignal;
+				} else {
+					return self.bindBankcardSignal;
+				}
+			}];
+	}
+	
+	if (self.status == MSFApplicationInReview || self.status == MSFApplicationRelease) {
+		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:kApplicationCreditType services:self.services];
+		[self.services pushViewModel:viewModel];
+	} else if (self.status == MSFApplicationResubmit) {
+		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kApplicationCreditIdentifier services:self.services];
+		[self.services pushViewModel:viewModel];
+	} else if (self.status == MSFApplicationConfirmation) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationCreditType];
+	}
+	return RACSignal.empty;
+}
+
+- (RACSignal *)authenticateSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFAuthorizeViewModel *viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.services];
+		[self.services presentViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)bindBankcardSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFAddBankCardViewModel *viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.services andIsFirstBankCard:YES];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)applicationSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		[self.services pushViewModel:self.viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
 }
 
 @end

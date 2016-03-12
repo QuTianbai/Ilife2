@@ -593,7 +593,7 @@
                         <outlet property="counterLabel" destination="9qi-uP-Zuq" id="rSH-yK-kXd"/>
                         <outlet property="sendCaptchaView" destination="W6X-dH-qhb" id="MUf-BZ-i7D"/>
                         <outlet property="username" destination="PfB-bq-QBE" id="hIo-jL-fL7"/>
-                        <segue destination="f5g-A2-UIb" kind="show" id="HnY-Dr-ayJ"/>
+                        <segue destination="f5g-A2-UIb" kind="show" identifier="push" id="HnY-Dr-ayJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xdx-Vx-ALi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -603,6 +603,7 @@
         <!--重置密码-->
         <scene sceneID="L8H-QK-hUp">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kPw-0V-4il" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="MSFResetPasswordViewController" id="f5g-A2-UIb" customClass="MSFResetPasswordViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="03O-Zr-mAb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -724,7 +725,6 @@
                         <outlet property="secondTextField" destination="zqX-kY-d48" id="dgj-eF-KXS"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kPw-0V-4il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="878" y="401"/>
         </scene>

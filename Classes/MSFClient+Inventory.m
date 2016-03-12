@@ -12,7 +12,7 @@
 	NSParameterAssert(applicationNo);
 	NSData *data = [NSJSONSerialization dataWithJSONObject:accessories options:NSJSONWritingPrettyPrinted error:nil];
 	NSString *JSONString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/mendFile" parameters:@{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/mendFile" parameters:@{
 		@"accessoryInfoVO": JSONString,
 		@"applyNo": applicationNo,
 	}];

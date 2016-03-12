@@ -163,7 +163,8 @@ static NSString *const kApplicationWalletType = @"4";
 	return [[[self.services.httpClient fetchRecentApplicaiton:@"4"]
 		catch:^RACSignal *(NSError *error) {
 			return [RACSignal return:NSNull.null];
-		}] map:^id(MSFApplyList *application) {
+		}]
+		map:^id(MSFApplyList *application) {
 			MSFApplicationStatus status = MSFApplicationNone;
 			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
 				status  = MSFApplicationNone;
@@ -180,8 +181,7 @@ static NSString *const kApplicationWalletType = @"4";
 			} else {
 				status = MSFApplicationActivated;
 			}
-			//TODO: 下次在测试
-			return RACTuplePack(@(MSFApplicationConfirmation), application);
+			return RACTuplePack(@(status), application);
 		}];
 }
 
@@ -245,7 +245,7 @@ static NSString *const kApplicationWalletType = @"4";
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kApplicationWalletIdentifier services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFApplicationConfirmation) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationWalletIdentifier];
 	}
 	return RACSignal.empty;
 }

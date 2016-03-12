@@ -83,6 +83,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     return nil;
   }
 	_viewModel = viewModel;
+	self.hidesBottomBarWhenPushed = YES;
 	
   return self;
 }
