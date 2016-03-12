@@ -93,6 +93,10 @@
 	return [self itemForIndexPath:indexPath].subtitle;
 }
 
+- (NSIndexPath *)indexPathForModel:(id)model {
+	return [NSIndexPath indexPathForRow:[self.models indexOfObject:model] inSection:0];
+}
+
 - (id)modelForIndexPath:(NSIndexPath *)indexPath {
 	return [self itemForIndexPath:indexPath];
 }
