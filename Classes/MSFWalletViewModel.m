@@ -180,7 +180,8 @@ static NSString *const kApplicationWalletType = @"4";
 			} else {
 				status = MSFApplicationActivated;
 			}
-			return RACTuplePack(@(status), application);
+			//TODO: 下次在测试
+			return RACTuplePack(@(MSFApplicationConfirmation), application);
 		}];
 }
 

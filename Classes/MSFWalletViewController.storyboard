@@ -235,15 +235,15 @@
                                         <state key="normal" title="立即激活" backgroundImage="btn-active-normal.png"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未激活" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="48" translatesAutoresizingMaskIntoConstraints="NO" id="a5Z-Fq-qoE">
-                                        <rect key="frame" x="136" y="74" width="48" height="20"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" red="0.99215686270000003" green="0.50196078430000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="141" y="83" width="39" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可借现金额度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="84" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-UB-cIc">
-                                        <rect key="frame" x="118" y="45" width="84" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <rect key="frame" x="112" y="55" width="96" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.99215686270000003" green="0.50196078430000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -252,8 +252,8 @@
                                     <constraint firstItem="JUp-Pt-5cG" firstAttribute="top" secondItem="wxg-N2-Ac6" secondAttribute="bottom" constant="10" id="2ad-iG-kQO"/>
                                     <constraint firstItem="wxg-N2-Ac6" firstAttribute="top" secondItem="IXZ-3O-FDR" secondAttribute="top" id="6Fu-ie-Px7"/>
                                     <constraint firstItem="wxg-N2-Ac6" firstAttribute="centerX" secondItem="IXZ-3O-FDR" secondAttribute="centerX" id="Qjb-aR-ycx"/>
-                                    <constraint firstItem="a5Z-Fq-qoE" firstAttribute="top" secondItem="MfV-UB-cIc" secondAttribute="bottom" constant="12" id="e7Y-gx-ThS"/>
-                                    <constraint firstItem="MfV-UB-cIc" firstAttribute="top" secondItem="IXZ-3O-FDR" secondAttribute="top" constant="45" id="eRc-nd-y8U"/>
+                                    <constraint firstItem="a5Z-Fq-qoE" firstAttribute="top" secondItem="MfV-UB-cIc" secondAttribute="bottom" constant="8" id="e7Y-gx-ThS"/>
+                                    <constraint firstItem="MfV-UB-cIc" firstAttribute="top" secondItem="IXZ-3O-FDR" secondAttribute="top" constant="55" id="eRc-nd-y8U"/>
                                     <constraint firstItem="MfV-UB-cIc" firstAttribute="centerX" secondItem="IXZ-3O-FDR" secondAttribute="centerX" id="eYp-3Z-eJf"/>
                                     <constraint firstItem="a5Z-Fq-qoE" firstAttribute="centerX" secondItem="IXZ-3O-FDR" secondAttribute="centerX" id="g9T-gu-04R"/>
                                     <constraint firstItem="JUp-Pt-5cG" firstAttribute="centerX" secondItem="IXZ-3O-FDR" secondAttribute="centerX" id="wGC-57-aWH"/>
@@ -263,13 +263,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总额度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAB-MK-uXR">
-                                        <rect key="frame" x="20" y="38" width="48" height="20"/>
+                                        <rect key="frame" x="20" y="38" width="48" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可借额度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTO-ht-PBH">
-                                        <rect key="frame" x="20" y="84" width="64" height="20"/>
+                                        <rect key="frame" x="20" y="84" width="64" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -293,19 +293,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="65" translatesAutoresizingMaskIntoConstraints="NO" id="nA0-Fi-RiU">
-                                        <rect key="frame" x="23" y="214" width="65" height="21"/>
+                                        <rect key="frame" x="23" y="214" width="65" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.05%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="47.5" translatesAutoresizingMaskIntoConstraints="NO" id="yla-Ky-nT6">
-                                        <rect key="frame" x="136" y="214" width="48" height="21"/>
+                                        <rect key="frame" x="136" y="214" width="47.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每月8日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="61.5" translatesAutoresizingMaskIntoConstraints="NO" id="M2O-3U-oKY">
-                                        <rect key="frame" x="238" y="214" width="62" height="21"/>
+                                        <rect key="frame" x="238" y="214" width="61.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
