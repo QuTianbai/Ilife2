@@ -60,6 +60,9 @@
 	RAC(self, bankCardNo) = [RACObserve(self, model.bankCardNo) ignore:nil];
 	RAC(self, jionLifeInsurance) = [RACObserve(self, model.jionLifeInsurance) ignore:nil];
 	RAC(self, monthMoney) = [[RACObserve(self, model) ignore:nil] map:^id(MSFOrder *value) {
+		if (value.loanFixedAmt.length == 0 || value.loanTerm.length == 0) {
+			return @"";
+		}
 		return [NSString stringWithFormat:@"¥%@×%@期", value.loanFixedAmt, value.loanTerm];
 	}];
 	
