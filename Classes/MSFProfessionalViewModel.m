@@ -271,8 +271,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		RACObserve(self, surplusIncome),
 		RACObserve(self, marriage),
 	]
-	reduce:^id(NSString *condition, NSString *email, NSString *phone, NSString *address, NSString *detail){
-		return @(condition.length > 0 && email.length > 0 && address.length > 0 && detail.length > 0);
+	reduce:^id(NSString *condition, NSString *email, NSString *phone, NSString *address){
+		return @(condition.length > 0 && email.length > 0 && address.length > 0);
 	}];
 }
 

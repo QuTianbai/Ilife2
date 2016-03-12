@@ -268,13 +268,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if (self.master) {
-		return 3;
-	}
-	return 2;
-}
-
 - (void)viewDidLayoutSubviews {
 	if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
 		[self.tableView setSeparatorInset:UIEdgeInsetsZero];
