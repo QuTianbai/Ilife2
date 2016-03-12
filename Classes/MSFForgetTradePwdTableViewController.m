@@ -97,9 +97,14 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	
 	@weakify(self)
 	[RACObserve(self, viewModel.supportBanks) subscribeNext:^(id x) {
+		@strongify(self)
 		if ([x isKindOfClass:NSString.class]) {
+			if (((NSString *)x).length == 0) {
+				return ;
+			}
 			self.supportBanks = [[NSMutableAttributedString alloc] initWithString:x];
 			//前5个字为“目前只支持”
+			
 			NSRange redRange = NSMakeRange(5, self.supportBanks.length - 5);
 			[self.supportBanks addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:redRange];
 		}
@@ -114,6 +119,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	}];
 	
 	[RACObserve(self.viewModel, bankName) subscribeNext:^(NSString *bankName) {
+		@strongify(self)
 		if (bankName != nil && ![bankName isEqualToString:@""]) {
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
@@ -137,6 +143,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		return value;
 	}];
 	[[RACObserve(self.viewModel, bankType) ignore:nil] subscribeNext:^(NSString *type) {
+		@strongify(self)
 		if (type != nil && ![type isEqualToString:@""] ) {
 			[UIView beginAnimations:nil context:nil];
 			[UIView setAnimationDuration:0.3];
