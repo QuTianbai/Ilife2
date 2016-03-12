@@ -165,6 +165,10 @@
 		@strongify(self)
 		return [self executeNextSignal];
 	}];
+	
+	_executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self commitSignal];
+	}];
 }
 
 - (RACSignal *)executePurposeSignal {
@@ -239,4 +243,27 @@
 //TODO: 需要增加查看协议界面
 //MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
 //[self.services pushViewModel:viewModel];
+- (RACSignal *)commitSignal {
+	NSDictionary *order = @{
+		@"applyStatus": @"1",
+		@"appLmt": self.appLmt?:@"",
+		@"loanTerm": self.loanTerm?:@"",
+		@"loanPurpose": self.loanPurpose?:@"",
+		@"jionLifeInsurance": self.jionLifeInsurance,
+		@"lifeInsuranceAmt": self.lifeInsuranceAmt?:@"",
+		@"loanFixedAmt": self.loanFixedAmt?:@"",
+		@"productCd": self.loanType.typeID,
+	};
+	NSArray *accessories = self.accessories;
+	
+	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	parameters[@"applyStatus"] = @"1";
+	parameters[@"applyVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"accessoryInfoVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:accessories options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"loan/apply" parameters:parameters];
+	return [[self.services.httpClient enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
+		return value.parsedResult[@"appNo"];
+	}];
+}
+
 @end
