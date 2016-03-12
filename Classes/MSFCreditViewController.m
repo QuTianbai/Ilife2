@@ -39,56 +39,40 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
    
-    self.title = @"马上贷";
-    
-    UIButton *butt = [[UIButton alloc]init];;
-    butt.frame = CGRectMake(0, 0, 50, 20);
-    butt.layer.cornerRadius = 10;
-    [butt setTitle:@"账单" forState:UIControlStateNormal];
-    [butt setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    butt.titleLabel.font = [UIFont systemFontOfSize:17];
-    butt.layer.masksToBounds = YES;
-    butt.layer.borderWidth = 1;
-    CGColorSpaceRef coloespace = CGColorSpaceCreateDeviceRGB();
-    CGColorRef colorref = CGColorCreate(coloespace, (CGFloat[]){255,255,255,255});
-    butt.layer.borderColor = colorref;
-    [butt addTarget:self action:@selector(BackToPrevious) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barbutton = [[UIBarButtonItem alloc]initWithCustomView:butt];
-    self.navigationItem.rightBarButtonItem = barbutton;
-    
-    self.viewModel.active = YES;
-    
+	self.title = @"马上贷";
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单" style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillCommand;
+	
+	self.viewModel.active = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    navigationBar.tintColor = UIColor.whiteColor;
-    self.shadowImage = navigationBar.shadowImage;
-    self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    [navigationBar setBackgroundImage:[UIImage new]
-                       forBarPosition:UIBarPositionAny
-                           barMetrics:UIBarMetricsDefault];
-    [navigationBar setShadowImage:[UIImage new]];
-   self.viewModel.active = YES;
+	[super viewWillAppear:animated];
+	UINavigationBar *navigationBar = self.navigationController.navigationBar;
+	navigationBar.tintColor = UIColor.whiteColor;
+	self.shadowImage = navigationBar.shadowImage;
+	self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+	[navigationBar setBackgroundImage:[UIImage new]
+										 forBarPosition:UIBarPositionAny
+												 barMetrics:UIBarMetricsDefault];
+	[navigationBar setShadowImage:[UIImage new]];
+  self.viewModel.active = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    [navigationBar setBackgroundImage:self.backgroundImage
-                       forBarPosition:UIBarPositionAny
-                           barMetrics:UIBarMetricsDefault];
-    [navigationBar setShadowImage:self.shadowImage];
-    self.viewModel.active = NO;
-  
+	[super viewWillDisappear:animated];
+	UINavigationBar *navigationBar = self.navigationController.navigationBar;
+	[navigationBar setBackgroundImage:self.backgroundImage
+										 forBarPosition:UIBarPositionAny
+												 barMetrics:UIBarMetricsDefault];
+	[navigationBar setShadowImage:self.shadowImage];
+	self.viewModel.active = NO;
 }
 
-- (void)BackToPrevious {
-	MSFCreditOrderDetailsViewController *OrderDetails = [[MSFCreditOrderDetailsViewController alloc]init];
-	[self.navigationController pushViewController:OrderDetails animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	[(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
 }
 
 //TODO: 加载马上贷申请界面方法，注意调用，在你的申请按钮点击后调用

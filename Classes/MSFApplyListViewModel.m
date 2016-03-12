@@ -28,8 +28,8 @@
 	return self;
 }
 
-- (RACSignal *)fetchApplyListSignal:(int)type {
-	return [self.services.httpClient fetchSpicyApplyList:type + 1];
+- (RACSignal *)fetchApplyListSignal {
+	return [self.services.httpClient fetchSpicyApplyList:self.productType];
 }
 
 @end

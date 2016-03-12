@@ -6,16 +6,7 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
-
-typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
-	MSFWalletNone,        // 未激活的状态
-	MSFWalletInReview,    // 审核中
-	MSFWalletConfirmation, // 等待合同确认
-	MSFWalletResubmit,    // 资料重传
-	MSFWalletRelease,     // 放款中
-	MSFWalletRejected,    // 审核失败需要重新提交
-	MSFWalletActivated,   // 已激活
-};
+#import "MSFApplication.h"
 
 @class RACCommand;
 
@@ -32,7 +23,7 @@ typedef NS_ENUM(NSUInteger, MSFWalletStatus) {
 @property (nonatomic, strong, readonly) NSString *groundTitle __deprecated;
 @property (nonatomic, strong, readonly) NSString *groundContent;
 
-@property (nonatomic, assign, readonly) MSFWalletStatus status;
+@property (nonatomic, assign, readonly) MSFApplicationStatus status;
 
 @property (nonatomic, strong, readonly) NSString *totalAmounts;
 @property (nonatomic, strong, readonly) NSString *validAmounts;

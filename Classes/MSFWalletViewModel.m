@@ -27,9 +27,11 @@
 #import "MSFDrawingsViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFOrderListViewModel.h"
+#import "MSFMyRepaysViewModel.h"
 #import "MSFUser.h"
 
 static NSString *const kWalletIdentifier = @"4102";
+static NSString *const kWalletType = @"4";
 
 @interface MSFWalletViewModel ()
 
@@ -48,7 +50,7 @@ static NSString *const kWalletIdentifier = @"4102";
 @property (nonatomic, strong, readwrite) NSString *repayDate;
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
-@property (nonatomic, assign, readwrite) MSFWalletStatus status;
+@property (nonatomic, assign, readwrite) MSFApplicationStatus status;
 @property (nonatomic, strong, readwrite) NSString *action;
 @property (nonatomic, strong) MSFWallet *model;
 @property (nonatomic, strong) MSFApplyList *application;
@@ -91,37 +93,37 @@ static NSString *const kWalletIdentifier = @"4102";
 		self.loanRates = @"00.00%";
 		self.repayDate = @"";
 		switch (status.integerValue) {
-			case MSFWalletNone: {
+			case MSFApplicationNone: {
 				self.title = @"可借现金额度";
 				self.subtitle = @"未激活";
 				self.action = @"立即激活";
 			} break;
-			case MSFWalletInReview: {
+			case MSFApplicationInReview: {
 				self.title = @"申请审核中";
 				self.subtitle = @"请稍候...";
 				self.action = @"查看详情";
 			} break;
-			case MSFWalletConfirmation: {
+			case MSFApplicationConfirmation: {
 				self.title = @"待确认合同";
 				self.subtitle = @"请确认";
 				self.action = @"立即确认";
 			} break;
-			case MSFWalletResubmit: {
+			case MSFApplicationResubmit: {
 				self.title = @"资料不符";
 				self.subtitle = @"请重传";
 				self.action = @"重传资料";
 			} break;
-			case MSFWalletRejected: {
+			case MSFApplicationRejected: {
 				self.title = @"资料不符";
 				self.subtitle = @" ";
 				self.action = @"再次申请";
 			} break;
-			case MSFWalletRelease: {
+			case MSFApplicationRelease: {
 				self.title = @"放款中";
 				self.subtitle = @" ";
 				self.action = @"查看详情";
 			} break;
-			case MSFWalletActivated: {
+			case MSFApplicationActivated: {
 				self.title = @"";
 				self.subtitle = @"";
 				self.action = @"";
@@ -162,21 +164,21 @@ static NSString *const kWalletIdentifier = @"4102";
 		catch:^RACSignal *(NSError *error) {
 			return [RACSignal return:NSNull.null];
 		}] map:^id(MSFApplyList *application) {
-			MSFWalletStatus status = MSFWalletNone;
+			MSFApplicationStatus status = MSFApplicationNone;
 			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
-				status  = MSFWalletNone;
+				status  = MSFApplicationNone;
 			} else if ([application.status isEqualToString:@"G"]) {
-				status = MSFWalletInReview;
+				status = MSFApplicationInReview;
 			} else if ([application.status isEqualToString:@"I"]) {
-				status = MSFWalletConfirmation;
+				status = MSFApplicationConfirmation;
 			} else if ([application.status isEqualToString:@"L"]) {
-				status = MSFWalletResubmit;
+				status = MSFApplicationResubmit;
 			} else if ([application.status isEqualToString:@"E"]) {
-				status = MSFWalletRelease;
+				status = MSFApplicationRelease;
 			} else if ([application.status isEqualToString:@"H"] || [application.status isEqualToString:@"K"]) {
-				status = MSFWalletRejected;
+				status = MSFApplicationRejected;
 			} else {
-				status = MSFWalletActivated;
+				status = MSFApplicationActivated;
 			}
 			return RACTuplePack(@(status), application);
 		}];
@@ -224,7 +226,7 @@ static NSString *const kWalletIdentifier = @"4102";
 		return self.authenticateSignal;
 	}
 	
-	if (self.status == MSFWalletNone || self.status == MSFWalletRejected) {
+	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected) {
 		return [[self.services.httpClient fetchBankCardList]
 			flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
 				if (bankcard.bankCardNo.length > 0) {
@@ -235,13 +237,13 @@ static NSString *const kWalletIdentifier = @"4102";
 			}];
 	}
 	
-	if (self.status == MSFWalletInReview || self.status == MSFWalletRelease) {
-		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.services];
+	if (self.status == MSFApplicationInReview || self.status == MSFApplicationRelease) {
+		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:kWalletType services:self.services];
 		[self.services pushViewModel:viewModel];
-	} else if (self.status == MSFWalletResubmit) {
+	} else if (self.status == MSFApplicationResubmit) {
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kWalletIdentifier services:self.services];
 		[self.services pushViewModel:viewModel];
-	} else if (self.status == MSFWalletConfirmation) {
+	} else if (self.status == MSFApplicationConfirmation) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
 	}
 	return RACSignal.empty;
@@ -269,7 +271,7 @@ static NSString *const kWalletIdentifier = @"4102";
 
 - (RACSignal *)billsSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFOrderListViewModel *viewModel = [[MSFOrderListViewModel alloc] initWithServices:self.services];
+		MSFMyRepaysViewModel *viewModel = [[MSFMyRepaysViewModel alloc] initWithservices:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;

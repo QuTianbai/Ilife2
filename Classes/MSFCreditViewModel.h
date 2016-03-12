@@ -8,17 +8,7 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
-
-typedef NS_ENUM(NSUInteger, MSFCreditStatus) {
-    MSFCreditNone,         //未激活状态
-    NSFCreditInReview,     //审核中
-    NSFCreditConfirmation, //等待合同确认
-    MSFCreditResubmit,     //资料重传
-    MSFCreditRelease,     //放款中
-    MSFCreditRejected,  //审核失败需要重新提交
-    MSFCreditActivated, //已激活
-    
-};
+#import "MSFApplication.h"
 
 @class RACCommand ;
 
@@ -27,14 +17,20 @@ typedef NS_ENUM(NSUInteger, MSFCreditStatus) {
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSString *subtitle;
 
-@property (nonatomic, strong, readonly) NSString *repayAmmounts;
-@property (nonatomic, strong, readonly) NSString *applyAmounts;
-@property (nonatomic, strong, readonly) NSString *repayDates;
+@property (nonatomic, strong, readonly) NSString *applyNumber;
+@property (nonatomic, strong, readonly) NSString *applyAmouts;
+@property (nonatomic, strong, readonly) NSString *applyTerms;
+@property (nonatomic, strong, readonly) NSString *applyCard;
+@property (nonatomic, strong, readonly) NSString *applyReason;
+
+@property (nonatomic, strong, readonly) NSString *monthRepayAmounts;
+@property (nonatomic, strong, readonly) NSString *loanMonthes;
 
 @property (nonatomic, strong, readonly) NSArray *photos;
 @property (nonatomic, strong, readonly) NSString *groundTitle;
+@property (nonatomic, strong, readonly) NSString *groundContent;
 
-@property (nonatomic, assign, readonly) MSFCreditStatus status;
+@property (nonatomic, assign, readonly) MSFApplicationStatus status;
 
 //申请视图中的按钮
 @property (nonatomic, strong, readonly) NSString  *action;

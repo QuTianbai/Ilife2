@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Commodity View Controller-->
@@ -18,24 +18,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6XT-bM-B0r">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="260" id="5Ng-X0-IYP"/>
+                                    <constraint firstAttribute="height" constant="245" id="5Ng-X0-IYP"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="3Qg-53-fsz" kind="embed" id="bFQ-BU-EBV"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSX-zc-Cng">
-                                <rect key="frame" x="0.0" y="413" width="320" height="155"/>
+                                <rect key="frame" x="0.0" y="407" width="320" height="161"/>
                                 <connections>
                                     <segue destination="per-0b-KLq" kind="embed" id="7yg-So-pmY"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hHI-IX-1iS">
-                                <rect key="frame" x="0.0" y="260" width="320" height="153"/>
+                                <rect key="frame" x="0.0" y="245" width="320" height="162"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="153" id="gc5-GG-WSH"/>
+                                    <constraint firstAttribute="height" constant="162" id="gc5-GG-WSH"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="veC-5b-pUu" kind="embed" id="XxI-Ik-ku7"/>
@@ -71,17 +71,17 @@
                         <viewControllerLayoutGuide type="bottom" id="pXS-y7-2Jl"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Mey-V4-5bL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="245"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img-commidity-bg-top.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="jfN-hu-DAM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHY-cg-fl6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="220"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="205"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYx-4O-EqO">
-                                        <rect key="frame" x="105" y="56" width="111" height="147"/>
+                                        <rect key="frame" x="105" y="54" width="111" height="147"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="147" id="Brf-Es-Wn8"/>
                                             <constraint firstAttribute="width" constant="111" id="xmX-X6-8ux"/>
@@ -92,12 +92,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="MYx-4O-EqO" firstAttribute="centerY" secondItem="eHY-cg-fl6" secondAttribute="centerY" constant="20" id="6Jy-zb-W0R"/>
+                                    <constraint firstItem="MYx-4O-EqO" firstAttribute="centerY" secondItem="eHY-cg-fl6" secondAttribute="centerY" constant="25" id="6Jy-zb-W0R"/>
                                     <constraint firstItem="MYx-4O-EqO" firstAttribute="centerX" secondItem="eHY-cg-fl6" secondAttribute="centerX" id="GZL-eU-DgL"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bDM-k7-zDV">
-                                <rect key="frame" x="0.0" y="220" width="320" height="40"/>
+                                <rect key="frame" x="0.0" y="205" width="320" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最近1笔进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeB-sk-v9r">
                                         <rect key="frame" x="15" y="9" width="85" height="21"/>
@@ -106,7 +106,7 @@
                                             <constraint firstAttribute="width" constant="85" id="seY-x4-q6O"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合同已确认" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUy-Pb-aZa">
@@ -134,7 +134,7 @@
                                         <state key="normal" title="确认合同"/>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iNq-iO-KxY">
-                                        <rect key="frame" x="0.0" y="39.5" width="320" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="40" width="320" height="0.0"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="4gb-CV-IF7"/>
@@ -195,11 +195,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Ny4-EU-ZWL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yh4-Dx-mlO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8AQ-rz-2DQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="153"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                             </webView>
                         </subviews>
@@ -228,18 +228,18 @@
                         <viewControllerLayoutGuide type="bottom" id="O86-NZ-Gui"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="MEm-YB-pdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="FDp-xF-qzc">
-                                <rect key="frame" x="110" y="78" width="100" height="37"/>
+                                <rect key="frame" x="110" y="84" width="100" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="8S5-gf-FlK"/>
                                     <constraint firstAttribute="height" constant="37" id="ckE-jz-LDK"/>
                                 </constraints>
                             </pageControl>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="glF-Bd-HCM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="155"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
