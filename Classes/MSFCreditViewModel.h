@@ -11,6 +11,7 @@
 #import "MSFApplication.h"
 
 @class RACCommand ;
+@class MSFApplyCashViewModel;
 
 @interface MSFCreditViewModel : RVMViewModel
 
@@ -37,9 +38,9 @@
 @property (nonatomic, strong, readonly) NSString *monthRepayAmounts;
 
 // 申请总期数
-@property (nonatomic, strong, readonly) NSString *loanMonthes;
+@property (nonatomic, strong, readonly) NSString *loanMonthes __deprecated;
 
-@property (nonatomic, strong, readonly) NSArray *photos __deprecated;
+@property (nonatomic, strong, readonly) NSArray *photos;
 @property (nonatomic, strong, readonly) NSString *groundTitle __deprecated;
 @property (nonatomic, strong, readonly) NSString *groundContent __deprecated;
 
@@ -53,6 +54,8 @@
 @property (nonatomic, strong, readonly) RACCommand *executeRepayCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeBillCommand;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices>services;
+
+@property (nonatomic, strong, readonly) MSFApplyCashViewModel *viewModel;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
 

@@ -14,6 +14,11 @@
 #import "MSFClient+Photos.h"
 #import "MSFMyRepaysViewModel.h"
 #import "MSFApplyList.h"
+#import "MSFApplyCashViewModel.h"
+#import "MSFLoanType.h"
+
+static NSString *const kApplicationCreditIdentifier = @"1101";
+static NSString *const kApplicationCreditType = @"1";
 
 @interface MSFCreditViewModel ()
 
@@ -46,6 +51,19 @@
 	}
 	@weakify(self)
 	_services = services;
+	_viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:[[MSFLoanType alloc] initWithTypeID:kApplicationCreditIdentifier] services:self.services];
+	
+	RAC(self, viewModel.active) = RACObserve(self, active);
+	
+	RAC(self, applyAmouts) = [RACObserve(self, viewModel.appLmt) map:^id(id value) {
+		return [value isKindOfClass:NSNumber.class] ? [value stringValue] : value;
+	}];
+	RAC(self, applyTerms) = [RACObserve(self, viewModel.loanTerm) map:^id(id value) {
+		return [value isKindOfClass:NSNumber.class] ? [value stringValue] : value;
+	}];
+	RAC(self, monthRepayAmounts) = [RACObserve(self, viewModel.loanFixedAmt) map:^id(id value) {
+		return [value isKindOfClass:NSNumber.class] ? [value stringValue] : value;
+	}];
 	
 	[[self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)

@@ -29,6 +29,7 @@
 #import "MSFClient+ProductType.h"
 #import "MSFClient+CirculateCash.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFClient+Amortize.h"
 #import "MSFLoanType.h"
 #import "MSFPersonalViewModel.h"
 
@@ -78,6 +79,7 @@
 	//RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
+	RAC(self, amount) = RACObserve(self, appLmt);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
 	RAC(self, model.lifeInsuranceAmt) = [RACObserve(self, lifeInsuranceAmt) map:^id(NSString *value) {
@@ -88,8 +90,8 @@
 	}];
 	RAC(self, model.loanFixedAmt) = RACObserve(self, loanFixedAmt);
 	
-	//RAC(self, minMoney) = RACObserve(self, formViewModel.markets.allMinAmount);
-	//RAC(self, maxMoney) = RACObserve(self, formViewModel.markets.allMaxAmount);
+	RAC(self, minMoney) = RACObserve(self, markets.allMinAmount);
+	RAC(self, maxMoney) = RACObserve(self, markets.allMaxAmount);
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		self.loanPurpose = value.code;
@@ -100,10 +102,16 @@
 		return [value text];
 	}];
 	
-	//RAC(self, markets) = [RACObserve(self, formViewModel.markets) map:^id(id value) {
-	//	return value;
-	//}];
 	@weakify(self)
+	RAC(self, markets) = [[self.didBecomeActiveSignal
+		filter:^BOOL(id value) {
+			@strongify(self)
+			return !self.markets;
+		}]
+		flattenMap:^RACStream *(id value) {
+			return [self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID];
+		}];
+	
 	[RACObserve(self, product) subscribeNext:^(MSFPlan *product) {
 		@strongify(self)
 		self.loanTerm = self.product.loanTeam;
