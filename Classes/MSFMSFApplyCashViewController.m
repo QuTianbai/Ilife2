@@ -70,7 +70,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @implementation MSFMSFApplyCashViewController
 
-#pragma mark - Lifecycle
+#pragma mark - NSObject
 
 - (void)dealloc {
 	NSLog(@"MSFProductViewController `-dealloc`");
@@ -85,6 +85,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
   return self;
 }
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -115,13 +117,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
-  
-	UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-	label.text = @"申请贷款";
-	label.textColor = [UIColor tintColor];
-	label.font = [UIFont boldSystemFontOfSize:17];
-	label.textAlignment = NSTextAlignmentCenter;
-	self.navigationItem.titleView = label;
+	
+	self.title = @"马上贷";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	RAC(self, bankCard.text) = [RACObserve(self, viewModel.masterBankCardNameAndNO) map:^id(id value) {
@@ -152,12 +149,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	RAC(self.repayMoneyMonth, valueText) = RACObserve(self, viewModel.loanFixedAmt);
 	RAC(self.moneyUsesTF, text) = RACObserve(self, viewModel.purposeText);
-	self.moneySlider.delegate = self;
   RAC(self.moneySlider, minimumValue) = [RACObserve(self.viewModel, minMoney) map:^id(id value) {
     if (!value) {
       return @0;
     }
-		self.viewModel.appLmt = value;
     return value;
   }];
   RAC(self.moneySlider, maximumValue) = [RACObserve(self.viewModel, maxMoney) map:^id(id value) {
@@ -166,6 +161,17 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
     }
     return value;
   }];
+	self.moneySlider.delegate = self;
+	
+	// 根据首页的选择更新
+	self.moneySlider.value = self.viewModel.appLmt.integerValue;
+	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.markets total:self.viewModel.appLmt.integerValue];
+  [self.monthCollectionView reloadData];
+ 
+  if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
+		NSIndexPath *indexPath = [self.selectViewModel indexPathForModel:self.viewModel.product];
+		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+  }
 	
 	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		self.viewModel.product = nil;
@@ -290,7 +296,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   if (self.moneySlider.maximumValue == 0) {
     [SVProgressHUD showInfoWithStatus:@"系统繁忙，请稍后再试"];
   }
-	//self.viewModel.termAmount = 0;
 	[self.monthCollectionView reloadData];
 }
 
@@ -306,21 +311,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
  
   if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
 		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
-      [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-      self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
   }
 }
 
 - (void)setRepayMoneyBackgroundViewAniMation:(BOOL)isHiddin {
-  [UIView beginAnimations:nil context:nil];
-  [UIView setAnimationDuration:0.3];
-  if (isHiddin) {
-    [UIView setAnimationDuration:0];
-    self.repayMoneyBackgroundView.alpha = 0.2;
-  } else {
-    self.repayMoneyBackgroundView.alpha = 1;
-  }
-  [UIView commitAnimations];
+	[UIView animateWithDuration:.3 animations:^{
+		self.repayMoneyBackgroundView.alpha = isHiddin ? 0.2: 1;
+	}];
 }
 
 #pragma mark - ZSWTappableLabelTapDelegate

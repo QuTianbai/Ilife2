@@ -19,6 +19,8 @@
 
 @implementation MSFCreditHeaderViewController
 
+#pragma mark - Lifecycle
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -26,7 +28,7 @@
 	RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.subtitle);
 	RAC(self.repayLabel, text) = RACObserve(self, viewModel.monthRepayAmounts);
 	RAC(self.applyLabel, text) = RACObserve(self, viewModel.applyAmouts);
-	RAC(self.applyMonthLabel, text) = RACObserve(self, viewModel.loanMonthes);
+	RAC(self.applyMonthLabel, text) = RACObserve(self, viewModel.applyTerms);
 	
 	RAC(self.beforeApplyView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
 		return @(!(status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));

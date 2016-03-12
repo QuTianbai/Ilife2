@@ -5,14 +5,9 @@
 //
 
 #import "MSFCreditViewController.h"
-#import <Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFReactiveView.h"
 #import "MSFCreditOrderDetailsViewController.h"
-//define this constant if you want to use Masonry without the 'mas_' prefix
-#define MAS_SHORTHAND
-//define this constant if you want to enable auto-boxing for default syntax
-#define MAS_SHORTHAND_GLOBALS
 #import "MSFCreditViewModel.h"
 #import "MSFApplyCashViewModel.h"
 #import "MSFMSFApplyCashViewController.h"
@@ -28,23 +23,20 @@
 @implementation MSFCreditViewController
 
 - (instancetype)initWithViewModel:(id)viewModel {
- 
-    self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFCreditViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFCreditViewController class])];
+	self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFCreditViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFCreditViewController class])];
   if (!self) {
     return nil;
   }
-    _viewModel = viewModel;
+	_viewModel = viewModel;
   return self;
 }
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-   
+	
 	self.title = @"马上贷";
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单" style:UIBarButtonItemStyleDone target:nil action:nil];
 	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillCommand;
-	
-	self.viewModel.active = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -70,16 +62,12 @@
 	self.viewModel.active = NO;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	[(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
-}
+#pragma mark - MSFReactiveView
 
-//TODO: 加载马上贷申请界面方法，注意调用，在你的申请按钮点击后调用
-- (void)apply {
-	MSFApplyCashViewModel *viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:[[MSFLoanType alloc] initWithTypeID:@"4102"] services:self.viewModel.services];
-	MSFMSFApplyCashViewController *vc = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
-	vc.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:vc animated:YES];
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	if ([segue.destinationViewController conformsToProtocol:@protocol(MSFReactiveView)]) {
+		[(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
+	}
 }
 
 @end
