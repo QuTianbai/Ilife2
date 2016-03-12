@@ -13,7 +13,6 @@
 #define MAS_SHORTHAND
 //define this constant if you want to enable auto-boxing for default syntax
 #define MAS_SHORTHAND_GLOBALS
-#import "Masonry.h"
 #import "MSFCreditViewModel.h"
 #import "MSFApplyCashViewModel.h"
 #import "MSFMSFApplyCashViewController.h"
