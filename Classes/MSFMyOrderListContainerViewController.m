@@ -27,6 +27,7 @@
 	if (!self) {
 		return nil;
 	}
+	self.hidesBottomBarWhenPushed = YES;
 	self.viewModel = viewModel;
 	
 	return self;
