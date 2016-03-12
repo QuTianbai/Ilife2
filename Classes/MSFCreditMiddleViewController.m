@@ -92,12 +92,7 @@
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
 	
-	[[self.applyButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-		@strongify(self)
-		MSFMSFApplyCashViewController *vc = [[MSFMSFApplyCashViewController alloc] initWithViewModel:self.viewModel.viewModel];
-		vc.hidesBottomBarWhenPushed = YES;
-		[self.navigationController pushViewController:vc animated:YES];
-	}];
+	self.applyButton.rac_command = self.viewModel.excuteActionCommand;
 	
 	[self.viewModel.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
