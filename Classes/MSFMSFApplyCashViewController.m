@@ -61,6 +61,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *nextPageBT;
 @property (weak, nonatomic) IBOutlet UIButton *lifeInsuranceButton;
 @property (weak, nonatomic) IBOutlet UILabel *bankCard;
+@property (weak, nonatomic) IBOutlet UILabel *bankCardLabel;
 
 @property (nonatomic, assign) BOOL master;
 
@@ -143,6 +144,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		
 		return value.stringValue;
 	}];
+	RAC(self, bankCardLabel.text) = RACObserve(self, viewModel.masterBankCardNameAndNO);
   RAC(self.moneyInsuranceLabel, text) = [RACObserve(self.viewModel, lifeInsuranceAmt) map:^id(NSString *value) {
     return (value ==nil || [value isEqualToString:@"0.00"])?@"" : [NSString stringWithFormat:@"寿险金额：%@元", value];
   }];

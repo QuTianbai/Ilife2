@@ -32,6 +32,8 @@
 #import "MSFClient+Amortize.h"
 #import "MSFLoanType.h"
 #import "MSFPersonalViewModel.h"
+#import "MSFBankCardListModel.h"
+#import "MSFClient+BankCardList.h"
 
 @interface MSFApplyCashViewModel ()
 
@@ -75,8 +77,11 @@
 	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
 	
-	//TODO: 更新银行卡号的获取方式
-	//RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
+	RAC(self, masterBankCardNameAndNO) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		return [[self.services.httpClient fetchBankCardList] map:^id(MSFBankCardListModel *value) {
+			return [NSString stringWithFormat:@"%@[%@]", value.bankName, value.bankCardNo];
+		}];
+	}];
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
 	RAC(self, amount) = RACObserve(self, appLmt);
