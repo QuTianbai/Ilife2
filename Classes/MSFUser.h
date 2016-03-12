@@ -31,6 +31,7 @@
 @property (nonatomic, copy, readonly) NSString *hasChecked;
 
 @property (nonatomic, copy, readwrite) NSString *uniqueId;
+@property (nonatomic, copy, readwrite) NSString *applyType;
 
 /**
  *	Create The user instance
