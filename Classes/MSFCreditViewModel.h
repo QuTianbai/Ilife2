@@ -14,22 +14,36 @@
 
 @interface MSFCreditViewModel : RVMViewModel
 
+// 申请过程中的状态变化
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSString *subtitle;
 
+// 申请单号
 @property (nonatomic, strong, readonly) NSString *applyNumber;
+
+// 申请金额
 @property (nonatomic, strong, readonly) NSString *applyAmouts;
+
+// 申请期数
 @property (nonatomic, strong, readonly) NSString *applyTerms;
+
+// 申请银行卡信息
 @property (nonatomic, strong, readonly) NSString *applyCard;
+
+// 申请目的
 @property (nonatomic, strong, readonly) NSString *applyReason;
 
+// 每月还款额
 @property (nonatomic, strong, readonly) NSString *monthRepayAmounts;
+
+// 申请总期数
 @property (nonatomic, strong, readonly) NSString *loanMonthes;
 
-@property (nonatomic, strong, readonly) NSArray *photos;
-@property (nonatomic, strong, readonly) NSString *groundTitle;
-@property (nonatomic, strong, readonly) NSString *groundContent;
+@property (nonatomic, strong, readonly) NSArray *photos __deprecated;
+@property (nonatomic, strong, readonly) NSString *groundTitle __deprecated;
+@property (nonatomic, strong, readonly) NSString *groundContent __deprecated;
 
+// 申请状态
 @property (nonatomic, assign, readonly) MSFApplicationStatus status;
 
 //申请视图中的按钮

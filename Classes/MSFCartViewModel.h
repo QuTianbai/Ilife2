@@ -49,7 +49,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong, readonly) MSFCart  *cart;
 @property (nonatomic, strong, readonly) MSFTrial *trial;
 @property (nonatomic, strong, readonly) NSArray  *terms; // 产品群信息
-@property (nonatomic, assign, readonly) BOOL barcodeInvalid;
+@property (nonatomic, assign, readonly) BOOL barcodeInvalid __deprecated;
 
 @property (nonatomic, assign, readonly) BOOL isDownPmt; // 是否需要首付
 @property (nonatomic, assign, readonly) BOOL hasAgreeProtocol; // 是否同意贷款协议
