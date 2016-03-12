@@ -29,6 +29,7 @@ static NSString *const kApplicationCreditType = @"1";
 @property (nonatomic, strong, readwrite) NSString *applyAmouts;
 @property (nonatomic, strong, readwrite) NSString *monthRepayAmounts;
 @property (nonatomic, strong, readwrite) NSString *loanMonthes;
+@property (nonatomic, strong, readwrite) NSString *applyTerms;
 
 @property (nonatomic, strong, readwrite) NSArray *photos;
 
@@ -85,7 +86,7 @@ static NSString *const kApplicationCreditType = @"1";
 	[RACObserve(self, status) subscribeNext:^(NSNumber *status) {
 		@strongify(self)
 		self.monthRepayAmounts = @"0";
-		self.loanMonthes = @"0";
+		self.applyTerms = @"0";
 		self.applyAmouts = @"0";
 		switch (status.integerValue) {
 			case MSFApplicationNone: {
@@ -154,7 +155,7 @@ static NSString *const kApplicationCreditType = @"1";
 
 - (RACSignal *)fetchCreditStatus {
 	return [RACSignal empty];
-//TODO:
+//TODO: 获取马上贷的状态
 //	return [[[self.services.httpClient fetchRecentApplicaiton:@"4"]
 //		catch:^RACSignal *(NSError *error) {
 //			return [RACSignal return:NSNull.null];

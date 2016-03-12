@@ -201,39 +201,12 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
-//TODO: 进入基本信息编辑界面
-	@weakify(self)
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		if (!self.product || self.appLmt.intValue == 0) {
-			if (self.appLmt.intValue == 0) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数", }]];
-				return nil;
-			}
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数"}]];
-			return nil;
-		}
-		if (!self.purpose) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款用途"}]];
-			return nil;
-		}
-		if ([self.loanFixedAmt isEqualToString:@"0.00"] || [self.loanFixedAmt isEqualToString:@"0"] || self.loanFixedAmt == nil) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"每月还款金额获取失败"}]];
-			return nil;
-		}
-		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-		[self.services pushViewModel:viewModel];
-		
-		[subscriber sendCompleted];
-		return nil;
-	}];
 }
 
 - (void)setSVPBackGround {
 	[SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	[SVProgressHUD setForegroundColor:[UIColor blackColor]];
 	[SVProgressHUD resetOffsetFromCenter];
-	
 }
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {

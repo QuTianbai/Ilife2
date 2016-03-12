@@ -59,7 +59,6 @@
 	_applicationNo = self.cart.cartId;
 	self.compId = self.cart.compId;
 	self.totalAmt = self.cart.totalAmt;
-	self.barcodeInvalid = NO;
 	
 	RAC(self, maxLoan) = RACObserve(self, markets.allMaxAmount);
 	RAC(self, minLoan) = RACObserve(self, markets.allMinAmount);
