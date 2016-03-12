@@ -57,6 +57,8 @@
 	RACChannelTo(self, contactName) = RACChannelTo(self.firstContact, contactName);
 	RACChannelTo(self, contactPhone) = RACChannelTo(self.firstContact, contactMobile);
 	
+	_executeLiveAddressCommand = _addressViewModel.selectCommand;
+	
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [[self.services msf_selectKeyValuesWithContent:@"moneyUse"] doNext:^(MSFSelectKeyValues *x) {
 			self.purposeCode = x.code;
