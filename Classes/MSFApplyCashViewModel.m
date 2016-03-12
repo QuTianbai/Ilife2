@@ -174,6 +174,9 @@
 	_executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self commitSignal];
 	}];
+	_executeAgreementCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeAgreementSignal];
+	}];
 }
 
 - (RACSignal *)executePurposeSignal {
@@ -218,9 +221,15 @@
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
 }
 
-//TODO: 需要增加查看协议界面
-//MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-//[self.services pushViewModel:viewModel];
+- (RACSignal *)executeAgreementSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
 - (RACSignal *)commitSignal {
 	NSDictionary *order = @{
 		@"applyStatus": @"1",

@@ -63,6 +63,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UILabel *bankCard;
 @property (weak, nonatomic) IBOutlet UILabel *bankCardLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *agreeProtocolButton;
+@property (weak, nonatomic) IBOutlet UIButton *showProtocolButton;
+@property (weak, nonatomic) IBOutlet UIImageView *protocolStatusImage;
+
 @property (nonatomic, assign) BOOL master;
 
 @property (nonatomic, strong, readwrite) MSFApplyCashViewModel *viewModel;
@@ -93,6 +97,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 - (void)viewDidLoad {
 	[super viewDidLoad];
   @weakify(self)
+	
+	RAC(self, protocolStatusImage.highlighted) = RACObserve(self, agreeProtocolButton.selected);
+	self.showProtocolButton.rac_command = self.viewModel.executeAgreementCommand;
+	[[self.agreeProtocolButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		self.agreeProtocolButton.selected = !self.agreeProtocolButton.selected;
+	}];
+	
 	DeviceTypeNum deviceType = [MSFDeviceGet deviceNum];
 	if (litter6 & deviceType) {
 		self.repayConstraint.constant = 40;
@@ -181,7 +193,20 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
-	self.nextPageBT.rac_command = self.viewModel.executeNextCommand;
+	
+	[[self.nextPageBT rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+		@strongify(self)
+		if (!self.protocolStatusImage.highlighted) {
+			[SVProgressHUD showInfoWithStatus:@"请同意贷款协议"];
+			return;
+		}
+		if (!self.viewModel.purposeText) {
+			[SVProgressHUD showInfoWithStatus:@"选择贷款用途"];
+			return;
+		}
+		[self.viewModel.executeNextCommand execute:x];
+	}];
+	
 	[self.viewModel.executeNextCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];

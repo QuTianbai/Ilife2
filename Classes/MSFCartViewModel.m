@@ -317,7 +317,6 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
-
 }
 
 - (RACSignal *)trialSignal {

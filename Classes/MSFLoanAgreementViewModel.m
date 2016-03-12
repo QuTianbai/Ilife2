@@ -38,7 +38,7 @@
 	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
 	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
+		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel];
 	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
 		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel];
 	}
