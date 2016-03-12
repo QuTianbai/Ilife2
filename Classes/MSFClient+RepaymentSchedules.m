@@ -24,19 +24,19 @@
 }
 
 - (RACSignal *)fetchMyRepayWithType:(NSString *)type {
-//	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentList" parameters:@{
-//									@"type": type,
-//								}];
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayList" ofType:@"json"];
-	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentList" parameters:@{
+									@"type": type,
+								}];
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayList" ofType:@"json"];
+//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
 - (RACSignal *)fetchMyDetailWithContractNo:(NSString *)contractNo type:(NSString *)type {
-	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayDetail" ofType:@"json"];
-	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayDetail" ofType:@"json"];
+//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
 
-	//NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/detailInfo" parameters:@{@"type":type, @"contractNo":contractNo}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/detailInfo" parameters:@{@"type":type, @"contractNo":contractNo}];
 	return [[self enqueueRequest:request resultClass:MSFMyRepayDetailModel.class]msf_parsedResults];
 }
 

@@ -30,6 +30,8 @@
 //是否经过实名认证
 @property (nonatomic, copy, readonly) NSString *hasChecked;
 
+@property (nonatomic, copy, readwrite) NSString *uniqueId;
+
 /**
  *	Create The user instance
  *
