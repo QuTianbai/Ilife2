@@ -145,7 +145,6 @@
 					[self couponsList];
 					break;
 				case 4:
-				//TODO: 缺少扫一扫
 					[self scaning];
 					break;
 				default: break;

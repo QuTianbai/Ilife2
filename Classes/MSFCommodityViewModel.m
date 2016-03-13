@@ -176,7 +176,7 @@ static NSString *const kWalletIdentifier = @"3101";
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFCommodityConfirmation) {
 		//确认合同
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:self.application.productCd];
 		
 	} else if (self.status == MSFCommodityResubmit) {
 		//资料重传

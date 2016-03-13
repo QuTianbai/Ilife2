@@ -8,6 +8,8 @@
 
 #import "MSFObject.h"
 
+__attribute__((deprecated("This class is deprecated. Please use the MSFApplylist class instead")))
+
 //TODO: Rename contact to contract
 @interface MSFContactListModel : MSFObject
 

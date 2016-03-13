@@ -16,13 +16,15 @@
 #import "MSFCirculateCashModel.h"
 #import "MSFClient+CirculateCash.h"
 #import "MSFUser.h"
+#import "MSFClient+ApplyList.h"
+#import "MSFApplyList.h"
 
 static NSString *kSocialInsuranceLoanTemplate = @"4102";
 
 @interface MSFConfirmContactViewModel ()
 
 @property (nonatomic, strong) NSArray *contactsArray;
-@property (nonatomic, strong) MSFContactListModel *model;
+@property (nonatomic, strong, readwrite) MSFApplyList *model;
 
 @end
 
@@ -46,19 +48,18 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	_requestConfirmCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeSubmitConfirmContract:input];
 	}];
-
+	
+	// HOMEPAGECONFIRMCONTRACT
+	// 当确认合同工按钮点击的时候弹出确认合同的webview
+	// 通知内容必须指明类型: 如马上贷1101
 	@weakify(self)
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMCONTRACT" object:nil] subscribeNext:^(id x) {
+	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMCONTRACT" object:nil] subscribeNext:^(NSNotification *notification) {
 		NSLog(@"接收确认合同通知");
 		@strongify(self)
-		[self.confirmCommand execute:nil];
-	}];
-	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMUPDATEMODEL" object:nil] subscribeNext:^(id x) {
-		NSLog(@"%@", [x object]);
-		self.circulateModel = [x object];
-		//@strongify(self)
-		//self.circulateModel = self.circulateModel;
-		//[self.confirmCommand execute:nil];
+		[[self.servers.httpClient fetchRecentApplicaiton:notification.object] subscribeNext:^(id x) {
+			self.model = x;
+			[self.confirmCommand execute:nil];
+		}];
 	}];
 	
 	[self fetchContractist];
@@ -71,6 +72,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 }
 
 - (void)fetchContractist {
+	// 这个接口暂时没有发现是做什么用的
 	@weakify(self)
 	[[self.servers.httpClient fetchCirculateCash:nil] subscribeNext:^(MSFCirculateCashModel *model) {
 		@strongify(self)
@@ -105,7 +107,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 }
 
 - (RACSignal *)requestContactWithTemplate:(NSString *)templateType productType:(NSString *)productType {
-	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:productType AndtemplateType:templateType] flattenMap:^RACStream *(id value) {
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.model.appNo AndProductNO:productType AndtemplateType:templateType] flattenMap:^RACStream *(id value) {
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
@@ -113,7 +115,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 }
 
 - (RACSignal *)requestContactInfo:(NSString *)type {
-	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.circulateModel.applyNo AndProductNO:self.circulateModel.productType AndtemplateType:type] flattenMap:^RACStream *(id value) {
+	return [[[self.servers.httpClient fetchContactsInfoWithAppNO:self.model.appNo AndProductNO:self.model.productCd AndtemplateType:type] flattenMap:^RACStream *(id value) {
 		return [[NSURLConnection rac_sendAsynchronousRequest:value] reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		}];
@@ -121,7 +123,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 }
 
 - (RACSignal *)executeSubmitConfirmContract:(NSString *)type {
-	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.circulateModel.applyNo AndProductNO:self.circulateModel.productType AndtemplateType:type];
+	return [self.servers.httpClient fetchConfirmContractWithAppNO:self.model.appNo AndProductNO:self.model.productCd AndtemplateType:type];
 }
 
 @end

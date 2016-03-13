@@ -30,8 +30,8 @@
 #import "MSFMyRepaysViewModel.h"
 #import "MSFUser.h"
 
-static NSString *const kWalletIdentifier = @"4102";
-static NSString *const kWalletType = @"4";
+static NSString *const kApplicationWalletIdentifier = @"4102";
+static NSString *const kApplicationWalletType = @"4";
 
 @interface MSFWalletViewModel ()
 
@@ -163,7 +163,8 @@ static NSString *const kWalletType = @"4";
 	return [[[self.services.httpClient fetchRecentApplicaiton:@"4"]
 		catch:^RACSignal *(NSError *error) {
 			return [RACSignal return:NSNull.null];
-		}] map:^id(MSFApplyList *application) {
+		}]
+		map:^id(MSFApplyList *application) {
 			MSFApplicationStatus status = MSFApplicationNone;
 			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
 				status  = MSFApplicationNone;
@@ -238,13 +239,13 @@ static NSString *const kWalletType = @"4";
 	}
 	
 	if (self.status == MSFApplicationInReview || self.status == MSFApplicationRelease) {
-		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:kWalletType services:self.services];
+		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:kApplicationWalletType services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFApplicationResubmit) {
-		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kWalletIdentifier services:self.services];
+		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kApplicationWalletIdentifier services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFApplicationConfirmation) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationWalletIdentifier];
 	}
 	return RACSignal.empty;
 }

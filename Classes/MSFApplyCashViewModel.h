@@ -49,6 +49,7 @@
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeTermCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeAgreementCommand;
 
 @property (nonatomic, copy) NSString *masterBankCardNameAndNO;
 
@@ -77,8 +78,6 @@
 @property (nonatomic, strong, readwrite) NSString *amount;
 @property (nonatomic, strong) id formViewModel __deprecated_msg("Use MSFUser intead");
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
-
-//TODO: 完成马上贷数据提交
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 @end

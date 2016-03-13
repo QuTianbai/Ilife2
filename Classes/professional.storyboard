@@ -42,21 +42,34 @@
                         <sections>
                             <tableViewSection id="sLH-zv-ti1" userLabel="身份信息">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="xPU-g6-i2r" rowHeight="40" style="IBUITableViewCellStyleDefault" id="Nbt-AQ-LWK">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="40" id="Nbt-AQ-LWK">
                                         <rect key="frame" x="0.0" y="10" width="320" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nbt-AQ-LWK" id="83y-CY-oSL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="身份信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xPU-g6-i2r">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="39.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3my-7L-BCM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
+                                                    <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="0.5" id="2kw-OG-B5C"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iB7-iI-UD7">
+                                                    <rect key="frame" x="15" y="11" width="60" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="3my-7L-BCM" secondAttribute="trailing" id="V9r-AM-pJ0"/>
+                                                <constraint firstItem="iB7-iI-UD7" firstAttribute="leading" secondItem="83y-CY-oSL" secondAttribute="leading" constant="15" id="bbe-Hx-8jy"/>
+                                                <constraint firstItem="3my-7L-BCM" firstAttribute="leading" secondItem="83y-CY-oSL" secondAttribute="leading" id="iDj-zX-EEc"/>
+                                                <constraint firstItem="iB7-iI-UD7" firstAttribute="centerY" secondItem="83y-CY-oSL" secondAttribute="centerY" id="kaS-fV-wrx"/>
+                                                <constraint firstItem="3my-7L-BCM" firstAttribute="top" secondItem="83y-CY-oSL" secondAttribute="top" id="rKh-Mb-rDz"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="a8K-43-ICX">
@@ -81,7 +94,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1y-jc-JEJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="44"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -232,7 +245,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其他贷款" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6es-6J-ChK">
-                                                    <rect key="frame" x="15" y="12" width="85" height="21.5"/>
+                                                    <rect key="frame" x="15" y="12" width="85" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="GdI-oa-zWg"/>
                                                     </constraints>
@@ -293,7 +306,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写学校" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vGb-EF-BB7">
-                                                    <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="190" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -326,12 +339,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入学年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F9l-iO-lP7">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85k-fB-OBi">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -434,7 +447,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写工作单位全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gaa-8F-peG">
-                                                    <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="190" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -476,12 +489,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择行业" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qeu-GC-nQP">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MpM-J1-S1v">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -519,12 +532,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择单位性质" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jd8-z6-vLe">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xys-7K-kWA">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -562,12 +575,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择参加工作日期" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3T-LI-f45">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCv-Px-e4K">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -640,12 +653,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="分机号(选填)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvN-OO-7Q8">
-                                                    <rect key="frame" x="241.5" y="7" width="78.5" height="29.5"/>
+                                                    <rect key="frame" x="242" y="7" width="78" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="区号      座机号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zkP-BA-X7C">
-                                                    <rect key="frame" x="120" y="7" width="118.5" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="70" id="iBH-QY-RVF"/>
                                                     </constraints>
@@ -689,12 +702,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择单位地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkJ-Ao-IKY">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rUA-xh-Q2b">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -732,7 +745,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写详细地址" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nD8-5n-xtk">
-                                                    <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="190" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="send"/>
                                                 </textField>
@@ -800,7 +813,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写当前就职部门全称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="91V-hR-e4w">
-                                                    <rect key="frame" x="120" y="7" width="190" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="190" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -833,12 +846,12 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择职业" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gd9-Zz-LiJ">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6p-nd-fJs">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -867,7 +880,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择入职年月" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NKj-Jf-2k4">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -881,7 +894,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QX5-sK-mZ0">
-                                                    <rect key="frame" x="120" y="7" width="157" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="157" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -914,12 +927,12 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择婚姻状况" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I65-tF-mba">
-                                                    <rect key="frame" x="120" y="7" width="159" height="29.5"/>
+                                                    <rect key="frame" x="120" y="7" width="159" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="婚姻状况" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wve-3k-iPE">
-                                                    <rect key="frame" x="15" y="7" width="85" height="29.5"/>
+                                                    <rect key="frame" x="15" y="7" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="hDB-FT-Li0"/>
                                                     </constraints>
@@ -928,7 +941,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMS-AN-eeC">
-                                                    <rect key="frame" x="0.0" y="0.5" width="317" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="44"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -958,7 +971,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vJ-2l-hFf">
-                                                    <rect key="frame" x="13" y="7" width="45" height="25.5"/>
+                                                    <rect key="frame" x="13" y="7" width="45" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -979,7 +992,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="与申请人关系" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hhC-MA-j1x">
-                                                    <rect key="frame" x="13" y="7" width="119" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="22F-4m-XB8"/>
                                                     </constraints>
@@ -993,7 +1006,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" tag="900" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wU8-MM-WnX">
-                                                    <rect key="frame" x="132" y="7" width="147" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="147" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1031,7 +1044,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1De-Li-56V">
-                                                    <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="7ab-Nt-3rG"/>
                                                         <constraint firstAttribute="height" constant="44" id="z9h-e2-jWf"/>
@@ -1041,7 +1054,7 @@
                                                     </state>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="400" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ltQ-N8-nF7">
-                                                    <rect key="frame" x="132" y="7" width="130" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -1067,7 +1080,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xiw-k3-fkQ">
-                                                    <rect key="frame" x="13" y="7" width="119" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="s1e-5K-JqP"/>
                                                     </constraints>
@@ -1076,7 +1089,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="500" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jfB-sl-avc">
-                                                    <rect key="frame" x="132" y="7" width="178" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="178" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                                 </textField>
@@ -1100,7 +1113,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同现居地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1P-we-Kyl">
-                                                    <rect key="frame" x="13" y="7" width="85" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="9Gm-eT-c2X"/>
                                                     </constraints>
@@ -1133,7 +1146,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SxZ-yc-xc8">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1154,13 +1167,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✚ 新增联系人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cuE-Mz-vu6">
-                                                    <rect key="frame" x="113" y="12" width="93.5" height="18"/>
+                                                    <rect key="frame" x="113" y="12" width="94" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="700" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9M-dd-TiG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1185,13 +1198,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其它联系人1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ub3-X8-FYw">
-                                                    <rect key="frame" x="13" y="7" width="82" height="25.5"/>
+                                                    <rect key="frame" x="13" y="7" width="82" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="801" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6R4-pB-VyQ">
-                                                    <rect key="frame" x="262" y="7" width="50" height="25.5"/>
+                                                    <rect key="frame" x="262" y="7" width="50" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="qpQ-ju-1fi"/>
                                                     </constraints>
@@ -1218,7 +1231,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="与申请人关系" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rle-DC-59U">
-                                                    <rect key="frame" x="13" y="7" width="119" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="yhc-ib-Lkv"/>
                                                     </constraints>
@@ -1232,7 +1245,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" tag="901" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OdA-58-hUp">
-                                                    <rect key="frame" x="132" y="7" width="147" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="147" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1270,7 +1283,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7S3-6l-KXQ">
-                                                    <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="44" id="RXT-1y-5Kh"/>
                                                         <constraint firstAttribute="height" constant="44" id="vRf-HB-8YL"/>
@@ -1280,7 +1293,7 @@
                                                     </state>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="401" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2dR-H0-Hri">
-                                                    <rect key="frame" x="132" y="7" width="130" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -1306,7 +1319,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5UM-3M-uG2">
-                                                    <rect key="frame" x="13" y="7" width="119" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="rpu-sk-Jxg"/>
                                                     </constraints>
@@ -1315,7 +1328,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="501" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lxt-oW-Ij0">
-                                                    <rect key="frame" x="132" y="7" width="178" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="178" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                                 </textField>
@@ -1339,7 +1352,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同现居地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QDR-75-qjQ">
-                                                    <rect key="frame" x="13" y="7" width="85" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="S4G-Ve-7An"/>
                                                     </constraints>
@@ -1372,7 +1385,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="201" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-5V-bvk">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1393,13 +1406,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✚ 新增联系人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rO0-NT-aCA">
-                                                    <rect key="frame" x="113.5" y="12.5" width="93.5" height="18"/>
+                                                    <rect key="frame" x="114" y="13" width="94" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="701" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PIH-bq-ape">
-                                                    <rect key="frame" x="0.0" y="0.5" width="320" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -1424,13 +1437,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="其它联系人2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LnS-FG-a9k">
-                                                    <rect key="frame" x="13" y="7" width="84" height="25.5"/>
+                                                    <rect key="frame" x="13" y="7" width="84" height="26"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="802" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eB-Hk-5QW">
-                                                    <rect key="frame" x="262" y="7" width="50" height="25.5"/>
+                                                    <rect key="frame" x="262" y="7" width="50" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="aj2-ID-CJf"/>
                                                     </constraints>
@@ -1457,7 +1470,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="与申请人关系" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7cc-5o-qIz">
-                                                    <rect key="frame" x="13" y="7" width="119" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="FhZ-bQ-VoI"/>
                                                     </constraints>
@@ -1471,7 +1484,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <button opaque="NO" tag="902" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIA-Va-tUA">
-                                                    <rect key="frame" x="132" y="7" width="147" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="147" height="30"/>
                                                     <state key="normal">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1509,7 +1522,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NXa-m6-WDp">
-                                                    <rect key="frame" x="270" y="0.0" width="44" height="43.5"/>
+                                                    <rect key="frame" x="270" y="0.0" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="SDk-Go-Dps"/>
                                                         <constraint firstAttribute="width" constant="44" id="fAn-MM-h4O"/>
@@ -1519,7 +1532,7 @@
                                                     </state>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="402" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人手机号码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cmx-d0-Gw5">
-                                                    <rect key="frame" x="132" y="7" width="130" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="130" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 </textField>
@@ -1545,7 +1558,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzt-3O-6Se">
-                                                    <rect key="frame" x="13" y="7" width="119" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="119" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="119" id="X6k-Me-jQz"/>
                                                     </constraints>
@@ -1554,7 +1567,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="502" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写联系人姓名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bl3-cE-p8H">
-                                                    <rect key="frame" x="132" y="7" width="178" height="29.5"/>
+                                                    <rect key="frame" x="132" y="7" width="178" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                                 </textField>
@@ -1578,7 +1591,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="同现居地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbI-H2-6YG">
-                                                    <rect key="frame" x="13" y="7" width="85" height="29.5"/>
+                                                    <rect key="frame" x="13" y="7" width="85" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="85" id="3hp-ow-utP"/>
                                                     </constraints>
@@ -1611,7 +1624,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" tag="202" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入联系人地址" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDg-r1-r31">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43.5"/>
+                                                    <rect key="frame" x="15" y="0.0" width="290" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
@@ -1632,13 +1645,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✚ 新增联系人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8R-lm-qJu">
-                                                    <rect key="frame" x="113.5" y="12.5" width="93.5" height="18"/>
+                                                    <rect key="frame" x="114" y="13" width="94" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" tag="702" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A6o-CX-HSj">
-                                                    <rect key="frame" x="0.0" y="0.5" width="320" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                 </button>
                                             </subviews>
                                             <constraints>

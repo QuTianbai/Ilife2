@@ -700,6 +700,9 @@
 		498F3D4A1B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F3D491B0D71A800ED0B20 /* NSDateFormatter+MSFFormattingAdditions.m */; };
 		498F3D4D1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F3D4C1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m */; };
 		498F3D4F1B0D894100ED0B20 /* message.json in Resources */ = {isa = PBXBuildFile; fileRef = 498F3D4E1B0D894100ED0B20 /* message.json */; };
+		4990E4431C94696000465FE8 /* btn-home-background.png in Resources */ = {isa = PBXBuildFile; fileRef = 4990E4401C94696000465FE8 /* btn-home-background.png */; };
+		4990E4441C94696000465FE8 /* btn-home-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4990E4411C94696000465FE8 /* btn-home-background@2x.png */; };
+		4990E4451C94696000465FE8 /* btn-home-background@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4990E4421C94696000465FE8 /* btn-home-background@3x.png */; };
 		499146E41B24359A00260E97 /* apply_cash_response.json in Resources */ = {isa = PBXBuildFile; fileRef = 499146E31B24359A00260E97 /* apply_cash_response.json */; };
 		499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499147081B24489200260E97 /* MSFSelectionViewController.m */; };
 		4991470D1B2448B300260E97 /* MSFSelectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991470C1B2448B300260E97 /* MSFSelectionViewModel.m */; };
@@ -2067,6 +2070,9 @@
 		498F3D4B1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFFindPasswordViewController.h; sourceTree = "<group>"; };
 		498F3D4C1B0D7CBB00ED0B20 /* MSFFindPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFFindPasswordViewController.m; sourceTree = "<group>"; };
 		498F3D4E1B0D894100ED0B20 /* message.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = message.json; sourceTree = "<group>"; };
+		4990E4401C94696000465FE8 /* btn-home-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-home-background.png"; sourceTree = "<group>"; };
+		4990E4411C94696000465FE8 /* btn-home-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-home-background@2x.png"; sourceTree = "<group>"; };
+		4990E4421C94696000465FE8 /* btn-home-background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-home-background@3x.png"; sourceTree = "<group>"; };
 		499146E31B24359A00260E97 /* apply_cash_response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = apply_cash_response.json; sourceTree = "<group>"; };
 		499147071B24489200260E97 /* MSFSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSelectionViewController.h; sourceTree = "<group>"; };
 		499147081B24489200260E97 /* MSFSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSelectionViewController.m; sourceTree = "<group>"; };
@@ -4344,6 +4350,9 @@
 		497827A51C83F5D300F2D1D8 /* 3.0 */ = {
 			isa = PBXGroup;
 			children = (
+				4990E4401C94696000465FE8 /* btn-home-background.png */,
+				4990E4411C94696000465FE8 /* btn-home-background@2x.png */,
+				4990E4421C94696000465FE8 /* btn-home-background@3x.png */,
 				4913E5291C932B1700F56C06 /* btnSlider.png */,
 				4913E52A1C932B1700F56C06 /* btnSlider@2x.png */,
 				4913E52B1C932B1700F56C06 /* btnSlider@3x.png */,
@@ -5438,6 +5447,7 @@
 				49FCBF991C0E92D90035398E /* repay.json in Resources */,
 				499D6A831C06B453004DA69F /* product.json in Resources */,
 				49B186131C5626A600409C6F /* cell-icon-normal@2x.png in Resources */,
+				4990E4451C94696000465FE8 /* btn-home-background@3x.png in Resources */,
 				07D051281C2BEAC1003220D7 /* bankCardList.json in Resources */,
 				49C0F1C91B2C341400E92572 /* tabbar-account-selected@3x.png in Resources */,
 				4975C9891B46D6D400AA79EB /* LaunchScreen.xib in Resources */,
@@ -5522,6 +5532,7 @@
 				0747E2611BC3CD5100B4E572 /* SetTradePassword.storyboard in Resources */,
 				07CB1B6C1C8D9DE50031CEE8 /* img-commidity-bg-middle@2x.jpg in Resources */,
 				077347E41BBA338900D7A130 /* ICBC@3x.png in Resources */,
+				4990E4431C94696000465FE8 /* btn-home-background.png in Resources */,
 				077347D91BBA338900D7A130 /* CMSB.png in Resources */,
 				07A146081C84627900C32F0B /* right-arrow-gray.png in Resources */,
 				49FAEF2C1C9013A600F3BC44 /* icon_order2_h@2x.png in Resources */,
@@ -5621,6 +5632,7 @@
 				C7D2D11F1B67938C000F51ED /* icon-cloze-bankName.png in Resources */,
 				C7A351831B217CB10001DF6A /* iconfont-wangdian.png in Resources */,
 				4944C04A1B68A5DA00805C0A /* nav-back.png in Resources */,
+				4990E4441C94696000465FE8 /* btn-home-background@2x.png in Resources */,
 				4922E14D1C85E1EF00E20C2C /* icon-complete-basic@2x.png in Resources */,
 				077347CF1BBA338900D7A130 /* add@3x.png in Resources */,
 				10ACE5CC1C0439B700EE5044 /* icon-account-repay@2x.png in Resources */,

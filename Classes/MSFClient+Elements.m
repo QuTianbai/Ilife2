@@ -31,9 +31,9 @@
 	NSParameterAssert(applicaitonNo);
 	NSParameterAssert(productID);
 	
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/getFile" parameters:@{
-		@"applyNo": applicaitonNo,
-		@"productId": productID,
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/getMendFile" parameters:@{
+		@"appNo": applicaitonNo,
+		@"productCode": productID,
 	}];
 	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
 		MSFElement *element = response.parsedResult;
@@ -50,12 +50,7 @@
 		@"amount": amount?:@"",
 		@"loanTerm": loanTerm?:@"",
 	}];
-	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
-		MSFElement *element = response.parsedResult;
-		//TODO: 判断element需要的参数
-//		element.applicationNo = applicaitonNo;
-		return element;
-	}];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
 }
 
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID {

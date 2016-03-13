@@ -10,6 +10,7 @@
 #import "MSFReactiveView.h"
 
 @interface MSFCreditHeaderViewController : UIViewController <MSFReactiveView>
+
 @property (weak, nonatomic) IBOutlet UIView *applyView;//审核之后的页面
 @property (weak, nonatomic) IBOutlet UIView *beforeApplyView;//没有审核之前页面
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;

@@ -88,6 +88,9 @@
 #import "MSFApplyListViewModel.h"
 #import "MSFLoanListViewController.h"
 
+#import "MSFApplyCashViewModel.h"
+#import "MSFMSFApplyCashViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -180,6 +183,8 @@
 		viewController = [[MSFCartViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
+		viewController = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
@@ -206,6 +211,9 @@
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
 		MSFAuthenticateViewController *loginViewController = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[[(UIViewController *)viewController view] addSubview:view];
 	} else {
 		NSLog(@"an unknown ViewModel was present!");
 	}

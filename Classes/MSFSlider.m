@@ -41,32 +41,39 @@
 }
 
 - (void)customSlider {
-//  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 80, 20)];
-//  titleLabel.font = [UIFont systemFontOfSize:15];
-//  titleLabel.text = @"贷款金额";
-//  titleLabel.textColor = [UIColor blackColor];
-//  [self addSubview:titleLabel];
-//  
-//  self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 200, 20)];
-//  self.moneyNumLabel.textColor = [UIColor blackColor];
-
-//  self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
-  //self.moneyNumLabel.text = @"0元";
-  RAC(self.moneyNumLabel, text) = [RACObserve(self, minimumValue) map:^id(NSString *value) {
-    if (!value) {
-      return [NSString stringWithFormat:@"0.00元"];
-    }
-		[self sliderGragUp:self];
-    return [NSString stringWithFormat:@"%@元", value];
-  }];
-  [self addSubview:self.moneyNumLabel];
+  UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -20, 120, 20)];
+  titleLabel.font = [UIFont systemFontOfSize:15];
+  titleLabel.text = @"贷款金额";
+  titleLabel.textColor = [UIColor blackColor];
+  [self addSubview:titleLabel];
+	self.titleLabel = titleLabel;
   
-	self.minimumTrackTintColor = [UIColor colorWithRed:0.059 green:0.525 blue:1.000 alpha:1.000];
-  [self setMaximumTrackImage:[UIImage imageNamed:@"slider-max-track.png"] forState:UIControlStateNormal];
+  self.moneyNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, -20, 200, 20)];
+  self.moneyNumLabel.textColor = [UIColor blackColor];
+  self.moneyNumLabel.textAlignment = NSTextAlignmentLeft;
+  [self addSubview:self.moneyNumLabel];
 	
+	@weakify(self)
+  RAC(self.moneyNumLabel, text) = [RACObserve(self, value) map:^id(NSNumber *value) {
+		@strongify(self)
+		return [NSString stringWithFormat:@"%ld元", value.floatValue < 100 ? (long)self.minimumValue : (long)value.integerValue];
+  }];
+	[RACObserve(self, minimumValue) subscribeNext:^(id x) {
+		@strongify(self)
+		self.value = [x floatValue];
+		[self sliderGragUp:self];
+	}];
 	
+	RAC(self, titleLabel.text) = [RACObserve(self, hiddenAmount) map:^id(id value) {
+		return [value boolValue] ? @"贷款金额（元）" : @"贷款金额";
+	}];
+	RAC(self, moneyNumLabel.hidden) = RACObserve(self, hiddenAmount);
+	
+	self.minimumTrackTintColor = [UIColor colorWithRed:0.086 green:0.600 blue:0.898 alpha:1.000];
+  [self setMaximumTrackImage:[UIImage imageNamed:@"1242-2208-灰色"] forState:UIControlStateNormal];
   UIImage *thumbImage = [UIImage imageNamed:@"btnSlider"];
   [self setThumbImage:thumbImage forState:UIControlStateHighlighted];
+  
   [self setThumbImage:thumbImage forState:UIControlStateNormal];
   
   [self addTarget:self action:@selector(slideerValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -76,11 +83,12 @@
 }
 
 - (void)slideerValueChanged:(UISlider *)slider {
+	if (self.hiddenAmount) return;
 	self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", slider.value < 100? (int)slider.minimumValue : (int)slider.value / 100 * 100];
 }
 
 - (void)sliderGragUp:(UISlider *)slider {
-	NSLog(@"slider3");
+	// 手指移开slider时获取的金额
   if ([self.delegate respondsToSelector:@selector(getStringValue:)]) {
     [self.delegate getStringValue:[NSString stringWithFormat:@"%d", slider.value < 100? (int)slider.minimumValue : (int)slider.value / 100 * 100]];
   }

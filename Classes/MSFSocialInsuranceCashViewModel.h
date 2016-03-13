@@ -27,6 +27,7 @@
 @property (nonatomic, strong, readwrite) NSString *amount;
 @property (nonatomic, strong, readwrite) NSString *loanTerm;
 @property (nonatomic, strong, readwrite) NSArray *accessories;
+@property (nonatomic, strong, readonly) MSFLoanType *loanType;
 
 // RACCommand
 @property (nonatomic, strong, readonly) RACCommand *executePurposeCommand;
@@ -41,7 +42,5 @@
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)services;
-
-- (MSFLoanType *)loanType;
 
 @end
