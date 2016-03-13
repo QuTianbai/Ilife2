@@ -235,9 +235,6 @@
 		}
 		
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
-		view.backgroundColor = UIColor.blackColor;
-		[imagePickerController.view addSubview:view];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 			imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
@@ -256,6 +253,9 @@
 				}];
 			}
 		} else {
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+			view.backgroundColor = UIColor.blackColor;
+			[imagePickerController.view addSubview:view];
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
 		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];
