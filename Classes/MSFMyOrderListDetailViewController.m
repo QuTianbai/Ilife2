@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFMyOrderListViewModel.h"
 #import "MSFBlurButton.h"
+#import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFMyOrderListDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *contractNo;
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) MSFMyOrderListViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UILabel *monthMoney;
 @property (weak, nonatomic) IBOutlet MSFBlurButton *bottomButton;
+@property (copy, nonatomic) NSString *productCode;
 
 @end
 
@@ -57,7 +59,7 @@
 			[self.bottomButton setTitle:@"确认合同" forState:UIControlStateNormal];
 			[[self.bottomButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 			subscribeNext:^(id x) {
-//				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[self.viewModel.applyType isEqualToString:@""]];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.applyType]];
 			}];
 		} else if ([value isEqualToString:@"待支付"]) {
 			self.bottomButton.hidden = NO;
