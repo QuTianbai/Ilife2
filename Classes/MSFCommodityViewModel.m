@@ -233,32 +233,26 @@ static NSString *const kWalletIdentifier = @"3101";
 	[SVProgressHUD showWithStatus:@"请稍后..."];
 	@weakify(self)
 	return [[[self.services.httpClient fetchCheckAllowApply]
-					 map:^id(MSFCheckAllowApply *model) {
-						 @strongify(self)
-						 if (model.processing == 1) {
-							 [SVProgressHUD dismiss];
-							 MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithViewModel:self services:self.services];
-							 [self.services pushViewModel:viewModel];
-							 return nil;
-						 } else {
-							 [SVProgressHUD dismiss];
-							 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
-							 return nil;
-						 }
-					 }]
-					doError:^(NSError *error) {
-						[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
-					}];
-
-
-	return [[[self.services msf_barcodeScanSignal]
-		flattenMap:^RACStream *(NSString *value) {
-			MSFCart *cart = [[MSFCart alloc] initWithDictionary:@{@keypath(MSFCart.new, cartId): value?:@""} error:nil];
-			return [self.services.httpClient fetchCartInfoForCart:cart];
-		}]
-		doNext:^(id x) {
-			MSFCartViewModel *viewModel = [[MSFCartViewModel alloc] initWithModel:x services:self.services];
-			[self.services pushViewModel:viewModel];
+		 flattenMap:^id(MSFCheckAllowApply *model) {
+			 @strongify(self)
+			 [SVProgressHUD dismiss];
+			 if (model.processing == 1) {
+				 return [[[self.services msf_barcodeScanSignal]
+						flattenMap:^RACStream *(NSString *value) {
+							MSFCart *cart = [[MSFCart alloc] initWithDictionary:@{@keypath(MSFCart.new, cartId): value?:@""} error:nil];
+							return [self.services.httpClient fetchCartInfoForCart:cart];
+						}]
+					 doNext:^(id x) {
+						 MSFCartViewModel *viewModel = [[MSFCartViewModel alloc] initWithModel:x services:self.services];
+						 [self.services pushViewModel:viewModel];
+					 }];
+			 } else {
+				 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
+				 return nil;
+			 }
+		 }]
+		doError:^(NSError *error) {
+			[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 		}];
 }
 
