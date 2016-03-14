@@ -79,10 +79,14 @@
 	@weakify(self)
 	RAC(self, masterBankCardNameAndNO) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
-		return [[self.services.httpClient fetchBankCardList] map:^id(MSFBankCardListModel *value) {
-			return [NSString stringWithFormat:@"%@[%@]", value.bankName, value.bankCardNo];
+		return [[[self.services.httpClient fetchBankCardList]
+			catch:^RACSignal *(NSError *error) {
+				return [RACSignal empty];
+			}]
+			map:^id(MSFBankCardListModel *value) {
+				return [NSString stringWithFormat:@"%@[%@]", value.bankName, value.bankCardNo];
+			}];
 		}];
-	}];
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
 	RAC(self, amount) = RACObserve(self, appLmt);

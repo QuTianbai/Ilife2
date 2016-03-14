@@ -1,3 +1,7 @@
+Version 3.0.0.3:
+ - Fix new user signin crash
+ - Fix warnings
+
 Version 3.0.0.2:
  - Update credit fetched status
  - Improve take photo view

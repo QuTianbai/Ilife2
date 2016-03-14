@@ -58,7 +58,7 @@
 		0750AAFB1B969DED00AD67F3 /* MSFCustomAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0750AAF81B969DED00AD67F3 /* MSFCustomAlertViewController.xib */; };
 		0750AAFF1B96A4C500AD67F3 /* MSFContactListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AAFE1B96A4C500AD67F3 /* MSFContactListModel.m */; };
 		0750AB021B96A9B700AD67F3 /* MSFClient+Contacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB011B96A9B700AD67F3 /* MSFClient+Contacts.m */; };
-		0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB051B96D39E00AD67F3 /* MSFConfirmContactViewModel.m */; };
+		0750AB061B96D39E00AD67F3 /* MSFConfirmContractViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB051B96D39E00AD67F3 /* MSFConfirmContractViewModel.m */; };
 		0750AB0C1B96F73700AD67F3 /* MSFConfirmContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */; };
 		0750AB121B96F77C00AD67F3 /* ConfirmContract.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */; };
 		0756C1FA1C318265000730D5 /* MSFPaymentToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 0756C1F91C318265000730D5 /* MSFPaymentToken.m */; };
@@ -1204,8 +1204,8 @@
 		0750AAFE1B96A4C500AD67F3 /* MSFContactListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFContactListModel.m; sourceTree = "<group>"; };
 		0750AB001B96A9B700AD67F3 /* MSFClient+Contacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Contacts.h"; sourceTree = "<group>"; };
 		0750AB011B96A9B700AD67F3 /* MSFClient+Contacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Contacts.m"; sourceTree = "<group>"; };
-		0750AB041B96D39E00AD67F3 /* MSFConfirmContactViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFConfirmContactViewModel.h; sourceTree = "<group>"; };
-		0750AB051B96D39E00AD67F3 /* MSFConfirmContactViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContactViewModel.m; sourceTree = "<group>"; };
+		0750AB041B96D39E00AD67F3 /* MSFConfirmContractViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFConfirmContractViewModel.h; sourceTree = "<group>"; };
+		0750AB051B96D39E00AD67F3 /* MSFConfirmContractViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContractViewModel.m; sourceTree = "<group>"; };
 		0750AB0A1B96F73700AD67F3 /* MSFConfirmContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFConfirmContractViewController.h; sourceTree = "<group>"; };
 		0750AB0B1B96F73700AD67F3 /* MSFConfirmContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFConfirmContractViewController.m; sourceTree = "<group>"; };
 		0750AB111B96F77C00AD67F3 /* ConfirmContract.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ConfirmContract.storyboard; sourceTree = "<group>"; };
@@ -2667,8 +2667,8 @@
 		0750AB031B96D36B00AD67F3 /* Contract */ = {
 			isa = PBXGroup;
 			children = (
-				0750AB041B96D39E00AD67F3 /* MSFConfirmContactViewModel.h */,
-				0750AB051B96D39E00AD67F3 /* MSFConfirmContactViewModel.m */,
+				0750AB041B96D39E00AD67F3 /* MSFConfirmContractViewModel.h */,
+				0750AB051B96D39E00AD67F3 /* MSFConfirmContractViewModel.m */,
 			);
 			name = Contract;
 			sourceTree = "<group>";
@@ -6497,7 +6497,7 @@
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				495B071E1C520BAD002DDFAA /* MSFTransactionsViewController.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
-				0750AB061B96D39E00AD67F3 /* MSFConfirmContactViewModel.m in Sources */,
+				0750AB061B96D39E00AD67F3 /* MSFConfirmContractViewModel.m in Sources */,
 				49E5B7891BD4D94C001995F8 /* MSFPoster.m in Sources */,
 				102C7EA21C292B310023172B /* MSFOrderDetail.m in Sources */,
 				10DC2E201B9FDF9100A2AF9C /* MSFBlankCell.m in Sources */,

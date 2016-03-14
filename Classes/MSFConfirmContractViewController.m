@@ -7,7 +7,7 @@
 //
 
 #import "MSFConfirmContractViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFConfirmContractModel.h"
@@ -17,7 +17,7 @@
 @interface MSFConfirmContractViewController ()<UIWebViewDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *confirmContractWebView;
 
-@property (nonatomic, strong) MSFConfirmContactViewModel *viewModel;
+@property (nonatomic, strong) MSFConfirmContractViewModel *viewModel;
 @property (nonatomic, weak) IBOutlet UIButton *button;
 
 @end
