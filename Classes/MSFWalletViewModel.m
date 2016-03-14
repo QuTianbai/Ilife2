@@ -29,6 +29,10 @@
 #import "MSFOrderListViewModel.h"
 #import "MSFMyRepaysViewModel.h"
 #import "MSFUser.h"
+#import "MSFClient+CheckAllowApply.h"
+#import "MSFCheckAllowApply.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFPersonalViewModel.h"
 
 static NSString *const kApplicationWalletIdentifier = @"4102";
 static NSString *const kApplicationWalletType = @"4";
@@ -228,13 +232,23 @@ static NSString *const kApplicationWalletType = @"4";
 	}
 	
 	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected) {
-		return [[self.services.httpClient fetchBankCardList]
-			flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
-				if (bankcard.bankCardNo.length > 0) {
+		
+		[SVProgressHUD showWithStatus:@"请稍后..."];
+		@weakify(self)
+		return [[[self.services.httpClient fetchCheckAllowApply]
+			 flattenMap:^id(MSFCheckAllowApply *model) {
+				 @strongify(self)
+				 if (model.processing == 1) {
+					 [SVProgressHUD dismiss];
 					return self.applicationSignal;
-				} else {
-					return self.bindBankcardSignal;
-				}
+				 } else {
+					 [SVProgressHUD dismiss];
+					 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
+					 return nil;
+				 }
+			 }]
+			doError:^(NSError *error) {
+				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			}];
 	}
 	

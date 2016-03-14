@@ -125,6 +125,12 @@
 	[self.nameTF.rac_textSignal subscribe:nameChannel];
 
 	RACChannelTerminal *phoneChannel = RACChannelTo(self, viewModel.contactPhone);
+	[[self.mobileTF rac_signalForControlEvents:UIControlEventValueChanged]
+	subscribeNext:^(UITextField *textField) {
+		if (textField.text.length > 11) {
+			textField.text = [textField.text substringToIndex:11];
+		}
+	}];
 	RAC(self, mobileTF.text) = phoneChannel;
 	[self.mobileTF.rac_textSignal subscribe:phoneChannel];
 	

@@ -61,7 +61,8 @@
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			[[self.viewModel.services.httpClient user] mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:[[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, hasChecked): @"1"} error:nil]];
-			[self dismissViewControllerAnimated:YES completion:nil];
+			[SVProgressHUD showSuccessWithStatus:@"实名认证成功"];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeAuthenticateCommand.errors subscribeNext:^(NSError *error) {
