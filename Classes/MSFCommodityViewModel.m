@@ -223,6 +223,10 @@ static NSString *const kWalletIdentifier = @"3101";
 }
 
 - (RACSignal *)cartSignal {
+	if (![self.services.httpClient.user isAuthenticated]) {
+		return self.authenticateSignal;
+	}
+
 	return [[[self.services msf_barcodeScanSignal]
 		flattenMap:^RACStream *(NSString *value) {
 			MSFCart *cart = [[MSFCart alloc] initWithDictionary:@{@keypath(MSFCart.new, cartId): value?:@""} error:nil];
