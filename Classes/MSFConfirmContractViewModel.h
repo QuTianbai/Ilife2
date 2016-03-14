@@ -14,7 +14,7 @@
 @class MSFApplyList;
 
 //TODO: Rename contract
-@interface MSFConfirmContactViewModel : RVMViewModel
+@interface MSFConfirmContractViewModel : RVMViewModel
 
 @property (nonatomic, copy) NSString *contactStatus;
 @property (nonatomic, strong) RACCommand *laterConfirmCommand;

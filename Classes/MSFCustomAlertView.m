@@ -8,7 +8,7 @@
 
 #import "MSFCustomAlertView.h"
 #import "MSFCustomAlertViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 
 NSString *const MSFREQUESTCONTRACTSNOTIFACATION = @"MSFREQUESTCONTRACTSNOTIFACATION";
 NSString *const MSFCONFIRMCONTACTNOTIFACATION = @"MSFCONFIRMCONTACTNOTIFACATION";
@@ -43,7 +43,7 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 	return self;
 }
 
-- (void)showWithViewModel:(MSFConfirmContactViewModel *)viewmodel {
+- (void)showWithViewModel:(MSFConfirmContractViewModel *)viewmodel {
 	self.myRootViewController.viewModel = viewmodel;
 	[self.myRootViewController bindBTRACCommand];
 	[self makeKeyAndVisible];

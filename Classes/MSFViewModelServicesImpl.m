@@ -35,7 +35,7 @@
 
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
 #import "MSFApplyListViewModel.h"
@@ -142,7 +142,7 @@
 	} else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
 		viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
+	} else if ([viewModel isKindOfClass:[MSFConfirmContractViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {

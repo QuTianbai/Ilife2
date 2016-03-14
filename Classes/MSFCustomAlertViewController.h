@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class MSFConfirmContactViewModel;
+@class MSFConfirmContractViewModel;
 
 @interface MSFCustomAlertViewController : UIViewController
 
-@property (nonatomic, strong) MSFConfirmContactViewModel *viewModel;
+@property (nonatomic, strong) MSFConfirmContractViewModel *viewModel;
 
 - (void)bindBTRACCommand;
 
