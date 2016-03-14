@@ -193,6 +193,9 @@ static NSString *const kApplicationCreditType = @"1";
 		map:^id(MSFApplyList *application) {
 			MSFApplicationStatus status = MSFApplicationNone;
 			if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
+				if ([application isKindOfClass:NSNull.class]) {
+					application = nil;
+				}
 				status  = MSFApplicationNone;
 			} else if ([application.status isEqualToString:@"G"]) {
 				status = MSFApplicationInReview;
