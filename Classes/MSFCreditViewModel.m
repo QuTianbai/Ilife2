@@ -207,7 +207,7 @@ static NSString *const kApplicationCreditType = @"1";
 			} else {
 				status = MSFApplicationActivated;
 			}
-			return RACTuplePack(@(MSFApplicationNone), application);
+			return RACTuplePack(@(status), application);
 		}];
 }
 

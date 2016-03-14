@@ -133,6 +133,7 @@
 
 - (void)updateCheck {
 	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.isUpdated) return;
 	if (self.releaseNote.status == 1) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
 			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
