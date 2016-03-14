@@ -55,6 +55,10 @@
 		if ([value isEqualToString:@"待确认合同"]) {
 			self.bottomButton.hidden = NO;
 			[self.bottomButton setTitle:@"确认合同" forState:UIControlStateNormal];
+			[[self.bottomButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+			subscribeNext:^(id x) {
+//				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[self.viewModel.applyType isEqualToString:@""]];
+			}];
 		} else if ([value isEqualToString:@"待支付"]) {
 			self.bottomButton.hidden = NO;
 			[self.bottomButton setTitle:@"支付首付" forState:UIControlStateNormal];

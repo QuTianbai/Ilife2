@@ -131,8 +131,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
   [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
   self.monthCollectionView.showsVerticalScrollIndicator = NO;
   [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
-	
-	self.title = @"马上贷";
+	self.title = @"申请贷款";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
 	RAC(self, bankCard.text) = [RACObserve(self, viewModel.masterBankCardNameAndNO) map:^id(id value) {
