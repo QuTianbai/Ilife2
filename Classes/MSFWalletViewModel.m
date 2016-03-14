@@ -250,15 +250,6 @@ static NSString *const kApplicationWalletType = @"4";
 			doError:^(NSError *error) {
 				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			}];
-		
-//		return [[self.services.httpClient fetchBankCardList]
-//			flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
-//				if (bankcard.bankCardNo.length > 0) {
-//					return self.applicationSignal;
-//				} else {
-//					return self.bindBankcardSignal;
-//				}
-//			}];
 	}
 	
 	if (self.status == MSFApplicationInReview || self.status == MSFApplicationRelease) {
