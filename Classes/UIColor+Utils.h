@@ -64,6 +64,8 @@
 //navigationBar BG color
 + (UIColor *)navigationBgColor;
 
++ (UIColor *)navigationBarColor;
+
 //captchbutton bg gray
 + (UIColor *)captchButtonBgColor;
 

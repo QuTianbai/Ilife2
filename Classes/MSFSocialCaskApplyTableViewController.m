@@ -141,8 +141,10 @@
 		[SVProgressHUD showWithStatus:@"正在保存..." maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			MSFCommitedViewController *vc = [[MSFCommitedViewController alloc] init];
-			[self.navigationController pushViewController:vc animated:YES];
+			[self.navigationController setViewControllers:@[
+				self.navigationController.viewControllers.firstObject,
+				[[MSFCommitedViewController alloc] init]
+			] animated:YES];
 		}];
 	}];
 	[self.viewModel.executeSubmitCommand.errors subscribeNext:^(NSError *error) {

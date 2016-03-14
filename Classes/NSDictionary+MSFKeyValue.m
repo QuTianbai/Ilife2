@@ -52,4 +52,13 @@
 	return [UIImage imageNamed:dict[type]];
 }
 
++ (NSString *)productCodeWithKey:(NSString *)key {
+	NSDictionary *dict = @{
+		@"1" : @"1101",
+		@"3" : @"3101",
+		@"4" : @"4102"
+		};
+	return dict[key]?:@"";
+}
+
 @end

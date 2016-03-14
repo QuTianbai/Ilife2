@@ -32,7 +32,7 @@
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFEnvironmentsViewController.h"
 #import "UIImage+Color.h"
@@ -45,7 +45,7 @@
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
-@property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
+@property (nonatomic, strong) MSFConfirmContractViewModel *confirmContactViewModel;
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MSFReleaseNote *releaseNote;
@@ -61,6 +61,25 @@
 	self.window.backgroundColor = UIColor.whiteColor;
 	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
+	
+	[UIApplication.sharedApplication setStatusBarHidden:NO];
+	[UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent];
+	[UINavigationBar.appearance setTintColor:UIColor.whiteColor];
+	[UINavigationBar.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	[UINavigationBar.appearance setBarTintColor:UIColor.navigationBarColor];
+	[UINavigationBar.appearance setClipsToBounds:YES];
+	[UINavigationBar.appearance setTranslucent:YES];
+	[UINavigationBar.appearance setShadowImage:UIImage.new];
+	[UINavigationBar.appearance setBackIndicatorImage:[UIImage imageWithColor:UIColor.navigationBarColor size:CGSizeMake(1, 44)]];
+
+	
+	@weakify(self)
+	[RACObserve(self.window, rootViewController) subscribeNext:^(id x) {
+		@strongify(self)
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[self.window.rootViewController.view addSubview:view];
+	}];
 	
 	[Fabric with:@[CrashlyticsKit]];
 	
@@ -78,54 +97,18 @@
 		[manager startUpdatingLocation];
 	}];
 
-	//[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
-//		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-//		 subscribeNext:^(id x) {
-//			 NSString *str = [x object];
-//			 if ([str isEqualToString:@"1"]) {
-//				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-//			 }
-//			 [self setup];
-//		 }];
-//
-//		[MSFGuideViewController.guide show];
-				//return [RACSignal empty];
 	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
-		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-		 subscribeNext:^(id x) {
-			 NSString *str = [x object];
-			 if ([str isEqualToString:@"1"]) {
-				 self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-			 }
-			 [self setup];
-		 }];
-		
+		[self setup];
 		[MSFGuideViewController.guide show];
-		//[self setup];
-		return [RACSignal empty];
+		return RACSignal.empty;
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
-		
-		[[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-		 subscribeNext:^(id x) {
-			 [[[NSNotificationCenter defaultCenter] rac_addObserverForName:SETUPHOMEPAGE object:nil]
-				subscribeNext:^(id x) {
-					NSString *str = [x object];
-					if ([str isEqualToString:@"1"]) {
-						self.viewModel.authorizeViewModel.loginType = MSFLoginSignIn;
-					}
-					[self setup];
-				}];
-			 
-			 [MSFGuideViewController.guide show];
-			// [self setup];
-		 }];
-		//[MSFGuideViewController.guide show];
+		[self setup];
+		[MSFGuideViewController.guide show];
 		#if !DEBUG
 		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
-		[self setup];
 		self.releaseNote = releasenote;
 		[self updateCheck];
 	}];
@@ -150,6 +133,7 @@
 
 - (void)updateCheck {
 	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.isUpdated) return;
 	if (self.releaseNote.status == 1) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
 			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -175,9 +159,7 @@
 
 - (void)setup {
 	// 通用颜色配置
-	[[UINavigationBar appearance] setBarTintColor:[UIColor navigationBgColor]];
-	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+	
   [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// 启动到登录的过渡动画
@@ -223,7 +205,7 @@
 		
 		self.confirmContactWindow = [[MSFCustomAlertView alloc] initAlertViewWithFrame:[[UIScreen mainScreen] bounds] AndTitle:@"恭喜您" AndMessage:@"合同已通过我们的审核，赶紧去确认合同吧！" AndImage:[UIImage imageNamed:@"icon-confirm"] andCancleButtonTitle:@"稍后确认" AndConfirmButtonTitle:@"立即确认"];
 		if (self.confirmContactViewModel == nil) {
-			self.confirmContactViewModel = [[MSFConfirmContactViewModel alloc] initWithServers:self.viewModel.services];
+			self.confirmContactViewModel = [[MSFConfirmContractViewModel alloc] initWithServers:self.viewModel.services];
 		} else {
 			[self.confirmContactViewModel fetchContractist];
 		}

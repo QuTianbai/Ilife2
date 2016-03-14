@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFMyOrderListViewModel.h"
 #import "MSFBlurButton.h"
+#import "NSDictionary+MSFKeyValue.h"
 
 @interface MSFMyOrderListDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *contractNo;
@@ -20,6 +21,7 @@
 @property (nonatomic, strong) MSFMyOrderListViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UILabel *monthMoney;
 @property (weak, nonatomic) IBOutlet MSFBlurButton *bottomButton;
+@property (copy, nonatomic) NSString *productCode;
 
 @end
 
@@ -36,6 +38,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"订单详情";
 	@weakify(self)
 	RAC(self, contractNo.text) = RACObserve(self, viewModel.appNo);
 	RAC(self, contractStatus.text) = RACObserve(self, viewModel.status);
@@ -54,6 +57,10 @@
 		if ([value isEqualToString:@"待确认合同"]) {
 			self.bottomButton.hidden = NO;
 			[self.bottomButton setTitle:@"确认合同" forState:UIControlStateNormal];
+			[[self.bottomButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+			subscribeNext:^(id x) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.applyType]];
+			}];
 		} else if ([value isEqualToString:@"待支付"]) {
 			self.bottomButton.hidden = NO;
 			[self.bottomButton setTitle:@"支付首付" forState:UIControlStateNormal];

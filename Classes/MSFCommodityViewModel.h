@@ -29,6 +29,7 @@ typedef NS_ENUM(NSUInteger, MSFCommodityStatus) {
 @property (nonatomic, copy, readonly) NSString *hasList;
 @property (nonatomic, copy, readonly) NSString *statusString;
 @property (nonatomic, copy, readonly) NSString *buttonTitle;
+@property (nonatomic, strong, readonly) NSString *groundContent;
 @property (nonatomic, strong, readonly) RACCommand *excuteActionCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeBillsCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeBarCodeCommand;

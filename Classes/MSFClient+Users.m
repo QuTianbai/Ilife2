@@ -37,9 +37,7 @@
 	parameters[@"mobile"] = phone;
 	parameters[@"newPassword"] = password.sha256;
 	parameters[@"smsCode"] = captcha;
-	parameters[@"name"] = name;
-	parameters[@"ident"] = citizenID;
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"password/forgetPassword" parameters:parameters];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/forgetPassword" parameters:parameters];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
@@ -129,7 +127,7 @@
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
-		@"uniqueId": self.user.objectID,
+		@"uniqueId": self.user.uniqueId,
 		@"newTransPassword": pwd?:@"",
 		@"smsCode": capthch?:@""
 	}];
@@ -215,7 +213,7 @@
 	parameters[@"additionalList"] = user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
 	parameters[@"contactList"] = user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
 	parameters[@"custSocialSecurity"] = user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"{}";
-	parameters[@"infoType"] = @"1";
+	parameters[@"infoType"] = user.applyType?:@"1";
 	
 	NSLog(@"%@", parameters.description);
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/saveInfo" parameters:parameters];

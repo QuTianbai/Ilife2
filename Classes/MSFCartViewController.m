@@ -106,17 +106,6 @@
 		[self.tableView reloadData];
 	}];
 	
-	[RACObserve(self, viewModel.barcodeInvalid) subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x boolValue]) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"无效二维码" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[self.navigationController popViewControllerAnimated:YES];
-			}];
-		}
-	}];
-	
 	[self.viewModel.executeTrialCommand.executionSignals subscribeNext:^(id x) {
 		[SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeClear];
 		[x subscribeNext:^(id x) {

@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong, readonly) NSString *productType;
 
-- (RACSignal *)fetchApplyListSignal:(int)type;
+- (RACSignal *)fetchApplyListSignal;
 - (instancetype)initWithProductType:(NSString *)productType services:(id<MSFViewModelServices>)services;
 
 @end

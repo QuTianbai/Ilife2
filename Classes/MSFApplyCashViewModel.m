@@ -29,8 +29,11 @@
 #import "MSFClient+ProductType.h"
 #import "MSFClient+CirculateCash.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFClient+Amortize.h"
 #import "MSFLoanType.h"
 #import "MSFPersonalViewModel.h"
+#import "MSFBankCardListModel.h"
+#import "MSFClient+BankCardList.h"
 
 @interface MSFApplyCashViewModel ()
 
@@ -73,11 +76,20 @@
 	
 	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
-	
-	//TODO: 更新银行卡号的获取方式
-	//RAC(self, masterBankCardNameAndNO) = RACObserve(self, formViewModel.masterbankInfo);
+	@weakify(self)
+	RAC(self, masterBankCardNameAndNO) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
+		return [[[self.services.httpClient fetchBankCardList]
+			catch:^RACSignal *(NSError *error) {
+				return [RACSignal empty];
+			}]
+			map:^id(MSFBankCardListModel *value) {
+				return [NSString stringWithFormat:@"%@[%@]", value.bankName, value.bankCardNo];
+			}];
+		}];
 	RAC(self, model.appNo) = RACObserve(self, appNO);
 	RAC(self, model.appLmt) = RACObserve(self, appLmt);
+	RAC(self, amount) = RACObserve(self, appLmt);
 	
 	RAC(self, model.jionLifeInsurance) = RACObserve(self, jionLifeInsurance);
 	RAC(self, model.lifeInsuranceAmt) = [RACObserve(self, lifeInsuranceAmt) map:^id(NSString *value) {
@@ -88,10 +100,11 @@
 	}];
 	RAC(self, model.loanFixedAmt) = RACObserve(self, loanFixedAmt);
 	
-	//RAC(self, minMoney) = RACObserve(self, formViewModel.markets.allMinAmount);
-	//RAC(self, maxMoney) = RACObserve(self, formViewModel.markets.allMaxAmount);
+	RAC(self, minMoney) = RACObserve(self, markets.allMinAmount);
+	RAC(self, maxMoney) = RACObserve(self, markets.allMaxAmount);
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
+		@strongify(self)
 		self.loanPurpose = value.code;
 		return value.code;
 	}];
@@ -100,10 +113,15 @@
 		return [value text];
 	}];
 	
-	//RAC(self, markets) = [RACObserve(self, formViewModel.markets) map:^id(id value) {
-	//	return value;
-	//}];
-	@weakify(self)
+	RAC(self, markets) = [[self.didBecomeActiveSignal
+		filter:^BOOL(id value) {
+			@strongify(self)
+			return !self.markets;
+		}]
+		flattenMap:^RACStream *(id value) {
+			return [self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID];
+		}];
+	
 	[RACObserve(self, product) subscribeNext:^(MSFPlan *product) {
 		@strongify(self)
 		self.loanTerm = self.product.loanTeam;
@@ -157,6 +175,13 @@
 		@strongify(self)
 		return [self executeNextSignal];
 	}];
+	
+	_executeCommitCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self commitSignal];
+	}];
+	_executeAgreementCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [self executeAgreementSignal];
+	}];
 }
 
 - (RACSignal *)executePurposeSignal {
@@ -189,46 +214,48 @@
 		[subscriber sendCompleted];
 		return nil;
 	}];
-//TODO: 进入基本信息编辑界面
-	@weakify(self)
-	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		@strongify(self)
-		if (!self.product || self.appLmt.intValue == 0) {
-			if (self.appLmt.intValue == 0) {
-				[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款钱数", }]];
-				return nil;
-			}
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款期数"}]];
-			return nil;
-		}
-		if (!self.purpose) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择贷款用途"}]];
-			return nil;
-		}
-		if ([self.loanFixedAmt isEqualToString:@"0.00"] || [self.loanFixedAmt isEqualToString:@"0"] || self.loanFixedAmt == nil) {
-			[subscriber sendError:[NSError errorWithDomain:@"MSFProductViewController" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"每月还款金额获取失败"}]];
-			return nil;
-		}
-		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-		[self.services pushViewModel:viewModel];
-		
-		[subscriber sendCompleted];
-		return nil;
-	}];
 }
 
 - (void)setSVPBackGround {
 	[SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	[SVProgressHUD setForegroundColor:[UIColor blackColor]];
 	[SVProgressHUD resetOffsetFromCenter];
-	
 }
 
 - (RACSignal *)submitSignalWithStatus:(NSString *)status {
 	return [self.services.httpClient fetchSubmitWithApplyVO:self.model AndAcessory:self.array Andstatus:status];
 }
-//TODO: 需要增加查看协议界面
-//MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
-//[self.services pushViewModel:viewModel];
-t
+
+- (RACSignal *)executeAgreementSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFLoanAgreementViewModel *viewModel = [[MSFLoanAgreementViewModel alloc] initWithApplicationViewModel:self];
+		[self.services pushViewModel:viewModel];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)commitSignal {
+	NSDictionary *order = @{
+		@"applyStatus": @"1",
+		@"appLmt": self.appLmt?:@"",
+		@"loanTerm": self.loanTerm?:@"",
+		@"loanPurpose": self.loanPurpose?:@"",
+		@"jionLifeInsurance": self.jionLifeInsurance,
+		@"lifeInsuranceAmt": self.lifeInsuranceAmt?:@"",
+		@"loanFixedAmt": self.loanFixedAmt?:@"",
+		@"productCd": self.loanType.typeID,
+	};
+	NSArray *accessories = self.accessories;
+	
+	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	parameters[@"applyStatus"] = @"1";
+	parameters[@"applyVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:order options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"accessoryInfoVO"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:accessories options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"loan/apply" parameters:parameters];
+	return [[self.services.httpClient enqueueRequest:request resultClass:nil] map:^id(MSFResponse *value) {
+		return value.parsedResult[@"appNo"];
+	}];
+}
+
 @end

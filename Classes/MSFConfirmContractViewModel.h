@@ -11,15 +11,18 @@
 
 @class RACCommand;
 @class MSFCirculateCashModel;
+@class MSFApplyList;
 
-@interface MSFConfirmContactViewModel : RVMViewModel
+//TODO: Rename contract
+@interface MSFConfirmContractViewModel : RVMViewModel
 
 @property (nonatomic, copy) NSString *contactStatus;
 @property (nonatomic, strong) RACCommand *laterConfirmCommand;
 @property (nonatomic, strong) RACCommand *confirmCommand;
 @property (nonatomic, strong) RACCommand *requestConfirmCommand;
 @property (nonatomic, weak) id<MSFViewModelServices> servers;
-@property (nonatomic, strong) MSFCirculateCashModel *circulateModel;
+@property (nonatomic, strong) MSFCirculateCashModel *circulateModel __deprecated;
+@property (nonatomic, strong, readonly) MSFApplyList *model;
 
 - (RACSignal *)requestContactInfo;
 - (id)initWithServers:(id<MSFViewModelServices>)servers;

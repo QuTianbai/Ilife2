@@ -35,7 +35,7 @@
 
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
 #import "MSFApplyListViewModel.h"
@@ -84,6 +84,12 @@
 #import "MSFMyRepaysViewModel.h"
 #import "MSFMyRepayContainerViewController.h"
 #import "MSFCommodityViewModel.h"
+
+#import "MSFApplyListViewModel.h"
+#import "MSFLoanListViewController.h"
+
+#import "MSFApplyCashViewModel.h"
+#import "MSFMSFApplyCashViewController.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -136,7 +142,7 @@
 	} else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
 		viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
+	} else if ([viewModel isKindOfClass:[MSFConfirmContractViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
@@ -175,6 +181,10 @@
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFCartViewModel class]]) {
 		viewController = [[MSFCartViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
+		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
+		viewController = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
 	} else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
@@ -201,6 +211,9 @@
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
 		MSFAuthenticateViewController *loginViewController = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[[(UIViewController *)viewController view] addSubview:view];
 	} else {
 		NSLog(@"an unknown ViewModel was present!");
 	}
@@ -240,6 +253,9 @@
 				}];
 			}
 		} else {
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+			view.backgroundColor = UIColor.blackColor;
+			[imagePickerController.view addSubview:view];
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
 		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];
@@ -272,6 +288,9 @@
 		MSFBarcodeScanViewController *vc = [[MSFBarcodeScanViewController alloc] init];
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
 		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[navigationController.view addSubview:view];
 		@weakify(vc)
 		[vc.msf_barcodeScannedSignal subscribeNext:^(ZXResult *x) {
 			@strongify(vc)

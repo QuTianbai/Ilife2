@@ -39,13 +39,11 @@
 
 @property (nonatomic, weak, readwrite) MSFTabBarViewModel *viewModel;
 
-@property (nonatomic, strong) MSFCirculateCashViewModel *circulateViewModel;
-
 @end
 
 @implementation MSFTabBarController
 
-#pragma mark - Lifecycle
+#pragma mark - NSObject
 
 - (void)dealloc {
 	NSLog(@"MSFTabBarController `-dealloc`");
@@ -61,6 +59,8 @@
 	
   return self;
 }
+
+#pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -78,25 +78,19 @@
 	UINavigationController *homepage = [[UINavigationController alloc] initWithRootViewController:homePageViewController];
 	homepage.tabBarItem = [self itemWithNormal:@"马上贷" nomalImage:@"tab-msd-normal.png" selected:@"tab-msd-highlighted.png"];
 
-	MSFCirculateCashViewModel *circulateViewModel = [[MSFCirculateCashViewModel alloc] initWithServices:self.viewModel.services];
-	self.circulateViewModel = circulateViewModel;
-	
 	MSFWalletViewModel *walletViewModel = [[MSFWalletViewModel alloc] initWithServices:self.viewModel.services];
 	MSFWalletViewController *walletViewController = [[MSFWalletViewController alloc] initWithViewModel:walletViewModel];
 	walletViewController.title = @"信用钱包";
 	UINavigationController *wallet = [[UINavigationController alloc] initWithRootViewController:walletViewController];
 	wallet.tabBarItem = [self itemWithNormal:@"信用钱包" nomalImage:@"tab-wallet-normal.png" selected:@"tab-wallet-highlighted.png"];
 	
-	//TODO: 更新商品贷控制器
 	MSFCommodityViewModel *commodityViewModel = [[MSFCommodityViewModel alloc] initWithServices:self.viewModel.services];
 	MSFCommodityViewController *commodityViewController = [[MSFCommodityViewController alloc] initWithViewModel:commodityViewModel];
 	commodityViewController.title = @"商品贷";
 	UINavigationController *commodity = [[UINavigationController alloc] initWithRootViewController:commodityViewController];
 	commodityViewController.tabBarItem = [self itemWithNormal:@"商品贷" nomalImage:@"tab-commodity-normal.png" selected:@"tab-commodity-highlighted.png"];
 	
-	//TODO: 更新个人中心控制器
 	MSFUserViewModel *userViewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
-	
 	MSFUserViewController *userViewController = [[MSFUserViewController alloc] initWithViewModel:userViewModel];
 	userViewController.title = @"我的";
 	UINavigationController *userpage = [[UINavigationController alloc] initWithRootViewController:userViewController];

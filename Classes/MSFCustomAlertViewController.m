@@ -7,7 +7,7 @@
 //
 
 #import "MSFCustomAlertViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFCustomAlertViewController ()

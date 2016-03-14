@@ -37,6 +37,7 @@ static NSString *const kWalletIdentifier = @"3101";
 @property (nonatomic, copy, readwrite) NSString *hasList;
 @property (nonatomic, copy, readwrite) NSString *statusString;
 @property (nonatomic, copy, readwrite) NSString *buttonTitle;
+@property (nonatomic, strong, readwrite) NSString *groundContent;
 
 @end
 
@@ -52,6 +53,9 @@ static NSString *const kWalletIdentifier = @"3101";
 		@strongify(self)
 		[self.fetchPhotos subscribeNext:^(id x) {
 			self.photos = x;
+		}];
+		[self.fetchShow subscribeNext:^(id x) {
+			self.groundContent = x;
 		}];
 		[self.fetchWalletStatus subscribeNext:^(RACTuple *statusAndApplication) {
 			RACTupleUnpack(NSNumber *status, MSFApplyList *application) = statusAndApplication;
@@ -172,7 +176,7 @@ static NSString *const kWalletIdentifier = @"3101";
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFCommodityConfirmation) {
 		//确认合同
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:nil];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:self.application.productCd];
 		
 	} else if (self.status == MSFCommodityResubmit) {
 		//资料重传
@@ -228,6 +232,10 @@ static NSString *const kWalletIdentifier = @"3101";
 			MSFCartViewModel *viewModel = [[MSFCartViewModel alloc] initWithModel:x services:self.services];
 			[self.services pushViewModel:viewModel];
 		}];
+}
+
+- (RACSignal *)fetchShow {
+	return [self.services.httpClient fetchShow:@"A"];
 }
 
 @end

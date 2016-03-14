@@ -136,4 +136,8 @@
 	return [MSFCommandView getColorWithString:@"EEEEEE"];
 }
 
++ (UIColor *)navigationBarColor {
+	return [UIColor colorWithHex:0x0ea5fb];
+}
+
 @end

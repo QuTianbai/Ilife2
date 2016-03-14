@@ -390,8 +390,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			}
 			return [RACSignal error:error];
 		}]
-		doNext:^(id x) {
-			[self.services setHttpClient:x];
+		doNext:^(MSFClient *client) {
+			[self.services setHttpClient:client];
+			[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
 		}];
 	}
 	return [[[MSFClient
@@ -430,9 +437,16 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	return [[MSFClient
 		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
-		doNext:^(id x) {
+		doNext:^(MSFClient *client) {
 			_signInValid = YES;
-			[self.services setHttpClient:x];
+			[self.services setHttpClient:client];
+			[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
 		}];
 }
 
@@ -475,8 +489,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	} else if (![self.captcha isCaptcha]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
 	}
-	return [[self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name] doNext:^(id x) {
-		[self.services setHttpClient:x];
+	return [[self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name] doNext:^(MSFClient *client) {
+		[self.services setHttpClient:client];
+		[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+			[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+		}];
 	}];
 }
 
@@ -497,30 +518,13 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 - (RACSignal *)executeFindPasswordSignal {
-	NSError *error;
-	if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
-		NSString *str = @"请填写真实的姓名";
-		if (self.name.length == 0) {
-			str = @"请填写真实的姓名";
-		}
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: str,
-		}];
-		return [RACSignal error:error];
+	if (!self.username.isMobile) {
+		return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的手机号"}]];
 	}
-	if (self.card.length != 18) {
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
-		}];
-		return [RACSignal error:error];
+	if (self.captcha.length != 4) {
+		return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的验证码"}]];
 	}
-	if (![self.username isMobile]) {
-		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
-	} else if (![self.password isPassword]) {
-		return [RACSignal error:[self.class errorWithFailureReason:@"请填写8到16位数字和字母组合的密码"]];
-	} else if (![self.captcha isCaptcha]) {
-		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
-	}
+
 	return [self.services.httpClient resetSignInPassword:self.password phone:self.username captcha:self.captcha name:self.name citizenID:self.card];
 }
 

@@ -45,6 +45,8 @@
 #import "MSFCart.h"
 #import "MSFClient+Cart.h"
 #import "MSFCartViewModel.h"
+#import "MSFAuthorizeViewModel.h"
+#import "MSFAuthenticateViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -82,7 +84,7 @@
 	self.tableView.bounces = NO;
 	
 	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.name) map:^id(id value) {
-		return [NSString stringWithFormat:@"%@, 您好", value];
+		return [NSString stringWithFormat:@"%@, 您好", value?:@""];
 	}];
 	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.mobile) map:^id(id value) {
 		return [NSString stringWithFormat:@"手机号: %@", value];
@@ -145,7 +147,6 @@
 					[self couponsList];
 					break;
 				case 4:
-				//TODO: 缺少扫一扫
 					[self scaning];
 					break;
 				default: break;
@@ -182,6 +183,13 @@
 }
 
 - (void)bankCardList {
+	if (!self.viewModel.isAuthenticated) {
+		MSFAuthorizeViewModel *viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.viewModel.services];
+		MSFAuthenticateViewController *vc = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+		return;
+	}
+
 	MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.viewModel.services];
 	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;

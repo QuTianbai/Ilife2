@@ -31,15 +31,26 @@
 	NSParameterAssert(applicaitonNo);
 	NSParameterAssert(productID);
 	
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/getFile" parameters:@{
-		@"applyNo": applicaitonNo,
-		@"productId": productID,
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/getMendFile" parameters:@{
+		@"appNo": applicaitonNo,
+		@"productCode": productID,
 	}];
 	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
 		MSFElement *element = response.parsedResult;
 		element.applicationNo = applicaitonNo;
 		return element;
 	}];
+}
+
+- (RACSignal *)fetchElementsProductCode:(NSString *)prodcutCode amount:(NSString *)amount loanTerm:(NSString *)loanTerm {
+	NSParameterAssert(prodcutCode);
+	
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/getFile" parameters:@{
+		@"productCode": prodcutCode,
+		@"amount": amount?:@"",
+		@"loanTerm": loanTerm?:@"",
+	}];
+	return [[self enqueueRequest:request resultClass:MSFElement.class] msf_parsedResults];
 }
 
 - (RACSignal *)fetchElementsApplicationNo:(NSString *)applicaitonNo amount:(NSString *)amount terms:(NSString *)terms productGroupID:(NSString *)groupID {

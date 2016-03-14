@@ -28,6 +28,9 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) MSFLoanType *loanType;
 @property (nonatomic, strong, readwrite) NSArray *accessories;
+@property (nonatomic, strong, readwrite) NSString *applicationNo;
+@property (nonatomic, strong, readwrite) NSString *amount;
+@property (nonatomic, strong, readwrite) NSString *loanTerm;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
 
 // 页面展示数据
@@ -46,7 +49,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong, readonly) MSFCart  *cart;
 @property (nonatomic, strong, readonly) MSFTrial *trial;
 @property (nonatomic, strong, readonly) NSArray  *terms; // 产品群信息
-@property (nonatomic, assign, readonly) BOOL barcodeInvalid;
+@property (nonatomic, assign, readonly) BOOL barcodeInvalid __deprecated;
 
 @property (nonatomic, assign, readonly) BOOL isDownPmt; // 是否需要首付
 @property (nonatomic, assign, readonly) BOOL hasAgreeProtocol; // 是否同意贷款协议

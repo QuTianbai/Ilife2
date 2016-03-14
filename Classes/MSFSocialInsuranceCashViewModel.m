@@ -40,8 +40,9 @@
 	
 	MSFUser *user = self.services.httpClient.user;
 	self.personal = user.personal;
-	self.contacts = user.contacts;
-	self.firstContact = user.contacts.firstObject;
+	self.contacts = user.contacts?:@[[[MSFContact alloc] init]];
+	//self.contacts = user.contacts;
+	self.firstContact = self.contacts.firstObject;
 	
 	MSFAddressCodes *addressModel = [MSFAddressCodes modelWithDictionary:@{
 		@"province" : self.personal.abodeStateCode ?: @"",
@@ -56,6 +57,8 @@
 	RACChannelTo(self, detailAddress) = RACChannelTo(self.personal, abodeDetail);
 	RACChannelTo(self, contactName) = RACChannelTo(self.firstContact, contactName);
 	RACChannelTo(self, contactPhone) = RACChannelTo(self.firstContact, contactMobile);
+	
+	_executeLiveAddressCommand = _addressViewModel.selectCommand;
 	
 	_executePurposeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [[self.services msf_selectKeyValuesWithContent:@"moneyUse"] doNext:^(MSFSelectKeyValues *x) {
@@ -113,6 +116,7 @@
 	} error:nil];
 	[user mergeValueForKey:@keypath(user.personal) fromModel:model];
 	[user mergeValueForKey:@keypath(user.contacts) fromModel:model];
+	user.applyType = @"4";
 	return [[self.services.httpClient updateUser:user] doNext:^(id x) {
 		[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
 		[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, contacts) fromModel:model];

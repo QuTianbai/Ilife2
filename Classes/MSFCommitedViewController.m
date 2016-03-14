@@ -23,6 +23,7 @@
   if (!self) {
     return nil;
   }
+	self.hidesBottomBarWhenPushed = YES;
   
   return self;
 }
@@ -31,6 +32,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"提交成功";
 	@weakify(self)
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)

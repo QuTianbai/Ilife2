@@ -22,9 +22,9 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-10-05" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaW-5X-bbh">
-                        <rect key="frame" x="59" y="31" width="77" height="21"/>
+                        <rect key="frame" x="59" y="31" width="100" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="77" id="HdN-Kf-BAC"/>
+                            <constraint firstAttribute="width" constant="100" id="HdN-Kf-BAC"/>
                             <constraint firstAttribute="height" constant="21" id="piP-cl-rMb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -32,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="确认合同" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAX-Pz-SPE">
-                        <rect key="frame" x="151" y="19" width="131" height="21"/>
+                        <rect key="frame" x="174" y="19" width="108" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="p2j-O4-O2S"/>
                         </constraints>

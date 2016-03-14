@@ -11,4 +11,7 @@
 
 @interface MSFCreditFooterViewController : UIViewController <MSFReactiveView>
 
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIPageControl *pageControl;
+
 @end

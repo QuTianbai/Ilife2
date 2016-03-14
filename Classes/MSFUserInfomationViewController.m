@@ -118,6 +118,10 @@
 		return;
 	}
 	if (indexPath.section == 1) {
+		if (!self.viewModel.isAuthenticated) {
+			[SVProgressHUD showSuccessWithStatus:@"请先进行实名认证"];
+			return;
+		}
 		switch (indexPath.row) {
 			case 0: {
 				MSFPersonalViewModel *viewModel = [[MSFPersonalViewModel alloc] initWithServices:self.viewModel.services];

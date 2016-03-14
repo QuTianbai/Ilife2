@@ -676,6 +676,9 @@ static NSDictionary *messages;
 				NSDate *date = [NSDateFormatter gmt_dateFromString:operation.response.allHeaderFields[@"Date"]];
 				cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[date timeIntervalSince1970] * 1000];
 			}
+			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
+				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
+			}
 			
 			[self reportFabric:operation error:error];
 			[subscriber sendError:[self.class errorFromRequestOperation:operation]];

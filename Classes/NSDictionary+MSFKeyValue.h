@@ -17,5 +17,7 @@
 + (NSString *)typeStringForKey:(NSString *)key;
 //订单类型图标
 + (UIImage *)imageForContractKey:(NSString *)type;
+//priductCode
++ (NSString *)productCodeWithKey:(NSString *)key;
 
 @end

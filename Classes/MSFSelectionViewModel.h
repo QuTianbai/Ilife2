@@ -23,6 +23,7 @@
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (NSString *)titleForIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)subtitleForIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForModel:(id)model;
 - (id)modelForIndexPath:(NSIndexPath *)indexPath;
 
 + (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFAmortize *)markts total:(NSInteger)amount;

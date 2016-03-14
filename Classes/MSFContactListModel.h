@@ -8,7 +8,8 @@
 
 #import "MSFObject.h"
 
-//TODO: Rename contact to contract
+__attribute__((deprecated("This class is deprecated. Please use the MSFApplylist class instead")))
+
 @interface MSFContactListModel : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *contactID;

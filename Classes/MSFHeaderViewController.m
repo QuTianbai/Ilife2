@@ -30,10 +30,10 @@
 	RAC(self.dateLabel, text) = RACObserve(self, viewModel.repayDate);
 	
 	RAC(self.applyView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(!(status.integerValue < MSFWalletActivated));
+		return @(!(status.integerValue < MSFApplicationActivated));
 	}];
 	RAC(self.repayView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(!(status.integerValue == MSFWalletActivated));
+		return @(!(status.integerValue == MSFApplicationActivated));
 	}];
 	
 	@weakify(self)
