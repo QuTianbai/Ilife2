@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.title = @"订单详情";
 	@weakify(self)
 	RAC(self, contractNo.text) = RACObserve(self, viewModel.appNo);
 	RAC(self, contractStatus.text) = RACObserve(self, viewModel.status);
