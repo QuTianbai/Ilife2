@@ -130,6 +130,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if ([self isChangedBankCard]) {
+		return 1;
+	}
     return 2;
 }
 
@@ -152,12 +155,14 @@
 		cell = [[NSBundle mainBundle] loadNibNamed:@"MSFBankCardListTableViewCell" owner:nil options:nil].firstObject;
 	}
 
-	
-	if (indexPath.row == 0) {
+	if (indexPath.row == 0 || [self isChangedBankCard]) {
 			cell.isMaster.hidden = NO;
 			cell.setMasterBT.hidden = YES;
 			cell.unBindMaster.hidden = YES;
 	} else {
+		if ([self isChangedBankCard]) {
+			cell.isMaster.hidden = YES;
+		}
 			cell.isMaster.hidden = YES;
 			cell.setMasterBT.hidden = NO;
 			cell.unBindMaster.hidden = NO;
@@ -166,7 +171,7 @@
 	cell.bankIconImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [MSFGetBankIcon getIconNameWithBankCode:model.bankCode]]];
 	cell.bankName.text = model.bankName;
 	cell.BankType.text = [NSString stringWithFormat:@"%@ %@", [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4], [self bankType:model.bankCardType]];
-	if (model.master) {
+	if (model.master || [self isChangedBankCard]) {
 		cell.isMaster.hidden = NO;
 		cell.setMasterBT.hidden = YES;
 		cell.unBindMaster.hidden = YES;
@@ -241,6 +246,10 @@
 		
 	}];
 	
+	if ([self isChangedBankCard]) {
+		cell.isMaster.hidden = YES;
+	}
+	
 	return cell;
 }
 
@@ -285,10 +294,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if ([self.viewModel.type isEqualToString:@"1"]) {
+	if ([self isChangedBankCard]) {
 		MSFBankCardListModel *model = self.dataArray[indexPath.row];
 		if (self.viewModel.returnBankCardIDBlock != nil) {
-			self.viewModel.returnBankCardIDBlock(model.bankCardId);
+			self.viewModel.returnBankCardIDBlock(model);
 		}
 		[self.navigationController popViewControllerAnimated:YES];
 	}
@@ -394,8 +403,8 @@
 	return @"";
 }
 
-- (void)setChangeBankCard {
-	
+- (BOOL)isChangedBankCard {
+	return [self.viewModel.type isEqualToString:@"1"];
 }
 
 @end

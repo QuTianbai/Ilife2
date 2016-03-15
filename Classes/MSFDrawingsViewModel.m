@@ -124,8 +124,12 @@
 - (RACSignal *)switchSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services type:@"1"];
-		[viewModel returnText:^(NSString *bankCardID) {
-			self.bankCardID = bankCardID;
+		@weakify(self)
+		[viewModel returnBanKModel:^(MSFBankCardListModel *model) {
+			@strongify(self)
+			self.bankCardID = model.bankCardId;
+			self.bankName = model.bankName;
+			self.bankNo = model.bankCardNo;
 		}];
 
 		[self.services pushViewModel:viewModel];

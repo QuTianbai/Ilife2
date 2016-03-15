@@ -59,7 +59,7 @@
 	return [self.services.httpClient fetchBankCardList];
 }
 
-- (void)returnText:(ReturnBankCardIDBlock)block {
+- (void)returnBanKModel:(ReturnBankCardIDBlock)block {
 	self.returnBankCardIDBlock = block;
 }
 
