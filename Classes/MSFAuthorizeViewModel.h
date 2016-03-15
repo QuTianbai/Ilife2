@@ -154,4 +154,6 @@ extern NSString *const MSFAuthorizeErrorDomain;
 @property (nonatomic, strong) NSString *updatingSignInPasssword;
 @property (nonatomic, strong) RACCommand *executeUpdateSignInPassword;
 
+- (RACSignal *)searchLocalBankInformationWithNumber:(NSString *)number;
+
 @end
