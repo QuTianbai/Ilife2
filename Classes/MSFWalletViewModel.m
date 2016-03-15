@@ -136,7 +136,7 @@ static NSString *const kApplicationWalletType = @"4";
 					self.totalAmounts = model.totalLimit;
 					self.validAmounts = model.usableLimit;
 					self.usedAmounts = model.usedLimit;
-					self.loanRates = [NSString stringWithFormat:@"%.2f", model.feeRate];
+					self.loanRates = [NSString stringWithFormat:@"%f", model.feeRate];
 					self.repayDate = model.latestDueDate;
 				}];
 			} break;
@@ -266,7 +266,8 @@ static NSString *const kApplicationWalletType = @"4";
 
 - (RACSignal *)drawSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] initWithDictionary:self.model.dictionaryValue error:nil];
+		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
+		[model mergeValuesForKeysFromModel:self.model];
 		MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:model services:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
@@ -276,7 +277,8 @@ static NSString *const kApplicationWalletType = @"4";
 
 - (RACSignal *)repaySignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] initWithDictionary:self.model.dictionaryValue error:nil];
+		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
+		[model mergeValuesForKeysFromModel:self.model];
 		MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:model services:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
