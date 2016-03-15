@@ -17,6 +17,7 @@
 #import "MSFSocialProfile.h"
 #import "MSFSocialInsurance.h"
 #import "MSFContact.h"
+#import "MSFAuthenticate.h"
 
 @implementation MSFClient (Users)
 
@@ -29,7 +30,7 @@
 	parameters[@"bankBranchCityCode"] = city;
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/authentication" parameters:parameters];
 	
-	return [self enqueueRequest:request resultClass:nil];
+	return [[self enqueueRequest:request resultClass:MSFAuthenticate.class] msf_parsedResults];
 }
 
 - (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID {
@@ -127,7 +128,7 @@
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
-		@"uniqueId": self.user.uniqueId,
+		@"uniqueId": self.user.uniqueId?:@"",
 		@"newTransPassword": pwd?:@"",
 		@"smsCode": capthch?:@""
 	}];

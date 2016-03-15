@@ -133,9 +133,9 @@ static NSString *const kApplicationWalletType = @"4";
 				self.action = @"";
 				[[self.services.httpClient fetcchWallet] subscribeNext:^(MSFWallet *model) {
 					self.model = model;
-					self.totalAmounts = [NSString stringWithFormat:@"%.2f", model.totalLimit];
-					self.validAmounts = [NSString stringWithFormat:@"%.2f", model.usableLimit];
-					self.usedAmounts = [NSString stringWithFormat:@"%.2f", model.usedLimit];
+					self.totalAmounts = model.totalLimit;
+					self.validAmounts = model.usableLimit;
+					self.usedAmounts = model.usedLimit;
 					self.loanRates = [NSString stringWithFormat:@"%.2f", model.feeRate];
 					self.repayDate = model.latestDueDate;
 				}];

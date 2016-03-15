@@ -118,12 +118,6 @@
   [navigationBar setShadowImage:[UIImage new]];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	self.viewModel.active = YES;
-	self.viewModel.active = NO;
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
   [super viewWillDisappear:animated];
   UINavigationBar *navigationBar = self.navigationController.navigationBar;

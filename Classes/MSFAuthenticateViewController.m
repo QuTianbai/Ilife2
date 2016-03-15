@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
+#import "MSFAuthenticate.h"
 
 @interface MSFAuthenticateViewController ()
 
@@ -60,7 +61,8 @@
 		[SVProgressHUD showWithStatus:@"正在提交..."];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[[self.viewModel.services.httpClient user] mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:[[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, hasChecked): @"1"} error:nil]];
+			((MSFAuthenticate *)x).hasChecked = @"1";
+			[[self.viewModel.services.httpClient user] mergeValuesForKeysFromModel:x];
 			[SVProgressHUD showSuccessWithStatus:@"实名认证成功"];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];

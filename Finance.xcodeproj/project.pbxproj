@@ -116,6 +116,7 @@
 		077461061C74329900F46ABD /* icon-start-title.png in Resources */ = {isa = PBXBuildFile; fileRef = 077461031C74329900F46ABD /* icon-start-title.png */; };
 		077461071C74329900F46ABD /* icon-start-title@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077461041C74329900F46ABD /* icon-start-title@2x.png */; };
 		077461081C74329900F46ABD /* icon-start-title@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 077461051C74329900F46ABD /* icon-start-title@3x.png */; };
+		0779E5F31C97B47700E5AE80 /* MSFAuthenticate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0779E5F21C97B47700E5AE80 /* MSFAuthenticate.m */; };
 		0780104F1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0780104D1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m */; };
 		078010501BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0780104E1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib */; };
 		078789B01C7C89C5008C39A6 /* MSFButtonSlidersView.m in Sources */ = {isa = PBXBuildFile; fileRef = 078789AF1C7C89C5008C39A6 /* MSFButtonSlidersView.m */; };
@@ -1272,6 +1273,8 @@
 		077461031C74329900F46ABD /* icon-start-title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-title.png"; sourceTree = "<group>"; };
 		077461041C74329900F46ABD /* icon-start-title@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-title@2x.png"; sourceTree = "<group>"; };
 		077461051C74329900F46ABD /* icon-start-title@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-start-title@3x.png"; sourceTree = "<group>"; };
+		0779E5F11C97B47700E5AE80 /* MSFAuthenticate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthenticate.h; sourceTree = "<group>"; };
+		0779E5F21C97B47700E5AE80 /* MSFAuthenticate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFAuthenticate.m; sourceTree = "<group>"; };
 		0780104C1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBankCardListTableViewCell.h; sourceTree = "<group>"; };
 		0780104D1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBankCardListTableViewCell.m; sourceTree = "<group>"; };
 		0780104E1BBA3DD500DAEFF7 /* MSFBankCardListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFBankCardListTableViewCell.xib; sourceTree = "<group>"; };
@@ -5025,6 +5028,8 @@
 			children = (
 				49DA22601B062AF200DD4483 /* MSFUser.h */,
 				49DA22611B062AF200DD4483 /* MSFUser.m */,
+				0779E5F11C97B47700E5AE80 /* MSFAuthenticate.h */,
+				0779E5F21C97B47700E5AE80 /* MSFAuthenticate.m */,
 				49DA225C1B062AF200DD4483 /* MSFClient+Users.h */,
 				49DA225D1B062AF200DD4483 /* MSFClient+Users.m */,
 				49C3A7AD1C86C53C008750AE /* MSFPersonal.h */,
@@ -6333,6 +6338,7 @@
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
 				10DC2D0A1B969D4300A2AF9C /* MSFElementViewController.m in Sources */,
+				0779E5F31C97B47700E5AE80 /* MSFAuthenticate.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
 				07CB4C7C1B104572006C220E /* MSFPersonalViewController.m in Sources */,
