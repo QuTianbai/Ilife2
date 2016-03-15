@@ -13,7 +13,6 @@
 #import <Masonry/Masonry.h>
 #import <ZXingObjC/ZXingObjC.h>
 #import <AddressBookUI/AddressBookUI.h>
-#import "ABPeoplePickerNavigationController+RACSignalSupport.h"
 
 #import "MSFClient.h"
 #import "MSFServer.h"
@@ -90,6 +89,9 @@
 
 #import "MSFApplyCashViewModel.h"
 #import "MSFMSFApplyCashViewController.h"
+
+#import "MSFPeoplePickerNavigationController.h"
+#import "MSFPeoplePickerNavigationController+RACSignalSupport.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -365,10 +367,20 @@
 }
 
 - (RACSignal *)msf_selectContactSignal {
+	MSFPeoplePickerNavigationController *picker = [[MSFPeoplePickerNavigationController alloc] init];
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+	view.backgroundColor = UIColor.blackColor;
+	[picker.view addSubview:view];
+	[self.visibleViewController presentViewController:picker animated:YES completion:nil];
+	return picker.rac_contactSelectedSignal;
+	
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
 		picker.peoplePickerDelegate = self;
 		picker.displayedProperties = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[picker.view addSubview:view];
 		[self.visibleViewController presentViewController:picker animated:YES completion:nil];
 		if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
 			picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];

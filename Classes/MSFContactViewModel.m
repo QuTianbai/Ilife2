@@ -50,19 +50,8 @@
 	[self.executeSelectContactCommand.executionSignals subscribeNext:^(id x) {
 		@strongify(self)
 		[x subscribeNext:^(RACTuple *x) {
-			id obj;
-			[x.second getValue:&obj];
-			ABRecordRef person = (__bridge  ABRecordRef)obj;
-			ABMultiValueIdentifier identifier = [x.last intValue];
-
-			ABMutableMultiValueRef phoneMulti = ABRecordCopyValue(person, kABPersonPhoneProperty);
-			CFIndex index = ABMultiValueGetIndexForIdentifier(phoneMulti, identifier);
-			NSString *phone = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phoneMulti, index);
-			NSCharacterSet *charSet = [NSCharacterSet characterSetWithCharactersInString:@"0123456789"].invertedSet;
-			phone = [[phone componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
-			NSString *fullName = (__bridge NSString *)ABRecordCopyCompositeName(person);
-			self.name = fullName;
-			self.phone = phone;
+			self.name = x.first;
+			self.phone = x.last;
 		}];
 	}];
 	
