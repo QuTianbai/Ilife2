@@ -233,6 +233,15 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			[self.tableView reloadData];
 		}];
 	}];
+    [self.viewModel.executeMarriageCommand.executionSignals subscribeNext:^(RACSignal *x) {
+        @strongify(self);
+        [x subscribeNext:^(MSFSelectKeyValues *x) {
+            if ([x.code isEqualToString:@"20"]) {
+                [self.viewModel updateViewModels];
+            }
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 #pragma mark - UITableViewDataSource

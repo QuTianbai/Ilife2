@@ -108,5 +108,5 @@ extern const NSInteger MSFProfessionalContactCellAddressSwitch;
 @property (nonatomic, strong, readonly) NSArray *viewModels;
 
 - (NSInteger)numberOfSections;
-
+- (void) updateViewModels;
 @end
