@@ -23,6 +23,7 @@
 #import "MSFPaymentToken.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFCirculateCashViewModel.h"
+#import "MSFCirculateCashModel.h"
 
 @interface MSFDrawingsViewModel ()
 
@@ -32,6 +33,7 @@
 @property (nonatomic, strong, readwrite) NSString *uniqueTransactionID;
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
+@property (nonatomic, strong, readwrite) NSString *bankCardID;
 
 @end
 
@@ -78,6 +80,7 @@
 				self.bankIco = [MSFGetBankIcon getIconNameWithBankCode:x.bankCode];
 				self.bankNo = x.bankCardNo;
 				self.bankName = x.bankName;
+				self.bankCardID = x.bankCardId;
 			}];
 			RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
@@ -120,7 +123,11 @@
 
 - (RACSignal *)switchSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services];
+		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services type:@"1"];
+		[viewModel returnText:^(NSString *bankCardID) {
+			self.bankCardID = bankCardID;
+		}];
+
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
@@ -135,7 +142,7 @@
 }
 
 - (NSString *)contractNO {
-	if ([self.model isKindOfClass:MSFCirculateCashViewModel.class]) {
+	if ([self.model isKindOfClass:MSFCirculateCashModel.class]) {
 		MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)self.model;
 		return viewModel.contractNo;
 	} else if ([self.model isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
@@ -148,7 +155,7 @@
 - (RACSignal *)paymentSignal {
 	return [self.services.msf_gainPasscodeSignal
 		flattenMap:^RACStream *(id value) {
-			return [self.services.httpClient drawingsWithAmounts:self.amounts contractNo:self.contractNO passcode:value];
+			return [self.services.httpClient drawingsWithAmounts:self.amounts contractNo:self.contractNO passcode:value bankCardID:self.bankCardID];
 		}];
 }
 

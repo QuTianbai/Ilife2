@@ -21,11 +21,12 @@
 
 @implementation MSFBankCardListViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)servers {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)servers type:(NSString *)type {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_type = type;
 	_services = servers;
 	_executeSetMaster = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeSetMasterSignal];
@@ -56,6 +57,10 @@
 
 - (RACSignal *)fetchBankCardListSignal {
 	return [self.services.httpClient fetchBankCardList];
+}
+
+- (void)returnText:(ReturnBankCardIDBlock)block {
+	self.returnBankCardIDBlock = block;
 }
 
 @end

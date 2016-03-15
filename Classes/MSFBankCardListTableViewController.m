@@ -285,6 +285,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([self.viewModel.type isEqualToString:@"1"]) {
+		MSFBankCardListModel *model = self.dataArray[indexPath.row];
+		if (self.viewModel.returnBankCardIDBlock != nil) {
+			self.viewModel.returnBankCardIDBlock(model.bankCardId);
+		}
+		[self.navigationController popViewControllerAnimated:YES];
+	}
 	if (indexPath.section == 1) {
 		MSFUser *user = [self.viewModel.services httpClient].user;
 		if (!user.hasTransactionalCode) {
@@ -385,6 +392,10 @@
 	} 
 	
 	return @"";
+}
+
+- (void)setChangeBankCard {
+	
 }
 
 @end

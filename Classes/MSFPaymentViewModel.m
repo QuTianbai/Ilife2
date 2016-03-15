@@ -110,7 +110,7 @@
 
 - (RACSignal *)switchSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services];
+		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services type:@"1"];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
