@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Wallet View Controller-->
@@ -94,15 +94,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DaM-0F-veg">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbK-gn-b68">
-                                                <rect key="frame" x="49" y="18" width="222" height="40"/>
+                                                <rect key="frame" x="35" y="18" width="250" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="222" id="laM-Z2-plC"/>
+                                                    <constraint firstAttribute="width" constant="250" id="laM-Z2-plC"/>
                                                     <constraint firstAttribute="height" constant="40" id="sO7-iy-3GT"/>
                                                 </constraints>
-                                                <state key="normal" title="Button" image="btn-apply-normal.png"/>
+                                                <state key="normal" title="Button" image="icon-cash.png"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,7 +112,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byy-hJ-fMR">
-                                        <rect key="frame" x="0.0" y="75" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="75.5" width="320" height="74.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期应还款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yrr-Et-j4Q">
                                                 <rect key="frame" x="16" y="16" width="70" height="17"/>
@@ -121,7 +121,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩余8天,可随时还款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="107.5" translatesAutoresizingMaskIntoConstraints="NO" id="neg-eL-PsP">
-                                                <rect key="frame" x="16" y="43" width="108" height="15"/>
+                                                <rect key="frame" x="16" y="43" width="107.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -132,7 +132,7 @@
                                                 <state key="highlighted" image="btn-repay-normal.png"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="62" translatesAutoresizingMaskIntoConstraints="NO" id="xpF-j0-pos">
-                                                <rect key="frame" x="90" y="15" width="62" height="20"/>
+                                                <rect key="frame" x="90" y="15.5" width="62" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" red="0.99215686270000003" green="0.50196078430000002" blue="0.08235294118" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -456,8 +456,8 @@
         <image name="bg-view-header.jpg" width="414" height="314"/>
         <image name="bg-wallet-status.png" width="186" height="186"/>
         <image name="btn-active-normal.png" width="140" height="36"/>
-        <image name="btn-apply-normal.png" width="311" height="56"/>
         <image name="btn-repay-highlighted.png" width="119" height="37"/>
         <image name="btn-repay-normal.png" width="119" height="37"/>
+        <image name="icon-cash.png" width="382" height="49"/>
     </resources>
 </document>
