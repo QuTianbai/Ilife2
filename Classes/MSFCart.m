@@ -70,7 +70,7 @@ NSString *const MSFCartTravelIdentifier = @"travel";
 }
 
 + (NSValueTransformer *)transformer {
-	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(id x) {
+	return [MTLValueTransformer transformerWithBlock:^id(id x) {
 		if ([x isKindOfClass:NSString.class]) {
 			return x;
 		} else if ([x isKindOfClass:NSNumber.class]) {
@@ -78,8 +78,6 @@ NSString *const MSFCartTravelIdentifier = @"travel";
 		} else {
 			return nil;
 		}
-	} reverseBlock:^id(NSString *x) {
-		return [NSNumber numberWithInteger:x.integerValue];
 	}];
 }
 
