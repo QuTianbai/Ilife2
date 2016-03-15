@@ -76,6 +76,7 @@
 	self.captchaButton.rac_command = self.viewModel.executeFindPasswordCaptcha;
 	[self.captchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
+		self.viewModel.captcha = @"";
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在获取验证码..." maskType:SVProgressHUDMaskTypeClear];
 		[captchaSignal subscribeNext:^(id x) {
@@ -83,6 +84,7 @@
 		}];
 	}];
 	[self.captchaButton.rac_command.errors subscribeNext:^(NSError *error) {
+		self.viewModel.captcha = @"";
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	
