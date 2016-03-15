@@ -64,6 +64,7 @@
 			((MSFAuthenticate *)x).hasChecked = @"1";
 			[[self.viewModel.services.httpClient user] mergeValuesForKeysFromModel:x];
 			[SVProgressHUD showSuccessWithStatus:@"实名认证成功"];
+			[self dismissViewControllerAnimated:YES completion:nil];
 			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
