@@ -79,6 +79,19 @@
 			return [RACSignal empty];
 		}];
 	}
+	
+	[RACObserve(self, bankcard.text) subscribeNext:^(id x) {
+		@strongify(self)
+		[[[self.viewModel searchLocalBankInformationWithNumber:self.bankcard.text]
+			takeUntil:self.rac_willDeallocSignal]
+			subscribeNext:^(RACTuple *imageAndName) {
+				RACTupleUnpack(UIImage *image, NSString *name) = imageAndName;
+				self.promptLogo.image = image;
+				self.promptLabel.text = name;
+				NSLog(@"%@", imageAndName);
+			}];
+	}];
+	
 }
 
 @end
