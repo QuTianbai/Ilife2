@@ -33,6 +33,7 @@
 @property (nonatomic, strong, readwrite) NSString *uniqueTransactionID;
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
+@property (nonatomic, strong, readwrite) NSString *bankCardID;
 
 @end
 
@@ -99,6 +100,7 @@
 				self.bankIco = [MSFGetBankIcon getIconNameWithBankCode:x.bankCode];
 				self.bankNo = x.bankCardNo;
 				self.bankName = x.bankName;
+				self.bankCardID = x.bankCardId;
 			}];
 			RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
@@ -148,6 +150,14 @@
 - (RACSignal *)switchSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.services type:@"1"];
+		@weakify(self)
+		[viewModel returnBanKModel:^(MSFBankCardListModel *model) {
+			@strongify(self)
+			self.bankCardID = model.bankCardId;
+			self.bankName = model.bankName;
+			self.bankNo = model.bankCardNo;
+		}];
+
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
