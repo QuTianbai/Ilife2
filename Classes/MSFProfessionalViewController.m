@@ -135,7 +135,20 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	channel = RACChannelTo(self.viewModel, schoolLength);
 	RAC(self.programLength, text) = channel;
 	[self.programLength.rac_textSignal subscribe:channel];
-	
+	[self.programLength.rac_textSignal subscribeNext:^(id x) {
+        @strongify(self);
+        NSString *str = (NSString *)x;
+        if (str.length >= 2) {
+            str = [str substringToIndex:1];
+        }
+        NSInteger value = [str integerValue];
+        if (!(value >= 1 && value <= 8)) {
+            self.programLength.text = @"";
+        } else {
+            self.programLength.text = str;
+        }
+
+    }];
 	self.enrollmentYearButton.rac_command = self.viewModel.executeSchoolDateCommand;
 	RAC(self, enrollmentYear.text) = RACObserve(self.viewModel, schoolDate);
 	
@@ -220,6 +233,15 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 			[self.tableView reloadData];
 		}];
 	}];
+    [self.viewModel.executeMarriageCommand.executionSignals subscribeNext:^(RACSignal *x) {
+        @strongify(self);
+        [x subscribeNext:^(MSFSelectKeyValues *x) {
+            if ([x.code isEqualToString:@"20"]) {
+                [self.viewModel updateViewModels];
+            }
+            [self.tableView reloadData];
+        }];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -251,7 +273,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		if (![self.viewModel.code isEqualToString:@"SI01"]) return 0;
 	} else if (section == 3) { // 职业相关内容
 		if (!([self.viewModel.code isEqualToString:@"SI02"] || [self.viewModel.code isEqualToString:@"SI04"])) return 0;
-	} else if (section == 7) { // 最大联系人数量为3
+	} else if (section == 8) { // 最大联系人数量为3
 		return [super tableView:tableView numberOfRowsInSection:section] - 1;
 	}
 	if (section > 4) { // 新增联系人按钮cell变化
