@@ -60,7 +60,7 @@
 		@"smsCode": captcha,
 		@"idCard": citizenID,
 		@"name": name,
-		@"uniqueId": self.user.objectID,
+		@"uniqueId": self.user.uniqueId,
 	};
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/updateMobile" parameters:parameters];
@@ -75,7 +75,7 @@
 
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = self.user.objectID;
+	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"transPassword"] = transPassword;
 	parameters[@"bankCardNo"] = bankCardNo;
 	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
@@ -147,7 +147,7 @@
 
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{
-		@"uniqueId": self.user.objectID,
+		@"uniqueId": self.user.uniqueId,
 		@"newTransPassword": newTransPassword?:@"",
 		@"smsCode": smsCode?:@"",
 		@"bankCardNo": bankCardNO?:@"",
@@ -158,7 +158,7 @@
 }
 
 - (RACSignal *)checkDataWithPwd:(NSString *)transpassword contractNO:(NSString *)contractNO {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/checkData" parameters:@{@"transPassword":transpassword, @"contractNo":contractNO}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/checkData" parameters:@{@"transPassword":transpassword, @"contractNo":contractNO}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
@@ -167,12 +167,14 @@
 	return [[self enqueueRequest:request resultClass:MSFPaymentToken.class] msf_parsedResults];
 }
 
-- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/consume" parameters:@{
+- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo bankCardID:(NSString *)bankCardID transPwd:(NSString *)transPwd {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/consume" parameters:@{
 																		@"amount": amount?:@"",
 																		@"smsCode": smsCode?:@"",
 																		@"smsSeqNo": smsSeqNo?:@"",
 																		@"contractNo": contractNo?:@"",
+																		@"bankCardId": bankCardID?:@"",
+																		@"transPassword": transPwd?:@"",
 																	}];
 	return [self enqueueRequest:request resultClass:nil];
 }

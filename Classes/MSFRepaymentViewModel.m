@@ -24,6 +24,7 @@
 #import "MSFBankCardListViewModel.h"
 #import "MSFCirculateCashViewModel.h"
 #import "MSFMyRepayDetailViewModel.h"
+#import "MSFCirculateCashModel.h"
 
 @interface MSFRepaymentViewModel ()
 
@@ -79,7 +80,7 @@
 	}];
 	
 	RAC(self, debtAmounts) = [RACObserve(self, model) map:^id(id value) {
-		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
+		if ([value isKindOfClass:MSFCirculateCashModel.class]) {
 			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
 			return viewModel.totalOverdueMoney;
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
@@ -177,7 +178,7 @@
 }
 
 - (NSString *)contractNO {
-	if ([self.model isKindOfClass:MSFCirculateCashViewModel.class]) {
+	if ([self.model isKindOfClass:MSFCirculateCashModel.class]) {
 		MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)self.model;
 		return viewModel.contractNo;
 	} else if ([self.model isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
@@ -188,13 +189,13 @@
 }
 
 - (RACSignal *)paymentSignal {
-	return [[self.services.msf_gainPasscodeSignal
+	return [self.services.msf_gainPasscodeSignal
+//		flattenMap:^RACStream *(id value) {
+//			return [self.services.httpClient checkDataWithPwd:value contractNO:self.contractNO];
+//		}]
 		flattenMap:^RACStream *(id value) {
-			return [self.services.httpClient checkDataWithPwd:value contractNO:self.contractNO];
-		}]
-		flattenMap:^RACStream *(id value) {
-			return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO];
-		}];
+			return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO bankCardID:self.bankCardID transPwd:value];
+}];
 }
 
 @end
