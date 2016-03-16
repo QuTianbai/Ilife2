@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellID" id="KGk-i7-Jjw" customClass="MSFSupportBankListTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="69.5"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CBC.png" translatesAutoresizingMaskIntoConstraints="NO" id="5c3-nV-yBL">
+                        <rect key="frame" x="14" y="14" width="41" height="41"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="41" id="Jl3-Xy-e4t"/>
+                            <constraint firstAttribute="height" constant="41" id="yLe-iE-ghk"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国建设银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dvs-LK-xcM">
+                        <rect key="frame" x="63" y="16" width="94" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="94" id="D08-no-c2K"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单笔限额：5000元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6P-zH-ftR">
+                        <rect key="frame" x="63" y="38" width="124" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="124" id="8qb-kk-GaJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="储蓄卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Dq-NF-BRd">
+                        <rect key="frame" x="199" y="14" width="53" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="53" id="PMz-xB-g1B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单日限额：5000元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JuC-sa-yWH">
+                        <rect key="frame" x="199" y="36" width="120" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="6h9-AX-nVq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="I6P-zH-ftR" firstAttribute="leading" secondItem="5c3-nV-yBL" secondAttribute="trailing" constant="8" id="2Im-Cd-k8Y"/>
+                    <constraint firstItem="JuC-sa-yWH" firstAttribute="top" secondItem="5Dq-NF-BRd" secondAttribute="bottom" constant="5" id="6ms-7e-KBv"/>
+                    <constraint firstItem="5c3-nV-yBL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="AVm-N3-YlJ"/>
+                    <constraint firstAttribute="bottom" secondItem="I6P-zH-ftR" secondAttribute="bottom" constant="16" id="AwR-dh-1Sj"/>
+                    <constraint firstItem="5c3-nV-yBL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Dkt-B1-dbe"/>
+                    <constraint firstAttribute="bottom" secondItem="JuC-sa-yWH" secondAttribute="bottom" constant="16" id="TGT-t1-Zrn"/>
+                    <constraint firstItem="Dvs-LK-xcM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Vk9-fB-FkM"/>
+                    <constraint firstItem="I6P-zH-ftR" firstAttribute="top" secondItem="Dvs-LK-xcM" secondAttribute="bottom" constant="5" id="Xbi-fh-Y52"/>
+                    <constraint firstItem="JuC-sa-yWH" firstAttribute="leading" secondItem="5Dq-NF-BRd" secondAttribute="leading" id="ZO7-xI-7BB"/>
+                    <constraint firstItem="JuC-sa-yWH" firstAttribute="leading" secondItem="I6P-zH-ftR" secondAttribute="trailing" constant="12" id="qIq-7M-KDU"/>
+                    <constraint firstItem="5Dq-NF-BRd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="rw4-vc-igO"/>
+                    <constraint firstItem="Dvs-LK-xcM" firstAttribute="leading" secondItem="5c3-nV-yBL" secondAttribute="trailing" constant="8" id="sss-N5-O3v"/>
+                    <constraint firstItem="5Dq-NF-BRd" firstAttribute="leading" secondItem="Dvs-LK-xcM" secondAttribute="trailing" constant="42" id="vor-z4-Zp8"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="AwR-dh-1Sj"/>
+                        <exclude reference="vor-z4-Zp8"/>
+                        <exclude reference="TGT-t1-Zrn"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="BankName" destination="Dvs-LK-xcM" id="jL7-lk-kHm"/>
+                <outlet property="BankType" destination="H2p-sc-9uM" id="QgJ-Cl-DXg"/>
+                <outlet property="BankpicImageView" destination="5c3-nV-yBL" id="xfC-0D-fIU"/>
+                <outlet property="dayAmountLimit" destination="JuC-sa-yWH" id="cJ6-Mp-GK4"/>
+                <outlet property="singleAmountLimit" destination="I6P-zH-ftR" id="5Tc-Qw-Tyv"/>
+            </connections>
+            <point key="canvasLocation" x="444" y="226.75"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="CBC.png" width="41" height="41"/>
+    </resources>
+</document>

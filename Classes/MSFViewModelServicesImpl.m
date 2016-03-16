@@ -91,6 +91,9 @@
 #import "MSFApplyCashViewModel.h"
 #import "MSFMSFApplyCashViewController.h"
 
+#import "MSFSupportBankListModel.h"
+#import "MSFSupportBankListTableViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -185,7 +188,9 @@
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		viewController = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
-	} else {
+    } else if ([viewModel isKindOfClass:MSFSupportBankListModel.class]){
+        viewController = [[MSFSupportBankListTableViewController alloc]initWithViewModel:viewModel];[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+    } else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
 	

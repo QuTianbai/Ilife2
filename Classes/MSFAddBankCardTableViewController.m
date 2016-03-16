@@ -84,7 +84,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 		@strongify(self)
 		if (type != nil && ![type isEqualToString:@""] ) {
 			[UIView beginAnimations:nil context:nil];
-			[UIView setAnimationDuration:0.3];
+			[UIView setAnimationDuration:0.01];
 			self.bankCarTypeLB.alpha = 1.0;
 			[UIView commitAnimations];
 		} else {

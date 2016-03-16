@@ -62,9 +62,9 @@
 	
 	_inputTradePassword = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 	_inputTradePassword.delegate = self;
-	
+    
 	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-	
+
 	RAC(self, viewModel.pwd) = RACObserve(self, tradePwd);
 	@weakify(self)
 	RACSignal *signal = [[self.viewModel fetchBankCardListSignal].collect replayLazily];
@@ -144,6 +144,35 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.section == 1) {
 		MSFAddBankCardTableViewCell *addCell = [[NSBundle mainBundle] loadNibNamed:@"MSFAddBankCardTableViewCell" owner:nil options:nil].firstObject;
+        addCell.contentView.backgroundColor = [UIColor clearColor];
+        //[addCell.AddCard addTarget:self action:@selector(AddCardBank:) forControlEvents:UIControlEventTouchUpInside];
+        addCell.AddCard.rac_command = self.viewModel.excuteActionCommand;
+        
+        [addCell.AddCard.rac_command.executionSignals subscribeNext:^(id x) {
+            MSFUser *user = [self.viewModel.services httpClient].user;
+            if (!user.hasTransactionalCode) {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                [alert show];
+                [alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+                    if (index.intValue == 1) {
+                        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+                        MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+                        MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+                        
+                        [self.navigationController pushViewController:setTradePasswordVC animated:YES];
+                    }
+                    
+                }];
+            }
+        }];
+        
+        addCell.BankCardList.rac_command = self.viewModel.executeSupportCommand;
+       
+         
+
+        addCell.selectionStyle = UITableViewCellSelectionStyleNone;
 		return addCell;
 	}
 	static NSString *cellIdentifier = @"BnkCardCell";
@@ -269,52 +298,9 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-	UIView *footerView = [[UIView alloc] init];
-	footerView.backgroundColor = [MSFCommandView getColorWithString:@"#F6F6F6"];
-	float width = [[UIScreen mainScreen] bounds].size.width;
-	UIView *topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 0.5)];
-	topLine.backgroundColor = [UIColor lightGrayColor];
-	[footerView addSubview:topLine];
-	if (section == 0) {
-		UIView *bottom = [[UIView alloc] initWithFrame:CGRectMake(0, 19.5, width, 0.5)];
-		bottom.backgroundColor = [UIColor lightGrayColor];
-		[footerView addSubview:bottom];
-	}
-	
+    UIView *footerView = [[UIView alloc] init];
 	return footerView;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 1) {
-		MSFUser *user = [self.viewModel.services httpClient].user;
-		if (!user.hasTransactionalCode) {
-			
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
-				if (index.intValue == 1) {
-					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
-					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
-					
-					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
-				}
-				
-			}];
-			
-		} else {
-			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
-			BOOL isFirstBankCard = NO;
-			if (self.dataArray.count == 0) {
-				isFirstBankCard = YES;
-			}
-			vc.viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
-			[self.navigationController pushViewController:vc animated:YES];
-		}
-		
-	}
-}
+} 
 
 #pragma mark - MSFInputTradePasswordDelegate
 
