@@ -10,6 +10,7 @@
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFCheckAllowApply.h"
 #import "MSFUser.h"
+
 @implementation MSFClient (CheckAllowApply)
 
 - (RACSignal *)fetchCheckAllowApply {

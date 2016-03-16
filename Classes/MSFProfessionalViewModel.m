@@ -53,6 +53,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 @property (nonatomic, strong) NSString *jobNatureCode;
 @property (nonatomic, strong) NSString *jobPositionCode;
 @property (nonatomic, strong) NSString *qualificationCode;
+
 @end
 
 @implementation MSFProfessionalViewModel
@@ -227,8 +228,10 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	RACChannelTo(self, qualificationCode) = RACChannelTo(self.model, qualification);
 	
   return self;
+	
 }
-- (void) updateViewModels {
+
+- (void)updateViewModels {
 
 //    self.viewModels = [self.viewModels mtl_arrayByRemovingObject:[[MSFContactViewModel alloc] initWithModel:self.contacts[0] Services:self.services]];
 //    
@@ -242,6 +245,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     self.viewModels = tempViewModels;
     self.contacts = tempContacts;
 }
+
 #pragma mark - Private
 
 - (RACSignal *)enrollmentYearSignal:(UIView *)aView {
@@ -304,6 +308,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     }]
             replay];
 }
+
 #pragma mark - Private
 
 - (RACSignal *)updateValidSignal {
