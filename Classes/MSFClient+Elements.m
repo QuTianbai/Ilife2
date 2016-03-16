@@ -32,7 +32,7 @@
 	NSParameterAssert(productID);
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/getMendFile" parameters:@{
-		@"appNo": applicaitonNo,
+		@"applyNo": applicaitonNo,
 		@"productCode": productID,
 	}];
 	return [[self enqueueRequest:request resultClass:MSFElement.class] map:^id(MSFResponse *response) {
