@@ -32,7 +32,7 @@
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFAuthorizeViewModel.h"
 #import "MSFEnvironmentsViewController.h"
 #import "UIImage+Color.h"
@@ -45,7 +45,7 @@
 @interface AppDelegate ()
 
 @property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
-@property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
+@property (nonatomic, strong) MSFConfirmContractViewModel *confirmContactViewModel;
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MSFReleaseNote *releaseNote;
@@ -133,6 +133,7 @@
 
 - (void)updateCheck {
 	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.isUpdated) return;
 	if (self.releaseNote.status == 1) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
 			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -204,7 +205,7 @@
 		
 		self.confirmContactWindow = [[MSFCustomAlertView alloc] initAlertViewWithFrame:[[UIScreen mainScreen] bounds] AndTitle:@"恭喜您" AndMessage:@"合同已通过我们的审核，赶紧去确认合同吧！" AndImage:[UIImage imageNamed:@"icon-confirm"] andCancleButtonTitle:@"稍后确认" AndConfirmButtonTitle:@"立即确认"];
 		if (self.confirmContactViewModel == nil) {
-			self.confirmContactViewModel = [[MSFConfirmContactViewModel alloc] initWithServers:self.viewModel.services];
+			self.confirmContactViewModel = [[MSFConfirmContractViewModel alloc] initWithServers:self.viewModel.services];
 		} else {
 			[self.confirmContactViewModel fetchContractist];
 		}

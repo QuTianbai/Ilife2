@@ -35,7 +35,7 @@
 
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
 #import "MSFApplyListViewModel.h"
@@ -91,6 +91,9 @@
 #import "MSFApplyCashViewModel.h"
 #import "MSFMSFApplyCashViewController.h"
 
+#import "MSFSupportBankListModel.h"
+#import "MSFSupportBankListTableViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -142,7 +145,7 @@
 	} else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
 		viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
+	} else if ([viewModel isKindOfClass:[MSFConfirmContractViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
@@ -185,7 +188,9 @@
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		viewController = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
-	} else {
+    } else if ([viewModel isKindOfClass:MSFSupportBankListModel.class]){
+        viewController = [[MSFSupportBankListTableViewController alloc]initWithViewModel:viewModel];[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+    } else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
 	
@@ -235,9 +240,6 @@
 		}
 		
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
-		view.backgroundColor = UIColor.blackColor;
-		[imagePickerController.view addSubview:view];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
 			imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
@@ -256,6 +258,9 @@
 				}];
 			}
 		} else {
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+			view.backgroundColor = UIColor.blackColor;
+			[imagePickerController.view addSubview:view];
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
 		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];

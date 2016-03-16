@@ -368,7 +368,6 @@
 }
 
 - (RACSignal *)commitValidSignal {
-	//TODO: 增加商品贷可以申请贷款进入基本信息编辑状态的条件
 	return [RACSignal return:@YES];
 }
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class MSFConfirmContactViewModel;
+@class MSFConfirmContractViewModel;
 
 extern NSString *const MSFREQUESTCONTRACTSNOTIFACATION;
 extern NSString *const MSFCONFIRMCONTACTNOTIFACATION;
@@ -18,7 +18,7 @@ extern NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION;
 
 - (instancetype)initAlertViewWithFrame:(CGRect)frame  AndTitle:(NSString *)title AndMessage:(NSString *)message AndImage:(UIImage *)image andCancleButtonTitle:(NSString *)cancleButton AndConfirmButtonTitle:(NSString *)confirmTitle;
 
-- (void)showWithViewModel:(MSFConfirmContactViewModel *)viewmodel;
+- (void)showWithViewModel:(MSFConfirmContractViewModel *)viewmodel;
 - (void)dismiss;
 
 @end

@@ -24,7 +24,6 @@
 // productID     - 申请的产品
 //
 // Returns a signal will send element instance flow
-//TODO: 需要更新接口
 - (RACSignal *)fetchSupplementalElementsApplicationNo:(NSString *)applicaitonNo productID:(NSString *)productID;
 
 // 获取马上贷资料清单

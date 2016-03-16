@@ -1,3 +1,13 @@
+Version 3.0.0.3:
+ - Fix new user signin crash
+ - Fix warnings
+
+Version 3.0.0.2:
+ - Update credit fetched status
+ - Improve take photo view
+ - Update server version local verify
+ - Update release note isupdate
+
 Version 2.3.0.10:
  - Merge branch 'master' of http://git.msxf.local/zl/finance into pu/v1.3.0
  - 更新内部版本号规则

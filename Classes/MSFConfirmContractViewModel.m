@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFContactListModel.h"
 #import "MSFClient+Contacts.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -21,14 +21,14 @@
 
 static NSString *kSocialInsuranceLoanTemplate = @"4102";
 
-@interface MSFConfirmContactViewModel ()
+@interface MSFConfirmContractViewModel ()
 
 @property (nonatomic, strong) NSArray *contactsArray;
 @property (nonatomic, strong, readwrite) MSFApplyList *model;
 
 @end
 
-@implementation MSFConfirmContactViewModel
+@implementation MSFConfirmContractViewModel
 
 - (id)initWithServers:(id<MSFViewModelServices>)servers {
 	if (!(self = [super init])) {
@@ -73,16 +73,6 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 
 - (void)fetchContractist {
 	// 这个接口暂时没有发现是做什么用的
-	@weakify(self)
-	[[self.servers.httpClient fetchCirculateCash:nil] subscribeNext:^(MSFCirculateCashModel *model) {
-		@strongify(self)
-		if (([model.type isEqualToString:@"APPLY"] && [model.applyStatus isEqualToString:@"I"]) || (![model.type isEqualToString:@"APPLY"] && [model.contractStatus isEqualToString:@"I"])) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTNOTIFACATION object:nil];
-			self.circulateModel = model;
-		}
-	} error:^(NSError *error) {
-		NSLog(@"%@", error.localizedDescription);
-	}];
 }
 
 - (RACSignal *)executeLaterConfirmContract {

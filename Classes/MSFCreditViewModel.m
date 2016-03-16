@@ -188,7 +188,7 @@ static NSString *const kApplicationCreditType = @"1";
 - (RACSignal *)fetchCreditStatus {
 	return [[[self.services.httpClient fetchRecentApplicaiton:kApplicationCreditType]
 		catch:^RACSignal *(NSError *error) {
-			return [RACSignal return:NSNull.null];
+			return [RACSignal empty];
 		}]
 		map:^id(MSFApplyList *application) {
 			MSFApplicationStatus status = MSFApplicationNone;
@@ -207,7 +207,7 @@ static NSString *const kApplicationCreditType = @"1";
 			} else {
 				status = MSFApplicationActivated;
 			}
-			return RACTuplePack(@(MSFApplicationNone), application);
+			return RACTuplePack(@(status), application);
 		}];
 }
 

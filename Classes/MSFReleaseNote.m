@@ -45,4 +45,14 @@
 	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFPoster.class];
 }
 
+- (BOOL)isUpdated {
+	NSArray *builds = [NSBundle.mainBundle.infoDictionary[@"CFBundleVersion"] componentsSeparatedByString:@"."];
+	NSParameterAssert(builds.count != 3);
+	NSInteger index = 0;
+	index += [builds[0] integerValue] * 10000;
+	index += [builds[1] integerValue] * 1000;
+	index += [builds.lastObject integerValue];
+	return self.versionCode.integerValue <=  index;
+}
+
 @end

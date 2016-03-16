@@ -82,7 +82,7 @@
 	self.tableView.bounces = NO;
 	
 	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.name) map:^id(id value) {
-		return [NSString stringWithFormat:@"%@, 您好", value];
+		return [NSString stringWithFormat:@"%@, 您好", value?:@""];
 	}];
 	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.mobile) map:^id(id value) {
 		return [NSString stringWithFormat:@"手机号: %@", value];
