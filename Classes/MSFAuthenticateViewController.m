@@ -60,12 +60,12 @@
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..."];
 		[signal subscribeNext:^(id x) {
-			[SVProgressHUD dismiss];
-			((MSFAuthenticate *)x).hasChecked = @"1";
-			[[self.viewModel.services.httpClient user] mergeValuesForKeysFromModel:x];
 			[SVProgressHUD showSuccessWithStatus:@"实名认证成功"];
-			[self dismissViewControllerAnimated:YES completion:nil];
-			[self.navigationController popViewControllerAnimated:YES];
+			if (self.navigationController.viewControllers.count == 1) {
+				[self dismissViewControllerAnimated:YES completion:nil];
+			} else {
+				[self.navigationController popViewControllerAnimated:YES];
+			}
 		}];
 	}];
 	[self.viewModel.executeAuthenticateCommand.errors subscribeNext:^(NSError *error) {
