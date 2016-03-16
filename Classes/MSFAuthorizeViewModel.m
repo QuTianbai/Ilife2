@@ -18,6 +18,9 @@
 #import "MSFServer.h"
 #import "MSFAddressCodes.h"
 #import "MSFAddressViewModel.h"
+#import "MSFGetBankIcon.h"
+#import "MSFBankInfoModel.h"
+#import <FMDB/FMDB.h>
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -44,6 +47,9 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 @property (nonatomic, strong, readwrite) RACSubject *signInInvalidSignal;
 @property (nonatomic, strong) MSFAddressViewModel *addressViewModel;
 @property (nonatomic, strong, readwrite) RACCommand *executeAlterAddressCommand;
+@property (nonatomic, strong) MSFBankInfoModel *bankInfo;
+@property (nonatomic, strong) NSString *oldBankNo;
+@property (nonatomic, strong) FMDatabase *fmdb;
 
 @end
 
@@ -66,6 +72,8 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	_signInValid = YES;
 	_permanent = NO;
 	_captchType = @"REG";
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"bank" ofType:@"db"];
+	_fmdb = [[FMDatabase alloc] initWithPath:path];
 	_loginType = [[NSUserDefaults standardUserDefaults] boolForKey:@"install-boot"] ? MSFLoginSignIn :MSFLoginSignUp;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"install-boot"];
 	_captchaHighlightedImage = [[UIImage imageNamed:@"bg-send-captcha-highlighted"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
@@ -629,6 +637,59 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 - (RACSignal *)updateSignInPasswordSignal {
 	return [self.services.httpClient updateSignInPassword:self.usingSignInPasssword password:self.updatingSignInPasssword];
+}
+
+- (RACSignal *)searchLocalBankInformationWithNumber:(NSString *)number {
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSString *tempBankNo = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+		
+		if (number.length == 0) [subscriber sendNext:RACTuplePack(nil, @"")];
+		
+		for (int i = 0; i < tempBankNo.length; i ++) {
+			NSString *tmp = [tempBankNo substringToIndex:i];
+			if ([tmp isEqualToString:self.oldBankNo]) {
+				[subscriber sendNext:RACTuplePack(
+					[UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
+					self.bankInfo.name
+				)];
+				return [RACDisposable disposableWithBlock:^{
+					[self.fmdb close];
+				}];
+			}
+		}
+		if (![self.fmdb open]) {
+			[subscriber sendNext:RACTuplePack(nil, @"")];
+		} else {
+			NSError *error;
+			NSString *sqlStr = [NSString stringWithFormat:@"select * from basic_bank_bin where bank_bin='%@'", tempBankNo];
+			FMResultSet *rs = [self.fmdb executeQuery:sqlStr];
+			NSMutableArray *itemArray = [[NSMutableArray alloc] init];
+			while ([rs next]) {
+				MSFBankInfoModel *tmpBankInfo = [MTLFMDBAdapter modelOfClass:MSFBankInfoModel.class fromFMResultSet:rs error:&error];
+				if (error) {
+					[subscriber sendNext:RACTuplePack(nil,  @"")];
+					return [RACDisposable disposableWithBlock:^{
+						[self.fmdb close];
+					}];
+				}
+				[itemArray addObject:tmpBankInfo];
+			}
+			if (itemArray.count == 1) {
+				self.oldBankNo = tempBankNo;
+				self.bankInfo = itemArray.firstObject;
+				[subscriber sendNext:RACTuplePack(
+					[UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
+					self.bankInfo.name
+				)];
+			} else {
+				[subscriber sendNext:RACTuplePack(nil,  @"")];
+			}
+		}
+		
+		return [RACDisposable disposableWithBlock:^{
+			[self.fmdb close];
+		}];
+	}] replayLazily];
 }
 
 @end

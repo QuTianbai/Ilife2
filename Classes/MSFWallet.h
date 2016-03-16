@@ -10,19 +10,19 @@
 @interface MSFWallet : MSFObject
 
 // 总额度
-@property (nonatomic, assign, readonly) double totalLimit;
+@property (nonatomic, assign, readonly) NSString *totalLimit;
 
 // 已用额度
-@property (nonatomic, assign, readonly) double usedLimit;
+@property (nonatomic, assign, readonly) NSString *usedLimit;
 
 // 可用刻度
-@property (nonatomic, assign, readonly) double usableLimit;
+@property (nonatomic, assign, readonly) NSString *usableLimit;
 
 // 已经逾期金额
-@property (nonatomic, assign, readonly) double overdueMoney;
+@property (nonatomic, assign, readonly) NSString *overdueMoney;
 
 // 本期应还款金额
-@property (nonatomic, assign, readonly) double latestDueMoney;
+@property (nonatomic, assign, readonly) NSString *latestDueMoney;
 
 // 还款日
 @property (nonatomic, copy, readonly) NSString *latestDueDate;
