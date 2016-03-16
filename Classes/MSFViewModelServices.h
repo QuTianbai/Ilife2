@@ -44,5 +44,7 @@
 - (RACSignal *)msf_selectValuesWithContent:(NSString *)content keycode:(NSString *)keycode;
 
 - (RACSignal *)msf_selectContactSignal;
+//弹出设置交易密码
+- (void)pushSetTransPassword;
 
 @end
