@@ -55,6 +55,15 @@
 		}];
 	}];
 	
+	RAC(self, isValid) = [RACSignal combineLatest:@[
+		RACObserve(self, name),
+		RACObserve(self, phone),
+		RACObserve(self, relationship)
+	]
+	reduce:^id(NSString *name, NSString *phone, NSString *relationship) {
+		return @(name.length > 0 && phone.length > 0 && relationship.length > 0);
+	}];
+	
   return self;
 }
 

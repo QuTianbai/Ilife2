@@ -321,6 +321,16 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
+	__block NSError *error = nil;
+	[self.viewModels enumerateObjectsUsingBlock:^(MSFContactViewModel *obj, NSUInteger idx, BOOL *stop) {
+		if (!obj.isValid) {
+			error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请填写完整联系人信息"
+			}];
+			*stop = YES;
+		}
+	}];
+	if (error) return [RACSignal error:error];
 	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *user) {
 		MSFPersonal *personal = [[MSFPersonal alloc] initWithDictionary:@{@keypath(MSFPersonal.new, maritalStatus): self.maritalStatus} error:nil];
 		[user.personal mergeValueForKey:@keypath(MSFPersonal.new, maritalStatus) fromModel:personal];
