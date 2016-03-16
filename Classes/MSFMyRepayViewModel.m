@@ -43,12 +43,16 @@
 	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
 	[RACObserve(self, model)
 	 subscribeNext:^(MSFRepaymentSchedules *model) {
-		 NSString *str = [NSString stringWithFormat:@"本期应还：¥%@", model.repaymentTotalAmount];
+		 NSString *money = model.repaymentTotalAmount;
+		 if ([model.contractType isEqualToString:@"4"]) {
+			 money = model.totalOverdueMoney;
+		 }
+		 NSString *str = [NSString stringWithFormat:@"本期应还：¥%@", money];
 		 NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:str];
 		 NSRange redRange = [str rangeOfString:[NSString stringWithFormat:@"¥%@", model.repaymentTotalAmount]];
 		 
 		 if ([model.contractStatus isEqualToString:@"已还款"]) {
-			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, 6 + model.repaymentTotalAmount.length)];
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, 6 + money.length)];
 		 } else {
 			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:redRange];
 		 }

@@ -29,4 +29,6 @@
 //账期
 @property (nonatomic, copy, readonly) NSString *loanExpireDate;
 
+@property (nonatomic, copy, readonly) NSString *totalOverdueMoney;
+
 @end
