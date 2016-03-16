@@ -15,6 +15,7 @@
 #import "MSFMyOrderDetailTravelViewModel.h"
 #import "MSFCompanInfoListViewModel.h"
 #import "NSDictionary+MSFKeyValue.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFMyOrderListProductsViewModel ()
 
@@ -47,11 +48,14 @@
 	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[[self.services.httpClient fetchMyOrderProductWithInOrderId:self.inOrderId appNo:self.appNo]
 		subscribeNext:^(id x) {
+			[SVProgressHUD dismiss];
 			self.model = x;
 			self.isReload = @"1";
 		} error:^(NSError *error) {
+			[SVProgressHUD dismiss];
 			NSLog(@"error:%@", error);
 			self.isReload = @"0";
 		}];
