@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFBlurButton.h"
 
 @interface MSFAddBankCardTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet MSFBlurButton *AddCard;
+@property (weak, nonatomic) IBOutlet MSFBlurButton *BankCardList;
 
 @end

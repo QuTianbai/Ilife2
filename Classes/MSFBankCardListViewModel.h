@@ -22,6 +22,8 @@ typedef void (^ReturnBankCardIDBlock)(id model);
 
 @property (nonatomic, strong) RACCommand *executeBankList;
 
+@property (nonatomic, strong) RACCommand *excuteActionCommand;
+@property (nonatomic, strong) RACCommand *executeSupportCommand;
 @property (nonatomic, strong) RACCommand *executeSetMaster;
 @property (nonatomic, strong) RACCommand *executeUnbind;
 
