@@ -53,7 +53,7 @@
 - (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UITextField *tf = (UITextField *)[self.contentView viewWithTag:100];
 	BOOL allow = viewModel.cart.minDownPmt.floatValue > 0 || viewModel.cart.minDownPmt.floatValue > 0;
-	if (allow && viewModel.cart.isDownPmt) {
+	if (allow) {
 		tf.userInteractionEnabled = YES;
 		tf.placeholder = @"请填写首付金额";
 		RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);
