@@ -34,7 +34,7 @@
 // segNo - 支付序列号
 //
 // Returns a signal which sends a MSFResponse or nil
-- (RACSignal *)downPaymentWithPayment:(MSFOrderDetail *)order SMSCode:(NSString *)smsCode SMSSeqNo:(NSString *)seqNo;
+- (RACSignal *)downPaymentWithPayment:(MSFOrderDetail *)order SMSCode:(NSString *)smsCode SMSSeqNo:(NSString *)seqNo bankCardID:(NSString *)bankcardid;
 
 - (RACSignal *)requestLoan:(MSFOrderDetail *)order __deprecated;
 

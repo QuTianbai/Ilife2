@@ -94,6 +94,7 @@
 #import "MSFSupportBankListTableViewController.h"
 #import "MSFPeoplePickerNavigationController.h"
 #import "MSFPeoplePickerNavigationController+RACSignalSupport.h"
+#import "AppDelegate.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -428,6 +429,22 @@
 }
 
 - (void)cancel {
+}
+
+- (void)pushSetTransPassword {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																										message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+			if (index.intValue == 1) {
+				AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+				MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+				MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+				
+				[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+			}
+			
+		}];
 }
 
 @end

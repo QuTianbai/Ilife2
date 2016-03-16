@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFMyOrderListViewModel.h"
 #import "MSFClient+Order.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFMyOderListsViewModel ()
 
@@ -32,7 +33,9 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		return [[self fetchSingal] flattenMap:^RACStream *(NSArray *viewModels) {
+			[SVProgressHUD dismiss];
 			return [[[viewModels.rac_sequence filter:^BOOL(MSFMyOrderListViewModel *viewModel) {
 				return YES;
 			}]
@@ -59,13 +62,16 @@
 }
 
 - (RACSignal *)fetchStatus:(NSString *)status {
+	@weakify(self)
 	return [[[[self.services.httpClient
 						 fetchMyOrderListWithType:status]
 						catch:^RACSignal *(NSError *error) {
+							[SVProgressHUD dismiss];
 							return [RACSignal empty];
 						}]
 					 map:^id(id value) {
-						 return [[MSFMyOrderListViewModel alloc] initWithModel:value];
+						 @strongify(self)
+						 return [[MSFMyOrderListViewModel alloc] initWithServices:self.services model:value];
 					 }]
 					collect];
 }

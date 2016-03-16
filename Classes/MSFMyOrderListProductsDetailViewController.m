@@ -172,13 +172,13 @@ MSFInputTradePasswordViewController *pvc;
 		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
 			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
-				MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
-				MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
-				[self.navigationController pushViewController:vc animated:YES];
-			} else {
 				pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 				pvc.delegate = self;
 				[[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+			} else {
+				MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
+				MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+				[self.navigationController pushViewController:vc animated:YES];
 			}
 		
 		}];
