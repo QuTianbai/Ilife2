@@ -101,7 +101,7 @@
 }
 
 - (RACSignal *)submitSignal {
-	return [[self updateSignal] combineLatestWith:[self commitSignal]];
+	return [self updateSignal];
 }
 
 - (RACSignal *)updateSignal {
@@ -117,9 +117,11 @@
 	[user mergeValueForKey:@keypath(user.personal) fromModel:model];
 	[user mergeValueForKey:@keypath(user.contacts) fromModel:model];
 	user.applyType = @"4";
-	return [[self.services.httpClient updateUser:user] doNext:^(id x) {
+	return [[[self.services.httpClient updateUser:user] doNext:^(id x) {
 		[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
 		[self.services.httpClient.user mergeValueForKey:@keypath(MSFUser.new, contacts) fromModel:model];
+	}] flattenMap:^RACStream *(id value) {
+		return [self commitSignal];
 	}];
 }
 
