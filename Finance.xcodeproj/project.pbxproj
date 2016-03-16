@@ -6958,7 +6958,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "23ed30cd-3348-4bb3-9716-d9b7e05ab444";
+				PROVISIONING_PROFILE = "eb41eff2-3f04-48ff-8e36-0913fb67ae2b";
 			};
 			name = Test;
 		};
