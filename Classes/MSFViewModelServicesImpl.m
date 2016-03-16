@@ -88,7 +88,7 @@
 #import "MSFLoanListViewController.h"
 
 #import "MSFApplyCashViewModel.h"
-#import "MSFMSFApplyCashViewController.h"
+#import "MSFApplyCashViewController.h"
 
 #import "MSFSupportBankListModel.h"
 #import "MSFSupportBankListTableViewController.h"
@@ -189,7 +189,7 @@
 	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-		viewController = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
+		viewController = [[MSFApplyCashViewController alloc] initWithViewModel:viewModel];
     } else if ([viewModel isKindOfClass:MSFSupportBankListModel.class]){
         viewController = [[MSFSupportBankListTableViewController alloc]initWithViewModel:viewModel];[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
     } else {

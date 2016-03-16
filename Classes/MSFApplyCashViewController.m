@@ -4,7 +4,7 @@
 //	Copyright (c) 2015年 MSFINANCE. All rights reserved.
 //
 
-#import "MSFMSFApplyCashViewController.h"
+#import "MSFApplyCashViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
 #import <SVProgressHUD/SVProgressHUD.h>
@@ -38,7 +38,7 @@ static const CGFloat heightOfButton = 44;
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
-@interface MSFMSFApplyCashViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
+@interface MSFApplyCashViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *repayConstraint;
@@ -73,7 +73,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @end
 
-@implementation MSFMSFApplyCashViewController
+@implementation MSFApplyCashViewController
 
 #pragma mark - NSObject
 
