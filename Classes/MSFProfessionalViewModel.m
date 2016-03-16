@@ -232,23 +232,20 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (void)updateViewModels {
-
-//    self.viewModels = [self.viewModels mtl_arrayByRemovingObject:[[MSFContactViewModel alloc] initWithModel:self.contacts[0] Services:self.services]];
-//    
-//    self.contacts = [self.contacts mtl_arrayByRemovingObject:self.contacts[0]];
-    NSMutableArray *tempViewModels = [NSMutableArray arrayWithArray:self.viewModels];
-    NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
-    MSFContact *content = [[MSFContact alloc] init];
-    content.contactRelation = @"RF01";
-    tempContacts[0] = content;
-    tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
-    self.viewModels = tempViewModels;
-    self.contacts = tempContacts;
+	NSMutableArray *tempViewModels = [NSMutableArray arrayWithArray:self.viewModels];
+	NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
+	MSFContact *content = [[MSFContact alloc] init];
+	content.contactRelation = @"RF01";
+	tempContacts[0] = content;
+	tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+	self.viewModels = tempViewModels;
+	self.contacts = tempContacts;
 }
 
 #pragma mark - Private
 
 - (RACSignal *)enrollmentYearSignal:(UIView *)aView {
+	[[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		NSDate *currentDate = [NSDate msf_date];
@@ -278,35 +275,35 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)enrollmentYearSignal:(UIView *)aView withLimit:(NSString *)jobDate {
-    return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDate *currentDate = [NSDate msf_date];
-        NSDateComponents *comps = [[NSDateComponents alloc] init];
-        [comps setYear:-5];
-        NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
-        if (jobDate) {
-            minDate = [NSDateFormatter msf_dateFromString:self.jobDate];
-        }
-        [comps setYear:5];
-        NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:minDate options:0];
-        [ActionSheetDatePicker
-         showPickerWithTitle:@""
-         datePickerMode:UIDatePickerModeDate
-         selectedDate:currentDate
-         minimumDate:minDate
-         maximumDate:nil
-         doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-             [subscriber sendNext:[NSDateFormatter professional_stringFromDate:selectedDate]];
-             [subscriber sendCompleted];
-         }
-         cancelBlock:^(ActionSheetDatePicker *picker) {
-             [subscriber sendNext:nil];
-             [subscriber sendCompleted];
-         }
-         origin:aView];
-        return nil;
-    }]
-            replay];
+	[[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+			NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+			NSDate *currentDate = [NSDate msf_date];
+			NSDateComponents *comps = [[NSDateComponents alloc] init];
+			[comps setYear:-5];
+			NSDate *minDate = [calendar dateByAddingComponents:comps toDate:currentDate options:0];
+			if (jobDate) {
+					minDate = [NSDateFormatter msf_dateFromString:self.jobDate];
+			}
+			[comps setYear:5];
+			[ActionSheetDatePicker
+			 showPickerWithTitle:@""
+			 datePickerMode:UIDatePickerModeDate
+			 selectedDate:currentDate
+			 minimumDate:minDate
+			 maximumDate:nil
+			 doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
+					 [subscriber sendNext:[NSDateFormatter professional_stringFromDate:selectedDate]];
+					 [subscriber sendCompleted];
+			 }
+			 cancelBlock:^(ActionSheetDatePicker *picker) {
+					 [subscriber sendNext:nil];
+					 [subscriber sendCompleted];
+			 }
+			 origin:aView];
+			return nil;
+	}]
+	replay];
 }
 
 #pragma mark - Private
