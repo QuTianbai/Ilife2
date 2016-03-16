@@ -130,6 +130,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if ([self isChangedBankCard]) {
+		return 1;
+	}
     return 2;
 }
 
@@ -181,12 +184,14 @@
 		cell = [[NSBundle mainBundle] loadNibNamed:@"MSFBankCardListTableViewCell" owner:nil options:nil].firstObject;
 	}
 
-	
-	if (indexPath.row == 0) {
+	if (indexPath.row == 0 || [self isChangedBankCard]) {
 			cell.isMaster.hidden = NO;
 			cell.setMasterBT.hidden = YES;
 			cell.unBindMaster.hidden = YES;
 	} else {
+		if ([self isChangedBankCard]) {
+			cell.isMaster.hidden = YES;
+		}
 			cell.isMaster.hidden = YES;
 			cell.setMasterBT.hidden = NO;
 			cell.unBindMaster.hidden = NO;
@@ -195,7 +200,7 @@
 	cell.bankIconImg.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [MSFGetBankIcon getIconNameWithBankCode:model.bankCode]]];
 	cell.bankName.text = model.bankName;
 	cell.BankType.text = [NSString stringWithFormat:@"%@ %@", [model.bankCardNo substringFromIndex:model.bankCardNo.length - 4], [self bankType:model.bankCardType]];
-	if (model.master) {
+	if (model.master || [self isChangedBankCard]) {
 		cell.isMaster.hidden = NO;
 		cell.setMasterBT.hidden = YES;
 		cell.unBindMaster.hidden = YES;
@@ -270,6 +275,10 @@
 		
 	}];
 	
+	if ([self isChangedBankCard]) {
+		cell.isMaster.hidden = YES;
+	}
+	
 	return cell;
 }
 
@@ -300,7 +309,46 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *footerView = [[UIView alloc] init];
 	return footerView;
-} 
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	if ([self isChangedBankCard]) {
+		MSFBankCardListModel *model = self.dataArray[indexPath.row];
+		if (self.viewModel.returnBankCardIDBlock != nil) {
+			self.viewModel.returnBankCardIDBlock(model);
+		}
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+	if (indexPath.section == 1) {
+		MSFUser *user = [self.viewModel.services httpClient].user;
+		if (!user.hasTransactionalCode) {
+			
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																											message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+			[alert show];
+			[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+				if (index.intValue == 1) {
+					AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+					MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+					MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+					
+					[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+				}
+				
+			}];
+			
+		} else {
+			MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+			BOOL isFirstBankCard = NO;
+			if (self.dataArray.count == 0) {
+				isFirstBankCard = YES;
+			}
+			vc.viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
+			[self.navigationController pushViewController:vc animated:YES];
+		}
+		
+	}
+}
 
 #pragma mark - MSFInputTradePasswordDelegate
 
@@ -371,6 +419,10 @@
 	} 
 	
 	return @"";
+}
+
+- (BOOL)isChangedBankCard {
+	return [self.viewModel.type isEqualToString:@"1"];
 }
 
 @end

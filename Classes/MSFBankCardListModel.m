@@ -10,4 +10,16 @@
 
 @implementation MSFBankCardListModel
 
++ (NSValueTransformer *)bankCardIdJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id x) {
+		if ([x isKindOfClass:NSString.class]) {
+			return x;
+		} else if ([x isKindOfClass:NSNumber.class]) {
+			return [x stringValue];
+		} else {
+			return nil;
+		}
+	}];
+}
+
 @end

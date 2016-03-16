@@ -72,10 +72,7 @@
 
 - (RACSignal *)fetchSingal {
 	return [[RACSignal combineLatest:@[
-																		 [[self fetchStatus:@"0"] ignore:nil],
-																		 [[self fetchStatus:@"1"] ignore:nil],
-																		 [[self fetchStatus:@"3"] ignore:nil],
-																		 [[self fetchStatus:@"4"] ignore:nil]
+																		 [[self fetchStatus:@"0"] ignore:nil]
 																		 ]] flattenMap:^RACStream *(RACTuple *value) {
 		RACTupleUnpack(NSArray *b, NSArray *c, NSArray *d, NSArray *e) = value;
 		b = [[[b arrayByAddingObjectsFromArray:c] arrayByAddingObjectsFromArray:d] arrayByAddingObjectsFromArray:e];

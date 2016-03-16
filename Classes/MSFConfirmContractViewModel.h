@@ -13,7 +13,6 @@
 @class MSFCirculateCashModel;
 @class MSFApplyList;
 
-//TODO: Rename contract
 @interface MSFConfirmContractViewModel : RVMViewModel
 
 @property (nonatomic, copy) NSString *contactStatus;

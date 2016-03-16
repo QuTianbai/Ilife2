@@ -11,6 +11,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
+#import "MSFAuthenticate.h"
 
 @interface MSFAuthenticateViewController ()
 
@@ -60,8 +61,11 @@
 		[SVProgressHUD showWithStatus:@"正在提交..."];
 		[signal subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
-			[[self.viewModel.services.httpClient user] mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:[[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, hasChecked): @"1"} error:nil]];
+			((MSFAuthenticate *)x).hasChecked = @"1";
+			[[self.viewModel.services.httpClient user] mergeValuesForKeysFromModel:x];
+			[SVProgressHUD showSuccessWithStatus:@"实名认证成功"];
 			[self dismissViewControllerAnimated:YES completion:nil];
+			[self.navigationController popViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeAuthenticateCommand.errors subscribeNext:^(NSError *error) {
@@ -76,6 +80,19 @@
 			return [RACSignal empty];
 		}];
 	}
+	
+	[RACObserve(self, bankcard.text) subscribeNext:^(id x) {
+		@strongify(self)
+		[[[self.viewModel searchLocalBankInformationWithNumber:self.bankcard.text]
+			takeUntil:self.rac_willDeallocSignal]
+			subscribeNext:^(RACTuple *imageAndName) {
+				RACTupleUnpack(UIImage *image, NSString *name) = imageAndName;
+				self.promptLogo.image = image;
+				self.promptLabel.text = name;
+				NSLog(@"%@", imageAndName);
+			}];
+	}];
+	
 }
 
 @end

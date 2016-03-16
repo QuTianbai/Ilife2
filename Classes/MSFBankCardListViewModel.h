@@ -13,8 +13,11 @@
 
 @class RACCommand;
 
+typedef void (^ReturnBankCardIDBlock)(id model);
+
 @interface MSFBankCardListViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 @property (nonatomic, strong) RACCommand *executeBankList;
@@ -28,8 +31,11 @@
 
 @property (nonatomic, copy) NSString *bankCardID;
 @property (nonatomic, strong, readonly) MSFCheckTradePasswordViewModel *checkHasTrandPasswordViewModel;
+@property (nonatomic, copy) ReturnBankCardIDBlock returnBankCardIDBlock;
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)servers;
+- (void)returnBanKModel:(ReturnBankCardIDBlock)block;
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)servers type:(NSString *)type;
 
 - (MSFBankCardInfoViewModel *)getBankCardInfoViewModel:(NSInteger)integer;
 

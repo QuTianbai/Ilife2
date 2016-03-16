@@ -29,6 +29,10 @@
 #import "MSFOrderListViewModel.h"
 #import "MSFMyRepaysViewModel.h"
 #import "MSFUser.h"
+#import "MSFClient+CheckAllowApply.h"
+#import "MSFCheckAllowApply.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFPersonalViewModel.h"
 
 static NSString *const kApplicationWalletIdentifier = @"4102";
 static NSString *const kApplicationWalletType = @"4";
@@ -129,10 +133,10 @@ static NSString *const kApplicationWalletType = @"4";
 				self.action = @"";
 				[[self.services.httpClient fetcchWallet] subscribeNext:^(MSFWallet *model) {
 					self.model = model;
-					self.totalAmounts = [NSString stringWithFormat:@"%.2f", model.totalLimit];
-					self.validAmounts = [NSString stringWithFormat:@"%.2f", model.usableLimit];
-					self.usedAmounts = [NSString stringWithFormat:@"%.2f", model.usedLimit];
-					self.loanRates = [NSString stringWithFormat:@"%.2f", model.feeRate];
+					self.totalAmounts = model.totalLimit;
+					self.validAmounts = model.usableLimit;
+					self.usedAmounts = model.usedLimit;
+					self.loanRates = [NSString stringWithFormat:@"%.3f%%", model.feeRate * 100];
 					self.repayDate = model.latestDueDate;
 				}];
 			} break;
@@ -147,7 +151,7 @@ static NSString *const kApplicationWalletType = @"4";
 	_executeDrawCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return self.drawSignal;
 	}];
-	_executeRepayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeRepayCommand = [[RACCommand alloc] initWithEnabled:[self repayAllow] signalBlock:^RACSignal *(id input) {
 		return self.repaySignal;
 	}];
 	_executeBillsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -228,13 +232,23 @@ static NSString *const kApplicationWalletType = @"4";
 	}
 	
 	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected) {
-		return [[self.services.httpClient fetchBankCardList]
-			flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
-				if (bankcard.bankCardNo.length > 0) {
+		
+		[SVProgressHUD showWithStatus:@"请稍后..."];
+		@weakify(self)
+		return [[[self.services.httpClient fetchCheckAllowApply]
+			 flattenMap:^id(MSFCheckAllowApply *model) {
+				 @strongify(self)
+				 if (model.processing == 1) {
+					 [SVProgressHUD dismiss];
 					return self.applicationSignal;
-				} else {
-					return self.bindBankcardSignal;
-				}
+				 } else {
+					 [SVProgressHUD dismiss];
+					 [[[UIAlertView alloc] initWithTitle:@"提示" message:@"您目前还有一笔贷款正在进行中，暂不能申请贷款。" delegate:nil cancelButtonTitle:@"确认" otherButtonTitles:nil] show];
+					 return nil;
+				 }
+			 }]
+			doError:^(NSError *error) {
+				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			}];
 	}
 	
@@ -252,7 +266,8 @@ static NSString *const kApplicationWalletType = @"4";
 
 - (RACSignal *)drawSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] initWithDictionary:self.model.dictionaryValue error:nil];
+		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
+		[model mergeValuesForKeysFromModel:self.model];
 		MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:model services:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
@@ -262,7 +277,8 @@ static NSString *const kApplicationWalletType = @"4";
 
 - (RACSignal *)repaySignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] initWithDictionary:self.model.dictionaryValue error:nil];
+		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
+		[model mergeValuesForKeysFromModel:self.model];
 		MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:model services:self.services];
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
@@ -276,6 +292,12 @@ static NSString *const kApplicationWalletType = @"4";
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
+	}];
+}
+
+- (RACSignal *)repayAllow {
+	return [RACSignal combineLatest:@[RACObserve(self, usedAmounts)] reduce:^id(NSString *money){
+		return @(money.intValue > 0);
 	}];
 }
 

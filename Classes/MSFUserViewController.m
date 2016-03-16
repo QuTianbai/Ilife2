@@ -45,6 +45,8 @@
 #import "MSFCart.h"
 #import "MSFClient+Cart.h"
 #import "MSFCartViewModel.h"
+#import "MSFAuthorizeViewModel.h"
+#import "MSFAuthenticateViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -82,7 +84,8 @@
 	self.tableView.bounces = NO;
 	
 	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.name) map:^id(id value) {
-		return [NSString stringWithFormat:@"%@, 您好", value?:@""];
+		if (!value) return @"未实名认证";
+		return [NSString stringWithFormat:@"%@, 您好", value];
 	}];
 	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.mobile) map:^id(id value) {
 		return [NSString stringWithFormat:@"手机号: %@", value];
@@ -114,6 +117,12 @@
                      forBarPosition:UIBarPositionAny
                          barMetrics:UIBarMetricsDefault];
   [navigationBar setShadowImage:[UIImage new]];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	self.viewModel.active = YES;
+	self.viewModel.active = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -181,7 +190,14 @@
 }
 
 - (void)bankCardList {
-	MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.viewModel.services];
+	if (!self.viewModel.isAuthenticated) {
+		MSFAuthorizeViewModel *viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.viewModel.services];
+		MSFAuthenticateViewController *vc = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+		return;
+	}
+
+	MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.viewModel.services type:@"0"];
 	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
 	[self.navigationController pushViewController:vc animated:YES];

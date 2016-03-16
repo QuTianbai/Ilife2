@@ -17,6 +17,7 @@
 #import "MSFSocialProfile.h"
 #import "MSFSocialInsurance.h"
 #import "MSFContact.h"
+#import "MSFAuthenticate.h"
 
 @implementation MSFClient (Users)
 
@@ -29,7 +30,7 @@
 	parameters[@"bankBranchCityCode"] = city;
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/authentication" parameters:parameters];
 	
-	return [self enqueueRequest:request resultClass:nil];
+	return [[self enqueueRequest:request resultClass:MSFAuthenticate.class] msf_parsedResults];
 }
 
 - (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID {
@@ -43,7 +44,7 @@
 }
 
 - (RACSignal *)updateSignInPassword:(NSString *)oldpassword password:(NSString *)newpassword {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"password/updatePassword" parameters: @{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/updatePassword" parameters: @{
 		@"oldPassword": oldpassword.sha256,
 		@"newPassword": newpassword.sha256,
 		@"uniqueId": self.user.objectID
@@ -128,7 +129,7 @@
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
-		@"uniqueId": self.user.uniqueId,
+		@"uniqueId": self.user.uniqueId?:@"",
 		@"newTransPassword": pwd?:@"",
 		@"smsCode": capthch?:@""
 	}];
@@ -177,13 +178,14 @@
 	return [self enqueueRequest:request resultClass:nil];
 }
 
-- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode {
+- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode bankCardID:(NSString *)bankCardID {
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 	parameters[@"drawingAmount"] = amounts;
 	parameters[@"contractNo"] = contractNo;
 	parameters[@"dealPwd"] = passcode;
+	parameters[@"dealPwd"] = bankCardID?:@"";
 	
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/drawings" parameters:parameters];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/drawings" parameters:parameters];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }

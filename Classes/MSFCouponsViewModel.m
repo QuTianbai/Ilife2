@@ -50,7 +50,11 @@
 	}];
 	
 	_executeAdditionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.services.httpClient addCouponWithCode:input];
+		@strongify(self)
+		return [[self.services.httpClient addCouponWithCode:input]
+			doNext:^(id x) {
+				[self.executeFetchCommand execute:nil];
+			}];
 	}];
 	
   return self;

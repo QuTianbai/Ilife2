@@ -76,8 +76,9 @@
 	
 	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
-	
+	@weakify(self)
 	RAC(self, masterBankCardNameAndNO) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
+		@strongify(self)
 		return [[[self.services.httpClient fetchBankCardList]
 			catch:^RACSignal *(NSError *error) {
 				return [RACSignal empty];
@@ -103,6 +104,7 @@
 	RAC(self, maxMoney) = RACObserve(self, markets.allMaxAmount);
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
+		@strongify(self)
 		self.loanPurpose = value.code;
 		return value.code;
 	}];
@@ -111,7 +113,6 @@
 		return [value text];
 	}];
 	
-	@weakify(self)
 	RAC(self, markets) = [[self.didBecomeActiveSignal
 		filter:^BOOL(id value) {
 			@strongify(self)
