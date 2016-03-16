@@ -59,13 +59,15 @@
 }
 
 - (RACSignal *)fetchStatus:(NSString *)status {
+	@weakify(self)
 	return [[[[self.services.httpClient
 						 fetchMyOrderListWithType:status]
 						catch:^RACSignal *(NSError *error) {
 							return [RACSignal empty];
 						}]
 					 map:^id(id value) {
-						 return [[MSFMyOrderListViewModel alloc] initWithModel:value];
+						 @strongify(self)
+						 return [[MSFMyOrderListViewModel alloc] initWithServices:self.services model:value];
 					 }]
 					collect];
 }

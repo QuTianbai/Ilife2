@@ -33,8 +33,6 @@
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/applyList" parameters:@{
 										@"type": type,
 									}];
-//	NSString *path = [[NSBundle mainBundle] pathForResource:@"myOderList" ofType:@"json"];
-//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
 	return [[self enqueueRequest:request resultClass:MSFOrder.class] msf_parsedResults];
 }
 
@@ -43,9 +41,15 @@
 										@"inOrderId": inOrderId,
 										@"appNo" : appNo
 									}];
-//	NSString *path = [[NSBundle mainBundle] pathForResource:@"myOrderListProductDetail" ofType:@"json"];
-//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
 	return [[self enqueueRequest:request resultClass:MSFOrderDetail.class] msf_parsedResults];
+}
+
+- (RACSignal *)fetchMyOrderDetailWithAppNo:(NSString *)appNo type:(NSString *)type {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/applyInfo" parameters:@{
+									@"type": type,
+									@"appNo":appNo
+								}];
+	return [[self enqueueRequest:request resultClass:MSFOrder.class] msf_parsedResults];
 }
 
 @end
