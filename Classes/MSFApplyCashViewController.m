@@ -253,6 +253,14 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 			[self.viewModel.executeLifeInsuranceCommand execute:nil];
 		}];
 	}];
+	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn-back-nav"] style:UIBarButtonItemStyleDone target:nil action:nil];
+	self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		self.viewModel.jionLifeInsurance = @"0";
+		[self.navigationController popViewControllerAnimated:YES];
+		return [RACSignal empty];
+	}];
 }
 
 #pragma mark - UITableViewDelegate
