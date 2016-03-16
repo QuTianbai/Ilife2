@@ -356,7 +356,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 - (RACSignal *)authenticateSignal {
-	return [self.services.httpClient authenticateUsername:self.username userident:self.card city:self.addressViewModel.cityCode province:self.addressViewModel.provinceCode banknumber:self.banknumber];
+	return [[self.services.httpClient authenticateUsername:self.username userident:self.card city:self.addressViewModel.cityCode province:self.addressViewModel.provinceCode banknumber:self.banknumber] doNext:^(id x) {
+		[[self.services.httpClient fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[self.services.httpClient.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[self.services.httpClient.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[self.services.httpClient.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[self.services.httpClient.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[self.services.httpClient.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
+	}];
 }
 
 - (RACSignal *)executeSignInSignal {

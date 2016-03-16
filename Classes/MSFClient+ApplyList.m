@@ -10,10 +10,12 @@
 #import "MSFApplyList.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFResponse.h"
+#import "MSFUser.h"
 
 @implementation MSFClient (ApplyList)
 
 - (RACSignal *)fetchSpicyApplyList:(NSString *)type {
+	if (!self.user.isAuthenticated) return RACSignal.empty;
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"query/applyList" parameters:@{
 		@"type" : type?:@""
 	}];
@@ -32,6 +34,7 @@
 }
 
 - (RACSignal *)fetchRecentApplicaiton:(NSString *)type {
+	if (!self.user.isAuthenticated) return RACSignal.empty;
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/apply" parameters:@{
 		@"type" : type
 	}];

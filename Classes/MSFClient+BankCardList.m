@@ -16,6 +16,7 @@
 @implementation MSFClient (BankCardList)
 
 - (RACSignal *)fetchBankCardList {
+	if (!self.user.isAuthenticated) return RACSignal.empty;
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/bindingList" parameters:@{
 									@"uniqueId": self.user.uniqueId?:@""
 	}];

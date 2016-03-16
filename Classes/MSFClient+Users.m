@@ -193,6 +193,7 @@
 }
 
 - (RACSignal *)fetchUserInfo {
+	if (!self.user.isAuthenticated) return RACSignal.empty;
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/getInfo" parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFUser.class] msf_parsedResults];
 }
