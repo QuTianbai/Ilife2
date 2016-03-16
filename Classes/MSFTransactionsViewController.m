@@ -41,6 +41,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	self.viewModel.active = YES;
+	self.viewModel.active = NO;
 	RAC(self, title) = RACObserve(self.viewModel, title);
 	RAC(self.bankName, text) = RACObserve(self.viewModel, bankName);
 	RAC(self.bankNo, text) = RACObserve(self.viewModel, bankNo);
@@ -95,12 +97,12 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	self.viewModel.active = YES;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
-	self.viewModel.active = NO;
+	
 }
 
 #pragma mark - UITableViewDelegate

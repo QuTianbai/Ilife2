@@ -131,7 +131,7 @@
 // passcode   - 交易密码.
 //
 // Returns MSFResponse.
-- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode;
+- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode bankCardID:(NSString *)bankCardID;
 
 - (RACSignal *)fetchUserInfo;
 - (RACSignal *)updateUserInfo __deprecated_msg("Use -updateUser:");

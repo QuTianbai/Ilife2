@@ -1,15 +1,15 @@
 //
-// ABPeoplePickerNavigationController+RACSignalSupport.h
+// MSFPeoplePickerNavigationController+RACSignalSupport.h
 //
 // Copyright (c) 2016 Zēng Liàng. All rights reserved.
 //
 
-#import <AddressBookUI/AddressBookUI.h>
+#import "MSFPeoplePickerNavigationController.h"
 
 @class RACDelegateProxy;
 @class RACSignal;
 
-@interface ABPeoplePickerNavigationController (RACSignalSupport)
+@interface MSFPeoplePickerNavigationController (RACSignalSupport)
 
 @property (nonatomic, strong, readonly) RACDelegateProxy *rac_delegateProxy;
 - (RACSignal *)rac_contactSelectedSignal;

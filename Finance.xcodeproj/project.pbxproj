@@ -735,9 +735,10 @@
 		49A550C11C574B400029FC1A /* cell-icon-overdue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BE1C574B400029FC1A /* cell-icon-overdue@2x.png */; };
 		49A550C21C574B400029FC1A /* cell-icon-overdue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49A550BF1C574B400029FC1A /* cell-icon-overdue@3x.png */; };
 		49A550C51C574EF10029FC1A /* MSFExchangeCouponViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */; };
-		49A999F41C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A999F31C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m */; };
 		49AA2C291C8449D500A05FB6 /* MSFWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2C281C8449D500A05FB6 /* MSFWallet.m */; };
 		49AA2C2C1C844AB000A05FB6 /* MSFClient+Wallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AA2C2B1C844AB000A05FB6 /* MSFClient+Wallet.m */; };
+		49AC0A651C9846490021E234 /* MSFPeoplePickerNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AC0A641C9846490021E234 /* MSFPeoplePickerNavigationController.m */; };
+		49AC0A681C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 49AC0A671C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.m */; };
 		49AFD9A51B073F5600438183 /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49AFD9A41B073F5600438183 /* login.storyboard */; };
 		49B185DC1C5605D400409C6F /* MSFCouponSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B185DB1C5605D400409C6F /* MSFCouponSpec.m */; };
 		49B185ED1C5605FD00409C6F /* MSFCoupon.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B185EC1C5605FD00409C6F /* MSFCoupon.m */; };
@@ -2120,12 +2121,14 @@
 		49A550BF1C574B400029FC1A /* cell-icon-overdue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cell-icon-overdue@3x.png"; sourceTree = "<group>"; };
 		49A550C31C574EF10029FC1A /* MSFExchangeCouponViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFExchangeCouponViewController.h; sourceTree = "<group>"; };
 		49A550C41C574EF10029FC1A /* MSFExchangeCouponViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFExchangeCouponViewController.m; sourceTree = "<group>"; };
-		49A999F21C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ABPeoplePickerNavigationController+RACSignalSupport.h"; sourceTree = "<group>"; };
-		49A999F31C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ABPeoplePickerNavigationController+RACSignalSupport.m"; sourceTree = "<group>"; };
 		49AA2C271C8449D500A05FB6 /* MSFWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWallet.h; sourceTree = "<group>"; };
 		49AA2C281C8449D500A05FB6 /* MSFWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWallet.m; sourceTree = "<group>"; };
 		49AA2C2A1C844AB000A05FB6 /* MSFClient+Wallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFClient+Wallet.h"; sourceTree = "<group>"; };
 		49AA2C2B1C844AB000A05FB6 /* MSFClient+Wallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFClient+Wallet.m"; sourceTree = "<group>"; };
+		49AC0A631C9846490021E234 /* MSFPeoplePickerNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPeoplePickerNavigationController.h; sourceTree = "<group>"; };
+		49AC0A641C9846490021E234 /* MSFPeoplePickerNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPeoplePickerNavigationController.m; sourceTree = "<group>"; };
+		49AC0A661C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSFPeoplePickerNavigationController+RACSignalSupport.h"; sourceTree = "<group>"; };
+		49AC0A671C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MSFPeoplePickerNavigationController+RACSignalSupport.m"; sourceTree = "<group>"; };
 		49AFD9A41B073F5600438183 /* login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = login.storyboard; sourceTree = "<group>"; };
 		49B185DB1C5605D400409C6F /* MSFCouponSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCouponSpec.m; sourceTree = "<group>"; };
 		49B185EB1C5605FD00409C6F /* MSFCoupon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCoupon.h; sourceTree = "<group>"; };
@@ -4076,6 +4079,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				49AC0A551C98463B0021E234 /* Contact */,
 				49537E0A1C92894200F3A44D /* List */,
 				49339FA81C904C84008A26E3 /* Cash */,
 				102C7F061C2A7B600023172B /* Cart */,
@@ -4673,6 +4677,17 @@
 			name = Wallet;
 			sourceTree = "<group>";
 		};
+		49AC0A551C98463B0021E234 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				49AC0A631C9846490021E234 /* MSFPeoplePickerNavigationController.h */,
+				49AC0A641C9846490021E234 /* MSFPeoplePickerNavigationController.m */,
+				49AC0A661C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.h */,
+				49AC0A671C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.m */,
+			);
+			name = Contact;
+			sourceTree = "<group>";
+		};
 		49B185EA1C5605ED00409C6F /* Coupon */ = {
 			isa = PBXGroup;
 			children = (
@@ -4804,8 +4819,6 @@
 				49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */,
 				07E9430F1C7873FC00A3316B /* UIImage+Color.h */,
 				07E943101C7873FC00A3316B /* UIImage+Color.m */,
-				49A999F21C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.h */,
-				49A999F31C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6333,6 +6346,7 @@
 				07E14C1F1C886B9700589164 /* MSFMyOrderListProductsDetailViewController.m in Sources */,
 				49C3A7AF1C86C53C008750AE /* MSFPersonal.m in Sources */,
 				490DB83C1B1FF10100EEA5C9 /* MSFSignature.m in Sources */,
+				49AC0A651C9846490021E234 /* MSFPeoplePickerNavigationController.m in Sources */,
 				49B185FC1C56114200409C6F /* MSFClient+Coupons.m in Sources */,
 				49DDFBAA1C91B50C00EDB864 /* MSFbackgroundLogoView.m in Sources */,
 				49CCFBD51B072327008A9CD1 /* MSFSignInViewController.m in Sources */,
@@ -6427,7 +6441,6 @@
 				07F088FA1BBCFFBE0067C5BC /* MSFCirculateCashInfoModel.m in Sources */,
 				07481F5E1C75D19B006ADE2B /* MSFSignInButton.m in Sources */,
 				49FAEEFD1C8FF38500F3BC44 /* MSFClient+Amortize.m in Sources */,
-				49A999F41C8987CB0038C8B2 /* ABPeoplePickerNavigationController+RACSignalSupport.m in Sources */,
 				105E839C1B7E074500E821CB /* MSFRepaymentPlanViewModel.m in Sources */,
 				074AC2481BBB83CC0056BA22 /* MSFClient+CheckTradePassword.m in Sources */,
 				49EB04111C3D012800177509 /* MSFClient+Payment.m in Sources */,
@@ -6447,6 +6460,7 @@
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
 				07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */,
 				49DA22691B062AF200DD4483 /* MSFActivate.m in Sources */,
+				49AC0A681C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.m in Sources */,
 				07A146031C845BA600C32F0B /* MSFMyRepayDetalViewController.m in Sources */,
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
 				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,

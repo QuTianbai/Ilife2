@@ -151,7 +151,7 @@ static NSString *const kApplicationWalletType = @"4";
 	_executeDrawCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return self.drawSignal;
 	}];
-	_executeRepayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeRepayCommand = [[RACCommand alloc] initWithEnabled:[self repayAllow] signalBlock:^RACSignal *(id input) {
 		return self.repaySignal;
 	}];
 	_executeBillsCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -292,6 +292,12 @@ static NSString *const kApplicationWalletType = @"4";
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
+	}];
+}
+
+- (RACSignal *)repayAllow {
+	return [RACSignal combineLatest:@[RACObserve(self, usedAmounts)] reduce:^id(NSString *money){
+		return @(money.intValue > 0);
 	}];
 }
 
