@@ -163,7 +163,7 @@
 }
 
 - (RACSignal *)sendSmsCodeForTrans {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"activePay/checkSms" parameters:nil];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/checkSms" parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFPaymentToken.class] msf_parsedResults];
 }
 
@@ -182,7 +182,7 @@
 	parameters[@"drawingAmount"] = amounts;
 	parameters[@"contractNo"] = contractNo;
 	parameters[@"dealPwd"] = passcode;
-	parameters[@"dealPwd"] = bankCardID?:@"";
+	parameters[@"bankCardId"] = bankCardID?:@"";
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/drawings" parameters:parameters];
 	
