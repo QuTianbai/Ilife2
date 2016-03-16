@@ -228,6 +228,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	RACChannelTo(self, qualificationCode) = RACChannelTo(self.model, qualification);
 	
   return self;
+	
 }
 
 - (void)updateViewModels {
