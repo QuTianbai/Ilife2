@@ -13,7 +13,7 @@
 #import "MSFClient.h"
 #import "MSFAuthenticate.h"
 
-@interface MSFAuthenticateViewController ()
+@interface MSFAuthenticateViewController ()<UITextFieldDelegate>
 
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *userident;
@@ -47,7 +47,9 @@
 	self.commitButton.rac_command = self.viewModel.executeAuthenticateCommand;
 	RAC(self, bankaddrs.text) = RACObserve(self, viewModel.address);
 	RAC(self, viewModel.username) = self.username.rac_textSignal;
-	RAC(self, viewModel.card) = self.userident.rac_textSignal;
+	//RAC(self, viewModel.card) = self.userident.rac_textSignal;
+
+    
 	
 	@weakify(self)
 	[[(SHSPhoneTextField *)self.bankcard formatter] setDefaultOutputPattern:@"#### #### #### #### ###"];
@@ -55,7 +57,14 @@
 		@strongify(self)
 		self.viewModel.banknumber = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 	};
-	
+
+    [self.userident.rac_textSignal subscribeNext:^(id x) {
+       @strongify(self)
+        if ([x length]>MSFAuthorizeIdentifierMaxLength) self.userident.text = [x substringToIndex:MSFAuthorizeIdentifierMaxLength]; {
+            self.viewModel.userident = self.userident.text;
+        }
+    }];
+
 	[self.viewModel.executeAuthenticateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..."];
@@ -92,6 +101,8 @@
 				NSLog(@"%@", imageAndName);
 			}];
 	}];
+    
+
 	
 }
 

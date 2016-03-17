@@ -66,6 +66,8 @@ extern NSString *const MSFAuthorizeErrorDomain;
 // signup/signin use password
 @property (nonatomic, strong) NSString *password;
 
+@property (nonatomic, strong) NSString *userident;
+
 // Signup/Signin send captcha code tip label, default `获取验证码`
 @property (nonatomic, strong) NSString *counter;
 
@@ -155,5 +157,6 @@ extern NSString *const MSFAuthorizeErrorDomain;
 @property (nonatomic, strong) RACCommand *executeUpdateSignInPassword;
 
 - (RACSignal *)searchLocalBankInformationWithNumber:(NSString *)number;
+- (RACSignal *)searchUserIdWithNumber:(NSString *)number;
 
 @end

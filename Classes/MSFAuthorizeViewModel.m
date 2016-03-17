@@ -637,6 +637,22 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 - (RACSignal *)updateSignInPasswordSignal {
 	return [self.services.httpClient updateSignInPassword:self.usingSignInPasssword password:self.updatingSignInPasssword];
+    
+}
+
+- (RACSignal *)searchUserIdWithNumber:(NSString *)number {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        NSString *tempBankNo = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+        
+        if (number.length == 0) [subscriber sendNext:RACTuplePack(nil, @"")];
+        
+        for (int i = 0; i < tempBankNo.length; i ++) {
+            NSString *tmp = [tempBankNo substringToIndex:i];
+        }
+        return [RACDisposable disposableWithBlock:^{
+            
+        }];
+    }];
 }
 
 - (RACSignal *)searchLocalBankInformationWithNumber:(NSString *)number {
