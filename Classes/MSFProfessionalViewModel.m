@@ -205,13 +205,24 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	_executeJobPositionDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self enrollmentYearSignal:input withLimit:self.jobDate];
 	}];
-	RAC(self, jobPositionDate) = [self.executeJobPositionDateCommand.executionSignals switchToLatest];
+//	RAC(self, jobPositionDate) = [self.executeJobPositionDateCommand.executionSignals switchToLatest];
 	
 		NSDictionary *addr = @{
 		@"province" : self.model.empProvinceCode ?: @"",
 		@"city" : self.model.empCityCode ?: @"",
 		@"area" : self.model.empZoneCode ?: @""
 	};
+    @weakify(self);
+    RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[RACObserve(self, jobDate) filter:^BOOL(id value) {
+        @strongify(self);
+        NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
+        NSDate *date2 = [NSDateFormatter msf_dateFromString:(NSString *)self.jobPositionDate];
+        if ([date1 timeIntervalSinceDate:date2] > 0) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }]];
 	MSFAddressCodes *addrModel = [MSFAddressCodes modelWithDictionary:addr error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
 	_address = _addressViewModel.address;
@@ -239,6 +250,20 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
     MSFContact *content = [[MSFContact alloc] init];
     content.contactRelation = @"RF01";
+    tempContacts[0] = content;
+    tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+    self.viewModels = tempViewModels;
+    self.contacts = tempContacts;
+}
+
+- (void)updateViewModelsWithRelation:(NSString *)relation {
+    
+    NSMutableArray *tempViewModels = [NSMutableArray arrayWithArray:self.viewModels];
+    NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
+    MSFContact *content = [[MSFContact alloc] init];
+    if ([relation isEqualToString:@"20"]) {
+        content.contactRelation = @"RF01";
+    }
     tempContacts[0] = content;
     tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
     self.viewModels = tempViewModels;
@@ -287,7 +312,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
             minDate = [NSDateFormatter msf_dateFromString:self.jobDate];
         }
         [comps setYear:5];
-        NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:minDate options:0];
+//        NSDate *maxDate = [calendar dateByAddingComponents:comps toDate:minDate options:0];
         [ActionSheetDatePicker
          showPickerWithTitle:@""
          datePickerMode:UIDatePickerModeDate
@@ -323,6 +348,50 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
+    if (self.jobPosition.length == 0) {
+        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                      NSLocalizedFailureReasonErrorKey: @"请填写职业",
+                                                                                      }];
+        return [RACSignal error: error];
+    } else if (self.jobPositionDepartment.length == 0) {
+        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                               NSLocalizedFailureReasonErrorKey: @"请填写部门",
+                                                                                               }];
+        return [RACSignal error: error];
+    } else if (self.jobPositionDate.length == 0) {
+        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                               NSLocalizedFailureReasonErrorKey: @"请填写入职日期",
+                                                                                               }];
+        
+        return [RACSignal error: error];
+    }
+    for (MSFContactViewModel *contactViewModel in self.viewModels) {
+        if (contactViewModel.name.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写其他联系人姓名",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        } else if (contactViewModel.address.length == 0 && !contactViewModel.on) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写其他联系人地址",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        } else if (contactViewModel.phone.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写其他联系人号码",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        } else if (contactViewModel.relationship.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写于其他联系人关系",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        }
+    }
 	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *user) {
 		MSFPersonal *personal = [[MSFPersonal alloc] initWithDictionary:@{@keypath(MSFPersonal.new, maritalStatus): self.maritalStatus} error:nil];
 		[user.personal mergeValueForKey:@keypath(MSFPersonal.new, maritalStatus) fromModel:personal];
