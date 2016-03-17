@@ -88,10 +88,13 @@
 #import "MSFLoanListViewController.h"
 
 #import "MSFApplyCashViewModel.h"
-#import "MSFMSFApplyCashViewController.h"
+#import "MSFApplyCashViewController.h"
 
+#import "MSFSupportBankListModel.h"
+#import "MSFSupportBankListTableViewController.h"
 #import "MSFPeoplePickerNavigationController.h"
 #import "MSFPeoplePickerNavigationController+RACSignalSupport.h"
+#import "AppDelegate.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -186,8 +189,10 @@
 	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
 		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
-		viewController = [[MSFMSFApplyCashViewController alloc] initWithViewModel:viewModel];
-	} else {
+		viewController = [[MSFApplyCashViewController alloc] initWithViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:MSFSupportBankListModel.class]){
+        viewController = [[MSFSupportBankListTableViewController alloc]initWithViewModel:viewModel];[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+    } else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}
 	
@@ -424,6 +429,22 @@
 }
 
 - (void)cancel {
+}
+
+- (void)pushSetTransPassword {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																										message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+			if (index.intValue == 1) {
+				AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+				MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+				MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+				
+				[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+			}
+			
+		}];
 }
 
 @end

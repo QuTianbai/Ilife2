@@ -122,7 +122,7 @@
 //
 //
 // Returns MSFResponse.
-- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo;
+- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo bankCardID:(NSString *)bankCardID transPwd:(NSString *)transPwd;
 
 // 提款.
 //

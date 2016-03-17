@@ -19,6 +19,8 @@
 @property (nonatomic, copy, readonly) NSString *relationship;
 @property (nonatomic, strong, readonly) MSFContact *model;
 
+@property (nonatomic, assign, readonly) BOOL isValid;
+
 @property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeSelectContactCommand;
 

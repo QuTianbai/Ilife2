@@ -14,7 +14,7 @@
 #import "MSFPeriodsCollectionViewCell.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFApplyCashViewModel.h"
-#import "MSFMSFApplyCashViewController.h"
+#import "MSFApplyCashViewController.h"
 
 @interface MSFCreditMiddleViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, MSFSliderDelegate>
 

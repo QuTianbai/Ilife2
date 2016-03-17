@@ -101,7 +101,7 @@ static NSString *const kApplicationCreditType = @"1";
 		}];
 	}];
 	RAC(self, reportAmounts) = [RACObserve(self, application.appLmt) map:^id(id value) {
-		return [NSString stringWithFormat:@"%.2f", [value floatValue]];
+        return [NSString stringWithFormat:@"%.2f", value?[value floatValue]:0.00];
 	}];
 	RAC(self, reportTerms) =
 		[RACSignal combineLatest:@[

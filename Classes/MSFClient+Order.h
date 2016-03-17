@@ -16,7 +16,9 @@
 - (RACSignal *)fetchOrder:(NSString *)orderId;
 
 - (RACSignal *)fetchMyOrderListWithType:(NSString *)type;
-
+//商品贷详情
 - (RACSignal *)fetchMyOrderProductWithInOrderId:(NSString *)inOrderId appNo:(NSString *)appNo;
+//马上贷、信用钱包详情
+- (RACSignal *)fetchMyOrderDetailWithAppNo:(NSString *)appNo type:(NSString *)type;
 
 @end

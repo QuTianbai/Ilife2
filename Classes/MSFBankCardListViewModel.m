@@ -12,6 +12,8 @@
 #import "MSFClient+Users.h"
 #import "MSFClient+BankCardList.h"
 #import "MSFCheckTradePasswordViewModel.h"
+#import "MSFAddBankCardTableViewController.h"
+#import "MSFSupportBankListModel.h"
 
 @interface MSFBankCardListViewModel ()
 
@@ -35,7 +37,28 @@
 		return [self executeUnbindSignal];
 	}];
 	_checkHasTrandPasswordViewModel = [[MSFCheckTradePasswordViewModel alloc] initWithServices:self.services];
-	
+    _excuteActionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            MSFAddBankCardViewModel *viewModel =  [[MSFAddBankCardViewModel alloc] initWithServices:self.services andIsFirstBankCard:YES];
+            
+            [self.services pushViewModel:viewModel];
+            [subscriber sendNext:nil];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+        
+    }];
+    _executeSupportCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            MSFSupportBankListModel *viewModel = [[MSFSupportBankListModel alloc]initWithServices:self.services ];
+            [self.services pushViewModel:viewModel];
+            [subscriber sendNext:nil];
+            [subscriber sendCompleted];
+            return nil;
+
+        }];
+    }];
+    
 	return self;
 }
 

@@ -43,6 +43,8 @@
 	}];
 	self.webView.backgroundColor = [UIColor whiteColor];
 	self.webView.opaque = NO;
+    
+    
 }
 
 #pragma mark - MSFReactiveView

@@ -30,7 +30,9 @@
 	[super viewDidLoad];
 	RAC(self.lastOrderLB, text) = RACObserve(self, viewModel.hasList);
 	RAC(self.contractStatusLB, text) = RACObserve(self, viewModel.statusString);
-	RAC(self, nextBT.titleLabel.text) = RACObserve(self, viewModel.buttonTitle);
+	[RACObserve(self, viewModel.buttonTitle) subscribeNext:^(id x) {
+		[self.nextBT setTitle:x forState:UIControlStateNormal];
+	}];
 	RAC(self.nextBT, rac_command) = RACObserve(self, viewModel.excuteActionCommand);
 	@weakify(self)
 	RAC(self, nextBT.hidden) = [RACObserve(self, viewModel.buttonTitle) map:^id(NSString *value) {

@@ -141,7 +141,7 @@
 	return [[[self.services msf_gainPasscodeSignal] flattenMap:^RACStream *(id value) {
 		return [self.services.httpClient fetchDownPayment:self.model password:value];
 	}] flattenMap:^RACStream *(id value) {
-		return [self.services.httpClient downPaymentWithPayment:self.model SMSCode:self.captcha SMSSeqNo:self.uniqueTransactionID];
+		return [self.services.httpClient downPaymentWithPayment:self.model SMSCode:self.captcha SMSSeqNo:self.uniqueTransactionID bankCardID:self.bankCardID];
 	}];
 }
 

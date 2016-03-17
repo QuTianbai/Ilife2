@@ -266,10 +266,17 @@ static NSString *const kApplicationWalletType = @"4";
 
 - (RACSignal *)drawSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
-		[model mergeValuesForKeysFromModel:self.model];
-		MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:model services:self.services];
-		[self.services pushViewModel:viewModel];
+		
+		MSFUser *user = [self.services httpClient].user;
+		if (!user.hasTransactionalCode) {
+			[self.services pushSetTransPassword];
+		} else {
+			MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
+			[model mergeValuesForKeysFromModel:self.model];
+			MSFDrawingsViewModel *viewModel = [[MSFDrawingsViewModel alloc] initWithViewModel:model services:self.services];
+			[self.services pushViewModel:viewModel];
+		}
+		
 		[subscriber sendCompleted];
 		return nil;
 	}];
@@ -277,10 +284,16 @@ static NSString *const kApplicationWalletType = @"4";
 
 - (RACSignal *)repaySignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
-		[model mergeValuesForKeysFromModel:self.model];
-		MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:model services:self.services];
-		[self.services pushViewModel:viewModel];
+		
+		MSFUser *user = [self.services httpClient].user;
+		if (!user.hasTransactionalCode) {
+			[self.services pushSetTransPassword];
+		} else {
+			MSFCirculateCashModel *model = [[MSFCirculateCashModel alloc] init];
+			[model mergeValuesForKeysFromModel:self.model];
+			MSFRepaymentViewModel *viewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:model services:self.services];
+			[self.services pushViewModel:viewModel];
+		}
 		[subscriber sendCompleted];
 		return nil;
 	}];

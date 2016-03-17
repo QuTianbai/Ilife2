@@ -24,10 +24,10 @@
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/count" parameters:@{
 		@"appLmt": appLmt?:@"",
-		@"loanTerm": loanTerm,
-		@"productCode": productCode,
+		@"loanTerm": loanTerm?:@"",
+		@"productCode": productCode?:@"",
 		@"jionLifeInsurance": jionLifeInsurance.boolValue ? @"1" : @"0",
-		@"uniqueId":self.user.objectID
+		@"uniqueId":self.user.objectID?:@""
 	}];
 
 	return [[[self enqueueRequest:request resultClass:MSFCalculatemMonthRepayModel.class]
