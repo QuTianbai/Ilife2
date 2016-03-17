@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Credit View Controller-->
@@ -261,6 +261,11 @@
                                             <constraint firstAttribute="height" constant="44" id="ajq-7Y-E3v"/>
                                             <constraint firstAttribute="width" constant="290" id="uVm-VP-iyd"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="uVm-VP-iyd"/>
+                                            </mask>
+                                        </variation>
                                     </slider>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款期数（月）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rax-Jf-5Dj">
                                         <rect key="frame" x="15" y="74" width="105" height="18"/>
@@ -299,9 +304,11 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="A8I-t9-dvb" secondAttribute="bottom" constant="10" id="0AU-Bf-i1r"/>
+                                    <constraint firstItem="2Bq-6H-sQw" firstAttribute="leading" secondItem="34e-rt-gsf" secondAttribute="leading" constant="15" id="2dq-Cf-WhY"/>
                                     <constraint firstItem="rax-Jf-5Dj" firstAttribute="top" secondItem="2Bq-6H-sQw" secondAttribute="bottom" id="6Dd-Mo-6XN"/>
                                     <constraint firstItem="OHw-4o-tdr" firstAttribute="top" secondItem="rax-Jf-5Dj" secondAttribute="bottom" constant="5" id="CWs-GG-6Ct"/>
                                     <constraint firstItem="OHw-4o-tdr" firstAttribute="leading" secondItem="34e-rt-gsf" secondAttribute="leading" id="Ilg-gg-Dha"/>
+                                    <constraint firstAttribute="trailing" secondItem="2Bq-6H-sQw" secondAttribute="trailing" constant="15" id="NJz-Q3-Dtg"/>
                                     <constraint firstAttribute="trailing" secondItem="OHw-4o-tdr" secondAttribute="trailing" id="eE9-mj-aor"/>
                                     <constraint firstItem="2Bq-6H-sQw" firstAttribute="top" secondItem="34e-rt-gsf" secondAttribute="top" constant="30" id="iM5-el-HPr"/>
                                     <constraint firstItem="rax-Jf-5Dj" firstAttribute="leading" secondItem="34e-rt-gsf" secondAttribute="leading" constant="15" id="lqv-zL-fOZ"/>

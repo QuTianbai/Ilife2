@@ -34,7 +34,7 @@
 		[photos enumerateObjectsUsingBlock:^(MSFPhoto *obj, NSUInteger idx, BOOL *stop) {
 			UIImageView *imageView = [[UIImageView alloc] init];
 			[imageView setImageWithURL:obj.URL];
-			imageView.contentMode = UIViewContentModeScaleAspectFill;
+			imageView.contentMode = UIViewContentModeScaleToFill;
 			imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 			imageView.frame = CGRectMake(idx * CGRectGetWidth(self.view.bounds), 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
 			[self.scrollView addSubview:imageView];

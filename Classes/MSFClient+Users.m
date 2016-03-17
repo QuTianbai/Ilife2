@@ -76,6 +76,7 @@
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"uniqueId"] = self.user.uniqueId;
+    ;
 	parameters[@"transPassword"] = transPassword;
 	parameters[@"bankCardNo"] = bankCardNo;
 	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
@@ -89,7 +90,7 @@
 
 - (RACSignal *)setMasterBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = self.user.objectID;
+	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
@@ -100,7 +101,7 @@
 
 - (RACSignal *)unBindBankCard:(NSString *)bankCardID AndTradePwd:(NSString *)pwd {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-	parameters[@"uniqueId"] = self.user.objectID;
+	parameters[@"uniqueId"] = self.user.uniqueId;
 	parameters[@"transPassword"] = pwd;
 	parameters[@"bankCardId"] = bankCardID;
 	
@@ -192,6 +193,7 @@
 }
 
 - (RACSignal *)fetchUserInfo {
+	if (!self.user.isAuthenticated) return RACSignal.empty;
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/getInfo" parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFUser.class] msf_parsedResults];
 }

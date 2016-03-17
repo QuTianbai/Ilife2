@@ -92,16 +92,16 @@
 - (RACSignal *)updateValidSignal {
 	return [RACSignal combineLatest:@[
 		RACObserve(self, house),
-		RACObserve(self, email),
 		RACObserve(self, address),
 		RACObserve(self, detailAddress),
 	]
-	reduce:^id(NSString *condition, NSString *email, NSString *phone, NSString *address) {
-		return @(condition.length > 0 && email.length > 0 && address.length > 0);
+	reduce:^id(NSString *house, NSString *address, NSString *detailAddress) {
+		return @(house.length > 0 && address.length > 0 && detailAddress.length > 0);
 	}];
 }
 
 - (RACSignal *)updateSignal {
+	if (!self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
 	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *value) {
 		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, personal): self.model} error:nil];
 		[value mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];

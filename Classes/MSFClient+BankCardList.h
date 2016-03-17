@@ -20,4 +20,6 @@
 //
 - (RACSignal *)fetchSupportBankInfo;
 
+- (RACSignal *)fetchSupportBankInfoNew;
+
 @end

@@ -12,6 +12,6 @@
 
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *uniqueId;
-@property (nonatomic, copy, readwrite) NSString *hasChecked;
+@property (nonatomic, copy, readwrite) NSString * hasChecked __deprecated_msg("Use MSFUser.isAuthenticated");
 
 @end
