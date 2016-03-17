@@ -32,11 +32,11 @@
 
 - (id)init {
 	if (self = [super init]) {
-		if ([[UIScreen mainScreen] bounds].size.height >= 568) {
+	//	if ([[UIScreen mainScreen] bounds].size.height >= 568) {
 			self.paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"jpg" inDirectory:@"guide"];
-		} else {
-			self.paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:@"guide"];
-		}
+//		} else {
+//			self.paths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:@"guide"];
+//		}
 	}
 	return self;
 }
