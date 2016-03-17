@@ -357,8 +357,19 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellPhoneTextFeild + index];
 	textField.text = viewModel.phone;
+    @weakify(textField);
 	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
-		viewModel.phone = x;
+        @strongify(textField);
+        NSString *number = @"[0-9]{0,11}";
+        NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", number];
+        if ([numberPre evaluateWithObject:x]) {
+            viewModel.phone = x;
+        } else {
+            NSString *str = [(NSString *)x substringWithRange:NSMakeRange(0, 11)];
+            viewModel.phone = str;
+            textField.text = str;
+        }
+
 	}];
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
