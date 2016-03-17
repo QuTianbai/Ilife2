@@ -538,7 +538,7 @@
 		49339FC01C904CEC008A26E3 /* groupedTableViewCell_bottomRow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49339FB91C904CEC008A26E3 /* groupedTableViewCell_bottomRow@3x.png */; };
 		49339FC11C904CEC008A26E3 /* groupedTableViewCell_middleRow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49339FBA1C904CEC008A26E3 /* groupedTableViewCell_middleRow@3x.png */; };
 		49339FC21C904CEC008A26E3 /* groupedTableViewCell_topRow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49339FBB1C904CEC008A26E3 /* groupedTableViewCell_topRow@3x.png */; };
-		49339FC41C904CEC008A26E3 /* MSFMSFApplyCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49339FBE1C904CEC008A26E3 /* MSFMSFApplyCashViewController.m */; };
+		49339FC41C904CEC008A26E3 /* MSFApplyCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49339FBE1C904CEC008A26E3 /* MSFApplyCashViewController.m */; };
 		49386C151B8178D100B1282B /* check-user-credit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49386C141B8178D100B1282B /* check-user-credit.json */; };
 		4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F8C0EF1C0BF60A0010D791 /* RACSignal+MSFContactsAdditions.m */; };
 		493E92021BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493E92011BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m */; };
@@ -1860,8 +1860,8 @@
 		49339FB91C904CEC008A26E3 /* groupedTableViewCell_bottomRow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groupedTableViewCell_bottomRow@3x.png"; sourceTree = "<group>"; };
 		49339FBA1C904CEC008A26E3 /* groupedTableViewCell_middleRow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groupedTableViewCell_middleRow@3x.png"; sourceTree = "<group>"; };
 		49339FBB1C904CEC008A26E3 /* groupedTableViewCell_topRow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "groupedTableViewCell_topRow@3x.png"; sourceTree = "<group>"; };
-		49339FBD1C904CEC008A26E3 /* MSFMSFApplyCashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFMSFApplyCashViewController.h; sourceTree = "<group>"; };
-		49339FBE1C904CEC008A26E3 /* MSFMSFApplyCashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFMSFApplyCashViewController.m; sourceTree = "<group>"; };
+		49339FBD1C904CEC008A26E3 /* MSFApplyCashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFApplyCashViewController.h; sourceTree = "<group>"; };
+		49339FBE1C904CEC008A26E3 /* MSFApplyCashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFApplyCashViewController.m; sourceTree = "<group>"; };
 		49386C141B8178D100B1282B /* check-user-credit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "check-user-credit.json"; sourceTree = "<group>"; };
 		493E92001BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFEnvironmentsViewController.h; sourceTree = "<group>"; };
 		493E92011BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFEnvironmentsViewController.m; sourceTree = "<group>"; };
@@ -3948,8 +3948,8 @@
 		49339FA81C904C84008A26E3 /* Cash */ = {
 			isa = PBXGroup;
 			children = (
-				49339FBD1C904CEC008A26E3 /* MSFMSFApplyCashViewController.h */,
-				49339FBE1C904CEC008A26E3 /* MSFMSFApplyCashViewController.m */,
+				49339FBD1C904CEC008A26E3 /* MSFApplyCashViewController.h */,
+				49339FBE1C904CEC008A26E3 /* MSFApplyCashViewController.m */,
 			);
 			name = Cash;
 			sourceTree = "<group>";
@@ -6408,7 +6408,7 @@
 				0756C1FA1C318265000730D5 /* MSFPaymentToken.m in Sources */,
 				07E3ED531BBBB79D0010AAD2 /* MSFInputTradePasswordViewController.m in Sources */,
 				0750AAF91B969DED00AD67F3 /* MSFCustomAlertView.m in Sources */,
-				49339FC41C904CEC008A26E3 /* MSFMSFApplyCashViewController.m in Sources */,
+				49339FC41C904CEC008A26E3 /* MSFApplyCashViewController.m in Sources */,
 				C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */,
 				499EA2601B55FCE40051AF66 /* UITextField+RACKeyboardSupport.m in Sources */,
 				4943C3841B047FA8000BBF5E /* MSFClient.m in Sources */,
@@ -6959,6 +6959,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "23ed30cd-3348-4bb3-9716-d9b7e05ab444";
+				PROVISIONING_PROFILE = "eb41eff2-3f04-48ff-8e36-0913fb67ae2b";
 			};
 			name = Test;
 		};

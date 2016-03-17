@@ -10,6 +10,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+RepaymentSchedules.h"
 #import "MSFMyRepayViewModel.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFMyRepaysViewModel ()
 
@@ -32,8 +33,10 @@
 	@weakify(self)
 	RAC(self, viewModels) = [self.didBecomeActiveSignal flattenMap:^RACStream *(id value) {
 		@strongify(self)
+		[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		return [[self fetchSingal]
 						flattenMap:^RACStream *(NSArray *viewModels) {
+							[SVProgressHUD dismiss];
 							return [[[viewModels.rac_sequence
 												filter:^BOOL(MSFMyRepayViewModel *viewModel) {
 													return YES;
@@ -64,6 +67,7 @@
 	return [[[[self.services.httpClient
 						 fetchMyRepayWithType:status]
 						catch:^RACSignal *(NSError *error) {
+							[SVProgressHUD dismiss];
 							return [RACSignal empty];
 						}]
 					 map:^id(id value) {
@@ -74,10 +78,7 @@
 
 - (RACSignal *)fetchSingal {
 	return [[RACSignal combineLatest:@[
-																		 [[self fetchStatus:@"0"] ignore:nil],
-																		 [[self fetchStatus:@"1"] ignore:nil],
-																		 [[self fetchStatus:@"3"] ignore:nil],
-																		 [[self fetchStatus:@"4"] ignore:nil]
+																		 [[self fetchStatus:@"0"] ignore:nil]
 																		 ]] flattenMap:^RACStream *(RACTuple *value) {
 		RACTupleUnpack(NSArray *b, NSArray *c, NSArray *d, NSArray *e) = value;
 		b = [[[b arrayByAddingObjectsFromArray:c] arrayByAddingObjectsFromArray:d] arrayByAddingObjectsFromArray:e];

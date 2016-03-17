@@ -27,6 +27,6 @@
 @property (nonatomic, readonly) NSString *jionLifeInsurance;
 @property (nonatomic, readonly) NSString *monthMoney;
 
-- (instancetype)initWithModel:(id)model;
+- (instancetype)initWithServices:(id)services model:(id)model;
 
 @end

@@ -21,6 +21,8 @@
 #import "MSFGetBankIcon.h"
 #import "MSFBankInfoModel.h"
 #import <FMDB/FMDB.h>
+#import "MSFAuthenticate.h"
+#import "MSFUser.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -356,7 +358,24 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 - (RACSignal *)authenticateSignal {
-	return [self.services.httpClient authenticateUsername:self.username userident:self.card city:self.addressViewModel.cityCode province:self.addressViewModel.provinceCode banknumber:self.banknumber];
+	return [[self.services.httpClient authenticateUsername:self.username userident:self.card city:self.addressViewModel.cityCode province:self.addressViewModel.provinceCode banknumber:self.banknumber]
+		doNext:^(MSFAuthenticate *auth) {
+			MSFClient *client = self.services.httpClient;
+			MSFUser *user = [[MSFUser alloc] initWithDictionary:@{
+				@keypath(MSFUser.new, uniqueId): auth.uniqueId?:@"",
+				@keypath(MSFUser.new, name): auth.name?:@"",
+				@keypath(MSFUser.new, hasChecked): @"1"
+			} error:nil];
+			[client.user mergeValueForKey:@keypath(MSFUser.new, uniqueId) fromModel:user];
+			[client.user mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:user];
+			[client.fetchUserInfo subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
+		}];
 }
 
 - (RACSignal *)executeSignInSignal {

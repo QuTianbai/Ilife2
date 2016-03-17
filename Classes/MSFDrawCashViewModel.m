@@ -158,9 +158,9 @@ static NSString *const MSFDrawCashViewModelErrorDomain = @"MSFDrawCashViewModelE
 
 - (RACSignal *)executePaySignal {
 	if (self.type == 4) {
-		return [self.services.httpClient downPaymentWithPayment:self.order SMSCode:self.smsCode SMSSeqNo:self.smsSeqNo];
+		return [self.services.httpClient downPaymentWithPayment:self.order SMSCode:self.smsCode SMSSeqNo:self.smsSeqNo bankCardID:@""];
 	}
-	return [self.services.httpClient transActionWithAmount:self.drawCash smsCode:self.smsCode smsSeqNo:self.smsSeqNo contractNo:self.contractNO];
+	return [self.services.httpClient transActionWithAmount:self.drawCash smsCode:self.smsCode smsSeqNo:self.smsSeqNo contractNo:self.contractNO bankCardID:@"" transPwd:@""];
 }
 
 @end

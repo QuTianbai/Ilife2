@@ -10,7 +10,7 @@
 #import "MSFCreditOrderDetailsViewController.h"
 #import "MSFCreditViewModel.h"
 #import "MSFApplyCashViewModel.h"
-#import "MSFMSFApplyCashViewController.h"
+#import "MSFApplyCashViewController.h"
 #import "MSFLoanType.h"
 
 @interface MSFCreditViewController ()

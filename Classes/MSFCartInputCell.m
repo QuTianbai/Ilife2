@@ -52,10 +52,10 @@
 
 - (void)bindViewModel:(MSFCartViewModel *)viewModel atIndexPath:(NSIndexPath *)indexPath {
 	UITextField *tf = (UITextField *)[self.contentView viewWithTag:100];
-	BOOL allow = viewModel.cart.minDownPmt.floatValue > 0 || viewModel.cart.minDownPmt.floatValue > 0;
+	BOOL allow = viewModel.cart.minDownPmt.floatValue > 0 || viewModel.cart.maxDownPmt.floatValue > 0;
 	if (allow) {
 		tf.userInteractionEnabled = YES;
-		tf.placeholder = @"请填写首付金额";
+		tf.placeholder = [NSString stringWithFormat:@"请输入%.2f到%.2f的金额", viewModel.cart.minDownPmt.floatValue * viewModel.totalAmt.floatValue, viewModel.cart.maxDownPmt.floatValue * viewModel.totalAmt.floatValue];
 		RACChannelTerminal *downPmtChannel = RACChannelTo(viewModel, downPmtAmt);
 		RAC(tf, text) = downPmtChannel;
 		[[[tf.rac_textSignal throttle:1.f] takeUntil:self.rac_prepareForReuseSignal] subscribe:downPmtChannel];

@@ -8,7 +8,7 @@
 
 @class MSFApplyCashViewModel;
 
-@interface MSFMSFApplyCashViewController : UITableViewController
+@interface MSFApplyCashViewController : UITableViewController
 
 @property (nonatomic, strong, readonly) MSFApplyCashViewModel *viewModel;
 
