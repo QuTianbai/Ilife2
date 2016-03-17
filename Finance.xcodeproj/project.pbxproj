@@ -377,6 +377,11 @@
 		1D17E2F91C87E9B300E08B59 /* applyCredit-Cloud.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */; };
 		1D17E2FA1C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */; };
 		1D17E2FB1C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */; };
+		1D4EC4EF1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4ED1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m */; };
+		1D4EC4F01C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4EC4EE1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib */; };
+		1D4EC4F31C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F21C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m */; };
+		1D4EC4F71C9A9B3200C00DA8 /* MSFRepayPlayMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlayMode.m */; };
+		1D4EC4FA1C9A9BF100C00DA8 /* MSFWalletRepayViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayViewModel.m */; };
 		1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */; };
 		1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */; };
 		1D9D54511C91727D00858B5E /* credit-btn-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D544E1C91727D00858B5E /* credit-btn-active.png */; };
@@ -1663,6 +1668,15 @@
 		1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud.jpg"; sourceTree = "<group>"; };
 		1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@2x.jpg"; sourceTree = "<group>"; };
 		1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@3x.jpg"; sourceTree = "<group>"; };
+		1D4EC4EC1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayTableViewCell.h; sourceTree = "<group>"; };
+		1D4EC4ED1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayTableViewCell.m; sourceTree = "<group>"; };
+		1D4EC4EE1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFWalletRepayTableViewCell.xib; sourceTree = "<group>"; };
+		1D4EC4F11C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayTableViewControllerTableViewController.h; sourceTree = "<group>"; };
+		1D4EC4F21C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayTableViewControllerTableViewController.m; sourceTree = "<group>"; };
+		1D4EC4F51C9A9B3200C00DA8 /* MSFRepayPlayMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepayPlayMode.h; sourceTree = "<group>"; };
+		1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlayMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepayPlayMode.m; sourceTree = "<group>"; };
+		1D4EC4F81C9A9BF100C00DA8 /* MSFWalletRepayViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayViewModel.h; sourceTree = "<group>"; };
+		1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayViewModel.m; sourceTree = "<group>"; };
 		1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
 		1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditViewModel.h; sourceTree = "<group>"; };
 		1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditViewModel.m; sourceTree = "<group>"; };
@@ -3370,6 +3384,29 @@
 			name = ProductType;
 			sourceTree = "<group>";
 		};
+		1D4EC4E51C9A8E5500C00DA8 /* RepayPlay */ = {
+			isa = PBXGroup;
+			children = (
+				1D4EC4F11C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.h */,
+				1D4EC4F21C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m */,
+				1D4EC4EC1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.h */,
+				1D4EC4ED1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m */,
+				1D4EC4EE1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib */,
+			);
+			name = RepayPlay;
+			sourceTree = "<group>";
+		};
+		1D4EC4F41C9A9A4E00C00DA8 /* RepayPlay */ = {
+			isa = PBXGroup;
+			children = (
+				1D4EC4F51C9A9B3200C00DA8 /* MSFRepayPlayMode.h */,
+				1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlayMode.m */,
+				1D4EC4F81C9A9BF100C00DA8 /* MSFWalletRepayViewModel.h */,
+				1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayViewModel.m */,
+			);
+			name = RepayPlay;
+			sourceTree = "<group>";
+		};
 		1D907A041C8D1A4800DF9A24 /* Credit */ = {
 			isa = PBXGroup;
 			children = (
@@ -4076,6 +4113,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1D4EC4F41C9A9A4E00C00DA8 /* RepayPlay */,
 				1D907A041C8D1A4800DF9A24 /* Credit */,
 				07CB1B7A1C8DAE010031CEE8 /* Commodity */,
 				49C3DFFA1C87DFAA00E4BBD2 /* Auxiliary */,
@@ -4111,6 +4149,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1D4EC4E51C9A8E5500C00DA8 /* RepayPlay */,
 				49AC0A551C98463B0021E234 /* Contact */,
 				49537E0A1C92894200F3A44D /* List */,
 				49339FA81C904C84008A26E3 /* Cash */,
@@ -5942,6 +5981,7 @@
 				07C158DD1BC8E7E600127339 /* addver@2x.jpg in Resources */,
 				49B7A79C1C85915F00471168 /* icon-user-services.png in Resources */,
 				49B7A7901C85915F00471168 /* icon-user-coupon.png in Resources */,
+				1D4EC4F01C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib in Resources */,
 				4922E12B1C85DAE400E20C2C /* MSFCommitedViewController.storyboard in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-settings@2x.png in Resources */,
 				07E3ED751BBBC3020010AAD2 /* tradepasswordimg@3x.png in Resources */,
@@ -6301,6 +6341,7 @@
 			files = (
 				4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */,
 				49C3A7CB1C86C64C008750AE /* MSFContact.m in Sources */,
+				1D4EC4FA1C9A9BF100C00DA8 /* MSFWalletRepayViewModel.m in Sources */,
 				101BD3D11C2CE59700842D36 /* MSFTrial.m in Sources */,
 				1DF17E421C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m in Sources */,
 				102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */,
@@ -6394,6 +6435,7 @@
 				07E14BA91C85C27F00589164 /* MSFCmdDetailViewModel.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFCartContentCell.m in Sources */,
 				49C3A7C81C86C5EF008750AE /* MSFSocialProfile.m in Sources */,
+				1D4EC4EF1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
@@ -6537,6 +6579,7 @@
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */,
 				101BD3C41C2BE6DE00842D36 /* MSFCartTrialCell.m in Sources */,
+				1D4EC4F31C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				1DFB3A071C8E775600E2E43C /* MSFCreditMiddleViewController.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
@@ -6598,6 +6641,7 @@
 				498B52351C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m in Sources */,
 				10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */,
 				102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */,
+				1D4EC4F71C9A9B3200C00DA8 /* MSFRepayPlayMode.m in Sources */,
 				497827CD1C840D5A00F2D1D8 /* MSFMiddleViewController.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				497827CA1C840D2100F2D1D8 /* MSFFooterViewController.m in Sources */,
@@ -6937,8 +6981,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
 				ENABLE_BITCODE = NO;
@@ -6960,8 +7002,6 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE = "23ed30cd-3348-4bb3-9716-d9b7e05ab444";
 				PROVISIONING_PROFILE = "eb41eff2-3f04-48ff-8e36-0913fb67ae2b";
 			};
 			name = Test;

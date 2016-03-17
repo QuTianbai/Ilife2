@@ -125,7 +125,7 @@
     static NSString *cellID = @"cellID";
     MSFSupportBankListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID ];
     if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"MSFSupportBankListTableViewCell" owner:nil options:nil]firstObject];;
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"MSFSupportBankListTableViewCell" owner:nil options:nil]firstObject];
     }
     MSFSupportBankModel *model = self.dataArray[indexPath.row];
     cell.BankpicImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@", [MSFGetBankIcon getIconNameWithBankCode:model.bankCode ]]];

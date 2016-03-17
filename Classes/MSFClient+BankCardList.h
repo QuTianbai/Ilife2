@@ -21,5 +21,5 @@
 - (RACSignal *)fetchSupportBankInfo;
 
 - (RACSignal *)fetchSupportBankInfoNew;
-
+- (RACSignal *)fetchRepayInformationSignal;
 @end
