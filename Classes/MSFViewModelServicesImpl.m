@@ -96,7 +96,7 @@
 #import "MSFPeoplePickerNavigationController+RACSignalSupport.h"
 #import "AppDelegate.h"
 
-#import "MSFWalletRepayTableViewControllerTableViewController.m"
+#import "MSFWalletRepayTableViewControllerTableViewController.h"
 #import "MSFWalletRepayViewModel.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>

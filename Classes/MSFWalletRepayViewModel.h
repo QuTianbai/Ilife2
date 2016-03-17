@@ -17,7 +17,7 @@
 
 - (instancetype)initWithServices:(id<MSFViewModelServices>)servers;
 
-- (MSFRepayPlayMode *) getRepayPlayMode:(NSInteger)integer;
--(RACSignal *) fetchRepayInformationSignal;
+- (MSFRepayPlayMode *)getRepayPlayMode:(NSInteger)integer;
+- (RACSignal *)fetchRepayInformationSignal;
 
 @end

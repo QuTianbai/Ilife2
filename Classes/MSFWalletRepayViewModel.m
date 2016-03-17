@@ -30,12 +30,12 @@
     return self;
 }
 
--(MSFRepayPlayMode *)getRepayPlayMode:(NSInteger)integer {
+- (MSFRepayPlayMode *)getRepayPlayMode:(NSInteger)integer {
     return self.dataArray[integer];
     
 }
 
--(RACSignal *)fetchRepayInformationSignal{
+- (RACSignal *)fetchRepayInformationSignal {
     return [self.services.httpClient  fetchRepayInformationSignal];
 }
 

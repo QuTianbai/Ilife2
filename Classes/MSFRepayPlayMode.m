@@ -10,7 +10,7 @@
 
 @implementation MSFRepayPlayMode
 
--(instancetype)initWithServices:(id<MSFViewModelServices>)service contractNo:(NSString *)contractNo {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)service contractNo:(NSString *)contractNo {
     
     self = [super init];
     
@@ -21,7 +21,5 @@
     
     return self;
 }
-
-
 
 @end

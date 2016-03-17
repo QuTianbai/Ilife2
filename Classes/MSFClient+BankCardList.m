@@ -36,8 +36,8 @@
     return [[self enqueueRequest:request resultClass:MSFSupportBankModel.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchRepayInformationSignal{
-    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentPlan" parameters:@{@"type":@"4",@"contractNo":@""}];
+- (RACSignal *)fetchRepayInformationSignal {
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentPlan" parameters:@{@"type":@"4", @"contractNo": @""}];
     return [[self enqueueRequest:request resultClass:MSFWalletRepayViewModel.class] msf_parsedResults];
 }
 
