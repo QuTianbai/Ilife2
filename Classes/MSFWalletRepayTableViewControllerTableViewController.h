@@ -10,6 +10,6 @@
 
 @interface MSFWalletRepayTableViewControllerTableViewController : UITableViewController
 
--(instancetype)initWithViewModel:(id)viewModel;
+- (instancetype)initWithViewModel:(id)viewModel;
 
 @end

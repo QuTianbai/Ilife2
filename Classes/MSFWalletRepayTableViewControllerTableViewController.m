@@ -73,18 +73,18 @@
     
     }
    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    MSFRepayPlayMode *model =self.dataArray[indexPath.row];
-    cell.loanTerm.text =[NSString stringWithFormat:@"%d期",model.loanTerm];
-    cell.lastDueDate.text = [NSString stringWithFormat:@"%@%@",model.latestDueDate,model.contractStatus];
-    cell.lastestDueMoney.text = [NSString stringWithFormat:@"¥%.2f",model.latestDueMoney];
+    MSFRepayPlayMode *model = self.dataArray[indexPath.row];
+    cell.loanTerm.text = [NSString stringWithFormat:@"%d期", model.loanTerm];
+    cell.lastDueDate.text = [NSString stringWithFormat:@"%@%@", model.latestDueDate,model.contractStatus];
+    cell.lastestDueMoney.text = [NSString stringWithFormat:@"¥%.2f", model.latestDueMoney];
     
     
     
     
     return cell;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPathr {
     return 44;
 }
 
