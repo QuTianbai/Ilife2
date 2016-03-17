@@ -8,12 +8,14 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFReactiveView.h"
 #import "MSFWalletViewModel.h"
+#import "MSFDeviceGet.h"
 
 @interface MSFWalletViewController ()
 
 @property (nonatomic, strong) UIImage *shadowImage;
 @property (nonatomic, strong) UIImage *backgroundImage;
 @property (nonatomic, strong) MSFWalletViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerConstraintH;
 
 @end
 
@@ -35,6 +37,9 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"信用钱包";
+	if ([MSFDeviceGet deviceNum] & liter4s) {
+		self.headerConstraintH.constant = 200;
+	}
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"账单"
 	style:UIBarButtonItemStyleDone target:nil action:nil];
 	self.navigationItem.rightBarButtonItem.rac_command = self.viewModel.executeBillsCommand;

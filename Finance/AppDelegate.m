@@ -66,9 +66,13 @@
 	[UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent];
 	[UINavigationBar.appearance setTintColor:UIColor.whiteColor];
 	[UINavigationBar.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	
 	[UINavigationBar.appearance setBarTintColor:UIColor.navigationBarColor];
-	[UINavigationBar.appearance setClipsToBounds:YES];
-	[UINavigationBar.appearance setTranslucent:YES];
+	if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+		
+		[UINavigationBar.appearance setTranslucent:YES];
+		[UINavigationBar.appearance setClipsToBounds:YES];
+	}
 	[UINavigationBar.appearance setShadowImage:UIImage.new];
 	[UINavigationBar.appearance setBackIndicatorImage:[UIImage imageWithColor:UIColor.navigationBarColor size:CGSizeMake(1, 44)]];
 
