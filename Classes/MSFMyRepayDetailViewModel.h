@@ -24,7 +24,7 @@
 @property (nonatomic, copy, readonly) NSString *totalOverdueMoney;
 @property (nonatomic, copy, readonly) NSString *interest;
 @property (nonatomic, copy, readonly) NSString *applyDate;
-@property (nonatomic, strong, readonly) NSArray *cmdtyList;
+@property (nonatomic, strong) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
 @property (nonatomic, copy, readonly) NSString *contratStatus;
 

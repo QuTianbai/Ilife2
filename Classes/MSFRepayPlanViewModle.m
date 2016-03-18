@@ -47,11 +47,17 @@
 		}
 	}
 	
-	RAC(self, loanExpireDate) = [[RACObserve(self, model.loanExpireDate) ignore:nil] map:^id(id value) {
-		return [NSString stringWithFormat:@"%@期", value];
+	RAC(self, loanExpireDate) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
+        if ([value.contractType isEqualToString:@"3"] || [value.contractType isEqualToString:@"1"]) {
+            return [NSString stringWithFormat:@"%@/%@", value.loanCurrTerm, value.loanTerm];
+        }
+		return [NSString stringWithFormat:@"%@期", value.loanExpireDate];
 	}];
-	RAC(self, repaymentTotalAmount) = [RACObserve(self, model.totalOverdueMoney) map:^id(id value) {
-		return [NSString stringWithFormat:@"¥%@", value];
+	RAC(self, repaymentTotalAmount) = [RACObserve(self, model) map:^id(MSFRepaymentSchedules *value) {
+        if ([value.contractType isEqualToString:@"3"] || [value.contractType isEqualToString:@"1"]) {
+            return [NSString stringWithFormat:@"¥%@", value.repaymentTotalAmount];
+        }
+		return [NSString stringWithFormat:@"¥%@", value.totalOverdueMoney];
 	}];
 	RAC(self, repaymentTime) = [RACObserve(self, model.repaymentTime) ignore:nil];
 	RAC(self, contractStatus) = [RACObserve(self, model.contractStatus) ignore:nil];
@@ -59,6 +65,8 @@
 	RAC(self, status) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
 		return [NSString stringWithFormat:@"%@%@", value.repaymentTime, value.contractStatus];
 	}];
+    
+    
     
     return self;
 }
