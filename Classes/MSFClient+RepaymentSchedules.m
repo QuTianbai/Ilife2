@@ -34,11 +34,11 @@
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchMyDetailWithContractNo:(NSString *)contractNo type:(NSString *)type {
+- (RACSignal *)fetchMyDetailWithContractNo:(NSString *)contractNo type:(NSString *)type loan:(NSString *)loanterm {
 //	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayDetail" ofType:@"json"];
 //	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
 
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/detailInfo" parameters:@{@"type":type, @"contractNo":contractNo}];
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/detailInfo" parameters:@{@"type":type?:@"", @"contractNo":contractNo?:@"", @"loanCurrTerm":loanterm?:@""}];
 	return [[self enqueueRequest:request resultClass:MSFMyRepayDetailModel.class]msf_parsedResults];
 }
 

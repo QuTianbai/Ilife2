@@ -32,6 +32,6 @@
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
 @property (nonatomic, strong) RACCommand *executeFetchRepayPlanCommand;
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo loanterm:(NSString *)loanterm;
 
 @end

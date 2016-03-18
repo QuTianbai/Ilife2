@@ -26,7 +26,7 @@
 
 @implementation MSFMyRepayDetailViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo loanterm:(NSString *)loanterm {
 	self = [super init];
 	if (!self) {
 		return nil;
@@ -44,6 +44,7 @@
 	_interest = @"";
 	_applyDate = @"";
 	_contratStatus = @"";
+    _loanCurrTerm = loanterm;
 //	_cmdtyList = @[];
 //	_withdrawList = @[];
 	@weakify(self)
@@ -81,7 +82,7 @@
 	}];
 	
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		[[self.services.httpClient fetchMyDetailWithContractNo:self.contractNo type:self.type]
+		[[self.services.httpClient fetchMyDetailWithContractNo:self.contractNo type:self.type loan:self.loanCurrTerm]
 		 subscribeNext:^(MSFMyRepayDetailModel *x) {
 			 self.model = x;
 		 } error:^(NSError *error) {
