@@ -17,6 +17,9 @@ typedef NS_ENUM(NSUInteger, MSFCommodityStatus) {
 	MSFCommodityRelease,     // 放款中
 	MSFCommodityRejected,    // 审核失败需要重新提交
 	MSFCommodityPay,   // 去支付
+    MSFCommodityPayed,//已支付
+    MSFCommodityPayedfirst,//已支付首付
+    MSFCommodityWillPay    //待支付
 };
 
 @class RACCommand;

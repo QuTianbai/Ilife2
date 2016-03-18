@@ -26,7 +26,7 @@
 	}];
 }
 
-+ (NSValueTransformer *)totalOverdueMoneyStatusJSONTransformer {
++ (NSValueTransformer *)totalOverdueMoneyJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
 		if ([num isKindOfClass:[NSNumber class]]) {
 			return num.stringValue;

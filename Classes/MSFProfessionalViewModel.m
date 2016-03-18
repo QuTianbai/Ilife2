@@ -213,7 +213,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		@"area" : self.model.empZoneCode ?: @""
 	};
     @weakify(self);
-    RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[RACObserve(self, jobDate) filter:^BOOL(id value) {
+    RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[[RACObserve(self, jobDate) ignore:nil] filter:^BOOL(id value) {
         @strongify(self);
         if (value && self.jobPositionDate) {
             NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
@@ -347,6 +347,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
+
     if ([self.code isEqualToString:@"SI02"] || [self.code isEqualToString:@"SI04"]) {
         if (self.jobPosition.length == 0) {
             NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{

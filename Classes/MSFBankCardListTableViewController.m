@@ -149,9 +149,8 @@
 		MSFAddBankCardTableViewCell *addCell = [[NSBundle mainBundle] loadNibNamed:@"MSFAddBankCardTableViewCell" owner:nil options:nil].firstObject;
         addCell.contentView.backgroundColor = [UIColor clearColor];
         //[addCell.AddCard addTarget:self action:@selector(AddCardBank:) forControlEvents:UIControlEventTouchUpInside];
-        addCell.AddCard.rac_command = self.viewModel.excuteActionCommand;
-        
-        [addCell.AddCard.rac_command.executionSignals subscribeNext:^(id x) {
+        [[addCell.AddCard rac_signalForControlEvents:UIControlEventTouchUpInside]
+        subscribeNext:^(id x) {
             MSFUser *user = [self.viewModel.services httpClient].user;
             if (!user.hasTransactionalCode) {
                 
@@ -168,7 +167,17 @@
                     }
                     
                 }];
+                
+            } else {
+                MSFAddBankCardTableViewController *vc =  [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+                BOOL isFirstBankCard = NO;
+                if (self.dataArray.count == 0) {
+                    isFirstBankCard = YES;
+                }
+                vc.viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:isFirstBankCard];
+                [self.navigationController pushViewController:vc animated:YES];
             }
+
         }];
         
         addCell.BankCardList.rac_command = self.viewModel.executeSupportCommand;

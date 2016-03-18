@@ -14,7 +14,7 @@
 @property (nonatomic, copy, readonly) NSString *contractNum;
 //还款状态
 @property (nonatomic, copy, readonly) NSString *contractStatus;
-//最近还款
+//最近还款日
 @property (nonatomic, copy, readonly) NSString *repaymentTime;
 //应还金额
 @property (nonatomic, copy, readonly) NSString *repaymentTotalAmount;

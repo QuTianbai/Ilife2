@@ -13,7 +13,7 @@
 #import "MSFClient.h"
 #import "MSFAuthenticate.h"
 
-@interface MSFAuthenticateViewController ()<UITextFieldDelegate>
+@interface MSFAuthenticateViewController ()
 
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *userident;
@@ -55,14 +55,7 @@
 		@strongify(self)
 		self.viewModel.banknumber = [textField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
 	};
-
-    [self.userident.rac_textSignal subscribeNext:^(id x) {
-       @strongify(self)
-        if ([x length]>MSFAuthorizeIdentifierMaxLength) self.userident.text = [x substringToIndex:MSFAuthorizeIdentifierMaxLength]; {
-            self.viewModel.userident = self.userident.text;
-        }
-    }];
-
+	
 	[self.viewModel.executeAuthenticateCommand.executionSignals subscribeNext:^(RACSignal *signal) {
 		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..."];
@@ -99,8 +92,6 @@
 				NSLog(@"%@", imageAndName);
 			}];
 	}];
-    
-
 	
 }
 

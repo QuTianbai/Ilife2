@@ -120,6 +120,21 @@ static NSString *const kWalletIdentifier = @"3101";
 				self.statusString = @"合同已确认";
 				self.buttonTitle = @"去支付";
 				break;
+            case MSFCommodityPayedfirst:
+                self.hasList = @"最近一笔进度";
+                self.statusString = @"已支付首付";
+                self.buttonTitle = @"";
+                break;
+            case MSFCommodityPayed:
+                self.hasList = @"最近一笔进度";
+                self.statusString = @"已支付";
+                self.buttonTitle = @"";
+                break;
+            case MSFCommodityWillPay:
+                self.hasList = @"最近一笔进度";
+                self.statusString = @"待支付";
+                self.buttonTitle = @"去支付";
+                break;
 			default:
 			break;
 		}
@@ -149,10 +164,20 @@ static NSString *const kWalletIdentifier = @"3101";
 							 status = MSFCommodityRelease;
 						 } else if ([application.status isEqualToString:@"H"] || [application.status isEqualToString:@"K"]) {
 							 status = MSFCommodityRejected;
-						 } else if ([application.status isEqualToString:@"J"]) {
+						 } else if ([application.status isEqualToString:@"J"] ) {
 							 status = MSFCommodityPay;
 							 
-						 }
+                         } else if ([application.status isEqualToString:@"O"]) {
+                             status = MSFCommodityWillPay;
+                             
+                         } else if ([application.status isEqualToString:@"Q"]) {
+                             status = MSFCommodityPayedfirst;
+                             
+                         } else if ([application.status isEqualToString:@"P"]) {
+                             
+                            status = MSFCommodityPayed;
+                             
+                         }
 						 
 						 return RACTuplePack(@(status), application);
 					 }];
@@ -186,7 +211,9 @@ static NSString *const kWalletIdentifier = @"3101";
 		//资料重传
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kWalletIdentifier services:self.services];
 		[self.services pushViewModel:viewModel];
-	}
+    } else if (self.status == MSFCommodityPay || self.status == MSFCommodityWillPay) {
+        
+    }
 	return RACSignal.empty;
 }
 

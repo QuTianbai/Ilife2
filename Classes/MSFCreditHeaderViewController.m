@@ -10,10 +10,12 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFCreditViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFDeviceGet.h"
 
 @interface MSFCreditHeaderViewController ()
 
 @property (nonatomic, weak) MSFCreditViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHTop;
 
 @end
 
@@ -23,6 +25,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    if ([MSFDeviceGet deviceNum] & liter4s) {
+        self.headerHTop.constant = 70;
+    }
 	
 	RAC(self.titleLabel, text) = RACObserve(self, viewModel.title);
 	RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.subtitle);

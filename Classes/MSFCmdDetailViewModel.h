@@ -10,6 +10,7 @@
 
 @interface MSFCmdDetailViewModel : RVMViewModel
 
+@property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSString *cmdtyName;
 @property (nonatomic, copy, readonly) NSString *cmdtyPrice;
 @property (nonatomic, copy, readonly) NSString *orderTime;
