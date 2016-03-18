@@ -215,13 +215,16 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     @weakify(self);
     RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[[RACObserve(self, jobDate) ignore:nil] filter:^BOOL(id value) {
         @strongify(self);
-        NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
-        NSDate *date2 = [NSDateFormatter msf_dateFromString:(NSString *)self.jobPositionDate];
-        if ([date1 timeIntervalSinceDate:date2] > 0) {
-            return YES;
-        } else {
-            return NO;
+        if (value && self.jobPositionDate) {
+            NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
+            NSDate *date2 = [NSDateFormatter msf_dateFromString:(NSString *)self.jobPositionDate];
+            if ([date1 timeIntervalSinceDate:date2] > 0) {
+                return YES;
+            } else {
+                return NO;
+            }
         }
+        return NO;
     }]];
 	MSFAddressCodes *addrModel = [MSFAddressCodes modelWithDictionary:addr error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
@@ -344,7 +347,27 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
-    
+
+    if ([self.code isEqualToString:@"SI02"] || [self.code isEqualToString:@"SI04"]) {
+        if (self.jobPosition.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写职业",
+                                                                                                    }];
+            return [RACSignal error: error];
+        } else if (self.jobPositionDepartment.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写部门",
+                                                                                                    }];
+            return [RACSignal error: error];
+        } else if (self.jobPositionDate.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写入职日期",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        }        
+    }
+
 	__block NSError *error = nil;
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFContactViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if (!obj.isValid) {

@@ -61,7 +61,7 @@
 		RACObserve(self, relationship)
 	]
 	reduce:^id(NSString *name, NSString *phone, NSString *relationship) {
-		return @(name.length > 0 && phone.length > 0 && relationship.length > 0);
+        return @(name.length > 0 && phone.length > 0 && relationship.length > 0&&(self.on?YES:self.address.length));
 	}];
 	
   return self;
