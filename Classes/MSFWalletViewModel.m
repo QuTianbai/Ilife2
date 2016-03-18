@@ -138,6 +138,8 @@ static NSString *const kApplicationWalletType = @"4";
 					self.usedAmounts = model.usedLimit;
 					self.loanRates = [NSString stringWithFormat:@"%.3f%%", model.feeRate * 100];
 					self.repayDate = model.latestDueDate;
+                    self.repayAmounts = model.latestDueMoney;
+                    self.repayDates = [NSString stringWithFormat:@"剩余%ld天,可随时还款", model.remainingDate];
 				}];
 			} break;
 			default:

@@ -236,9 +236,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
     [self.viewModel.executeMarriageCommand.executionSignals subscribeNext:^(RACSignal *x) {
         @strongify(self);
         [x subscribeNext:^(MSFSelectKeyValues *x) {
-            if ([x.code isEqualToString:@"20"]) {
-                [self.viewModel updateViewModels];
-            }
+            [self.viewModel updateViewModelsWithRelation:x.code];
             [self.tableView reloadData];
         }];
     }];
@@ -357,8 +355,19 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellPhoneTextFeild + index];
 	textField.text = viewModel.phone;
+    @weakify(textField);
 	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
-		viewModel.phone = x;
+        @strongify(textField);
+        NSString *number = @"[0-9]{0,11}";
+        NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", number];
+        if ([numberPre evaluateWithObject:x]) {
+            viewModel.phone = x;
+        } else {
+            NSString *str = [(NSString *)x substringWithRange:NSMakeRange(0, [(NSString *)x length] - 1)];
+            viewModel.phone = str;
+            textField.text = str;
+        }
+
 	}];
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
