@@ -267,7 +267,7 @@
     <resources>
         <image name="icon-user-avatar.png" width="65" height="66"/>
         <image name="icon-user-bank.png" width="30" height="30"/>
-        <image name="icon-user-bg" width="1242" height="552"/>
+        <image name="icon-user-bg" width="50" height="50"/>
         <image name="icon-user-coupon.png" width="30" height="30"/>
         <image name="icon-user-edit.png" width="16" height="31"/>
         <image name="icon-user-order.png" width="30" height="30"/>

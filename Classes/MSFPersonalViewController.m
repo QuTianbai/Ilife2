@@ -68,6 +68,7 @@
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
+    self.emailTF.keyboardType = UIKeyboardTypeASCIICapable;
 	
 	//住宅电话
 	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel, phone);
