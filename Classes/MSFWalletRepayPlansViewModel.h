@@ -7,17 +7,16 @@
 //
 #import "MSFViewModelServices.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFRepayPlayMode.h"
+#import "MSFRepayPlanViewModle.h"
 #import "MSFViewModelServices.h"
 
-@interface MSFWalletRepayViewModel : RVMViewModel
+@interface MSFWalletRepayPlansViewModel : RVMViewModel
 
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
-@property (nonatomic, strong) RACCommand  *executeBankList;
+@property (nonatomic, strong) RACCommand  *executeMyRepayPlanList;
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)servers;
+@property (nonatomic, strong) RACCommand *executeFetchCommand;
 
-- (MSFRepayPlayMode *)getRepayPlayMode:(NSInteger)integer;
-- (RACSignal *)fetchRepayInformationSignal;
+- (instancetype)initWithServices:(id<MSFViewModelServices>)servers viewModel:(id)viewModel;
 
 @end

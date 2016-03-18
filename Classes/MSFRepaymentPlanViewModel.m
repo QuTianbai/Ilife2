@@ -32,7 +32,8 @@
 }
 
 - (RACSignal *)fetchCircleRepaymentSchrdulesSignal {
-	return [self.services.httpClient fetchCircleRepaymentSchedules];
+	return nil;
+//	return [self.services.httpClient fetchCircleRepaymentSchedules];
 }
 
 @end

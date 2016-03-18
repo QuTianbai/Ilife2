@@ -18,8 +18,10 @@
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchCircleRepaymentSchedules {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"append/schedules" parameters:@{@"type": @"2"}];
+- (RACSignal *)fetchCircleRepaymentSchedulesContractNo:(NSString *)contractNo {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"query/repaymentPlan" parameters:@{@"type": @"4",
+									 @"contractNo":contractNo
+									}];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 

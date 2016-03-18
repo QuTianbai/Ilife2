@@ -15,6 +15,7 @@
 #import "MSFCmdDetailViewModel.h"
 #import "MSFWithDrawViewModel.h"
 #import "MSFRepaymentViewModel.h"
+#import "MSFWalletRepayPlansViewModel.h"
 
 @interface MSFMyRepayDetailViewModel ()
 
@@ -109,6 +110,12 @@
 	_executeFetchRepayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		MSFRepaymentViewModel *repaypmentviewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:self services:self.services];
 		[self.services pushViewModel:repaypmentviewModel];
+		return [RACSignal empty];
+	}];
+	
+	_executeFetchRepayPlanCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		MSFWalletRepayPlansViewModel *viewModel = [[MSFWalletRepayPlansViewModel alloc] initWithServices:self.services viewModel:self];
+		[self.services pushViewModel:viewModel];
 		return [RACSignal empty];
 	}];
 	

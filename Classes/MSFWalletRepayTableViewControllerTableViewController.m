@@ -8,17 +8,20 @@
 
 #import "MSFWalletRepayTableViewControllerTableViewController.h"
 #import "MSFWalletRepayTableViewCell.h"
-#import "MSFWalletRepayViewModel.h"
+#import "MSFWalletRepayPlansViewModel.h"
 #import "MSFWalletViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import "MSFTabBarViewModel.h"
 #import "MSFCommandView.h"
+#import "MSFTableViewBindingHelper.h"
+#import <DZNEmptyDataSet/UIScrollView+EmptyDataSet.h>
 
-@interface MSFWalletRepayTableViewControllerTableViewController ()
+@interface MSFWalletRepayTableViewControllerTableViewController () <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, strong) MSFWalletRepayViewModel *viewModel;
+@property (nonatomic, strong) MSFWalletRepayPlansViewModel *viewModel;
+@property (nonatomic, strong) MSFTableViewBindingHelper *bindingHelper;
 
 @end
 
@@ -30,7 +33,6 @@
         return nil;
     }
     _viewModel = viewModel;
-    
     return self;
 }
 
@@ -39,11 +41,18 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.backgroundColor = [MSFCommandView getColorWithString:@"#F6F6F6"];
-    self.title = @"支持银行卡";
-    self.dataArray = [[NSArray alloc]init];
+    self.title = @"还款计划";
+    //self.dataArray = [[NSArray alloc]init];
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
-    
-
+	
+	UIView *tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 10)];
+	tableHeaderView.backgroundColor = [UIColor clearColor];
+	self.tableView.tableHeaderView = tableHeaderView;
+	self.tableView.emptyDataSetSource = self;
+	self.tableView.emptyDataSetDelegate = self;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	[self settableViewCustom];
+	
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,41 +60,40 @@
    
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	self.viewModel.active = YES;
+	self.viewModel.active = NO;
+}
+
+- (void)settableViewCustom {
+	//@weakify(self)
+	self.bindingHelper = [[MSFTableViewBindingHelper alloc]
+												initWithTableView:self.tableView sourceSignal:[self.viewModel.executeFetchCommand.executionSignals flattenMap:^RACStream *(id value) {
+		return value;
+	}]
+	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		return [RACSignal empty];
+		
+	}]  templateCell:[UINib nibWithNibName:NSStringFromClass([MSFWalletRepayTableViewCell class]) bundle:nil]];
+	self.bindingHelper.delegate = self;
+
+}
+
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
+	NSString *title = @"您还没有还款计划";
+	
+	return [[NSAttributedString alloc] initWithString:title attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]}];
+}
+
+- (UIImage *)imageForEmptyDataSet:(UIScrollView *)scrollView {
+	return [UIImage imageNamed:@"cell-icon-normal.png"];
+}
+
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return self.dataArray.count;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellID = @"cellID";
-    
-    MSFWalletRepayTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID ];
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"MSFWalletRepayTableViewCell" owner:nil options:nil]firstObject ];
-    
-    }
-   tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    MSFRepayPlayMode *model = self.dataArray[indexPath.row];
-    cell.loanTerm.text = [NSString stringWithFormat:@"%d期", model.loanTerm];
-    cell.lastDueDate.text = [NSString stringWithFormat:@"%@%@", model.latestDueDate,model.contractStatus];
-    cell.lastestDueMoney.text = [NSString stringWithFormat:@"¥%.2f", model.latestDueMoney];
-    
-    
-    
-    
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPathr {
-    return 44;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 57;
 }
 
 @end

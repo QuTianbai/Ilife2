@@ -56,6 +56,8 @@
 	self.listTableView.allowsSelection = NO;
 	self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.payMasteBT.rac_command = self.viewModel.executeFetchRepayCommand;
+	self.repayPlanBT.rac_command = self.viewModel.executeFetchRepayPlanCommand;
+	
 }
 
 - (void)didReceiveMemoryWarning {

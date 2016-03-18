@@ -27,9 +27,10 @@
 @property (nonatomic, strong, readonly) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
 @property (nonatomic, copy, readonly) NSString *contratStatus;
-@property (nonatomic, strong) RACCommand *executeFetchRepayCommand;
 
+@property (nonatomic, strong) RACCommand *executeFetchRepayCommand;
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
+@property (nonatomic, strong) RACCommand *executeFetchRepayPlanCommand;
 
 - (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo;
 

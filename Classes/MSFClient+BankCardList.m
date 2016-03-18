@@ -12,7 +12,7 @@
 #import "MSFUser.h"
 #import "MSFResponse.h"
 #import "MSFSupportBankModel.h"
-#import "MSFWalletRepayViewModel.h"
+#import "MSFWalletRepayPlansViewModel.h"
 
 @implementation MSFClient (BankCardList)
 
@@ -34,11 +34,6 @@
 - (RACSignal *)fetchSupportBankInfoNew {
     NSURLRequest *request = [self requestWithMethod:@"GET" path:@"bankcard/supportBank" parameters:nil];
     return [[self enqueueRequest:request resultClass:MSFSupportBankModel.class] msf_parsedResults];
-}
-
-- (RACSignal *)fetchRepayInformationSignal {
-    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentPlan" parameters:@{@"type":@"4", @"contractNo": @""}];
-    return [[self enqueueRequest:request resultClass:MSFWalletRepayViewModel.class] msf_parsedResults];
 }
 
 @end

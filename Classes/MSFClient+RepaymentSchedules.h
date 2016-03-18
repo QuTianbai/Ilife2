@@ -20,7 +20,7 @@
 //请求社保贷还款计划
 //
 // Returns a signal will send a instance of <MSFRepaymentSchedules>
-- (RACSignal *)fetchCircleRepaymentSchedules;
+- (RACSignal *)fetchCircleRepaymentSchedulesContractNo:(NSString *)contractNo;
 
 - (RACSignal *)fetchMyRepayWithType:(NSString *)type;
 

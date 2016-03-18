@@ -1,14 +1,16 @@
 //
-//	MSFRepaymentSchedule.h
-//	Cash
-//	我的还款
-//	Created by xutian on 15/5/15.
-//	Copyright (c) 2015年 Zēng Liàng. All rights reserved.
+//  MSFRepayPlayMode.h
+//  Finance
+//
+//  Created by Wyc on 16/3/17.
+//  Copyright © 2016年 MSFINANCE. All rights reserved.
 //
 
 #import "MSFObject.h"
+#import "MSFViewModelServices.h"
+#import <ReactiveViewModel/ReactiveViewModel.h>
 
-@interface MSFRepaymentSchedules : MSFObject
+@interface MSFRepayPlanViewModle : MSFObject
 
 //合同编号
 @property (nonatomic, copy, readonly) NSString *contractNum;
@@ -29,6 +31,9 @@
 //账期
 @property (nonatomic, copy, readonly) NSString *loanExpireDate;
 
-@property (nonatomic, copy, readonly) NSString *totalOverdueMoney;
+@property (nonatomic, copy, readonly) NSString *status;
+
+
+- (instancetype)initWithModel:(id)model;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MSFReactiveView.h"
 
-@interface MSFWalletRepayTableViewCell : UITableViewCell
+@interface MSFWalletRepayTableViewCell : UITableViewCell <MSFReactiveView>
 
 @property (weak, nonatomic) IBOutlet UILabel *loanTerm;
 @property (weak, nonatomic) IBOutlet UILabel *lastestDueMoney;
