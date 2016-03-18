@@ -213,7 +213,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		@"area" : self.model.empZoneCode ?: @""
 	};
     @weakify(self);
-    RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[RACObserve(self, jobDate) filter:^BOOL(id value) {
+    RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[[RACObserve(self, jobDate) ignore:nil] filter:^BOOL(id value) {
         @strongify(self);
         NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
         NSDate *date2 = [NSDateFormatter msf_dateFromString:(NSString *)self.jobPositionDate];
@@ -344,24 +344,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
-    if (self.jobPosition.length == 0) {
-        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
-                                                                                      NSLocalizedFailureReasonErrorKey: @"请填写职业",
-                                                                                      }];
-        return [RACSignal error: error];
-    } else if (self.jobPositionDepartment.length == 0) {
-        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
-                                                                                               NSLocalizedFailureReasonErrorKey: @"请填写部门",
-                                                                                               }];
-        return [RACSignal error: error];
-    } else if (self.jobPositionDate.length == 0) {
-        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
-                                                                                               NSLocalizedFailureReasonErrorKey: @"请填写入职日期",
-                                                                                               }];
-        
-        return [RACSignal error: error];
-    }
-
+    
 	__block NSError *error = nil;
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFContactViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if (!obj.isValid) {
