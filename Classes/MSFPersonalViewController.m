@@ -9,7 +9,7 @@
 #import "MSFPersonalViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-
+#import "UITextField+Limit.h"
 #import "MSFSelectionViewController.h"
 
 #import "MSFCommandView.h"
@@ -71,6 +71,7 @@
     self.emailTF.keyboardType = UIKeyboardTypeASCIICapable;
 	
 	//住宅电话
+    [self.homeTelTF limitWitLength:12];
 	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel, phone);
 	RAC(self.homeTelTF, text) = homeTelChannel;
 	[self.homeTelTF.rac_textSignal subscribe:homeTelChannel];
@@ -109,6 +110,8 @@
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+    //对textfiled进行限
+    
 }
 
 - (void)viewDidLayoutSubviews {

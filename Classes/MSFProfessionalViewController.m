@@ -24,7 +24,7 @@
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
 #import "MSFHeaderView.h"
-
+#import "UITextField+Limit.h"
 typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	MSFProfessionalViewSectionIncome = 1,
 	MSFProfessionalViewSectionSchool = 2,
@@ -174,7 +174,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	channel = RACChannelTo(self.viewModel, jobPhone);
 	RAC(self.unitTelephone, text) = channel;
 	[self.unitTelephone.rac_textSignal subscribe:channel];
-	
+    [self.unitTelephone limitWitLength:12];
 	channel = RACChannelTo(self.viewModel, jobExtPhone);
 	RAC(self.unitExtensionTelephone, text) = channel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:channel];
@@ -188,7 +188,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	channel = RACChannelTo(self.viewModel, jobPositionDepartment);
 	RAC(self.department, text) = channel;
 	[self.department.rac_textSignal subscribe:channel];
-	
+    [self.department limitWitLength:20];
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *x) {
 		[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
