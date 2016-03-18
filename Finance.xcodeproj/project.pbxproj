@@ -981,6 +981,7 @@
 		49FCBF9A1C0E92D90035398E /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF981C0E92D90035398E /* submit.json */; };
 		49FCC1911C572316004AFF13 /* MSFCouponsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */; };
 		49FCC1931C572332004AFF13 /* MSFCouponsContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */; };
+		84AE51681C9C21D1000CD582 /* UITextField+Limit.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AE51671C9C21D1000CD582 /* UITextField+Limit.m */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
 		C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */; };
 		C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */; };
@@ -2444,6 +2445,8 @@
 		49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCouponsContainerViewController.storyboard; sourceTree = "<group>"; };
 		58F8D02BB8A8A45CFB086018 /* Pods-Finance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Finance/Pods-Finance.debug.xcconfig"; sourceTree = "<group>"; };
 		7643A58430333EA89C5D1B88 /* Pods-Finance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.release.xcconfig"; path = "Pods/Target Support Files/Pods-Finance/Pods-Finance.release.xcconfig"; sourceTree = "<group>"; };
+		84AE51661C9C21D1000CD582 /* UITextField+Limit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Limit.h"; sourceTree = "<group>"; };
+		84AE51671C9C21D1000CD582 /* UITextField+Limit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Limit.m"; sourceTree = "<group>"; };
 		855A0D7FE4BEA13D2536AC87 /* Pods-Finance.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.test.xcconfig"; path = "Pods/Target Support Files/Pods-Finance/Pods-Finance.test.xcconfig"; sourceTree = "<group>"; };
 		872B519157B1C71C603BEA97 /* Pods-Tests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.test.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.test.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -4851,6 +4854,8 @@
 				49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */,
 				07E9430F1C7873FC00A3316B /* UIImage+Color.h */,
 				07E943101C7873FC00A3316B /* UIImage+Color.m */,
+				84AE51661C9C21D1000CD582 /* UITextField+Limit.h */,
+				84AE51671C9C21D1000CD582 /* UITextField+Limit.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6566,6 +6571,7 @@
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
+				84AE51681C9C21D1000CD582 /* UITextField+Limit.m in Sources */,
 				49B186021C561F8000409C6F /* MSFCouponsViewController.m in Sources */,
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				495B071E1C520BAD002DDFAA /* MSFTransactionsViewController.m in Sources */,
