@@ -101,7 +101,15 @@
 }
 
 - (RACSignal *)updateSignal {
-	if (!self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
+//	if (!self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
+    if (self.email.length != 0) {
+        NSString *regEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
+        BOOL isMatch = [pred evaluateWithObject:self.email];
+        if (!isMatch) {
+            return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
+        }
+    }
 	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *value) {
 		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, personal): self.model} error:nil];
 		[value mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];
