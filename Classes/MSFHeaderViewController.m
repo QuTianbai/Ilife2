@@ -8,10 +8,14 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFWalletViewModel.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "MSFDeviceGet.h"
 
 @interface MSFHeaderViewController ()
 
 @property (nonatomic, weak) MSFWalletViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerHtop;
+@property (weak, nonatomic) IBOutlet UILabel *allowMoney;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *allowMoneyH;
 
 @end
 
@@ -21,6 +25,10 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    if ([MSFDeviceGet deviceNum] & liter4s) {
+        self.headerHtop.constant = 40;
+        self.allowMoneyH.constant = 95;
+    }
 	RAC(self.titleLabel, text) = RACObserve(self, viewModel.title);
 	RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.subtitle);
 	RAC(self.totalLabel, text) = RACObserve(self, viewModel.totalAmounts);
