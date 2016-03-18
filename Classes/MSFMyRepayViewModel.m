@@ -12,6 +12,7 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 //#import "msfclient+PlanPerodicTables.h"
 #import "NSDictionary+MSFKeyValue.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @interface MSFMyRepayViewModel ()
 
@@ -41,7 +42,10 @@
 		}
 		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];
-	RAC(self, repayTime) = [RACObserve(self, model.repaymentTime) ignore:nil];
+	RAC(self, repayTime) = [[RACObserve(self, model.repaymentTime) ignore:nil] map:^id(NSString *value) {
+        NSDate *date = [NSDateFormatter msf_dateFromString:value];
+        return [NSDateFormatter msf_stringFromDate:date];
+    }];
 	RAC(self, applyType) = [RACObserve(self, model.contractType) ignore:nil];
 	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
 	[RACObserve(self, model)
