@@ -47,10 +47,8 @@
 	self.commitButton.rac_command = self.viewModel.executeAuthenticateCommand;
 	RAC(self, bankaddrs.text) = RACObserve(self, viewModel.address);
 	RAC(self, viewModel.username) = self.username.rac_textSignal;
-	//RAC(self, viewModel.card) = self.userident.rac_textSignal;
+	RAC(self, viewModel.card) = self.userident.rac_textSignal;
 
-    
-	
 	@weakify(self)
 	[[(SHSPhoneTextField *)self.bankcard formatter] setDefaultOutputPattern:@"#### #### #### #### ###"];
 	((SHSPhoneTextField *)self.bankcard).textDidChangeBlock = ^(UITextField *textField){

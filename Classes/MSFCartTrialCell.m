@@ -77,7 +77,7 @@
 	MSFCounterLabel *label4 = (MSFCounterLabel *)[self.contentView viewWithTag:101];
 	RAC(label1, text) = [[RACObserve(viewModel, trial.lifeInsuranceAmt) takeUntil:self.rac_prepareForReuseSignal] map:^id(id value) {
         float floatValue = [value floatValue];
-        NSString *str = [NSString stringWithFormat:@"%.2f",floatValue];
+        NSString *str = [NSString stringWithFormat:@"%.2f", floatValue];
 		return [NSString stringWithFormat:@"此服务为可选增值服务，请仔细阅读后选择  寿险金额：￥%@", str ?: @"0"];
 	}];
 	[[RACObserve(viewModel, trial.loanFixedAmt) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSString *x) {
