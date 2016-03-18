@@ -101,7 +101,6 @@
 }
 
 - (RACSignal *)updateSignal {
-//	if (!self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
     if (self.email.length != 0) {
         NSString *regEx = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regEx];
