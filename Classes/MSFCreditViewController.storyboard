@@ -231,6 +231,7 @@
                         <outlet property="applyView" destination="Bdi-3a-3aN" id="hA6-DZ-GBs"/>
                         <outlet property="beforeApplyView" destination="Bpo-sQ-ON2" id="Qas-AJ-knB"/>
                         <outlet property="button" destination="cP9-0S-ouV" id="NM0-Y7-TeR"/>
+                        <outlet property="headerHTop" destination="5Yh-cU-TCM" id="CKi-i8-SwF"/>
                         <outlet property="repayLabel" destination="PfG-8L-kEZ" id="KuN-yP-xJq"/>
                         <outlet property="subtitleLabel" destination="GUe-z9-CnN" id="OMu-aH-BtI"/>
                         <outlet property="titleLabel" destination="uPM-BO-790" id="083-T5-XmY"/>
