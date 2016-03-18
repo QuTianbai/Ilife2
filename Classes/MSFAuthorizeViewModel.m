@@ -366,8 +366,11 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 				@keypath(MSFUser.new, name): auth.name?:@"",
 				@keypath(MSFUser.new, hasChecked): @"1"
 			} error:nil];
-			[client.user mergeValueForKey:@keypath(MSFUser.new, uniqueId) fromModel:user];
-			[client.user mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:user];
+//			[client.user mergeValueForKey:@keypath(MSFUser.new, uniqueId) fromModel:user];
+            client.user.name = user.name;
+            client.user.hasChecked = user.hasChecked;
+            client.user.uniqueId = user.uniqueId;
+//			[client.user mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:user];
 			[client.fetchUserInfo subscribeNext:^(MSFUser *x) {
 				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
 				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];

@@ -16,19 +16,19 @@
 @interface MSFUser : MSFObject
 
 // 用户姓名
-@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readwrite) NSString *name;
 
 // 用户手机号
 @property (nonatomic, copy, readonly) NSString *mobile;
 
 // 判断用户是否已设置交易密码
-@property (nonatomic, assign, readonly) BOOL hasTransactionalCode;
+@property (nonatomic, assign, readwrite) BOOL hasTransactionalCode;
 
 //客户分类
 @property (nonatomic, copy, readonly) NSString *custType;
 
 //是否经过实名认证
-@property (nonatomic, copy, readonly) NSString *hasChecked;
+@property (nonatomic, copy, readwrite) NSString *hasChecked;
 
 @property (nonatomic, copy, readwrite) NSString *uniqueId;
 @property (nonatomic, copy, readwrite) NSString *applyType;
@@ -50,11 +50,11 @@
 - (BOOL)isAuthenticated;
 
 // 用户信息
-@property (nonatomic, strong, readonly) NSString *maritalStatus;
-@property (nonatomic, strong, readonly) MSFPersonal *personal;
-@property (nonatomic, strong, readonly) MSFProfessional *professional;
-@property (nonatomic, strong, readonly) MSFSocialInsurance *insurance;
-@property (nonatomic, strong, readonly) NSArray *profiles;
-@property (nonatomic, strong, readonly) NSArray *contacts;
+@property (nonatomic, strong, readwrite) NSString *maritalStatus;
+@property (nonatomic, strong, readwrite) MSFPersonal *personal;
+@property (nonatomic, strong, readwrite) MSFProfessional *professional;
+@property (nonatomic, strong, readwrite) MSFSocialInsurance *insurance;
+@property (nonatomic, strong, readwrite) NSArray *profiles;
+@property (nonatomic, strong, readwrite) NSArray *contacts;
 
 @end
