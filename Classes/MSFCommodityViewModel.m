@@ -112,7 +112,7 @@ static NSString *const kWalletIdentifier = @"3101";
 				break;
 			case MSFCommodityRejected:
 				self.hasList = @"最近一笔进度";
-				self.statusString = @"审核失败";
+				self.statusString = self.application.failInfo;
 				self.buttonTitle = @"";
 				break;
 			case MSFCommodityPay:
