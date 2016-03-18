@@ -215,7 +215,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     @weakify(self);
     RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[RACObserve(self, jobDate) filter:^BOOL(id value) {
         @strongify(self);
-        if (value && self.jobPosition) {
+        if (value && self.jobPositionDate) {
             NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
             NSDate *date2 = [NSDateFormatter msf_dateFromString:(NSString *)self.jobPositionDate];
             if ([date1 timeIntervalSinceDate:date2] > 0) {
