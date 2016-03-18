@@ -712,9 +712,28 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			if (itemArray.count == 1) {
 				self.oldBankNo = tempBankNo;
 				self.bankInfo = itemArray.firstObject;
+                NSString *bankType = nil;
+                switch (self.bankInfo.type.intValue) {
+                    case 1:
+                        bankType = @"借记卡";
+                        break;
+                    case 2:
+                        bankType = @"贷记卡";
+                        break;
+                    case 3:
+                        bankType = @"准贷记卡";
+                        break;
+                    case 4:
+                        bankType =  @"预付费卡";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                NSString *backNameAndType = [NSString stringWithFormat:@"%@  %@", self.bankInfo.name,bankType];
 				[subscriber sendNext:RACTuplePack(
 					[UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
-					self.bankInfo.name
+					backNameAndType
 				)];
 			} else {
 				[subscriber sendNext:RACTuplePack(nil,  @"")];
