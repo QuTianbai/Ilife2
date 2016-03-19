@@ -53,7 +53,7 @@
 	 subscribeNext:^(MSFRepaymentSchedules *model) {
 		 NSString *money = model.repaymentTotalAmount;
 		 if ([model.contractType isEqualToString:@"4"]) {
-			 money = model.totalOverdueMoney;
+			 money = model.repaymentTotalAmount;
 		 }
 		 NSString *str = [NSString stringWithFormat:@"本期应还：¥%@", money];
 		 NSMutableAttributedString *bankCardShowInfoAttributeStr = [[NSMutableAttributedString alloc] initWithString:str];
