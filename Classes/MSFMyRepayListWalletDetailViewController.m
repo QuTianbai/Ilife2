@@ -45,9 +45,11 @@
 	self.title = @"详情信息";
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
-	RAC(self, dueMoneyLB.text) = RACObserve(self, viewModel.appLmt);
-	RAC(self, lastDueMoneyLB.text) = RACObserve(self, viewModel.totalOverdueMoney);
-	RAC(self, timeRouteLB.text) = RACObserve(self, viewModel.latestDueDate);
+	RAC(self, dueMoneyLB.text) = RACObserve(self, viewModel.totalOverdueMoney);
+	RAC(self, lastDueMoneyLB.text) = RACObserve(self, viewModel.latestDueMoney);
+	RAC(self, timeRouteLB.text) = [RACObserve(self, viewModel.latestDueDate) map:^id(id value) {
+        return [NSString stringWithFormat:@"%@期", value];
+    }];
 	
 	[self bindTableView];
 	
