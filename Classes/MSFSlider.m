@@ -84,13 +84,13 @@
 
 - (void)slideerValueChanged:(UISlider *)slider {
 	if (self.hiddenAmount) return;
-	self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", slider.value < 100? (int)slider.minimumValue : (int)slider.value / 100 * 100];
+	self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];
 }
 
 - (void)sliderGragUp:(UISlider *)slider {
 	// 手指移开slider时获取的金额
   if ([self.delegate respondsToSelector:@selector(getStringValue:)]) {
-    [self.delegate getStringValue:[NSString stringWithFormat:@"%d", slider.value < 100? (int)slider.minimumValue : (int)slider.value / 100 * 100]];
+    [self.delegate getStringValue:[NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500]];
   }
 }
 
