@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong, readwrite) MSFContact *model;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readwrite) RACCommand *executeNoFamilyRelationshipCommand;
 
 @end
 
@@ -28,8 +29,11 @@
 	_model = model;
 	_on = self.model.contactAddress.length == 0;
 	_services = services;
-	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
+	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
+        if ([input isEqualToString:@"0"]) {
+            return [self.services msf_selectKeyValuesWithContent:@"familyMember_type1"];
+        }
+		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type2"];
 	}];
 	RAC(self, relationship) = [RACObserve(self, model.contactRelation) flattenMap:^id(id value) {
 		return [self.services msf_selectValuesWithContent:@"familyMember_type" keycode:value];
