@@ -261,9 +261,9 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     MSFContact *content = [[MSFContact alloc] init];
     if ([relation isEqualToString:@"20"]) {
         content.contactRelation = @"RF01";
+        tempContacts[0] = content;
+        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
     }
-    tempContacts[0] = content;
-    tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
     self.viewModels = tempViewModels;
     self.contacts = tempContacts;
 }
