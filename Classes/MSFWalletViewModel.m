@@ -304,6 +304,8 @@ static NSString *const kApplicationWalletType = @"4";
 - (RACSignal *)billsSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFMyRepaysViewModel *viewModel = [[MSFMyRepaysViewModel alloc] initWithservices:self.services];
+        [viewModel.executeFetchCommand execute:@"4"];
+        viewModel.butonIndex = @"2";
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;

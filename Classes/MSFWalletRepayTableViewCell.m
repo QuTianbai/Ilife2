@@ -23,6 +23,7 @@
 @implementation MSFWalletRepayTableViewCell
 
 - (void)awakeFromNib {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 	RAC(self, dateLB.text) = RACObserve(self, viewModel.loanExpireDate);
 	RAC(self, statusLB.text) = RACObserve(self, viewModel.status);
 	RAC(self, moneyLB.text) = RACObserve(self, viewModel.repaymentTotalAmount);

@@ -44,17 +44,23 @@
 }
 
 - (void)buttonClicked:(UIButton *)sender {
-	self.oldButton.selected = NO;
-	sender.selected = YES;
-	self.oldButton = sender;
-	[UIView animateWithDuration:.3 animations:^{
-		CGPoint center = self.lineBottomView.center;
-		center.x = sender.center.x;
-		self.lineBottomView.center = center;
-	}];
-	if ([self.delegate respondsToSelector:@selector(didSelectButtonForIndex:)]) {
-		[self.delegate didSelectButtonForIndex:sender.tag];
-	}
+    [self setButtonSelected:sender.tag - 1000];
+}
+
+- (void)setButtonSelected:(NSInteger)index {
+    self.oldButton.selected = NO;
+    UIButton *sender = (UIButton *)[self viewWithTag:index + 1000];
+    sender.selected = YES;
+    self.oldButton = sender;
+    [UIView animateWithDuration:.3 animations:^{
+        CGPoint center = self.lineBottomView.center;
+        center.x = sender.center.x;
+        self.lineBottomView.center = center;
+    }];
+    if ([self.delegate respondsToSelector:@selector(didSelectButtonForIndex:)]) {
+        [self.delegate didSelectButtonForIndex:sender.tag];
+    }
+
 }
 
 @end
