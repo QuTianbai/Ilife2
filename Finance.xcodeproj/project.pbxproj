@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		054C364C1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */; };
 		054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */; };
+		054C365D1C9D7C1000287929 /* bg-selectProduct.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */; };
 		070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D21BA669DD00ACE8C6 /* icon-empty.png */; };
 		070119D61BA669DD00ACE8C6 /* icon-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D31BA669DD00ACE8C6 /* icon-empty@2x.png */; };
 		070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D41BA669DD00ACE8C6 /* icon-empty@3x.png */; };
@@ -1148,6 +1149,7 @@
 		054C364A1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputMoneyViewcontrollerTableViewController.h; sourceTree = "<group>"; };
 		054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputMoneyViewcontrollerTableViewController.m; sourceTree = "<group>"; };
 		054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFInputMoneyViewcontrollerTableViewController.storyboard; sourceTree = "<group>"; };
+		054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-selectProduct.jpg"; sourceTree = "<group>"; };
 		070119D21BA669DD00ACE8C6 /* icon-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty.png"; sourceTree = "<group>"; };
 		070119D31BA669DD00ACE8C6 /* icon-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty@2x.png"; sourceTree = "<group>"; };
 		070119D41BA669DD00ACE8C6 /* icon-empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty@3x.png"; sourceTree = "<group>"; };
@@ -5210,6 +5212,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */,
 				497827A51C83F5D300F2D1D8 /* 3.0 */,
 				077460F61C74208100F46ABD /* newversionimg */,
 				077460F11C733D1900F46ABD /* guide */,
@@ -5691,6 +5694,7 @@
 				49DA1A4D1C0ED2A60052C056 /* cirCulate.json in Resources */,
 				07E14BA61C85B88D00589164 /* MSFMyRepayDetailTableViewCell.xib in Resources */,
 				077347DD1BBA338900D7A130 /* guangda@2x.png in Resources */,
+				054C365D1C9D7C1000287929 /* bg-selectProduct.jpg in Resources */,
 				054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */,
 				070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */,
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
