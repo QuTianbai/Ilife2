@@ -42,6 +42,7 @@
 		}
 		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];
+    RAC(self, loanCurrTerm) = [RACObserve(self, model.loanCurrTerm) ignore:nil];
 	RAC(self, repayTime) = [[RACObserve(self, model.repaymentTime) ignore:nil] map:^id(NSString *value) {
         NSDate *date = [NSDateFormatter msf_dateFromString:value];
         return [NSDateFormatter msf_stringFromDate:date];

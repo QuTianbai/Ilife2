@@ -82,8 +82,9 @@
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFMyRepayDetailModel *value) {
         return [NSString stringWithFormat:@"[%@] %@/%@期账单", value.type, value.loanCurrTerm.length > 0 ?value.loanCurrTerm:@"1", value.loanTerm];
 	}];
-	
+
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
+        @strongify(self)
 		[[self.services.httpClient fetchMyDetailWithContractNo:self.contractNo type:self.type loan:self.loanCurrTerm]
 		 subscribeNext:^(MSFMyRepayDetailModel *x) {
 			 self.model = x;

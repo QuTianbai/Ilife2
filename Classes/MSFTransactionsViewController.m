@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *changeCard;
 @property (nonatomic, weak) IBOutlet UIButton *checkOut;
 @property (nonatomic, weak) IBOutlet UIButton *fetchAuthcode;
+@property (weak, nonatomic) IBOutlet UILabel *repayLB;
 
 @end
 
@@ -52,7 +53,9 @@
 	RAC(self.payment, text) = RACObserve(self.viewModel, summary);
 	RAC(self.supports, text) = RACObserve(self.viewModel, supports);
 	RAC(self.amount, userInteractionEnabled) = RACObserve(self.viewModel, editable);
-	
+	RAC(self, repayLB.text) = [RACObserve(self, viewModel.amounts) map:^id(id value) {
+        return [NSString stringWithFormat:@"实际还款：%@", value];
+    }];
 	
 	RAC(self.viewModel, captcha) = self.authCode.rac_textSignal;
 	
@@ -110,6 +113,35 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if ([self.viewModel isKindOfClass:MSFDrawingsViewModel.class]) return 3;
 	return [super tableView:tableView numberOfRowsInSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.viewModel.editable) {
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    }
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            return 0;
+        }
+    }
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+- (void)viewDidLayoutSubviews {
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
 }
 
 @end

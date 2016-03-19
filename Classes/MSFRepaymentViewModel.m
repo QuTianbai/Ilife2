@@ -52,8 +52,11 @@
 	_title = @"还款";
 	_captchaWaiting = NO;
 	_captchaTitle = @"获取验证码";
-	
-	_editable = YES;
+    
+	_editable = NO;
+    if ([model isKindOfClass:MSFCirculateCashViewModel.class]) {
+        _editable = YES;
+    }
 	
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
 		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
@@ -62,7 +65,10 @@
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return [@(viewModel.amount) stringValue];
-		}
+        } else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+            MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+            return viewModel.latestDueMoney;
+        }
 		return @"";
 	}];
 	RAC(self, summary) = [RACObserve(self, model) map:^id(id value) {
@@ -74,7 +80,7 @@
 			return [NSString stringWithFormat:@"本期最小还款金额￥%.2f,总欠款金额￥%@", viewModel.amount, viewModel.ownerAllMoney];;
 		} else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
 			MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
-			return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];;
+			return [NSString stringWithFormat:@"%@", viewModel.latestDueMoney];
 		}
 		return @"";
 	}];
@@ -86,7 +92,10 @@
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return viewModel.overdueMoney;
-		}
+        } else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+            MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+            return @"";
+        }
 		return @"";
 	}];
 	
