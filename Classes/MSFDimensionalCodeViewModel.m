@@ -36,8 +36,9 @@
 	_payment = payment;
 	_order = order;
 	_invalidSignal = [RACSubject subject];
+    _dismensionalCode = @"";
 	
-	RAC(self, dismensionalCode) = RACObserve(self, payment.authCode);
+	RAC(self, dismensionalCode) = [RACObserve(self, payment.authId) ignore:nil];
 	RAC(self, title) = [RACObserve(self, payment.downPmt) map:^id(id value) {
 		return [NSString stringWithFormat:@"首付 ¥%@元", value];
 	}];

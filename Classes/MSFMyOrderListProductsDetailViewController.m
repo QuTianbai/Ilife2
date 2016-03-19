@@ -26,6 +26,7 @@
 #import "MSFDimensionalCodeViewModel.h"
 #import "MSFDimensionalCodeViewController.h"
 #import "NSDictionary+MSFKeyValue.h"
+#import "MSFUser.h"
 
 @interface MSFMyOrderListProductsDetailViewController () <MSFInputTradePasswordDelegate>
 
@@ -180,14 +181,18 @@ MSFInputTradePasswordViewController *pvc;
                 return;
             }
 			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+                MSFUser *user = [self.viewModel.services httpClient].user;
+                if (!user.hasTransactionalCode) {
+                    [self.viewModel.services pushSetTransPassword];
+                } else {
+                    pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+                    pvc.delegate = self;
+                    [[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+                }
+			} else {
                 MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
                 MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
                 [self.navigationController pushViewController:vc animated:YES];
-				
-			} else {
-                pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
-                pvc.delegate = self;
-                [[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
 			}
 		
 		}];
