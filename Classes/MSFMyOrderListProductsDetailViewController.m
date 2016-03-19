@@ -180,7 +180,7 @@ MSFInputTradePasswordViewController *pvc;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.crProdId]];
                 return;
             }
-			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
+			if (!self.viewModel.isDownPmt) {
                 MSFUser *user = [self.viewModel.services httpClient].user;
                 if (!user.hasTransactionalCode) {
                     [self.viewModel.services pushSetTransPassword];
@@ -190,9 +190,15 @@ MSFInputTradePasswordViewController *pvc;
                     [[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
                 }
 			} else {
-                MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
-                MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
-                [self.navigationController pushViewController:vc animated:YES];
+                MSFUser *user = [self.viewModel.services httpClient].user;
+                if (!user.hasTransactionalCode) {
+                    [self.viewModel.services pushSetTransPassword];
+                } else {
+                    MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
+                    MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
 			}
 		
 		}];

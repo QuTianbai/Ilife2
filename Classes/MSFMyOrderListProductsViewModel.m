@@ -67,6 +67,7 @@
 		return [NSString stringWithFormat:@"手机号：%@", str];
 	}];
     RAC(self, cartType) = [RACObserve(self, model.cartType) ignore:nil];
+    RAC(self, isDownPmt) = [RACObserve(self, model.isDownPmt) ignore:nil];
 	RAC(self, contractId) = [RACObserve(self, model.contractId) ignore:nil];
 	RAC(self, orderStatus) = [[RACObserve(self, model.orderStatus) ignore:nil] map:^id(id value) {
 		return [NSDictionary statusStringForKey:value];

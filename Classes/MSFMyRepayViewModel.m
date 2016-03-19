@@ -44,7 +44,7 @@
 	}];
     RAC(self, loanCurrTerm) = [RACObserve(self, model.loanCurrTerm) ignore:nil];
 	RAC(self, repayTime) = [[RACObserve(self, model.repaymentTime) ignore:nil] map:^id(NSString *value) {
-        NSDate *date = [NSDateFormatter msf_dateFromString:value];
+        NSDate *date = [NSDateFormatter gmt1_dateFromString:value];
         return [NSDateFormatter msf_stringFromDate:date];
     }];
 	RAC(self, applyType) = [RACObserve(self, model.contractType) ignore:nil];

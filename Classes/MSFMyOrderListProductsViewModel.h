@@ -43,7 +43,7 @@
 @property (nonatomic, copy, readonly) NSString *loanAmt;
 @property (nonatomic, copy, readonly) NSString *loanTerm;
 @property (nonatomic, copy, readonly) NSString *mthlyPmtAmt ;
-@property (nonatomic, copy, readonly) NSString *isDownPmt;
+@property (nonatomic, assign, readonly) BOOL isDownPmt;
 @property (nonatomic, copy, readonly) NSString *downPmtPct;
 @property (nonatomic, copy, readonly) NSString *downPmt;
 @property (nonatomic, copy, readonly) NSString *valueAddedSvc;

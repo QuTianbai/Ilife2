@@ -49,7 +49,7 @@
 	
 	RAC(self, amounts) = RACObserve(self, model.downPmt);
 	RAC(self, summary) = [RACObserve(self, model.downPmt) map:^id(id value) {
-		return [NSString stringWithFormat:@"请支付首付金额¥%@", value];
+		return [NSString stringWithFormat:@"¥%@", value];
 	}];
 	
 	@weakify(self)
