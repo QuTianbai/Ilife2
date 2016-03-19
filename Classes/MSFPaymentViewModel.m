@@ -67,6 +67,13 @@
 			}];
 			RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
+    RAC(self, buttonTitle) = [RACObserve(self, model) map:^id(id value) {
+        return @"";
+    }];
+    RAC(self, isOutTime) = [RACObserve(self, model) map:^id(id value) {
+        return @YES;
+    }];
+
 	
 	_executeCaptchaCommand = [[RACCommand alloc] initWithEnabled:self.captchaValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)

@@ -46,7 +46,7 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	
 	RAC(self, dueMoneyLB.text) = RACObserve(self, viewModel.appLmt);
-	RAC(self, lastDueMoneyLB.text) = RACObserve(self, viewModel.latestDueMoney);
+	RAC(self, lastDueMoneyLB.text) = RACObserve(self, viewModel.totalOverdueMoney);
 	RAC(self, timeRouteLB.text) = RACObserve(self, viewModel.latestDueDate);
 	
 	[self bindTableView];

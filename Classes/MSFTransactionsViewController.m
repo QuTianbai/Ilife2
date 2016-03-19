@@ -56,6 +56,11 @@
 	RAC(self, repayLB.text) = [RACObserve(self, viewModel.amounts) map:^id(id value) {
         return [NSString stringWithFormat:@"实际还款：%@", value];
     }];
+    [RACObserve(self, viewModel) subscribeNext:^(RVMViewModel<MSFTransactionsViewModel> *x) {
+        if (!x.isOutTime) {
+            [self.checkOut setTitle:x.buttonTitle forState:UIControlStateDisabled];
+        }
+    }];
 	
 	RAC(self.viewModel, captcha) = self.authCode.rac_textSignal;
 	
@@ -122,6 +127,9 @@
     
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
+            return 0;
+        }
+        if (!self.viewModel.isOutTime && indexPath.row == 4) {
             return 0;
         }
     }

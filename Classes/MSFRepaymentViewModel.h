@@ -31,6 +31,8 @@
 @property (nonatomic, strong, readonly) NSString *uniqueTransactionID;
 @property (nonatomic, strong) NSString *transactionPassword;
 @property (nonatomic, strong) NSString *debtAmounts;
+@property (nonatomic, strong, readonly) NSString *buttonTitle;
+@property (nonatomic, assign, readonly) BOOL isOutTime;
 
 @property (nonatomic, strong, readonly) RACCommand *executeSwitchCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeCaptchaCommand;

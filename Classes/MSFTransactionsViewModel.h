@@ -52,6 +52,10 @@
 
 // 金额是否可编辑 (还款状态下不可编辑)
 @property (nonatomic, assign, readonly) BOOL editable;
+//未到还款日
+@property (nonatomic, strong, readonly) NSString *buttonTitle;
+//是否逾期
+@property (nonatomic, assign, readonly) BOOL isOutTime;
 
 // 发起短信验证码的时候获取的交易流水唯一号
 @property (nonatomic, strong, readonly) NSString *uniqueTransactionID;

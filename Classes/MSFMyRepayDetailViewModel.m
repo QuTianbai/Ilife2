@@ -53,14 +53,18 @@
         return [NSString stringWithFormat:@"¥%@", value];
     }];
 	RAC(self, latestDueDate) = [[RACObserve(self, model.latestDueDate) ignore:nil] map:^id(NSString *value) {
-		return [NSString stringWithFormat:@"账单日：每月%@日", value];
+		return [NSString stringWithFormat:@"%@", value];
 	}];
 	RAC(self, type) = [RACObserve(self, model.type) ignore:nil];
-	RAC(self, appLmt) = [RACObserve(self, model.appLmt) ignore:nil];
+	RAC(self, appLmt) = [[RACObserve(self, model.appLmt) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"¥%@", value];
+    }];
 	RAC(self, loanCurrTerm) = [RACObserve(self, model.loanCurrTerm) ignore:nil];
 	RAC(self, loanTerm) = [RACObserve(self, model.loanTerm) ignore:nil];
 	RAC(self, loanExpireDate) = [RACObserve(self, model.loanExpireDate) ignore:nil];
-	RAC(self, totalOverdueMoney) = [RACObserve(self, model.totalOverdueMoney) ignore:nil];
+	RAC(self, totalOverdueMoney) = [[RACObserve(self, model.totalOverdueMoney) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"¥%@", value];
+    }];
 	RAC(self, interest) = [RACObserve(self, model.interest) ignore:nil];
 	RAC(self, applyDate) = [RACObserve(self, model.applyDate) ignore:nil];
 	RAC(self, cmdtyList) = [[RACObserve(self, model.cmdtyList) ignore:nil] map:^id(NSArray *values) {

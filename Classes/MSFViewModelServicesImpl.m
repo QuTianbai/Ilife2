@@ -99,6 +99,7 @@
 #import "MSFWalletRepayTableViewControllerTableViewController.h"
 #import "MSFWalletRepayPlansViewModel.h"
 #import "MSFMyRepayDetailViewModel.h"
+#import "MSFInputMoneyViewcontrollerTableViewController.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -170,9 +171,11 @@
 		}
 	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class]) {
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+    } else if ([viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
+        viewController = [[MSFInputMoneyViewcontrollerTableViewController alloc] initWithViewModel:viewModel];
+    }else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {

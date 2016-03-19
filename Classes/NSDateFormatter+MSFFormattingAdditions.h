@@ -25,4 +25,6 @@
 // GMT 时间字符串转时间，接口头信息中用于解析服务器返回的时间字符串
 + (NSDate *)gmt_dateFromString:(NSString *)str;
 
++ (NSDate *)gmt1_dateFromString:(NSString *)str;
+
 @end

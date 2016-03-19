@@ -215,7 +215,6 @@
                                                     <rect key="frame" x="235" y="7" width="75" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="75" id="7VT-us-D95"/>
-                                                        <constraint firstAttribute="height" constant="30" id="D13-eC-1qx"/>
                                                     </constraints>
                                                     <state key="normal" title="获取验证码"/>
                                                 </button>
