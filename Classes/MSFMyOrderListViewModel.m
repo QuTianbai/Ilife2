@@ -43,6 +43,7 @@
 	_bankCardNo = @"";
 	_jionLifeInsurance = @"";
 	_monthMoney = @"";
+    _productCd = @"";
 	@weakify(self)
 	[[self.services.httpClient fetchMyOrderDetailWithAppNo:self.model.appNo	type:self.model.type]
 	subscribeNext:^(id x) {
@@ -53,6 +54,7 @@
 	RAC(self, contractImg) = [RACObserve(self, model.type) map:^id(NSString *value) {
 		return [NSDictionary imageForContractKey:value];
 	}];
+    RAC(self, productCd) = [RACObserve(self, model.productCd) ignore:nil];
 	RAC(self, contractTitile) = [RACObserve(self, model.type) map:^id(id value) {
 		return [NSDictionary typeStringForKey:value];
 	}];

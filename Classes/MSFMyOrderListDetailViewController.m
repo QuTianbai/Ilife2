@@ -59,7 +59,7 @@
 			[self.bottomButton setTitle:@"确认合同" forState:UIControlStateNormal];
 			[[self.bottomButton rac_signalForControlEvents:UIControlEventTouchUpInside]
 			subscribeNext:^(id x) {
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.applyType]];
+				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:self.viewModel.applyType];
 			}];
 		} else if ([value isEqualToString:@"待支付"]) {
 			self.bottomButton.hidden = NO;

@@ -48,7 +48,7 @@
 @property (nonatomic, strong, readonly) NSString *supports;
 
 // 金额
-@property (nonatomic, strong, readonly) NSString *amounts;
+@property (nonatomic, strong, readwrite) NSString *amounts;
 
 // 金额是否可编辑 (还款状态下不可编辑)
 @property (nonatomic, assign, readonly) BOOL editable;

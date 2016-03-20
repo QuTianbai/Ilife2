@@ -185,7 +185,7 @@ MSFInputTradePasswordViewController *pvc;
 		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
             if ([self.viewModel.orderStatus isEqualToString:@"待确认合同"]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.crProdId]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:@"3"];
                 return;
             }
 			if (!self.viewModel.isDownPmt) {

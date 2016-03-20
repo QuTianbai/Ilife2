@@ -164,6 +164,12 @@
 }
 
 - (RACSignal *)paymentSignal {
+    if ([self.amounts intValue] % 100 != 0) {
+        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                NSLocalizedFailureReasonErrorKey: @"提现金额为100的倍数",
+                                                                                                }];
+        return [RACSignal error: error];
+    }
 	return [self.services.msf_gainPasscodeSignal
 		flattenMap:^RACStream *(id value) {
 			return [self.services.httpClient drawingsWithAmounts:self.amounts contractNo:self.contractNO passcode:value bankCardID:self.bankCardID];

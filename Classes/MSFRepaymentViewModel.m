@@ -63,6 +63,9 @@
         }
         
     }
+//    if ([self.debtAmounts floatValue] < 100) {
+//        _editable = NO;
+//    }
 	@weakify(self)
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
 		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
@@ -171,7 +174,7 @@
 	_executePaymentCommand = [[RACCommand alloc] initWithEnabled:self.paymentValidSignal signalBlock:^RACSignal *(id input) {
 		return [self paymentSignal];
 	}];
-	
+    self.amounts = self.summary;
   return self;
 }
 
@@ -200,6 +203,7 @@
 			self.bankCardID = model.bankCardId;
 			self.bankName = model.bankName;
 			self.bankNo = model.bankCardNo;
+            self.bankIco = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
 		}];
 
 		[self.services pushViewModel:viewModel];
@@ -235,6 +239,12 @@
 }
 
 - (RACSignal *)paymentSignal {
+    if ([self.amounts floatValue] > [self.summary floatValue]) {
+       NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
+                                                                                             NSLocalizedFailureReasonErrorKey: @"还款金额不能大于欠款金额"
+                                                                                             }];
+        return [RACSignal error: error];
+    }
 	return [self.services.msf_gainPasscodeSignal
 //		flattenMap:^RACStream *(id value) {
 //			return [self.services.httpClient checkDataWithPwd:value contractNO:self.contractNO];

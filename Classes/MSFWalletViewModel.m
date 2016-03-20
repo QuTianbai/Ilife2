@@ -139,7 +139,7 @@ static NSString *const kApplicationWalletType = @"4";
 					self.loanRates = [NSString stringWithFormat:@"%.3f%%", model.feeRate * 100];
 					self.repayDate = model.latestDueDate;
                     self.repayAmounts = model.latestDueMoney;
-                    self.repayDates = [NSString stringWithFormat:@"剩余%ld天,可随时还款", (long)model.remainingDate];
+                    self.repayDates = [NSString stringWithFormat:@"剩余%ld天,可随时还款", model.remainingDate];
 				}];
 			} break;
 			default:
@@ -258,10 +258,10 @@ static NSString *const kApplicationWalletType = @"4";
 		MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:kApplicationWalletType services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFApplicationResubmit) {
-		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kApplicationWalletIdentifier services:self.services];
+		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:self.application.productCd services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFApplicationConfirmation) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationWalletIdentifier];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationWalletType];
 	}
 	return RACSignal.empty;
 }
