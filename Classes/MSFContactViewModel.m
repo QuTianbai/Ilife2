@@ -33,7 +33,7 @@
         if ([input isEqualToString:@"0"]) {
             return [self.services msf_selectKeyValuesWithContent:@"familyMember_type1"];
         }
-		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type2"];
+		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
 	}];
 	RAC(self, relationship) = [RACObserve(self, model.contactRelation) flattenMap:^id(id value) {
 		return [self.services msf_selectValuesWithContent:@"familyMember_type" keycode:value];
