@@ -63,6 +63,9 @@
         }
         
     }
+//    if ([self.debtAmounts floatValue] < 100) {
+//        _editable = NO;
+//    }
 	@weakify(self)
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
 		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
@@ -171,7 +174,7 @@
 	_executePaymentCommand = [[RACCommand alloc] initWithEnabled:self.paymentValidSignal signalBlock:^RACSignal *(id input) {
 		return [self paymentSignal];
 	}];
-	
+    self.amounts = self.summary;
   return self;
 }
 

@@ -53,9 +53,17 @@
 	RAC(self.payment, text) = RACObserve(self.viewModel, summary);
 	RAC(self.supports, text) = RACObserve(self.viewModel, supports);
 	RAC(self.amount, userInteractionEnabled) = RACObserve(self.viewModel, editable);
+    
 	RAC(self, repayLB.text) = [RACObserve(self, viewModel.amounts) map:^id(id value) {
         return [NSString stringWithFormat:@"实际还款：%@", value];
     }];
+    if ([self.viewModel.summary floatValue] > 100) {
+        self.amount.userInteractionEnabled = YES;
+    } else {
+        self.amount.text = self.viewModel.summary;
+        self.amount.userInteractionEnabled = NO;
+    }
+//    self.amount.text = self.viewModel.debtAmounts;
     [RACObserve(self, viewModel) subscribeNext:^(RVMViewModel<MSFTransactionsViewModel> *x) {
         if (!x.isOutTime) {
             [self.checkOut setTitle:x.buttonTitle forState:UIControlStateDisabled];
