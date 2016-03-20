@@ -19,7 +19,6 @@
 #import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"
 #import "MSFApplyCashViewModel.h"
-#import "MSFTabBarController.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFSetTradePasswordViewModel.h"

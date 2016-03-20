@@ -158,7 +158,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
-		return [viewModel.executeRelationshipCommand execute:nil];
+		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld", button.tag - MSFProfessionalContactCellRelationshipButton]];
 	}];
 	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
@@ -261,9 +261,9 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     MSFContact *content = [[MSFContact alloc] init];
     if ([relation isEqualToString:@"20"]) {
         content.contactRelation = @"RF01";
+        tempContacts[0] = content;
+        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
     }
-    tempContacts[0] = content;
-    tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
     self.viewModels = tempViewModels;
     self.contacts = tempContacts;
 }

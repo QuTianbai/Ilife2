@@ -55,16 +55,16 @@
 	_editable = YES;
 	
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
-		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
+		if ([value isKindOfClass:MSFCirculateCashModel.class]) {
 			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
 			return viewModel.usableLimit;
 		}
 		return @"";
 	}];
 	RAC(self, summary) = [RACObserve(self, model) map:^id(id value) {
-		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
-			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
-			return [NSString stringWithFormat:@"剩余可用额度%@元", viewModel.usableLimit];
+		if ([value isKindOfClass:MSFCirculateCashModel.class]) {
+			MSFCirculateCashModel *viewModel = (MSFCirculateCashModel *)value;
+			return [NSString stringWithFormat:@"%@元", viewModel.usableLimit];
 		}
 		return @"";
 	}];
@@ -84,6 +84,13 @@
 			}];
 			RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
+    RAC(self, buttonTitle) = [RACObserve(self, model) map:^id(id value) {
+        return @"";
+    }];
+    RAC(self, isOutTime) = [RACObserve(self, model) map:^id(id value) {
+        return @YES;
+    }];
+
 	
 	_executeCaptchaCommand = [[RACCommand alloc] initWithEnabled:self.captchaValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)

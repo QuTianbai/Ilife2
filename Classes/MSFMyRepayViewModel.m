@@ -42,8 +42,9 @@
 		}
 		return [NSString stringWithFormat:@"[ %@/%@ ] %@ ¥%@", value.loanCurrTerm, value.loanTerm, [NSDictionary typeStringForKey:value.contractType], value.appLmt?:@""];
 	}];
+    RAC(self, loanCurrTerm) = [RACObserve(self, model.loanCurrTerm) ignore:nil];
 	RAC(self, repayTime) = [[RACObserve(self, model.repaymentTime) ignore:nil] map:^id(NSString *value) {
-        NSDate *date = [NSDateFormatter msf_dateFromString:value];
+        NSDate *date = [NSDateFormatter gmt1_dateFromString:value];
         return [NSDateFormatter msf_stringFromDate:date];
     }];
 	RAC(self, applyType) = [RACObserve(self, model.contractType) ignore:nil];
@@ -59,7 +60,7 @@
 		 NSRange redRange = [str rangeOfString:[NSString stringWithFormat:@"¥%@", money]];
 		 
 		 if ([model.contractStatus isEqualToString:@"已还款"]) {
-			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, 6 + money.length)];
+			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor lightGrayColor] range:NSMakeRange(0, 5)];
 		 } else {
 			 [bankCardShowInfoAttributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor orangeColor] range:redRange];
 		 }

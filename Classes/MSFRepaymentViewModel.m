@@ -25,6 +25,7 @@
 #import "MSFCirculateCashViewModel.h"
 #import "MSFMyRepayDetailViewModel.h"
 #import "MSFCirculateCashModel.h"
+#import "NSDateFormatter+MSFFormattingAdditions.h"
 
 @interface MSFRepaymentViewModel ()
 
@@ -52,9 +53,16 @@
 	_title = @"还款";
 	_captchaWaiting = NO;
 	_captchaTitle = @"获取验证码";
-	
-	_editable = YES;
-	
+    
+	_editable = NO;
+    if ([model isKindOfClass:MSFCirculateCashModel.class] || [model isKindOfClass:[MSFMyRepayDetailViewModel class]]) {
+        _editable = YES;
+        if (![((MSFMyRepayDetailViewModel *)model).type isEqualToString:@"信用钱包"]) {
+             _editable = NO;
+        }
+        
+    }
+	@weakify(self)
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
 		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
 			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
@@ -62,19 +70,28 @@
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return [@(viewModel.amount) stringValue];
-		}
+        } else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+            MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+            if ([viewModel.type isEqualToString:@"信用钱包"]) {
+                return @"";
+            }
+            return viewModel.latestDueMoney;
+        }
 		return @"";
 	}];
 	RAC(self, summary) = [RACObserve(self, model) map:^id(id value) {
-		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
+		if ([value isKindOfClass:MSFCirculateCashModel.class]) {
 			MSFCirculateCashViewModel *viewModel = (MSFCirculateCashViewModel *)value;
-			return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];;
+			return [NSString stringWithFormat:@"%@", viewModel.totalOverdueMoney];;
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return [NSString stringWithFormat:@"本期最小还款金额￥%.2f,总欠款金额￥%@", viewModel.amount, viewModel.ownerAllMoney];;
 		} else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
 			MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
-			return [NSString stringWithFormat:@"本期最小还款金额￥%@,总欠款金额￥%@", viewModel.latestDueMoney, viewModel.totalOverdueMoney];;
+            if ([viewModel.type isEqualToString:@"信用钱包"]) {
+                return [NSString stringWithFormat:@"%@", viewModel.totalOverdueMoney];
+            }
+			return [NSString stringWithFormat:@"%@", viewModel.latestDueMoney];
 		}
 		return @"";
 	}];
@@ -86,11 +103,36 @@
 		} else if ([value isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 			MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)value;
 			return viewModel.overdueMoney;
-		}
+        } else if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+            //MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+            return @"";
+        }
 		return @"";
 	}];
+    RAC(self, buttonTitle) = [RACObserve(self, model) map:^id(id value) {
+        if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+            MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+             NSDate *repayDate = [NSDateFormatter gmt1_dateFromString:viewModel.latestDueDate];
+            return [NSString stringWithFormat:@"%@从主卡代扣", [NSDateFormatter msf_stringFromDate:repayDate]];
+        }
+        return @"";
+    }];
+     RAC(self, isOutTime) = [RACObserve(self, model) map:^id(id value) {
+        if ([value isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+            MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)value;
+            if ([viewModel.type isEqualToString:@"信用钱包"]) {
+                return @YES;
+            }
+            NSDate *nowdDate = [NSDate date];
+            NSDate *repayDate = [NSDateFormatter gmt1_dateFromString:viewModel.latestDueDate];
+            if ([nowdDate compare:repayDate] == NSOrderedAscending) {
+                return @NO;
+            }
+            
+         }
+         return @YES;
+     }];
 	
-	@weakify(self)
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[[[self.services.httpClient fetchBankCardList]
@@ -172,8 +214,8 @@
 		RACObserve(self, amounts),
 		RACObserve(self, debtAmounts),
 	]
-	reduce:^id(NSString *captcha , NSString *uniqueid, NSString *amounts, NSString *debt) {
-		return @(captcha.length > 0 && uniqueid.length > 0 && (amounts.doubleValue <= debt.doubleValue));
+	reduce:^id(NSString *captcha , NSString *uniqueid, NSString *amounts) {
+		return @(captcha.length > 0 && uniqueid.length > 0);
 	}];
 }
 
@@ -184,7 +226,10 @@
 	} else if ([self.model isKindOfClass:MSFRepaymentSchedulesViewModel.class]) {
 		MSFRepaymentSchedulesViewModel *viewModel = (MSFRepaymentSchedulesViewModel *)self.model;
 		return viewModel.repaymentNumber;
-	}
+    } else if ([self.model isKindOfClass:MSFMyRepayDetailViewModel.class]) {
+        MSFMyRepayDetailViewModel *viewModel = (MSFMyRepayDetailViewModel *)self.model;
+        return viewModel.contractNo;
+    }
 	return @"";
 }
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054C364C1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */; };
+		054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */; };
+		054C365D1C9D7C1000287929 /* bg-selectProduct.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */; };
+		054C36611C9D7C7700287929 /* MSFSelectProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C36601C9D7C7700287929 /* MSFSelectProductViewController.m */; };
+		054C36631C9D7C8E00287929 /* MSFSelectProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054C36621C9D7C8E00287929 /* MSFSelectProductViewController.storyboard */; };
 		070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D21BA669DD00ACE8C6 /* icon-empty.png */; };
 		070119D61BA669DD00ACE8C6 /* icon-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D31BA669DD00ACE8C6 /* icon-empty@2x.png */; };
 		070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D41BA669DD00ACE8C6 /* icon-empty@3x.png */; };
@@ -1143,6 +1148,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		054C364A1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputMoneyViewcontrollerTableViewController.h; sourceTree = "<group>"; };
+		054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputMoneyViewcontrollerTableViewController.m; sourceTree = "<group>"; };
+		054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFInputMoneyViewcontrollerTableViewController.storyboard; sourceTree = "<group>"; };
+		054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-selectProduct.jpg"; sourceTree = "<group>"; };
+		054C365F1C9D7C7700287929 /* MSFSelectProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSelectProductViewController.h; sourceTree = "<group>"; };
+		054C36601C9D7C7700287929 /* MSFSelectProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSelectProductViewController.m; sourceTree = "<group>"; };
+		054C36621C9D7C8E00287929 /* MSFSelectProductViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFSelectProductViewController.storyboard; sourceTree = "<group>"; };
 		070119D21BA669DD00ACE8C6 /* icon-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty.png"; sourceTree = "<group>"; };
 		070119D31BA669DD00ACE8C6 /* icon-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty@2x.png"; sourceTree = "<group>"; };
 		070119D41BA669DD00ACE8C6 /* icon-empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty@3x.png"; sourceTree = "<group>"; };
@@ -2553,6 +2565,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054C365E1C9D7C5800287929 /* SelectProduct */ = {
+			isa = PBXGroup;
+			children = (
+				054C365F1C9D7C7700287929 /* MSFSelectProductViewController.h */,
+				054C36601C9D7C7700287929 /* MSFSelectProductViewController.m */,
+				054C36621C9D7C8E00287929 /* MSFSelectProductViewController.storyboard */,
+			);
+			name = SelectProduct;
+			sourceTree = "<group>";
+		};
 		0707249B1B6718BE0089916B /* MSFSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -4152,6 +4174,7 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				054C365E1C9D7C5800287929 /* SelectProduct */,
 				1D4EC4E51C9A8E5500C00DA8 /* RepayPlay */,
 				49AC0A551C98463B0021E234 /* Contact */,
 				49537E0A1C92894200F3A44D /* List */,
@@ -4411,6 +4434,9 @@
 				495B071B1C520BAD002DDFAA /* MSFTransactionsViewController.h */,
 				495B071C1C520BAD002DDFAA /* MSFTransactionsViewController.m */,
 				495B071D1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard */,
+				054C364A1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.h */,
+				054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */,
+				054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */,
 			);
 			name = Payment;
 			sourceTree = "<group>";
@@ -5202,6 +5228,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */,
 				497827A51C83F5D300F2D1D8 /* 3.0 */,
 				077460F61C74208100F46ABD /* newversionimg */,
 				077460F11C733D1900F46ABD /* guide */,
@@ -5627,6 +5654,7 @@
 				4922E1161C85D33600E20C2C /* icon-protocol-selected.png in Resources */,
 				497827E11C8415B300F2D1D8 /* btn-repay-normal.png in Resources */,
 				1D17E2F41C87DDE800E08B59 /* applyCredit--bg@2x.jpg in Resources */,
+				054C36631C9D7C8E00287929 /* MSFSelectProductViewController.storyboard in Resources */,
 				49CA93811BBA3F7E0032F5C2 /* icon-id@3x.png in Resources */,
 				4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */,
 				103609871C342865009BBDEE /* ad_mld.png in Resources */,
@@ -5683,6 +5711,8 @@
 				49DA1A4D1C0ED2A60052C056 /* cirCulate.json in Resources */,
 				07E14BA61C85B88D00589164 /* MSFMyRepayDetailTableViewCell.xib in Resources */,
 				077347DD1BBA338900D7A130 /* guangda@2x.png in Resources */,
+				054C365D1C9D7C1000287929 /* bg-selectProduct.jpg in Resources */,
+				054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */,
 				070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */,
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				077347D41BBA338900D7A130 /* china@2x.png in Resources */,
@@ -6465,6 +6495,7 @@
 				4922E15B1C85E87400E20C2C /* MSFAuxiliaryViewController.m in Sources */,
 				102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */,
 				101BD3CB1C2CDCBF00842D36 /* MSFClient+Cart.m in Sources */,
+				054C36611C9D7C7700287929 /* MSFSelectProductViewController.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				07E14C2E1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m in Sources */,
 				07E14BE51C8704B600589164 /* MSFMyOrderListContainerViewController.m in Sources */,
@@ -6616,6 +6647,7 @@
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
 				84AE51681C9C21D1000CD582 /* UITextField+Limit.m in Sources */,
 				49B186021C561F8000409C6F /* MSFCouponsViewController.m in Sources */,
+				054C364C1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m in Sources */,
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				495B071E1C520BAD002DDFAA /* MSFTransactionsViewController.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,

@@ -57,7 +57,7 @@
         if ([value.contractType isEqualToString:@"3"] || [value.contractType isEqualToString:@"1"]) {
             return [NSString stringWithFormat:@"¥%@", value.repaymentTotalAmount];
         }
-		return [NSString stringWithFormat:@"¥%@", value.totalOverdueMoney];
+		return [NSString stringWithFormat:@"¥%@", value.repaymentTotalAmount];
 	}];
 	RAC(self, repaymentTime) = [RACObserve(self, model.repaymentTime) ignore:nil];
 	RAC(self, contractStatus) = [RACObserve(self, model.contractStatus) ignore:nil];

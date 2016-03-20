@@ -79,7 +79,7 @@
 	RAC(self.viewModel, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
 		@strongify(self)
 		self.viewModel.viewModel.product = nil;
-		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
+		return [NSString stringWithFormat:@"%ld", value.integerValue == self.moneySlider.minimumValue ?(long)self.moneySlider.minimumValue : ((long)value.integerValue / 500 + 1) * 500];
 	}] ;
 
   UICollectionViewFlowLayout *collectionFlowLayout = [[UICollectionViewFlowLayout alloc] init];

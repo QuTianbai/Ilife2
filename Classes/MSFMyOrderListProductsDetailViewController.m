@@ -26,6 +26,7 @@
 #import "MSFDimensionalCodeViewModel.h"
 #import "MSFDimensionalCodeViewController.h"
 #import "NSDictionary+MSFKeyValue.h"
+#import "MSFUser.h"
 
 @interface MSFMyOrderListProductsDetailViewController () <MSFInputTradePasswordDelegate>
 
@@ -179,15 +180,25 @@ MSFInputTradePasswordViewController *pvc;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.crProdId]];
                 return;
             }
-			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
-                MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
-                MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
-                [self.navigationController pushViewController:vc animated:YES];
-				
+			if (!self.viewModel.isDownPmt) {
+                MSFUser *user = [self.viewModel.services httpClient].user;
+                if (!user.hasTransactionalCode) {
+                    [self.viewModel.services pushSetTransPassword];
+                } else {
+                    pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+                    pvc.delegate = self;
+                    [[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+                }
 			} else {
-                pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
-                pvc.delegate = self;
-                [[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+                MSFUser *user = [self.viewModel.services httpClient].user;
+                if (!user.hasTransactionalCode) {
+                    [self.viewModel.services pushSetTransPassword];
+                } else {
+                    MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
+                    MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
 			}
 		
 		}];

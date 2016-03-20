@@ -212,7 +212,9 @@ static NSString *const kWalletIdentifier = @"3101";
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kWalletIdentifier services:self.services];
 		[self.services pushViewModel:viewModel];
     } else if (self.status == MSFCommodityPay || self.status == MSFCommodityWillPay) {
-        
+        //查看订单
+        MSFMyOderListsViewModel *viewModel = [[MSFMyOderListsViewModel alloc] initWithservices:self.services];
+        [self.services pushViewModel:viewModel];
     }
 	return RACSignal.empty;
 }
@@ -247,6 +249,8 @@ static NSString *const kWalletIdentifier = @"3101";
 - (RACSignal *)billsSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFMyRepaysViewModel *viewModel = [[MSFMyRepaysViewModel alloc] initWithservices:self.services];
+        [viewModel.executeFetchCommand execute:@"3"];
+        viewModel.butonIndex = @"3";
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;

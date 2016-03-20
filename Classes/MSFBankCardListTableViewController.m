@@ -130,9 +130,9 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	if ([self isChangedBankCard]) {
-		return 1;
-	}
+//	if ([self isChangedBankCard] ) {
+//		return 1;
+//	}
     return 2;
 }
 

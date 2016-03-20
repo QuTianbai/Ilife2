@@ -20,4 +20,6 @@
 
 - (void)buildButtonSliders:(NSArray *)titleArray WithFrame:(CGRect)frame;
 
+- (void)setButtonSelected:(NSInteger)index;
+
 @end

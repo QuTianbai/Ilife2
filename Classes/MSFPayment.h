@@ -20,5 +20,6 @@
 @property (nonatomic, copy, readonly) NSString *bankName;
 @property (nonatomic, copy, readonly) NSString *bankCardType;
 @property (nonatomic, copy, readonly) NSString *bankCardNo;
+@property (nonatomic, copy, readonly) NSString *bankCardId;
 
 @end

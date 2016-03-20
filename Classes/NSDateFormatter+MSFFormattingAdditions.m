@@ -66,4 +66,13 @@
 	return [formatter dateFromString:str];
 }
 
++ (NSDate *)gmt1_dateFromString:(NSString *)str {
+    NSParameterAssert(str != nil);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMdd'";
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    return [formatter dateFromString:str];
+}
+
 @end
