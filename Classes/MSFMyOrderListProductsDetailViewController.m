@@ -25,6 +25,8 @@
 #import "MSFPayment.h"
 #import "MSFDimensionalCodeViewModel.h"
 #import "MSFDimensionalCodeViewController.h"
+#import "NSDictionary+MSFKeyValue.h"
+#import "MSFUser.h"
 
 @interface MSFMyOrderListProductsDetailViewController () <MSFInputTradePasswordDelegate>
 
@@ -55,6 +57,14 @@ MSFInputTradePasswordViewController *pvc;
 		@strongify(self)
 		[self.tableView reloadData];
 	}];
+    [[RACSignal combineLatest:@[RACObserve(self, viewModel.travelCompanInfoList), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
+    [[RACSignal combineLatest:@[RACObserve(self, viewModel.cartType), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,7 +110,7 @@ MSFInputTradePasswordViewController *pvc;
 			if (cell == nil) {
 				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
 			}
-			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel];
+			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel atIndexPath:indexPath];
 			return cell;
 		} else {
 			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
@@ -156,7 +166,7 @@ MSFInputTradePasswordViewController *pvc;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	if (section == 3 && [self.viewModel.orderStatus isEqualToString:@"待支付"]) {
+	if (section == 3 && ([self.viewModel.orderStatus isEqualToString:@"待支付"] ||[self.viewModel.orderStatus isEqualToString:@"待确认合同"] )) {
 		return 60;
 	}
 	return 0;
@@ -168,17 +178,35 @@ MSFInputTradePasswordViewController *pvc;
 		view.frame = CGRectMake(0, 0, self.view.bounds.size.width, 60);
 		MSFBlurButton *button = [[MSFBlurButton alloc] initWithFrame:CGRectMake(10, 10, self.view.bounds.size.width - 20, 40)];
 		[button setTitle:@"支付首付" forState:UIControlStateNormal];
+        if ([self.viewModel.orderStatus isEqualToString:@"待确认合同"]) {
+            [button setTitle:@"确认合同" forState:UIControlStateNormal];
+        }
 		//[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
-			if ([self.viewModel.cartType isEqualToString:@"goods"]) {
-				pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
-				pvc.delegate = self;
-				[[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+            if ([self.viewModel.orderStatus isEqualToString:@"待确认合同"]) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.crProdId]];
+                return;
+            }
+			if (!self.viewModel.isDownPmt) {
+                MSFUser *user = [self.viewModel.services httpClient].user;
+                if (!user.hasTransactionalCode) {
+                    [self.viewModel.services pushSetTransPassword];
+                } else {
+                    pvc = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+                    pvc.delegate = self;
+                    [[UIApplication sharedApplication].keyWindow addSubview:pvc.view];
+                }
 			} else {
-				MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
-				MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
-				[self.navigationController pushViewController:vc animated:YES];
+                MSFUser *user = [self.viewModel.services httpClient].user;
+                if (!user.hasTransactionalCode) {
+                    [self.viewModel.services pushSetTransPassword];
+                } else {
+                    MSFPaymentViewModel *viewModel = [[MSFPaymentViewModel alloc] initWithModel:self.viewModel.model services:self.viewModel.services];
+                    MSFTransactionsViewController *vc = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
+                
 			}
 		
 		}];

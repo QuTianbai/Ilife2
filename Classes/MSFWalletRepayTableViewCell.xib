@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MSFWalletRepayTableViewCell" id="KGk-i7-Jjw" customClass="MSFWalletRepayTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" userLabel="view">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥357.33" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akk-W7-Wq4">
+                        <rect key="frame" x="108" y="14" width="50" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="1" green="0.49803921568627452" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="03-10待还款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WfA-wA-1vC">
+                        <rect key="frame" x="236.5" y="13" width="75.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="201510期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4u-16-PBe">
+                        <rect key="frame" x="8" y="14" width="100" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="I1l-vg-oar"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRj-wT-Hpo">
+                        <rect key="frame" x="0.0" y="43" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="TYR-v8-zXa"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="wRj-wT-Hpo" secondAttribute="bottom" id="9P0-rQ-joO"/>
+                    <constraint firstItem="WfA-wA-1vC" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SBq-Z2-308"/>
+                    <constraint firstItem="akk-W7-Wq4" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SwI-Sx-w0G"/>
+                    <constraint firstItem="X4u-16-PBe" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="WjG-n3-Fce"/>
+                    <constraint firstItem="wRj-wT-Hpo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="X7s-IK-LVL"/>
+                    <constraint firstItem="X4u-16-PBe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="ZqC-qo-Hkv"/>
+                    <constraint firstItem="akk-W7-Wq4" firstAttribute="leading" secondItem="X4u-16-PBe" secondAttribute="trailing" id="qvQ-4P-uLY"/>
+                    <constraint firstAttribute="trailing" secondItem="wRj-wT-Hpo" secondAttribute="trailing" id="sJb-8N-Eqp"/>
+                    <constraint firstAttribute="trailing" secondItem="WfA-wA-1vC" secondAttribute="trailing" constant="8" id="t37-ch-42x"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLB" destination="X4u-16-PBe" id="ViC-rJ-qMS"/>
+                <outlet property="lastDueDate" destination="WfA-wA-1vC" id="v1h-T3-jJm"/>
+                <outlet property="lastestDueMoney" destination="akk-W7-Wq4" id="NyK-iF-kFO"/>
+                <outlet property="loanTerm" destination="X4u-16-PBe" id="nHS-zn-2zb"/>
+                <outlet property="moneyLB" destination="akk-W7-Wq4" id="Ioz-zw-8ya"/>
+                <outlet property="statusLB" destination="WfA-wA-1vC" id="ZU0-5m-2B3"/>
+            </connections>
+            <point key="canvasLocation" x="106" y="260"/>
+        </tableViewCell>
+    </objects>
+</document>

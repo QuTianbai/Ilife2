@@ -101,7 +101,7 @@ static NSString *const kApplicationCreditType = @"1";
 		}];
 	}];
 	RAC(self, reportAmounts) = [RACObserve(self, application.appLmt) map:^id(id value) {
-		return [NSString stringWithFormat:@"%.2f", [value floatValue]];
+        return [NSString stringWithFormat:@"%.2f", value?[value floatValue]:0.00];
 	}];
 	RAC(self, reportTerms) =
 		[RACSignal combineLatest:@[
@@ -183,6 +183,8 @@ static NSString *const kApplicationCreditType = @"1";
 - (RACSignal *)billsSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		MSFMyRepaysViewModel *viewModel = [[MSFMyRepaysViewModel alloc] initWithservices:self.services];
+        [viewModel.executeFetchCommand execute:@"1"];
+        viewModel.butonIndex = @"1";
 		[self.services pushViewModel:viewModel];
 		[subscriber sendCompleted];
 		return nil;
@@ -223,7 +225,7 @@ static NSString *const kApplicationCreditType = @"1";
 		return self.authenticateSignal;
 	}
 	
-	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected) {
+	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected || self.status == MSFApplicationActivated) {
 		[SVProgressHUD showWithStatus:@"请稍后..."];
 		@weakify(self)
 		return [[[self.services.httpClient fetchCheckAllowApply]

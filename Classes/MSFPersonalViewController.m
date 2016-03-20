@@ -9,7 +9,7 @@
 #import "MSFPersonalViewController.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
-
+#import "UITextField+Limit.h"
 #import "MSFSelectionViewController.h"
 
 #import "MSFCommandView.h"
@@ -24,6 +24,7 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFProfessionalViewController.h"
 #import "MSFHeaderView.h"
+#import "UITextField+Limit.h"
 
 @interface MSFPersonalViewController ()
 
@@ -68,8 +69,23 @@
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
-	
+    self.emailTF.keyboardType = UIKeyboardTypeASCIICapable;
+    [self.emailTF limitWitRex:@"[A-Z0-9a-z\\._%+-@]{0,}"];
 	//住宅电话
+    [self.homeTelTF limitWitLength:12];
+    [self.homeTelTF limitWitRex:@"[0-9]{0,12}"];
+    [self.homeTelTF dylimitWithRex:^BOOL(NSString *str) {
+        @strongify(self);
+        if (str.length >= 3) {
+            str = [str substringToIndex:3];
+            if ([str isEqual:@"010"] || [str isEqual:@"021"] ||[str isEqual:@"022"] || [str isEqual:@"023"]) {
+                [self.homeTelTF limitWitLength:11];
+            } else {
+                [self.homeTelTF limitWitLength:12];
+            }
+        }
+        return YES;
+    }];
 	RACChannelTerminal *homeTelChannel = RACChannelTo(self.viewModel, phone);
 	RAC(self.homeTelTF, text) = homeTelChannel;
 	[self.homeTelTF.rac_textSignal subscribe:homeTelChannel];
@@ -108,6 +124,8 @@
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
+    //对textfiled进行限
+    
 }
 
 - (void)viewDidLayoutSubviews {

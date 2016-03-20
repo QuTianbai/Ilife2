@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		054C364C1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */; };
+		054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */; };
+		054C365D1C9D7C1000287929 /* bg-selectProduct.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */; };
+		054C36611C9D7C7700287929 /* MSFSelectProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 054C36601C9D7C7700287929 /* MSFSelectProductViewController.m */; };
+		054C36631C9D7C8E00287929 /* MSFSelectProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 054C36621C9D7C8E00287929 /* MSFSelectProductViewController.storyboard */; };
 		070119D51BA669DD00ACE8C6 /* icon-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D21BA669DD00ACE8C6 /* icon-empty.png */; };
 		070119D61BA669DD00ACE8C6 /* icon-empty@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D31BA669DD00ACE8C6 /* icon-empty@2x.png */; };
 		070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 070119D41BA669DD00ACE8C6 /* icon-empty@3x.png */; };
@@ -377,6 +382,11 @@
 		1D17E2F91C87E9B300E08B59 /* applyCredit-Cloud.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */; };
 		1D17E2FA1C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */; };
 		1D17E2FB1C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */; };
+		1D4EC4EF1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4ED1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m */; };
+		1D4EC4F01C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1D4EC4EE1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib */; };
+		1D4EC4F31C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F21C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m */; };
+		1D4EC4F71C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m */; };
+		1D4EC4FA1C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m */; };
 		1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */; };
 		1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */; };
 		1D9D54511C91727D00858B5E /* credit-btn-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D544E1C91727D00858B5E /* credit-btn-active.png */; };
@@ -981,6 +991,7 @@
 		49FCBF9A1C0E92D90035398E /* submit.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FCBF981C0E92D90035398E /* submit.json */; };
 		49FCC1911C572316004AFF13 /* MSFCouponsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */; };
 		49FCC1931C572332004AFF13 /* MSFCouponsContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */; };
+		84AE51681C9C21D1000CD582 /* UITextField+Limit.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AE51671C9C21D1000CD582 /* UITextField+Limit.m */; };
 		C718843B1B06F87200C25955 /* accordtonperlist.json in Resources */ = {isa = PBXBuildFile; fileRef = C718843A1B06F87200C25955 /* accordtonperlist.json */; };
 		C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */; };
 		C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */; };
@@ -1137,6 +1148,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		054C364A1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFInputMoneyViewcontrollerTableViewController.h; sourceTree = "<group>"; };
+		054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFInputMoneyViewcontrollerTableViewController.m; sourceTree = "<group>"; };
+		054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFInputMoneyViewcontrollerTableViewController.storyboard; sourceTree = "<group>"; };
+		054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg-selectProduct.jpg"; sourceTree = "<group>"; };
+		054C365F1C9D7C7700287929 /* MSFSelectProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSelectProductViewController.h; sourceTree = "<group>"; };
+		054C36601C9D7C7700287929 /* MSFSelectProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSelectProductViewController.m; sourceTree = "<group>"; };
+		054C36621C9D7C8E00287929 /* MSFSelectProductViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFSelectProductViewController.storyboard; sourceTree = "<group>"; };
 		070119D21BA669DD00ACE8C6 /* icon-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty.png"; sourceTree = "<group>"; };
 		070119D31BA669DD00ACE8C6 /* icon-empty@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty@2x.png"; sourceTree = "<group>"; };
 		070119D41BA669DD00ACE8C6 /* icon-empty@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-empty@3x.png"; sourceTree = "<group>"; };
@@ -1663,6 +1681,15 @@
 		1D17E2F61C87E9B300E08B59 /* applyCredit-Cloud.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud.jpg"; sourceTree = "<group>"; };
 		1D17E2F71C87E9B300E08B59 /* applyCredit-Cloud@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@2x.jpg"; sourceTree = "<group>"; };
 		1D17E2F81C87E9B300E08B59 /* applyCredit-Cloud@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "applyCredit-Cloud@3x.jpg"; sourceTree = "<group>"; };
+		1D4EC4EC1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayTableViewCell.h; sourceTree = "<group>"; };
+		1D4EC4ED1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayTableViewCell.m; sourceTree = "<group>"; };
+		1D4EC4EE1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MSFWalletRepayTableViewCell.xib; sourceTree = "<group>"; };
+		1D4EC4F11C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayTableViewControllerTableViewController.h; sourceTree = "<group>"; };
+		1D4EC4F21C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayTableViewControllerTableViewController.m; sourceTree = "<group>"; };
+		1D4EC4F51C9A9B3200C00DA8 /* MSFRepayPlanViewModle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepayPlanViewModle.h; sourceTree = "<group>"; };
+		1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepayPlanViewModle.m; sourceTree = "<group>"; };
+		1D4EC4F81C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayPlansViewModel.h; sourceTree = "<group>"; };
+		1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayPlansViewModel.m; sourceTree = "<group>"; };
 		1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
 		1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditViewModel.h; sourceTree = "<group>"; };
 		1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditViewModel.m; sourceTree = "<group>"; };
@@ -2444,6 +2471,8 @@
 		49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCouponsContainerViewController.storyboard; sourceTree = "<group>"; };
 		58F8D02BB8A8A45CFB086018 /* Pods-Finance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Finance/Pods-Finance.debug.xcconfig"; sourceTree = "<group>"; };
 		7643A58430333EA89C5D1B88 /* Pods-Finance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.release.xcconfig"; path = "Pods/Target Support Files/Pods-Finance/Pods-Finance.release.xcconfig"; sourceTree = "<group>"; };
+		84AE51661C9C21D1000CD582 /* UITextField+Limit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+Limit.h"; sourceTree = "<group>"; };
+		84AE51671C9C21D1000CD582 /* UITextField+Limit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+Limit.m"; sourceTree = "<group>"; };
 		855A0D7FE4BEA13D2536AC87 /* Pods-Finance.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Finance.test.xcconfig"; path = "Pods/Target Support Files/Pods-Finance/Pods-Finance.test.xcconfig"; sourceTree = "<group>"; };
 		872B519157B1C71C603BEA97 /* Pods-Tests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.test.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.test.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2536,6 +2565,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		054C365E1C9D7C5800287929 /* SelectProduct */ = {
+			isa = PBXGroup;
+			children = (
+				054C365F1C9D7C7700287929 /* MSFSelectProductViewController.h */,
+				054C36601C9D7C7700287929 /* MSFSelectProductViewController.m */,
+				054C36621C9D7C8E00287929 /* MSFSelectProductViewController.storyboard */,
+			);
+			name = SelectProduct;
+			sourceTree = "<group>";
+		};
 		0707249B1B6718BE0089916B /* MSFSlider */ = {
 			isa = PBXGroup;
 			children = (
@@ -3370,6 +3409,29 @@
 			name = ProductType;
 			sourceTree = "<group>";
 		};
+		1D4EC4E51C9A8E5500C00DA8 /* RepayPlay */ = {
+			isa = PBXGroup;
+			children = (
+				1D4EC4F11C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.h */,
+				1D4EC4F21C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m */,
+				1D4EC4EC1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.h */,
+				1D4EC4ED1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m */,
+				1D4EC4EE1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib */,
+			);
+			name = RepayPlay;
+			sourceTree = "<group>";
+		};
+		1D4EC4F41C9A9A4E00C00DA8 /* RepayPlay */ = {
+			isa = PBXGroup;
+			children = (
+				1D4EC4F51C9A9B3200C00DA8 /* MSFRepayPlanViewModle.h */,
+				1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m */,
+				1D4EC4F81C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.h */,
+				1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m */,
+			);
+			name = RepayPlay;
+			sourceTree = "<group>";
+		};
 		1D907A041C8D1A4800DF9A24 /* Credit */ = {
 			isa = PBXGroup;
 			children = (
@@ -4076,6 +4138,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1D4EC4F41C9A9A4E00C00DA8 /* RepayPlay */,
 				1D907A041C8D1A4800DF9A24 /* Credit */,
 				07CB1B7A1C8DAE010031CEE8 /* Commodity */,
 				49C3DFFA1C87DFAA00E4BBD2 /* Auxiliary */,
@@ -4111,6 +4174,8 @@
 		4943C36D1B047A98000BBF5E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				054C365E1C9D7C5800287929 /* SelectProduct */,
+				1D4EC4E51C9A8E5500C00DA8 /* RepayPlay */,
 				49AC0A551C98463B0021E234 /* Contact */,
 				49537E0A1C92894200F3A44D /* List */,
 				49339FA81C904C84008A26E3 /* Cash */,
@@ -4369,6 +4434,9 @@
 				495B071B1C520BAD002DDFAA /* MSFTransactionsViewController.h */,
 				495B071C1C520BAD002DDFAA /* MSFTransactionsViewController.m */,
 				495B071D1C520BAD002DDFAA /* MSFTransactionsViewController.storyboard */,
+				054C364A1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.h */,
+				054C364B1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m */,
+				054C365A1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard */,
 			);
 			name = Payment;
 			sourceTree = "<group>";
@@ -4851,6 +4919,8 @@
 				49D7ABD81C1024C800ED07E7 /* NSFileManager+Temporary.m */,
 				07E9430F1C7873FC00A3316B /* UIImage+Color.h */,
 				07E943101C7873FC00A3316B /* UIImage+Color.m */,
+				84AE51661C9C21D1000CD582 /* UITextField+Limit.h */,
+				84AE51671C9C21D1000CD582 /* UITextField+Limit.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -5158,6 +5228,7 @@
 		49EAABA21B0DC5B200E5FF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				054C365C1C9D7C1000287929 /* bg-selectProduct.jpg */,
 				497827A51C83F5D300F2D1D8 /* 3.0 */,
 				077460F61C74208100F46ABD /* newversionimg */,
 				077460F11C733D1900F46ABD /* guide */,
@@ -5329,7 +5400,7 @@
 				TargetAttributes = {
 					4943C32A1B047403000BBF5E = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = UVHFESGJ9E;
+						DevelopmentTeam = K34XY5QK2P;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -5338,6 +5409,7 @@
 					};
 					4943C3511B047437000BBF5E = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = K34XY5QK2P;
 						TestTargetID = 4943C32A1B047403000BBF5E;
 					};
 				};
@@ -5582,6 +5654,7 @@
 				4922E1161C85D33600E20C2C /* icon-protocol-selected.png in Resources */,
 				497827E11C8415B300F2D1D8 /* btn-repay-normal.png in Resources */,
 				1D17E2F41C87DDE800E08B59 /* applyCredit--bg@2x.jpg in Resources */,
+				054C36631C9D7C8E00287929 /* MSFSelectProductViewController.storyboard in Resources */,
 				49CA93811BBA3F7E0032F5C2 /* icon-id@3x.png in Resources */,
 				4925ADF61B2AFD8800872A8A /* btn_uncheck@2x.png in Resources */,
 				103609871C342865009BBDEE /* ad_mld.png in Resources */,
@@ -5638,6 +5711,8 @@
 				49DA1A4D1C0ED2A60052C056 /* cirCulate.json in Resources */,
 				07E14BA61C85B88D00589164 /* MSFMyRepayDetailTableViewCell.xib in Resources */,
 				077347DD1BBA338900D7A130 /* guangda@2x.png in Resources */,
+				054C365D1C9D7C1000287929 /* bg-selectProduct.jpg in Resources */,
+				054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */,
 				070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */,
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
 				077347D41BBA338900D7A130 /* china@2x.png in Resources */,
@@ -5942,6 +6017,7 @@
 				07C158DD1BC8E7E600127339 /* addver@2x.jpg in Resources */,
 				49B7A79C1C85915F00471168 /* icon-user-services.png in Resources */,
 				49B7A7901C85915F00471168 /* icon-user-coupon.png in Resources */,
+				1D4EC4F01C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.xib in Resources */,
 				4922E12B1C85DAE400E20C2C /* MSFCommitedViewController.storyboard in Resources */,
 				4944C0291B68A5A100805C0A /* icon-account-settings@2x.png in Resources */,
 				07E3ED751BBBC3020010AAD2 /* tradepasswordimg@3x.png in Resources */,
@@ -6301,6 +6377,7 @@
 			files = (
 				4938C98E1C0E8AC400B146B0 /* RACSignal+MSFContactsAdditions.m in Sources */,
 				49C3A7CB1C86C64C008750AE /* MSFContact.m in Sources */,
+				1D4EC4FA1C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m in Sources */,
 				101BD3D11C2CE59700842D36 /* MSFTrial.m in Sources */,
 				1DF17E421C897A470006ADA4 /* MSFCreditOrderDetailsViewController.m in Sources */,
 				102C7E9A1C2927B10023172B /* MSFOrder.m in Sources */,
@@ -6394,6 +6471,7 @@
 				07E14BA91C85C27F00589164 /* MSFCmdDetailViewModel.m in Sources */,
 				102C7F0C1C2A7C080023172B /* MSFCartContentCell.m in Sources */,
 				49C3A7C81C86C5EF008750AE /* MSFSocialProfile.m in Sources */,
+				1D4EC4EF1C9A957B00C00DA8 /* MSFWalletRepayTableViewCell.m in Sources */,
 				070724B71B6762730089916B /* MSFPeriodsCollectionViewCell.m in Sources */,
 				101BD3C81C2BF9FA00842D36 /* MSFCart.m in Sources */,
 				491DDB411BBFEE2F00D62DEA /* MSFSettingsViewController.m in Sources */,
@@ -6417,6 +6495,7 @@
 				4922E15B1C85E87400E20C2C /* MSFAuxiliaryViewController.m in Sources */,
 				102C7ED51C293B830023172B /* MSFOrderListCell.m in Sources */,
 				101BD3CB1C2CDCBF00842D36 /* MSFClient+Cart.m in Sources */,
+				054C36611C9D7C7700287929 /* MSFSelectProductViewController.m in Sources */,
 				07C06C811B134F8A00F2DFCC /* MSFSelectKeyValues.m in Sources */,
 				07E14C2E1C89392600589164 /* MSFMyOrderProductDetailContrractNoCell.m in Sources */,
 				07E14BE51C8704B600589164 /* MSFMyOrderListContainerViewController.m in Sources */,
@@ -6537,6 +6616,7 @@
 				49BE4B641B3A4FDF005084D5 /* UITableView+MSFActivityIndicatorViewAdditions.m in Sources */,
 				49BBD6011BCF48D6006F9B2C /* MSFCalculatemMonthRepayModel.m in Sources */,
 				101BD3C41C2BE6DE00842D36 /* MSFCartTrialCell.m in Sources */,
+				1D4EC4F31C9A95A600C00DA8 /* MSFWalletRepayTableViewControllerTableViewController.m in Sources */,
 				49CCFBE11B072397008A9CD1 /* MSFUserViewController.m in Sources */,
 				1DFB3A071C8E775600E2E43C /* MSFCreditMiddleViewController.m in Sources */,
 				49588E111B872BC700FCF171 /* NSDate+UTC0800.m in Sources */,
@@ -6565,7 +6645,9 @@
 				498BFC581B11FF8A00FFE88F /* MSFWebViewController.m in Sources */,
 				07A145F91C83F12800C32F0B /* MSFMyRepayTableViewController.m in Sources */,
 				49C7CBA91B04A3B300EF5A68 /* RACSignal+MSFClientAdditions.m in Sources */,
+				84AE51681C9C21D1000CD582 /* UITextField+Limit.m in Sources */,
 				49B186021C561F8000409C6F /* MSFCouponsViewController.m in Sources */,
+				054C364C1C9D3DC300287929 /* MSFInputMoneyViewcontrollerTableViewController.m in Sources */,
 				4943C3741B047C66000BBF5E /* MSFObject.m in Sources */,
 				495B071E1C520BAD002DDFAA /* MSFTransactionsViewController.m in Sources */,
 				4975C98F1B46D6D400AA79EB /* TestAppDelegate.m in Sources */,
@@ -6598,6 +6680,7 @@
 				498B52351C2A826E00AD97C1 /* MSFBarcodeScanViewController+MSFSignalSupport.m in Sources */,
 				10DC2D171B969DF500A2AF9C /* MSFElementTableViewHeader.m in Sources */,
 				102C7E911C2926FE0023172B /* MSFOrderDetailViewController.m in Sources */,
+				1D4EC4F71C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m in Sources */,
 				497827CD1C840D5A00F2D1D8 /* MSFMiddleViewController.m in Sources */,
 				4977BFEE1B16E9C200A259F6 /* NSURL+QueryDictionary.m in Sources */,
 				497827CA1C840D2100F2D1D8 /* MSFFooterViewController.m in Sources */,
@@ -6718,8 +6801,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xu miao (3E836G3H5H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xu miao (3E836G3H5H)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -6742,7 +6825,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "acdb0a49-8e09-4a00-a344-7d34b82d08e0";
+				PROVISIONING_PROFILE = "c30baf3b-5ad8-474e-8ae4-d6ee6f9f8211";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -6792,7 +6875,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xu miao (3E836G3H5H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6810,7 +6893,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c30baf3b-5ad8-474e-8ae4-d6ee6f9f8211";
 			};
 			name = Debug;
 		};
@@ -6847,7 +6930,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -6875,7 +6959,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -6925,7 +7010,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "eb41eff2-3f04-48ff-8e36-0913fb67ae2b";
+				PROVISIONING_PROFILE = "a29ff6c5-b7d5-4772-aa95-08fd6a7dbd70";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6937,8 +7022,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6958,7 +7043,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "eb41eff2-3f04-48ff-8e36-0913fb67ae2b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Test;
 		};
@@ -6968,7 +7053,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Liang Zeng (T9X5H2V4HB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREFIX_HEADER = "Tests/Tests-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

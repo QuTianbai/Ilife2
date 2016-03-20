@@ -48,16 +48,19 @@
 	RAC(self, repayMoneyCountLB.text) = RACObserve(self, viewModel.latestDueMoney);
 	RAC(self, contractTitle.text) = RACObserve(self, viewModel.contractTitle);
 	RAC(self, monthDay.text) = RACObserve(self, viewModel.latestDueDate);
-	
 	[self bindTableView];
-	
 	self.repayDetalTableView.emptyDataSetSource = self;
 	self.repayDetalTableView.emptyDataSetDelegate = self;
 	self.repayDetalTableView.allowsSelection = NO;
 	self.repayDetalTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.repayMoneyBT.rac_command = self.viewModel.executeFetchRepayCommand;
-	
+    self.repayBT.rac_command = self.viewModel.executeFetchRepayPlanCommand;
 }
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    [self bindTableView];
+//    [self.viewModel.executeFetchCommand execute:nil];
+//}
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];

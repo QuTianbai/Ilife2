@@ -101,7 +101,10 @@
 }
 
 - (RACSignal *)updateSignal {
-	if (!self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
+	if ( self.email.length > 0 && !self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
+    if (self.detailAddress.length < 3) {
+        return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"详细地址不能少于三个字符"}]];
+    }
 	return [[self.services.httpClient fetchUserInfo] flattenMap:^RACStream *(MSFUser *value) {
 		MSFUser *model = [[MSFUser alloc] initWithDictionary:@{@keypath(MSFUser.new, personal): self.model} error:nil];
 		[value mergeValueForKey:@keypath(MSFUser.new, personal) fromModel:model];

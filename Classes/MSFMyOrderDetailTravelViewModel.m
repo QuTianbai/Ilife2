@@ -24,8 +24,12 @@
 		return nil;
 	}
 	_model = model;
-	RAC(self, departureTime) = RACObserve(self, model.departureTime);
-	RAC(self, returnTime) = RACObserve(self, model.returnTime);
+	RAC(self, departureTime) = [[RACObserve(self, model.departureTime) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"出发时间%@", value];
+    }];
+	RAC(self, returnTime) = [[RACObserve(self, model.returnTime) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"返回时间%@", value];
+    }];
 	RAC(self, isNeedVisa) = RACObserve(self, model.isNeedVisa);
 	RAC(self, origin) = RACObserve(self, model.origin);
 	RAC(self, destination) = RACObserve(self, model.destination);
@@ -34,7 +38,7 @@
 	RAC(self, travelType) = RACObserve(self, model.travelType);
 	
 	RAC(self, title) = [[RACObserve(self, model) ignore:nil] map:^id(MSFTravel *value) {
-		return [NSString stringWithFormat:@"%@%@", value.destination, value.travelType];
+        return [NSString stringWithFormat:@"%@%@", value.destination?:@"", value.travelType?:@""];
 	}];
 	
 	return self;

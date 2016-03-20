@@ -40,6 +40,11 @@
 	self.buttonSliderView.delegate = self;
 	[self.buttonSliderView buildButtonSliders:@[@"全部", @"马上贷", @"信用钱包", @"商品贷"] WithFrame:[UIScreen mainScreen].bounds];
 	self.edgesForExtendedLayout = UIRectEdgeNone;
+    @weakify(self)
+    [RACObserve(self, viewModel.butonIndex) subscribeNext:^(NSString *x) {
+        @strongify(self)
+        [self.buttonSliderView setButtonSelected:x.integerValue];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

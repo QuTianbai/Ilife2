@@ -24,6 +24,8 @@ static const DeviceTypeNum litter6 = IPHONE4 | IPHONE4S | IPHONE5 | IPHONE5C |IP
 
 static const DeviceTypeNum bigger6 = IPHONE6 | IPHONE6P;
 
+static const DeviceTypeNum liter4s = IPHONE4 | IPHONE4S;
+
 @interface MSFDeviceGet : NSObject
 
 + (DeviceTypeNum)deviceNum;

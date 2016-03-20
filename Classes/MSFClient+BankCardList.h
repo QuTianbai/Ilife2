@@ -23,3 +23,4 @@
 - (RACSignal *)fetchSupportBankInfoNew;
 
 @end
+

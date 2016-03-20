@@ -51,8 +51,8 @@
 	}]
 	selectionCommand:[[RACCommand alloc] initWithSignalBlock:^RACSignal *(MSFMyRepayViewModel *input) {
 		@strongify(self)
-		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services type:input.applyType contractNO:input.contractNo];
-		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"2"]) {
+		MSFMyRepayDetailViewModel *viewModel = [[MSFMyRepayDetailViewModel alloc] initWithServices:self.viewModel.services type:input.applyType contractNO:input.contractNo loanterm:input.loanCurrTerm];
+		if ([input.applyType isEqualToString:@"1"] || [input.applyType isEqualToString:@"3"]) {
 			MSFMyRepayDetalViewController *vc = [[MSFMyRepayDetalViewController alloc] initWithViewModel:viewModel];
 			[self.navigationController pushViewController:vc animated:YES];
 			return [RACSignal empty];

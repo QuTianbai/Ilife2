@@ -97,9 +97,14 @@
 	_executeTrialCommand = [[RACCommand alloc] initWithEnabled:self.trialValidSignal signalBlock:^RACSignal *(id input) {
 		return self.trialSignal;
 	}];
+    
 	[self.executeTrialCommand.executionSignals.switchToLatest subscribeNext:^(MSFTrial *x) {
-		self.trial = x;
-		self.promId = x.promId;
+        @strongify(self);
+        NSString *lifeInsuranceAmt = [NSString stringWithFormat:@"%@", x.loanTerm];
+        if ([lifeInsuranceAmt isEqualToString:self.term]) {
+            self.trial = x;
+            self.promId = x.promId;
+        }
 	}];
 	
 	// 更新商品试算

@@ -62,7 +62,7 @@ static NSString *bankCardShowStrC = @"你的银行卡号长度有误，请修改
 	self.title = @"忘记交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_authviewModel = appdelegate.authorizeVewModel;
-	_viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.viewModel.services andIsFirstBankCard:NO];
+	_viewModel = [[MSFAddBankCardViewModel alloc] initWithServices:self.authviewModel.services andIsFirstBankCard:NO];
 	
 	RAC(self, bankIcon.image) = [RACObserve(self, viewModel.bankCode) map:^id(NSString *value) {
 		return [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:value]];

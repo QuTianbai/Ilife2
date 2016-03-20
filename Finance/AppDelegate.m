@@ -37,6 +37,7 @@
 #import "MSFEnvironmentsViewController.h"
 #import "UIImage+Color.h"
 #import "MSFSignInViewController.h"
+#import "MSFSelectProductViewController.h"
 
 #if TEST
 #import <BugshotKit/BugshotKit.h>
@@ -66,9 +67,13 @@
 	[UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent];
 	[UINavigationBar.appearance setTintColor:UIColor.whiteColor];
 	[UINavigationBar.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	
 	[UINavigationBar.appearance setBarTintColor:UIColor.navigationBarColor];
-	[UINavigationBar.appearance setClipsToBounds:YES];
-	[UINavigationBar.appearance setTranslucent:YES];
+	if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+		
+		[UINavigationBar.appearance setTranslucent:YES];
+		[UINavigationBar.appearance setClipsToBounds:YES];
+	}
 	[UINavigationBar.appearance setShadowImage:UIImage.new];
 	[UINavigationBar.appearance setBackIndicatorImage:[UIImage imageWithColor:UIColor.navigationBarColor size:CGSizeMake(1, 44)]];
 
@@ -265,9 +270,21 @@
 }
 
 - (void)authenticatedControllers {
-	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
-	tabBarController.selectedIndex = 0;
-	self.window.rootViewController = tabBarController;
+    MSFSelectProductViewController *selectViewController = [[MSFSelectProductViewController alloc] initWithServices:self.viewModel.services];
+    MSFUser *user = self.viewModelServices.httpClient.user;
+    __block UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+    if ([user.custType isEqualToString:@"1"]) {
+        UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+        [selectViewController returnBabBarWithBlock:^void(NSString *str) {
+            tabBarController.selectedIndex = str.intValue;
+            self.window.rootViewController = tabBarController;
+        }];
+        self.window.rootViewController = selectViewController;
+        
+    } else {
+        tabBarController.selectedIndex = 0;
+        self.window.rootViewController = tabBarController;
+    }
 }
 
 #if TEST

@@ -124,6 +124,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	// 社会身份
 	RAC(self, code) = RACObserve(self.model, socialIdentity);
 	RAC(self, identifier) = [RACObserve(self.model, socialIdentity) flattenMap:^RACStream *(id value) {
+        self.model.unitName = @"";
 		return [self.services msf_selectValuesWithContent:@"social_status" keycode:value];
 	}];
 	_executeSocialStatusCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -158,7 +159,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
-		return [viewModel.executeRelationshipCommand execute:nil];
+		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld", button.tag - MSFProfessionalContactCellRelationshipButton]];
 	}];
 	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
@@ -205,13 +206,27 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	_executeJobPositionDateCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self enrollmentYearSignal:input withLimit:self.jobDate];
 	}];
-	RAC(self, jobPositionDate) = [self.executeJobPositionDateCommand.executionSignals switchToLatest];
+//	RAC(self, jobPositionDate) = [self.executeJobPositionDateCommand.executionSignals switchToLatest];
 	
 		NSDictionary *addr = @{
 		@"province" : self.model.empProvinceCode ?: @"",
 		@"city" : self.model.empCityCode ?: @"",
 		@"area" : self.model.empZoneCode ?: @""
 	};
+    @weakify(self);
+    RAC(self, jobPositionDate) = [[self.executeJobPositionDateCommand.executionSignals switchToLatest] merge:[[RACObserve(self, jobDate) ignore:nil] filter:^BOOL(id value) {
+        @strongify(self);
+        if (value && self.jobPositionDate) {
+            NSDate *date1 = [NSDateFormatter msf_dateFromString:(NSString *)value];
+            NSDate *date2 = [NSDateFormatter msf_dateFromString:(NSString *)self.jobPositionDate];
+            if ([date1 timeIntervalSinceDate:date2] > 0) {
+                return YES;
+            } else {
+                return NO;
+            }
+        }
+        return NO;
+    }]];
 	MSFAddressCodes *addrModel = [MSFAddressCodes modelWithDictionary:addr error:nil];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithAddress:addrModel services:_services];
 	_address = _addressViewModel.address;
@@ -226,9 +241,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	
 	self.qualificationCode = @"LE06";
 	RACChannelTo(self, qualificationCode) = RACChannelTo(self.model, qualification);
-	
-  return self;
-	
+    return self;
 }
 
 - (void)updateViewModels {
@@ -240,6 +253,20 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
 	self.viewModels = tempViewModels;
 	self.contacts = tempContacts;
+}
+
+- (void)updateViewModelsWithRelation:(NSString *)relation {
+    
+    NSMutableArray *tempViewModels = [NSMutableArray arrayWithArray:self.viewModels];
+    NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
+    MSFContact *content = [[MSFContact alloc] init];
+    if ([relation isEqualToString:@"20"]) {
+        content.contactRelation = @"RF01";
+        tempContacts[0] = content;
+        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+    }
+    self.viewModels = tempViewModels;
+    self.contacts = tempContacts;
 }
 
 #pragma mark - Private
@@ -321,6 +348,34 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 }
 
 - (RACSignal *)updateSignal {
+
+    if ([self.code isEqualToString:@"SI02"] || [self.code isEqualToString:@"SI04"]) {
+        if (self.jobPosition.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写职业",
+                                                                                                    }];
+            return [RACSignal error: error];
+        } else if (self.jobPositionDepartment.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写部门",
+                                                                                                    }];
+            return [RACSignal error: error];
+        } else if (self.jobPositionDate.length == 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写入职日期",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        } else if (self.jobPositionDepartment.length > 20) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"部门名称不能多于20字符",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+            
+        }
+    }
+
 	__block NSError *error = nil;
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFContactViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if (!obj.isValid) {

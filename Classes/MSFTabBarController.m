@@ -121,4 +121,16 @@
 	[MobClick event:MSF_Umeng_Statistics_TaskId_Tabs attributes:@{@"tabName":tabName, @"tabIndex":selectedIndex}];
 }
 
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    NSLog(@"%@", tabBarController.tabBarItem.title);
+    if ([((UINavigationController *)viewController).viewControllers.firstObject isKindOfClass:[MSFWalletViewController class]]) {
+        MSFUser *user = [self.viewModel.services httpClient].user;
+        if (![user.custType isEqualToString:@"1"]) {
+            [SVProgressHUD showInfoWithStatus:@"您所在的区域暂未开通，目前支持城市重庆"];
+            return NO;
+        }
+    }
+    return YES;
+}
+
 @end

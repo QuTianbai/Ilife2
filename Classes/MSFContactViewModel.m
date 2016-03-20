@@ -15,6 +15,7 @@
 
 @property (nonatomic, strong, readwrite) MSFContact *model;
 @property (nonatomic, weak) id <MSFViewModelServices> services;
+@property (nonatomic, strong, readwrite) RACCommand *executeNoFamilyRelationshipCommand;
 
 @end
 
@@ -28,7 +29,10 @@
 	_model = model;
 	_on = self.model.contactAddress.length == 0;
 	_services = services;
-	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
+        if ([input isEqualToString:@"0"]) {
+            return [self.services msf_selectKeyValuesWithContent:@"familyMember_type1"];
+        }
 		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
 	}];
 	RAC(self, relationship) = [RACObserve(self, model.contactRelation) flattenMap:^id(id value) {
@@ -58,10 +62,18 @@
 	RAC(self, isValid) = [RACSignal combineLatest:@[
 		RACObserve(self, name),
 		RACObserve(self, phone),
-		RACObserve(self, relationship)
+		RACObserve(self, relationship),
+        RACObserve(self, on),
+        RACObserve(self, mainContact)
 	]
-	reduce:^id(NSString *name, NSString *phone, NSString *relationship) {
-		return @(name.length > 0 && phone.length > 0 && relationship.length > 0);
+	reduce:^id(NSString *name, NSString *phone, NSString *relationship,NSNumber *on, NSNumber *mainContact) {
+        BOOL addIsValid = YES;
+        if ([mainContact boolValue]) {
+            if (![on boolValue]) {
+                addIsValid =  self.address.length > 0;
+            }
+        }
+        return @(name.length > 0 && phone.length > 0 && relationship.length > 0 && addIsValid);
 	}];
 	
   return self;

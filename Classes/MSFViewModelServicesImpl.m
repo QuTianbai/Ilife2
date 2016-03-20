@@ -96,6 +96,11 @@
 #import "MSFPeoplePickerNavigationController+RACSignalSupport.h"
 #import "AppDelegate.h"
 
+#import "MSFWalletRepayTableViewControllerTableViewController.h"
+#import "MSFWalletRepayPlansViewModel.h"
+#import "MSFMyRepayDetailViewModel.h"
+#import "MSFInputMoneyViewcontrollerTableViewController.h"
+
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
@@ -166,9 +171,11 @@
 		}
 	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
 		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class] || [viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class]) {
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+    } else if ([viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
+        viewController = [[MSFInputMoneyViewcontrollerTableViewController alloc] initWithViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {
@@ -192,6 +199,10 @@
 		viewController = [[MSFApplyCashViewController alloc] initWithViewModel:viewModel];
     } else if ([viewModel isKindOfClass:MSFSupportBankListModel.class]){
         viewController = [[MSFSupportBankListTableViewController alloc]initWithViewModel:viewModel];[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+    } else if ([viewModel isKindOfClass:MSFWalletRepayPlansViewModel.class]){
+        viewController = [[MSFWalletRepayTableViewControllerTableViewController alloc]initWithViewModel:viewModel];
+			[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+        
     } else {
 		NSLog(@"an unknown ViewModel was pushed!");
 	}

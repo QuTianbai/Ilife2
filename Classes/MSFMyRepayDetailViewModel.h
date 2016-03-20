@@ -24,13 +24,14 @@
 @property (nonatomic, copy, readonly) NSString *totalOverdueMoney;
 @property (nonatomic, copy, readonly) NSString *interest;
 @property (nonatomic, copy, readonly) NSString *applyDate;
-@property (nonatomic, strong, readonly) NSArray *cmdtyList;
+@property (nonatomic, strong) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
 @property (nonatomic, copy, readonly) NSString *contratStatus;
+
 @property (nonatomic, strong) RACCommand *executeFetchRepayCommand;
-
 @property (nonatomic, strong) RACCommand *executeFetchCommand;
+@property (nonatomic, strong) RACCommand *executeFetchRepayPlanCommand;
 
-- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo;
+- (instancetype)initWithServices:(id <MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo loanterm:(NSString *)loanterm;
 
 @end

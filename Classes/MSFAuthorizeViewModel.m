@@ -366,8 +366,11 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 				@keypath(MSFUser.new, name): auth.name?:@"",
 				@keypath(MSFUser.new, hasChecked): @"1"
 			} error:nil];
-			[client.user mergeValueForKey:@keypath(MSFUser.new, uniqueId) fromModel:user];
-			[client.user mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:user];
+//			[client.user mergeValueForKey:@keypath(MSFUser.new, uniqueId) fromModel:user];
+            client.user.name = user.name;
+            client.user.hasChecked = user.hasChecked;
+            client.user.uniqueId = user.uniqueId;
+//			[client.user mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:user];
 			[client.fetchUserInfo subscribeNext:^(MSFUser *x) {
 				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
 				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
@@ -667,10 +670,29 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		for (int i = 0; i < tempBankNo.length; i ++) {
 			NSString *tmp = [tempBankNo substringToIndex:i];
 			if ([tmp isEqualToString:self.oldBankNo]) {
-				[subscriber sendNext:RACTuplePack(
-					[UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
-					self.bankInfo.name
-				)];
+                NSString *bankType = nil;
+                switch (self.bankInfo.type.intValue) {
+                    case 1:
+                        bankType = @"借记卡";
+                        break;
+                    case 2:
+                        bankType = @"贷记卡";
+                        break;
+                    case 3:
+                        bankType = @"准贷记卡";
+                        break;
+                    case 4:
+                        bankType =  @"预付费卡";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                NSString *backNameAndType = [[self.bankInfo.name stringByAppendingString:@"  "] stringByAppendingString:bankType];
+                [subscriber sendNext:RACTuplePack(
+                                                  [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
+                                                  backNameAndType
+                                                  )];
 				return [RACDisposable disposableWithBlock:^{
 					[self.fmdb close];
 				}];
@@ -696,9 +718,28 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			if (itemArray.count == 1) {
 				self.oldBankNo = tempBankNo;
 				self.bankInfo = itemArray.firstObject;
+                NSString *bankType = nil;
+                switch (self.bankInfo.type.intValue) {
+                    case 1:
+                        bankType = @"借记卡";
+                        break;
+                    case 2:
+                        bankType = @"贷记卡";
+                        break;
+                    case 3:
+                        bankType = @"准贷记卡";
+                        break;
+                    case 4:
+                        bankType =  @"预付费卡";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                NSString *backNameAndType = [NSString stringWithFormat:@"%@  %@", self.bankInfo.name,bankType];
 				[subscriber sendNext:RACTuplePack(
 					[UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
-					self.bankInfo.name
+					backNameAndType
 				)];
 			} else {
 				[subscriber sendNext:RACTuplePack(nil,  @"")];

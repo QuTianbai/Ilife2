@@ -49,7 +49,7 @@
 	
 	RAC(self, amounts) = RACObserve(self, model.downPmt);
 	RAC(self, summary) = [RACObserve(self, model.downPmt) map:^id(id value) {
-		return [NSString stringWithFormat:@"请支付首付金额¥%@", value];
+		return [NSString stringWithFormat:@"¥%@", value];
 	}];
 	
 	@weakify(self)
@@ -67,6 +67,13 @@
 			}];
 			RAC(self, supports) = [self.services.httpClient fetchSupportBankInfo];
 	}];
+    RAC(self, buttonTitle) = [RACObserve(self, model) map:^id(id value) {
+        return @"";
+    }];
+    RAC(self, isOutTime) = [RACObserve(self, model) map:^id(id value) {
+        return @YES;
+    }];
+
 	
 	_executeCaptchaCommand = [[RACCommand alloc] initWithEnabled:self.captchaValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)

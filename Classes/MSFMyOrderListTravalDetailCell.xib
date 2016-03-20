@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="出发时间：2016-02-14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4d-Vs-jMC">
-                        <rect key="frame" x="15" y="41" width="148" height="21"/>
+                        <rect key="frame" x="15" y="36" width="148" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="1V5-df-hQu"/>
                             <constraint firstAttribute="width" constant="148" id="Nkl-5k-6Ga"/>
@@ -34,7 +34,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="返回时间：2016-12-20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10d-D1-SY3">
-                        <rect key="frame" x="163" y="41" width="147" height="21"/>
+                        <rect key="frame" x="163" y="36" width="147" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="cJN-9h-dre"/>
                             <constraint firstAttribute="width" constant="147" id="r5i-yb-eSa"/>
@@ -57,10 +57,10 @@
                     <constraint firstAttribute="trailing" secondItem="10d-D1-SY3" secondAttribute="trailing" constant="10" id="BMk-wC-Rk3"/>
                     <constraint firstItem="4TA-nU-BnK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="HF8-uf-3TK"/>
                     <constraint firstItem="4TA-nU-BnK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="LkO-eM-1k0"/>
-                    <constraint firstItem="10d-D1-SY3" firstAttribute="top" secondItem="UtQ-qS-ZCf" secondAttribute="bottom" constant="10" id="UdY-P5-gJl"/>
+                    <constraint firstItem="10d-D1-SY3" firstAttribute="top" secondItem="UtQ-qS-ZCf" secondAttribute="bottom" constant="5" id="UdY-P5-gJl"/>
                     <constraint firstItem="a4d-Vs-jMC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fTa-3V-1sE"/>
                     <constraint firstAttribute="trailing" secondItem="UtQ-qS-ZCf" secondAttribute="trailing" constant="10" id="nS8-o1-8yb"/>
-                    <constraint firstItem="a4d-Vs-jMC" firstAttribute="top" secondItem="4TA-nU-BnK" secondAttribute="bottom" constant="10" id="qnd-x9-0tG"/>
+                    <constraint firstItem="a4d-Vs-jMC" firstAttribute="top" secondItem="4TA-nU-BnK" secondAttribute="bottom" constant="5" id="qnd-x9-0tG"/>
                     <constraint firstItem="UtQ-qS-ZCf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="zuY-VE-G5c"/>
                 </constraints>
             </tableViewCellContentView>

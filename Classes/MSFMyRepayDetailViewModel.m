@@ -15,6 +15,7 @@
 #import "MSFCmdDetailViewModel.h"
 #import "MSFWithDrawViewModel.h"
 #import "MSFRepaymentViewModel.h"
+#import "MSFWalletRepayPlansViewModel.h"
 
 @interface MSFMyRepayDetailViewModel ()
 
@@ -25,7 +26,7 @@
 
 @implementation MSFMyRepayDetailViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)services type:(NSString *)type contractNO:(NSString *)contractNo loanterm:(NSString *)loanterm {
 	self = [super init];
 	if (!self) {
 		return nil;
@@ -43,20 +44,27 @@
 	_interest = @"";
 	_applyDate = @"";
 	_contratStatus = @"";
+    _loanCurrTerm = loanterm;
 //	_cmdtyList = @[];
 //	_withdrawList = @[];
 	@weakify(self)
 	RAC(self, contractNo) = [RACObserve(self, model.contractNo) ignore:nil];
-	RAC(self, latestDueMoney) = [RACObserve(self, model.latestDueMoney) ignore:nil];
+	RAC(self, latestDueMoney) = [[RACObserve(self, model.latestDueMoney) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"¥%@", value];
+    }];
 	RAC(self, latestDueDate) = [[RACObserve(self, model.latestDueDate) ignore:nil] map:^id(NSString *value) {
-		return [NSString stringWithFormat:@"账单日：每月%@日", value];
+		return [NSString stringWithFormat:@"%@", value];
 	}];
 	RAC(self, type) = [RACObserve(self, model.type) ignore:nil];
-	RAC(self, appLmt) = [RACObserve(self, model.appLmt) ignore:nil];
+	RAC(self, appLmt) = [[RACObserve(self, model.appLmt) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"¥%@", value];
+    }];
 	RAC(self, loanCurrTerm) = [RACObserve(self, model.loanCurrTerm) ignore:nil];
 	RAC(self, loanTerm) = [RACObserve(self, model.loanTerm) ignore:nil];
 	RAC(self, loanExpireDate) = [RACObserve(self, model.loanExpireDate) ignore:nil];
-	RAC(self, totalOverdueMoney) = [RACObserve(self, model.totalOverdueMoney) ignore:nil];
+	RAC(self, totalOverdueMoney) = [[RACObserve(self, model.totalOverdueMoney) ignore:nil] map:^id(id value) {
+        return [NSString stringWithFormat:@"¥%@", value];
+    }];
 	RAC(self, interest) = [RACObserve(self, model.interest) ignore:nil];
 	RAC(self, applyDate) = [RACObserve(self, model.applyDate) ignore:nil];
 	RAC(self, cmdtyList) = [[RACObserve(self, model.cmdtyList) ignore:nil] map:^id(NSArray *values) {
@@ -76,11 +84,12 @@
 		return [NSArray arrayWithArray:valueArray];
 	}];
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFMyRepayDetailModel *value) {
-		return [NSString stringWithFormat:@"[%@] %@/%@期账单", value.type, value.loanCurrTerm, value.loanTerm];
+        return [NSString stringWithFormat:@"[%@] %@/%@期账单", value.type, value.loanCurrTerm.length > 0 ?value.loanCurrTerm:@"1", value.loanTerm];
 	}];
-	
+
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
-		[[self.services.httpClient fetchMyDetailWithContractNo:self.contractNo type:self.type]
+        @strongify(self)
+		[[self.services.httpClient fetchMyDetailWithContractNo:self.contractNo type:self.type loan:self.loanCurrTerm]
 		 subscribeNext:^(MSFMyRepayDetailModel *x) {
 			 self.model = x;
 		 } error:^(NSError *error) {
@@ -96,7 +105,7 @@
 	
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
 		@strongify(self)
-		if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"3"]) {
+		if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"3"] || [self.type isEqualToString:@"商品贷"] || [self.type isEqualToString:@"马上贷"]) {
 			return [RACSignal return:[self.cmdtyList.rac_sequence filter:^BOOL(MSFCmdDetailViewModel *viewModel) {
 				return YES;
 			}].array];
@@ -109,6 +118,12 @@
 	_executeFetchRepayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		MSFRepaymentViewModel *repaypmentviewModel = [[MSFRepaymentViewModel alloc] initWithViewModel:self services:self.services];
 		[self.services pushViewModel:repaypmentviewModel];
+		return [RACSignal empty];
+	}];
+	
+	_executeFetchRepayPlanCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		MSFWalletRepayPlansViewModel *viewModel = [[MSFWalletRepayPlansViewModel alloc] initWithServices:self.services viewModel:self];
+		[self.services pushViewModel:viewModel];
 		return [RACSignal empty];
 	}];
 	
