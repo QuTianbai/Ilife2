@@ -11,6 +11,8 @@
 static void *TextFieldLength = &TextFieldLength;
 static void *TextFieldRex = &TextFieldRex;
 static void *TextFieldLast = &TextFieldLast;
+static void *TextFieldBlock = &TextFieldBlock;
+typedef BOOL(^RexBlock)(NSString *);
 
 @implementation UITextField (Limit)
 - (void)limitWitLength:(int)length {
@@ -35,6 +37,28 @@ static void *TextFieldLast = &TextFieldLast;
 - (void)textFieldDidChangeForRex:(UITextField *)textField {
     NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", objc_getAssociatedObject(self, TextFieldRex)];
     if ([numberPre evaluateWithObject:textField.text]) {
+        objc_setAssociatedObject(self, TextFieldLast, textField.text, OBJC_ASSOCIATION_COPY);
+    } else {
+        textField.text = objc_getAssociatedObject(self, TextFieldLast);
+    }
+}
+
+- (void)dylimitWithRex:(BOOL(^)(NSString *str))block {
+    objc_setAssociatedObject(self, TextFieldBlock, block, OBJC_ASSOCIATION_COPY);
+    [self addTarget:self action:@selector(dytextFieldDidChangeForRex:) forControlEvents:UIControlEventEditingChanged];
+}
+
+- (void)dytextFieldDidChangeForRex:(UITextField *)textField {
+//    
+//    NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", objc_getAssociatedObject(self, TextFieldRex)];
+//    if ([numberPre evaluateWithObject:textField.text]) {
+//        objc_setAssociatedObject(self, TextFieldLast, textField.text, OBJC_ASSOCIATION_COPY);
+//    } else {
+//        textField.text = objc_getAssociatedObject(self, TextFieldLast);
+//    }
+    RexBlock block = objc_getAssociatedObject(self, TextFieldBlock);
+    BOOL isValid =  block(textField.text);
+    if (isValid) {
         objc_setAssociatedObject(self, TextFieldLast, textField.text, OBJC_ASSOCIATION_COPY);
     } else {
         textField.text = objc_getAssociatedObject(self, TextFieldLast);

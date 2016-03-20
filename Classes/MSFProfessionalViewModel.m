@@ -365,7 +365,14 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
                                                                                                     }];
             
             return [RACSignal error: error];
-        }        
+        } else if (self.jobPositionDepartment.length > 20) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"部门名称不能多于20字符",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+            
+        }
     }
 
 	__block NSError *error = nil;

@@ -121,7 +121,7 @@
 	[MobClick event:MSF_Umeng_Statistics_TaskId_Tabs attributes:@{@"tabName":tabName, @"tabIndex":selectedIndex}];
 }
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController NS_AVAILABLE_IOS(3_0) {
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     NSLog(@"%@", tabBarController.tabBarItem.title);
     if ([((UINavigationController *)viewController).viewControllers.firstObject isKindOfClass:[MSFWalletViewController class]]) {
         MSFUser *user = [self.viewModel.services httpClient].user;

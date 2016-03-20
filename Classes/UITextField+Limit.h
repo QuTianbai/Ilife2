@@ -13,5 +13,6 @@
 - (void)limitWitLength:(int)length;
 //使用正则表达式限制
 - (void)limitWitRex:(NSString *)rex;
+- (void)dylimitWithRex:(BOOL(^)(NSString *str))block;
 
 @end

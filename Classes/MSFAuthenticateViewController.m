@@ -12,6 +12,7 @@
 #import "MSFUser.h"
 #import "MSFClient.h"
 #import "MSFAuthenticate.h"
+#import "UITextField+Limit.h"
 
 @interface MSFAuthenticateViewController ()
 
@@ -48,7 +49,7 @@
 	RAC(self, bankaddrs.text) = RACObserve(self, viewModel.address);
 	RAC(self, viewModel.username) = self.username.rac_textSignal;
 	RAC(self, viewModel.card) = self.userident.rac_textSignal;
-
+    [self.userident limitWitLength:18];
 	@weakify(self)
 	[[(SHSPhoneTextField *)self.bankcard formatter] setDefaultOutputPattern:@"#### #### #### #### ###"];
 	((SHSPhoneTextField *)self.bankcard).textDidChangeBlock = ^(UITextField *textField){
