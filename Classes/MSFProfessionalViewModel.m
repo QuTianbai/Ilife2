@@ -124,7 +124,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	// 社会身份
 	RAC(self, code) = RACObserve(self.model, socialIdentity);
 	RAC(self, identifier) = [RACObserve(self.model, socialIdentity) flattenMap:^RACStream *(id value) {
-        self.model.unitName = @"";
+        
 		return [self.services msf_selectValuesWithContent:@"social_status" keycode:value];
 	}];
 	_executeSocialStatusCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -133,7 +133,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	RAC(self.model, socialIdentity) = [[self.executeSocialStatusCommand.executionSignals
 		switchToLatest]
 		map:^id(MSFSelectKeyValues *x) {
-				return x.code;
+            self.model.unitName = @"";
+            return x.code;
 		}];
 	
 	// 婚姻状态

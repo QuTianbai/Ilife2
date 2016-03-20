@@ -260,7 +260,7 @@ static NSString *const kApplicationCreditType = @"1";
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kApplicationCreditIdentifier services:self.services];
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFApplicationConfirmation) {
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationCreditType];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:self.application.productCd];
 	}
 	return RACSignal.empty;
 }
