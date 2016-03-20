@@ -11,6 +11,7 @@
 #import "MSFTabBarController.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFSelectProductViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *jumpBT;
@@ -36,12 +37,24 @@
   [super viewDidLoad];
     [[self.jumpBT rac_signalForControlEvents:UIControlEventTouchUpInside]
     subscribeNext:^(id x) {
+        MSFUser *user = [self.services httpClient].user;
+        if (![user.custType isEqualToString:@"1"]) {
+            if (self.returnSelectTabBatBlock != nil) {
+                self.returnSelectTabBatBlock(@"0");
+            }
+            return ;
+        }
         if (self.returnSelectTabBatBlock != nil) {
             self.returnSelectTabBatBlock(@"1");
         }        
     }];
     [[self.socialBT rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
+         MSFUser *user = [self.services httpClient].user;
+         if (![user.custType isEqualToString:@"1"]) {
+             [SVProgressHUD showInfoWithStatus:@"您所在的区域暂未开通，目前支持城市重庆"];
+             return ;
+         }
          if (self.returnSelectTabBatBlock != nil) {
              self.returnSelectTabBatBlock(@"1");
          }
