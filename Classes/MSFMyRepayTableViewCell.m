@@ -29,13 +29,16 @@
 	RAC(self, repayMoney.attributedText) = RACObserve(self, viewModel.repayMoney);
 	[[RACObserve(self, viewModel.status) ignore:nil]
 	 subscribeNext:^(NSString *x) {
-		 if ([x isEqualToString:@"已还款"]) {
+		 if ([x isEqualToString:@"已还款" ]
+             || [x isEqualToString:@"已逾期" ]
+             || [x isEqualToString:@"还款中"]) {
+             self.repayedLB.text = x;
+             self.repayedLB.textColor = [UIColor whiteColor];
 			 self.repayedLB.transform = CGAffineTransformMakeRotation(M_PI_4);
 			 self.repayedLB.hidden = NO;
 			 self.imgBg.hidden = NO;
 			 self.contractTitle.textColor = [UIColor lightGrayColor];
 			 self.repayTime.textColor = [UIColor lightGrayColor];
-			 self.repayedLB.textColor = [UIColor whiteColor];
 			 self.repayTimeTitleLB.textColor = [UIColor lightGrayColor];
 			 self.imgBg.alpha = 0.7;
 		 } else {
