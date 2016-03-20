@@ -55,9 +55,7 @@
 	self.repayDetalTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	self.repayMoneyBT.rac_command = self.viewModel.executeFetchRepayCommand;
     self.repayBT.rac_command = self.viewModel.executeFetchRepayPlanCommand;
-	
 }
-
 //- (void)viewWillAppear:(BOOL)animated {
 //    [super viewWillAppear:animated];
 //    [self bindTableView];

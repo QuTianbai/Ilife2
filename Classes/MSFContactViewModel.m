@@ -63,10 +63,17 @@
 		RACObserve(self, name),
 		RACObserve(self, phone),
 		RACObserve(self, relationship),
-        RACObserve(self, address)
+        RACObserve(self, on),
+        RACObserve(self, mainContact)
 	]
-	reduce:^id(NSString *name, NSString *phone, NSString *relationship, NSString *address) {
-        return @(name.length > 0 && phone.length > 0 && relationship.length > 0 && (self.on?YES:address.length > 0));
+	reduce:^id(NSString *name, NSString *phone, NSString *relationship,NSNumber *on, NSNumber *mainContact) {
+        BOOL addIsValid = YES;
+        if ([mainContact boolValue]) {
+            if (![on boolValue]) {
+                addIsValid =  self.address.length > 0;
+            }
+        }
+        return @(name.length > 0 && phone.length > 0 && relationship.length > 0 && addIsValid);
 	}];
 	
   return self;

@@ -28,8 +28,6 @@
 @property (nonatomic, weak) IBOutlet UIButton *fetchAuthcode;
 @property (weak, nonatomic) IBOutlet UILabel *repayLB;
 
-
-
 @end
 
 @implementation MSFInputMoneyViewcontrollerTableViewController

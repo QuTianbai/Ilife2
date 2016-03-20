@@ -175,7 +175,7 @@
 		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
     } else if ([viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
         viewController = [[MSFInputMoneyViewcontrollerTableViewController alloc] initWithViewModel:viewModel];
-    }else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+    } else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
 		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
 		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {

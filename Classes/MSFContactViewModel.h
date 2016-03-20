@@ -18,7 +18,7 @@
 @property (nonatomic, assign) BOOL on;
 @property (nonatomic, copy, readonly) NSString *relationship;
 @property (nonatomic, strong, readonly) MSFContact *model;
-
+@property (nonatomic, assign) BOOL mainContact; //是否是主联系人
 @property (nonatomic, assign, readonly) BOOL isValid;
 
 @property (nonatomic, strong, readonly) RACCommand *executeRelationshipCommand;

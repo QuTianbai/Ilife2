@@ -119,17 +119,19 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RACChannelTerminal *channel = RACChannelTo(self.viewModel, normalIncome);
 	RAC(self.incomeTF, text) = channel;
 	[self.incomeTF.rac_textSignal subscribe:channel];
-	
+    [self.incomeTF limitWitRex:@"[0-9\\.]{0,10}"];
 	channel = RACChannelTo(self.viewModel, surplusIncome);
 	RAC(self.extraIncomeTF, text) = channel;
 	[self.extraIncomeTF.rac_textSignal subscribe:channel];
-	
+    [self.extraIncomeTF limitWitRex:@"[0-9\\.]{0,10}"];
+    
 	channel = RACChannelTo(self.viewModel, loan);
 	RAC(self.loanTF, text) = channel;
 	[self.loanTF.rac_textSignal subscribe:channel];
 	
 	channel = RACChannelTo(self.viewModel, schoolName);
 	RAC(self.universityName, text) = channel;
+    [self.universityName limitWitRex:@"[\u4e00-\u9fa5a-zA-Z]{0,}"];
 	[self.universityName.rac_textSignal subscribe:channel];
 	
 	channel = RACChannelTo(self.viewModel, schoolLength);
@@ -175,10 +177,23 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	RAC(self.unitTelephone, text) = channel;
 	[self.unitTelephone.rac_textSignal subscribe:channel];
     [self.unitTelephone limitWitLength:12];
+    [self.unitTelephone limitWitRex:@"[0-9]{0,12}"];
+    [self.unitTelephone dylimitWithRex:^BOOL(NSString *str) {
+        @strongify(self);
+        if (str.length >= 3) {
+            str = [str substringToIndex:3];
+            if ([str isEqual:@"010"] || [str isEqual:@"021"] ||[str isEqual:@"022"] || [str isEqual:@"023"]) {
+                [self.unitTelephone limitWitLength:11];
+            } else {
+                [self.unitTelephone limitWitLength:12];
+            }
+        }
+        return YES;
+    }];
 	channel = RACChannelTo(self.viewModel, jobExtPhone);
 	RAC(self.unitExtensionTelephone, text) = channel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:channel];
-	
+    [self.unitExtensionTelephone limitWitRex:@"[0-9]{0,5}"];
 	channel = RACChannelTo(self.viewModel, jobDetailAddress);
 	RAC(self.detailAddressTextField, text) = channel;
 	[self.detailAddressTextField.rac_textSignal subscribe:channel];
@@ -188,7 +203,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	channel = RACChannelTo(self.viewModel, jobPositionDepartment);
 	RAC(self.department, text) = channel;
 	[self.department.rac_textSignal subscribe:channel];
-    [self.department limitWitLength:20];
+//    [self.department limitWitLength:20];
+    [self.department limitWitRex:@"[\u4e00-\u9fa5]{0,20}"];
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *x) {
 		[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -331,6 +347,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	if (indexPath.section < 5) return cell;
 	NSInteger index  = indexPath.section - 5;
 	MSFContactViewModel *viewModel = self.viewModel.viewModels[index];
+    if (index == 0) {
+        viewModel.mainContact = YES;
+    } else {
+        viewModel.mainContact = NO;
+    }
 	UIButton *button;
 	UITextField *textField;
 	
@@ -349,28 +370,18 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	button.rac_command = self.viewModel.executeContactCommand;
 	textField = [cell viewWithTag:MSFProfessionalContactCellNameTextFeild + index];
 	textField.text = viewModel.name;
+    [textField limitWitRex:@"[\u4e00-\u9fa5\\.]{0,20}"];
 	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		viewModel.name = x;
 	}];
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellPhoneTextFeild + index];
-	textField.text = viewModel.phone;
-    @weakify(textField);
-	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
-        @strongify(textField);
-        NSString *number = @"[0-9]{0,11}";
-        NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", number];
-        if ([numberPre evaluateWithObject:x]) {
-            viewModel.phone = x;
-        } else {
-            NSString *str = [(NSString *)x substringWithRange:NSMakeRange(0, [(NSString *)x length] - 1)];
-            viewModel.phone = str;
-            textField.text = str;
-        }
-
-	}];
-	
+    [[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
+        viewModel.phone = textField.text;
+    }];
+    [textField limitWitRex:@"[0-9]{0,11}"];	
 	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
+    [textField limitWitRex:@".{0,60}"];
 	textField.text = viewModel.address;
 	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		viewModel.address = x;
