@@ -32,6 +32,7 @@
 #import "MSFPersonalViewModel.h"
 
 static NSString *const kWalletIdentifier = @"3101";
+static NSString *const kApplicationType = @"3";
 
 @interface MSFCommodityViewModel ()
 
@@ -205,11 +206,11 @@ static NSString *const kWalletIdentifier = @"3101";
 		[self.services pushViewModel:viewModel];
 	} else if (self.status == MSFCommodityConfirmation) {
 		//确认合同
-		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:self.application.productCd];
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationType];
 		
 	} else if (self.status == MSFCommodityResubmit) {
 		//资料重传
-		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:kWalletIdentifier services:self.services];
+		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:self.application.productCd services:self.services];
 		[self.services pushViewModel:viewModel];
     } else if (self.status == MSFCommodityPay || self.status == MSFCommodityWillPay) {
         //查看订单
