@@ -23,7 +23,7 @@
 @property (nonatomic, copy, readonly) NSString *otherLoan;
 @property (nonatomic, copy, readonly) NSString *empProvince;
 @property (nonatomic, copy, readonly) NSString *monthIncome;
-@property (nonatomic, copy, readonly) NSString *unitName;
+@property (nonatomic, copy, readwrite) NSString *unitName;
 @property (nonatomic, copy, readonly) NSString *empCityCode;
 @property (nonatomic, copy, readonly) NSString *empPhoneExtNum;
 @property (nonatomic, copy, readonly) NSString *workStartDate;
