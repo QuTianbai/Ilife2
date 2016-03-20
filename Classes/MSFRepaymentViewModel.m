@@ -57,7 +57,8 @@
 	_editable = NO;
     if ([model isKindOfClass:MSFCirculateCashModel.class] || [model isKindOfClass:[MSFMyRepayDetailViewModel class]]) {
         _editable = YES;
-        if (![((MSFMyRepayDetailViewModel *)model).type isEqualToString:@"信用钱包"]) {
+        
+        if ([model isKindOfClass:[MSFMyRepayDetailViewModel class]] && ![((MSFMyRepayDetailViewModel *)model).type isEqualToString:@"信用钱包"]) {
              _editable = NO;
         }
         

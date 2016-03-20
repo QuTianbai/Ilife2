@@ -273,7 +273,7 @@
     MSFSelectProductViewController *selectViewController = [[MSFSelectProductViewController alloc] initWithServices:self.viewModel.services];
     MSFUser *user = self.viewModelServices.httpClient.user;
     __block UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
-    if (![user.custType isEqualToString:@"1"]) {
+    if ([user.custType isEqualToString:@"1"]) {
         UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
         [selectViewController returnBabBarWithBlock:^void(NSString *str) {
             tabBarController.selectedIndex = str.intValue;
@@ -282,7 +282,6 @@
         self.window.rootViewController = selectViewController;
         
     } else {
-        
         tabBarController.selectedIndex = 0;
         self.window.rootViewController = tabBarController;
     }

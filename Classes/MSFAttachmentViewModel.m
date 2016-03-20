@@ -80,7 +80,9 @@
 #pragma mark - Private
 
 - (RACSignal *)takePhotoSignalWith:(id)img {
+    @weakify(self)
 	return [[self.services msf_takePictureSignal:NO] map:^id(UIImage *image) {
+        @strongify(self)
 		NSString *name = [@([[NSDate date] timeIntervalSince1970]) stringValue].md5;
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
 		CGSize size = image.size;

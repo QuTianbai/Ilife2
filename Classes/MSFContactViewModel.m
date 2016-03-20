@@ -33,7 +33,7 @@
         if ([input isEqualToString:@"0"]) {
             return [self.services msf_selectKeyValuesWithContent:@"familyMember_type1"];
         }
-		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type2"];
+		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
 	}];
 	RAC(self, relationship) = [RACObserve(self, model.contactRelation) flattenMap:^id(id value) {
 		return [self.services msf_selectValuesWithContent:@"familyMember_type" keycode:value];
@@ -62,10 +62,11 @@
 	RAC(self, isValid) = [RACSignal combineLatest:@[
 		RACObserve(self, name),
 		RACObserve(self, phone),
-		RACObserve(self, relationship)
+		RACObserve(self, relationship),
+        RACObserve(self, address)
 	]
-	reduce:^id(NSString *name, NSString *phone, NSString *relationship) {
-        return @(name.length > 0 && phone.length > 0 && relationship.length > 0&&(self.on?YES:self.address.length));
+	reduce:^id(NSString *name, NSString *phone, NSString *relationship, NSString *address) {
+        return @(name.length > 0 && phone.length > 0 && relationship.length > 0 && (self.on?YES:address.length > 0));
 	}];
 	
   return self;

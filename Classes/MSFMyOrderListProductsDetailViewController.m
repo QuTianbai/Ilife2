@@ -57,6 +57,14 @@ MSFInputTradePasswordViewController *pvc;
 		@strongify(self)
 		[self.tableView reloadData];
 	}];
+    [[RACSignal combineLatest:@[RACObserve(self, viewModel.travelCompanInfoList), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
+    [[RACSignal combineLatest:@[RACObserve(self, viewModel.cartType), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,7 +110,7 @@ MSFInputTradePasswordViewController *pvc;
 			if (cell == nil) {
 				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
 			}
-			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel];
+			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel atIndexPath:indexPath];
 			return cell;
 		} else {
 			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
