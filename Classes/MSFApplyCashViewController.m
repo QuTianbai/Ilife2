@@ -27,8 +27,16 @@
 #import <ZSWTappableLabel/ZSWTappableLabel.h>
 #import <ZSWTaggedString/ZSWTaggedString.h>
 #import "MSFDeviceGet.h"
-
+#import "MSFClient+CalculateMonthRepay.h"
+#import "MSFPlan.h"
+#import "MSFLoanType.h"
+#import "MSFCalculatemMonthRepayModel.h"
 #import "MSFApplyCashViewModel.h"
+#import "MSFPlanViewModel.h"
+#import "MSFAmortize.h"
+#import "MSFOrganize.h"
+#import "MSFPlan.h"
+#import "MSFPlanView.h"
 
 static const CGFloat heightOfAboveCell = 303;//上面cell总高度259
 static const CGFloat heightOfNavigationANDTabbar = 64 + 44;//navigationbar和tabbar的高度
@@ -38,7 +46,7 @@ static const CGFloat heightOfButton = 44;
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
-@interface MSFApplyCashViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,MSFSliderDelegate, ZSWTappableLabelTapDelegate>
+@interface MSFApplyCashViewController () <MSFSliderDelegate, ZSWTappableLabelTapDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *footerView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *repayConstraint;
@@ -48,7 +56,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (nonatomic, assign) BOOL isSelectedRow;
 
 @property (nonatomic, strong) MSFMarket *market;
-@property (nonatomic, strong) MSFSelectionViewModel *selectViewModel;
+@property (nonatomic, strong) MSFSelectionViewModel *selectViewModel DEPRECATED_ATTRIBUTE;
 @property (nonatomic, strong) NSArray *loanPeriodsAry;
 @property (weak, nonatomic) IBOutlet UICollectionView *monthCollectionView;
 @property (weak, nonatomic) IBOutlet UITableViewCell *moneyCell;
@@ -66,6 +74,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 @property (weak, nonatomic) IBOutlet UIButton *agreeProtocolButton;
 @property (weak, nonatomic) IBOutlet UIButton *showProtocolButton;
 @property (weak, nonatomic) IBOutlet UIImageView *protocolStatusImage;
+@property (nonatomic, weak) IBOutlet UIPickerView *picker;
 
 @property (nonatomic, assign) BOOL master;
 
@@ -115,22 +124,6 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		self.repayConstraint.constant = ([UIScreen mainScreen].bounds.size.height - heightOfAboveCell - heightOfPlace - heightOfButton - heightOfNavigationANDTabbar - heightOfRepayView ) / 2 ;
 	}
 	
-  [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"RepayMoneyMonthNotifacation" object:nil]
-		takeUntil:self.rac_willDeallocSignal]
-		subscribeNext:^(id x) {
-			@strongify(self)
-			[self setRepayMoneyBackgroundViewAniMation:NO];
-		}];
-  UICollectionViewFlowLayout *collectionFlowLayout = [[UICollectionViewFlowLayout alloc]init];
-  
-  [collectionFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-  self.monthCollectionView.collectionViewLayout = collectionFlowLayout;
-  self.monthCollectionView.showsHorizontalScrollIndicator = NO;
-  self.monthCollectionView.delegate = self;
-  self.monthCollectionView.dataSource = self;
-  [self.monthCollectionView setBackgroundColor:[UIColor clearColor]];
-  self.monthCollectionView.showsVerticalScrollIndicator = NO;
-  [self.monthCollectionView registerNib:[UINib nibWithNibName:@"MSFPeriodsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell"];
 	self.title = @"申请贷款";
 	self.moneyUsesTF.placeholder = @"请选择贷款用途";
 	
@@ -179,17 +172,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	// 根据首页的选择更新
 	self.moneySlider.value = self.viewModel.appLmt.integerValue;
-	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.markets total:self.viewModel.appLmt.integerValue];
-  [self.monthCollectionView reloadData];
- 
-  if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
-		NSIndexPath *indexPath = [self.selectViewModel indexPathForModel:self.viewModel.product];
-		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-  }
+	[self.picker selectRow:self.viewModel.homepageIndex inComponent:0 animated:YES];
 	
-	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
-		self.viewModel.product = nil;
-		return [NSString stringWithFormat:@"%ld", value.integerValue < 100 ?(long)self.moneySlider.minimumValue : (long)value.integerValue / 100 * 100];
+	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
+		return [NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
 	
@@ -261,6 +247,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 		[self.navigationController popViewControllerAnimated:YES];
 		return [RACSignal empty];
 	}];
+	
+	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
+		@strongify(self)
+		[self.picker reloadAllComponents];
+	}];
 }
 
 #pragma mark - UITableViewDelegate
@@ -284,75 +275,44 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}
 }
 
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return [self.selectViewModel numberOfItemsInSection:section];
-}
-
-- (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-  MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
-	
-  cell.text = [self.selectViewModel titleForIndexPath:indexPath];
-	cell.locked = self.moneySlider.tracking;
-  return cell;
-}
-
-#pragma mark - UICollectionViewDelegateFlowLayout
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-  if ([self.selectViewModel numberOfItemsInSection:0] > 4) {
-    return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 15 * 2 - 5 * 5 ) / 4.5, self.monthCollectionView.frame.size.height / 2);
-  }
-  return CGSizeMake(([UIScreen mainScreen].bounds.size.width - 15 * 2 - 5 * 5 ) / 4, self.monthCollectionView.frame.size.height / 2);
-}
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-  return UIEdgeInsetsMake(10, 15, 20, 15);
-}
-
-#pragma mark - UICollectionViewDelegate
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-  [self setRepayMoneyBackgroundViewAniMation:YES];
-	self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-}
-
 #pragma mark - MSFSlider Delegate
 
 - (void)startSliding {
-  if (self.moneySlider.maximumValue == 0) {
-    [SVProgressHUD showInfoWithStatus:@"系统繁忙，请稍后再试"];
-  }
-	[self.monthCollectionView reloadData];
 }
 
 - (void)getStringValue:(NSString *)stringvalue {
-  if (stringvalue.integerValue == 0) {
-    self.viewModel.product = nil;
-  } else {
-    [self setRepayMoneyBackgroundViewAniMation:YES];
-  }
-	
-	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.markets total:stringvalue.integerValue];
-  [self.monthCollectionView reloadData];
- 
-  if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
-		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
-		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-		self.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-  }
-}
 
-- (void)setRepayMoneyBackgroundViewAniMation:(BOOL)isHiddin {
-	[UIView animateWithDuration:.3 animations:^{
-		self.repayMoneyBackgroundView.alpha = isHiddin ? 0.2: 1;
-	}];
 }
 
 #pragma mark - ZSWTappableLabelTapDelegate
 
 - (void)tappableLabel:(ZSWTappableLabel *)tappableLabel tappedAtIndex:(NSInteger)idx withAttributes:(NSDictionary *)attributes {
+}
+
+#pragma mark - UIPickerViewDelegate UIPickerViewDataSource
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+	return self.viewModel.viewModels.count;
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component {
+	return 30.00;
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+	return 1;
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
+	MSFPlanView *label = (MSFPlanView *)view;
+	if (!label) label = [[MSFPlanView alloc] init];
+	[label bindViewModel:self.viewModel.viewModels[row]];
+
+	return label;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+	self.viewModel.trial = [(MSFPlanViewModel *)self.viewModel.viewModels[row] model];
 }
 
 @end

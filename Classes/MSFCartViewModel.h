@@ -35,7 +35,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 
 // 页面展示数据
 @property (nonatomic, strong, readonly) NSString *compId; // 商铺编号
-@property (nonatomic, strong, readonly) NSString *term; // 贷款期数, 外部可以修改
+@property (nonatomic, strong) NSString *term; // 贷款期数, 外部可以修改
 @property (nonatomic, strong, readonly) NSString *downPmtAmt; // 首付金额
 @property (nonatomic, strong, readonly) NSString *loanAmt; // 贷款金额
 @property (nonatomic, assign, readonly) BOOL joinInsurance; // 是否加入寿险计划
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong) NSString *promId; // 活动ID
 
 @property (nonatomic, strong, readonly) MSFCart  *cart;
-@property (nonatomic, strong, readonly) MSFTrial *trial;
+@property (nonatomic, strong) MSFTrial *trial;
 @property (nonatomic, strong, readonly) NSArray  *terms; // 产品群信息
 @property (nonatomic, assign, readonly) BOOL barcodeInvalid __deprecated;
 
@@ -59,6 +59,9 @@ typedef NS_ENUM(NSUInteger, MSFCartType) {
 @property (nonatomic, strong, readonly) RACCommand *executeNextCommand; //点击下一步
 @property (nonatomic, strong, readonly) RACCommand *executeTrialCommand; // 商品试算
 @property (nonatomic, strong, readonly) RACCommand *executeProtocolCommand; // 商品试算
+
+// MSFPlanViewModel
+@property (nonatomic, strong, readonly) NSArray *viewModels;
 
 - (instancetype)initWithModel:(id)model services:(id <MSFViewModelServices>)services;
 

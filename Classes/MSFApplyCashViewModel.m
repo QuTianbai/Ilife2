@@ -34,10 +34,18 @@
 #import "MSFPersonalViewModel.h"
 #import "MSFBankCardListModel.h"
 #import "MSFClient+BankCardList.h"
+#import "MSFApplication.h"
+#import "MSFPlanViewModel.h"
+#import "MSFAmortize.h"
+#import "MSFOrganize.h"
+#import "MSFPlan.h"
+#import "MSFTrial.h"
+#import "MSFPlanView.h"
+#import "RACSignal+MSFClientAdditions.h"
 
 @interface MSFApplyCashViewModel ()
 
-@property (nonatomic, copy) MSFCalculatemMonthRepayModel *calculateModel;
+@property (nonatomic, copy) MSFCalculatemMonthRepayModel *calculateModel DEPRECATED_ATTRIBUTE;
 
 @end
 
@@ -113,53 +121,31 @@
 		return [value text];
 	}];
 	
-	RAC(self, markets) = [[self.didBecomeActiveSignal
-		filter:^BOOL(id value) {
-			@strongify(self)
-			return !self.markets;
-		}]
-		flattenMap:^RACStream *(id value) {
-			return [self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID];
-		}];
-	
-	[RACObserve(self, product) subscribeNext:^(MSFPlan *product) {
+	[RACObserve(self, trial) subscribeNext:^(MSFTrial *product) {
 		@strongify(self)
-		self.loanTerm = self.product.loanTeam;
-		self.model.loanTerm = product.loanTeam;
+		self.loanTerm = product.loanTerm;
+		self.model.loanTerm = product.loanTerm;
+		self.loanFixedAmt = product.loanFixedAmt;
+		self.lifeInsuranceAmt = product.lifeInsuranceAmt;
 	}];
-
-	RAC(self, calculateModel) = [[RACSignal
-		combineLatest:@[
-			RACObserve(self, appLmt),
-			RACObserve(self, loanTerm),
-			RACObserve(self, jionLifeInsurance)
-		]]
-		flattenMap:^RACStream *(RACTuple *productAndInsurance) {
-			RACTupleUnpack(NSString *appLmt, NSString *loanTerm, NSString *jionLifeInsurance) = productAndInsurance;
-			if (!loanTerm) {
-				return [RACSignal return:@0];
-			}
-			return [[[self.services.httpClient fetchCalculateMonthRepayWithAppLmt:appLmt AndLoanTerm:loanTerm AndProductCode:self.loanType.typeID AndJionLifeInsurance:jionLifeInsurance] catch:^RACSignal *(NSError *error) {
-				MSFResponse *response = [[MSFResponse alloc] initWithHTTPURLResponse:nil parsedResult:@{@"repayMoneyMonth": @0}];
-				return [RACSignal return:response];
-			}] map:^id(MSFCalculatemMonthRepayModel *model) {
-				if (![model isKindOfClass:MSFCalculatemMonthRepayModel.class]) {
-					[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
-					self.loanFixedAmt = @"0.00";
-					self.lifeInsuranceAmt = @"0.00";
-					
-					[SVProgressHUD dismiss];
-					return nil;
-				}
-				[[NSNotificationCenter defaultCenter] postNotificationName:@"RepayMoneyMonthNotifacation" object:nil];
-				[SVProgressHUD dismiss];
-				[self performSelector:@selector(setSVPBackGround) withObject:self afterDelay:1];
-
-				self.loanFixedAmt = model.loanFixedAmt;
-				self.lifeInsuranceAmt = model.lifeInsuranceAmt;
-				return model;
-			}];
+	RAC(self, markets) = [[self.didBecomeActiveSignal
+		 filter:^BOOL(id value) {
+			 @strongify(self)
+			 return !self.markets;
+		 }]
+		 flattenMap:^RACStream *(id value) {
+			 return [self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID];
+		 }];
+	
+	RAC(self, viewModels) = [[RACSignal combineLatest:@[
+		RACObserve(self, appLmt),
+		RACObserve(self, jionLifeInsurance)
+	]]
+	flattenMap:^RACStream *(id value) {
+		return [[self fetchTrails].collect catch:^RACSignal *(NSError *error) {
+			return [RACSignal empty];
 		}];
+	}];
 	
 	_executeLifeInsuranceCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
@@ -181,6 +167,17 @@
 	}];
 	_executeAgreementCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeAgreementSignal];
+	}];
+}
+
+- (RACSignal *)fetchTrails {
+	NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+	parameters[@"appLmt"] = self.appLmt.integerValue < 1000 ? @"1000" : self.appLmt;
+	parameters[@"productCode"] = self.loanType.typeID?:@"";
+	parameters[@"jionLifeInsurance"] = self.jionLifeInsurance?:@"0";
+	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"loan/moreCount" parameters:parameters];
+	return [[[self.services.httpClient enqueueRequest:request resultClass:MSFTrial.class] msf_parsedResults] map:^id(id value) {
+		return [[MSFPlanViewModel alloc] initWithModel:value];
 	}];
 }
 

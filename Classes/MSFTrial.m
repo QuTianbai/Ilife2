@@ -10,4 +10,36 @@
 
 @implementation MSFTrial
 
++ (NSValueTransformer *)loanFixedAmtJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)lifeInsuranceAmtJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)loanTermJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
++ (NSValueTransformer *)promIdJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
+		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+	} reverseBlock:^ id (NSString *str) {
+		 return str;
+	 }];
+}
+
 @end

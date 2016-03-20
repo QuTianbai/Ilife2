@@ -4,7 +4,7 @@
 // Copyright (c) 2016 Zēng Liàng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MSFObject.h"
 
 typedef NS_ENUM(NSUInteger, MSFApplicationStatus) {
 	MSFApplicationNone,        // 未激活的状态
@@ -17,6 +17,6 @@ typedef NS_ENUM(NSUInteger, MSFApplicationStatus) {
 	MSFApplicationActivated,   // 已激活
 };
 
-@interface MSFApplication : NSObject
+@interface MSFApplication : MSFObject
 
 @end

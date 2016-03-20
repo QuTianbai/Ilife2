@@ -139,14 +139,14 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier])  {
 		if (section == self.viewModel.cart.cmdtyList.count) {
-			return 5;
+			return 4;
 		} else {
 			return 4;
 		}
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		if (section == 0) return 6; // 旅游信息
 		if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
-		if (section == 2) return 5; // 分期信息
+		if (section == 2) return 4; // 分期信息
 	}
 	return 0;
 }
@@ -163,7 +163,7 @@
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
 		if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
 			if (indexPath.row == 2) {
-				return 99.f;
+				return 150.f;
 			}
 			if (indexPath.row == 4) {
 				return 125.f;
@@ -172,7 +172,7 @@
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		if (indexPath.section == 2) { // 商品试算的section
 			if (indexPath.row == 2) {
-				return 99.f;
+				return 150.f;
 			}
 			if (indexPath.row == 4) {
 				return 125.f;
