@@ -63,7 +63,11 @@
 	RAC(self, contractStatus) = [RACObserve(self, model.contractStatus) ignore:nil];
 	
 	RAC(self, status) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
-		return [NSString stringWithFormat:@"%@%@", value.repaymentTime, value.contractStatus];
+        NSString *str = value.contractStatus;
+        if ([str isEqualToString:@"正常"] || [str isEqualToString:@"还款中"]) {
+            str = @"待还款";
+        }
+		return [NSString stringWithFormat:@"%@%@", value.repaymentTime, str];
 	}];
     
     

@@ -26,6 +26,7 @@
 @property (nonatomic, readonly) NSString *bankCardNo;
 @property (nonatomic, readonly) NSString *jionLifeInsurance;
 @property (nonatomic, readonly) NSString *monthMoney;
+@property (nonatomic, readonly) NSString *productCd;
 
 - (instancetype)initWithServices:(id)services model:(id)model;
 

@@ -16,6 +16,7 @@
 @property (nonatomic, strong, readonly) NSArray *orderList; // 订单列表
 
 //new version
+@property (nonatomic, copy, readonly) NSString *productCd;
 @property (nonatomic, copy, readonly) NSString *applyTime;
 @property (nonatomic, copy, readonly) NSString *appLmt;
 @property (nonatomic, copy, readonly) NSString *loanTerm;

@@ -32,17 +32,17 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-10-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLZ-A9-Lag">
-                        <rect key="frame" x="80" y="28" width="100" height="23.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015-08-29" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLZ-A9-Lag">
+                        <rect key="frame" x="70" y="28" width="85" height="23.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="100" id="vWH-Kb-IU8"/>
+                            <constraint firstAttribute="width" constant="85" id="vWH-Kb-IU8"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本期应还：¥823.98" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQY-0D-fPe">
-                        <rect key="frame" x="195" y="28" width="110" height="24"/>
+                        <rect key="frame" x="165" y="28" width="155" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -73,15 +73,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Oi2-Sy-Jqr" secondAttribute="trailing" id="4F2-HM-SVC"/>
-                    <constraint firstAttribute="trailing" secondItem="kQY-0D-fPe" secondAttribute="trailing" constant="15" id="B30-3q-nyL"/>
+                    <constraint firstAttribute="trailing" secondItem="kQY-0D-fPe" secondAttribute="trailing" id="B30-3q-nyL"/>
                     <constraint firstItem="kQY-0D-fPe" firstAttribute="top" secondItem="01Q-hQ-4aC" secondAttribute="bottom" constant="4" id="DEg-CZ-GFB"/>
                     <constraint firstItem="Oi2-Sy-Jqr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Dmv-Nl-ZuJ"/>
                     <constraint firstAttribute="trailing" secondItem="kTJ-iM-OEj" secondAttribute="trailing" id="ELQ-Dk-VCE"/>
                     <constraint firstAttribute="bottom" secondItem="Wjq-zu-gVW" secondAttribute="bottom" constant="5" id="Fld-1q-aw6"/>
                     <constraint firstItem="suZ-q8-ZLD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Kog-qM-rDh"/>
-                    <constraint firstItem="TLZ-A9-Lag" firstAttribute="leading" secondItem="Wjq-zu-gVW" secondAttribute="trailing" constant="10" id="SwP-3T-dgh"/>
+                    <constraint firstItem="TLZ-A9-Lag" firstAttribute="leading" secondItem="Wjq-zu-gVW" secondAttribute="trailing" id="SwP-3T-dgh"/>
                     <constraint firstAttribute="bottom" secondItem="Oi2-Sy-Jqr" secondAttribute="bottom" id="UQJ-ON-Odc"/>
-                    <constraint firstItem="kQY-0D-fPe" firstAttribute="leading" secondItem="TLZ-A9-Lag" secondAttribute="trailing" constant="15" id="VIx-9a-NUF"/>
+                    <constraint firstItem="kQY-0D-fPe" firstAttribute="leading" secondItem="TLZ-A9-Lag" secondAttribute="trailing" constant="10" id="VIx-9a-NUF"/>
                     <constraint firstItem="Wjq-zu-gVW" firstAttribute="top" secondItem="suZ-q8-ZLD" secondAttribute="bottom" constant="5" id="Wor-Wd-F9M"/>
                     <constraint firstItem="TLZ-A9-Lag" firstAttribute="top" secondItem="suZ-q8-ZLD" secondAttribute="bottom" constant="5" id="aGN-UG-MFj"/>
                     <constraint firstItem="01Q-hQ-4aC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="bQD-d7-yRI"/>

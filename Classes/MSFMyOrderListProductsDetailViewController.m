@@ -57,6 +57,14 @@ MSFInputTradePasswordViewController *pvc;
 		@strongify(self)
 		[self.tableView reloadData];
 	}];
+    [[RACSignal combineLatest:@[RACObserve(self, viewModel.travelCompanInfoList), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
+    [[RACSignal combineLatest:@[RACObserve(self, viewModel.cartType), RACObserve(self, viewModel.orderStatus)] ]subscribeNext:^(id x) {
+        @strongify(self)
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,7 +110,7 @@ MSFInputTradePasswordViewController *pvc;
 			if (cell == nil) {
 				cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
 			}
-			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel];
+			[(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel atIndexPath:indexPath];
 			return cell;
 		} else {
 			cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
@@ -177,7 +185,7 @@ MSFInputTradePasswordViewController *pvc;
 		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
 		subscribeNext:^(id x) {
             if ([self.viewModel.orderStatus isEqualToString:@"待确认合同"]) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:[NSDictionary productCodeWithKey:self.viewModel.crProdId]];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:@"3"];
                 return;
             }
 			if (!self.viewModel.isDownPmt) {
