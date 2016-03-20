@@ -25,7 +25,9 @@
 - (void)awakeFromNib {
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 	RAC(self, dateLB.text) = RACObserve(self, viewModel.loanExpireDate);
-	RAC(self, statusLB.text) = RACObserve(self, viewModel.status);
+	RAC(self, statusLB.text) = [RACObserve(self, viewModel.status) map:^id(NSString *value) {
+        return value;
+    }];
 	RAC(self, moneyLB.text) = RACObserve(self, viewModel.repaymentTotalAmount);
     [RACObserve(self, viewModel.contractStatus) subscribeNext:^(NSString *status) {
         if ([status isEqualToString:@"已还款"]) {
