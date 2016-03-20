@@ -239,6 +239,12 @@
 }
 
 - (RACSignal *)paymentSignal {
+    if ([self.amounts floatValue] > [self.summary floatValue]) {
+       NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
+                                                                                             NSLocalizedFailureReasonErrorKey: @"还款金额不能大于欠款金额"
+                                                                                             }];
+        return [RACSignal error: error];
+    }
 	return [self.services.msf_gainPasscodeSignal
 //		flattenMap:^RACStream *(id value) {
 //			return [self.services.httpClient checkDataWithPwd:value contractNO:self.contractNO];
