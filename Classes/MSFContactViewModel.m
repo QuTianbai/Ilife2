@@ -62,10 +62,11 @@
 	RAC(self, isValid) = [RACSignal combineLatest:@[
 		RACObserve(self, name),
 		RACObserve(self, phone),
-		RACObserve(self, relationship)
+		RACObserve(self, relationship),
+        RACObserve(self, address)
 	]
-	reduce:^id(NSString *name, NSString *phone, NSString *relationship) {
-        return @(name.length > 0 && phone.length > 0 && relationship.length > 0&&(self.on?YES:self.address.length));
+	reduce:^id(NSString *name, NSString *phone, NSString *relationship, NSString *address) {
+        return @(name.length > 0 && phone.length > 0 && relationship.length > 0 && (self.on?YES:address.length > 0));
 	}];
 	
   return self;
