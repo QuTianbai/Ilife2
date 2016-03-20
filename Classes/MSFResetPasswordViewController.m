@@ -50,11 +50,13 @@
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[[self.viewModel.executeFindPassword execute:nil] subscribeNext:^(id x) {
+            self.viewModel.captcha = @"";
 			[SVProgressHUD showSuccessWithStatus:@"重置密码成功，请重新登录"];
 			[self.navigationController popToRootViewControllerAnimated:YES];
 		}];
 	}];
 	[self.viewModel.executeFindPassword.errors subscribeNext:^(NSError *error) {
+        self.viewModel.captcha = @"";
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 }

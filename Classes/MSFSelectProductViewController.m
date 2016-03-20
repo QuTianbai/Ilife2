@@ -11,6 +11,7 @@
 #import "MSFTabBarController.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFSelectProductViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *jumpBT;
