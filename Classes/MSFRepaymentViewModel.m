@@ -124,9 +124,9 @@
             if ([viewModel.type isEqualToString:@"信用钱包"]) {
                 return @YES;
             }
-            NSDate *nowdDate = [NSDate date];
-            NSDate *repayDate = [NSDateFormatter gmt1_dateFromString:viewModel.latestDueDate];
-            if ([nowdDate compare:repayDate] == NSOrderedAscending) {
+//            NSDate *nowdDate = [NSDate date];
+//            NSDate *repayDate = [NSDateFormatter gmt1_dateFromString:viewModel.latestDueDate];
+            if (![viewModel.contratStatus isEqualToString:@"已逾期"]) {
                 return @NO;
             }
             
