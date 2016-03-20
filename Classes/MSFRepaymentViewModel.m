@@ -203,6 +203,7 @@
 			self.bankCardID = model.bankCardId;
 			self.bankName = model.bankName;
 			self.bankNo = model.bankCardNo;
+            self.bankIco = [MSFGetBankIcon getIconNameWithBankCode:model.bankCode];
 		}];
 
 		[self.services pushViewModel:viewModel];

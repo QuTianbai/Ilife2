@@ -60,7 +60,7 @@
     if ([self.viewModel.summary floatValue] > 100) {
         self.amount.userInteractionEnabled = YES;
     } else {
-        self.amount.text = self.viewModel.summary;
+//        self.amount.text = self.viewModel.summary;
         self.amount.userInteractionEnabled = NO;
     }
 //    self.amount.text = self.viewModel.debtAmounts;
