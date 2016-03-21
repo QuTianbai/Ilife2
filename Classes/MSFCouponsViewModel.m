@@ -34,12 +34,16 @@
 			flattenMap:^RACStream *(NSArray *viewModels) {
 				return [[[viewModels.rac_sequence
 					filter:^BOOL(MSFCouponViewModel *viewModel) {
-						return [viewModel.status isEqualToString:self.identifer];
+                        return YES;
 					}]
 					signal]
 					collect];
 			}];
 	}];
+    
+    [RACObserve(self, viewModels) subscribeNext:^(id x) {
+        [self.executeFetchCommand execute:@"B"];
+    }];
 	
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)

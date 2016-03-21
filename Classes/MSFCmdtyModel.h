@@ -10,8 +10,8 @@
 
 @interface MSFCmdtyModel : MSFObject
 
-@property (nonatomic, copy, readonly) NSString *cmdtyName;
-@property (nonatomic, copy, readonly) NSString *cmdtyPrice;
-@property (nonatomic, copy, readonly) NSString *orderTime;
+@property (nonatomic, copy) NSString *cmdtyName;
+@property (nonatomic, copy) NSString *cmdtyPrice;
+@property (nonatomic, copy) NSString *orderTime;
 
 @end

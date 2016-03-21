@@ -169,6 +169,10 @@
 }
 
 - (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo bankCardID:(NSString *)bankCardID transPwd:(NSString *)transPwd {
+    NSString *money = amount;
+    if ([money rangeOfString:@"¥"].location != NSNotFound) {
+        money = [money substringFromIndex:1];
+    }
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/consume" parameters:@{
 																		@"amount": amount?:@"",
 																		@"smsCode": smsCode?:@"",

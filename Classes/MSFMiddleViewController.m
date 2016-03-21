@@ -31,7 +31,7 @@
 		return @(status.integerValue != MSFApplicationActivated);
 	}];
 	
-	RAC(self.amountLabel, text) = RACObserve(self, viewModel.repayAmounts);
+	RAC(self.amountLabel, text) = RACObserve(self, viewModel.totalOverdueMoney);
 	RAC(self.subtitleLabel, text) = RACObserve(self, viewModel.repayDates);
 	
 	RAC(self.applyButton, rac_command) = RACObserve(self, viewModel.executeDrawCommand);
