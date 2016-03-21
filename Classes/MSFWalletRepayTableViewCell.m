@@ -30,7 +30,7 @@
     }];
 	RAC(self, moneyLB.text) = RACObserve(self, viewModel.repaymentTotalAmount);
     [RACObserve(self, viewModel.contractStatus) subscribeNext:^(NSString *status) {
-        if ([status isEqualToString:@"已逾期"]) {
+        if ([status isEqualToString:@"已逾期"] || self.viewModel.isCurrentLoanTerm) {
             self.statusLB.textColor = [UIColor percentColor];
             self.dateLB.textColor = [UIColor percentColor];
             self.moneyLB.textColor = [UIColor percentColor];

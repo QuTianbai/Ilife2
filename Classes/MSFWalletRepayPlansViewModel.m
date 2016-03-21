@@ -76,7 +76,7 @@
 							return [RACSignal empty];
 						}]
 					 map:^id(id value) {
-						 return [[MSFRepayPlanViewModle alloc] initWithModel:value];
+						 return [[MSFRepayPlanViewModle alloc] initWithModel:value withCurrentLoanTerm:self.viewModel.loanCurrTerm];
 					 }]
 					collect];
 }
