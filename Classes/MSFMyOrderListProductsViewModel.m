@@ -19,7 +19,6 @@
 
 @interface MSFMyOrderListProductsViewModel ()
 
-@property (nonatomic, copy) NSString *appNo;
 @property (nonatomic, copy, readwrite) NSString *isReload;
 
 @end

@@ -9,6 +9,7 @@
 #import "MSFMyRepayTableViewCell.h"
 #import "MSFMyRepayViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIColor+Utils.h"
 
 @interface MSFMyRepayTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contractTitle;
@@ -30,8 +31,7 @@
 	[[RACObserve(self, viewModel.status) ignore:nil]
 	 subscribeNext:^(NSString *x) {
 		 if ([x isEqualToString:@"已还款" ]
-             || [x isEqualToString:@"已逾期" ]
-             || [x isEqualToString:@"还款中"]) {
+             ) {
              self.repayedLB.text = x;
              self.repayedLB.textColor = [UIColor whiteColor];
 			 self.repayedLB.transform = CGAffineTransformMakeRotation(M_PI_4);
@@ -41,7 +41,20 @@
 			 self.repayTime.textColor = [UIColor lightGrayColor];
 			 self.repayTimeTitleLB.textColor = [UIColor lightGrayColor];
 			 self.imgBg.alpha = 0.7;
-		 } else {
+         } else if ([x isEqualToString:@"已逾期" ] || [x isEqualToString:@"还款中"]) {
+             self.repayedLB.text = x;
+             self.repayedLB.textColor = [UIColor blackColor];
+             if ([x isEqualToString:@"已逾期"]) {
+                self.repayedLB.textColor = [UIColor percentColor];
+             }
+            self.repayedLB.transform = CGAffineTransformMakeRotation(M_PI_4);
+             self.repayedLB.hidden = NO;
+             self.imgBg.hidden = NO;
+             self.contractTitle.textColor = [UIColor blackColor];
+             self.repayTime.textColor = [UIColor blackColor];
+             self.repayTimeTitleLB.textColor = [UIColor blackColor];
+             self.imgBg.alpha = 0.7;
+         }else {
 			 self.repayedLB.hidden = YES;
 			 self.imgBg.hidden = YES;
 			 self.contractTitle.textColor = [UIColor blackColor];
@@ -60,5 +73,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
+
+
 
 @end
