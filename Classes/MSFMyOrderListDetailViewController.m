@@ -11,6 +11,7 @@
 #import "MSFMyOrderListViewModel.h"
 #import "MSFBlurButton.h"
 #import "NSDictionary+MSFKeyValue.h"
+#import "MSFInventoryViewModel.h"
 
 @interface MSFMyOrderListDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *contractNo;
@@ -61,7 +62,16 @@
 			subscribeNext:^(id x) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:self.viewModel.applyType];
 			}];
-		} else if ([value isEqualToString:@"待支付"]) {
+        } else if ([value isEqualToString:@"重传资料"]) {
+            self.bottomButton.hidden = NO;
+            [self.bottomButton setTitle:@"确认合同" forState:UIControlStateNormal];
+            [[self.bottomButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+             subscribeNext:^(id x) {
+                 MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.viewModel.appNo productID:self.viewModel.productCd services:self.viewModel.services];
+                 [self.viewModel.services pushViewModel:viewModel];
+             }];
+            
+        } else if ([value isEqualToString:@"待支付"]) {
 			self.bottomButton.hidden = NO;
 			[self.bottomButton setTitle:@"支付首付" forState:UIControlStateNormal];
 		} else {

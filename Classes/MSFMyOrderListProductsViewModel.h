@@ -13,6 +13,7 @@
 
 @interface MSFMyOrderListProductsViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *appNo;
 @property (nonatomic, assign) id<MSFViewModelServices> services;
 @property (nonatomic, strong) MSFOrderDetail *model;
 @property (nonatomic, copy, readonly) NSString *isReload;

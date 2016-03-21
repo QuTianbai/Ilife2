@@ -29,7 +29,7 @@
 + (NSValueTransformer *)totalOverdueMoneyJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
 		if ([num isKindOfClass:[NSNumber class]]) {
-			return num.stringValue;
+			return [NSString stringWithFormat:@"%.2f", num.doubleValue];
 		}
 		return num;
 		

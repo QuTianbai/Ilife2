@@ -8,6 +8,7 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import <UIKit/UIKit.h>
+#import "MSFViewModelServices.h"
 
 @interface MSFMyOrderListViewModel : RVMViewModel
 
@@ -27,6 +28,7 @@
 @property (nonatomic, readonly) NSString *jionLifeInsurance;
 @property (nonatomic, readonly) NSString *monthMoney;
 @property (nonatomic, readonly) NSString *productCd;
+@property (nonatomic, weak) id<MSFViewModelServices> services;
 
 - (instancetype)initWithServices:(id)services model:(id)model;
 

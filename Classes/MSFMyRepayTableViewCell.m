@@ -9,6 +9,7 @@
 #import "MSFMyRepayTableViewCell.h"
 #import "MSFMyRepayViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIColor+Utils.h"
 
 @interface MSFMyRepayTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *contractTitle;
@@ -44,7 +45,7 @@
              self.repayedLB.text = x;
              self.repayedLB.textColor = [UIColor blackColor];
              if ([x isEqualToString:@"已逾期"]) {
-                self.repayedLB.textColor = [UIColor orangeColor];
+                self.repayedLB.textColor = [UIColor percentColor];
              }
             self.repayedLB.transform = CGAffineTransformMakeRotation(M_PI_4);
              self.repayedLB.hidden = NO;
