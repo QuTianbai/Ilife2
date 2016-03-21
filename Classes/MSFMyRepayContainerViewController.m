@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"账单";
+	self.title = @"我的还款";
 	self.view.backgroundColor = [UIColor darkBackgroundColor];
 	self.buttonSliderView.delegate = self;
 	[self.buttonSliderView buildButtonSliders:@[@"全部", @"马上贷", @"信用钱包", @"商品贷"] WithFrame:[UIScreen mainScreen].bounds];
