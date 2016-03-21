@@ -625,6 +625,8 @@
 		49537E1C1C92894B00F3A44D /* MSFLoanListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49537E191C92894B00F3A44D /* MSFLoanListViewController.m */; };
 		49537E1D1C92894B00F3A44D /* MSLoanListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49537E1B1C92894B00F3A44D /* MSLoanListTableViewCell.m */; };
 		4955B1C71B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 4955B1C61B19B4FD007B893B /* NSCharacterSet+MSFCharacterSetAdditions.m */; };
+		4957D4D51C9EFD0D00E4A1DF /* MSFPlanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4957D4D41C9EFD0D00E4A1DF /* MSFPlanView.m */; };
+		4957D4E61C9EFD4E00E4A1DF /* MSFPlanViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4957D4E51C9EFD4E00E4A1DF /* MSFPlanViewModel.m */; };
 		49588DEC1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */; };
 		49588DF61B87021800FCF171 /* MSFPersonalViewModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */; };
 		49588E051B87102F00FCF171 /* form.json in Resources */ = {isa = PBXBuildFile; fileRef = 49588E041B87102F00FCF171 /* form.json */; };
@@ -1999,6 +2001,10 @@
 		4955DBB81B0DF40000582A69 /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Externals/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
 		4955DBC71B0DF40600582A69 /* OHHTTPStubs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OHHTTPStubs.xcodeproj; path = Externals/OHHTTPStubs/OHHTTPStubs/OHHTTPStubs.xcodeproj; sourceTree = SOURCE_ROOT; };
 		4955DBD31B0DF40E00582A69 /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Externals/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
+		4957D4D31C9EFD0D00E4A1DF /* MSFPlanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlanView.h; sourceTree = "<group>"; };
+		4957D4D41C9EFD0D00E4A1DF /* MSFPlanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanView.m; sourceTree = "<group>"; };
+		4957D4E41C9EFD4E00E4A1DF /* MSFPlanViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFPlanViewModel.h; sourceTree = "<group>"; };
+		4957D4E51C9EFD4E00E4A1DF /* MSFPlanViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPlanViewModel.m; sourceTree = "<group>"; };
 		49588DEB1B86F99200FCF171 /* MSFLoanAgreementViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFLoanAgreementViewModelSpec.m; sourceTree = "<group>"; };
 		49588DF51B87021800FCF171 /* MSFPersonalViewModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFPersonalViewModelSpec.m; sourceTree = "<group>"; };
 		49588E041B87102F00FCF171 /* form.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = form.json; sourceTree = "<group>"; };
@@ -4012,6 +4018,8 @@
 			children = (
 				49339FBD1C904CEC008A26E3 /* MSFApplyCashViewController.h */,
 				49339FBE1C904CEC008A26E3 /* MSFApplyCashViewController.m */,
+				4957D4D31C9EFD0D00E4A1DF /* MSFPlanView.h */,
+				4957D4D41C9EFD0D00E4A1DF /* MSFPlanView.m */,
 			);
 			name = Cash;
 			sourceTree = "<group>";
@@ -4138,6 +4146,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4957D4E31C9EFD4200E4A1DF /* Plan */,
 				1D4EC4F41C9A9A4E00C00DA8 /* RepayPlay */,
 				1D907A041C8D1A4800DF9A24 /* Credit */,
 				07CB1B7A1C8DAE010031CEE8 /* Commodity */,
@@ -4426,6 +4435,15 @@
 				4955DBE71B0DF40E00582A69 /* QuickFocused-iOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		4957D4E31C9EFD4200E4A1DF /* Plan */ = {
+			isa = PBXGroup;
+			children = (
+				4957D4E41C9EFD4E00E4A1DF /* MSFPlanViewModel.h */,
+				4957D4E51C9EFD4E00E4A1DF /* MSFPlanViewModel.m */,
+			);
+			name = Plan;
 			sourceTree = "<group>";
 		};
 		495B070D1C520B9C002DDFAA /* Payment */ = {
@@ -6479,6 +6497,7 @@
 				49F3D4B91B2685FD0053A1F5 /* MSFProfessionalViewModel.m in Sources */,
 				499147091B24489200260E97 /* MSFSelectionViewController.m in Sources */,
 				10DC2D0A1B969D4300A2AF9C /* MSFElementViewController.m in Sources */,
+				4957D4D51C9EFD0D00E4A1DF /* MSFPlanView.m in Sources */,
 				0779E5F31C97B47700E5AE80 /* MSFAuthenticate.m in Sources */,
 				4983EDA31B09D48500ADE3E5 /* MSFEditPasswordViewController.m in Sources */,
 				4944C0641B68AB6F00805C0A /* MSFClient+Advers.m in Sources */,
@@ -6552,6 +6571,7 @@
 				C7B977FE1B08C568005F247C /* MSFRepaymentTableViewCell.m in Sources */,
 				491C5FB91B0F21D500CADF8E /* MSFCheckButton.m in Sources */,
 				49B185F61C560F8A00409C6F /* MSFCouponsViewModel.m in Sources */,
+				4957D4E61C9EFD4E00E4A1DF /* MSFPlanViewModel.m in Sources */,
 				49C3A7BF1C86C54E008750AE /* MSFProfessional.m in Sources */,
 				492007521BA00CCD00C0722C /* StandardPaths.m in Sources */,
 				0750AAFF1B96A4C500AD67F3 /* MSFContactListModel.m in Sources */,
@@ -7010,7 +7030,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "a29ff6c5-b7d5-4772-aa95-08fd6a7dbd70";
+				PROVISIONING_PROFILE = "1a40cbe6-4fff-425c-a8a8-53525bc74adc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -7043,7 +7063,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "a29ff6c5-b7d5-4772-aa95-08fd6a7dbd70";
+				PROVISIONING_PROFILE = "1a40cbe6-4fff-425c-a8a8-53525bc74adc";
 			};
 			name = Test;
 		};

@@ -15,6 +15,8 @@
 #import "MSFSelectionViewModel.h"
 #import "MSFApplyCashViewModel.h"
 #import "MSFApplyCashViewController.h"
+#import "MSFPlanViewModel.h"
+#import "MSFTrial.h"
 
 @interface MSFCreditMiddleViewController () <UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, MSFSliderDelegate>
 
@@ -76,10 +78,8 @@
 		self.viewModel.viewModel.appLmt = [@([x integerValue]) stringValue];
 	}];
 	
-	RAC(self.viewModel, viewModel.appLmt) = [[self.moneySlider rac_newValueChannelWithNilValue:@0] map:^id(NSString *value) {
-		@strongify(self)
-		self.viewModel.viewModel.product = nil;
-		return [NSString stringWithFormat:@"%ld", value.integerValue == self.moneySlider.minimumValue ?(long)self.moneySlider.minimumValue : ((long)value.integerValue / 500 + 1) * 500];
+	RAC(self, viewModel.viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
+		return [NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];
 	}] ;
 
   UICollectionViewFlowLayout *collectionFlowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -94,12 +94,13 @@
 	
 	self.applyButton.rac_command = self.viewModel.excuteActionCommand;
 	
-	[self.viewModel.didBecomeActiveSignal subscribeNext:^(id x) {
+	[RACObserve(self, viewModel.viewModel.viewModels) subscribeNext:^(id x) {
 		@strongify(self)
-		if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
-			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
-      [self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-      self.viewModel.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+		[self.monthCollectionView reloadData];
+		if ([self.viewModel.viewModel viewModels].count > 0) {
+			[self.viewModel.viewModel setTrial:[(MSFPlanViewModel *)[self.viewModel.viewModel viewModels].lastObject model]];
+			self.viewModel.viewModel.homepageIndex = [self.viewModel.viewModel viewModels].count - 1;
+			[self.monthCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:[self.viewModel.viewModel viewModels].count - 1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 		}
 	}];
 }
@@ -113,14 +114,14 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-  return [self.selectViewModel numberOfItemsInSection:section];
+	return [self.viewModel.viewModel viewModels].count;
 }
 
 - (MSFPeriodsCollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
   MSFPeriodsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MSFPeriodsCollectionViewCell" forIndexPath:indexPath];
 	
-  cell.text = [self.selectViewModel titleForIndexPath:indexPath];
-	cell.locked = self.moneySlider.tracking;
+	MSFPlanViewModel *viewModel = [self.viewModel.viewModel viewModels][indexPath.item];
+  cell.text = [NSString stringWithFormat:@"%@个月", viewModel.model.loanTerm];
   return cell;
 }
 
@@ -140,7 +141,8 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	self.viewModel.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
+	self.viewModel.viewModel.homepageIndex = indexPath.row;
+	self.viewModel.viewModel.trial = [(MSFPlanViewModel *)[self.viewModel.viewModel viewModels][indexPath.item] model];
 }
 
 #pragma mark - MSFSlider Delegate
@@ -153,16 +155,6 @@
 }
 
 - (void)getStringValue:(NSString *)stringvalue {
-  if (stringvalue.integerValue == 0) self.viewModel.viewModel.product = nil;
-	
-	self.selectViewModel = [MSFSelectionViewModel monthsVIewModelWithMarkets:self.viewModel.viewModel.markets total:stringvalue.integerValue];
-  [self.monthCollectionView reloadData];
- 
-  if ([self.selectViewModel numberOfItemsInSection:0] != 0) {
-		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.selectViewModel numberOfItemsInSection:0] - 1 inSection:0];
-		[self.monthCollectionView selectItemAtIndexPath:indexPath animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
-		self.viewModel.viewModel.product = [self.selectViewModel modelForIndexPath:indexPath];
-  }
 }
 
 @end

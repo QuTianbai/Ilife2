@@ -159,8 +159,11 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 	}];
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
+		if (((button.tag - MSFProfessionalContactCellRelationshipButton) == 0) && [self.maritalStatus isEqualToString:@"20"]) {
+			return RACSignal.empty;
+		}
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
-		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%d", button.tag - MSFProfessionalContactCellRelationshipButton]];
+		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld", button.tag - MSFProfessionalContactCellRelationshipButton]];
 	}];
 	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;

@@ -11,6 +11,7 @@
 #import <IQKeyboardManager/KeyboardManager.h>
 #import "MSFGrayButton.h"
 #import <NSString-Hashes/NSString+Hashes.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFInputTradePasswordViewController ()<UITextFieldDelegate>
 
@@ -24,6 +25,7 @@
 
 @property (nonatomic, strong) NSArray *imgArray;
 @property (weak, nonatomic) IBOutlet MSFGrayButton *cancelBT;
+@property (weak, nonatomic) IBOutlet UIButton *forgotTransforPwd;
 
 @end
 
@@ -43,8 +45,10 @@
 	];
 	[self.pwdTF setInputAccessoryView:nil];
 	[IQKeyboardManager sharedManager].enableAutoToolbar = NO;
+    @weakify(self)
 	[[self.cancelBT rac_signalForControlEvents:UIControlEventTouchUpInside]
 	subscribeNext:^(id x) {
+        @strongify(self)
 		[IQKeyboardManager sharedManager].enableAutoToolbar = YES;
 		[self.view removeFromSuperview];
 		if ([self.delegate respondsToSelector:@selector(cancel)]) [self.delegate cancel];
@@ -52,6 +56,7 @@
 	
 	[[self.pwdTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	subscribeNext:^(UITextField *textField) {
+        @strongify(self)
 		if (textField.text.length < 7) {
 			for (int i = 0; i< 6; i++) {
 				UIImageView *imgView = self.imgArray[i];
@@ -81,12 +86,22 @@
 	}];
 	
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
+        @strongify(self)
 		for (UIImageView *imgView in self.imgArray) {
 			imgView.hidden = YES;
 		}
 		[self.pwdTF becomeFirstResponder];
 		self.pwdTF.text = @"";
 	}];
+   [[self.forgotTransforPwd rac_signalForControlEvents:UIControlEventTouchUpInside]
+    subscribeNext:^(id x) {
+        @strongify(self)
+        [SVProgressHUD dismiss];
+        [self.view removeFromSuperview];
+        if ([self.delegate respondsToSelector:@selector(cancel)]) [self.delegate cancel];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ForgetTradePwd" bundle:nil];
+        [((UIViewController *)self.delegate).navigationController pushViewController:storyboard.instantiateInitialViewController animated:YES];
+    }];
 }
 
 @end

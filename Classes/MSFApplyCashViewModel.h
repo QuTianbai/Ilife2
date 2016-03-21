@@ -16,6 +16,7 @@
 @class MSFApplyCashModel;
 @class MSFAmortize;
 @class MSFPlan;
+@class MSFTrial;
 @class MSFLoanType;
 
 @interface MSFApplyCashViewModel : RVMViewModel <MSFApplicationViewModel>
@@ -40,7 +41,8 @@
 @property (nonatomic, copy) NSString *maxMoney;
 
 // 贷款期数对应的产品
-@property (nonatomic, strong) MSFPlan *product;
+@property (nonatomic, strong) MSFPlan * product __deprecated_msg("Use trial");
+@property (nonatomic, strong) MSFTrial *trial;
 
 @property (nonatomic, strong) MSFApplyCashModel *model;
 @property (nonatomic, strong) MSFAmortize *markets;
@@ -79,6 +81,10 @@
 @property (nonatomic, strong) id formViewModel __deprecated_msg("Use MSFUser intead");
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) RACCommand *executeCommitCommand;
+
+// MSFPlanViewModel
+@property (nonatomic, strong) NSArray *viewModels;
+@property (nonatomic, assign) NSInteger homepageIndex;
 
 @end
 

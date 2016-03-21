@@ -25,13 +25,13 @@
 #import "MSFClient+Amortize.h"
 #import "MSFPersonalViewModel.h"
 #import "MSFResponse.h"
+#import "MSFPlanViewModel.h"
+#import "MSFApplication.h"
 
 @interface MSFCartViewModel ()
 
-@property (nonatomic, strong, readwrite) MSFTrial *trial;
 @property (nonatomic, strong, readwrite) MSFCart *cart;
 @property (nonatomic, strong, readwrite) NSArray *terms;
-@property (nonatomic, strong, readwrite) NSString *term;
 @property (nonatomic, strong, readwrite) MSFAmortize *markets;
 @property (nonatomic, strong, readwrite) NSString *compId; // 商铺编号
 @property (nonatomic, assign, readwrite) BOOL barcodeInvalid;
@@ -108,14 +108,29 @@
 	}];
 	
 	// 更新商品试算
-	[[RACSignal combineLatest:@[
-		RACObserve(self, term),
+	[RACObserve(self, trial) subscribeNext:^(MSFTrial *product) {
+		@strongify(self)
+		self.loanTerm = product.loanTerm;
+		self.loanFixedAmt = product.loanFixedAmt;
+		self.lifeInsuranceAmt = product.lifeInsuranceAmt;
+	}];
+	RAC(self, markets) = [[self.didBecomeActiveSignal
+		 filter:^BOOL(id value) {
+			 @strongify(self)
+			 return !self.markets;
+		 }]
+		 flattenMap:^RACStream *(id value) {
+			 return [self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID];
+		 }];
+	
+	RAC(self, viewModels) = [[RACSignal combineLatest:@[
 		RACObserve(self, loanAmt),
 		RACObserve(self, joinInsurance)
 	]]
-	subscribeNext:^(id x) {
-		@strongify(self)
-		[self.executeTrialCommand execute:nil];
+	flattenMap:^RACStream *(id value) {
+		return [[self trialSignal].collect catch:^RACSignal *(NSError *error) {
+			return [RACSignal empty];
+		}];
 	}];
 	
 	// 根据贷款产品获取贷款资料
@@ -163,7 +178,7 @@
 	_executeProtocolCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeAgreementSignal];
 	}];
-  
+	
   return self;
 }
 
@@ -332,7 +347,9 @@
 	parameters[@"compId"] = self.cart.compId;
 	parameters[@"cmdtyList"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.cart.cmdtyList] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
 	NSURLRequest *request = [self.services.httpClient requestWithMethod:@"POST" path:@"orders/trial" parameters:parameters];
-	return [[self.services.httpClient enqueueRequest:request resultClass:MSFTrial.class] msf_parsedResults];
+	return [[[self.services.httpClient enqueueRequest:request resultClass:MSFTrial.class] msf_parsedResults] map:^id(id value) {
+		return [[MSFPlanViewModel alloc] initWithModel:value];
+	}];
 }
 
 - (RACSignal *)trialValidSignal {

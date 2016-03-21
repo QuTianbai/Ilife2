@@ -376,8 +376,9 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	}];
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellPhoneTextFeild + index];
+    textField.text = viewModel.phone;
     [[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
-        viewModel.phone = textField.text;
+        viewModel.phone = x;
     }];
     [textField limitWitRex:@"[0-9]{0,11}"];	
 	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
