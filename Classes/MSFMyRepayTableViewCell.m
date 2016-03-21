@@ -54,7 +54,7 @@
              self.repayTime.textColor = [UIColor blackColor];
              self.repayTimeTitleLB.textColor = [UIColor blackColor];
              self.imgBg.alpha = 0.7;
-         }else {
+        } else {
 			 self.repayedLB.hidden = YES;
 			 self.imgBg.hidden = YES;
 			 self.contractTitle.textColor = [UIColor blackColor];
@@ -73,7 +73,5 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 }
-
-
 
 @end
