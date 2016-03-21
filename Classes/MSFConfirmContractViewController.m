@@ -41,7 +41,7 @@
 	self.confirmContractWebView.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	RACSignal *signal;
-	if ([self.viewModel.model.productCd isEqualToString:@"4102"]) {
+	if ([self.viewModel.model.productCd hasPrefix:@"4"]) {
 		[self.button setTitle:@"确定" forState:UIControlStateNormal];
 		signal = [self.viewModel requestContactWithTemplate:@"CASH_CONTRACT" productType:self.viewModel.model.productCd];
 	} else {
