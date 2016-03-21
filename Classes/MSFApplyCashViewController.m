@@ -249,8 +249,15 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	}];
 	
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.picker reloadAllComponents];
+        @strongify(self);
+        [self.picker reloadAllComponents];
+        for (int i = 0;i < self.viewModel.viewModels.count; i++) {
+            MSFPlanViewModel *planModel = self.viewModel.viewModels[i];
+            MSFTrial *inTrial = [planModel model];
+            if (inTrial == self.viewModel.trial) {
+                [self.picker selectRow:i inComponent:0 animated:NO];
+            }
+        }
 	}];
 }
 

@@ -17,7 +17,7 @@
 		@"authType": @"O",
 		@"authId": order.inOrderId
 	};
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/paymentInfo" parameters:parameters];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"orders/payCode" parameters:parameters];
 	
 	return [[self enqueueRequest:request resultClass:MSFPayment.class] msf_parsedResults];
 }
