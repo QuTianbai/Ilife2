@@ -26,6 +26,7 @@
 #import "MSFMyRepayDetailViewModel.h"
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "NSString+Matches.h"
 
 @interface MSFRepaymentViewModel ()
 
@@ -244,6 +245,13 @@
                                                                                              NSLocalizedFailureReasonErrorKey: @"还款金额不能大于欠款金额"
                                                                                              }];
         return [RACSignal error: error];
+    }
+    if (!self.amounts.isMoney) {
+        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
+                                                                                                      NSLocalizedFailureReasonErrorKey: @"还款金额格式不对"
+                                                                                                      }];
+        return [RACSignal error: error];
+        
     }
 	return [self.services.msf_gainPasscodeSignal
 //		flattenMap:^RACStream *(id value) {
