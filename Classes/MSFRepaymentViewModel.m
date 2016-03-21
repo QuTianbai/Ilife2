@@ -37,6 +37,7 @@
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
 @property (nonatomic, strong, readwrite) NSString *bankCardID;
+@property (nonatomic, strong, readwrite) NSString *summary;
 
 @end
 
@@ -240,6 +241,12 @@
 }
 
 - (RACSignal *)paymentSignal {
+    if([self.amounts rangeOfString:@"¥"].location != NSNotFound) {
+        self.amounts = [self.amounts substringFromIndex:1];
+    }
+    if([self.summary rangeOfString:@"¥"].location != NSNotFound) {
+        self.summary = [self.summary substringFromIndex:1];
+    }
     if ([self.amounts floatValue] > [self.summary floatValue]) {
        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
                                                                                              NSLocalizedFailureReasonErrorKey: @"还款金额不能大于欠款金额"

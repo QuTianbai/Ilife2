@@ -273,41 +273,39 @@
 		[SVProgressHUD showInfoWithStatus:@"请同意申请协议"];
 		return RACSignal.empty;
 	}
-	if (self.isDownPmt) {
-		double a = self.downPmtAmt.doubleValue;
-		double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
-		double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
-		double b = self.loanAmt.doubleValue;
-		double f = self.minLoan.doubleValue;
-		double g = self.maxLoan.doubleValue;
-		double c = self.totalAmt.doubleValue;
-		
-		// Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
-		if (a < d) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
-			return RACSignal.empty;
-		}
-		if (a > e) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
-			return RACSignal.empty;
-		}
-		if (b < f) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
-			return RACSignal.empty;
-		}
-		if (b > g) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
-			return RACSignal.empty;
-		}
-		if (c < f + d) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
-			return RACSignal.empty;
-		}
-		if (c > e + g) {
-			[SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
-			return RACSignal.empty;
-		}
-	}
+    double a = self.downPmtAmt.doubleValue;
+    double d = self.cart.minDownPmt.doubleValue * self.totalAmt.doubleValue;
+    double e = self.cart.maxDownPmt.doubleValue * self.totalAmt.doubleValue;
+    //double b = self.loanAmt.doubleValue;
+//    double f = self.minLoan.doubleValue;
+//    double g = self.maxLoan.doubleValue;
+//    double c = self.totalAmt.doubleValue;
+    
+    // Link to Message: Re: Re: BUG #1051 贷款最大金额计算有误 - 虚拟产品-测试专用 (From Jing Yang(杨静) <jing.yang@msxf.com>)
+    if (a < d) {
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", d]];
+        return RACSignal.empty;
+    }
+    if (a > e) {
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", e]];
+        return RACSignal.empty;
+    }
+//    if (b < f) {
+//        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", c - f]];
+//        return RACSignal.empty;
+//    }
+//    if (b > g) {
+//        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", c - g]];
+//        return RACSignal.empty;
+//    }
+//    if (c < f + d) {
+//        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以下金额", f + d]];
+//        return RACSignal.empty;
+//    }
+//    if (c > e + g) {
+//        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请填写%0.2f元及以上金额", e + g]];
+//        return RACSignal.empty;
+//    }
 	
 	[SVProgressHUD showWithStatus:@"正在提交..."];
 	@weakify(self)

@@ -100,7 +100,7 @@
         if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"马上贷"]) {
             MSFCmdtyModel *model = [[MSFCmdtyModel alloc] init];
             model.cmdtyName = @"马上贷";
-            model.cmdtyPrice = self.model.totalOverdueMoney;
+            model.cmdtyPrice = self.model.appLmt;
             model.orderTime = self.model.applyDate;
             MSFCmdDetailViewModel *viewModel = [[MSFCmdDetailViewModel alloc] initWithModel:model];
             self.cmdtyList = [NSArray arrayWithObject:viewModel];
