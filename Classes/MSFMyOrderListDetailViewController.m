@@ -64,7 +64,7 @@
 			}];
         } else if ([value isEqualToString:@"重传资料"]) {
             self.bottomButton.hidden = NO;
-            [self.bottomButton setTitle:@"确认合同" forState:UIControlStateNormal];
+            [self.bottomButton setTitle:@"重传资料" forState:UIControlStateNormal];
             [[self.bottomButton rac_signalForControlEvents:UIControlEventTouchUpInside]
              subscribeNext:^(id x) {
                  MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.viewModel.appNo productID:self.viewModel.productCd services:self.viewModel.services];
