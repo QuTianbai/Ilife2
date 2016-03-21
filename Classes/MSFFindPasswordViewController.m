@@ -94,6 +94,11 @@
 			[SVProgressHUD showErrorWithStatus:@"请输入正确的验证码"];
 			return;
 		}
+        if (self.username.text.length <= 0) {
+            [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+            return;
+        }
+
 		MSFResetPasswordViewController *vc = [[MSFResetPasswordViewController alloc] initWithViewModel:self.viewModel];
 		[self.navigationController pushViewController:vc animated:YES];
 	}];
