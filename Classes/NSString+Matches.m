@@ -33,6 +33,21 @@
 	}
 }
 
+- (BOOL)isMoney {
+    NSString *moneylRegex1 = @"[0-9]{0,}";
+    NSString *moneylRegex2 = @"[0-9]+[\\.][0-9]{1,}";
+    NSPredicate *moneyTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", moneylRegex1];
+    
+    if ([moneyTest evaluateWithObject:self]) {
+        return YES;
+    }
+    moneyTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", moneylRegex2];
+    if ([moneyTest evaluateWithObject:self]) {
+        return YES;
+    }
+    return NO;
+}
+
 - (BOOL)isMail {
 	BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
 	NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";

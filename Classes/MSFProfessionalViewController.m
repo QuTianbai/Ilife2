@@ -196,6 +196,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
     [self.unitExtensionTelephone limitWitRex:@"[0-9]{0,5}"];
 	channel = RACChannelTo(self.viewModel, jobDetailAddress);
 	RAC(self.detailAddressTextField, text) = channel;
+    [self.detailAddressTextField limitWitLength:200];
 	[self.detailAddressTextField.rac_textSignal subscribe:channel];
 	RAC(self, address.text) = RACObserve(self.viewModel, jobAddress);
 	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
@@ -382,7 +383,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
     }];
     [textField limitWitRex:@"[0-9]{0,11}"];	
 	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
-    [textField limitWitRex:@".{0,60}"];
+    [textField limitWitRex:@".{0,200}"];
 	textField.text = viewModel.address;
 	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		viewModel.address = x;

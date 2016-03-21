@@ -70,7 +70,7 @@
         BOOL addIsValid = YES;
         if ([mainContact boolValue]) {
             if (![on boolValue]) {
-                addIsValid =  self.address.length > 0;
+                addIsValid =  self.address.length > 0 && self.address.length < 200;
             }
         }
         return @(name.length > 0 && phone.length > 0 && relationship.length > 0 && addIsValid);
