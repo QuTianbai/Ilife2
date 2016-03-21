@@ -8,6 +8,7 @@
 #import "MSFAuthorizeViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "NSString+Matches.h"
 
 @interface MSFResetPasswordViewController ()
 
@@ -47,6 +48,14 @@
 			[SVProgressHUD showErrorWithStatus:@"请输入相同的密码"];
 			return;
 		}
+        if (![self.firstTextField.text isPassword]) {
+            [SVProgressHUD showErrorWithStatus:@"请填写8到16位数字和字母组合的密码"];
+            return;
+        }
+        if (![self.secondTextField.text isPassword]) {
+            [SVProgressHUD showErrorWithStatus:@"请填写8到16位数字和字母组合的密码"];
+            return;
+        }
 		[self.view endEditing:YES];
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeClear];
 		[[self.viewModel.executeFindPassword execute:nil] subscribeNext:^(id x) {

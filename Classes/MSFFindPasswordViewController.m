@@ -98,6 +98,7 @@
             [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
             return;
         }
+
 		MSFResetPasswordViewController *vc = [[MSFResetPasswordViewController alloc] initWithViewModel:self.viewModel];
 		[self.navigationController pushViewController:vc animated:YES];
 	}];
