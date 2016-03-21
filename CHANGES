@@ -1,3 +1,224 @@
+Version 3.0.0.15:
+ - Merge remote-tracking branch 'origin/zyp' into next
+ - Merge remote-tracking branch 'origin/xubaimiao' into next
+ - 马上贷在申请的时候选择6期，但是提交申请时，会自动变成9期
+ - update version3.0.0.14
+ - update version3.0.0.14
+ - Fix #127 商品贷申请过程中，其他信息界面，同一个联系人可以使用多次
+ - 马上贷在申请的时候选择6期，但是提交申请时，会自动变成9期
+ - Fix warnings
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 订单详情冲攒资料
+ - 订单详情确认合同
+ - 【还款计划】只要到期的账单才显示红色，未到期的账号显示灰色
+ - 已经逾期的账单，在我要还款界面，没有显示已逾期
+ - Bumping version to v3.0.0.12
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Fix #14 商品贷款界面设计
+ - Merge branch 'zyp' of http://gitbrew.com/msxf/finance
+ - 在输入交易密码时，没有忘记密码连接，与原型不符
+ - Merge branch 'xubaimiao' of gitbrew.com:msxf/finance
+ - fix bug
+ - 马上贷：第二次申请的时候无法带出联系人的手机号
+ - 确认合同
+ - fix bug 切换银行卡银行卡图标不变
+ - fix bug 还款显示逻辑
+ - 确认合同
+ - Fix #116 申请过程中，如图申请人已婚，可以将第一联系人由配偶改成其他关系
+ - Fix warnings
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Merge remote-tracking branch 'origin/next'
+ - 逾期还款，改为判断状态
+ - update version 3.0.0.11
+ - 证书
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge branch 'zyp' of http://gitbrew.com/msxf/finance
+ - 还款计划
+ - Merge branch 'fix-bug-MDSJ-70' of /home/git/repositories/msxf/finance into next
+ - 旅游贷款订单详情
+ - 分支合并
+ - 我的-我要还款页面日期和状态显示不正确
+ - 优化
+ - fix bug 在申请过程中，在其他信息界面，当更改了申请人社会身份时，信息错误，如图
+ - 这个逻辑有问题  联系人3关闭同现居地址，第一次输入详细地址会提示完善信息，要删了多输入几次 才能进行下一步
+ - 其他信息页面，添加其他联系人2、3的时候显示的应该是所有的类型
+ - 信用钱包首页点击立即还款，还款页面中未显示总欠款金额
+ - 提示验证错误
+ - 学校信息
+ - 选择产品
+ - 非重庆用户，选择产品
+ - 非重庆用户注册登录后，可以申请信用钱包，与原型设计不符
+ - 添加图片
+ - 马上贷申请-已编辑联系人信息，申请过程中，其他信息页面中选择婚姻状况后联系人信息被清空
+ - 马上贷其他信息第一联系人出现的选项与原型设计不符
+ - 还款计划显示
+ - 还款详情，首页跳转我的还款控制
+ - 时间格式，还款
+ - 商品贷支付首付
+ - 还款
+ - 马上贷还款
+ - 还款添加银行卡
+ - 马上贷金额刻度限制500
+ - version3.0.0.9
+ - Merge branch 'zyp' of http://gitbrew.com/msxf/finance
+ - 证书
+ - 优化
+ - 审核失败状态
+ - 给联系人添加限制
+ - Merge branch 'xubaimiao' of gitbrew.com:msxf/finance
+ - change config 文件
+ - add file
+ - merge zhaoyunpan
+ - merge sir
+ - 商品代状态
+ - fix bug 已完成实名认证，我的首页显示未实名认证
+ - 我的还款详情
+ - 控制邮箱输入
+ - fix bug 其他信息页面：入职日期在某种情况下可以比参加工作时间还早
+ - fix 联系人地址bug
+ - 我商品代我的还款更改接口
+ - 优化闪退以及职业信息验证
+ - fix bug 【商品贷】第一个联系人地址不填写时，仍然可以提交申请，如图：
+ - 银行卡设置交易密码
+ - merge
+ - fix bug 试算页面，如果出现同时拉取多期的情况APP金额显示会出现问题
+ - 信用钱包4s适配
+ - 马上代4s适配
+ - fix bug
+ - fix bug 在商品信息界面，当选择加入寿险计划后，寿险金额显示小数的位数未做处理
+ - merge
+ - fix bug 在基本信息页面：联系方式的常用邮箱和住宅电话产品中定义都是选填，并且没有控制邮箱格式
+ - fix bug 新用户身份验证，添加银行卡，未读出卡类型
+ - 还款计划
+ - 从next分支合并
+ - fix bug
+ - Merge branch 'sdr' of http://gitbrew.com/msxf/finance
+ - new
+ - merge
+ - 证书
+ - Merge branch 'xubaimiao' of http://gitbrew.com/msxf/finance
+ - 还款计划
+ - 还款计划
+ - fix bug
+ - 4s适配
+ - Revert "userident  correct"
+ - fix bug 马上贷其他信息页面，未对手机号码位数限制
+ - merge
+ - userident  correct
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - 证书
+ - Bumping version to v3.0.0.7
+ - Fix #50 min date
+ - Fix the third contact edition
+ - Fix cash loan application reset social insurance
+ - Fix #32 error word
+ - Fix verify email address form
+ - Fix #58 signup auth code fetch button display
+ - Improve credit slider view
+ - Update adv imageview display mode
+ - Fix #53 dont' allow commit without intact contacts
+ - Fix api document error parameter
+ - Fix #31 personal's email is optional content
+ - Remove duplicated prefix MSF
+ - Fix #10 auto dimiss keyboard when select work date
+ - Fix after authenticate user not fetch user information
+ - Update unauthenticated user can't call authenticated api
+ - Update api server
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Merge remote-tracking branch 'origin/sdr'
+ - merge
+ - 旅游贷款支付首付
+ - 信用钱包提交，先保存资料
+ - 信用钱包提现还款未设交易密码，跳转
+ - 加载提示
+ - 我的订单，我的还款加载提示
+ - 我的还款信用钱包
+ - 我的还款
+ - merge
+ - Merge branch 'sdr' of http://gitbrew.com/msxf/finance
+ - 优化
+ - 商品贷首付
+ - 去掉修改手机号功能
+ - support BankCardList
+ - 马上贷、信用钱包，订单详情
+ - 还款
+ - 提现还款接口
+ - Merge remote-tracking branch 'origin/zyp'
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Update down payment status
+ - Format code style
+ - 立即还款图片
+ - Merge branch 'next' of gitbrew.com:msxf/finance
+ - fix bug  add 提示语 “马上金融对您综合评估后可能为您提供新的更适合您的借贷方案”
+ - update version 3.0.0.6
+ - 代码规范
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge remote-tracking branch 'origin/zyp'
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 提现按钮
+ - fix bug
+ - Update inventories view back to professional view
+ - Update refresh after add coupons
+ - Fix warnings
+ - Fix contact selection crash
+ - Merge remote-tracking branch 'origin/xubaimiao' into next
+ - 更换银行卡
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 信用钱包提现
+ - fix bug 旅游商品贷：在商品信息列表，选择所有信息后点击下一步提示：UUID没有传
+ - 信用钱包提现，选择银行卡
+ - fix bug 旅游商品贷其他信息页面：入职日期不能在参加工作日期之前
+ - fix bug 我的-设置不能修改登录密码
+ - fix bug 旅游商品贷：其他信息页面，婚姻状况为“已婚”默认联系人为配偶
+ - 已在安卓客户端注册的老用户在IOS登录，提示无效验证码，且未出现获取验证码按钮与验证码输入框
+ - 购物选项
+ - 修复：信用钱包激活-身份验证页面点击下一步无反应
+ - 银行卡显示
+ - fix bug 马上贷其他信息，添加联系人数量与原型设计不一致 马上贷-其他信息，社会身份选择学生，学制可以输入0
+ - 信用钱包
+ - 修复：点击还款和提款崩溃
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Fix 首付比例接数据类型错误
+ - version update3.0.0.5
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - 信用钱包基本信息手机号限制
+ - 实名认证返回数据update
+ - Update authenticated bank card information
+ - Update unauthenticated user view display `未实名认证`
+ - Update server api use site4
+ - Merge branch 'next' of git.msxf.local:ios/Finance
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 贷款用途
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 确认合同
+ - 信用钱包社保信息页面显示与原型设计部符，未对手机号码位数进行限制
+ - 实名认证，银行卡
+ - 优化
+ - 用户在未确认合同的情况下，可以同时申请马上贷和信用钱包
+ - 用户在未确认合同的情况下，可以同时申请马上贷和信用钱包
+ - 修复商品贷，实名认证判断
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge branch 'master' into 'next'
+ - 确认合同
+ - 确认合同
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 证书
+ - 银行卡判定实名认证
+ - BankCard   alter
+ - 修复 没有完成身份验证，也能进入到“基本信息”和“其他信息”界面
+ - 银行卡列表的uniqueID
+ - merge
+ - bug
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - 订单详情，每月还款数目为null时优化显示
+ - 优化布局显示
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - 用户未完善资料室，申请社保贷提示联系人null，修复
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - 忘易密码点击崩溃修复
+
 Version 3.0.0.3:
  - Fix new user signin crash
  - Fix warnings
