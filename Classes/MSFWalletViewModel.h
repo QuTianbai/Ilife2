@@ -30,6 +30,7 @@
 @property (nonatomic, strong, readonly) NSString *usedAmounts;
 @property (nonatomic, strong, readonly) NSString *loanRates;
 @property (nonatomic, strong, readonly) NSString *repayDate;
+@property (nonatomic, strong, readonly) NSString *totalOverdueMoney;
 
 // 申请视图中的按钮名称
 @property (nonatomic, strong, readonly) NSString *action;
