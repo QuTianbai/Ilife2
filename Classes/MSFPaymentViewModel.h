@@ -24,7 +24,7 @@
 @property (nonatomic, strong, readonly) NSString *summary;
 @property (nonatomic, strong, readonly) NSString *title;
 @property (nonatomic, strong, readonly) NSString *supports;
-@property (nonatomic, strong, readonly) NSString *amounts;
+@property (nonatomic, strong, readwrite) NSString *amounts;
 @property (nonatomic, assign, readonly) BOOL editable;
 @property (nonatomic, strong, readonly) NSString *captcha;
 @property (nonatomic, strong, readonly) NSString *captchaTitle;

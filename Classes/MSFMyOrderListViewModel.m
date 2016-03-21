@@ -11,13 +11,11 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSDictionary+MSFKeyValue.h"
 #import "MSFClient+Order.h"
-#import "MSFViewModelServices.h"
 #import "MSFSelectKeyValues.h"
 
 @interface MSFMyOrderListViewModel ()
 
 @property (nonatomic, strong) MSFOrder *model;
-@property (nonatomic, weak) id<MSFViewModelServices> services;
 
 @end
 

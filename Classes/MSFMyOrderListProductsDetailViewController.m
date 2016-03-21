@@ -27,6 +27,7 @@
 #import "MSFDimensionalCodeViewController.h"
 #import "NSDictionary+MSFKeyValue.h"
 #import "MSFUser.h"
+#import "MSFInventoryViewModel.h"
 
 @interface MSFMyOrderListProductsDetailViewController () <MSFInputTradePasswordDelegate>
 
@@ -166,7 +167,7 @@ MSFInputTradePasswordViewController *pvc;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	if (section == 3 && ([self.viewModel.orderStatus isEqualToString:@"待支付"] ||[self.viewModel.orderStatus isEqualToString:@"待确认合同"] )) {
+	if (section == 3 && ([self.viewModel.orderStatus isEqualToString:@"待支付"] ||[self.viewModel.orderStatus isEqualToString:@"待确认合同"] || [self.viewModel.orderStatus isEqualToString:@"重传资料"])) {
 		return 60;
 	}
 	return 0;
@@ -180,6 +181,8 @@ MSFInputTradePasswordViewController *pvc;
 		[button setTitle:@"支付首付" forState:UIControlStateNormal];
         if ([self.viewModel.orderStatus isEqualToString:@"待确认合同"]) {
             [button setTitle:@"确认合同" forState:UIControlStateNormal];
+        } else if ([self.viewModel.orderStatus isEqualToString:@"重传资料"]) {
+            [button setTitle:@"重传资料" forState:UIControlStateNormal];
         }
 		//[button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[[button rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -187,6 +190,10 @@ MSFInputTradePasswordViewController *pvc;
             if ([self.viewModel.orderStatus isEqualToString:@"待确认合同"]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:@"3"];
                 return;
+            } else if ([self.viewModel.orderStatus isEqualToString:@"重传资料"]) {
+                MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.viewModel.appNo productID:self.viewModel.crProdId services:self.viewModel.services];
+                [self.viewModel.services pushViewModel:viewModel];
+                
             }
 			if (!self.viewModel.isDownPmt) {
                 MSFUser *user = [self.viewModel.services httpClient].user;
