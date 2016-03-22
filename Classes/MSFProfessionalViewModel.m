@@ -269,6 +269,12 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
         tempContacts[0] = content;
         tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
     }
+    else
+    {
+        content.contactRelation = @"R005";
+        tempContacts[0] = content;
+        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+    }
     self.viewModels = tempViewModels;
     self.contacts = tempContacts;
 }
@@ -346,8 +352,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		RACObserve(self, surplusIncome),
 		RACObserve(self, marriage),
 	]
-	reduce:^id(NSString *condition, NSString *email, NSString *phone, NSString *address){
-		return @(condition.length > 0 && email.length > 0 && address.length > 0);
+	reduce:^id(NSString *identifier, NSString *normalIncome, NSString *surplusIncome, NSString *marriage){
+		return @(identifier.length > 0 && normalIncome.length > 0 && surplusIncome.length > 0 && marriage.length > 0);
 	}];
 }
 
