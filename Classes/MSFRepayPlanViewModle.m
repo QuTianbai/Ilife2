@@ -19,7 +19,7 @@
 
 @implementation MSFRepayPlanViewModle
 
-- (instancetype)initWithModel:(id)model {
+- (instancetype)initWithModel:(id)model withCurrentLoanTerm:(NSString *)currentLoanTerm {
     
     self = [super init];
     
@@ -33,6 +33,7 @@
 		return nil;
 	}
 	_model = model;
+    _isCurrentLoanTerm = [currentLoanTerm isEqualToString:self.model.loanCurrTerm];
 	
 	unsigned int propertyCount = 0;
 	objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
@@ -65,7 +66,7 @@
 	RAC(self, status) = [[RACObserve(self, model) ignore:nil] map:^id(MSFRepaymentSchedules *value) {
         NSString *str = value.contractStatus;
         if ([str isEqualToString:@"正常"] || [str isEqualToString:@"还款中"]) {
-            str = @"待还款";
+            str = @"还款中";
         }
 		return [NSString stringWithFormat:@"%@%@", value.repaymentTime, str];
 	}];

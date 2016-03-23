@@ -96,7 +96,7 @@
 		RACObserve(self, detailAddress),
 	]
 	reduce:^id(NSString *house, NSString *address, NSString *detailAddress) {
-		return @(house.length > 0 && address.length > 0 && detailAddress.length > 0);
+		return @(house.length > 0 && address.length > 0 && (detailAddress.length > 0 && detailAddress.length < 200));
 	}];
 }
 
