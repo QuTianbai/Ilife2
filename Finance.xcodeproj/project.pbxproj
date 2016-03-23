@@ -6911,7 +6911,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance1;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "";
 			};
@@ -6938,7 +6938,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance1;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "";
 			};
@@ -7061,7 +7061,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance1;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "";
 			};

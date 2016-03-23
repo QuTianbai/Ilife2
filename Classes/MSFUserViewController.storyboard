@@ -21,10 +21,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-user-avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="NV9-rr-KPZ">
-                                    <rect key="frame" x="20" y="27" width="65" height="66"/>
+                                    <rect key="frame" x="20" y="37" width="65" height="66"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYQ-iw-JgI">
-                                    <rect key="frame" x="93" y="38" width="30" height="18"/>
+                                    <rect key="frame" x="93" y="48" width="30" height="18"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -36,20 +36,22 @@
                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="291-Ha-JGu">
-                                    <rect key="frame" x="299" y="50.5" width="13" height="18"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="18" id="esf-rk-bR5"/>
-                                        <constraint firstAttribute="width" constant="13" id="vYl-Fm-oUi"/>
-                                    </constraints>
-                                    <state key="normal" image="icon-user-edit.png"/>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="638-xK-6cf">
-                                    <rect key="frame" x="93" y="64" width="39" height="16"/>
+                                    <rect key="frame" x="93" y="74" width="39" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="291-Ha-JGu">
+                                    <rect key="frame" x="287" y="52.5" width="25" height="35"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="35" id="esf-rk-bR5"/>
+                                        <constraint firstAttribute="width" constant="25" id="vYl-Fm-oUi"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                    <state key="normal" image="icon-user-edit.png"/>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -58,11 +60,11 @@
                                 <constraint firstItem="BEi-3L-bJf" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" id="6VA-fM-4BC"/>
                                 <constraint firstAttribute="trailing" secondItem="BEi-3L-bJf" secondAttribute="trailing" id="DfH-OW-T8U"/>
                                 <constraint firstItem="vin-S9-BJd" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" id="EJp-sj-qyD"/>
-                                <constraint firstItem="UYQ-iw-JgI" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" constant="38" id="F0v-4C-n2c"/>
+                                <constraint firstItem="UYQ-iw-JgI" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" constant="48" id="F0v-4C-n2c"/>
                                 <constraint firstItem="vin-S9-BJd" firstAttribute="leading" secondItem="yP1-83-qgL" secondAttribute="leading" id="H4q-sr-IYG"/>
-                                <constraint firstItem="NV9-rr-KPZ" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" id="JPK-Sf-H2j"/>
+                                <constraint firstItem="NV9-rr-KPZ" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" constant="10" id="JPK-Sf-H2j"/>
                                 <constraint firstItem="638-xK-6cf" firstAttribute="top" secondItem="UYQ-iw-JgI" secondAttribute="bottom" constant="8" id="UdX-XO-UXh"/>
-                                <constraint firstItem="291-Ha-JGu" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" id="dZ8-kR-DCh"/>
+                                <constraint firstItem="291-Ha-JGu" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" constant="10" id="dZ8-kR-DCh"/>
                                 <constraint firstAttribute="trailing" secondItem="vin-S9-BJd" secondAttribute="trailing" id="dq3-Ak-PL6"/>
                                 <constraint firstAttribute="bottom" secondItem="BEi-3L-bJf" secondAttribute="bottom" id="e2k-U8-kMH"/>
                                 <constraint firstItem="UYQ-iw-JgI" firstAttribute="leading" secondItem="NV9-rr-KPZ" secondAttribute="trailing" constant="8" id="f5d-tp-8Eo"/>
@@ -267,7 +269,7 @@
     <resources>
         <image name="icon-user-avatar.png" width="65" height="66"/>
         <image name="icon-user-bank.png" width="30" height="30"/>
-        <image name="icon-user-bg" width="50" height="50"/>
+        <image name="icon-user-bg" width="414" height="313"/>
         <image name="icon-user-coupon.png" width="30" height="30"/>
         <image name="icon-user-edit.png" width="16" height="31"/>
         <image name="icon-user-order.png" width="30" height="30"/>
