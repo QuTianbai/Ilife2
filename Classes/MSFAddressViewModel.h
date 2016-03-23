@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) RACCommand *selectCommand;
 
-@property (nonatomic, strong, readonly) NSString *address;
+@property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *detailAddress;
 
 @property (nonatomic, assign, readonly) BOOL needArea;
