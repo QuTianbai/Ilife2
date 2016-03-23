@@ -268,9 +268,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
         content.contactRelation = @"RF01";
         tempContacts[0] = content;
         tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
-    }
-    else
-    {
+    } else {
         content.contactRelation = @"R005";
         tempContacts[0] = content;
         tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
