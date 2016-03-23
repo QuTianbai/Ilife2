@@ -163,7 +163,7 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 			return RACSignal.empty;
 		}
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
-		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld", button.tag - MSFProfessionalContactCellRelationshipButton]];
+		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld_%@", button.tag - MSFProfessionalContactCellRelationshipButton,self.maritalStatus]];
 	}];
 	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
@@ -263,15 +263,17 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     
     NSMutableArray *tempViewModels = [NSMutableArray arrayWithArray:self.viewModels];
     NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
-    MSFContact *content = [[MSFContact alloc] init];
-    if ([relation isEqualToString:@"20"]) {
-        content.contactRelation = @"RF01";
-        tempContacts[0] = content;
-        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
-    } else {
-        content.contactRelation = @"R005";
-        tempContacts[0] = content;
-        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+    for (int i = 0;i < tempViewModels.count;i++) {
+        MSFContact *content = [[MSFContact alloc] init];
+        if ([relation isEqualToString:@"20"]) {
+            content.contactRelation = @"RF01";
+            tempContacts[i] = content;
+            tempViewModels[i] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+        } else {
+            content.contactRelation = @"R005";
+            tempContacts[i] = content;
+            tempViewModels[i] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+        }
     }
     self.viewModels = tempViewModels;
     self.contacts = tempContacts;
@@ -349,9 +351,10 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		RACObserve(self, normalIncome),
 		RACObserve(self, surplusIncome),
 		RACObserve(self, marriage),
+        RACObserve(self, loan)
 	]
-	reduce:^id(NSString *identifier, NSString *normalIncome, NSString *surplusIncome, NSString *marriage){
-		return @(identifier.length > 0 && normalIncome.length > 0 && surplusIncome.length > 0 && marriage.length > 0);
+	reduce:^id(NSString *identifier, NSString *normalIncome, NSString *surplusIncome, NSString *marriage,NSString *loan){
+		return @(identifier.length > 0 && normalIncome.length > 0 && surplusIncome.length > 0 && marriage.length > 0 && loan.length > 0);
 	}];
 }
 
