@@ -241,10 +241,10 @@
 }
 
 - (RACSignal *)paymentSignal {
-    if([self.amounts rangeOfString:@"¥"].location != NSNotFound) {
+    if ([self.amounts rangeOfString:@"¥"].location != NSNotFound) {
         self.amounts = [self.amounts substringFromIndex:1];
     }
-    if([self.summary rangeOfString:@"¥"].location != NSNotFound) {
+    if ([self.summary rangeOfString:@"¥"].location != NSNotFound) {
         self.summary = [self.summary substringFromIndex:1];
     }
     if ([self.amounts floatValue] > [self.summary floatValue]) {
