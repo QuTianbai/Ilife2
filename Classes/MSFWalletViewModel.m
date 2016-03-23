@@ -141,7 +141,7 @@ static NSString *const kApplicationWalletType = @"4";
 					self.repayDate = model.latestDueDate;
                     self.repayAmounts = model.latestDueMoney;
                     self.totalOverdueMoney = model.totalOverdueMoney;
-                    self.repayDates = [NSString stringWithFormat:@"剩余%ld天,可随时还款", model.remainingDate];
+                    self.repayDates = @"";
 				}];
 			} break;
 			default:
