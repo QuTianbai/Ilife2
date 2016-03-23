@@ -22,7 +22,7 @@
 	dispatch_once(&pred, ^{
 		dateParsingFormatter = [[ISO8601DateFormatter alloc] init];
 		[dateParsingFormatter setIncludeTime:YES];
-		[dateParsingFormatter setDefaultTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]]; // UTC
+		[dateParsingFormatter setDefaultTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]]; // UTC
 		dateParsingQueue = dispatch_queue_create("com.msfinance.NSDateFormatter", DISPATCH_QUEUE_SERIAL);
 	});
 	
@@ -64,6 +64,15 @@
 	formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
 	formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
 	return [formatter dateFromString:str];
+}
+
++ (NSDate *)gmt1_dateFromString:(NSString *)str {
+    NSParameterAssert(str != nil);
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"yyyyMMdd'";
+    formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    return [formatter dateFromString:str];
 }
 
 @end

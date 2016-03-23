@@ -34,6 +34,8 @@
 
 // 拍照，调用相机/相册获取图片
 @property (nonatomic, strong, readonly) RACCommand *takePhotoCommand;
+//拍照人脸识别
+
 
 // 上传， 上传本地附件图片文件到服务器
 @property (nonatomic, strong, readonly) RACCommand *uploadAttachmentCommand;

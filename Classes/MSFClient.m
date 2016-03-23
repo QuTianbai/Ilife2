@@ -25,6 +25,7 @@
 #import "MSFDeviceGet.h"
 #import "UIDevice-Hardware.h"
 #import "RACSignal+MSFContactsAdditions.h"
+#import "UIDevice+Versions.h"
 
 NSString *const MSFClientErrorDomain = @"MSFClientErrorDomain";
 
@@ -333,11 +334,10 @@ static NSDictionary *messages;
 	RACSignal *(^registeringSignalWithUser)(MSFUser *) = ^(MSFUser *user) {
 		MSFClient *client = [self unauthenticatedClientWithUser:user];
 		NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
-		parameters[@"action"] = @"register";
-		parameters[@"phoneNumber"] = phone;
+		parameters[@"mobile"] = phone;
 		parameters[@"password"] = password.sha256;
-		parameters[@"captcha"] = captcha;
-		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"authenticate" parameters:parameters];
+		parameters[@"smsCode"] = captcha;
+		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
 			flattenMap:^RACStream *(RACTuple *responseAndResponseObject) {
@@ -382,9 +382,9 @@ static NSDictionary *messages;
 		parameters[@"mobile"] = phone;
 		parameters[@"password"] = password.sha256;
 		parameters[@"smsCode"] = captcha;
-		parameters[@"name"] = realname;
-		parameters[@"ident"] = citizenID;
-		parameters[@"identLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
+//		parameters[@"name"] = realname;
+//		parameters[@"ident"] = citizenID;
+//		parameters[@"identLastDate"] = [NSDateFormatter msf_stringFromDate:expiredDate];
 		NSURLRequest *request = [client requestWithMethod:@"POST" path:@"user/regist" parameters:parameters];
 		
 		return [[client enqueueRequest:request]
@@ -424,9 +424,7 @@ static NSDictionary *messages;
 }
 
 - (RACSignal *)signOut {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:@{
-		@"uniqueId": self.user.uniqueId
-	}];
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/logout" parameters:nil];
 	
 	@weakify(self)
 	return [[[[self enqueueRequest:request resultClass:nil]
@@ -538,6 +536,9 @@ static NSDictionary *messages;
 	[devices addObject:[NSString stringWithFormat:@"%f,%f", coordinate.latitude, coordinate.longitude]];
 	[devices addObject:status];
 	[devices addObject:contacts?:@""];
+	[devices addObject:[UIDevice currentDevice].IPAddress?:@""];
+	[devices addObject:@""];
+	[devices addObject:@""];
 	
 	return [[devices componentsJoinedByString:@"; "] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
@@ -572,6 +573,12 @@ static NSDictionary *messages;
 	userinfo = [userinfo mtl_dictionaryByAddingEntriesFromDictionary:@{
 		MSFClientErrorMessageCodeKey: code ?: @"",
 	}];
+	
+	if (operation.response.statusCode == MSFClientErrorUnprocessableEntry) {
+		userinfo = @{
+			NSLocalizedFailureReasonErrorKey: [operation.responseObject[@"fields"] allValues].firstObject?:@""
+		};
+	}
 	
 	return [NSError errorWithDomain:MSFClientErrorDomain code:operation.response.statusCode userInfo:userinfo];
 }
@@ -669,7 +676,6 @@ static NSDictionary *messages;
 				NSDate *date = [NSDateFormatter gmt_dateFromString:operation.response.allHeaderFields[@"Date"]];
 				cipher = [[MSFCipher alloc] initWithTimestamp:(long long)[date timeIntervalSince1970] * 1000];
 			}
-			
 			if (operation.response.statusCode == MSFClientErrorAuthenticationFailed) {
 				[[NSNotificationCenter defaultCenter] postNotificationName:MSFClientErrorAuthenticationFailedNotification object:[self.class errorFromRequestOperation:operation]];
 			}

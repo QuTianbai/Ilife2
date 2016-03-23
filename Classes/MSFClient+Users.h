@@ -8,6 +8,8 @@
 
 @interface MSFClient (Users)
 
+- (RACSignal *)authenticateUsername:(NSString *)username userident:(NSString *)userident city:(NSString *)city province:(NSString *)province banknumber:(NSString *)number;
+
 // 找回登录密码.
 //
 // password  - 新的登录密码.
@@ -101,5 +103,38 @@
 //
 // Returns MSFResponse.
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword;
+
+// 支付.验证数据交易密码
+//
+// transpassword			- 交易密码.
+// contractNO - `合同号`.
+//
+// Returns MSFResponse.
+- (RACSignal *)checkDataWithPwd:(NSString *)transpassword contractNO:(NSString *)contractNO;
+
+// 支付验证码
+//
+//
+// Returns MSFResponse.
+- (RACSignal *)sendSmsCodeForTrans;
+
+// 支付交易
+//
+//
+// Returns MSFResponse.
+- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo bankCardID:(NSString *)bankCardID transPwd:(NSString *)transPwd;
+
+// 提款.
+//
+// amounts    - 提款金额.
+// contractNO - 提款合同号.
+// passcode   - 交易密码.
+//
+// Returns MSFResponse.
+- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode bankCardID:(NSString *)bankCardID;
+
+- (RACSignal *)fetchUserInfo;
+- (RACSignal *)updateUserInfo __deprecated_msg("Use -updateUser:");
+- (RACSignal *)updateUser:(MSFUser *)user;
 
 @end

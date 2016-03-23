@@ -16,6 +16,13 @@
 #import "NSDate+UTC0800.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFServer.h"
+#import "MSFAddressCodes.h"
+#import "MSFAddressViewModel.h"
+#import "MSFGetBankIcon.h"
+#import "MSFBankInfoModel.h"
+#import <FMDB/FMDB.h>
+#import "MSFAuthenticate.h"
+#import "MSFUser.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -40,6 +47,11 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 @property (nonatomic, assign) BOOL counting;
 @property (nonatomic, strong, readwrite) RACSubject *signInInvalidSignal;
+@property (nonatomic, strong) MSFAddressViewModel *addressViewModel;
+@property (nonatomic, strong, readwrite) RACCommand *executeAlterAddressCommand;
+@property (nonatomic, strong) MSFBankInfoModel *bankInfo;
+@property (nonatomic, strong) NSString *oldBankNo;
+@property (nonatomic, strong) FMDatabase *fmdb;
 
 @end
 
@@ -62,6 +74,8 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	_signInValid = YES;
 	_permanent = NO;
 	_captchType = @"REG";
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"bank" ofType:@"db"];
+	_fmdb = [[FMDatabase alloc] initWithPath:path];
 	_loginType = [[NSUserDefaults standardUserDefaults] boolForKey:@"install-boot"] ? MSFLoginSignIn :MSFLoginSignUp;
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"install-boot"];
 	_captchaHighlightedImage = [[UIImage imageNamed:@"bg-send-captcha-highlighted"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 5, 5) resizingMode:UIImageResizingModeStretch];
@@ -137,18 +151,18 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchaTradePwdSignal]
-						doNext:^(id x) {
-							@strongify(self)
-							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
-							__block int repetCount = kCounterLength;
-							[repetitiveEventSignal subscribeNext:^(id x) {
-								self.counter = [@(--repetCount) stringValue];
-							} completed:^{
-								self.counter = @"获取验证码";
-								self.counting = NO;
-							}];
-						}];
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				} completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
 	}];
 
 	_executeCaprchForgetTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
@@ -157,18 +171,19 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchForgetTradePwd]
-						doNext:^(id x) {
-							@strongify(self)
-							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
-							__block int repetCount = kCounterLength;
-							[repetitiveEventSignal subscribeNext:^(id x) {
-								self.counter = [@(--repetCount) stringValue];
-							} completed:^{
-								self.counter = @"获取验证码";
-								self.counting = NO;
-							}];
-						}];
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				}
+				completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
 	}];
 
 	_executeCaptchUpdateTradePwd = [[RACCommand alloc] initWithEnabled:self.captchaRequestValidSignal signalBlock:^RACSignal *(id input) {
@@ -177,18 +192,18 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
 		}
 		return [[self executeCaptchaUpdateTradePwdSignal]
-						doNext:^(id x) {
-							@strongify(self)
-							self.counting = YES;
-							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
-							__block int repetCount = kCounterLength;
-							[repetitiveEventSignal subscribeNext:^(id x) {
-								self.counter = [@(--repetCount) stringValue];
-							} completed:^{
-								self.counter = @"获取验证码";
-								self.counting = NO;
-							}];
-						}];
+			doNext:^(id x) {
+				@strongify(self)
+				self.counting = YES;
+				RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+				__block int repetCount = kCounterLength;
+				[repetitiveEventSignal subscribeNext:^(id x) {
+					self.counter = [@(--repetCount) stringValue];
+				} completed:^{
+					self.counter = @"获取验证码";
+					self.counting = NO;
+				}];
+			}];
 	}];
 
 	
@@ -244,6 +259,45 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	
 	self.signInInvalidSignal = [[RACSubject subject] setNameWithFormat:@"`MSFAuthorizeViewModel signIn captcha required signal`"];
 	
+	_executePayCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		if (![self.username isMobile]) {
+			return [RACSignal error:[self.class errorWithFailureReason:@"获取手机号失败"]];
+		}
+		return [[self executePaySignal]
+						doNext:^(id x) {
+							@strongify(self)
+							self.counting = YES;
+							RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+							__block int repetCount = kCounterLength;
+							[repetitiveEventSignal subscribeNext:^(id x) {
+								self.counter = [@(--repetCount) stringValue];
+							} completed:^{
+								self.counter = @"获取验证码";
+								self.counting = NO;
+							}];
+						}];
+	}];
+	
+	_executeSignInCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		self.loginType = MSFLoginSignIn;
+		[self.services presentViewModel:self];
+		return [RACSignal return:nil];
+	}];
+	_executeSignUpCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		self.loginType = MSFLoginSignUp;
+		[self.services pushViewModel:self];
+		return [RACSignal return:nil];
+	}];
+	
+	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:self.services];
+	RAC(self, address) = RACObserve(self, addressViewModel.address);
+	self.executeAlterAddressCommand = self.addressViewModel.selectCommand;
+	
+	_executeAuthenticateCommand = [[RACCommand alloc] initWithEnabled:[self authenticateValidSignal] signalBlock:^RACSignal *(id input) {
+		return [self authenticateSignal];
+	}];
+	
 	return self;
 }
 
@@ -297,6 +351,36 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 #pragma mark - Private
 
+- (RACSignal *)authenticateValidSignal {
+	return [RACSignal combineLatest:@[RACObserve(self.addressViewModel, provinceCode), RACObserve(self.addressViewModel, cityCode), RACObserve(self, username), RACObserve(self, card), RACObserve(self, banknumber)] reduce:^id (NSString *province, NSString *city, NSString *username, NSString *card, NSString *number) {
+		return @(province.length > 0 && city.length > 0 && username.length > 0 && card.length > 0 && number.length > 0);
+	}];
+}
+
+- (RACSignal *)authenticateSignal {
+	return [[self.services.httpClient authenticateUsername:self.username userident:self.card city:self.addressViewModel.cityCode province:self.addressViewModel.provinceCode banknumber:self.banknumber]
+		doNext:^(MSFAuthenticate *auth) {
+			MSFClient *client = self.services.httpClient;
+			MSFUser *user = [[MSFUser alloc] initWithDictionary:@{
+				@keypath(MSFUser.new, uniqueId): auth.uniqueId?:@"",
+				@keypath(MSFUser.new, name): auth.name?:@"",
+				@keypath(MSFUser.new, hasChecked): @"1"
+			} error:nil];
+//			[client.user mergeValueForKey:@keypath(MSFUser.new, uniqueId) fromModel:user];
+            client.user.name = user.name;
+            client.user.hasChecked = user.hasChecked;
+            client.user.uniqueId = user.uniqueId;
+//			[client.user mergeValueForKey:@keypath(MSFUser.new, hasChecked) fromModel:user];
+			[client.fetchUserInfo subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
+		}];
+}
+
 - (RACSignal *)executeSignInSignal {
 	NSError *error;
 	if (self.loginType == MSFLoginIDSignIn) {
@@ -336,8 +420,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 			}
 			return [RACSignal error:error];
 		}]
-		doNext:^(id x) {
-			[self.services setHttpClient:x];
+		doNext:^(MSFClient *client) {
+			[self.services setHttpClient:client];
+			[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
 		}];
 	}
 	return [[[MSFClient
@@ -352,35 +443,17 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		doNext:^(MSFClient *client) {
 			_signInValid = YES;
 			[self.services setHttpClient:client];
+			[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
 		}];
 }
 
 - (RACSignal *)executeSignUpSignal {
-	NSError *error = nil;
-	// 另外支持输入"."、"。"、"·"和"▪"。但是第一位和最后一位必须是汉字。
-  if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
-    NSString *str = @"请填写真实的姓名";
-    if (self.name.length == 0) {
-      str = @"请填写真实的姓名";
-    }
-    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: str,
-      }];
-    return [RACSignal error:error];
-  }
-	if (self.card.length != 18) {
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
-		}];
-    return [RACSignal error:error];
-	}
-  if (!self.expired && !self.permanent ) {
-    error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-      NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证有效期",
-                                                                                    }];
-    return [RACSignal error:error];
-  }
-	
 	if (![self.username isMobile]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
 	} else if (![self.password isPassword]) {
@@ -391,16 +464,19 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal error:[self.class errorWithFailureReason:@"请阅读注册协议"]];
 	}
 	
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	dateFormatter.dateFormat = @"yyyy-MM-dd";
-	NSDate *expiredDate = self.permanent ? [NSDate msf_date:[dateFormatter dateFromString:@"2099-12-31"]]: self.expired;
-	
 	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
 	return [[MSFClient
-		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha realname:self.name citizenID:self.card citizenIDExpiredDate:expiredDate]
-		doNext:^(id x) {
+		signUpAsUser:user password:self.password phone:self.username captcha:self.captcha]
+		doNext:^(MSFClient *client) {
 			_signInValid = YES;
-			[self.services setHttpClient:x];
+			[self.services setHttpClient:client];
+			[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+				[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+				[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+			}];
 		}];
 }
 
@@ -443,8 +519,15 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	} else if (![self.captcha isCaptcha]) {
 		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
 	}
-	return [[self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name] doNext:^(id x) {
-		[self.services setHttpClient:x];
+	return [[self.services.httpClient associateSignInMobile:self.updatingMobile usingMobile:self.usingMobile captcha:self.captcha citizenID:self.card name:self.name] doNext:^(MSFClient *client) {
+		[self.services setHttpClient:client];
+		[[client fetchUserInfo] subscribeNext:^(MSFUser *x) {
+			[client.user mergeValueForKey:@keypath(x.personal) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.professional) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.contacts) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.profiles) fromModel:x];
+			[client.user mergeValueForKey:@keypath(x.insurance) fromModel:x];
+		}];
 	}];
 }
 
@@ -460,31 +543,18 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	return [self.services.httpClient fetchLoginCaptchaForgetTradeWithPhone:self.username];
 }
 
+- (RACSignal *)executePaySignal {
+	return [self.services.httpClient fetchLoginCaptchaTradeWithPhone:self.username];
+}
+
 - (RACSignal *)executeFindPasswordSignal {
-	NSError *error;
-	if (![self.name isChineseName]||([self.name isChineseName] && (self.name.length < 2 || self.name.length > 20))) {
-		NSString *str = @"请填写真实的姓名";
-		if (self.name.length == 0) {
-			str = @"请填写真实的姓名";
-		}
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: str,
-		}];
-		return [RACSignal error:error];
+	if (!self.username.isMobile) {
+		return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的手机号"}]];
 	}
-	if (self.card.length != 18) {
-		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"请填写真实的身份证号码",
-		}];
-		return [RACSignal error:error];
+	if (self.captcha.length != 4) {
+		return [RACSignal error:[NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请输入正确的验证码"}]];
 	}
-	if (![self.username isMobile]) {
-		return [RACSignal error:[self.class errorWithFailureReason:@"请填写真实的手机号码"]];
-	} else if (![self.password isPassword]) {
-		return [RACSignal error:[self.class errorWithFailureReason:@"请填写8到16位数字和字母组合的密码"]];
-	} else if (![self.captcha isCaptcha]) {
-		return [RACSignal error:[self.class errorWithFailureReason:@"请填写验证码"]];
-	}
+
 	return [self.services.httpClient resetSignInPassword:self.password phone:self.username captcha:self.captcha name:self.name citizenID:self.card];
 }
 
@@ -493,7 +563,9 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 }
 
 + (NSError *)errorWithFailureReason:(NSString *)string {
-	return [NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{NSLocalizedFailureReasonErrorKey:string}];
+	return [NSError errorWithDomain:MSFAuthorizeErrorDomain code:0 userInfo:@{
+		NSLocalizedFailureReasonErrorKey: string
+	}];
 }
 
 - (RACSignal *)executeSetTradepwdexecute {
@@ -502,37 +574,37 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		if (self.TradePassword.length == 0) {
 			NSString *str = @"请填写交易密码";
 			error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																									NSLocalizedFailureReasonErrorKey: str,
-																																									}];
+				NSLocalizedFailureReasonErrorKey: str,
+			}];
 			return [RACSignal error:error];
 		}
 	if (self.smsCode.length == 0) {
 		NSString *str = @"请填写验证码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if (self.againTradePWD.length == 0) {
 		NSString *str = @"请填写确认交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
 		NSString *str = @"交易密码和确认交易密码不一致";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 
@@ -546,48 +618,138 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 	if (self.oldTradePWD.length == 0) {
 		NSString *str = @"请填写旧交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.TradePassword.length == 0) {
 		NSString *str = @"请填写新交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	if (self.againTradePWD.length == 0) {
 		NSString *str = @"请填写确认新交易密码";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if (![self.againTradePWD isEqualToString:self.TradePassword]) {
 		NSString *str = @"新交易密码和确认新交易密码不一致";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 	}
 	
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAuthorizeViewModel" code:0 userInfo:@{
-																																								NSLocalizedFailureReasonErrorKey: str,
-																																								}];
+			NSLocalizedFailureReasonErrorKey: str,
+		}];
 		return [RACSignal error:error];
 		
 	}
-
 	
 	return [self.services.httpClient updateTradePwdWitholdPwd:self.oldTradePWD.sha256 AndNewPwd:self.TradePassword.sha256 AndCaptch:self.smsCode];
 }
 
 - (RACSignal *)updateSignInPasswordSignal {
 	return [self.services.httpClient updateSignInPassword:self.usingSignInPasssword password:self.updatingSignInPasssword];
+}
+
+- (RACSignal *)searchLocalBankInformationWithNumber:(NSString *)number {
+	return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSString *tempBankNo = [number stringByReplacingOccurrencesOfString:@" " withString:@""];
+		
+		if (number.length == 0) [subscriber sendNext:RACTuplePack(nil, @"")];
+		
+		for (int i = 0; i < tempBankNo.length; i ++) {
+			NSString *tmp = [tempBankNo substringToIndex:i];
+			if ([tmp isEqualToString:self.oldBankNo]) {
+                NSString *bankType = nil;
+                switch (self.bankInfo.type.intValue) {
+                    case 1:
+                        bankType = @"借记卡";
+                        break;
+                    case 2:
+                        bankType = @"贷记卡";
+                        break;
+                    case 3:
+                        bankType = @"准贷记卡";
+                        break;
+                    case 4:
+                        bankType =  @"预付费卡";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                NSString *backNameAndType = [[self.bankInfo.name stringByAppendingString:@"  "] stringByAppendingString:bankType];
+                [subscriber sendNext:RACTuplePack(
+                                                  [UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
+                                                  backNameAndType
+                                                  )];
+				return [RACDisposable disposableWithBlock:^{
+					[self.fmdb close];
+				}];
+			}
+		}
+		if (![self.fmdb open]) {
+			[subscriber sendNext:RACTuplePack(nil, @"")];
+		} else {
+			NSError *error;
+			NSString *sqlStr = [NSString stringWithFormat:@"select * from basic_bank_bin where bank_bin='%@'", tempBankNo];
+			FMResultSet *rs = [self.fmdb executeQuery:sqlStr];
+			NSMutableArray *itemArray = [[NSMutableArray alloc] init];
+			while ([rs next]) {
+				MSFBankInfoModel *tmpBankInfo = [MTLFMDBAdapter modelOfClass:MSFBankInfoModel.class fromFMResultSet:rs error:&error];
+				if (error) {
+					[subscriber sendNext:RACTuplePack(nil,  @"")];
+					return [RACDisposable disposableWithBlock:^{
+						[self.fmdb close];
+					}];
+				}
+				[itemArray addObject:tmpBankInfo];
+			}
+			if (itemArray.count == 1) {
+				self.oldBankNo = tempBankNo;
+				self.bankInfo = itemArray.firstObject;
+                NSString *bankType = nil;
+                switch (self.bankInfo.type.intValue) {
+                    case 1:
+                        bankType = @"借记卡";
+                        break;
+                    case 2:
+                        bankType = @"贷记卡";
+                        break;
+                    case 3:
+                        bankType = @"准贷记卡";
+                        break;
+                    case 4:
+                        bankType =  @"预付费卡";
+                        break;
+                        
+                    default:
+                        break;
+                }
+                NSString *backNameAndType = [NSString stringWithFormat:@"%@  %@", self.bankInfo.name,bankType];
+				[subscriber sendNext:RACTuplePack(
+					[UIImage imageNamed:[MSFGetBankIcon getIconNameWithBankCode:self.bankInfo.code]],
+					backNameAndType
+				)];
+			} else {
+				[subscriber sendNext:RACTuplePack(nil,  @"")];
+			}
+		}
+		
+		return [RACDisposable disposableWithBlock:^{
+			[self.fmdb close];
+		}];
+	}] replayLazily];
 }
 
 @end

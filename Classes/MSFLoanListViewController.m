@@ -143,9 +143,7 @@
 @property (nonatomic, strong) UITableView *dataTableView;
 @property (nonatomic, strong) MSFApplyListHeader *headView;
 @property (nonatomic, strong) NSArray *dataArray;
-@property (nonatomic, assign) int selectedIndex;
 @property (nonatomic, strong) MSFApplyListViewModel *viewModel;
-@property (nonatomic, assign) int pushType;
 
 @end
 
@@ -160,7 +158,6 @@
   if (self) {
 		self.hidesBottomBarWhenPushed = YES;
 		_viewModel = viewModel;
-		_pushType = [viewModel.productType isEqualToString:@"4102"] ? 1 : 0;
 	}
   return self;
 }
@@ -174,18 +171,24 @@
 	[self setUpViews];
 }
 
-- (void)loadData:(int)type {
+- (void)loadData {
 	self.headView.hidden = YES;
 	self.dataArray = nil;
 	[self.dataTableView reloadData];
-	RACSignal *signal = [self.viewModel fetchApplyListSignal:type];
+	RACSignal *signal = [self.viewModel fetchApplyListSignal];
 	self.dataTableView.backgroundView = [self.dataTableView viewWithSignal:signal message:@"亲,您还没有申请记录哟\n赶紧申请吧" AndImage:[UIImage imageNamed:@"icon-empty"]];
 	[signal subscribeNext:^(id x) {
-		if (_selectedIndex == type) {
-			self.dataArray = x;
-			[self.dataTableView reloadData];
-		}
+		self.dataArray = x;
+		[self.dataTableView reloadData];
 		self.headView.hidden = [x count] == 0;
+		if (self.dataArray.count > 0) {
+			MSFApplyList *model = self.dataArray[0];
+			if (model.loanTerm) {
+				[_headView msApply];
+			} else {
+				[_headView mlApply];
+			}
+		}
 	}];
 }
 
@@ -209,15 +212,21 @@
 	if (!cell) {
 		cell = [[MSLoanListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
 	}
-	[cell bindModel:[_dataArray objectAtIndex:indexPath.row]
-						 type:_selectedIndex];
+	
+	MSFApplyList *obj = self.dataArray[indexPath.row];
+	if (obj.loanTerm) {
+		[cell bindModel:[_dataArray objectAtIndex:indexPath.row] type:0];
+	} else {
+		[cell bindModel:[_dataArray objectAtIndex:indexPath.row] type:1];
+	}
+	
 	return cell;
 }
 
 #pragma mark - Private
 
 - (void)setUpViews {
-	MSFPlanListSegmentBar *bar = [[MSFPlanListSegmentBar alloc] initWithTitles:@[@"马上贷", @"随借随还"]];
+	MSFPlanListSegmentBar *bar = [[MSFPlanListSegmentBar alloc] initWithTitles:@[@"分期", @"随借随还"]];
 	[self.view addSubview:bar];
 	CGFloat baseLine = 0;
 	if (self.navigationController.navigationBar.translucent) {
@@ -227,7 +236,7 @@
 		make.top.equalTo(@(baseLine));
 		make.left.equalTo(self.view);
 		make.right.equalTo(self.view);
-		make.height.equalTo(@40);
+		make.height.equalTo(@0);
 	}];
 	
 	_headView = [[MSFApplyListHeader alloc] init];
@@ -252,19 +261,7 @@
 		make.top.equalTo(_headView.mas_bottom);
 		make.bottom.equalTo(self.view);
 	}];
-	
-	@weakify(self)
-	[bar.executeSelectionCommand.executionSignals.switchToLatest subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x intValue] == 0) {
-			[_headView msApply];
-		} else {
-			[_headView mlApply];
-		}
-		_selectedIndex = [x intValue];
-		[self loadData:[x intValue]];
-	}];
-	bar.selectedIndex = _pushType;
+	[self loadData];
 }
 
 @end

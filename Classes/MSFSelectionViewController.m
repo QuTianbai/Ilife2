@@ -33,7 +33,9 @@
 #pragma mark - Lifecycle
 
 - (void)dealloc {
+#if DEBUG
 	NSLog(@"MSFSelectionViewController `-dealloc`");
+#endif
 }
 
 - (void)viewDidLoad {
@@ -41,6 +43,15 @@
 	self.tableView.tableFooterView = UIView.new;
 	self.tableView.tableHeaderView = UIView.new;
 	[self.tableView registerClass:MSFSelectionTableViewCell.class forCellReuseIdentifier:@"Cell"];
+	
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"btn-back-nav.png"] style:UIBarButtonItemStyleDone target:nil action:nil];
+	@weakify(self)
+	self.navigationItem.leftBarButtonItem.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		[self.navigationController popViewControllerAnimated:YES];
+		[(RACSubject *)self.viewModel.cancelSignal sendNext:nil];
+		return [RACSignal empty];
+	}];
 }
 
 #pragma mark - UITableViewDataSource

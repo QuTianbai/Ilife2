@@ -9,14 +9,15 @@
 #import "MSFSelectionItem.h"
 #import "MSFSelectKeyValues.h"
 
-#import "MSFMarkets.h"
-#import "MSFTeams2.h"
-#import "MSFTeam.h"
+#import "MSFAmortize.h"
+#import "MSFOrganize.h"
+#import "MSFPlan.h"
 
 @interface MSFSelectionViewModel ()
 
 @property (nonatomic, strong) NSArray *models;
 @property (nonatomic, strong, readwrite) RACSubject *selectedSignal;
+@property (nonatomic, strong, readwrite) RACSignal *cancelSignal;
 
 @end
 
@@ -31,6 +32,7 @@
   }
 	
 	self.selectedSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewModel -selectedSignal"];
+	self.cancelSignal = [[RACSubject subject] setNameWithFormat:@"MSFSelectionViewModel -cancelSignal"];
 	
   return self;
 }
@@ -49,14 +51,14 @@
 	return viewModel;
 }
 
-+ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFMarkets *)markts total:(NSInteger)amount {
++ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFAmortize *)markts total:(NSInteger)amount {
 	MSFSelectionViewModel *viewModel = [[MSFSelectionViewModel alloc] init];
-	viewModel.models = [[[markts.teams.rac_sequence filter:^BOOL(MSFTeams2 *terms) {
+	viewModel.models = [[[markts.teams.rac_sequence filter:^BOOL(MSFOrganize *terms) {
 		return (terms.minAmount.integerValue <= amount) && (terms.maxAmount.integerValue >=	 amount);
 	}]
-	flattenMap:^RACStream *(MSFTeams2 *value) {
+	flattenMap:^RACStream *(MSFOrganize *value) {
 			return value.team.rac_sequence;
-											 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFTeam *obj1, MSFTeam *obj2) {
+											 }].array sortedArrayUsingComparator:^NSComparisonResult(MSFPlan *obj1, MSFPlan *obj2) {
 												 if (obj1.loanTeam.integerValue < obj2.loanTeam.integerValue) {
 													 return NSOrderedAscending;
 												 } else if (obj1.loanTeam.integerValue > obj2.loanTeam.integerValue) {
@@ -89,6 +91,10 @@
 
 - (NSString *)subtitleForIndexPath:(NSIndexPath *)indexPath {
 	return [self itemForIndexPath:indexPath].subtitle;
+}
+
+- (NSIndexPath *)indexPathForModel:(id)model {
+	return [NSIndexPath indexPathForRow:[self.models indexOfObject:model] inSection:0];
 }
 
 - (id)modelForIndexPath:(NSIndexPath *)indexPath {

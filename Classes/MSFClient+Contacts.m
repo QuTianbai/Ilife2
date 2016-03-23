@@ -14,14 +14,14 @@
 
 - (RACSignal *)fetchContactsInfoWithAppNO:(NSString *)appNO AndProductNO:(NSString *)productCode AndtemplateType:(NSString *)templateType {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"POST" path:@"loan/showDetail" parameters:@{
+		NSURLRequest *request = [self requestWithMethod:@"POST" path:@"treaty/contract" parameters:@{
 			@"appNo": appNO,
 			@"productCode": productCode,
 			@"templateType":templateType
 		}];
 		if ([templateType isEqualToString:@"CASH_CONTRACT"] && [productCode isEqualToString:@"4102"]) {
-			// 社保贷合同确认请求参数
-			request = [self requestWithMethod:@"POST" path:@"append/showDetail" parameters:@{
+			// 仅社保贷合同确认网页接口
+			request = [self requestWithMethod:@"POST" path:@"treaty/contract" parameters:@{
 				@"appNo": appNO,
 				@"productCode": productCode,
 				@"templateType": templateType

@@ -52,4 +52,24 @@
 //msd-full
 + (UIColor *)msdFullBackgroundColor;
 
+// SignInButton BG Color
++ (UIColor *)signInBgClolr;
+
+// button BG color
++ (UIColor *)buttonBgColor;
+
+//button border color
++ (UIColor *)buttonBorderColor;
+
+//navigationBar BG color
++ (UIColor *)navigationBgColor;
+
++ (UIColor *)navigationBarColor;
+
+//captchbutton bg gray
++ (UIColor *)captchButtonBgColor;
+
+//signUp BG Color
++ (UIColor *)signUpBgcolor;
+
 @end

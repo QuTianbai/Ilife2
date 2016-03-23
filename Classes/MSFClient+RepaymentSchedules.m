@@ -9,26 +9,37 @@
 #import "MSFClient+RepaymentSchedules.h"
 #import "RACSignal+MSFClientAdditions.h"
 #import "MSFRepaymentSchedules.h"
+#import "MSFMyRepayDetailModel.h"
 
 @implementation MSFClient (RepaymentSchedules)
 
 - (RACSignal *)fetchRepaymentSchedules {
-//	NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"repayment" ofType:@"json"];
-//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
-	
-	NSString *path = @"finance/schedules";
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:nil];
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"finance/schedules" parameters:nil];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
 }
 
-- (RACSignal *)fetchCircleRepaymentSchedules {
-//	NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"circleCash" ofType:@"json"];
-//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL fileURLWithPath:jsonPath]];
-	
-	NSString *path = @"append/schedules";
-	
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:@{@"type":@"2"}];
+- (RACSignal *)fetchCircleRepaymentSchedulesContractNo:(NSString *)contractNo {
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"query/repaymentPlan" parameters:@{@"type": @"4",
+									 @"contractNo":contractNo
+									}];
 	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
+}
+
+- (RACSignal *)fetchMyRepayWithType:(NSString *)type {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/repaymentList" parameters:@{
+									@"type": type,
+								}];
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayList" ofType:@"json"];
+//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
+	return [[self enqueueRequest:request resultClass:MSFRepaymentSchedules.class] msf_parsedResults];
+}
+
+- (RACSignal *)fetchMyDetailWithContractNo:(NSString *)contractNo type:(NSString *)type loan:(NSString *)loanterm {
+//	NSString *path = [[NSBundle mainBundle] pathForResource:@"myRepayDetail" ofType:@"json"];
+//	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL fileURLWithPath:path]];
+
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:@"query/detailInfo" parameters:@{@"type":type?:@"", @"contractNo":contractNo?:@"", @"loanCurrTerm":loanterm?:@""}];
+	return [[self enqueueRequest:request resultClass:MSFMyRepayDetailModel.class]msf_parsedResults];
 }
 
 @end

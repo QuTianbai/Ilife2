@@ -17,9 +17,9 @@
 
 - (instancetype)initWithHTTPURLResponse:(NSHTTPURLResponse *)response parsedResult:(id)parsedResult {
 	return [super initWithDictionary:@{
-		 @keypath(self.HTTPURLResponse): response.copy ?: NSNull.null,
-			@keypath(self.parsedResult): parsedResult ?: NSNull.null,
-			} error:nil];
+		@keypath(self.HTTPURLResponse): response.copy ?: NSNull.null,
+		@keypath(self.parsedResult): parsedResult ?: NSNull.null,
+	} error:nil];
 }
 
 - (NSUInteger)statusCode {

@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "MSFReactiveView.h"
 
+@class MSFEdgeButton;
+
 @interface MSFRepaymentTableViewCell : UITableViewCell
 <MSFReactiveView>
+
+@property (strong, nonatomic) MSFEdgeButton *repayButton;//还款按钮，逾期时才可主动还款
 
 @end

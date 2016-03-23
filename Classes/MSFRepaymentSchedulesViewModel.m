@@ -12,8 +12,6 @@
 
 @interface MSFRepaymentSchedulesViewModel ()
 
-@property (nonatomic, weak) id <MSFViewModelServices> services;
-
 @property (nonatomic, readwrite) NSString *date;
 
 @end
@@ -25,43 +23,21 @@
   if (!self) {
     return nil;
   }
+	_smsCode = @"";
 	_model = model;
 	_services = services;
-	RAC(self, repaymentNumber) = [RACObserve(self, model.contractNum) ignore:nil];
-	RAC(self, status) = [RACObserve(self, model.contractStatus) ignore:nil];
-	RAC(self, amount) = [RACObserve(self, model.repaymentTotalAmount) ignore:nil];
-	RAC(self, date) = [RACObserve(self, model.repaymentTime) map:^id(NSString *value) {
-		return value.length > 0 ? value : @"当天";
-	}];
-	
-	RAC(self, ownerAllMoney) = [RACObserve(self, model.totalOverdueMoney) map:^id(id value) {
-		if (value == nil) {
-			return @"";
-		}
-		return value;
-	}];
-	RAC(self, contractLineDate) = [RACObserve(self, model.contractExpireDate) map:^id(NSString *value) {
-		return value.length > 0 ? value : @"当天";
-	}];
-	
-	RAC(self, overdueMoney) = [RACObserve(self, model.overdueMoney) map:^id(id value) {
-		if (value == nil || [value isEqualToString:@"0.00"] ||[value isEqualToString:@"0"] || [value isEqualToString:@""]) {
-			return @"";
-		}
-		return [NSString stringWithFormat:@"已逾期:￥%@", value];
-	}];
-	
-	RAC(self, cashAmount) = [RACObserve(self, model.cashDueMoney) ignore:nil];
-	RAC(self, cashDate) = [RACObserve(self, model.cashDueDate) map:^id(NSString *value) {
-		return value.length > 0 ? value : @"当天";
-	}];
-
+	RAC(self, loanCurrTerm) = RACObserve(self, model.loanCurrTerm);
+	RAC(self, loanTerm) = RACObserve(self, model.loanTerm);
 	
   return self;
 }
 
 - (RACSignal *)fetchPlanPerodicTablesSignal {
 	return [self.services.httpClient fetchPlanPerodicTables:self.model];
+}
+
+- (RACSignal *)repayMoneySignal {
+	return nil;
 }
 
 @end

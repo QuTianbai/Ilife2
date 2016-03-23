@@ -7,15 +7,13 @@
 #import "MSFLoanAgreementViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
-#import "MSFApplicationResponse.h"
-#import "MSFFormsViewModel.h"
-#import "MSFApplicationForms.h"
-#import "MSFAddress.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFAddressCodes.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFClient+Agreements.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-#import "MSFClient+MSFSocialInsurance.h"
 #import "MSFLoanType.h"
+#import "MSFCommodityCashViewModel.h"
+#import "MSFCartViewModel.h"
 
 @implementation MSFLoanAgreementViewModel
 
@@ -28,25 +26,34 @@
 	_services = self.applicationViewModel.services;
 	
 	@weakify(self)
-	_executeRequest = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+	_executeAcceptCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
-			return [(MSFApplyCashVIewModel *)self.applicationViewModel submitSignalWithStatus:@"0"];
-		}
-		return RACSignal.empty;
+		return self.executeAcceptSignal;
 	}];
 	
 	return self;
 }
 
 - (RACSignal *)loanAgreementSignal {
-	if ([self.applicationViewModel isKindOfClass:MSFApplyCashVIewModel.class]) {
+	if ([self.applicationViewModel isKindOfClass:MSFApplyCashViewModel.class]) {
 		return [self.services.httpClient fetchLoanAgreementWithProduct:self.applicationViewModel];
-	}
-	if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
-		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel.loanType.typeID];
+	} else if ([self.applicationViewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		return [self.services.httpClient fetchLifeLoanAgreement:self.applicationViewModel];
+	} else if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+		return [self.services.httpClient fetchCommodityLoanAgreement:self.applicationViewModel];
 	}
 	return [RACSignal empty];
+}
+
+- (RACSignal *)executeAcceptSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		if ([self.applicationViewModel isKindOfClass:MSFCartViewModel.class]) {
+			[self.services pushViewModel:self.applicationViewModel];
+		}
+		[subscriber sendCompleted];
+		return [RACDisposable disposableWithBlock:^{
+		}];
+	}];
 }
 
 @end

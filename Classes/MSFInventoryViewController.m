@@ -20,14 +20,15 @@
 
 #import "MSFAlertViewModel.h"
 #import "MSFAlertViewController.h"
-#import "MSFFormsViewModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFUser.h"
 #import "MSFClient.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFSocialInsuranceCashViewModel.h"
-
+#import "MSFCartViewModel.h"
 #import "MSFElementViewController.h"
+#import "MSFHeaderView.h"
+#import "MSFCommitedViewController.h"
 
 @interface MSFInventoryViewController ()
 <UICollectionViewDataSource,
@@ -38,6 +39,8 @@ UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 @property (nonatomic, strong) MSFInventoryViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *constraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headLayoutHeight;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end
 
@@ -51,6 +54,10 @@ UICollectionViewDelegateFlowLayout>
 	_viewModel = viewModel;
   
   return self;
+}
+
+- (void)dealloc {
+	NSLog(@"MSFInventoryViewController `-dealloc`");
 }
 
 - (instancetype)init {
@@ -76,11 +83,9 @@ UICollectionViewDelegateFlowLayout>
 		[self.viewModel.updateValidSignal subscribeNext:^(id x) {
 			if ([self.viewModel.applicationViewModel isKindOfClass:[MSFSocialInsuranceCashViewModel class]]) {
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
-					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setAccessoryInfoVOArray:x];
-					[(MSFSocialInsuranceCashViewModel *)self.viewModel.applicationViewModel setStatus:@"1"];
 					[self.viewModel.executeSubmitCommand execute:nil];
 				}];
-			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashVIewModel class]]) {
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFApplyCashViewModel class]]) {
 				[[KGModal sharedInstance] setModalBackgroundColor:[UIColor whiteColor]];
 				[[KGModal sharedInstance] setShowCloseButton:NO];
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
@@ -97,6 +102,11 @@ UICollectionViewDelegateFlowLayout>
 					}];
 				}];
 				
+			} else if ([self.viewModel.applicationViewModel isKindOfClass:[MSFCartViewModel class]]) {
+				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
+					[(MSFCartViewModel *)self.viewModel.applicationViewModel setAccessories:x];
+					[self.viewModel.executeSubmitCommand execute:nil];
+				}];
 			} else {
 				[[self.viewModel.executeUpdateCommand execute:nil] subscribeNext:^(id x) {
 					[self.viewModel.executeSubmitCommand execute:nil];
@@ -119,11 +129,14 @@ UICollectionViewDelegateFlowLayout>
 
 	
 	[self.viewModel.executeSubmitCommand.executionSignals subscribeNext:^(RACSignal *signal) {
+		@strongify(self)
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
-				[self.tabBarController setSelectedIndex:0];
-				[self.navigationController popToRootViewControllerAnimated:NO];
+				[self.navigationController setViewControllers:@[
+					self.navigationController.viewControllers.firstObject,
+					[[MSFCommitedViewController alloc] init]
+				] animated:YES];
 		}];
 	}];
 	
@@ -133,8 +146,10 @@ UICollectionViewDelegateFlowLayout>
 	
 	if (!self.optional) {
 		self.viewModel.active = YES;
+		[self.headerView addSubview:[MSFHeaderView headerViewWithIndex:2]];
 	} else {
 		self.constraint.constant = 0;
+		self.headLayoutHeight.constant = 0;
 	}
 }
 
@@ -144,17 +159,7 @@ UICollectionViewDelegateFlowLayout>
 }
 
 - (void)back {
-	if (self.optional) {
-		[self.navigationController popViewControllerAnimated:YES];
-		return;
-	}
-	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您确定取消申请？" delegate:nil cancelButtonTitle:@"关闭" otherButtonTitles:@"确定", nil];
-	@weakify(self)
-	[alertView.rac_buttonClickedSignal subscribeNext:^(id x) {
-		@strongify(self)
-		if ([x integerValue] == 1) [self.navigationController popToRootViewControllerAnimated:YES];
-	}];
-	[alertView show];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UICollectionViewFlowLayout

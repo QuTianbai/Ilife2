@@ -19,6 +19,12 @@
 @implementation MSFCounterLabel
 
 - (void)setValueText:(NSString *)valueText {
+	if ([valueText isKindOfClass:NSNumber.class]) {
+		valueText = [NSString stringWithFormat:@"%@", valueText];
+	} else if ([valueText isKindOfClass:NSString.class]) {
+	} else {
+		valueText = @"未知";
+	}
 	_valueText = valueText;
 	if ([valueText isEqualToString:@"未知"]) {
 		self.text = valueText;

@@ -9,14 +9,14 @@
 
 #if DEBUG
 
-NSString *const MSFServerDotComAPIEndpoint = @"http://api4.msxf.test";
-NSString *const MSFServerDotComBaseWebURL = @"http://api4.msxf.test";
+NSString *const MSFServerDotComAPIEndpoint = @"http://api.msxf.lotest";
+NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #elif TEST
 
 static NSString *URLString(void) {
 	NSString *url = [NSUserDefaults.standardUserDefaults stringForKey:@"test_url"];
-	return url ?: @"http://api4.msxf.test";
+	return url ?: @"http://api2.msxf.lotest";
 }
 
 #else
@@ -26,8 +26,8 @@ NSString *const MSFServerDotComBaseWebURL = @"http://www.msxf.com";
 
 #endif
 
-NSString *const MSFServerAPIEndpointPathComponent = @"api/app/V1";
-NSString *const MSFServerAPIBaseWebPathComponent = @"api/app/V1";
+NSString *const MSFServerAPIEndpointPathComponent = @"mapi/V4";
+NSString *const MSFServerAPIBaseWebPathComponent = @"mapi/V4";
 
 @implementation MSFServer
 

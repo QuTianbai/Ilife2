@@ -92,7 +92,7 @@ it(@"should change fileURL when had take photo from camera", ^{
 	stubProperty(model, name, @"foo");
 	stubProperty(model, applicationNo, @"bar");
 	
-	[given([services msf_takePictureSignal]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
+	[given([services msf_takePictureSignal:NO]) willReturn:[RACSignal return:[UIImage imageNamed:@"tmp.jpg"]]];
 	
 	viewModel = [[MSFAttachmentViewModel alloc] initWithModel:model services:services];
 	

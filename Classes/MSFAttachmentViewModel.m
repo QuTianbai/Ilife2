@@ -12,7 +12,7 @@
 #import "MSFClient+Attachment.h"
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "UIImage+Resize.h"
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 
 @interface MSFAttachmentViewModel ()
 
@@ -43,9 +43,9 @@
 	
 	_takePhotoCommand = [[RACCommand alloc] initWithEnabled:self.takePhotoValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
-		return [self takePhotoSignal];
+		return [self takePhotoSignalWith:nil];
 	}];
-	_takePhotoCommand.allowsConcurrentExecution = YES;
+		_takePhotoCommand.allowsConcurrentExecution = YES;
 	_uploadAttachmentCommand = [[RACCommand alloc] initWithEnabled:self.uploadValidSignal signalBlock:^RACSignal *(id input) {
 		@strongify(self)
 		return [[self.services.httpClient uploadAttachment:self.attachment] doNext:^(id x) {
@@ -79,8 +79,10 @@
 
 #pragma mark - Private
 
-- (RACSignal *)takePhotoSignal {
-	return [[self.services msf_takePictureSignal] map:^id(UIImage *image) {
+- (RACSignal *)takePhotoSignalWith:(id)img {
+    @weakify(self)
+	return [[self.services msf_takePictureSignal:NO] map:^id(UIImage *image) {
+        @strongify(self)
 		NSString *name = [@([[NSDate date] timeIntervalSince1970]) stringValue].md5;
 		NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", name]];
 		CGSize size = image.size;

@@ -9,17 +9,16 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
 #import <Mantle/EXTScope.h>
+#import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFEditPasswordViewController.h"
 #import "MSFUserInfomationViewController.h"
 #import "MSFClient.h"
 #import "MSFUser.h"
 #import "MSFClient+Users.h"
-#import "MSFLoanListViewController.h"
 #import "UIColor+Utils.h"
 #import "MSFAboutsViewController.h"
 #import "MSFUserViewModel.h"
-#import "MSFApplyCashVIewModel.h"
-#import "MSFTabBarController.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFTabBarViewModel.h"
 #import "MSFSetTradePasswordTableViewController.h"
 #import "MSFSetTradePasswordViewModel.h"
@@ -27,15 +26,38 @@
 
 #import "MSFBankCardListTableViewController.h"
 #import "MSFRepaymentPlanViewController.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
+
+#import "MSFOrderListViewController.h"
 
 #import "MSFApplyListViewModel.h"
 #import "MSFLoanType.h"
+#import "MSFCouponsViewModel.h"
+#import "MSFCouponsViewController.h"
+#import "MSFCouponsContainerViewController.h"
+#import "MSFMyRepayContainerViewController.h"
+#import "MSFMyRepaysViewModel.h"
+#import "MSFMyOrderListContainerViewController.h"
+#import "MSFBankCardListViewModel.h"
+#import "MSFMyOderListsViewModel.h"
+#import "MSFCartViewController.h"
+#import "MSFCart.h"
+#import "MSFClient+Cart.h"
+#import "MSFCartViewModel.h"
+#import "MSFAuthorizeViewModel.h"
+#import "MSFAuthenticateViewController.h"
 
 @interface MSFUserViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray *rowTitles;
 @property (nonatomic, strong) NSArray *icons;
+@property (nonatomic, strong) UIImage *shadowImage;
+@property (nonatomic, strong) UIImage *backgroundImage;
+@property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
+@property (nonatomic, weak) IBOutlet UILabel *userphoneLabel;
+@property (nonatomic, weak) IBOutlet UILabel *perentLabel;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton1;
+@property (nonatomic, weak) IBOutlet UIButton *infoButton2;
 
 @end
 
@@ -44,7 +66,7 @@
 #pragma mark - Lifecycle
 
 - (instancetype)initWithViewModel:(MSFUserViewModel *)viewModel {
-	self = [super initWithStyle:UITableViewStyleGrouped];
+	self = [[UIStoryboard storyboardWithName:NSStringFromClass([MSFUserViewController class]) bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFUserViewController class])];
 	if (!self) {
 		return nil;
 	}
@@ -55,53 +77,60 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"Cell"];
-	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
-	self.rowTitles = @[@[@"个人信息",
-											 @"申请记录",
-											 @"还款计划",
-											 @"银行卡"],
-										 @[@"设置",
-											 @"关于"]];
-	self.icons = @[@[[UIImage imageNamed:@"icon-account-info"],
-									 [UIImage imageNamed:@"icon-account-apply"],
-									 [UIImage imageNamed:@"icon-account-repay"],
-									 [UIImage imageNamed:@"icon-account-bankCard"]],
-								 @[[UIImage imageNamed:@"icon-account-settings"],
-									 [UIImage imageNamed:@"icon-account-about"]]];
-	NSLog(@"%@", self.icons);
+	self.edgesForExtendedLayout = UIRectEdgeTop;
+	self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+	self.navigationItem.titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 44)];
+	self.tableView.bounces = NO;
+	
+	RAC(self, usernameLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.name) map:^id(id value) {
+		if (!value) return @"未实名认证";
+		return [NSString stringWithFormat:@"%@, 您好", value];
+	}];
+	RAC(self, userphoneLabel.text) = [RACObserve(self, viewModel.services.httpClient.user.mobile) map:^id(id value) {
+		return [NSString stringWithFormat:@"手机号: %@", value];
+	}];
+	@weakify(self)
+	RAC(self, perentLabel.text) = [RACObserve(self, viewModel.percent) doNext:^(id x) {
+		@strongify(self)
+		if ([x isEqualToString:@"100%"]) {
+			[self.infoButton1 setTitle:@"更新信息" forState:UIControlStateNormal];
+		}
+	}];
+	self.infoButton1.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self updateUserSignal];
+	}];
+	self.infoButton2.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+		@strongify(self)
+		return [self updateUserSignal];
+	}];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return self.rowTitles.count;
+- (void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  UINavigationBar *navigationBar = self.navigationController.navigationBar;
+  navigationBar.tintColor = UIColor.whiteColor;
+  self.shadowImage = navigationBar.shadowImage;
+  self.backgroundImage = [navigationBar backgroundImageForBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+  [navigationBar setBackgroundImage:[UIImage new]
+                     forBarPosition:UIBarPositionAny
+                         barMetrics:UIBarMetricsDefault];
+  [navigationBar setShadowImage:[UIImage new]];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.rowTitles[section] count];
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	self.viewModel.active = YES;
+	self.viewModel.active = NO;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-	switch (section) {
-		case 0: return 0.1;
-		case 1: return 32;
-		case 2: return 10;
-		default:return 0;
-	}
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	return 0.1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-	cell.textLabel.font = [UIFont systemFontOfSize:16];
-	cell.textLabel.text	 = self.rowTitles[indexPath.section][indexPath.row];
-	cell.imageView.image = self.icons[indexPath.section][indexPath.row];
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	return cell;
+- (void)viewWillDisappear:(BOOL)animated {
+  [super viewWillDisappear:animated];
+  UINavigationBar *navigationBar = self.navigationController.navigationBar;
+  [navigationBar setBackgroundImage:self.backgroundImage
+                     forBarPosition:UIBarPositionAny
+                         barMetrics:UIBarMetricsDefault];
+  [navigationBar setShadowImage:self.shadowImage];
 }
 
 #pragma mark - UITableViewDelegate
@@ -112,28 +141,31 @@
 		case 0: {
 			switch (indexPath.row) {
 				case 0:
-					[self userInfo];
+					[self orderList];
 					break;
 				case 1:
-					[self applyList];
-					break;
-				case 2:
 					[self repaymentPlan];
 					break;
-				case 3:
+				case 2:
 					[self bankCardList];
+					break;
+				case 3:
+					[self couponsList];
+					break;
+				case 4:
+					[self scaning];
 					break;
 				default: break;
 			}
-		}
 			break;
+		}
 		case 1: {
 			switch (indexPath.row) {
 				case 0:
-					[self settings];
+					[self pushAbout];
 					break;
 				case 1:
-					[self pushAbout];
+					[self settings];
 					break;
 			}
 			break;
@@ -144,29 +176,36 @@
 #pragma mark - IBActions
 
 - (void)userInfo {
-	MSFTabBarController *tabbar = (MSFTabBarController *)self.tabBarController;
-	MSFLoanType *loanType = [[MSFLoanType alloc] initWithTypeID:@""];
-	MSFApplyCashVIewModel *viewModel = [[MSFApplyCashVIewModel alloc] initWithViewModel:tabbar.viewModel.formsViewModel loanType:loanType];
-	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel services:self.viewModel.servcies];
+	MSFUserViewModel *viewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
+	MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)applyList {
-	MSFApplyListViewModel *viewModel = [[MSFApplyListViewModel alloc] initWithProductType:nil services:self.viewModel.servcies];
-	MSFLoanListViewController *applyList = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-	[self.navigationController pushViewController:applyList animated:YES];
-}
-
 - (void)repaymentPlan {
-	MSFRepaymentViewModel *viewmodel = [[MSFRepaymentViewModel alloc] initWithServices:self.viewModel.servcies];
-	MSFRepaymentPlanViewController *repayViewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewmodel];
-	repayViewController.hidesBottomBarWhenPushed = YES;
-	[self.navigationController pushViewController:repayViewController animated:YES];
+	MSFMyRepaysViewModel *viewmodel = [[MSFMyRepaysViewModel alloc] initWithservices:self.viewModel.services];
+	MSFMyRepayContainerViewController *vc = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewmodel];
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)bankCardList {
-	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:self.viewModel.bankCardListViewModel];
+	if (!self.viewModel.isAuthenticated) {
+		MSFAuthorizeViewModel *viewModel = [[MSFAuthorizeViewModel alloc] initWithServices:self.viewModel.services];
+		MSFAuthenticateViewController *vc = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+		return;
+	}
+
+	MSFBankCardListViewModel *viewModel = [[MSFBankCardListViewModel alloc] initWithServices:self.viewModel.services type:@"0"];
+	MSFBankCardListTableViewController *vc = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
 	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)orderList {
+//	MSFOrderListViewController *vc = [[MSFOrderListViewController alloc] initWithServices:self.viewModel.servcies];
+	MSFMyOderListsViewModel *viewModel = [[MSFMyOderListsViewModel alloc] initWithservices:self.viewModel.services];
+	MSFMyOrderListContainerViewController *vc = [[MSFMyOrderListContainerViewController alloc] initWithViewModel:viewModel];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -182,6 +221,43 @@
 	settingsViewController.hidesBottomBarWhenPushed = YES;
 	[(id <MSFReactiveView>)settingsViewController bindViewModel:self.viewModel.authorizeViewModel];
 	[self.navigationController pushViewController:settingsViewController animated:YES];
+}
+
+- (void)couponsList {
+	MSFCouponsViewModel *viewModel = [[MSFCouponsViewModel alloc] initWithServices:self.viewModel.services];
+	MSFCouponsContainerViewController *vc = [[MSFCouponsContainerViewController alloc] initWithViewModel:viewModel];
+	vc.hidesBottomBarWhenPushed = YES;
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)scaning {
+	[[self cartSignal].replay doError:^(NSError *error) {
+		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+	}];
+}
+
+- (RACSignal *)updateUserSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		MSFUserViewModel *viewModel = [[MSFUserViewModel alloc] initWithServices:self.viewModel.services];
+		MSFUserInfomationViewController *vc = [[MSFUserInfomationViewController alloc] initWithViewModel:viewModel];
+		[self.navigationController pushViewController:vc animated:YES];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+#pragma mark - <#None#>
+
+- (RACSignal *)cartSignal {
+	return [[[self.viewModel.services msf_barcodeScanSignal]
+		flattenMap:^RACStream *(NSString *value) {
+			MSFCart *cart = [[MSFCart alloc] initWithDictionary:@{@keypath(MSFCart.new, cartId): value?:@""} error:nil];
+			return [self.viewModel.services.httpClient fetchCartInfoForCart:cart];
+		}]
+		doNext:^(id x) {
+			MSFCartViewModel *viewModel = [[MSFCartViewModel alloc] initWithModel:x services:self.viewModel.services];
+			[self.viewModel.services pushViewModel:viewModel];
+		}];
 }
 
 @end

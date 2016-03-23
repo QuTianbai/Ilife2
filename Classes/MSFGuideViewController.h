@@ -7,6 +7,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+extern NSString *const SETUPHOMEPAGE;
+
 @interface MSFGuideViewController : NSObject
 
 + (instancetype)guide;

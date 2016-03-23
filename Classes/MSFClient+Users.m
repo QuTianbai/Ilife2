@@ -11,23 +11,40 @@
 #import <NSString-Hashes/NSString+Hashes.h>
 #import "MSFResponse.h"
 #import "MSFCirculateCashModel.h"
+#import "MSFPaymentToken.h"
+#import "MSFPersonal.h"
+#import "MSFProfessional.h"
+#import "MSFSocialProfile.h"
+#import "MSFSocialInsurance.h"
+#import "MSFContact.h"
+#import "MSFAuthenticate.h"
 
 @implementation MSFClient (Users)
+
+- (RACSignal *)authenticateUsername:(NSString *)username userident:(NSString *)userident city:(NSString *)city province:(NSString *)province banknumber:(NSString *)number {
+	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
+	parameters[@"name"] = username;
+	parameters[@"idCard"] = userident;
+	parameters[@"bankCardNo"] = number;
+	parameters[@"bankBranchProvinceCode"] = province;
+	parameters[@"bankBranchCityCode"] = city;
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/authentication" parameters:parameters];
+	
+	return [[self enqueueRequest:request resultClass:MSFAuthenticate.class] msf_parsedResults];
+}
 
 - (RACSignal *)resetSignInPassword:(NSString *)password phone:(NSString *)phone captcha:(NSString *)captcha name:(NSString *)name citizenID:(NSString *)citizenID {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"mobile"] = phone;
 	parameters[@"newPassword"] = password.sha256;
 	parameters[@"smsCode"] = captcha;
-	parameters[@"name"] = name;
-	parameters[@"ident"] = citizenID;
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"password/forgetPassword" parameters:parameters];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"user/forgetPassword" parameters:parameters];
 	
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)updateSignInPassword:(NSString *)oldpassword password:(NSString *)newpassword {
-	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"password/updatePassword" parameters: @{
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/updatePassword" parameters: @{
 		@"oldPassword": oldpassword.sha256,
 		@"newPassword": newpassword.sha256,
 		@"uniqueId": self.user.objectID
@@ -43,7 +60,7 @@
 		@"smsCode": captcha,
 		@"idCard": citizenID,
 		@"name": name,
-		@"uniqueId": self.user.objectID,
+		@"uniqueId": self.user.uniqueId,
 	};
 	
 	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/updateMobile" parameters:parameters];
@@ -59,12 +76,12 @@
 - (RACSignal *)addBankCardWithTransPassword:(NSString *)transPassword AndBankCardNo:(NSString *)bankCardNo AndbankBranchProvinceCode:(NSString *)bankBranchProvinceCode AndbankBranchCityCode:(NSString *)bankBranchCityCode {
 	NSMutableDictionary *parameters = NSMutableDictionary.dictionary;
 	parameters[@"uniqueId"] = self.user.uniqueId;
+    ;
 	parameters[@"transPassword"] = transPassword;
 	parameters[@"bankCardNo"] = bankCardNo;
 	parameters[@"bankBranchProvinceCode"] = bankBranchProvinceCode;
 	parameters[@"bankBranchCityCode"] = bankBranchCityCode;
 	
-	//NSString *path = [NSString stringWithFormat:@"users/%@%@", self.user.objectID, @"/real_name_auth"];;
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"bankcard/bind" parameters:parameters];
 	[request setHTTPMethod:@"POST"];
 	
@@ -97,10 +114,10 @@
 	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
 	parameters[@"drawingAmount"] = count;
 	parameters[@"contractNo"] = contractNO;
-	parameters[@"uniqueId"] = self.user.uniqueId;
+	parameters[@"uniqueId"] = self.user.objectID;
 	parameters[@"dealPwd"] = pwd?:@"";
 	NSString *path = @"loan/drawings";
-	if (type == 1) {
+	if (type == 1 || type == 2) {
 		path = @"loan/repay";
 		parameters[@"money"] = count;
 	}
@@ -108,21 +125,108 @@
 	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:path parameters:parameters];
 	
 	return [self enqueueRequest:request resultClass:nil];
-	
 }
 
 - (RACSignal *)setTradePwdWithPWD:(NSString *)pwd AndCaptch:(NSString *)capthch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":capthch?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/set" parameters:@{
+		@"uniqueId": self.user.uniqueId?:@"",
+		@"newTransPassword": pwd?:@"",
+		@"smsCode": capthch?:@""
+	}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)updateTradePwdWitholdPwd:(NSString *)oldpwd AndNewPwd:(NSString *)pwd AndCaptch:(NSString *)captch {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":pwd?:@"", @"smsCode":captch?:@"", @"oldTransPassword":oldpwd?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/updatePassword" parameters:@{
+		@"uniqueId": self.user.objectID,
+		@"newTransPassword": pwd?:@"",
+		@"smsCode": captch?:@"",
+		@"oldTransPassword": oldpwd?:@""
+	}];
 	return [self enqueueRequest:request resultClass:nil];
 }
 
 - (RACSignal *)resetTradepwdWithBankCardNo:(NSString *)bankCardNO AndprovinceCode:(NSString *)provinceCode AndcityCode:(NSString *)cityCode AndsmsCode:(NSString *)smsCode AndnewTransPassword:(NSString *)newTransPassword {
-	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{@"uniqueId":self.user.uniqueId, @"newTransPassword":newTransPassword?:@"", @"smsCode":smsCode?:@"", @"bankCardNo":bankCardNO?:@"", @"provinceCode":provinceCode?:@"", @"cityCode":cityCode?:@""}];
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"transPassword/forgetPassword" parameters:@{
+		@"uniqueId": self.user.uniqueId,
+		@"newTransPassword": newTransPassword?:@"",
+		@"smsCode": smsCode?:@"",
+		@"bankCardNo": bankCardNO?:@"",
+		@"provinceCode": provinceCode?:@"",
+		@"cityCode": cityCode?:@""
+	}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)checkDataWithPwd:(NSString *)transpassword contractNO:(NSString *)contractNO {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/checkData" parameters:@{@"transPassword":transpassword, @"contractNo":contractNO}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)sendSmsCodeForTrans {
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/checkSms" parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFPaymentToken.class] msf_parsedResults];
+}
+
+- (RACSignal *)transActionWithAmount:(NSString *)amount smsCode:(NSString *)smsCode smsSeqNo:(NSString *)smsSeqNo contractNo:(NSString *)contractNo bankCardID:(NSString *)bankCardID transPwd:(NSString *)transPwd {
+    NSString *money = amount;
+    if ([money rangeOfString:@"¥"].location != NSNotFound) {
+        money = [money substringFromIndex:1];
+    }
+	NSMutableURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/consume" parameters:@{
+																		@"amount": amount?:@"",
+																		@"smsCode": smsCode?:@"",
+																		@"smsSeqNo": smsSeqNo?:@"",
+																		@"contractNo": contractNo?:@"",
+																		@"bankCardId": bankCardID?:@"",
+																		@"transPassword": transPwd?:@"",
+																	}];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)drawingsWithAmounts:(NSString *)amounts contractNo:(NSString *)contractNo passcode:(NSString *)passcode bankCardID:(NSString *)bankCardID {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"drawingAmount"] = amounts;
+	parameters[@"contractNo"] = contractNo;
+	parameters[@"dealPwd"] = passcode;
+	parameters[@"bankCardId"] = bankCardID?:@"";
+	
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"pay/drawings" parameters:parameters];
+	
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)fetchUserInfo {
+	if (!self.user.isAuthenticated) return RACSignal.empty;
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"user/getInfo" parameters:nil];
+	return [[self enqueueRequest:request resultClass:MSFUser.class] msf_parsedResults];
+}
+
+- (RACSignal *)updateUserInfo {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"baseInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:self.user.personal] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"occupationInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:self.user.professional] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"additionalList"] = self.user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : [NSNull null];
+	parameters[@"contrastList"] = self.user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:self.user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : [NSNull null];
+	parameters[@"custSocialSecurity"] = self.user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:self.user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : [NSNull null];
+	parameters[@"infoType"] = @"1";
+	
+	NSLog(@"%@", parameters.description);
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/saveInfo" parameters:parameters];
+	return [self enqueueRequest:request resultClass:nil];
+}
+
+- (RACSignal *)updateUser:(MSFUser *)user {
+	NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+	parameters[@"baseInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.personal] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"occupationInfo"] = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.professional] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding];
+	parameters[@"additionalList"] = user.profiles ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.profiles] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
+	parameters[@"contactList"] = user.contacts ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONArrayFromModels:user.contacts] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"[]";
+	parameters[@"custSocialSecurity"] = user.insurance ? [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:[MTLJSONAdapter JSONDictionaryFromModel:user.insurance] options:NSJSONWritingPrettyPrinted error:nil] encoding:NSUTF8StringEncoding] : @"{}";
+	parameters[@"infoType"] = user.applyType?:@"1";
+	
+	NSLog(@"%@", parameters.description);
+	NSURLRequest *request = [self requestWithMethod:@"POST" path:@"user/saveInfo" parameters:parameters];
 	return [self enqueueRequest:request resultClass:nil];
 }
 

@@ -36,7 +36,8 @@
 }
 
 + (UIColor *)tintColor {
-  return [MSFCommandView getColorWithString:@"#0babed"];
+	return [UIColor blackColor];
+  //return [MSFCommandView getColorWithString:@"#0babed"];
 }
 
 + (UIColor *)buttonNormalColor {
@@ -109,6 +110,34 @@
 
 + (UIColor *)msdFullBackgroundColor {
 	return [UIColor colorWithHex:0x1ab5f5];
+}
+
++ (UIColor *)signInBgClolr {
+	return [MSFCommandView getColorWithString:@"#0077ba"];
+}
+
++ (UIColor *)buttonBgColor {
+	return [MSFCommandView getColorWithString:@"#0ea5fd"];
+}
+
++ (UIColor *)buttonBorderColor {
+	return [MSFCommandView getColorWithString:@"#74cdff"];
+}
+
++ (UIColor *)navigationBgColor {
+	return [MSFCommandView getColorWithString:@"#12A6FB"];
+}
+
++ (UIColor *)captchButtonBgColor {
+	return [MSFCommandView getColorWithString:@"#dddddd"];
+}
+
++ (UIColor *)signUpBgcolor {
+	return [MSFCommandView getColorWithString:@"EEEEEE"];
+}
+
++ (UIColor *)navigationBarColor {
+	return [UIColor colorWithHex:0x0ea5fb];
 }
 
 @end

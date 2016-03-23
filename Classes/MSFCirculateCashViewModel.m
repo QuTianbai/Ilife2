@@ -8,10 +8,10 @@
 
 #import "MSFCirculateCashViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFClient+MSFCirculateCash.h"
+#import "MSFClient+CirculateCash.h"
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 
 @implementation MSFCirculateCashViewModel
 
@@ -21,7 +21,6 @@
 		return nil;
 	}
 	_services = services;
-	//_status = APPLYCASH;
 	_infoModel = [[MSFCirculateCashModel alloc] init];
 	
 	RAC(self, totalLimit) = RACObserve(self, infoModel.totalLimit);

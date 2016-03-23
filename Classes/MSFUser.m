@@ -5,7 +5,12 @@
 //
 
 #import "MSFUser.h"
-#import <Mantle/EXTKeyPathCoding.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFPersonal.h"
+#import "MSFProfessional.h"
+#import "MSFSocialProfile.h"
+#import "MSFSocialInsurance.h"
+#import "MSFContact.h"
 
 @implementation MSFUser
 
@@ -13,11 +18,12 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-		@"objectID": @"uniqueId",
-		@"userID": @"userId",
-		@"name": @"name",
-		@"mobile": @"mobile",
-		@"hasTransactionalCode": @"hasTransPwd"
+		@keypath(MSFUser.new, objectID): @"userId",
+		@keypath(MSFUser.new, hasTransactionalCode): @"hasTransPwd",
+		@keypath(MSFUser.new, personal): @"baseInfo",
+		@keypath(MSFUser.new, professional): @"occupationInfo",
+		@keypath(MSFUser.new, profiles): @"additionalList",
+		@keypath(MSFUser.new, contacts): @"contactList",
 	};
 }
 
@@ -38,10 +44,37 @@
 	}];
 }
 
++ (NSValueTransformer *)personalJSONTransformer {
+	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFPersonal.class];
+}
+
++ (NSValueTransformer *)professionalJSONTransformer {
+	return [MTLValueTransformer mtl_JSONDictionaryTransformerWithModelClass:MSFProfessional.class];
+}
+
++ (NSValueTransformer *)profilesJSONTransformer {
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFSocialProfile.class];
+}
+
++ (NSValueTransformer *)contactsJSONTransformer {
+	return [MTLValueTransformer mtl_JSONArrayTransformerWithModelClass:MSFContact.class];
+}
+
 #pragma mark - Custom Accessors
 
 - (BOOL)isAuthenticated {
-	return self.objectID != nil;
+	return self.hasChecked.integerValue != 0;
+}
+
+- (NSString *)completeness {
+	NSInteger progress = 0;
+	if (self.personal) progress+=20;
+	if (self.professional) progress+=20;
+	if (self.profiles) progress+=20;
+	if (self.contacts) progress+=20;
+	if (self.insurance) progress+=20;
+	
+	return [NSString stringWithFormat:@"%ld%%", (long)progress];
 }
 
 @end

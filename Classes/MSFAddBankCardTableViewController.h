@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MSFAddBankCardVIewModel.h"
+#import "MSFAddBankCardViewModel.h"
 
 @interface MSFAddBankCardTableViewController : UITableViewController
 
-@property (nonatomic, strong) MSFAddBankCardVIewModel *viewModel;
+@property (nonatomic, strong) MSFAddBankCardViewModel *viewModel;
 
 @end

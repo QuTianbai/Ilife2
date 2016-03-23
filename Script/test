@@ -6,10 +6,16 @@ find_pattern () {
 }
 
 XCWORKSPACE=$(find_pattern "*.xcworkspace")
+XCODEPROJ=$(find_pattern "*.xcodeproj")
 SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
 
-echo "========================================================================="
-echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator clean test"
-echo "========================================================================="
+sh $(pwd)/script/clean
 
-xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator clean test
+if [[ $XCWORKSPACE == '' ]]; then
+	SCHEME=`echo $XCODEPROJ | awk -F '.xcodeproj' '{print $1}'`
+	xctool -project $XCODEPROJ -scheme $SCHEME -sdk iphonesimulator test
+else
+	SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+	xctool -workspace $XCWORKSPACE -scheme $SCHEME -sdk iphonesimulator test
+fi
+

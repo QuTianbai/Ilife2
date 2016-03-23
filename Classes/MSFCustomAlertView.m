@@ -8,7 +8,7 @@
 
 #import "MSFCustomAlertView.h"
 #import "MSFCustomAlertViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 
 NSString *const MSFREQUESTCONTRACTSNOTIFACATION = @"MSFREQUESTCONTRACTSNOTIFACATION";
 NSString *const MSFCONFIRMCONTACTNOTIFACATION = @"MSFCONFIRMCONTACTNOTIFACATION";
@@ -16,9 +16,6 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 
 @interface MSFCustomAlertView ()
 
-//@property (nonatomic,strong) UIWindow *window;
-//@property (nonatomic,strong) UIView *view;
-//@property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) UIImage *image;
@@ -46,18 +43,14 @@ NSString *const MSFCONFIRMCONTACTIONLATERNOTIFICATION = @"MSFCONFIRMCONTACTIONLA
 	return self;
 }
 
-- (void)showWithViewModel:(MSFConfirmContactViewModel *)viewmodel {
+- (void)showWithViewModel:(MSFConfirmContractViewModel *)viewmodel {
 	self.myRootViewController.viewModel = viewmodel;
 	[self.myRootViewController bindBTRACCommand];
 	[self makeKeyAndVisible];
-	
-	//[UIApplication sharedApplication];
 }
 
 - (void)dismiss {
 	[self removeFromSuperview];
-	//NSLog(@"%@",windowsArray);
-	//[self resignKeyWindow];
 }
 
 - (void)createView {

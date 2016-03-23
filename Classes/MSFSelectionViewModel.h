@@ -8,11 +8,12 @@
 
 @class MSFMarket;
 @class RACCommand;
-@class MSFMarkets;
+@class MSFAmortize;
 
 @interface MSFSelectionViewModel : RVMViewModel
 
 @property (nonatomic, strong, readonly) RACSignal *selectedSignal;
+@property (nonatomic, strong, readonly) RACSignal *cancelSignal;
 
 + (MSFSelectionViewModel *)selectKeyValuesViewModel:(NSArray *)items;
 + (MSFSelectionViewModel *)areaViewModel:(NSArray *)items;
@@ -22,8 +23,9 @@
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 - (NSString *)titleForIndexPath:(NSIndexPath *)indexPath;
 - (NSString *)subtitleForIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForModel:(id)model;
 - (id)modelForIndexPath:(NSIndexPath *)indexPath;
 
-+ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFMarkets *)markts total:(NSInteger)amount;
++ (MSFSelectionViewModel *)monthsVIewModelWithMarkets:(MSFAmortize *)markts total:(NSInteger)amount;
 
 @end

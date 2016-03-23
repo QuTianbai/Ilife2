@@ -22,6 +22,8 @@
 // 邮箱判断
 - (BOOL)isMail;
 
+//判断是否是金钱
+- (BOOL)isMoney;
 // 身份证判断
 - (BOOL)isIdentityCard;
 

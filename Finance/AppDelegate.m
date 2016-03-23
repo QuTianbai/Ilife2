@@ -10,9 +10,8 @@
 
 #import "MSFTabBarController.h"
 #import "MSFGuideViewController.h"
-#import "MSFLoginViewController.h"
 
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "MSFUser.h"
 #import "MSFReleaseNote.h"
 #import "MSFClient+ReleaseNote.h"
@@ -33,17 +32,21 @@
 #import "MSFActivityIndicatorViewController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "MSFCustomAlertView.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtilsViewController.h"
+#import "MSFEnvironmentsViewController.h"
+#import "UIImage+Color.h"
+#import "MSFSignInViewController.h"
+#import "MSFSelectProductViewController.h"
 
-#import "MSFFormsViewModel.h"
+#if TEST
+#import <BugshotKit/BugshotKit.h>
+#endif
 
 @interface AppDelegate ()
 
-@property (nonatomic, strong) MSFTabBarViewModel *viewModel;
 @property (nonatomic, strong) MSFViewModelServicesImpl *viewModelServices;
-@property (nonatomic, strong) MSFConfirmContactViewModel *confirmContactViewModel;
+@property (nonatomic, strong) MSFConfirmContractViewModel *confirmContactViewModel;
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) MSFReleaseNote *releaseNote;
@@ -60,38 +63,59 @@
 	self.window.rootViewController = [[MSFActivityIndicatorViewController alloc] init];
 	[self.window makeKeyAndVisible];
 	
+	[UIApplication.sharedApplication setStatusBarHidden:NO];
+	[UIApplication.sharedApplication setStatusBarStyle:UIStatusBarStyleLightContent];
+	[UINavigationBar.appearance setTintColor:UIColor.whiteColor];
+	[UINavigationBar.appearance setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.whiteColor}];
+	
+	[UINavigationBar.appearance setBarTintColor:UIColor.navigationBarColor];
+	if ([UIDevice currentDevice].systemVersion.floatValue >= 8.0) {
+		
+		[UINavigationBar.appearance setTranslucent:YES];
+		[UINavigationBar.appearance setClipsToBounds:YES];
+	}
+	[UINavigationBar.appearance setShadowImage:UIImage.new];
+	[UINavigationBar.appearance setBackIndicatorImage:[UIImage imageWithColor:UIColor.navigationBarColor size:CGSizeMake(1, 44)]];
+
+	
+	@weakify(self)
+	[RACObserve(self.window, rootViewController) subscribeNext:^(id x) {
+		@strongify(self)
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[self.window.rootViewController.view addSubview:view];
+	}];
+	
 	[Fabric with:@[CrashlyticsKit]];
 	
-	// 由于取消首页引导图, 定位地址信息权限获取重写到程序启动
+#if TEST
+	[BugshotKit enableWithNumberOfTouches:2 performingGestures:(BSKInvocationGestureSwipeFromRightEdge | BSKInvocationGestureSwipeUp) feedbackEmailAddress:@"ios@msxf.com"];
+	[[BugshotKit sharedManager] setDisplayConsoleTextInLogViewer:YES];
+#endif
+	// ViewModels
+	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
+	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
+	self.authorizeVewModel = self.viewModel.authorizeViewModel;
+	
+	 //由于取消首页引导图, 定位地址信息权限获取重写到程序启动
 	[[RCLocationManager sharedManager] requestUserLocationAlwaysOnce:^(CLLocationManager *manager, CLAuthorizationStatus status) {
 		[manager startUpdatingLocation];
 	}];
 
-	[[MSFUtils.setupSignal catch:^RACSignal *(NSError *error) {
+	[[MSFActivate.setupSignal catch:^RACSignal *(NSError *error) {
 		[self setup];
-		return [RACSignal empty];
+		[MSFGuideViewController.guide show];
+		return RACSignal.empty;
 	}] subscribeNext:^(MSFReleaseNote *releasenote) {
+		[self setup];
+		[MSFGuideViewController.guide show];
 		#if !DEBUG
-		if (MSFUtils.poster) {
+		if (MSFActivate.poster) {
 			[NSThread sleepForTimeInterval:3];
 		}
 		#endif
-		[self setup];
 		self.releaseNote = releasenote;
-		if (releasenote.status == 1) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				[[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		} else if (releasenote.status == 2) {
-			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示" message:releasenote.summary delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-			[alert show];
-			[alert.rac_buttonClickedSignal subscribeNext:^(id x) {
-				if ([x integerValue] == 1) [[UIApplication sharedApplication] openURL:releasenote.updatedURL];
-			}];
-		}
-		[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+		[self updateCheck];
 	}];
 	
 	return YES;
@@ -114,6 +138,7 @@
 
 - (void)updateCheck {
 	[MobClick event:MSF_Umeng_Statistics_TaskId_CheckUpdate attributes:nil];
+	if (self.releaseNote.isUpdated) return;
 	if (self.releaseNote.status == 1) {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"升级提示"
 			message:self.releaseNote.summary delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -139,15 +164,8 @@
 
 - (void)setup {
 	// 通用颜色配置
-	[[UINavigationBar appearance] setBarTintColor:UIColor.barTintColor];
-	[[UINavigationBar appearance] setTintColor:UIColor.tintColor];
-	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: UIColor.tintColor}];
-  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
-	// ViewModels
-	self.viewModelServices = [[MSFViewModelServicesImpl alloc] init];
-	self.viewModel = [[MSFTabBarViewModel alloc] initWithServices:self.viewModelServices];
-	self.authorizeVewModel = self.viewModel.authorizeViewModel;
+  [SVProgressHUD setBackgroundColor:[UIColor colorWithHue:0 saturation:0 brightness:0.95 alpha:0.8]];
 	
 	// 启动到登录的过渡动画
 	CATransition *transition = [CATransition animation];
@@ -192,7 +210,7 @@
 		
 		self.confirmContactWindow = [[MSFCustomAlertView alloc] initAlertViewWithFrame:[[UIScreen mainScreen] bounds] AndTitle:@"恭喜您" AndMessage:@"合同已通过我们的审核，赶紧去确认合同吧！" AndImage:[UIImage imageNamed:@"icon-confirm"] andCancleButtonTitle:@"稍后确认" AndConfirmButtonTitle:@"立即确认"];
 		if (self.confirmContactViewModel == nil) {
-			self.confirmContactViewModel = [[MSFConfirmContactViewModel alloc] initWithServers:self.viewModel.services];
+			self.confirmContactViewModel = [[MSFConfirmContractViewModel alloc] initWithServers:self.viewModel.services];
 		} else {
 			[self.confirmContactViewModel fetchContractist];
 		}
@@ -238,23 +256,35 @@
 	if (self.timer != nil) {
 		[self.timer setFireDate:[NSDate distantFuture]];
 	}
-	[self.viewModel.formsViewModel setBankCardMasterDefult];
 	[[NSNotificationCenter defaultCenter] postNotificationName:MSFCONFIRMCONTACTIONLATERNOTIFICATION object:nil];
-	MSFLoginViewController *viewController = [[MSFLoginViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
+	MSFSignInViewController *viewController = [[MSFSignInViewController alloc] initWithViewModel:self.viewModel.authorizeViewModel];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
 	self.window.rootViewController = navigationController;
-	
+
 	//!!!: 临时处理方案，解决在iOS7设备上无法直接显示注册／登录空间的问题
 	if ([[[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."].firstObject floatValue] < 8) {
-		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]];
+		UIViewController *vc = [[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]];
 		[self.window.rootViewController presentViewController:vc animated:NO completion:nil];
 		[vc dismissViewControllerAnimated:NO completion:nil];
 	}
 }
 
 - (void)authenticatedControllers {
-	UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
-	self.window.rootViewController = tabBarController;
+    MSFSelectProductViewController *selectViewController = [[MSFSelectProductViewController alloc] initWithServices:self.viewModel.services];
+    MSFUser *user = self.viewModelServices.httpClient.user;
+    __block UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+    if ([user.custType isEqualToString:@"1"]) {
+        UITabBarController *tabBarController = [[MSFTabBarController alloc] initWithViewModel:self.viewModel];
+        [selectViewController returnBabBarWithBlock:^void(NSString *str) {
+            tabBarController.selectedIndex = str.intValue;
+            self.window.rootViewController = tabBarController;
+        }];
+        self.window.rootViewController = selectViewController;
+        
+    } else {
+        tabBarController.selectedIndex = 0;
+        self.window.rootViewController = tabBarController;
+    }
 }
 
 #if TEST
@@ -269,7 +299,7 @@
 }
 
 - (void)statusBarTouchedAction {
-	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFUtilsViewController alloc] init]] animated:YES completion:nil];
+	[self.window.rootViewController presentViewController:[[UINavigationController alloc] initWithRootViewController:[[MSFEnvironmentsViewController alloc] init]] animated:YES completion:nil];
 }
 
 #endif

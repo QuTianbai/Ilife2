@@ -10,42 +10,36 @@
 #import <Mantle/EXTScope.h>
 #import <AVFoundation/AVFoundation.h>
 #import <CZPhotoPickerController/CZPhotoPickerPermissionAlert.h>
+#import <Masonry/Masonry.h>
+#import <ZXingObjC/ZXingObjC.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 #import "MSFClient.h"
 #import "MSFServer.h"
 #import "MSFUser.h"
 #import "UIWindow+PazLabs.h"
 
+#import "MSFSelectKeyValues.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 
 #import "MSFAuthorizeViewModel.h"
-#import "MSFLoginViewController.h"
 #import "MSFSetTradePasswordTableViewController.h"
 
 #import "MSFLoanAgreementViewModel.h"
 #import "MSFLoanAgreementController.h"
 
-#import "MSFLifeInsuranceViewModel.h"
-#import "MSFLifeInsuranceViewController.h"
-
 #import "MSFWebViewModel.h"
 #import "MSFWebViewController.h"
 
-#import "MSFLocationModel.h"
-
 #import "MSFInventoryViewModel.h"
 #import "MSFInventoryViewController.h"
-#import "MSFConfirmContactViewModel.h"
+#import "MSFConfirmContractViewModel.h"
 #import "MSFConfirmContractViewController.h"
 
 #import "MSFApplyListViewModel.h"
-#import "MSFRepaymentViewModel.h"
+#import "MSFRepaymentPlanViewModel.h"
 #import "MSFRepaymentPlanViewController.h"
-#import "MSFLoanListViewController.h"
-
-#import "MSFRelationshipViewModel.h"
-#import "MSFRelationshipViewController.h"
 
 #import "MSFPersonalViewModel.h"
 #import "MSFPersonalViewController.h"
@@ -53,12 +47,67 @@
 #import "MSFProfessionalViewModel.h"
 #import "MSFProfessionalViewController.h"
 
-#import "MSFDrawCashViewModel.h"
-#import "MSFDrawCashTableViewController.h"
+#import "MSFBarcodeScanViewController.h"
+#import "MSFBarcodeScanViewController+MSFSignalSupport.h"
 
-@interface MSFViewModelServicesImpl ()
+#import "MSFCommodityCashViewModel.h"
+#import "MSFUserInfomationViewController.h"
+#import "MSFRepaymentSchedulesViewModel.h"
+#import "MSFCartViewModel.h"
+#import "MSFCartViewController.h"
+#import "MSFBankCardListViewModel.h"
+#import "MSFBankCardListTableViewController.h"
+
+#import "MSFPaymentViewModel.h"
+#import "MSFRepaymentViewModel.h"
+#import "MSFDrawingsViewModel.h"
+#import "MSFTransactionsViewController.h"
+
+#import "MSFInputTradePasswordViewController.h"
+
+#import "MSFSignInViewController.h"
+
+#import "MSFSocialInsuranceCashViewModel.h"
+#import "MSFSocialCaskApplyTableViewController.h"
+
+#import "MSFAddBankCardViewModel.h"
+#import "MSFAddBankCardTableViewController.h"
+
+#import "MSFOrderListViewModel.h"
+#import "MSFOrderListViewController.h"
+
+#import "MSFSignUpViewController.h"
+#import "MSFAuthenticateViewController.h"
+#import "MSFMyOderListsViewModel.h"
+#import "MSFMyOrderListContainerViewController.h"
+#import "MSFMyRepaysViewModel.h"
+#import "MSFMyRepayContainerViewController.h"
+#import "MSFCommodityViewModel.h"
+
+#import "MSFApplyListViewModel.h"
+#import "MSFLoanListViewController.h"
+
+#import "MSFApplyCashViewModel.h"
+#import "MSFApplyCashViewController.h"
+
+#import "MSFSupportBankListModel.h"
+#import "MSFSupportBankListTableViewController.h"
+#import "MSFPeoplePickerNavigationController.h"
+#import "MSFPeoplePickerNavigationController+RACSignalSupport.h"
+#import "AppDelegate.h"
+
+#import "MSFWalletRepayTableViewControllerTableViewController.h"
+#import "MSFWalletRepayPlansViewModel.h"
+#import "MSFMyRepayDetailViewModel.h"
+#import "MSFInputMoneyViewcontrollerTableViewController.h"
+
+@interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property (nonatomic, strong) MSFClient *client;
+
+@property (nonatomic, strong) UIImagePickerController *imagePickerController DEPRECATED_ATTRIBUTE;
+
+@property (nonatomic, strong) MSFInputTradePasswordViewController *passcodeViewController;
 
 @end
 
@@ -67,14 +116,14 @@
 #pragma mark - Lifecycle
 
 - (instancetype)init {
-  self = [super init];
-  if (!self) {
-    return nil;
-  }
-	MSFUser *user = [MSFUser userWithServer:MSFServer.dotComServer];
-	_client = [MSFClient unauthenticatedClientWithUser:user];
-  
-  return self;
+	self = [super init];
+	if (!self) {
+		return nil;
+	}
+	[self setHttpClient:[MSFClient unauthenticatedClientWithUser:[MSFUser userWithServer:MSFServer.dotComServer]]];
+	_passcodeViewController = [[MSFInputTradePasswordViewController alloc] init];
+	
+	return self;
 }
 
 #pragma mark - Private
@@ -91,50 +140,74 @@
 
 - (void)pushViewModel:(id)viewModel {
 	id viewController;
-  
-  if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
-    viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
-  } else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
-    viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
+	
+	if ([viewModel isKindOfClass:MSFSelectionViewModel.class]) {
+		viewController = [[MSFSelectionViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFLoanAgreementViewModel.class]) {
+		viewController = [[MSFLoanAgreementController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-  } else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFWebViewModel.class]) {
 		viewController = [[MSFWebViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-  } else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFInventoryViewModel.class]) {
 		viewController = [[MSFInventoryViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFConfirmContactViewModel class]]) {
+	} else if ([viewModel isKindOfClass:[MSFConfirmContractViewModel class]]) {
 		viewController = [[MSFConfirmContractViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
-		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
-		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class]) {
+	} else if ([viewModel isKindOfClass:MSFRepaymentPlanViewModel.class]) {
 		viewController = [[MSFRepaymentPlanViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
 	} else if ([viewModel isKindOfClass:[MSFPersonalViewModel class]]) {
-		viewController = [[MSFPersonalViewController alloc] init];
-		[viewController bindViewModel:viewModel];
-		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFRelationshipViewModel class]]) {
-		viewController = [[MSFRelationshipViewController alloc] init];
-		[viewController bindViewModel:viewModel];
-		[viewController setHidesBottomBarWhenPushed:YES];
+		viewController = [[MSFPersonalViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFProfessionalViewModel class]]) {
-		viewController = [[MSFProfessionalViewController alloc] init];
-		[viewController bindViewModel:viewModel];
+		viewController = [[MSFProfessionalViewController alloc] initWithViewModel:viewModel];
 		[viewController setHidesBottomBarWhenPushed:YES];
-	} else if ([viewModel isKindOfClass:[MSFLifeInsuranceViewModel class]]) {
-		viewController = [[MSFLifeInsuranceViewController alloc] initWithViewModel:viewModel];
 	} else if ([viewModel isKindOfClass:[MSFAuthorizeViewModel class]]) {
-		viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
-	} else if ([viewModel isKindOfClass:MSFDrawCashViewModel.class]) {
-		viewController = [[MSFDrawCashTableViewController alloc] initWithViewModel:viewModel];
-	} else {
-    NSLog(@"an unknown ViewModel was pushed!");
-  }
-  
-  [self.navigationController pushViewController:viewController animated:YES];
+		if ([(MSFAuthorizeViewModel *)viewModel loginType] == MSFLoginSignUp) {
+			viewController = [[MSFSignUpViewController alloc] initWithViewModel:viewModel];
+		} else {
+			viewController = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+		}
+	} else if ([viewModel isKindOfClass:MSFBankCardListViewModel.class]) {
+		viewController = [[MSFBankCardListTableViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFRepaymentViewModel.class] || [viewModel isKindOfClass:MSFPaymentViewModel.class]) {
+		viewController = [[MSFTransactionsViewController alloc] initWithViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:MSFDrawingsViewModel.class]) {
+        viewController = [[MSFInputMoneyViewcontrollerTableViewController alloc] initWithViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:MSFSocialInsuranceCashViewModel.class]) {
+		viewController = [[MSFSocialCaskApplyTableViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFOrderListViewModel.class]) {
+		viewController = [[MSFOrderListViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFAddBankCardViewModel.class]) {
+		viewController = [UIStoryboard storyboardWithName:@"AddBankCard" bundle:nil].instantiateInitialViewController;
+		((MSFAddBankCardTableViewController *)viewController).viewModel = viewModel;
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFMyOderListsViewModel.class]) {
+		viewController = [[MSFMyOrderListContainerViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:MSFMyRepaysViewModel.class]) {
+		viewController = [[MSFMyRepayContainerViewController alloc] initWithViewModel:viewModel];
+		[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+	} else if ([viewModel isKindOfClass:[MSFCartViewModel class]]) {
+		viewController = [[MSFCartViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyListViewModel.class]) {
+		viewController = [[MSFLoanListViewController alloc] initWithViewModel:viewModel];
+	} else if ([viewModel isKindOfClass:MSFApplyCashViewModel.class]) {
+		viewController = [[MSFApplyCashViewController alloc] initWithViewModel:viewModel];
+    } else if ([viewModel isKindOfClass:MSFSupportBankListModel.class]){
+        viewController = [[MSFSupportBankListTableViewController alloc]initWithViewModel:viewModel];[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+    } else if ([viewModel isKindOfClass:MSFWalletRepayPlansViewModel.class]){
+        viewController = [[MSFWalletRepayTableViewControllerTableViewController alloc]initWithViewModel:viewModel];
+			[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+        
+    } else {
+		NSLog(@"an unknown ViewModel was pushed!");
+	}
+	
+	[self.navigationController pushViewController:viewController animated:YES];
 }
 
 - (void)popViewModel {
@@ -145,38 +218,62 @@
 				*stop = YES;
 			}
 		}];
-  } else {
-    NSLog(@"an unknown ViewModel was pop!");
-  }
+	} else {
+		NSLog(@"an unknown ViewModel was pop!");
+	}
 }
 
 - (void)presentViewModel:(id)viewModel {
 	id viewController;
-  
+	
 	if ([viewModel isKindOfClass:MSFAuthorizeViewModel.class]) {
-		MSFLoginViewController *loginViewController = [[MSFLoginViewController alloc] initWithViewModel:viewModel];
+		MSFAuthenticateViewController *loginViewController = [[MSFAuthenticateViewController alloc] initWithViewModel:viewModel];
 		viewController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[[(UIViewController *)viewController view] addSubview:view];
 	} else {
-    NSLog(@"an unknown ViewModel was present!");
-  }
-  
-  [self.navigationController presentViewController:viewController animated:YES completion:nil];
+		NSLog(@"an unknown ViewModel was present!");
+	}
+	
+	[self.navigationController presentViewController:viewController animated:YES completion:nil];
 }
 
 #pragma mark - Signals
 
-- (RACSignal *)msf_takePictureSignal {
+- (RACSignal *)msf_takePictureSignal:(BOOL)frontOnly {
+	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
 		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
 		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
 			[[CZPhotoPickerPermissionAlert sharedInstance] showAlert];
 			[subscriber sendError:nil];
 			return nil;
 		}
+		
 		UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
 		if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+			imagePickerController.cameraFlashMode = UIImagePickerControllerCameraFlashModeOff;
+			if (frontOnly) {
+				imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+				UIView *view = [[UIView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 80, 0, 80, 40)];
+				view.backgroundColor = UIColor.blackColor;
+				[imagePickerController.view addSubview:view];
+				
+				UIImage *avatar = [UIImage imageNamed:@"faceMask_bg"];
+				UIImageView *img = [[UIImageView alloc] initWithImage:avatar];
+				[imagePickerController.view addSubview:img];
+				[img mas_makeConstraints:^(MASConstraintMaker *make) {
+					make.center.mas_equalTo(imagePickerController.view);
+					make.size.mas_equalTo(CGSizeMake(297, 360));
+				}];
+			}
 		} else {
+			UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+			view.backgroundColor = UIColor.blackColor;
+			[imagePickerController.view addSubview:view];
 			imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
 		}
 		[self.visibleViewController presentViewController:imagePickerController animated:YES completion:nil];
@@ -193,6 +290,140 @@
 	}];
 }
 
+- (void)ImagePickerControllerWithImage:(id)iamge {
+}
+
+- (RACSignal *)msf_barcodeScanSignal {
+	@weakify(self)
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+		if (status == AVAuthorizationStatusRestricted || status == AVAuthorizationStatusDenied) {
+			[[CZPhotoPickerPermissionAlert sharedInstance] showAlert];
+			[subscriber sendError:nil];
+			return nil;
+		}
+		MSFBarcodeScanViewController *vc = [[MSFBarcodeScanViewController alloc] init];
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+		[self.visibleViewController presentViewController:navigationController animated:YES completion:nil];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[navigationController.view addSubview:view];
+		@weakify(vc)
+		[vc.msf_barcodeScannedSignal subscribeNext:^(ZXResult *x) {
+			@strongify(vc)
+			[vc.navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendNext:x.text];
+				[subscriber sendCompleted];
+			}];
+		} completed:^{
+			@strongify(vc)
+			[vc.navigationController dismissViewControllerAnimated:YES completion:^{
+				[subscriber sendCompleted];
+			}];
+		}];
+		
+		return [RACDisposable disposableWithBlock:^{
+		}];
+	}];
+}
+
+- (RACSignal *)msf_gainPasscodeSignal {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		self.passcodeViewController = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
+		self.passcodeViewController.delegate = self;
+		[[UIApplication sharedApplication].keyWindow addSubview:self.passcodeViewController.view];
+		
+		[[self rac_signalForSelector:@selector(getTradePassword:type:) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
+			[subscriber sendNext:[x first]];
+			[subscriber sendCompleted];
+		}];
+		[[self rac_signalForSelector:@selector(cancel) fromProtocol:@protocol(MSFInputTradePasswordDelegate)] subscribeNext:^(id x) {
+			[subscriber sendError:[NSError errorWithDomain:@"MSFViewModelServicesDomain" code:0 userInfo:@{
+				NSLocalizedFailureReasonErrorKey: @"请输入正确的交易密码",
+			}]];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+			[self.passcodeViewController.view removeFromSuperview];
+		}];
+	}];
+}
+
+- (RACSignal *)msf_selectKeyValuesWithContent:(NSString *)content {
+	@weakify(self)
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		@strongify(self)
+		MSFSelectionViewModel *viewModel = [MSFSelectionViewModel selectKeyValuesViewModel:[MSFSelectKeyValues getSelectKeys:content]];
+		[self pushViewModel:viewModel];
+		[viewModel.selectedSignal subscribeNext:^(MSFSelectKeyValues *x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+			[self popViewModel];
+		}];
+		[viewModel.cancelSignal subscribeNext:^(id x) {
+			[subscriber sendCompleted];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+		}];
+	}];
+}
+
+- (RACSignal *)msf_selectValuesWithContent:(NSString *)content keycode:(NSString *)keycode {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSArray *keyvalues = [MSFSelectKeyValues getSelectKeys:content];
+		[keyvalues enumerateObjectsUsingBlock:^(MSFSelectKeyValues *obj, NSUInteger idx, BOOL *stop) {
+			if ([obj.code isEqualToString:keycode]) {
+				[subscriber sendNext:obj.text];
+				*stop = YES;
+			}
+		}];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)msf_selectContactSignal {
+	MSFPeoplePickerNavigationController *picker = [[MSFPeoplePickerNavigationController alloc] init];
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+	view.backgroundColor = UIColor.blackColor;
+	[picker.view addSubview:view];
+	[self.visibleViewController presentViewController:picker animated:YES completion:nil];
+	return picker.rac_contactSelectedSignal;
+	
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+		picker.peoplePickerDelegate = self;
+		picker.displayedProperties = [NSArray arrayWithObjects:[NSNumber numberWithInt:kABPersonPhoneProperty] , nil];
+		UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(UIScreen.mainScreen.bounds), 20)];
+		view.backgroundColor = UIColor.blackColor;
+		[picker.view addSubview:view];
+		[self.visibleViewController presentViewController:picker animated:YES completion:nil];
+		if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+			picker.predicateForSelectionOfPerson = [NSPredicate predicateWithValue:false];
+		}
+		[[[self rac_signalForSelector:@selector(peoplePickerNavigationControllerDidCancel:)
+			fromProtocol:@protocol(ABPeoplePickerNavigationControllerDelegate)] takeUntil:picker.rac_willDeallocSignal]
+			subscribeNext:^(id x) {
+				[subscriber sendCompleted];
+		}];
+		
+		[[[self rac_signalForSelector:@selector(peoplePickerNavigationController:didSelectPerson:property:identifier:)
+			fromProtocol:@protocol(ABPeoplePickerNavigationControllerDelegate)] takeUntil:picker.rac_willDeallocSignal]
+			subscribeNext:^(RACTuple *x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+		}];
+		
+		[[[self rac_signalForSelector:@selector(peoplePickerNavigationController:shouldContinueAfterSelectingPerson:property:identifier:) fromProtocol:@protocol(ABPeoplePickerNavigationControllerDelegate)] takeUntil:picker.rac_willDeallocSignal]
+			subscribeNext:^(RACTuple *x) {
+			[subscriber sendNext:x];
+			[subscriber sendCompleted];
+		}];
+		return [RACDisposable disposableWithBlock:^{
+		}];
+	}];
+}
+
 #pragma mark - Custom Accessors
 
 - (MSFClient *)httpClient {
@@ -201,6 +432,30 @@
 
 - (void)setHttpClient:(MSFClient *)client {
 	self.client = client;
+}
+
+#pragma mark - MSFInputTradePasswordDelegate
+
+- (void)getTradePassword:(NSString *)pwd type:(int)type {
+}
+
+- (void)cancel {
+}
+
+- (void)pushSetTransPassword {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+																										message:@"请先设置交易密码" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+		[alert show];
+		[alert.rac_buttonClickedSignal subscribeNext:^(NSNumber *index) {
+			if (index.intValue == 1) {
+				AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+				MSFAuthorizeViewModel *viewModel = delegate.authorizeVewModel;
+				MSFSetTradePasswordTableViewController *setTradePasswordVC = [[MSFSetTradePasswordTableViewController alloc] initWithViewModel:viewModel];
+				
+				[self.navigationController pushViewController:setTradePasswordVC animated:YES];
+			}
+			
+		}];
 }
 
 @end

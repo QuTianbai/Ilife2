@@ -12,9 +12,14 @@
 #import "MSFCirculateCashViewModel.h"
 
 @class RACCommand;
+@class MSFRepaymentSchedulesViewModel;
+@class MSFOrderDetail;
 
 @interface MSFDrawCashViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *smsCode;
+
+@property (nonatomic, copy) NSString *smsSeqNo;
 
 @property (nonatomic, copy) NSString *bankIcon;
 
@@ -30,10 +35,17 @@
 
 @property (nonatomic, copy) MSFCirculateCashViewModel *circulateViewModel;
 
-@property (nonatomic, assign, readonly) int type;
+// type = 1 主动支付/循环贷还款 或者 2 是还款/马上贷还款
+// type = 0 是提现 type = 4 首付
+@property (nonatomic, assign) int type;
+@property (nonatomic, assign) BOOL sending;
 
 @property (nonatomic, strong) RACCommand *executeSubmitCommand;
+@property (nonatomic, strong) RACCommand *executePayCommand;
+@property (nonatomic, strong) RACCommand *executSMSCommand;
 
-- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(MSFCirculateCashViewModel *)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type;
+@property (nonatomic, strong) MSFRepaymentSchedulesViewModel *repayFinanceViewModel;
+
+- (instancetype)initWithModel:(MSFBankCardListModel *)model AndCirculateViewmodel:(id)viewModel AndServices:(id<MSFViewModelServices>)services AndType:(int)type __deprecated_msg("Use MSFTransacitonViewModel protocol");
 
 @end

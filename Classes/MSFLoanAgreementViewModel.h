@@ -8,20 +8,15 @@
 #import "MSFViewModelServices.h"
 #import "MSFApplicationViewModel.h"
 
-@class MSFFormsViewModel;
-@class MSFApplicationResponse;
-@class MSFProduct;
 @class RACCommand;
-@class MSFAddress;
-@class MSFAgreementViewModel;
-@class MSFApplyCashVIewModel;
 
 @interface MSFLoanAgreementViewModel : RVMViewModel
 
-@property (nonatomic, strong, readonly) RACCommand *executeRequest;
-
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 @property (nonatomic, weak, readonly) id <MSFApplicationViewModel> applicationViewModel;
+
+// 同意贷款协议，进入头像拍照界面
+@property (nonatomic, strong, readonly) RACCommand *executeAcceptCommand;
 
 - (instancetype)initWithApplicationViewModel:(id <MSFApplicationViewModel>)applicationViewModel;
 - (RACSignal *)loanAgreementSignal;

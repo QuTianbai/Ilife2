@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Commited View Controller-->
+        <scene sceneID="8h6-b0-kcJ">
+            <objects>
+                <viewController storyboardIdentifier="MSFCommitedViewController" id="hke-P3-DfS" customClass="MSFCommitedViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="B6a-ma-ZFI"/>
+                        <viewControllerLayoutGuide type="bottom" id="6PV-qa-B3C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2Mg-T1-QxN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpV-cw-T9e" customClass="MSFEdgeButton">
+                                <rect key="frame" x="21" y="308" width="288" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Kix-9E-GAx"/>
+                                </constraints>
+                                <state key="normal" title="返回首页"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg-commited-sep.png" translatesAutoresizingMaskIntoConstraints="NO" id="EVJ-gL-as1">
+                                <rect key="frame" x="0.0" y="264" width="320" height="6"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZh-gg-f1U">
+                                <rect key="frame" x="0.0" y="20" width="320" height="244"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="commited-header-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="EuG-xQ-wGi">
+                                        <rect key="frame" x="116" y="48" width="88" height="88"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资料提交成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWt-Kq-bvn">
+                                        <rect key="frame" x="88" y="146" width="144" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="资料审核(非特殊情况)最快将在2分钟内完 请耐心等待！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="cLs-aX-niw">
+                                        <rect key="frame" x="10" y="190" width="300" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="54" id="El6-Bx-TQt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="cLs-aX-niw" firstAttribute="top" secondItem="oWt-Kq-bvn" secondAttribute="bottom" constant="15" id="2A5-fw-8B1"/>
+                                    <constraint firstAttribute="trailing" secondItem="cLs-aX-niw" secondAttribute="trailing" constant="10" id="9wy-Bz-wmJ"/>
+                                    <constraint firstAttribute="height" constant="244" id="XoQ-sI-4mL"/>
+                                    <constraint firstItem="cLs-aX-niw" firstAttribute="leading" secondItem="xZh-gg-f1U" secondAttribute="leading" constant="10" id="ZVI-hX-aQ1"/>
+                                    <constraint firstItem="oWt-Kq-bvn" firstAttribute="centerX" secondItem="xZh-gg-f1U" secondAttribute="centerX" id="faN-W7-E4P"/>
+                                    <constraint firstItem="EuG-xQ-wGi" firstAttribute="centerX" secondItem="xZh-gg-f1U" secondAttribute="centerX" id="iuU-TP-L40"/>
+                                    <constraint firstAttribute="bottom" secondItem="cLs-aX-niw" secondAttribute="bottom" id="klQ-xv-jgZ"/>
+                                    <constraint firstItem="EuG-xQ-wGi" firstAttribute="centerY" secondItem="xZh-gg-f1U" secondAttribute="centerY" constant="-30" id="xR1-tf-V1T"/>
+                                    <constraint firstItem="oWt-Kq-bvn" firstAttribute="top" secondItem="EuG-xQ-wGi" secondAttribute="bottom" constant="10" id="ze2-5k-0pl"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2A5-fw-8B1"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xZh-gg-f1U" firstAttribute="leading" secondItem="2Mg-T1-QxN" secondAttribute="leading" id="ED0-UP-vGX"/>
+                            <constraint firstItem="cpV-cw-T9e" firstAttribute="leading" secondItem="2Mg-T1-QxN" secondAttribute="leadingMargin" constant="5" id="KJX-9h-nzR"/>
+                            <constraint firstAttribute="trailing" secondItem="EVJ-gL-as1" secondAttribute="trailing" id="Kde-DE-RTZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cpV-cw-T9e" secondAttribute="trailing" constant="-5" id="cYi-3p-nO3"/>
+                            <constraint firstAttribute="trailing" secondItem="xZh-gg-f1U" secondAttribute="trailing" id="cZj-gO-Rea"/>
+                            <constraint firstItem="cpV-cw-T9e" firstAttribute="top" secondItem="xZh-gg-f1U" secondAttribute="bottom" constant="44" id="fAp-1v-okm"/>
+                            <constraint firstItem="xZh-gg-f1U" firstAttribute="top" secondItem="B6a-ma-ZFI" secondAttribute="bottom" id="hBv-Ql-uFO"/>
+                            <constraint firstItem="EVJ-gL-as1" firstAttribute="leading" secondItem="2Mg-T1-QxN" secondAttribute="leading" id="mMy-ja-4eu"/>
+                            <constraint firstItem="EVJ-gL-as1" firstAttribute="top" secondItem="xZh-gg-f1U" secondAttribute="bottom" id="qE9-Qw-sFC"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="button" destination="cpV-cw-T9e" id="2jW-hj-nTZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HQV-pv-imx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="517" y="-274"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bg-commited-sep.png" width="414" height="6"/>
+        <image name="commited-header-logo.png" width="88" height="88"/>
+    </resources>
+</document>

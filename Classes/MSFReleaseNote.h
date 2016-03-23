@@ -22,4 +22,6 @@
 @property (nonatomic, strong, readonly) NSString *timestamp;
 @property (nonatomic, strong, readonly) NSArray *posters;
 
+- (BOOL)isUpdated;
+
 @end

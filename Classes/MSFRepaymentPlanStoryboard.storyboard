@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sp-My-hVC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="9sp-My-hVC">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
         <!--Repayment Plan View Controller-->
@@ -17,96 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtj-M9-udv">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gtj-M9-udv" customClass="MSFButtonSlidersView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQu-4H-cfI">
-                                        <rect key="frame" x="160.5" y="0.0" width="159.5" height="40"/>
-                                        <animations/>
-                                        <state key="normal" title="随借随还">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JN6-hv-kro">
-                                        <rect key="frame" x="159.5" y="0.0" width="1" height="44"/>
-                                        <animations/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="1" id="UKS-ry-FYn"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXH-eV-eSR">
-                                        <rect key="frame" x="0.0" y="40" width="160" height="4"/>
-                                        <animations/>
-                                        <color key="backgroundColor" red="0.043137254899999998" green="0.6705882353" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="qa5-g3-bLx"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFI-Pp-Qqt">
-                                        <rect key="frame" x="0.0" y="0.0" width="159.5" height="40"/>
-                                        <animations/>
-                                        <state key="normal" title="马上贷">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="4oF-cX-cuA"/>
-                                    <constraint firstItem="JN6-hv-kro" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="top" id="6dy-T0-nXP"/>
-                                    <constraint firstAttribute="trailing" secondItem="sQu-4H-cfI" secondAttribute="trailing" id="7mx-Jr-6XV"/>
-                                    <constraint firstAttribute="bottom" secondItem="PXH-eV-eSR" secondAttribute="bottom" id="LhT-0O-uVz"/>
-                                    <constraint firstItem="JN6-hv-kro" firstAttribute="leading" secondItem="XFI-Pp-Qqt" secondAttribute="trailing" id="OEO-hS-jYT"/>
-                                    <constraint firstItem="XFI-Pp-Qqt" firstAttribute="leading" secondItem="gtj-M9-udv" secondAttribute="leading" id="PYm-Nu-nZq"/>
-                                    <constraint firstItem="sQu-4H-cfI" firstAttribute="leading" secondItem="JN6-hv-kro" secondAttribute="trailing" id="SMA-ND-Cjd"/>
-                                    <constraint firstAttribute="bottom" secondItem="sQu-4H-cfI" secondAttribute="bottom" constant="4" id="Vf0-nt-Lnf"/>
-                                    <constraint firstItem="sQu-4H-cfI" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="top" id="Ydz-KC-Hv2"/>
-                                    <constraint firstAttribute="bottom" secondItem="JN6-hv-kro" secondAttribute="bottom" id="a2v-P3-HOa"/>
-                                    <constraint firstAttribute="bottom" secondItem="XFI-Pp-Qqt" secondAttribute="bottom" constant="4" id="dCZ-eL-Olg"/>
-                                    <constraint firstItem="PXH-eV-eSR" firstAttribute="leading" secondItem="gtj-M9-udv" secondAttribute="leading" id="fC8-BJ-UJb"/>
-                                    <constraint firstItem="PXH-eV-eSR" firstAttribute="top" secondItem="sQu-4H-cfI" secondAttribute="bottom" id="hyn-8e-k6S"/>
-                                    <constraint firstItem="JN6-hv-kro" firstAttribute="centerX" secondItem="gtj-M9-udv" secondAttribute="centerX" id="s21-TB-S8k"/>
-                                    <constraint firstItem="XFI-Pp-Qqt" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="top" id="zVa-zz-oVy"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FPu-kI-Wxm">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XUu-k9-6Nl">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
-                                <animations/>
+                                <rect key="frame" x="0.0" y="54" width="320" height="514"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="XUu-k9-6Nl" secondAttribute="bottom" id="891-L0-Gsn"/>
                             <constraint firstItem="FPu-kI-Wxm" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="Dmj-hV-idZ"/>
                             <constraint firstAttribute="bottom" secondItem="FPu-kI-Wxm" secondAttribute="bottom" id="Jiy-Hi-8O2"/>
                             <constraint firstAttribute="trailing" secondItem="gtj-M9-udv" secondAttribute="trailing" id="NNF-PR-O8f"/>
                             <constraint firstItem="gtj-M9-udv" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="R3s-9X-mv0"/>
-                            <constraint firstAttribute="trailing" secondItem="XUu-k9-6Nl" secondAttribute="trailing" id="R49-iS-k49"/>
-                            <constraint firstItem="XUu-k9-6Nl" firstAttribute="leading" secondItem="En0-6F-9Rb" secondAttribute="leading" id="gE2-mR-XZo"/>
-                            <constraint firstItem="XUu-k9-6Nl" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" id="lE3-Ff-vHE"/>
-                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" id="nGD-T2-DOl"/>
+                            <constraint firstItem="FPu-kI-Wxm" firstAttribute="top" secondItem="gtj-M9-udv" secondAttribute="bottom" constant="10" id="nGD-T2-DOl"/>
                             <constraint firstItem="gtj-M9-udv" firstAttribute="top" secondItem="En0-6F-9Rb" secondAttribute="top" id="uoR-Ut-QEX"/>
                             <constraint firstAttribute="trailing" secondItem="FPu-kI-Wxm" secondAttribute="trailing" id="xNj-SX-bao"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="circulateRepayMentTableView" destination="XUu-k9-6Nl" id="FvG-Hc-HT6"/>
-                        <outlet property="leaderConstraint" destination="fC8-BJ-UJb" id="mZG-Vk-tbK"/>
-                        <outlet property="leftBarButton" destination="XFI-Pp-Qqt" id="kyI-lm-hjJ"/>
                         <outlet property="myTableView" destination="FPu-kI-Wxm" id="wgw-WX-C4Z"/>
-                        <outlet property="rightBarButton" destination="sQu-4H-cfI" id="Rqw-MF-JXm"/>
                         <outlet property="segmentView" destination="gtj-M9-udv" id="D34-XQ-co2"/>
-                        <outlet property="width" destination="qa5-g3-bLx" id="6Ou-r9-ZRb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MmV-NJ-gm0" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -7,14 +7,14 @@
 #import "MSFActivityIndicatorViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "MSFPoster.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 
 @implementation MSFActivityIndicatorViewController
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	if (!MSFUtils.poster) return;
-	[self.backgroundView setImageWithURL:MSFUtils.poster.imageURL placeholderImage:[UIImage imageNamed:@"launch.png"]];
+	if (!MSFActivate.poster) return;
+	[self.backgroundView setImageWithURL:MSFActivate.poster.imageURL placeholderImage:[UIImage imageNamed:@"launch.png"]];
 }
 
 @end

@@ -7,12 +7,9 @@
 #import "MSFAlertViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Mantle/EXTScope.h>
-#import "MSFFormsViewModel.h"
 #import "MSFUser.h"
-#import "MSFApplicationForms.h"
 #import "MSFSelectKeyValues.h"
-
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 
 @interface MSFAlertViewModel ()
 
@@ -22,7 +19,7 @@
 
 @implementation MSFAlertViewModel
 
-- (instancetype)initWithFormsViewModel:(MSFApplyCashVIewModel *)cashViewModel user:(MSFUser *)user {
+- (instancetype)initWithFormsViewModel:(MSFApplyCashViewModel *)cashViewModel user:(MSFUser *)user {
   self = [super init];
   if (!self) {
     return nil;
@@ -40,13 +37,7 @@
 	_amount = [NSString stringWithFormat:@"%@元", cashViewModel.appLmt];
 	_repayment = [NSString stringWithFormat:@"%@元", cashViewModel.loanFixedAmt];
 	
-	RAC(self, bankNumber) = RACObserve(cashViewModel, formViewModel.masterBankCardNO);
-	if (cashViewModel.formViewModel.masterBankCardNO.length == 0) {
-		cashViewModel.formViewModel.active = NO;
-		cashViewModel.formViewModel.active = YES;
-	}
-	
-	//_bankNumber = cashViewModel.formViewModel.masterBankCardNO;
+	RAC(self, bankNumber) = RACObserve(cashViewModel, masterBankCardNameAndNO);
 	
   return self;
 }

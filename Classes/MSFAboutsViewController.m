@@ -14,6 +14,7 @@
 #import "MSFUserHelpCell.h"
 #import "MSFBranchesCell.h"
 #import "MSFAboutTableViewCell.h"
+#import "MSFServiceUserCell.h"
 
 @implementation MSFAboutsViewController {
 	NSArray *_imageArray;
@@ -35,12 +36,10 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"关于";
+	self.title = @"马上服务";
 	
 	_textArray = @[
-		@"关于我们",
-		@"产品介绍",
-		@"用户帮助",
+		
 	];
 }
 
@@ -55,14 +54,41 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 3;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	if (section == 1) {
+		return _textArray.count;
+	}
 	return 1;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 2;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		static NSString *cellID = @"MSFServiceUserCell";
+		UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+		if (cell == nil) {
+			cell = [[NSBundle mainBundle] loadNibNamed:@"MSFServiceUserCell" owner:nil options:nil].firstObject;
+		}
+		@weakify(self)
+		[[((MSFServiceUserCell *)cell).questionBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+		subscribeNext:^(id x) {
+			@strongify(self)
+			[self performSegueWithIdentifier:@"userHelpCell" sender:self];
+		}];
+		[[((MSFServiceUserCell *)cell).productBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+		 subscribeNext:^(id x) {
+			 @strongify(self)
+			 [self performSegueWithIdentifier:@"productCell" sender:self];
+		 }];
+		[[((MSFServiceUserCell *)cell).aboutBT rac_signalForControlEvents:UIControlEventTouchUpInside]
+		 subscribeNext:^(id x) {
+			 @strongify(self)
+			 [self performSegueWithIdentifier:@"aboutCell" sender:self];
+		 }];
+		return cell;
+	}
 	static NSString *cellID = @"Cell";
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 	cell.textLabel.text = [_textArray objectAtIndex:indexPath.row];
@@ -72,10 +98,16 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0) {
+		return 101;
+	}
 	return 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+	if (section == 1) {
+		return 50;
+	}
 	return 0;
 }
 
@@ -120,18 +152,23 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-	NSDictionary *infodictionary = [NSBundle bundleForClass:self.class].infoDictionary;
-	NSString *version = infodictionary[@"CFBundleShortVersionString"];
-	NSString *builds = infodictionary[@"CFBundleVersion"];
-	NSString *about = [NSString stringWithFormat:@"版本号:%@ (%@)", version, builds];
-	UIView *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 66)];
-	UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 66)];
-	[label setText:about];
-	[label setTextColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
-	[label setFont:[UIFont systemFontOfSize:15]];
-	[label setTextAlignment:NSTextAlignmentCenter];
-	[view addSubview:label];
-	return view;
+	if (section == 1) {
+		NSDictionary *infodictionary = [NSBundle bundleForClass:self.class].infoDictionary;
+		NSString *version = infodictionary[@"CFBundleShortVersionString"];
+		NSString *builds = infodictionary[@"CFBundleVersion"];
+		NSString *about = [NSString stringWithFormat:@"版本号:%@ (%@)", version, builds];
+		UIView *view = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 66)];
+		UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 66)];
+		[label setText:about];
+		[label setTextColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
+		[label setFont:[UIFont systemFontOfSize:15]];
+		[label setTextAlignment:NSTextAlignmentCenter];
+		[view addSubview:label];
+		return view;
+
+	}
+	return nil;
+	
 }
 
 #pragma mark - onClickBackBtn

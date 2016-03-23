@@ -8,7 +8,8 @@
 
 #import "MSFObject.h"
 
-// 联系人信息
+__attribute__((deprecated("This class is deprecated. Please use the MSFApplylist class instead")))
+
 @interface MSFContactListModel : MSFObject
 
 @property (nonatomic, copy, readonly) NSString *contactID;

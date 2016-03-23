@@ -12,18 +12,29 @@
 @implementation MSFRepaymentSchedules
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-		return @{
-						 @"contractNum": @"contractNo",
-						 @"repaymentTime":@"latestDueDate",
-						 @"repaymentTotalAmount":@"latestDueMoney",
-						 @"cashDueMoney":@"dueMoney",
-						 @"cashDueDate":@"dueDate"
-						 };
+	return @{
+		@"contractNum": @"contractNo",
+		@"repaymentTime": @"latestDueDate",
+		@"repaymentTotalAmount": @"latestDueMoney",
+		@"contractType": @"type"
+	};
 }
 
 + (NSValueTransformer *)contractStatusJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithBlock:^(NSString *contractStatus) {
 		return [NSDictionary statusStringForKey:contractStatus];
+	}];
+}
+
++ (NSValueTransformer *)totalOverdueMoneyJSONTransformer {
+	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
+		if ([num isKindOfClass:[NSNumber class]]) {
+			return [NSString stringWithFormat:@"%.2f", num.doubleValue];
+		}
+		return num;
+		
+	} reverseBlock:^id(NSString *str) {
+		return str;
 	}];
 }
 

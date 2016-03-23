@@ -11,7 +11,15 @@
 #import "MSFAuthorizeViewModel.h"
 #import "MSFSignInViewController.h"
 #import "UITextField+RACKeyboardSupport.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
+
+#import "MSFRepaymentPlanViewModel.h"
+#import "MSFRepaymentPlanViewController.h"
+#import "UIColor+Utils.h"
+#import "MSFSignUpButton.h"
+#import "UIImage+Color.h"
+#import "MSFFindPasswordViewController.h"
+#import "MSFbackgroundLogoView.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 static NSString *const MSFAutoinputDebuggingPasswordEnvironmentKey = @"INPUT_AUTO_PASSWORD";
@@ -20,6 +28,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 @interface MSFSignInViewController ()
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
+@property (weak, nonatomic) IBOutlet MSFSignUpButton *signUpBt;
 @property (nonatomic, weak) IBOutlet UITextField *username;
 @property (nonatomic, weak) IBOutlet UITextField *password;
 @property (nonatomic, weak) IBOutlet UIButton *signInButton;
@@ -27,12 +36,24 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 @property (nonatomic, weak) IBOutlet UIButton *sendCaptchaButton;
 @property (nonatomic, weak) IBOutlet UILabel *counterLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
+@property (weak, nonatomic) IBOutlet UIButton *forgetPasswordBt;
 
 @end
 
 @implementation MSFSignInViewController
 
 @synthesize pageIndex;
+
+#pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel {
+ self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignInViewController class])];
+   if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+	return self;
+}
 
 #pragma mark - Lifecycle
 
@@ -43,50 +64,55 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"登录";
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
-	self.edgesForExtendedLayout = UIRectEdgeNone;
-	
+	self.tableView.backgroundColor = [UIColor navigationBgColor];
 	// 登录用户名/密码
-	self.username.text = MSFUtils.signInMobile;
-	self.viewModel.username = MSFUtils.signInMobile;
+	self.username.text = MSFActivate.signInMobile;
+	self.viewModel.username = MSFActivate.signInMobile;
 	
+	MSFbackgroundLogoView *view = [NSBundle.mainBundle loadNibNamed:NSStringFromClass(MSFbackgroundLogoView.class) owner:nil options:nil].firstObject;
+	view.frame = UIScreen.mainScreen.bounds;
+	view.imageView.image = [UIImage imageNamed:@"logo-msfinance-co2.png"];
+	view.label.textColor = UIColor.whiteColor;
+	self.tableView.backgroundView = view;
+
 	if (NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingEnvironmentKey] != nil) {
 		self.username.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingUsernameEnvironmentKey];
 		self.password.text = NSProcessInfo.processInfo.environment[MSFAutoinputDebuggingPasswordEnvironmentKey];
 	}
-	
+
 	@weakify(self)
+	self.signUpBt.rac_command = self.viewModel.executeSignUpCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = self.username.text;
 		self.viewModel.password = self.password.text;
 		self.viewModel.loginType = MSFLoginSignIn;
 	}];
-	
+
 	[self.username.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x length] > MSFAuthorizeUsernameMaxLength) self.username.text = [x substringToIndex:MSFAuthorizeUsernameMaxLength];
 		self.viewModel.username = self.username.text;
 	}];
-	
+
 	[self.password.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x length] > MSFAuthorizePasswordMaxLength) self.password.text = [x substringToIndex:MSFAuthorizePasswordMaxLength];
 		self.viewModel.password = self.password.text;
 	}];
-	
+
 	[self.captcha.rac_textSignal subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x length] > MSFAuthorizeCaptchaMaxLength) self.captcha.text = [x substringToIndex:MSFAuthorizeCaptchaMaxLength];
 		self.viewModel.captcha = self.captcha.text;
 	}];
-	
+
 	// 登录按钮
 	self.signInButton.rac_command = self.viewModel.executeSignIn;
 	[self.viewModel.executeSignIn.executionSignals subscribeNext:^(RACSignal *execution) {
 		@strongify(self)
 		[self.view endEditing:YES];
-		[MSFUtils setSignInMobile:self.username.text];
+		[MSFActivate setSignInMobile:self.username.text];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
@@ -100,7 +126,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		self.viewModel.password = @"";
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
+
 	[self.password.rac_keyboardReturnSignal subscribeNext:^(id x) {
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
@@ -109,19 +135,19 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		@strongify(self)
 		[self.viewModel.executeSignIn execute:nil];
 	}];
-	
+
 	// 验证码
 	[RACObserve(self.viewModel, counter) subscribeNext:^(id x) {
 		@strongify(self)
 		self.counterLabel.text = x;
 	}];
-	
+
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
-	
+
 	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptcha;
 	[self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
 		@strongify(self)
@@ -131,11 +157,11 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 			[SVProgressHUD dismiss];
 		}];
 	}];
-	
+
 	[self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
-	
+
 	// 需要验证码的时候界面更新
 	[self.viewModel.signInInvalidSignal subscribeNext:^(id x) {
 		@strongify(self)
@@ -155,7 +181,9 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	[segue.destinationViewController bindViewModel:self.viewModel];
+	if ([segue.destinationViewController conformsToProtocol:@protocol(MSFReactiveView)]) {
+		[(id <MSFReactiveView>)segue.destinationViewController bindViewModel:self.viewModel];
+	}
 }
 
 #pragma mark - UITableViewDelegate

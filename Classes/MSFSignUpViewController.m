@@ -10,7 +10,7 @@
 #import <Mantle/EXTScope.h>
 #import <ActionSheetPicker-3.0/ActionSheetDatePicker.h>
 #import "MSFAuthorizeViewModel.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 #import "UIColor+Utils.h"
 #import "UITextField+RACKeyboardSupport.h"
 #import "MSFCommandView.h"
@@ -18,11 +18,13 @@
 #import "NSDate+UTC0800.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSCharacterSet+MSFCharacterSetAdditions.h"
-
+#import "UIImage+Color.h"
+#import "MSFbackgroundLogoView.h"
 
 static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG";
 
 @interface MSFSignUpViewController () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *signInBt;
 
 @property (nonatomic, weak) MSFAuthorizeViewModel *viewModel;
 
@@ -52,15 +54,36 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 
 @synthesize pageIndex;
 
+#pragma mark - NSObject
+
+- (instancetype)initWithViewModel:(id)viewModel {
+  self = [[UIStoryboard storyboardWithName:@"login" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([MSFSignUpViewController class])];
+  if (!self) {
+    return nil;
+  }
+	_viewModel = viewModel;
+  
+  return self;
+}
+
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.tableView.backgroundColor = [UIColor colorWithWhite:0.98 alpha:1];
+	
+	self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor;
 	self.name.delegate = self;
 	self.card.delegate = self;
+	[self.navigationItem.rightBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont systemFontOfSize:15]} forState:UIControlStateNormal ];
+	MSFbackgroundLogoView *view = [NSBundle.mainBundle loadNibNamed:NSStringFromClass(MSFbackgroundLogoView.class) owner:nil options:nil].firstObject;
+	view.frame = UIScreen.mainScreen.bounds;
+	view.imageView.image = [UIImage imageNamed:@"logo-msfinance-co.png"];
+	view.label.textColor = UIColor.grayColor;
+	self.tableView.backgroundView = view;
+
 	
 	@weakify(self)
+	self.signInBt.rac_command = self.viewModel.executeSignInCommand;
 	[[self rac_signalForSelector:@selector(viewWillAppear:)] subscribeNext:^(id x) {
 		@strongify(self)
 		self.viewModel.username = self.username.text;
@@ -121,7 +144,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.viewModel.captchaRequestValidSignal subscribeNext:^(NSNumber *value) {
 		@strongify(self)
 		self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
-		self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		//self.sendCaptchaView.image = value.boolValue ? self.viewModel.captchaNomalImage : self.viewModel.captchaHighlightedImage;
+		self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
 	}];
 	
 	[self.commitButton.rac_command.executionSignals subscribeNext:^(RACSignal *signUpSignal) {

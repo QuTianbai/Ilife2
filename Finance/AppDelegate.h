@@ -10,12 +10,14 @@
 
 @class MSFCustomAlertView;
 @class MSFAuthorizeViewModel;
+@class MSFTabBarViewModel;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) MSFCustomAlertView *confirmContactWindow;
 @property (nonatomic, strong) MSFAuthorizeViewModel *authorizeVewModel;
+@property (nonatomic, strong) MSFTabBarViewModel *viewModel;
 
 @end
 

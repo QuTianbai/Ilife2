@@ -1,51 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="KGk-i7-Jjw" customClass="MSFAddBankCardTableViewCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9Xr-E1-9kL" customClass="MSFAddBankCardTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9Xr-E1-9kL" id="Me1-WF-YGl">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add.png" translatesAutoresizingMaskIntoConstraints="NO" id="ufd-nA-P5L">
-                        <rect key="frame" x="15" y="13" width="17" height="17"/>
-                        <animations/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FNE-K5-vaL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGl-Fy-Uch" customClass="MSFBlurButton">
+                                <rect key="frame" x="220" y="3" width="90" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="XW1-zf-naJ"/>
+                                </constraints>
+                                <state key="normal" title="支持银行">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="XW1-zf-naJ"/>
+                                    </mask>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bce-Hm-umU" customClass="MSFBlurButton">
+                                <rect key="frame" x="10" y="3" width="200" height="37.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="GFc-Cu-BF6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                <state key="normal" title="添加银行卡" image="add-bank.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="17" id="D7t-hX-tbe"/>
-                            <constraint firstAttribute="height" constant="17" id="fRq-27-u2B"/>
+                            <constraint firstAttribute="trailing" secondItem="oGl-Fy-Uch" secondAttribute="trailing" constant="10" id="0Lz-Of-ap3"/>
+                            <constraint firstAttribute="bottom" secondItem="oGl-Fy-Uch" secondAttribute="bottom" constant="3" id="2JF-w5-KAw"/>
+                            <constraint firstAttribute="bottom" secondItem="Bce-Hm-umU" secondAttribute="bottom" constant="3" id="Nab-hC-OGV"/>
+                            <constraint firstItem="Bce-Hm-umU" firstAttribute="leading" secondItem="FNE-K5-vaL" secondAttribute="leading" constant="10" id="SHR-Zw-t7F"/>
+                            <constraint firstItem="oGl-Fy-Uch" firstAttribute="top" secondItem="FNE-K5-vaL" secondAttribute="top" constant="3" id="dZH-G9-9m4"/>
+                            <constraint firstItem="Bce-Hm-umU" firstAttribute="top" secondItem="FNE-K5-vaL" secondAttribute="top" constant="3" id="g8b-x1-g98"/>
+                            <constraint firstItem="oGl-Fy-Uch" firstAttribute="leading" secondItem="Bce-Hm-umU" secondAttribute="trailing" constant="10" id="uE7-4b-hgH"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="添加银行卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOK-pX-5zQ">
-                        <rect key="frame" x="42" y="11" width="85" height="21"/>
-                        <animations/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="85" id="2bL-G4-xGk"/>
-                            <constraint firstAttribute="height" constant="21" id="OE2-bc-5P3"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
-                <animations/>
+                <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="AOK-pX-5zQ" firstAttribute="leading" secondItem="ufd-nA-P5L" secondAttribute="trailing" constant="10" id="6BD-9k-BJ3"/>
-                    <constraint firstItem="ufd-nA-P5L" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="98o-5g-T4X"/>
-                    <constraint firstItem="AOK-pX-5zQ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xnf-pK-PVG"/>
-                    <constraint firstItem="ufd-nA-P5L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="b58-ii-ylx"/>
+                    <constraint firstAttribute="trailing" secondItem="FNE-K5-vaL" secondAttribute="trailing" id="LWG-AJ-v56"/>
+                    <constraint firstAttribute="bottom" secondItem="FNE-K5-vaL" secondAttribute="bottom" id="hYM-kC-0rf"/>
+                    <constraint firstItem="FNE-K5-vaL" firstAttribute="leading" secondItem="Me1-WF-YGl" secondAttribute="leading" id="lRV-ce-tTy"/>
+                    <constraint firstItem="FNE-K5-vaL" firstAttribute="top" secondItem="Me1-WF-YGl" secondAttribute="top" id="zcZ-zj-3xJ"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="AddCard" destination="Bce-Hm-umU" id="szb-UA-8yZ"/>
+                <outlet property="BankCardList" destination="oGl-Fy-Uch" id="nxq-04-ZUL"/>
+            </connections>
+            <point key="canvasLocation" x="43" y="246"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="add.png" width="17" height="17"/>
+        <image name="add-bank.png" width="17" height="17"/>
     </resources>
 </document>

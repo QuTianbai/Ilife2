@@ -29,7 +29,9 @@
 #pragma mark - Lifecycle
 
 - (void)dealloc {
+#if DEBUG
 	NSLog(@"`dealloc`");
+#endif
 }
 
 - (instancetype)initWithViewModel:(id)viewModel {

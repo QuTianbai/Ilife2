@@ -12,7 +12,7 @@
 #import "MSFClient+Captcha.h"
 #import "MSFClient.h"
 #import "MSFServer.h"
-#import "MSFUtils.h"
+#import "MSFActivate.h"
 
 static const int kCounterLength = 60;
 
@@ -56,17 +56,16 @@ static const int kCounterLength = 60;
 
 - (RACSignal *)executeCaptchaSignal {
 	MSFClient *client = [[MSFClient alloc] initWithServer:MSFServer.dotComServer];
-	return [client fetchSignUpCaptchaWithPhone:MSFUtils.signInMobile];
+	return [client fetchSignUpCaptchaWithPhone:MSFActivate.signInMobile];
 }
 
 - (RACSignal *)captchaRequestValidSignal {
-	return [RACSignal
-					combineLatest:@[
-													RACObserve(self, counting)
-													]
-					reduce:^id( NSNumber *counting){
-						return @(!counting.boolValue);
-					}];
+	return [RACSignal combineLatest:@[
+		RACObserve(self, counting)
+		]
+	reduce:^id( NSNumber *counting){
+		return @(!counting.boolValue);
+	}];
 }
 
 @end

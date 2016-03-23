@@ -19,6 +19,8 @@
 // viewModel - The viewModel use to pass to next view
 - (void)bindViewModel:(id)viewModel;
 
-- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel;
+- (void)bindViewModel:(id)viewModel atIndexPath:(NSIndexPath *)indexPath;
+
+- (instancetype)initWithFormsViewModel:(MSFFormsViewModel *)viewModel __deprecated;
 
 @end

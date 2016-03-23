@@ -9,25 +9,33 @@
 #import "RVMViewModel.h"
 #import "MSFViewModelServices.h"
 #import "MSFBankCardInfoViewModel.h"
-#import "MSFCheckHasTradePassword.h"
+#import "MSFCheckTradePasswordViewModel.h"
 
 @class RACCommand;
 
+typedef void (^ReturnBankCardIDBlock)(id model);
+
 @interface MSFBankCardListViewModel : RVMViewModel
 
+@property (nonatomic, copy) NSString *type;
 @property (nonatomic, weak, readonly) id <MSFViewModelServices> services;
 
 @property (nonatomic, strong) RACCommand *executeBankList;
 
+@property (nonatomic, strong) RACCommand *excuteActionCommand;
+@property (nonatomic, strong) RACCommand *executeSupportCommand;
 @property (nonatomic, strong) RACCommand *executeSetMaster;
 @property (nonatomic, strong) RACCommand *executeUnbind;
 
 @property (nonatomic, copy) NSString *pwd;
 
 @property (nonatomic, copy) NSString *bankCardID;
-@property (nonatomic, strong, readonly) MSFCheckHasTradePassword *checkHasTrandPasswordViewModel;
+@property (nonatomic, strong, readonly) MSFCheckTradePasswordViewModel *checkHasTrandPasswordViewModel;
+@property (nonatomic, copy) ReturnBankCardIDBlock returnBankCardIDBlock;
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)servers;
+- (void)returnBanKModel:(ReturnBankCardIDBlock)block;
+
+- (instancetype)initWithServices:(id<MSFViewModelServices>)servers type:(NSString *)type;
 
 - (MSFBankCardInfoViewModel *)getBankCardInfoViewModel:(NSInteger)integer;
 

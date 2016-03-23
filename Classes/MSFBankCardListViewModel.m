@@ -7,11 +7,13 @@
 //
 
 #import "MSFBankCardListViewModel.h"
-#import "MSFClient+MSFBankCardList.h"
+#import "MSFClient+BankCardList.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "MSFClient+Users.h"
-#import "MSFClient+MSFBankCardList.h"
-#import "MSFCheckHasTradePassword.h"
+#import "MSFClient+BankCardList.h"
+#import "MSFCheckTradePasswordViewModel.h"
+#import "MSFAddBankCardTableViewController.h"
+#import "MSFSupportBankListModel.h"
 
 @interface MSFBankCardListViewModel ()
 
@@ -21,11 +23,12 @@
 
 @implementation MSFBankCardListViewModel
 
-- (instancetype)initWithServices:(id<MSFViewModelServices>)servers {
+- (instancetype)initWithServices:(id<MSFViewModelServices>)servers type:(NSString *)type {
 	self = [super init];
 	if (!self) {
 		return nil;
 	}
+	_type = type;
 	_services = servers;
 	_executeSetMaster = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeSetMasterSignal];
@@ -33,11 +36,29 @@
 	_executeUnbind = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self executeUnbindSignal];
 	}];
-//	_executeBankList = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-//		return [self executeBankListSignal];
-//	}];
-	_checkHasTrandPasswordViewModel = [[MSFCheckHasTradePassword alloc] initWithServices:self.services];
-	
+	_checkHasTrandPasswordViewModel = [[MSFCheckTradePasswordViewModel alloc] initWithServices:self.services];
+    _excuteActionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            MSFAddBankCardViewModel *viewModel =  [[MSFAddBankCardViewModel alloc] initWithServices:self.services andIsFirstBankCard:YES];
+            
+            [self.services pushViewModel:viewModel];
+            [subscriber sendNext:nil];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+        
+    }];
+    _executeSupportCommand = [[RACCommand alloc]initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            MSFSupportBankListModel *viewModel = [[MSFSupportBankListModel alloc]initWithServices:self.services ];
+            [self.services pushViewModel:viewModel];
+            [subscriber sendNext:nil];
+            [subscriber sendCompleted];
+            return nil;
+
+        }];
+    }];
+    
 	return self;
 }
 
@@ -59,6 +80,10 @@
 
 - (RACSignal *)fetchBankCardListSignal {
 	return [self.services.httpClient fetchBankCardList];
+}
+
+- (void)returnBanKModel:(ReturnBankCardIDBlock)block {
+	self.returnBankCardIDBlock = block;
 }
 
 @end

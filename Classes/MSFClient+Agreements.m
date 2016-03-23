@@ -6,9 +6,11 @@
 
 #import "MSFClient+Agreements.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "MSFApplyCashVIewModel.h"
+#import "MSFApplyCashViewModel.h"
 #import "MSFUser.h"
 #import "MSFLoanType.h"
+#import "MSFCartViewModel.h"
+#import "MSFSocialInsuranceCashViewModel.h"
 
 NSString *const MSFAgreementTypeRegister = @"REGISTRATION_PROTOCOL";
 NSString *const MSFAgreementTypeAboutUs = @"ABOUT_US";
@@ -23,12 +25,26 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 
 #pragma mark - Private
 
-- (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashVIewModel *)product {
+- (RACSignal *)fetchLoanAgreementRequestWithProduct:(MSFApplyCashViewModel *)product {
+	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"treaty/loan" parameters:@{
+			@"productCode": product.loanType.typeID,
+			@"appLmt": product.appLmt?:@"",
+			@"templateType": @"LOAN_PROTOCOL",
+			@"loanTerm": product.loanTerm
+		}];
+		[subscriber sendNext:request];
+		[subscriber sendCompleted];
+		return nil;
+	}];
+}
+
+- (RACSignal *)fetchLoanAgreementWithCart:(MSFCartViewModel *)product {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/treaty" parameters:@{
 			@"productCode": product.loanType.typeID,
-			@"appLmt": product.appLmt?:@"",
-			@"loanTerm": product.loanTerm
+			@"appLmt": product.loanAmt?:@"",
+			@"loanTerm": product.term?:@"",
 		}];
 		[subscriber sendNext:request];
 		[subscriber sendCompleted];
@@ -38,7 +54,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 
 - (RACSignal *)fetchUserAgreementRequestWithType:(NSString *)type {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/article" parameters:@{
+		NSURLRequest *request = [self requestWithMethod:@"GET" path:@"treaty/static" parameters:@{
 			@"templateType" :type,
 		}];
 		[subscriber sendNext:request];
@@ -68,7 +84,7 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 		}];
 }
 
-- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashVIewModel *)product {
+- (RACSignal *)fetchLoanAgreementWithProduct:(MSFApplyCashViewModel *)product {
 	return [[self
 		fetchLoanAgreementRequestWithProduct:product]
 		flattenMap:^RACStream *(id value) {
@@ -79,11 +95,26 @@ static NSString *const MSFClientResponseLoggingEnvironmentKey = @"LOG_API_RESPON
 		}];
 }
 
-- (RACSignal *)fetchLifeLoanAgreement:(NSString *)productCode {
-	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"loan/life" parameters:@{
-		@"templateType": @"LOAN_PROTOCOL",
-		@"productCode": productCode,
-	}];
+- (RACSignal *)fetchLifeLoanAgreement:(MSFSocialInsuranceCashViewModel *)product {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"treaty/loan" parameters:@{
+			@"productCode": product.loanType.typeID,
+			@"appLmt": @"",
+			@"templateType": @"LOAN_PROTOCOL",
+			@"loanTerm":@""
+		}];
+	return [[NSURLConnection rac_sendAsynchronousRequest:request]
+		reduceEach:^id(NSURLResponse *response, NSData *data){
+			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		}];
+}
+
+- (RACSignal *)fetchCommodityLoanAgreement:(MSFCartViewModel *)product {
+	NSURLRequest *request = [self requestWithMethod:@"GET" path:@"treaty/loan" parameters:@{
+			@"productCode": product.loanType.typeID,
+			@"appLmt": product.loanAmt,
+			@"templateType": @"LOAN_PROTOCOL",
+			@"loanTerm": product.loanTerm
+		}];
 	return [[NSURLConnection rac_sendAsynchronousRequest:request]
 		reduceEach:^id(NSURLResponse *response, NSData *data){
 			return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

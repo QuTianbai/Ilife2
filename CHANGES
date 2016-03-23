@@ -1,3 +1,700 @@
+Version 3.0.0.15:
+ - Merge remote-tracking branch 'origin/zyp' into next
+ - Merge remote-tracking branch 'origin/xubaimiao' into next
+ - 马上贷在申请的时候选择6期，但是提交申请时，会自动变成9期
+ - update version3.0.0.14
+ - update version3.0.0.14
+ - Fix #127 商品贷申请过程中，其他信息界面，同一个联系人可以使用多次
+ - 马上贷在申请的时候选择6期，但是提交申请时，会自动变成9期
+ - Fix warnings
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 订单详情冲攒资料
+ - 订单详情确认合同
+ - 【还款计划】只要到期的账单才显示红色，未到期的账号显示灰色
+ - 已经逾期的账单，在我要还款界面，没有显示已逾期
+ - Bumping version to v3.0.0.12
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Fix #14 商品贷款界面设计
+ - Merge branch 'zyp' of http://gitbrew.com/msxf/finance
+ - 在输入交易密码时，没有忘记密码连接，与原型不符
+ - Merge branch 'xubaimiao' of gitbrew.com:msxf/finance
+ - fix bug
+ - 马上贷：第二次申请的时候无法带出联系人的手机号
+ - 确认合同
+ - fix bug 切换银行卡银行卡图标不变
+ - fix bug 还款显示逻辑
+ - 确认合同
+ - Fix #116 申请过程中，如图申请人已婚，可以将第一联系人由配偶改成其他关系
+ - Fix warnings
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Merge remote-tracking branch 'origin/next'
+ - 逾期还款，改为判断状态
+ - update version 3.0.0.11
+ - 证书
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge branch 'zyp' of http://gitbrew.com/msxf/finance
+ - 还款计划
+ - Merge branch 'fix-bug-MDSJ-70' of /home/git/repositories/msxf/finance into next
+ - 旅游贷款订单详情
+ - 分支合并
+ - 我的-我要还款页面日期和状态显示不正确
+ - 优化
+ - fix bug 在申请过程中，在其他信息界面，当更改了申请人社会身份时，信息错误，如图
+ - 这个逻辑有问题  联系人3关闭同现居地址，第一次输入详细地址会提示完善信息，要删了多输入几次 才能进行下一步
+ - 其他信息页面，添加其他联系人2、3的时候显示的应该是所有的类型
+ - 信用钱包首页点击立即还款，还款页面中未显示总欠款金额
+ - 提示验证错误
+ - 学校信息
+ - 选择产品
+ - 非重庆用户，选择产品
+ - 非重庆用户注册登录后，可以申请信用钱包，与原型设计不符
+ - 添加图片
+ - 马上贷申请-已编辑联系人信息，申请过程中，其他信息页面中选择婚姻状况后联系人信息被清空
+ - 马上贷其他信息第一联系人出现的选项与原型设计不符
+ - 还款计划显示
+ - 还款详情，首页跳转我的还款控制
+ - 时间格式，还款
+ - 商品贷支付首付
+ - 还款
+ - 马上贷还款
+ - 还款添加银行卡
+ - 马上贷金额刻度限制500
+ - version3.0.0.9
+ - Merge branch 'zyp' of http://gitbrew.com/msxf/finance
+ - 证书
+ - 优化
+ - 审核失败状态
+ - 给联系人添加限制
+ - Merge branch 'xubaimiao' of gitbrew.com:msxf/finance
+ - change config 文件
+ - add file
+ - merge zhaoyunpan
+ - merge sir
+ - 商品代状态
+ - fix bug 已完成实名认证，我的首页显示未实名认证
+ - 我的还款详情
+ - 控制邮箱输入
+ - fix bug 其他信息页面：入职日期在某种情况下可以比参加工作时间还早
+ - fix 联系人地址bug
+ - 我商品代我的还款更改接口
+ - 优化闪退以及职业信息验证
+ - fix bug 【商品贷】第一个联系人地址不填写时，仍然可以提交申请，如图：
+ - 银行卡设置交易密码
+ - merge
+ - fix bug 试算页面，如果出现同时拉取多期的情况APP金额显示会出现问题
+ - 信用钱包4s适配
+ - 马上代4s适配
+ - fix bug
+ - fix bug 在商品信息界面，当选择加入寿险计划后，寿险金额显示小数的位数未做处理
+ - merge
+ - fix bug 在基本信息页面：联系方式的常用邮箱和住宅电话产品中定义都是选填，并且没有控制邮箱格式
+ - fix bug 新用户身份验证，添加银行卡，未读出卡类型
+ - 还款计划
+ - 从next分支合并
+ - fix bug
+ - Merge branch 'sdr' of http://gitbrew.com/msxf/finance
+ - new
+ - merge
+ - 证书
+ - Merge branch 'xubaimiao' of http://gitbrew.com/msxf/finance
+ - 还款计划
+ - 还款计划
+ - fix bug
+ - 4s适配
+ - Revert "userident  correct"
+ - fix bug 马上贷其他信息页面，未对手机号码位数限制
+ - merge
+ - userident  correct
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - 证书
+ - Bumping version to v3.0.0.7
+ - Fix #50 min date
+ - Fix the third contact edition
+ - Fix cash loan application reset social insurance
+ - Fix #32 error word
+ - Fix verify email address form
+ - Fix #58 signup auth code fetch button display
+ - Improve credit slider view
+ - Update adv imageview display mode
+ - Fix #53 dont' allow commit without intact contacts
+ - Fix api document error parameter
+ - Fix #31 personal's email is optional content
+ - Remove duplicated prefix MSF
+ - Fix #10 auto dimiss keyboard when select work date
+ - Fix after authenticate user not fetch user information
+ - Update unauthenticated user can't call authenticated api
+ - Update api server
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Merge remote-tracking branch 'origin/sdr'
+ - merge
+ - 旅游贷款支付首付
+ - 信用钱包提交，先保存资料
+ - 信用钱包提现还款未设交易密码，跳转
+ - 加载提示
+ - 我的订单，我的还款加载提示
+ - 我的还款信用钱包
+ - 我的还款
+ - merge
+ - Merge branch 'sdr' of http://gitbrew.com/msxf/finance
+ - 优化
+ - 商品贷首付
+ - 去掉修改手机号功能
+ - support BankCardList
+ - 马上贷、信用钱包，订单详情
+ - 还款
+ - 提现还款接口
+ - Merge remote-tracking branch 'origin/zyp'
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - Update down payment status
+ - Format code style
+ - 立即还款图片
+ - Merge branch 'next' of gitbrew.com:msxf/finance
+ - fix bug  add 提示语 “马上金融对您综合评估后可能为您提供新的更适合您的借贷方案”
+ - update version 3.0.0.6
+ - 代码规范
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge remote-tracking branch 'origin/zyp'
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 提现按钮
+ - fix bug
+ - Update inventories view back to professional view
+ - Update refresh after add coupons
+ - Fix warnings
+ - Fix contact selection crash
+ - Merge remote-tracking branch 'origin/xubaimiao' into next
+ - 更换银行卡
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 信用钱包提现
+ - fix bug 旅游商品贷：在商品信息列表，选择所有信息后点击下一步提示：UUID没有传
+ - 信用钱包提现，选择银行卡
+ - fix bug 旅游商品贷其他信息页面：入职日期不能在参加工作日期之前
+ - fix bug 我的-设置不能修改登录密码
+ - fix bug 旅游商品贷：其他信息页面，婚姻状况为“已婚”默认联系人为配偶
+ - 已在安卓客户端注册的老用户在IOS登录，提示无效验证码，且未出现获取验证码按钮与验证码输入框
+ - 购物选项
+ - 修复：信用钱包激活-身份验证页面点击下一步无反应
+ - 银行卡显示
+ - fix bug 马上贷其他信息，添加联系人数量与原型设计不一致 马上贷-其他信息，社会身份选择学生，学制可以输入0
+ - 信用钱包
+ - 修复：点击还款和提款崩溃
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Fix 首付比例接数据类型错误
+ - version update3.0.0.5
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - 信用钱包基本信息手机号限制
+ - 实名认证返回数据update
+ - Update authenticated bank card information
+ - Update unauthenticated user view display `未实名认证`
+ - Update server api use site4
+ - Merge branch 'next' of git.msxf.local:ios/Finance
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 贷款用途
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 确认合同
+ - 信用钱包社保信息页面显示与原型设计部符，未对手机号码位数进行限制
+ - 实名认证，银行卡
+ - 优化
+ - 用户在未确认合同的情况下，可以同时申请马上贷和信用钱包
+ - 用户在未确认合同的情况下，可以同时申请马上贷和信用钱包
+ - 修复商品贷，实名认证判断
+ - Merge branch 'next' of http://gitbrew.com/msxf/finance
+ - Merge branch 'master' into 'next'
+ - 确认合同
+ - 确认合同
+ - Merge remote-tracking branch 'origin/xubaimiao'
+ - 证书
+ - 银行卡判定实名认证
+ - BankCard   alter
+ - 修复 没有完成身份验证，也能进入到“基本信息”和“其他信息”界面
+ - 银行卡列表的uniqueID
+ - merge
+ - bug
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - 订单详情，每月还款数目为null时优化显示
+ - 优化布局显示
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - 用户未完善资料室，申请社保贷提示联系人null，修复
+ - Merge branch 'next' of gitbrew.com:repo/finance
+ - 忘易密码点击崩溃修复
+
+Version 3.0.0.3:
+ - Fix new user signin crash
+ - Fix warnings
+
+Version 3.0.0.2:
+ - Update credit fetched status
+ - Improve take photo view
+ - Update server version local verify
+ - Update release note isupdate
+
+Version 2.3.0.10:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into pu/v1.3.0
+ - 更新内部版本号规则
+ - Bumping version to 1.3.0
+ - Remove bugs reports
+ - Merge branch 'next'
+ - Merge branch 'pu/v1.2.0'
+
+Version 2.3.0.9:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 0还款提示语
+ - Update coupons fetch rule
+ - Update coupon view model status
+ - Update 优惠券未使用重复调用
+ - Fix coupons cell crash
+ - Update 优惠券有效期
+ - Update 限制最大还款金额
+ - Update 首付金额为0的时候显示0切不可编辑
+
+Version 2.3.0.8:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Fix 无首付金额计算错误
+
+Version 2.3.0.7:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Fix 首付验证交易密码
+ - Update 商品贷限制最低商品金额
+ - Update 最低带宽金额提示
+
+Version 2.3.0.6:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Improve 无贷款期数提示
+ - Update 首付增加交易密码验证
+ - Fix 取消交易密码输入状态
+ - Update 首付金额数据类型
+
+Version 2.3.0.5:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update coupon valid date left dates
+ - Update change bank card workflow
+ - Fix specs
+
+Version 2.3.0.4:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Fix #1248 没有优惠券时显示与产品提供的文案不一致
+
+Version 2.3.0.3:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'next'
+ - Fix coupons GET API
+ - Improve 社保贷地址验证
+ - Update rac zipwith
+ - Improve coupons view
+
+Version 2.3.0.2:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'todo/improve' into next
+ - Improve request header information
+ - Improve coupons view model about error occur
+ - Fix specs
+ - Add URL Type scheme
+ - Improve coupons timestamp use server time
+
+Version 2.3.0.1:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'pu/v1.2.0' into next
+ - Merge branch 'todo/1.4' into next
+ - Add coupon product name
+ - Improve no coupons view
+ - Update indicator background view
+ - Update exchange coupon with code
+ - Improve coupons view display
+ - Update deadline value
+ - Add color hex for deadline coupons value
+ - Refactor coupons
+ - Update have no coupons display image
+ - Remove test code
+ - Update add coupons with code
+ - Improve category coupons
+ - Update coupons view
+ - Update deprecated methods
+ - Deprecate draw cash view model
+ - Reset draw cash view model
+ - Update drawings from accounts
+ - Update repayment with trade passcode
+ - Update 循环贷还款
+ - Update repayment view model
+ - Add first pay view model
+ - Rename transaction related classes
+ - Rename repyamentviewmodel to repaymentplanviewmodel
+ - Add payment protocol to draw cash view model
+ - Add payment view
+ - Replace todo with !!! tag
+ - Remove deprecated files
+ - Fix storyboard warnings
+ - Fix deprecated methods warnings
+ - Fix spec
+ - Remove BugshotKit
+ - Bumping Version to 1.2.0
+
+Version 2.2.0.25:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 首付金额限制在整数
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update archive script append ftp upload script
+ - Add ftp upload to server script
+
+Version 2.2.0.24:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 退货状态显示
+
+Version 2.2.0.23:
+ - Update 贷款首付金额计算
+
+Version 2.2.0.22:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 首付标志数据类型
+ - Fix 附件清单视图内存释放
+ - Update 贷款金额验证
+ - Update 旅游贷申请时间格式
+ - Improve 增加支付验证码提示
+
+Version 2.2.0.21:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 接口默认数据格式再次更新
+
+Version 2.2.0.20:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Improve 相机内存管理
+ - Improve 商品贷/旅游贷提交接口
+
+Version 2.2.0.19:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 试算条件,不满足条件不给予试算
+ - Fix 旅游贷同行人/旅游信息传递接口
+
+Version 2.2.0.18:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 合同确认流程
+ - Update 支付首付流程
+ - Fix #1132 限制个人信息中社交账号的长度为11位
+ - Fix #1138 提示客户支持哪些银行卡
+ - Fix #1141 去掉其他联系人的配偶关系选项
+
+Version 2.2.0.17:
+ - Merge pull request !56 from 'zl/master'
+ - Update 由于配置原因导致产品缺失，限制客户端最大贷款金额
+ - Update 商品贷／旅游贷合同确认流程
+ - Fix 同行人信息显示
+
+Version 2.2.0.16:
+ - Merge branch 'next'
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 商品试算提示
+ - Update 同行人关系
+ - Update 首付支付的相关验证
+ - Update 首页状态值对界面的影响
+
+Version 2.2.0.15:
+ - Merge branch 'next'
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Update 动态产品编码类型
+
+Version 2.2.0.14:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'todo/pay' into next
+ - Update 银行卡支付首付
+ - Update down payment api
+
+Version 2.2.0.13:
+ - Merge branch 'next'
+ - Merge branch 'master' of http://git.msxf.local/zl/finance into next
+ - Merge branch 'next'
+ - Merge branch 'todo/1.3' into next
+ - Update 购物类型
+ - Update 旅游贷申请
+ - Update 优化视图显示
+ - Update 更新商品贷，旅游类产品显示
+ - Update 商品种类显示
+ - Improve 旅游类型购物车显示
+ - Update 动态显示同行人
+ - Update 设计多种类商品显示，区分商品/旅游
+ - Fix 银行卡绑定成功没有更新银行卡状态
+ - @wip cart view
+ - Update 旅游贷提交数据
+ - Update order info for traveling loan
+ - Update cart model
+ - Add companion model
+ - add travel model
+ - Update 错误提示
+ - Improve 当前贷款金额无法获取期数的情况
+ - Fix 还款条件限制
+ - Improve 商品贷款预算中，限制进入贷款协议界面
+ - Improve 商品试算加载提示
+ - Merge branch 'pu/v1.3.0.11' into next
+ - Merge branch 'pu/v1.3.0.11'
+ - Update display version to 1.3.0
+
+Version 2.2.0.12:
+ - Merge branch 'master' of http://git.msxf.local/zl/finance
+ - Update script
+ - Update provisioning profile
+ - Update 默认试算参数
+ - Fix 无欠款还款
+ - Merge branch 'pu/v2.2.0.11' into next
+
+Version 2.2.0.11:
+
+
+Version 2.2.0.10:
+
+
+Version 2.2.0.9:
+ - Merge branch 'next'
+ - Merge pull request !51 from `yongzhao/master`
+ - Merge pull request !50 from `zl/master`
+ - 更新订单状态映射、修复订单详情商品无法完全显示的问题
+ - Format code style
+ - Refactor iPhone4 size
+ - Fix #911 扫描支付页面未出现条形支付码有效时间
+ - 输入首付金额过大时禁止试算
+ - 试算添加loading
+ - Remove label from barcode scanner
+
+Version 2.2.0.8:
+ - Merge branch 'next'
+ - Merge pull request !46 from `yongzhao/maste`
+ - Merge pull request !47 from `zl/master`
+ - Update 首页支付增加交易密码
+ - 略微改小订单详情内容字体大小，解决小屏幕字体重叠的问题
+ - 修复订单详情确认支付按钮宽度屏幕适配问题
+ - 修改首页状态显示为空的问题
+ - 编辑订单信息，当最低最高首付比例为0时，禁止首付输入
+ - Update icons images
+ - 动态拉取支持银行的信息
+ - Update 条形码界面增加订单号显示
+ - Fix specs
+ - Update provisioning profile
+ - Update default test api
+
+Version 2.2.0.7:
+ - Merge branch 'next'
+ - Merge pull request !45 from `zl/master`
+ - Merge pull request !44 from `yongzhao/master`
+ - Update 增加无效二维码提示
+ - 修改订单详情文字错误，修改订单列表上拉加载
+
+Version 2.2.0.6:
+ - Merge branch 'next'
+ - Merge pull request !43 from `yongzhao/master`
+ - fix promID
+ - Update develop api address
+ - Update provisioning profile
+
+Version 2.2.0.5:
+ - Merge branch 'next'
+ - Merge pull request !42 from `zl/master`
+ - Fix 商品贷合同确认API
+ - Merge pull request !40 from `yongzhao/master`
+ - Merge pull request !41 from `zl/master`
+ - Format code style
+ - Merge branch 'v2.1.1'
+ - Merge branch 'master' into v2.1.1
+ - Update Podfile
+ - 区分拍人像和拍普通图片时的相机配置
+ - Merge branch 'next' of git.msxf.local:ios/Finance into develop
+ - 1、修复首页无法显示商品贷 2、货单下一步按钮添加是否允许申请贷款的验证
+ - Merge branch 'next' of git.msxf.local:ios/Finance into develop
+ - 修复首页无法显示商品贷申请状态的问题
+ - 修复头像拍摄直接返回后再次点击拍照崩溃的问题
+ - 1、修改头像拍照界面按钮文字 2、修改试算寿险金额label换行 3、头像拍照摄像头默认前置，不可切换
+ - Bumping version to v1.1.1 for release
+ - Bumping version to 2.1.1.4
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - commit
+ - Bumping version to 2.1.1.3
+ - Merge remote-tracking branch 'ios/v2.1.1' into v2.1.1
+ - 社保贷表单有效性验证
+ - Bumping version to 2.1.1.2
+ - Update ad-hoc provisioning profile
+ - 1、修复社保表单验证不可用 2、删除准备使用的动态社保表单cell
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - 限制输入字数
+ - fix socialCash keyboardType
+ - Bumping version to 2.1.1.1
+ - Fix 手机号验证
+ - Merge remote-tracking branch 'ios/temp2.2.0' into temp2.2.0
+ - Fix 自动更新地址信息
+ - Merge branch 'temp2.2.0' of git.msxf.local:ios/Finance into temp2.2.0
+ - 添加社保单校验
+ - Update 社保贷保存身份信息
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Update 社保贷提交
+ - 麻辣带全屏提交
+ - update tab2 UI
+ - update data binding
+ - Update headers background color
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Fix 时间戳异常
+ - commit
+ - commit
+ - prepare delete storyboard
+ - commit
+ - commit
+ - tempCommit
+ - update socialInsurance storyboard
+ - update support banks
+ - 银行卡绑定页面显示支持的银行
+ - update tab2 UI; update tab2 点击麻辣贷跳转
+ - 调整tab2申请入口广告UI比例
+ - 授权后，app直接进入tab2
+
+Version 2.2.0.4:
+ - Merge branch 'next'
+ - Merge pull request !39 from `zl/master`
+ - Update 商品贷确认合同模版
+ - Fix 商品贷提交清单寿险计划字段错误
+ - Update bugshot in appdelegate
+ - Merge pull request !38 from `zl/master`
+ - Merge pull request !36 from `yongzhao/master`
+ - Merge pull request !37 from `zl/master`
+ - Merge branch from 'water/master'
+ - Fix 上传照片后无法自动返回清单界面
+ - Fix 商品贷提交数据格式
+ - 1、修改首付比例键盘格式 2、修复首付比例金额显示格式 3、修复货单编辑下一步无法点击的问题
+ - Update debug provisioning profile
+ - ios 方法不支持
+ - Update provisioning profile
+
+Version 2.2.0.3:
+ - Update ad-hoc provisioning profile
+ - Merge branch 'next'
+ - Merge branch 'YongZhao/master' into next
+ - update 试算商品贷款
+ - commit
+ - Update report path
+
+Version 2.2.0.2:
+ - Update ad-hoc provisioning profile
+
+Version 2.2.0.1:
+ - Merge feature `commodity loan application`
+ - Merge pull request from `zl/master`
+ - Update 二维码扫描
+ - Update 商品贷贷款流程
+ - Update 商品贷试算金额
+ - Update 订单生成支付条形码
+ - Fix 订单详情崩溃
+ - Improve 订单列表界面
+ - Fix 订单相关对象属性类型错误
+ - Update 根据首页条件判断订单支付/订单扫描按钮饿配置
+ - @wip home pay
+ - Update cipher timestamp fetch from response headers
+ - Merge pull request !33 from `Water/master`
+ - Merge pull request !34 from `YongZhao/master`
+ - update MSFCartViewModel Property
+ - Merge pull request !32 from `zl/master`
+ - Merge pull request !30 from `YongZhao/master`
+ - Format code style
+ - Fix @water test code in sign in view side effects
+ - Merge pull request branch 'Water/feature' into next
+ - Fix merge conflict from Water/featture branch
+ - Merge branch 'next' into Water/feature
+ - 主动支付
+ - 主动支付
+ - 合并
+ - 人脸识别照片
+ - 调试、整理订单相关代码
+ - 联调货单编辑
+ - 商品编辑 model绑定
+ - merged code from remote branch
+ - Rename OrderEdit in Cart
+ - Fix warnings
+ - Merge pull request !gitbrew from `Water/master`
+ - add MSFCart
+ - Merge pull request !29 from `zl/master`
+ - Add TODO tag for test code
+ - Merge pull request !28 from YongZhao/master
+ - 还款计划及支付
+ - 还款验证码页面
+ - update order edit UI
+ - Add 商品贷贷款流程
+ - 还款管理调整
+ - 还款管理
+ - 去掉拉去广告的功能
+ - hide bottom bar when pushed
+ - merge code form remote next branch
+ - 完成订单编辑UI ViewModel（尚未绑定api model）
+ - Merge pull request !25 from YongZhao/master
+ - Merge pull request !27 from zl/ra-master
+ - Merge remote-tracking branch 'ios/next'
+ - Update barcode scanner with reactivecocoa
+ - Add prefix to barcode scanner
+ - Add barcode scanner
+ - Remove textview/Textfeild custom class
+ - Update script
+ - add image icon-account-order add MSFOrderEditViewController
+ - 完成订单相关模块
+ - recover PlanPerodicTables
+ - add Orders
+ - delete MSFContractDetailsTableViewController MSFPlanPerodicTables MSFContractDetailsTableViewCell MSFUserInfoTableViewCell
+ - 添加首页广告
+ - Merge branch 'master' into next
+ - Merge branch 'zl/finance-master' into next
+ - Merge remote-tracking branch 'ios/next'
+ - Fix warnings
+ - Format view code style
+ - Format viewModel code style
+ - Merge branch 'master' into 'next'
+ - Merge branch 'next' of git.msxf.local:ios/Finance
+ - 1、职业信息页面使用的applicationViewModel改为copy，替代原来的直接引用。
+ - 1、基本信息、联系人信息页面使用的applicationViewModel改为copy，替代原来的直接引用。  2、更改退出页面时是否编辑信息的判断方法
+ - Format code style
+ - 优化代码，将用户信息三个页面是否被编辑的逻辑移至viewModel中
+ - 优化relationshipViewController代码，将fullAddress、existAddr逻辑移至viewModel
+
+Version 2.1.1.6:
+ - Bumping version to 1.1.2
+ - Clean warnings
+ - Fix server debug api
+ - Merge branch 'v2.1.1.5' of git.msxf.local:YongZhao/Finance into v2.1.1.5
+ - 移除选择地区的默认值
+ - 移除选择地区的默认值
+ - Bumping version to v1.1.1 for release
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - commit
+
+Version 2.1.1.3:
+ - Merge remote-tracking branch 'ios/v2.1.1' into v2.1.1
+ - 社保贷表单有效性验证
+
+Version 2.1.1.2:
+ - Update ad-hoc provisioning profile
+ - 1、修复社保表单验证不可用 2、删除准备使用的动态社保表单cell
+ - Merge branch 'v2.1.1' of git.msxf.local:ios/Finance into temp2.2.0
+ - 限制输入字数
+ - fix socialCash keyboardType
+
+Version 2.1.1.1:
+ - Fix 手机号验证
+ - Merge remote-tracking branch 'ios/temp2.2.0' into temp2.2.0
+ - Fix 自动更新地址信息
+ - Merge branch 'temp2.2.0' of git.msxf.local:ios/Finance into temp2.2.0
+ - 添加社保单校验
+ - Update 社保贷保存身份信息
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Update 社保贷提交
+ - 麻辣带全屏提交
+ - update tab2 UI
+ - update data binding
+ - Update headers background color
+ - Merge branch 'temp2.2.0' of http://git.msxf.local/ios/finance into temp2.2.0
+ - Fix 时间戳异常
+ - commit
+ - commit
+ - prepare delete storyboard
+ - commit
+ - commit
+ - tempCommit
+ - update socialInsurance storyboard
+ - update support banks
+ - 银行卡绑定页面显示支持的银行
+ - update tab2 UI; update tab2 点击麻辣贷跳转
+ - 调整tab2申请入口广告UI比例
+ - 授权后，app直接进入tab2
+
 Version 2.1.0.12:
  - Merge pull request #24 from Water/2.1.0.11-dictionary
  - 社保信息数据字典定义

@@ -10,7 +10,7 @@
 
 QuickSpecBegin(MSFApplyCashVIewModelSpec)
 
-__block MSFApplyCashVIewModel *sut;
+__block MSFApplyCashViewModel *sut;
 
 it(@"should has loantype", ^{
 	// given
@@ -19,7 +19,7 @@ it(@"should has loantype", ^{
 	stubProperty(loanType, typeID, @"foo");
 	
 	// when
-	sut = [[MSFApplyCashVIewModel alloc] initWithViewModel:formsViewModel loanType:loanType];
+	sut = [[MSFApplyCashViewModel alloc] initWithViewModel:formsViewModel loanType:loanType];
 	
 	// then
 	expect(sut.loanType).notTo(beNil());

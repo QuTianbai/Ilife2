@@ -18,19 +18,15 @@
 #import "MSFClient.h"
 
 @interface MSFSetTradePasswordTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *tradePasswordTF;
 @property (weak, nonatomic) IBOutlet UITextField *sureTradePasswordTF;
-
 @property (weak, nonatomic) IBOutlet UITextField *checkCodeTF;
 @property (weak, nonatomic) IBOutlet UIButton *checkCodeBT;
 @property (weak, nonatomic) IBOutlet UILabel *countLB;
 @property (weak, nonatomic) IBOutlet MSFEdgeButton *sureBT;
-
-//@property (nonatomic, strong) MSFSetTradePasswordViewModel *viewModel;
 @property (weak, nonatomic) IBOutlet UIImageView *sendCaptchaView;
-
 @property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
-
 @property (nonatomic, assign) NSInteger statusHash;
 
 @end
@@ -52,7 +48,6 @@
 	[super viewDidLoad];
 	self.title = @"设置交易密码";
 	
-	//self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_viewModel = appdelegate.authorizeVewModel;
@@ -113,6 +108,7 @@
 	[self.viewModel.executeSetTradePwd.executionSignals subscribeNext:^(RACSignal *signal) {
 		[SVProgressHUD showWithStatus:@"正在提交" maskType:SVProgressHUDMaskTypeClear];
 		[signal subscribeNext:^(id x) {
+			//!!!: 设置交易密码后应该再次获取用户信息，以确保服务器是否更新了用户的交易密码
 			MSFUser *user = [[MSFUser alloc] initWithDictionary:@{@"hasTransactionalCode": @YES} error:nil];
 			[[self.viewModel.services httpClient].user mergeValueForKey:@"hasTransactionalCode" fromModel:user];
 			[SVProgressHUD showSuccessWithStatus:@"设置交易密码成功"];

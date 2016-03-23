@@ -13,8 +13,9 @@
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
-					 @"statusString" : @"status"
-					 };
+		@"statusString": @"status",
+		@"typeString" : @"type"
+	};
 }
 
 + (NSValueTransformer *)loanTermJSONTransformer {
@@ -26,6 +27,12 @@
 + (NSValueTransformer *)statusStringJSONTransformer {
 	return [MTLValueTransformer transformerWithBlock:^id(id object) {
 		return [NSDictionary statusStringForKey:object];
+	}];
+}
+
++ (NSValueTransformer *)typeStringJSONTransformer {
+	return [MTLValueTransformer transformerWithBlock:^id(id object) {
+		return [NSDictionary typeStringForKey:object];
 	}];
 }
 

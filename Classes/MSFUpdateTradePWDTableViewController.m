@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 
 @interface MSFUpdateTradePWDTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UITextField *oldpwdTF;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTF;
 @property (weak, nonatomic) IBOutlet UITextField *surepwdTF;
@@ -22,9 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *codebgimg;
 @property (weak, nonatomic) IBOutlet UILabel *codeLB;
 @property (weak, nonatomic) IBOutlet UIButton *codeBT;
-
 @property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
-
 @property (nonatomic, assign) NSInteger statusHash;
 
 @end
@@ -43,7 +42,7 @@
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 	self.title = @"修改交易密码";
 	AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
 	_viewModel = appdelegate.authorizeVewModel;
@@ -51,7 +50,6 @@
 	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
 	
-	//[self.viewModel.repetitiveEventSignal sendCo]
 	[[self.oldpwdTF rac_signalForControlEvents:UIControlEventEditingChanged]
 	 subscribeNext:^(UITextField *textField) {
 		 self.statusHash = 1;
@@ -144,7 +142,6 @@
 }
 
 - (void)back {
-	
 	if (self.statusHash == 0) {
 		[self.navigationController popViewControllerAnimated:YES];
 		return;
@@ -157,11 +154,6 @@
 		}
 	}];
 	[alertView show];
-	
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

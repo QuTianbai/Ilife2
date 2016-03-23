@@ -8,25 +8,25 @@ find_pattern () {
 }
 
 XCWORKSPACE=$(find_pattern "*.xcworkspace")
-SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+XCODEPROJ=$(find_pattern "*.xcodeproj")
 
-echo "========================================================================="
-echo "xctool -workspace $XCWORKSPACE -scheme $SCHEME clean"
-echo "========================================================================="
+if [[ $XCWORKSPACE == '' ]]; then
+	SCHEME=`echo $XCODEPROJ | awk -F '.xcodeproj' '{print $1}'`
+	xctool -project $XCODEPROJ -scheme $SCHEME clean
+else
+	SCHEME=`echo $XCWORKSPACE | awk -F '.xcworkspace' '{print $1}'`
+	xctool -workspace $XCWORKSPACE -scheme $SCHEME clean
+fi
 
-xctool -workspace $XCWORKSPACE -scheme $SCHEME clean
+echo "========================================================================"
 
-echo "========================================================================="
-echo "rm -rf $BUILD_DIR"
-echo "========================================================================="
+echo "Build cleaning..."
 
 rm -rf $BUILD_DIR
 
-echo "========================================================================="
 echo 'DerivedData Cleaning...'
-echo "========================================================================="
 
 rm -rf ~/Library/Developer/Xcode/DerivedData/*
-
-echo 'Done'
 ls -l ~/Library/Developer/Xcode/DerivedData
+
+echo "========================================================================"
