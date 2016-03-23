@@ -98,7 +98,9 @@
 		@strongify(self)
 		[self.monthCollectionView reloadData];
 		if ([self.viewModel.viewModel viewModels].count > 0) {
-			[self.viewModel.viewModel setTrial:[(MSFPlanViewModel *)[self.viewModel.viewModel viewModels].lastObject model]];
+            if (self.viewModel.viewModel.viewModels == nil) {
+                [self.viewModel.viewModel setTrial:[(MSFPlanViewModel *)[self.viewModel.viewModel viewModels].lastObject model]];                
+            }
 			self.viewModel.viewModel.homepageIndex = [self.viewModel.viewModel viewModels].count - 1;
 			[self.monthCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:[self.viewModel.viewModel viewModels].count - 1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 		}

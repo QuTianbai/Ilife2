@@ -84,23 +84,23 @@
 	}];
 	_selectCommand.allowsConcurrentExecution = YES;
 	
-	RAC(self, address) = [[RACSignal
-		combineLatest:@[
-			RACObserve(self, province),
-			RACObserve(self, city),
-			RACObserve(self, area),
-		]
-		reduce:^id(MSFAddress *province, MSFAddress *city, MSFAddress *area) {
-			NSMutableString *address = NSMutableString.string;
-			[address appendString:province.name ?: @""];
-			[address appendString:city.name ?: @""];
-			[address appendString:area.name ?: @""];
-			
-			return address;
-		}]
-		doNext:^(id x) {
-			NSLog(@"`Address:`%@", x);
-		}];
+//	RAC(self, address) = [[RACSignal
+//		combineLatest:@[
+//			RACObserve(self, province),
+//			RACObserve(self, city),
+//			RACObserve(self, area),
+//		]
+//		reduce:^id(MSFAddress *province, MSFAddress *city, MSFAddress *area) {
+//			NSMutableString *address = NSMutableString.string;
+//			[address appendString:province.name ?: @""];
+//			[address appendString:city.name ?: @""];
+//			[address appendString:area.name ?: @""];
+//			
+//			return address;
+//		}]
+//		doNext:^(id x) {
+//			NSLog(@"`Address:`%@", x);
+//		}];
 	
 	RAC(self, provinceName) = RACObserve(self, province.name);
 	RAC(self, provinceCode) = RACObserve(self, province.codeID);
@@ -128,6 +128,11 @@
 		self.city = x;
 		[self.area mergeValuesForKeysFromModel:[[MSFAddress alloc] initWithDictionary:@{} error:nil]];
 		if (!self.needArea) {
+            NSMutableString *address = NSMutableString.string;
+            [address appendString:self.province.name ?: @""];
+            [address appendString:self.city.name ?: @""];
+            [address appendString:self.area.name ?: @""];
+            self.address = address;
 			[self.services popViewModel];
 		}
 	}];
@@ -139,6 +144,11 @@
 	[self.services pushViewModel:areasViewModel];
 	return [areasViewModel.selectedSignal doNext:^(id x) {
 		self.area = x;
+        NSMutableString *address = NSMutableString.string;
+        [address appendString:self.province.name ?: @""];
+        [address appendString:self.city.name ?: @""];
+        [address appendString:self.area.name ?: @""];
+        self.address = address;
 		[self.services popViewModel];
 	}];
 }

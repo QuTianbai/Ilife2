@@ -398,8 +398,29 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
             return [RACSignal error: error];
             
         }
+    } else if ([self.code isEqualToString:@"SI01"]) {
+        if (self.schoolName.length <= 3) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"学校名称不能少于四个字符",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        } else if (self.schoolLength.length <= 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写学制",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+            
+        } else if (self.schoolDate.length <= 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请选择入学时间",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+            
+        }
     }
-
 	__block NSError *error = nil;
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFContactViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if (!obj.isValid) {
