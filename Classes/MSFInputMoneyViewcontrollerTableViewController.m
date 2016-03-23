@@ -118,7 +118,7 @@
 #pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([self.viewModel isKindOfClass:MSFDrawingsViewModel.class]) return 4;
+    if ([self.viewModel isKindOfClass:MSFDrawingsViewModel.class]) return 3;
     return [super tableView:tableView numberOfRowsInSection:section];
 }
 

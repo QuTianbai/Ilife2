@@ -193,6 +193,7 @@ MSFInputTradePasswordViewController *pvc;
             } else if ([self.viewModel.orderStatus isEqualToString:@"重传资料"]) {
                 MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.viewModel.appNo productID:self.viewModel.crProdId services:self.viewModel.services];
                 [self.viewModel.services pushViewModel:viewModel];
+                return;
                 
             }
 			if (!self.viewModel.isDownPmt) {

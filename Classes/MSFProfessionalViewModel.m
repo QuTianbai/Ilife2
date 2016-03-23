@@ -383,6 +383,19 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
             
             return [RACSignal error: error];
             
+        } else if (self.jobDetailAddress.length > 200) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"详细地址不能多于200字符",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+        } else if (self.jobDetailAddress.length > 0 && self.jobDetailAddress.length < 3) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"详细地址不能少于3字符",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+            
         }
     }
 

@@ -6845,7 +6845,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "c30baf3b-5ad8-474e-8ae4-d6ee6f9f8211";
+				PROVISIONING_PROFILE = "eac3b17b-7992-4feb-a9a0-eaa7e035c492";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -6896,7 +6896,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: xu miao (3E836G3H5H)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xu miao (3E836G3H5H)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6913,7 +6913,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "ca4ce9f9-f0d3-4a82-9209-21611093f6c5";
+				PROVISIONING_PROFILE = "eac3b17b-7992-4feb-a9a0-eaa7e035c492";
 			};
 			name = Debug;
 		};
@@ -6923,7 +6923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6940,7 +6940,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
 			};
 			name = Release;
 		};
@@ -7030,7 +7030,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "46469cec-873d-4b22-a807-d48fc64f71c7";
+				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -7063,7 +7063,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "46469cec-873d-4b22-a807-d48fc64f71c7";
+				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
 			};
 			name = Test;
 		};

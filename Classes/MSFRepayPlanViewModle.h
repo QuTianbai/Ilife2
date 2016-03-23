@@ -32,8 +32,9 @@
 @property (nonatomic, copy, readonly) NSString *loanExpireDate;
 
 @property (nonatomic, copy, readonly) NSString *status;
+@property (nonatomic, assign) BOOL isCurrentLoanTerm;
 
 
-- (instancetype)initWithModel:(id)model;
+- (instancetype)initWithModel:(id)model withCurrentLoanTerm:(NSString *)currentLoanTerm;
 
 @end

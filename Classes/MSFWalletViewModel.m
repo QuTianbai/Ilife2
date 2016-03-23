@@ -61,6 +61,7 @@ static NSString *const kApplicationWalletType = @"4";
 @property (nonatomic, strong, readwrite) MSFPhoto *photo;
 @property (nonatomic, strong, readwrite) NSString *groundTitle;
 @property (nonatomic, strong, readwrite) NSString *groundContent;
+@property (nonatomic, strong, readwrite) NSString *totalOverdueMoney;
 
 @end
 
@@ -139,6 +140,7 @@ static NSString *const kApplicationWalletType = @"4";
 					self.loanRates = [NSString stringWithFormat:@"%.3f%%", model.feeRate * 100];
 					self.repayDate = model.latestDueDate;
                     self.repayAmounts = model.latestDueMoney;
+                    self.totalOverdueMoney = model.totalOverdueMoney;
                     self.repayDates = [NSString stringWithFormat:@"剩余%ld天,可随时还款", model.remainingDate];
 				}];
 			} break;

@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    if ([MSFDeviceGet deviceNum] & liter4s) {
+    if ([MSFDeviceGet deviceNum] & liter4s && [[[UIDevice currentDevice] systemVersion] floatValue] < 8 ) {
         self.headerHtop.constant = 40;
         self.allowMoneyH.constant = 95;
     }

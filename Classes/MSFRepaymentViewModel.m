@@ -26,6 +26,7 @@
 #import "MSFMyRepayDetailViewModel.h"
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
+#import "NSString+Matches.h"
 
 @interface MSFRepaymentViewModel ()
 
@@ -36,6 +37,7 @@
 @property (nonatomic, strong, readwrite) NSString *captchaTitle;
 @property (nonatomic, assign, readwrite) BOOL captchaWaiting;
 @property (nonatomic, strong, readwrite) NSString *bankCardID;
+@property (nonatomic, strong, readwrite) NSString *summary;
 
 @end
 
@@ -239,11 +241,24 @@
 }
 
 - (RACSignal *)paymentSignal {
+    if([self.amounts rangeOfString:@"¥"].location != NSNotFound) {
+        self.amounts = [self.amounts substringFromIndex:1];
+    }
+    if([self.summary rangeOfString:@"¥"].location != NSNotFound) {
+        self.summary = [self.summary substringFromIndex:1];
+    }
     if ([self.amounts floatValue] > [self.summary floatValue]) {
        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
                                                                                              NSLocalizedFailureReasonErrorKey: @"还款金额不能大于欠款金额"
                                                                                              }];
         return [RACSignal error: error];
+    }
+    if (!self.amounts.isMoney) {
+        NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModelDomain" code:0 userInfo:@{
+                                                                                                      NSLocalizedFailureReasonErrorKey: @"还款金额格式不对"
+                                                                                                      }];
+        return [RACSignal error: error];
+        
     }
 	return [self.services.msf_gainPasscodeSignal
 //		flattenMap:^RACStream *(id value) {

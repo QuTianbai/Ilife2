@@ -96,16 +96,31 @@
 			 NSLog(@"error:%@", error);
 		 }];
 	}];
-	
-	[RACObserve(self, cmdtyList) subscribeNext:^(id x) {
-		[_executeFetchCommand execute:nil];
+	[RACObserve(self, model) subscribeNext:^(id x) {
+        if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"马上贷"]) {
+            MSFCmdtyModel *model = [[MSFCmdtyModel alloc] init];
+            model.cmdtyName = @"马上贷";
+            model.cmdtyPrice = self.model.appLmt;
+            model.orderTime = self.model.applyDate;
+            MSFCmdDetailViewModel *viewModel = [[MSFCmdDetailViewModel alloc] initWithModel:model];
+            self.cmdtyList = [NSArray arrayWithObject:viewModel];
+            [_executeFetchCommand execute:nil];
+        }
+    }];
+    
+	[[RACObserve(self, cmdtyList) ignore:nil] subscribeNext:^(id x) {
+        if ([self.type isEqualToString:@"3"] || [self.type isEqualToString:@"商品贷"]) {
+            [_executeFetchCommand execute:nil];
+        }
+		
 	}];
 	
 	RAC(self, contratStatus) = RACObserve(self, model.contractStatus);
 	
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
 		@strongify(self)
-		if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"3"] || [self.type isEqualToString:@"商品贷"] || [self.type isEqualToString:@"马上贷"]) {
+        
+        if ([self.type isEqualToString:@"1"] || [self.type isEqualToString:@"3"] || [self.type isEqualToString:@"商品贷"] || [self.type isEqualToString:@"马上贷"]) {
 			return [RACSignal return:[self.cmdtyList.rac_sequence filter:^BOOL(MSFCmdDetailViewModel *viewModel) {
 				return YES;
 			}].array];
