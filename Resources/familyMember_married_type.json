@@ -1,0 +1,47 @@
+ [
+	{
+  "text": "父亲",
+  "code": "RF02",
+  "typeId": "009"
+  },
+  {
+  "text": "母亲",
+  "code": "RF03",
+  "typeId": "009"
+  },
+	{
+	"text": "子女",
+	"code": "RF06",
+	"typeId": "009"
+	},
+	{
+  "text": "兄弟",
+  "code": "RF04",
+  "typeId": "009"
+  },
+  {
+  "text": "姐妹",
+  "code": "RF05",
+  "typeId": "009"
+  },
+	{
+	"text": "同学",
+	"code": "R002",
+	"typeId": "009"
+	},
+	{
+	"text": "朋友",
+	"code": "R004",
+	"typeId": "009"
+	},
+	{
+	"text": "同事",
+	"code": "R003",
+	"typeId": "009"
+	},
+	{
+	"text": "其他",
+	"code": "R005",
+	"typeId": "009"
+	}
+]
