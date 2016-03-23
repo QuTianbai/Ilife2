@@ -30,10 +30,15 @@
 	_on = self.model.contactAddress.length == 0;
 	_services = services;
 	_executeRelationshipCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
-        if ([input isEqualToString:@"0"]) {
+        NSString *s = [[input componentsSeparatedByString:@"_"] objectAtIndex:0];
+        NSString *married = [[input componentsSeparatedByString:@"_"] objectAtIndex:1];
+        if ([s isEqualToString:@"0"]) {
             return [self.services msf_selectKeyValuesWithContent:@"familyMember_type1"];
+        } else if (![married isEqualToString:@"20"]){
+            return  [self.services msf_selectKeyValuesWithContent:@"familyMember_married_type"];
+        } else {
+            return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
         }
-		return [self.services msf_selectKeyValuesWithContent:@"familyMember_type"];
 	}];
 	RAC(self, relationship) = [RACObserve(self, model.contactRelation) flattenMap:^id(id value) {
 		return [self.services msf_selectValuesWithContent:@"familyMember_type" keycode:value];
