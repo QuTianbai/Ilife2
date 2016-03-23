@@ -16,7 +16,7 @@ typedef BOOL(^RexBlock)(NSString *);
 
 @implementation UITextField (Limit)
 - (void)limitWitLength:(int)length {
-    objc_setAssociatedObject(self, TextFieldLength, @(length), OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, TextFieldLength, @(length), OBJC_ASSOCIATION_RETAIN);
     [self addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
