@@ -6911,7 +6911,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "eac3b17b-7992-4feb-a9a0-eaa7e035c492";
 			};
@@ -6938,7 +6938,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "f3ed6ae5-8345-4d08-ae9d-ac8fb733ff95";
 			};
@@ -7061,7 +7061,7 @@
 					"$(PROJECT_DIR)/Vendor/UMAnalytics_Sdk_3.5.10",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
 			};
