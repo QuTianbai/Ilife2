@@ -54,7 +54,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	self.title = @"贷款协议";
+	self.title = @"个人消费信贷申请协议";
   self.LoanAgreenmentWV.delegate = self;
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	[SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];

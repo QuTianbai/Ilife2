@@ -49,6 +49,7 @@
 	RAC(self, lastDueMoneyLB.text) = RACObserve(self, viewModel.latestDueMoney);
 	RAC(self, timeRouteLB.text) = [RACObserve(self, viewModel.latestDueDate) map:^id(NSString *value) {
         return [NSString stringWithFormat:@"%@期", [value substringToIndex:4]];
+  
     }];
 	
 	[self bindTableView];
