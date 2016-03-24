@@ -223,17 +223,17 @@ static NSString *const kApplicationCreditType = @"1";
 					application = nil;
 				}
 				status  = MSFApplicationNone;
-            }else if ([application.status isEqualToString:@"A"]) {
+            } else if ([application.status isEqualToString:@"A"]) {
                 status = MAFApplicationRepayed;
-            }else if ([application.status isEqualToString:@"C"]) {
+            } else if ([application.status isEqualToString:@"C"]) {
                 status = MAFApplicationRepayedOuttime;
-            }else if ([application.status isEqualToString:@"D"]) {
+            } else if ([application.status isEqualToString:@"D"]) {
                 status = MAFApplicationRepaying;
-            }  else if ([application.status isEqualToString:@"G"]) {
+            } else if ([application.status isEqualToString:@"G"]) {
 				status = MSFApplicationInReview;
 			} else if ([application.status isEqualToString:@"I"]) {
 				status = MSFApplicationConfirmation;
-            }else if ([application.status isEqualToString:@"J"]) {
+            } else if ([application.status isEqualToString:@"J"]) {
                 status = MSFApplicationConfirmationed;
             } else if ([application.status isEqualToString:@"L"]) {
 				status = MSFApplicationResubmit;
