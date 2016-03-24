@@ -253,7 +253,7 @@ static NSString *const kApplicationCreditType = @"1";
 		return self.authenticateSignal;
 	}
 	
-	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected || self.status == MSFApplicationActivated) {
+	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected || self.status == MSFApplicationActivated || self.status == MAFApplicationRepayed || self.status == MAFApplicationRepayedOuttime || self.status == MAFApplicationRepaying) {
 		[SVProgressHUD showWithStatus:@"请稍后..."];
 		@weakify(self)
 		return [[[self.services.httpClient fetchCheckAllowApply]
