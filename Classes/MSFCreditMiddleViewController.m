@@ -45,10 +45,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	RAC(self.groundView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(!(status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
+		return @(!(status.integerValue == MSFApplicationNone));
 	}];
 	RAC(self.contentView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @((status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
+		return @((status.integerValue == MSFApplicationNone));
 	}];
 	
 	RAC(self, numberLabel.text) = RACObserve(self, viewModel.reportNumber);

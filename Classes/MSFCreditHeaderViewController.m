@@ -40,10 +40,10 @@
 	}];
 	
 	RAC(self.beforeApplyView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(!(status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
+		return @(!(status.integerValue == MSFApplicationNone));
 	}];
 	RAC(self.applyView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @((status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
+		return @((status.integerValue == MSFApplicationNone));
 	}];
 	
 	@weakify(self)
