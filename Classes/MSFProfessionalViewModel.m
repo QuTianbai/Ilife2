@@ -264,15 +264,18 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
     
     NSMutableArray *tempViewModels = [NSMutableArray arrayWithArray:self.viewModels];
     NSMutableArray *tempContacts = [NSMutableArray arrayWithArray:self.viewModels];
-    MSFContact *content = [[MSFContact alloc] init];
-    if ([relation isEqualToString:@"20"]) {
-        content.contactRelation = @"RF01";
-        tempContacts[0] = content;
-        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
-    } else {
-        content.contactRelation = @"R005";
-        tempContacts[0] = content;
-        tempViewModels[0] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+    for (int i = 0;i < tempViewModels.count;i++) {
+        MSFContact *content = [[MSFContact alloc] init];
+        if ([relation isEqualToString:@"20"]) {
+            content.contactRelation = @"RF01";
+            tempContacts[i] = content;
+            tempViewModels[i] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+        } else {
+            if (i == 0) content.contactRelation = nil;
+            else content.contactRelation = @"R005";
+            tempContacts[i] = content;
+            tempViewModels[i] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
+        }
     }
     self.viewModels = tempViewModels;
     self.contacts = tempContacts;
