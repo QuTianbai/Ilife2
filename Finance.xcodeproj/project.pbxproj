@@ -3087,6 +3087,7 @@
 		101BD3DF1C2CE60C00842D36 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */,
 				102C7F1A1C2A8B330023172B /* MSFCartViewModel.h */,
 				102C7F1B1C2A8B330023172B /* MSFCartViewModel.m */,
 			);
@@ -4979,10 +4980,9 @@
 			children = (
 				49CF3A7D1C55F5590050E04E /* MSFDrawingsViewModel.h */,
 				49CF3A7E1C55F5590050E04E /* MSFDrawingsViewModel.m */,
-				495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */,
-				495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */,
 				495B07341C522CFE002DDFAA /* MSFRepaymentViewModel.h */,
 				495B07351C522CFE002DDFAA /* MSFRepaymentViewModel.m */,
+				495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */,
 				07F089221BBD37000067C5BC /* MSFDrawCashViewModel.h */,
 				07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */,
 				495B07331C5210FA002DDFAA /* MSFTransactionsViewModel.h */,

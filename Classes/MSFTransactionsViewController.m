@@ -9,6 +9,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "RVMViewModel.h"
 #import "MSFDrawingsViewModel.h"
+#import "UIColor+Utils.h"
 
 @interface MSFTransactionsViewController ()
 
@@ -25,6 +26,10 @@
 @property (nonatomic, weak) IBOutlet UIButton *checkOut;
 @property (nonatomic, weak) IBOutlet UIButton *fetchAuthcode;
 @property (weak, nonatomic) IBOutlet UILabel *repayLB;
+
+@property (nonatomic, weak) IBOutlet UIButton *sendCaptchaButton;
+@property (nonatomic, weak) IBOutlet UILabel *counterLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *sendCaptchaView;
 
 @end
 
@@ -69,24 +74,47 @@
             [self.checkOut setTitle:x.buttonTitle forState:UIControlStateDisabled];
         }
     }];
-	
+	@weakify(self)
 	RAC(self.viewModel, captcha) = self.authCode.rac_textSignal;
 	
 	RACChannelTerminal *modelTerminal = RACChannelTo(self.viewModel, amounts);
 	RAC(self.amount, text) = modelTerminal;
 	[self.amount.rac_textSignal subscribe:modelTerminal];
 	
-	self.fetchAuthcode.rac_command = self.viewModel.executeCaptchaCommand;
+    // 验证码
+    [RACObserve(self.viewModel, captchaTitle) subscribeNext:^(id x) {
+        @strongify(self)
+        self.counterLabel.text = x;
+    }];
+    
+    [self.viewModel.captchaValidSignal subscribeNext:^(NSNumber *value) {
+        @strongify(self)
+        self.counterLabel.textColor = value.boolValue ? UIColor.whiteColor: [UIColor blackColor];
+        self.sendCaptchaView.backgroundColor = value.boolValue ? [UIColor navigationBgColor] : [UIColor lightGrayColor];
+    }];
+    
+	self.sendCaptchaButton.rac_command = self.viewModel.executeCaptchaCommand;
+    [self.sendCaptchaButton.rac_command.executionSignals subscribeNext:^(RACSignal *captchaSignal) {
+        @strongify(self)
+        [self.view endEditing:YES];
+        [SVProgressHUD showWithStatus:@"正在获取验证码" maskType:SVProgressHUDMaskTypeClear];
+        [captchaSignal subscribeNext:^(id x) {
+            [SVProgressHUD dismiss];
+        }];
+    }];
+    
+    [self.sendCaptchaButton.rac_command.errors subscribeNext:^(NSError *error) {
+        [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+    }];
 	
-	@weakify(self)
 	[RACObserve(self, viewModel.editable) subscribeNext:^(id x) {
 		@strongify(self)
 		if ([x boolValue]) [self.amount becomeFirstResponder];
 	}];
-	[RACObserve(self.viewModel, captchaTitle) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.fetchAuthcode setTitle:x forState:UIControlStateNormal];
-	}];
+//	[RACObserve(self.viewModel, captchaTitle) subscribeNext:^(id x) {
+//		@strongify(self)
+//		[self.fetchAuthcode setTitle:x forState:UIControlStateNormal];
+//	}];
 	
 	[self.viewModel.executeCaptchaCommand.executionSignals subscribeNext:^(id x) {
 		@strongify(self)
