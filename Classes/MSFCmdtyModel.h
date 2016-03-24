@@ -13,5 +13,6 @@
 @property (nonatomic, copy) NSString *cmdtyName;
 @property (nonatomic, copy) NSString *cmdtyPrice;
 @property (nonatomic, copy) NSString *orderTime;
+@property (nonatomic, copy) NSString *pcsCount;
 
 @end
