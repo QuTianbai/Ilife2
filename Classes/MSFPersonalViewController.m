@@ -97,6 +97,7 @@
 	//详细地址
 	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel, detailAddress);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
+    [self.detailAddressTF limitWitLength:50];
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
 	
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;

@@ -24,6 +24,7 @@
 @property (nonatomic, weak) IBOutlet UIImageView *promptLogo;
 @property (nonatomic, weak) IBOutlet UIButton *addressButton;
 @property (nonatomic, weak) IBOutlet UIButton *commitButton;
+@property (weak, nonatomic) IBOutlet UIButton *supportBankButton;
 
 @property (nonatomic, strong) MSFAuthorizeViewModel *viewModel;
 
@@ -46,6 +47,7 @@
 	[super viewDidLoad];
 	self.addressButton.rac_command = self.viewModel.executeAlterAddressCommand;
 	self.commitButton.rac_command = self.viewModel.executeAuthenticateCommand;
+    self.supportBankButton.rac_command = self.viewModel.executeSupportBankCommand;
 	RAC(self, bankaddrs.text) = RACObserve(self, viewModel.address);
 	RAC(self, viewModel.username) = self.username.rac_textSignal;
 	RAC(self, viewModel.card) = self.userident.rac_textSignal;
