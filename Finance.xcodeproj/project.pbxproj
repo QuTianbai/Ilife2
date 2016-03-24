@@ -6631,8 +6631,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: taylor liang (88BQ5J8H22)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: taylor liang (88BQ5J8H22)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6649,7 +6649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "eac3b17b-7992-4feb-a9a0-eaa7e035c492";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -6659,8 +6659,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: taylor liang (88BQ5J8H22)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: taylor liang (88BQ5J8H22)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6677,6 +6677,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "f3ed6ae5-8345-4d08-ae9d-ac8fb733ff95";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -6725,8 +6726,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: taylor liang (88BQ5J8H22)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: taylor liang (88BQ5J8H22)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6747,6 +6748,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
 				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Test;
 		};

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IDU-zp-Uah">
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IDU-zp-Uah">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -393,22 +394,44 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写银行卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zd4-iV-YdU" customClass="SHSPhoneTextField">
-                                                    <rect key="frame" x="100" y="7" width="210" height="30"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icr-aD-sUF">
+                                                    <rect key="frame" x="252" y="7" width="60" height="30"/>
+                                                    <color key="backgroundColor" red="0.20784313730000001" green="0.65490196079999996" blue="0.99215686270000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="TiE-MG-LSN"/>
+                                                        <constraint firstAttribute="height" constant="30" id="1kg-sy-4kl"/>
+                                                        <constraint firstAttribute="width" constant="60" id="5PZ-py-b9G"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <state key="normal" title="支持银行">
+                                                        <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请填写银行卡号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zd4-iV-YdU" customClass="SHSPhoneTextField">
+                                                    <rect key="frame" x="80" y="7" width="167" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="29" id="TiE-MG-LSN"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="zd4-iV-YdU" firstAttribute="leading" secondItem="PcX-oV-2Ay" secondAttribute="trailing" constant="10" id="YnG-MW-Pgz"/>
-                                                <constraint firstAttribute="trailing" secondItem="zd4-iV-YdU" secondAttribute="trailing" constant="10" id="fwn-DX-uSg"/>
+                                                <constraint firstItem="Icr-aD-sUF" firstAttribute="centerY" secondItem="hpU-9W-jAa" secondAttribute="centerY" id="8hD-3y-lTY"/>
+                                                <constraint firstAttribute="trailing" secondItem="Icr-aD-sUF" secondAttribute="trailing" constant="8" id="977-Et-O4I"/>
+                                                <constraint firstItem="zd4-iV-YdU" firstAttribute="trailing" secondItem="Icr-aD-sUF" secondAttribute="leading" constant="-5" id="Eey-4d-oNv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Icr-aD-sUF" secondAttribute="trailing" id="X1m-bh-gk7"/>
+                                                <constraint firstItem="zd4-iV-YdU" firstAttribute="leading" secondItem="PcX-oV-2Ay" secondAttribute="trailing" constant="-10" id="YnG-MW-Pgz"/>
+                                                <constraint firstAttribute="trailing" secondItem="zd4-iV-YdU" secondAttribute="trailing" constant="90" id="fwn-DX-uSg"/>
                                                 <constraint firstItem="PcX-oV-2Ay" firstAttribute="centerY" secondItem="hpU-9W-jAa" secondAttribute="centerY" id="gtb-r8-OZO"/>
                                                 <constraint firstItem="PcX-oV-2Ay" firstAttribute="leading" secondItem="hpU-9W-jAa" secondAttribute="leading" constant="15" id="tIV-Uv-5PF"/>
                                                 <constraint firstItem="zd4-iV-YdU" firstAttribute="centerY" secondItem="hpU-9W-jAa" secondAttribute="centerY" id="vWf-PR-JSc"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="fwn-DX-uSg"/>
+                                                    <exclude reference="X1m-bh-gk7"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -427,6 +450,7 @@
                         <outlet property="commitButton" destination="z9d-Qt-Qdd" id="8v2-Hy-clu"/>
                         <outlet property="promptLabel" destination="zd1-qM-CbR" id="3ZJ-wg-fzD"/>
                         <outlet property="promptLogo" destination="cyU-KD-544" id="rgq-j1-6w4"/>
+                        <outlet property="supportBankButton" destination="Icr-aD-sUF" id="Wnu-PY-gQo"/>
                         <outlet property="userident" destination="KGb-aa-zuy" id="3JC-Un-RfC"/>
                         <outlet property="username" destination="71y-gB-slg" id="DH2-A4-IcD"/>
                     </connections>

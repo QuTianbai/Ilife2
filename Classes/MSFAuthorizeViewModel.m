@@ -23,6 +23,7 @@
 #import <FMDB/FMDB.h>
 #import "MSFAuthenticate.h"
 #import "MSFUser.h"
+#import "MSFSupportBankListModel.h"
 
 NSString *const MSFAuthorizeErrorDomain = @"MSFAuthorizeErrorDomain";
 
@@ -290,6 +291,9 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 		return [RACSignal return:nil];
 	}];
 	
+    _executeSupportBankCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [self exectueSupportBankSignal];
+    }];
 	_addressViewModel = [[MSFAddressViewModel alloc] initWithServices:self.services];
 	RAC(self, address) = RACObserve(self, addressViewModel.address);
 	self.executeAlterAddressCommand = self.addressViewModel.selectCommand;
@@ -560,6 +564,17 @@ NSString *const MSFAuthorizeCaptchaModifyMobile = @"MODIFY_MOBILE ";
 
 - (RACSignal *)executeFindPasswordCaptchaSignal {
 	return [self.services.httpClient fetchResetPasswordCaptchaWithPhone:self.username];
+}
+
+- (RACSignal *)exectueSupportBankSignal {
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        MSFSupportBankListModel *viewModel = [[MSFSupportBankListModel alloc]initWithServices:self.services ];
+        [self.services pushViewModel:viewModel];
+        [subscriber sendNext:nil];
+        [subscriber sendCompleted];
+        return nil;
+        
+    }];
 }
 
 + (NSError *)errorWithFailureReason:(NSString *)string {

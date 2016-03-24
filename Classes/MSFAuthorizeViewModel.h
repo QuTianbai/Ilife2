@@ -113,6 +113,7 @@ extern NSString *const MSFAuthorizeErrorDomain;
 
 @property (nonatomic, strong, readonly) RACCommand *executeAuthenticateCommand;
 @property (nonatomic, strong, readonly) RACCommand *executeAlterAddressCommand;
+@property (nonatomic, strong, readonly) RACCommand *executeSupportBankCommand;
 @property (nonatomic, strong, readonly) NSString *address;
 @property (nonatomic, strong) NSString *banknumber;
 
