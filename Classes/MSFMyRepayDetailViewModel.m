@@ -83,33 +83,12 @@
 		
 		return [NSArray arrayWithArray:valueArray];
 	}];
+    RAC(self, totalCurrTerm) = [RACObserve(self, model.totalCurrTerm) ignore:nil];
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFMyRepayDetailModel *value) {
-        
-        NSMutableString *allBill = [NSMutableString stringWithFormat:@"[%@]", value.type];
-        NSMutableString *string = [[NSMutableString alloc]init];
-        NSString *string1 = @"期账单";
-        
-        if ([value.loanCurrTerm intValue] == 1) {
-            return [NSString stringWithFormat:@"[%@] %@/%@期账单", value.type, value.loanCurrTerm.length > 0 ?value.loanCurrTerm:@"1", value.loanTerm];
-        } else {
-            for (int i = 0; i < [value.loanCurrTerm intValue]; i++) {
-                if (i + 1 != [value.loanCurrTerm intValue]) {
-                string = [NSMutableString stringWithFormat:@"%d/%@、", i + 1,value.loanTerm];
-                
-                } else {
-                    string  = [NSMutableString stringWithFormat:@"%d/%@", i + 1, value.loanTerm];
-                    
-                    
-                }
-                [allBill appendFormat:@"%@", string];
-                
-            }
-            [allBill appendFormat:@"%@", string1];
-            
-            return allBill;
+        if (value.totalCurrTerm.length <= 0 ) {
+            return [NSString stringWithFormat:@"[%@]", value.type];
         }
-        
-        
+        return [NSString stringWithFormat:@"[%@] %@期账单", value.type, value.totalCurrTerm];
 }];
 
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {

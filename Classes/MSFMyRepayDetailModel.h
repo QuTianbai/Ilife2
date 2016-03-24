@@ -24,5 +24,7 @@
 @property (nonatomic, strong, readonly) NSArray *cmdtyList;
 @property (nonatomic, strong, readonly) NSArray *withdrawList;
 @property (nonatomic, copy, readwrite) NSString *contractStatus;
+@property (nonatomic, copy, readwrite) NSString *totalCurrTerm;//总欠款期数
+@property (nonatomic, copy, readwrite) NSString *systemDate;//系统时间
 
 @end

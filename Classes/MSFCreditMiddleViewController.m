@@ -45,10 +45,10 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	RAC(self.groundView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @(!(status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
+		return @(!(status.integerValue == MSFApplicationNone));
 	}];
 	RAC(self.contentView, hidden) = [RACObserve(self, viewModel.status) map:^id(NSNumber *status) {
-		return @((status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone));
+		return @((status.integerValue == MSFApplicationNone));
 	}];
 	
 	RAC(self, numberLabel.text) = RACObserve(self, viewModel.reportNumber);
@@ -98,7 +98,9 @@
 		@strongify(self)
 		[self.monthCollectionView reloadData];
 		if ([self.viewModel.viewModel viewModels].count > 0) {
-			[self.viewModel.viewModel setTrial:[(MSFPlanViewModel *)[self.viewModel.viewModel viewModels].lastObject model]];
+            if (self.viewModel.viewModel.trial == nil) {
+                [self.viewModel.viewModel setTrial:[(MSFPlanViewModel *)[self.viewModel.viewModel viewModels].lastObject model]];                
+            }
 			self.viewModel.viewModel.homepageIndex = [self.viewModel.viewModel viewModels].count - 1;
 			[self.monthCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:[self.viewModel.viewModel viewModels].count - 1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 		}

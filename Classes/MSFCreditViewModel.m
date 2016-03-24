@@ -126,6 +126,31 @@ static NSString *const kApplicationCreditType = @"1";
 				self.subtitle = @"";
 				self.action = @"";
 			} break;
+            case MAFApplicationRepayed: {
+                self.title = @"已还款";
+                self.subtitle = @"";
+                self.action = @"再次申请";
+            } break;
+            case MAFApplicationRepayedOuttime: {
+                self.title = @"已逾期";
+                self.subtitle = @"";
+                self.action = @"再次申请";
+            } break;
+            case MAFApplicationRepaying: {
+                self.title = @"还款中";
+                self.subtitle = @"";
+                self.action = @"再次申请";
+            } break;
+            case MSFApplicationConfirmationed: {
+                self.title = @"合同已确认";
+                self.subtitle = @"";
+                self.action = @"查看详情";
+            } break;
+            case MSFApplicationReleased: {
+                self.title = @"合同已确认";
+                self.subtitle = @"";
+                self.action = @"查看详情";
+            } break;
 			case MSFApplicationInReview: {
 				self.title = @"审核中";
 				self.subtitle = @"申请已提交";
@@ -151,15 +176,10 @@ static NSString *const kApplicationCreditType = @"1";
 				self.subtitle = @"请稍等...";
 				self.action = @"查看详情";
 			} break;
-			case MSFApplicationReleased: {
-				self.title = @"恭喜您！";
-				self.subtitle = @"已放款";
-				self.action = @"查看详情";
-			} break;
 			case MSFApplicationActivated: {
-				self.title = @"";
+				self.title = @"已激活";
 				self.subtitle = @"";
-				self.action = @"";
+				self.action = @"再次申请";
 			} break;
 			default:
 				break;
@@ -203,11 +223,19 @@ static NSString *const kApplicationCreditType = @"1";
 					application = nil;
 				}
 				status  = MSFApplicationNone;
-			} else if ([application.status isEqualToString:@"G"]) {
+            }else if ([application.status isEqualToString:@"A"]) {
+                status = MAFApplicationRepayed;
+            }else if ([application.status isEqualToString:@"C"]) {
+                status = MAFApplicationRepayedOuttime;
+            }else if ([application.status isEqualToString:@"D"]) {
+                status = MAFApplicationRepaying;
+            }  else if ([application.status isEqualToString:@"G"]) {
 				status = MSFApplicationInReview;
 			} else if ([application.status isEqualToString:@"I"]) {
 				status = MSFApplicationConfirmation;
-			} else if ([application.status isEqualToString:@"L"]) {
+            }else if ([application.status isEqualToString:@"J"]) {
+                status = MSFApplicationConfirmationed;
+            } else if ([application.status isEqualToString:@"L"]) {
 				status = MSFApplicationResubmit;
 			} else if ([application.status isEqualToString:@"E"]) {
 				status = MSFApplicationRelease;
@@ -225,7 +253,7 @@ static NSString *const kApplicationCreditType = @"1";
 		return self.authenticateSignal;
 	}
 	
-	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected || self.status == MSFApplicationActivated) {
+	if (self.status == MSFApplicationNone || self.status == MSFApplicationRejected || self.status == MSFApplicationActivated || self.status == MAFApplicationRepayed || self.status == MAFApplicationRepayedOuttime || self.status == MAFApplicationRepaying) {
 		[SVProgressHUD showWithStatus:@"请稍后..."];
 		@weakify(self)
 		return [[[self.services.httpClient fetchCheckAllowApply]
