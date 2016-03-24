@@ -185,9 +185,13 @@ static const int kCounterLength = 60;
 #pragma mark - Private
 
 - (RACSignal *)captchaValidSignal {
-	return [RACObserve(self, captchaWaiting) map:^id(id value) {
-		return @(![value boolValue]);
-	}];
+   // return [RACSignal return:@YES];
+    return [RACSignal combineLatest:@[
+                                      RACObserve(self, captchaWaiting)
+                                      ]
+                             reduce:^id( NSNumber *counting){
+                                 return @(!counting.boolValue);
+                             }];
 }
 
 - (RACSignal *)captchaSignal {
@@ -269,6 +273,10 @@ static const int kCounterLength = 60;
 		flattenMap:^RACStream *(id value) {
 			return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO bankCardID:self.bankCardID transPwd:value];
 }];
+}
+
+- (void)dealloc {
+    NSLog(@"nfjeokfew");
 }
 
 @end
