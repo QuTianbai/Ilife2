@@ -163,7 +163,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 			return RACSignal.empty;
 		}
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
-		return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld", button.tag - MSFProfessionalContactCellRelationshipButton]];
+
+        return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld_%@", button.tag - MSFProfessionalContactCellRelationshipButton,self.maritalStatus]];
 	}];
 	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
