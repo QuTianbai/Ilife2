@@ -137,6 +137,7 @@ UICollectionViewDelegateFlowLayout>
 					self.navigationController.viewControllers.firstObject,
 					[[MSFCommitedViewController alloc] init]
 				] animated:YES];
+            [self.navigationController pushViewController:[[MSFCommitedViewController alloc] init] animated:YES];
 		}];
 	}];
 	

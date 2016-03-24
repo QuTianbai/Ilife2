@@ -109,6 +109,7 @@ static NSString *const kApplicationCreditType = @"1";
 			RACObserve(self, application.loanFixedAmt)
 		]
 		reduce:^id (NSString *term, NSString *amt){
+            amt = [NSString stringWithFormat:@"%.2f", amt ? [amt floatValue] : 0.00];
 			return [NSString stringWithFormat:@"(月供 ¥%@ X %@期)", amt, term];
 		}];
 	RAC(self, reportMessage) = RACObserve(self, application.failInfo);
