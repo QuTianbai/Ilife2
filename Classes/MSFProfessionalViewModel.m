@@ -163,8 +163,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 			return RACSignal.empty;
 		}
 		MSFContactViewModel *viewModel = self.viewModels[button.tag - MSFProfessionalContactCellRelationshipButton];
+
         return [viewModel.executeRelationshipCommand execute:[NSString stringWithFormat:@"%ld_%@", button.tag - MSFProfessionalContactCellRelationshipButton,self.maritalStatus]];
-;
 	}];
 	_executeContactCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		UIButton *button = input;
@@ -271,7 +271,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
             tempContacts[i] = content;
             tempViewModels[i] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
         } else {
-            content.contactRelation = @"R005";
+            if (i == 0) content.contactRelation = nil;
+            else content.contactRelation = @"R005";
             tempContacts[i] = content;
             tempViewModels[i] = [[MSFContactViewModel alloc] initWithModel:content Services:self.services];
         }
@@ -352,10 +353,9 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
 		RACObserve(self, normalIncome),
 		RACObserve(self, surplusIncome),
 		RACObserve(self, marriage),
-        RACObserve(self, loan)
 	]
-	reduce:^id(NSString *identifier, NSString *normalIncome, NSString *surplusIncome, NSString *marriage,NSString *loan){
-		return @(identifier.length > 0 && normalIncome.length > 0 && surplusIncome.length > 0 && marriage.length > 0 && loan.length > 0);
+	reduce:^id(NSString *identifier, NSString *normalIncome, NSString *surplusIncome, NSString *marriage){
+		return @(identifier.length > 0 && normalIncome.length > 0 && surplusIncome.length > 0 && marriage.length > 0);
 	}];
 }
 
@@ -399,29 +399,8 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
             return [RACSignal error: error];
             
         }
-    } else if ([self.code isEqualToString:@"SI01"]) {
-        if (self.schoolName.length <= 3) {
-            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
-                                                                                                    NSLocalizedFailureReasonErrorKey: @"学校名称不能少于四个字符",
-                                                                                                    }];
-            
-            return [RACSignal error: error];
-        } else if (self.schoolLength.length <= 0) {
-            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
-                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写学制",
-                                                                                                    }];
-            
-            return [RACSignal error: error];
-            
-        } else if (self.schoolDate.length <= 0) {
-            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
-                                                                                                    NSLocalizedFailureReasonErrorKey: @"请选择入学时间",
-                                                                                                    }];
-            
-            return [RACSignal error: error];
-            
-        }
     }
+
 	__block NSError *error = nil;
 	[self.viewModels enumerateObjectsUsingBlock:^(MSFContactViewModel *obj, NSUInteger idx, BOOL *stop) {
 		if (!obj.isValid) {

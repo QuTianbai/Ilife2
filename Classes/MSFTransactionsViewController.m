@@ -9,7 +9,6 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "RVMViewModel.h"
 #import "MSFDrawingsViewModel.h"
-#import "UITextField+Limit.h"
 
 @interface MSFTransactionsViewController ()
 
@@ -54,7 +53,7 @@
 	RAC(self.payment, text) = RACObserve(self.viewModel, summary);
 	RAC(self.supports, text) = RACObserve(self.viewModel, supports);
 	RAC(self.amount, userInteractionEnabled) = RACObserve(self.viewModel, editable);
-    [self.amount limitWitRex:@"[0-9\\.]*"];
+    
 	RAC(self, repayLB.text) = [RACObserve(self, viewModel.amounts) map:^id(id value) {
         return [NSString stringWithFormat:@"实际还款：%@", value];
     }];

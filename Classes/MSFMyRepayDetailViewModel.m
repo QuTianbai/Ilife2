@@ -83,9 +83,13 @@
 		
 		return [NSArray arrayWithArray:valueArray];
 	}];
+    RAC(self, totalCurrTerm) = [RACObserve(self, model.totalCurrTerm) ignore:nil];
 	RAC(self, contractTitle) = [[RACObserve(self, model) ignore:nil] map:^id(MSFMyRepayDetailModel *value) {
-        return [NSString stringWithFormat:@"[%@] %@/%@期账单", value.type, value.loanCurrTerm.length > 0 ?value.loanCurrTerm:@"1", value.loanTerm];
-	}];
+        if (value.totalCurrTerm.length <= 0 ) {
+            return [NSString stringWithFormat:@"[%@]", value.type];
+        }
+        return [NSString stringWithFormat:@"[%@] %@期账单", value.type, value.totalCurrTerm];
+}];
 
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
         @strongify(self)
