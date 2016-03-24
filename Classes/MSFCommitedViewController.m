@@ -33,11 +33,17 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = @"提交成功";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"left_arrow"] style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    
 	@weakify(self)
 	[[self.button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
 		@strongify(self)
 		[self.navigationController popToRootViewControllerAnimated:YES];
 	}];
+}
+
+- (void)back {
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 @end
