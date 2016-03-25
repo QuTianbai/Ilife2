@@ -8,19 +8,7 @@
 
 #import <ReactiveViewModel/ReactiveViewModel.h>
 #import "MSFViewModelServices.h"
-
-typedef NS_ENUM(NSUInteger, MSFCommodityStatus) {
-	MSFCommodityNone,        // 没有订单
-	MSFCommodityInReview,    // 审核中
-	MSFCommodityConfirmation, // 等待合同确认
-	MSFCommodityResubmit,    // 资料重传
-	MSFCommodityRelease,     // 放款中
-	MSFCommodityRejected,    // 审核失败需要重新提交
-	MSFCommodityPay,   // 去支付
-    MSFCommodityPayed, //已支付
-    MSFCommodityPayedfirst, //已支付首付
-    MSFCommodityWillPay    //待支付
-};
+#import "MSFApplication.h"
 
 @class RACCommand;
 
@@ -28,7 +16,7 @@ typedef NS_ENUM(NSUInteger, MSFCommodityStatus) {
 
 @property (nonatomic, weak) id <MSFViewModelServices> services;
 @property (nonatomic, strong, readonly) NSArray *photos;
-@property (nonatomic, assign, readonly) MSFCommodityStatus status;
+@property (nonatomic, assign, readonly) MSFApplicationStatus status;
 @property (nonatomic, copy, readonly) NSString *hasList;
 @property (nonatomic, copy, readonly) NSString *statusString;
 @property (nonatomic, copy, readonly) NSString *buttonTitle;

@@ -68,6 +68,7 @@ static NSString *const kApplicationCreditType = @"1";
 	_applyTerms = @"0";
 	_applyAmouts = @"0";
 	_viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:[[MSFLoanType alloc] initWithTypeID:kApplicationCreditIdentifier] services:self.services];
+    _status = MSFApplicationNone;
 	
 	RAC(self, viewModel.active) = RACObserve(self, active);
 	
@@ -117,7 +118,7 @@ static NSString *const kApplicationCreditType = @"1";
 	_executeBillCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
 		return [self billsSignal];
 	}];
-	_status = MSFApplicationActivated;
+	//_status = MSFApplicationActivated;
 	
 	[RACObserve(self, status) subscribeNext:^(NSNumber *status) {
 		@strongify(self)
