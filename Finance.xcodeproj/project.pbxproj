@@ -3087,6 +3087,7 @@
 		101BD3DF1C2CE60C00842D36 /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */,
 				102C7F1A1C2A8B330023172B /* MSFCartViewModel.h */,
 				102C7F1B1C2A8B330023172B /* MSFCartViewModel.m */,
 			);
@@ -4979,10 +4980,9 @@
 			children = (
 				49CF3A7D1C55F5590050E04E /* MSFDrawingsViewModel.h */,
 				49CF3A7E1C55F5590050E04E /* MSFDrawingsViewModel.m */,
-				495B07371C522E6E002DDFAA /* MSFPaymentViewModel.h */,
-				495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */,
 				495B07341C522CFE002DDFAA /* MSFRepaymentViewModel.h */,
 				495B07351C522CFE002DDFAA /* MSFRepaymentViewModel.m */,
+				495B07381C522E6E002DDFAA /* MSFPaymentViewModel.m */,
 				07F089221BBD37000067C5BC /* MSFDrawCashViewModel.h */,
 				07F089231BBD37000067C5BC /* MSFDrawCashViewModel.m */,
 				495B07331C5210FA002DDFAA /* MSFTransactionsViewModel.h */,
@@ -6649,7 +6649,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
 			};
 			name = Debug;
 		};
@@ -6676,8 +6676,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "f3ed6ae5-8345-4d08-ae9d-ac8fb733ff95";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
 			};
 			name = Release;
 		};
@@ -6714,7 +6713,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
+				PROVISIONING_PROFILE = "5d6b0234-10a6-4f55-b5d2-460a54024f9d";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6726,8 +6725,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6747,8 +6746,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "01726d8f-fece-47eb-a804-088a963b94e4";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "5d6b0234-10a6-4f55-b5d2-460a54024f9d";
 			};
 			name = Test;
 		};

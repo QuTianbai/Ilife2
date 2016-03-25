@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IDU-zp-Uah">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IDU-zp-Uah">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -878,14 +877,14 @@
                                                     </state>
                                                     <state key="selected" image="btn-showpwd-selected.png"/>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入8-16位数字和字母组成的密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PPX-d8-iBj">
-                                                    <rect key="frame" x="22" y="8" width="277" height="28"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入8-16位数字和字母组成的密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PPX-d8-iBj">
+                                                    <rect key="frame" x="20" y="8" width="232" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="PPX-d8-iBj" secondAttribute="trailing" constant="15" id="9SI-eJ-pUH"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PPX-d8-iBj" secondAttribute="trailing" constant="60" id="9SI-eJ-pUH"/>
                                                 <constraint firstItem="PPX-d8-iBj" firstAttribute="top" secondItem="EaO-EW-g1i" secondAttribute="topMargin" id="IK4-HT-HcI"/>
                                                 <constraint firstItem="PPX-d8-iBj" firstAttribute="centerY" secondItem="EaO-EW-g1i" secondAttribute="centerY" id="Yfy-tK-0oh"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="PPX-d8-iBj" secondAttribute="bottom" id="b6Z-Sp-XyC"/>

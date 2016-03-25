@@ -121,11 +121,21 @@
 #pragma mark - Private
 
 - (RACSignal *)captchaValidSignal {
-	return RACSignal.empty;
+    return [RACSignal combineLatest:@[
+                                      RACObserve(self, captchaWaiting)
+                                      ]
+                             reduce:^id( NSNumber *counting){
+                                 return @(!counting.boolValue);
+                             }];
 }
 
 - (RACSignal *)captchaSignal {
-	return RACSignal.empty;
+    return [RACSignal combineLatest:@[
+                                      RACObserve(self, captchaWaiting)
+                                      ]
+                             reduce:^id( NSNumber *counting){
+                                 return @(!counting.boolValue);
+                             }];
 }
 
 - (RACSignal *)switchSignal {

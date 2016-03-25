@@ -69,5 +69,6 @@
 
 // 提款
 @property (nonatomic, strong, readonly) RACCommand *executeWithdrawCommand;
+- (RACSignal *)captchaValidSignal;
 
 @end

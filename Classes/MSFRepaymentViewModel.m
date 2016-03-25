@@ -28,6 +28,8 @@
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSString+Matches.h"
 
+static const int kCounterLength = 60;
+
 @interface MSFRepaymentViewModel ()
 
 @property (nonatomic, strong, readwrite) NSString *bankIco;
@@ -158,14 +160,14 @@
 		@strongify(self)
 		return [[self captchaSignal] doNext:^(id x) {
 			self.captchaWaiting = YES;
-			RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:60] takeUntil:self.didBecomeInactiveSignal];
-			__block int repetCount = 60;
-			[repetitiveEventSignal subscribeNext:^(id x) {
-				self.captchaTitle = [@(--repetCount) stringValue];
-			} completed:^{
-				self.captchaTitle = @"获取验证码";
-				self.captchaWaiting = NO;
-			}];
+            RACSignal *repetitiveEventSignal = [[[RACSignal interval:1 onScheduler:RACScheduler.mainThreadScheduler] take:kCounterLength] takeUntil:self.didBecomeInactiveSignal];
+            __block int repetCount = kCounterLength;
+            [repetitiveEventSignal subscribeNext:^(id x) {
+                self.captchaTitle = [@(--repetCount) stringValue];
+            } completed:^{
+                self.captchaTitle = @"获取验证码";
+                self.captchaWaiting = NO;
+            }];
 		}];
 	}];
 	
@@ -183,9 +185,13 @@
 #pragma mark - Private
 
 - (RACSignal *)captchaValidSignal {
-	return [RACObserve(self, captchaWaiting) map:^id(id value) {
-		return @(![value boolValue]);
-	}];
+   // return [RACSignal return:@YES];
+    return [RACSignal combineLatest:@[
+                                      RACObserve(self, captchaWaiting)
+                                      ]
+                             reduce:^id( NSNumber *counting){
+                                 return @(!counting.boolValue);
+                             }];
 }
 
 - (RACSignal *)captchaSignal {
@@ -267,6 +273,10 @@
 		flattenMap:^RACStream *(id value) {
 			return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO bankCardID:self.bankCardID transPwd:value];
 }];
+}
+
+- (void)dealloc {
+    NSLog(@"nfjeokfew");
 }
 
 @end
