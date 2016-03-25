@@ -43,8 +43,8 @@
 	@weakify(self)
 	[RACObserve(self, viewModel.status) subscribeNext:^(NSNumber *status) {
 		@strongify(self)
-		self.topHeight.constant = (status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone) ? 180 : 250;
-		self.middleHeight.constant = (status.integerValue == MSFApplicationActivated || status.integerValue == MSFApplicationNone) ? 220 : 150;
+		self.topHeight.constant = (status.integerValue == MSFApplicationNone) ? 180 : 250;
+		self.middleHeight.constant = (status.integerValue == MSFApplicationNone) ? 220 : 150;
 		[self updateViewConstraints];
 	}];
 }
