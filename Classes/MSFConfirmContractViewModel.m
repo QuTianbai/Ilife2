@@ -55,11 +55,15 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	@weakify(self)
 	[[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"HOMEPAGECONFIRMCONTRACT" object:nil] subscribeNext:^(NSNotification *notification) {
 		NSLog(@"接收确认合同通知");
+        [SVProgressHUD showWithStatus:@"请稍后..."];
 		@strongify(self)
 		[[self.servers.httpClient fetchRecentApplicaiton:notification.object] subscribeNext:^(id x) {
 			self.model = x;
 			[self.confirmCommand execute:nil];
-		}];
+		} error:^(NSError *error) {
+            [SVProgressHUD dismiss];
+            [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
+        }];
 	}];
 	
 	[self fetchContractist];
@@ -88,6 +92,7 @@ static NSString *kSocialInsuranceLoanTemplate = @"4102";
 	@weakify(self)
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		@strongify(self)
+        [SVProgressHUD dismiss];
 		[self.servers pushViewModel:self];
 		[subscriber sendCompleted];
 		return [RACDisposable disposableWithBlock:^{
