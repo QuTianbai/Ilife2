@@ -33,7 +33,7 @@
 		
 		UILabel *title = [[UILabel alloc] init];
 		title.font = [UIFont systemFontOfSize:15];
-		title.text = @"贷款期数";
+		title.text = @"贷款期数     每月应还款（加入寿险计划）";
 		[self.contentView addSubview:title];
 		
 		[title mas_makeConstraints:^(MASConstraintMaker *make) {

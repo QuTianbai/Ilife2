@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="e6S-hE-cme">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
@@ -198,6 +199,13 @@
                                                         <constraint firstAttribute="height" constant="44" id="XAT-d6-hvv"/>
                                                     </constraints>
                                                 </slider>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8O-yI-GEF">
+                                                    <rect key="frame" x="0.0" y="74" width="320" height="1"/>
+                                                    <color key="backgroundColor" red="0.78454468527225529" green="0.78454468527225529" blue="0.78454468527225529" alpha="0.64000000000000001" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="OrO-9X-vq5"/>
+                                                    </constraints>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="贷款期数" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEb-pB-EYl">
                                                     <rect key="frame" x="15" y="84" width="68" height="21"/>
                                                     <constraints>
@@ -207,15 +215,17 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j8O-yI-GEF">
-                                                    <rect key="frame" x="0.0" y="74" width="320" height="1"/>
-                                                    <color key="backgroundColor" red="0.78454468527225529" green="0.78454468527225529" blue="0.78454468527225529" alpha="0.64000000000000001" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="每月应还款（加入寿险计划）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSF-mP-4MU">
+                                                    <rect key="frame" x="83" y="85" width="237" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="OrO-9X-vq5"/>
+                                                        <constraint firstAttribute="height" constant="21" id="JDg-tj-Cdt"/>
                                                     </constraints>
-                                                </view>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsy-2Z-CWu">
-                                                    <rect key="frame" x="0.0" y="105" width="320" height="135"/>
+                                                    <rect key="frame" x="0.0" y="105" width="320" height="134"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="e6S-hE-cme" id="epr-a9-m3i"/>
                                                         <outlet property="delegate" destination="e6S-hE-cme" id="HaV-2Q-gF4"/>
@@ -230,11 +240,14 @@
                                                 <constraint firstAttribute="bottom" secondItem="Fsy-2Z-CWu" secondAttribute="bottom" id="Jv5-E1-fmK"/>
                                                 <constraint firstItem="Fsy-2Z-CWu" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" id="Q53-nI-Z8w"/>
                                                 <constraint firstItem="PEb-pB-EYl" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" constant="15" id="SAJ-q8-D9i"/>
+                                                <constraint firstAttribute="trailing" secondItem="pSF-mP-4MU" secondAttribute="trailing" id="URf-fI-kYr"/>
+                                                <constraint firstItem="pSF-mP-4MU" firstAttribute="top" secondItem="j8O-yI-GEF" secondAttribute="bottom" constant="10" id="VPY-VB-tXO"/>
                                                 <constraint firstItem="hWj-Vn-WwI" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" constant="15" id="bu3-qi-37S"/>
                                                 <constraint firstItem="PEb-pB-EYl" firstAttribute="top" secondItem="hWj-Vn-WwI" secondAttribute="bottom" constant="10" id="dHD-B9-SXS"/>
                                                 <constraint firstAttribute="trailing" secondItem="hWj-Vn-WwI" secondAttribute="trailing" constant="15" id="dxF-Q1-AzT"/>
                                                 <constraint firstItem="j8O-yI-GEF" firstAttribute="leading" secondItem="ewd-85-E2l" secondAttribute="leading" id="hDA-tX-47k"/>
                                                 <constraint firstItem="Fsy-2Z-CWu" firstAttribute="top" secondItem="PEb-pB-EYl" secondAttribute="bottom" id="qGY-FX-4el"/>
+                                                <constraint firstItem="pSF-mP-4MU" firstAttribute="leading" secondItem="PEb-pB-EYl" secondAttribute="trailing" id="vyp-ei-t6y"/>
                                                 <constraint firstAttribute="trailing" secondItem="Fsy-2Z-CWu" secondAttribute="trailing" id="w58-Hx-Iiu"/>
                                             </constraints>
                                         </tableViewCellContentView>

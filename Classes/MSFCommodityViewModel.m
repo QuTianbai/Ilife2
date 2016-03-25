@@ -37,7 +37,7 @@ static NSString *const kApplicationType = @"3";
 @interface MSFCommodityViewModel ()
 
 @property (nonatomic, strong, readwrite) NSArray *photos;
-@property (nonatomic, assign, readwrite) MSFCommodityStatus status;
+@property (nonatomic, assign, readwrite) MSFApplicationStatus status;
 @property (nonatomic, strong) MSFApplyList *application;
 @property (nonatomic, copy, readwrite) NSString *hasList;
 @property (nonatomic, copy, readwrite) NSString *statusString;
@@ -86,52 +86,52 @@ static NSString *const kApplicationType = @"3";
 	[RACObserve(self, status) subscribeNext:^(NSNumber *status) {
 		@strongify(self)
 		switch (status.integerValue) {
-				case MSFCommodityNone:
+				case MSFApplicationNone:
 				self.hasList = @"最近没有订单";
 				self.statusString = @"";
 				self.buttonTitle = @"";
 				break;
-			case MSFCommodityInReview:
+			case MSFApplicationInReview:
 				self.hasList = @"最近一笔进度";
 				self.statusString = @"申请审核中";
 				self.buttonTitle = @"查看订单";
 				break;
-			case MSFCommodityConfirmation:
+			case MSFApplicationConfirmation:
 				self.hasList = @"最近一笔进度";
 				self.statusString = @"审核通过";
 				self.buttonTitle = @"待确认合同";
 				break;
-			case MSFCommodityResubmit:
+			case MSFApplicationResubmit:
 				self.hasList = @"最近一笔进度";
 				self.statusString = @"审核未通过";
 				self.buttonTitle = @"资料重传";
 				break;
-			case MSFCommodityRelease:
+			case MSFApplicationRelease:
 				self.hasList = @"最近一笔进度";
 				self.statusString = @"放款中";
 				self.buttonTitle = @"";
 				break;
-			case MSFCommodityRejected:
+			case MSFApplicationRejected:
 				self.hasList = @"最近一笔进度";
-				self.statusString = self.application.failInfo;
+                self.statusString = self.application.failInfo?:@"审核失败";
 				self.buttonTitle = @"";
 				break;
-			case MSFCommodityPay:
+			case MSFApplicationConfirmationed:
 				self.hasList = @"最近一笔进度";
 				self.statusString = @"合同已确认";
 				self.buttonTitle = @"去支付";
 				break;
-            case MSFCommodityPayedfirst:
+            case MSFApplicationPayedFirst:
                 self.hasList = @"最近一笔进度";
                 self.statusString = @"已支付首付";
                 self.buttonTitle = @"";
                 break;
-            case MSFCommodityPayed:
+            case MSFApplicationPayed:
                 self.hasList = @"最近一笔进度";
                 self.statusString = @"已支付";
                 self.buttonTitle = @"";
                 break;
-            case MSFCommodityWillPay:
+            case MSFApplicationWillPay:
                 self.hasList = @"最近一笔进度";
                 self.statusString = @"待支付";
                 self.buttonTitle = @"去支付";
@@ -152,31 +152,31 @@ static NSString *const kApplicationType = @"3";
 					 catch:^RACSignal *(NSError *error) {
 						 return [RACSignal return:NSNull.null];
 					 }] map:^id(MSFApplyList *application) {
-						 MSFCommodityStatus status = MSFCommodityNone;
+						 MSFApplicationStatus status = MSFApplicationNone;
 						 if ([application isKindOfClass:NSNull.class] || application.appNo.length == 0) {
-							 status  = MSFCommodityNone;
+							 status  = MSFApplicationNone;
 						 } else if ([application.status isEqualToString:@"G"]) {
-							 status = MSFCommodityInReview;
+							 status = MSFApplicationInReview;
 						 } else if ([application.status isEqualToString:@"I"]) {
-							 status = MSFCommodityConfirmation;
+							 status = MSFApplicationConfirmation;
 						 } else if ([application.status isEqualToString:@"L"]) {
-							 status = MSFCommodityResubmit;
+							 status = MSFApplicationResubmit;
 						 } else if ([application.status isEqualToString:@"E"]) {
-							 status = MSFCommodityRelease;
+							 status = MSFApplicationRelease;
 						 } else if ([application.status isEqualToString:@"H"] || [application.status isEqualToString:@"K"]) {
-							 status = MSFCommodityRejected;
+							 status = MSFApplicationRejected;
 						 } else if ([application.status isEqualToString:@"J"] ) {
-							 status = MSFCommodityPay;
+							 status = MSFApplicationConfirmationed;
 							 
                          } else if ([application.status isEqualToString:@"O"]) {
-                             status = MSFCommodityWillPay;
+                             status = MSFApplicationWillPay;
                              
                          } else if ([application.status isEqualToString:@"Q"]) {
-                             status = MSFCommodityPayedfirst;
+                             status = MSFApplicationPayedFirst;
                              
                          } else if ([application.status isEqualToString:@"P"]) {
                              
-                            status = MSFCommodityPayed;
+                            status = MSFApplicationPayed;
                              
                          }
 						 
@@ -189,7 +189,7 @@ static NSString *const kApplicationType = @"3";
 		return self.authenticateSignal;
 	}
 	
-	if (self.status == MSFCommodityNone || self.status == MSFCommodityRejected) {
+	if (self.status == MSFApplicationNone || self.status == MSFApplicationNone) {
 		return [[self.services.httpClient fetchBankCardList]
 						flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
 							if (bankcard.bankCardNo.length > 0) {
@@ -200,19 +200,19 @@ static NSString *const kApplicationType = @"3";
 						}];
 	}
 	
-	if (self.status == MSFCommodityInReview) {
+	if (self.status == MSFApplicationInReview) {
 		//查看订单
 		MSFMyOderListsViewModel *viewModel = [[MSFMyOderListsViewModel alloc] initWithservices:self.services];
 		[self.services pushViewModel:viewModel];
-	} else if (self.status == MSFCommodityConfirmation) {
+	} else if (self.status == MSFApplicationConfirmation) {
 		//确认合同
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"HOMEPAGECONFIRMCONTRACT" object:kApplicationType];
 		
-	} else if (self.status == MSFCommodityResubmit) {
+	} else if (self.status == MSFApplicationResubmit) {
 		//资料重传
 		MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWithApplicaitonNo:self.application.appNo productID:self.application.productCd services:self.services];
 		[self.services pushViewModel:viewModel];
-    } else if (self.status == MSFCommodityPay || self.status == MSFCommodityWillPay) {
+    } else if (self.status == MSFApplicationConfirmationed || self.status == MSFApplicationWillPay) {
         //查看订单
         MSFMyOderListsViewModel *viewModel = [[MSFMyOderListsViewModel alloc] initWithservices:self.services];
         [self.services pushViewModel:viewModel];
