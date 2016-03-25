@@ -271,16 +271,9 @@ static NSString *const kApplicationCreditType = @"1";
 				 }
 			 }]
 			doError:^(NSError *error) {
+                [SVProgressHUD dismiss];
 				[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 			}];
-//		return [[self.services.httpClient fetchBankCardList]
-//			flattenMap:^RACStream *(MSFBankCardListModel *bankcard) {
-//				if (bankcard.bankCardNo.length > 0) {
-//					return self.applicationSignal;
-//				} else {
-//					return self.bindBankcardSignal;
-//				}
-//			}];
 	}
 	
 	if (self.status == MSFApplicationInReview || self.status == MSFApplicationRelease) {

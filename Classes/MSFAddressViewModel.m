@@ -69,38 +69,41 @@
 		if (!self.needArea) {
 			return [[[self fetchProvince]
 				flattenMap:^RACStream *(id value) {
+                    self.city = nil;
 					return [self fetchCity];
 				}]
 				replayLast];
 		}
 		return [[[[self fetchProvince]
 			flattenMap:^RACStream *(id value) {
+                self.city = nil;
 				return [self fetchCity];
 			}]
 			flattenMap:^RACStream *(id value) {
+                self.area = nil;
 				return [self fetchArea];
 			}]
 			replayLast];
 	}];
 	_selectCommand.allowsConcurrentExecution = YES;
 	
-//	RAC(self, address) = [[RACSignal
-//		combineLatest:@[
-//			RACObserve(self, province),
-//			RACObserve(self, city),
-//			RACObserve(self, area),
-//		]
-//		reduce:^id(MSFAddress *province, MSFAddress *city, MSFAddress *area) {
-//			NSMutableString *address = NSMutableString.string;
-//			[address appendString:province.name ?: @""];
-//			[address appendString:city.name ?: @""];
-//			[address appendString:area.name ?: @""];
-//			
-//			return address;
-//		}]
-//		doNext:^(id x) {
-//			NSLog(@"`Address:`%@", x);
-//		}];
+	RAC(self, address) = [[RACSignal
+		combineLatest:@[
+			RACObserve(self, province),
+			RACObserve(self, city),
+			RACObserve(self, area),
+		]
+		reduce:^id(MSFAddress *province, MSFAddress *city, MSFAddress *area) {
+			NSMutableString *address = NSMutableString.string;
+			[address appendString:province.name ?: @""];
+			[address appendString:city.name ?: @""];
+			[address appendString:area.name ?: @""];
+			
+			return address;
+		}]
+		doNext:^(id x) {
+			NSLog(@"`Address:`%@", x);
+		}];
 	
 	RAC(self, provinceName) = RACObserve(self, province.name);
 	RAC(self, provinceCode) = RACObserve(self, province.codeID);
