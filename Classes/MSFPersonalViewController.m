@@ -66,12 +66,13 @@
 	self.housingBT.rac_command = self.viewModel.executeHouseValuesCommand;
 	
 	//电子邮件
+    [self.emailTF limitWitRex:@"[A-Z0-9a-z\\._%+-@]{0,}"];
 	RACChannelTerminal *emailChannel = RACChannelTo(self.viewModel, email);
 	RAC(self.emailTF, text) = emailChannel;
 	[self.emailTF.rac_textSignal subscribe:emailChannel];
     self.emailTF.keyboardType = UIKeyboardTypeASCIICapable;
-    [self.emailTF limitWitRex:@"[A-Z0-9a-z\\._%+-@]{0,}"];
-	//住宅电话
+
+    //住宅电话
     [self.homeTelTF limitWitLength:12];
     [self.homeTelTF limitWitRex:@"[0-9]{0,12}"];
     [self.homeTelTF dylimitWithRex:^BOOL(NSString *str) {
@@ -95,9 +96,9 @@
 	self.selectAreasBT.rac_command = self.viewModel.executeAlterAddressCommand;
 	
 	//详细地址
+    [self.detailAddressTF limitWitLength:50];
 	RACChannelTerminal *detailAddrChannel = RACChannelTo(self.viewModel, detailAddress);
 	RAC(self.detailAddressTF, text) = detailAddrChannel;
-    [self.detailAddressTF limitWitLength:50];
 	[self.detailAddressTF.rac_textSignal subscribe:detailAddrChannel];
 	
 	self.nextPageBT.rac_command = self.viewModel.executeCommitCommand;

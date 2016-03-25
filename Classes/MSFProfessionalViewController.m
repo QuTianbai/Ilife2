@@ -115,24 +115,24 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	self.marriageButton.rac_command = self.viewModel.executeMarriageCommand;
 	RAC(self, marriageTextField.text) = RACObserve(self.viewModel, marriage);
-	
+	    [self.incomeTF limitWitRex:@"[0-9\\.]{0,10}"];
 	RACChannelTerminal *channel = RACChannelTo(self.viewModel, normalIncome);
 	RAC(self.incomeTF, text) = channel;
 	[self.incomeTF.rac_textSignal subscribe:channel];
-    [self.incomeTF limitWitRex:@"[0-9\\.]{0,10}"];
+    [self.extraIncomeTF limitWitRex:@"[0-9\\.]{0,10}"];
 	channel = RACChannelTo(self.viewModel, surplusIncome);
 	RAC(self.extraIncomeTF, text) = channel;
 	[self.extraIncomeTF.rac_textSignal subscribe:channel];
-    [self.extraIncomeTF limitWitRex:@"[0-9\\.]{0,10}"];
+
     
 	channel = RACChannelTo(self.viewModel, loan);
 	RAC(self.loanTF, text) = channel;
 	[self.loanTF.rac_textSignal subscribe:channel];
-	
+    
+    [self.universityName limitWitRex:@"[\u4e00-\u9fa5a-zA-Z]{0,}"];
 	channel = RACChannelTo(self.viewModel, schoolName);
 	RAC(self.universityName, text) = channel;
-    [self.universityName limitWitRex:@"[\u4e00-\u9fa5a-zA-Z]{0,}"];
-	[self.universityName.rac_textSignal subscribe:channel];
+    [self.universityName.rac_textSignal subscribe:channel];
 	
 	channel = RACChannelTo(self.viewModel, schoolLength);
 	RAC(self.programLength, text) = channel;
@@ -168,16 +168,12 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	self.positionButton.rac_command = self.viewModel.executePositionCommand;
 	RAC(self, position.text) = RACObserve(self.viewModel, jobPosition);
-	
+   
+    [self.company limitWitLength:30];
 	channel = RACChannelTo(self.viewModel, jobName);
 	RAC(self.company, text) = channel;
-    [self.company limitWitLength:30];
 	[self.company.rac_textSignal subscribe:channel];
 	
-	channel = RACChannelTo(self.viewModel, jobPhone);
-	RAC(self.unitTelephone, text) = channel;
-	[self.unitTelephone.rac_textSignal subscribe:channel];
-    [self.unitTelephone limitWitLength:12];
     [self.unitTelephone limitWitRex:@"[0-9]{0,12}"];
     [self.unitTelephone dylimitWithRex:^BOOL(NSString *str) {
         @strongify(self);
@@ -191,22 +187,29 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
         }
         return YES;
     }];
+	channel = RACChannelTo(self.viewModel, jobPhone);
+	RAC(self.unitTelephone, text) = channel;
+	[self.unitTelephone.rac_textSignal subscribe:channel];
+    [self.unitTelephone limitWitLength:12];
+
+    [self.unitExtensionTelephone limitWitRex:@"[0-9]{0,5}"];
 	channel = RACChannelTo(self.viewModel, jobExtPhone);
 	RAC(self.unitExtensionTelephone, text) = channel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:channel];
-    [self.unitExtensionTelephone limitWitRex:@"[0-9]{0,5}"];
+    
+    [self.detailAddressTextField limitWitLength:50];
 	channel = RACChannelTo(self.viewModel, jobDetailAddress);
 	RAC(self.detailAddressTextField, text) = channel;
-    [self.detailAddressTextField limitWitLength:50];
 	[self.detailAddressTextField.rac_textSignal subscribe:channel];
 	RAC(self, address.text) = RACObserve(self.viewModel, jobAddress);
-	self.addressButton.rac_command = self.viewModel.executeAddressCommand;
 	
+    self.addressButton.rac_command = self.viewModel.executeAddressCommand;
+    
+	[self.department limitWitRex:@"[\u4e00-\u9fa5]{0,20}"];
 	channel = RACChannelTo(self.viewModel, jobPositionDepartment);
 	RAC(self.department, text) = channel;
 	[self.department.rac_textSignal subscribe:channel];
-//    [self.department limitWitLength:20];
-    [self.department limitWitRex:@"[\u4e00-\u9fa5]{0,20}"];
+    
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *x) {
 		[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -379,10 +382,10 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	textField = [cell viewWithTag:MSFProfessionalContactCellPhoneTextFeild + index];
     textField.text = viewModel.phone;
+    [textField limitWitRex:@"[0-9]{0,11}"];
     [[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
         viewModel.phone = x;
     }];
-    [textField limitWitRex:@"[0-9]{0,11}"];	
 	textField = [cell viewWithTag:MSFProfessionalContactCellAddressTextFeild + index];
     [textField limitWitRex:@".{0,200}"];
 	textField.text = viewModel.address;
