@@ -131,7 +131,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	
 	channel = RACChannelTo(self.viewModel, schoolName);
 	RAC(self.universityName, text) = channel;
-    [self.universityName limitWitRex:@"[\u4e00-\u9fa5a-zA-Z]{0,}"];
+    [self.universityName limitWitRex:@"[\u4e00-\u9fa5a-zA-Z]{0,20}"];
 	[self.universityName.rac_textSignal subscribe:channel];
 	
 	channel = RACChannelTo(self.viewModel, schoolLength);
@@ -205,8 +205,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	channel = RACChannelTo(self.viewModel, jobPositionDepartment);
 	RAC(self.department, text) = channel;
 	[self.department.rac_textSignal subscribe:channel];
-//    [self.department limitWitLength:20];
-    [self.department limitWitRex:@"[\u4e00-\u9fa5]{0,20}"];
+    [self.department limitWitLength:20];
+//    [self.department limitWitRex:@"[\u4e00-\u9fa5]{0,20}"];
 	self.nextButton.rac_command = self.viewModel.executeCommitCommand;
 	[self.viewModel.executeCommitCommand.errors subscribeNext:^(NSError *x) {
 		[SVProgressHUD showErrorWithStatus:x.userInfo[NSLocalizedFailureReasonErrorKey]];
@@ -372,7 +372,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 	button.rac_command = self.viewModel.executeContactCommand;
 	textField = [cell viewWithTag:MSFProfessionalContactCellNameTextFeild + index];
 	textField.text = viewModel.name;
-    [textField limitWitRex:@"[\u4e00-\u9fa5\\.]{0,20}"];
+    [textField limitWitLength:20];
 	[[textField.rac_textSignal takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(id x) {
 		viewModel.name = x;
 	}];

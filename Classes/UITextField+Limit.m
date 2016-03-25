@@ -21,10 +21,23 @@ typedef BOOL(^RexBlock)(NSString *);
 }
 
 - (void)textFieldDidChange:(UITextField *)textField {
-    NSNumber *length = objc_getAssociatedObject(self, TextFieldLength);
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
+    if ([lang isEqualToString:@"zh-Hans"]) {
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (!position) {
+            NSNumber *length = objc_getAssociatedObject(self, TextFieldLength);
+            if (textField.text.length > [length integerValue]) {
+                textField.text = [textField.text substringToIndex:[length integerValue]];
+            }
+        }
+    } else {
+        NSNumber *length = objc_getAssociatedObject(self, TextFieldLength);
         if (textField.text.length > [length integerValue]) {
             textField.text = [textField.text substringToIndex:[length integerValue]];
         }
+    }
 }
 
 - (void)limitWitRex:(NSString *)rex {
@@ -35,12 +48,29 @@ typedef BOOL(^RexBlock)(NSString *);
 }
 
 - (void)textFieldDidChangeForRex:(UITextField *)textField {
-    NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", objc_getAssociatedObject(self, TextFieldRex)];
-    if ([numberPre evaluateWithObject:textField.text]) {
-        objc_setAssociatedObject(self, TextFieldLast, textField.text, OBJC_ASSOCIATION_COPY);
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
+    if ([lang isEqualToString:@"zh-Hans"]) {
+        UITextRange *selectedRange = [textField markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (!position) {
+            NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", objc_getAssociatedObject(self, TextFieldRex)];
+            if ([numberPre evaluateWithObject:textField.text]) {
+                objc_setAssociatedObject(self, TextFieldLast, textField.text, OBJC_ASSOCIATION_COPY);
+            } else {
+                textField.text = objc_getAssociatedObject(self, TextFieldLast);
+            }
+        }
     } else {
-        textField.text = objc_getAssociatedObject(self, TextFieldLast);
+        NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", objc_getAssociatedObject(self, TextFieldRex)];
+        if ([numberPre evaluateWithObject:textField.text]) {
+            objc_setAssociatedObject(self, TextFieldLast, textField.text, OBJC_ASSOCIATION_COPY);
+        } else {
+            textField.text = objc_getAssociatedObject(self, TextFieldLast);
+        }
     }
+
+
 }
 
 - (void)dylimitWithRex:(BOOL(^)(NSString *str))block {
