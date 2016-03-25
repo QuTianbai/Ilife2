@@ -191,10 +191,11 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
         }
         return YES;
     }];
+    [self.unitExtensionTelephone limitWitRex:@"[0-9]{0,5}"];
 	channel = RACChannelTo(self.viewModel, jobExtPhone);
 	RAC(self.unitExtensionTelephone, text) = channel;
 	[self.unitExtensionTelephone.rac_textSignal subscribe:channel];
-    [self.unitExtensionTelephone limitWitRex:@"[0-9]{0,5}"];
+    
 	channel = RACChannelTo(self.viewModel, jobDetailAddress);
 	RAC(self.detailAddressTextField, text) = channel;
     [self.detailAddressTextField limitWitLength:50];

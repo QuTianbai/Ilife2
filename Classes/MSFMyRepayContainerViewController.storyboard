@@ -156,10 +156,21 @@
                                     <constraint firstItem="fkv-C6-uOC" firstAttribute="leading" secondItem="PTI-HK-dzF" secondAttribute="leading" constant="15" id="znA-wg-lHT"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZH-4y-LHA" customClass="MSFBlurButton">
+                                <rect key="frame" x="15" y="513" width="290" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="4y0-9Q-nJ8"/>
+                                </constraints>
+                                <state key="normal" title="立即还款"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xuq-F5-rNx">
+                                <rect key="frame" x="0.0" y="110" width="320" height="388"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgN-u6-h9u">
                                 <rect key="frame" x="0.0" y="80" width="320" height="30"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账单明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqk-Dx-p1S">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqk-Dx-p1S">
                                         <rect key="frame" x="15" y="4" width="56" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="lBx-W2-jcg"/>
@@ -172,7 +183,6 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账单日：每月10日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtv-6R-P3m">
                                         <rect key="frame" x="191" y="4" width="114" height="21"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="114" id="3xo-Yg-bTf"/>
                                             <constraint firstAttribute="height" constant="21" id="a5z-R2-bnN"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -189,17 +199,6 @@
                                     <constraint firstAttribute="height" constant="30" id="yLa-Ye-Tfy"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZH-4y-LHA" customClass="MSFBlurButton">
-                                <rect key="frame" x="15" y="513" width="290" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="4y0-9Q-nJ8"/>
-                                </constraints>
-                                <state key="normal" title="立即还款"/>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xuq-F5-rNx">
-                                <rect key="frame" x="0.0" y="110" width="320" height="388"/>
-                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>

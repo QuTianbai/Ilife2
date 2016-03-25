@@ -41,7 +41,7 @@
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.tableView.backgroundColor = [MSFCommandView getColorWithString:@"#F6F6F6"];
-    self.title = @"还款计划";
+    self.title = @"账单明细";
     //self.dataArray = [[NSArray alloc]init];
     [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 	
