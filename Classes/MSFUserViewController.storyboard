@@ -43,20 +43,20 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="291-Ha-JGu">
-                                    <rect key="frame" x="287" y="52.5" width="25" height="35"/>
+                                    <rect key="frame" x="275" y="57.5" width="40" height="35"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="35" id="esf-rk-bR5"/>
-                                        <constraint firstAttribute="width" constant="25" id="vYl-Fm-oUi"/>
+                                        <constraint firstAttribute="width" constant="40" id="vYl-Fm-oUi"/>
                                     </constraints>
-                                    <inset key="imageEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                    <inset key="imageEdgeInsets" minX="5" minY="8" maxX="8" maxY="0.0"/>
                                     <state key="normal" image="icon-user-edit.png"/>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="638-xK-6cf" firstAttribute="leading" secondItem="NV9-rr-KPZ" secondAttribute="trailing" constant="8" id="0AB-Jh-wCy"/>
-                                <constraint firstAttribute="trailing" secondItem="291-Ha-JGu" secondAttribute="trailing" constant="8" id="5ph-h2-tGN"/>
+                                <constraint firstAttribute="trailing" secondItem="291-Ha-JGu" secondAttribute="trailing" constant="5" id="5ph-h2-tGN"/>
                                 <constraint firstItem="BEi-3L-bJf" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" id="6VA-fM-4BC"/>
                                 <constraint firstAttribute="trailing" secondItem="BEi-3L-bJf" secondAttribute="trailing" id="DfH-OW-T8U"/>
                                 <constraint firstItem="vin-S9-BJd" firstAttribute="top" secondItem="yP1-83-qgL" secondAttribute="top" id="EJp-sj-qyD"/>
@@ -64,7 +64,7 @@
                                 <constraint firstItem="vin-S9-BJd" firstAttribute="leading" secondItem="yP1-83-qgL" secondAttribute="leading" id="H4q-sr-IYG"/>
                                 <constraint firstItem="NV9-rr-KPZ" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" constant="10" id="JPK-Sf-H2j"/>
                                 <constraint firstItem="638-xK-6cf" firstAttribute="top" secondItem="UYQ-iw-JgI" secondAttribute="bottom" constant="8" id="UdX-XO-UXh"/>
-                                <constraint firstItem="291-Ha-JGu" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" constant="10" id="dZ8-kR-DCh"/>
+                                <constraint firstItem="291-Ha-JGu" firstAttribute="centerY" secondItem="yP1-83-qgL" secondAttribute="centerY" constant="15" id="dZ8-kR-DCh"/>
                                 <constraint firstAttribute="trailing" secondItem="vin-S9-BJd" secondAttribute="trailing" id="dq3-Ak-PL6"/>
                                 <constraint firstAttribute="bottom" secondItem="BEi-3L-bJf" secondAttribute="bottom" id="e2k-U8-kMH"/>
                                 <constraint firstItem="UYQ-iw-JgI" firstAttribute="leading" secondItem="NV9-rr-KPZ" secondAttribute="trailing" constant="8" id="f5d-tp-8Eo"/>
