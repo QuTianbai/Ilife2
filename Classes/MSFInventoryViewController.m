@@ -133,10 +133,6 @@ UICollectionViewDelegateFlowLayout>
 		[SVProgressHUD showWithStatus:@"正在提交..." maskType:SVProgressHUDMaskTypeNone];
 		[signal subscribeNext:^(id x) {
 				[SVProgressHUD showSuccessWithStatus:@"提交成功"];
-				[self.navigationController setViewControllers:@[
-					self.navigationController.viewControllers.firstObject,
-					[[MSFCommitedViewController alloc] init]
-				] animated:YES];
             [self.navigationController pushViewController:[[MSFCommitedViewController alloc] init] animated:YES];
 		}];
 	}];
