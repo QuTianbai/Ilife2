@@ -26,6 +26,8 @@
 #import "UIColor+Utils.h"
 #import "MSFMyOrderCmdViewModel.h"
 #import "MSFMyOrderProductsCell.h"
+#import "MSFMyOrderListTravalDetailCell.h"
+#import "MSFMyOrderTravalMemebersCell.h"
 
 @interface MSFCartViewController ()
 
@@ -53,10 +55,8 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.tableView.allowsSelection = NO;
 	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
-    	[self.tableView registerClass:MSFCartContentCell.class forCellReuseIdentifier:@"MSFCartContentCell"];
-    	[self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFCartCategoryCell"];
-    //[self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFMyOrderProductsCell"];
-
+    [self.tableView registerClass:MSFCartContentCell.class forCellReuseIdentifier:@"MSFCartContentCell"];
+    [self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFCartCategoryCell"];
 
 	[self.tableView registerClass:MSFCartInputCell.class forCellReuseIdentifier:@"MSFCartInputCell"];
 	[self.tableView registerClass:MSFCartLoanTermCell.class forCellReuseIdentifier:@"MSFCartLoanTermCell"];
@@ -138,7 +138,7 @@
 	if (!self.viewModel.cart.cartType) return 0;
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier])
         return 2;//return self.viewModel.cart.cmdtyList.count + 1;
-	if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) return 3;
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) return 2;
 	return 0;
 }
 
@@ -154,9 +154,9 @@
 //			return 4;
 //		}
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
-		if (section == 0) return 6; // 旅游信息
-		if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
-		if (section == 2) return 4; // 分期信息
+		if (section == 0) return self.viewModel.cart.companions.count + 1; // 旅游信息
+		//if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
+		if (section == 1) return 4; // 分期信息
 	}
 	return 0;
 }
@@ -183,7 +183,7 @@
 			}
 		}
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
-		if (indexPath.section == 2) { // 商品试算的section
+		if (indexPath.section == 1) { // 商品试算的section 分期
 			if (indexPath.row == 2) {
 				return 150.f;
 			}
@@ -191,8 +191,15 @@
 				return 125.f;
 			}
 		}
-		if (indexPath.section == 1 && self.hiddenCompanion) return 0.f;
-		if (indexPath.section == 1 && !self.hiddenCompanion) return 44.f;
+        if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                return 63;
+            } else {
+                return 72;
+            }
+        }
+//		if (indexPath.section == 1 && self.hiddenCompanion) return 0.f;
+//		if (indexPath.section == 1 && !self.hiddenCompanion) return 44.f;
 	}
 	return 44.f;
 }
@@ -204,7 +211,7 @@
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
 		label.font = [UIFont systemFontOfSize:15];
 		label.textColor = UIColor.themeColorNew;
-		if (section == self.viewModel.cart.cmdtyList.count) {
+		if (section == 1) {
 			label.text = @"分期";
         } else if (section == 0) {
             label.text = @"商品信息";
@@ -221,24 +228,23 @@
 		UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, tableView.frame.size.width - 15, 30)];
 		label.font = [UIFont systemFontOfSize:15];
 		label.textColor = UIColor.themeColorNew;
-		if (section == 2) {
+		if (section == 1) {
 			label.text = @"分期";
 		} else if (section == 0){
-			MSFTravel *travel = self.viewModel.cart.travel;
-			label.text = [travel.origin stringByAppendingFormat:@"-%@", travel.destination];
+			label.text = @"商品信息";
 		} else {
 			label.text = @"同行人信息";
 		}
 		[reuse addSubview:label];
-		if (section == 1)  {
-			UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX([UIScreen mainScreen].bounds) - 30, 0, 30, 30)];
-			[button setImage:[UIImage imageNamed:@"icon-arrow-down.png"] forState:UIControlStateNormal];
-			[[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-				self.hiddenCompanion = !self.hiddenCompanion;
-				[self.tableView reloadData];
-			}];
-			[reuse addSubview:button];
-		}
+//		if (section == 1)  {
+//			UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX([UIScreen mainScreen].bounds) - 30, 0, 30, 30)];
+//			[button setImage:[UIImage imageNamed:@"icon-arrow-down.png"] forState:UIControlStateNormal];
+//			[[button rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//				self.hiddenCompanion = !self.hiddenCompanion;
+//				[self.tableView reloadData];
+//			}];
+//			[reuse addSubview:button];
+//		}
 		return reuse;
 	}
 	
@@ -264,12 +270,29 @@
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
 		UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-		if (indexPath.section == 2) { // 贷款试算视图
+		if (indexPath.section == 1) { // 贷款试算视图
 			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-		} else if (indexPath.section == 1) {
-			[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
-		} else if (indexPath.section == 0) {
-			[cell bindViewModel:self.viewModel.cart atIndexPath:indexPath];
+		}
+//        else if (indexPath.section == 1) {
+//			[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
+//		}
+        else if (indexPath.section == 0) {
+            if (indexPath.row == 0) {
+                cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderListTravalDetailCell class])];
+                if (cell == nil) {
+                    cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
+                }
+                [(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel atIndexPath:indexPath];
+                //return cell;
+            } else {
+                cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
+                if (cell == nil) {
+                    cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderTravalMemebersCell class]) owner:nil options:nil].firstObject ;
+                }
+                [(MSFMyOrderTravalMemebersCell *)cell bindViewModel:self.viewModel.cart atIndexPath:indexPath] ;
+                //return cell;
+            }
+			//[cell bindViewModel:self.viewModel.cart atIndexPath:indexPath];
 		}
 		return cell;
 	}
