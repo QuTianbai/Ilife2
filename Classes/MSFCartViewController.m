@@ -24,6 +24,8 @@
 #import "MSFCompanion.h"
 
 #import "UIColor+Utils.h"
+#import "MSFMyOrderCmdViewModel.h"
+#import "MSFMyOrderProductsCell.h"
 
 @interface MSFCartViewController ()
 
@@ -51,8 +53,11 @@
 	self.edgesForExtendedLayout = UIRectEdgeNone;
 	self.tableView.allowsSelection = NO;
 	self.tableView.backgroundColor = UIColor.darkBackgroundColor;
-	[self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFCartCategoryCell"];
-	[self.tableView registerClass:MSFCartContentCell.class forCellReuseIdentifier:@"MSFCartContentCell"];
+    	[self.tableView registerClass:MSFCartContentCell.class forCellReuseIdentifier:@"MSFCartContentCell"];
+    	[self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFCartCategoryCell"];
+    //[self.tableView registerClass:MSFCartCategoryCell.class forCellReuseIdentifier:@"MSFMyOrderProductsCell"];
+
+
 	[self.tableView registerClass:MSFCartInputCell.class forCellReuseIdentifier:@"MSFCartInputCell"];
 	[self.tableView registerClass:MSFCartLoanTermCell.class forCellReuseIdentifier:@"MSFCartLoanTermCell"];
 	[self.tableView registerClass:MSFCartSwitchCell.class forCellReuseIdentifier:@"MSFCartSwitchCell"];
@@ -131,18 +136,23 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 	if (!self.viewModel.cart.cartType) return 0;
-	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) return self.viewModel.cart.cmdtyList.count + 1;
+	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier])
+        return 2;//return self.viewModel.cart.cmdtyList.count + 1;
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) return 3;
 	return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier])  {
-		if (section == self.viewModel.cart.cmdtyList.count) {
-			return 4;
-		} else {
-			return 4;
-		}
+        if (section == 0) {
+            return self.viewModel.cart.cmdtyList.count;
+        }
+        return 4;
+//		if (section == self.viewModel.cart.cmdtyList.count) {
+//			return 4;
+//		} else {
+//			return 4;
+//		}
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		if (section == 0) return 6; // 旅游信息
 		if (section == 1) return self.viewModel.cart.companions.count * 4; // 同行人信息
@@ -161,7 +171,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
-		if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
+        if (indexPath.section == 0) {
+            return 69;
+        }
+		if (indexPath.section == 1) {
 			if (indexPath.row == 2) {
 				return 150.f;
 			}
@@ -193,10 +206,13 @@
 		label.textColor = UIColor.themeColorNew;
 		if (section == self.viewModel.cart.cmdtyList.count) {
 			label.text = @"分期";
-		} else {
-			MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
-			label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
-		}
+        } else if (section == 0) {
+            label.text = @"商品信息";
+        }
+//        else {
+//			MSFCommodity *commodity = self.viewModel.cart.cmdtyList[section];
+//			label.text = commodity.brandName.length > 0 ? commodity.brandName : commodity.cmdtyName;
+//		}
 		[reuse addSubview:label];
 		return reuse;
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
@@ -233,10 +249,16 @@
 	if ([self.viewModel.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
 		NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
 		UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-		if (indexPath.section == self.viewModel.cart.cmdtyList.count) {
+		if (indexPath.section == 1) {
 			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
 		} else {
-			[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
+            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductsCell class])];
+            if (cell == nil) {
+                cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductsCell class]) owner:nil options:nil].firstObject ;
+            }
+            [(MSFMyOrderProductsCell *)cell bindViewModel:[[MSFMyOrderCmdViewModel alloc] initWithModel:self.viewModel.cart.cmdtyList[indexPath.row]]];
+           // [cell bindViewModel:[[MSFMyOrderCmdViewModel alloc] initWithModel:self.viewModel.cart.cmdtyList[indexPath.row]]];
+			//[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
 		}
 		return cell;
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {

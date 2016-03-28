@@ -186,7 +186,7 @@
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
-		if (indexPath.section == self.cart.cmdtyList.count) {
+		if (indexPath.section == 1) {
 			switch (indexPath.row) {
 				case 0: return @"MSFCartInputCell";
 				case 1: return @"MSFCartContentCell";
@@ -195,10 +195,10 @@
 				case 4: return @"MSFCartTrialCell";
 			}
 		} else {
-			if (indexPath.row == 0) {
-				return @"MSFCartCategoryCell";
-			}
-			return @"MSFCartContentCell";
+//			if (indexPath.row == 0) {
+//				return @"MSFCartCategoryCell";
+//			}
+			return @"MSFMyOrderProductsCell";
 		}
 	} else if ([self.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		if (indexPath.section == 2) { // 商品试算视图
