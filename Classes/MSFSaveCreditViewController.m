@@ -12,6 +12,7 @@
 #import "MSFHeaderView.h"
 #import <Masonry/Masonry.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFBaseLineButton.h"
 
 @interface MSFSaveCreditViewController ()
 
@@ -161,6 +162,17 @@
         make.width.equalTo(jinDongButton);
         make.top.equalTo(jinDongButton.mas_bottom).offset(10);
         make.height.equalTo(messageLabel);
+    }];
+    MSFBaseLineButton *nextButton = [MSFBaseLineButton buttonWithType:UIButtonTypeSystem];
+    [nextButton setTitle:@"授信将提高贷款通过率，跳过>>" forState:UIControlStateNormal];
+    [nextButton setTitleColor:[UIColor colorWithRed:53 / 255.0f green:144 / 255.0f blue:234 / 255.0f alpha:1] forState:UIControlStateNormal];
+    [nextButton setBaseLineColor:[UIColor colorWithRed:53 / 255.0f green:144 / 255.0f blue:234 / 255.0f alpha:1]];
+    [self.view addSubview:nextButton];
+    [nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@30);
+        make.bottom.equalTo(self.view).offset(- 20);
+        make.width.equalTo(@240);
+        make.centerX.equalTo(self.view);
     }];
 
 }

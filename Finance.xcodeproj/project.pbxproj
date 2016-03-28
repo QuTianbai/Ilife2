@@ -927,6 +927,7 @@
 		C30578CC1CA8DE3C0056D164 /* MSFSaveCreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578CB1CA8DE3C0056D164 /* MSFSaveCreditViewController.m */; };
 		C30578DD1CA8E18E0056D164 /* MSFSaveCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */; };
 		C30578E01CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */; };
+		C34CE1431CA93A2A00DA29F4 /* MSFBaseLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C34CE1421CA93A2A00DA29F4 /* MSFBaseLineButton.m */; };
 		C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */; };
 		C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */; };
 		C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C79402401B1EFCB700898535 /* MSFCellButton.m */; };
@@ -2407,6 +2408,8 @@
 		C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSaveCreditViewModel.m; sourceTree = "<group>"; };
 		C30578DE1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
 		C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
+		C34CE1411CA93A2A00DA29F4 /* MSFBaseLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBaseLineButton.h; sourceTree = "<group>"; };
+		C34CE1421CA93A2A00DA29F4 /* MSFBaseLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBaseLineButton.m; sourceTree = "<group>"; };
 		C718843A1B06F87200C25955 /* accordtonperlist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accordtonperlist.json; sourceTree = "<group>"; };
 		C72149D81B05A1FA0045F919 /* MSFRepaymentSchedules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentSchedules.h; sourceTree = "<group>"; };
 		C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedules.m; sourceTree = "<group>"; };
@@ -3785,6 +3788,8 @@
 			isa = PBXGroup;
 			children = (
 				491C5FB11B0F17A900CADF8E /* MSFEdgeButton.h */,
+				C34CE1411CA93A2A00DA29F4 /* MSFBaseLineButton.h */,
+				C34CE1421CA93A2A00DA29F4 /* MSFBaseLineButton.m */,
 				491C5FB21B0F17A900CADF8E /* MSFEdgeButton.m */,
 				C794023F1B1EFCB700898535 /* MSFCellButton.h */,
 				C79402401B1EFCB700898535 /* MSFCellButton.m */,
@@ -6288,6 +6293,7 @@
 				102C7F161C2A7C990023172B /* MSFCartLoanTermCell.m in Sources */,
 				4925ADD41B2AC07300872A8A /* MSFBlurFieldView.m in Sources */,
 				07E14BA51C85B88D00589164 /* MSFMyRepayDetailTableViewCell.m in Sources */,
+				C34CE1431CA93A2A00DA29F4 /* MSFBaseLineButton.m in Sources */,
 				102C7E861C28F55E0023172B /* MSFAdverImage.m in Sources */,
 				49537E1D1C92894B00F3A44D /* MSLoanListTableViewCell.m in Sources */,
 				07D2249B1BCCB9DF00B00BEF /* MSFLifeInsuranceViewModel.m in Sources */,
