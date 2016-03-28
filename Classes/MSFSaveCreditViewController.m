@@ -54,9 +54,7 @@
     [self updateNavAppearance];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+- (void)createSubViews {
     self.headerView = [MSFHeaderView headerViewWithIndex:2];
     [self.view addSubview:self.headerView];
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,7 +71,104 @@
         make.top.equalTo(self.headerView.mas_bottom);
         make.height.equalTo(@1);
     }];
-    // Do any additional setup after loading the view.
+    UILabel *creditLabel = [[UILabel alloc] init];
+    [self.view addSubview:creditLabel];
+    creditLabel.text = @"马上激活受信";
+    creditLabel.textColor = [UIColor colorWithRed:32 / 255.0f green:150 / 255.0f blue:251 / 255.0f alpha:1];
+    creditLabel.font = [UIFont boldSystemFontOfSize:16];
+    creditLabel.textAlignment = NSTextAlignmentCenter;
+    [creditLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(headerViewBottomLine.mas_bottom).offset(10);
+        make.width.equalTo(@120);
+        make.height.equalTo(@18);
+    }];
+    UILabel *tipLabel = [[UILabel alloc] init];
+    [self.view addSubview:tipLabel];
+    tipLabel.text = @"提高贷款成功率和增加贷款资金";
+    tipLabel.textColor = [UIColor colorWithRed:147 / 255.0f green:147 / 255.0f blue:147 / 255.0f alpha:1];
+    tipLabel.font = [UIFont systemFontOfSize:14];
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(creditLabel.mas_bottom).offset(10);
+        make.width.equalTo(self.view);
+        make.height.equalTo(@16);
+    }];
+    UIButton *taoBaoButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [taoBaoButton setImage:[[UIImage imageNamed:@"淘宝1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [taoBaoButton setImage:[[UIImage imageNamed:@"淘宝2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    [self.view addSubview:taoBaoButton];
+    [taoBaoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(60);
+        make.width.equalTo(@70);
+        make.height.equalTo(@70);
+        make.top.equalTo(tipLabel.mas_bottom).offset(10);
+    }];
+    
+    UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [messageButton setImage:[[UIImage imageNamed:@"手机1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [messageButton setImage:[[UIImage imageNamed:@"手机2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    [self.view addSubview:messageButton];
+    [messageButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.view).offset(-60);
+        make.width.equalTo(@70);
+        make.height.equalTo(@70);
+        make.top.equalTo(tipLabel.mas_bottom).offset(10);
+    }];
+    UILabel *taoBaoLabel = [[UILabel alloc] init];
+    taoBaoLabel.textAlignment = NSTextAlignmentCenter;
+    taoBaoLabel.text = @"淘宝信用";
+    taoBaoLabel.font = [UIFont systemFontOfSize:14];
+    taoBaoLabel.textColor = [UIColor colorWithRed:128 / 255.0f green:128 / 255.0f blue:128 / 255.0f alpha:1];
+    [self.view addSubview:taoBaoLabel];
+    [taoBaoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(taoBaoButton);
+        make.width.equalTo(taoBaoButton);
+        make.top.equalTo(taoBaoButton.mas_bottom).offset(10);
+        make.height.equalTo(@16);
+    }];
+    UILabel *messageLabel = [[UILabel alloc] init];
+    messageLabel.textAlignment = NSTextAlignmentCenter;
+    messageLabel.text = @"手机信用";
+    messageLabel.font = [UIFont systemFontOfSize:14];
+    messageLabel.textColor = [UIColor colorWithRed:128 / 255.0f green:128 / 255.0f blue:128 / 255.0f alpha:1];
+    [self.view addSubview:messageLabel];
+    [messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(messageButton);
+        make.width.equalTo(messageButton);
+        make.top.equalTo(messageButton.mas_bottom).offset(10);
+        make.height.equalTo(messageLabel);
+    }];
+    UIButton *jinDongButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [jinDongButton setImage:[[UIImage imageNamed:@"京东1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [jinDongButton setImage:[[UIImage imageNamed:@"京东2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    [self.view addSubview:jinDongButton];
+    [jinDongButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.width.equalTo(@70);
+        make.height.equalTo(@70);
+        make.top.equalTo(messageLabel.mas_bottom);
+    }];
+    UILabel *jinDongLabel = [[UILabel alloc] init];
+    jinDongLabel.textAlignment = NSTextAlignmentCenter;
+    jinDongLabel.text = @"京东信用";
+    jinDongLabel.font = [UIFont systemFontOfSize:14];
+    jinDongLabel.textColor = [UIColor colorWithRed:128 / 255.0f green:128 / 255.0f blue:128 / 255.0f alpha:1];
+    [self.view addSubview:jinDongLabel];
+    [jinDongLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(jinDongButton);
+        make.width.equalTo(jinDongButton);
+        make.top.equalTo(jinDongButton.mas_bottom).offset(10);
+        make.height.equalTo(messageLabel);
+    }];
+
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self createSubViews];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
