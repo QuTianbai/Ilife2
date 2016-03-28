@@ -27,6 +27,7 @@
 #import "MSFCirculateCashModel.h"
 #import "NSDateFormatter+MSFFormattingAdditions.h"
 #import "NSString+Matches.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 static const int kCounterLength = 60;
 
@@ -67,9 +68,6 @@ static const int kCounterLength = 60;
         }
         
     }
-//    if ([self.debtAmounts floatValue] < 100) {
-//        _editable = NO;
-//    }
 	@weakify(self)
 	RAC(self, amounts) = [RACObserve(self, model) map:^id(id value) {
 		if ([value isKindOfClass:MSFCirculateCashViewModel.class]) {
@@ -267,10 +265,8 @@ static const int kCounterLength = 60;
         
     }
 	return [self.services.msf_gainPasscodeSignal
-//		flattenMap:^RACStream *(id value) {
-//			return [self.services.httpClient checkDataWithPwd:value contractNO:self.contractNO];
-//		}]
 		flattenMap:^RACStream *(id value) {
+            [SVProgressHUD showWithStatus:@"正在处理..."];
 			return [self.services.httpClient transActionWithAmount:self.amounts smsCode:self.captcha smsSeqNo:self.uniqueTransactionID contractNo:self.contractNO bankCardID:self.bankCardID transPwd:value];
 }];
 }
