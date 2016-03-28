@@ -24,7 +24,9 @@
         _applicationViewModel = model;
         _services = services;
         _selectCreditChannelCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(UIButton *input) {
-            [self.services pushViewModel:[[MSFAuthorizationViewModel alloc] initWithModel:model Services:services]];
+            MSFAuthorizationViewModel *authoViewModel = [[MSFAuthorizationViewModel alloc] initWithModel:model Services:services];
+            authoViewModel.channel = input.tag - 100;
+            [self.services pushViewModel:authoViewModel];
             return [RACSignal empty];
         }];
     }

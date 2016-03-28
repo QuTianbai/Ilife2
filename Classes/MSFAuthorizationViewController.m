@@ -8,10 +8,12 @@
 
 #import "MSFAuthorizationViewController.h"
 #import "MSFAuthorizationViewModel.h"
+#import "UINavigationBar+BackgroundColor.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 @interface MSFAuthorizationViewController ()
 
-@property (nonatomic, strong) MSFApplicationViewModel *viewModel;
+@property (nonatomic, strong) MSFAuthorizationViewModel *viewModel;
 
 @end
 
@@ -24,9 +26,47 @@
     return self;
 }
 
+- (void)updateNavAppearance {
+    [self.navigationController.navigationBar msf_setBackgroundColor:[UIColor whiteColor]];
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 44)];
+    RAC(titleLabel, text) = [RACObserve(self.viewModel, channel) map:^id(id value) {
+        if ([value integerValue] == 0) {
+            return @"淘宝授信";
+        } else if ([value integerValue] == 1) {
+            return @"手机授信";
+        } else {
+            return @"京东授信";
+        }
+    }];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor blackColor];
+    self.navigationItem.titleView = titleLabel;
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    backButton.frame = CGRectMake(0, 7, 30, 30);
+    backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -20, 0, 0);
+    [backButton setImage:[[UIImage imageNamed:@"btn-back-nav.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
+- (void)back {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateNavAppearance];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar msf_reset];
 }
 
 - (void)didReceiveMemoryWarning {
