@@ -101,6 +101,9 @@
 }
 
 - (RACSignal *)updateSignal {
+    if ( !self.model.abodeStateCode || !self.model.abodeCityCode || !self.model.abodeZoneCode) {
+        return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"请选择完整的现居地区"}]];
+    }
 	if ( self.email.length > 0 && !self.email.isMail) return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"邮箱无效"}]];
     if (self.detailAddress.length < 3) {
         return [RACSignal error:[NSError errorWithDomain:@"" code:0 userInfo:@{NSLocalizedFailureReasonErrorKey: @"详细地址不能少于三个字符"}]];
