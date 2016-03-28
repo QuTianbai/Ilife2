@@ -17,6 +17,7 @@
 #import "MSFPaymentToken.h"
 #import "MSFBankCardListViewModel.h"
 #import "MSFClient+Payment.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFPaymentViewModel ()
 
@@ -146,6 +147,7 @@
 
 - (RACSignal *)paymentSignal {
 	return [[[self.services msf_gainPasscodeSignal] flattenMap:^RACStream *(id value) {
+         [SVProgressHUD showWithStatus:@"正在处理..."];
 		return [self.services.httpClient fetchDownPayment:self.model password:value];
 	}] flattenMap:^RACStream *(id value) {
 		return [self.services.httpClient downPaymentWithPayment:self.model SMSCode:self.captcha SMSSeqNo:self.uniqueTransactionID bankCardID:self.bankCardID];

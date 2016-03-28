@@ -329,6 +329,11 @@
 }
 
 - (RACSignal *)msf_gainPasscodeSignal {
+    MSFUser *user = [self httpClient].user;
+    if (!user.hasTransactionalCode) {
+        [self pushSetTransPassword];
+        return [RACSignal empty];
+    }
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
 		self.passcodeViewController = [UIStoryboard storyboardWithName:@"InputTradePassword" bundle:nil].instantiateInitialViewController;
 		self.passcodeViewController.delegate = self;
