@@ -924,6 +924,9 @@
 		49FCC1911C572316004AFF13 /* MSFCouponsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FCC1901C572316004AFF13 /* MSFCouponsContainerViewController.m */; };
 		49FCC1931C572332004AFF13 /* MSFCouponsContainerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49FCC1921C572332004AFF13 /* MSFCouponsContainerViewController.storyboard */; };
 		84AE51681C9C21D1000CD582 /* UITextField+Limit.m in Sources */ = {isa = PBXBuildFile; fileRef = 84AE51671C9C21D1000CD582 /* UITextField+Limit.m */; };
+		C30578CC1CA8DE3C0056D164 /* MSFSaveCreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578CB1CA8DE3C0056D164 /* MSFSaveCreditViewController.m */; };
+		C30578DD1CA8E18E0056D164 /* MSFSaveCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */; };
+		C30578E01CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */; };
 		C72149DA1B05A1FA0045F919 /* MSFRepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */; };
 		C72149DE1B05A3640045F919 /* MSFClient+RepaymentSchedules.m in Sources */ = {isa = PBXBuildFile; fileRef = C72149DD1B05A3640045F919 /* MSFClient+RepaymentSchedules.m */; };
 		C79402411B1EFCB700898535 /* MSFCellButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C79402401B1EFCB700898535 /* MSFCellButton.m */; };
@@ -2398,6 +2401,12 @@
 		872B519157B1C71C603BEA97 /* Pods-Tests.test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.test.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.test.xcconfig"; sourceTree = "<group>"; };
 		AA61C8505EB43FA48156FEC0 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		B1C7E4D250D094AB88DCA842 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C30578CA1CA8DE3C0056D164 /* MSFSaveCreditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSaveCreditViewController.h; sourceTree = "<group>"; };
+		C30578CB1CA8DE3C0056D164 /* MSFSaveCreditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSaveCreditViewController.m; sourceTree = "<group>"; };
+		C30578DB1CA8E18E0056D164 /* MSFSaveCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFSaveCreditViewModel.h; sourceTree = "<group>"; };
+		C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSaveCreditViewModel.m; sourceTree = "<group>"; };
+		C30578DE1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
+		C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
 		C718843A1B06F87200C25955 /* accordtonperlist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = accordtonperlist.json; sourceTree = "<group>"; };
 		C72149D81B05A1FA0045F919 /* MSFRepaymentSchedules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFRepaymentSchedules.h; sourceTree = "<group>"; };
 		C72149D91B05A1FA0045F919 /* MSFRepaymentSchedules.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFRepaymentSchedules.m; sourceTree = "<group>"; };
@@ -2864,6 +2873,8 @@
 				49DAEE7F1B2E83F9009433C5 /* professional.storyboard */,
 				07CBA7E61B1FE6FE0020116E /* MSFLoanAgreementController.h */,
 				07CBA7E71B1FE6FE0020116E /* MSFLoanAgreementController.m */,
+				C30578CA1CA8DE3C0056D164 /* MSFSaveCreditViewController.h */,
+				C30578CB1CA8DE3C0056D164 /* MSFSaveCreditViewController.m */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -4051,6 +4062,7 @@
 		4943C36C1B047A92000BBF5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C30578DA1CA8E0E00056D164 /* credit */,
 				4957D4E31C9EFD4200E4A1DF /* Plan */,
 				1D4EC4F41C9A9A4E00C00DA8 /* RepayPlay */,
 				1D907A041C8D1A4800DF9A24 /* Credit */,
@@ -4804,6 +4816,8 @@
 				498BFC5D1B12BB0100FFE88F /* UIColor+Utils.m */,
 				49CA93731BBA22CF0032F5C2 /* UIView+Sizes.h */,
 				49CA93741BBA22CF0032F5C2 /* UIView+Sizes.m */,
+				C30578DE1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.h */,
+				C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */,
 				49F8C0FE1C0BF6500010D791 /* UIDevice+Versions.h */,
 				49F8C0FF1C0BF6500010D791 /* UIDevice+Versions.m */,
 				4917A4431B94486700ADA6FC /* NSValueTransformer+MSFPredefinedTransformerAdditions.h */,
@@ -5214,6 +5228,15 @@
 				1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */,
 			);
 			name = Credit;
+			sourceTree = "<group>";
+		};
+		C30578DA1CA8E0E00056D164 /* credit */ = {
+			isa = PBXGroup;
+			children = (
+				C30578DB1CA8E18E0056D164 /* MSFSaveCreditViewModel.h */,
+				C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */,
+			);
+			name = credit;
 			sourceTree = "<group>";
 		};
 		C72149DB1B05A20D0045F919 /* RepaymentSchedule */ = {
@@ -6346,6 +6369,7 @@
 				49614C8B1C03FF8F004D6208 /* MSFClient+Inventory.m in Sources */,
 				49FCC1911C572316004AFF13 /* MSFCouponsContainerViewController.m in Sources */,
 				074AC2401BBAB3EA0056BA22 /* MSFBankCardInfoViewModel.m in Sources */,
+				C30578E01CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m in Sources */,
 				105A0CB31BBA3EF10046F927 /* MSFUserInfomationViewController.m in Sources */,
 				07667C021BBF6774002DFF62 /* MSFSubmitApplyModel.m in Sources */,
 				4925ADBE1B2AB92500872A8A /* MSFBlurView.m in Sources */,
@@ -6395,9 +6419,11 @@
 				49CCFBF61B072EA4008A9CD1 /* MSFApplyList.m in Sources */,
 				07A7DABB1BFC1BC200916ADD /* MSFRepaymentPlanViewController.m in Sources */,
 				49DA22691B062AF200DD4483 /* MSFActivate.m in Sources */,
+				C30578DD1CA8E18E0056D164 /* MSFSaveCreditViewModel.m in Sources */,
 				49AC0A681C98467A0021E234 /* MSFPeoplePickerNavigationController+RACSignalSupport.m in Sources */,
 				07A146031C845BA600C32F0B /* MSFMyRepayDetalViewController.m in Sources */,
 				4943C37E1B047E9A000BBF5E /* MSFServer.m in Sources */,
+				C30578CC1CA8DE3C0056D164 /* MSFSaveCreditViewController.m in Sources */,
 				0707248D1B6718A80089916B /* MSFSlider.m in Sources */,
 				498BFC5E1B12BB0100FFE88F /* UIColor+Utils.m in Sources */,
 				102C7F101C2A7C570023172B /* MSFCartInputCell.m in Sources */,

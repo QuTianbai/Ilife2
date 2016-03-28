@@ -41,7 +41,7 @@
                             <state key="normal" backgroundImage="icon_order4_n.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <state key="selected" backgroundImage="icon_order3_h.png"/>
+                            <state key="selected" backgroundImage="icon_order4_h.png"/>
                             <variation key="default">
                                 <mask key="constraints">
                                     <exclude reference="PUS-kK-xzd"/>
@@ -204,6 +204,7 @@
         <image name="icon_order2_n.png" width="35" height="35"/>
         <image name="icon_order3_h.png" width="35" height="35"/>
         <image name="icon_order3_n.png" width="35" height="35"/>
+        <image name="icon_order4_h.png" width="35" height="35"/>
         <image name="icon_order4_n.png" width="35" height="35"/>
     </resources>
 </document>

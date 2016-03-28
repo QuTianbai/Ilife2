@@ -11,6 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 #import "MSFProfessionalViewModel.h"
+#import "MSFSaveCreditViewModel.h"
 #import "MSFSelectionViewModel.h"
 #import "MSFSelectionViewController.h"
 #import "MSFSelectKeyValues.h"
@@ -109,7 +110,7 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	@weakify(self)
-	self.title = @"其它信息";
+	self.title = @"辅助信息";
 	self.socialStatusButton.rac_command = self.viewModel.executeSocialStatusCommand;
 	RAC(self, socialStatus.text) = RACObserve(self.viewModel, identifier);
 	
@@ -217,7 +218,8 @@ typedef NS_ENUM(NSUInteger, MSFProfessionalViewSection) {
 		[x subscribeNext:^(id x) {
 			[SVProgressHUD dismiss];
 			if (self.viewModel.viewModel) {
-				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWitViewModel:self.viewModel.viewModel services:self.viewModel.services];
+//				MSFInventoryViewModel *viewModel = [[MSFInventoryViewModel alloc] initWitViewModel:self.viewModel.viewModel services:self.viewModel.services];
+                MSFSaveCreditViewModel *viewModel = [[MSFSaveCreditViewModel alloc] initWithModel:self.viewModel.viewModel Services:self.viewModel.services];
 				[self.viewModel.services pushViewModel:viewModel];
 			} else {
 				[self.navigationController popViewControllerAnimated:YES];

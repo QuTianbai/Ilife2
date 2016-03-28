@@ -100,6 +100,8 @@
 #import "MSFWalletRepayPlansViewModel.h"
 #import "MSFMyRepayDetailViewModel.h"
 #import "MSFInputMoneyViewcontrollerTableViewController.h"
+#import "MSFSaveCreditViewModel.h"
+#import "MSFSaveCreditViewController.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -202,6 +204,10 @@
     } else if ([viewModel isKindOfClass:MSFWalletRepayPlansViewModel.class]){
         viewController = [[MSFWalletRepayTableViewControllerTableViewController alloc]initWithViewModel:viewModel];
 			[(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+        
+    } else if ([viewModel isKindOfClass:[MSFSaveCreditViewModel class]]){
+        viewController = [[MSFSaveCreditViewController alloc] initWithViewModel:viewModel];
+        [(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
         
     } else {
 		NSLog(@"an unknown ViewModel was pushed!");
