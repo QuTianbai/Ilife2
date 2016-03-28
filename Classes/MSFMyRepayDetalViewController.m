@@ -47,7 +47,9 @@
 	
 	RAC(self, repayMoneyCountLB.text) = RACObserve(self, viewModel.latestDueMoney);
 	RAC(self, contractTitle.text) = RACObserve(self, viewModel.contractTitle);
-	RAC(self, monthDay.text) = RACObserve(self, viewModel.latestDueDate);
+	RAC(self, monthDay.text) = [RACObserve(self, viewModel.latestDueDate) map:^id(NSString *value) {
+        return [NSString stringWithFormat:@"账单日：每月%@日", value.length == 8 ? [value substringFromIndex:6] :  value];
+    }];
 	[self bindTableView];
 	self.repayDetalTableView.emptyDataSetSource = self;
 	self.repayDetalTableView.emptyDataSetDelegate = self;

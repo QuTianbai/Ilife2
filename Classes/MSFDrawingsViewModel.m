@@ -24,6 +24,7 @@
 #import "MSFBankCardListViewModel.h"
 #import "MSFCirculateCashViewModel.h"
 #import "MSFCirculateCashModel.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFDrawingsViewModel ()
 
@@ -182,6 +183,7 @@
     }
 	return [self.services.msf_gainPasscodeSignal
 		flattenMap:^RACStream *(id value) {
+             [SVProgressHUD showWithStatus:@"正在处理..."];
 			return [self.services.httpClient drawingsWithAmounts:self.amounts contractNo:self.contractNO passcode:value bankCardID:self.bankCardID];
 		}];
 }

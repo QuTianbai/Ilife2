@@ -83,7 +83,8 @@
 		return [NSString stringWithFormat:@"首付：¥%@", value];
 	}];
 	RAC(self, months) = [[RACObserve(self, model) ignore:nil] map:^id(MSFOrderDetail *value) {
-		return [NSString stringWithFormat:@"¥%@×%@期", value.mthlyPmtAmt, value.loanTerm];
+        NSString *mthlyPmtAmt = [NSString stringWithFormat:@"%.2f", value ? [value.mthlyPmtAmt floatValue] : 0.0];
+		return [NSString stringWithFormat:@"¥%@×%@期", mthlyPmtAmt, value.loanTerm];
 	}];
 	RAC(self, loanAmt) = [[RACObserve(self, model.loanAmt) ignore:nil] map:^id(id value) {
 		return [NSString stringWithFormat:@"贷款金额：%@", value];

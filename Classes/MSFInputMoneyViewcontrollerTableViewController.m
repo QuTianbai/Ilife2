@@ -95,7 +95,6 @@
         [SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
     }];
     [self.viewModel.executePaymentCommand.executionSignals subscribeNext:^(id x) {
-        [SVProgressHUD showWithStatus:@"正在处理..."];
         [x subscribeNext:^(id x) {
             [SVProgressHUD showSuccessWithStatus:@"交易成功"];
             [self.navigationController popViewControllerAnimated:YES];

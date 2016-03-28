@@ -60,12 +60,20 @@
 	RAC(self, repayLB.text) = [RACObserve(self, viewModel.amounts) map:^id(id value) {
         return [NSString stringWithFormat:@"实际还款：%@", value];
     }];
-    if ([self.viewModel.summary floatValue] > 100) {
-        self.amount.userInteractionEnabled = YES;
+    if ([self.viewModel.summary rangeOfString:@"¥"].location != NSNotFound) {
+        if ([[self.viewModel.summary substringFromIndex:1] floatValue] > 100) {
+            self.amount.userInteractionEnabled = YES;
+        } else {
+            self.amount.userInteractionEnabled = NO;
+        }
     } else {
-//        self.amount.text = self.viewModel.summary;
-        self.amount.userInteractionEnabled = NO;
+        if ([self.viewModel.summary floatValue] > 100) {
+            self.amount.userInteractionEnabled = YES;
+        } else {
+            self.amount.userInteractionEnabled = NO;
+        }
     }
+    
 //    self.amount.text = self.viewModel.debtAmounts;
     [RACObserve(self, viewModel) subscribeNext:^(RVMViewModel<MSFTransactionsViewModel> *x) {
         if (!x.isOutTime) {
@@ -127,7 +135,6 @@
 		[SVProgressHUD showErrorWithStatus:error.userInfo[NSLocalizedFailureReasonErrorKey]];
 	}];
 	[self.viewModel.executePaymentCommand.executionSignals subscribeNext:^(id x) {
-		[SVProgressHUD showWithStatus:@"正在处理..."];
 		[x subscribeNext:^(id x) {
 			[SVProgressHUD showSuccessWithStatus:@"交易成功"];
 			[self.navigationController popViewControllerAnimated:YES];
