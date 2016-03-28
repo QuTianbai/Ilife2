@@ -186,7 +186,7 @@
 
 - (NSString *)reuseIdentifierForCellAtIndexPath:(NSIndexPath *)indexPath {
 	if ([self.cart.cartType isEqualToString:MSFCartCommodityIdentifier]) {
-		if (indexPath.section == self.cart.cmdtyList.count) {
+		if (indexPath.section == 1) {
 			switch (indexPath.row) {
 				case 0: return @"MSFCartInputCell";
 				case 1: return @"MSFCartContentCell";
@@ -194,14 +194,12 @@
 				case 3: return @"MSFCartSwitchCell";
 				case 4: return @"MSFCartTrialCell";
 			}
-		} else {
-			if (indexPath.row == 0) {
-				return @"MSFCartCategoryCell";
-			}
-			return @"MSFCartContentCell";
 		}
+//        else {
+//			return @"MSFMyOrderProductsCell";
+//		}
 	} else if ([self.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
-		if (indexPath.section == 2) { // 商品试算视图
+		if (indexPath.section == 1) { // 商品试算视图
 			switch (indexPath.row) {
 				case 0: return @"MSFCartInputCell";
 				case 1: return @"MSFCartContentCell";
@@ -209,12 +207,13 @@
 				case 3: return @"MSFCartSwitchCell";
 				case 4: return @"MSFCartTrialCell";
 			}
-		} else {
-			if (indexPath.row == 0 && indexPath.section == 0) {
-				return @"MSFCartCategoryCell";
-			}
-			return @"MSFCartContentCell";
 		}
+//        else {
+//			if (indexPath.row == 0 && indexPath.section == 0) {
+//				return @"MSFCartCategoryCell";
+//			}
+//			return @"MSFCartContentCell";
+//		}
 	}
 	
 	return nil;

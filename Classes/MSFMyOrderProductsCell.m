@@ -9,6 +9,7 @@
 #import "MSFMyOrderProductsCell.h"
 #import "MSFMyOrderCmdViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFCommodity.h"
 
 @interface MSFMyOrderProductsCell ()
 
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *productDescribLB;
 @property (weak, nonatomic) IBOutlet UILabel *productNumsLB;
 @property (nonatomic, strong) MSFMyOrderCmdViewModel *viewModel;
+@property (nonatomic, strong) MSFCommodity *model;
 
 @end
 
