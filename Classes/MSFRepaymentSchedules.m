@@ -38,4 +38,29 @@
 	}];
 }
 
++ (NSValueTransformer *)repaymentTotalAmountJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
+        if ([num isKindOfClass:[NSNumber class]]) {
+            return [NSString stringWithFormat:@"%.2f", num.doubleValue];
+        }
+        return num;
+        
+    } reverseBlock:^id(NSString *str) {
+        return str;
+    }];
+}
+
++ (NSValueTransformer *)appLmtJSONTransformer {
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
+        if ([num isKindOfClass:[NSNumber class]]) {
+            return [NSString stringWithFormat:@"%.2f", num.doubleValue];
+        }
+        return num;
+        
+    } reverseBlock:^id(NSString *str) {
+        return str;
+    }];
+}
+
+
 @end
