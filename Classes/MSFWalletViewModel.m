@@ -231,6 +231,11 @@ static NSString *const kApplicationWalletType = @"4";
 #pragma mark - Custom Accessors
 
 - (RACSignal *)actionSignal {
+    MSFUser *user = [self.services httpClient].user;
+    if (![user.custType isEqualToString:@"1"]) {
+        [SVProgressHUD showInfoWithStatus:@"您所在的区域暂未开通，目前支持城市重庆"];
+         return RACSignal.empty;
+    }
 	if (![self.services.httpClient.user isAuthenticated]) {
 		return self.authenticateSignal;
 	}

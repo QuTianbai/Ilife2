@@ -127,7 +127,7 @@
         MSFUser *user = [self.viewModel.services httpClient].user;
         if (![user.custType isEqualToString:@"1"]) {
             [SVProgressHUD showInfoWithStatus:@"您所在的区域暂未开通，目前支持城市重庆"];
-            return NO;
+           // return ;
         }
     }
     return YES;

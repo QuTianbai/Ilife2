@@ -136,6 +136,11 @@ static NSString *const kApplicationType = @"3";
                 self.statusString = @"待支付";
                 self.buttonTitle = @"去支付";
                 break;
+            case MSFApplicationQuite:
+                self.hasList = @"最近一笔进度";
+                self.statusString = @"已退货";
+                self.buttonTitle = @"";
+                break;
 			default:
 			break;
 		}
@@ -168,6 +173,9 @@ static NSString *const kApplicationType = @"3";
 						 } else if ([application.status isEqualToString:@"J"] ) {
 							 status = MSFApplicationConfirmationed;
 							 
+                         } else if ([application.status isEqualToString:@"N"]) {
+                             status = MSFApplicationQuite;
+                             
                          } else if ([application.status isEqualToString:@"O"]) {
                              status = MSFApplicationWillPay;
                              
