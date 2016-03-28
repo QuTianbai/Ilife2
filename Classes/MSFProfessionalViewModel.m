@@ -398,6 +398,13 @@ const NSInteger MSFProfessionalContactCellAddressSwitch = 100;
             
             return [RACSignal error: error];
             
+        } else if (self.jobName.length <= 0) {
+            NSError *error = [NSError errorWithDomain:@"MSFProfessionalViewModel" code:0 userInfo:@{
+                                                                                                    NSLocalizedFailureReasonErrorKey: @"请填写单位全称",
+                                                                                                    }];
+            
+            return [RACSignal error: error];
+            
         }
     }
 
