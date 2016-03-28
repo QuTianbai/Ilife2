@@ -60,10 +60,7 @@
 		if ([value.type isEqualToString:@"4"]) {
 			return [NSString stringWithFormat:@"¥%@", value.appLmt];
 		}
-        if ([value.status isEqualToString:@"待支付"]) {
-            return @"";
-        }
-		return [NSString stringWithFormat:@"¥%@ 分%@期", value.appLmt, value.loanTerm];
+        return [NSString stringWithFormat:@"¥%@ 分%@期", value.appLmt, value.loanTerm];
 	}];
 	
 	RAC(self, applyType) = [RACObserve(self, model.type) ignore:nil];
