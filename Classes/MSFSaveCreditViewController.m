@@ -43,7 +43,6 @@
     [backButton setImage:[[UIImage imageNamed:@"btn-back-nav.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
 }
 
 - (void)back {
@@ -80,7 +79,7 @@
     creditLabel.textAlignment = NSTextAlignmentCenter;
     [creditLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.top.equalTo(headerViewBottomLine.mas_bottom).offset(10);
+        make.top.equalTo(headerViewBottomLine.mas_bottom).offset(10 * [UIScreen mainScreen].bounds.size.width / 320.f);
         make.width.equalTo(@120);
         make.height.equalTo(@18);
     }];
@@ -92,30 +91,35 @@
     tipLabel.textAlignment = NSTextAlignmentCenter;
     [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
-        make.top.equalTo(creditLabel.mas_bottom).offset(10);
+        make.top.equalTo(creditLabel.mas_bottom).offset(10 * [UIScreen mainScreen].bounds.size.width / 320.f);
         make.width.equalTo(self.view);
         make.height.equalTo(@16);
     }];
     UIButton *taoBaoButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [taoBaoButton setImage:[[UIImage imageNamed:@"淘宝1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [taoBaoButton setImage:[[UIImage imageNamed:@"淘宝2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    taoBaoButton.tag = 100;
     [self.view addSubview:taoBaoButton];
+    taoBaoButton.rac_command = self.viewModel.selectCreditChannelCommand;
     [taoBaoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(60);
         make.width.equalTo(@70);
         make.height.equalTo(@70);
-        make.top.equalTo(tipLabel.mas_bottom).offset(10);
+        make.top.equalTo(tipLabel.mas_bottom).offset(10 * [UIScreen mainScreen].bounds.size.width / 320.f);
     }];
     
     UIButton *messageButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [messageButton setImage:[[UIImage imageNamed:@"手机1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [messageButton setImage:[[UIImage imageNamed:@"手机2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    messageButton.tag = 101;
+    messageButton.rac_command = self.viewModel.selectCreditChannelCommand;
+
     [self.view addSubview:messageButton];
     [messageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.view).offset(-60);
         make.width.equalTo(@70);
         make.height.equalTo(@70);
-        make.top.equalTo(tipLabel.mas_bottom).offset(10);
+        make.top.equalTo(tipLabel.mas_bottom).offset(10 * [UIScreen mainScreen].bounds.size.width / 320.f);
     }];
     UILabel *taoBaoLabel = [[UILabel alloc] init];
     taoBaoLabel.textAlignment = NSTextAlignmentCenter;
@@ -126,7 +130,7 @@
     [taoBaoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(taoBaoButton);
         make.width.equalTo(taoBaoButton);
-        make.top.equalTo(taoBaoButton.mas_bottom).offset(10);
+        make.top.equalTo(taoBaoButton.mas_bottom).offset(10 * [UIScreen mainScreen].bounds.size.width / 320.f);
         make.height.equalTo(@16);
     }];
     UILabel *messageLabel = [[UILabel alloc] init];
@@ -138,12 +142,14 @@
     [messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(messageButton);
         make.width.equalTo(messageButton);
-        make.top.equalTo(messageButton.mas_bottom).offset(10);
+        make.top.equalTo(messageButton.mas_bottom).offset(10 * [UIScreen mainScreen].bounds.size.width / 320.f);
         make.height.equalTo(messageLabel);
     }];
     UIButton *jinDongButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [jinDongButton setImage:[[UIImage imageNamed:@"京东1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
     [jinDongButton setImage:[[UIImage imageNamed:@"京东2.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateSelected];
+    jinDongButton.tag = 102;
+    jinDongButton.rac_command = self.viewModel.selectCreditChannelCommand;
     [self.view addSubview:jinDongButton];
     [jinDongButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -170,7 +176,7 @@
     [self.view addSubview:nextButton];
     [nextButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@30);
-        make.bottom.equalTo(self.view).offset(- 20);
+        make.bottom.equalTo(self.view).offset(- 30 * [UIScreen mainScreen].bounds.size.width / 320.f);
         make.width.equalTo(@240);
         make.centerX.equalTo(self.view);
     }];

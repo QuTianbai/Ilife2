@@ -9,6 +9,7 @@
 #import "MSFSaveCreditViewModel.h"
 #import "MSFApplicationViewModel.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MSFAuthorizationViewModel.h"
 
 @interface MSFSaveCreditViewModel()
 
@@ -22,6 +23,10 @@
     if (self = [super init]) {
         _applicationViewModel = model;
         _services = services;
+        _selectCreditChannelCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(UIButton *input) {
+            [self.services pushViewModel:[[MSFAuthorizationViewModel alloc] initWithModel:model Services:services]];
+            return [RACSignal empty];
+        }];
     }
     return self;
 }

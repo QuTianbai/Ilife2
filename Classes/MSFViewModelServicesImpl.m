@@ -102,6 +102,8 @@
 #import "MSFInputMoneyViewcontrollerTableViewController.h"
 #import "MSFSaveCreditViewModel.h"
 #import "MSFSaveCreditViewController.h"
+#import "MSFAuthorizationViewModel.h"
+#import "MSFAuthorizationViewController.h"
 
 @interface MSFViewModelServicesImpl () <MSFInputTradePasswordDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -207,6 +209,10 @@
         
     } else if ([viewModel isKindOfClass:[MSFSaveCreditViewModel class]]){
         viewController = [[MSFSaveCreditViewController alloc] initWithViewModel:viewModel];
+        [(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
+        
+    } else if ([viewModel isKindOfClass:[MSFAuthorizationViewModel class]]){
+        viewController = [[MSFAuthorizationViewController alloc] initWithViewModel:viewModel];
         [(UIViewController *)viewController setHidesBottomBarWhenPushed:YES];
         
     } else {
