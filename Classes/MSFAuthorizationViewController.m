@@ -11,6 +11,7 @@
 #import "UINavigationBar+BackgroundColor.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <Masonry/Masonry.h>
+#import "MSFOperatorsManager.h"
 
 @interface MSFAuthorizationViewController ()
 
@@ -34,7 +35,7 @@
         if ([value integerValue] == 0) {
             return @"淘宝授信";
         } else if ([value integerValue] == 1) {
-            return @"手机授信";
+            return @"运营商授信";
         } else {
             return @"京东授信";
         }
@@ -56,15 +57,6 @@
 
 - (void)createSubViews {
     UIImageView *iconImageView = [[UIImageView alloc] init];
-    RAC(iconImageView, image) = [RACObserve(self.viewModel, channel) map:^id(id value) {
-        if ([value integerValue] == 0) {
-            return [UIImage imageNamed:@"淘宝1.png"];
-        } else if ([value integerValue] == 1) {
-            return [UIImage imageNamed:@"手机1.png"];
-        } else {
-            return [UIImage imageNamed:@"京东1.png"];
-        }
-    }];
     [self.view addSubview:iconImageView];
     [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
@@ -146,7 +138,7 @@
     UIButton *authorizationButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [authorizationButton setTitle:@"授权认证" forState:UIControlStateNormal];
     [authorizationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [authorizationButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [authorizationButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateHighlighted];
     authorizationButton.backgroundColor = [UIColor colorWithRed:22 / 255.0f green:146 / 255.0f blue:250 / 255.0f alpha:1];
     authorizationButton.layer.cornerRadius = 5;
     authorizationButton.layer.masksToBounds = YES;
@@ -168,6 +160,24 @@
         make.left.right.equalTo(authorizationButton);
         make.height.equalTo(@15);
         make.top.equalTo(authorizationButton.mas_bottom).offset(20);
+    }];
+    RAC(iconImageView, image) = [RACObserve(self.viewModel, channel) map:^id(id value) {
+        if ([value integerValue] == 0) {
+            return [UIImage imageNamed:@"淘宝1.png"];
+        } else if ([value integerValue] == 1) {
+            return [UIImage imageNamed:@"手机1.png"];
+        } else {
+            return [UIImage imageNamed:@"京东1.png"];
+        }
+    }];
+    [[accountTextFiled.rac_textSignal filter:^BOOL(NSString *value) {
+        return value.length == 11;
+    }]subscribeNext:^(id x) {
+        if (self.viewModel.channel == AuthorizationChannelMessage) {
+            NSString *op = [MSFOperatorsManager checkCarrierWithPhoneNum:x];
+            if (op.length)
+                iconImageView.image = [UIImage imageNamed:op];
+        }
     }];
     
 }

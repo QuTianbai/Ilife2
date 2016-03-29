@@ -927,6 +927,8 @@
 		C30578CC1CA8DE3C0056D164 /* MSFSaveCreditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578CB1CA8DE3C0056D164 /* MSFSaveCreditViewController.m */; };
 		C30578DD1CA8E18E0056D164 /* MSFSaveCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */; };
 		C30578E01CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */; };
+		C3065A851CAA59BC000BB16A /* MSFOperatorsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3065A841CAA59BC000BB16A /* MSFOperatorsManager.m */; };
+		C3065A941CAA5A77000BB16A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3065A931CAA5A77000BB16A /* CoreTelephony.framework */; };
 		C34CE1431CA93A2A00DA29F4 /* MSFBaseLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C34CE1421CA93A2A00DA29F4 /* MSFBaseLineButton.m */; };
 		C34CE1591CA94F1B00DA29F4 /* MSFAuthorizationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34CE1581CA94F1B00DA29F4 /* MSFAuthorizationViewController.m */; };
 		C34CE1691CA94FA000DA29F4 /* MSFAuthorizationViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34CE1681CA94FA000DA29F4 /* MSFAuthorizationViewModel.m */; };
@@ -2410,6 +2412,9 @@
 		C30578DC1CA8E18E0056D164 /* MSFSaveCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFSaveCreditViewModel.m; sourceTree = "<group>"; };
 		C30578DE1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+BackgroundColor.h"; sourceTree = "<group>"; };
 		C30578DF1CA8FCCF0056D164 /* UINavigationBar+BackgroundColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+BackgroundColor.m"; sourceTree = "<group>"; };
+		C3065A831CAA59BC000BB16A /* MSFOperatorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFOperatorsManager.h; sourceTree = "<group>"; };
+		C3065A841CAA59BC000BB16A /* MSFOperatorsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFOperatorsManager.m; sourceTree = "<group>"; };
+		C3065A931CAA5A77000BB16A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		C34CE1411CA93A2A00DA29F4 /* MSFBaseLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFBaseLineButton.h; sourceTree = "<group>"; };
 		C34CE1421CA93A2A00DA29F4 /* MSFBaseLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFBaseLineButton.m; sourceTree = "<group>"; };
 		C34CE1571CA94F1B00DA29F4 /* MSFAuthorizationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFAuthorizationViewController.h; sourceTree = "<group>"; };
@@ -2485,6 +2490,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3065A941CAA5A77000BB16A /* CoreTelephony.framework in Frameworks */,
 				10DE899E1B69B882009025C4 /* libMobClickLibrary.a in Frameworks */,
 				29A5396E9C581154C85D681B /* libPods-Finance.a in Frameworks */,
 			);
@@ -5092,6 +5098,8 @@
 				493E92011BD0D6F700C4BFC6 /* MSFEnvironmentsViewController.m */,
 				493E92101BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.h */,
 				493E92111BD0D8AA00C4BFC6 /* MSFEnvironmentViewController.m */,
+				C3065A831CAA59BC000BB16A /* MSFOperatorsManager.h */,
+				C3065A841CAA59BC000BB16A /* MSFOperatorsManager.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -5276,6 +5284,7 @@
 		EB6A691AD330CF63D40A9883 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3065A931CAA5A77000BB16A /* CoreTelephony.framework */,
 				4943C3671B04796B000BBF5E /* libOHHTTPStubs-iOS.a */,
 				4943C3631B047966000BBF5E /* Nimble.framework */,
 				4943C3641B047966000BBF5E /* Quick.framework */,
@@ -6371,6 +6380,7 @@
 				C7B978171B099D02005F247C /* MSFBranchesCell.m in Sources */,
 				492CBEAC1B88151A0059B6C2 /* MSFAlertViewModel.m in Sources */,
 				074696961B9820780074E180 /* MSFClient+ConfirmContract.m in Sources */,
+				C3065A851CAA59BC000BB16A /* MSFOperatorsManager.m in Sources */,
 				102C7ED81C2947380023172B /* MSFInsetsLabel.m in Sources */,
 				074AC2301BBA8D790056BA22 /* MSFAddBankCardViewModel.m in Sources */,
 				4993E0C81B2DA20700090F26 /* MSFBlurButton.m in Sources */,
