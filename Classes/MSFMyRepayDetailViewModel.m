@@ -16,6 +16,7 @@
 #import "MSFWithDrawViewModel.h"
 #import "MSFRepaymentViewModel.h"
 #import "MSFWalletRepayPlansViewModel.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MSFMyRepayDetailViewModel ()
 
@@ -93,10 +94,13 @@
 
 	[self.didBecomeActiveSignal subscribeNext:^(id x) {
         @strongify(self)
+    [SVProgressHUD showWithStatus:@"正在加载..." maskType:SVProgressHUDMaskTypeClear];
 		[[self.services.httpClient fetchMyDetailWithContractNo:self.contractNo type:self.type loan:self.loanCurrTerm]
 		 subscribeNext:^(MSFMyRepayDetailModel *x) {
+       [SVProgressHUD dismiss];
 			 self.model = x;
 		 } error:^(NSError *error) {
+       [SVProgressHUD dismiss];
 			 NSLog(@"error:%@", error);
 		 }];
 	}];
