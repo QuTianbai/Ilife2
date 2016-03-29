@@ -17,15 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCS-YT-9U8">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="1Bm-eo-O9K"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="nCZ-7m-amn" kind="embed" id="tpC-Fx-pf7"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muO-mL-HXJ">
                                 <rect key="frame" x="0.0" y="400" width="320" height="168"/>
                                 <connections>
@@ -39,6 +30,15 @@
                                 </constraints>
                                 <connections>
                                     <segue destination="arO-dZ-VCo" kind="embed" id="7VV-qI-jPw"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCS-YT-9U8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="1Bm-eo-O9K"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="nCZ-7m-amn" kind="embed" id="tpC-Fx-pf7"/>
                                 </connections>
                             </containerView>
                         </subviews>
