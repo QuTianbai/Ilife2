@@ -82,9 +82,17 @@
         make.height.equalTo(@14);
     }];
     
+    UIButton *accountIconButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, 40, 40)];
+    [accountIconButton setImage:[UIImage imageNamed:@"person.png"]forState:UIControlStateNormal];
+    accountIconButton.enabled = NO;
+    
     UITextField *accountTextFiled = [[UITextField alloc] init];
     accountTextFiled.placeholder = @"手机/会员好/邮箱";
     accountTextFiled.layer.borderWidth = 1;
+    accountTextFiled.font = [UIFont systemFontOfSize:14];
+    accountTextFiled.leftViewMode = UITextFieldViewModeAlways;
+    accountTextFiled.clearButtonMode = UITextFieldViewModeWhileEditing;
+    accountTextFiled.leftView = accountIconButton;
     accountTextFiled.layer.borderColor = [UIColor colorWithRed:236 / 255.0f green:238 / 255.0f blue:237 / 255.0f alpha:1].CGColor;
     accountTextFiled.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:accountTextFiled];
@@ -94,6 +102,79 @@
         make.height.equalTo(@40);
     }];
     [self.view bringSubviewToFront:upArrows];
+    UIButton *passwordIconButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 0, 40, 40)];
+    [passwordIconButton setImage:[UIImage imageNamed:@"lock.png"]forState:UIControlStateNormal];
+    passwordIconButton.enabled = NO;
+    UIButton *showPasswordButton = [[UIButton alloc] init];
+    [showPasswordButton setImage:[UIImage imageNamed:@"showpassword.png"]forState:UIControlStateNormal];
+    [self.view addSubview:showPasswordButton];
+    UITextField *passwordTextFiled = [[UITextField alloc] init];
+    passwordTextFiled.placeholder = @"请输入密码";
+    passwordTextFiled.font = [UIFont systemFontOfSize:14];
+    passwordTextFiled.leftViewMode = UITextFieldViewModeAlways;
+    passwordTextFiled.clearButtonMode = UITextFieldViewModeAlways;
+    passwordTextFiled.leftView = passwordIconButton;
+    passwordTextFiled.secureTextEntry = YES;
+    passwordTextFiled.tag = 100;
+    passwordTextFiled.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    passwordTextFiled.autocorrectionType = UITextAutocorrectionTypeNo;
+    passwordTextFiled.layer.borderColor = [UIColor colorWithRed:236 / 255.0f green:238 / 255.0f blue:237 / 255.0f alpha:1].CGColor;
+    passwordTextFiled.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:passwordTextFiled];
+    [passwordTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.top.equalTo(accountTextFiled.mas_bottom);
+        make.height.equalTo(@40);
+        make.right.equalTo(self.view).offset(-60);
+    }];
+    UIView *line = [[UIView alloc] init];
+    line.backgroundColor = [UIColor colorWithRed:231 / 255.0f green:234 / 255.0f blue:232 / 255.0f alpha:1];
+    [self.view addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(passwordTextFiled.mas_bottom);
+        make.height.equalTo(@1);
+    }];
+    
+    [showPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(passwordTextFiled.mas_right);
+        make.right.equalTo(self.view);
+        make.top.bottom.equalTo(passwordTextFiled);
+    }];
+    [showPasswordButton addTarget:self action:@selector(showPassword) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *authorizationButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [authorizationButton setTitle:@"授权认证" forState:UIControlStateNormal];
+    [authorizationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [authorizationButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    authorizationButton.backgroundColor = [UIColor colorWithRed:22 / 255.0f green:146 / 255.0f blue:250 / 255.0f alpha:1];
+    authorizationButton.layer.cornerRadius = 5;
+    authorizationButton.layer.masksToBounds = YES;
+    [self.view addSubview:authorizationButton];
+    [authorizationButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(20);
+        make.right.equalTo(self.view).offset(-20);
+        make.top.equalTo(passwordTextFiled.mas_bottom).offset(20);
+        make.height.equalTo(@40);
+    }];
+    
+    UILabel *tipLabel = [[UILabel alloc] init];
+    tipLabel.text = @"银行最高级别加密,保障用户安全";
+    tipLabel.font = [UIFont systemFontOfSize:14];
+    tipLabel.textAlignment = NSTextAlignmentCenter;
+    tipLabel.textColor = [UIColor colorWithRed:248 / 255.0f green:166 / 255.0f blue:85 / 255.0f alpha:1];
+    [self.view addSubview:tipLabel];
+    [tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(authorizationButton);
+        make.height.equalTo(@15);
+        make.top.equalTo(authorizationButton.mas_bottom).offset(20);
+    }];
+    
+}
+
+- (void)showPassword {
+    UITextField *textFiled = (UITextField *)[self.view viewWithTag:100];
+    textFiled.secureTextEntry = !textFiled.secureTextEntry;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
