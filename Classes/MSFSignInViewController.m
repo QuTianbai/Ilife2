@@ -115,6 +115,7 @@ static NSString *const MSFAutoinputDebuggingUsernameEnvironmentKey = @"INPUT_AUT
 		[MSFActivate setSignInMobile:self.username.text];
 		[SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeClear];
 		[execution subscribeNext:^(id x) {
+      self.viewModel.captcha = @"";
 			[SVProgressHUD dismiss];
 			[[NSNotificationCenter defaultCenter] postNotificationName:@"MSFREQUESTCONTRACTSNOTIFACATION" object:nil];
 			[self dismissViewControllerAnimated:YES completion:nil];
