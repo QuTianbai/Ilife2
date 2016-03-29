@@ -10,6 +10,7 @@
 #import "MSFAuthorizationViewModel.h"
 #import "UINavigationBar+BackgroundColor.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Masonry/Masonry.h>
 
 @interface MSFAuthorizationViewController ()
 
@@ -53,6 +54,48 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)createSubViews {
+    UIImageView *iconImageView = [[UIImageView alloc] init];
+    RAC(iconImageView, image) = [RACObserve(self.viewModel, channel) map:^id(id value) {
+        if ([value integerValue] == 0) {
+            return [UIImage imageNamed:@"淘宝1.png"];
+        } else if ([value integerValue] == 1) {
+            return [UIImage imageNamed:@"手机1.png"];
+        } else {
+            return [UIImage imageNamed:@"京东1.png"];
+        }
+    }];
+    [self.view addSubview:iconImageView];
+    [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).offset(84);
+        make.width.height.equalTo(@70);
+    }];
+    
+    UIImageView *upArrows = [[UIImageView alloc] init];
+    upArrows.image = [UIImage imageNamed:@"up_arrow.png"];
+    [self.view addSubview:upArrows];
+    [upArrows mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(iconImageView.mas_bottom).offset(20);
+        make.width.equalTo(@30);
+        make.height.equalTo(@14);
+    }];
+    
+    UITextField *accountTextFiled = [[UITextField alloc] init];
+    accountTextFiled.placeholder = @"手机/会员好/邮箱";
+    accountTextFiled.layer.borderWidth = 1;
+    accountTextFiled.layer.borderColor = [UIColor colorWithRed:236 / 255.0f green:238 / 255.0f blue:237 / 255.0f alpha:1].CGColor;
+    accountTextFiled.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:accountTextFiled];
+    [accountTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(upArrows.mas_bottom).offset(-1);
+        make.height.equalTo(@40);
+    }];
+    [self.view bringSubviewToFront:upArrows];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self updateNavAppearance];
@@ -61,6 +104,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self createSubViews];
     // Do any additional setup after loading the view.
 }
 
@@ -71,6 +115,7 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
 }
 /*

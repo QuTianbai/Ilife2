@@ -272,11 +272,7 @@
 		UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 		if (indexPath.section == 1) { // 贷款试算视图
 			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-		}
-//        else if (indexPath.section == 1) {
-//			[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
-//		}
-        else if (indexPath.section == 0) {
+		} else if (indexPath.section == 0) {
             if (indexPath.row == 0) {
                 cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderListTravalDetailCell class])];
                 if (cell == nil) {

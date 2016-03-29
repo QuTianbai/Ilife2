@@ -47,7 +47,7 @@
             }] takeUntil:self.rac_prepareForReuseSignal];
         } else if ([x isKindOfClass:[MSFMyOrderListProductsViewModel class]]) {
             self.orderListviewModel = x;
-            self.memeberViewModel =self.orderListviewModel.travelCompanInfoList[self.indexPath.row - 1];
+            self.memeberViewModel = self.orderListviewModel.travelCompanInfoList[self.indexPath.row - 1];
             RAC(self, nameLB.text) = [RACObserve(self, memeberViewModel.companName) takeUntil:self.rac_prepareForReuseSignal];
             RAC(self, mobileLB.text) = [RACObserve(self, memeberViewModel.companCellphone) takeUntil:self.rac_prepareForReuseSignal];
             RAC(self, identifyCardLB.text) = [RACObserve(self, memeberViewModel.companCertId) takeUntil:self.rac_prepareForReuseSignal];
