@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="苹果手机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8TP-pg-zJi">
-                        <rect key="frame" x="15" y="10" width="226" height="21"/>
+                        <rect key="frame" x="15" y="10" width="56" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="pVS-4D-WGq"/>
                         </constraints>
@@ -26,25 +26,14 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥100000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JqD-1L-jeM">
                         <rect key="frame" x="251" y="10" width="59" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="59" id="3s3-HG-VJh"/>
                             <constraint firstAttribute="height" constant="22" id="7u6-sR-84I"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量×112" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEF-LY-NN7">
-                        <rect key="frame" x="252" y="42" width="58" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="SgP-56-l6G"/>
-                            <constraint firstAttribute="width" constant="58" id="Z87-y0-zqB"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电信4G手机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GP7-G0-14R">
-                        <rect key="frame" x="15" y="42" width="227" height="21"/>
+                        <rect key="frame" x="15" y="42" width="75.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="kGI-o1-2vc"/>
                         </constraints>
@@ -59,11 +48,19 @@
                             <constraint firstAttribute="height" constant="0.5" id="g28-un-5vQ"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量×112" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEF-LY-NN7">
+                        <rect key="frame" x="252" y="42" width="58" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="SgP-56-l6G"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="JqD-1L-jeM" secondAttribute="trailing" constant="10" id="1lk-nU-4Q0"/>
                     <constraint firstItem="GP7-G0-14R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="1yZ-hS-app"/>
-                    <constraint firstItem="WEF-LY-NN7" firstAttribute="leading" secondItem="GP7-G0-14R" secondAttribute="trailing" constant="10" id="28F-kt-xsr"/>
                     <constraint firstAttribute="bottom" secondItem="GP7-G0-14R" secondAttribute="bottom" constant="5" id="6qQ-y8-hUr"/>
                     <constraint firstItem="8TP-pg-zJi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="IQ2-gy-dDS"/>
                     <constraint firstItem="8TP-pg-zJi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Jh5-o1-hPa"/>
@@ -72,7 +69,6 @@
                     <constraint firstAttribute="bottom" secondItem="WEF-LY-NN7" secondAttribute="bottom" constant="5" id="dl7-l3-ANv"/>
                     <constraint firstAttribute="trailing" secondItem="WEF-LY-NN7" secondAttribute="trailing" constant="10" id="reB-yC-V62"/>
                     <constraint firstItem="JqD-1L-jeM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="td4-cp-Hrm"/>
-                    <constraint firstItem="JqD-1L-jeM" firstAttribute="leading" secondItem="8TP-pg-zJi" secondAttribute="trailing" constant="10" id="uRl-Qr-hTG"/>
                     <constraint firstAttribute="bottom" secondItem="DuN-Ko-70k" secondAttribute="bottom" id="urQ-kP-lEa"/>
                 </constraints>
             </tableViewCellContentView>
