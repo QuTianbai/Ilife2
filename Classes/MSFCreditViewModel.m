@@ -98,7 +98,7 @@ static NSString *const kApplicationCreditType = @"1";
 	RAC(self, reportNumber) = RACObserve(self, application.appNo);
 	RAC(self, reportReason) = [RACObserve(self, application.loanPurpose) flattenMap:^RACStream *(id value) {
 		return [[self.services msf_selectValuesWithContent:@"moneyUse" keycode:value] map:^id(id value) {
-			return [NSString stringWithFormat:@"贷款用途：%@", value];
+			return [NSString stringWithFormat:@"%@", value];
 		}];
 	}];
 	RAC(self, reportAmounts) = [RACObserve(self, application.appLmt) map:^id(id value) {
