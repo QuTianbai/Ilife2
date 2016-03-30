@@ -18,6 +18,7 @@
 #import "MSFLoanAgreementController.h"
 #import "UIColor+Utils.h"
 #import "MSFCommitedViewController.h"
+#import "UITextField+Limit.h"
 
 @interface MSFSocialCaskApplyTableViewController ()<ZSWTappableLabelTapDelegate>
 
@@ -115,7 +116,7 @@
 	
 	RAC(self, liveAreaTF.text) = RACObserve(self, viewModel.address);
 	self.liveAreaBT.rac_command = self.viewModel.executeLiveAddressCommand;
-	
+    [self.liveAddressTF limitWitLength:50];
 	RACChannelTerminal *liveAddrChannel = RACChannelTo(self, viewModel.detailAddress);
 	RAC(self, liveAddressTF.text) = liveAddrChannel;
 	[self.liveAddressTF.rac_textSignal subscribe:liveAddrChannel];
