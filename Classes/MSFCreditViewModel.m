@@ -70,7 +70,7 @@ static NSString *const kApplicationCreditType = @"1";
 	_viewModel = [[MSFApplyCashViewModel alloc] initWithLoanType:[[MSFLoanType alloc] initWithTypeID:kApplicationCreditIdentifier] services:self.services];
     _status = MSFApplicationNone;
 	
-//	RAC(self, viewModel.active) = RACObserve(self, active);
+	RAC(self, viewModel.active) = RACObserve(self, active);
 	
 	RAC(self, applyAmouts) = [RACObserve(self, viewModel.appLmt) map:^id(id value) {
 		return [value isKindOfClass:NSNumber.class] ? [value stringValue] : value;
