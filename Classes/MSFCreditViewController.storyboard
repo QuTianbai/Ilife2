@@ -23,15 +23,6 @@
                                     <segue destination="c53-nf-g4A" kind="embed" id="L7o-g6-jeY"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCS-YT-9U8">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="1Bm-eo-O9K"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="nCZ-7m-amn" kind="embed" id="tpC-Fx-pf7"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gVc-vG-nDa">
                                 <rect key="frame" x="0.0" y="180" width="320" height="220"/>
                                 <constraints>
@@ -39,6 +30,15 @@
                                 </constraints>
                                 <connections>
                                     <segue destination="arO-dZ-VCo" kind="embed" id="7VV-qI-jPw"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gCS-YT-9U8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="1Bm-eo-O9K"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="nCZ-7m-amn" kind="embed" id="tpC-Fx-pf7"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -352,7 +352,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="OHw-4o-tdr">
-                                        <rect key="frame" x="0.0" y="97" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="94" width="320" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="50v-Ur-bBx"/>
                                         </constraints>
@@ -402,7 +402,7 @@
                                     <constraint firstAttribute="bottom" secondItem="A8I-t9-dvb" secondAttribute="bottom" constant="10" id="0AU-Bf-i1r"/>
                                     <constraint firstItem="2Bq-6H-sQw" firstAttribute="leading" secondItem="34e-rt-gsf" secondAttribute="leading" constant="15" id="2dq-Cf-WhY"/>
                                     <constraint firstItem="rax-Jf-5Dj" firstAttribute="top" secondItem="2Bq-6H-sQw" secondAttribute="bottom" id="6Dd-Mo-6XN"/>
-                                    <constraint firstItem="OHw-4o-tdr" firstAttribute="top" secondItem="rax-Jf-5Dj" secondAttribute="bottom" constant="5" id="CWs-GG-6Ct"/>
+                                    <constraint firstItem="OHw-4o-tdr" firstAttribute="top" secondItem="rax-Jf-5Dj" secondAttribute="bottom" constant="2" id="CWs-GG-6Ct"/>
                                     <constraint firstItem="OHw-4o-tdr" firstAttribute="leading" secondItem="34e-rt-gsf" secondAttribute="leading" id="Ilg-gg-Dha"/>
                                     <constraint firstAttribute="trailing" secondItem="2Bq-6H-sQw" secondAttribute="trailing" constant="15" id="NJz-Q3-Dtg"/>
                                     <constraint firstAttribute="trailing" secondItem="OHw-4o-tdr" secondAttribute="trailing" id="eE9-mj-aor"/>

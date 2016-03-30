@@ -263,7 +263,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
         [self.picker reloadAllComponents];
     if (!self.viewModel.isPush) {
       [self.picker selectRow:self.viewModel.viewModels.count - 1 inComponent:0 animated:NO];
-      self.viewModel.trial =((MSFPlanViewModel *)self.viewModel.viewModels.lastObject).model;
+      self.viewModel.trial = ((MSFPlanViewModel *)self.viewModel.viewModels.lastObject).model;
       
     } else {
       for (int i = 0;i < self.viewModel.viewModels.count; i++) {
