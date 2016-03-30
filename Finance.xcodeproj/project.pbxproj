@@ -5337,7 +5337,7 @@
 				TargetAttributes = {
 					4943C32A1B047403000BBF5E = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = UVHFESGJ9E;
+						DevelopmentTeam = 3GZ2MLR74W;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -6724,7 +6724,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "3e4891d5-7246-4929-8399-f95a41974949";
 			};
 			name = Release;
 		};
@@ -6794,7 +6794,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4ae1a923-7b80-4dca-a98e-e37ac6f8ebe0";
 			};
 			name = Test;
 		};
