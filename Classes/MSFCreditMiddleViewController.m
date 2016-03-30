@@ -79,6 +79,8 @@
 	}];
 	
 	RAC(self, viewModel.viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
+    self.viewModel.viewModel.isPush = NO;
+    self.viewModel.viewModel.isChangTerm = NO;
     if (slider.value == slider.minimumValue) {
       return [NSString stringWithFormat:@"%d", (int)slider.minimumValue];
     }
@@ -107,10 +109,13 @@
       //if (self.viewModel.viewModel.trial == nil) {
       if (!self.viewModel.viewModel.isPush) {
         [self.viewModel.viewModel setTrial:[(MSFPlanViewModel *)[self.viewModel.viewModel viewModels].lastObject model]];
+        if (!self.viewModel.viewModel.isChangTerm) {
+          self.viewModel.viewModel.homepageIndex = [self.viewModel.viewModel viewModels].count - 1;
+        }
       }
       //}
-			self.viewModel.viewModel.homepageIndex = [self.viewModel.viewModel viewModels].count - 1;
-			[self.monthCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:[self.viewModel.viewModel viewModels].count - 1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+			
+			[self.monthCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:self.viewModel.viewModel.homepageIndex inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 		}
 	}];
 }

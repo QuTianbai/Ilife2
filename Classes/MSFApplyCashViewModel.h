@@ -22,6 +22,7 @@
 @interface MSFApplyCashViewModel : RVMViewModel <MSFApplicationViewModel>
 
 @property (nonatomic, assign) bool isPush;
+@property (nonatomic, assign) bool isChangTerm;
 @property (nonatomic, copy) NSString *appNO;
 @property (nonatomic, copy) NSString *appLmt; // 贷款金额
 @property (nonatomic, copy) NSString *applyStatus;
