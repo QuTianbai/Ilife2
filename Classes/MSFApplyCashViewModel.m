@@ -42,6 +42,7 @@
 #import "MSFTrial.h"
 #import "MSFPlanView.h"
 #import "RACSignal+MSFClientAdditions.h"
+#import <objc/runtime.h>
 
 @interface MSFApplyCashViewModel ()
 
@@ -81,6 +82,7 @@
 	_appNO = @"";
 	_applicationNo = @"";
 	_array = [[NSArray alloc] init];
+  _masterBankCardNameAndNO = @"";
 	
 	RACChannelTo(self, applicationNo) = RACChannelTo(self, appNO);
 	RACChannelTo(self, accessories) = RACChannelTo(self, array);
@@ -108,8 +110,8 @@
 	}];
 	RAC(self, model.loanFixedAmt) = RACObserve(self, loanFixedAmt);
 	
-	RAC(self, minMoney) = RACObserve(self, markets.allMinAmount);
-	RAC(self, maxMoney) = RACObserve(self, markets.allMaxAmount);
+	RAC(self, minMoney) = [RACObserve(self, markets.allMinAmount) ignore:nil];
+	RAC(self, maxMoney) = [RACObserve(self, markets.allMaxAmount) ignore:nil];
 	
 	RAC(self, model.loanPurpose) = [RACObserve(self, purpose) map:^id(MSFSelectKeyValues *value) {
 		@strongify(self)
@@ -128,14 +130,11 @@
 		self.loanFixedAmt = product.loanFixedAmt;
 		self.lifeInsuranceAmt = product.lifeInsuranceAmt;
 	}];
-	RAC(self, markets) = [[self.didBecomeActiveSignal
-		 filter:^BOOL(id value) {
-			 @strongify(self)
-			 return !self.markets;
-		 }]
-		 flattenMap:^RACStream *(id value) {
-			 return [self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID];
-		 }];
+  [self.didBecomeActiveSignal subscribeNext:^(id x) {
+    [[self.services.httpClient fetchAmortizeWithProductCode:self.loanType.typeID] subscribeNext:^(id x) {
+      self.markets = x;
+    }];
+  }];
 	
 	RAC(self, viewModels) = [[RACSignal combineLatest:@[
 		RACObserve(self, appLmt),

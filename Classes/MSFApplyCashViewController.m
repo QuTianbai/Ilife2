@@ -266,13 +266,9 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
       self.viewModel.trial =((MSFPlanViewModel *)self.viewModel.viewModels.lastObject).model;
       
     } else {
-      for (int i = 0;i < self.viewModel.viewModels.count; i++) {
-        MSFPlanViewModel *planModel = self.viewModel.viewModels[i];
-        MSFTrial *inTrial = [planModel model];
-        if (inTrial == self.viewModel.trial) {
-          [self.picker selectRow:i inComponent:0 animated:NO];
-        }
-      }
+      
+      self.viewModel.trial =((MSFPlanViewModel *)self.viewModel.viewModels[self.viewModel.homepageIndex]).model;
+      [self.picker selectRow:self.viewModel.homepageIndex inComponent:0 animated:NO];
       
     }
     
