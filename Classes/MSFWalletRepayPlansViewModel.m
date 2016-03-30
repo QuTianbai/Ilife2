@@ -50,7 +50,7 @@
 	_executeFetchCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(NSString *input) {
 		@strongify(self)
 		return [RACSignal return:[self.dataArray.rac_sequence filter:^BOOL(MSFRepayPlanViewModle *viewModel) {
-			NSLog(@"%@", viewModel);
+//			NSLog(@"%@", viewModel);
 				return YES;
 			}].array];
 	}];
