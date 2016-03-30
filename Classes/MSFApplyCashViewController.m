@@ -140,6 +140,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	self.viewModel.jionLifeInsurance = @"1";
 	RAC(self, viewModel.jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(NSNumber *value) {
+    self.viewModel.isPush = NO;
 		if (value.integerValue == 0) {
 			self.moneyInsuranceLabel.hidden = YES;
 			//self.moneyInsuranceLabel.text = @"";
@@ -175,6 +176,13 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[self.picker selectRow:self.viewModel.homepageIndex inComponent:0 animated:YES];
 	
 	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
+    self.viewModel.isPush = NO;
+    if (slider.value == slider.minimumValue) {
+      return [NSString stringWithFormat:@"%d", (int)slider.minimumValue];
+    }
+    if (slider.value > slider.maximumValue-((int)slider.maximumValue % 500) || slider.value == slider.maximumValue) {
+      return [NSString stringWithFormat:@"%d", (int)slider.maximumValue];
+    }
 		return [NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];
 	}] ;
 	self.moneyUsedBT.rac_command = self.viewModel.executePurposeCommand;
@@ -251,13 +259,21 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	[RACObserve(self, viewModel.viewModels) subscribeNext:^(id x) {
         @strongify(self);
         [self.picker reloadAllComponents];
-        for (int i = 0;i < self.viewModel.viewModels.count; i++) {
-            MSFPlanViewModel *planModel = self.viewModel.viewModels[i];
-            MSFTrial *inTrial = [planModel model];
-            if (inTrial == self.viewModel.trial) {
-                [self.picker selectRow:i inComponent:0 animated:NO];
-            }
+    if (!self.viewModel.isPush) {
+      [self.picker selectRow:self.viewModel.viewModels.count - 1 inComponent:0 animated:NO];
+      self.viewModel.trial =((MSFPlanViewModel *)self.viewModel.viewModels.lastObject).model;
+      
+    } else {
+      for (int i = 0;i < self.viewModel.viewModels.count; i++) {
+        MSFPlanViewModel *planModel = self.viewModel.viewModels[i];
+        MSFTrial *inTrial = [planModel model];
+        if (inTrial == self.viewModel.trial) {
+          [self.picker selectRow:i inComponent:0 animated:NO];
         }
+      }
+      
+    }
+    
 	}];
 }
 

@@ -308,6 +308,7 @@ static NSString *const kApplicationCreditType = @"1";
 
 - (RACSignal *)applicationSignal {
 	return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+    self.viewModel.isPush = YES;
 		[self.services pushViewModel:self.viewModel];
 		[subscriber sendCompleted];
 		return nil;

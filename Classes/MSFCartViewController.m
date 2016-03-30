@@ -258,41 +258,32 @@
 		if (indexPath.section == 1) {
 			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
 		} else {
-            cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductsCell class])];
-            if (cell == nil) {
-                cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductsCell class]) owner:nil options:nil].firstObject ;
-            }
-            [(MSFMyOrderProductsCell *)cell bindViewModel:[[MSFMyOrderCmdViewModel alloc] initWithModel:self.viewModel.cart.cmdtyList[indexPath.row]]];
-           // [cell bindViewModel:[[MSFMyOrderCmdViewModel alloc] initWithModel:self.viewModel.cart.cmdtyList[indexPath.row]]];
-			//[cell bindViewModel:self.viewModel.cart.cmdtyList[indexPath.section] atIndexPath:indexPath];
-		}
+      cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderProductsCell class])];
+      if (cell == nil) {
+          cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderProductsCell class]) owner:nil options:nil].firstObject ;
+      }
+      [(MSFMyOrderProductsCell *)cell bindViewModel:[[MSFMyOrderCmdViewModel alloc] initWithModel:self.viewModel.cart.cmdtyList[indexPath.row]]];
+    }
 		return cell;
 	} else if ([self.viewModel.cart.cartType isEqualToString:MSFCartTravelIdentifier]) {
 		NSString *identifier = [self.viewModel reuseIdentifierForCellAtIndexPath:indexPath];
 		UITableViewCell<MSFReactiveView> *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 		if (indexPath.section == 1) { // 贷款试算视图
 			[cell bindViewModel:self.viewModel atIndexPath:indexPath];
-//		}
-//        else if (indexPath.section == 1) {
-//			[cell bindViewModel:self.viewModel.cart.companions atIndexPath:indexPath];
-//		}
-        } else if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderListTravalDetailCell class])];
-                if (cell == nil) {
-                    cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
-                }
-                [(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel atIndexPath:indexPath];
-                //return cell;
-            } else {
-                cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
-                if (cell == nil) {
-                    cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderTravalMemebersCell class]) owner:nil options:nil].firstObject ;
-                }
-                [(MSFMyOrderTravalMemebersCell *)cell bindViewModel:self.viewModel.cart atIndexPath:indexPath] ;
-                //return cell;
-            }
-			//[cell bindViewModel:self.viewModel.cart atIndexPath:indexPath];
+    } else if (indexPath.section == 0) {
+      if (indexPath.row == 0) {
+          cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderListTravalDetailCell class])];
+          if (cell == nil) {
+              cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderListTravalDetailCell class]) owner:nil options:nil].firstObject ;
+          }
+          [(MSFMyOrderListTravalDetailCell *)cell bindViewModel:self.viewModel atIndexPath:indexPath];
+      } else {
+          cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MSFMyOrderTravalMemebersCell class])];
+          if (cell == nil) {
+              cell = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([MSFMyOrderTravalMemebersCell class]) owner:nil options:nil].firstObject ;
+          }
+          [(MSFMyOrderTravalMemebersCell *)cell bindViewModel:self.viewModel.cart atIndexPath:indexPath] ;
+      }
 		}
 		return cell;
 	}

@@ -166,23 +166,23 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 		}];
 		return [RACSignal error:error];
 	}
-	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
-		NSString *str = @"请填写正确的银行卡号";
-		if (self.bankNO.length == self.maxSize.integerValue) {
-			str = @"你的银行卡号长度有误，请修改后再试";
-		}
-		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-NSLocalizedFailureReasonErrorKey: str,
-																																										}];
-		return [RACSignal error:error];
-	}
-	
-	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
-		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
-		}];
-		return [RACSignal error:error];
-	}
+//	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
+//		NSString *str = @"请填写正确的银行卡号";
+//		if (self.bankNO.length == self.maxSize.integerValue) {
+//			str = @"你的银行卡号长度有误，请修改后再试";
+//		}
+//		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+//NSLocalizedFailureReasonErrorKey: str,
+//																																										}];
+//		return [RACSignal error:error];
+//	}
+//	
+//	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
+//		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+//			NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
+//		}];
+//		return [RACSignal error:error];
+//	}
 	
 	return [[self.services.httpClient addBankCardWithTransPassword:self.transPassword AndBankCardNo:[self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""] AndbankBranchProvinceCode:self.bankBranchProvinceCode AndbankBranchCityCode:self.bankBranchCityCode] doNext:^(id x) {
 		[self.services.httpClient updateUser:self.services.httpClient.user];
@@ -199,16 +199,16 @@ NSLocalizedFailureReasonErrorKey: str,
 		}];
 		return [RACSignal error:error];
 	}
-	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
-		NSString *str = @"请填写正确的银行卡号";
-		if (self.bankNO.length == self.maxSize.integerValue) {
-			str = @"你的银行卡号长度有误，请修改后再试";
-		}
-		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: str,
-		}];
-		return [RACSignal error:error];
-	}
+//	if (self.bankNO.length == 0 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length < 14 || [self.bankNO stringByReplacingOccurrencesOfString:@" " withString:@""].length != self.maxSize.integerValue ) {
+//		NSString *str = @"请填写正确的银行卡号";
+//		if (self.bankNO.length == self.maxSize.integerValue) {
+//			str = @"你的银行卡号长度有误，请修改后再试";
+//		}
+//		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+//			NSLocalizedFailureReasonErrorKey: str,
+//		}];
+//		return [RACSignal error:error];
+//	}
 
 	
 	if (self.TradePassword.length == 0) {
@@ -241,13 +241,13 @@ NSLocalizedFailureReasonErrorKey: str,
 		return [RACSignal error:error];
 	}
 	
-	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
-		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
-			NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
-		}];
-		return [RACSignal error:error];
-	}
-	
+//	if (self.isFirstBankCard && self.bankInfo.support.integerValue == 2) {
+//		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+//			NSLocalizedFailureReasonErrorKey: @"主卡不能为贷记卡",
+//		}];
+//		return [RACSignal error:error];
+//	}
+//	
 	if ([self.TradePassword isSimplePWD]) {
 		NSString *str = @"交易密码设置太简单，请重新输入";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{

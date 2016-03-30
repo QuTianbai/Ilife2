@@ -73,7 +73,11 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
 	self.viewModel.active = YES;
-	self.viewModel.active = NO;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+  self.viewModel.active = NO;
 }
 
 #pragma mark private method
