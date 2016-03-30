@@ -141,6 +141,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	self.viewModel.jionLifeInsurance = @"1";
 	RAC(self, viewModel.jionLifeInsurance) = [self.isInLifeInsurancePlaneSW.rac_newOnChannel map:^id(NSNumber *value) {
     self.viewModel.isPush = NO;
+    self.viewModel.isChangTerm = NO;
 		if (value.integerValue == 0) {
 			self.moneyInsuranceLabel.hidden = YES;
 			//self.moneyInsuranceLabel.text = @"";
@@ -177,6 +178,7 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	
 	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
     self.viewModel.isPush = NO;
+    self.viewModel.isChangTerm = NO;
     if (slider.value == slider.minimumValue) {
       return [NSString stringWithFormat:@"%d", (int)slider.minimumValue];
     }
@@ -335,6 +337,8 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+  self.viewModel.homepageIndex = row;
+  self.viewModel.isChangTerm = YES;
 	self.viewModel.trial = [(MSFPlanViewModel *)self.viewModel.viewModels[row] model];
 }
 
