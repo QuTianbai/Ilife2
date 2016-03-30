@@ -81,11 +81,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                         <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
                                     </webView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wallet-Middle-bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="xo3-Ve-XfY">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                        <color key="backgroundColor" red="0.54928691275167785" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="cUv-1M-4QW" secondAttribute="trailing" id="08Q-ay-0y6"/>
                                     <constraint firstAttribute="bottom" secondItem="cUv-1M-4QW" secondAttribute="bottom" id="1CR-dF-jFI"/>
+                                    <constraint firstItem="xo3-Ve-XfY" firstAttribute="leading" secondItem="9hy-XD-mXS" secondAttribute="leading" id="74x-IV-atZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="xo3-Ve-XfY" secondAttribute="trailing" id="CUe-Yh-53C"/>
+                                    <constraint firstItem="xo3-Ve-XfY" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="top" id="Ha5-bF-Mqs"/>
+                                    <constraint firstAttribute="bottom" secondItem="xo3-Ve-XfY" secondAttribute="bottom" id="Ysk-2r-o3s"/>
                                     <constraint firstItem="cUv-1M-4QW" firstAttribute="leading" secondItem="9hy-XD-mXS" secondAttribute="leading" id="pzj-fT-0gP"/>
                                     <constraint firstItem="cUv-1M-4QW" firstAttribute="top" secondItem="9hy-XD-mXS" secondAttribute="top" id="qrE-e7-TLc"/>
                                 </constraints>
@@ -462,5 +470,6 @@
         <image name="btn-repay-highlighted.png" width="119" height="37"/>
         <image name="btn-repay-normal.png" width="119" height="37"/>
         <image name="icon-cash.png" width="382" height="49"/>
+        <image name="wallet-Middle-bg.png" width="414" height="211"/>
     </resources>
 </document>

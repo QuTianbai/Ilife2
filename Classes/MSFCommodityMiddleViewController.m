@@ -20,13 +20,13 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	@weakify(self)
-	[RACObserve(self, viewModel.groundContent) subscribeNext:^(id x) {
-		@strongify(self)
-		[self.myWebView loadHTMLString:x baseURL:nil];
-	}];
-	self.myWebView.backgroundColor = [UIColor whiteColor];
-	self.myWebView.opaque = NO;
+//	@weakify(self)
+//	[RACObserve(self, viewModel.groundContent) subscribeNext:^(id x) {
+//		@strongify(self)
+//		[self.myWebView loadHTMLString:x baseURL:nil];
+//	}];
+//	self.myWebView.backgroundColor = [UIColor whiteColor];
+//	self.myWebView.opaque = NO;
 }
 
 - (void)didReceiveMemoryWarning {

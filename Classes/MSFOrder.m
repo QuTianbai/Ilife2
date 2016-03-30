@@ -44,7 +44,7 @@
 
 + (NSValueTransformer *)loanFixedAmtJSONTransformer {
 	return [MTLValueTransformer reversibleTransformerWithForwardBlock:^(NSNumber *num) {
-		return [num isKindOfClass:NSNumber.class]?num.stringValue:num;
+		return [num isKindOfClass:NSNumber.class]?[NSString stringWithFormat:@"%.2f", num.doubleValue]:num;
 	} reverseBlock:^ id (NSString *str) {
 		return str;
 	}];

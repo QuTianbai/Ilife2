@@ -19,8 +19,8 @@
 
 - (void)awakeFromNib {
 	self.layer.borderColor   = [UIColor grayColor].CGColor;
-	self.layer.borderWidth   = 1;
-	self.layer.cornerRadius  = 7;
+	self.layer.borderWidth   = 1.3;
+	self.layer.cornerRadius  = 8;
 	self.layer.masksToBounds = YES;
 	
 	self.loacPeriodsLabel.backgroundColor = [UIColor clearColor];

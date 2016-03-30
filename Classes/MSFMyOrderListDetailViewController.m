@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *monthMoney;
 @property (weak, nonatomic) IBOutlet MSFBlurButton *bottomButton;
 @property (copy, nonatomic) NSString *productCode;
+@property (weak, nonatomic) IBOutlet UILabel *appLmt;
 
 @end
 
@@ -52,6 +53,13 @@
 		}
 		return @YES;
 	}];
+  RAC(self, appLmt.text) = [RACObserve(self, viewModel.applyType) map:^id(NSString *value) {
+    if ([value isEqualToString:@"1"]) {
+      return @"贷款金额:";
+    } else {
+      return @"提现额度:";
+    }
+  }];
 	RAC(self, monthMoney.text) = RACObserve(self, viewModel.monthMoney);
 	[RACObserve(self, viewModel.status) subscribeNext:^(NSString *value) {
 		@strongify(self)
