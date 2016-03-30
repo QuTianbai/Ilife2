@@ -384,6 +384,18 @@
 		1D4EC4F71C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F61C9A9B3200C00DA8 /* MSFRepayPlanViewModle.m */; };
 		1D4EC4FA1C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m */; };
 		1D59C6171C8E9BA000B7D92B /* MSFCreditViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */; };
+		1D85B1E01CAA4E8800CB37CE /* Credit-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1DD1CAA4E8800CB37CE /* Credit-bg.jpg */; };
+		1D85B1E11CAA4E8800CB37CE /* Credit-bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1DE1CAA4E8800CB37CE /* Credit-bg@2x.jpg */; };
+		1D85B1E21CAA4E8800CB37CE /* Credit-bg@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1DF1CAA4E8800CB37CE /* Credit-bg@3x.jpg */; };
+		1D85B1F31CAA514E00CB37CE /* Commodity-bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1F01CAA514E00CB37CE /* Commodity-bg.jpg */; };
+		1D85B1F41CAA514E00CB37CE /* Commodity-bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1F11CAA514E00CB37CE /* Commodity-bg@2x.jpg */; };
+		1D85B1F51CAA514E00CB37CE /* Commodity-bg@3x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1F21CAA514E00CB37CE /* Commodity-bg@3x.jpg */; };
+		1D85B1F91CAA555A00CB37CE /* wallet-Middle-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1F61CAA555A00CB37CE /* wallet-Middle-bg.png */; };
+		1D85B1FA1CAA555A00CB37CE /* wallet-Middle-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1F71CAA555A00CB37CE /* wallet-Middle-bg@2x.png */; };
+		1D85B1FB1CAA555A00CB37CE /* wallet-Middle-bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B1F81CAA555A00CB37CE /* wallet-Middle-bg@3x.png */; };
+		1D85B20B1CAA770500CB37CE /* btn_affirm@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B2081CAA770500CB37CE /* btn_affirm@1x.png */; };
+		1D85B20C1CAA770500CB37CE /* btn_affirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B2091CAA770500CB37CE /* btn_affirm@2x.png */; };
+		1D85B20D1CAA770500CB37CE /* btn_affirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D85B20A1CAA770500CB37CE /* btn_affirm@3x.png */; };
 		1D907A141C8D1B3F00DF9A24 /* MSFCreditViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */; };
 		1D9D54511C91727D00858B5E /* credit-btn-active.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D544E1C91727D00858B5E /* credit-btn-active.png */; };
 		1D9D54521C91727D00858B5E /* credit-btn-active@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1D9D544F1C91727D00858B5E /* credit-btn-active@2x.png */; };
@@ -1608,6 +1620,18 @@
 		1D4EC4F81C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFWalletRepayPlansViewModel.h; sourceTree = "<group>"; };
 		1D4EC4F91C9A9BF100C00DA8 /* MSFWalletRepayPlansViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFWalletRepayPlansViewModel.m; sourceTree = "<group>"; };
 		1D59C6161C8E9BA000B7D92B /* MSFCreditViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MSFCreditViewController.storyboard; sourceTree = "<group>"; };
+		1D85B1DD1CAA4E8800CB37CE /* Credit-bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Credit-bg.jpg"; sourceTree = "<group>"; };
+		1D85B1DE1CAA4E8800CB37CE /* Credit-bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Credit-bg@2x.jpg"; sourceTree = "<group>"; };
+		1D85B1DF1CAA4E8800CB37CE /* Credit-bg@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Credit-bg@3x.jpg"; sourceTree = "<group>"; };
+		1D85B1F01CAA514E00CB37CE /* Commodity-bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Commodity-bg.jpg"; sourceTree = "<group>"; };
+		1D85B1F11CAA514E00CB37CE /* Commodity-bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Commodity-bg@2x.jpg"; sourceTree = "<group>"; };
+		1D85B1F21CAA514E00CB37CE /* Commodity-bg@3x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Commodity-bg@3x.jpg"; sourceTree = "<group>"; };
+		1D85B1F61CAA555A00CB37CE /* wallet-Middle-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet-Middle-bg.png"; sourceTree = "<group>"; };
+		1D85B1F71CAA555A00CB37CE /* wallet-Middle-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet-Middle-bg@2x.png"; sourceTree = "<group>"; };
+		1D85B1F81CAA555A00CB37CE /* wallet-Middle-bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wallet-Middle-bg@3x.png"; sourceTree = "<group>"; };
+		1D85B2081CAA770500CB37CE /* btn_affirm@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_affirm@1x.png"; sourceTree = "<group>"; };
+		1D85B2091CAA770500CB37CE /* btn_affirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_affirm@2x.png"; sourceTree = "<group>"; };
+		1D85B20A1CAA770500CB37CE /* btn_affirm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_affirm@3x.png"; sourceTree = "<group>"; };
 		1D907A121C8D1B3F00DF9A24 /* MSFCreditViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSFCreditViewModel.h; sourceTree = "<group>"; };
 		1D907A131C8D1B3F00DF9A24 /* MSFCreditViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSFCreditViewModel.m; sourceTree = "<group>"; };
 		1D9D544E1C91727D00858B5E /* credit-btn-active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-btn-active.png"; sourceTree = "<group>"; };
@@ -3396,6 +3420,18 @@
 		4912C6AD1C6475D000550A6C /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				1D85B2081CAA770500CB37CE /* btn_affirm@1x.png */,
+				1D85B2091CAA770500CB37CE /* btn_affirm@2x.png */,
+				1D85B20A1CAA770500CB37CE /* btn_affirm@3x.png */,
+				1D85B1F61CAA555A00CB37CE /* wallet-Middle-bg.png */,
+				1D85B1F71CAA555A00CB37CE /* wallet-Middle-bg@2x.png */,
+				1D85B1F81CAA555A00CB37CE /* wallet-Middle-bg@3x.png */,
+				1D85B1F01CAA514E00CB37CE /* Commodity-bg.jpg */,
+				1D85B1F11CAA514E00CB37CE /* Commodity-bg@2x.jpg */,
+				1D85B1F21CAA514E00CB37CE /* Commodity-bg@3x.jpg */,
+				1D85B1DD1CAA4E8800CB37CE /* Credit-bg.jpg */,
+				1D85B1DE1CAA4E8800CB37CE /* Credit-bg@2x.jpg */,
+				1D85B1DF1CAA4E8800CB37CE /* Credit-bg@3x.jpg */,
 				1DF446221C96B8CC0043BF87 /* add-bank.png */,
 				1DF446231C96B8CC0043BF87 /* add-bank@2x.png */,
 				1DF446241C96B8CC0043BF87 /* add-bank@3x.png */,
@@ -5301,7 +5337,7 @@
 				TargetAttributes = {
 					4943C32A1B047403000BBF5E = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 3GZ2MLR74W;
+						DevelopmentTeam = UVHFESGJ9E;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -5445,6 +5481,8 @@
 				10ACE5DA1C043AD400EE5044 /* icon-account-about@2x.png in Resources */,
 				07BF64351C92B2FB0027AEA3 /* MSFServiceUserCell.xib in Resources */,
 				494901B81C3CF8E100E9AD09 /* btn-scan@3x.png in Resources */,
+				1D85B1FB1CAA555A00CB37CE /* wallet-Middle-bg@3x.png in Resources */,
+				1D85B1E01CAA4E8800CB37CE /* Credit-bg.jpg in Resources */,
 				49DAEE7E1B2E83E4009433C5 /* personal.storyboard in Resources */,
 				49C0F1C51B2C341400E92572 /* tabbar-account-normal@2x.png in Resources */,
 				49A550AD1C5743600029FC1A /* cell-icon-low-warning.png in Resources */,
@@ -5539,6 +5577,7 @@
 				C7D2D1331B67938C000F51ED /* icon-cloze-question@3x.png in Resources */,
 				49C2FE471B4654D100B6B20A /* icon-arrow-down@3x.png in Resources */,
 				49C2FE451B4654D100B6B20A /* icon-arrow-down.png in Resources */,
+				1D85B1E11CAA4E8800CB37CE /* Credit-bg@2x.jpg in Resources */,
 				070724B81B6762730089916B /* MSFPeriodsCollectionViewCell.xib in Resources */,
 				4944C00C1B68A44A00805C0A /* icon-cloze-idcard@2x.png in Resources */,
 				C7D2D11D1B67938C000F51ED /* icon-cloze-bankAddress@2x.png in Resources */,
@@ -5573,7 +5612,9 @@
 				4912C6D01C64778900550A6C /* applyCashBottom@3x.png in Resources */,
 				C7A3517A1B217CB10001DF6A /* iconfont-guanyuwomen.png in Resources */,
 				49DA1A4C1C0ED2A60052C056 /* circleCash.json in Resources */,
+				1D85B20C1CAA770500CB37CE /* btn_affirm@2x.png in Resources */,
 				077460FD1C7420A000F46ABD /* icon-start-signin.png in Resources */,
+				1D85B20B1CAA770500CB37CE /* btn_affirm@1x.png in Resources */,
 				077460F21C733D1900F46ABD /* guide in Resources */,
 				49C0F1D01B2C341400E92572 /* tabbar-home-normal.png in Resources */,
 				077347CA1BBA338900D7A130 /* ABC.png in Resources */,
@@ -5595,6 +5636,7 @@
 				4944C0531B68A60200805C0A /* icon-avatar-placeholder.png in Resources */,
 				07E14BF11C8710C300589164 /* MSFMyOrderListTableViewCell.xib in Resources */,
 				077461021C7420A000F46ABD /* icon-start-signup@3x.png in Resources */,
+				1D85B1FA1CAA555A00CB37CE /* wallet-Middle-bg@2x.png in Resources */,
 				49B7A7A71C8592C900471168 /* icon-user-edit@3x.png in Resources */,
 				49CA93611BBA212A0032F5C2 /* groupedTableViewCell_topRow@2x.png in Resources */,
 				C7A351801B217CB10001DF6A /* iconfont-mianxingtubiao3gengxin.png in Resources */,
@@ -5610,6 +5652,7 @@
 				054C365B1C9D3DEB00287929 /* MSFInputMoneyViewcontrollerTableViewController.storyboard in Resources */,
 				070119D71BA669DD00ACE8C6 /* icon-empty@3x.png in Resources */,
 				C7D2D1231B67938C000F51ED /* icon-cloze-bankNO@2x.png in Resources */,
+				1D85B1F31CAA514E00CB37CE /* Commodity-bg.jpg in Resources */,
 				077347D41BBA338900D7A130 /* china@2x.png in Resources */,
 				4964448B1B69BA77001FB1BE /* btn-showpwd-selected@2x.png in Resources */,
 				491FD4171C84A4D40026928F /* tab-msd-highlighted@3x.png in Resources */,
@@ -5658,6 +5701,7 @@
 				49B1861A1C5626A600409C6F /* cell-icon-used@3x.png in Resources */,
 				497827B01C83F5E100F2D1D8 /* bg-wallet-status@2x.png in Resources */,
 				492E62741B0EC18D00D34069 /* left_arrow@3x.png in Resources */,
+				1D85B20D1CAA770500CB37CE /* btn_affirm@3x.png in Resources */,
 				07BF644E1C92C73E0027AEA3 /* icon-service-about@2x.png in Resources */,
 				49FAEF4E1C90144500F3BC44 /* bar-highlighted@3x.png in Resources */,
 				07A7DACA1BFC1BEE00916ADD /* MSFRepaymentPlanStoryboard.storyboard in Resources */,
@@ -5861,6 +5905,7 @@
 				4944C00D1B68A44A00805C0A /* icon-cloze-idcard@3x.png in Resources */,
 				07E14C121C88108A00589164 /* icon-myorder-bussy@2x.png in Resources */,
 				4922E1541C85E1EF00E20C2C /* icon-complete-photo@3x.png in Resources */,
+				1D85B1F51CAA514E00CB37CE /* Commodity-bg@3x.jpg in Resources */,
 				102C7EF61C2A7A4B0023172B /* icon-account-order.png in Resources */,
 				497827AC1C83F5E100F2D1D8 /* bg-view-header.jpg in Resources */,
 				07E14C151C88108A00589164 /* icon-myorder-wallet@2x.png in Resources */,
@@ -5922,6 +5967,7 @@
 				07CB1B691C8D9DE50031CEE8 /* img-commdity-sao-Nomal@2x.png in Resources */,
 				49CA93801BBA3F7E0032F5C2 /* icon-id@2x.png in Resources */,
 				C7D2D1361B67938C000F51ED /* icon-cloze-selected@3x.png in Resources */,
+				1D85B1F91CAA555A00CB37CE /* wallet-Middle-bg.png in Resources */,
 				07C06C561B1345DD00F2DFCC /* industry_category.json in Resources */,
 				491FD4201C84A4D40026928F /* tab-wallet-normal@3x.png in Resources */,
 				49FAEF291C9013A600F3BC44 /* icon_order1_n@2x.png in Resources */,
@@ -5959,6 +6005,7 @@
 				4944C04C1B68A5DA00805C0A /* nav-back@3x.png in Resources */,
 				1011A3A81BB9702600CCADB5 /* icon_circle_basic_h.png in Resources */,
 				49C0F1AA1B2C315100E92572 /* icon-phone@2x.png in Resources */,
+				1D85B1E21CAA4E8800CB37CE /* Credit-bg@3x.jpg in Resources */,
 				49E22B021B37ED9E00749717 /* btn-family-reduce@3x.png in Resources */,
 				49FAEF3B1C9013A600F3BC44 /* icon_order3_n@2x.png in Resources */,
 				07AFE5A01B26D202009E0124 /* position.json in Resources */,
@@ -6006,6 +6053,7 @@
 				491FD40A1C84A4D40026928F /* tab-commodity-highlighted@2x.png in Resources */,
 				491FD40E1C84A4D40026928F /* tab-commodity-normal@3x.png in Resources */,
 				49C0F1A71B2C315100E92572 /* icon-password@2x.png in Resources */,
+				1D85B1F41CAA514E00CB37CE /* Commodity-bg@2x.jpg in Resources */,
 				4964448C1B69BA77001FB1BE /* btn-showpwd-selected@3x.png in Resources */,
 				07CB1B701C8D9DE50031CEE8 /* img-commidity-bg-top@3x.jpg in Resources */,
 				49C0F1A31B2C315100E92572 /* icon-check-selected.png in Resources */,
@@ -6649,7 +6697,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.msxf.finance;
 				PRODUCT_NAME = Finance;
-				PROVISIONING_PROFILE = "eac3b17b-7992-4feb-a9a0-eaa7e035c492";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -6725,8 +6773,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: MaShang Consumer Finance Co., Ltd (3GZ2MLR74W)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
