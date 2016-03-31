@@ -210,7 +210,13 @@ static NSString *const MSFAddBankCardViewModelErrorDomain = @"MSFAddBankCardView
 //		return [RACSignal error:error];
 //	}
 
-	
+    if (self.bankNO.length == 0) {
+            NSString *str = @"请填写正确的银行卡号";
+        		error = [NSError errorWithDomain:MSFAddBankCardViewModelErrorDomain code:0 userInfo:@{
+        			NSLocalizedFailureReasonErrorKey: str,
+        		}];
+        		return [RACSignal error:error];
+    }
 	if (self.TradePassword.length == 0) {
 		NSString *str = @"请填写交易密码";
 		error = [NSError errorWithDomain:@"MSFAddBankCardViewModel" code:0 userInfo:@{
