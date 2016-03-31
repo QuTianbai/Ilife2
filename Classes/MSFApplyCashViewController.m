@@ -179,10 +179,10 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
 	RAC(self, viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
     self.viewModel.isPush = NO;
     self.viewModel.isChangTerm = NO;
-    if (slider.value == slider.minimumValue) {
+    if ((int)slider.value == (int)slider.minimumValue) {
       return [NSString stringWithFormat:@"%d", (int)slider.minimumValue];
     }
-    if (slider.value > slider.maximumValue-((int)slider.maximumValue % 500) || slider.value == slider.maximumValue) {
+    if (slider.value > slider.maximumValue-((int)slider.maximumValue % 500) || (int)slider.value == (int)slider.maximumValue) {
       return [NSString stringWithFormat:@"%d", (int)slider.maximumValue];
     }
 		return [NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];
@@ -263,11 +263,11 @@ static NSString *const MSFAutoinputDebuggingEnvironmentKey = @"INPUT_AUTO_DEBUG"
         [self.picker reloadAllComponents];
     if (!self.viewModel.isPush) {
       [self.picker selectRow:self.viewModel.viewModels.count - 1 inComponent:0 animated:NO];
-      self.viewModel.trial =((MSFPlanViewModel *)self.viewModel.viewModels.lastObject).model;
+      self.viewModel.trial = ((MSFPlanViewModel *)self.viewModel.viewModels.lastObject).model;
       
     } else {
       
-      self.viewModel.trial =((MSFPlanViewModel *)self.viewModel.viewModels[self.viewModel.homepageIndex]).model;
+      self.viewModel.trial = ((MSFPlanViewModel *)self.viewModel.viewModels[self.viewModel.homepageIndex]).model;
       [self.picker selectRow:self.viewModel.homepageIndex inComponent:0 animated:NO];
       
     }

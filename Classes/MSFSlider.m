@@ -84,10 +84,10 @@
 
 - (void)slideerValueChanged:(UISlider *)slider {
 	if (self.hiddenAmount) return;
-  if (slider.value == slider.minimumValue) {
+  if ((int)slider.value == (int)slider.minimumValue) {
     self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", (int)slider.minimumValue];
     return;
-  } else if (slider.value > slider.maximumValue-((int)slider.maximumValue % 500) || slider.value == slider.maximumValue) {
+  } else if ((int)slider.value > (int)(slider.maximumValue-((int)slider.maximumValue % 500)) || (int)slider.value == (int)slider.maximumValue) {
     self.moneyNumLabel.text = [NSString stringWithFormat:@"%d元", (int)slider.maximumValue];
     return;
   }
@@ -97,9 +97,9 @@
 - (void)sliderGragUp:(UISlider *)slider {
 	// 手指移开slider时获取的金额
   NSString *money = @"";
-  if (slider.value == slider.minimumValue) {
+  if ((int)slider.value == (int)slider.minimumValue) {
     money = [NSString stringWithFormat:@"%d", (int)slider.minimumValue];
-  } else if (slider.value > slider.maximumValue-((int)slider.maximumValue % 500) || slider.value == slider.maximumValue) {
+  } else if ((int)slider.value > (int)(slider.maximumValue-((int)slider.maximumValue % 500)) || (int)slider.value == (int)slider.maximumValue) {
     money = [NSString stringWithFormat:@"%d", (int)slider.maximumValue];
   } else {
     money = [NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];

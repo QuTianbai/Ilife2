@@ -25,7 +25,15 @@
 }
 
 + (NSValueTransformer *)cmdtyPriceJSONTransformer {
-	return [self transformer];
+    return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSNumber *num) {
+        if ([num isKindOfClass:[NSNumber class]]) {
+            return [NSString stringWithFormat:@"%.2f", [num doubleValue]];
+        }
+        return num;
+    } reverseBlock:^id(NSString *str) {
+        return str;
+    }];
+	//return [self transformer];
 }
 
 + (NSValueTransformer *)transformer {

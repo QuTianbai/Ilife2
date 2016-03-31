@@ -84,10 +84,10 @@
 	RAC(self, viewModel.viewModel.appLmt) = [[self.moneySlider rac_signalForControlEvents:UIControlEventTouchUpInside] map:^id(UISlider *slider) {
     self.viewModel.viewModel.isPush = NO;
     self.viewModel.viewModel.isChangTerm = NO;
-    if (slider.value == slider.minimumValue) {
+    if ((int)slider.value == (int)slider.minimumValue) {
       return [NSString stringWithFormat:@"%d", (int)slider.minimumValue];
     }
-    if (slider.value > slider.maximumValue-((int)slider.maximumValue % 500) || slider.value == slider.maximumValue) {
+    if ((int)slider.value > (int)(slider.maximumValue-((int)slider.maximumValue % 500)) || (int)slider.value == (int)slider.maximumValue) {
       return [NSString stringWithFormat:@"%d", (int)slider.maximumValue];
     }
 		return [NSString stringWithFormat:@"%d", slider.value == slider.minimumValue? (int)slider.minimumValue : ((int)slider.value / 500 + 1) * 500];
